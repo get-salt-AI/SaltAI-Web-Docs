@@ -2,6 +2,7 @@ site_name: Salt AI Documentation
 
 nav:
   - Getting Started: index.md
+  - Platform Resources: resources.md
 
 theme:
   name: material
