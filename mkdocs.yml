@@ -1,28 +1,36 @@
 site_name: Salt AI Documentation
-
 nav:
   - Getting Started: index.md
   - Platform Resources: resources.md
-
+  - Nodes packs documentation:
+      - ComfyUI_experiments:
+          - ModelMergeBlockNumber: md/ComfyUI_experiments/ModelMergeBlockNumber.md
+          - ModelMergeSDXL: md/ComfyUI_experiments/ModelMergeSDXL.md
+          - ModelMergeSDXLDetailedTransformers: md/ComfyUI_experiments/ModelMergeSDXLDetailedTransformers.md
+          - ModelMergeSDXLTransformers: md/ComfyUI_experiments/ModelMergeSDXLTransformers.md
+          - ModelSamplerTonemapNoiseTest: md/ComfyUI_experiments/ModelSamplerTonemapNoiseTest.md
+          - ReferenceOnlySimple: md/ComfyUI_experiments/ReferenceOnlySimple.md
+          - RescaleClassifierFreeGuidanceTest: md/ComfyUI_experiments/RescaleClassifierFreeGuidanceTest.md
+          - TonemapNoiseWithRescaleCFG: md/ComfyUI_experiments/TonemapNoiseWithRescaleCFG.md
+      - SavePNG:
+          - PNG_Save: md/SavePNG/PNG_Save.md
+      - llmnodes:
+          - DocumentNode: md/llmnodes/DocumentNode.md
+          - DocumentPack: md/llmnodes/DocumentPack.md
+          - LoadOpenAIModel: md/llmnodes/LoadOpenAIModel.md
 theme:
   name: material
-
-  palette: 
-
-    # Palette toggle for light mode
-    - media: "(prefers-color-scheme: light)"
+  palette:
+    - media: '(prefers-color-scheme: light)'
       scheme: default
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
-
-    # Palette toggle for dark mode
-    - media: "(prefers-color-scheme: dark)"
+    - media: '(prefers-color-scheme: dark)'
       scheme: slate
       toggle:
         icon: material/white-balance-sunny
         name: Switch to light mode
-
   features:
     - navigation.instant
     - navigation.tracking
@@ -34,35 +42,23 @@ theme:
     - search.highlight
     - search.share
     - content.code.copy
-
 markdown_extensions:
   - tables
-
-  #codeblocks
   - pymdownx.highlight:
       anchor_linenums: true
       pygments_lang_class: true
       line_spans: __span
   - pymdownx.inlinehilite
   - pymdownx.snippets
-
-  #callouts
   - admonition
   - pymdownx.details
   - pymdownx.superfences
-
-  #definition lists
   - def_list
-
-  #table of content
   - toc:
       permalink: true
-
   - pymdownx.keys
-
   - attr_list
   - md_in_html
-
 extra:
   social:
     - icon: fontawesome/brands/github
