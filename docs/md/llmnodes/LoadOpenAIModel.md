@@ -4,30 +4,31 @@
 - Category: `LLM Nodes`
 - Output node: `False`
 
-This node is designed to facilitate the integration of OpenAI's language models into the user's workflow by loading a specified model and its corresponding embedding model. It also allows for the adjustment of the model's generation behavior through temperature control. The output is a comprehensive object that includes both the language and embedding models, ready for use in various applications.
+This node is responsible for loading an OpenAI model along with its embedding model based on the specified parameters. It creates a unique identifier for the loaded model combination by concatenating the model names and temperature setting. This allows for the flexible use of different OpenAI models and their embeddings in downstream tasks.
 ## Input types
+### Required
 - **`model`**
-    - Specifies the OpenAI model to be loaded, offering a selection from a comprehensive list of available models. The default setting aims to provide a balance between performance and resource usage.
+    - Specifies the OpenAI model to be loaded. The choice of model can significantly impact the behavior and capabilities of the generated outputs. It is selected from a predefined list of available models, allowing for customization based on the task at hand.
     - Python dtype: `str`
-    - Comfy dtype: `STRING[COMBO]`
+    - Comfy dtype: `MODEL`
 - **`temperature`**
-    - Controls the randomness of the model's output, allowing for fine-tuning of the generation process. A lower temperature results in more deterministic outputs, while a higher value increases randomness.
+    - Controls the randomness of the output generation. A higher temperature results in more random outputs, while a lower temperature produces more deterministic outputs.
     - Python dtype: `float`
     - Comfy dtype: `FLOAT`
 - **`embed_model`**
-    - Determines the embedding model to be used in conjunction with the language model, enhancing the model's understanding and processing of input data.
+    - Determines the embedding model to be used alongside the main OpenAI model. This affects how inputs are processed and represented internally. The embedding model is chosen from a predefined list, enabling tailored input processing.
     - Python dtype: `str`
-    - Comfy dtype: `STRING[COMBO]`
+    - Comfy dtype: `MODEL`
 ## Output types
 - **`model`**
-    - A structured object containing the loaded language model, embedding model, and a unique identifier, ready for integration into various applications.
+    - The combined OpenAI model and embedding model loaded based on the specified parameters.
     - Python dtype: `Dict[str, Any]`
     - Comfy dtype: `MODEL`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
-The LoadOpenAIModel node is essential for integrating OpenAI's language models into the pipeline, allowing users to specify a model and its embedding counterpart for enhanced input understanding. It is often used with nodes that require advanced text processing and generation capabilities, providing both the language model and embedding model as output for diverse applications.
+Often used with downstream tasks such as text generation, summarization, or embedding extraction, the LoadOpenAIModel node loads a specified OpenAI model and its embedding counterpart based on user-defined parameters, enabling tailored AI functionalities.
 ## Source code
 ```python
 class LoadOpenAIModel:

@@ -3,17 +3,92 @@ nav:
   - Getting Started: index.md
   - Platform Resources: resources.md
   - Nodes packs documentation:
-      - ComfyUI_experiments:
-          - ModelMergeBlockNumber: md/ComfyUI_experiments/ModelMergeBlockNumber.md
-          - ModelMergeSDXL: md/ComfyUI_experiments/ModelMergeSDXL.md
-          - ModelMergeSDXLDetailedTransformers: md/ComfyUI_experiments/ModelMergeSDXLDetailedTransformers.md
-          - ModelMergeSDXLTransformers: md/ComfyUI_experiments/ModelMergeSDXLTransformers.md
-          - ModelSamplerTonemapNoiseTest: md/ComfyUI_experiments/ModelSamplerTonemapNoiseTest.md
-          - ReferenceOnlySimple: md/ComfyUI_experiments/ReferenceOnlySimple.md
-          - RescaleClassifierFreeGuidanceTest: md/ComfyUI_experiments/RescaleClassifierFreeGuidanceTest.md
-          - TonemapNoiseWithRescaleCFG: md/ComfyUI_experiments/TonemapNoiseWithRescaleCFG.md
+      - ComfyMath:
+          - CM_BoolBinaryOperation: md/ComfyMath/CM_BoolBinaryOperation.md
+          - CM_BoolToInt: md/ComfyMath/CM_BoolToInt.md
+          - CM_BoolUnaryOperation: md/ComfyMath/CM_BoolUnaryOperation.md
+          - CM_BreakoutVec2: md/ComfyMath/CM_BreakoutVec2.md
+          - CM_BreakoutVec3: md/ComfyMath/CM_BreakoutVec3.md
+          - CM_BreakoutVec4: md/ComfyMath/CM_BreakoutVec4.md
+          - CM_ComposeVec2: md/ComfyMath/CM_ComposeVec2.md
+          - CM_ComposeVec3: md/ComfyMath/CM_ComposeVec3.md
+          - CM_ComposeVec4: md/ComfyMath/CM_ComposeVec4.md
+          - CM_FloatBinaryCondition: md/ComfyMath/CM_FloatBinaryCondition.md
+          - CM_FloatBinaryOperation: md/ComfyMath/CM_FloatBinaryOperation.md
+          - CM_FloatToInt: md/ComfyMath/CM_FloatToInt.md
+          - CM_FloatToNumber: md/ComfyMath/CM_FloatToNumber.md
+          - CM_FloatUnaryCondition: md/ComfyMath/CM_FloatUnaryCondition.md
+          - CM_FloatUnaryOperation: md/ComfyMath/CM_FloatUnaryOperation.md
+          - CM_IntBinaryCondition: md/ComfyMath/CM_IntBinaryCondition.md
+          - CM_IntBinaryOperation: md/ComfyMath/CM_IntBinaryOperation.md
+          - CM_IntToBool: md/ComfyMath/CM_IntToBool.md
+          - CM_IntToFloat: md/ComfyMath/CM_IntToFloat.md
+          - CM_IntToNumber: md/ComfyMath/CM_IntToNumber.md
+          - CM_IntUnaryCondition: md/ComfyMath/CM_IntUnaryCondition.md
+          - CM_IntUnaryOperation: md/ComfyMath/CM_IntUnaryOperation.md
+          - CM_NearestSDXLResolution: md/ComfyMath/CM_NearestSDXLResolution.md
+          - CM_NumberBinaryCondition: md/ComfyMath/CM_NumberBinaryCondition.md
+          - CM_NumberBinaryOperation: md/ComfyMath/CM_NumberBinaryOperation.md
+          - CM_NumberToFloat: md/ComfyMath/CM_NumberToFloat.md
+          - CM_NumberToInt: md/ComfyMath/CM_NumberToInt.md
+          - CM_NumberUnaryCondition: md/ComfyMath/CM_NumberUnaryCondition.md
+          - CM_NumberUnaryOperation: md/ComfyMath/CM_NumberUnaryOperation.md
+          - CM_SDXLResolution: md/ComfyMath/CM_SDXLResolution.md
+          - CM_Vec2BinaryCondition: md/ComfyMath/CM_Vec2BinaryCondition.md
+          - CM_Vec2BinaryOperation: md/ComfyMath/CM_Vec2BinaryOperation.md
+          - CM_Vec2ScalarOperation: md/ComfyMath/CM_Vec2ScalarOperation.md
+          - CM_Vec2ToScalarBinaryOperation: md/ComfyMath/CM_Vec2ToScalarBinaryOperation.md
+          - CM_Vec2ToScalarUnaryOperation: md/ComfyMath/CM_Vec2ToScalarUnaryOperation.md
+          - CM_Vec2UnaryCondition: md/ComfyMath/CM_Vec2UnaryCondition.md
+          - CM_Vec2UnaryOperation: md/ComfyMath/CM_Vec2UnaryOperation.md
+          - CM_Vec3BinaryCondition: md/ComfyMath/CM_Vec3BinaryCondition.md
+          - CM_Vec3BinaryOperation: md/ComfyMath/CM_Vec3BinaryOperation.md
+          - CM_Vec3ScalarOperation: md/ComfyMath/CM_Vec3ScalarOperation.md
+          - CM_Vec3ToScalarBinaryOperation: md/ComfyMath/CM_Vec3ToScalarBinaryOperation.md
+          - CM_Vec3ToScalarUnaryOperation: md/ComfyMath/CM_Vec3ToScalarUnaryOperation.md
+          - CM_Vec3UnaryCondition: md/ComfyMath/CM_Vec3UnaryCondition.md
+          - CM_Vec3UnaryOperation: md/ComfyMath/CM_Vec3UnaryOperation.md
+          - CM_Vec4BinaryCondition: md/ComfyMath/CM_Vec4BinaryCondition.md
+          - CM_Vec4BinaryOperation: md/ComfyMath/CM_Vec4BinaryOperation.md
+          - CM_Vec4ScalarOperation: md/ComfyMath/CM_Vec4ScalarOperation.md
+          - CM_Vec4ToScalarBinaryOperation: md/ComfyMath/CM_Vec4ToScalarBinaryOperation.md
+          - CM_Vec4ToScalarUnaryOperation: md/ComfyMath/CM_Vec4ToScalarUnaryOperation.md
+          - CM_Vec4UnaryCondition: md/ComfyMath/CM_Vec4UnaryCondition.md
+          - CM_Vec4UnaryOperation: md/ComfyMath/CM_Vec4UnaryOperation.md
+      - ComfyUI_IPAdapter_plus:
+          - IPAdapterApply: md/ComfyUI_IPAdapter_plus/IPAdapterApply.md
+          - IPAdapterApplyEncoded: md/ComfyUI_IPAdapter_plus/IPAdapterApplyEncoded.md
+          - IPAdapterApplyFaceID: md/ComfyUI_IPAdapter_plus/IPAdapterApplyFaceID.md
+          - IPAdapterBatchEmbeds: md/ComfyUI_IPAdapter_plus/IPAdapterBatchEmbeds.md
+          - IPAdapterEncoder: md/ComfyUI_IPAdapter_plus/IPAdapterEncoder.md
+          - IPAdapterLoadEmbeds: md/ComfyUI_IPAdapter_plus/IPAdapterLoadEmbeds.md
+          - IPAdapterModelLoader: md/ComfyUI_IPAdapter_plus/IPAdapterModelLoader.md
+          - IPAdapterSaveEmbeds: md/ComfyUI_IPAdapter_plus/IPAdapterSaveEmbeds.md
+          - InsightFaceLoader: md/ComfyUI_IPAdapter_plus/InsightFaceLoader.md
+          - PrepImageForClipVision: md/ComfyUI_IPAdapter_plus/PrepImageForClipVision.md
+          - PrepImageForInsightFace: md/ComfyUI_IPAdapter_plus/PrepImageForInsightFace.md
       - SavePNG:
           - PNG_Save: md/SavePNG/PNG_Save.md
+      - WAS_Extras:
+          - BLVAEEncode: md/WAS_Extras/BLVAEEncode.md
+          - CLIPTextEncodeList: md/WAS_Extras/CLIPTextEncodeList.md
+          - CLIPTextEncodeSequence2: md/WAS_Extras/CLIPTextEncodeSequence2.md
+          - ConditioningBlend: md/WAS_Extras/ConditioningBlend.md
+          - DebugInput: md/WAS_Extras/DebugInput.md
+          - KSamplerSeq: md/WAS_Extras/KSamplerSeq.md
+          - KSamplerSeq2: md/WAS_Extras/KSamplerSeq2.md
+          - VAEEncodeForInpaint (WAS): md/WAS_Extras/VAEEncodeForInpaint (WAS).md
+          - VividSharpen: md/WAS_Extras/VividSharpen.md
+      - comfyui_segment_anything:
+          - GroundingDinoModelLoader (segment anything): md/comfyui_segment_anything/GroundingDinoModelLoader
+              (segment anything).md
+          - GroundingDinoSAMSegment (segment anything): md/comfyui_segment_anything/GroundingDinoSAMSegment
+              (segment anything).md
+          - InvertMask (segment anything): md/comfyui_segment_anything/InvertMask
+              (segment anything).md
+          - IsMaskEmpty: md/comfyui_segment_anything/IsMaskEmpty.md
+          - SAMModelLoader (segment anything): md/comfyui_segment_anything/SAMModelLoader
+              (segment anything).md
       - llmnodes:
           - DocumentNode: md/llmnodes/DocumentNode.md
           - DocumentPack: md/llmnodes/DocumentPack.md

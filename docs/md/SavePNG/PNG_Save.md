@@ -4,35 +4,36 @@
 - Category: `Ebsynth Nodes`
 - Output node: `True`
 
-This node processes an image or a batch of images and saves them as PNG files to a specified location. It supports adjusting the image quality, deciding whether to overwrite existing files, and automatically handles the creation of necessary directories. The node utilizes torchvision's encode_png for encoding images.
+The PNG_Save node is designed to take an image or a batch of images and save them as PNG files to a specified location. It supports setting the image quality, deciding whether to overwrite existing files, and automatically handles the conversion of image tensors to the appropriate format for PNG encoding.
 ## Input types
+### Required
 - **`save_path`**
-    - Specifies the directory where the PNG files will be saved. It defaults to a predefined output directory.
+    - Specifies the directory where the image(s) will be saved. It allows for organizing output images in a structured manner.
     - Python dtype: `str`
     - Comfy dtype: `STRING`
 - **`file_name`**
-    - The base name for the saved PNG files. A default name is provided, but it can be customized.
+    - Determines the base name for the output file(s). This can be used to identify and differentiate between saved images.
     - Python dtype: `str`
     - Comfy dtype: `STRING`
 - **`images`**
-    - The image or batch of images to be saved. The node handles both single images and batches.
+    - The image tensor or a batch of image tensors to be saved. This node handles the conversion and encoding of these tensors into PNG format.
     - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
 - **`quality`**
-    - Determines the quality of the saved PNG images. It is adjustable and has a default value set.
+    - Sets the quality of the saved PNG image(s). Higher values result in better image quality but larger file sizes, directly influencing the visual fidelity and the compression level of the output images.
     - Python dtype: `int`
     - Comfy dtype: `INT`
 - **`overwrite_mode`**
-    - Controls whether existing files with the same name should be overwritten. It is enabled by default.
+    - Controls whether existing files with the same name should be overwritten. This is useful for avoiding accidental data loss.
     - Python dtype: `bool`
     - Comfy dtype: `BOOLEAN`
 ## Output types
 The node doesn't have output types
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
-The PNG_Save node is primarily utilized for saving processed images or a batch of images as PNG files to a designated location, with options for adjusting image quality and deciding on file overwrite behavior. It is often used at the end of AI pipelines to output the final image generation, ensuring the results are stored with the desired quality and naming conventions.
+Often used with image processing and transformation nodes to save the final, processed images as PNG files to a specified location, ensuring the output is readily accessible and in a widely supported format.
 ## Source code
 ```python
 class PNG_Save:
