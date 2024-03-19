@@ -3,6 +3,152 @@ nav:
   - Getting Started: index.md
   - Platform Resources: resources.md
   - Nodes packs documentation:
+      - Comfy:
+          - BasicScheduler: md/Comfy/BasicScheduler.md
+          - CLIPLoader: md/Comfy/CLIPLoader.md
+          - CLIPMergeSimple: md/Comfy/CLIPMergeSimple.md
+          - CLIPSave: md/Comfy/CLIPSave.md
+          - CLIPSetLastLayer: md/Comfy/CLIPSetLastLayer.md
+          - CLIPTextEncode: md/Comfy/CLIPTextEncode.md
+          - CLIPTextEncodeControlnet: md/Comfy/CLIPTextEncodeControlnet.md
+          - CLIPTextEncodeSDXL: md/Comfy/CLIPTextEncodeSDXL.md
+          - CLIPTextEncodeSDXLRefiner: md/Comfy/CLIPTextEncodeSDXLRefiner.md
+          - CLIPVisionEncode: md/Comfy/CLIPVisionEncode.md
+          - CLIPVisionLoader: md/Comfy/CLIPVisionLoader.md
+          - Canny: md/Comfy/Canny.md
+          - CheckpointLoader: md/Comfy/CheckpointLoader.md
+          - CheckpointLoaderSimple: md/Comfy/CheckpointLoaderSimple.md
+          - CheckpointSave: md/Comfy/CheckpointSave.md
+          - ConditioningAverage: md/Comfy/ConditioningAverage.md
+          - ConditioningCombine: md/Comfy/ConditioningCombine.md
+          - ConditioningConcat: md/Comfy/ConditioningConcat.md
+          - ConditioningSetArea: md/Comfy/ConditioningSetArea.md
+          - ConditioningSetAreaPercentage: md/Comfy/ConditioningSetAreaPercentage.md
+          - ConditioningSetAreaStrength: md/Comfy/ConditioningSetAreaStrength.md
+          - ConditioningSetMask: md/Comfy/ConditioningSetMask.md
+          - ConditioningSetTimestepRange: md/Comfy/ConditioningSetTimestepRange.md
+          - ConditioningZeroOut: md/Comfy/ConditioningZeroOut.md
+          - ControlNetApply: md/Comfy/ControlNetApply.md
+          - ControlNetApplyAdvanced: md/Comfy/ControlNetApplyAdvanced.md
+          - ControlNetLoader: md/Comfy/ControlNetLoader.md
+          - CropMask: md/Comfy/CropMask.md
+          - DiffControlNetLoader: md/Comfy/DiffControlNetLoader.md
+          - DiffusersLoader: md/Comfy/DiffusersLoader.md
+          - DualCLIPLoader: md/Comfy/DualCLIPLoader.md
+          - EmptyImage: md/Comfy/EmptyImage.md
+          - EmptyLatentImage: md/Comfy/EmptyLatentImage.md
+          - ExponentialScheduler: md/Comfy/ExponentialScheduler.md
+          - FeatherMask: md/Comfy/FeatherMask.md
+          - FlipSigmas: md/Comfy/FlipSigmas.md
+          - FreeU: md/Comfy/FreeU.md
+          - FreeU_V2: md/Comfy/FreeU_V2.md
+          - GLIGENLoader: md/Comfy/GLIGENLoader.md
+          - GLIGENTextBoxApply: md/Comfy/GLIGENTextBoxApply.md
+          - GrowMask: md/Comfy/GrowMask.md
+          - HyperTile: md/Comfy/HyperTile.md
+          - HypernetworkLoader: md/Comfy/HypernetworkLoader.md
+          - ImageBatch: md/Comfy/ImageBatch.md
+          - ImageBlend: md/Comfy/ImageBlend.md
+          - ImageBlur: md/Comfy/ImageBlur.md
+          - ImageColorToMask: md/Comfy/ImageColorToMask.md
+          - ImageCompositeMasked: md/Comfy/ImageCompositeMasked.md
+          - ImageCrop: md/Comfy/ImageCrop.md
+          - ImageFromBatch: md/Comfy/ImageFromBatch.md
+          - ImageInvert: md/Comfy/ImageInvert.md
+          - ImageOnlyCheckpointLoader: md/Comfy/ImageOnlyCheckpointLoader.md
+          - ImageOnlyCheckpointSave: md/Comfy/ImageOnlyCheckpointSave.md
+          - ImagePadForOutpaint: md/Comfy/ImagePadForOutpaint.md
+          - ImageQuantize: md/Comfy/ImageQuantize.md
+          - ImageScale: md/Comfy/ImageScale.md
+          - ImageScaleBy: md/Comfy/ImageScaleBy.md
+          - ImageScaleToTotalPixels: md/Comfy/ImageScaleToTotalPixels.md
+          - ImageSharpen: md/Comfy/ImageSharpen.md
+          - ImageToMask: md/Comfy/ImageToMask.md
+          - ImageUpscaleWithModel: md/Comfy/ImageUpscaleWithModel.md
+          - InpaintModelConditioning: md/Comfy/InpaintModelConditioning.md
+          - InvertMask: md/Comfy/InvertMask.md
+          - JoinImageWithAlpha: md/Comfy/JoinImageWithAlpha.md
+          - KSampler: md/Comfy/KSampler.md
+          - KSamplerAdvanced: md/Comfy/KSamplerAdvanced.md
+          - KSamplerSelect: md/Comfy/KSamplerSelect.md
+          - KarrasScheduler: md/Comfy/KarrasScheduler.md
+          - LatentAdd: md/Comfy/LatentAdd.md
+          - LatentBatch: md/Comfy/LatentBatch.md
+          - LatentBatchSeedBehavior: md/Comfy/LatentBatchSeedBehavior.md
+          - LatentBlend: md/Comfy/LatentBlend.md
+          - LatentComposite: md/Comfy/LatentComposite.md
+          - LatentCompositeMasked: md/Comfy/LatentCompositeMasked.md
+          - LatentCrop: md/Comfy/LatentCrop.md
+          - LatentFlip: md/Comfy/LatentFlip.md
+          - LatentFromBatch: md/Comfy/LatentFromBatch.md
+          - LatentInterpolate: md/Comfy/LatentInterpolate.md
+          - LatentMultiply: md/Comfy/LatentMultiply.md
+          - LatentRotate: md/Comfy/LatentRotate.md
+          - LatentSubtract: md/Comfy/LatentSubtract.md
+          - LatentUpscale: md/Comfy/LatentUpscale.md
+          - LatentUpscaleBy: md/Comfy/LatentUpscaleBy.md
+          - LoadImage: md/Comfy/LoadImage.md
+          - LoadImageMask: md/Comfy/LoadImageMask.md
+          - LoadLatent: md/Comfy/LoadLatent.md
+          - LoraLoader: md/Comfy/LoraLoader.md
+          - LoraLoaderModelOnly: md/Comfy/LoraLoaderModelOnly.md
+          - MaskComposite: md/Comfy/MaskComposite.md
+          - MaskToImage: md/Comfy/MaskToImage.md
+          - ModelMergeAdd: md/Comfy/ModelMergeAdd.md
+          - ModelMergeBlocks: md/Comfy/ModelMergeBlocks.md
+          - ModelMergeSimple: md/Comfy/ModelMergeSimple.md
+          - ModelMergeSubtract: md/Comfy/ModelMergeSubtract.md
+          - ModelSamplingContinuousEDM: md/Comfy/ModelSamplingContinuousEDM.md
+          - ModelSamplingDiscrete: md/Comfy/ModelSamplingDiscrete.md
+          - ModelSamplingStableCascade: md/Comfy/ModelSamplingStableCascade.md
+          - PatchModelAddDownscale: md/Comfy/PatchModelAddDownscale.md
+          - PerpNeg: md/Comfy/PerpNeg.md
+          - PhotoMakerEncode: md/Comfy/PhotoMakerEncode.md
+          - PhotoMakerLoader: md/Comfy/PhotoMakerLoader.md
+          - PolyexponentialScheduler: md/Comfy/PolyexponentialScheduler.md
+          - PorterDuffImageComposite: md/Comfy/PorterDuffImageComposite.md
+          - PreviewImage: md/Comfy/PreviewImage.md
+          - RebatchImages: md/Comfy/RebatchImages.md
+          - RebatchLatents: md/Comfy/RebatchLatents.md
+          - RepeatImageBatch: md/Comfy/RepeatImageBatch.md
+          - RepeatLatentBatch: md/Comfy/RepeatLatentBatch.md
+          - RescaleCFG: md/Comfy/RescaleCFG.md
+          - SDTurboScheduler: md/Comfy/SDTurboScheduler.md
+          - SD_4XUpscale_Conditioning: md/Comfy/SD_4XUpscale_Conditioning.md
+          - SVD_img2vid_Conditioning: md/Comfy/SVD_img2vid_Conditioning.md
+          - SamplerCustom: md/Comfy/SamplerCustom.md
+          - SamplerDPMPP_2M_SDE: md/Comfy/SamplerDPMPP_2M_SDE.md
+          - SamplerDPMPP_SDE: md/Comfy/SamplerDPMPP_SDE.md
+          - SaveAnimatedPNG: md/Comfy/SaveAnimatedPNG.md
+          - SaveAnimatedWEBP: md/Comfy/SaveAnimatedWEBP.md
+          - SaveImage: md/Comfy/SaveImage.md
+          - SaveLatent: md/Comfy/SaveLatent.md
+          - SelfAttentionGuidance: md/Comfy/SelfAttentionGuidance.md
+          - SetLatentNoiseMask: md/Comfy/SetLatentNoiseMask.md
+          - SolidMask: md/Comfy/SolidMask.md
+          - SplitImageWithAlpha: md/Comfy/SplitImageWithAlpha.md
+          - SplitSigmas: md/Comfy/SplitSigmas.md
+          - StableCascade_EmptyLatentImage: md/Comfy/StableCascade_EmptyLatentImage.md
+          - StableCascade_StageB_Conditioning: md/Comfy/StableCascade_StageB_Conditioning.md
+          - StableCascade_StageC_VAEEncode: md/Comfy/StableCascade_StageC_VAEEncode.md
+          - StableZero123_Conditioning: md/Comfy/StableZero123_Conditioning.md
+          - StableZero123_Conditioning_Batched: md/Comfy/StableZero123_Conditioning_Batched.md
+          - StyleModelApply: md/Comfy/StyleModelApply.md
+          - StyleModelLoader: md/Comfy/StyleModelLoader.md
+          - TomePatchModel: md/Comfy/TomePatchModel.md
+          - UNETLoader: md/Comfy/UNETLoader.md
+          - UpscaleModelLoader: md/Comfy/UpscaleModelLoader.md
+          - VAEDecode: md/Comfy/VAEDecode.md
+          - VAEDecodeTiled: md/Comfy/VAEDecodeTiled.md
+          - VAEEncode: md/Comfy/VAEEncode.md
+          - VAEEncodeForInpaint: md/Comfy/VAEEncodeForInpaint.md
+          - VAEEncodeTiled: md/Comfy/VAEEncodeTiled.md
+          - VAELoader: md/Comfy/VAELoader.md
+          - VAESave: md/Comfy/VAESave.md
+          - VPScheduler: md/Comfy/VPScheduler.md
+          - VideoLinearCFGGuidance: md/Comfy/VideoLinearCFGGuidance.md
+          - unCLIPCheckpointLoader: md/Comfy/unCLIPCheckpointLoader.md
+          - unCLIPConditioning: md/Comfy/unCLIPConditioning.md
       - ComfyMath:
           - CM_BoolBinaryOperation: md/ComfyMath/CM_BoolBinaryOperation.md
           - CM_BoolToInt: md/ComfyMath/CM_BoolToInt.md
@@ -55,6 +201,11 @@ nav:
           - CM_Vec4ToScalarUnaryOperation: md/ComfyMath/CM_Vec4ToScalarUnaryOperation.md
           - CM_Vec4UnaryCondition: md/ComfyMath/CM_Vec4UnaryCondition.md
           - CM_Vec4UnaryOperation: md/ComfyMath/CM_Vec4UnaryOperation.md
+      - ComfyUI_ADV_CLIP_emb:
+          - BNK_AddCLIPSDXLParams: md/ComfyUI_ADV_CLIP_emb/BNK_AddCLIPSDXLParams.md
+          - BNK_AddCLIPSDXLRParams: md/ComfyUI_ADV_CLIP_emb/BNK_AddCLIPSDXLRParams.md
+          - BNK_CLIPTextEncodeAdvanced: md/ComfyUI_ADV_CLIP_emb/BNK_CLIPTextEncodeAdvanced.md
+          - BNK_CLIPTextEncodeSDXLAdvanced: md/ComfyUI_ADV_CLIP_emb/BNK_CLIPTextEncodeSDXLAdvanced.md
       - ComfyUI_IPAdapter_plus:
           - IPAdapterApply: md/ComfyUI_IPAdapter_plus/IPAdapterApply.md
           - IPAdapterApplyEncoded: md/ComfyUI_IPAdapter_plus/IPAdapterApplyEncoded.md
@@ -93,6 +244,13 @@ nav:
           - DocumentNode: md/llmnodes/DocumentNode.md
           - DocumentPack: md/llmnodes/DocumentPack.md
           - LoadOpenAIModel: md/llmnodes/LoadOpenAIModel.md
+      - plaiflowplayer_blocks:
+          - PlaiFlowPlayerAppFooter: md/plaiflowplayer_blocks/PlaiFlowPlayerAppFooter.md
+          - PlaiFlowPlayerAppInfo: md/plaiflowplayer_blocks/PlaiFlowPlayerAppInfo.md
+          - PlaiFlowPlayerInput: md/plaiflowplayer_blocks/PlaiFlowPlayerInput.md
+          - PlaiFlowPlayerModelList: md/plaiflowplayer_blocks/PlaiFlowPlayerModelList.md
+          - PlaiFlowPlayerOutput: md/plaiflowplayer_blocks/PlaiFlowPlayerOutput.md
+          - PlaiFlowPlayerSAMSplit: md/plaiflowplayer_blocks/PlaiFlowPlayerSAMSplit.md
 theme:
   name: material
   palette:
