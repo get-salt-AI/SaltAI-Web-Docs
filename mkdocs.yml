@@ -413,6 +413,33 @@ nav:
                   - UltralyticsDetectorProvider: md/ComfyUI-Impact-Pack/Nodes/UltralyticsDetectorProvider.md
                   - UnsamplerDetailerHookProvider: md/ComfyUI-Impact-Pack/Nodes/UnsamplerDetailerHookProvider.md
                   - UnsamplerHookProvider: md/ComfyUI-Impact-Pack/Nodes/UnsamplerHookProvider.md
+          - ComfyUI-VideoHelperSuite:
+              - Home: md/ComfyUI-VideoHelperSuite/index.md
+              - Nodes:
+                  - VHS_DuplicateImages: md/ComfyUI-VideoHelperSuite/Nodes/VHS_DuplicateImages.md
+                  - VHS_DuplicateLatents: md/ComfyUI-VideoHelperSuite/Nodes/VHS_DuplicateLatents.md
+                  - VHS_DuplicateMasks: md/ComfyUI-VideoHelperSuite/Nodes/VHS_DuplicateMasks.md
+                  - VHS_GetImageCount: md/ComfyUI-VideoHelperSuite/Nodes/VHS_GetImageCount.md
+                  - VHS_GetLatentCount: md/ComfyUI-VideoHelperSuite/Nodes/VHS_GetLatentCount.md
+                  - VHS_GetMaskCount: md/ComfyUI-VideoHelperSuite/Nodes/VHS_GetMaskCount.md
+                  - VHS_LoadAudio: md/ComfyUI-VideoHelperSuite/Nodes/VHS_LoadAudio.md
+                  - VHS_LoadImages: md/ComfyUI-VideoHelperSuite/Nodes/VHS_LoadImages.md
+                  - VHS_LoadImagesPath: md/ComfyUI-VideoHelperSuite/Nodes/VHS_LoadImagesPath.md
+                  - VHS_LoadVideo: md/ComfyUI-VideoHelperSuite/Nodes/VHS_LoadVideo.md
+                  - VHS_LoadVideoPath: md/ComfyUI-VideoHelperSuite/Nodes/VHS_LoadVideoPath.md
+                  - VHS_MergeImages: md/ComfyUI-VideoHelperSuite/Nodes/VHS_MergeImages.md
+                  - VHS_MergeLatents: md/ComfyUI-VideoHelperSuite/Nodes/VHS_MergeLatents.md
+                  - VHS_MergeMasks: md/ComfyUI-VideoHelperSuite/Nodes/VHS_MergeMasks.md
+                  - VHS_PruneOutputs: md/ComfyUI-VideoHelperSuite/Nodes/VHS_PruneOutputs.md
+                  - VHS_SelectEveryNthImage: md/ComfyUI-VideoHelperSuite/Nodes/VHS_SelectEveryNthImage.md
+                  - VHS_SelectEveryNthLatent: md/ComfyUI-VideoHelperSuite/Nodes/VHS_SelectEveryNthLatent.md
+                  - VHS_SelectEveryNthMask: md/ComfyUI-VideoHelperSuite/Nodes/VHS_SelectEveryNthMask.md
+                  - VHS_SplitImages: md/ComfyUI-VideoHelperSuite/Nodes/VHS_SplitImages.md
+                  - VHS_SplitLatents: md/ComfyUI-VideoHelperSuite/Nodes/VHS_SplitLatents.md
+                  - VHS_SplitMasks: md/ComfyUI-VideoHelperSuite/Nodes/VHS_SplitMasks.md
+                  - VHS_VAEDecodeBatched: md/ComfyUI-VideoHelperSuite/Nodes/VHS_VAEDecodeBatched.md
+                  - VHS_VAEEncodeBatched: md/ComfyUI-VideoHelperSuite/Nodes/VHS_VAEEncodeBatched.md
+                  - VHS_VideoCombine: md/ComfyUI-VideoHelperSuite/Nodes/VHS_VideoCombine.md
           - ComfyUI_ADV_CLIP_emb:
               - Home: md/ComfyUI_ADV_CLIP_emb/index.md
               - Nodes:

@@ -30,29 +30,4 @@ This node is responsible for loading an OpenAI model along with its embedding mo
 
 Often used with downstream tasks such as text generation, summarization, or embedding extraction, the LoadOpenAIModel node loads a specified OpenAI model and its embedding counterpart based on user-defined parameters, enabling tailored AI functionalities.
 ## Source code
-```python
-class LoadOpenAIModel:
-    @classmethod
-    def INPUT_TYPES(cls):
-        return {
-            "required": {
-                "model": (sorted(ALL_AVAILABLE_MODELS.keys()), {"default": "gpt-4-turbo-preview"}),
-                "temperature": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 1.0}),
-                "embed_model": (
-                    sorted([x.value for x in OpenAIEmbeddingModelType]),
-                    {"default": "text-embedding-3-small"},
-                ),
-            }
-        }
-
-    RETURN_TYPES = ("MODEL",)
-    FUNCTION = "load_openai_model"
-    CATEGORY = NAME
-
-    def load_openai_model(self, model: str, temperature: int, embed_model: str) -> Dict[str, Any]:
-        name = f"{model}_{embed_model}_{temperature}"
-        llm = OpenAI(model=model, temperature=temperature)
-        embed_model = OpenAIEmbedding(model=embed_model)
-        return ({"llm": llm, "embed_model": embed_model, "name": name},)
-
-```
+The node code is private

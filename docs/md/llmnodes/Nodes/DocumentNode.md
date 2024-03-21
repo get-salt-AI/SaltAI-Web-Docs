@@ -50,25 +50,4 @@ This node is responsible for generating documentation for a specific node within
 
 The Document Node is primarily utilized for generating and formatting documentation for a specific node within a pack, based on its display name and pack name. It takes the unique identifier of the node, along with parameters like chunk lines, overlap, and model choice, to produce a concise, formatted documentation string as output.
 ## Source code
-```python
-class DocumentNode(DocumentPack):
-    @classmethod
-    def get_all_names(cls):
-        cls.all_packs = get_all_nodes_packs()
-        return [
-            f"{pack_name}/{node['display_name']}"
-            for pack_name, pack in cls.all_packs.items()
-            for node in pack["nodes"].values()
-        ]
-
-    def document(self, *args, **kwargs) -> Tuple:
-        name = kwargs.pop("name")
-        pack_name = name.split("/")[0]
-        node_display_name = "/".join(name.split("/")[1:])
-        for node_name, node_info in self.all_packs[pack_name]["nodes"].items():
-            if node_info["display_name"] == node_display_name:
-                break
-        nodes_list = [node_name]
-        return self._document(pack_name=pack_name, nodes_list=nodes_list, *args, **kwargs)
-
-```
+The node code is private
