@@ -22,27 +22,4 @@ This node generates a list of files based on a given directory. It is useful for
 
 Often used with UI elements to dynamically populate a dropdown or selection list with available files from a specified directory, based on the user's selection in the `combo_list`.
 ## Source code
-```python
-class PlaiFlowPlayerModelList:
-    @classmethod
-    def INPUT_TYPES(s):
-        return {
-            "required": {
-                "combo_list": (list(folder_paths.folder_names_and_paths.keys()),)
-            },
-        }
-
-    RETURN_TYPES = (WILDCARD,)
-    RETURN_NAMES = ("file_list",)
-    OUTPUT_IS_LIST = (True,)
-    
-    FUNCTION = "file_list"
-    CATEGORY = NAME
-
-    def file_list(self, combo_list):
-        if combo_list.strip() == "":
-            raise ValueError("The selection is empty or invalid!")
-        files = folder_paths.get_filename_list(combo_list)
-        return (files, )
-
-```
+The node code is private

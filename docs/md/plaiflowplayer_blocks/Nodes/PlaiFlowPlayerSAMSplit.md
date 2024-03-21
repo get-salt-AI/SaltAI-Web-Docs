@@ -26,27 +26,4 @@ The `PlaiFlowPlayerSAMSplit` node is designed to process and split SAM (Spatial 
 
 The `PlaiFlowPlayerSAMSplit` node is essential for processing and splitting SAM (Spatial Analysis Map) data into parameters and an image, making it crucial for tasks that require detailed spatial analysis or visualization. It is often used with nodes designed for visualizing spatial data or further analyzing the extracted parameters.
 ## Source code
-```python
-class PlaiFlowPlayerSAMSplit:
-    @classmethod
-    def INPUT_TYPES(s):
-        return {
-            "required": {
-                "input_node_sam_value": (WILDCARD,)
-            },
-        }
-
-    RETURN_TYPES = (WILDCARD, "IMAGE")
-    RETURN_NAMES = ("sam_params", "image")
-    
-    FUNCTION = "extract_sam_data"
-    CATEGORY = NAME
-
-    def extract_sam_data(self, input_node_sam_value):
-        if not isinstance(input_node_sam_value, tuple):
-            raise ValueError("Invalid SAM data deteceted! Split SAM Data expects output from a PlaiFlow Player Iput Node in SAM mode.")
-        if len(input_node_sam_value) > 2:
-            raise ValueError("Too many values to unpack for SAM data! Split SAM Data expects output from a PlaiFlow Player Iput Node in SAM mode.")
-        return input_node_sam_value[0], input_node_sam_value[1]
-
-```
+The node code is private

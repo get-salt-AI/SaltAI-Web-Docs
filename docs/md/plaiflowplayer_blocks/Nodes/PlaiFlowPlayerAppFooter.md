@@ -20,31 +20,4 @@ This node is responsible for generating the footer content of the PlaiFlow Playe
 
 Often used to customize the user interface by adding a personalized footer to the PlaiFlow Player application, taking a multiline string as input to display detailed footer information or acknowledgments at the bottom of the app.
 ## Source code
-```python
-class PlaiFlowPlayerAppFooter:
-    @classmethod
-    def INPUT_TYPES(cls):
-        return {
-            "required": {
-                "footer_content": ("STRING", {
-                    "multiline": True, 
-                    "dynamicPrompts": False, 
-                    "placeholder": "The footer content displayed below the app"
-                }),
-            }
-        }
-    
-    RETURN_TYPES = ()
-
-    FUNCTION = "app_info"
-    CATEGORY = NAME
-
-    def app_info(self, **kwargs):
-        ui = { "ui": { "PlaiFlowPlayerAppOutput": { "footer_content": kwargs['footer_content'] } } }
-
-        from pprint import pprint
-        pprint(ui, indent=4)
-
-        return ui
-
-```
+The node code is private

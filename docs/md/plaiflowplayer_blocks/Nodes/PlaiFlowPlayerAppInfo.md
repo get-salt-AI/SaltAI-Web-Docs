@@ -24,28 +24,4 @@ This node is responsible for generating the application information UI, includin
 
 Often used at the beginning of a pipeline to provide users with an overview of the application, taking the application's title and description as inputs and generating a UI element that displays this information.
 ## Source code
-```python
-class PlaiFlowPlayerAppInfo:
-    @classmethod
-    def INPUT_TYPES(cls):
-        return {
-            "required": {
-                "title": ("STRING", {}),
-                "description": ("STRING", {}),
-            }
-        }
-    
-    RETURN_TYPES = ()
-
-    FUNCTION = "app_info"
-    CATEGORY = NAME
-
-    def app_info(self, **kwargs):
-        ui = { "ui": { "PlaiFlowPlayerAppInfo": { "title": kwargs['title'], "description": kwargs['description'] } } }
-
-        from pprint import pprint
-        pprint(ui, indent=4)
-
-        return ui
-
-```
+The node code is private
