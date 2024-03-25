@@ -4,18 +4,18 @@
 - Category: `advanced/conditioning`
 - Output node: `False`
 
-The `ConditioningZeroOut` node zeroes out the `pooled_output` tensor within each conditioning element, effectively neutralizing its influence in subsequent operations. This operation is useful for selectively disabling parts of the conditioning data.
+This node zeroes out specific elements within the conditioning data structure, effectively neutralizing their influence in subsequent processing steps. It's designed for advanced conditioning operations where direct manipulation of the conditioning's internal representation is required.
 ## Input types
 ### Required
 - **`conditioning`**
-    - The conditioning data to be modified. This operation zeroes out the `pooled_output` tensor within each element, which can be useful for experiments or when certain parts of the conditioning are not desired.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
     - Comfy dtype: `CONDITIONING`
+    - The conditioning data structure to be modified. This node zeroes out the 'pooled_output' elements within each conditioning entry, if present.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
 ## Output types
 - **`conditioning`**
-    - The modified conditioning data with the `pooled_output` tensor zeroed out in each element. This allows for selective disabling of parts of the conditioning.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
     - Comfy dtype: `CONDITIONING`
+    - The modified conditioning data structure, with 'pooled_output' elements set to zero where applicable.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `UltimateSDUpscale`

@@ -4,42 +4,42 @@
 - Category: `image`
 - Output node: `False`
 
-The ImagePadForOutpaint node is designed to prepare images for the outpainting process by padding them. This operation is crucial for expanding the canvas of an image, allowing for the generation or extension of image content beyond its original borders.
+This node is designed for preparing images for the outpainting process by adding padding around them. It adjusts the image dimensions to ensure compatibility with outpainting algorithms, facilitating the generation of extended image areas beyond the original boundaries.
 ## Input types
 ### Required
 - **`image`**
-    - The original image to be padded for outpainting. This image serves as the base for the outpainting process, where additional content will be generated around its borders.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The 'image' input is the primary image to be prepared for outpainting, serving as the base for padding operations.
+    - Python dtype: `torch.Tensor`
 - **`left`**
-    - Specifies the amount of padding to be applied to the left side of the image, influencing the extent of the outpainting area.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the amount of padding to add to the left side of the image, influencing the expanded area for outpainting.
+    - Python dtype: `int`
 - **`top`**
-    - Specifies the amount of padding to be applied to the top side of the image, influencing the extent of the outpainting area.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Determines the amount of padding to add to the top of the image, affecting the vertical expansion for outpainting.
+    - Python dtype: `int`
 - **`right`**
-    - Specifies the amount of padding to be applied to the right side of the image, influencing the extent of the outpainting area.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Defines the amount of padding to add to the right side of the image, impacting the horizontal expansion for outpainting.
+    - Python dtype: `int`
 - **`bottom`**
-    - Specifies the amount of padding to be applied to the bottom side of the image, influencing the extent of the outpainting area.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Indicates the amount of padding to add to the bottom of the image, contributing to the vertical expansion for outpainting.
+    - Python dtype: `int`
 - **`feathering`**
-    - Determines the smoothness of the transition between the original image and the padded area, enhancing the visual integration of the outpainting.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Controls the smoothness of the transition between the original image and the added padding, enhancing the visual integration for outpainting.
+    - Python dtype: `float`
 ## Output types
 - **`image`**
-    - The resulting image after padding has been applied. This image has an expanded canvas ready for outpainting.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
-- **`mask`**
-    - The mask indicating the original and padded areas, useful for distinguishing between them in subsequent processing steps.
+    - The output 'image' represents the padded image, ready for the outpainting process.
     - Python dtype: `torch.Tensor`
+- **`mask`**
     - Comfy dtype: `MASK`
+    - The output 'mask' indicates the areas of the original image and the added padding, useful for guiding the outpainting algorithms.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

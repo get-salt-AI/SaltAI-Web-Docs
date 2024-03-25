@@ -4,35 +4,35 @@
 - Category: `Animate Diff 🎭🅐🅓/② Gen2 nodes ②`
 - Output node: `False`
 
-The `ADE_UseEvolvedSampling` node utilizes an evolved sampling method to enhance the animation diffusion process. It integrates advanced sampling techniques with the animation diffusion model to generate more refined and accurate animations. This node is part of the second generation of AnimateDiff nodes, indicating its use of updated methodologies for improved performance.
+The ADE_UseEvolvedSampling node integrates evolved sampling techniques into the AnimateDiff framework, enhancing the generation of animations by applying advanced sampling strategies. This node is designed to leverage evolved algorithms for improved sampling efficiency and quality in the context of animation generation.
 ## Input types
 ### Required
 - **`model`**
-    - Specifies the model to be used for evolved sampling. It is crucial for defining the behavior and capabilities of the sampling process.
-    - Python dtype: `ModelPatcher`
     - Comfy dtype: `MODEL`
+    - Specifies the model to be used for evolved sampling, playing a crucial role in determining the quality and efficiency of the generated animations.
+    - Python dtype: `ModelPatcher`
 - **`beta_schedule`**
-    - Determines the schedule of beta values used during the sampling process. This parameter influences the variance of the noise added at each step, affecting the quality and characteristics of the generated animation.
-    - Python dtype: `BetaSchedules`
-    - Comfy dtype: `STRING`
+    - Comfy dtype: `COMBO[STRING]`
+    - Defines the beta schedule for the sampling process, influencing the progression of sampling steps and their impact on the animation quality.
+    - Python dtype: `str`
 ### Optional
 - **`m_models`**
-    - Optional. Refers to a group of motion models that may be used to enhance the sampling process with motion-specific information.
-    - Python dtype: `MotionModelGroup`
     - Comfy dtype: `M_MODELS`
+    - Optional parameter that allows for the specification of motion models, which can enhance the animation generation process by providing additional motion-related information.
+    - Python dtype: `MotionModelGroup`
 - **`context_options`**
-    - Optional. Specifies the context options group, which can include various settings that affect how the context is managed and utilized during the sampling process.
-    - Python dtype: `ContextOptionsGroup`
     - Comfy dtype: `CONTEXT_OPTIONS`
+    - Optional parameter for setting context options, which can modify the sampling behavior based on the provided context, affecting the final animation output.
+    - Python dtype: `ContextOptionsGroup`
 - **`sample_settings`**
-    - Optional. Defines the sample settings to be used during the evolved sampling process. These settings can include parameters such as noise type and seed generation options.
-    - Python dtype: `SampleSettings`
     - Comfy dtype: `SAMPLE_SETTINGS`
+    - Optional parameter for defining sample settings, which can include various sampling parameters and options to fine-tune the animation generation process.
+    - Python dtype: `SampleSettings`
 ## Output types
 - **`model`**
-    - Outputs the model with evolved sampling applied, ready for further use in the animation diffusion process.
-    - Python dtype: `ModelPatcher`
     - Comfy dtype: `MODEL`
+    - Outputs the model enhanced with evolved sampling techniques, ready for use in generating animations within the AnimateDiff framework.
+    - Python dtype: `ModelPatcher`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSampler,ToBasicPipe,SamplerCustom,LCMScheduler`

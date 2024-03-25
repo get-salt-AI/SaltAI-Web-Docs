@@ -4,34 +4,34 @@
 - Category: `latent/transform`
 - Output node: `False`
 
-The `LatentCrop` node performs cropping operations on latent representations of images. It adjusts the dimensions of the given latent samples to the specified width and height, starting from the (x, y) coordinates.
+The LatentCrop node is designed to perform cropping operations on latent representations of images. It allows for the specification of the crop dimensions and position, enabling targeted modifications of the latent space.
 ## Input types
 ### Required
 - **`samples`**
-    - The latent representation of images to be cropped. This parameter is crucial for defining the input data on which the cropping operation will be performed.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The 'samples' parameter represents the latent representations to be cropped. It is crucial for defining the data on which the cropping operation will be performed.
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`width`**
-    - The desired width of the cropped latent representation. It determines how wide the output latent image will be.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the width of the crop area. It directly influences the dimensions of the output latent representation.
+    - Python dtype: `int`
 - **`height`**
-    - The desired height of the cropped latent representation. It affects the vertical dimension of the output latent image.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the height of the crop area, affecting the size of the resulting cropped latent representation.
+    - Python dtype: `int`
 - **`x`**
-    - The x-coordinate from where the cropping should start horizontally. It defines the left boundary of the crop area.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Determines the starting x-coordinate of the crop area, influencing the position of the crop within the original latent representation.
+    - Python dtype: `int`
 - **`y`**
-    - The y-coordinate from where the cropping should start vertically. It defines the top boundary of the crop area.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Determines the starting y-coordinate of the crop area, setting the position of the crop within the original latent representation.
+    - Python dtype: `int`
 ## Output types
 - **`latent`**
-    - The cropped latent representation of images. This output retains the essential features of the input latent samples within the specified crop area.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The output is a modified latent representation with the specified crop applied.
+    - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

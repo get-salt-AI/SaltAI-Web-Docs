@@ -4,18 +4,18 @@
 - Category: `mask`
 - Output node: `False`
 
-The `InvertMask` node inverts the values of a given mask, effectively transforming the masked areas into unmasked areas and vice versa. This operation is useful in scenarios where the focus of interest in an image needs to be reversed.
+The InvertMask node is designed to invert the values of a given mask, effectively flipping the masked and unmasked areas. This operation is fundamental in image processing tasks where the focus of interest needs to be switched between the foreground and the background.
 ## Input types
 ### Required
 - **`mask`**
-    - The input mask to be inverted. This mask defines areas of interest that will be transformed to their opposite values.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The 'mask' parameter represents the input mask to be inverted. It is crucial for determining the areas to be flipped in the inversion process.
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`mask`**
-    - The inverted mask, where the originally masked areas are now unmasked, and the originally unmasked areas are now masked.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The output is an inverted version of the input mask, with previously masked areas becoming unmasked and vice versa.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `MaskToImage,PorterDuffImageComposite,ImageCompositeMasked,VAEEncodeForInpaint,FeatherMask`

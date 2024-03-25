@@ -4,26 +4,26 @@
 - Category: `advanced/loaders/deprecated`
 - Output node: `False`
 
-The `DiffusersLoader` node is responsible for loading models related to the diffusers library, specifically handling the loading of diffusion models, CLIP models, and VAEs based on the provided model path. It supports conditional loading of VAE and CLIP models based on the input flags.
+The DiffusersLoader node is designed for loading models from the diffusers library, specifically handling the loading of UNet, CLIP, and VAE models based on provided model paths. It facilitates the integration of these models into the ComfyUI framework, enabling advanced functionalities such as text-to-image generation, image manipulation, and more.
 ## Input types
 ### Required
 - **`model_path`**
-    - The path to the model directory. This path is crucial for locating the specific models to be loaded. The correct identification and loading of the diffusion model, CLIP model, and VAE depend on this path, directly influencing the node's execution and the types of models available for subsequent operations.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the path to the model to be loaded. This path is crucial as it determines which model will be utilized for subsequent operations, affecting the output and capabilities of the node.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`model`**
-    - Returns the loaded diffusion model.
-    - Python dtype: `comfy.sd.DiffusionModel`
     - Comfy dtype: `MODEL`
+    - The loaded UNet model, which is part of the output tuple. This model is essential for image synthesis and manipulation tasks within the ComfyUI framework.
+    - Python dtype: `comfy.sd.UNet`
 - **`clip`**
-    - Returns the loaded CLIP model, if requested.
-    - Python dtype: `Optional[comfy.sd.CLIPModel]`
     - Comfy dtype: `CLIP`
+    - The loaded CLIP model, included in the output tuple if requested. This model enables advanced text and image understanding and manipulation capabilities.
+    - Python dtype: `comfy.sd.CLIP`
 - **`vae`**
-    - Returns the loaded VAE model, if requested.
-    - Python dtype: `Optional[comfy.sd.VAEModel]`
     - Comfy dtype: `VAE`
+    - The loaded VAE model, included in the output tuple if requested. This model is crucial for tasks involving latent space manipulation and image generation.
+    - Python dtype: `comfy.sd.VAE`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

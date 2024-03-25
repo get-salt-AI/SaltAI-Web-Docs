@@ -4,27 +4,27 @@
 - Category: `math/vec4`
 - Output node: `False`
 
-Performs a unary operation on a 4-dimensional vector (Vec4) based on a specified operation. This operation transforms the input Vec4 according to the mathematical function associated with the 'op' parameter.
+This node performs unary operations on 4-dimensional vectors, applying a specified operation to a single Vec4 input and producing a Vec4 output. It abstracts complex vector manipulations into simple, callable operations, facilitating mathematical computations on 4D vectors.
 ## Input types
 ### Required
 - **`op`**
-    - Specifies the unary operation to be performed on the Vec4. The choice of operation affects how the input vector is transformed, directly influencing the node's execution and results by applying a specific mathematical function to the vector.
-    - Python dtype: `Enum['Neg', 'Normalize',...]`
-    - Comfy dtype: `['Neg', 'Normalize',...]`
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the unary operation to be performed on the Vec4 input. The choice of operation directly influences the result, enabling a variety of mathematical manipulations.
+    - Python dtype: `List[str]`
 - **`a`**
-    - The 4-dimensional vector (Vec4) to be transformed by the unary operation.
-    - Python dtype: `Vec4`
     - Comfy dtype: `VEC4`
+    - The Vec4 input on which the unary operation is to be performed. This vector serves as the primary data for the operation, determining the nature of the computation.
+    - Python dtype: `Vec4`
 ## Output types
 - **`vec4`**
-    - The transformed 4-dimensional vector (Vec4) after applying the specified unary operation.
-    - Python dtype: `Vec4`
     - Comfy dtype: `VEC4`
+    - The result of applying the specified unary operation on the Vec4 input, returned as a Vec4. This output encapsulates the transformed vector, reflecting the mathematical computation performed.
+    - Python dtype: `Tuple[Vec4]`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
-The CM_Vec4UnaryOperation node is primarily utilized for applying a specified unary operation to a 4-dimensional vector (Vec4), transforming it according to the chosen mathematical function. This node is often used in mathematical and geometric transformations within AI pipelines, taking a Vec4 as input and outputting the transformed Vec4.
+
 ## Source code
 ```python
 class Vec4UnaryOperation:

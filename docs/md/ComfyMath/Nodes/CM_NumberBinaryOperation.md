@@ -4,31 +4,31 @@
 - Category: `math/number`
 - Output node: `False`
 
-Performs a binary operation on two numbers based on a specified operation. This operation can be any function defined in FLOAT_BINARY_OPERATIONS, allowing for a wide range of mathematical computations between two numbers.
+This node performs binary operations on numbers, such as addition, subtraction, multiplication, and division, based on a specified operation. It abstracts the complexity of handling different types of number operations, providing a straightforward way to execute binary mathematical operations between two numbers.
 ## Input types
 ### Required
 - **`op`**
-    - Specifies the binary operation to perform. The choice of operation significantly influences the result, as it determines how the two input numbers are mathematically combined.
-    - Python dtype: `str`
-    - Comfy dtype: `STRING`
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the binary operation to be performed on the two numbers. It determines the mathematical action (e.g., addition, subtraction) that will be executed.
+    - Python dtype: `List[str]`
 - **`a`**
-    - The first input number for the binary operation. Acts as one of the operands in the mathematical computation.
-    - Python dtype: `float or int`
     - Comfy dtype: `NUMBER`
+    - The first operand in the binary operation, representing one of the numbers involved in the calculation.
+    - Python dtype: `float`
 - **`b`**
-    - The second input number for the binary operation. Serves as the other operand, together with 'a', in the computation.
-    - Python dtype: `float or int`
     - Comfy dtype: `NUMBER`
+    - The second operand in the binary operation, representing the other number involved in the calculation.
+    - Python dtype: `float`
 ## Output types
 - **`number`**
-    - The result of the binary operation performed on the two input numbers.
-    - Python dtype: `float`
     - Comfy dtype: `NUMBER`
+    - The result of the binary operation performed on the two input numbers.
+    - Python dtype: `Tuple[float]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `CM_NumberToInt`
 
-The CM_NumberBinaryOperation node is crucial for performing mathematical adjustments or calculations between numerical values within the pipeline, such as adjusting image dimensions or calculating aspect ratios. It accepts two numerical inputs, applies a specified binary operation (addition, subtraction, multiplication, or division), and outputs the resulting number, facilitating precise control over numerical parameters in AI-driven video content creation.
+
 ## Source code
 ```python
 class NumberBinaryOperation:

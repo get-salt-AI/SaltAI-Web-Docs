@@ -4,39 +4,39 @@
 - Category: `Animate Diff 🎭🅐🅓/context opts/view opts`
 - Output node: `False`
 
-This node is designed to create view options for looped uniform context in the Animate Diff process. It configures the parameters such as view length, stride, and overlap, along with the option for a closed loop and the method for fusing context. This setup is crucial for generating animations with a smooth transition between frames, ensuring continuity and uniformity across the animation sequence.
+This node is designed to create view options for generating looped uniform context options in the Animate Diff framework. It configures the parameters for view length, stride, overlap, and whether the loop is closed, alongside the method for fusing context and an option to use on equal length, to tailor the generation process.
 ## Input types
 ### Required
 - **`view_length`**
-    - Specifies the length of the view, which is critical for determining the number of frames in the animation sequence. It directly influences the duration and smoothness of the generated animation.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the length of the view. It determines how many frames or units are considered in a single view, affecting the granularity of the animation.
+    - Python dtype: `int`
 - **`view_stride`**
-    - Defines the stride between views, affecting how frames are sampled and spaced throughout the animation. It plays a key role in controlling the animation's pace and fluidity.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Defines the stride or step size between views. It affects how smoothly or rapidly the animation transitions between frames.
+    - Python dtype: `int`
 - **`view_overlap`**
-    - Determines the overlap between consecutive views, which is essential for creating seamless transitions between frames in the animation. This parameter helps in achieving a smoother and more continuous animation flow.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Sets the overlap between consecutive views, influencing the continuity and smoothness of the animation.
+    - Python dtype: `int`
 - **`closed_loop`**
-    - Indicates whether the animation should loop back to the beginning after reaching the end, creating a continuous loop. This option is vital for animations intended to be viewed in a repeating cycle.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOLEAN`
+    - Indicates whether the animation should loop back to the beginning, creating a seamless loop effect.
+    - Python dtype: `bool`
 ### Optional
 - **`fuse_method`**
-    - Specifies the method used for fusing context, which impacts how different frames are blended together in the animation. This choice affects the visual coherence and consistency of the animation.
+    - Comfy dtype: `COMBO[STRING]`
+    - Determines the method used to fuse multiple views or contexts together, impacting the overall animation style.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`use_on_equal_length`**
-    - A flag to determine if the view options should be applied when the animation's start and end frames are of equal length, ensuring flexibility in animation creation.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOLEAN`
+    - A flag to specify if the view options should be applied even when the animation length matches the view length, affecting the animation's versatility.
+    - Python dtype: `bool`
 ## Output types
 - **`view_opts`**
-    - The configured view options for looped uniform context, ready to be used in the Animate Diff process to generate animations.
-    - Python dtype: `ContextOptions`
     - Comfy dtype: `VIEW_OPTS`
+    - Produces the configured view options necessary for generating looped uniform context options within the Animate Diff framework.
+    - Python dtype: `ContextOptions`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

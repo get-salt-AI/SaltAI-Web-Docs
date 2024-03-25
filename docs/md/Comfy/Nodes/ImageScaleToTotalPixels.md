@@ -4,26 +4,26 @@
 - Category: `image/upscaling`
 - Output node: `False`
 
-This node scales an image to a specified total number of pixels (megapixels) while maintaining the aspect ratio. It uses various upscale methods to achieve the desired size.
+The ImageScaleToTotalPixels node is designed for resizing images to a specified total number of pixels while maintaining the aspect ratio. It provides various methods for upscaling the image to achieve the desired pixel count.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be scaled. The choice of upscale method and the target megapixels directly influence the quality and dimensions of the output image.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The input image to be upscaled to the specified total number of pixels.
+    - Python dtype: `torch.Tensor`
 - **`upscale_method`**
-    - The method used for upscaling the image. Different methods can affect the quality and characteristics of the upscaled image.
+    - Comfy dtype: `COMBO[STRING]`
+    - The method used for upscaling the image. It affects the quality and characteristics of the upscaled image.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`megapixels`**
-    - The target size of the output image in megapixels. This determines the total number of pixels in the scaled image.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The target size of the image in megapixels. This determines the total number of pixels in the upscaled image.
+    - Python dtype: `float`
 ## Output types
 - **`image`**
-    - The scaled image with the specified total number of pixels.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The upscaled image with the specified total number of pixels, maintaining the original aspect ratio.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `GetImageSize,ImageBatch,DWPreprocessor,VAEEncodeForInpaint,PreviewImage,ImpactImageInfo,Reroute,ControlNetApply,VAEEncode`

@@ -4,30 +4,30 @@
 - Category: `conditioning/advanced`
 - Output node: `False`
 
-This node performs advanced text encoding using the CLIP model. It processes input text to generate embeddings and pooled output, considering token normalization and weight interpretation strategies.
+This node specializes in generating advanced CLIP text embeddings by processing input text with options for token normalization and weight interpretation strategies. It aims to enhance text representation for conditioning in generative models.
 ## Input types
 ### Required
 - **`text`**
-    - The text input to be encoded. Supports multiline input, allowing for more complex and detailed text data to be processed.
-    - Python dtype: `str`
     - Comfy dtype: `STRING`
+    - The input text to be encoded. It supports multiline input, allowing for more complex and detailed text representations.
+    - Python dtype: `str`
 - **`clip`**
-    - The CLIP model used for encoding the text. It plays a crucial role in generating the embeddings and pooled output.
-    - Python dtype: `CLIP`
     - Comfy dtype: `CLIP`
+    - A CLIP model instance used for text tokenization and embedding generation.
+    - Python dtype: `object`
 - **`token_normalization`**
-    - Defines the method for normalizing the tokens extracted from the text. It affects the final embeddings by adjusting their scale or distribution.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the method for normalizing token embeddings, offering options like none, mean, length, and length+mean to adjust the embedding process.
     - Python dtype: `List[str]`
-    - Comfy dtype: `['none', 'mean', 'length', 'length+mean']`
 - **`weight_interpretation`**
-    - Specifies how the weights are interpreted during the encoding process, influencing the emphasis on certain aspects of the text.
+    - Comfy dtype: `COMBO[STRING]`
+    - Defines the strategy for interpreting the weights of token embeddings, with options including comfy, A1111, compel, comfy++, and down_weight.
     - Python dtype: `List[str]`
-    - Comfy dtype: `['comfy', 'A1111', 'compel', 'comfy++', 'down_weight']`
 ## Output types
 - **`conditioning`**
-    - The output includes embeddings and pooled output, structured for further processing or conditioning tasks.
-    - Python dtype: `Tuple[List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]]`
     - Comfy dtype: `CONDITIONING`
+    - The output is a conditioning format suitable for generative models, including the advanced CLIP text embeddings and optional pooled output.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSampler,SamplerCustom,ControlNetApplyAdvanced`

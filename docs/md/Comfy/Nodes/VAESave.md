@@ -4,17 +4,17 @@
 - Category: `advanced/model_merging`
 - Output node: `True`
 
-The VAESave node is designed for saving a VAE model's state dictionary along with optional metadata such as prompts and extra PNG information. It generates a unique filename for the saved model based on a prefix and counter, and stores it in a specified output directory.
+The VAESave node is designed for saving VAE models along with their metadata, including prompts and additional PNG information, to a specified output directory. It encapsulates the functionality to serialize the model state and associated information into a file, facilitating the preservation and sharing of trained models.
 ## Input types
 ### Required
 - **`vae`**
-    - The VAE model whose state dictionary is to be saved. This is crucial for preserving the model's learned parameters for future use.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `VAE`
+    - The VAE model to be saved. This parameter is crucial as it represents the model whose state is to be serialized and stored.
+    - Python dtype: `torch.nn.Module`
 - **`filename_prefix`**
-    - A prefix for the filename under which the model and its metadata are saved. This helps in organizing and identifying model files easily.
-    - Python dtype: `str`
     - Comfy dtype: `STRING`
+    - A prefix for the filename under which the model and its metadata will be saved. This allows for organized storage and easy retrieval of models.
+    - Python dtype: `str`
 ## Output types
 The node doesn't have output types
 ## Usage tips

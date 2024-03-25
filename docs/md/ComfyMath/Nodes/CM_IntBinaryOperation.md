@@ -4,31 +4,31 @@
 - Category: `math/int`
 - Output node: `False`
 
-Performs a binary operation on two integer inputs based on a specified operation. This node allows for basic arithmetic or comparison operations between integers, producing an integer result.
+The node `CM_IntBinaryOperation` performs binary operations on integer inputs, such as addition, subtraction, multiplication, and division, based on a specified operation. It abstracts the complexity of these operations into a simple interface, allowing for the dynamic execution of various mathematical operations on integers.
 ## Input types
 ### Required
 - **`op`**
-    - Determines the specific binary operation (e.g., addition, subtraction) to apply to the integer inputs. The choice of operation directly influences the nature of the computation and the final outcome, making it a crucial aspect of the node's functionality.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the binary operation to be performed on the integer inputs. This affects the node's execution by determining the mathematical operation applied.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`a`**
-    - Represents the first operand in the binary operation. Its value is essential as it serves as one of the two primary inputs upon which the specified operation is executed, directly impacting the result.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Represents the first integer input for the binary operation. It is one of the operands on which the specified operation is performed.
+    - Python dtype: `int`
 - **`b`**
-    - Serves as the second operand in the binary operation. Similar to the first operand, its value is critical as it contributes to the computation process, affecting the overall result of the operation.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Represents the second integer input for the binary operation. It serves as the other operand in the operation alongside `a`.
+    - Python dtype: `int`
 ## Output types
 - **`int`**
-    - The integer result of the specified binary operation on the inputs.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The result of the specified binary operation performed on the integer inputs `a` and `b`.
+    - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
 
-Often used in mathematical and logical operations within the pipeline, the CM_IntBinaryOperation node performs specified arithmetic or comparison operations on two integer inputs, producing an integer result.
+
 ## Source code
 ```python
 class IntBinaryOperation:

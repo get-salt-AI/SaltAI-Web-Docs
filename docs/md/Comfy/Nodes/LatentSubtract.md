@@ -4,22 +4,22 @@
 - Category: `latent/advanced`
 - Output node: `False`
 
-The LatentSubtract node performs element-wise subtraction between two latent representations. It ensures that the shapes of the latents are compatible before performing the subtraction, adjusting the second latent's shape if necessary.
+The LatentSubtract node is designed for subtracting one latent representation from another. This operation can be used to manipulate or modify the characteristics of generative models' outputs by effectively removing features or attributes represented in one latent space from another.
 ## Input types
 ### Required
 - **`samples1`**
-    - The first latent representation to be subtracted from. It serves as the base for the subtraction operation.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The first set of latent samples to be subtracted from. It serves as the base for the subtraction operation.
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`samples2`**
-    - The second latent representation to be subtracted. This latent is adjusted to match the shape of the first latent before the subtraction.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The second set of latent samples that will be subtracted from the first set. This operation can alter the resulting generative model's output by removing attributes or features.
+    - Python dtype: `Dict[str, torch.Tensor]`
 ## Output types
 - **`latent`**
-    - The result of the element-wise subtraction between the two latent representations.
-    - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
     - Comfy dtype: `LATENT`
+    - The result of subtracting the second set of latent samples from the first. This modified latent representation can be used for further generative tasks.
+    - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

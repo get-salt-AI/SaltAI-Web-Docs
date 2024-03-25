@@ -4,27 +4,27 @@
 - Category: `math/vec3`
 - Output node: `False`
 
-Performs a unary operation on a 3-dimensional vector based on a specified condition. This operation evaluates a condition on the vector and returns a boolean result.
+The CM_Vec3UnaryCondition node is designed to evaluate unary conditions on 3-dimensional vectors, providing a boolean result based on the specified operation and vector input.
 ## Input types
 ### Required
 - **`op`**
-    - Specifies the unary operation to be performed on the vector. The operation is selected from a predefined list of conditions. The choice of operation directly influences the evaluation process and the resulting boolean value, making it crucial for determining the condition's applicability to the vector.
-    - Python dtype: `str`
-    - Comfy dtype: `STRING`
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the unary operation to be performed on the vector. The choice of operation determines the condition being evaluated. The operations are limited to a predefined set of unary conditions applicable to 3-dimensional vectors.
+    - Python dtype: `List[str]`
 - **`a`**
-    - The 3-dimensional vector on which the unary operation is performed. It represents the input vector to be evaluated against the specified condition. The vector's dimensions and values play a significant role in the outcome of the condition check.
-    - Python dtype: `Vec3`
     - Comfy dtype: `VEC3`
+    - The 3-dimensional vector on which the unary condition is evaluated.
+    - Python dtype: `Vec3`
 ## Output types
 - **`bool`**
-    - The result of the unary operation as a boolean value, indicating whether the specified condition is met by the input vector.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOL`
+    - The result of the unary condition evaluation, indicating whether the condition holds true for the given vector.
+    - Python dtype: `Tuple[bool]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
 
-Often used in scenarios requiring the evaluation of a 3-dimensional vector against a specific condition, such as determining if a vector falls within a certain range or meets a geometric constraint. The CM_Vec3UnaryCondition node takes a vector (`a`) and a condition operation (`op`) as input, and outputs a boolean value indicating whether the vector satisfies the specified condition.
+
 ## Source code
 ```python
 class Vec3UnaryCondition:

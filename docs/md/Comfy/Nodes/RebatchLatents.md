@@ -4,22 +4,22 @@
 - Category: `latent/batch`
 - Output node: `False`
 
-The `RebatchLatents` node is designed to reorganize a batch of latent representations into a new batch configuration based on a specified batch size. It processes each latent entry, adjusting the batch size as necessary, and handles different dimensions by slicing or concatenating batches to meet the target batch size.
+The RebatchLatents node is designed to reorganize a batch of latent representations into a new batch configuration, based on a specified batch size. It ensures that the latent samples are grouped appropriately, handling variations in dimensions and sizes, to facilitate further processing or model inference.
 ## Input types
 ### Required
 - **`latents`**
-    - The input latents to be rebatched. This parameter is crucial for determining how the latent representations are to be reorganized into the new batch configuration.
-    - Python dtype: `List[Dict[str, torch.Tensor]]`
     - Comfy dtype: `LATENT`
+    - The 'latents' parameter represents the input latent representations to be rebatched. It is crucial for determining the structure and content of the output batch.
+    - Python dtype: `List[Dict[str, torch.Tensor]]`
 - **`batch_size`**
-    - Specifies the target batch size for the rebatching process. It influences how the input latents are divided and combined to form the new batches.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The 'batch_size' parameter specifies the desired number of samples per batch in the output. It directly influences the grouping and division of the input latents into new batches.
+    - Python dtype: `int`
 ## Output types
 - **`latent`**
-    - The rebatched latents, organized according to the specified batch size.
-    - Python dtype: `List[Dict[str, torch.Tensor]]`
     - Comfy dtype: `LATENT`
+    - The output is a reorganized batch of latent representations, adjusted according to the specified batch size. It facilitates further processing or analysis.
+    - Python dtype: `List[Dict[str, torch.Tensor]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `VAEDecode`

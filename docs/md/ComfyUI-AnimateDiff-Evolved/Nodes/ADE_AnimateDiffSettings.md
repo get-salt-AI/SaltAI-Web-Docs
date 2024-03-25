@@ -4,18 +4,18 @@
 - Category: `Animate Diff 🎭🅐🅓/ad settings`
 - Output node: `False`
 
-This node is responsible for configuring the AnimateDiff settings, which likely includes parameters for adjusting the perceptual encoding (PE) used in the animation process. It serves as a foundational element in customizing how animations are generated, allowing for adjustments to the animation's appearance or behavior.
+This node is designed to configure and apply specific settings for the AnimateDiff process, allowing for adjustments to the animation dynamics through parameters like PE adjustment. It serves as a foundational element in customizing the behavior and output of AnimateDiff animations.
 ## Input types
 ### Optional
 - **`pe_adjust`**
-    - Specifies the adjustments to be made to the perceptual encoding (PE) settings. This can significantly influence the final animation by altering aspects such as stretch, strength, or attention mechanisms.
-    - Python dtype: `AdjustPEGroup`
     - Comfy dtype: `PE_ADJUST`
+    - Specifies the type of positional encoding (PE) adjustment to be applied, influencing the animation's dynamics and overall appearance.
+    - Python dtype: `AdjustPEGroup`
 ## Output types
 - **`ad_settings`**
-    - Returns the configured AnimateDiff settings, encapsulating all adjustments made to the perceptual encoding and potentially other parameters influencing the animation process.
-    - Python dtype: `AnimateDiffSettings`
     - Comfy dtype: `AD_SETTINGS`
+    - The configured AnimateDiff settings, ready to be utilized in subsequent animation processes.
+    - Python dtype: `AnimateDiffSettings`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

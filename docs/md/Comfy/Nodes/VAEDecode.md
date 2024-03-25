@@ -4,22 +4,22 @@
 - Category: `latent`
 - Output node: `False`
 
-This node decodes latent representations into images using a specified VAE model. It takes latent samples as input and utilizes the VAE's decode method to transform these samples back into image space.
+The VAEDecode node is designed for decoding latent representations into images using a specified Variational Autoencoder (VAE). It serves the purpose of generating images from compressed data representations, facilitating the reconstruction of images from their latent space encodings.
 ## Input types
 ### Required
 - **`samples`**
-    - Latent representations to be decoded into images. These are essential for generating the final output images from the compressed latent space.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `LATENT`
+    - The 'samples' parameter represents the latent representations to be decoded into images. It is crucial for the decoding process as it provides the compressed data from which the images are reconstructed.
+    - Python dtype: `torch.Tensor`
 - **`vae`**
-    - The VAE model used for decoding the latent samples into images. It defines the specific architecture and parameters for the decoding process.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `VAE`
+    - The 'vae' parameter specifies the Variational Autoencoder model to be used for decoding the latent representations into images. It is essential for determining the decoding mechanism and the quality of the reconstructed images.
+    - Python dtype: `torch.nn.Module`
 ## Output types
 - **`image`**
-    - The decoded images generated from the latent samples using the VAE model.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The output is an image reconstructed from the provided latent representation using the specified VAE model.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `PreviewImage,SaveImage,VHS_VideoCombine,Reroute,ImageUpscaleWithModel,UltimateSDUpscale,RIFE VFI,FaceDetailer,FILM VFI,ColorMatch`

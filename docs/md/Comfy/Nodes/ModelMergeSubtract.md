@@ -4,26 +4,26 @@
 - Category: `advanced/model_merging`
 - Output node: `False`
 
-This node performs a subtraction operation between two models by applying a multiplier to the patches extracted from the second model before subtracting them from the first model. This operation allows for the dynamic adjustment of the influence one model has over another, enabling the creation of a new model that incorporates characteristics of both input models with a specified intensity.
+This node is designed for advanced model merging operations, specifically to subtract the parameters of one model from another based on a specified multiplier. It enables the customization of model behaviors by adjusting the influence of one model's parameters over another, facilitating the creation of new, hybrid models.
 ## Input types
 ### Required
 - **`model1`**
-    - The first model to be used in the subtraction operation. It serves as the base model from which patches of the second model are subtracted.
-    - Python dtype: `comfy.model_base.Model`
     - Comfy dtype: `MODEL`
+    - The base model from which parameters will be subtracted.
+    - Python dtype: `comfy.model_base.Model`
 - **`model2`**
-    - The second model from which patches are extracted and subtracted from the first model, after being scaled by the multiplier.
-    - Python dtype: `comfy.model_base.Model`
     - Comfy dtype: `MODEL`
+    - The model whose parameters will be subtracted from the base model.
+    - Python dtype: `comfy.model_base.Model`
 - **`multiplier`**
-    - A scaling factor applied to the patches of the second model before subtraction. It controls the intensity of the subtraction effect on the resulting model.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A floating-point value that scales the subtraction effect on the base model's parameters.
+    - Python dtype: `float`
 ## Output types
 - **`model`**
-    - The resulting model after subtracting scaled patches of the second model from the first model.
-    - Python dtype: `comfy.model_base.Model`
     - Comfy dtype: `MODEL`
+    - The resulting model after subtracting the parameters of one model from another, scaled by the multiplier.
+    - Python dtype: `comfy.model_base.Model`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

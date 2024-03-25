@@ -4,64 +4,64 @@
 - Category: `ipadapter`
 - Output node: `False`
 
-This node applies an IPAdapter to modify the embeddings or features of a model based on the provided inputs. It supports different weight types to adjust the influence of the IPAdapter, and can handle optional inputs like attention masks for more specialized adjustments.
+This node is designed to apply an IPAdapter to a given model, adjusting the model's behavior based on various inputs such as embeddings, images, and attention masks. It allows for the dynamic modification of model outputs through the application of IPAdapter layers, facilitating enhanced model customization and performance tuning.
 ## Input types
 ### Required
 - **`ipadapter`**
-    - The IPAdapter to be applied. It is crucial for modifying the embeddings or features of the model.
-    - Python dtype: `IPAdapter`
     - Comfy dtype: `IPADAPTER`
+    - The IPAdapter instance to be applied, enabling the dynamic adjustment of the model's behavior.
+    - Python dtype: `IPADAPTER`
 - **`clip_vision`**
-    - Optional. If provided, it is used to enhance the IPAdapter's application with vision-related features.
-    - Python dtype: `ClipVisionModel`
     - Comfy dtype: `CLIP_VISION`
-- **`image`**
-    - Optional. An image that can be used in conjunction with the IPAdapter for vision-related tasks.
+    - Optional input for vision embeddings from CLIP, used for visual understanding tasks.
     - Python dtype: `torch.Tensor`
+- **`image`**
     - Comfy dtype: `IMAGE`
+    - Optional input image to be processed by the IPAdapter for tasks involving image data.
+    - Python dtype: `torch.Tensor`
 - **`model`**
-    - The model whose embeddings or features are to be modified by the IPAdapter.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - The model to which the IPAdapter is applied, allowing for its behavior to be dynamically modified.
+    - Python dtype: `MODEL`
 - **`weight`**
-    - A scalar weight that adjusts the influence of the IPAdapter on the model's embeddings or features.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A floating-point value that scales the influence of the IPAdapter on the model, affecting the degree of modification.
+    - Python dtype: `float`
 - **`noise`**
-    - Optional. Noise level to be applied during the IPAdapter's application, providing a way to introduce variability.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Optional floating-point value representing noise level to be applied, enhancing model robustness or variability.
+    - Python dtype: `float`
 - **`weight_type`**
-    - Specifies the method to apply the weight, offering different strategies for adjusting the IPAdapter's influence.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the method of applying weight to the IPAdapter's influence, with options including 'original', 'linear', and 'channel penalty'.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`start_at`**
-    - Defines the starting point of the IPAdapter's application, allowing for gradual application over the input.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Specifies the starting point of the IPAdapter's effect, allowing for phased application.
+    - Python dtype: `float`
 - **`end_at`**
-    - Defines the ending point of the IPAdapter's application, allowing for precise control over its influence.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Specifies the ending point of the IPAdapter's effect, allowing for phased withdrawal.
+    - Python dtype: `float`
 - **`unfold_batch`**
-    - Determines whether the batch should be unfolded during the IPAdapter's application, affecting how inputs are processed.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOLEAN`
+    - A boolean indicating whether to unfold the batch for processing, affecting computational efficiency.
+    - Python dtype: `bool`
 ### Optional
 - **`attn_mask`**
-    - Optional. An attention mask that can be used to focus the IPAdapter's application on specific parts of the input.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - Optional attention mask to focus or ignore specific parts of the input, enhancing model attention mechanisms.
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`model`**
-    - The modified model after applying the IPAdapter, reflecting the adjustments made to its embeddings or features.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - The modified model after applying the IPAdapter, reflecting the dynamic adjustments made based on the inputs.
+    - Python dtype: `MODEL`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `Reroute,ADE_AnimateDiffLoaderWithContext,KSampler,ModelMergeSimple,IPAdapterApplyFaceID,KSampler (Efficient),IPAdapterApply,SelfAttentionGuidance,KSamplerAdvanced,ReroutePrimitive|pysssss`
 
-The IPAdapterApply node applies an IPAdapter to modify the embeddings or features of a model based on the provided inputs, including an IPAdapter model, CLIP vision features, an image, and optionally an attention mask. It outputs a modified model that incorporates the adjustments made by the IPAdapter, enabling enhanced or tailored image processing and generation tasks.
+
 ## Source code
 ```python
 class IPAdapterApply:

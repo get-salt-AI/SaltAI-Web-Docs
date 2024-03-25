@@ -4,18 +4,18 @@
 - Category: `_for_testing`
 - Output node: `False`
 
-This node is responsible for loading latent representations from files with a '.latent' extension located in a specified directory. It adjusts the scale of the latent tensor based on its version.
+The LoadLatent node is designed for loading latent representations from files with a '.latent' extension. It adjusts the latent tensor based on its version and prepares it for further processing or generation tasks.
 ## Input types
 ### Required
 - **`latent`**
-    - Specifies the name of the latent file to be loaded. The file must exist in the pre-defined input directory and have a '.latent' extension.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the name of the latent file to be loaded. This file should be located in a predefined input directory and have a '.latent' extension.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`latent`**
-    - Returns the loaded and potentially rescaled latent tensor as a dictionary with the key 'samples'.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - Provides the loaded and adjusted latent tensor, ready for further processing or generation tasks.
+    - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

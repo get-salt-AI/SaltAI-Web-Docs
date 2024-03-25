@@ -4,24 +4,24 @@
 - Category: `image`
 - Output node: `False`
 
-The `LoadImage` node is designed to load images from a specified path, process them for use in machine learning models, and handle images with transparency by generating masks. It supports loading images in sequence, applying necessary transformations such as EXIF orientation correction, normalization, and converting them to tensors suitable for model input. Additionally, it generates a mask for images with an alpha channel, indicating areas of transparency.
+The LoadImage node is designed to load and preprocess images from a specified path. It handles image formats with multiple frames, applies necessary transformations such as rotation based on EXIF data, normalizes pixel values, and optionally generates a mask for images with an alpha channel. This node is essential for preparing images for further processing or analysis within a pipeline.
 ## Input types
 ### Required
 - **`image`**
-    - The `image` parameter specifies the image or sequence of images to be loaded and processed. It plays a crucial role in determining the source of the image data and influences the output by dictating which image(s) will undergo processing and potential masking.
+    - Comfy dtype: `COMBO[STRING]`
+    - The 'image' parameter specifies the identifier of the image to be loaded and processed. It is crucial for determining the path to the image file and subsequently loading the image for transformation and normalization.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`image`**
-    - The processed image or sequence of images, transformed and normalized for model consumption, returned as a tensor.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
-- **`mask`**
-    - A mask indicating areas of transparency in the input image(s), useful for certain image processing or machine learning tasks, returned as a tensor.
+    - The processed image, with pixel values normalized and transformations applied as necessary. It is ready for further processing or analysis.
     - Python dtype: `torch.Tensor`
+- **`mask`**
     - Comfy dtype: `MASK`
+    - An optional output providing a mask for the image, useful in scenarios where the image includes an alpha channel for transparency.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: `SVD_img2vid_Conditioning,ReActorFaceSwap,IPAdapterApply,Reroute,VAEEncodeForInpaint,PrepImageForClipVision,MiDaS-DepthMapPreprocessor,OpenposePreprocessor,InpaintPreprocessor,VAEEncode`
 
 

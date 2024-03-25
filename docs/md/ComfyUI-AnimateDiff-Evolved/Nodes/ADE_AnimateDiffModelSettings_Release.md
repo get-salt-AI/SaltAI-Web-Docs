@@ -4,29 +4,29 @@
 - Category: ``
 - Output node: `False`
 
-This node is responsible for configuring the motion model settings for the AnimateDiff process. It allows for the adjustment of parameters related to the positional encoding (PE) stretch, attention strengths, and motion scale, which are crucial for achieving desired animation effects.
+This node is designed for configuring motion model settings within the AnimateDiff framework, specifically targeting the release version. It allows for the adjustment of parameters related to the motion and appearance of animations, facilitating the creation of dynamic and visually appealing content.
 ## Input types
 ### Required
 - **`min_motion_scale`**
-    - Sets the minimum scale for motion, ensuring that motion effects do not fall below a certain threshold.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Sets the minimum scaling factor for motion, ensuring a baseline level of motion intensity.
+    - Python dtype: `float`
 - **`max_motion_scale`**
-    - Defines the maximum scale for motion, capping the intensity of motion effects.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Defines the maximum scaling factor for motion, capping the intensity of movements.
+    - Python dtype: `float`
 ### Optional
 - **`mask_motion_scale`**
-    - Provides a tensor to scale the motion mask, which can modify how motion is applied across different parts of the image.
+    - Comfy dtype: `MASK`
+    - Applies a scaling factor to the motion mask, enabling finer control over the motion's intensity and distribution.
     - Python dtype: `torch.Tensor`
-    - Comfy dtype: `TENSOR`
 ## Output types
 - **`ad_settings`**
-    - The configured motion model settings, encapsulating all adjustments made for the AnimateDiff animation process.
-    - Python dtype: `AnimateDiffSettings`
     - Comfy dtype: `AD_SETTINGS`
+    - Returns the configured motion model settings, encapsulating adjustments to various parameters for fine-tuning the animation's motion and appearance.
+    - Python dtype: `AnimateDiffSettings`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 

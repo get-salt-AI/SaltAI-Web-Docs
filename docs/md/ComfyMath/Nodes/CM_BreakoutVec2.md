@@ -4,23 +4,23 @@
 - Category: `math/conversion`
 - Output node: `False`
 
-This node breaks down a 2D vector into its individual components, providing a straightforward way to access and manipulate the x and y coordinates separately.
+The CM_BreakoutVec2 node is designed for decomposing a 2-dimensional vector into its individual components, facilitating operations that require access to the separate x and y values.
 ## Input types
 ### Required
 - **`a`**
-    - The 2D vector to be broken down. This allows for the individual manipulation of the x and y components of the vector.
-    - Python dtype: `tuple[float, float]`
     - Comfy dtype: `VEC2`
+    - The 'a' parameter represents the 2-dimensional vector to be decomposed. It allows for operations on vectors by breaking them down into their individual x and y components.
+    - Python dtype: `tuple[float, float]`
 ## Output types
 - **`float`**
-    - The y component of the input 2D vector.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The output consists of two float values, representing the x and y components of the input vector, respectively.
+    - Python dtype: `tuple[float, float]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
 
-Often used in mathematical and conversion operations within the pipeline to separate a 2D vector into its x and y components, allowing for individual manipulation and analysis of these coordinates.
+
 ## Source code
 ```python
 class BreakoutVec2:

@@ -4,34 +4,34 @@
 - Category: `mask`
 - Output node: `False`
 
-This node is designed to perform operations on masks, such as combining them through mathematical or logical operations. It allows for the manipulation of mask data to achieve desired effects or transformations.
+This node specializes in combining two mask inputs through a variety of operations such as addition, subtraction, and logical operations, to produce a new, modified mask. It abstractly handles the manipulation of mask data to achieve complex masking effects, serving as a crucial component in mask-based image editing and processing workflows.
 ## Input types
 ### Required
 - **`destination`**
-    - The primary mask onto which the operation will be applied. It serves as the base for the composite operation.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The primary mask that will be modified based on the operation with the source mask. It plays a central role in the composite operation, acting as the base for modifications.
+    - Python dtype: `torch.Tensor`
 - **`source`**
-    - The secondary mask that will be used in the operation with the destination mask. It can be combined in various ways depending on the specified operation.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The secondary mask that will be used in conjunction with the destination mask to perform the specified operation, influencing the final output mask.
+    - Python dtype: `torch.Tensor`
 - **`x`**
-    - The horizontal offset at which the source mask will be applied to the destination mask.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The horizontal offset at which the source mask will be applied to the destination mask, affecting the positioning of the composite result.
+    - Python dtype: `int`
 - **`y`**
-    - The vertical offset at which the source mask will be applied to the destination mask.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The vertical offset at which the source mask will be applied to the destination mask, affecting the positioning of the composite result.
+    - Python dtype: `int`
 - **`operation`**
-    - Specifies the type of operation to be performed when combining the destination and source masks. Options include mathematical and logical operations like multiply, add, subtract, and, or, xor.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the type of operation to apply between the destination and source masks, such as 'add', 'subtract', or logical operations, determining the nature of the composite effect.
     - Python dtype: `str`
-    - Comfy dtype: `['multiply', 'add', 'subtract', 'and', 'or', 'xor']`
 ## Output types
 - **`mask`**
-    - The result of the composite operation applied to the masks, producing a new mask.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The resulting mask after applying the specified operation between the destination and source masks, representing the composite outcome.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `ToBinaryMask,LatentCompositeMasked,MaskToImage`

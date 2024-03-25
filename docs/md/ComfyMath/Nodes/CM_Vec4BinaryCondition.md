@@ -4,31 +4,31 @@
 - Category: `math/vec4`
 - Output node: `False`
 
-This node performs a binary condition operation on two Vec4 vectors, evaluating a specified condition between them. The operation is determined by the 'op' parameter, which selects the condition from a predefined set of vector binary conditions.
+This node performs binary conditional operations on two 4-dimensional vectors (Vec4), evaluating to a boolean result based on the specified operation. It abstracts complex vector comparisons into simple, reusable logic.
 ## Input types
 ### Required
 - **`op`**
-    - Specifies the binary condition operation to be performed on the vectors. It determines how the two Vec4 vectors will be compared.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the binary conditional operation to be performed on the vectors, determining the nature of the comparison.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`a`**
-    - The first Vec4 vector to be compared.
-    - Python dtype: `Vec4`
     - Comfy dtype: `VEC4`
+    - The first 4-dimensional vector (Vec4) to be compared.
+    - Python dtype: `Vec4`
 - **`b`**
-    - The second Vec4 vector to be compared.
-    - Python dtype: `Vec4`
     - Comfy dtype: `VEC4`
+    - The second 4-dimensional vector (Vec4) to be compared.
+    - Python dtype: `Vec4`
 ## Output types
 - **`bool`**
-    - The result of the binary condition operation, indicating whether the specified condition is true or false between the two Vec4 vectors.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOL`
+    - The boolean result of the binary conditional operation between the two Vec4 inputs.
+    - Python dtype: `bool`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
 
-The CM_Vec4BinaryCondition node is utilized for comparing two Vec4 vectors based on a specified binary condition, such as equality or greater than, to output a boolean result indicating whether the condition holds true. This node is often used in mathematical and logical operations within AI pipelines to facilitate decision-making processes based on vector comparisons.
+
 ## Source code
 ```python
 class Vec4BinaryCondition:

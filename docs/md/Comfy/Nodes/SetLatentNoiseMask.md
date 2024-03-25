@@ -4,22 +4,22 @@
 - Category: `latent/inpaint`
 - Output node: `False`
 
-This node applies a noise mask to a given set of latent samples. It modifies the input samples by adding a 'noise_mask' field, which is reshaped to match the dimensions of the latent samples.
+This node is designed to apply a noise mask to a set of latent samples. It modifies the input samples by integrating a specified mask, thereby altering their noise characteristics.
 ## Input types
 ### Required
 - **`samples`**
-    - The latent samples to which the noise mask will be applied. This parameter is crucial for defining the data that will be modified.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The latent samples to which the noise mask will be applied. This parameter is crucial for determining the base content that will be modified.
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`mask`**
-    - The mask to be applied to the latent samples. It is reshaped to fit the dimensions of the samples, thereby affecting the final output by selectively applying noise.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The mask to be applied to the latent samples. It defines the areas and intensity of noise alteration within the samples.
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`latent`**
-    - The modified latent samples with the applied noise mask. This output retains the original structure of the input samples but includes the added 'noise_mask' field.
-    - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
     - Comfy dtype: `LATENT`
+    - The modified latent samples with the applied noise mask.
+    - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSampler,KSampler (Efficient),Mute / Bypass Repeater (rgthree)`

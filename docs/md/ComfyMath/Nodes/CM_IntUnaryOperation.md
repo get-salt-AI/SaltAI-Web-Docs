@@ -4,27 +4,27 @@
 - Category: `math/int`
 - Output node: `False`
 
-Performs a unary operation on an integer. This operation is defined by a specific operation (op) applied to an integer (a), resulting in a modified integer value.
+Performs unary operations on integers, applying a specified operation to a single integer input and producing an integer result. This node abstracts mathematical operations that modify the value or state of an integer based on predefined unary operations.
 ## Input types
 ### Required
 - **`op`**
-    - Specifies the unary operation to be performed on the integer. The choice of operation significantly affects the modification of the input integer, altering its value based on the operation selected.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the unary operation to be applied to the integer. This determines how the integer's value will be modified.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`a`**
-    - The integer on which the unary operation is to be performed. It serves as the input to the operation defined by 'op'.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The integer to which the unary operation will be applied. This is the input integer that will be modified by the specified operation.
+    - Python dtype: `int`
 ## Output types
 - **`int`**
-    - The result of applying the specified unary operation on the input integer. It is an integer reflecting the outcome of the operation.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The result of applying the unary operation to the input integer.
+    - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
 
-Often used in mathematical and data transformation pipelines to apply a specific unary operation, such as incrementing or negating, on an input integer `a`, resulting in a modified integer output.
+
 ## Source code
 ```python
 class IntUnaryOperation:

@@ -4,26 +4,26 @@
 - Category: `advanced/conditioning`
 - Output node: `False`
 
-This node modifies the conditioning data by setting a specific range of timesteps for the conditioning process. It allows for the precise control of the start and end points of the conditioning, enabling more targeted and efficient generation.
+This node is designed to adjust the temporal aspect of conditioning by setting a specific range of timesteps. It allows for the precise control over the start and end points of the conditioning process, enabling more targeted and efficient generation.
 ## Input types
 ### Required
 - **`conditioning`**
-    - The conditioning data to be modified. It serves as the basis for the generation process, dictating the characteristics and constraints of the output.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - The conditioning input represents the current state of the generation process, which this node modifies by setting a specific range of timesteps.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 - **`start`**
-    - The starting point of the timestep range, as a percentage of the total timesteps. It specifies the beginning of the conditioning effect.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The start parameter specifies the beginning of the timestep range as a percentage of the total generation process, allowing for fine-tuned control over when the conditioning effects begin.
+    - Python dtype: `float`
 - **`end`**
-    - The ending point of the timestep range, as a percentage of the total timesteps. It determines when the conditioning effect concludes.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The end parameter defines the endpoint of the timestep range as a percentage, enabling precise control over the duration and conclusion of the conditioning effects.
+    - Python dtype: `float`
 ## Output types
 - **`conditioning`**
-    - The modified conditioning data with the specified timestep range applied. This data is used for further processing or generation.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - The output is the modified conditioning with the specified timestep range applied, ready for further processing or generation.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `CR Conditioning Mixer`

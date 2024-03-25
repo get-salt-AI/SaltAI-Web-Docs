@@ -4,22 +4,22 @@
 - Category: `conditioning`
 - Output node: `False`
 
-The `CLIPSetLastLayer` node is designed to modify a CLIP model by setting its last layer to stop at a specified layer index. This operation is useful for controlling the depth of the model's processing, potentially affecting the model's performance and the characteristics of the generated embeddings.
+This node is designed to modify the behavior of a CLIP model by setting a specific layer as the last one to be executed. It allows for the customization of the depth of processing within the CLIP model, potentially affecting the model's output by limiting the amount of information processed.
 ## Input types
 ### Required
 - **`clip`**
-    - The `clip` parameter represents the CLIP model to be modified. It is crucial for defining the model on which the layer adjustment will be performed.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `CLIP`
+    - The CLIP model to be modified. This parameter allows the node to directly interact with and alter the structure of the CLIP model.
+    - Python dtype: `torch.nn.Module`
 - **`stop_at_clip_layer`**
-    - The `stop_at_clip_layer` parameter specifies the index of the last layer to be used in the CLIP model. This allows for fine-tuning the depth of the model's processing, which can influence the model's output and performance.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the layer at which the CLIP model should stop processing. This allows for control over the depth of computation and can be used to adjust the model's behavior or performance.
+    - Python dtype: `int`
 ## Output types
 - **`clip`**
-    - Returns the modified CLIP model with the last layer set to the specified index. This adjusted model can then be used for further processing or embedding generation.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `CLIP`
+    - The modified CLIP model with the specified layer set as the last one. This output enables further use or analysis of the adjusted model.
+    - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `CLIPTextEncode,LoraLoader,CR Apply LoRA Stack,Text to Conditioning,Reroute,PromptControlSimple,BatchPromptSchedule,CLIPTextEncodeA1111,FaceDetailer,BNK_CutoffBasePrompt`

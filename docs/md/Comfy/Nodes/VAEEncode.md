@@ -4,22 +4,22 @@
 - Category: `latent`
 - Output node: `False`
 
-This node encodes an image into a latent representation using a specified VAE model. The encoding process involves transforming the input image's pixel values to a latent space, which can be used for various generative tasks.
+This node is designed for encoding images into a latent space representation using a specified VAE model. It abstracts the complexity of the encoding process, providing a straightforward way to transform images into their latent representations.
 ## Input types
 ### Required
 - **`pixels`**
-    - The input image to be encoded into a latent representation. This image is processed and its pixel values are transformed into a latent space by the VAE model.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The 'pixels' parameter represents the image data to be encoded into the latent space. It plays a crucial role in determining the output latent representation by serving as the direct input for the encoding process.
+    - Python dtype: `torch.Tensor`
 - **`vae`**
-    - The VAE model used for encoding the input image into a latent representation. This model is responsible for the transformation of pixel values into a latent space.
-    - Python dtype: `comfy.sd.VAE`
     - Comfy dtype: `VAE`
+    - The 'vae' parameter specifies the Variational Autoencoder model to be used for encoding the image data into latent space. It is essential for defining the encoding mechanism and characteristics of the generated latent representation.
+    - Python dtype: `comfy.sd.VAE`
 ## Output types
 - **`latent`**
-    - The encoded latent representation of the input image. This output can be used for various generative tasks that require a latent space representation.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The output is a latent space representation of the input image, encapsulating its essential features in a compressed form.
+    - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSampler,KSamplerAdvanced,SetLatentNoiseMask,ImpactKSamplerBasicPipe,KSampler (Efficient),BNK_Unsampler,LatentUpscale,KSampler //Inspire,DZ_Face_Detailer,LatentUpscaleBy`

@@ -4,27 +4,27 @@
 - Category: `math/vec4`
 - Output node: `False`
 
-Performs a unary condition operation on a 4-dimensional vector based on a specified condition. This operation evaluates the vector against the condition and returns a boolean result indicating whether the condition is met.
+This node performs unary operations on 4-dimensional vectors based on predefined conditions, evaluating to a boolean result. It abstracts complex vector operations into simple, condition-based checks.
 ## Input types
 ### Required
 - **`op`**
-    - Specifies the unary condition to be applied to the vector. The choice of operation determines how the vector is evaluated against the condition, directly affecting the outcome by defining the criteria for the condition check.
-    - Python dtype: `str`
-    - Comfy dtype: `STRING`
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the unary operation to be performed on the vector, chosen from a predefined set of conditions. This determines how the vector is evaluated.
+    - Python dtype: `List[str]`
 - **`a`**
-    - The 4-dimensional vector to be evaluated against the specified condition. Its values are crucial as they are directly compared against the condition defined by 'op', influencing whether the condition is met.
-    - Python dtype: `Vec4`
     - Comfy dtype: `VEC4`
+    - The 4-dimensional vector to be operated on. It serves as the input for the unary operation.
+    - Python dtype: `Vec4`
 ## Output types
 - **`bool`**
-    - A boolean value indicating whether the specified condition is met by the vector.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOL`
+    - The boolean result of the unary operation performed on the 4-dimensional vector.
+    - Python dtype: `Tuple[bool]`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
-Often used in scenarios requiring logical operations or condition checks on 4-dimensional vectors, such as filtering or decision-making processes based on vector attributes. The CM_Vec4UnaryCondition node takes a 4-dimensional vector and a specified unary condition as input, and outputs a boolean value indicating whether the vector meets the condition.
+
 ## Source code
 ```python
 class Vec4UnaryCondition:

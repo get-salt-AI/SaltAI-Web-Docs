@@ -4,22 +4,22 @@
 - Category: `mask/compositing`
 - Output node: `False`
 
-The `SplitImageWithAlpha` node is designed to separate an image into its color components and its alpha (transparency) channel. It processes each image in a batch, extracting the RGB channels as output images and computing the alpha channel, which is then inverted to represent transparency.
+The SplitImageWithAlpha node is designed to separate the color and alpha components of an image. It processes an input image tensor, extracting the RGB channels as the color component and the alpha channel as the transparency component, facilitating operations that require manipulation of these distinct image aspects.
 ## Input types
 ### Required
 - **`image`**
-    - The input image tensor, expected to contain an alpha channel alongside the RGB channels. This tensor is split into RGB components and the alpha channel, facilitating operations that require separate handling of image content and transparency.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The 'image' parameter represents the input image tensor from which the RGB and alpha channels are to be separated. It is crucial for the operation as it provides the source data for the split.
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**
-    - The RGB components of the input images, extracted as a separate tensor.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
-- **`mask`**
-    - The inverted alpha channel of the input images, representing transparency.
+    - The 'image' output represents the separated RGB channels of the input image, providing the color component without the transparency information.
     - Python dtype: `torch.Tensor`
+- **`mask`**
     - Comfy dtype: `MASK`
+    - The 'mask' output represents the separated alpha channel of the input image, providing the transparency information.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `PorterDuffImageComposite`

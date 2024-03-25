@@ -4,22 +4,22 @@
 - Category: `image/batch`
 - Output node: `False`
 
-The `RebatchImages` node is designed to reorganize a list of image batches into a new list of image batches with a specified batch size. It iterates through each image in the input batches, flattens them into a single list of images, and then regroups these images into new batches according to the provided batch size. This process is useful for adjusting the batch size of image data for processing or inference in machine learning models.
+The RebatchImages node is designed to reorganize a batch of images into a new batch configuration, adjusting the batch size as specified. This process is essential for managing and optimizing the processing of image data in batch operations, ensuring that images are grouped according to the desired batch size for efficient handling.
 ## Input types
 ### Required
 - **`images`**
-    - A list of image batches to be rebatched. This input is crucial for determining the new organization of images across the output batches.
-    - Python dtype: `List[torch.Tensor]`
     - Comfy dtype: `IMAGE`
+    - A list of images to be rebatched. This parameter is crucial for determining the input data that will undergo the rebatching process.
+    - Python dtype: `List[torch.Tensor]`
 - **`batch_size`**
-    - The desired size for the new image batches. This parameter directly influences the number of images in each output batch, thereby affecting the granularity of processing or inference.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the desired size of the output batches. This parameter directly influences how the input images are grouped and processed, impacting the structure of the output.
+    - Python dtype: `int`
 ## Output types
 - **`image`**
-    - A list of new image batches, each containing a number of images specified by the `batch_size` parameter. This output facilitates flexible batch processing in subsequent operations.
-    - Python dtype: `List[torch.Tensor]`
     - Comfy dtype: `IMAGE`
+    - The output consists of a list of image batches, reorganized according to the specified batch size. This allows for flexible and efficient processing of image data in batch operations.
+    - Python dtype: `List[torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

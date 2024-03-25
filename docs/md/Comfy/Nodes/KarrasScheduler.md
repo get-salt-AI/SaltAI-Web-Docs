@@ -4,30 +4,30 @@
 - Category: `sampling/custom_sampling/schedulers`
 - Output node: `False`
 
-The KarrasScheduler node is designed to generate a sequence of noise levels (sigmas) based on the Karras et al. (2022) noise schedule. This sequence is used in diffusion models to gradually add or remove noise from images during the sampling process.
+The KarrasScheduler node is designed to generate a sequence of noise levels (sigmas) based on the Karras et al. (2022) noise schedule. This scheduler is useful for controlling the diffusion process in generative models, allowing for fine-tuned adjustments to the noise levels applied at each step of the generation process.
 ## Input types
 ### Required
 - **`steps`**
-    - Specifies the number of steps in the noise schedule. A higher number of steps results in a more gradual transition of noise levels.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the number of steps in the noise schedule, affecting the granularity of the generated sigmas sequence.
+    - Python dtype: `int`
 - **`sigma_max`**
-    - The maximum noise level in the schedule. It defines the starting point of noise addition or the end point of noise removal.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The maximum sigma value in the noise schedule, setting the upper bound of noise levels.
+    - Python dtype: `float`
 - **`sigma_min`**
-    - The minimum noise level in the schedule. It defines the end point of noise addition or the starting point of noise removal.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The minimum sigma value in the noise schedule, setting the lower bound of noise levels.
+    - Python dtype: `float`
 - **`rho`**
-    - A parameter that controls the shape of the noise schedule curve, affecting how quickly or slowly the noise levels change.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A parameter that controls the shape of the noise schedule curve, influencing how noise levels progress from sigma_min to sigma_max.
+    - Python dtype: `float`
 ## Output types
 - **`sigmas`**
-    - A tensor of noise levels (sigmas) generated according to the Karras et al. (2022) noise schedule.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `SIGMAS`
+    - The generated sequence of noise levels (sigmas) following the Karras et al. (2022) noise schedule.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

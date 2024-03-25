@@ -4,31 +4,31 @@
 - Category: `math/vec4`
 - Output node: `False`
 
-Performs a scalar operation on a Vec4 vector, applying a specified operation (e.g., multiplication or division) between the vector and a scalar value, resulting in a transformed Vec4 vector.
+Performs scalar operations on 4-dimensional vectors, allowing for the manipulation of vector components with a scalar value. This node abstracts mathematical operations such as multiplication or division, facilitating vector transformations in a 4D space.
 ## Input types
 ### Required
 - **`op`**
-    - Specifies the scalar operation to perform on the Vec4 vector.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the scalar operation to be performed on the vector, such as multiplication or division, influencing the resulting vector transformation.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`a`**
-    - The Vec4 vector to be transformed.
-    - Python dtype: `Vec4`
     - Comfy dtype: `VEC4`
+    - The 4-dimensional vector to be transformed, serving as the primary operand in the scalar operation.
+    - Python dtype: `Vec4`
 - **`b`**
-    - The scalar value to be used in the operation.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The scalar value to be applied to the vector, acting as the secondary operand in the operation.
+    - Python dtype: `float`
 ## Output types
 - **`vec4`**
-    - The resulting Vec4 vector after the operation.
-    - Python dtype: `Vec4`
     - Comfy dtype: `VEC4`
+    - The transformed 4-dimensional vector resulting from the specified scalar operation.
+    - Python dtype: `tuple[Vec4]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
 
-The CM_Vec4ScalarOperation node is primarily utilized for performing mathematical operations on a Vec4 vector by applying a scalar operation (e.g., multiplication or division) between the vector and a scalar value, resulting in a modified Vec4 vector. This node is often used in conjunction with nodes that require vector transformations or adjustments in their processing pipeline, enabling precise control over vector attributes without the need for complex coding.
+
 ## Source code
 ```python
 class Vec4ScalarOperation:

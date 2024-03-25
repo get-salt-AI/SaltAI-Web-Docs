@@ -4,20 +4,20 @@
 - Category: `advanced/loaders`
 - Output node: `False`
 
-Loads a U-Net model by name from a specified directory. This method is crucial for loading pre-trained U-Net models, which are often used in image segmentation tasks.
+The UNETLoader node is designed for loading U-Net models by name, facilitating the use of pre-trained U-Net architectures within the system.
 ## Input types
 ### Required
 - **`unet_name`**
-    - Specifies the name of the U-Net model to be loaded. This name is used to locate the model file within a predefined directory structure.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the name of the U-Net model to be loaded. This name is used to locate the model within a predefined directory structure, enabling the dynamic loading of different U-Net models.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`model`**
-    - The loaded U-Net model, ready for use in subsequent processing or inference tasks.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - Returns the loaded U-Net model, allowing it to be utilized for further processing or inference within the system.
+    - Python dtype: `torch.nn.Module`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: `PatchModelAddDownscale,Reroute`
 
 

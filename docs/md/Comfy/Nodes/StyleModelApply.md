@@ -4,26 +4,26 @@
 - Category: `conditioning/style_model`
 - Output node: `False`
 
-This node applies a style model to a given conditioning, enhancing or altering its style based on the output of a CLIP vision model. It integrates the style model's conditions into the conditioning, preparing it for further processing or generation tasks.
+This node applies a style model to a given conditioning, enhancing or altering its style based on the output of a CLIP vision model. It integrates the style model's conditioning into the existing conditioning, allowing for a seamless blend of styles in the generation process.
 ## Input types
 ### Required
 - **`conditioning`**
-    - The base conditioning data to which the style will be applied. It's crucial for defining the initial context or content that will be styled.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - The original conditioning data to which the style model's conditioning will be applied. It's crucial for defining the base context or style that will be enhanced or altered.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict]]`
 - **`style_model`**
-    - The style model used to generate style conditions based on the CLIP vision model's output. It plays a key role in determining the final style applied to the conditioning.
-    - Python dtype: `StyleModel`
     - Comfy dtype: `STYLE_MODEL`
+    - The style model used to generate new conditioning based on the CLIP vision model's output. It plays a key role in defining the new style to be applied.
+    - Python dtype: `StyleModel`
 - **`clip_vision_output`**
-    - The output from a CLIP vision model, which is used by the style model to generate style conditions. It's essential for tailoring the style to the specific content represented in the conditioning.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `CLIP_VISION_OUTPUT`
+    - The output from a CLIP vision model, which is used by the style model to generate new conditioning. It provides the visual context necessary for style application.
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`conditioning`**
-    - The enhanced or altered conditioning data, now integrated with style conditions from the style model.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - The enhanced or altered conditioning, incorporating the style model's output. It represents the final, styled conditioning ready for further processing or generation.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

@@ -4,35 +4,35 @@
 - Category: `math/conversion`
 - Output node: `False`
 
-The `CM_ComposeVec4` node is designed for creating a 4-dimensional vector (Vec4) from four individual floating-point values. This operation is fundamental in mathematical and graphical computations where a Vec4 is required.
+The `CM_ComposeVec4` node is designed for the mathematical conversion of individual float values into a four-dimensional vector (Vec4). This operation is fundamental in various mathematical and graphical computations where a Vec4 representation is required.
 ## Input types
 ### Required
 - **`x`**
-    - Represents the first component of the Vec4. It's crucial for defining the vector's position or value along the x-axis.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Represents the first component of the Vec4, influencing its spatial or graphical representation.
+    - Python dtype: `float`
 - **`y`**
-    - Defines the second component of the Vec4, essential for specifying the vector's position or value along the y-axis.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Denotes the second component of the Vec4, contributing to its spatial or graphical characteristics.
+    - Python dtype: `float`
 - **`z`**
-    - Serves as the third component, vital for determining the vector's position or value along the z-axis.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Defines the third component of the Vec4, affecting its spatial or graphical attributes.
+    - Python dtype: `float`
 - **`w`**
-    - Represents the fourth component, often used for additional data like transparency in graphical applications.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Indicates the fourth component of the Vec4, impacting its spatial or graphical representation.
+    - Python dtype: `float`
 ## Output types
 - **`vec4`**
-    - The resulting 4-dimensional vector composed from the input values.
-    - Python dtype: `Vec4`
     - Comfy dtype: `VEC4`
+    - Outputs a four-dimensional vector (Vec4) constructed from the input float values.
+    - Python dtype: `tuple[Vec4]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
 
-Often used in graphical computations and shader programming, the `CM_ComposeVec4` node allows for the creation of a 4-dimensional vector from individual x, y, z, and w floating-point values, essential for defining positions, colors, or other vector-based attributes in a scene.
+
 ## Source code
 ```python
 class ComposeVec4:

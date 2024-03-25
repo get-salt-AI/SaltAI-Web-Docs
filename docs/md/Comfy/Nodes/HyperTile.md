@@ -4,34 +4,34 @@
 - Category: `model_patches`
 - Output node: `False`
 
-The `HyperTile` node is designed to modify the attention mechanism of a given model to enhance its ability to handle images with varying resolutions and aspect ratios. It dynamically adjusts the tiling of the input based on the model's channel configuration and the specified tile size, aiming to optimize the processing of images for tasks that may benefit from attention to finer details or specific regions. This adjustment is made by partitioning the input into smaller, more manageable tiles, potentially improving the model's performance on detailed or high-resolution images.
+The HyperTile node is designed to enhance the processing of image data by dynamically adjusting the tile size of the input based on the model's channel configuration and the specified tile size. It aims to optimize the handling of image data for neural networks by applying a specialized tiling strategy that adapts to the model's characteristics and the computational constraints.
 ## Input types
 ### Required
 - **`model`**
-    - The model to be patched with the HyperTile functionality. This model is expected to have an attention mechanism that can be modified to incorporate the HyperTile strategy, enhancing its ability to process images with varying resolutions and aspect ratios.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - The model parameter represents the neural network model that will be modified by the HyperTile node. It is crucial for determining the appropriate tiling strategy based on the model's channel configuration.
+    - Python dtype: `torch.nn.Module`
 - **`tile_size`**
-    - Specifies the base size for the tiles into which the input image is divided. This size influences how the input is partitioned and can affect the granularity of the attention mechanism's focus.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the base size of the tiles into which the input image is divided. This size is dynamically adjusted to optimize processing.
+    - Python dtype: `int`
 - **`swap_size`**
-    - Determines the threshold for swapping the dimensions of the tiles, which can be useful for optimizing the processing of images with certain aspect ratios.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Determines the granularity of the swap operation in the tiling process, affecting the final tile configuration.
+    - Python dtype: `int`
 - **`max_depth`**
-    - Defines the maximum depth for applying the tiling strategy. This parameter controls how deeply nested the tiling can be, potentially allowing for more detailed attention to specific regions of the input.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Defines the maximum depth for the tiling strategy, influencing how deeply the tiling adjustments can be applied.
+    - Python dtype: `int`
 - **`scale_depth`**
-    - A boolean flag indicating whether to scale the depth of the tiling based on the model's channel configuration. This can help in adapting the tiling strategy to the specific characteristics of the model and the input.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOLEAN`
+    - A boolean parameter that indicates whether the depth scaling factor should be applied to the tiling strategy, further customizing the tiling process.
+    - Python dtype: `bool`
 ## Output types
 - **`model`**
-    - The patched model with the HyperTile functionality applied. This model is now capable of handling images with varying resolutions and aspect ratios more effectively, thanks to the dynamic tiling strategy.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - The modified model with an adjusted attention mechanism to accommodate the new tiling strategy, enhancing the processing of image data.
+    - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `PatchModelAddDownscale,FreeU_V2`

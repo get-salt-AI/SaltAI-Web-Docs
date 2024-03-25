@@ -4,34 +4,34 @@
 - Category: `mask`
 - Output node: `False`
 
-The `FeatherMask` node applies a feathering effect to the edges of a given mask. This effect gradually fades the mask's edges by adjusting their opacity, creating a smoother transition at the specified boundaries.
+The FeatherMask node applies a feathering effect to the edges of a given mask, smoothly transitioning the mask's edges by adjusting their opacity based on specified distances from each edge. This creates a softer, more blended edge effect.
 ## Input types
 ### Required
 - **`mask`**
-    - The mask to which the feathering effect will be applied. It's crucial for creating smooth transitions at the mask's edges.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The mask to which the feathering effect will be applied. It determines the area of the image that will be affected by the feathering.
+    - Python dtype: `torch.Tensor`
 - **`left`**
-    - Specifies the width of the feathering effect on the left edge of the mask.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the distance from the left edge within which the feathering effect will be applied.
+    - Python dtype: `int`
 - **`top`**
-    - Specifies the height of the feathering effect on the top edge of the mask.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the distance from the top edge within which the feathering effect will be applied.
+    - Python dtype: `int`
 - **`right`**
-    - Specifies the width of the feathering effect on the right edge of the mask.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the distance from the right edge within which the feathering effect will be applied.
+    - Python dtype: `int`
 - **`bottom`**
-    - Specifies the height of the feathering effect on the bottom edge of the mask.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the distance from the bottom edge within which the feathering effect will be applied.
+    - Python dtype: `int`
 ## Output types
 - **`mask`**
-    - The modified mask with a feathered edge effect applied to its specified boundaries.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The output is a modified version of the input mask with a feathering effect applied to its edges.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `MaskComposite,Reroute`

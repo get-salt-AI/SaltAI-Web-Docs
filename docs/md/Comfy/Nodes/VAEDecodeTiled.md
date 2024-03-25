@@ -4,26 +4,26 @@
 - Category: `_for_testing`
 - Output node: `False`
 
-The VAEDecodeTiled node is designed for decoding latent representations into images using a tiled approach. This method is particularly useful for handling large images by breaking them down into smaller tiles, decoding each tile separately, and then stitching them back together. This approach can help manage memory usage and computational load more efficiently.
+The VAEDecodeTiled node is designed for decoding latent representations into images, specifically optimized for handling large images by processing them in tiles. This method allows for efficient memory usage and can accommodate images that exceed the size limitations of standard decoding techniques.
 ## Input types
 ### Required
 - **`samples`**
-    - The latent representation of an image or a set of images that the VAE model will decode. This input is crucial for generating the final image output.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `LATENT`
+    - The 'samples' parameter represents the latent representations that are to be decoded into images. It is crucial for the decoding process as it contains the encoded information that will be transformed back into visual form.
+    - Python dtype: `torch.Tensor`
 - **`vae`**
-    - The Variational Autoencoder (VAE) model used for decoding the latent representations into images. The choice of VAE model can significantly affect the quality and characteristics of the generated images.
-    - Python dtype: `comfy.sd.VAE`
     - Comfy dtype: `VAE`
+    - The 'vae' parameter is the variational autoencoder model used for the decoding process. It plays a central role in transforming the latent representations into images.
+    - Python dtype: `torch.nn.Module`
 - **`tile_size`**
-    - Specifies the size of the tiles used in the decoding process. Adjusting the tile size can influence the balance between computational efficiency and the quality of the generated images.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The 'tile_size' parameter specifies the dimensions of the tiles used in the tiled decoding process. It affects the granularity of the decoding, with smaller tiles potentially allowing for finer control over memory usage and processing time.
+    - Python dtype: `int`
 ## Output types
 - **`image`**
-    - The decoded image or set of images generated from the latent representations. This output is the direct result of the tiled decoding process.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The output is an image generated from the decoded latent representations, processed in a tiled manner to efficiently handle large image sizes.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `SaveImage,ImageListToImageBatch,ImageUpscaleWithModel,Anything Everywhere,AlphaChanelAdd,GetImageSize,VHS_VideoCombine,ImageSender,ControlNetApplyAdvanced,PreviewImage`

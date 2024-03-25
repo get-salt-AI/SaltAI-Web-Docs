@@ -4,22 +4,22 @@
 - Category: `image`
 - Output node: `False`
 
-The `ImageBatch` node combines two images into a single batch. If the images have different sizes, it resizes the second image to match the first one's dimensions using bilinear interpolation before combining them.
+The ImageBatch node is designed for combining two images into a single batch. If the dimensions of the images do not match, it automatically rescales the second image to match the first one's dimensions before combining them.
 ## Input types
 ### Required
 - **`image1`**
-    - The first image to be included in the batch. It serves as the reference for the size to which the second image will be resized if necessary.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The first image to be combined into the batch. It serves as the reference for the dimensions to which the second image will be adjusted if necessary.
+    - Python dtype: `torch.Tensor`
 - **`image2`**
-    - The second image to be included in the batch. It is resized to match the first image's dimensions if they differ, using bilinear interpolation.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The second image to be combined into the batch. It is automatically rescaled to match the dimensions of the first image if they differ.
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**
-    - The combined batch of the two input images.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The combined batch of images, with the second image rescaled to match the first one's dimensions if needed.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `ImageBatch,IPAdapterApply,CR Batch Process Switch,PreviewImage,Preview Chooser`

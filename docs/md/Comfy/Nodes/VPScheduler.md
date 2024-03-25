@@ -4,32 +4,32 @@
 - Category: `sampling/custom_sampling/schedulers`
 - Output node: `False`
 
-The VPScheduler node is designed to generate a sequence of noise levels (sigmas) based on the Variance Preserving (VP) SDE approach. It calculates these noise levels using specific parameters that influence the diffusion process, making it a crucial component for custom sampling strategies in generative models.
+The VPScheduler node is designed to generate a sequence of noise levels (sigmas) based on the Variance Preserving (VP) scheduling method. This sequence is crucial for guiding the denoising process in diffusion models, allowing for controlled generation of images or other data types.
 ## Input types
 ### Required
 - **`steps`**
-    - Defines the number of steps in the diffusion process, directly affecting the granularity of the generated noise levels.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the number of steps in the diffusion process, affecting the granularity of the generated noise levels.
+    - Python dtype: `int`
 - **`beta_d`**
-    - Specifies the beta decay parameter, influencing the rate at which noise levels decrease throughout the diffusion steps.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Determines the overall noise level distribution, influencing the variance of the generated noise levels.
+    - Python dtype: `float`
 - **`beta_min`**
-    - Sets the minimum beta value, determining the lowest noise level achievable in the diffusion process.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Sets the minimum boundary for the noise level, ensuring the noise does not fall below a certain threshold.
+    - Python dtype: `float`
 - **`eps_s`**
-    - Controls the epsilon scale, a parameter that fine-tunes the noise levels for more precise control over the diffusion process.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Adjusts the starting epsilon value, fine-tuning the initial noise level in the diffusion process.
+    - Python dtype: `float`
 ## Output types
 - **`sigmas`**
-    - Outputs a sequence of noise levels (sigmas) calculated based on the input parameters, essential for guiding the diffusion process in generative models.
-    - Python dtype: `Tuple[torch.Tensor]`
     - Comfy dtype: `SIGMAS`
+    - A sequence of noise levels (sigmas) generated based on the VP scheduling method, used to guide the denoising process in diffusion models.
+    - Python dtype: `List[float]`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 

@@ -4,34 +4,34 @@
 - Category: `image/upscaling`
 - Output node: `False`
 
-The `ImageScale` node is designed for upscaling images to a specified width and height, with the option to crop the upscaled image. It supports various upscaling methods to adjust the image quality and size according to the user's needs.
+The ImageScale node is designed for resizing images to specific dimensions, offering a selection of upscale methods and the ability to crop the resized image. It abstracts the complexity of image upscaling and cropping, providing a straightforward interface for modifying image dimensions according to user-defined parameters.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be upscaled. This is the primary data that the node operates on.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The input image to be upscaled. This parameter is central to the node's operation, serving as the primary data upon which resizing transformations are applied. The quality and dimensions of the output image are directly influenced by the original image's properties.
+    - Python dtype: `torch.Tensor`
 - **`upscale_method`**
-    - Specifies the method used for upscaling the image. Different methods can affect the quality and characteristics of the upscaled image.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the method used for upscaling the image. The choice of method can affect the quality and characteristics of the upscaled image, influencing the visual fidelity and potential artifacts in the resized output.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`width`**
-    - The target width of the upscaled image. If set to 0, the width is automatically calculated to maintain the aspect ratio based on the specified height.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The target width for the upscaled image. This parameter directly influences the dimensions of the output image, determining the horizontal scale of the resizing operation.
+    - Python dtype: `int`
 - **`height`**
-    - The target height of the upscaled image. If set to 0, the height is automatically calculated to maintain the aspect ratio based on the specified width.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The target height for the upscaled image. This parameter directly influences the dimensions of the output image, determining the vertical scale of the resizing operation.
+    - Python dtype: `int`
 - **`crop`**
-    - Determines whether and how the upscaled image should be cropped. This can be used to focus on a specific area of the image or to fit a particular aspect ratio.
+    - Comfy dtype: `COMBO[STRING]`
+    - Determines whether and how the upscaled image should be cropped, offering options for disabled cropping or center cropping. This affects the final composition of the image by potentially removing edges to fit the specified dimensions.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`image`**
-    - The upscaled (and optionally cropped) version of the input image.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The upscaled (and optionally cropped) image, ready for further processing or visualization.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `VAEEncode,FILM VFI,LineArtPreprocessor,ControlNetApplyAdvanced,PreviewImage,VAEEncodeTiled,StableZero123_Conditioning,OpenposePreprocessor,IPAdapterApply,Image Rembg (Remove Background)`

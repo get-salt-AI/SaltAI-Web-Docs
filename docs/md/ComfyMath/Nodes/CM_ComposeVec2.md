@@ -4,27 +4,27 @@
 - Category: `math/conversion`
 - Output node: `False`
 
-The `CM_ComposeVec2` node constructs a 2D vector (Vec2) from two provided float values, representing the x and y components of the vector. This operation is fundamental in vector mathematics and is used for converting scalar values into a vector format for further vector-based calculations.
+The CM_ComposeVec2 node is designed to construct a 2-dimensional vector from individual scalar components, facilitating the conversion of separate scalar values into a structured vector format.
 ## Input types
 ### Required
 - **`x`**
-    - The x component of the Vec2. It defines the horizontal position or value in the 2D vector space.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The 'x' parameter represents the x-coordinate of the 2-dimensional vector. It plays a crucial role in defining the vector's horizontal component.
+    - Python dtype: `float`
 - **`y`**
-    - The y component of the Vec2. It defines the vertical position or value in the 2D vector space.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The 'y' parameter represents the y-coordinate of the 2-dimensional vector. It is essential for defining the vector's vertical component.
+    - Python dtype: `float`
 ## Output types
 - **`vec2`**
-    - The resulting 2D vector constructed from the input x and y components.
-    - Python dtype: `tuple[float, float]`
     - Comfy dtype: `VEC2`
+    - Outputs a 2-dimensional vector constructed from the input scalar values, encapsulating both the horizontal and vertical components.
+    - Python dtype: `tuple[Vec2]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
 
-Often used in vector-based calculations and transformations, the `CM_ComposeVec2` node takes two float values as input to construct a 2D vector, representing the x and y components, which is essential for operations requiring vector inputs or for converting scalar values into a vector format.
+
 ## Source code
 ```python
 class ComposeVec2:

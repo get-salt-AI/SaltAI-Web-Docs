@@ -4,26 +4,26 @@
 - Category: `conditioning`
 - Output node: `False`
 
-The `ConditioningAverage` node blends two sets of conditioning data by averaging them together, weighted by a specified strength. It handles both the tensor representations and optional pooled outputs, ensuring compatibility in dimensions and applying the weighted average accordingly.
+The ConditioningAverage node is designed to blend two sets of conditioning data, applying a weighted average based on a specified strength. This process allows for the dynamic adjustment of conditioning influence, facilitating the fine-tuning of generated content or features.
 ## Input types
 ### Required
 - **`conditioning_to`**
-    - The target conditioning data to which the averaging operation will be applied. It plays a crucial role in determining the final output, as it is directly modified by the weighted average of itself and the `conditioning_from` data.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - Represents the primary set of conditioning data to which the blending will be applied. It serves as the base for the weighted average operation.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 - **`conditioning_from`**
-    - The source conditioning data that will be averaged with the `conditioning_to` data. This input is essential for the blending process, contributing to the final conditioned output based on its weighted average.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - Denotes the secondary set of conditioning data that will be blended into the primary set. This data influences the final output based on the specified strength.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 - **`conditioning_to_strength`**
-    - A scalar value that determines the weight of the `conditioning_to` data in the averaging process. It directly influences the balance between the original and the blended conditioning data, affecting the final output.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A scalar value that determines the strength of the blend between the primary and secondary conditioning data. It directly influences the balance of the weighted average.
+    - Python dtype: `float`
 ## Output types
 - **`conditioning`**
-    - The result of the weighted averaging process, combining `conditioning_to` and `conditioning_from` data. It reflects the blended conditioning data, adjusted according to the specified strength.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - The result of blending the primary and secondary conditioning data, producing a new set of conditioning that reflects the weighted average.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `FaceFixerOpenCV`

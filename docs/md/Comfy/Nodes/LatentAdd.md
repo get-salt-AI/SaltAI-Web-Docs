@@ -4,22 +4,22 @@
 - Category: `latent/advanced`
 - Output node: `False`
 
-The `LatentAdd` node performs element-wise addition of two latent representations. This operation can be used to combine features or effects from two different latent spaces.
+The LatentAdd node is designed for the addition of two latent representations. It facilitates the combination of features or characteristics encoded in these representations by performing element-wise addition.
 ## Input types
 ### Required
 - **`samples1`**
-    - The first set of latent representations to be added. It serves as the base to which the second set is added.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The first set of latent samples to be added. It represents one of the inputs whose features are to be combined with another set of latent samples.
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`samples2`**
-    - The second set of latent representations to be added to the first. It is reshaped to match the first set's dimensions if necessary.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The second set of latent samples to be added. It serves as the other input whose features are combined with the first set of latent samples through element-wise addition.
+    - Python dtype: `Dict[str, torch.Tensor]`
 ## Output types
 - **`latent`**
-    - The result of element-wise addition of the two input latent representations. It combines the features or effects from both inputs.
-    - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
     - Comfy dtype: `LATENT`
+    - The result of the element-wise addition of two latent samples, representing a new set of latent samples that combines the features of both inputs.
+    - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

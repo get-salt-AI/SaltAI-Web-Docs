@@ -4,18 +4,18 @@
 - Category: `loaders`
 - Output node: `False`
 
-This node is responsible for loading a ControlNet model by name. It retrieves the full path of the specified ControlNet using a helper function and then loads the ControlNet model from that path.
+The ControlNetLoader node is designed to load a ControlNet model from a specified path. It plays a crucial role in initializing ControlNet models, which are essential for applying control mechanisms over generated content or modifying existing content based on control signals.
 ## Input types
 ### Required
 - **`control_net_name`**
-    - Specifies the name of the ControlNet model to load. This name is used to retrieve the model's full path for loading. The list of available ControlNet names is dynamically generated based on the contents of a specific directory.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the name of the ControlNet model to be loaded. This name is used to locate the model file within a predefined directory structure.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`control_net`**
-    - The loaded ControlNet model, ready for use in further processing or conditioning steps.
-    - Python dtype: `ControlNet`
     - Comfy dtype: `CONTROL_NET`
+    - Returns the loaded ControlNet model, ready for use in controlling or modifying content generation processes.
+    - Python dtype: `comfy.controlnet.ControlNet`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `ControlNetApplyAdvanced,ControlNetApply,ACN_AdvancedControlNetApply,Reroute,ImpactControlNetApplySEGS`

@@ -4,38 +4,38 @@
 - Category: `conditioning/advanced`
 - Output node: `False`
 
-This node performs advanced text encoding using the CLIP model, specifically designed for SDXL models. It encodes two types of text inputs (local and global) with customizable token normalization and weight interpretation strategies, and allows for balancing the influence of these texts. The output is a conditioning format suitable for further processing or generation tasks.
+This node specializes in generating advanced CLIP text embeddings for Stable Diffusion XL models, incorporating dual text inputs for local and global context, token normalization strategies, and weight interpretation methods to fine-tune the conditioning process.
 ## Input types
 ### Required
 - **`text_l`**
-    - The local text input, which is expected to be more specific or detailed. It plays a crucial role in guiding the encoding process by providing fine-grained context.
-    - Python dtype: `str`
     - Comfy dtype: `STRING`
+    - The local context text input, allowing for detailed specification of parts of the image.
+    - Python dtype: `str`
 - **`text_g`**
-    - The global text input, providing a broader context or theme for the encoding. It complements the local text by offering a wider perspective that influences the overall encoding.
-    - Python dtype: `str`
     - Comfy dtype: `STRING`
+    - The global context text input, providing an overarching theme or setting for the image.
+    - Python dtype: `str`
 - **`clip`**
-    - The CLIP model used for encoding the text inputs. It's a crucial component that transforms text into a format that can be utilized for further processing or generation.
-    - Python dtype: `CLIP`
     - Comfy dtype: `CLIP`
+    - A CLIP model instance used for text and image embeddings.
+    - Python dtype: `object`
 - **`token_normalization`**
-    - Defines the strategy for normalizing the tokens, affecting how the text is processed and encoded. It's essential for tailoring the encoding to specific needs or preferences.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the method for normalizing token weights, affecting the emphasis of certain words or phrases.
     - Python dtype: `List[str]`
-    - Comfy dtype: `['none', 'mean', 'length', 'length+mean']`
 - **`weight_interpretation`**
-    - Specifies how the weights are interpreted during encoding, influencing the emphasis on certain aspects of the text. It allows for fine-tuning the encoding process.
+    - Comfy dtype: `COMBO[STRING]`
+    - Defines how weights are interpreted, influencing the final embedding by adjusting the significance of certain tokens.
     - Python dtype: `List[str]`
-    - Comfy dtype: `['comfy', 'A1111', 'compel', 'comfy++', 'down_weight']`
 - **`balance`**
-    - Adjusts the balance between the local and global text inputs, determining their relative influence on the final encoding. It's key for achieving the desired emphasis between detailed and broad contexts.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A float value determining the balance between local and global text embeddings in the final output.
+    - Python dtype: `float`
 ## Output types
 - **`conditioning`**
-    - The output is a conditioning format that includes the encoded texts and additional metadata, ready for further processing or generation tasks.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
     - Comfy dtype: `CONDITIONING`
+    - The output is a conditioning object containing the advanced CLIP text embeddings, tailored for Stable Diffusion XL models.
+    - Python dtype: `List[List[object]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

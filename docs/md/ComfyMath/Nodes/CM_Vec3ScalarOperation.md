@@ -4,31 +4,31 @@
 - Category: `math/vec3`
 - Output node: `False`
 
-Performs a scalar operation on a 3-dimensional vector (Vec3) using a specified operation and a scalar value. The operation modifies the vector in a way defined by the operation type, such as multiplication or division by the scalar.
+Performs scalar operations on 3-dimensional vectors, allowing for mathematical manipulations such as scaling and division by a scalar value.
 ## Input types
 ### Required
 - **`op`**
-    - Specifies the type of scalar operation to perform on the vector, such as multiplication or division. The choice of operation affects how the vector's components are modified.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the scalar operation to be performed on the vector, such as multiplication or division, influencing the resulting vector's magnitude or direction.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`a`**
-    - The 3-dimensional vector (Vec3) to be modified by the scalar operation.
-    - Python dtype: `Vec3`
     - Comfy dtype: `VEC3`
+    - The 3-dimensional vector to be operated on, serving as the primary operand for the scalar operation.
+    - Python dtype: `Vec3`
 - **`b`**
-    - The scalar value to be used in the operation. It modifies the vector's components according to the specified operation.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The scalar value to be used in the operation, affecting the vector's magnitude or direction based on the specified operation.
+    - Python dtype: `float`
 ## Output types
 - **`vec3`**
-    - The modified 3-dimensional vector (Vec3) after applying the specified scalar operation.
-    - Python dtype: `Vec3`
     - Comfy dtype: `VEC3`
+    - The resulting 3-dimensional vector after applying the specified scalar operation, reflecting changes in magnitude or direction.
+    - Python dtype: `tuple[Vec3]`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
-Often used in mathematical and graphical transformations, the CM_Vec3ScalarOperation node performs a specified scalar operation (such as multiplication or division) on a 3-dimensional vector (Vec3) using a scalar value, modifying the vector's components accordingly. This node is essential for adjusting vector magnitudes or directions in applications involving 3D modeling, physics simulations, or data normalization.
+
 ## Source code
 ```python
 class Vec3ScalarOperation:

@@ -4,31 +4,31 @@
 - Category: `math/vec3`
 - Output node: `False`
 
-This node performs a binary operation between two Vec3 vectors, resulting in a scalar value. The operation is defined by a set of predefined operations such as Dot product or Distance calculation.
+This node performs a binary operation between two 3-dimensional vectors (Vec3) and returns a scalar value as a result. It supports a variety of operations such as dot product and distance calculation, abstracting complex mathematical operations into a simple interface.
 ## Input types
 ### Required
 - **`op`**
-    - Specifies the binary operation to be performed on the two Vec3 vectors. It determines the nature of the computation, such as calculating the dot product or the distance between the vectors.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the binary operation to be performed on the two Vec3 inputs, such as dot product or distance calculation. This choice determines how the vectors are mathematically combined.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`a`**
-    - The first Vec3 vector involved in the binary operation.
-    - Python dtype: `Vec3`
     - Comfy dtype: `VEC3`
+    - The first 3-dimensional vector (Vec3) input for the binary operation.
+    - Python dtype: `Vec3`
 - **`b`**
-    - The second Vec3 vector involved in the binary operation.
-    - Python dtype: `Vec3`
     - Comfy dtype: `VEC3`
+    - The second 3-dimensional vector (Vec3) input for the binary operation.
+    - Python dtype: `Vec3`
 ## Output types
 - **`float`**
-    - The scalar result of the binary operation between the two Vec3 vectors.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The scalar result of the binary operation performed on the two Vec3 inputs.
+    - Python dtype: `float`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
-Often used in mathematical and geometric computations within AI pipelines, the CM_Vec3ToScalarBinaryOperation node performs a binary operation, such as calculating the dot product or the distance, between two Vec3 vectors, resulting in a scalar value. This node is crucial for operations requiring the comparison or combination of vector data, such as spatial calculations in 3D environments or physics simulations.
+
 ## Source code
 ```python
 class Vec3ToScalarBinaryOperation:

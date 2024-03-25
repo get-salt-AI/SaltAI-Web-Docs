@@ -4,31 +4,31 @@
 - Category: `math/conversion`
 - Output node: `False`
 
-The `ComposeVec3` node is designed for creating a 3-dimensional vector (Vec3) from three separate float values representing the x, y, and z coordinates. This operation is fundamental in vector mathematics and is often used in graphics programming, physics simulations, and other computational fields requiring spatial representation.
+The `CM_ComposeVec3` node is designed for creating a 3-dimensional vector (Vec3) from individual float values for each of its dimensions (x, y, z). This node facilitates the conversion of separate scalar values into a structured vector format, making it essential for mathematical operations and transformations that require vector inputs.
 ## Input types
 ### Required
 - **`x`**
-    - The 'x' input represents the x-coordinate of the Vec3 to be composed. It is a crucial component in defining the spatial position or direction of the vector in 3D space.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The 'x' parameter represents the x-coordinate of the Vec3. It is crucial for defining the vector's position along the x-axis.
+    - Python dtype: `float`
 - **`y`**
-    - The 'y' input signifies the y-coordinate of the Vec3. Along with 'x' and 'z', it helps in accurately defining the vector's position or orientation in a three-dimensional environment.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The 'y' parameter represents the y-coordinate of the Vec3. It plays a key role in specifying the vector's position along the y-axis.
+    - Python dtype: `float`
 - **`z`**
-    - The 'z' input denotes the z-coordinate of the Vec3. It completes the 3D spatial information required to fully specify the vector, working in conjunction with 'x' and 'y'.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The 'z' parameter signifies the z-coordinate of the Vec3. It is essential for determining the vector's position along the z-axis.
+    - Python dtype: `float`
 ## Output types
 - **`vec3`**
-    - The output is a Vec3, a 3-dimensional vector composed of the input x, y, and z coordinates. It's a fundamental data structure in 3D computations, useful for representing points, directions, or velocities in space.
-    - Python dtype: `tuple[Vec3]`
     - Comfy dtype: `VEC3`
+    - The output is a 3-dimensional vector (Vec3) composed of the input float values for x, y, and z. This vector can be used for further mathematical or graphical operations.
+    - Python dtype: `tuple[Vec3]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
 
-The `CM_ComposeVec3` node is essential for constructing a 3-dimensional vector from individual x, y, and z float values, crucial for applications in 3D graphics, physics simulations, and spatial analysis. It is often used with nodes that require precise spatial positioning or directionality in a three-dimensional environment.
+
 ## Source code
 ```python
 class ComposeVec3:

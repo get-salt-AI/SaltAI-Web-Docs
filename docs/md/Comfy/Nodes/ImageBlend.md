@@ -4,30 +4,30 @@
 - Category: `image/postprocessing`
 - Output node: `False`
 
-The `ImageBlend` node blends two images together based on a specified blend mode and blend factor. It supports various blend modes such as normal, multiply, screen, overlay, soft light, and difference. The blend factor determines the weight of each image in the final blend, allowing for a seamless mix of the two images. This node is useful for image post-processing tasks where combining images with different effects is required.
+The ImageBlend node is designed to blend two images together based on a specified blending mode and blend factor. It supports various blending modes such as normal, multiply, screen, overlay, soft light, and difference, allowing for versatile image manipulation and compositing techniques. This node is essential for creating composite images by adjusting the visual interaction between two image layers.
 ## Input types
 ### Required
 - **`image1`**
-    - The first image to be blended. It serves as the base layer onto which the second image is blended.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The first image to be blended. It serves as the base layer for the blending operation.
+    - Python dtype: `torch.Tensor`
 - **`image2`**
-    - The second image to be blended. This image is combined with the first image according to the specified blend mode and factor.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The second image to be blended. Depending on the blend mode, it modifies the appearance of the first image.
+    - Python dtype: `torch.Tensor`
 - **`blend_factor`**
-    - Determines the weight of each image in the final blend. A higher blend factor gives more weight to the second image.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Determines the weight of the second image in the blend. A higher blend factor gives more prominence to the second image in the resulting blend.
+    - Python dtype: `float`
 - **`blend_mode`**
-    - Specifies the method of blending the two images. Supports various modes like normal, multiply, screen, overlay, soft light, and difference.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the method of blending the two images. Supports modes like normal, multiply, screen, overlay, soft light, and difference, each producing a unique visual effect.
     - Python dtype: `str`
-    - Comfy dtype: `['normal', 'multiply', 'screen', 'overlay', 'soft_light', 'difference']`
 ## Output types
 - **`image`**
-    - The result of blending the two images together based on the specified blend mode and factor.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The resulting image after blending the two input images according to the specified blend mode and factor.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `ImageCombine,Image Aspect Ratio,ImageSender,Mute / Bypass Repeater (rgthree)`

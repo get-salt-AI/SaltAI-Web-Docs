@@ -4,23 +4,23 @@
 - Category: `segment_anything`
 - Output node: `False`
 
-This node checks if a given mask is entirely empty (i.e., all its elements are zero) and returns a number indicating the result. It's useful for determining whether any part of an image or area is covered by a mask.
+The IsMaskEmptyNode node is designed to determine if a given mask is entirely empty, meaning it contains no marked areas. It provides a simple yet essential functionality for mask analysis within the context of segmentation tasks, enabling the identification of masks that lack any significant content.
 ## Input types
 ### Required
 - **`mask`**
-    - The mask to be checked for emptiness. This input is crucial for determining whether the mask covers any area or not.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The 'mask' parameter represents the input mask to be analyzed. It is crucial for determining whether the mask is empty or contains any marked areas, directly influencing the node's output.
+    - Python dtype: `torch.Tensor`
 ## Output types
-- **`number`**
-    - A number indicating whether the mask is empty (1) or not (0). This numeric representation is useful for conditional operations based on mask coverage.
-    - Python dtype: `int`
+- **`boolean_number`**
     - Comfy dtype: `NUMBER`
+    - The output is a boolean value represented as a number (0 for false, meaning the mask is not empty, and 1 for true, indicating the mask is empty), indicating whether the input mask is entirely devoid of marked areas.
+    - Python dtype: `int`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
 
-Often used in pipelines to determine if a selected area of an image is devoid of any features or objects, by checking if the mask applied to that area is entirely empty. This node takes a mask as input and outputs a number indicating whether the mask is empty (1) or not (0), which is crucial for conditional operations in image processing and segmentation tasks.
+
 ## Source code
 ```python
 class IsMaskEmptyNode:

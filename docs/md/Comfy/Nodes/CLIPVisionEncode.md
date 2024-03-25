@@ -4,22 +4,22 @@
 - Category: `conditioning`
 - Output node: `False`
 
-The `CLIPVisionEncode` node is responsible for encoding an image using a CLIP vision model. It takes an image as input and processes it through the CLIP vision model's `encode_image` method to produce an output that represents the encoded features of the image.
+The CLIPVisionEncode node is designed to encode images using a CLIP vision model, transforming visual input into a format suitable for further processing or analysis. This node abstracts the complexity of image encoding, offering a streamlined interface for converting images into encoded representations.
 ## Input types
 ### Required
 - **`clip_vision`**
-    - The CLIP vision model used for encoding the image. It is crucial for transforming the raw image data into a format that can be effectively utilized for further processing or analysis.
-    - Python dtype: `CLIPVision`
     - Comfy dtype: `CLIP_VISION`
+    - The CLIP vision model used for encoding the image. It is crucial for the encoding process, as it determines the method and quality of the encoding.
+    - Python dtype: `torch.nn.Module`
 - **`image`**
-    - The image to be encoded. This input is transformed by the CLIP vision model into an encoded representation, capturing essential features and characteristics of the image.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The image to be encoded. This input is essential for generating the encoded representation of the visual content.
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`clip_vision_output`**
-    - The encoded representation of the image, as produced by the CLIP vision model. This output captures the essential features and characteristics of the image, suitable for further processing or analysis.
-    - Python dtype: `CLIPVisionOutput`
     - Comfy dtype: `CLIP_VISION_OUTPUT`
+    - The encoded representation of the input image, produced by the CLIP vision model. This output is suitable for further processing or analysis.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `unCLIPConditioning`

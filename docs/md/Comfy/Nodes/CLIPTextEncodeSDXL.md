@@ -4,50 +4,50 @@
 - Category: `advanced/conditioning`
 - Output node: `False`
 
-This node is not explicitly defined in the provided context, indicating it might be a part of a larger system or framework not fully detailed here. Given the naming convention and the context of other nodes, it can be inferred that CLIPTextEncodeSDXL likely involves encoding text inputs using a CLIP model specifically tailored or configured for the SDXL architecture. This process would involve transforming textual data into a format that is compatible with subsequent processing or analysis steps, particularly in tasks related to image-text interaction or multimodal learning.
+This node is designed to encode text inputs using the CLIP model specifically tailored for the SDXL architecture. It focuses on converting textual descriptions into a format that can be effectively utilized for generating or manipulating images, leveraging the capabilities of the CLIP model to understand and process text in the context of visual content.
 ## Input types
 ### Required
 - **`width`**
-    - Specifies the width of the target image. This dimension is crucial for ensuring that the encoded text is appropriately scaled and aligned with the visual content it is intended to interact with or generate.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the width of the image in pixels. It determines the dimensions of the output image generated or manipulated.
+    - Python dtype: `int`
 - **`height`**
-    - Similar to the width parameter, the height specifies the vertical dimension of the target image. It plays a key role in matching the encoded text's representation with the intended visual context, affecting the overall coherence of the generated or modified image.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the height of the image in pixels. It determines the dimensions of the output image generated or manipulated.
+    - Python dtype: `int`
 - **`crop_w`**
-    - Specifies the width of the crop area. This parameter is used to define a specific region of interest within the image that the text encoding should focus on.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Defines the width of the crop area in pixels. This parameter is used to crop the image to a specific width before processing.
+    - Python dtype: `int`
 - **`crop_h`**
-    - Specifies the height of the crop area. Similar to crop_w, it defines a vertical region of interest within the image for the text encoding process.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Defines the height of the crop area in pixels. This parameter is used to crop the image to a specific height before processing.
+    - Python dtype: `int`
 - **`target_width`**
-    - Defines the desired width of the output image after processing. This parameter can influence the scaling and aspect ratio of the final image.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The target width for the output image after processing. It allows for resizing the image to a desired width.
+    - Python dtype: `int`
 - **`target_height`**
-    - Defines the desired height of the output image after processing. It works alongside target_width to determine the final dimensions of the image.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The target height for the output image after processing. It allows for resizing the image to a desired height.
+    - Python dtype: `int`
 - **`text_g`**
-    - The global textual input to be encoded. This text is processed by the CLIP model to extract relevant features and semantic information for the entire image.
-    - Python dtype: `str`
     - Comfy dtype: `STRING`
+    - The global textual description to be encoded. This input is crucial for generating the corresponding visual representations and understanding the content described.
+    - Python dtype: `str`
 - **`clip`**
-    - Represents the CLIP model used for encoding the text. This model is a crucial component of the node, transforming textual data into a format that can be effectively utilized in image-text interaction tasks.
-    - Python dtype: `object`
     - Comfy dtype: `CLIP`
+    - The CLIP model instance used for encoding the text. It plays a vital role in processing the text input and converting it into a format suitable for image generation or manipulation tasks.
+    - Python dtype: `torch.nn.Module`
 - **`text_l`**
-    - The local textual input to be encoded. This text provides additional details or focuses on specific areas within the image, complementing the global text input.
-    - Python dtype: `str`
     - Comfy dtype: `STRING`
+    - The local textual description to be encoded. This input provides additional detail or context to the global description, enhancing the specificity of the generated or manipulated image.
+    - Python dtype: `str`
 ## Output types
 - **`conditioning`**
-    - The output is a conditioning format that combines the encoded text representation with additional information such as aesthetic score and image dimensions. This enriched representation is used to guide the generation or modification of images in a way that aligns with the encoded textual content.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - The output of the node, which includes the encoded text along with additional information necessary for image generation or manipulation tasks.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSampler,KSamplerAdvanced,ControlNetApplyAdvanced,Reroute,ToBasicPipe,KSampler (Efficient),Prompts Everywhere,ACN_AdvancedControlNetApply,FaceDetailer,KRestartSamplerAdv`

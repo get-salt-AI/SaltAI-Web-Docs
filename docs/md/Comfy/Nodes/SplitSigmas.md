@@ -4,22 +4,22 @@
 - Category: `sampling/custom_sampling/sigmas`
 - Output node: `False`
 
-The `SplitSigmas` node is designed to divide a sequence of sigmas into two parts based on a specified step. This operation is useful in scenarios where different processing or analysis is required for distinct segments of the sigma sequence.
+The SplitSigmas node is designed for dividing a sequence of sigma values into two parts based on a specified step. This functionality is crucial for operations that require different handling or processing of the initial and subsequent parts of the sigma sequence, enabling more flexible and targeted manipulation of these values.
 ## Input types
 ### Required
 - **`sigmas`**
-    - The sequence of sigmas to be split. This parameter is crucial for determining how the sequence will be divided into two parts.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `SIGMAS`
+    - The 'sigmas' parameter represents the sequence of sigma values to be split. It is essential for determining the division point and the resulting two sequences of sigma values, impacting the node's execution and results.
+    - Python dtype: `torch.Tensor`
 - **`step`**
-    - The index at which the sigma sequence is split. The sequence is divided such that the first part includes sigmas up to and including this index, and the second part contains the remaining sigmas.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The 'step' parameter specifies the index at which the sigma sequence should be split. It plays a critical role in defining the boundary between the two resulting sigma sequences, influencing the node's functionality and the characteristics of the output.
+    - Python dtype: `int`
 ## Output types
 - **`sigmas`**
-    - The second part of the split sigma sequence, starting from the specified step.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `SIGMAS`
+    - The node outputs two sequences of sigma values, each representing a part of the original sequence divided at the specified step. These outputs are crucial for subsequent operations that require differentiated handling of sigma values.
+    - Python dtype: `Tuple[torch.Tensor, torch.Tensor]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `SamplerCustom`

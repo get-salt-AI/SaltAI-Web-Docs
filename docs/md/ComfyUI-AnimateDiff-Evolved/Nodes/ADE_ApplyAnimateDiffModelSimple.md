@@ -4,35 +4,35 @@
 - Category: `Animate Diff 🎭🅐🅓/② Gen2 nodes ②`
 - Output node: `False`
 
-This node applies a simplified version of the AnimateDiff model to generate animations. It uses a subset of the normal ApplyAnimateDiffModelNode inputs, focusing on essential parameters for motion application.
+This node is designed to apply a motion model to animate images or sequences, offering a simplified interface for integrating motion effects. It abstracts the complexities involved in the animation process, making it accessible for users to apply predefined motion models to their content.
 ## Input types
 ### Required
 - **`motion_model`**
-    - Specifies the motion model to be used for animation. It's a critical component that defines how the animation behaves.
-    - Python dtype: `MotionModelPatcher`
     - Comfy dtype: `MOTION_MODEL_ADE`
+    - Specifies the motion model to be applied. It is crucial for defining the animation behavior and effects on the target content.
+    - Python dtype: `MotionModelPatcher`
 ### Optional
 - **`motion_lora`**
-    - Optional parameter that allows for the adjustment of motion using LoRA (Low-Rank Adaptation) techniques.
-    - Python dtype: `MotionLoraList`
     - Comfy dtype: `MOTION_LORA`
+    - Optional parameter for incorporating motion Lora adjustments, enhancing the animation with additional motion effects.
+    - Python dtype: `MotionLoraList`
 - **`scale_multival`**
-    - Optional parameter for scaling the animation effect.
-    - Python dtype: `float`
     - Comfy dtype: `MULTIVAL`
+    - Optional parameter for scaling effects, providing flexibility in the intensity of the applied motion.
+    - Python dtype: `Optional[MultiVal]`
 - **`effect_multival`**
-    - Optional parameter for adjusting the intensity of the animation effect.
-    - Python dtype: `float`
     - Comfy dtype: `MULTIVAL`
+    - Optional parameter for effect adjustments, enabling customization of the visual impact of the motion.
+    - Python dtype: `Optional[MultiVal]`
 - **`ad_keyframes`**
-    - Optional parameter for defining keyframes in the animation.
-    - Python dtype: `ADKeyframes`
     - Comfy dtype: `AD_KEYFRAMES`
+    - Optional parameter for specifying keyframes, allowing for more controlled and precise animation effects.
+    - Python dtype: `Optional[ADKeyframeGroup]`
 ## Output types
 - **`m_models`**
-    - The result of applying the motion model to generate animations.
-    - Python dtype: `MotionModelOutput`
     - Comfy dtype: `M_MODELS`
+    - Outputs the modified motion models after applying the specified motion effects, keyframes, and adjustments.
+    - Python dtype: `MotionModelGroup`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

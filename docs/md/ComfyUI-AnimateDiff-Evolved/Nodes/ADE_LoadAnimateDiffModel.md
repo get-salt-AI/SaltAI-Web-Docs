@@ -4,23 +4,23 @@
 - Category: `Animate Diff 🎭🅐🅓/② Gen2 nodes ②`
 - Output node: `False`
 
-This node is responsible for loading the AnimateDiff model into the system. It plays a crucial role in initializing the animation process by ensuring that the necessary motion model is correctly loaded and ready for use.
+This node is designed to load the AnimateDiff model, facilitating the integration and application of motion models for animation purposes within the AnimateDiff framework. It serves as a foundational component in the animation pipeline, enabling users to leverage advanced animation techniques.
 ## Input types
 ### Required
 - **`model_name`**
-    - Specifies the name of the motion model to be loaded, which is essential for defining the animation behavior and characteristics. The model name is selected from a predefined list of available motion models.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the name of the motion model to be loaded. This is a critical input as it determines which motion model will be utilized for animation within the AnimateDiff framework.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ### Optional
 - **`ad_settings`**
-    - Optional parameter for providing additional settings to the motion model, enhancing its flexibility and control over the animation.
-    - Python dtype: `AnimateDiffSettings or None`
-    - Comfy dtype: `MODEL`
+    - Comfy dtype: `AD_SETTINGS`
+    - Optional parameter that allows for the inclusion of specific animation settings, providing additional customization and control over the animation process.
+    - Python dtype: `AnimateDiffSettings`
 ## Output types
-- **`motion_model_ade`**
-    - The loaded AnimateDiff model, ready for animation application.
-    - Python dtype: `MotionModelPatcher`
+- **`MOTION_MODEL`**
     - Comfy dtype: `MOTION_MODEL_ADE`
+    - Outputs the loaded motion model, ready for further processing and application within the animation pipeline.
+    - Python dtype: `MotionModelPatcher`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `ADE_ApplyAnimateDiffModel`

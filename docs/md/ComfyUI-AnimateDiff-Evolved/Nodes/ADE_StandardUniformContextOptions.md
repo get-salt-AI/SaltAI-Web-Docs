@@ -4,51 +4,51 @@
 - Category: `Animate Diff 🎭🅐🅓/context opts`
 - Output node: `False`
 
-This node is designed to create a set of context options for animation difference (Animate Diff) processes, allowing for uniform distribution of context across iterations. It can incorporate previous context configurations and adjust the starting percentage and guaranteed steps for more precise control over the animation process.
+This node is designed to create a uniform set of context options for animation difference processing, allowing for the customization of context length, start percentage, and guaranteed steps within the animation sequence. It supports the integration of previous context configurations to build upon existing settings.
 ## Input types
 ### Required
 - **`context_length`**
-    - Defines the total length of the context to be used in the animation process, setting the scope of the animation.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the length of the context for the animation difference processing, influencing the granularity and scope of the animation sequence.
+    - Python dtype: `int`
 - **`context_stride`**
-    - Specifies the stride length between each context in the animation, affecting the smoothness and speed of the animation.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Determines the stride between each context in the sequence, affecting the overlap and transition smoothness between animation frames.
+    - Python dtype: `int`
 - **`context_overlap`**
-    - Determines the overlap between consecutive contexts, influencing the continuity and fluidity of the animation.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Defines the amount of overlap between contexts, which can influence the continuity and smoothness of the animation.
+    - Python dtype: `int`
 ### Optional
 - **`fuse_method`**
-    - Selects the method for fusing multiple contexts, impacting the final appearance of the animation.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the method used to fuse multiple contexts together, impacting the final animation's visual coherence.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`use_on_equal_length`**
-    - Indicates whether to use the context options when the length of the animation is equal to the context length, affecting the applicability of the context settings.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOLEAN`
+    - Indicates whether the context options should be applied uniformly across animations of equal length, affecting consistency in animation processing.
+    - Python dtype: `bool`
 - **`start_percent`**
-    - Determines the starting point of the context as a percentage, allowing for fine-tuning of where the animation process begins.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Determines the starting point of the animation as a percentage, allowing for precise control over the initiation of the animation sequence.
+    - Python dtype: `float`
 - **`guarantee_steps`**
-    - Specifies the minimum number of steps guaranteed to be included in the context, ensuring a certain level of detail and smoothness in the animation.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Defines the minimum number of steps guaranteed within the animation, ensuring a certain level of detail and smoothness in the animation sequence.
+    - Python dtype: `int`
 - **`prev_context`**
-    - Allows for the inclusion of previously defined context options, enabling the accumulation and refinement of context settings over multiple iterations.
-    - Python dtype: `ContextOptionsGroup`
     - Comfy dtype: `CONTEXT_OPTIONS`
+    - Allows for the inclusion of previous context configurations, enabling the accumulation and refinement of context settings over time.
+    - Python dtype: `ContextOptionsGroup`
 - **`view_opts`**
-    - Specifies the view options to be incorporated into the context options, defining additional parameters for the animation process.
-    - Python dtype: `ContextOptions`
     - Comfy dtype: `VIEW_OPTS`
+    - Allows for the specification of view options, further customizing the context configuration for animation processing.
+    - Python dtype: `ContextOptions`
 ## Output types
-- **`context_options`**
-    - The generated context options, ready to be utilized in the animation difference process.
-    - Python dtype: `ContextOptionsGroup`
+- **`CONTEXT_OPTS`**
     - Comfy dtype: `CONTEXT_OPTIONS`
+    - Produces a set of context options tailored for uniform animation difference processing, encapsulating the specified configurations.
+    - Python dtype: `ContextOptionsGroup`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `ADE_UseEvolvedSampling`

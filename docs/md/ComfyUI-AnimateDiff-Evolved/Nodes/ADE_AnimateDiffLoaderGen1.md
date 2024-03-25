@@ -4,57 +4,57 @@
 - Category: `Animate Diff 🎭🅐🅓/① Gen1 nodes ①`
 - Output node: `False`
 
-This node is responsible for loading the first generation of AnimateDiff models. It facilitates the integration of these models into the AnimateDiff framework, allowing for the animation and manipulation of images based on the loaded model.
+This node is designed for loading and initializing the AnimateDiff model specifically tailored for the first generation of the AnimateDiff framework. It facilitates the integration of motion and animation into static images, leveraging the capabilities of the AnimateDiff model to bring still images to life.
 ## Input types
 ### Required
 - **`model`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `MODEL`
+    - Specifies the model to be loaded for animation. This parameter is crucial for determining the base framework upon which the AnimateDiff functionalities will operate.
+    - Python dtype: `Model`
 - **`model_name`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `['AnimateLCM_sd15_t2v.ckpt', 'mm-Stabilized_mid.pth', 'mm_sd_v15_v2.ckpt'...]`
+    - Comfy dtype: `COMBO[STRING]`
+    - Determines the specific AnimateDiff model to be loaded, chosen from a list of available motion models. This selection is essential for tailoring the animation effects to the desired outcome.
+    - Python dtype: `str`
 - **`beta_schedule`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `['autoselect', 'sqrt_linear (AnimateDiff)', 'linear (AnimateDiff-SDXL)'...]`
+    - Comfy dtype: `COMBO[STRING]`
+    - Defines the beta schedule to be used in the animation process, allowing for customization of the animation's temporal dynamics.
+    - Python dtype: `BetaSchedules`
 ### Optional
 - **`context_options`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `CONTEXT_OPTIONS`
+    - Optionally specifies context options to further customize the animation process, enabling more detailed control over the animation settings.
+    - Python dtype: `ContextOptions`
 - **`motion_lora`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `MOTION_LORA`
+    - Optionally specifies a motion LoRA to be applied, enhancing the animation with specific motion effects.
+    - Python dtype: `MotionLoraList`
 - **`ad_settings`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `AD_SETTINGS`
+    - Optionally specifies AnimateDiff settings to customize the animation process, providing fine control over various animation parameters.
+    - Python dtype: `AnimateDiffSettings`
 - **`ad_keyframes`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `AD_KEYFRAMES`
+    - Optionally specifies keyframes for the animation, allowing for precise control over the animation timeline.
+    - Python dtype: `ADKeyframes`
 - **`sample_settings`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `SAMPLE_SETTINGS`
+    - Optionally specifies sample settings for the animation, enabling customization of the sampling process.
+    - Python dtype: `SampleSettings`
 - **`scale_multival`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `MULTIVAL`
+    - Optionally specifies a multival scale to adjust the scale of the animation effects, offering additional customization.
+    - Python dtype: `Multival`
 - **`effect_multival`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `MULTIVAL`
+    - Optionally specifies a multival effect to enhance the animation with specific visual effects, adding another layer of customization.
+    - Python dtype: `Multival`
 ## Output types
 - **`model`**
-    - The loaded instance of the AnimateDiff Gen1 model. This instance is ready for use in animating and manipulating images within the AnimateDiff framework.
-    - Python dtype: `AnimateDiffModelGen1`
     - Comfy dtype: `MODEL`
+    - Returns the loaded AnimateDiff model, ready for animation processing.
+    - Python dtype: `Model`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: `KSampler`
 
 

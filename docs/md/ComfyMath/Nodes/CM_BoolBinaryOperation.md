@@ -4,31 +4,31 @@
 - Category: `math/bool`
 - Output node: `False`
 
-Performs a binary operation on two boolean inputs based on a specified operation. This node allows for the execution of various boolean logic operations such as AND, OR, XOR, etc., on the input booleans, producing a boolean result.
+This node performs binary operations on boolean values, allowing for the combination and manipulation of boolean logic.
 ## Input types
 ### Required
 - **`op`**
-    - Specifies the boolean binary operation to be performed. The choice of operation affects the logic applied to the input booleans and consequently the result.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the binary operation to perform on the boolean inputs, such as 'And', 'Or', 'Xor', etc. This choice determines how the two boolean inputs will be combined.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`a`**
-    - The first boolean input for the binary operation. Acts as one of the operands in the boolean logic operation.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOL`
+    - The first boolean input for the binary operation.
+    - Python dtype: `bool`
 - **`b`**
-    - The second boolean input for the binary operation. Acts as the other operand in the boolean logic operation.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOL`
+    - The second boolean input for the binary operation.
+    - Python dtype: `bool`
 ## Output types
 - **`bool`**
-    - The result of applying the specified boolean binary operation on the input booleans.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOL`
+    - The result of the specified binary operation on the two boolean inputs.
+    - Python dtype: `bool`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
 
-Often used with conditional logic nodes to apply boolean operations like AND, OR, XOR on two input booleans, resulting in a single boolean output that can influence the flow or decisions within the AI pipeline.
+
 ## Source code
 ```python
 class BoolBinaryOperation:

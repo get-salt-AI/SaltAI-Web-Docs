@@ -4,26 +4,26 @@
 - Category: `loaders/video_models`
 - Output node: `False`
 
-This node is designed to load checkpoints specifically for image-based models in video generation tasks. It selectively loads the model, CLIP vision, and VAE components from a given checkpoint, allowing for a streamlined setup in scenarios where only image processing capabilities are required.
+This node specializes in loading checkpoints specifically for image-based models within video generation workflows. It efficiently retrieves and configures the necessary components from a given checkpoint, focusing on image-related aspects of the model.
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - Specifies the name of the checkpoint to load. This parameter is crucial for identifying the correct file from which to load the model, CLIP vision, and VAE components.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the name of the checkpoint to load. This parameter is crucial for identifying and retrieving the correct checkpoint file from a predefined list of available checkpoints.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`model`**
-    - The main model loaded from the checkpoint, typically used for generating or manipulating images.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - Returns the main model loaded from the checkpoint, configured for image processing within video generation contexts.
+    - Python dtype: `torch.nn.Module`
 - **`clip_vision`**
-    - The CLIP vision component loaded from the checkpoint, useful for tasks involving image understanding and manipulation.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `CLIP_VISION`
-- **`vae`**
-    - The VAE component loaded from the checkpoint, often used for encoding and decoding images in generative tasks.
+    - Provides the CLIP vision component extracted from the checkpoint, tailored for image understanding and feature extraction.
     - Python dtype: `torch.nn.Module`
+- **`vae`**
     - Comfy dtype: `VAE`
+    - Delivers the Variational Autoencoder (VAE) component, essential for image manipulation and generation tasks.
+    - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `SVD_img2vid_Conditioning,VAEDecode,VideoLinearCFGGuidance,Reroute,StableZero123_Conditioning,LoraLoader,Anything Everywhere,KSampler,workflow/front`

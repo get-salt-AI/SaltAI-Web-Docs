@@ -4,22 +4,22 @@
 - Category: `loaders`
 - Output node: `False`
 
-This node is responsible for loading a differential control network model, which is a specialized model designed to apply modifications or controls to another model based on a given control network name and the model itself. It enhances the flexibility and capability of the control network by allowing it to adapt based on the specific model it is applied to.
+The DiffControlNetLoader node is designed for loading differential control networks, which are specialized models that can modify the behavior of another model based on control net specifications. This node allows for the dynamic adjustment of model behaviors by applying differential control nets, facilitating the creation of customized model outputs.
 ## Input types
 ### Required
 - **`model`**
-    - The model parameter is crucial as it specifies the base model to which the differential control network will be applied. This allows the control network to adapt its behavior based on the characteristics of the base model, enhancing its effectiveness.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - The model parameter specifies the base model to which the differential control net will be applied. This allows for the customization of the model's behavior based on the control net's specifications.
+    - Python dtype: `torch.nn.Module`
 - **`control_net_name`**
-    - The control_net_name parameter specifies the name of the control network to be loaded. It is essential for identifying the correct control network file from a list of available control networks, enabling the dynamic loading of different control networks based on requirements.
+    - Comfy dtype: `COMBO[STRING]`
+    - The control_net_name parameter identifies the specific differential control net to be loaded and applied to the base model. This enables the selection of the appropriate control net for the desired model behavior modification.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`control_net`**
-    - The output is a control network model that has been loaded and potentially adapted based on the input model. This control network can then be applied to modify or control the behavior of the input model in specific ways.
-    - Python dtype: `ControlNet`
     - Comfy dtype: `CONTROL_NET`
+    - The output is a differential control net that has been loaded and is ready to be applied to a base model for behavior modification.
+    - Python dtype: `ControlNet`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

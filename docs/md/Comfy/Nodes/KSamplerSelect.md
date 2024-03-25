@@ -4,18 +4,18 @@
 - Category: `sampling/custom_sampling/samplers`
 - Output node: `False`
 
-The `KSamplerSelect` node is designed to select a specific sampler object based on the provided sampler name. It facilitates the dynamic selection of sampling strategies within the broader sampling framework, allowing for flexible experimentation and optimization of sampling processes.
+The KSamplerSelect node is designed to select a specific sampler based on the provided sampler name. It abstracts the complexity of sampler selection, allowing users to easily switch between different sampling strategies for their tasks.
 ## Input types
 ### Required
 - **`sampler_name`**
-    - Specifies the name of the sampler to be selected. This parameter enables the dynamic selection of different sampling strategies, allowing users to tailor the sampling process to specific requirements or preferences.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the name of the sampler to be selected. This parameter determines which sampling strategy will be used, impacting the overall sampling behavior and results.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`sampler`**
-    - Returns the selected sampler object, which can be used for further sampling operations. This enables the dynamic and flexible use of different sampling strategies within the application.
-    - Python dtype: `comfy.samplers.Sampler`
     - Comfy dtype: `SAMPLER`
+    - Returns the selected sampler object, ready to be used for sampling tasks.
+    - Python dtype: `comfy.samplers.Sampler`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `SamplerCustom,Reroute`

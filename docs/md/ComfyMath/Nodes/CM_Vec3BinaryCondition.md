@@ -4,31 +4,31 @@
 - Category: `math/vec3`
 - Output node: `False`
 
-This node performs a binary condition operation between two 3-dimensional vectors (Vec3) based on a specified operation. It evaluates the condition and returns a boolean result indicating whether the condition holds.
+This node performs a binary condition operation on two 3-dimensional vectors (Vec3), evaluating the condition specified by the operation and returning a boolean result. It abstracts complex vector comparison logic into a simple interface, allowing for easy integration of vector-based conditions into larger computational workflows.
 ## Input types
 ### Required
 - **`op`**
-    - Specifies the binary condition operation to be performed between the two vectors. The choice of operation affects how the condition is evaluated and ultimately determines the boolean result.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the binary condition operation to be performed on the vectors. The choice of operation determines how the two vectors are compared.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`a`**
-    - The first 3-dimensional vector involved in the binary condition operation.
-    - Python dtype: `Vec3`
     - Comfy dtype: `VEC3`
+    - The first 3-dimensional vector (Vec3) to be compared.
+    - Python dtype: `Vec3`
 - **`b`**
-    - The second 3-dimensional vector involved in the binary condition operation.
-    - Python dtype: `Vec3`
     - Comfy dtype: `VEC3`
+    - The second 3-dimensional vector (Vec3) to be compared.
+    - Python dtype: `Vec3`
 ## Output types
 - **`bool`**
-    - The boolean outcome of the binary condition operation, indicating whether the specified condition holds between the two vectors.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOL`
+    - The result of the binary condition operation, indicating whether the specified condition holds true for the given vectors.
+    - Python dtype: `bool`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
 
-Often used in scenarios requiring comparison between two 3-dimensional vectors, such as determining spatial relationships or conditions in simulations and visualizations, by evaluating a specified binary condition and outputting a boolean result indicating whether the condition holds.
+
 ## Source code
 ```python
 class Vec3BinaryCondition:

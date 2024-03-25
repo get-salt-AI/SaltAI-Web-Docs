@@ -4,22 +4,22 @@
 - Category: `mask`
 - Output node: `False`
 
-This node converts an image to a mask based on a specified color. It first normalizes the image's color values, then creates a mask by comparing each pixel's color to the specified color, resulting in a binary mask where matching pixels are marked.
+The ImageColorToMask node is designed to convert a specified color in an image to a mask. It processes an image and a target color, generating a mask where the specified color is highlighted, facilitating operations like color-based segmentation or object isolation.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be converted into a mask. The image is normalized and compared against the specified color to generate the mask.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The 'image' parameter represents the input image to be processed. It is crucial for determining the areas of the image that match the specified color to be converted into a mask.
+    - Python dtype: `torch.Tensor`
 - **`color`**
-    - The target color used to generate the mask. Pixels in the image that match this color will be included in the mask.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The 'color' parameter specifies the target color in the image to be converted into a mask. It plays a key role in identifying the specific color areas to be highlighted in the resulting mask.
+    - Python dtype: `int`
 ## Output types
 - **`mask`**
-    - The output binary mask generated from the input image, where pixels matching the specified color are marked.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The output is a mask highlighting the areas of the input image that match the specified color. This mask can be used for further image processing tasks, such as segmentation or object isolation.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

@@ -4,22 +4,22 @@
 - Category: `_for_testing/stable_cascade`
 - Output node: `False`
 
-The `set_prior` method updates the conditioning data by incorporating a 'stable_cascade_prior' derived from the 'stage_c' latent representation into each element of the conditioning data. This process enriches the conditioning context with information from a later stage in the cascade, potentially enhancing the generation quality in subsequent steps.
+This node is designed to set a prior for the conditioning process in a stable cascade model, integrating latent stage information into the conditioning data to influence subsequent model stages.
 ## Input types
 ### Required
 - **`conditioning`**
-    - The conditioning data to be updated. It is crucial for guiding the generation process by providing context and constraints.
-    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - The conditioning data to be modified with the latent stage information, affecting the model's behavior in later stages.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
 - **`stage_c`**
-    - The latent representation from a later stage in the cascade. It is used to enrich the conditioning data, providing additional context for the generation process.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The latent stage information to be integrated into the conditioning, influencing the model's subsequent stages.
+    - Python dtype: `Dict[str, torch.Tensor]`
 ## Output types
 - **`conditioning`**
-    - The updated conditioning data, now enriched with 'stable_cascade_prior' information from the 'stage_c' latent representation.
-    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - The modified conditioning data, now containing latent stage information for influencing later model stages.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

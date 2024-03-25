@@ -4,31 +4,31 @@
 - Category: `math/float`
 - Output node: `False`
 
-This node evaluates a binary condition between two float values based on a specified operation. It supports a variety of conditions such as equality, inequality, greater than, less than, etc., and returns a boolean result indicating whether the condition holds.
+This node evaluates binary conditions between two floating-point numbers based on a specified operation. It abstracts the complexity of various floating-point comparisons into a simple interface, allowing users to perform mathematical comparisons like equality, inequality, greater than, and less than operations.
 ## Input types
 ### Required
 - **`op`**
-    - Specifies the binary condition operation to be applied between the two float values. The choice of operation determines how the values are compared and affects the boolean result of the node.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the operation to perform on the two floating-point numbers. It determines the type of comparison (e.g., equal, not equal, greater than) to be executed.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`a`**
-    - The first float value to be compared. It plays a crucial role in the binary condition evaluation.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The first floating-point number to be compared.
+    - Python dtype: `float`
 - **`b`**
-    - The second float value to be compared. Together with the first value, it determines the outcome of the binary condition.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The second floating-point number to be compared.
+    - Python dtype: `float`
 ## Output types
 - **`bool`**
-    - The boolean result of the binary condition evaluation, indicating whether the specified condition holds between the two float values.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOL`
+    - The result of the binary condition operation, indicating whether the specified condition between the two floating-point numbers is true or false.
+    - Python dtype: `bool`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
 
-The CM_FloatBinaryCondition node is utilized for evaluating a binary condition (such as equality, inequality, greater than, less than, etc.) between two float values, returning a boolean result that indicates whether the specified condition is met. It is often used in decision-making processes within the pipeline, where the outcome of the condition can influence subsequent actions or the flow of data.
+
 ## Source code
 ```python
 class FloatBinaryCondition:

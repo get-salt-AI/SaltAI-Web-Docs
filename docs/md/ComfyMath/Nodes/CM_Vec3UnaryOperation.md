@@ -4,27 +4,27 @@
 - Category: `math/vec3`
 - Output node: `False`
 
-Performs a unary operation on a 3-dimensional vector (Vec3) based on a specified operation. This operation transforms the input Vec3 according to the mathematical function associated with the 'op' parameter.
+The CM_Vec3UnaryOperation node performs unary operations on 3-dimensional vectors, applying a specified operation to a single vector and producing a modified vector as a result. This node abstracts the complexity of vector manipulation, enabling efficient and straightforward vector transformations.
 ## Input types
 ### Required
 - **`op`**
-    - Specifies the unary operation to perform on the Vec3. The operation is chosen from a predefined list of mathematical functions, allowing for a variety of transformations.
-    - Python dtype: `str`
-    - Comfy dtype: `STRING`
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the unary operation to be performed on the vector. The choice of operation directly influences the outcome of the transformation.
+    - Python dtype: `List[str]`
 - **`a`**
-    - The 3-dimensional vector (Vec3) to be transformed by the unary operation.
-    - Python dtype: `Vec3`
     - Comfy dtype: `VEC3`
+    - The 3-dimensional vector to be transformed. It serves as the input for the unary operation, determining the base vector for the transformation.
+    - Python dtype: `Vec3`
 ## Output types
 - **`vec3`**
-    - The transformed 3-dimensional vector (Vec3) resulting from the specified unary operation.
-    - Python dtype: `Vec3`
     - Comfy dtype: `VEC3`
+    - The result of applying the specified unary operation to the input vector, represented as a 3-dimensional vector.
+    - Python dtype: `Tuple[Vec3]`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
-Often used in mathematical and geometric transformations, the CM_Vec3UnaryOperation node performs a specified unary operation on a 3-dimensional vector (Vec3), transforming it based on the chosen mathematical function. This node takes a Vec3 and an operation type as input and outputs the transformed Vec3.
+
 ## Source code
 ```python
 class Vec3UnaryOperation:

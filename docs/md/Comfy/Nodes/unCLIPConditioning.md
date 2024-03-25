@@ -4,30 +4,30 @@
 - Category: `conditioning`
 - Output node: `False`
 
-This node applies additional conditioning to the input conditioning data based on CLIP vision output, strength, and noise augmentation parameters. It enhances the conditioning by incorporating visual features and adjustable parameters to influence the generation process.
+This node is designed to integrate CLIP vision outputs into the conditioning process, adjusting the influence of these outputs based on specified strength and noise augmentation parameters. It enriches the conditioning with visual context, enhancing the generation process.
 ## Input types
 ### Required
 - **`conditioning`**
-    - The base conditioning data to which the enhancements are applied. It serves as the foundation for further modifications.
-    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - The base conditioning data to which the CLIP vision outputs are to be added, serving as the foundation for further modifications.
+    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
 - **`clip_vision_output`**
-    - The output from a CLIP vision model, used to enrich the conditioning with visual features.
-    - Python dtype: `CLIPVisionOutput`
     - Comfy dtype: `CLIP_VISION_OUTPUT`
+    - The output from a CLIP vision model, providing visual context that is integrated into the conditioning.
+    - Python dtype: `Dict[str, Any]`
 - **`strength`**
-    - Determines the intensity of the applied enhancements, allowing for fine-tuning of the conditioning's influence.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Determines the intensity of the CLIP vision output's influence on the conditioning.
+    - Python dtype: `float`
 - **`noise_augmentation`**
-    - Specifies the level of noise augmentation to apply, adding variability to the conditioning.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Specifies the level of noise augmentation to apply to the CLIP vision output before integrating it into the conditioning.
+    - Python dtype: `float`
 ## Output types
 - **`conditioning`**
-    - The enhanced conditioning data, ready for use in further processing or generation tasks.
-    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - The enriched conditioning data, now containing integrated CLIP vision outputs with applied strength and noise augmentation.
+    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `ControlNetApplyAdvanced,ConditioningConcat`

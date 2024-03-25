@@ -4,22 +4,22 @@
 - Category: `advanced/loaders`
 - Output node: `False`
 
-The CLIPLoader node is responsible for loading a CLIP model based on the specified name and type. It supports loading different types of CLIP models, such as 'stable_diffusion' and 'stable_cascade', by fetching the model from a specified path and applying the appropriate CLIP type configuration.
+The CLIPLoader node is designed for loading CLIP models, supporting different types such as stable diffusion and stable cascade. It abstracts the complexities of loading and configuring CLIP models for use in various applications, providing a streamlined way to access these models with specific configurations.
 ## Input types
 ### Required
 - **`clip_name`**
-    - Specifies the name of the CLIP model to be loaded. This name is used to locate the model file in a predefined directory structure.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the name of the CLIP model to be loaded. This name is used to locate the model file within a predefined directory structure.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`type`**
-    - Determines the type of CLIP model to load, allowing for different configurations such as 'stable_diffusion' or 'stable_cascade'. This affects how the model is initialized and configured.
+    - Comfy dtype: `COMBO[STRING]`
+    - Determines the type of CLIP model to load, offering options between 'stable_diffusion' and 'stable_cascade'. This affects how the model is initialized and configured.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`clip`**
-    - The loaded CLIP model, ready for use in further processing or analysis.
-    - Python dtype: `comfy.sd.CLIPModel`
     - Comfy dtype: `CLIP`
+    - The loaded CLIP model, ready for use in downstream tasks or further processing.
+    - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

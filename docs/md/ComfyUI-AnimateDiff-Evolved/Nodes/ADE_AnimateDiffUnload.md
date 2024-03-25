@@ -4,18 +4,18 @@
 - Category: `Animate Diff 🎭🅐🅓/extras`
 - Output node: `False`
 
-The `ADE_AnimateDiffUnload` node is designed to remove motion modules from a given model, effectively reverting it to its original, unmodified state. This operation is crucial for scenarios where the modifications applied by AnimateDiff need to be undone, ensuring that the model can be used in its standard form or prepared for a different set of modifications.
+The ADE_AnimateDiffUnload node is designed to revert any modifications made to the motion modules of a model, effectively restoring it to its original, unaltered state. This process involves unloading or ejecting specific parameters from the model, ensuring that it can be used in its vanilla form without the influence of previously applied AnimateDiff settings.
 ## Input types
 ### Required
 - **`model`**
-    - The `model` parameter represents the model from which motion modules will be unloaded. This is essential for reverting the model to its vanilla state, making it suitable for further operations or analyses.
-    - Python dtype: `ModelPatcher`
     - Comfy dtype: `MODEL`
+    - The 'model' parameter represents the model to be restored to its original state. It is crucial for specifying the target model from which the AnimateDiff modifications will be unloaded, ensuring the model can be returned to its vanilla configuration.
+    - Python dtype: `ModelPatcher`
 ## Output types
 - **`model`**
-    - Returns a clone of the original model with motion modules removed, ensuring that the model is in its unmodified state and ready for further use or modifications.
-    - Python dtype: `ModelPatcher`
     - Comfy dtype: `MODEL`
+    - The output is a clone of the input model, but with AnimateDiff modifications unloaded, effectively restoring the model to its original, unmodified state.
+    - Python dtype: `ModelPatcher`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

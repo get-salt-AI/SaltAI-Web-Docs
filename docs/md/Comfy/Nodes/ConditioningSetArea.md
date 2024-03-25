@@ -4,38 +4,38 @@
 - Category: `conditioning`
 - Output node: `False`
 
-This node modifies the conditioning data by setting specific areas and strengths for each conditioning element. It's used to apply localized adjustments to the conditioning, allowing for more precise control over the generation process.
+This node is designed to modify the conditioning information by setting specific areas within the conditioning context. It allows for the precise spatial manipulation of conditioning elements, enabling targeted adjustments and enhancements based on specified dimensions and strength.
 ## Input types
 ### Required
 - **`conditioning`**
-    - The base conditioning data to be modified. It's crucial for defining the context or content that the generation process should adhere to.
-    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - The conditioning data to be modified. It serves as the base for applying spatial adjustments.
+    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
 - **`width`**
-    - Specifies the width of the area to be set. It determines how wide the area of effect will be.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the width of the area to be set within the conditioning context, influencing the horizontal scope of the adjustment.
+    - Python dtype: `int`
 - **`height`**
-    - Specifies the height of the area to be set. It determines how tall the area of effect will be.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Determines the height of the area to be set, affecting the vertical extent of the conditioning modification.
+    - Python dtype: `int`
 - **`x`**
-    - The x-coordinate of the top-left corner of the area to be set. It positions the area horizontally.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The horizontal starting point of the area to be set, positioning the adjustment within the conditioning context.
+    - Python dtype: `int`
 - **`y`**
-    - The y-coordinate of the top-left corner of the area to be set. It positions the area vertically.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The vertical starting point for the area adjustment, establishing its position within the conditioning context.
+    - Python dtype: `int`
 - **`strength`**
-    - Determines the intensity of the effect applied to the specified area. Higher values result in stronger effects.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Defines the intensity of the conditioning modification within the specified area, allowing for nuanced control over the adjustment's impact.
+    - Python dtype: `float`
 ## Output types
 - **`conditioning`**
-    - The modified conditioning data with specified areas and strengths applied to each element.
-    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - The modified conditioning data, reflecting the specified area settings and adjustments.
+    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `ConditioningCombine,SetNode`

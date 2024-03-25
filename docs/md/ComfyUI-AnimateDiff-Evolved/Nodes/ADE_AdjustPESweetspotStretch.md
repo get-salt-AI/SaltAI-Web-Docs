@@ -4,31 +4,31 @@
 - Category: `Animate Diff 🎭🅐🅓/ad settings/pe adjust`
 - Output node: `False`
 
-This node is designed to adjust the positional encoding (PE) sweetspot in the context of animating differences. It allows for the modification of the initial sweetspot and setting a new sweetspot value, optionally printing the adjustment process. This adjustment is crucial for fine-tuning the animation effect by altering the base positional encoding parameters.
+This node is designed to adjust the positional encoding (PE) sweetspot in the context of animating differences, allowing for the modification of the initial sweetspot and the introduction of a new sweetspot value. It facilitates the fine-tuning of animation parameters to achieve desired effects.
 ## Input types
 ### Required
 - **`sweetspot`**
-    - Defines the initial sweetspot value for positional encoding, serving as a baseline for adjustments.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the original sweetspot value for positional encoding, serving as a baseline for adjustments.
+    - Python dtype: `int`
 - **`new_sweetspot`**
-    - Sets the new sweetspot value for positional encoding, allowing for dynamic adjustment of the animation's base encoding.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Defines the new sweetspot value to which the positional encoding should be adjusted, enabling the customization of animation dynamics.
+    - Python dtype: `int`
 - **`print_adjustment`**
-    - A flag to enable or disable printing of the adjustment process, useful for debugging or monitoring.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOLEAN`
+    - A boolean flag that, when set to True, enables the printing of adjustment details for debugging or informational purposes.
+    - Python dtype: `bool`
 ### Optional
 - **`prev_pe_adjust`**
-    - Optional previous positional encoding adjustment to be considered in the current adjustment process.
-    - Python dtype: `AdjustPEGroup or None`
     - Comfy dtype: `PE_ADJUST`
+    - An optional parameter that allows for the incorporation of previous positional encoding adjustments, facilitating cumulative adjustments.
+    - Python dtype: `AdjustPEGroup`
 ## Output types
 - **`pe_adjust`**
-    - The adjusted positional encoding settings, encapsulating the sweetspot adjustments.
-    - Python dtype: `AdjustPEGroup`
     - Comfy dtype: `PE_ADJUST`
+    - Returns the updated positional encoding adjustment group, encapsulating the applied sweetspot adjustments.
+    - Python dtype: `AdjustPEGroup`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

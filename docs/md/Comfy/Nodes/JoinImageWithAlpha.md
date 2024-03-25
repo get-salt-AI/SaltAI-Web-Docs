@@ -4,22 +4,22 @@
 - Category: `mask/compositing`
 - Output node: `False`
 
-This node combines an image and an alpha mask to produce a single image with transparency information. It adjusts the alpha mask to match the image dimensions and merges them, ensuring the output image retains the original colors with the specified transparency.
+This node is designed for compositing operations, specifically to join an image with its corresponding alpha mask to produce a single output image. It effectively combines visual content with transparency information, enabling the creation of images where certain areas are transparent or semi-transparent.
 ## Input types
 ### Required
 - **`image`**
-    - The primary image to which the alpha mask will be applied. It defines the visual content of the output.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
-- **`alpha`**
-    - The alpha mask that specifies the transparency level for each pixel in the image. It is adjusted to match the image dimensions before application.
+    - The main visual content to be combined with an alpha mask. It represents the image without transparency information.
     - Python dtype: `torch.Tensor`
+- **`alpha`**
     - Comfy dtype: `MASK`
+    - The alpha mask that defines the transparency of the corresponding image. It is used to determine which parts of the image should be transparent or semi-transparent.
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**
-    - The output is a single image that combines the input image with the alpha mask, incorporating transparency information.
-    - Python dtype: `Tuple[torch.Tensor]`
     - Comfy dtype: `IMAGE`
+    - The output is a single image that combines the input image with the alpha mask, incorporating transparency information into the visual content.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

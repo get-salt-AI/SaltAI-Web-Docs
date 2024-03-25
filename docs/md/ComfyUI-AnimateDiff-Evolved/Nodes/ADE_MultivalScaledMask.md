@@ -4,33 +4,31 @@
 - Category: `Animate Diff 🎭🅐🅓/multival`
 - Output node: `False`
 
-The ADE_MultivalScaledMask node is designed to dynamically adjust the scale of masks based on provided minimum and maximum float values, potentially applying different scaling strategies. It is part of the Animate Diff Evolved suite, focusing on manipulating mask values for animation and differential effects. This node allows for precise control over the scaling of mask values, enabling users to define how mask intensities should be adjusted within specified bounds, and supports both absolute and relative scaling methods.
+This node is designed to dynamically adjust the scale of masks based on specified minimum and maximum float values, potentially incorporating additional scaling strategies. It aims to facilitate the creation of multivalued outputs by applying these scales to masks, thereby enabling more nuanced and flexible manipulation of mask properties within the context of animation and differential effects.
 ## Input types
 ### Required
 - **`min_float_val`**
-    - Specifies the minimum float value for scaling the mask. This parameter sets the lower bound for the mask's scale adjustment.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Specifies the minimum float value for scaling the mask. It sets the lower bound for the scale adjustment, ensuring that the mask's scale does not fall below this value.
+    - Python dtype: `float`
 - **`max_float_val`**
-    - Defines the maximum float value for scaling the mask. It sets the upper limit for how much the mask can be scaled.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Defines the maximum float value for scaling the mask. This value sets the upper limit for the scale adjustment, ensuring that the mask's scale does not exceed this threshold.
+    - Python dtype: `float`
 - **`mask`**
-    - The mask to be scaled. This parameter is the target mask whose values will be adjusted based on the scaling parameters.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The mask to be scaled. This input is crucial for determining the base mask that will undergo scaling adjustments based on the specified minimum and maximum float values.
+    - Python dtype: `torch.Tensor`
 ### Optional
 - **`scaling`**
-    - Determines the scaling strategy to be applied to the mask. It can be either absolute or relative, affecting how the mask values are adjusted within the specified min and max float values.
+    - Comfy dtype: `COMBO[STRING]`
+    - An optional parameter that specifies the scaling strategy to be applied. It can influence how the mask is scaled between the minimum and maximum float values, offering additional control over the scaling process.
     - Python dtype: `str`
-    - Comfy dtype: `['absolute', 'relative']`
 ## Output types
 - **`multival`**
-    - The output represents the scaled mask values, encapsulated within a structure that supports multiple values, adhering to the Animate Diff Evolved suite's requirements for handling multivalued data.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MULTIVAL`
-- **`ui`**
-    - The output is a modified version of the input mask, scaled according to the specified minimum and maximum float values and the chosen scaling strategy.
+    - The output is a multivalued version of the input mask, adjusted according to the specified scaling parameters and strategy. It represents the mask after being scaled between the minimum and maximum float values.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

@@ -4,23 +4,23 @@
 - Category: `math/conversion`
 - Output node: `False`
 
-Converts a number (either integer or float) to a floating-point representation. This operation is useful for ensuring that numerical inputs are in a consistent format for further mathematical operations.
+The CM_NumberToFloat node is designed for converting numerical values from a generic number type, which can be an integer or a float, into a floating-point representation. This conversion facilitates operations that require floating-point precision and is essential in mathematical computations where such precision is necessary.
 ## Input types
 ### Required
 - **`a`**
-    - The number to be converted to a floating-point representation. This conversion is essential for maintaining numerical consistency across operations that require floating-point inputs.
-    - Python dtype: `Union[int, float]`
     - Comfy dtype: `NUMBER`
+    - The input 'a' represents the numerical value to be converted into a floating-point number. This parameter is crucial for the conversion process, affecting the node's execution by determining the output's precision and value.
+    - Python dtype: `Union[int, float]`
 ## Output types
 - **`float`**
-    - The floating-point representation of the input number. This output is crucial for operations that specifically require floating-point numbers.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The output is a floating-point representation of the input numerical value, providing the necessary precision for further mathematical operations.
+    - Python dtype: `float`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `FaceDetailer,CR Integer Multiple`
 
-The CM_NumberToFloat node is essential for converting numerical input data, whether integer or another number format, to a floating-point format. This conversion is crucial for ensuring numerical consistency and precision in operations that require floating-point inputs, such as scaling factors or detailed adjustments in advanced facial enhancement and transformation pipelines.
+
 ## Source code
 ```python
 class NumberToFloat:

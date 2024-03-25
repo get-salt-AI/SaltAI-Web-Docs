@@ -4,30 +4,30 @@
 - Category: `sampling/custom_sampling/samplers`
 - Output node: `False`
 
-This node generates a sampler for the DPM-Solver++(2M) SDE model, selecting between CPU and GPU based on the noise device input. It configures the sampler with specific parameters like solver type, eta, and s_noise.
+This node is designed to generate a sampler for the DPMPP_2M_SDE model, allowing for the creation of samples based on specified solver types, noise levels, and computational device preferences. It abstracts the complexities of sampler configuration, providing a streamlined interface for generating samples with customized settings.
 ## Input types
 ### Required
 - **`solver_type`**
-    - Determines the numerical solver used for the SDE. Options are 'midpoint' and 'heun', affecting the numerical stability and accuracy of the sampling process.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the solver type to be used in the sampling process, offering options between 'midpoint' and 'heun'. This choice influences the numerical integration method applied during sampling.
     - Python dtype: `List[str]`
-    - Comfy dtype: `['STRING']`
 - **`eta`**
-    - Controls the step size in the SDE solver, influencing the trade-off between sampling quality and computational cost.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Determines the step size in the numerical integration, affecting the granularity of the sampling process. A higher value indicates a larger step size.
+    - Python dtype: `float`
 - **`s_noise`**
-    - Adjusts the scale of the noise used in the sampling process, impacting the diversity of the generated samples.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Controls the level of noise introduced during the sampling process, influencing the variability of the generated samples.
+    - Python dtype: `float`
 - **`noise_device`**
-    - Specifies the computational device (CPU or GPU) for noise generation, directly affecting performance and compatibility.
-    - Python dtype: `str`
-    - Comfy dtype: `['STRING']`
+    - Comfy dtype: `COMBO[STRING]`
+    - Indicates the computational device ('gpu' or 'cpu') on which the noise generation process is executed, affecting performance and efficiency.
+    - Python dtype: `List[str]`
 ## Output types
 - **`sampler`**
-    - The configured sampler for the DPM-Solver++(2M) SDE model, ready for use in sampling tasks.
-    - Python dtype: `comfy.samplers.ksampler`
     - Comfy dtype: `SAMPLER`
+    - The output is a sampler configured according to the specified parameters, ready for generating samples.
+    - Python dtype: `comfy.samplers.ksampler`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

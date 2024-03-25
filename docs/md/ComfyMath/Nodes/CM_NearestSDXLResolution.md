@@ -4,23 +4,27 @@
 - Category: `math/graphics`
 - Output node: `False`
 
-This node finds the nearest supported SDXL resolution to the input image's resolution. It calculates the aspect ratio of the input image and selects the SDXL resolution with the closest aspect ratio, defaulting to 1024x1024 if no closer match is found.
+This node is designed to find the nearest supported SDXL resolution to the input image's resolution. It calculates the aspect ratio of the input image and compares it with a list of supported SDXL resolutions to select the closest match, ensuring optimal resizing without significant distortion.
 ## Input types
 ### Required
 - **`image`**
-    - The input image for which the nearest SDXL resolution is to be found. The image's aspect ratio is used to determine the closest supported SDXL resolution.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The input image for which the nearest SDXL resolution is to be found. The image's aspect ratio is used to determine the closest supported resolution.
+    - Python dtype: `torch.Tensor`
 ## Output types
-- **`int`**
+- **`width`**
+    - Comfy dtype: `INT`
+    - The width component of the nearest SDXL resolution.
+    - Python dtype: `int`
+- **`height`**
+    - Comfy dtype: `INT`
     - The height component of the nearest SDXL resolution.
     - Python dtype: `int`
-    - Comfy dtype: `INT`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: `ConstrainImage|pysssss,Reroute,ImageScale`
 
-Often used with image preprocessing to ensure the input image is compatible with SDXL model requirements by adjusting its resolution to the nearest supported SDXL resolution, ensuring optimal performance and quality in AI-driven graphics and image processing tasks.
+
 ## Source code
 ```python
 class NearestSDXLResolution:

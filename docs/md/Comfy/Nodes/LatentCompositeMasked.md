@@ -4,39 +4,39 @@
 - Category: `latent`
 - Output node: `False`
 
-The `LatentCompositeMasked` node combines two latent representations (destination and source) at specified coordinates, optionally resizing the source and applying a mask to the composite operation. This node is useful for blending or overlaying features from one latent space onto another, potentially with selective masking.
+The LatentCompositeMasked node is designed for blending two latent representations together at specified coordinates, optionally using a mask for more controlled compositing. This node enables the creation of complex latent images by overlaying parts of one image onto another, with the ability to resize the source image for a perfect fit.
 ## Input types
 ### Required
 - **`destination`**
-    - The latent representation onto which the source will be composited. Acts as the background for the composite operation.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The latent representation onto which another latent representation will be composited. Acts as the base layer for the composite operation.
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`source`**
-    - The latent representation that will be composited onto the destination. Acts as the overlay in the composite operation.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The latent representation to be composited onto the destination. This source layer can be resized and positioned according to the specified parameters.
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`x`**
-    - The x-coordinate in the destination latent space where the source will be placed. Allows for precise positioning of the source.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The x-coordinate in the destination latent representation where the source will be placed. Allows for precise positioning of the source layer.
+    - Python dtype: `int`
 - **`y`**
-    - The y-coordinate in the destination latent space where the source will be placed. Allows for precise positioning of the source.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The y-coordinate in the destination latent representation where the source will be placed, enabling accurate overlay positioning.
+    - Python dtype: `int`
 - **`resize_source`**
-    - Determines whether the source latent representation should be resized to match the destination's dimensions before compositing. Enables flexibility in combining latents of different sizes.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOLEAN`
+    - A boolean flag indicating whether the source latent representation should be resized to match the destination's dimensions before compositing.
+    - Python dtype: `bool`
 ### Optional
 - **`mask`**
-    - An optional mask that can be applied to the composite operation, allowing for selective blending of the source onto the destination.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - An optional mask that can be used to control the blending of the source onto the destination. The mask defines which parts of the source will be visible in the final composite.
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`latent`**
-    - The resulting latent representation after compositing the source onto the destination, potentially with resizing and masking.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The resulting latent representation after compositing the source onto the destination, potentially using a mask for selective blending.
+    - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSamplerAdvanced`

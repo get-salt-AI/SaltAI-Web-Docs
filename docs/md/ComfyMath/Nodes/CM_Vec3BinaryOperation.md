@@ -4,31 +4,31 @@
 - Category: `math/vec3`
 - Output node: `False`
 
-Performs a binary operation on two Vec3 vectors, resulting in a new Vec3 vector. This operation is defined by a specific operation key which dictates the mathematical operation to be applied.
+Performs binary operations on two 3-dimensional vectors, resulting in a new 3-dimensional vector. This node abstracts complex vector arithmetic into simple, high-level operations.
 ## Input types
 ### Required
 - **`op`**
-    - Specifies the binary operation to be applied on the Vec3 vectors. The choice of operation affects the result of the computation.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the binary operation to perform on the vectors, such as addition or subtraction, influencing the result of the operation.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`a`**
-    - The first Vec3 vector to be operated on. It plays a crucial role in the operation as the primary vector.
-    - Python dtype: `Vec3`
     - Comfy dtype: `VEC3`
+    - The first 3-dimensional vector operand in the binary operation.
+    - Python dtype: `Vec3`
 - **`b`**
-    - The second Vec3 vector to be operated on. It interacts with the first vector according to the specified operation.
-    - Python dtype: `Vec3`
     - Comfy dtype: `VEC3`
+    - The second 3-dimensional vector operand in the binary operation.
+    - Python dtype: `Vec3`
 ## Output types
 - **`vec3`**
-    - The resulting Vec3 vector after applying the specified binary operation on the input vectors.
-    - Python dtype: `Vec3`
     - Comfy dtype: `VEC3`
+    - The resulting 3-dimensional vector after performing the specified binary operation on the input vectors.
+    - Python dtype: `tuple[Vec3]`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
-Often used in mathematical and geometric computations within AI pipelines, the CM_Vec3BinaryOperation node performs a specified binary operation on two Vec3 vectors, resulting in a new Vec3 vector, which is essential for operations like vector addition, subtraction, or cross product in 3D space applications.
+
 ## Source code
 ```python
 class Vec3BinaryOperation:

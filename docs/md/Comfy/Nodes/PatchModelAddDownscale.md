@@ -4,46 +4,46 @@
 - Category: `_for_testing`
 - Output node: `False`
 
-This node applies a downscaling and optional upscaling transformation to specific blocks within a model's architecture, based on sigma values derived from start and end percentages. It allows for the adjustment of the model's internal representations at different stages of processing, potentially enhancing detail or altering the model's behavior in generating outputs.
+The PatchModelAddDownscale node is designed to modify a given model by introducing downscaling and upscaling operations at specified points within the model's architecture. This process aims to adjust the model's internal representations by altering the resolution of feature maps, potentially enhancing the model's efficiency or performance on certain tasks.
 ## Input types
 ### Required
 - **`model`**
-    - The model to be patched with downscaling and optional upscaling transformations. It serves as the base for modifications aimed at altering the model's internal processing for potentially enhanced output generation.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - The model to be patched with downscaling and upscaling operations. This parameter is crucial as it defines the base model that will undergo modifications.
+    - Python dtype: `torch.nn.Module`
 - **`block_number`**
-    - Specifies the block within the model's architecture where the downscaling transformation is to be applied. This allows for targeted modification of the model's processing at a specific stage.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the block number within the model where the downscaling operation should be applied. This parameter allows for targeted modification of the model's architecture.
+    - Python dtype: `int`
 - **`downscale_factor`**
-    - Determines the factor by which the input is downscaled. A higher downscale factor results in a more significant reduction in dimensionality, potentially affecting the model's detail capturing capability.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The factor by which the feature map's resolution is reduced during the downscaling operation. A higher downscale factor leads to a more significant reduction in resolution.
+    - Python dtype: `float`
 - **`start_percent`**
-    - Defines the starting point of the sigma range for applying the downscaling transformation. This parameter helps in targeting the transformation to specific stages of the model's processing based on noise levels.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Defines the starting point of the sigma range for applying the downscaling operation, based on the model's internal noise levels.
+    - Python dtype: `float`
 - **`end_percent`**
-    - Sets the end point of the sigma range for the downscaling transformation, allowing for precise control over the stages of the model's processing that are affected.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Defines the ending point of the sigma range for applying the downscaling operation, allowing for precise control over when the operation is performed.
+    - Python dtype: `float`
 - **`downscale_after_skip`**
-    - A boolean flag indicating whether the downscaling should be applied after a skip connection within the model. This choice can influence how the model integrates information across different processing stages.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOLEAN`
+    - A boolean flag indicating whether the downscaling operation should be applied after skip connections within the model. This choice can affect the flow of information through the model.
+    - Python dtype: `bool`
 - **`downscale_method`**
-    - Specifies the method used for downscaling the input. Different methods can affect the quality and characteristics of the downscaled output.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the method used for downscaling the feature maps. Different methods can affect the quality and characteristics of the downscaled representations.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`upscale_method`**
-    - Determines the method used for optional upscaling after downscaling. Choosing an appropriate method can influence the restoration of detail in the upscaled output.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the method used for upscaling the feature maps back to their original resolution. This parameter complements the downscale_method by restoring the feature map size.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`model`**
-    - The patched model with downscaling and optional upscaling transformations applied to specified blocks. This modified model can exhibit altered behavior in generating outputs, potentially with enhanced detail or different characteristics.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - The modified model with downscaling and upscaling operations applied at specified points. This output reflects the adjustments made to the model's architecture.
+    - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSampler,KRestartSamplerAdv,ModelSamplingDiscrete,LoraLoader,IPAdapterApply`

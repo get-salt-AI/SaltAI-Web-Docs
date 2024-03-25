@@ -4,30 +4,30 @@
 - Category: `latent/inpaint`
 - Output node: `False`
 
-This node is designed for encoding images for inpainting tasks using a Variational Autoencoder (VAE). Inpainting involves filling in missing or corrupted parts of images. The node processes images, applies a mask to identify the areas to inpaint, optionally grows the mask to ensure seamless inpainting, and encodes the modified image into a latent representation using a VAE.
+This node is designed for encoding images into a latent representation suitable for inpainting tasks, incorporating additional preprocessing steps to adjust the input image and mask for optimal encoding by the VAE model.
 ## Input types
 ### Required
 - **`pixels`**
-    - The input image to be encoded for inpainting. It is the primary data that undergoes the inpainting process.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
-- **`vae`**
-    - The Variational Autoencoder model used for encoding the image into a latent representation.
-    - Python dtype: `VAE`
-    - Comfy dtype: `VAE`
-- **`mask`**
-    - A mask indicating the areas of the image to be inpainted. The mask guides the inpainting process by highlighting the regions that need reconstruction.
+    - The input image to be encoded. This image undergoes preprocessing and resizing to match the VAE model's expected input dimensions before encoding.
     - Python dtype: `torch.Tensor`
+- **`vae`**
+    - Comfy dtype: `VAE`
+    - The VAE model used for encoding the image into its latent representation. It plays a crucial role in the transformation process, determining the quality and characteristics of the output latent space.
+    - Python dtype: `torch.nn.Module`
+- **`mask`**
     - Comfy dtype: `MASK`
+    - A mask indicating the regions of the input image to be inpainted. It is used to modify the image before encoding, ensuring that the VAE focuses on the relevant areas.
+    - Python dtype: `torch.Tensor`
 - **`grow_mask_by`**
-    - An optional parameter to expand the mask by a certain number of pixels. Growing the mask can help achieve smoother transitions between inpainted areas and the original image.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies how much to expand the inpainting mask to ensure seamless transitions in the latent space. A larger value increases the area affected by inpainting.
+    - Python dtype: `int`
 ## Output types
 - **`latent`**
-    - The encoded latent representation of the inpainted image. This output is used for further processing or generation tasks.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The output includes the encoded latent representation of the image and a noise mask, both crucial for subsequent inpainting tasks.
+    - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `VHS_DuplicateLatents,KSampler,Reroute,KSampler Adv. (Efficient),Fast Muter (rgthree),KSampler (Efficient),VAEDecode`

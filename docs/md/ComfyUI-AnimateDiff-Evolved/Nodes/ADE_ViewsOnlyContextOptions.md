@@ -4,31 +4,31 @@
 - Category: `Animate Diff 🎭🅐🅓/context opts`
 - Output node: `False`
 
-This node is designed to create context options specifically for viewing purposes. It takes a set of view options as input and, based on additional parameters such as start percent and guarantee steps, generates a new context options group that includes the provided view options with the schedule set to view as context. This allows for the customization of how content is viewed, potentially enhancing user experience by adjusting the start point and ensuring a minimum number of steps.
+This node is designed to create context options specifically tailored for viewing animations, incorporating parameters such as start percentage and guarantee steps to customize the animation's initiation and progression.
 ## Input types
 ### Required
 - **`view_opts_req`**
-    - The primary input specifying the view options required for creating the context options. This parameter is crucial as it defines the base upon which the new context options are built, influencing how content will be viewed.
-    - Python dtype: `ContextOptions`
     - Comfy dtype: `VIEW_OPTS`
+    - Specifies the required view options to tailor the context for viewing animations, ensuring the animation's parameters are set according to the provided view options.
+    - Python dtype: `ContextOptions`
 ### Optional
 - **`start_percent`**
-    - Determines the starting point as a percentage of the total content, allowing for flexibility in where the viewing begins. This parameter can significantly affect the user's viewing experience by customizing the initial view.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Determines the starting point of the animation as a percentage, allowing for precise control over where the animation begins.
+    - Python dtype: `float`
 - **`guarantee_steps`**
-    - Specifies the minimum number of steps to be guaranteed in the viewing process, ensuring a certain depth or duration of content exploration.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the minimum number of steps guaranteed in the animation, ensuring a certain length and progression.
+    - Python dtype: `int`
 - **`prev_context`**
-    - An optional parameter that allows for the inclusion of previous context options, enabling the accumulation and extension of viewing configurations over multiple iterations.
-    - Python dtype: `ContextOptionsGroup`
     - Comfy dtype: `CONTEXT_OPTIONS`
+    - Allows for the inclusion of previous context options, enabling the chaining or layering of context configurations for complex animations.
+    - Python dtype: `ContextOptionsGroup or None`
 ## Output types
-- **`context_options`**
-    - The output is a group of context options that includes the newly created view-based context options. This group can be used to configure and customize the viewing experience further.
-    - Python dtype: `ContextOptionsGroup`
+- **`CONTEXT_OPTS`**
     - Comfy dtype: `CONTEXT_OPTIONS`
+    - Provides the modified context options group, enriched with the newly created context options for viewing animations.
+    - Python dtype: `ContextOptionsGroup`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

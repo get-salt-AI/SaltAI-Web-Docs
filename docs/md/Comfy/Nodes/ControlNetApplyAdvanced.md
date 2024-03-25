@@ -4,42 +4,46 @@
 - Category: `conditioning`
 - Output node: `False`
 
-This node applies advanced control net transformations to a given image, based on the provided conditioning, control net, and strength parameters. It supports additional customization through start and end percentages, allowing for more precise control over the application of the control net. The method enhances or modifies the conditioning of the image by applying control hints derived from the image itself, adjusted by the strength parameter, and further refined by the specified percentage range.
+This node applies advanced control net transformations to conditioning data based on an image and a control net model. It allows for fine-tuned adjustments of the control net's influence over the generated content, enabling more precise and varied modifications to the conditioning.
 ## Input types
 ### Required
 - **`positive`**
-    - The positive conditioning to be applied or enhanced on the image. It plays a crucial role in determining the final output by providing a base set of conditions that the control net aims to amplify or modify.
-    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - The positive conditioning data to which the control net transformations will be applied. It represents the desired attributes or features to enhance or maintain in the generated content.
+    - Python dtype: `List[Tuple[str, Dict[str, Any]]]`
 - **`negative`**
-    - The negative conditioning, serving as a counterbalance to the positive conditioning. It helps in fine-tuning the final output by providing conditions that the control net should suppress or negate.
-    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - The negative conditioning data, representing attributes or features to diminish or remove from the generated content. The control net transformations are applied to this data as well, allowing for a balanced adjustment of the content's characteristics.
+    - Python dtype: `List[Tuple[str, Dict[str, Any]]]`
 - **`control_net`**
-    - The control net model used to apply transformations to the image. It is a crucial component that determines how the conditioning is modified or enhanced.
-    - Python dtype: `ControlNet`
     - Comfy dtype: `CONTROL_NET`
+    - The control net model is crucial for defining the specific adjustments and enhancements to the conditioning data. It interprets the reference image and strength parameters to apply transformations, significantly influencing the final output by modifying attributes in both positive and negative conditioning data.
+    - Python dtype: `ControlNet`
 - **`image`**
-    - The target image to which the control net transformations are applied. The image serves as a basis for generating control hints that guide the conditioning modification.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The image serving as a reference for the control net transformations. It influences the adjustments made by the control net to the conditioning data, guiding the enhancement or suppression of specific features.
+    - Python dtype: `torch.Tensor`
 - **`strength`**
-    - Determines the intensity of the control net application. A higher strength value results in more pronounced modifications to the conditioning.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A scalar value determining the intensity of the control net's influence on the conditioning data. Higher values result in more pronounced adjustments.
+    - Python dtype: `float`
 - **`start_percent`**
-    - Specifies the starting percentage of the control net application, allowing for targeted modifications within a specific range of the image.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The starting percentage of the control net's effect, allowing for gradual application of transformations over a specified range.
+    - Python dtype: `float`
 - **`end_percent`**
-    - Defines the ending percentage of the control net application, complementing the start_percent to confine the control net's effects within a precise segment of the image.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The ending percentage of the control net's effect, defining the range over which the transformations are applied. This enables more nuanced control over the adjustment process.
+    - Python dtype: `float`
 ## Output types
-- **`conditioning`**
-    - The adjusted negative conditioning post control net application, showcasing the suppression or negation of certain conditions.
-    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
+- **`positive`**
     - Comfy dtype: `CONDITIONING`
+    - The modified positive conditioning data after the application of control net transformations, reflecting the enhancements made based on the input parameters.
+    - Python dtype: `List[Tuple[str, Dict[str, Any]]]`
+- **`negative`**
+    - Comfy dtype: `CONDITIONING`
+    - The modified negative conditioning data after the application of control net transformations, reflecting the suppression or removal of specific features based on the input parameters.
+    - Python dtype: `List[Tuple[str, Dict[str, Any]]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSampler,KSamplerAdvanced,ControlNetApplyAdvanced,KSampler //Inspire,UltimateSDUpscale,ToBasicPipe,FaceDetailer,Reroute,SamplerCustom,Bus Node`

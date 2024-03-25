@@ -4,30 +4,30 @@
 - Category: `advanced/loaders`
 - Output node: `False`
 
-The `CheckpointLoader` node is designed to load model checkpoints along with optional VAE and CLIP components based on specified configuration and checkpoint names. It facilitates the initialization of models for further operations or inference by loading the necessary components from disk.
+The CheckpointLoader node is designed for advanced loading operations, specifically to load model checkpoints along with their configurations. It facilitates the retrieval of model components necessary for initializing and running generative models, including configurations and checkpoints from specified directories.
 ## Input types
 ### Required
 - **`config_name`**
-    - Specifies the name of the configuration file to use, which is essential for determining the model's architecture and parameters for initialization.
-    - Python dtype: `str`
-    - Comfy dtype: `STRING`
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the name of the configuration file to be used. This is crucial for determining the model's parameters and settings, affecting the model's behavior and performance.
+    - Python dtype: `List[str]`
 - **`ckpt_name`**
-    - Indicates the specific checkpoint file name to load, which contains the trained model weights necessary for the model's operation.
-    - Python dtype: `str`
-    - Comfy dtype: `STRING`
+    - Comfy dtype: `COMBO[STRING]`
+    - Indicates the name of the checkpoint file to be loaded. This directly influences the state of the model being initialized, impacting its initial weights and biases.
+    - Python dtype: `List[str]`
 ## Output types
 - **`model`**
-    - Returns the main model loaded from the checkpoint.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - Represents the primary model loaded from the checkpoint, ready for further operations or inference.
+    - Python dtype: `torch.nn.Module`
 - **`clip`**
-    - Optionally returns the CLIP component if available and requested.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `CLIP`
-- **`vae`**
-    - Optionally returns the VAE component if available and requested.
+    - Provides the CLIP model component, if available and requested, loaded from the checkpoint.
     - Python dtype: `torch.nn.Module`
+- **`vae`**
     - Comfy dtype: `VAE`
+    - Delivers the VAE model component, if available and requested, loaded from the checkpoint.
+    - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

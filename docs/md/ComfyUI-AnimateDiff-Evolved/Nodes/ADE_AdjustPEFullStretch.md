@@ -4,27 +4,27 @@
 - Category: `Animate Diff 🎭🅐🅓/ad settings/pe adjust`
 - Output node: `False`
 
-This node is designed to adjust the positional encoding (PE) of a model by stretching it. It allows for the modification of the model's PE based on specified parameters, such as the amount of stretch to apply. This adjustment can be crucial for tasks that require altering the model's understanding of position or sequence length, such as in animation or sequence generation tasks.
+The ADE_AdjustPEFullStretch node is designed for adjusting the positional encoding (PE) stretch of an animation, allowing for dynamic modification of animation length and timing. It provides functionality to apply specific adjustments to the PE, such as stretching, based on user-defined parameters.
 ## Input types
 ### Required
 - **`pe_stretch`**
-    - Specifies the amount by which the positional encoding should be stretched. This parameter directly influences the model's perception of sequence length and can be pivotal for adjusting the animation or sequence generation.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the amount by which the positional encoding (PE) should be stretched, effectively altering the animation's length and timing.
+    - Python dtype: `int`
 - **`print_adjustment`**
-    - A boolean flag that, when set to True, enables the logging of adjustments made to the positional encoding. This can be useful for debugging or understanding the modifications applied.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOLEAN`
+    - A boolean flag that, when set to True, enables the printing of adjustment details for debugging or informational purposes.
+    - Python dtype: `bool`
 ### Optional
 - **`prev_pe_adjust`**
-    - An optional parameter that allows for the accumulation of positional encoding adjustments. If provided, the current adjustments will be added to this existing group of adjustments.
-    - Python dtype: `AdjustPEGroup or None`
     - Comfy dtype: `PE_ADJUST`
+    - An optional parameter that allows for the chaining of multiple PE adjustments by taking a previous PE adjustment group as input.
+    - Python dtype: `AdjustPEGroup`
 ## Output types
 - **`pe_adjust`**
-    - Returns an updated group of positional encoding adjustments, incorporating the adjustments specified in the input parameters.
-    - Python dtype: `AdjustPEGroup`
     - Comfy dtype: `PE_ADJUST`
+    - Returns an updated PE adjustment group, incorporating the specified PE stretch and any previous adjustments.
+    - Python dtype: `AdjustPEGroup`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

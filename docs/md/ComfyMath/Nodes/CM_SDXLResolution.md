@@ -4,23 +4,27 @@
 - Category: `math/graphics`
 - Output node: `False`
 
-This node takes a resolution string as input and returns the width and height as separate integers. It is designed to work with specific resolutions supported by the SDXL framework, parsing the input string to extract the numerical values.
+This node is designed to convert a string representation of a resolution into its numerical width and height components. It serves as a utility within the math/graphics category, facilitating the manipulation and analysis of image resolutions by breaking down their string format into distinct numerical values.
 ## Input types
 ### Required
 - **`resolution`**
-    - Specifies the desired resolution in a 'width x height' format string. It must match one of the predefined resolutions supported by the SDXL framework, affecting the output width and height directly.
+    - Comfy dtype: `COMBO[STRING]`
+    - The 'resolution' parameter takes a string input representing an image resolution in the format 'widthxheight'. It is crucial for determining the output numerical values of width and height, effectively translating textual resolution data into a form that can be directly utilized in image processing tasks.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
-- **`int`**
-    - The height component of the specified resolution, extracted from the input string.
-    - Python dtype: `int`
+- **`width`**
     - Comfy dtype: `INT`
+    - The 'width' output represents the numerical width component of the input resolution string.
+    - Python dtype: `int`
+- **`height`**
+    - Comfy dtype: `INT`
+    - The 'height' output represents the numerical height component of the input resolution string.
+    - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `Eff. Loader SDXL,intToFloat _O`
 
-The CM_SDXLResolution node is primarily utilized for setting the target resolution for image processing tasks within the pipeline, by taking a resolution string as input and outputting the corresponding width and height as integers. This node ensures that AI models and custom nodes operate on images at consistent and optimal resolutions, as defined by the user or the pipeline's requirements.
+
 ## Source code
 ```python
 class SDXLResolution:

@@ -4,26 +4,26 @@
 - Category: `image/postprocessing`
 - Output node: `False`
 
-The `ImageQuantize` node performs color quantization on an input image tensor, reducing the number of colors to a specified amount. This process can include dithering to reduce color banding, with support for different dithering techniques including none, Floyd-Steinberg, and Bayer dithering.
+The ImageQuantize node is designed to reduce the number of colors in an image to a specified number, optionally applying dithering techniques to maintain visual quality. This process is useful for creating palette-based images or reducing the color complexity for certain applications.
 ## Input types
 ### Required
 - **`image`**
-    - The input image tensor to be quantized. The quantization process reduces the color palette of this image to the specified number of colors, potentially applying dithering to improve visual quality.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The input image tensor to be quantized. It affects the node's execution by being the primary data upon which color reduction is performed.
+    - Python dtype: `torch.Tensor`
 - **`colors`**
-    - Specifies the number of colors to reduce the input image to during the quantization process. This directly impacts the visual fidelity and the size of the resulting image.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the number of colors to reduce the image to. It directly influences the quantization process by determining the color palette size.
+    - Python dtype: `int`
 - **`dither`**
-    - Determines the dithering technique to be applied during quantization, which can help in reducing color banding effects. Supported options include 'none', 'floyd-steinberg', and various orders of 'bayer' dithering.
+    - Comfy dtype: `COMBO[STRING]`
+    - Determines the dithering technique to be applied during quantization, affecting the visual quality and appearance of the output image.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`image`**
-    - The quantized image tensor with reduced color palette. This output maintains the original dimensions of the input image but with a limited number of colors.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The quantized version of the input image, with reduced color complexity and optionally dithered to maintain visual quality.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

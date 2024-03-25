@@ -4,24 +4,24 @@
 - Category: `advanced/model`
 - Output node: `False`
 
-This node applies a patch to a given model to enhance its sampling capabilities by integrating a custom sampling strategy. It clones the input model and adds a new sampling method, which is a combination of StableCascadeSampling and EPS, configured with a specified shift parameter. This allows for advanced control over the sampling process, potentially improving the model's performance or generating results with specific characteristics.
+This node is designed to enhance the sampling process of models by applying a stable cascade patch. It clones the input model and integrates advanced sampling techniques, thereby potentially improving the model's performance or altering its behavior in a specified manner.
 ## Input types
 ### Required
 - **`model`**
-    - The model to which the sampling strategy will be applied. This parameter is crucial as it determines the base model that will be enhanced with the new sampling method.
-    - Python dtype: `comfy.model_sampling.Model`
     - Comfy dtype: `MODEL`
+    - The model to which the stable cascade sampling patch will be applied. This parameter is crucial as it determines the base model that will undergo modification.
+    - Python dtype: `comfy.model_base.BaseModel`
 - **`shift`**
-    - A floating-point value that specifies the shift parameter for the new sampling method. This parameter fine-tunes the sampling process, affecting the characteristics of the generated results.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A floating-point value that specifies the degree of shift to be applied during the sampling process. This parameter influences how the model's behavior is altered by the patch.
+    - Python dtype: `float`
 ## Output types
 - **`model`**
-    - The enhanced model with the new sampling method applied. This model is a clone of the input model, augmented with the custom sampling strategy.
-    - Python dtype: `comfy.model_sampling.Model`
     - Comfy dtype: `MODEL`
+    - The modified model with the stable cascade sampling patch applied. This output reflects the enhanced or altered version of the input model.
+    - Python dtype: `comfy.model_base.BaseModel`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 

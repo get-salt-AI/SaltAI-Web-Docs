@@ -4,26 +4,26 @@
 - Category: `_for_testing`
 - Output node: `False`
 
-The `LatentBlend` node blends two sets of latent representations (samples) based on a specified blend factor. It supports different blending modes to combine the features of the input samples in various ways, allowing for flexible manipulation of latent spaces.
+The LatentBlend node is designed to blend two sets of latent samples together, based on a specified blend factor and mode. It allows for the creation of new, hybrid samples by combining features from both input sets in a controlled manner.
 ## Input types
 ### Required
 - **`samples1`**
-    - The first set of latent representations to be blended. It plays a crucial role in determining the base features of the output.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The first set of latent samples to be blended. It serves as the base for the blending operation.
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`samples2`**
-    - The second set of latent representations to be blended with the first. It contributes to the final blend by adding or modifying features based on the blend mode and factor.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The second set of latent samples to be blended with the first set. It contributes to the new, hybrid samples created by the blend operation.
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`blend_factor`**
-    - A value between 0 and 1 that determines the weight of each input sample in the final blend. A higher blend factor gives more weight to the features of the first set of samples.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A float value that determines the proportion of the first set of samples in the final blend. A higher value gives more weight to the first set, while a lower value favors the second set.
+    - Python dtype: `float`
 ## Output types
 - **`latent`**
-    - The blended latent representations, combining features from both input sets according to the blend factor and mode.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The output is a set of blended latent samples, combining features from both input sets according to the blend factor and mode.
+    - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `NNLatentUpscale,SamplerCustom,KSamplerAdvanced,Mute / Bypass Repeater (rgthree)`

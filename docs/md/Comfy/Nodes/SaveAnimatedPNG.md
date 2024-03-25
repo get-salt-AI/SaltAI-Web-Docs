@@ -4,28 +4,28 @@
 - Category: `image/animation`
 - Output node: `True`
 
-This node is responsible for saving a sequence of images as an animated PNG file. It iterates through a collection of PIL images, saving them together in a single file with specified animation settings such as frame duration, quality, and whether the animation should be lossless. Metadata can also be included in the saved file.
+The SaveAnimatedPNG node is designed for creating and saving animated PNG images from a sequence of frames. It handles the assembly of individual image frames into a cohesive animation, allowing for customization of frame duration, looping, and metadata inclusion.
 ## Input types
 ### Required
 - **`images`**
-    - The sequence of images to be saved as an animated PNG. This parameter is crucial as it directly contains the visual content that will be animated.
-    - Python dtype: `List[PIL.Image.Image]`
     - Comfy dtype: `IMAGE`
+    - A list of images to be processed and saved as an animated PNG. Each image in the list represents a frame in the animation.
+    - Python dtype: `List[torch.Tensor]`
 - **`filename_prefix`**
-    - The prefix for the output file names. This parameter helps in organizing and identifying the output files easily.
-    - Python dtype: `str`
     - Comfy dtype: `STRING`
+    - Specifies the base name for the output file, which will be used as a prefix for the generated animated PNG files.
+    - Python dtype: `str`
 - **`fps`**
-    - Frames per second for the animation, determining the playback speed of the animated PNG. A higher value results in a faster animation.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The frames per second rate for the animation, controlling how quickly the frames are displayed.
+    - Python dtype: `float`
 - **`compress_level`**
-    - The compression level for the PNG files, affecting the file size and quality. A higher value results in better compression but might affect image quality.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The level of compression applied to the animated PNG files, affecting file size and image clarity.
+    - Python dtype: `int`
 ## Output types
 - **`ui`**
-    - The UI representation of the saved animated PNG, including a list of generated files and whether the animation is single-frame or multi-frame.
+    - Provides a UI component displaying the generated animated PNG images and indicating whether the animation is single-frame or multi-frame.
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

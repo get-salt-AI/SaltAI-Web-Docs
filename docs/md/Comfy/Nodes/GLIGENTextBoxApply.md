@@ -4,46 +4,46 @@
 - Category: `conditioning/gligen`
 - Output node: `False`
 
-This node applies text-based conditioning to a given set of conditioning parameters using a GLIGEN text box model. It encodes the provided text using a CLIP model, then modifies the conditioning parameters to include position-based information derived from the encoded text, dimensions, and specified position.
+The GLIGENTextBoxApply node is designed to integrate text-based conditioning into a generative model's input, specifically by applying text box parameters and encoding them using a CLIP model. This process enriches the conditioning with spatial and textual information, facilitating more precise and context-aware generation.
 ## Input types
 ### Required
 - **`conditioning_to`**
-    - The initial set of conditioning parameters to which the text-based conditioning will be applied. It serves as the base for further modifications.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - Specifies the initial conditioning input to which the text box parameters and encoded text information will be appended. It plays a crucial role in determining the final output by integrating new conditioning data.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 - **`clip`**
-    - The CLIP model used for encoding the provided text into a format that can be utilized for conditioning.
-    - Python dtype: `CLIP`
     - Comfy dtype: `CLIP`
+    - The CLIP model used for encoding the provided text into a format that can be utilized by the generative model. It's essential for converting textual information into a compatible conditioning format.
+    - Python dtype: `CLIP`
 - **`gligen_textbox_model`**
-    - The GLIGEN model responsible for generating text boxes based on the encoded text and specified dimensions.
-    - Python dtype: `GLIGEN`
     - Comfy dtype: `GLIGEN`
+    - Represents the specific GLIGEN model configuration to be used for generating the text box. It's crucial for ensuring that the text box is generated according to the desired specifications.
+    - Python dtype: `GLIGEN`
 - **`text`**
-    - The text to be encoded and applied as part of the conditioning. It supports multiline input.
-    - Python dtype: `str`
     - Comfy dtype: `STRING`
+    - The text content to be encoded and integrated into the conditioning. It provides the semantic information that guides the generative model.
+    - Python dtype: `str`
 - **`width`**
-    - The width of the text box in pixels.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The width of the text box in pixels. It defines the spatial dimension of the text box within the generated image.
+    - Python dtype: `int`
 - **`height`**
-    - The height of the text box in pixels.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The height of the text box in pixels. Similar to width, it defines the spatial dimension of the text box within the generated image.
+    - Python dtype: `int`
 - **`x`**
-    - The x-coordinate of the top-left corner of the text box.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The x-coordinate of the top-left corner of the text box within the generated image. It specifies the text box's position horizontally.
+    - Python dtype: `int`
 - **`y`**
-    - The y-coordinate of the top-left corner of the text box.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The y-coordinate of the top-left corner of the text box within the generated image. It specifies the text box's position vertically.
+    - Python dtype: `int`
 ## Output types
 - **`conditioning`**
-    - The modified set of conditioning parameters, now including the text-based conditioning.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - The enriched conditioning output, which includes the original conditioning data along with the newly appended text box parameters and encoded text information. It's used to guide the generative model in producing context-aware outputs.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSampler,ToDetailerPipe`

@@ -4,38 +4,38 @@
 - Category: `mask/compositing`
 - Output node: `False`
 
-The `PorterDuffImageComposite` node applies various Porter-Duff compositing modes to combine source and destination images and their respective alpha channels. It supports a range of compositing operations such as ADD, CLEAR, DARKEN, etc., each affecting the output image and alpha channel differently based on the specified mode.
+The PorterDuffImageComposite node is designed to perform image compositing using the Porter-Duff compositing operators. It allows for the combination of source and destination images according to various blending modes, enabling the creation of complex visual effects by manipulating image transparency and overlaying images in creative ways.
 ## Input types
 ### Required
 - **`source`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `IMAGE`
+    - The source image tensor to be composited over the destination image. It plays a crucial role in determining the final visual outcome based on the selected compositing mode.
+    - Python dtype: `torch.Tensor`
 - **`source_alpha`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `MASK`
+    - The alpha channel of the source image, which specifies the transparency of each pixel in the source image. It affects how the source image blends with the destination image.
+    - Python dtype: `torch.Tensor`
 - **`destination`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `IMAGE`
+    - The destination image tensor that serves as the backdrop over which the source image is composited. It contributes to the final composited image based on the blending mode.
+    - Python dtype: `torch.Tensor`
 - **`destination_alpha`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `MASK`
+    - The alpha channel of the destination image, defining the transparency of the destination image's pixels. It influences the blending of the source and destination images.
+    - Python dtype: `torch.Tensor`
 - **`mode`**
-    - Specifies the Porter-Duff compositing mode to use for combining the images.
+    - Comfy dtype: `COMBO[STRING]`
+    - The Porter-Duff compositing mode to apply, which determines how the source and destination images are blended together. Each mode creates different visual effects.
     - Python dtype: `PorterDuffMode`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`image`**
-    - The composited image resulting from the applied Porter-Duff mode.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
-- **`mask`**
-    - The alpha channel of the composited image, indicating its transparency.
+    - The composited image resulting from the application of the specified Porter-Duff mode.
     - Python dtype: `torch.Tensor`
+- **`mask`**
     - Comfy dtype: `MASK`
+    - The alpha channel of the composited image, indicating the transparency of each pixel.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `PorterDuffImageComposite`

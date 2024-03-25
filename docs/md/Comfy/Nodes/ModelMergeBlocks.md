@@ -4,36 +4,36 @@
 - Category: `advanced/model_merging`
 - Output node: `False`
 
-This node merges two models by blending their components based on specified ratios. It allows for fine-tuned control over how different parts of the models are combined, making it useful for creating hybrid models with characteristics of both input models.
+ModelMergeBlocks is designed for advanced model merging operations, allowing for the integration of two models with customizable blending ratios for different parts of the models. This node facilitates the creation of hybrid models by selectively merging components from two source models based on specified parameters.
 ## Input types
 ### Required
 - **`model1`**
-    - The first model to be merged. It serves as the base model which will be cloned and modified by adding patches from the second model.
-    - Python dtype: `comfy.model_base.Model`
     - Comfy dtype: `MODEL`
+    - The first model to be merged. It serves as the base model onto which patches from the second model are applied.
+    - Python dtype: `comfy.model_base.Model`
 - **`model2`**
-    - The second model from which key patches are extracted and merged into the first model based on specified ratios.
-    - Python dtype: `comfy.model_base.Model`
     - Comfy dtype: `MODEL`
+    - The second model from which patches are extracted and applied to the first model, based on the specified blending ratios.
+    - Python dtype: `comfy.model_base.Model`
 - **`input`**
-    - A default ratio for merging model components not explicitly specified by other parameters. It affects the overall blending of the two models.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Specifies the blending ratio for the input layer of the models. It determines how much of the second model's input layer is merged into the first model.
+    - Python dtype: `float`
 - **`middle`**
-    - Specifies the blending ratio for components in the middle of the model structure.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Defines the blending ratio for the middle layers of the models. This parameter controls the integration level of the models' middle layers.
+    - Python dtype: `float`
 - **`out`**
-    - Determines the blending ratio for the output components of the model.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Determines the blending ratio for the output layer of the models. It affects the final output by adjusting the contribution of the second model's output layer.
+    - Python dtype: `float`
 ## Output types
 - **`model`**
-    - The resulting merged model, incorporating elements from both input models according to the specified ratios.
-    - Python dtype: `comfy.model_base.Model`
     - Comfy dtype: `MODEL`
+    - The resulting merged model, which is a hybrid of the two input models with patches applied according to the specified blending ratios.
+    - Python dtype: `comfy.model_base.Model`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: `KSampler,CR Load LoRA`
 
 

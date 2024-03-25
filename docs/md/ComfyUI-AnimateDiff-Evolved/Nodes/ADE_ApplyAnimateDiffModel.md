@@ -4,47 +4,47 @@
 - Category: `Animate Diff 🎭🅐🅓/② Gen2 nodes ②`
 - Output node: `False`
 
-This node applies the AnimateDiff model in an advanced manner, allowing for more complex and detailed animation effects. It utilizes a subset of inputs from the normal ApplyAnimateDiffModelNode, enabling customization of motion through various parameters.
+The ADE_ApplyAnimateDiffModel node is designed to apply advanced AnimateDiff model configurations to generate motion in images. It leverages a comprehensive set of parameters to fine-tune the animation process, accommodating a wide range of motion effects and styles.
 ## Input types
 ### Required
 - **`motion_model`**
-    - Specifies the motion model to be applied. This is the core component that defines how the animation effect is generated.
-    - Python dtype: `MotionModelPatcher`
     - Comfy dtype: `MOTION_MODEL_ADE`
+    - Specifies the motion model to be used for animation. It is crucial for defining the animation's behavior and characteristics.
+    - Python dtype: `MotionModelPatcher`
 - **`start_percent`**
-    - Specifies the starting percentage of the animation effect, allowing for control over when the animation begins within the timeline.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Defines the starting percentage of the animation effect, marking the beginning of the motion's application.
+    - Python dtype: `float`
 - **`end_percent`**
-    - Specifies the ending percentage of the animation effect, providing control over when the animation ends within the timeline.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Specifies the ending percentage of the animation effect, determining the point at which the motion ceases.
+    - Python dtype: `float`
 ### Optional
 - **`motion_lora`**
-    - Optional parameter that allows for the adjustment of motion using LoRA (Low-Rank Adaptation) techniques.
-    - Python dtype: `MotionLoraList`
     - Comfy dtype: `MOTION_LORA`
+    - Optional parameter that allows for the adjustment of motion using LoRA (Low-Rank Adaptation) techniques, enhancing the animation's quality.
+    - Python dtype: `MotionLoraList`
 - **`scale_multival`**
-    - Allows for scaling of the animation effect, providing control over the intensity of the motion.
-    - Python dtype: `Optional[MultiVal]`
     - Comfy dtype: `MULTIVAL`
+    - Optional parameter that influences the scale of the animation effect, allowing for fine-tuning of the animation's intensity.
+    - Python dtype: `float`
 - **`effect_multival`**
-    - Enables customization of the animation effect through multiple values, offering flexibility in the animation's appearance.
-    - Python dtype: `Optional[MultiVal]`
     - Comfy dtype: `MULTIVAL`
+    - Optional parameter that adjusts the overall effect of the animation, enabling customization of the visual outcome.
+    - Python dtype: `float`
 - **`ad_keyframes`**
-    - Defines keyframes for the animation, allowing for precise control over the motion at specific points in the timeline.
-    - Python dtype: `Optional[ADKeyframeGroup]`
     - Comfy dtype: `AD_KEYFRAMES`
+    - Optional parameter that specifies keyframes for the animation, allowing for precise control over the motion's timing and sequence.
+    - Python dtype: `ADKeyframeGroup`
 - **`prev_m_models`**
-    - Optional parameter that includes previous motion models to be considered in the animation process, enabling more complex layering and sequencing of animations.
-    - Python dtype: `Optional[MotionModelGroup]`
     - Comfy dtype: `M_MODELS`
+    - Optional parameter that includes previous motion models to be considered in the current animation process, allowing for cumulative effects.
+    - Python dtype: `M_MODELS`
 ## Output types
 - **`m_models`**
-    - Outputs the modified motion models after applying the AnimateDiff model, reflecting the changes made through the input parameters.
-    - Python dtype: `MotionModelGroup`
     - Comfy dtype: `M_MODELS`
+    - Outputs the motion models used in the animation process, encapsulating all adjustments and configurations made.
+    - Python dtype: `M_MODELS`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `ADE_UseEvolvedSampling`

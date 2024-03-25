@@ -4,22 +4,22 @@
 - Category: `latent/batch`
 - Output node: `False`
 
-This node is designed to repeat the latent representations of samples a specified number of times. It can also handle repeating associated noise masks and adjusting batch indices accordingly, ensuring the repeated latents maintain their batch structure.
+The RepeatLatentBatch node is designed to replicate a given batch of latent representations a specified number of times, potentially including additional data like noise masks and batch indices. This functionality is crucial for operations that require multiple instances of the same latent data, such as data augmentation or specific generative tasks.
 ## Input types
 ### Required
 - **`samples`**
-    - The latent representations to be repeated. This input is crucial for generating multiple copies of the same latent structure, which can be useful in various generative tasks.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The 'samples' parameter represents the latent representations to be replicated. It is essential for defining the data that will undergo repetition.
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`amount`**
-    - Specifies how many times the input samples should be repeated. This parameter directly influences the size of the output latent batch, allowing for flexible batch size adjustments.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The 'amount' parameter specifies the number of times the input samples should be repeated. It directly influences the size of the output batch, thereby affecting the computational load and the diversity of the generated data.
+    - Python dtype: `int`
 ## Output types
 - **`latent`**
-    - The output is a modified version of the input latent representations, repeated the specified number of times along with any associated noise masks and batch indices.
-    - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
     - Comfy dtype: `LATENT`
+    - The output is a modified version of the input latent representations, replicated according to the specified 'amount'. It may include replicated noise masks and adjusted batch indices, if applicable.
+    - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSamplerAdvanced`

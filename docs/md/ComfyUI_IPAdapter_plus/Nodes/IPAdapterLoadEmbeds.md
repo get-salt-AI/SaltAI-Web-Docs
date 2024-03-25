@@ -4,23 +4,23 @@
 - Category: `ipadapter`
 - Output node: `False`
 
-The `IPAdapterLoadEmbeds` node is designed to load embedding vectors saved in a specific format (.ipadpt) from a designated directory. It facilitates the retrieval of pre-processed embeddings, which can be utilized in subsequent operations or models requiring such embeddings.
+This node is designed for loading pre-saved IPAdapter embeddings from a specified directory. It facilitates the retrieval of embeddings for further processing or analysis within the IPAdapter framework.
 ## Input types
 ### Required
 - **`embeds`**
-    - Specifies the file name of the embedding to be loaded. The selection is limited to files with the '.ipadpt' extension within the input directory, ensuring that only compatible embeddings are processed.
-    - Python dtype: `str`
-    - Comfy dtype: `STRING`
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the file names of the embeddings to be loaded. This allows for selective loading of embeddings based on the user's requirements.
+    - Python dtype: `List[str]`
 ## Output types
 - **`embeds`**
-    - Returns the loaded embedding tensor, making it available for further processing or analysis.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `EMBEDS`
+    - Returns the loaded embeddings as tensors, ready for use in subsequent IPAdapter operations.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
-The `IPAdapterLoadEmbeds` node is essential for loading pre-processed embedding vectors (.ipadpt format) from a specified directory, making these embeddings available for further processing or analysis in subsequent nodes. It accepts a directory containing `.ipadpt` files as input and outputs the corresponding embedding tensors.
+
 ## Source code
 ```python
 class IPAdapterLoadEmbeds:

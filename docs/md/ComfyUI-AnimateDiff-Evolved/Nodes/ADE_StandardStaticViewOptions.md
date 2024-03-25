@@ -4,27 +4,27 @@
 - Category: `Animate Diff 🎭🅐🅓/context opts/view opts`
 - Output node: `False`
 
-This node generates static view options for Animate Diff context, specifying the length and overlap of views. It allows for the customization of how animation frames are generated and overlapped, with an optional fuse method to determine how frames are combined.
+This node is designed to create static view options for the Animate Diff process, allowing for the customization of view length and overlap with optional fuse method adjustments.
 ## Input types
 ### Required
 - **`view_length`**
-    - Defines the total length of the view, impacting the number of frames generated for the animation.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the length of the view, affecting the granularity of the animation frames.
+    - Python dtype: `int`
 - **`view_overlap`**
-    - Specifies the amount of overlap between consecutive views, affecting the smoothness of the animation transition.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Determines the overlap between consecutive views, influencing the smoothness of the animation transition.
+    - Python dtype: `int`
 ### Optional
 - **`fuse_method`**
-    - Determines the method used to combine frames, influencing the final appearance of the animation.
+    - Comfy dtype: `COMBO[STRING]`
+    - Optional parameter that defines the method for fusing context, offering flexibility in the animation's visual continuity.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`view_opts`**
-    - The generated view options, encapsulating the configuration for static view generation in Animate Diff context.
-    - Python dtype: `ContextOptions`
     - Comfy dtype: `VIEW_OPTS`
+    - Outputs the configured view options, ready to be utilized in the Animate Diff process.
+    - Python dtype: `ContextOptions`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

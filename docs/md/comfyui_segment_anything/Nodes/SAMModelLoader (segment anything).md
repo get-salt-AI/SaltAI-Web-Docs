@@ -4,23 +4,23 @@
 - Category: `segment_anything`
 - Output node: `False`
 
-The SAMModelLoader node is responsible for loading a specific SAM (Segment Anything Model) based on the provided model name. It retrieves the model from a predefined list of available models, downloads it if necessary, and prepares it for inference by setting it to evaluation mode and moving it to the appropriate device (CPU or GPU).
+The SAMModelLoader node is designed to load and prepare SAM (Segment Anything Model) models for use in image segmentation tasks. It handles the retrieval and initialization of various SAM models, ensuring they are ready for segmentation operations.
 ## Input types
 ### Required
 - **`model_name`**
-    - Specifies the name of the SAM model to be loaded. This parameter is crucial as it determines which specific model is retrieved and prepared for use, impacting the node's execution and the results of the segmentation process.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the name of the SAM model to be loaded. This parameter is crucial for determining which specific model is retrieved and initialized for segmentation tasks.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`sam_model`**
-    - The loaded SAM model, ready for inference. This includes setting the model to evaluation mode and moving it to the appropriate device.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `SAM_MODEL`
+    - The loaded and initialized SAM model, ready for segmentation tasks.
+    - Python dtype: `torch.nn.Module`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: `GroundingDinoSAMSegment (segment anything)`
 
-The SAMModelLoader (segment anything) node is responsible for loading a specific SAM (Segment Anything Model) for use in image or video segmentation tasks. It takes a model name as input and outputs a SAM_MODEL, ready for inference, which is crucial for precisely segmenting various objects within the input data without requiring specific training on those objects.
+
 ## Source code
 ```python
 class SAMModelLoader:

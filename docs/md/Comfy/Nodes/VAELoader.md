@@ -4,18 +4,18 @@
 - Category: `loaders`
 - Output node: `False`
 
-The VAELoader node is responsible for loading a Variational Autoencoder (VAE) model. It supports loading specific pre-trained VAE models by name, including handling special cases for 'taesd' and 'taesdxl' models by loading their respective encoder and decoder components and setting a scale factor.
+The VAELoader node is designed for loading Variational Autoencoder (VAE) models, specifically tailored to handle both standard and approximate VAEs. It supports loading VAEs by name, including specialized handling for 'taesd' and 'taesdxl' models, and dynamically adjusts based on the VAE's specific configuration.
 ## Input types
 ### Required
 - **`vae_name`**
-    - Specifies the name of the VAE model to load. The node supports a predefined list of VAE models, including 'taesd' and 'taesdxl', and loads the corresponding model components.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the name of the VAE to be loaded. This parameter determines which VAE model is fetched and loaded, supporting a range of predefined VAE names including 'taesd' and 'taesdxl'.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`vae`**
-    - The loaded VAE model, ready for encoding or decoding operations.
-    - Python dtype: `comfy.sd.VAE`
     - Comfy dtype: `VAE`
+    - Returns the loaded VAE model, ready for further operations such as encoding or decoding. The output is a model object that encapsulates the loaded model's state.
+    - Python dtype: `comfy.sd.VAE`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `VAEDecode,VAEEncode,Reroute,CR Module Pipe Loader,VAEDecodeTiled,KSampler Adv. (Efficient),FaceDetailer,Anything Everywhere3,VAEEncodeTiled`

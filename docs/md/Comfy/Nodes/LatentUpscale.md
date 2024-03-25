@@ -4,34 +4,34 @@
 - Category: `latent`
 - Output node: `False`
 
-The LatentUpscale node is designed to upscale latent representations of images. It allows for the specification of the desired output dimensions (width and height) and the method of upscaling. Additionally, it supports cropping of the upscaled image to a specified method. This node is particularly useful for adjusting the resolution of latent images in preparation for further processing or visualization.
+The LatentUpscale node is designed for upscaling latent representations of images. It allows for the adjustment of the output image's dimensions and the method of upscaling, providing flexibility in enhancing the resolution of latent images.
 ## Input types
 ### Required
 - **`samples`**
-    - The latent representation of an image to be upscaled. This input is crucial as it provides the base data that the upscaling process will modify.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The latent representation of an image to be upscaled. This parameter is crucial for determining the starting point of the upscaling process.
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`upscale_method`**
+    - Comfy dtype: `COMBO[STRING]`
     - Specifies the method used for upscaling the latent image. Different methods can affect the quality and characteristics of the upscaled image.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`width`**
-    - The desired width of the upscaled image. This parameter allows for precise control over the dimensions of the output image.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The desired width of the upscaled image. If set to 0, it will be calculated based on the height to maintain the aspect ratio.
+    - Python dtype: `int`
 - **`height`**
-    - The desired height of the upscaled image. Similar to the width parameter, this allows for setting the specific height of the output.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The desired height of the upscaled image. If set to 0, it will be calculated based on the width to maintain the aspect ratio.
+    - Python dtype: `int`
 - **`crop`**
-    - Determines how the upscaled image should be cropped. This can be used to focus on or exclude certain parts of the image after upscaling.
+    - Comfy dtype: `COMBO[STRING]`
+    - Determines how the upscaled image should be cropped, affecting the final appearance and dimensions of the output.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`latent`**
-    - The upscaled latent representation of the image. This output is the result of applying the specified upscaling method and dimensions to the input latent image.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The upscaled latent representation of the image, ready for further processing or generation.
+    - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSampler`

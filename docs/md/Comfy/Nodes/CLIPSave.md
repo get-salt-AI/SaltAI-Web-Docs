@@ -4,17 +4,17 @@
 - Category: `advanced/model_merging`
 - Output node: `True`
 
-The `CLIPSave` node is designed for saving CLIP models along with additional information such as prompts and extra PNG metadata. It encapsulates the functionality to serialize and store the model's state, making it easier to manage and reuse models across different projects or experiments.
+The CLIPSave node is designed for saving CLIP models along with additional information such as prompts and extra PNG metadata. It encapsulates the functionality to serialize and store the model's state, facilitating the preservation and sharing of model configurations and their associated creative prompts.
 ## Input types
 ### Required
 - **`clip`**
-    - The CLIP model to be saved. This parameter is crucial as it represents the model whose state is being serialized for future use.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `CLIP`
+    - The CLIP model to be saved. This parameter is crucial as it represents the model whose state is to be serialized and stored.
+    - Python dtype: `torch.nn.Module`
 - **`filename_prefix`**
-    - A prefix for the filename under which the model and its associated data will be saved. This allows for organized storage and easy retrieval of saved models.
-    - Python dtype: `str`
     - Comfy dtype: `STRING`
+    - A prefix for the filename under which the model and its additional information will be saved. This parameter allows for organized storage and easy retrieval of saved models.
+    - Python dtype: `str`
 ## Output types
 The node doesn't have output types
 ## Usage tips

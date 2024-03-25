@@ -4,39 +4,39 @@
 - Category: `Animate Diff 🎭🅐🅓/ad settings/pe adjust`
 - Output node: `False`
 
-The ADE_AdjustPEManual node allows for manual adjustment of positional encoding (PE) parameters within the AnimateDiff framework. It provides a flexible interface for users to specify various PE adjustments, such as stretching, offsetting, and capping the initial PE length, which can significantly influence the animation generation process by modifying how the model perceives temporal information.
+The ADE_AdjustPEManual node allows for manual adjustment of positional encoding (PE) parameters within the AnimateDiff framework. It provides a flexible interface for users to specify various PE modification strategies, such as stretching, offsetting, or capping the length of PEs, to tailor the animation generation process to specific needs.
 ## Input types
 ### Required
 - **`cap_initial_pe_length`**
-    - Specifies the maximum length for the initial positional encoding. This parameter can be used to limit the PE length at the beginning of the animation, affecting the model's understanding of temporal dynamics.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the maximum length for the initial positional encoding. This parameter allows for capping the PE length at the beginning of the animation process, which can influence the animation's starting point or initial state.
+    - Python dtype: `int`
 - **`interpolate_pe_to_length`**
-    - Determines the length to which the positional encoding should be interpolated. This adjustment allows for the stretching or compressing of the PE, influencing the animation's perceived speed and timing.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Determines the length to which the positional encoding should be interpolated. This adjustment can affect the smoothness and duration of the generated animation.
+    - Python dtype: `int`
 - **`initial_pe_idx_offset`**
-    - Sets the starting index offset for the positional encoding. This can be used to skip initial frames, effectively starting the animation from a later point.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Sets the starting index offset for the positional encoding. This parameter shifts the starting point of the positional encoding, potentially altering the animation's initial conditions.
+    - Python dtype: `int`
 - **`final_pe_idx_offset`**
-    - Defines the ending index offset for the positional encoding, allowing for the exclusion of final frames and thus shortening the animation.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Defines the ending index offset for the positional encoding. It allows for adjustments to the ending conditions of the animation, affecting its final state.
+    - Python dtype: `int`
 - **`print_adjustment`**
-    - A flag to enable or disable printing of the adjustment details. Useful for debugging or understanding the impact of the adjustments made.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOLEAN`
+    - A boolean flag that, when set to true, enables the printing of adjustments made to the positional encoding. This feature aids in debugging and fine-tuning the animation parameters.
+    - Python dtype: `bool`
 ### Optional
 - **`prev_pe_adjust`**
-    - Allows for chaining of positional encoding adjustments by taking a previous adjustment group as input. This enables complex and cumulative modifications to the PE.
-    - Python dtype: `AdjustPEGroup`
     - Comfy dtype: `PE_ADJUST`
+    - An optional parameter that takes a previous positional encoding adjustment group. It allows for the accumulation and application of multiple PE adjustments over time.
+    - Python dtype: `AdjustPEGroup`
 ## Output types
 - **`pe_adjust`**
-    - Returns the updated group of positional encoding adjustments, incorporating the manual adjustments specified by the input parameters.
-    - Python dtype: `AdjustPEGroup`
     - Comfy dtype: `PE_ADJUST`
+    - Returns an updated positional encoding adjustment group, incorporating the manual adjustments specified by the input parameters.
+    - Python dtype: `AdjustPEGroup`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

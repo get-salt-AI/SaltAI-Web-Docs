@@ -4,76 +4,76 @@
 - Category: `ipadapter`
 - Output node: `False`
 
-IPAdapterApplyFaceID extends the functionality of IPAdapterApply to incorporate face identification features into the image processing pipeline. It leverages InsightFace for face detection and embedding, adjusting the image based on detected faces to enhance or modify facial features according to specified parameters.
+This node specializes in applying facial identification enhancements to images using IPAdapter technology. It leverages InsightFace for face detection and embedding, and integrates with CLIP vision models to enhance image processing with facial recognition capabilities.
 ## Input types
 ### Required
 - **`ipadapter`**
-    - The IPAdapter model to be applied. It's crucial for adapting the input image in accordance with the model's capabilities and configurations.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `IPADAPTER`
+    - The IPAdapter instance to be used for processing the image. It's crucial for defining the transformation and enhancement parameters specific to the image.
+    - Python dtype: `IPADAPTER`
 - **`clip_vision`**
-    - A CLIP vision model used for generating embeddings from images. This model plays a key role in aligning the image content with textual descriptions or other images.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `CLIP_VISION`
+    - A CLIP vision model instance used for enhancing the image processing with visual understanding capabilities.
+    - Python dtype: `CLIP_VISION`
 - **`insightface`**
-    - InsightFace model for face detection and embedding. It's essential for identifying and processing faces within the image, especially for FaceID models.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `INSIGHTFACE`
+    - An InsightFace model instance used for detecting and embedding faces within the image. Essential for facial identification tasks.
+    - Python dtype: `INSIGHTFACE`
 - **`image`**
-    - The input image to be processed. This is the primary data on which the IPAdapter and InsightFace models operate.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The image to be processed and enhanced with facial identification features.
+    - Python dtype: `IMAGE`
 - **`model`**
-    - The generative model to be used in conjunction with the IPAdapter. It defines the overall structure and capabilities of the image generation process.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - The model used for applying the IPAdapter transformations and enhancements to the image.
+    - Python dtype: `MODEL`
 - **`weight`**
-    - A floating-point value that influences the blending of conditions in the generation process. It affects how strongly the specified conditions are applied to the generated image.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A float value representing the weight of the transformation effect on the image. It influences the intensity of the applied enhancements.
+    - Python dtype: `float`
 - **`noise`**
-    - A parameter to control the addition of noise to the image. This can be used to introduce variability or to simulate certain effects.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A float value indicating the amount of noise to be added to the image. This can affect the visual quality and the effectiveness of facial identification.
+    - Python dtype: `float`
 - **`weight_type`**
-    - Specifies the method for applying weights to the generation process. Options include 'original', 'linear', and 'channel penalty', each affecting the blending and emphasis of conditions differently.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the type of weighting to be applied during the transformation. Options include 'original', 'linear', and 'channel penalty', each affecting the enhancement differently.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`start_at`**
-    - Defines the starting point of the generation process in terms of model sampling. It can be used to control the level of abstraction or detail in the generated image.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A float value indicating the starting point of the transformation effect. It determines the initial intensity of the applied enhancements.
+    - Python dtype: `float`
 - **`end_at`**
-    - Defines the ending point of the generation process in terms of model sampling. It affects the final appearance of the generated image by controlling the sampling resolution.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A float value indicating the ending point of the transformation effect. It determines the final intensity of the applied enhancements.
+    - Python dtype: `float`
 - **`faceid_v2`**
-    - A boolean flag indicating whether to use an updated version of the FaceID feature. This can affect the face detection and processing algorithms.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOLEAN`
+    - A boolean indicating whether to use the version 2 of the facial identification enhancements. This can alter the processing and results significantly.
+    - Python dtype: `bool`
 - **`weight_v2`**
-    - A floating-point value for the updated version of the weight parameter. It allows for finer control over the blending and application of conditions in the generation process.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A float value representing the weight of the version 2 transformation effect on the image. It influences the intensity of the applied enhancements when faceid_v2 is true.
+    - Python dtype: `float`
 - **`unfold_batch`**
-    - A boolean flag that controls the batching behavior during processing. Enabling this can improve performance by processing multiple items in parallel.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOLEAN`
+    - A boolean indicating whether to unfold the batch during processing. This can affect the performance and results of the facial identification enhancements.
+    - Python dtype: `bool`
 ### Optional
 - **`attn_mask`**
-    - An optional mask that can be applied to the attention mechanism of the model. This allows for selective focus or exclusion of certain parts of the image during processing.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - An optional mask to be applied during the transformation. It can direct the focus of the enhancements and affect the outcome.
+    - Python dtype: `MASK`
 ## Output types
 - **`model`**
-    - The modified generative model after applying the IPAdapter with FaceID features. It reflects the adjustments made to incorporate facial identification and processing.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - The model output represents the enhanced image after applying facial identification and other transformations. It encapsulates the modifications made to the original image, incorporating facial recognition capabilities.
+    - Python dtype: `MODEL`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSampler //Inspire,FreeU_V2,KSampler,Anything Everywhere,IPAdapterApply,ToIPAdapterPipe //Inspire,ToDetailerPipe,CR Apply LoRA Stack,IPAdapterApplyFaceID,FaceDetailer`
 
-The IPAdapterApplyFaceID node is designed for enhancing or modifying facial features in images by leveraging InsightFace for face detection and embedding. It inputs an IPAdapter model, CLIP vision features, InsightFace features, an image, and optionally an attention mask, and outputs a model adapted for precise facial identification and processing, ideal for applications requiring detailed face adjustments.
+
 ## Source code
 ```python
 class IPAdapterApplyFaceID(IPAdapterApply):

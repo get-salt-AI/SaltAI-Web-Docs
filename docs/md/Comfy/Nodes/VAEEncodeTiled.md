@@ -4,26 +4,26 @@
 - Category: `_for_testing`
 - Output node: `False`
 
-This node performs tiled encoding of an image using a Variational Autoencoder (VAE). It divides the input image into tiles of a specified size and encodes each tile separately. This approach is useful for handling large images that may not fit into memory if processed as a whole.
+The VAEEncodeTiled node is designed for encoding images into a latent space representation, specifically handling images in a tiled manner. This approach allows for processing larger images by dividing them into smaller, manageable tiles, encoding each separately, and then combining the results.
 ## Input types
 ### Required
 - **`pixels`**
-    - The input image to be encoded. The tiling process allows for efficient handling of large images by breaking them down into smaller, manageable pieces.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The 'pixels' parameter represents the image data to be encoded. It is crucial for defining the visual content that will be transformed into a latent representation.
+    - Python dtype: `torch.Tensor`
 - **`vae`**
-    - The Variational Autoencoder model used for encoding the image. This model is responsible for transforming the input image into a latent representation.
-    - Python dtype: `comfy.sd.VAE`
     - Comfy dtype: `VAE`
+    - The 'vae' parameter specifies the Variational Autoencoder model used for the encoding process. It plays a key role in determining how the image data is transformed into the latent space.
+    - Python dtype: `comfy.sd.VAE`
 - **`tile_size`**
-    - The size of the tiles into which the input image is divided. This parameter allows for flexibility in managing the trade-off between memory usage and granularity of encoding.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The 'tile_size' parameter determines the dimensions of the tiles into which the image is divided for encoding. It affects the granularity of the tiling process and can impact the encoding performance and quality.
+    - Python dtype: `int`
 ## Output types
 - **`latent`**
-    - The encoded representation of the input image in the latent space. This output captures the essential features of the image in a compressed form.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The output is a latent space representation of the input image, encoded in a tiled manner. It captures the essential features of the image in a compressed form.
+    - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSampler,CR Interpolate Latents,KSampler //Inspire,BNK_TiledKSampler,KSampler (Efficient)`

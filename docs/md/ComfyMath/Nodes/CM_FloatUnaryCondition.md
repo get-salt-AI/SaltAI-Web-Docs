@@ -4,27 +4,27 @@
 - Category: `math/float`
 - Output node: `False`
 
-This node performs unary operations on a single float value based on a specified condition. It evaluates the condition and returns a boolean indicating whether the condition holds for the given float value.
+This node performs unary operations on floating-point numbers based on a specified condition. It evaluates a single float input against a predefined condition, such as checking if the number is zero, positive, negative, or NaN, among others.
 ## Input types
 ### Required
 - **`op`**
-    - Specifies the unary operation to be performed. The operation is chosen from a predefined list of conditions such as 'IsZero', 'IsPositive', 'IsNegative', 'IsNonZero', 'IsPositiveInfinity', 'IsNegativeInfinity', 'IsNaN', 'IsFinite', 'IsInfinite', 'IsEven', and 'IsOdd', which evaluate to either true or false.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the unary operation to be performed on the float input. The operation is chosen from a predefined list of conditions like 'IsZero', 'IsPositive', etc., which determine the nature of the evaluation.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`a`**
-    - The float value to be evaluated by the specified unary condition.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The floating-point number to be evaluated against the specified unary condition.
+    - Python dtype: `float`
 ## Output types
 - **`bool`**
-    - The result of evaluating the specified unary condition on the input float value. It indicates whether the condition holds (true) or not (false).
-    - Python dtype: `bool`
     - Comfy dtype: `BOOL`
+    - The result of the unary condition evaluation, indicating whether the condition holds true for the input float.
+    - Python dtype: `bool`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
 
-Often used in decision-making processes within the pipeline to evaluate a single float value against a predefined condition, such as 'IsZero' or 'IsPositive', and returns a boolean indicating whether the condition is met. This node is crucial for filtering data or triggering specific pathways based on numerical conditions.
+
 ## Source code
 ```python
 class FloatUnaryCondition:

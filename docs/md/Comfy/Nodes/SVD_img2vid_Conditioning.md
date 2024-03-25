@@ -4,54 +4,58 @@
 - Category: `conditioning/video_models`
 - Output node: `False`
 
-This node is designed for video generation conditioning, utilizing a combination of CLIP vision embeddings, an initial image, and a VAE model to generate conditioning data for video frames. It adjusts the dimensions of the input image and applies video-specific parameters such as frame count, motion bucket ID, and frames per second (fps) to create a tailored conditioning environment for generating videos.
+This node is designed for generating conditioning data for video generation tasks, specifically tailored for use with SVD_img2vid models. It takes various inputs including initial images, video parameters, and a VAE model to produce conditioning data that can be used to guide the generation of video frames.
 ## Input types
 ### Required
 - **`clip_vision`**
-    - Represents the CLIP vision model used to extract visual features from the initial image, playing a crucial role in understanding the content and context of the image for video generation.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `CLIP_VISION`
-- **`init_image`**
-    - The initial image serves as the starting point for video generation, providing the visual context and content that will be expanded upon in the video frames.
-    - Python dtype: `torch.Tensor`
-    - Comfy dtype: `IMAGE`
-- **`vae`**
-    - A Variational Autoencoder (VAE) model used to encode the initial image and any subsequent frames into a latent space, facilitating the generation of coherent and continuous video content.
+    - Represents the CLIP vision model used for encoding visual features from the initial image, playing a crucial role in understanding the content and context of the image for video generation.
     - Python dtype: `torch.nn.Module`
+- **`init_image`**
+    - Comfy dtype: `IMAGE`
+    - The initial image from which the video will be generated, serving as the starting point for the video generation process.
+    - Python dtype: `torch.Tensor`
+- **`vae`**
     - Comfy dtype: `VAE`
+    - A Variational Autoencoder (VAE) model used for encoding the initial image into a latent space, facilitating the generation of coherent and continuous video frames.
+    - Python dtype: `torch.nn.Module`
 - **`width`**
-    - Specifies the width of the video frames to be generated, allowing for customization of the video's resolution.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The desired width of the video frames to be generated, allowing for customization of the video's resolution.
+    - Python dtype: `int`
 - **`height`**
-    - Specifies the height of the video frames to be generated, complementing the width parameter to define the video's resolution.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The desired height of the video frames, enabling control over the video's aspect ratio and resolution.
+    - Python dtype: `int`
 - **`video_frames`**
-    - Determines the number of frames to be generated for the video, directly influencing the video's length and content.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the number of frames to be generated for the video, determining the video's length.
+    - Python dtype: `int`
 - **`motion_bucket_id`**
-    - A unique identifier for the motion bucket, which categorizes the type of motion to be applied to the video frames, enhancing the dynamism and realism of the generated video.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - An identifier for categorizing the type of motion to be applied in the video generation, aiding in the creation of dynamic and engaging videos.
+    - Python dtype: `int`
 - **`fps`**
-    - Frames per second (fps) setting for the video, dictating the playback speed and smoothness of the generated video content.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The frames per second (fps) rate for the video, influencing the smoothness and realism of the generated video.
+    - Python dtype: `int`
 - **`augmentation_level`**
-    - Controls the level of augmentation applied to the initial image, introducing variability and enhancing the realism of the generated video frames.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A parameter controlling the level of augmentation applied to the initial image, affecting the diversity and variability of the generated video frames.
+    - Python dtype: `float`
 ## Output types
-- **`conditioning`**
-    - The negative conditioning data, serving as a contrast to the positive data, potentially used for refining the generation process.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
+- **`positive`**
     - Comfy dtype: `CONDITIONING`
+    - The positive conditioning data, consisting of encoded features and parameters for guiding the video generation process in a desired direction.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict]]`
+- **`negative`**
+    - Comfy dtype: `CONDITIONING`
+    - The negative conditioning data, providing a contrast to the positive conditioning, which can be used to avoid certain patterns or features in the generated video.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict]]`
 - **`latent`**
-    - The latent representation of the video frames, encoded into a compact form that can be used for further processing or generation steps.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - Latent representations generated for each frame of the video, serving as a foundational component for the video generation process.
+    - Python dtype: `Dict`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSampler,Prompts Everywhere,KSamplerAdvanced,SeargeSDXLSamplerV3`

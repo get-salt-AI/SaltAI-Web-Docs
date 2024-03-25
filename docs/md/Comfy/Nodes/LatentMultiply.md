@@ -4,22 +4,22 @@
 - Category: `latent/advanced`
 - Output node: `False`
 
-This node multiplies each element in a given latent representation by a specified multiplier. It's useful for adjusting the intensity or scale of features within the latent space.
+The LatentMultiply node is designed to scale the latent representation of samples by a specified multiplier. This operation allows for the adjustment of the intensity or magnitude of features within the latent space, enabling fine-tuning of generated content or the exploration of variations within a given latent direction.
 ## Input types
 ### Required
 - **`samples`**
-    - The latent representation to be modified. This input is crucial for defining the features or characteristics of the data that will be scaled.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The 'samples' parameter represents the latent representations to be scaled. It is crucial for defining the input data on which the multiplication operation will be performed.
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`multiplier`**
-    - A scalar value by which each element of the latent representation is multiplied. This allows for scaling the intensity of the latent features.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The 'multiplier' parameter specifies the scaling factor to be applied to the latent samples. It plays a key role in adjusting the magnitude of the latent features, allowing for nuanced control over the generated output.
+    - Python dtype: `float`
 ## Output types
 - **`latent`**
-    - The modified latent representation after each of its elements has been scaled by the multiplier.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The output is a modified version of the input latent samples, scaled by the specified multiplier. This allows for the exploration of variations within the latent space by adjusting the intensity of its features.
+    - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

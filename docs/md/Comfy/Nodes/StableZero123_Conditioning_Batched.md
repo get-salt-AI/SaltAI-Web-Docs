@@ -4,58 +4,62 @@
 - Category: `conditioning/3d_models`
 - Output node: `False`
 
-The functionality of the 'StableZero123_Conditioning_Batched' node cannot be directly inferred from the provided context, as specific details about its methods and operations are not given. However, based on the naming convention and the context of other nodes, it might be related to processing or modifying conditioning data in batches for stable generative models.
+This node is designed to process conditioning information in a batched manner specifically tailored for the StableZero123 model. It focuses on efficiently handling multiple sets of conditioning data simultaneously, optimizing the workflow for scenarios where batch processing is crucial.
 ## Input types
 ### Required
 - **`clip_vision`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `CLIP_VISION`
+    - The CLIP vision embeddings that provide visual context for the conditioning process.
+    - Python dtype: `torch.Tensor`
 - **`init_image`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `IMAGE`
+    - The initial image to be conditioned upon, serving as a starting point for the generation process.
+    - Python dtype: `torch.Tensor`
 - **`vae`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `VAE`
+    - The variational autoencoder used for encoding and decoding images in the conditioning process.
+    - Python dtype: `torch.nn.Module`
 - **`width`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - The width of the output image.
+    - Python dtype: `int`
 - **`height`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - The height of the output image.
+    - Python dtype: `int`
 - **`batch_size`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - The number of conditioning sets to be processed in a single batch.
+    - Python dtype: `int`
 - **`elevation`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - The elevation angle for 3D model conditioning, affecting the perspective of the generated image.
+    - Python dtype: `float`
 - **`azimuth`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - The azimuth angle for 3D model conditioning, affecting the orientation of the generated image.
+    - Python dtype: `float`
 - **`elevation_batch_increment`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - The incremental change in elevation angle across the batch, allowing for varied perspectives.
+    - Python dtype: `float`
 - **`azimuth_batch_increment`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - The incremental change in azimuth angle across the batch, allowing for varied orientations.
+    - Python dtype: `float`
 ## Output types
-- **`conditioning`**
-    - unknown
-    - Python dtype: `unknown`
+- **`positive`**
     - Comfy dtype: `CONDITIONING`
+    - The positive conditioning output, tailored for promoting certain features or aspects in the generated content.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
+- **`negative`**
+    - Comfy dtype: `CONDITIONING`
+    - The negative conditioning output, tailored for demoting certain features or aspects in the generated content.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 - **`latent`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `LATENT`
+    - The latent representation derived from the conditioning process, ready for further processing or generation steps.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

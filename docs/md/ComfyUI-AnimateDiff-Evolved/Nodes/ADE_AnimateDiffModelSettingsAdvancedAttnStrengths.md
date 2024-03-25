@@ -4,81 +4,81 @@
 - Category: ``
 - Output node: `False`
 
-This node is designed to configure advanced attention strengths for the AnimateDiff model. It allows for fine-tuning of the model's attention mechanism by adjusting specific strengths related to query, key, value, and attention output weights and biases. This customization can lead to more precise control over the animation and diffusion process, potentially enhancing the quality of generated animations.
+This node is designed to configure advanced attention strengths within the AnimateDiff framework. It allows for fine-tuning of the animation process by adjusting various attention-related parameters, providing a more detailed control over the motion model's behavior.
 ## Input types
 ### Required
 - **`pe_strength`**
-    - Defines the strength of positional encoding adjustments. It influences how much the positional encodings are scaled, affecting the spatial coherence of the generated animation.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Defines the strength of positional encoding adjustments, influencing the overall animation effect by modifying how position information is factored into the animation.
+    - Python dtype: `float`
 - **`attn_strength`**
-    - Sets the overall strength of the attention mechanism. This parameter scales the attention weights, impacting how the model focuses on different parts of the input.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Sets the base strength for attention mechanisms, affecting how strongly the model's attention layers contribute to the animation process.
+    - Python dtype: `float`
 - **`attn_q_strength`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
-- **`attn_k_strength`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `FLOAT`
-- **`attn_v_strength`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `FLOAT`
-- **`attn_out_weight_strength`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `FLOAT`
-- **`attn_out_bias_strength`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `FLOAT`
-- **`other_strength`**
-    - Adjusts the strength of other model components outside the attention mechanism. This can include various model parameters not directly related to attention, providing a way to fine-tune the model's behavior.
+    - Adjusts the strength specifically for the query component of the attention mechanism, offering nuanced control over how query vectors influence the animation.
     - Python dtype: `float`
+- **`attn_k_strength`**
     - Comfy dtype: `FLOAT`
+    - Modifies the strength for the key component of the attention mechanism, affecting how key vectors are weighted in the animation process.
+    - Python dtype: `float`
+- **`attn_v_strength`**
+    - Comfy dtype: `FLOAT`
+    - Alters the strength for the value component of the attention mechanism, impacting how value vectors contribute to the animation.
+    - Python dtype: `float`
+- **`attn_out_weight_strength`**
+    - Comfy dtype: `FLOAT`
+    - Controls the strength of the output weights in the attention mechanism, fine-tuning the output layer's influence on the animation.
+    - Python dtype: `float`
+- **`attn_out_bias_strength`**
+    - Comfy dtype: `FLOAT`
+    - Adjusts the strength of the output bias in the attention mechanism, allowing for detailed control over the bias's effect on the animation.
+    - Python dtype: `float`
+- **`other_strength`**
+    - Comfy dtype: `FLOAT`
+    - Adjusts the strength of other unspecified model components, offering a way to fine-tune parts of the model not directly related to positional encoding or attention.
+    - Python dtype: `float`
 - **`motion_pe_stretch`**
-    - Specifies the stretch factor for motion positional encoding. It determines how much the positional encodings related to motion are stretched, affecting the perceived motion in the animation.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the extent to which positional encoding is stretched, impacting the animation's motion characteristics.
+    - Python dtype: `int`
 - **`cap_initial_pe_length`**
-    - Caps the initial length of positional encodings. This limit can help in controlling the range of positional encoding adjustments, ensuring they stay within a desired scope.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Caps the initial length of positional encoding, potentially limiting the range of motion in the animation.
+    - Python dtype: `int`
 - **`interpolate_pe_to_length`**
-    - Defines the target length for interpolating positional encodings. This parameter controls the interpolation of positional encodings to a specific length, affecting the granularity of spatial adjustments.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Determines the target length for positional encoding interpolation, affecting the smoothness and range of the animation's motion.
+    - Python dtype: `int`
 - **`initial_pe_idx_offset`**
-    - Sets the initial offset for positional encoding indices. This offset shifts the starting point of positional encodings, potentially altering the animation's starting spatial context.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Offsets the starting index for positional encoding, allowing for adjustments in the animation's starting position.
+    - Python dtype: `int`
 - **`final_pe_idx_offset`**
-    - Determines the final offset for positional encoding indices. Similar to the initial offset, this parameter shifts the ending point of positional encodings, affecting the animation's ending spatial context.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Offsets the ending index for positional encoding, enabling modifications to the animation's ending position.
+    - Python dtype: `int`
 ### Optional
 - **`mask_motion_scale`**
-    - Applies a mask to scale motion-related adjustments. This tensor can selectively scale motion adjustments across different parts of the input, allowing for more nuanced control over the animation.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - Applies a mask to scale the motion, providing a method to selectively enhance or reduce motion in specific areas of the animation.
+    - Python dtype: `torch.Tensor`
 - **`min_motion_scale`**
-    - Sets the minimum scale for motion adjustments. This parameter ensures that motion-related scaling does not fall below a certain threshold, maintaining a base level of motion intensity.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Sets the minimum scale for motion, ensuring that the animation's motion does not fall below a certain threshold.
+    - Python dtype: `float`
 - **`max_motion_scale`**
-    - Defines the maximum scale for motion adjustments. It caps the intensity of motion-related scaling, preventing overly drastic motion effects.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Defines the maximum scale for motion, capping the intensity of the animation's motion to prevent it from exceeding a desired level.
+    - Python dtype: `float`
 ## Output types
 - **`ad_settings`**
-    - The configured settings for the AnimateDiff model, including advanced attention strengths and other adjustments. These settings are used to customize the model's behavior for generating animations.
-    - Python dtype: `AnimateDiffSettings`
     - Comfy dtype: `AD_SETTINGS`
+    - Outputs the configured motion model settings, encapsulating all the adjustments made to attention strengths and other parameters for use in the animation process.
+    - Python dtype: `AnimateDiffSettings`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 

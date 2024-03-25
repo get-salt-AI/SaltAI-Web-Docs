@@ -4,26 +4,30 @@
 - Category: `_for_testing/stable_cascade`
 - Output node: `False`
 
-This node is responsible for encoding an image into a latent representation using a specified VAE model, with an adjustable compression factor. It performs an initial resizing of the input image based on the compression factor and the VAE's downscale ratio, then encodes the resized image into a latent space representation. Additionally, it generates a zero-initialized latent representation for stage B.
+This node is designed to encode an image into a latent representation using a specified VAE model, with an option to adjust the compression level. It primarily serves the purpose of transforming visual data into a more compact, latent form that can be further processed or manipulated within a stable cascade framework.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be encoded into a latent representation. It is crucial for the encoding process as it directly influences the generated latent representation.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
-- **`vae`**
-    - The VAE model used for encoding the image. It determines the encoding mechanism and the characteristics of the generated latent representation.
-    - Python dtype: `StageC_coder`
-    - Comfy dtype: `VAE`
-- **`compression`**
-    - A factor that adjusts the size of the input image before encoding. It affects the resolution of the generated latent representation and allows for control over the level of detail.
-    - Python dtype: `int`
-    - Comfy dtype: `INT`
-## Output types
-- **`latent`**
-    - A zero-initialized latent representation for use in stage B of the cascade process.
+    - The image to be encoded into a latent representation. It is crucial for the encoding process as it represents the visual data to be transformed.
     - Python dtype: `torch.Tensor`
+- **`vae`**
+    - Comfy dtype: `VAE`
+    - The VAE model used for encoding the image. It defines the specific encoding mechanism and parameters.
+    - Python dtype: `VAE class instance`
+- **`compression`**
+    - Comfy dtype: `INT`
+    - Specifies the level of compression applied during the encoding process. It directly influences the dimensions of the output latent representation.
+    - Python dtype: `int`
+## Output types
+- **`stage_c`**
     - Comfy dtype: `LATENT`
+    - The encoded latent representation of the input image, specifically for stage C of the stable cascade process.
+    - Python dtype: `Dict[str, torch.Tensor]`
+- **`stage_b`**
+    - Comfy dtype: `LATENT`
+    - A placeholder latent representation for stage B, initialized to zeros.
+    - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

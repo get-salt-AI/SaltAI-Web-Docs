@@ -4,31 +4,31 @@
 - Category: `math/vec4`
 - Output node: `False`
 
-Performs a binary operation between two Vec4 vectors and returns a scalar value. The operation is defined by a set of predefined operations such as dot product or distance calculation.
+This node performs a binary operation between two Vec4 vectors, resulting in a scalar value. It supports operations like dot product and distance calculation, transforming vector relationships into a single numerical outcome.
 ## Input types
 ### Required
 - **`op`**
-    - Specifies the binary operation to perform on the two Vec4 vectors. It determines how the vectors are processed and the nature of the scalar result.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the binary operation to be performed, such as dot product or distance, affecting the scalar result.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`a`**
-    - The first Vec4 vector to be operated on.
-    - Python dtype: `Vec4`
     - Comfy dtype: `VEC4`
+    - The first Vec4 vector operand in the binary operation.
+    - Python dtype: `Vec4`
 - **`b`**
-    - The second Vec4 vector to be operated on.
-    - Python dtype: `Vec4`
     - Comfy dtype: `VEC4`
+    - The second Vec4 vector operand in the binary operation.
+    - Python dtype: `Vec4`
 ## Output types
 - **`float`**
-    - The scalar result of the binary operation performed on the two Vec4 vectors.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The scalar result of the binary operation between the two Vec4 vectors.
+    - Python dtype: `float`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
 
-Often used in mathematical and geometric operations requiring the comparison or combination of two Vec4 vectors, such as calculating the dot product or the distance between them, to produce a single scalar value as output.
+
 ## Source code
 ```python
 class Vec4ToScalarBinaryOperation:

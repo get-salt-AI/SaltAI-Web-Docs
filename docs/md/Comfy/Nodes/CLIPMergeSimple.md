@@ -4,26 +4,26 @@
 - Category: `advanced/model_merging`
 - Output node: `False`
 
-The `CLIPMergeSimple` node merges two CLIP models based on a specified ratio, excluding specific parameters related to position IDs and logit scale. This operation allows for the combination of features from both models, potentially enhancing their capabilities or creating a new model with a balanced set of characteristics from the input models.
+This node specializes in merging two CLIP models based on a specified ratio, effectively blending their characteristics. It selectively applies patches from one model to another, excluding specific components like position IDs and logit scale, to create a hybrid model that combines features from both source models.
 ## Input types
 ### Required
 - **`clip1`**
+    - Comfy dtype: `CLIP`
     - The first CLIP model to be merged. It serves as the base model for the merging process.
-    - Python dtype: `comfy.model_base.CLIPModel`
-    - Comfy dtype: `CLIP`
+    - Python dtype: `comfy.model_base.Model`
 - **`clip2`**
-    - The second CLIP model to be merged. Its key patches, except for those related to position IDs and logit scale, are added to the first model based on the specified ratio.
-    - Python dtype: `comfy.model_base.CLIPModel`
     - Comfy dtype: `CLIP`
+    - The second CLIP model to be merged. Its key patches, except for position IDs and logit scale, are applied to the first model based on the specified ratio.
+    - Python dtype: `comfy.model_base.Model`
 - **`ratio`**
-    - Determines the proportion of features from the second model to be merged into the first model. A ratio of 1 means fully adopting the second model's features, while 0 means no adoption.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Determines the proportion of features from the second model to blend into the first model. A ratio of 1.0 means fully adopting the second model's features, while 0.0 retains only the first model's features.
+    - Python dtype: `float`
 ## Output types
 - **`clip`**
-    - The resulting CLIP model after merging the specified models according to the given ratio.
-    - Python dtype: `comfy.model_base.CLIPModel`
     - Comfy dtype: `CLIP`
+    - The resulting merged CLIP model, incorporating features from both input models according to the specified ratio.
+    - Python dtype: `comfy.model_base.Model`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `CR Apply LoRA Stack,CLIPSetLastLayer`

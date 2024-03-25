@@ -4,23 +4,23 @@
 - Category: `segment_anything`
 - Output node: `False`
 
-The InvertMask node inverts the input mask by subtracting each element from 1.0, effectively flipping the mask's binary values. This operation is useful for switching the focus between the masked and unmasked regions in various image processing tasks.
+The InvertMask node is designed for the inversion of mask values, effectively flipping the masked and unmasked areas. This operation is fundamental in image processing tasks where the focus of interest needs to be switched between the foreground and background.
 ## Input types
 ### Required
 - **`mask`**
-    - The input mask to be inverted. This mask defines areas of interest in an image or another graphical representation. Inverting the mask switches the focus between the foreground and background.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The 'mask' parameter represents the input mask whose values are to be inverted. This inversion process is crucial for tasks that require toggling the areas of interest within an image.
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`mask`**
-    - The inverted mask, with each original value subtracted from 1.0. This output is useful for operations that require the opposite areas of the original mask to be highlighted.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The output is a mask with inverted values, where previously masked areas are now unmasked and vice versa, facilitating operations that require the opposite area of interest.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `MaskToImage,PorterDuffImageComposite,ImageCompositeMasked,VAEEncodeForInpaint,FeatherMask`
 
-The InvertMask node inverts the input mask by subtracting each element from 1.0, effectively flipping the mask's binary values. This operation is useful for switching the focus between the masked and unmasked regions in various image processing tasks, often used with segmentation to invert selected areas for operations like inpainting or selective application of effects.
+
 ## Source code
 ```python
 class InvertMask:

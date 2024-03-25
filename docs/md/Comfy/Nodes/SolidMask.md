@@ -4,26 +4,26 @@
 - Category: `mask`
 - Output node: `False`
 
-The SolidMask node generates a solid mask with a uniform value across its dimensions. It creates a mask of specified width and height, filled with a given value.
+The SolidMask node generates a uniform mask with a specified value across its entire area. It's designed to create masks of specific dimensions and intensity, useful in various image processing and masking tasks.
 ## Input types
 ### Required
 - **`value`**
-    - Specifies the uniform value to fill the mask with. It determines the intensity or opacity of the mask.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Specifies the intensity value of the mask, affecting its overall appearance and utility in subsequent operations.
+    - Python dtype: `float`
 - **`width`**
-    - Determines the width of the generated mask. It specifies how wide the mask will be.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Determines the width of the generated mask, directly influencing its size and aspect ratio.
+    - Python dtype: `int`
 - **`height`**
-    - Determines the height of the generated mask. It specifies how tall the mask will be.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Sets the height of the generated mask, affecting its size and aspect ratio.
+    - Python dtype: `int`
 ## Output types
 - **`mask`**
-    - The output is a solid mask with uniform value, specified width, and height.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - Outputs a uniform mask with the specified dimensions and value.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `MaskComposite,MaskToImage,FeatherMask`

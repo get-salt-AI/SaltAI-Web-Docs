@@ -4,26 +4,26 @@
 - Category: `latent`
 - Output node: `False`
 
-This node generates an empty latent image tensor with specified dimensions and batch size. The tensor is filled with zeros and is intended for use as a placeholder or starting point in generative models.
+The EmptyLatentImage node is designed to generate a blank latent space representation with specified dimensions and batch size. This node serves as a foundational step in generating or manipulating images in latent space, providing a starting point for further image synthesis or modification processes.
 ## Input types
 ### Required
 - **`width`**
-    - Specifies the width of the latent image to be generated. It determines the horizontal dimension of the tensor. The width is crucial for defining the resolution and scale of the generated latent space, impacting the detail level of subsequent image generation.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the width of the latent image to be generated. This parameter directly influences the spatial dimensions of the resulting latent representation.
+    - Python dtype: `int`
 - **`height`**
-    - Specifies the height of the latent image to be generated. It affects the vertical dimension of the tensor. Similar to width, the height is essential for setting the resolution and scale of the latent space, influencing the detail and proportions of generated images.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Determines the height of the latent image to be generated. This parameter is crucial for defining the spatial dimensions of the latent space representation.
+    - Python dtype: `int`
 - **`batch_size`**
-    - Determines the number of latent images to generate in a single batch. This parameter allows for batch processing of images, enabling efficient generation and manipulation of multiple latent images simultaneously, which is vital for scaling up image generation processes.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Controls the number of latent images to be generated in a single batch. This allows for the generation of multiple latent representations simultaneously, facilitating batch processing.
+    - Python dtype: `int`
 ## Output types
 - **`latent`**
-    - The output is a tensor representing a batch of empty latent images. These images are initialized with zeros and are ready for further processing or manipulation.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `LATENT`
+    - The output is a tensor representing a batch of blank latent images, serving as a base for further image generation or manipulation in latent space.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSampler,SamplerCustom,KSamplerAdvanced,CR Module Pipe Loader,KSampler Adv. (Efficient),ImpactKSamplerBasicPipe,Anything Everywhere,Reroute,KRestartSamplerAdv,LatentComposite`

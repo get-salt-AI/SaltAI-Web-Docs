@@ -4,43 +4,43 @@
 - Category: `segment_anything`
 - Output node: `False`
 
-The GroundingDinoSAMSegment node is designed for segmenting various objects within an image using the GroundingDINO model. It leverages advanced deep learning techniques, specifically a transformer-based architecture, to accurately identify and segment objects by understanding the context and details within the image. This node is part of a larger system that integrates with the GroundingDINO framework, which is known for its effectiveness in conditional object detection and segmentation tasks.
+The GroundingDinoSAMSegment node is designed to leverage the capabilities of the GroundingDINO model for segmenting various objects within an image. It utilizes advanced neural network architectures, including transformers and Swin Transformers, to accurately identify and segment objects by understanding their context and relationships within the image.
 ## Input types
 ### Required
 - **`sam_model`**
-    - Specifies the SAM model used for the segmentation of detected objects. This model refines the segmentation results provided by the GroundingDINO model.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `SAM_MODEL`
-- **`grounding_dino_model`**
-    - Specifies the GroundingDINO model to be used for object detection. This model is essential for identifying objects within the image based on the given prompt.
+    - Specifies the SAM model to be used in conjunction with the GroundingDINO model for the segmentation task. This model assists in refining the segmentation results obtained from GroundingDINO.
     - Python dtype: `torch.nn.Module`
+- **`grounding_dino_model`**
     - Comfy dtype: `GROUNDING_DINO_MODEL`
+    - Specifies the GroundingDINO model to be used for initial object detection within the image. This model identifies potential objects of interest based on the provided prompt.
+    - Python dtype: `torch.nn.Module`
 - **`image`**
-    - The input image to be processed. The GroundingDINO model uses this image to detect objects based on the provided prompt.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The input image to be processed. The GroundingDINO model first identifies objects within this image, which are then segmented by the SAM model.
+    - Python dtype: `torch.Tensor`
 - **`prompt`**
-    - A text prompt that guides the GroundingDINO model in detecting specific objects within the image.
-    - Python dtype: `str`
     - Comfy dtype: `STRING`
+    - A text prompt that guides the GroundingDINO model in identifying objects of interest within the image. This prompt helps focus the model's attention on relevant objects.
+    - Python dtype: `str`
 - **`threshold`**
-    - A threshold value that determines the sensitivity of object detection. Higher values result in fewer detections.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A threshold value that determines the sensitivity of object detection by the GroundingDINO model. Objects with confidence scores above this threshold are considered for segmentation.
+    - Python dtype: `float`
 ## Output types
 - **`image`**
-    - The images resulting from the segmentation process, containing the detected and segmented objects.
-    - Python dtype: `List[torch.Tensor]`
     - Comfy dtype: `IMAGE`
+    - The segmented images obtained after processing. Each segmented object is returned as a separate image.
+    - Python dtype: `torch.Tensor`
 - **`mask`**
-    - The masks corresponding to each segmented object in the images. These masks outline the boundaries of detected objects.
-    - Python dtype: `List[torch.Tensor]`
     - Comfy dtype: `MASK`
+    - The segmentation masks corresponding to each segmented object in the image. These masks indicate the precise area of each object within the original image.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `PreviewImage,Reroute,VAEEncodeForInpaint,MaskToImage,Mask Gaussian Region,ArithmeticBlend,InvertMask (segment anything),InvertMask,GrowMask`
 
-The GroundingDinoSAMSegment node is designed for advanced image segmentation, leveraging the GroundingDINO and SAM models to accurately identify and segment objects within an image based on textual prompts. It takes as input an image, a SAM model, a Grounding Dino model, and a textual prompt, and outputs segmented parts of the image along with corresponding masks, enabling precise editing and manipulation tasks in pipelines focused on image enhancement, editing, or conditional manipulation.
+
 ## Source code
 ```python
 class GroundingDinoSAMSegment:

@@ -4,26 +4,26 @@
 - Category: `image/upscaling`
 - Output node: `False`
 
-The `ImageScaleBy` node is designed for upscaling images by a specified scale factor. It adjusts the dimensions of the input image based on the provided scale factor, using one of the specified upscale methods to maintain image quality.
+The ImageScaleBy node is designed for upscaling images by a specified scale factor using various interpolation methods. It allows for the adjustment of the image size in a flexible manner, catering to different upscaling needs.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be upscaled. This parameter is crucial as it directly influences the output image's resolution and appearance.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The input image to be upscaled. This parameter is crucial as it provides the base image that will undergo the upscaling process.
+    - Python dtype: `torch.Tensor`
 - **`upscale_method`**
-    - Determines the algorithm used for upscaling the image. Different methods can affect the quality and characteristics of the upscaled image.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the interpolation method to be used for upscaling. The choice of method can affect the quality and characteristics of the upscaled image.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`scale_by`**
-    - The factor by which the image's dimensions will be increased. Affects the final size of the upscaled image.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The factor by which the image will be upscaled. This determines the increase in size of the output image relative to the input image.
+    - Python dtype: `float`
 ## Output types
 - **`image`**
-    - The upscaled image, with dimensions adjusted according to the specified scale factor and upscale method.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The upscaled image, which is larger than the input image according to the specified scale factor and interpolation method.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `VAEEncode,RIFE VFI,VHS_VideoCombine,VAEEncodeTiled,Reroute,PreviewImage,SaveImage,SVD_img2vid_Conditioning,SEGSPreview,ImageFilterSharpen`

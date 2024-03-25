@@ -4,38 +4,42 @@
 - Category: `conditioning/inpaint`
 - Output node: `False`
 
-The InpaintModelConditioning node is designed for conditioning the inpainting process by encoding the input parameters into a format suitable for the model. It takes in positive and negative conditioning, a VAE model, an image, and a mask to produce conditioning outputs and a latent representation.
+The InpaintModelConditioning node is designed to facilitate the conditioning process for inpainting models, enabling the integration and manipulation of various conditioning inputs to tailor the inpainting output. It encompasses a broad range of functionalities, from loading specific model checkpoints and applying style or control net models, to encoding and combining conditioning elements, thereby serving as a comprehensive tool for customizing inpainting tasks.
 ## Input types
 ### Required
 - **`positive`**
-    - Positive conditioning influences the inpainting process by specifying desired features or attributes in the generated output.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - Represents the positive conditioning information or parameters that are to be applied to the inpainting model. This input is crucial for defining the context or constraints under which the inpainting operation should be performed, affecting the final output significantly.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 - **`negative`**
-    - Negative conditioning specifies undesired features or attributes, helping to guide the model away from certain outcomes.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - Represents the negative conditioning information or parameters that are to be applied to the inpainting model. This input is essential for specifying the conditions or contexts to avoid during the inpainting process, thereby influencing the final output.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 - **`vae`**
-    - The VAE model parameter is crucial for encoding the image into a latent space, facilitating the inpainting process.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `VAE`
+    - Specifies the VAE model to be used in the conditioning process. This input is crucial for determining the specific architecture and parameters of the VAE model that will be utilized.
+    - Python dtype: `torch.nn.Module`
 - **`pixels`**
-    - The image to be inpainted, provided as pixel data.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - Represents the pixel data of the image to be inpainted. This input is essential for providing the visual context necessary for the inpainting task.
+    - Python dtype: `torch.Tensor`
 - **`mask`**
-    - A mask indicating the areas to inpaint, with the same dimensions as the input image.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
-## Output types
-- **`conditioning`**
-    - The modified negative conditioning after processing.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
-    - Comfy dtype: `CONDITIONING`
-- **`latent`**
-    - A latent representation of the inpainted image.
+    - Specifies the mask to be applied to the image, indicating the areas to be inpainted. This input is crucial for defining the specific regions within the image that require inpainting.
     - Python dtype: `torch.Tensor`
+## Output types
+- **`positive`**
+    - Comfy dtype: `CONDITIONING`
+    - The modified positive conditioning information after processing, ready to be applied to the inpainting model. This output is essential for guiding the inpainting process according to the specified positive conditions.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
+- **`negative`**
+    - Comfy dtype: `CONDITIONING`
+    - The modified negative conditioning information after processing, ready to be applied to the inpainting model. This output is essential for guiding the inpainting process according to the specified negative conditions.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
+- **`latent`**
     - Comfy dtype: `LATENT`
+    - The latent representation derived from the conditioning process. This output is crucial for understanding the underlying features and characteristics of the image being inpainted.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

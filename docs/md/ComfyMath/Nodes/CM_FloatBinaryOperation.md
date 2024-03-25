@@ -4,31 +4,31 @@
 - Category: `math/float`
 - Output node: `False`
 
-Executes a binary operation on two float inputs based on a specified operation. It supports a variety of operations such as addition, subtraction, multiplication, and division, allowing for flexible mathematical manipulations of float values.
+This node performs binary operations on two float inputs, such as addition, subtraction, multiplication, or division, based on the operation specified. It abstracts the complexity of float arithmetic operations, providing a straightforward way to execute binary mathematical operations on float values.
 ## Input types
 ### Required
 - **`op`**
-    - Specifies the binary operation to be performed on the inputs. The choice of operation directly influences the result, enabling diverse mathematical computations.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the binary operation to be performed on the float inputs. This parameter determines the mathematical operation (e.g., addition, subtraction) that will be applied.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`a`**
-    - The first float input for the binary operation. Acts as one of the operands in the mathematical computation.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The first float input for the binary operation. Acts as one of the operands in the mathematical operation.
+    - Python dtype: `float`
 - **`b`**
-    - The second float input for the binary operation. Together with the first input, it completes the operands needed for the computation.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The second float input for the binary operation. Serves as the other operand in the mathematical operation.
+    - Python dtype: `float`
 ## Output types
 - **`float`**
-    - The result of the binary operation performed on the two float inputs, returned as a float value.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The result of the binary operation performed on the two float inputs. It is a single float value representing the outcome of the specified operation.
+    - Python dtype: `float`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
 
-Often used in mathematical computations and data transformations, the CM_FloatBinaryOperation node performs a specified binary operation (addition, subtraction, multiplication, or division) on two float inputs, producing a single float output.
+
 ## Source code
 ```python
 class FloatBinaryOperation:

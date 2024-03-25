@@ -4,34 +4,34 @@
 - Category: `image/transform`
 - Output node: `False`
 
-The `ImageCrop` node is designed to crop a given image to a specified width and height starting from a point (x, y). This operation is fundamental in image processing tasks where focusing on a specific region of an image or reducing the image size is required.
+The ImageCrop node is designed for cropping images to a specified width and height starting from a given x and y coordinate. This functionality is essential for focusing on specific regions of an image or for adjusting the image size to meet certain requirements.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be cropped. This parameter is crucial as it defines the source image from which a region will be extracted.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The input image to be cropped. This parameter is crucial as it defines the source image from which a region will be extracted based on the specified dimensions and coordinates.
+    - Python dtype: `torch.Tensor`
 - **`width`**
-    - Specifies the width of the cropped image. It determines how wide the resulting image will be.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the width of the cropped image. This parameter determines how wide the resulting cropped image will be.
+    - Python dtype: `int`
 - **`height`**
-    - Specifies the height of the cropped image. It determines the vertical size of the resulting image.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the height of the cropped image. This parameter determines the height of the resulting cropped image.
+    - Python dtype: `int`
 - **`x`**
-    - The x-coordinate of the top-left corner of the crop box. It defines where the cropping should start horizontally.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The x-coordinate of the top-left corner of the cropping area. This parameter sets the starting point for the width dimension of the crop.
+    - Python dtype: `int`
 - **`y`**
-    - The y-coordinate of the top-left corner of the crop box. It defines where the cropping should start vertically.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The y-coordinate of the top-left corner of the cropping area. This parameter sets the starting point for the height dimension of the crop.
+    - Python dtype: `int`
 ## Output types
 - **`image`**
-    - The cropped image. This output is the result of the cropping operation, containing only the specified region of the original image.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The cropped image as a result of the cropping operation. This output is significant for further processing or analysis of the specified image region.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `VAEEncodeForInpaint,PreviewImage`

@@ -4,26 +4,26 @@
 - Category: `latent/batch`
 - Output node: `False`
 
-This node extracts a specific batch of samples from a larger batch of latent representations based on the provided batch index and length. It supports handling of noise masks associated with the samples, ensuring that the extracted batch retains the corresponding noise masks.
+This node is designed to extract a specific subset of latent samples from a given batch based on the specified batch index and length. It allows for selective processing of latent samples, facilitating operations on smaller segments of the batch for efficiency or targeted manipulation.
 ## Input types
 ### Required
 - **`samples`**
-    - The latent representations from which a specific batch is to be extracted. This parameter is crucial for selecting the subset of data to work with.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The collection of latent samples from which a subset will be extracted. This parameter is crucial for determining the source batch of samples to be processed.
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`batch_index`**
-    - The index of the first sample in the batch to be extracted. This parameter determines the starting point of the subset.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the starting index within the batch from which the subset of samples will begin. This parameter enables targeted extraction of samples from specific positions in the batch.
+    - Python dtype: `int`
 - **`length`**
-    - The number of samples to extract from the batch, starting from the batch index. This parameter defines the size of the subset.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Defines the number of samples to be extracted from the specified starting index. This parameter controls the size of the subset to be processed, allowing for flexible manipulation of batch segments.
+    - Python dtype: `int`
 ## Output types
 - **`latent`**
-    - The extracted batch of latent representations, including any associated noise masks and batch indices.
-    - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
     - Comfy dtype: `LATENT`
+    - The extracted subset of latent samples, now available for further processing or analysis.
+    - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `LatentBlend`

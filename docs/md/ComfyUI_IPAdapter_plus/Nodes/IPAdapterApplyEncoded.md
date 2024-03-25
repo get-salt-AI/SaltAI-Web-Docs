@@ -4,56 +4,56 @@
 - Category: `ipadapter`
 - Output node: `False`
 
-This node applies an IPAdapter from encoded embeddings to a model, adjusting the model's behavior based on the embeddings and various parameters. It allows for the dynamic modification of a model's internal representations using external data, with options to control the intensity and manner of this modification.
+This node applies an IPAdapter to encoded embeddings, allowing for the modification and enhancement of the embeddings based on the IPAdapter's configuration. It supports adjusting the influence of the IPAdapter through weights and can operate over a specified range of the embedding.
 ## Input types
 ### Required
 - **`ipadapter`**
-    - The IPAdapter to be applied. It serves as a bridge between the external embeddings and the model, enabling the modification of the model's internal representations.
-    - Python dtype: `IPAdapter`
     - Comfy dtype: `IPADAPTER`
-- **`embeds`**
-    - The embeddings that contain the encoded information to be applied to the model. These embeddings are crucial for the adaptation process, providing the specific adjustments to be made.
-    - Python dtype: `torch.Tensor`
-    - Comfy dtype: `EMBEDS`
-- **`model`**
-    - The model to which the IPAdapter and embeddings are applied. This parameter specifies the target of the adaptation, allowing for its behavior to be modified.
+    - The IPAdapter to be applied. It is crucial for modifying and enhancing the embeddings.
     - Python dtype: `torch.nn.Module`
+- **`embeds`**
+    - Comfy dtype: `EMBEDS`
+    - The encoded embeddings to which the IPAdapter will be applied. These embeddings are the target of the modification and enhancement.
+    - Python dtype: `torch.Tensor`
+- **`model`**
     - Comfy dtype: `MODEL`
+    - The model used in conjunction with the IPAdapter and embeddings. It defines the context in which the embeddings are applied.
+    - Python dtype: `torch.nn.Module`
 - **`weight`**
-    - A scalar that adjusts the intensity of the adaptation applied to the model. It allows for fine-tuning the impact of the embeddings on the model's behavior.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A float value that adjusts the influence of the IPAdapter on the embeddings. It allows for fine-tuning the effect of the adapter.
+    - Python dtype: `float`
 - **`weight_type`**
-    - Specifies the method of applying the weight to the adaptation process. It influences how the embeddings modify the model, offering different strategies for integration.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the method of applying the weight to the IPAdapter's influence on the embeddings. Options include 'original', 'linear', and 'channel penalty'.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`start_at`**
-    - Defines the starting point of the adaptation in the model's processing. It allows for control over when the modifications begin to take effect.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A float value indicating the start point in the embedding to begin applying the IPAdapter. Allows for targeted modification.
+    - Python dtype: `float`
 - **`end_at`**
-    - Determines the endpoint of the adaptation within the model's processing. This parameter controls the duration and extent of the modifications.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A float value indicating the end point in the embedding for applying the IPAdapter. Enables precise control over the modification range.
+    - Python dtype: `float`
 - **`unfold_batch`**
-    - A boolean flag that indicates whether to process each item in a batch separately. It affects the adaptation's application across multiple inputs.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOLEAN`
+    - A boolean indicating whether to unfold the batch during processing. This affects how the embeddings are processed by the IPAdapter.
+    - Python dtype: `bool`
 ### Optional
 - **`attn_mask`**
-    - An optional mask that can be applied to the adaptation process. It allows for selective modification of the model's behavior, focusing the adjustments on specific areas.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - An optional mask that can be applied during the IPAdapter's processing. It allows for selective attention in the embeddings.
+    - Python dtype: `Optional[torch.Tensor]`
 ## Output types
 - **`model`**
-    - The model after the application of the IPAdapter and embeddings. It represents the modified version of the original model, with altered behavior based on the provided parameters.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - The model after the IPAdapter has been applied, reflecting the modifications and enhancements made to the embeddings.
+    - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSampler,CR Apply LoRA Stack,Reroute,ADE_AnimateDiffLoaderWithContext`
 
-The IPAdapterApplyEncoded node dynamically adjusts a model's behavior by applying encoded embeddings, allowing for the customization of image features or styles during AI-driven image transformation processes. It takes an IPAdapter model, embeddings, and optionally an attention mask as input, producing a model with modified output, ideal for creating highly detailed and stylized images.
+
 ## Source code
 ```python
 class IPAdapterApplyEncoded(IPAdapterApply):

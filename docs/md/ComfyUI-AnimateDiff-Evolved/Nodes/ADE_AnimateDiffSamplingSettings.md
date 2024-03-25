@@ -4,47 +4,47 @@
 - Category: `Animate Diff 🎭🅐🅓`
 - Output node: `False`
 
-This node is responsible for generating sample settings for the AnimateDiff process. It allows customization of various parameters such as batch offset, noise type, seed generation method, and more, which collectively define how the sampling operation will be conducted.
+The ADE_AnimateDiffSamplingSettings node is designed to configure the sampling settings for the AnimateDiff process, allowing users to specify parameters such as batch offset, noise type, and seed generation. This node plays a crucial role in tailoring the sampling behavior to achieve desired animation effects in generated images.
 ## Input types
 ### Required
 - **`batch_offset`**
-    - Specifies the offset for the batch in the sampling process, allowing for control over the starting point of the batch.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the offset for the batch in the sampling process, affecting the starting point of sampling.
+    - Python dtype: `int`
 - **`noise_type`**
-    - Determines the type of noise to be applied during the sampling process. This affects the texture and quality of the generated samples.
+    - Comfy dtype: `COMBO[STRING]`
+    - Determines the type of noise to be applied during the sampling process, influencing the visual characteristics of the animation.
     - Python dtype: `str`
-    - Comfy dtype: `['default', 'constant', 'empty'...]`
 - **`seed_gen`**
-    - Defines the method for generating seeds used in the noise generation process, impacting the randomness and variation of the samples.
+    - Comfy dtype: `COMBO[STRING]`
+    - Defines the method for generating seeds used in the noise generation, impacting the randomness and variation in the animation.
     - Python dtype: `str`
-    - Comfy dtype: `['comfy', 'auto1111'...]`
 - **`seed_offset`**
-    - Sets the offset for the seed generation, enabling fine-tuning of the seed values used in noise generation.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Sets the offset for the seed generation, modifying the starting point for random noise generation.
+    - Python dtype: `int`
 ### Optional
 - **`noise_layers`**
-    - Specifies the configuration of noise layers to be applied, influencing the depth and complexity of the noise effect in the samples.
-    - Python dtype: `NoiseLayerGroup`
     - Comfy dtype: `NOISE_LAYERS`
+    - Optional parameter that allows specifying custom noise layers for more granular control over the noise applied.
+    - Python dtype: `NoiseLayerGroup`
 - **`iteration_opts`**
-    - Defines iteration-specific options, offering further customization of the sampling process.
-    - Python dtype: `IterationOptions`
     - Comfy dtype: `ITERATION_OPTS`
+    - Optional parameter for setting iteration options, providing additional control over the sampling iterations.
+    - Python dtype: `IterationOptions`
 - **`seed_override`**
-    - Allows for the manual setting of a specific seed value, overriding the automatic seed generation mechanism.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Optional parameter to override the seed used in noise generation, enabling deterministic animations.
+    - Python dtype: `int`
 - **`adapt_denoise_steps`**
-    - Enables or disables the adaptation of denoising steps based on the sampling settings, affecting the clarity and detail of the samples.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOLEAN`
+    - Optional boolean parameter to adapt the number of denoising steps based on certain conditions, potentially improving animation quality.
+    - Python dtype: `bool`
 ## Output types
-- **`sample_settings`**
-    - The generated sample settings, encapsulating all specified parameters and configurations for the sampling process.
-    - Python dtype: `SampleSettings`
+- **`settings`**
     - Comfy dtype: `SAMPLE_SETTINGS`
+    - The configured sampling settings ready to be used in the AnimateDiff process.
+    - Python dtype: `SampleSettings`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

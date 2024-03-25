@@ -4,43 +4,43 @@
 - Category: `Animate Diff 🎭🅐🅓/noise layers`
 - Output node: `False`
 
-This node is responsible for creating and managing a sequence of noise layers where each layer replaces the previous noise with a new one based on a specified mask. It allows for dynamic modification of noise in a batch of images or signals, facilitating various effects or transformations.
+This node specializes in replacing specific noise layers within a given noise structure, utilizing parameters such as noise type, batch offset, and seed generation overrides. It aims to modify the noise characteristics by selectively replacing parts of the noise based on a mask, thereby enabling fine-tuned control over the noise's impact on the generation process.
 ## Input types
 ### Required
 - **`batch_offset`**
-    - Specifies the offset for the batch processing, allowing for staggered or phased processing across batches.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Determines the offset for batch processing, influencing how noise is applied across different batches.
+    - Python dtype: `int`
 - **`noise_type`**
-    - Defines the type of noise to be applied. This can vary the effect and application of the noise layer, influencing the final output.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the type of noise to be used in the replacement process, affecting the characteristics of the generated noise.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`seed_gen_override`**
-    - Allows for overriding the default seed generation mechanism, enabling custom or specific seed generation strategies for noise creation.
+    - Comfy dtype: `COMBO[STRING]`
+    - Overrides the default seed generation mechanism, allowing for customized noise generation based on the provided seed.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`seed_offset`**
-    - Provides an additional offset to the seed value, allowing for fine-tuned control over the noise generation process.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Adjusts the seed value used in noise generation, enabling variations in the noise pattern.
+    - Python dtype: `int`
 ### Optional
 - **`prev_noise_layers`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `NOISE_LAYERS`
+    - The previous noise layers that will be modified by the replacement process.
+    - Python dtype: `NoiseLayerGroup`
 - **`mask_optional`**
-    - An optional mask tensor that can be used to control where the noise is applied, enabling selective noise application.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - An optional tensor mask that can be used for selective noise replacement, providing additional flexibility in the modification process. Despite its name suggesting optionality, it is a required parameter for the operation of this node.
+    - Python dtype: `Tensor`
 - **`seed_override`**
-    - Optionally overrides the seed used for noise generation, allowing for deterministic noise patterns.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Directly specifies a seed value to be used, bypassing the normal seed generation process.
+    - Python dtype: `int`
 ## Output types
 - **`noise_layers`**
-    - Returns the updated sequence of noise layers after adding the new replacement layer, facilitating the layering and management of noise effects.
-    - Python dtype: `NoiseLayerGroup`
     - Comfy dtype: `NOISE_LAYERS`
+    - The updated noise layers after the replacement process, incorporating the modifications made.
+    - Python dtype: `NoiseLayerGroup`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

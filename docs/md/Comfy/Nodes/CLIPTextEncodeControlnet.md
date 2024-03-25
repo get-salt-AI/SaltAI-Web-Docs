@@ -4,26 +4,26 @@
 - Category: `_for_testing/conditioning`
 - Output node: `False`
 
-The `CLIPTextEncodeControlnet` node is designed for encoding text inputs using a CLIP model, specifically for control network applications. It tokenizes the input text, encodes it to obtain both the standard and pooled representations, and then integrates these representations into the provided conditioning data, enhancing it with additional control information.
+This node is designed for encoding text inputs using the CLIP model to produce conditioning data tailored for control networks. It enhances the conditioning data with specific control signals derived from the encoded text, facilitating more precise and controlled generation processes.
 ## Input types
 ### Required
 - **`clip`**
-    - The CLIP model used for text tokenization and encoding. It's crucial for transforming the input text into a format that can be effectively utilized for further processing and analysis.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `CLIP`
+    - The CLIP model used for text tokenization and encoding. It plays a crucial role in converting text inputs into a format suitable for further processing and conditioning.
+    - Python dtype: `torch.nn.Module`
 - **`conditioning`**
-    - A list of conditioning data to which the encoded text representations are added. This process enriches the conditioning with text-derived features, enabling more controlled and nuanced generation processes.
-    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - A list of conditioning data to be enhanced with control signals derived from the encoded text. It serves as the basis for applying text-based modifications to the generation process.
+    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
 - **`text`**
-    - The input text to be encoded. This text is tokenized and encoded by the CLIP model, forming the basis for the control information added to the conditioning data.
-    - Python dtype: `str`
     - Comfy dtype: `STRING`
+    - The text input to be encoded. This text is tokenized and encoded using the CLIP model to generate control signals for the conditioning data.
+    - Python dtype: `str`
 ## Output types
 - **`conditioning`**
-    - The enhanced conditioning data, now including the encoded text representations. This output is ready for use in controlled generation tasks, providing a richer set of features for the generation process.
-    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - Enhanced conditioning data, augmented with control signals derived from the encoded text, ready for use in controlled generation processes.
+    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

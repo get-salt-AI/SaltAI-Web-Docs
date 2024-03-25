@@ -4,34 +4,34 @@
 - Category: `mask`
 - Output node: `False`
 
-The `CropMask` node is designed to crop a given mask to a specified rectangular area. It reshapes the input mask to ensure compatibility, then extracts the specified region based on the provided coordinates and dimensions.
+The CropMask node is designed for cropping a specified area from a given mask. It allows users to define the region of interest by specifying coordinates and dimensions, effectively extracting a portion of the mask for further processing or analysis.
 ## Input types
 ### Required
 - **`mask`**
-    - The mask to be cropped. It's reshaped to ensure compatibility before cropping.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The mask input represents the mask image to be cropped. It is essential for defining the area to be extracted based on the specified coordinates and dimensions.
+    - Python dtype: `torch.Tensor`
 - **`x`**
-    - The x-coordinate of the top-left corner of the cropping rectangle.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The x coordinate specifies the starting point on the horizontal axis from which the cropping should begin.
+    - Python dtype: `int`
 - **`y`**
-    - The y-coordinate of the top-left corner of the cropping rectangle.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The y coordinate determines the starting point on the vertical axis for the cropping operation.
+    - Python dtype: `int`
 - **`width`**
-    - The width of the cropping rectangle.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Width defines the horizontal extent of the crop area from the starting point.
+    - Python dtype: `int`
 - **`height`**
-    - The height of the cropping rectangle.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Height specifies the vertical extent of the crop area from the starting point.
+    - Python dtype: `int`
 ## Output types
 - **`mask`**
-    - The cropped mask, which is a subsection of the original mask based on the specified coordinates and dimensions.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The output is a cropped mask, which is a portion of the original mask defined by the specified coordinates and dimensions.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `VAEEncodeForInpaint,MaskToImage`

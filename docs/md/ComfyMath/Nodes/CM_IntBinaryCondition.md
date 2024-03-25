@@ -4,31 +4,31 @@
 - Category: `math/int`
 - Output node: `False`
 
-This node performs a binary condition operation on two integer inputs based on a specified operation (e.g., equality, greater than). It evaluates the condition and returns a boolean result indicating whether the condition holds.
+This node performs binary conditional operations on integer inputs, evaluating the relationship between two integers based on a specified operation (e.g., equality, inequality, greater than, less than). It abstracts the complexity of conditional checks into a simple interface, allowing for easy integration into mathematical and logical workflows.
 ## Input types
 ### Required
 - **`op`**
-    - Specifies the binary condition operation to perform on the inputs, such as equality or comparison. Its choice directly influences the result of the node, determining the nature of the condition being evaluated and thus affecting the boolean outcome.
-    - Python dtype: `str`
-    - Comfy dtype: `STRING`
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the binary conditional operation to perform on the integers, such as equality or greater than, and directly influences the outcome of the node's evaluation.
+    - Python dtype: `List[str]`
 - **`a`**
-    - The first integer input for the binary condition operation. This value serves as one of the operands in the binary condition, playing a crucial role in the evaluation process and influencing the final boolean result.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The first integer operand in the binary conditional operation, serving as one of the two values to be compared.
+    - Python dtype: `int`
 - **`b`**
-    - The second integer input for the binary condition operation. Similar to the first operand, this value is essential in the condition evaluation, contributing to the determination of the boolean outcome.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The second integer operand in the binary conditional operation, serving as the other value to be compared with the first operand.
+    - Python dtype: `int`
 ## Output types
 - **`bool`**
-    - The boolean result of the binary condition operation, indicating whether the specified condition between the two integer inputs holds.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOL`
+    - The result of the binary conditional operation, indicating whether the specified condition holds true between the two integer operands.
+    - Python dtype: `bool`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
 
-Often used in decision-making processes within the pipeline to compare two integer values based on a specified operation (e.g., equality, greater than), and outputs a boolean result indicating the outcome of the comparison.
+
 ## Source code
 ```python
 class IntBinaryCondition:

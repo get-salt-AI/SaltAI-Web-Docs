@@ -4,27 +4,27 @@
 - Category: `math/vec4`
 - Output node: `False`
 
-Performs a unary operation on a 4-dimensional vector (Vec4) to produce a scalar value. The operation is defined by a set of predefined operations and applied to the vector.
+This node performs unary operations on a 4-dimensional vector (Vec4) to produce a scalar value. It supports a variety of operations that can transform a Vec4 into a single floating-point number, emphasizing the node's ability to abstract and reduce vectorial data into a simpler form.
 ## Input types
 ### Required
 - **`op`**
-    - Specifies the unary operation to be applied to the vector. It determines the type of transformation that the vector undergoes to produce a scalar output.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the unary operation to be performed on the Vec4. The choice of operation determines how the vector is transformed into a scalar value.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`a`**
-    - The 4-dimensional vector (Vec4) to which the unary operation is applied. This vector's values are crucial as they determine the operation's effect and the resulting scalar value, emphasizing the vector's role in shaping the outcome of the operation.
-    - Python dtype: `tuple[float, float, float, float]`
     - Comfy dtype: `VEC4`
+    - The Vec4 on which the unary operation is to be performed. This vector serves as the input for the transformation process.
+    - Python dtype: `Vec4`
 ## Output types
 - **`float`**
-    - The scalar result of applying the specified unary operation to the input Vec4 vector.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The resulting scalar value obtained from applying the specified unary operation on the Vec4 input.
+    - Python dtype: `float`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
-Often used in mathematical and geometric computations where a 4-dimensional vector needs to be simplified to a scalar value, such as calculating the magnitude or applying a custom operation that reduces Vec4 to a single, meaningful figure.
+
 ## Source code
 ```python
 class Vec4ToScalarUnaryOperation:

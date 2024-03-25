@@ -4,22 +4,22 @@
 - Category: `conditioning`
 - Output node: `False`
 
-This node combines two conditioning inputs into a single output by simply adding them together. It's useful for merging conditioning information from different sources.
+This node combines two conditioning inputs into a single output, effectively merging their information.
 ## Input types
 ### Required
 - **`conditioning_1`**
-    - The first conditioning input to be combined. It plays an equal role in the combination process as `conditioning_2`.
-    - Python dtype: `Tuple[torch.Tensor, Dict[str, Any]]`
     - Comfy dtype: `CONDITIONING`
+    - The first conditioning input to be combined. It plays an equal role with conditioning_2 in the combination process.
+    - Python dtype: `tuple`
 - **`conditioning_2`**
-    - The second conditioning input to be combined. It is equally important in the combination process as `conditioning_1`.
-    - Python dtype: `Tuple[torch.Tensor, Dict[str, Any]]`
     - Comfy dtype: `CONDITIONING`
+    - The second conditioning input to be combined. It is equally important as conditioning_1 in the merging process.
+    - Python dtype: `tuple`
 ## Output types
 - **`conditioning`**
-    - The result of combining `conditioning_1` and `conditioning_2`, providing a merged conditioning output.
-    - Python dtype: `Tuple[torch.Tensor, Dict[str, Any]]`
     - Comfy dtype: `CONDITIONING`
+    - The result of combining conditioning_1 and conditioning_2, encapsulating the merged information.
+    - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `KSampler,ConditioningCombine,KSampler Adv. (Efficient),CR Conditioning Input Switch,Attention couple,KSampler with Variations,CR Module Pipe Loader,ControlNetApplyAdvanced`

@@ -4,27 +4,27 @@
 - Category: `math/int`
 - Output node: `False`
 
-This node performs unary operations on integers based on a specified condition. It evaluates a single integer input against a unary condition (e.g., checking if the integer is positive, negative, or zero) and returns a boolean indicating the result of the condition.
+This node performs unary operations on integers based on a specified operation. It abstracts the complexity of various unary operations into a simple interface, allowing for the evaluation of conditions or transformations on single integer values.
 ## Input types
 ### Required
 - **`op`**
-    - Specifies the unary operation to be performed on the integer. The choice of operation determines how the integer is evaluated against the condition.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the unary operation to be performed on the integer. This operation determines how the integer is evaluated or transformed, impacting the node's output.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`a`**
-    - The integer to be evaluated against the specified unary condition.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The integer value to be operated on. This is the primary input for the unary operation, which will be evaluated or transformed according to the specified operation.
+    - Python dtype: `int`
 ## Output types
 - **`bool`**
-    - A boolean indicating the result of evaluating the integer against the specified unary condition.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOL`
+    - The result of the unary operation on the integer, typically a boolean value indicating the outcome of a condition.
+    - Python dtype: `bool`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
 
-Often used in decision-making processes within the pipeline to evaluate an integer's property, such as checking if it is positive, negative, or zero, and outputs a boolean result based on the specified condition.
+
 ## Source code
 ```python
 class IntUnaryCondition:

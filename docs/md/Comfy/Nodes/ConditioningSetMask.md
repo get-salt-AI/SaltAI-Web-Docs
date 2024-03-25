@@ -4,30 +4,30 @@
 - Category: `conditioning`
 - Output node: `False`
 
-The `ConditioningSetMask` node is designed to apply a mask to a given conditioning set, potentially altering the area of effect based on the mask's bounds and a specified strength. This operation is useful for selectively applying conditioning to specific regions of an input.
+This node is designed to modify the conditioning of a generative model by applying a mask with a specified strength to certain areas. It allows for targeted adjustments within the conditioning, enabling more precise control over the generation process.
 ## Input types
 ### Required
 - **`conditioning`**
-    - The conditioning set to which the mask will be applied. This parameter is crucial for defining the context or conditions under which certain operations should be performed.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - The conditioning data to be modified. It serves as the basis for applying the mask and strength adjustments.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 - **`mask`**
-    - The mask to be applied to the conditioning set. It defines the area over which the conditioning should be altered.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - A mask tensor that specifies the areas within the conditioning to be modified.
+    - Python dtype: `torch.Tensor`
 - **`strength`**
-    - Determines the intensity of the mask's effect on the conditioning set. A higher value means a stronger effect.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The strength of the mask's effect on the conditioning, allowing for fine-tuning of the applied modifications.
+    - Python dtype: `float`
 - **`set_cond_area`**
-    - Specifies whether to set the conditioning area to the mask bounds or use the default setting.
+    - Comfy dtype: `COMBO[STRING]`
+    - Determines whether the mask's effect is applied to the default area or bounded by the mask itself, offering flexibility in targeting specific regions.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`conditioning`**
-    - The modified conditioning set with the mask applied.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - The modified conditioning data, with the mask and strength adjustments applied.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `Attention couple,ConditioningCombine`

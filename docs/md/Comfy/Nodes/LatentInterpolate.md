@@ -4,26 +4,26 @@
 - Category: `latent/advanced`
 - Output node: `False`
 
-The `LatentInterpolate` node performs interpolation between two sets of latent samples based on a specified ratio. It normalizes the samples, computes a weighted average based on the ratio, and scales the result according to the original magnitudes.
+The LatentInterpolate node is designed to perform interpolation between two sets of latent samples based on a specified ratio, blending the characteristics of both sets to produce a new, intermediate set of latent samples.
 ## Input types
 ### Required
 - **`samples1`**
-    - The first set of latent samples to interpolate from. It serves as the base for the interpolation process.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The first set of latent samples to be interpolated. It serves as the starting point for the interpolation process.
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`samples2`**
-    - The second set of latent samples to interpolate towards. It is combined with the first set based on the interpolation ratio.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The second set of latent samples to be interpolated. It serves as the endpoint for the interpolation process.
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`ratio`**
-    - A floating-point value that determines the weight of each set of samples in the interpolation. A ratio of 0 yields the first set, while a ratio of 1 yields the second set.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A floating-point value that determines the weight of each set of samples in the interpolated output. A ratio of 0 produces a copy of the first set, while a ratio of 1 produces a copy of the second set.
+    - Python dtype: `float`
 ## Output types
 - **`latent`**
-    - The interpolated latent samples, combining features from both input sets according to the specified ratio.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The output is a new set of latent samples that represent an interpolated state between the two input sets, based on the specified ratio.
+    - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSampler (Efficient),Latent Noise Injection`

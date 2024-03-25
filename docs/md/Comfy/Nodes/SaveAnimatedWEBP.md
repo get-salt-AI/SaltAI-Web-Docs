@@ -4,36 +4,36 @@
 - Category: `image/animation`
 - Output node: `True`
 
-This node is responsible for saving a sequence of PIL images as an animated WEBP file. It iterates through given frames, compiles them into a single WEBP file with specified animation settings such as frame duration, quality, and losslessness, and returns metadata about the saved file.
+This node is designed for saving a sequence of images as an animated WEBP file. It handles the aggregation of individual frames into a cohesive animation, applying specified metadata, and optimizing the output based on quality and compression settings.
 ## Input types
 ### Required
 - **`images`**
-    - A list of PIL Image objects to be saved as an animated WEBP. These images represent the frames of the animation.
-    - Python dtype: `List[PIL.Image.Image]`
     - Comfy dtype: `IMAGE`
+    - A list of images to be saved as frames in the animated WEBP. This parameter is essential for defining the visual content of the animation.
+    - Python dtype: `List[PIL.Image]`
 - **`filename_prefix`**
-    - The base name for the output file. The node appends a counter to this base name for each frame sequence saved.
-    - Python dtype: `str`
     - Comfy dtype: `STRING`
+    - Specifies the base name for the output file, which will be appended with a counter and the '.webp' extension. This parameter is crucial for identifying and organizing the saved files.
+    - Python dtype: `str`
 - **`fps`**
-    - Frames per second for the animation. This affects the duration each frame is displayed in the animated WEBP.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The frames per second rate for the animation, influencing the playback speed.
+    - Python dtype: `float`
 - **`lossless`**
-    - Determines whether the WEBP animation should be saved in a lossless format. Affects the file size and quality of the animation.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOLEAN`
+    - A boolean indicating whether to use lossless compression, affecting the file size and quality of the animation.
+    - Python dtype: `bool`
 - **`quality`**
-    - The compression quality for the WEBP file, ranging from 0 (worst) to 100 (best). Higher values result in better image quality but larger file sizes.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - A value between 0 and 100 that sets the compression quality level, with higher values resulting in better image quality but larger file sizes.
+    - Python dtype: `int`
 - **`method`**
-    - The encoding method to be used for generating the WEBP file. Different methods can affect the encoding speed and file size.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the compression method to use, which can impact the encoding speed and file size.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`ui`**
-    - Returns a UI component containing the list of saved files with their metadata, and a flag indicating if the output is animated.
+    - Provides a UI component displaying the saved animated WEBP images along with their metadata, and indicates whether the animation is enabled.
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

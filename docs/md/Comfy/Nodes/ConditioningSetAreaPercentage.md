@@ -4,38 +4,38 @@
 - Category: `conditioning`
 - Output node: `False`
 
-This node modifies the conditioning by setting the area of interest as a percentage of the total image size. It allows for specifying the area's width, height, and its position (x, y) relative to the image, along with the strength of the conditioning effect. This is useful for focusing the model's attention on specific parts of an image during generation.
+The ConditioningSetAreaPercentage node specializes in adjusting the area of influence for conditioning elements based on percentage values. It allows for the specification of the area's dimensions and position as percentages of the total image size, alongside a strength parameter to modulate the intensity of the conditioning effect.
 ## Input types
 ### Required
 - **`conditioning`**
-    - The conditioning data to be modified. It's crucial for directing the model's focus or altering its behavior based on specified conditions.
-    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - Represents the conditioning elements to be modified, serving as the foundation for applying area and strength adjustments.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 - **`width`**
-    - The width of the area of interest as a percentage of the total image width. It defines how wide the focused area should be.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Specifies the width of the area as a percentage of the total image width, influencing how much of the image the conditioning affects horizontally.
+    - Python dtype: `float`
 - **`height`**
-    - The height of the area of interest as a percentage of the total image height. It defines how tall the focused area should be.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Determines the height of the area as a percentage of the total image height, affecting the vertical extent of the conditioning's influence.
+    - Python dtype: `float`
 - **`x`**
-    - The x-coordinate of the top-left corner of the area of interest, as a percentage of the total image width. It specifies where the area begins horizontally.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Indicates the horizontal starting point of the area as a percentage of the total image width, positioning the conditioning effect.
+    - Python dtype: `float`
 - **`y`**
-    - The y-coordinate of the top-left corner of the area of interest, as a percentage of the total image height. It specifies where the area begins vertically.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Specifies the vertical starting point of the area as a percentage of the total image height, positioning the conditioning effect.
+    - Python dtype: `float`
 - **`strength`**
-    - The strength of the conditioning effect within the specified area. It determines how strongly the model should focus on or alter this area.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Controls the intensity of the conditioning effect within the specified area, allowing for fine-tuning of its impact.
+    - Python dtype: `float`
 ## Output types
 - **`conditioning`**
-    - The modified conditioning data with the specified area and strength settings applied. It's used to direct the model's focus or alter its behavior.
-    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - Returns the modified conditioning elements with updated area and strength parameters, ready for further processing or application.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

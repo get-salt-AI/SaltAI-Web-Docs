@@ -4,31 +4,31 @@
 - Category: `Animate Diff 🎭🅐🅓/context opts`
 - Output node: `False`
 
-This node is designed to create and manage batched context options for AnimateDiff operations. It allows for the customization of context length, start percent, and guarantee steps, optionally incorporating previous context settings. The node is particularly useful in scenarios where batch processing of context options is required, enhancing efficiency and flexibility in AnimateDiff workflows.
+This node is designed to create and manage batched context options for Animate Diff operations. It allows for the customization of context length, start percentage, and guaranteed steps, with the option to inherit and modify previous context settings. This facilitates the efficient handling of context in batched processing scenarios, optimizing the animation and diffing processes by adjusting context parameters dynamically.
 ## Input types
 ### Required
 - **`context_length`**
-    - Specifies the length of the context to be used in the AnimateDiff operation. It is a crucial parameter as it determines the amount of information to be considered for each step of the animation process.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the length of the context to be used in the batched processing. This parameter is crucial for defining the scope of the context over which the animation and diff operations are applied, directly influencing the granularity and precision of the process.
+    - Python dtype: `int`
 ### Optional
 - **`start_percent`**
-    - Defines the starting point of the context as a percentage of the total length. This allows for fine-tuning the initial position of the context window, offering control over the animation's starting frame.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Determines the starting point of the context as a percentage of the total length. This allows for fine-tuning the initial position of the context window, enabling more precise control over the animation and diffing operations.
+    - Python dtype: `float`
 - **`guarantee_steps`**
-    - Ensures a minimum number of steps to be processed, regardless of the context length. This parameter guarantees that a certain amount of animation frames will be generated, providing consistency in output.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Defines the minimum number of steps guaranteed within the context. This parameter ensures that a certain level of detail and smoothness is maintained in the animation and diffing processes, regardless of the context length or start position.
+    - Python dtype: `int`
 - **`prev_context`**
-    - Allows for the inclusion of previously defined context options, enabling the accumulation and modification of context settings over multiple iterations. This facilitates the creation of complex animation sequences.
-    - Python dtype: `ContextOptionsGroup`
     - Comfy dtype: `CONTEXT_OPTIONS`
+    - Allows for the inheritance and modification of previously defined context options. This facilitates the reuse and adaptation of context settings, promoting efficiency and consistency across batched processing tasks.
+    - Python dtype: `ContextOptionsGroup`
 ## Output types
-- **`context_options`**
-    - Returns the updated context options, incorporating the specified parameters and any previous context settings. This output is essential for guiding the AnimateDiff process, ensuring that the animation adheres to the defined context parameters.
-    - Python dtype: `ContextOptionsGroup`
+- **`CONTEXT_OPTS`**
     - Comfy dtype: `CONTEXT_OPTIONS`
+    - The modified or newly created batched context options, ready to be utilized in subsequent Animate Diff operations. This encapsulates all the specified parameters, providing a tailored context setup for optimized batch processing.
+    - Python dtype: `ContextOptionsGroup`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

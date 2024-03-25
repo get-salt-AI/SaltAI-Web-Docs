@@ -4,39 +4,39 @@
 - Category: `Animate Diff 🎭🅐🅓/extras`
 - Output node: `False`
 
-This node is designed to load a model checkpoint with the option to select a specific noise configuration. It allows for the customization of the beta schedule used during the loading process and offers the flexibility to adjust the scale factor of the model's latent space if desired. This node is particularly useful for applications requiring precise control over the model initialization process, such as in animation or differential image generation tasks.
+This node specializes in loading model checkpoints with an emphasis on noise selection, allowing for more nuanced control over the initialization and behavior of models in generative tasks. It extends the functionality of standard checkpoint loading by incorporating beta schedule adjustments and optional scaling factors for noise, catering to advanced customization needs.
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - Specifies the name of the checkpoint to be loaded. This parameter is crucial for identifying the specific model checkpoint file from a list of available checkpoints.
-    - Python dtype: `List[str]`
-    - Comfy dtype: `STRING`
-- **`beta_schedule`**
-    - Determines the beta schedule to be applied to the model during the loading process. This affects the model's sampling behavior and can be customized to achieve different effects.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the name of the checkpoint to be loaded. This parameter is crucial for identifying the specific model checkpoint file from a predefined list of available checkpoints.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
+- **`beta_schedule`**
+    - Comfy dtype: `COMBO[STRING]`
+    - Determines the beta schedule to be applied to the model. This parameter allows for the adjustment of the model's sampling behavior, enhancing flexibility in model performance.
+    - Python dtype: `str`
 ### Optional
 - **`use_custom_scale_factor`**
-    - A flag indicating whether to use a custom scale factor for the model's latent space. Enabling this allows for fine-tuning of the model's behavior.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOLEAN`
+    - A boolean flag indicating whether to apply a custom scale factor to the noise. When set to true, it enables fine-tuning of the noise's impact on the model's output.
+    - Python dtype: `bool`
 - **`scale_factor`**
-    - The scale factor to be applied to the model's latent space when 'use_custom_scale_factor' is true. This allows for precise control over the model's output.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Defines the magnitude of the noise scale factor, provided 'use_custom_scale_factor' is true. This allows for precise control over the noise level applied to the model.
+    - Python dtype: `float`
 ## Output types
 - **`model`**
-    - The loaded model, ready for further processing or generation tasks.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - The loaded model, configured according to the specified beta schedule and noise scaling options.
+    - Python dtype: `torch.nn.Module`
 - **`clip`**
-    - The CLIP model associated with the loaded checkpoint, if available.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `CLIP`
-- **`vae`**
-    - The VAE model associated with the loaded checkpoint, if available.
+    - The CLIP model associated with the loaded checkpoint, if applicable.
     - Python dtype: `torch.nn.Module`
+- **`vae`**
     - Comfy dtype: `VAE`
+    - The VAE model associated with the loaded checkpoint, if applicable.
+    - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `LoraLoader,CLIPTextEncode,ADE_AnimateDiffLoaderWithContext,BatchPromptSchedule,CLIPSetLastLayer,Lora Loader Stack (rgthree),IPAdapterApply,ToBasicPipe`

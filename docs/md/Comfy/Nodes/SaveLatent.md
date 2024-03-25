@@ -4,17 +4,17 @@
 - Category: `_for_testing`
 - Output node: `True`
 
-The `SaveLatent` node is not explicitly detailed in the provided context. However, based on the naming convention and typical operations associated with saving latent representations, it can be inferred that this node likely involves storing latent vectors or images to disk. This process would involve specifying a filename or prefix and the latent data to be saved. The operation is crucial for persisting generated latent representations for future use or analysis.
+The SaveLatent node is designed for saving latent representations to a specified storage. It abstracts the process of persisting latent vectors or tensors, facilitating their reuse in future computations or analyses.
 ## Input types
 ### Required
 - **`samples`**
-    - Represents the latent vectors or images to be saved. This is crucial for the operation as it specifies the data that needs to be persisted for future use.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `LATENT`
+    - The 'samples' parameter represents the latent representations to be saved. It is crucial for specifying the data that will be persisted for future use.
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`filename_prefix`**
-    - Specifies the prefix for the filename under which the latent data will be saved. This allows for organized storage and easy retrieval of saved latents.
-    - Python dtype: `str`
     - Comfy dtype: `STRING`
+    - The 'filename_prefix' parameter allows for the specification of a prefix for the filename under which the latent representations will be saved. This aids in organizing and retrieving saved latents effectively.
+    - Python dtype: `str`
 ## Output types
 The node doesn't have output types
 ## Usage tips

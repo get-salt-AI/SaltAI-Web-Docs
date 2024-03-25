@@ -4,38 +4,42 @@
 - Category: `conditioning/upscale_diffusion`
 - Output node: `False`
 
-This node is designed for conditioning and upscaling images by a factor of 4x using diffusion models. It takes images along with positive and negative conditioning phrases, applies noise augmentation, and scales the images, returning enhanced conditioning and a latent representation.
+This node specializes in enhancing the resolution of images through a 4x upscale process, incorporating conditioning elements to refine the output. It leverages diffusion techniques to upscale images while allowing for the adjustment of scale ratio and noise augmentation to fine-tune the enhancement process.
 ## Input types
 ### Required
 - **`images`**
-    - The input images to be upscaled. These images are the primary subject for the upscaling process.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
-- **`positive`**
-    - Positive conditioning phrases that guide the upscaling process towards desired attributes or features in the output images.
-    - Python dtype: `List[str]`
-    - Comfy dtype: `CONDITIONING`
-- **`negative`**
-    - Negative conditioning phrases used to steer away the upscaling process from undesired attributes or features.
-    - Python dtype: `List[str]`
-    - Comfy dtype: `CONDITIONING`
-- **`scale_ratio`**
-    - Determines the scaling factor for the upscaling process. A higher value results in a larger output image.
-    - Python dtype: `float`
-    - Comfy dtype: `FLOAT`
-- **`noise_augmentation`**
-    - Controls the level of noise augmentation applied to the images during the upscaling process, affecting the final image quality.
-    - Python dtype: `float`
-    - Comfy dtype: `FLOAT`
-## Output types
-- **`conditioning`**
-    - Enhanced negative conditioning phrases after the upscaling process.
-    - Python dtype: `List[str]`
-    - Comfy dtype: `CONDITIONING`
-- **`latent`**
-    - A latent representation of the upscaled images, useful for further processing or analysis.
+    - The input images to be upscaled. This parameter is crucial as it directly influences the quality and resolution of the output images.
     - Python dtype: `torch.Tensor`
+- **`positive`**
+    - Comfy dtype: `CONDITIONING`
+    - Positive conditioning elements that guide the upscale process towards desired attributes or features in the output images.
+    - Python dtype: `Dict[str, Any]`
+- **`negative`**
+    - Comfy dtype: `CONDITIONING`
+    - Negative conditioning elements that the upscale process should avoid, helping to steer the output away from undesired attributes or features.
+    - Python dtype: `Dict[str, Any]`
+- **`scale_ratio`**
+    - Comfy dtype: `FLOAT`
+    - Determines the factor by which the image resolution is increased. A higher scale ratio results in a larger output image, allowing for greater detail and clarity.
+    - Python dtype: `float`
+- **`noise_augmentation`**
+    - Comfy dtype: `FLOAT`
+    - Controls the level of noise augmentation applied during the upscale process. This can be used to introduce variability and improve the robustness of the output images.
+    - Python dtype: `float`
+## Output types
+- **`positive`**
+    - Comfy dtype: `CONDITIONING`
+    - The refined positive conditioning elements resulting from the upscale process.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
+- **`negative`**
+    - Comfy dtype: `CONDITIONING`
+    - The refined negative conditioning elements resulting from the upscale process.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
+- **`latent`**
     - Comfy dtype: `LATENT`
+    - A latent representation generated during the upscale process, which can be utilized in further processing or model training.
+    - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSampler`

@@ -4,26 +4,26 @@
 - Category: `_for_testing`
 - Output node: `False`
 
-The `SelfAttentionGuidance` node likely encapsulates functionality related to guiding the attention mechanism in neural networks, specifically focusing on self-attention. This could involve modifying or enhancing the attention scores or outputs based on certain criteria or additional inputs to improve the model's performance or interpretability.
+This node encapsulates the functionality of guiding the self-attention mechanism within neural networks. It aims to enhance the model's focus on relevant features by adjusting the attention weights, thereby improving the interpretability and performance of the model.
 ## Input types
 ### Required
 - **`model`**
-    - The model parameter represents the neural network model that will be guided or modified by the SelfAttentionGuidance functionality. It is crucial for defining the structure and behavior of the attention mechanism within the model.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - The 'model' input type represents the neural network model that will be guided through the self-attention mechanism. It is essential for applying the guidance techniques to the correct model architecture.
+    - Python dtype: `torch.nn.Module`
 - **`scale`**
-    - The scale parameter likely adjusts the magnitude of guidance applied to the attention mechanism, influencing how strongly the guidance affects the model's attention scores or outputs.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The 'scale' input type refers to the factor by which the attention weights are adjusted. It allows for fine-tuning the model's focus on relevant features.
+    - Python dtype: `float`
 - **`blur_sigma`**
-    - The blur_sigma parameter probably controls the amount of blurring applied in the guidance process, potentially used to smooth or soften the guidance effects on the attention mechanism.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The 'blur_sigma' input type pertains to the standard deviation of the Gaussian blur applied to the attention weights. This preprocessing step can help in smoothing the attention landscape, potentially leading to better model performance.
+    - Python dtype: `float`
 ## Output types
 - **`model`**
-    - The modified neural network model with adjusted attention mechanism, reflecting the guidance applied through the SelfAttentionGuidance process.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - The 'model' output type represents the neural network model after the self-attention guidance has been applied. It indicates the adjustments made to the model's attention mechanism to enhance focus on relevant features.
+    - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSampler,Reroute,ADE_AnimateDiffLoaderWithContext,Attention couple,UltimateSDUpscale`

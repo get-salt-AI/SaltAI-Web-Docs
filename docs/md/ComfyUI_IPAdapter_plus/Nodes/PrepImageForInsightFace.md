@@ -4,35 +4,35 @@
 - Category: `ipadapter`
 - Output node: `False`
 
-This node prepares an image for processing with InsightFace by optionally padding it, resizing it to a specific size, and applying sharpening. The process involves determining whether to pad the image and to what dimensions it should be resized, followed by the application of a specified sharpening level.
+The PrepImageForInsightFace node is designed to prepare images for processing with the InsightFace model. It adjusts images based on specified cropping positions, applies optional sharpening, and can add padding around the image to meet the model's requirements.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be processed. It is the primary subject for preparation before being processed by InsightFace.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The input image to be processed. It is the primary subject for preparation before being fed into the InsightFace model.
+    - Python dtype: `torch.Tensor`
 - **`crop_position`**
-    - Specifies the position from which the image should be cropped. This affects the focus area of the image before further processing.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the position for cropping the image, which can significantly impact the focus area for face detection.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`sharpening`**
-    - The level of sharpening to apply to the image. This can enhance the image's details for better facial recognition.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - An optional parameter to apply sharpening to the image, enhancing details that may improve face detection accuracy.
+    - Python dtype: `float`
 - **`pad_around`**
-    - A boolean indicating whether padding should be added around the image. This can affect the image's aspect ratio and size.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOLEAN`
+    - A boolean flag indicating whether to add padding around the image, which can affect the detection process by altering the image's dimensions.
+    - Python dtype: `bool`
 ## Output types
 - **`image`**
-    - The processed image, ready for InsightFace analysis. It has been optionally padded, resized, and sharpened according to the specified parameters.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The processed image, ready for further processing or analysis with the InsightFace model.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: `IPAdapterApplyFaceID`
 
-The PrepImageForInsightFace node is essential for optimizing images for facial feature enhancement with the InsightFace model, by adjusting parameters like padding, resizing, and sharpening based on the input image's characteristics. It is particularly useful in pipelines focusing on style and character face adaptation, where precise facial feature analysis is crucial.
+
 ## Source code
 ```python
 class PrepImageForInsightFace:

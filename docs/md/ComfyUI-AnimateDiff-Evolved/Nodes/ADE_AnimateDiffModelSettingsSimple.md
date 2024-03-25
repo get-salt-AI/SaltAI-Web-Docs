@@ -4,33 +4,33 @@
 - Category: ``
 - Output node: `False`
 
-This node is designed to configure the motion model settings for AnimateDiff in a simplified manner. It allows users to adjust the scale of motion in animations by specifying minimum and maximum motion scales, optionally including a mask to control motion scale at a more granular level.
+This node is designed to configure the motion model settings for the AnimateDiff process in a simplified manner. It allows users to adjust the scale of motion within the animation, providing a straightforward way to influence the animation's dynamics.
 ## Input types
 ### Required
 - **`motion_pe_stretch`**
-    - Specifies the amount by which the positional encoding (PE) is stretched, affecting the motion's perceived speed and intensity in the animation.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Determines the stretch of positional encoding in the motion model, affecting the range and intensity of motion effects.
+    - Python dtype: `int`
 ### Optional
 - **`mask_motion_scale`**
-    - An optional mask that allows for more detailed control over the motion scale across different parts of the animation, enabling variable motion effects.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - An optional mask that can be applied to selectively adjust the motion scale across different parts of the animation.
+    - Python dtype: `torch.Tensor`
 - **`min_motion_scale`**
-    - Defines the minimum scale for motion in the animation, setting a lower bound on how subtle the motion effects can be.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Specifies the minimum scale for motion in the animation, setting a lower bound for how subtle the motion effects can be.
+    - Python dtype: `float`
 - **`max_motion_scale`**
-    - Sets the maximum scale for motion, determining the upper limit of how pronounced the motion effects can appear in the animation.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Defines the maximum scale for motion in the animation, establishing an upper limit for the intensity of motion effects.
+    - Python dtype: `float`
 ## Output types
 - **`ad_settings`**
-    - Outputs the configured motion model settings for use in AnimateDiff animations.
-    - Python dtype: `AnimateDiffSettings`
     - Comfy dtype: `AD_SETTINGS`
+    - The output is a configuration object for the AnimateDiff settings, encapsulating the adjustments made to the motion model.
+    - Python dtype: `AnimateDiffSettings`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 

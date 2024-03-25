@@ -4,31 +4,31 @@
 - Category: `math/vec2`
 - Output node: `False`
 
-Performs a binary operation on two Vec2 vectors, resulting in a new Vec2 vector. This operation is defined by a specific operation ('op') applied to the input vectors 'a' and 'b'.
+The node performs binary operations on two-dimensional vectors, producing a new vector as a result. It abstracts mathematical operations that combine two vectors into one, based on a specified operation.
 ## Input types
 ### Required
 - **`op`**
-    - Specifies the binary operation to be applied to the vectors. The operation is chosen from a predefined list of vector operations, affecting the result of the node's execution.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the binary operation to be performed on the vectors. It determines how the two input vectors will be combined.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`a`**
-    - The first input Vec2 vector for the binary operation.
-    - Python dtype: `Vec2`
     - Comfy dtype: `VEC2`
+    - The first two-dimensional vector involved in the binary operation.
+    - Python dtype: `Vec2`
 - **`b`**
-    - The second input Vec2 vector for the binary operation.
-    - Python dtype: `Vec2`
     - Comfy dtype: `VEC2`
+    - The second two-dimensional vector involved in the binary operation.
+    - Python dtype: `Vec2`
 ## Output types
 - **`vec2`**
-    - The resulting Vec2 vector after applying the specified binary operation on the input vectors.
-    - Python dtype: `Vec2`
     - Comfy dtype: `VEC2`
+    - The resulting two-dimensional vector after applying the specified binary operation on the input vectors.
+    - Python dtype: `tuple[Vec2]`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
-Often used in mathematical and geometric operations requiring the manipulation of vector pairs, the CM_Vec2BinaryOperation node applies a specified binary operation (such as addition, subtraction, etc.) on two input Vec2 vectors 'a' and 'b', resulting in a new Vec2 vector as output.
+
 ## Source code
 ```python
 class Vec2BinaryOperation:

@@ -4,26 +4,26 @@
 - Category: `latent`
 - Output node: `False`
 
-The `LatentUpscaleBy` node is designed to upscale latent representations of images by a specified scale factor using various interpolation methods. It allows for the adjustment of the size of latent images to enhance detail or match specific dimensions.
+The LatentUpscaleBy node is designed for upscaling latent representations of images. It allows for the adjustment of the scale factor and the method of upscaling, providing flexibility in enhancing the resolution of latent samples.
 ## Input types
 ### Required
 - **`samples`**
-    - The latent representation of images to be upscaled. This input is crucial for the operation as it determines the base data that will be modified through the upscaling process.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The latent representation of images to be upscaled. This parameter is crucial for determining the input data that will undergo the upscaling process.
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`upscale_method`**
-    - Specifies the interpolation method used for upscaling. Different methods can affect the quality and characteristics of the upscaled image.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the method used for upscaling the latent samples. The choice of method can significantly affect the quality and characteristics of the upscaled output.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`scale_by`**
-    - The factor by which the latent images will be upscaled. This directly influences the output size of the images, allowing for precise control over the upscaling process.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Determines the factor by which the latent samples are scaled. This parameter directly influences the resolution of the output, allowing for precise control over the upscaling process.
+    - Python dtype: `float`
 ## Output types
 - **`latent`**
-    - The upscaled latent representation of images. This output provides the enhanced images after applying the specified upscaling method and scale factor.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The upscaled latent representation, ready for further processing or generation tasks. This output is essential for enhancing the resolution of generated images or for subsequent model operations.
+    - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSampler,Reroute,VAEDecode,KSampler (Efficient),LatentInterpolate`

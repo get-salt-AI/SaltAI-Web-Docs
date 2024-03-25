@@ -4,23 +4,23 @@
 - Category: `Animate Diff 🎭🅐🅓/multival`
 - Output node: `False`
 
-The `ADE_MultivalDynamic` node dynamically generates multivalued outputs based on the provided mask and float range inputs. It supports scaling the mask values either absolutely or relatively to fit within the specified float range, allowing for flexible adjustment of the mask's intensity or effect.
+The ADE_MultivalDynamic node dynamically generates multivalued outputs based on specified float ranges and masks, with optional scaling. It's designed to facilitate the creation of varied outputs by applying linear or normalized scaling to masks, allowing for flexible manipulation of values within the Animate Diff framework.
 ## Input types
 ### Required
 - **`float_val`**
-    - Specifies the float value or range to be applied directly or used for scaling the mask. It can be a single float or a list of floats, providing flexibility in adjusting the mask's intensity or effect.
-    - Python dtype: `Union[float, list[float]]`
     - Comfy dtype: `FLOAT`
+    - Specifies the float value or a list of float values for dynamic range manipulation. It sets the base for the output values, enabling the generation of multivalued outputs.
+    - Python dtype: `Union[float, list[float]]`
 ### Optional
 - **`mask_optional`**
-    - The optional mask tensor to be scaled or directly modified based on the float_val input. It represents the area or effect to be dynamically adjusted.
-    - Python dtype: `Optional[torch.Tensor]`
     - Comfy dtype: `MASK`
+    - An optional tensor representing the mask to be applied. The mask is used to selectively apply the scaling transformation to specific areas, enabling targeted manipulation of values.
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`multival`**
-    - Generates a multivalued output based on the scaled mask or direct float value application, providing dynamic control over the mask's intensity or effect.
-    - Python dtype: `MultivalDynamicNode`
     - Comfy dtype: `MULTIVAL`
+    - The output of the node, which is a dynamically generated multivalued result based on the input parameters. It represents the conditioned values after applying the specified scaling to the mask.
+    - Python dtype: `MultivalDynamicNode`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `ADE_ApplyAnimateDiffModel`

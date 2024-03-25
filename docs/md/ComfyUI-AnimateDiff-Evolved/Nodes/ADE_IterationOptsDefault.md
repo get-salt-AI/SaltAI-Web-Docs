@@ -4,27 +4,27 @@
 - Category: `Animate Diff 🎭🅐🅓/iteration opts`
 - Output node: `False`
 
-This node is responsible for creating default iteration options for the AnimateDiff process. It configures the iteration parameters such as the number of iterations, filter settings, and various other parameters that influence the behavior of the animation generation process.
+This node is designed to generate and manage iteration options for the AnimateDiff process, allowing for customization of iteration parameters such as the number of iterations and various offsets. It plays a crucial role in defining how the animation diffing process iterates over frames or elements, providing flexibility in the animation generation workflow.
 ## Input types
 ### Required
 - **`iterations`**
-    - Specifies the number of iterations to perform. This parameter directly influences the length and detail of the animation process.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the number of iterations to perform, directly influencing the depth or extent of the animation diffing process.
+    - Python dtype: `int`
 ### Optional
 - **`iter_batch_offset`**
-    - Offsets the batch number for each iteration, allowing for customization of batch processing during animation.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Determines the offset for batch processing within iterations, enabling fine-tuned control over the iteration sequence.
+    - Python dtype: `int`
 - **`iter_seed_offset`**
-    - Offsets the seed value for each iteration, enabling controlled variation in the animation generation.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Sets the seed offset for iterations, affecting the randomness or variability in the animation diffing process.
+    - Python dtype: `int`
 ## Output types
 - **`iteration_opts`**
-    - The configured iteration options, encapsulating all the specified settings for the animation process.
-    - Python dtype: `IterationOptions`
     - Comfy dtype: `ITERATION_OPTS`
+    - Outputs the configured iteration options, encapsulating all specified parameters for use in the animation diffing process.
+    - Python dtype: `IterationOptions`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

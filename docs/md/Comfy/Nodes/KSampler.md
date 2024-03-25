@@ -4,54 +4,54 @@
 - Category: `sampling`
 - Output node: `False`
 
-The `KSampler` node is designed for sampling operations using a variety of samplers and schedulers. It allows for the generation of new samples based on the provided model, seed, steps, and other parameters. This node is capable of handling different types of conditioning, adjusting the noise level, and utilizing specific samplers and schedulers to influence the generation process.
+The KSampler node is designed for advanced sampling operations within generative models, allowing for the customization of sampling processes through various parameters. It facilitates the generation of new data samples by manipulating latent space representations, leveraging conditioning, and adjusting noise levels.
 ## Input types
 ### Required
 - **`model`**
-    - Specifies the model to be used for sampling. The choice of model affects the quality and characteristics of the generated samples.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - Specifies the generative model to be used for sampling, playing a crucial role in determining the characteristics of the generated samples.
+    - Python dtype: `torch.nn.Module`
 - **`seed`**
-    - Determines the random seed for generating samples, ensuring reproducibility of results.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Controls the randomness of the sampling process, ensuring reproducibility of results when set to a specific value.
+    - Python dtype: `int`
 - **`steps`**
-    - Defines the number of steps to be taken in the sampling process, impacting the detail and quality of the generated samples.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Determines the number of steps to be taken in the sampling process, affecting the detail and quality of the generated samples.
+    - Python dtype: `int`
 - **`cfg`**
-    - Controls the conditioning factor, influencing the diversity and fidelity of the generated samples.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Adjusts the conditioning factor, influencing the direction and strength of the conditioning applied during sampling.
+    - Python dtype: `float`
 - **`sampler_name`**
-    - Selects the specific sampler to be used, affecting the sampling strategy and outcome.
+    - Comfy dtype: `COMBO[STRING]`
+    - Selects the specific sampling algorithm to be used, impacting the behavior and outcome of the sampling process.
     - Python dtype: `str`
-    - Comfy dtype: `['euler', 'euler_ancestral', 'heun'...]`
 - **`scheduler`**
-    - Chooses the scheduler for controlling the sampling process, impacting the progression and quality of samples.
+    - Comfy dtype: `COMBO[STRING]`
+    - Chooses the scheduling algorithm for controlling the sampling process, affecting the progression and dynamics of sampling.
     - Python dtype: `str`
-    - Comfy dtype: `['normal', 'karras', 'exponential'...]`
 - **`positive`**
-    - Provides positive conditioning to guide the sampling towards desired attributes.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `CONDITIONING`
+    - Defines positive conditioning to guide the sampling towards desired attributes or features.
+    - Python dtype: `dict`
 - **`negative`**
-    - Provides negative conditioning to steer the sampling away from undesired attributes.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `CONDITIONING`
+    - Specifies negative conditioning to steer the sampling away from certain attributes or features.
+    - Python dtype: `dict`
 - **`latent_image`**
-    - The initial latent image to be modified through the sampling process.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `LATENT`
+    - Provides a latent space representation to be used as a starting point or reference for the sampling process.
+    - Python dtype: `torch.Tensor`
 - **`denoise`**
-    - Adjusts the level of denoising applied to the samples, affecting their clarity and detail.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Controls the level of denoising applied to the samples, affecting the clarity and sharpness of the generated images.
+    - Python dtype: `float`
 ## Output types
 - **`latent`**
-    - The generated samples after the sampling process, represented in latent space.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `LATENT`
+    - Represents the latent space output of the sampling process, encapsulating the generated samples.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `VAEDecode,LatentUpscaleBy,VAEDecodeTiled,Reroute,LatentComposite,NNLatentUpscale,LatentUpscale,KSampler,workflow/front,SetNode`

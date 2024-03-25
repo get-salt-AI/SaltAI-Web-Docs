@@ -4,22 +4,22 @@
 - Category: `latent/transform`
 - Output node: `False`
 
-The `LatentFlip` node performs a flip transformation on latent representations of images. Depending on the specified method, it can flip the images either vertically or horizontally. This operation is useful for data augmentation or to correct the orientation of images in the latent space.
+The LatentFlip node is designed to manipulate latent representations by flipping them either vertically or horizontally. This operation allows for the transformation of the latent space, potentially uncovering new variations or perspectives within the data.
 ## Input types
 ### Required
 - **`samples`**
-    - The latent representation of images to be flipped. This input is crucial as it directly determines the data that will undergo the transformation.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The 'samples' parameter represents the latent representations to be flipped. The flipping operation alters these representations, either vertically or horizontally, depending on the 'flip_method' parameter, thus transforming the data in the latent space.
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`flip_method`**
-    - Specifies the axis along which the images in the latent space will be flipped. This parameter controls the direction of the flip, allowing for vertical or horizontal flipping.
+    - Comfy dtype: `COMBO[STRING]`
+    - The 'flip_method' parameter specifies the axis along which the latent samples will be flipped. It can be either 'x-axis: vertically' or 'y-axis: horizontally', determining the direction of the flip and thus the nature of the transformation applied to the latent representations.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`latent`**
-    - The flipped latent representation of images. This output is the result of applying the specified flip transformation to the input latent images.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The output is a modified version of the input latent representations, having been flipped according to the specified method. This transformation can introduce new variations within the latent space.
+    - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

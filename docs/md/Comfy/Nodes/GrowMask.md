@@ -4,26 +4,26 @@
 - Category: `mask`
 - Output node: `False`
 
-The `GrowMask` node is designed to modify the size of a given mask by either expanding or contracting it, with an option to taper the corners for a smoother transition. This operation is useful for adjusting mask boundaries in image processing tasks.
+The GrowMask node is designed to modify the size of a given mask, either expanding or contracting it, while optionally applying a tapered effect to the corners. This functionality is crucial for dynamically adjusting mask boundaries in image processing tasks, allowing for more flexible and precise control over the area of interest.
 ## Input types
 ### Required
 - **`mask`**
-    - The input mask to be modified. It serves as the base for the expansion or contraction operation.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The input mask to be modified. This parameter is central to the node's operation, serving as the base upon which the mask is either expanded or contracted.
+    - Python dtype: `torch.Tensor`
 - **`expand`**
-    - Determines the number of pixels by which the mask will be expanded (positive value) or contracted (negative value).
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Determines the magnitude and direction of the mask modification. Positive values cause the mask to expand, while negative values lead to contraction. This parameter directly influences the final size of the mask.
+    - Python dtype: `int`
 - **`tapered_corners`**
-    - A boolean flag that, when set to True, applies a tapering effect to the corners of the mask during the expansion or contraction process, creating a smoother transition.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOLEAN`
+    - A boolean flag that, when set to True, applies a tapered effect to the corners of the mask during modification. This option allows for smoother transitions and visually appealing results.
+    - Python dtype: `bool`
 ## Output types
 - **`mask`**
-    - The modified mask after the expansion or contraction operation, potentially with tapered corners if specified.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The modified mask after applying the specified expansion/contraction and optional tapered corners effect.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `MaskBlur+,ImageCompositeMasked,MaskToImage,VAEEncodeForInpaint`

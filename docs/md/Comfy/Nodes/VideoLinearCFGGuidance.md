@@ -4,22 +4,22 @@
 - Category: `sampling/video_models`
 - Output node: `False`
 
-This node applies a linear conditioning guidance scale to a video model. It modifies the model's sampler configuration function to adjust the influence of conditioned and unconditioned inputs based on a linear scale between a minimum configuration scale and the provided condition scale.
+The VideoLinearCFGGuidance node applies a linear conditioning guidance scale to a video model, adjusting the influence of conditioned and unconditioned components over a specified range. This enables dynamic control over the generation process, allowing for fine-tuning of the model's output based on the desired level of conditioning.
 ## Input types
 ### Required
 - **`model`**
-    - The video model to which the linear CFG guidance will be applied. This model is cloned and modified.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - The model parameter represents the video model to which the linear CFG guidance will be applied. It is crucial for defining the base model that will be modified with the guidance scale.
+    - Python dtype: `torch.nn.Module`
 - **`min_cfg`**
-    - The minimum conditioning scale used as the starting point of the linear scale applied to the model's conditioning guidance.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The min_cfg parameter specifies the minimum conditioning guidance scale to be applied, serving as the starting point for the linear scale adjustment. It plays a key role in determining the lower bound of the guidance scale, influencing the model's output.
+    - Python dtype: `float`
 ## Output types
 - **`model`**
-    - The modified video model with the linear CFG guidance applied.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - The output is a modified version of the input model, with the linear CFG guidance scale applied. This adjusted model is capable of generating outputs with varying degrees of conditioning, based on the specified guidance scale.
+    - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSampler,FreeU_V2,KSamplerAdvanced`

@@ -4,27 +4,27 @@
 - Category: `Animate Diff 🎭🅐🅓`
 - Output node: `False`
 
-The `ADE_AnimateDiffLoRALoader` node is responsible for loading motion LoRA (Locally Reweighted Affinity) models, which are used to animate static images by applying predefined or custom motion patterns. It supports loading a specific LoRA model by name, adjusting its strength for the animation effect, and optionally chaining it with previously loaded LoRA models to create complex animations.
+The ADE_AnimateDiffLoRALoader node is designed to load motion LoRA (Locally Recurrent Architecture) configurations for use in animation processes. It facilitates the selection and application of specific motion LoRA settings, enhancing the control and customization of animation dynamics.
 ## Input types
 ### Required
 - **`lora_name`**
-    - Specifies the name of the LoRA model to be loaded. This is crucial for determining the specific motion pattern to apply to the static image.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the name of the motion LoRA to be loaded. It is crucial for identifying the specific LoRA configuration to apply.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`strength`**
-    - Adjusts the intensity of the motion effect applied by the LoRA model. A higher value results in a more pronounced animation.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Determines the strength of the motion LoRA effect. This parameter allows for fine-tuning the intensity of the motion applied, affecting the animation's overall dynamics.
+    - Python dtype: `float`
 ### Optional
 - **`prev_motion_lora`**
-    - Allows for chaining multiple LoRA models by providing previously loaded models. This enables the creation of complex animations by combining different motion patterns.
-    - Python dtype: `MotionLoraList`
     - Comfy dtype: `MOTION_LORA`
+    - Optional. Represents the previous motion LoRA configuration. If provided, it enables the chaining or layering of motion LoRA effects for more complex animations.
+    - Python dtype: `MotionLoraList`
 ## Output types
 - **`motion_lora`**
-    - Returns the updated list of LoRA models, including the newly loaded model, ready to be used for animating images.
-    - Python dtype: `MotionLoraList`
     - Comfy dtype: `MOTION_LORA`
+    - Returns the updated motion LoRA configuration, incorporating the selected LoRA settings and strength. This output is essential for subsequent animation steps.
+    - Python dtype: `MotionLoraList`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `ADE_AnimateDiffLoaderWithContext,ADE_AnimateDiffLoRALoader`

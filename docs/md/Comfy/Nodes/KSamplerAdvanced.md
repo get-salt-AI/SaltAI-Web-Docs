@@ -4,66 +4,66 @@
 - Category: `sampling`
 - Output node: `False`
 
-The `KSamplerAdvanced` node appears to be a conceptual or placeholder entity, as there is no direct implementation or method details provided in the context. Typically, such a node might represent an advanced version of a sampling mechanism, potentially offering more sophisticated or customizable sampling strategies compared to its base version. However, without specific implementation details, it's not possible to provide a precise analysis of its functionality.
+The KSamplerAdvanced node is designed to enhance the sampling process by providing advanced configurations and techniques. It aims to offer more sophisticated options for generating samples from a model, improving upon the basic KSampler functionalities.
 ## Input types
 ### Required
 - **`model`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `MODEL`
+    - Specifies the model from which samples are to be generated, playing a crucial role in the sampling process.
+    - Python dtype: `str`
 - **`add_noise`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `['enable', 'disable'...]`
+    - Comfy dtype: `COMBO[STRING]`
+    - Determines whether noise should be added to the sampling process, affecting the diversity and quality of the generated samples.
+    - Python dtype: `bool`
 - **`noise_seed`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Sets the seed for noise generation, ensuring reproducibility in the sampling process.
+    - Python dtype: `int`
 - **`steps`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Defines the number of steps to be taken in the sampling process, impacting the detail and quality of the output.
+    - Python dtype: `int`
 - **`cfg`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Controls the conditioning factor, influencing the direction and space of the sampling process.
+    - Python dtype: `float`
 - **`sampler_name`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `['euler', 'euler_ancestral', 'heun'...]`
+    - Comfy dtype: `COMBO[STRING]`
+    - Selects the specific sampler to be used, allowing for customization of the sampling technique.
+    - Python dtype: `str`
 - **`scheduler`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `['normal', 'karras', 'exponential'...]`
+    - Comfy dtype: `COMBO[STRING]`
+    - Chooses the scheduler for controlling the sampling process, affecting the progression and quality of samples.
+    - Python dtype: `str`
 - **`positive`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `CONDITIONING`
+    - Specifies the positive conditioning to guide the sampling towards desired attributes.
+    - Python dtype: `str`
 - **`negative`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `CONDITIONING`
+    - Specifies the negative conditioning to steer the sampling away from certain attributes.
+    - Python dtype: `str`
 - **`latent_image`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `LATENT`
+    - Provides the initial latent image to be used in the sampling process, serving as a starting point.
+    - Python dtype: `str`
 - **`start_at_step`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Determines the starting step of the sampling process, allowing for control over the sampling progression.
+    - Python dtype: `int`
 - **`end_at_step`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Sets the ending step of the sampling process, defining the scope of the sampling.
+    - Python dtype: `int`
 - **`return_with_leftover_noise`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `['disable', 'enable'...]`
+    - Comfy dtype: `COMBO[STRING]`
+    - Indicates whether to return the sample with leftover noise, affecting the final output's appearance.
+    - Python dtype: `str`
 ## Output types
 - **`latent`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `LATENT`
+    - The output represents the latent image generated from the model, reflecting the applied configurations and techniques.
+    - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `VAEDecode,Reroute,workflow/KSampler + Vae,gcLatentTunnel,Anything Everywhere,LatentCompositeMasked,KSampler,LatentBlend,Mute / Bypass Repeater (rgthree)`

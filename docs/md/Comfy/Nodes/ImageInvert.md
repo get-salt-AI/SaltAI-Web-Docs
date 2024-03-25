@@ -4,18 +4,18 @@
 - Category: `image`
 - Output node: `False`
 
-The `ImageInvert` node inverts the colors of an input image by subtracting each color value from 1. This operation effectively reverses the color scheme of the image, turning light areas dark and vice versa.
+The ImageInvert node is designed to invert the colors of an image, effectively transforming each pixel's color value to its complementary color on the color wheel. This operation is useful for creating negative images or for visual effects that require color inversion.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be inverted. The inversion process changes the color values of the image to their complementary values, affecting the overall appearance.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The 'image' parameter represents the input image to be inverted. It is crucial for specifying the target image whose colors are to be inverted, affecting the node's execution and the visual outcome of the inversion process.
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**
-    - The inverted image with its colors reversed. This output is useful for creating visual contrasts or for preprocessing steps in image processing pipelines.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The output is an inverted version of the input image, with each pixel's color value transformed to its complementary color.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `PreviewImage,ImageScale,ImageCompositeMasked,Reroute,ArithmeticBlend`

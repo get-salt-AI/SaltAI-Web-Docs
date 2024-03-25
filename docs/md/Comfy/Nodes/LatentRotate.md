@@ -4,22 +4,22 @@
 - Category: `latent/transform`
 - Output node: `False`
 
-The `LatentRotate` node rotates latent representations of images by specified angles. It supports rotation by 0, 90, 180, and 270 degrees, allowing for flexible manipulation of the latent space.
+The LatentRotate node is designed to rotate latent representations of images by specified angles. It abstracts the complexity of manipulating latent space to achieve rotation effects, enabling users to easily transform images in a generative model's latent space.
 ## Input types
 ### Required
 - **`samples`**
-    - The latent representation of an image to be rotated. This input is crucial for defining the starting point of the rotation operation.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The 'samples' parameter represents the latent representations of images to be rotated. It is crucial for determining the starting point of the rotation operation.
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`rotation`**
-    - Specifies the angle by which the latent image should be rotated. This parameter directly influences the orientation of the resulting latent image.
+    - Comfy dtype: `COMBO[STRING]`
+    - The 'rotation' parameter specifies the angle by which the latent images should be rotated. It directly influences the orientation of the resulting images.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`latent`**
-    - The rotated latent representation of the image. This output reflects the transformation applied by the specified rotation angle.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The output is a modified version of the input latent representations, rotated by the specified angle.
+    - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

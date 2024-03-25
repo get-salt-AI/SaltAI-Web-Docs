@@ -4,23 +4,23 @@
 - Category: `math/conversion`
 - Output node: `False`
 
-Converts a number (either integer or float) to an integer. This operation is useful for scenarios where integer values are required, such as indexing or discrete operations.
+The CM_NumberToInt node is designed for converting numerical values from a generic number type to an integer type. This node facilitates the type casting process within mathematical or computational operations, ensuring compatibility and precision in scenarios where integer-specific operations are required.
 ## Input types
 ### Required
 - **`a`**
-    - The number to be converted to an integer. This can be either an integer or a float, making the node versatile for different numeric types.
-    - Python dtype: `Union[int, float]`
     - Comfy dtype: `NUMBER`
+    - The input 'a' represents the numerical value to be converted to an integer. This parameter is crucial for the conversion process, determining the resultant integer value.
+    - Python dtype: `Union[int, float]`
 ## Output types
 - **`int`**
-    - The integer representation of the input number.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The output is the integer representation of the input numerical value, achieved through type conversion.
+    - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `SVD_img2vid_Conditioning`
 
-The CM_NumberToInt node is crucial for converting numerical values from floating-point to integer format, often used in scenarios requiring integer inputs, such as indexing or discrete operations within the pipeline.
+
 ## Source code
 ```python
 class NumberToInt:

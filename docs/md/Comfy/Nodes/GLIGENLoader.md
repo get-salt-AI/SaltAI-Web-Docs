@@ -4,18 +4,18 @@
 - Category: `loaders`
 - Output node: `False`
 
-The GLIGENLoader node is responsible for loading a GLIGEN model from a specified path. It utilizes the `load_gligen` function to retrieve the model based on the given name, making it available for further processing or application within the system.
+The GLIGENLoader node is designed for loading GLIGEN models, which are specialized generative models. It facilitates the process of retrieving and initializing these models from specified paths, making them ready for further generative tasks.
 ## Input types
 ### Required
 - **`gligen_name`**
-    - Specifies the name of the GLIGEN model to be loaded. This name is used to locate the model file within a predefined directory structure.
+    - Comfy dtype: `COMBO[STRING]`
+    - The name of the GLIGEN model to be loaded. This parameter specifies which model file to retrieve and load, playing a crucial role in the initialization of the GLIGEN model for use.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`gligen`**
-    - The loaded GLIGEN model, ready for use in generating or manipulating images.
-    - Python dtype: `Gligen`
     - Comfy dtype: `GLIGEN`
+    - The loaded GLIGEN model, ready for use in generative tasks. This output represents the fully initialized model that has been loaded from the specified path.
+    - Python dtype: `Gligen`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `GLIGENTextBoxApply`

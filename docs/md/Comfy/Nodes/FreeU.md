@@ -4,34 +4,34 @@
 - Category: `model_patches`
 - Output node: `False`
 
-The `FreeU` node is designed to modify the output of a model by applying a custom patching function. This function adjusts the model's output based on predefined scaling factors and optionally applies a Fourier filter to handle spatial frequencies. The patching process is intended to enhance or alter the model's output in a specific manner, potentially improving the quality or relevance of the generated content.
+The FreeU node is designed to enhance the flexibility and performance of neural network models by dynamically adjusting the scaling of hidden layers based on their mean activation values. It employs Fourier filtering to manage spatial frequencies in the data, adapting to different computational resources by switching to CPU processing when necessary.
 ## Input types
 ### Required
 - **`model`**
-    - The model to be patched. This is the primary input and the target of the patching operation, which will have its output block modified to apply the custom adjustments.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - The neural network model to be enhanced. It is the core component that undergoes dynamic scaling and Fourier filtering adjustments.
+    - Python dtype: `torch.nn.Module`
 - **`b1`**
-    - A scaling factor for adjusting the model's output. It is part of the scale dictionary that determines how the output is modified.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A scaling factor for the model's hidden layers, contributing to the dynamic adjustment of the model's performance.
+    - Python dtype: `float`
 - **`b2`**
-    - Another scaling factor for adjusting the model's output, used in conjunction with `b1` to define the scale dictionary.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Another scaling factor for the model's hidden layers, working alongside b1 to fine-tune the model's dynamic scaling.
+    - Python dtype: `float`
 - **`s1`**
-    - A scaling parameter for the Fourier filter, affecting how spatial frequencies are handled in the patching process.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A scale parameter for the Fourier filtering process, influencing the handling of spatial frequencies in the data.
+    - Python dtype: `float`
 - **`s2`**
-    - Another scaling parameter for the Fourier filter, working alongside `s1` to fine-tune the spatial frequency handling.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Another scale parameter for the Fourier filtering, complementing s1 to optimize the spatial frequency management.
+    - Python dtype: `float`
 ## Output types
 - **`model`**
-    - The patched model, which has been modified by the `FreeU` node to include custom adjustments and potentially enhanced output.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - The enhanced neural network model, featuring dynamically scaled hidden layers and optimized spatial frequency handling through Fourier filtering.
+    - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSampler,KSamplerAdvanced,UltimateSDUpscale,Bus Node,DynamicThresholdingFull,Anything Everywhere`

@@ -4,20 +4,20 @@
 - Category: `mask`
 - Output node: `False`
 
-The `MaskToImage` node converts a mask into an image by reshaping and expanding the mask dimensions to match those of an image. This process involves adjusting the mask to have three color channels, effectively transforming it into a grayscale image where the mask's values are replicated across all three channels.
+The `MaskToImage` node is designed to convert a mask into an image format. This transformation allows for the visualization and further processing of masks as images, facilitating a bridge between mask-based operations and image-based applications.
 ## Input types
 ### Required
 - **`mask`**
-    - The mask to be converted into an image. This mask serves as the basis for generating a grayscale image where the original mask values are duplicated across the RGB channels.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The mask input is essential for the conversion process, serving as the source data that will be transformed into an image format. This input dictates the shape and content of the resulting image.
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**
-    - The resulting image obtained from the mask. This image is a grayscale representation where the mask's values are replicated across the RGB channels, allowing it to be used in contexts expecting an image format.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The output is an image representation of the input mask, enabling visual inspection and further image-based manipulations.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: `PreviewImage,Paste By Mask,RegionalIPAdapterColorMask //Inspire,ImageCompositeMasked,ImageInvert,Image To Mask,Cut By Mask,Blur`
 
 

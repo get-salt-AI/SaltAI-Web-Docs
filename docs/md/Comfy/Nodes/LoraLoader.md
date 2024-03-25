@@ -4,38 +4,38 @@
 - Category: `loaders`
 - Output node: `False`
 
-The LoraLoader node is designed to load and apply LoRA (Low-Rank Adaptation) adjustments to given models and CLIP instances. It dynamically adjusts the strength of the LoRA modifications based on provided parameters, allowing for fine-tuned control over the adaptation process. This node supports conditional loading to avoid redundant operations if the same LoRA configuration has been loaded previously.
+The LoraLoader node is designed to dynamically load and apply LoRA (Low-Rank Adaptation) adjustments to models and CLIP instances based on specified strengths and LoRA file names. It facilitates the customization of pre-trained models by applying fine-tuned adjustments without altering the original model weights directly, enabling more flexible and targeted model behavior modifications.
 ## Input types
 ### Required
 - **`model`**
-    - The model parameter represents the neural network model to which LoRA adjustments will be applied. It's crucial for adapting the model's behavior without extensive retraining.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
-- **`clip`**
-    - The clip parameter signifies the CLIP model instance that will undergo LoRA adjustments. This is essential for modifying CLIP's behavior in a controlled manner.
+    - The model to which LoRA adjustments will be applied. It's crucial for customizing the model's behavior without changing its original structure. The choice of model directly influences the effectiveness and applicability of the LoRA adjustments, as different models may respond differently to the same set of adjustments.
     - Python dtype: `torch.nn.Module`
+- **`clip`**
     - Comfy dtype: `CLIP`
+    - The CLIP instance to which LoRA adjustments will be applied, allowing for customized behavior in processing visual and textual data. The adjustments can significantly alter how the CLIP model processes and interprets visual and textual inputs, thereby affecting the outcomes of tasks like image captioning or text-to-image generation.
+    - Python dtype: `torch.nn.Module`
 - **`lora_name`**
-    - Specifies the name of the LoRA configuration to load. This parameter is key to identifying the specific LoRA adjustments to apply.
+    - Comfy dtype: `COMBO[STRING]`
+    - The name of the LoRA file containing the adjustments to be applied. This enables the selection of specific fine-tuning adjustments for the model and CLIP instance. The specific LoRA file chosen dictates the nature of the adjustments and can lead to varied enhancements or modifications in model performance.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`strength_model`**
-    - Determines the intensity of LoRA adjustments applied to the model. This allows for precise control over the adaptation's impact.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Determines the intensity of the LoRA adjustments applied to the model. This allows for fine-grained control over the extent of model customization. Higher strengths mean more pronounced adjustments, which can lead to significant changes in model behavior, potentially improving performance on specific tasks.
+    - Python dtype: `float`
 - **`strength_clip`**
-    - Sets the intensity of LoRA adjustments for the CLIP model, enabling fine-tuned control over its adaptation.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Determines the intensity of the LoRA adjustments applied to the CLIP instance. This allows for fine-grained control over the extent of CLIP customization. Similar to the model, higher strengths result in more noticeable changes, affecting how the CLIP model processes data.
+    - Python dtype: `float`
 ## Output types
 - **`model`**
-    - The modified model with LoRA adjustments applied.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
-- **`clip`**
-    - The CLIP model instance after LoRA adjustments.
+    - The model with LoRA adjustments applied, reflecting the specified customization. The adjustments can enhance the model's performance on specific tasks or alter its behavior to better suit particular applications.
     - Python dtype: `torch.nn.Module`
+- **`clip`**
     - Comfy dtype: `CLIP`
+    - The CLIP instance with LoRA adjustments applied, reflecting the specified customization. These adjustments can lead to improved or altered performance in tasks involving visual and textual data processing.
+    - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `LoraLoader,CLIPTextEncode,Reroute,VideoLinearCFGGuidance,KSampler,FaceDetailer,ModelSamplingDiscrete,ADE_AnimateDiffLoaderWithContext,KSampler //Inspire,ToBasicPipe`

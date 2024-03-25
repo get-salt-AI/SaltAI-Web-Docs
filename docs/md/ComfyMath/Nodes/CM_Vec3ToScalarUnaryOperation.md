@@ -4,27 +4,27 @@
 - Category: `math/vec3`
 - Output node: `False`
 
-Performs a unary operation that transforms a 3-dimensional vector (Vec3) into a scalar value based on the specified operation. This operation is useful for extracting specific scalar properties or measurements from a Vec3.
+This node performs a unary operation that transforms a 3-dimensional vector into a scalar value, based on a specified operation. It abstracts complex mathematical operations into a simple interface, allowing for the transformation of vector data into scalar form.
 ## Input types
 ### Required
 - **`op`**
-    - Specifies the unary operation to be performed on the Vec3. The choice of operation determines how the Vec3 is transformed into a scalar value, affecting the outcome significantly.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the unary operation to be performed on the 3-dimensional vector. This operation determines how the vector is transformed into a scalar value.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`a`**
-    - The Vec3 on which the unary operation is performed. This vector is the input from which the scalar value is derived.
-    - Python dtype: `Vec3`
     - Comfy dtype: `VEC3`
+    - The 3-dimensional vector to be transformed into a scalar value through the specified unary operation.
+    - Python dtype: `Vec3`
 ## Output types
 - **`float`**
-    - The scalar result of the unary operation performed on the Vec3. This output provides a specific scalar measurement or property derived from the input Vec3.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The scalar result of applying the specified unary operation on the input 3-dimensional vector.
+    - Python dtype: `float`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
-Often used in mathematical and geometric computations to convert a 3-dimensional vector (Vec3) into a meaningful scalar value, such as length, by applying a specified unary operation. This node is crucial for extracting specific measurements or properties from a Vec3 for further analysis or use in the pipeline.
+
 ## Source code
 ```python
 class Vec3ToScalarUnaryOperation:

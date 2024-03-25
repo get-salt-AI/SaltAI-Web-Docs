@@ -4,30 +4,30 @@
 - Category: `conditioning/advanced`
 - Output node: `False`
 
-The `BNK_AddCLIPSDXLRParams` node enriches the conditioning data with additional parameters such as width, height, and an aesthetic score. This process is essential for tailoring the conditioning to specific requirements, thereby enhancing the generation process.
+This node is designed to enhance the conditioning data for image generation by incorporating additional parameters such as width, height, and an aesthetic score. It operates by iterating over a list of conditioning elements, modifying each with the specified dimensions and aesthetic score, thereby preparing the data for more tailored and aesthetically pleasing image generation.
 ## Input types
 ### Required
 - **`conditioning`**
-    - The base conditioning data to be enriched with additional parameters. It is crucial for defining the context or requirements for the generation process.
-    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - The base conditioning data for image generation, which this node modifies by adding width, height, and an aesthetic score to each element.
+    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
 - **`width`**
-    - Specifies the desired width for the generation. It directly influences the dimensions of the generated output.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the width to be added to the conditioning data, influencing the dimensions of the generated image.
+    - Python dtype: `int`
 - **`height`**
-    - Specifies the desired height for the generation. It directly influences the dimensions of the generated output.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the height to be added to the conditioning data, influencing the dimensions of the generated image.
+    - Python dtype: `int`
 - **`ascore`**
-    - An aesthetic score that influences the visual appeal of the generated output. It allows for a subjective quality assessment to be factored into the generation.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - An aesthetic score to be added to the conditioning data, aiming to guide the image generation towards more visually appealing results.
+    - Python dtype: `float`
 ## Output types
 - **`conditioning`**
-    - The enriched conditioning data, now including width, height, and aesthetic score, ready for further processing.
-    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - The enhanced conditioning data, now including specified width, height, and aesthetic score for each element.
+    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

@@ -4,53 +4,53 @@
 - Category: `Animate Diff 🎭🅐🅓/noise layers`
 - Output node: `False`
 
-This node creates a weighted noise layer that combines new and old noise based on a calculated noise mask, adjusting the blend with a balance multiplier. It's designed to add complexity and variation to the noise pattern by weighting the contribution of new noise against the existing noise in a dynamic manner.
+This node specializes in adding a weighted noise layer to a given noise structure, utilizing a balance multiplier to fine-tune the influence of new noise versus existing noise. It extends the functionality of a basic noise addition by allowing for more nuanced control over how noise is integrated into the system.
 ## Input types
 ### Required
 - **`batch_offset`**
-    - Specifies the offset for batch processing, affecting how noise is applied across different items in a batch.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the offset for batch processing, affecting how noise is applied across different batches.
+    - Python dtype: `int`
 - **`noise_type`**
-    - Determines the type of noise to be applied, influencing the texture and characteristics of the resulting noise.
+    - Comfy dtype: `COMBO[STRING]`
+    - Defines the type of noise to be added, influencing the characteristics of the noise applied.
     - Python dtype: `str`
-    - Comfy dtype: `['default', 'constant', 'empty', 'repeated_context', 'FreeNoise']`
 - **`seed_gen_override`**
-    - Overrides the default seed generation mechanism, allowing for customized noise generation patterns.
+    - Comfy dtype: `COMBO[STRING]`
+    - Allows for overriding the default seed generation mechanism, enabling custom seed generation strategies.
     - Python dtype: `str`
-    - Comfy dtype: `['comfy', 'auto1111', 'seed_gen_override_option1', 'seed_gen_override_option2']`
 - **`seed_offset`**
-    - Adjusts the seed value, enabling fine control over the randomness of the noise generation.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Determines the offset applied to the seed value, providing a way to adjust the randomness of the noise.
+    - Python dtype: `int`
 - **`noise_weight`**
-    - Controls the intensity of the new noise being added, allowing for adjustments in the noise's impact.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Controls the weight of the new noise being added, affecting the overall impact of the noise on the system.
+    - Python dtype: `float`
 - **`balance_multiplier`**
-    - Modifies the balance between the old and new noise, enabling nuanced adjustments to the final noise effect.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Adjusts the balance between new and existing noise, allowing for fine-tuned control over the noise layer's influence.
+    - Python dtype: `float`
 ### Optional
 - **`prev_noise_layers`**
-    - Specifies the previous group of noise layers to which the new layer will be added, allowing for the accumulation of noise effects.
-    - Python dtype: `NoiseLayerGroup`
     - Comfy dtype: `NOISE_LAYERS`
+    - Optional previous noise layers that can be modified or extended with the new weighted noise layer.
+    - Python dtype: `NoiseLayerGroup`
 - **`mask_optional`**
-    - Applies a mask to selectively enable or disable noise application on specific areas, enhancing the flexibility of noise addition.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - An optional mask that can be applied to selectively add noise to certain areas.
+    - Python dtype: `Tensor`
 - **`seed_override`**
-    - Directly sets the seed value, providing precise control over the noise generation process.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Directly overrides the seed value used for noise generation, offering precise control over the noise's randomness.
+    - Python dtype: `int`
 ## Output types
 - **`noise_layers`**
-    - Returns the updated group of noise layers, including the newly added weighted noise layer.
-    - Python dtype: `NoiseLayerGroup`
     - Comfy dtype: `NOISE_LAYERS`
+    - Returns the updated noise layer structure, including the newly added weighted noise layer.
+    - Python dtype: `NoiseLayerGroup`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 

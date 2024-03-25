@@ -4,39 +4,39 @@
 - Category: `Animate Diff 🎭🅐🅓`
 - Output node: `False`
 
-The `ADE_AnimateDiffKeyframe` node is responsible for creating or updating keyframes within the AnimateDiff animation process. It allows for the specification of animation parameters at specific points in the animation timeline, enabling dynamic changes in scale, effect, and other properties as the animation progresses.
+This node is designed for creating and managing keyframes within the AnimateDiff framework, allowing users to define and manipulate animation parameters such as start percentage, scale, and effects over time. It facilitates the dynamic generation of animation sequences by integrating new keyframes into existing sequences or creating new ones.
 ## Input types
 ### Required
 - **`start_percent`**
-    - Specifies the point in the animation timeline (as a percentage) where the keyframe should be applied. It is crucial for defining the timing of changes in the animation.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Specifies the starting point of the keyframe as a percentage of the total animation duration. It determines when the keyframe's effects begin to apply, playing a crucial role in the timing of animations.
+    - Python dtype: `float`
 ### Optional
 - **`prev_ad_keyframes`**
-    - An optional parameter that allows for the inclusion of previously defined keyframes, enabling the accumulation and modification of animation settings over time.
-    - Python dtype: `ADKeyframeGroup`
     - Comfy dtype: `AD_KEYFRAMES`
+    - An optional collection of previously defined keyframes. This allows for the integration of the new keyframe into an existing sequence, enabling complex animations through the accumulation of keyframes.
+    - Python dtype: `ADKeyframeGroup`
 - **`scale_multival`**
-    - Defines a scaling factor or a tensor of scaling factors to be applied at the specified keyframe, affecting the size or intensity of the animated effect.
-    - Python dtype: `Union[float, torch.Tensor]`
     - Comfy dtype: `MULTIVAL`
+    - Defines the scaling factor for the keyframe, which can be a single value or a tensor. This parameter influences the size or scale of the animated elements at this keyframe.
+    - Python dtype: `Union[float, torch.Tensor]`
 - **`effect_multival`**
-    - Specifies an effect factor or a tensor of effect factors to be applied at the keyframe, influencing the visual or behavioral aspects of the animation.
-    - Python dtype: `Union[float, torch.Tensor]`
     - Comfy dtype: `MULTIVAL`
+    - Specifies the effect intensity or parameters for the keyframe, which can also be a single value or a tensor. This affects how pronounced or subtle the animation effects are at this point.
+    - Python dtype: `Union[float, torch.Tensor]`
 - **`inherit_missing`**
-    - Determines whether missing values for scale and effect should be inherited from the previous keyframe, ensuring continuity in the animation.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOLEAN`
+    - A boolean flag indicating whether to inherit unspecified values from previous keyframes. This facilitates smoother transitions and continuity in animations.
+    - Python dtype: `bool`
 - **`guarantee_steps`**
-    - Guarantees a minimum number of steps for which the specified keyframe settings will be applied, ensuring that the animation effect is noticeable.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Determines the minimum number of steps to maintain the current keyframe's effects before transitioning to the next. This ensures a certain duration or stability for the keyframe's influence.
+    - Python dtype: `int`
 ## Output types
 - **`ad_keyframes`**
-    - Returns the updated collection of keyframes, including the newly added or modified keyframe, facilitating the construction of complex animations.
-    - Python dtype: `ADKeyframeGroup`
     - Comfy dtype: `AD_KEYFRAMES`
+    - Returns the updated collection of keyframes, including the newly added keyframe, ready for use in further animation processing.
+    - Python dtype: `ADKeyframeGroup`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

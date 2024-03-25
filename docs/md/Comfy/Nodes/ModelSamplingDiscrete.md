@@ -4,26 +4,26 @@
 - Category: `advanced/model`
 - Output node: `False`
 
-The `ModelSamplingDiscrete` node is designed to modify a given model by applying a discrete sampling strategy. It supports various sampling methods such as `eps`, `v_prediction`, `lcm`, and `x0`, each of which alters the model's behavior in specific ways. This node also allows for the optional use of zero-shot noise rescaling (zsnr) to adjust the model's sigma values for noise control.
+This node is designed to modify the sampling behavior of a model by applying a discrete sampling strategy. It allows for the selection of different sampling methods, such as epsilon, v_prediction, lcm, or x0, and optionally adjusts the model's noise reduction strategy based on the zero-shot noise ratio (zsnr) setting.
 ## Input types
 ### Required
 - **`model`**
-    - The `model` parameter represents the model to be modified. It is the core input around which the sampling strategy is applied, determining the base behavior before any modifications.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - The model to which the discrete sampling strategy will be applied. This parameter is crucial as it defines the base model that will undergo modification.
+    - Python dtype: `torch.nn.Module`
 - **`sampling`**
-    - The `sampling` parameter specifies the discrete sampling strategy to be applied to the model. It affects how the model generates outputs by altering its internal sampling mechanism.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the discrete sampling method to be applied to the model. The choice of method affects how the model generates samples, offering different strategies for sampling.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`zsnr`**
-    - The `zsnr` flag, when enabled, applies zero-shot noise rescaling to the model's sigma values. This can help in controlling the noise level in the model's output, potentially improving the quality.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOLEAN`
+    - A boolean flag that, when enabled, adjusts the model's noise reduction strategy based on the zero-shot noise ratio. This can influence the quality and characteristics of the generated samples.
+    - Python dtype: `bool`
 ## Output types
 - **`model`**
-    - The modified model with the applied discrete sampling strategy and optional zero-shot noise rescaling.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - The modified model with the applied discrete sampling strategy. This model is now equipped to generate samples using the specified method and adjustments.
+    - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `Reroute,KSampler,SamplerCustom,CR Module Pipe Loader,FreeU (Advanced),Anything Everywhere,ReroutePrimitive|pysssss,BasicScheduler,KSampler (Efficient)`

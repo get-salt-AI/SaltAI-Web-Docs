@@ -4,22 +4,22 @@
 - Category: `latent/batch`
 - Output node: `False`
 
-The `LatentBatch` node combines two sets of latent representations (samples) into a single batch. It ensures that the dimensions of the two input samples match, potentially resizing one of them, before concatenating them along the batch dimension. Additionally, it manages batch indices for the combined samples.
+The LatentBatch node is designed to merge two sets of latent samples into a single batch, potentially resizing one set to match the dimensions of the other before concatenation. This operation facilitates the combination of different latent representations for further processing or generation tasks.
 ## Input types
 ### Required
 - **`samples1`**
-    - The first set of latent representations to be combined. It is crucial for constructing the output batch by providing the initial part of the combined samples.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The first set of latent samples to be merged. It plays a crucial role in determining the final shape of the merged batch.
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`samples2`**
-    - The second set of latent representations to be combined with the first. It may be resized to match the dimensions of `samples1` before concatenation, contributing to the latter part of the combined samples.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The second set of latent samples to be merged. If its dimensions differ from the first set, it is resized to ensure compatibility before merging.
+    - Python dtype: `Dict[str, torch.Tensor]`
 ## Output types
 - **`latent`**
-    - The combined set of latent representations from `samples1` and `samples2`, concatenated along the batch dimension. It includes updated batch indices reflecting the new combined batch.
-    - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
     - Comfy dtype: `LATENT`
+    - The merged set of latent samples, now combined into a single batch for further processing.
+    - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

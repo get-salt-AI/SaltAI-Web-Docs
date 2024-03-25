@@ -4,49 +4,47 @@
 - Category: `Animate Diff 🎭🅐🅓/context opts`
 - Output node: `False`
 
-This node is responsible for creating standard static context options for the Animate Diff process. It configures context options with a fixed view length and overlap, allowing for consistent context scheduling across different iterations or frames.
+This node is designed to generate a set of static context options for the AnimateDiff process, allowing for the customization of animation generation through predefined context settings. It focuses on providing a consistent and unchanging context configuration throughout the animation process.
 ## Input types
 ### Required
 - **`context_length`**
-    - Specifies the total length of the context to be generated, influencing the overall duration of the animation.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the length of the context, determining the size of the context window used in the animation process. It is crucial for defining the scope of each animation frame.
+    - Python dtype: `int`
 - **`context_overlap`**
-    - Indicates the overlap between consecutive context segments, aiding in smoother transitions.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Defines the amount of overlap between consecutive contexts in the animation, affecting the smoothness and continuity of the generated animation.
+    - Python dtype: `int`
 ### Optional
 - **`fuse_method`**
-    - Determines the method used to fuse or combine the context segments. This affects how the segments are integrated and can influence the smoothness and continuity of the animation.
+    - Comfy dtype: `COMBO[STRING]`
+    - Determines the method used to fuse context options, offering flexibility in how animation frames are combined and processed.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`use_on_equal_length`**
-    - A flag indicating whether to use the same context length for all segments, ensuring uniformity.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOLEAN`
+    - Indicates whether to use the view options on sequences of equal length, affecting the applicability of the context settings.
+    - Python dtype: `bool`
 - **`start_percent`**
-    - Defines the starting point of the context as a percentage of the total length, allowing for flexible initiation.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Specifies the starting percentage of the animation, influencing the initial frame of the animation process.
+    - Python dtype: `float`
 - **`guarantee_steps`**
-    - Specifies the minimum number of steps to be guaranteed in each context segment, ensuring a base level of detail.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Defines the minimum number of steps guaranteed in the animation, ensuring a certain length of the generated animation.
+    - Python dtype: `int`
 - **`prev_context`**
-    - Allows for the inclusion of previously generated context options, enabling continuity across different animation segments.
+    - Comfy dtype: `CONTEXT_OPTIONS`
+    - Allows for the inclusion of previous context settings, enabling the continuation or modification of existing animation configurations.
     - Python dtype: `ContextOptionsGroup`
-    - Comfy dtype: `CONTEXT_OPTIONS`
 - **`view_opts`**
-    - Provides the option to include view-specific settings, further customizing the context generation process.
-    - Python dtype: `ContextOptions`
     - Comfy dtype: `VIEW_OPTS`
-## Output types
-- **`context_options`**
-    - The configured context options that specify how the context is structured, including length, overlap, and fusion method for the Animate Diff process.
+    - Specifies the view options to be used, providing additional customization for the animation generation.
     - Python dtype: `ContextOptions`
+## Output types
+- **`CONTEXT_OPTS`**
     - Comfy dtype: `CONTEXT_OPTIONS`
-- **`ui`**
-    - A user interface component that may be generated as part of the output, facilitating interaction with the context options.
+    - Outputs the configured context options, encapsulating the static context settings tailored for the animation generation.
+    - Python dtype: `ContextOptionsGroup`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `ADE_AnimateDiffLoaderGen1,ADE_UseEvolvedSampling`

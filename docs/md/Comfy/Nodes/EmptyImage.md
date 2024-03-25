@@ -4,30 +4,30 @@
 - Category: `image`
 - Output node: `False`
 
-The `EmptyImage` node generates a blank image with specified dimensions, batch size, and color. It utilizes PyTorch tensors to create an image filled with the given color.
+The EmptyImage node is designed to generate blank images of specified dimensions and color. It allows for the creation of uniform color images that can serve as backgrounds or placeholders in various image processing tasks.
 ## Input types
 ### Required
 - **`width`**
-    - Specifies the width of the generated image. It directly influences the dimensions of the output image.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the width of the generated image. It determines how wide the image will be.
+    - Python dtype: `int`
 - **`height`**
-    - Determines the height of the generated image, affecting its dimensions.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Determines the height of the generated image. It affects the vertical size of the image.
+    - Python dtype: `int`
 - **`batch_size`**
-    - Indicates the number of images to generate in a single batch. Affects the first dimension of the output tensor.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Indicates the number of images to generate in a single batch. This allows for the creation of multiple images at once.
+    - Python dtype: `int`
 - **`color`**
-    - Defines the color of the generated image using a hexadecimal RGB value. This parameter sets the overall color tone of the image.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Defines the color of the generated image using a hexadecimal value, allowing for customization of the image's appearance. This parameter enables the selection of a wide range of colors.
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**
-    - The output is a tensor representing a batch of images filled with the specified color.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The output is a tensor representing the generated image or images, with the specified dimensions and color.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `ImageCompositeMasked`

@@ -4,22 +4,22 @@
 - Category: `image/upscaling`
 - Output node: `False`
 
-This node is designed for upscaling images using a specified upscale model. It dynamically adjusts the tiling to manage memory efficiently and avoid out-of-memory errors, ensuring the upscale process can handle images of various sizes.
+This node is designed for upscaling images using a specified upscale model. It handles the upscaling process by adjusting the image to the appropriate device, managing memory efficiently, and applying the upscale model in a tiled manner to accommodate for potential out-of-memory errors.
 ## Input types
 ### Required
 - **`upscale_model`**
-    - The upscale model to be used for image upscaling. It's crucial for defining the upscaling algorithm and its parameters.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `UPSCALE_MODEL`
+    - The upscale model to be used for upscaling the image. It is crucial for defining the upscaling algorithm and its parameters.
+    - Python dtype: `torch.nn.Module`
 - **`image`**
-    - The input image to be upscaled. This image is processed and upscaled according to the specified model.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The image to be upscaled. This input is essential for determining the source content that will undergo the upscaling process.
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**
-    - The upscaled image, processed according to the upscale model and the dynamic tiling strategy to manage memory usage.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The upscaled image, processed by the upscale model. This output is the result of the upscaling operation, showcasing the enhanced resolution or quality.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `ImageScaleBy,ImageScale,SaveImage,VHS_VideoCombine,PreviewImage,Reroute,ImageScaleToTotalPixels,FaceDetailer,CR Image Output,ImageCASharpening+`

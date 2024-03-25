@@ -4,24 +4,24 @@
 - Category: `_for_testing`
 - Output node: `False`
 
-The `TomePatchModel` node applies a patch to a given model, modifying its attention mechanism with a custom function to potentially enhance its performance. This patching process involves cloning the original model and applying modifications to the attention mechanism based on the provided ratio and the original shape of the input, aiming to improve the model's handling of input data.
+The TomePatchModel node is designed to modify a given model by applying a specific patching technique to its attention mechanism. This technique involves adjusting the model's attention calculations based on a provided ratio, aiming to enhance the model's performance or adapt it to specific tasks.
 ## Input types
 ### Required
 - **`model`**
-    - The model to be patched. This parameter is crucial as it determines the base model that will undergo the patching process to potentially enhance its performance.
-    - Python dtype: `ModelPatcher`
     - Comfy dtype: `MODEL`
+    - The model to be patched. This parameter is crucial as it determines the base model that will undergo the patching process.
+    - Python dtype: `torch.nn.Module`
 - **`ratio`**
-    - A floating-point value that influences the patching process by adjusting the degree of modification applied to the model's attention mechanism. It plays a significant role in tailoring the patch to achieve desired enhancements.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A float value representing the ratio at which the model's attention mechanism is adjusted. This parameter influences the extent of the modification applied to the model, affecting its overall performance.
+    - Python dtype: `float`
 ## Output types
 - **`model`**
-    - The patched model, which has undergone modifications to its attention mechanism based on the provided ratio and the original shape of the input. This output is ready for further use or evaluation.
-    - Python dtype: `ModelPatcher`
     - Comfy dtype: `MODEL`
+    - The patched model, which has undergone modifications to its attention mechanism. This output is significant as it represents the enhanced or adapted version of the original model.
+    - Python dtype: `torch.nn.Module`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 

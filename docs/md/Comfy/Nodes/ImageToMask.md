@@ -4,22 +4,22 @@
 - Category: `mask`
 - Output node: `False`
 
-This node converts an image into a mask based on a specified color channel (red, green, blue, or alpha). It isolates the selected channel from the input image to create a mask, which can be used for various image processing tasks that require a binary or grayscale representation of the image.
+The ImageToMask node is designed to convert an image into a mask based on a specified color channel. It allows for the extraction of mask layers corresponding to the red, green, blue, or alpha channels of an image, facilitating operations that require channel-specific masking or processing.
 ## Input types
 ### Required
 - **`image`**
-    - The input image from which the mask will be created. The choice of channel affects the resulting mask, highlighting different features based on the channel's color spectrum.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The 'image' parameter represents the input image from which a mask will be generated based on the specified color channel. It plays a crucial role in determining the content and characteristics of the resulting mask.
+    - Python dtype: `torch.Tensor`
 - **`channel`**
-    - Specifies the color channel (red, green, blue, or alpha) to be used for mask creation. This choice determines which aspects of the image are emphasized in the resulting mask.
+    - Comfy dtype: `COMBO[STRING]`
+    - The 'channel' parameter specifies which color channel (red, green, blue, or alpha) of the input image should be used to generate the mask. This choice directly influences the mask's appearance and which parts of the image are highlighted or masked out.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`mask`**
-    - The output mask generated from the specified color channel of the input image. This mask can be used for further image manipulation or analysis.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The output 'mask' is a binary or grayscale representation of the specified color channel from the input image, useful for further image processing or masking operations.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `MaskComposite,GrowMask,IPAdapterApplyFaceID`

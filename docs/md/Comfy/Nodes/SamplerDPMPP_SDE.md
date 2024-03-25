@@ -4,30 +4,30 @@
 - Category: `sampling/custom_sampling/samplers`
 - Output node: `False`
 
-This node defines a custom sampler for DPM-Solver++ SDE (Stochastic Differential Equations) models, specifically tailored for scenarios where different noise levels and reduction factors are considered. It dynamically selects between CPU and GPU implementations based on the specified noise device, enhancing flexibility and performance optimization.
+This node is designed to generate a sampler for the DPM++ SDE (Stochastic Differential Equation) model. It adapts to both CPU and GPU execution environments, optimizing the sampler's implementation based on the available hardware.
 ## Input types
 ### Required
 - **`eta`**
-    - Controls the strength of the noise applied during the sampling process, influencing the model's ability to generate diverse outputs.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Specifies the step size for the SDE solver, influencing the granularity of the sampling process.
+    - Python dtype: `float`
 - **`s_noise`**
-    - Determines the scale of noise used in the sampling process, affecting the detail and quality of generated samples.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Determines the level of noise to be applied during the sampling process, affecting the diversity of the generated samples.
+    - Python dtype: `float`
 - **`r`**
-    - A factor that adjusts the rate at which noise is reduced throughout the sampling process, impacting the smoothness and coherence of the output.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Controls the ratio of noise reduction in the sampling process, impacting the clarity and quality of the generated samples.
+    - Python dtype: `float`
 - **`noise_device`**
-    - Specifies the computational device (CPU or GPU) for noise generation, allowing for performance optimization based on available hardware.
+    - Comfy dtype: `COMBO[STRING]`
+    - Selects the execution environment (CPU or GPU) for the sampler, optimizing performance based on available hardware.
     - Python dtype: `str`
-    - Comfy dtype: `['gpu', 'cpu']`
 ## Output types
 - **`sampler`**
-    - The configured sampler object ready for use in generating samples from the model.
-    - Python dtype: `comfy.samplers.ksampler`
     - Comfy dtype: `SAMPLER`
+    - The generated sampler configured with the specified parameters, ready for use in sampling operations.
+    - Python dtype: `object`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

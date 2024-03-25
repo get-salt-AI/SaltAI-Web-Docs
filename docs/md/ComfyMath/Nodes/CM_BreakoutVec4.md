@@ -4,23 +4,23 @@
 - Category: `math/conversion`
 - Output node: `False`
 
-The `CM_BreakoutVec4` node is designed for decomposing a 4-dimensional vector into its individual components. This operation is useful in scenarios where the separate values of a vector are needed for further individual processing or analysis.
+The node is designed to decompose a four-dimensional vector into its individual components, facilitating operations that require access to the separate elements of a Vec4.
 ## Input types
 ### Required
 - **`a`**
-    - This parameter represents the 4-dimensional vector to be decomposed. It is essential for the operation as it provides the data that will be broken down into individual float values.
-    - Python dtype: `tuple[float, float, float, float]`
     - Comfy dtype: `VEC4`
+    - This parameter represents the four-dimensional vector to be decomposed. It is crucial for the operation as it provides the vector whose components are to be extracted.
+    - Python dtype: `Vec4`
 ## Output types
 - **`float`**
-    - The fourth component of the input vector.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Each output represents one of the four components of the input Vec4, allowing for individual manipulation or analysis.
+    - Python dtype: `float`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
 
-Often used in scenarios requiring individual manipulation or analysis of the components of a 4-dimensional vector, such as adjusting specific properties in graphics or data visualization tasks.
+
 ## Source code
 ```python
 class BreakoutVec4:

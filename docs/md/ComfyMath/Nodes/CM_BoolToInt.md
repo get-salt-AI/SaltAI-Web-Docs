@@ -4,23 +4,23 @@
 - Category: `math/conversion`
 - Output node: `False`
 
-Converts a boolean value to an integer. This operation is a basic type conversion in mathematical computations, allowing for the transformation of true/false values into 0/1 integer representations.
+This node performs a type conversion from a boolean value to an integer. It abstracts the process of interpreting boolean logic in a numerical context, enabling the translation of true/false values into binary (0 or 1) form.
 ## Input types
 ### Required
 - **`a`**
-    - The boolean input to be converted to an integer. This parameter is fundamental for the conversion process, determining the output based on its truth value.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOL`
+    - The boolean input to be converted to an integer. This parameter is crucial as it directly influences the output by determining whether the result will be 0 (False) or 1 (True).
+    - Python dtype: `bool`
 ## Output types
 - **`int`**
-    - The integer representation of the input boolean value. This output is crucial for further mathematical operations that require integer inputs.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The integer representation of the input boolean value, where True becomes 1 and False becomes 0.
+    - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
 
-Often used in mathematical and logical operations where a boolean input needs to be converted to an integer for further processing, enabling seamless integration with nodes that require integer inputs for computations.
+
 ## Source code
 ```python
 class BoolToInt:

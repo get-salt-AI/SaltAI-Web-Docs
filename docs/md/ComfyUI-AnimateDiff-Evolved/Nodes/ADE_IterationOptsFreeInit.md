@@ -4,55 +4,55 @@
 - Category: `Animate Diff 🎭🅐🅓/iteration opts`
 - Output node: `False`
 
-The `ADE_IterationOptsFreeInit` node is designed to create iteration options for the Animate Diff process, allowing for customization of iteration parameters such as the number of iterations, batch and seed offsets. This node plays a crucial role in configuring the iteration behavior for animation generation, enabling fine-tuning of the animation process.
+This node is designed to create customized iteration options for the AnimateDiff process, allowing users to specify various parameters such as the number of iterations, batch offsets, and seed offsets. It facilitates the generation of iteration configurations that can be tailored to different animation requirements, enhancing the flexibility and control over the animation generation process.
 ## Input types
 ### Required
 - **`iterations`**
-    - Specifies the number of iterations to perform. This parameter is fundamental in determining the length and detail of the animation process.
+    - Comfy dtype: `INT`
+    - Specifies the number of iterations to be performed. This parameter is crucial for defining the length and detail of the animation process.
     - Python dtype: `int`
-    - Comfy dtype: `INT`
 - **`filter`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `['gaussian', 'butterworth', 'ideal'...]`
+    - Comfy dtype: `COMBO[STRING]`
+    - Defines the filter to be applied during the iteration process, affecting the visual characteristics of the animation.
+    - Python dtype: `FreeInitFilter`
 - **`d_s`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Specifies the start distance for the filter effect, influencing the initial impact of the filter on the animation.
+    - Python dtype: `float`
 - **`d_t`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Determines the end distance for the filter effect, affecting the final appearance of the animation.
+    - Python dtype: `float`
 - **`n_butterworth`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Sets the order of the Butterworth filter, controlling the smoothness and sharpness of the filter effect.
+    - Python dtype: `int`
 - **`sigma_step`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Specifies the step size for the sigma parameter in the filtering process, affecting the granularity of the filter effect.
+    - Python dtype: `int`
 - **`apply_to_1st_iter`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BOOLEAN`
+    - Indicates whether the filter should be applied to the first iteration, affecting the starting point of the animation.
+    - Python dtype: `bool`
 - **`init_type`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `['FreeInit [sampler sigma]', 'FreeInit [model sigma]', 'DinkInit_v1'...]`
+    - Comfy dtype: `COMBO[STRING]`
+    - Defines the initialization type for the iteration process, influencing the starting conditions of the animation.
+    - Python dtype: `FreeInitOptions`
 ### Optional
 - **`iter_batch_offset`**
-    - Determines the offset for batch processing, allowing for adjustments in the processing sequence of batches. This can affect the distribution of computational resources.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Determines the offset for batch processing during iterations. This can be used to adjust the starting point for batch processing, affecting how animation frames are generated.
+    - Python dtype: `int`
 - **`iter_seed_offset`**
-    - Sets the seed offset, which influences the randomness of the iteration process. This can be used to achieve different random effects or to replicate specific results.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Sets the seed offset for iterations, influencing the randomness and variation in the animation process. This can be used to achieve different visual effects or to replicate specific animation outcomes.
+    - Python dtype: `int`
 ## Output types
 - **`iteration_opts`**
-    - The iteration options configured based on the input parameters. These options are used to control the iteration process in the Animate Diff animation generation.
-    - Python dtype: `IterationOptions`
     - Comfy dtype: `ITERATION_OPTS`
+    - Provides the customized iteration options based on the specified parameters. This output is essential for configuring the AnimateDiff process according to user-defined settings.
+    - Python dtype: `IterationOptions`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

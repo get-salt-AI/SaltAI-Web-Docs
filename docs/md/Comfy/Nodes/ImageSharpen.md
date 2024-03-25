@@ -4,30 +4,30 @@
 - Category: `image/postprocessing`
 - Output node: `False`
 
-The `ImageSharpen` node applies a sharpening filter to an image using a Gaussian kernel. It enhances the edges and details within the image by convolving it with a generated kernel based on the specified sharpen radius, sigma, and alpha parameters. The process involves adjusting the kernel to ensure the sum of its elements equals one, applying padding to the image, and then performing a 2D convolution. The result is clamped to the range [0, 1] to maintain valid image values.
+The ImageSharpen node enhances the clarity of an image by accentuating its edges and details. It applies a sharpening filter to the image, which can be adjusted in intensity and radius, thereby making the image appear more defined and crisp.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be sharpened. It is a tensor representing the image data.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The input image to be sharpened. This parameter is crucial as it determines the base image on which the sharpening effect will be applied.
+    - Python dtype: `torch.Tensor`
 - **`sharpen_radius`**
-    - Specifies the radius of the sharpening effect. A larger radius increases the area of influence for the sharpening, affecting more pixels around the edges.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Defines the radius of the sharpening effect. A larger radius means that more pixels around the edge will be affected, leading to a more pronounced sharpening effect.
+    - Python dtype: `int`
 - **`sigma`**
-    - Controls the spread of the Gaussian kernel used for sharpening. A higher sigma value results in a smoother, less localized sharpening effect.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Controls the spread of the sharpening effect. A higher sigma value results in a smoother transition at the edges, while a lower sigma makes the sharpening more localized.
+    - Python dtype: `float`
 - **`alpha`**
-    - Determines the strength of the sharpening effect. Higher alpha values produce a more pronounced sharpening.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Adjusts the intensity of the sharpening effect. Higher alpha values result in a stronger sharpening effect.
+    - Python dtype: `float`
 ## Output types
 - **`image`**
-    - The sharpened version of the input image, with enhanced edges and details.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The sharpened image, with enhanced edges and details, ready for further processing or display.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `PreviewImage,IPAdapterApplyFaceID,IPAdapterApply,ImageUpscaleWithModel,UltimateSDUpscale,VAEEncode`

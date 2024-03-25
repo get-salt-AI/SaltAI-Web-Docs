@@ -4,23 +4,23 @@
 - Category: `math/conversion`
 - Output node: `False`
 
-Converts an integer value to a floating-point number. This operation is a basic type conversion in mathematical computations, allowing for more precise calculations that require decimal points.
+The CM_IntToFloat node is designed for mathematical conversion operations, specifically converting an integer value to a floating-point number. This node facilitates the seamless transition between different numerical types, enhancing flexibility in mathematical computations.
 ## Input types
 ### Required
 - **`a`**
-    - The integer value to be converted into a floating-point number. This conversion is essential for operations that require decimal precision.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The integer value to be converted into a floating-point number. This parameter is crucial for specifying the exact integer that needs to be transformed, thereby enabling precise numerical conversions.
+    - Python dtype: `int`
 ## Output types
 - **`float`**
-    - The resulting floating-point number after conversion. This allows for more precise mathematical operations that involve decimals.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The resulting floating-point number after the conversion of the input integer. This output is significant for further mathematical operations that require floating-point precision.
+    - Python dtype: `float`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
 
-Often used in mathematical and computational pipelines requiring decimal precision, the CM_IntToFloat node converts an integer input ('a') into a floating-point number, facilitating operations that involve decimals.
+
 ## Source code
 ```python
 class IntToFloat:

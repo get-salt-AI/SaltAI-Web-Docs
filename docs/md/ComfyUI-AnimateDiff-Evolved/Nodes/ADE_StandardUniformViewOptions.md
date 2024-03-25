@@ -4,31 +4,31 @@
 - Category: `Animate Diff 🎭🅐🅓/context opts/view opts`
 - Output node: `False`
 
-This node generates a set of view options for animating differences in a uniform manner. It configures the length, stride, and overlap of views, along with a fusion method to blend these views, creating a standardized context for animation processes.
+This node is designed to create and configure view options for generating animations with uniform distribution. It allows for the customization of view length, stride, and overlap, along with the method of fusing context, to tailor the animation generation process.
 ## Input types
 ### Required
 - **`view_length`**
-    - Specifies the length of each view, influencing the granularity of the animation process.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the length of the view, affecting the granularity and extent of the animation frames generated.
+    - Python dtype: `int`
 - **`view_stride`**
-    - Determines the step size between consecutive views, affecting the smoothness of the animation.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Determines the stride between views, influencing the smoothness and speed of the animation.
+    - Python dtype: `int`
 - **`view_overlap`**
-    - Defines how much consecutive views overlap, which can affect the continuity and smoothness of the animation.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Sets the overlap between views, which can help in creating smoother transitions between animation frames.
+    - Python dtype: `int`
 ### Optional
 - **`fuse_method`**
-    - The method used to blend or fuse consecutive views, impacting the overall visual coherence of the animation.
+    - Comfy dtype: `COMBO[STRING]`
+    - Defines the method used to fuse multiple contexts together, impacting the continuity and coherence of the animation.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`view_opts`**
-    - The generated view options, encapsulating the configured parameters for animation.
-    - Python dtype: `ContextOptions`
     - Comfy dtype: `VIEW_OPTS`
+    - Produces the configured view options, ready to be utilized in the animation generation process.
+    - Python dtype: `ContextOptions`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

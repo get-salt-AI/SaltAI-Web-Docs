@@ -4,18 +4,18 @@
 - Category: `sampling/custom_sampling/sigmas`
 - Output node: `False`
 
-The `FlipSigmas` node is designed to manipulate a sequence of sigma values, which are typically used in diffusion models for controlling the noise level at each step of the generation process. It reverses the order of the sigma values and ensures that the first value is not zero by setting a minimum threshold if needed. This operation can be crucial for certain sampling strategies where the direction of processing or the starting point within the noise schedule needs to be adjusted.
+The FlipSigmas node is designed to manipulate the sequence of sigma values used in diffusion models by reversing their order and ensuring the first value is non-zero if originally zero. This operation is crucial for adapting the noise levels in reverse order, facilitating the generation process in models that operate by gradually reducing noise from data.
 ## Input types
 ### Required
 - **`sigmas`**
-    - The `sigmas` parameter represents a sequence of sigma values that control the noise level at different steps of a diffusion process. Reversing the order of these values can be essential for altering the direction of the diffusion process, ensuring that the generation starts from a different noise level.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `SIGMAS`
+    - The 'sigmas' parameter represents the sequence of sigma values to be flipped. This sequence is crucial for controlling the noise levels applied during the diffusion process, and flipping it is essential for the reverse generation process.
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`sigmas`**
-    - Returns the modified sequence of sigma values, with the order reversed and the first value adjusted if it was originally zero, to ensure it's non-zero.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `SIGMAS`
+    - The output is the modified sequence of sigma values, flipped and adjusted to ensure the first value is non-zero if originally zero, ready for use in subsequent diffusion model operations.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

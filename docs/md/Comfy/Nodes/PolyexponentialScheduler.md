@@ -4,32 +4,32 @@
 - Category: `sampling/custom_sampling/schedulers`
 - Output node: `False`
 
-This node generates a sequence of noise levels (sigmas) based on a polyexponential schedule for diffusion processes. It allows for the customization of the noise schedule by adjusting parameters such as the number of steps and the minimum and maximum sigma values, as well as the rho parameter which controls the shape of the noise schedule.
+The PolyexponentialScheduler node is designed to generate a sequence of noise levels (sigmas) based on a polyexponential noise schedule. This schedule is a polynomial function in the logarithm of sigma, allowing for a flexible and customizable progression of noise levels throughout the diffusion process.
 ## Input types
 ### Required
 - **`steps`**
-    - Specifies the number of steps in the diffusion process. It determines the length of the generated sequence of noise levels.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the number of steps in the diffusion process, affecting the granularity of the generated noise levels.
+    - Python dtype: `int`
 - **`sigma_max`**
-    - The maximum sigma value in the noise schedule. It defines the upper bound of the noise levels.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The maximum noise level, setting the upper bound of the noise schedule.
+    - Python dtype: `float`
 - **`sigma_min`**
-    - The minimum sigma value in the noise schedule. It sets the lower limit of the noise levels.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The minimum noise level, setting the lower bound of the noise schedule.
+    - Python dtype: `float`
 - **`rho`**
-    - Controls the shape of the polyexponential noise schedule, affecting how the noise levels progress between the minimum and maximum sigma values.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A parameter that controls the shape of the polyexponential noise schedule, influencing how noise levels progress between the minimum and maximum values.
+    - Python dtype: `float`
 ## Output types
 - **`sigmas`**
-    - The generated sequence of noise levels based on the polyexponential schedule.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `SIGMAS`
+    - The output is a sequence of noise levels (sigmas) tailored to the specified polyexponential noise schedule.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 

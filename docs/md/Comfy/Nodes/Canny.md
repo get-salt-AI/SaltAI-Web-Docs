@@ -4,26 +4,26 @@
 - Category: `image/preprocessors`
 - Output node: `False`
 
-The `Canny` node applies the Canny edge detection algorithm to an input image, utilizing thresholds to identify and filter edges. This process involves converting the image to grayscale, applying a Gaussian blur, computing gradients, and performing non-maximum suppression and hysteresis to accurately identify edges.
+The Canny node is designed for edge detection in images, utilizing the Canny algorithm to identify and highlight the edges. This process involves applying a series of filters to the input image to detect areas of high gradient, which correspond to edges, thereby enhancing the image's structural details.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to which the Canny edge detection algorithm will be applied. It's crucial for identifying and filtering edges in the image.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The input image to be processed for edge detection. It is crucial as it serves as the base for the edge detection operation.
+    - Python dtype: `torch.Tensor`
 - **`low_threshold`**
-    - The lower threshold for the hysteresis procedure in edge detection. It helps in filtering out edges that are less likely to be part of the edge structure of the image.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The lower threshold for the hysteresis procedure in edge detection. It determines the minimum intensity gradient considered for an edge, affecting the sensitivity of edge detection.
+    - Python dtype: `float`
 - **`high_threshold`**
-    - The upper threshold for the hysteresis procedure in edge detection. It is used to identify strong edges in the image, ensuring that only the most significant edges are considered.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The upper threshold for the hysteresis procedure in edge detection. It sets the maximum intensity gradient considered for an edge, influencing the selectivity of edge detection.
+    - Python dtype: `float`
 ## Output types
 - **`image`**
-    - The output image after applying the Canny edge detection algorithm. It highlights the edges detected in the input image.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The output is an image with highlighted edges, where the edges are detected using the Canny algorithm. This enhances the structural details of the original image.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `ControlNetApply,PreviewImage,Reroute`

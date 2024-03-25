@@ -4,27 +4,27 @@
 - Category: `math/number`
 - Output node: `False`
 
-Performs a unary operation on a number, where the operation is one of the predefined operations. This method applies the specified operation to the input number and returns the result as a number.
+This node performs unary operations on numbers, allowing for the manipulation of a single numerical input through predefined operations.
 ## Input types
 ### Required
 - **`op`**
-    - Specifies the operation to be performed on the input number, influencing the computation result.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the unary operation to be performed on the input number. The choice of operation affects the outcome of the node's computation.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`a`**
-    - The input number on which the unary operation will be performed. It can be an integer or a float, and it significantly influences the outcome of the operation.
-    - Python dtype: `Union[int, float]`
     - Comfy dtype: `NUMBER`
+    - The numerical input on which the unary operation will be performed. This input is central to the node's functionality.
+    - Python dtype: `number`
 ## Output types
 - **`number`**
-    - The result of applying the specified unary operation on the input number, returned as a number.
-    - Python dtype: `float`
     - Comfy dtype: `NUMBER`
+    - The result of applying the specified unary operation on the input number.
+    - Python dtype: `float`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
 
-The CM_NumberUnaryOperation node is primarily utilized for performing a specified unary mathematical operation on a single input number, such as negation or reciprocal, and outputs the result as a number. It is often used in conjunction with nodes requiring mathematical transformations or adjustments to numerical inputs for further processing or analysis.
+
 ## Source code
 ```python
 class NumberUnaryOperation:

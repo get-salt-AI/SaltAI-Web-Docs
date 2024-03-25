@@ -4,22 +4,22 @@
 - Category: `advanced/loaders`
 - Output node: `False`
 
-The DualCLIPLoader node is designed to load two CLIP models simultaneously. It takes the names of two CLIP models as input, retrieves their paths, and loads them into a single CLIP model instance with embeddings from a specified directory. This node is useful for operations that require the simultaneous use of two distinct CLIP models.
+The DualCLIPLoader node is designed for loading two CLIP models simultaneously, facilitating operations that require the integration or comparison of features from both models.
 ## Input types
 ### Required
 - **`clip_name1`**
-    - Specifies the name of the first CLIP model to be loaded. The name is used to retrieve the model's path for loading.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the name of the first CLIP model to be loaded. This parameter is crucial for identifying and retrieving the correct model from a predefined list of available CLIP models.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`clip_name2`**
-    - Specifies the name of the second CLIP model to be loaded. Similar to clip_name1, it is used to retrieve the model's path for loading.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the name of the second CLIP model to be loaded. This parameter enables the loading of a second distinct CLIP model for comparative or integrative analysis alongside the first model.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`clip`**
-    - The loaded CLIP model instance, which combines the embeddings and configurations of the two specified CLIP models.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `CLIP`
+    - The output is a combined CLIP model that integrates the features or functionalities of the two specified CLIP models.
+    - Python dtype: `comfy.sd.CLIP`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

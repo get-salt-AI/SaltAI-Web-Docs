@@ -4,30 +4,30 @@
 - Category: `conditioning`
 - Output node: `False`
 
-This node applies a control network to an input image and conditioning data, adjusting the conditioning based on the control network's output. The strength parameter controls the intensity of the control network's effect, allowing for fine-tuning of the applied conditioning.
+This node applies a control network to a given image and conditioning, adjusting the image's attributes based on the control network's parameters and a specified strength. It enables dynamic modification of image characteristics through control hints, facilitating targeted adjustments without altering the original conditioning structure.
 ## Input types
 ### Required
 - **`conditioning`**
-    - The conditioning data to be modified by the control network. It's crucial for determining the final output as it guides the control network's adjustments.
-    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - The conditioning data to be modified by the control network. It serves as the basis for the control network's adjustments, influencing the final output.
+    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
 - **`control_net`**
-    - The control network model used to adjust the conditioning data based on the input image. It plays a key role in how the conditioning is modified.
-    - Python dtype: `ControlNet`
     - Comfy dtype: `CONTROL_NET`
+    - The control network to be applied. It defines the specific adjustments to be made to the image, based on its trained parameters.
+    - Python dtype: `ControlNet`
 - **`image`**
-    - The input image that the control network uses to adjust the conditioning data. It serves as a reference for the control network's modifications.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The image to which the control network's adjustments will be applied. It provides the visual context for the control network's operations.
+    - Python dtype: `torch.Tensor`
 - **`strength`**
-    - A parameter that controls the intensity of the control network's effect on the conditioning data. It allows for fine-tuning the impact of the control network.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A scalar value determining the intensity of the control network's adjustments. It allows for fine-tuning the impact of the control network on the image.
+    - Python dtype: `float`
 ## Output types
 - **`conditioning`**
-    - The modified conditioning data after applying the control network. It reflects the adjustments made based on the input image and control network's output.
-    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - The modified conditioning data, reflecting the adjustments made by the control network.
+    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSampler,Reroute,ConditioningSetArea,UltimateSDUpscale,KSampler Adv. (Efficient),ttN pipeKSampler,YDetailer,ToBasicPipe,ToDetailerPipe,ControlNetApply`

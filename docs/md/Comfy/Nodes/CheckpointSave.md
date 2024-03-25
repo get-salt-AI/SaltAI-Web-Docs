@@ -4,25 +4,25 @@
 - Category: `advanced/model_merging`
 - Output node: `True`
 
-The `CheckpointSave` node is designed for saving models, CLIP, and VAE checkpoints to a specified directory. It allows for the inclusion of additional information such as prompts and extra PNG metadata.
+The CheckpointSave node is designed for saving the state of various model components, including models, CLIP, and VAE, into a checkpoint file. This functionality is crucial for preserving the training progress or configuration of models for later use or sharing.
 ## Input types
 ### Required
 - **`model`**
-    - The model to be saved. It is crucial for preserving the trained state of the model for future use or further training.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - The model parameter represents the primary model whose state is to be saved. It is essential for capturing the current state of the model for future restoration or analysis.
+    - Python dtype: `torch.nn.Module`
 - **`clip`**
-    - The CLIP model to be saved alongside the main model. Essential for tasks that require text-image alignment.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `CLIP`
-- **`vae`**
-    - The VAE model to be saved. Important for generative tasks, especially in the context of image synthesis.
+    - The clip parameter is intended for the CLIP model associated with the primary model, allowing its state to be saved alongside the main model.
     - Python dtype: `torch.nn.Module`
+- **`vae`**
     - Comfy dtype: `VAE`
+    - The vae parameter is for the Variational Autoencoder (VAE) model, enabling its state to be saved for future use or analysis alongside the main model and CLIP.
+    - Python dtype: `torch.nn.Module`
 - **`filename_prefix`**
-    - The prefix for the filename under which the checkpoint will be saved. Allows for organized storage and easy retrieval.
-    - Python dtype: `str`
     - Comfy dtype: `STRING`
+    - This parameter specifies the prefix for the filename under which the checkpoint will be saved, providing a means to organize and identify saved checkpoints.
+    - Python dtype: `str`
 ## Output types
 The node doesn't have output types
 ## Usage tips

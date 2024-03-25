@@ -4,23 +4,23 @@
 - Category: `math/conversion`
 - Output node: `False`
 
-Converts a floating-point number to an integer by truncating the decimal part. This operation is useful for scenarios where integer values are required from floating-point computations.
+The CM_FloatToInt node is designed for mathematical conversion operations, specifically converting floating-point numbers to integers. It abstracts the process of type conversion in mathematical computations, facilitating the transition between different numerical types.
 ## Input types
 ### Required
 - **`a`**
-    - The floating-point number to be converted to an integer. This parameter is crucial as it directly determines the output integer value by truncating any decimal part.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The floating-point number to be converted into an integer. This parameter is crucial as it directly influences the outcome of the conversion process.
+    - Python dtype: `float`
 ## Output types
 - **`int`**
-    - The integer result obtained by truncating the decimal part of the input floating-point number.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The integer result obtained from converting the input floating-point number.
+    - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
 
-Often used in scenarios requiring integer values from floating-point computations, such as setting discrete parameters or indexing, by truncating the decimal part of the input floating-point number.
+
 ## Source code
 ```python
 class FloatToInt:

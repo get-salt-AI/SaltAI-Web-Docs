@@ -4,30 +4,30 @@
 - Category: `sampling/custom_sampling/schedulers`
 - Output node: `False`
 
-The BasicScheduler node calculates a sequence of sigma values for diffusion models based on the provided scheduler, model, steps, and denoise parameters. It adjusts the total number of steps based on the denoise factor and utilizes the model's scheduler to generate the sigma values.
+The BasicScheduler node is designed to compute a sequence of sigma values for diffusion models based on the provided scheduler, model, and denoising parameters. It dynamically adjusts the total number of steps based on the denoise factor to fine-tune the diffusion process.
 ## Input types
 ### Required
 - **`model`**
-    - The model parameter specifies the diffusion model for which the sigma values are to be calculated. It is crucial for determining the behavior of the diffusion process.
-    - Python dtype: `comfy.models.DiffusionModel`
     - Comfy dtype: `MODEL`
+    - The model parameter specifies the diffusion model for which the sigma values are to be calculated. It plays a crucial role in determining the appropriate sigma values for the diffusion process.
+    - Python dtype: `comfy.model_management.Model`
 - **`scheduler`**
-    - The scheduler parameter determines the method used to calculate the sigma values. It affects the diffusion process by altering the noise levels at each step.
+    - Comfy dtype: `COMBO[STRING]`
+    - The scheduler parameter determines the scheduling algorithm to be used for calculating the sigma values. It directly influences the progression and characteristics of the diffusion process.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`steps`**
-    - Specifies the number of diffusion steps. It directly influences the granularity of the diffusion process.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The steps parameter indicates the total number of steps in the diffusion process. It affects the granularity and duration of the process.
+    - Python dtype: `int`
 - **`denoise`**
-    - A factor that adjusts the total number of steps based on its value, affecting the smoothness of the diffusion process.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The denoise parameter allows for adjusting the effective number of steps by scaling the total steps, enabling finer control over the diffusion process.
+    - Python dtype: `float`
 ## Output types
 - **`sigmas`**
-    - A sequence of sigma values calculated for the diffusion model. These values are essential for controlling the noise level throughout the diffusion process.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `SIGMAS`
+    - The sigmas output represents the computed sequence of sigma values for the diffusion process, essential for controlling the noise level at each step.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `SamplerCustom,SplitSigmas,Reroute`

@@ -4,52 +4,56 @@
 - Category: `conditioning/3d_models`
 - Output node: `False`
 
-This node is designed to process conditioning data for 3D models, specifically focusing on adjusting the conditioning based on the input parameters such as clip vision, initial image, and VAE model. It plays a crucial role in preparing the conditioning for further processing or generation tasks within the context of 3D model conditioning.
+This node is designed to process and condition data for use in StableZero123 models, focusing on preparing the input in a specific format that is compatible and optimized for these models.
 ## Input types
 ### Required
 - **`clip_vision`**
-    - Specifies the CLIP model's vision to be used for conditioning, influencing the direction and focus of the generated content.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `CLIP_VISION`
-- **`init_image`**
-    - The initial image to start the conditioning process, serving as a base or reference for further modifications.
+    - Processes visual data to align with the model's requirements, enhancing the model's understanding of visual context.
     - Python dtype: `torch.Tensor`
+- **`init_image`**
     - Comfy dtype: `IMAGE`
+    - Serves as the initial image input for the model, setting the baseline for further image-based operations.
+    - Python dtype: `torch.Tensor`
 - **`vae`**
-    - The VAE model used for encoding or decoding images, integral to the conditioning process for 3D models.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `VAE`
+    - Integrates variational autoencoder outputs, facilitating the model's ability to generate or modify images.
+    - Python dtype: `torch.nn.Module`
 - **`width`**
-    - Defines the width of the output image, affecting the dimensionality of the conditioned output.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the width of the output image, allowing for dynamic resizing according to model needs.
+    - Python dtype: `int`
 - **`height`**
-    - Specifies the height of the output image, impacting the dimensionality of the conditioned output.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Determines the height of the output image, enabling customization of the output dimensions.
+    - Python dtype: `int`
 - **`batch_size`**
-    - Determines the number of conditioning operations to be processed in a single batch, influencing the efficiency and speed of the node's execution.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Controls the number of images processed in a single batch, optimizing computational efficiency.
+    - Python dtype: `int`
 - **`elevation`**
-    - Sets the elevation angle for the 3D model conditioning, affecting the perspective and orientation of the generated content.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Adjusts the elevation angle for 3D model rendering, enhancing the model's spatial understanding.
+    - Python dtype: `float`
 - **`azimuth`**
-    - Defines the azimuth angle for the 3D model conditioning, altering the direction and viewpoint of the generated content.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Modifies the azimuth angle for 3D model visualization, improving the model's perception of orientation.
+    - Python dtype: `float`
 ## Output types
-- **`conditioning`**
-    - The negative conditioning output, designed for suppressing certain features or aspects in the generated content.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
+- **`positive`**
     - Comfy dtype: `CONDITIONING`
+    - Generates positive conditioning vectors, aiding in the model's positive feature reinforcement.
+    - Python dtype: `List[torch.Tensor]`
+- **`negative`**
+    - Comfy dtype: `CONDITIONING`
+    - Produces negative conditioning vectors, assisting in the model's avoidance of certain features.
+    - Python dtype: `List[torch.Tensor]`
 - **`latent`**
-    - The latent representation derived from the conditioning process, essential for further processing or generation tasks.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
     - Comfy dtype: `LATENT`
+    - Creates latent representations, facilitating deeper model insights into the data.
+    - Python dtype: `List[torch.Tensor]`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: `KSampler,SamplerCustom`
 
 

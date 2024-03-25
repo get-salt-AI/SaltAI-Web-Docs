@@ -4,20 +4,20 @@
 - Category: `loaders`
 - Output node: `False`
 
-The `CLIPVisionLoader` node is responsible for loading a CLIP Vision model from a specified path. It utilizes the `comfy.clip_vision.load` method to retrieve the model, which is then returned for further use.
+The CLIPVisionLoader node is designed for loading CLIP Vision models from specified paths. It abstracts the complexities of locating and initializing CLIP Vision models, making them readily available for further processing or inference tasks.
 ## Input types
 ### Required
 - **`clip_name`**
-    - The `clip_name` parameter specifies the name of the CLIP Vision model to be loaded. This name is used to locate the model file within a predefined directory structure.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the name of the CLIP Vision model to be loaded. This name is used to locate the model file within a predefined directory structure.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`clip_vision`**
-    - This output represents the loaded CLIP Vision model, ready for use in subsequent operations such as encoding images.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `CLIP_VISION`
+    - The loaded CLIP Vision model, ready for use in encoding images or performing other vision-related tasks.
+    - Python dtype: `torch.nn.Module`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: `IPAdapterApply,IPAdapterApplyFaceID,IPAdapter,IPAdapterEncoder,CLIPVisionEncode,ToIPAdapterPipe //Inspire,Reroute,AV_IPAdapter`
 
 

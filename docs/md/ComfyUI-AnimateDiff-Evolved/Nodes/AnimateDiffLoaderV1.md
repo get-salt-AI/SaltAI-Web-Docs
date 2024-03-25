@@ -4,38 +4,38 @@
 - Category: ``
 - Output node: `False`
 
-The `AnimateDiffLoaderV1` node is a deprecated component designed for loading AnimateDiff models. Despite its deprecated status, it played a crucial role in initializing and preparing AnimateDiff models for animation tasks, ensuring compatibility and proper setup for subsequent processing steps.
+This node is designed for loading AnimateDiff models in a deprecated manner, indicating that it has been superseded by newer methods or technologies for achieving similar outcomes. It focuses on the initial setup or preparation phase of working with AnimateDiff models, specifically tailored for legacy compatibility or specific use cases that require the older loading mechanism.
 ## Input types
 ### Required
 - **`model`**
-    - Specifies the model to be loaded for animation tasks. This parameter is essential for identifying the specific AnimateDiff model to be utilized.
-    - Python dtype: `AnimateDiffModel`
     - Comfy dtype: `MODEL`
+    - This input specifies the AnimateDiff model to be loaded. It is crucial for determining the specific legacy model or settings to be applied, affecting the node's execution and the resulting animation capabilities.
+    - Python dtype: `str`
 - **`latents`**
-    - Defines the latent space to be used in conjunction with the AnimateDiff model. This parameter is crucial for the model's operation within its designated latent space.
-    - Python dtype: `LatentSpace`
     - Comfy dtype: `LATENT`
+    - The latents input represents the latent space vectors to be used with the AnimateDiff model. It is essential for defining the initial state or conditions under which the model operates, directly influencing the animation's characteristics.
+    - Python dtype: `torch.Tensor`
 - **`model_name`**
-    - Indicates the name of the AnimateDiff model to be loaded. This parameter helps in selecting the appropriate model from available options.
+    - Comfy dtype: `COMBO[STRING]`
+    - This input specifies the name of the AnimateDiff model to be loaded. It is important for selecting the correct legacy model or settings, affecting the node's functionality and the animations it produces.
     - Python dtype: `str`
-    - Comfy dtype: `['STRING']`
 - **`unlimited_area_hack`**
-    - A boolean flag that enables or disables the unlimited area hack, affecting the model's operational scope.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOLEAN`
+    - A boolean input that enables or disables the unlimited area hack, affecting how the model processes the animation.
+    - Python dtype: `bool`
 - **`beta_schedule`**
-    - Specifies the beta schedule to be used, influencing the model's behavior and performance. It selects from a list of predefined beta schedules.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the beta schedule to be used by the AnimateDiff model. It influences the model's behavior during the animation process.
     - Python dtype: `str`
-    - Comfy dtype: `['STRING']`
 ## Output types
 - **`model`**
-    - The loaded AnimateDiff model, ready for use in animation tasks. This output is essential for further processing and application of the model in generating animations.
-    - Python dtype: `AnimateDiffModel`
     - Comfy dtype: `MODEL`
+    - The model output represents the loaded AnimateDiff model, ready for further processing or application.
+    - Python dtype: `torch.nn.Module`
 - **`latent`**
-    - The latent space associated with the loaded AnimateDiff model, crucial for its operation and animation generation.
-    - Python dtype: `LatentSpace`
     - Comfy dtype: `LATENT`
+    - The latent output encapsulates the latent space vectors associated with the loaded AnimateDiff model, setting the stage for subsequent animation or transformation processes.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

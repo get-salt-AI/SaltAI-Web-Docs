@@ -4,23 +4,23 @@
 - Category: `math/conversion`
 - Output node: `False`
 
-The `CM_BreakoutVec3` node is designed for decomposing a 3-dimensional vector into its individual components. This operation is useful in scenarios where the separate values of a vector are needed for further calculations or analysis.
+The node is designed to decompose a 3-dimensional vector into its individual components, facilitating operations that require access to the separate dimensions of a vector.
 ## Input types
 ### Required
 - **`a`**
-    - The input vector to be decomposed. It is essential for operations that require access to the individual components of a vector for further processing.
-    - Python dtype: `tuple[float, float, float]`
     - Comfy dtype: `VEC3`
+    - This parameter represents the 3-dimensional vector to be decomposed. It allows for operations on individual vector components by breaking down the vector into its x, y, and z components.
+    - Python dtype: `tuple[float, float, float]`
 ## Output types
 - **`float`**
-    - The third component of the input vector.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Each output represents one of the three components of the input vector, allowing for individual manipulation or analysis of the vector's dimensions.
+    - Python dtype: `float`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
 
-Often used in scenarios requiring the manipulation or analysis of individual vector components, such as adjusting positions in 3D space or performing calculations on specific dimensions. The `CM_BreakoutVec3` node takes a 3-dimensional vector as input and outputs its three components separately for further processing or analysis.
+
 ## Source code
 ```python
 class BreakoutVec3:

@@ -4,20 +4,20 @@
 - Category: `image`
 - Output node: `True`
 
-The SaveImage node is designed to save a batch of images to disk, optionally including metadata such as prompts and additional PNG information. It supports customization of the filename prefix, compression level, and the inclusion of metadata in the saved images.
+The SaveImage node is designed for saving images to disk. It handles the process of converting image data from tensors to a suitable image format, applying optional metadata, and writing the images to specified locations with configurable compression levels.
 ## Input types
 ### Required
 - **`images`**
-    - A batch of images to be saved. The images are expected to be in a tensor format, ready for saving.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The images to be saved. This parameter is crucial as it directly contains the image data that will be processed and saved to disk.
+    - Python dtype: `List[torch.Tensor]`
 - **`filename_prefix`**
-    - A prefix to be added to the filename of each saved image, allowing for easy identification and organization of saved images.
-    - Python dtype: `str`
     - Comfy dtype: `STRING`
+    - A prefix for the filename under which the image will be saved. This allows for organized storage and easy retrieval of saved images.
+    - Python dtype: `str`
 ## Output types
 - **`ui`**
-    - A UI component displaying the saved images, including their filenames, subfolders, and types.
+    - Provides a user interface component displaying the saved images, including filenames and storage locations.
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

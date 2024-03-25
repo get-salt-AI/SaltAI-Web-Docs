@@ -4,52 +4,56 @@
 - Category: `sampling/custom_sampling`
 - Output node: `False`
 
-This node represents a custom sampling process, which involves generating or modifying latent images based on various parameters such as model, conditioning, and specific sampler configurations. It's designed to work with different types of samplers and configurations to produce customized outputs.
+The SamplerCustom node is designed to provide a flexible and customizable sampling mechanism for various applications. It enables users to select and configure different sampling strategies tailored to their specific needs, enhancing the adaptability and efficiency of the sampling process.
 ## Input types
 ### Required
 - **`model`**
-    - Specifies the generative model used for sampling. It's crucial for determining the behavior and capabilities of the sampling process.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - The 'model' input type specifies the model to be used for sampling, playing a crucial role in determining the sampling behavior and output.
+    - Python dtype: `torch.nn.Module`
 - **`add_noise`**
-    - Determines whether noise should be added to the sampling process, affecting the randomness and variability of the output.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOLEAN`
+    - The 'add_noise' input type allows users to specify whether noise should be added to the sampling process, influencing the diversity and characteristics of the generated samples.
+    - Python dtype: `bool`
 - **`noise_seed`**
-    - Sets the seed for noise generation, ensuring reproducibility of the results when adding noise.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The 'noise_seed' input type provides a seed for the noise generation, ensuring reproducibility and consistency in the sampling process when adding noise.
+    - Python dtype: `int`
 - **`cfg`**
-    - Controls the conditioning factor, influencing the strength of the conditioning on the sampling process.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The 'cfg' input type sets the configuration for the sampling process, allowing for fine-tuning of the sampling parameters and behavior.
+    - Python dtype: `float`
 - **`positive`**
-    - Positive conditioning to guide the sampling towards desired attributes or features.
-    - Python dtype: `dict`
     - Comfy dtype: `CONDITIONING`
+    - The 'positive' input type represents positive conditioning information, guiding the sampling process towards generating samples that align with specified positive attributes.
+    - Python dtype: `dict`
 - **`negative`**
-    - Negative conditioning to steer the sampling away from certain attributes or features.
-    - Python dtype: `dict`
     - Comfy dtype: `CONDITIONING`
+    - The 'negative' input type represents negative conditioning information, steering the sampling process away from generating samples that exhibit specified negative attributes.
+    - Python dtype: `dict`
 - **`sampler`**
-    - The specific sampler algorithm used for generating or modifying the latent images.
-    - Python dtype: `str`
     - Comfy dtype: `SAMPLER`
+    - The 'sampler' input type selects the specific sampling strategy to be employed, directly impacting the nature and quality of the generated samples.
+    - Python dtype: `str`
 - **`sigmas`**
-    - Specifies the noise levels for each step of the sampling process, affecting the detail and quality of the output.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `SIGMAS`
+    - The 'sigmas' input type defines the noise levels to be used in the sampling process, affecting the exploration of the sample space and the diversity of the output.
+    - Python dtype: `torch.Tensor`
 - **`latent_image`**
-    - The initial latent image to be modified or used as a basis for generation in the sampling process.
-    - Python dtype: `dict`
     - Comfy dtype: `LATENT`
+    - The 'latent_image' input type provides an initial latent image for the sampling process, serving as a starting point for sample generation.
+    - Python dtype: `torch.Tensor`
 ## Output types
-- **`latent`**
-    - The denoised version of the output latent image, providing a cleaner result.
-    - Python dtype: `dict`
+- **`output`**
     - Comfy dtype: `LATENT`
+    - The 'output' represents the primary result of the sampling process, containing the generated samples.
+    - Python dtype: `torch.Tensor`
+- **`denoised_output`**
+    - Comfy dtype: `LATENT`
+    - The 'denoised_output' represents the samples after a denoising process has been applied, potentially enhancing the clarity and quality of the generated samples.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: `VAEDecode,Preview Chooser,LatentUpscaleBy`
 
 

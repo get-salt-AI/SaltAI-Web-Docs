@@ -4,13 +4,13 @@
 - Category: `image`
 - Output node: `True`
 
-The `PreviewImage` node is designed for creating temporary preview images. It generates a unique temporary file name for each image, allows for image compression, and saves the images in a temporary directory.
+The PreviewImage node is designed for creating temporary preview images. It automatically generates a unique temporary file name for each image, compresses the image to a specified level, and saves it to a temporary directory. This functionality is particularly useful for generating previews of images during processing without affecting the original files.
 ## Input types
 ### Required
 - **`images`**
-    - The 'images' parameter is crucial as it directly influences the node's core functionality, which is to process and save temporary preview images. The quality and characteristics of the input images significantly affect the output.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The 'images' input specifies the images to be processed and saved as temporary preview images. This is the primary input for the node, determining which images will undergo the preview generation process.
+    - Python dtype: `Tuple[torch.Tensor]`
 ## Output types
 The node doesn't have output types
 ## Usage tips

@@ -4,22 +4,22 @@
 - Category: `mask`
 - Output node: `False`
 
-The `LoadImageMask` node is designed to load an image from a specified path, process it to handle different image modes and orientations, and extract a mask based on the specified color channel. It supports handling images with alpha channels for mask extraction and ensures images are in the correct orientation and format for further processing.
+The LoadImageMask node is designed to load images and their associated masks from a specified path, processing them to ensure compatibility with further image manipulation or analysis tasks. It focuses on handling various image formats and conditions, such as presence of an alpha channel for masks, and prepares the images and masks for downstream processing by converting them to a standardized format.
 ## Input types
 ### Required
 - **`image`**
-    - The `image` parameter specifies the file name of the image to be loaded and processed. It is crucial for identifying the correct file within a predefined directory structure and extracting the relevant mask data for further operations.
+    - Comfy dtype: `COMBO[STRING]`
+    - The 'image' parameter specifies the image file to be loaded and processed. It plays a crucial role in determining the output by providing the source image for mask extraction and format conversion.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`channel`**
-    - The `channel` parameter specifies the color channel ('red', 'green', 'blue', 'alpha') from which the mask will be extracted. This allows for flexible mask creation based on different color channels of the image.
+    - Comfy dtype: `COMBO[STRING]`
+    - The 'channel' parameter specifies the color channel of the image that will be used to generate the mask. This allows for flexibility in mask creation based on different color channels, enhancing the node's utility in various image processing scenarios.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`mask`**
-    - The extracted mask from the specified color channel of the image. Useful for segmentation tasks and further image processing.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - This node outputs the mask generated from the specified image and channel, prepared in a standardized format suitable for further processing in image manipulation tasks.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

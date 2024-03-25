@@ -4,28 +4,28 @@
 - Category: `advanced/model_merging`
 - Output node: `False`
 
-Merges two models by blending their parameters based on a specified ratio. This operation allows for the creation of a new model that inherits characteristics from both input models, with the ratio determining the influence of each model on the resulting merged model.
+The ModelMergeSimple node is designed for merging two models by blending their parameters based on a specified ratio. This node facilitates the creation of hybrid models that combine the strengths or characteristics of both input models.
 ## Input types
 ### Required
 - **`model1`**
-    - The first model to merge. It serves as the base model onto which patches from the second model are applied.
-    - Python dtype: `comfy.model_base.Model`
     - Comfy dtype: `MODEL`
+    - The first model to be merged. It serves as the base model onto which patches from the second model are applied.
+    - Python dtype: `comfy.model_base.Model`
 - **`model2`**
-    - The second model to merge. Its parameters are extracted as patches and applied to the first model based on the specified ratio.
-    - Python dtype: `comfy.model_base.Model`
     - Comfy dtype: `MODEL`
+    - The second model whose patches are applied onto the first model, influenced by the specified ratio.
+    - Python dtype: `comfy.model_base.Model`
 - **`ratio`**
-    - Determines the blend ratio between the two models' parameters. A ratio closer to 0 gives more weight to the first model, while a ratio closer to 1 gives more weight to the second model.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Determines the blend ratio between the two models' parameters, affecting the degree to which each model influences the merged output.
+    - Python dtype: `float`
 ## Output types
 - **`model`**
-    - The resulting model after merging the parameters of the two input models based on the specified ratio.
-    - Python dtype: `comfy.model_base.Model`
     - Comfy dtype: `MODEL`
+    - The resulting merged model, incorporating elements from both input models according to the specified ratio.
+    - Python dtype: `comfy.model_base.Model`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: `KSampler,Anything Everywhere,CR Apply LoRA Stack,ModelMergeSimple,Reroute`
 
 

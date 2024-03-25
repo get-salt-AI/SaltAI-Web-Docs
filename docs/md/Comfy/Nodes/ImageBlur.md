@@ -4,26 +4,26 @@
 - Category: `image/postprocessing`
 - Output node: `False`
 
-The ImageBlur node applies a Gaussian blur to an input image. It uses a Gaussian kernel to smooth the image, which can be adjusted by specifying the blur radius and sigma value. This process can reduce image noise and detail, making it useful for post-processing effects or preparing images for further processing steps.
+The ImageBlur node applies a Gaussian blur to an image, allowing for the softening of edges and reduction of detail and noise. It provides control over the intensity and spread of the blur through parameters.
 ## Input types
 ### Required
 - **`image`**
+    - Comfy dtype: `IMAGE`
     - The input image to be blurred. This is the primary target for the blur effect.
     - Python dtype: `torch.Tensor`
-    - Comfy dtype: `IMAGE`
 - **`blur_radius`**
-    - Determines the size of the Gaussian kernel used for blurring. A larger radius increases the blur effect.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Determines the radius of the blur effect. A larger radius results in a more pronounced blur.
+    - Python dtype: `int`
 - **`sigma`**
-    - Controls the spread of the blur. A higher sigma value results in a smoother, more widespread blur.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Controls the spread of the blur. A higher sigma value means the blur will affect a wider area around each pixel.
+    - Python dtype: `float`
 ## Output types
 - **`image`**
-    - The blurred version of the input image.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The output is the blurred version of the input image, with the degree of blur determined by the input parameters.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `ImageUpscaleWithModel,Cut By Mask`

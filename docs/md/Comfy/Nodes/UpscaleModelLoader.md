@@ -4,18 +4,18 @@
 - Category: `loaders`
 - Output node: `False`
 
-This node is responsible for loading an upscale model by name. It retrieves the model's state dictionary from a specified path, optionally adjusts the state dictionary if necessary, and returns the model in evaluation mode.
+The UpscaleModelLoader node is designed for loading upscale models from a specified directory. It facilitates the retrieval and preparation of upscale models for image upscaling tasks, ensuring that the models are correctly loaded and configured for evaluation.
 ## Input types
 ### Required
 - **`model_name`**
-    - Specifies the name of the upscale model to load. The available model names are retrieved from a predefined list of upscale models, allowing the user to select from a variety of upscale models tailored to different upscaling needs.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the name of the upscale model to be loaded. This parameter is crucial for identifying and retrieving the correct model file from the upscale models directory.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`upscale_model`**
-    - The loaded upscale model, ready for use in evaluation mode.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `UPSCALE_MODEL`
+    - Returns the loaded and prepared upscale model, ready for use in image upscaling tasks.
+    - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `ImageUpscaleWithModel,UltimateSDUpscale,Reroute,LatentPixelScale,Anything Everywhere,PixelKSampleUpscalerProvider`

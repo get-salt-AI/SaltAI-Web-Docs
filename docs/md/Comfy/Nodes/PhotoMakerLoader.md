@@ -4,20 +4,20 @@
 - Category: `_for_testing/photomaker`
 - Output node: `False`
 
-This node is responsible for loading a specific PhotoMaker model by its name. It retrieves the model's path, loads the model's state from a file, and optionally extracts a specific component if present, making the model ready for further operations.
+The PhotoMakerLoader node is designed to load a specific photomaker model by name, facilitating the integration and utilization of photomaker capabilities within a broader system.
 ## Input types
 ### Required
 - **`photomaker_model_name`**
-    - The name of the PhotoMaker model to load. This name is used to locate the model file within a predefined directory structure.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the name of the photomaker model to be loaded. This parameter is crucial for identifying and retrieving the correct model from a predefined list of available models.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`photomaker`**
-    - The loaded PhotoMaker model, ready for use in image processing tasks.
-    - Python dtype: `PhotoMakerIDEncoder`
     - Comfy dtype: `PHOTOMAKER`
+    - Returns an instance of the photomaker model loaded with the specified model's state. This enables the application of photomaker functionalities to input data.
+    - Python dtype: `PhotoMakerIDEncoder`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 

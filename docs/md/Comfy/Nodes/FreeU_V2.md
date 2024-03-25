@@ -4,34 +4,34 @@
 - Category: `model_patches`
 - Output node: `False`
 
-The `FreeU_V2` node applies a patch to a model, modifying its output block to adjust the scale of certain layers based on predefined scale factors and applying a Fourier filter to the hidden state patch. This process is designed to enhance the model's output by manipulating the scale and frequency components of the hidden states.
+The FreeU_V2 node is designed to enhance the flexibility and performance of neural network models by dynamically adjusting the scaling of hidden layers based on the model's internal state. This adjustment is made possible through the application of a unique scaling mechanism that takes into account the mean, maximum, and minimum values of the hidden layers, thereby optimizing the model's learning and inference capabilities.
 ## Input types
 ### Required
 - **`model`**
-    - The model to which the patch will be applied. This patch modifies the model's behavior by adjusting the scale of its layers and applying Fourier filtering to enhance the output.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - The neural network model to be enhanced. This parameter is crucial as it determines the base architecture that the FreeU_V2 node will operate on, directly influencing the effectiveness of the dynamic scaling mechanism.
+    - Python dtype: `torch.nn.Module`
 - **`b1`**
-    - A scale factor for adjusting the model's layers. It's part of the mechanism to enhance the model's output by scaling certain layers differently.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A scaling factor that influences the adjustment of the model's hidden layers, contributing to the dynamic scaling mechanism's ability to optimize the model's performance.
+    - Python dtype: `float`
 - **`b2`**
-    - Another scale factor for layer adjustment, working alongside `b1` to fine-tune the model's output enhancement.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Another scaling factor that works in conjunction with b1 to fine-tune the adjustment of the model's hidden layers, enhancing the dynamic scaling mechanism's effectiveness.
+    - Python dtype: `float`
 - **`s1`**
-    - A scale parameter for the Fourier filter applied to the hidden state patch, influencing the frequency components manipulation.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A scale parameter that further refines the dynamic adjustment of the model's hidden layers, aiding in the optimization of the model's learning and inference processes.
+    - Python dtype: `float`
 - **`s2`**
-    - Another scale parameter for the Fourier filter, working with `s1` to adjust the frequency components of the model's output.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - A scale parameter that complements s1, contributing to the precise tuning of the model's hidden layers for improved performance and flexibility.
+    - Python dtype: `float`
 ## Output types
 - **`model`**
-    - The modified model with the applied patch, featuring adjusted layer scales and Fourier-filtered hidden states for enhanced output.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - The enhanced neural network model with dynamically scaled hidden layers, ready for improved learning and inference tasks.
+    - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSampler,UltimateSDUpscale,FaceDetailer,Anything Everywhere,Reroute,PatchModelAddDownscale,KSamplerAdvanced,VideoLinearCFGGuidance,IPAdapter,UltimateSDUpscaleNoUpscale`

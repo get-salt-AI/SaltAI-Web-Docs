@@ -4,22 +4,22 @@
 - Category: `conditioning`
 - Output node: `False`
 
-The `ConditioningConcat` node concatenates the conditioning information from one source to another. It specifically takes the first conditioning element from the `conditioning_from` input and concatenates it to each element in the `conditioning_to` input, effectively applying the conditioning from one source across another.
+The ConditioningConcat node is designed to concatenate conditioning vectors, specifically merging the 'conditioning_from' vector into the 'conditioning_to' vector. This operation is fundamental in scenarios where the conditioning information from two sources needs to be combined into a single, unified representation.
 ## Input types
 ### Required
 - **`conditioning_to`**
-    - The target conditioning data to which the conditioning from another source will be concatenated. It plays a crucial role in determining the final output by receiving additional conditioning information.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - Represents the primary set of conditioning vectors to which the 'conditioning_from' vectors will be concatenated. It serves as the base for the concatenation process.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict]]`
 - **`conditioning_from`**
-    - The source of conditioning data to be concatenated to the target conditioning data. Only the first element of this input is used, which emphasizes its selective influence on the target conditioning.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
     - Comfy dtype: `CONDITIONING`
+    - Consists of conditioning vectors that are to be concatenated to the 'conditioning_to' vectors. This parameter allows for additional conditioning information to be integrated into the existing set.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict]]`
 ## Output types
 - **`conditioning`**
-    - The output is the modified target conditioning data with the first element from the source conditioning data concatenated to each of its elements.
-    - Python dtype: `Tuple[List[Tuple[torch.Tensor, Dict[str, Any]]]]`
     - Comfy dtype: `CONDITIONING`
+    - The output is a unified set of conditioning vectors, resulting from the concatenation of 'conditioning_from' vectors into the 'conditioning_to' vectors.
+    - Python dtype: `Tuple[List[Tuple[torch.Tensor, Dict]]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `ControlNetApplyAdvanced,SamplerCustom,ConditioningConcat`

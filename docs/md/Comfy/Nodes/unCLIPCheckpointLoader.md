@@ -4,30 +4,30 @@
 - Category: `loaders`
 - Output node: `False`
 
-This node is responsible for loading checkpoints specifically designed for the unCLIP model. It retrieves the model's checkpoint from a specified path and configures it for use, including loading various components such as VAE, CLIP, and CLIP Vision models.
+The unCLIPCheckpointLoader node is designed for loading checkpoints specifically tailored for unCLIP models. It facilitates the retrieval and initialization of models, CLIP vision modules, and VAEs from a specified checkpoint, streamlining the setup process for further operations or analyses.
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - Specifies the name of the checkpoint to be loaded. This is crucial for identifying the correct file within the 'checkpoints' directory and loading the associated model.
+    - Comfy dtype: `COMBO[STRING]`
+    - The 'ckpt_name' parameter specifies the name of the checkpoint to be loaded. It is crucial for identifying and retrieving the correct checkpoint file from a predefined directory of checkpoints, thereby determining the models and configurations to be initialized.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`model`**
-    - Returns the main model loaded from the checkpoint.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - Represents the primary model loaded from the checkpoint.
+    - Python dtype: `torch.nn.Module`
 - **`clip`**
-    - Returns the CLIP model component loaded from the checkpoint.
-    - Python dtype: `comfy.sd.CLIP`
     - Comfy dtype: `CLIP`
+    - Represents the CLIP module loaded from the checkpoint, if available.
+    - Python dtype: `torch.nn.Module`
 - **`vae`**
-    - Returns the VAE model component loaded from the checkpoint.
-    - Python dtype: `comfy.sd.VAE`
     - Comfy dtype: `VAE`
+    - Represents the VAE module loaded from the checkpoint, if available.
+    - Python dtype: `torch.nn.Module`
 - **`clip_vision`**
-    - Returns the CLIP Vision model component loaded from the checkpoint.
-    - Python dtype: `comfy.sd.CLIPVision`
     - Comfy dtype: `CLIP_VISION`
+    - Represents the CLIP vision module loaded from the checkpoint, if available.
+    - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

@@ -4,22 +4,22 @@
 - Category: `conditioning`
 - Output node: `False`
 
-The `CLIPTextEncode` node encodes text inputs using a CLIP model to produce conditioning information. It tokenizes the input text and then encodes these tokens to generate a conditioning vector and a pooled output, which are used for further processing or generation tasks.
+The CLIPTextEncode node is designed to encode textual inputs using a CLIP model, transforming text into a form that can be utilized for conditioning in generative tasks. It abstracts the complexity of text tokenization and encoding, providing a streamlined interface for generating text-based conditioning vectors.
 ## Input types
 ### Required
 - **`text`**
-    - The text input to be encoded. This is tokenized and encoded to produce the conditioning information.
-    - Python dtype: `str`
     - Comfy dtype: `STRING`
+    - The 'text' parameter is the textual input that will be encoded. It plays a crucial role in determining the output conditioning vector, as it is the primary source of information for the encoding process.
+    - Python dtype: `str`
 - **`clip`**
-    - The CLIP model used for text tokenization and encoding. It plays a crucial role in transforming the input text into a format suitable for generating conditioning information.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `CLIP`
+    - The 'clip' parameter represents the CLIP model used for text tokenization and encoding. It is essential for converting the textual input into a conditioning vector, influencing the quality and relevance of the generated output.
+    - Python dtype: `torch.nn.Module`
 ## Output types
 - **`conditioning`**
-    - The output conditioning information, consisting of a conditioning vector and a pooled output, derived from the encoded text. This information is crucial for guiding the generation process in tasks such as image synthesis.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
     - Comfy dtype: `CONDITIONING`
+    - The output 'conditioning' is a vector representation of the input text, encoded by the CLIP model. It serves as a crucial component for guiding generative models in producing relevant and coherent outputs.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSampler,ControlNetApplyAdvanced,KSampler //Inspire,SamplerCustom,Reroute,KSamplerAdvanced,ACN_AdvancedControlNetApply,ToBasicPipe,FaceDetailer`

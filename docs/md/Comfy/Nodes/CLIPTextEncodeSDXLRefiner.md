@@ -4,34 +4,34 @@
 - Category: `advanced/conditioning`
 - Output node: `False`
 
-This node refines the encoding of text inputs using a CLIP model, specifically designed for aesthetic scoring and image dimension adjustments. It tokenizes the input text, encodes it to generate conditioning information, and enriches this with aesthetic scores and image dimensions.
+This node specializes in refining the encoding of text inputs using CLIP models, enhancing the conditioning for generative tasks by incorporating aesthetic scores and dimensions.
 ## Input types
 ### Required
 - **`ascore`**
-    - The aesthetic score to be associated with the encoded text, influencing the visual appeal of generated images.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - The aesthetic score parameter influences the conditioning output by providing a measure of aesthetic quality.
+    - Python dtype: `float`
 - **`width`**
-    - The desired width of the output image. This parameter helps in adjusting the dimensions of the generated image.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Specifies the width of the output conditioning, affecting the dimensions of the generated content.
+    - Python dtype: `int`
 - **`height`**
-    - The desired height of the output image, used alongside width to define the image dimensions.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Determines the height of the output conditioning, influencing the dimensions of the generated content.
+    - Python dtype: `int`
 - **`text`**
-    - The text input to be encoded. This is the primary content that will be transformed into a conditioning vector.
-    - Python dtype: `str`
     - Comfy dtype: `STRING`
+    - The text input to be encoded, serving as the primary content descriptor for conditioning.
+    - Python dtype: `str`
 - **`clip`**
-    - The CLIP model used for text tokenization and encoding.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `CLIP`
+    - A CLIP model instance used for text tokenization and encoding, central to generating the conditioning.
+    - Python dtype: `object`
 ## Output types
 - **`conditioning`**
-    - The output conditioning vector, enriched with aesthetic scores and image dimensions, ready for further processing in image generation pipelines.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Union[float, int]]]]`
     - Comfy dtype: `CONDITIONING`
+    - The refined conditioning output, enriched with aesthetic scores and dimensions for enhanced content generation.
+    - Python dtype: `list`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSamplerAdvanced,UltimateSDUpscale`

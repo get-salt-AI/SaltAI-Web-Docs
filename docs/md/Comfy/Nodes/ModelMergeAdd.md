@@ -4,22 +4,22 @@
 - Category: `advanced/model_merging`
 - Output node: `False`
 
-Merges two models by cloning the first model and adding key patches from the second model. This process involves copying the first model and then applying modifications from the second model to the cloned version, effectively merging their characteristics.
+The ModelMergeAdd node is designed for merging two models by adding key patches from one model to another. This process involves cloning the first model and then applying patches from the second model, allowing for the combination of features or behaviors from both models.
 ## Input types
 ### Required
 - **`model1`**
-    - The base model to be cloned and merged with the second model. It serves as the starting point for the merging process.
-    - Python dtype: `comfy.model_base.Model`
     - Comfy dtype: `MODEL`
+    - The first model to be cloned and to which patches from the second model will be added. It serves as the base model for the merging process.
+    - Python dtype: `comfy.model_base.Model`
 - **`model2`**
-    - The model from which key patches are extracted and added to the cloned first model. It contributes its unique characteristics to the merged model.
-    - Python dtype: `comfy.model_base.Model`
     - Comfy dtype: `MODEL`
+    - The second model from which key patches are extracted and added to the first model. It contributes additional features or behaviors to the merged model.
+    - Python dtype: `comfy.model_base.Model`
 ## Output types
 - **`model`**
-    - The resulting model after merging the key patches from the second model into the cloned first model. It combines the characteristics of both input models.
-    - Python dtype: `comfy.model_base.Model`
     - Comfy dtype: `MODEL`
+    - The result of merging two models by adding key patches from the second model to the first. This merged model combines features or behaviors from both models.
+    - Python dtype: `comfy.model_base.Model`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

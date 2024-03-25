@@ -4,23 +4,23 @@
 - Category: `ipadapter`
 - Output node: `False`
 
-The `InsightFaceLoader` node is responsible for loading the InsightFace model with a specified provider (e.g., CPU, CUDA). It initializes the model for face analysis tasks, setting up the necessary configurations and preparing it for use.
+The InsightFaceLoader node is designed to load the InsightFace model, which is a facial recognition and analysis framework. It initializes the model with a specified provider for execution, preparing it for face analysis tasks.
 ## Input types
 ### Required
 - **`provider`**
-    - Specifies the backend provider for the InsightFace model, which can be CPU, CUDA, or ROCM. The choice of provider is crucial as it directly influences the model's execution speed and efficiency, potentially affecting the overall performance and responsiveness of the face analysis tasks.
+    - Comfy dtype: `COMBO[STRING]`
+    - Specifies the execution provider for the InsightFace model, such as CPU, CUDA, or ROCM. This choice determines the computational backend that will be used for model operations.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`insightface`**
-    - Returns the initialized InsightFace model, ready for performing face analysis tasks.
-    - Python dtype: `tuple[FaceAnalysis]`
     - Comfy dtype: `INSIGHTFACE`
+    - Returns an initialized InsightFace model ready for facial analysis tasks.
+    - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `IPAdapterApplyFaceID`
 
-The InsightFaceLoader node is crucial for initializing the InsightFace model for face analysis tasks, particularly in pipelines requiring precise facial recognition and adjustments. It accepts a provider (CPU, CUDA, ROCM) as input and outputs the initialized InsightFace model (`INSIGHTFACE`), ready for performing detailed face analysis in subsequent nodes.
+
 ## Source code
 ```python
 class InsightFaceLoader:

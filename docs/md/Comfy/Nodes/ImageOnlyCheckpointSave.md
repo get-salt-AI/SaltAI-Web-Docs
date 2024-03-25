@@ -4,25 +4,25 @@
 - Category: `_for_testing`
 - Output node: `True`
 
-This node specializes in saving model checkpoints specifically for image-based models. It extends the functionality of a general checkpoint saving mechanism to include additional components like CLIP vision and VAE models, tailored for image processing tasks. The node allows for customization of the saved checkpoint's filename and supports optional inclusion of a prompt and extra PNG information.
+This node specializes in saving model checkpoints specifically for image-based applications, incorporating additional components like CLIP vision and VAE models. It allows for the customization of the checkpoint's filename prefix and optionally includes prompt and extra PNG information for enhanced flexibility and metadata storage.
 ## Input types
 ### Required
 - **`model`**
-    - The primary model whose state is to be saved. This is central to the checkpoint saving process.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - The primary model whose state is to be saved as a checkpoint. It is central to the checkpoint creation process.
+    - Python dtype: `torch.nn.Module`
 - **`clip_vision`**
-    - A CLIP vision model component to be included in the checkpoint. This is important for tasks that involve understanding or generating images in the context of natural language descriptions.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `CLIP_VISION`
-- **`vae`**
-    - A VAE (Variational Autoencoder) model component to be included in the checkpoint. VAEs are often used in image processing for generating new images or modifying existing ones.
+    - The CLIP vision model to be included in the checkpoint, enabling enhanced image understanding capabilities.
     - Python dtype: `torch.nn.Module`
+- **`vae`**
     - Comfy dtype: `VAE`
+    - The VAE model to be included in the checkpoint, facilitating image generation or manipulation tasks.
+    - Python dtype: `torch.nn.Module`
 - **`filename_prefix`**
-    - The prefix for the filename under which the checkpoint will be saved. This allows for organizing and identifying checkpoints easily.
-    - Python dtype: `str`
     - Comfy dtype: `STRING`
+    - A customizable prefix for the checkpoint filename, allowing for organized storage and easy identification.
+    - Python dtype: `str`
 ## Output types
 The node doesn't have output types
 ## Usage tips
