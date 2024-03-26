@@ -886,6 +886,154 @@ nav:
                   - VAEEncodeForInpaint (WAS): md/WAS_Extras/Nodes/VAEEncodeForInpaint
                       (WAS).md
                   - VividSharpen: md/WAS_Extras/Nodes/VividSharpen.md
+          - comfyui_bmad_nodes:
+              - Home: md/comfyui_bmad_nodes/index.md
+              - Nodes:
+                  - AdaptiveThresholding: md/comfyui_bmad_nodes/Nodes/AdaptiveThresholding.md
+                  - Add String To Many: md/comfyui_bmad_nodes/Nodes/Add String To
+                      Many.md
+                  - AddAlpha: md/comfyui_bmad_nodes/Nodes/AddAlpha.md
+                  - AdjustRect: md/comfyui_bmad_nodes/Nodes/AdjustRect.md
+                  - AnyToAny: md/comfyui_bmad_nodes/Nodes/AnyToAny.md
+                  - BoundingRect (contours): md/comfyui_bmad_nodes/Nodes/BoundingRect
+                      (contours).md
+                  - BuildColorRangeAdvanced (hsv): md/comfyui_bmad_nodes/Nodes/BuildColorRangeAdvanced
+                      (hsv).md
+                  - BuildColorRangeHSV (hsv): md/comfyui_bmad_nodes/Nodes/BuildColorRangeHSV
+                      (hsv).md
+                  - CLAHE: md/comfyui_bmad_nodes/Nodes/CLAHE.md
+                  - CLIPEncodeMultiple: md/comfyui_bmad_nodes/Nodes/CLIPEncodeMultiple.md
+                  - CLIPEncodeMultipleAdvanced: md/comfyui_bmad_nodes/Nodes/CLIPEncodeMultipleAdvanced.md
+                  - ChameleonMask: md/comfyui_bmad_nodes/Nodes/ChameleonMask.md
+                  - CheckpointLoader (dirty): md/comfyui_bmad_nodes/Nodes/CheckpointLoader
+                      (dirty).md
+                  - CheckpointLoaderSimple (dirty): md/comfyui_bmad_nodes/Nodes/CheckpointLoaderSimple
+                      (dirty).md
+                  - Color (RGB): md/comfyui_bmad_nodes/Nodes/Color (RGB).md
+                  - Color (hexadecimal): md/comfyui_bmad_nodes/Nodes/Color (hexadecimal).md
+                  - Color Clip (advanced): md/comfyui_bmad_nodes/Nodes/Color Clip
+                      (advanced).md
+                  - Color Clip: md/comfyui_bmad_nodes/Nodes/Color Clip.md
+                  - ColorDictionary (custom): md/comfyui_bmad_nodes/Nodes/ColorDictionary
+                      (custom).md
+                  - ColorDictionary: md/comfyui_bmad_nodes/Nodes/ColorDictionary.md
+                  - Conditioning Grid (cond): md/comfyui_bmad_nodes/Nodes/Conditioning
+                      Grid (cond).md
+                  - Conditioning Grid (string) Advanced: md/comfyui_bmad_nodes/Nodes/Conditioning
+                      Grid (string) Advanced.md
+                  - Conditioning Grid (string): md/comfyui_bmad_nodes/Nodes/Conditioning
+                      Grid (string).md
+                  - Contour To Mask: md/comfyui_bmad_nodes/Nodes/Contour To Mask.md
+                  - Contours: md/comfyui_bmad_nodes/Nodes/Contours.md
+                  - ControlNetHadamard (manual): md/comfyui_bmad_nodes/Nodes/ControlNetHadamard
+                      (manual).md
+                  - ControlNetHadamard: md/comfyui_bmad_nodes/Nodes/ControlNetHadamard.md
+                  - ConvertImg: md/comfyui_bmad_nodes/Nodes/ConvertImg.md
+                  - CopyMakeBorder: md/comfyui_bmad_nodes/Nodes/CopyMakeBorder.md
+                  - CreateRequestMetadata: md/comfyui_bmad_nodes/Nodes/CreateRequestMetadata.md
+                  - DistanceTransform: md/comfyui_bmad_nodes/Nodes/DistanceTransform.md
+                  - Draw Contour(s): md/comfyui_bmad_nodes/Nodes/Draw Contour(s).md
+                  - EqualizeHistogram: md/comfyui_bmad_nodes/Nodes/EqualizeHistogram.md
+                  - ExtendColorList: md/comfyui_bmad_nodes/Nodes/ExtendColorList.md
+                  - ExtendCondList: md/comfyui_bmad_nodes/Nodes/ExtendCondList.md
+                  - ExtendFloatList: md/comfyui_bmad_nodes/Nodes/ExtendFloatList.md
+                  - ExtendImageList: md/comfyui_bmad_nodes/Nodes/ExtendImageList.md
+                  - ExtendIntList: md/comfyui_bmad_nodes/Nodes/ExtendIntList.md
+                  - ExtendLatentList: md/comfyui_bmad_nodes/Nodes/ExtendLatentList.md
+                  - ExtendMaskList: md/comfyui_bmad_nodes/Nodes/ExtendMaskList.md
+                  - ExtendModelList: md/comfyui_bmad_nodes/Nodes/ExtendModelList.md
+                  - ExtendStringList: md/comfyui_bmad_nodes/Nodes/ExtendStringList.md
+                  - FadeMaskEdges: md/comfyui_bmad_nodes/Nodes/FadeMaskEdges.md
+                  - Filter Contour: md/comfyui_bmad_nodes/Nodes/Filter Contour.md
+                  - FindComplementaryColor: md/comfyui_bmad_nodes/Nodes/FindComplementaryColor.md
+                  - FindThreshold: md/comfyui_bmad_nodes/Nodes/FindThreshold.md
+                  - FlatLatentsIntoSingleGrid: md/comfyui_bmad_nodes/Nodes/FlatLatentsIntoSingleGrid.md
+                  - Framed Mask Grab Cut 2: md/comfyui_bmad_nodes/Nodes/Framed Mask
+                      Grab Cut 2.md
+                  - Framed Mask Grab Cut: md/comfyui_bmad_nodes/Nodes/Framed Mask
+                      Grab Cut.md
+                  - FromListGet1Color: md/comfyui_bmad_nodes/Nodes/FromListGet1Color.md
+                  - FromListGet1Cond: md/comfyui_bmad_nodes/Nodes/FromListGet1Cond.md
+                  - FromListGet1Float: md/comfyui_bmad_nodes/Nodes/FromListGet1Float.md
+                  - FromListGet1Image: md/comfyui_bmad_nodes/Nodes/FromListGet1Image.md
+                  - FromListGet1Int: md/comfyui_bmad_nodes/Nodes/FromListGet1Int.md
+                  - FromListGet1Latent: md/comfyui_bmad_nodes/Nodes/FromListGet1Latent.md
+                  - FromListGet1Mask: md/comfyui_bmad_nodes/Nodes/FromListGet1Mask.md
+                  - FromListGet1Model: md/comfyui_bmad_nodes/Nodes/FromListGet1Model.md
+                  - FromListGet1String: md/comfyui_bmad_nodes/Nodes/FromListGet1String.md
+                  - FromListGetColors: md/comfyui_bmad_nodes/Nodes/FromListGetColors.md
+                  - FromListGetConds: md/comfyui_bmad_nodes/Nodes/FromListGetConds.md
+                  - FromListGetFloats: md/comfyui_bmad_nodes/Nodes/FromListGetFloats.md
+                  - FromListGetImages: md/comfyui_bmad_nodes/Nodes/FromListGetImages.md
+                  - FromListGetInts: md/comfyui_bmad_nodes/Nodes/FromListGetInts.md
+                  - FromListGetLatents: md/comfyui_bmad_nodes/Nodes/FromListGetLatents.md
+                  - FromListGetMasks: md/comfyui_bmad_nodes/Nodes/FromListGetMasks.md
+                  - FromListGetModels: md/comfyui_bmad_nodes/Nodes/FromListGetModels.md
+                  - FromListGetStrings: md/comfyui_bmad_nodes/Nodes/FromListGetStrings.md
+                  - Get Contour from list: md/comfyui_bmad_nodes/Nodes/Get Contour
+                      from list.md
+                  - Get Models: md/comfyui_bmad_nodes/Nodes/Get Models.md
+                  - Get Prompt: md/comfyui_bmad_nodes/Nodes/Get Prompt.md
+                  - HypernetworkLoader (dirty): md/comfyui_bmad_nodes/Nodes/HypernetworkLoader
+                      (dirty).md
+                  - ImageBatchToList: md/comfyui_bmad_nodes/Nodes/ImageBatchToList.md
+                  - InRange (hsv): md/comfyui_bmad_nodes/Nodes/InRange (hsv).md
+                  - Inpaint: md/comfyui_bmad_nodes/Nodes/Inpaint.md
+                  - Input_String to Int Array: md/comfyui_bmad_nodes/Nodes/Input_String
+                      to Int Array.md
+                  - KMeansColor: md/comfyui_bmad_nodes/Nodes/KMeansColor.md
+                  - Load 64 Encoded Image: md/comfyui_bmad_nodes/Nodes/Load 64 Encoded
+                      Image.md
+                  - LoraLoader (dirty): md/comfyui_bmad_nodes/Nodes/LoraLoader (dirty).md
+                  - MaskGrid N KSamplers Advanced: md/comfyui_bmad_nodes/Nodes/MaskGrid
+                      N KSamplers Advanced.md
+                  - MaskOuterBlur: md/comfyui_bmad_nodes/Nodes/MaskOuterBlur.md
+                  - Merge Latent Batch Gridwise: md/comfyui_bmad_nodes/Nodes/Merge
+                      Latent Batch Gridwise.md
+                  - MonoMerge: md/comfyui_bmad_nodes/Nodes/MonoMerge.md
+                  - MorphologicOperation: md/comfyui_bmad_nodes/Nodes/MorphologicOperation.md
+                  - MorphologicSkeletoning: md/comfyui_bmad_nodes/Nodes/MorphologicSkeletoning.md
+                  - NaiveAutoKMeansColor: md/comfyui_bmad_nodes/Nodes/NaiveAutoKMeansColor.md
+                  - OtsuThreshold: md/comfyui_bmad_nodes/Nodes/OtsuThreshold.md
+                  - RGB to HSV: md/comfyui_bmad_nodes/Nodes/RGB to HSV.md
+                  - Rect Grab Cut: md/comfyui_bmad_nodes/Nodes/Rect Grab Cut.md
+                  - Remap: md/comfyui_bmad_nodes/Nodes/Remap.md
+                  - RemapBarrelDistortion: md/comfyui_bmad_nodes/Nodes/RemapBarrelDistortion.md
+                  - RemapFromInsideParabolas: md/comfyui_bmad_nodes/Nodes/RemapFromInsideParabolas.md
+                  - RemapFromQuadrilateral (homography): md/comfyui_bmad_nodes/Nodes/RemapFromQuadrilateral
+                      (homography).md
+                  - RemapInsideParabolas: md/comfyui_bmad_nodes/Nodes/RemapInsideParabolas.md
+                  - RemapInsideParabolasAdvanced: md/comfyui_bmad_nodes/Nodes/RemapInsideParabolasAdvanced.md
+                  - RemapPinch: md/comfyui_bmad_nodes/Nodes/RemapPinch.md
+                  - RemapStretch: md/comfyui_bmad_nodes/Nodes/RemapStretch.md
+                  - RemapToInnerCylinder: md/comfyui_bmad_nodes/Nodes/RemapToInnerCylinder.md
+                  - RemapToOuterCylinder: md/comfyui_bmad_nodes/Nodes/RemapToOuterCylinder.md
+                  - RemapToQuadrilateral: md/comfyui_bmad_nodes/Nodes/RemapToQuadrilateral.md
+                  - Repeat Into Grid (image): md/comfyui_bmad_nodes/Nodes/Repeat Into
+                      Grid (image).md
+                  - Repeat Into Grid (latent): md/comfyui_bmad_nodes/Nodes/Repeat
+                      Into Grid (latent).md
+                  - RequestInputs: md/comfyui_bmad_nodes/Nodes/RequestInputs.md
+                  - SampleColorHSV: md/comfyui_bmad_nodes/Nodes/SampleColorHSV.md
+                  - Save Image (api): md/comfyui_bmad_nodes/Nodes/Save Image (api).md
+                  - SeamlessClone (simple): md/comfyui_bmad_nodes/Nodes/SeamlessClone
+                      (simple).md
+                  - SeamlessClone: md/comfyui_bmad_nodes/Nodes/SeamlessClone.md
+                  - SetRequestStateToComplete: md/comfyui_bmad_nodes/Nodes/SetRequestStateToComplete.md
+                  - String to Float: md/comfyui_bmad_nodes/Nodes/String to Float.md
+                  - String to Integer: md/comfyui_bmad_nodes/Nodes/String to Integer.md
+                  - String: md/comfyui_bmad_nodes/Nodes/String.md
+                  - ToColorList: md/comfyui_bmad_nodes/Nodes/ToColorList.md
+                  - ToCondList: md/comfyui_bmad_nodes/Nodes/ToCondList.md
+                  - ToFloatList: md/comfyui_bmad_nodes/Nodes/ToFloatList.md
+                  - ToImageList: md/comfyui_bmad_nodes/Nodes/ToImageList.md
+                  - ToIntList: md/comfyui_bmad_nodes/Nodes/ToIntList.md
+                  - ToLatentList: md/comfyui_bmad_nodes/Nodes/ToLatentList.md
+                  - ToMaskList: md/comfyui_bmad_nodes/Nodes/ToMaskList.md
+                  - ToModelList: md/comfyui_bmad_nodes/Nodes/ToModelList.md
+                  - ToStringList: md/comfyui_bmad_nodes/Nodes/ToStringList.md
+                  - UnGridify (image): md/comfyui_bmad_nodes/Nodes/UnGridify (image).md
+                  - VAEEncodeBatch: md/comfyui_bmad_nodes/Nodes/VAEEncodeBatch.md
           - comfyui_segment_anything:
               - Home: md/comfyui_segment_anything/index.md
               - Nodes:
@@ -898,6 +1046,358 @@ nav:
                   - IsMaskEmpty: md/comfyui_segment_anything/Nodes/IsMaskEmpty.md
                   - SAMModelLoader (segment anything): md/comfyui_segment_anything/Nodes/SAMModelLoader
                       (segment anything).md
+          - was-node-suite-comfyui:
+              - Home: md/was-node-suite-comfyui/index.md
+              - Nodes:
+                  - BLIP Analyze Image: md/was-node-suite-comfyui/Nodes/BLIP Analyze
+                      Image.md
+                  - BLIP Model Loader: md/was-node-suite-comfyui/Nodes/BLIP Model
+                      Loader.md
+                  - Blend Latents: md/was-node-suite-comfyui/Nodes/Blend Latents.md
+                  - Boolean To Text: md/was-node-suite-comfyui/Nodes/Boolean To Text.md
+                  - Bounded Image Blend with Mask: md/was-node-suite-comfyui/Nodes/Bounded
+                      Image Blend with Mask.md
+                  - Bounded Image Blend: md/was-node-suite-comfyui/Nodes/Bounded Image
+                      Blend.md
+                  - Bounded Image Crop with Mask: md/was-node-suite-comfyui/Nodes/Bounded
+                      Image Crop with Mask.md
+                  - Bounded Image Crop: md/was-node-suite-comfyui/Nodes/Bounded Image
+                      Crop.md
+                  - Bus Node: md/was-node-suite-comfyui/Nodes/Bus Node.md
+                  - CLIP Input Switch: md/was-node-suite-comfyui/Nodes/CLIP Input
+                      Switch.md
+                  - CLIP Vision Input Switch: md/was-node-suite-comfyui/Nodes/CLIP
+                      Vision Input Switch.md
+                  - CLIPSeg Batch Masking: md/was-node-suite-comfyui/Nodes/CLIPSeg
+                      Batch Masking.md
+                  - CLIPSeg Masking: md/was-node-suite-comfyui/Nodes/CLIPSeg Masking.md
+                  - CLIPSeg Model Loader: md/was-node-suite-comfyui/Nodes/CLIPSeg
+                      Model Loader.md
+                  - CLIPTextEncode (BlenderNeko Advanced + NSP): md/was-node-suite-comfyui/Nodes/CLIPTextEncode
+                      (BlenderNeko Advanced + NSP).md
+                  - CLIPTextEncode (NSP): md/was-node-suite-comfyui/Nodes/CLIPTextEncode
+                      (NSP).md
+                  - Cache Node: md/was-node-suite-comfyui/Nodes/Cache Node.md
+                  - Checkpoint Loader (Simple): md/was-node-suite-comfyui/Nodes/Checkpoint
+                      Loader (Simple).md
+                  - Checkpoint Loader: md/was-node-suite-comfyui/Nodes/Checkpoint
+                      Loader.md
+                  - Conditioning Input Switch: md/was-node-suite-comfyui/Nodes/Conditioning
+                      Input Switch.md
+                  - Constant Number: md/was-node-suite-comfyui/Nodes/Constant Number.md
+                  - Control Net Model Input Switch: md/was-node-suite-comfyui/Nodes/Control
+                      Net Model Input Switch.md
+                  - Convert Masks to Images: md/was-node-suite-comfyui/Nodes/Convert
+                      Masks to Images.md
+                  - Create Grid Image from Batch: md/was-node-suite-comfyui/Nodes/Create
+                      Grid Image from Batch.md
+                  - Create Grid Image: md/was-node-suite-comfyui/Nodes/Create Grid
+                      Image.md
+                  - Create Morph Image from Path: md/was-node-suite-comfyui/Nodes/Create
+                      Morph Image from Path.md
+                  - Create Morph Image: md/was-node-suite-comfyui/Nodes/Create Morph
+                      Image.md
+                  - Create Video from Path: md/was-node-suite-comfyui/Nodes/Create
+                      Video from Path.md
+                  - Debug Number to Console: md/was-node-suite-comfyui/Nodes/Debug
+                      Number to Console.md
+                  - Dictionary to Console: md/was-node-suite-comfyui/Nodes/Dictionary
+                      to Console.md
+                  - Diffusers Hub Model Down-Loader: md/was-node-suite-comfyui/Nodes/Diffusers
+                      Hub Model Down-Loader.md
+                  - Diffusers Model Loader: md/was-node-suite-comfyui/Nodes/Diffusers
+                      Model Loader.md
+                  - Export API: md/was-node-suite-comfyui/Nodes/Export API.md
+                  - Image Analyze: md/was-node-suite-comfyui/Nodes/Image Analyze.md
+                  - Image Aspect Ratio: md/was-node-suite-comfyui/Nodes/Image Aspect
+                      Ratio.md
+                  - Image Batch: md/was-node-suite-comfyui/Nodes/Image Batch.md
+                  - Image Blank: md/was-node-suite-comfyui/Nodes/Image Blank.md
+                  - Image Blend by Mask: md/was-node-suite-comfyui/Nodes/Image Blend
+                      by Mask.md
+                  - Image Blend: md/was-node-suite-comfyui/Nodes/Image Blend.md
+                  - Image Blending Mode: md/was-node-suite-comfyui/Nodes/Image Blending
+                      Mode.md
+                  - Image Bloom Filter: md/was-node-suite-comfyui/Nodes/Image Bloom
+                      Filter.md
+                  - Image Bounds to Console: md/was-node-suite-comfyui/Nodes/Image
+                      Bounds to Console.md
+                  - Image Bounds: md/was-node-suite-comfyui/Nodes/Image Bounds.md
+                  - Image Canny Filter: md/was-node-suite-comfyui/Nodes/Image Canny
+                      Filter.md
+                  - Image Chromatic Aberration: md/was-node-suite-comfyui/Nodes/Image
+                      Chromatic Aberration.md
+                  - Image Color Palette: md/was-node-suite-comfyui/Nodes/Image Color
+                      Palette.md
+                  - Image Crop Face: md/was-node-suite-comfyui/Nodes/Image Crop Face.md
+                  - Image Crop Location: md/was-node-suite-comfyui/Nodes/Image Crop
+                      Location.md
+                  - Image Crop Square Location: md/was-node-suite-comfyui/Nodes/Image
+                      Crop Square Location.md
+                  - Image Displacement Warp: md/was-node-suite-comfyui/Nodes/Image
+                      Displacement Warp.md
+                  - Image Dragan Photography Filter: md/was-node-suite-comfyui/Nodes/Image
+                      Dragan Photography Filter.md
+                  - Image Edge Detection Filter: md/was-node-suite-comfyui/Nodes/Image
+                      Edge Detection Filter.md
+                  - Image Film Grain: md/was-node-suite-comfyui/Nodes/Image Film Grain.md
+                  - Image Filter Adjustments: md/was-node-suite-comfyui/Nodes/Image
+                      Filter Adjustments.md
+                  - Image Flip: md/was-node-suite-comfyui/Nodes/Image Flip.md
+                  - Image Generate Gradient: md/was-node-suite-comfyui/Nodes/Image
+                      Generate Gradient.md
+                  - Image Gradient Map: md/was-node-suite-comfyui/Nodes/Image Gradient
+                      Map.md
+                  - Image High Pass Filter: md/was-node-suite-comfyui/Nodes/Image
+                      High Pass Filter.md
+                  - Image History Loader: md/was-node-suite-comfyui/Nodes/Image History
+                      Loader.md
+                  - Image Input Switch: md/was-node-suite-comfyui/Nodes/Image Input
+                      Switch.md
+                  - Image Levels Adjustment: md/was-node-suite-comfyui/Nodes/Image
+                      Levels Adjustment.md
+                  - Image Load: md/was-node-suite-comfyui/Nodes/Image Load.md
+                  - Image Lucy Sharpen: md/was-node-suite-comfyui/Nodes/Image Lucy
+                      Sharpen.md
+                  - Image Median Filter: md/was-node-suite-comfyui/Nodes/Image Median
+                      Filter.md
+                  - Image Mix RGB Channels: md/was-node-suite-comfyui/Nodes/Image
+                      Mix RGB Channels.md
+                  - Image Monitor Effects Filter: md/was-node-suite-comfyui/Nodes/Image
+                      Monitor Effects Filter.md
+                  - Image Nova Filter: md/was-node-suite-comfyui/Nodes/Image Nova
+                      Filter.md
+                  - Image Padding: md/was-node-suite-comfyui/Nodes/Image Padding.md
+                  - Image Paste Crop by Location: md/was-node-suite-comfyui/Nodes/Image
+                      Paste Crop by Location.md
+                  - Image Paste Crop: md/was-node-suite-comfyui/Nodes/Image Paste
+                      Crop.md
+                  - Image Paste Face: md/was-node-suite-comfyui/Nodes/Image Paste
+                      Face.md
+                  - Image Perlin Noise: md/was-node-suite-comfyui/Nodes/Image Perlin
+                      Noise.md
+                  - Image Perlin Power Fractal: md/was-node-suite-comfyui/Nodes/Image
+                      Perlin Power Fractal.md
+                  - Image Pixelate: md/was-node-suite-comfyui/Nodes/Image Pixelate.md
+                  - Image Power Noise: md/was-node-suite-comfyui/Nodes/Image Power
+                      Noise.md
+                  - Image Rembg (Remove Background): md/was-node-suite-comfyui/Nodes/Image
+                      Rembg (Remove Background).md
+                  - Image Remove Background (Alpha): md/was-node-suite-comfyui/Nodes/Image
+                      Remove Background (Alpha).md
+                  - Image Remove Color: md/was-node-suite-comfyui/Nodes/Image Remove
+                      Color.md
+                  - Image Resize: md/was-node-suite-comfyui/Nodes/Image Resize.md
+                  - Image Rotate Hue: md/was-node-suite-comfyui/Nodes/Image Rotate
+                      Hue.md
+                  - Image Rotate: md/was-node-suite-comfyui/Nodes/Image Rotate.md
+                  - Image SSAO (Ambient Occlusion): md/was-node-suite-comfyui/Nodes/Image
+                      SSAO (Ambient Occlusion).md
+                  - Image SSDO (Direct Occlusion): md/was-node-suite-comfyui/Nodes/Image
+                      SSDO (Direct Occlusion).md
+                  - Image Save: md/was-node-suite-comfyui/Nodes/Image Save.md
+                  - Image Seamless Texture: md/was-node-suite-comfyui/Nodes/Image
+                      Seamless Texture.md
+                  - Image Select Channel: md/was-node-suite-comfyui/Nodes/Image Select
+                      Channel.md
+                  - Image Select Color: md/was-node-suite-comfyui/Nodes/Image Select
+                      Color.md
+                  - Image Shadows and Highlights: md/was-node-suite-comfyui/Nodes/Image
+                      Shadows and Highlights.md
+                  - Image Size to Number: md/was-node-suite-comfyui/Nodes/Image Size
+                      to Number.md
+                  - Image Stitch: md/was-node-suite-comfyui/Nodes/Image Stitch.md
+                  - Image Style Filter: md/was-node-suite-comfyui/Nodes/Image Style
+                      Filter.md
+                  - Image Threshold: md/was-node-suite-comfyui/Nodes/Image Threshold.md
+                  - Image Tiled: md/was-node-suite-comfyui/Nodes/Image Tiled.md
+                  - Image Transpose: md/was-node-suite-comfyui/Nodes/Image Transpose.md
+                  - Image Voronoi Noise Filter: md/was-node-suite-comfyui/Nodes/Image
+                      Voronoi Noise Filter.md
+                  - Image fDOF Filter: md/was-node-suite-comfyui/Nodes/Image fDOF
+                      Filter.md
+                  - Image to Latent Mask: md/was-node-suite-comfyui/Nodes/Image to
+                      Latent Mask.md
+                  - Image to Noise: md/was-node-suite-comfyui/Nodes/Image to Noise.md
+                  - Image to Seed: md/was-node-suite-comfyui/Nodes/Image to Seed.md
+                  - Images to Linear: md/was-node-suite-comfyui/Nodes/Images to Linear.md
+                  - Images to RGB: md/was-node-suite-comfyui/Nodes/Images to RGB.md
+                  - Inset Image Bounds: md/was-node-suite-comfyui/Nodes/Inset Image
+                      Bounds.md
+                  - Integer place counter: md/was-node-suite-comfyui/Nodes/Integer
+                      place counter.md
+                  - KSampler (WAS): md/was-node-suite-comfyui/Nodes/KSampler (WAS).md
+                  - KSampler Cycle: md/was-node-suite-comfyui/Nodes/KSampler Cycle.md
+                  - Latent Batch: md/was-node-suite-comfyui/Nodes/Latent Batch.md
+                  - Latent Input Switch: md/was-node-suite-comfyui/Nodes/Latent Input
+                      Switch.md
+                  - Latent Noise Injection: md/was-node-suite-comfyui/Nodes/Latent
+                      Noise Injection.md
+                  - Latent Size to Number: md/was-node-suite-comfyui/Nodes/Latent
+                      Size to Number.md
+                  - Latent Upscale by Factor (WAS): md/was-node-suite-comfyui/Nodes/Latent
+                      Upscale by Factor (WAS).md
+                  - Load Cache: md/was-node-suite-comfyui/Nodes/Load Cache.md
+                  - Load Image Batch: md/was-node-suite-comfyui/Nodes/Load Image Batch.md
+                  - Load Lora: md/was-node-suite-comfyui/Nodes/Load Lora.md
+                  - Load Text File: md/was-node-suite-comfyui/Nodes/Load Text File.md
+                  - Logic Boolean Primitive: md/was-node-suite-comfyui/Nodes/Logic
+                      Boolean Primitive.md
+                  - Logic Boolean: md/was-node-suite-comfyui/Nodes/Logic Boolean.md
+                  - Logic Comparison AND: md/was-node-suite-comfyui/Nodes/Logic Comparison
+                      AND.md
+                  - Logic Comparison OR: md/was-node-suite-comfyui/Nodes/Logic Comparison
+                      OR.md
+                  - Logic Comparison XOR: md/was-node-suite-comfyui/Nodes/Logic Comparison
+                      XOR.md
+                  - Logic NOT: md/was-node-suite-comfyui/Nodes/Logic NOT.md
+                  - Lora Input Switch: md/was-node-suite-comfyui/Nodes/Lora Input
+                      Switch.md
+                  - Lora Loader: md/was-node-suite-comfyui/Nodes/Lora Loader.md
+                  - Mask Arbitrary Region: md/was-node-suite-comfyui/Nodes/Mask Arbitrary
+                      Region.md
+                  - Mask Batch to Mask: md/was-node-suite-comfyui/Nodes/Mask Batch
+                      to Mask.md
+                  - Mask Batch: md/was-node-suite-comfyui/Nodes/Mask Batch.md
+                  - Mask Ceiling Region: md/was-node-suite-comfyui/Nodes/Mask Ceiling
+                      Region.md
+                  - Mask Crop Dominant Region: md/was-node-suite-comfyui/Nodes/Mask
+                      Crop Dominant Region.md
+                  - Mask Crop Minority Region: md/was-node-suite-comfyui/Nodes/Mask
+                      Crop Minority Region.md
+                  - Mask Crop Region: md/was-node-suite-comfyui/Nodes/Mask Crop Region.md
+                  - Mask Dilate Region: md/was-node-suite-comfyui/Nodes/Mask Dilate
+                      Region.md
+                  - Mask Dominant Region: md/was-node-suite-comfyui/Nodes/Mask Dominant
+                      Region.md
+                  - Mask Erode Region: md/was-node-suite-comfyui/Nodes/Mask Erode
+                      Region.md
+                  - Mask Fill Holes: md/was-node-suite-comfyui/Nodes/Mask Fill Holes.md
+                  - Mask Floor Region: md/was-node-suite-comfyui/Nodes/Mask Floor
+                      Region.md
+                  - Mask Gaussian Region: md/was-node-suite-comfyui/Nodes/Mask Gaussian
+                      Region.md
+                  - Mask Invert: md/was-node-suite-comfyui/Nodes/Mask Invert.md
+                  - Mask Minority Region: md/was-node-suite-comfyui/Nodes/Mask Minority
+                      Region.md
+                  - Mask Paste Region: md/was-node-suite-comfyui/Nodes/Mask Paste
+                      Region.md
+                  - Mask Smooth Region: md/was-node-suite-comfyui/Nodes/Mask Smooth
+                      Region.md
+                  - Mask Threshold Region: md/was-node-suite-comfyui/Nodes/Mask Threshold
+                      Region.md
+                  - Masks Add: md/was-node-suite-comfyui/Nodes/Masks Add.md
+                  - Masks Combine Batch: md/was-node-suite-comfyui/Nodes/Masks Combine
+                      Batch.md
+                  - Masks Combine Regions: md/was-node-suite-comfyui/Nodes/Masks Combine
+                      Regions.md
+                  - Masks Subtract: md/was-node-suite-comfyui/Nodes/Masks Subtract.md
+                  - MiDaS Depth Approximation: md/was-node-suite-comfyui/Nodes/MiDaS
+                      Depth Approximation.md
+                  - MiDaS Mask Image: md/was-node-suite-comfyui/Nodes/MiDaS Mask Image.md
+                  - MiDaS Model Loader: md/was-node-suite-comfyui/Nodes/MiDaS Model
+                      Loader.md
+                  - Model Input Switch: md/was-node-suite-comfyui/Nodes/Model Input
+                      Switch.md
+                  - Number Counter: md/was-node-suite-comfyui/Nodes/Number Counter.md
+                  - Number Input Condition: md/was-node-suite-comfyui/Nodes/Number
+                      Input Condition.md
+                  - Number Input Switch: md/was-node-suite-comfyui/Nodes/Number Input
+                      Switch.md
+                  - Number Multiple Of: md/was-node-suite-comfyui/Nodes/Number Multiple
+                      Of.md
+                  - Number Operation: md/was-node-suite-comfyui/Nodes/Number Operation.md
+                  - Number PI: md/was-node-suite-comfyui/Nodes/Number PI.md
+                  - Number to Float: md/was-node-suite-comfyui/Nodes/Number to Float.md
+                  - Number to Int: md/was-node-suite-comfyui/Nodes/Number to Int.md
+                  - Number to Seed: md/was-node-suite-comfyui/Nodes/Number to Seed.md
+                  - Number to String: md/was-node-suite-comfyui/Nodes/Number to String.md
+                  - Number to Text: md/was-node-suite-comfyui/Nodes/Number to Text.md
+                  - Prompt Multiple Styles Selector: md/was-node-suite-comfyui/Nodes/Prompt
+                      Multiple Styles Selector.md
+                  - Prompt Styles Selector: md/was-node-suite-comfyui/Nodes/Prompt
+                      Styles Selector.md
+                  - Random Number: md/was-node-suite-comfyui/Nodes/Random Number.md
+                  - SAM Image Mask: md/was-node-suite-comfyui/Nodes/SAM Image Mask.md
+                  - SAM Model Loader: md/was-node-suite-comfyui/Nodes/SAM Model Loader.md
+                  - SAM Parameters Combine: md/was-node-suite-comfyui/Nodes/SAM Parameters
+                      Combine.md
+                  - SAM Parameters: md/was-node-suite-comfyui/Nodes/SAM Parameters.md
+                  - Samples Passthrough (Stat System): md/was-node-suite-comfyui/Nodes/Samples
+                      Passthrough (Stat System).md
+                  - Save Text File: md/was-node-suite-comfyui/Nodes/Save Text File.md
+                  - Seed: md/was-node-suite-comfyui/Nodes/Seed.md
+                  - String to Text: md/was-node-suite-comfyui/Nodes/String to Text.md
+                  - Tensor Batch to Image: md/was-node-suite-comfyui/Nodes/Tensor
+                      Batch to Image.md
+                  - Text Add Token by Input: md/was-node-suite-comfyui/Nodes/Text
+                      Add Token by Input.md
+                  - Text Add Tokens: md/was-node-suite-comfyui/Nodes/Text Add Tokens.md
+                  - Text Compare: md/was-node-suite-comfyui/Nodes/Text Compare.md
+                  - Text Concatenate: md/was-node-suite-comfyui/Nodes/Text Concatenate.md
+                  - Text Contains: md/was-node-suite-comfyui/Nodes/Text Contains.md
+                  - Text Dictionary Convert: md/was-node-suite-comfyui/Nodes/Text
+                      Dictionary Convert.md
+                  - Text Dictionary Get: md/was-node-suite-comfyui/Nodes/Text Dictionary
+                      Get.md
+                  - Text Dictionary Keys: md/was-node-suite-comfyui/Nodes/Text Dictionary
+                      Keys.md
+                  - Text Dictionary New: md/was-node-suite-comfyui/Nodes/Text Dictionary
+                      New.md
+                  - Text Dictionary To Text: md/was-node-suite-comfyui/Nodes/Text
+                      Dictionary To Text.md
+                  - Text Dictionary Update: md/was-node-suite-comfyui/Nodes/Text Dictionary
+                      Update.md
+                  - Text File History Loader: md/was-node-suite-comfyui/Nodes/Text
+                      File History Loader.md
+                  - Text Find and Replace Input: md/was-node-suite-comfyui/Nodes/Text
+                      Find and Replace Input.md
+                  - Text Find and Replace by Dictionary: md/was-node-suite-comfyui/Nodes/Text
+                      Find and Replace by Dictionary.md
+                  - Text Find and Replace: md/was-node-suite-comfyui/Nodes/Text Find
+                      and Replace.md
+                  - Text Input Switch: md/was-node-suite-comfyui/Nodes/Text Input
+                      Switch.md
+                  - Text List Concatenate: md/was-node-suite-comfyui/Nodes/Text List
+                      Concatenate.md
+                  - Text List to Text: md/was-node-suite-comfyui/Nodes/Text List to
+                      Text.md
+                  - Text List: md/was-node-suite-comfyui/Nodes/Text List.md
+                  - Text Load Line From File: md/was-node-suite-comfyui/Nodes/Text
+                      Load Line From File.md
+                  - Text Multiline: md/was-node-suite-comfyui/Nodes/Text Multiline.md
+                  - Text Parse A1111 Embeddings: md/was-node-suite-comfyui/Nodes/Text
+                      Parse A1111 Embeddings.md
+                  - Text Parse Noodle Soup Prompts: md/was-node-suite-comfyui/Nodes/Text
+                      Parse Noodle Soup Prompts.md
+                  - Text Parse Tokens: md/was-node-suite-comfyui/Nodes/Text Parse
+                      Tokens.md
+                  - Text Random Line: md/was-node-suite-comfyui/Nodes/Text Random
+                      Line.md
+                  - Text Random Prompt: md/was-node-suite-comfyui/Nodes/Text Random
+                      Prompt.md
+                  - Text Shuffle: md/was-node-suite-comfyui/Nodes/Text Shuffle.md
+                  - Text String Truncate: md/was-node-suite-comfyui/Nodes/Text String
+                      Truncate.md
+                  - Text String: md/was-node-suite-comfyui/Nodes/Text String.md
+                  - Text to Conditioning: md/was-node-suite-comfyui/Nodes/Text to
+                      Conditioning.md
+                  - Text to Console: md/was-node-suite-comfyui/Nodes/Text to Console.md
+                  - Text to Number: md/was-node-suite-comfyui/Nodes/Text to Number.md
+                  - Text to String: md/was-node-suite-comfyui/Nodes/Text to String.md
+                  - True Random.org Number Generator: md/was-node-suite-comfyui/Nodes/True
+                      Random.org Number Generator.md
+                  - Upscale Model Loader: md/was-node-suite-comfyui/Nodes/Upscale
+                      Model Loader.md
+                  - Upscale Model Switch: md/was-node-suite-comfyui/Nodes/Upscale
+                      Model Switch.md
+                  - VAE Input Switch: md/was-node-suite-comfyui/Nodes/VAE Input Switch.md
+                  - Video Dump Frames: md/was-node-suite-comfyui/Nodes/Video Dump
+                      Frames.md
+                  - Write to GIF: md/was-node-suite-comfyui/Nodes/Write to GIF.md
+                  - Write to Video: md/was-node-suite-comfyui/Nodes/Write to Video.md
+                  - unCLIP Checkpoint Loader: md/was-node-suite-comfyui/Nodes/unCLIP
+                      Checkpoint Loader.md
 theme:
   name: material
   palette:
