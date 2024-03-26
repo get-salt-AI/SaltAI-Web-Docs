@@ -144,6 +144,64 @@ CLIPTextEncodeControlnet,Comfy,https://github.com/comfyanonymous/ComfyUI,36f7fac
 StableCascade_EmptyLatentImage,Comfy,https://github.com/comfyanonymous/ComfyUI,36f7face37320ec3c6ac85ec3c625738241deaa9,True
 StableCascade_StageB_Conditioning,Comfy,https://github.com/comfyanonymous/ComfyUI,36f7face37320ec3c6ac85ec3c625738241deaa9,True
 StableCascade_StageC_VAEEncode,Comfy,https://github.com/comfyanonymous/ComfyUI,36f7face37320ec3c6ac85ec3c625738241deaa9,True
+Transform Image (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Animation Builder (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Image Remove Background Rembg (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Save Gif (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Export With Ffmpeg (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Add To Playlist (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Read Playlist (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Face Swap (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Load Face Swap Model (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Load Face Analysis Model (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Load Image Sequence (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Save Image Sequence (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Latent Lerp (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Filter Z (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Stack Images (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Pick From Batch (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Debug (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Save Tensors (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Deep Bump (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Smart Step (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Styles Loader (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Interpolate Clip Sequential (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+String Replace (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Fit Number (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Get Batch From History (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Any To String (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Concat Images (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Math Expression (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Float To Number (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Int To Bool (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Int To Number (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Curve (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Color Correct (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Image Compare (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Image Tile Offset (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Blur (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Mask To Image (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Colored Image (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Image Premultiply (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Image Resize Factor (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Save Image Grid (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Load Image From Url (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Sharpen (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Model Patch Seamless (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Vae Decode (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Bbox From Mask (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Bbox (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Crop (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Uncrop (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Batch Float (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Batch Transform (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Batch Shape (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Batch Make (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Batch Float Assemble (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Batch Float Fill (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Batch Merge (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Batch Shake (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Plot Batch Float (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
 Lerp,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
 SinWave,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
 InvSinWave,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
@@ -182,7 +240,7 @@ Load 64 Encoded Image,comfyui_bmad_nodes,https://github.com/bmad4ever/comfyui_bm
 RequestInputs,comfyui_bmad_nodes,https://github.com/bmad4ever/comfyui_bmad_nodes,2fbf9004dccb9135adc36f5575c3aa5701dac2bf,True
 String to Integer,comfyui_bmad_nodes,https://github.com/bmad4ever/comfyui_bmad_nodes,2fbf9004dccb9135adc36f5575c3aa5701dac2bf,True
 String to Float,comfyui_bmad_nodes,https://github.com/bmad4ever/comfyui_bmad_nodes,2fbf9004dccb9135adc36f5575c3aa5701dac2bf,False
-Input/String to Int Array,comfyui_bmad_nodes,https://github.com/bmad4ever/comfyui_bmad_nodes,2fbf9004dccb9135adc36f5575c3aa5701dac2bf,False
+Input_String to Int Array,comfyui_bmad_nodes,https://github.com/bmad4ever/comfyui_bmad_nodes,2fbf9004dccb9135adc36f5575c3aa5701dac2bf,False
 CheckpointLoader (dirty),comfyui_bmad_nodes,https://github.com/bmad4ever/comfyui_bmad_nodes,2fbf9004dccb9135adc36f5575c3aa5701dac2bf,True
 CheckpointLoaderSimple (dirty),comfyui_bmad_nodes,https://github.com/bmad4ever/comfyui_bmad_nodes,2fbf9004dccb9135adc36f5575c3aa5701dac2bf,True
 LoraLoader (dirty),comfyui_bmad_nodes,https://github.com/bmad4ever/comfyui_bmad_nodes,2fbf9004dccb9135adc36f5575c3aa5701dac2bf,False
@@ -427,52 +485,53 @@ Plaiday_Video_Director,PlaiLabs,https://gitlab.com/plai-app/ai-studio/orchestra-
 PlaiDay_LocalLLM,PlaiLabs,https://gitlab.com/plai-app/ai-studio/orchestra-nodes/PlaiLabs.git,583974d0f128176c852a86a255e26e56b09ff0f7,False
 Plaiday_Prompt_Enhance,PlaiLabs,https://gitlab.com/plai-app/ai-studio/orchestra-nodes/PlaiLabs.git,583974d0f128176c852a86a255e26e56b09ff0f7,False
 DivTest,PlaiLabs,https://gitlab.com/plai-app/ai-studio/orchestra-nodes/PlaiLabs.git,583974d0f128176c852a86a255e26e56b09ff0f7,False
-OPAC,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-OPACPerlinSettings,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-OPAC2Floats,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-OPACListVariance,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-OPACList2ExecList,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-OPCScheduler,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-OPCSLayerExtractor,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-ParallaxMotion,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-OpenAIModel,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMChatMessages,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMChatMessagesAdv,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMChatMessageConcat,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMServiceContextDefault,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMServiceContextAdv,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMVectorStoreIndex,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMSummaryIndex,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMTreeIndex,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMSentenceSplitterNodeCreator,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMSemanticSplitterNodeParser,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMQueryEngine,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMQueryEngineAdv,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMChatEngine,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMChat,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMComplete,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMDirectoryReader,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMSimpleWebPageReader,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMTrafilaturaWebReader,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMRssReaderNode,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMNotionReader,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMPostProcessDocuments,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMJsonComposer,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMJsonRepair,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMYamlComposer,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMYamlRepair,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMMarkdownComposer,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMMarkdownRepair,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMHtmlComposer,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMHtmlRepair,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMRegexCreator,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-LLMRegexRepair,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-SaltAIStableVideoDiffusion,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-SAIPrimitiveConverter,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-SaltInput,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-SaltOutput,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-SAIStringRegexSearchReplace,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
-SAIStringRegexSearchMatch,SaltAI,https://github.com/get-salt-AI/SaltAI.git,759b158dba5789f89cc29f441175a5ab9924a5cd,False
+OPAC,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+OPACPerlinSettings,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+OPAC2Floats,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+OPACListVariance,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+OPACList2ExecList,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+OPCScheduler,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+OPCSLayerExtractor,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+ParallaxMotion,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+OpenAIModel,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMChatMessages,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMChatMessagesAdv,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMChatMessageConcat,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMServiceContextDefault,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMServiceContextAdv,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMVectorStoreIndex,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMSummaryIndex,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMTreeIndex,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMSentenceSplitterNodeCreator,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMSemanticSplitterNodeParser,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMQueryEngine,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMQueryEngineAdv,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMChatEngine,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMChat,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMComplete,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMDirectoryReader,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMSimpleWebPageReader,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMTrafilaturaWebReader,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMRssReaderNode,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMNotionReader,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMPostProcessDocuments,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMJsonComposer,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMJsonRepair,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMYamlComposer,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMYamlRepair,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMMarkdownComposer,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMMarkdownRepair,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMHtmlComposer,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMHtmlRepair,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMRegexCreator,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+LLMRegexRepair,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+SaltAIStableVideoDiffusion,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+SAIPrimitiveConverter,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+SaltInput,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+SaltOutput,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+SaltInfo,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+SAIStringRegexSearchReplace,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
+SAIStringRegexSearchMatch,SaltAI,https://github.com/get-salt-AI/SaltAI.git,60e16cea3fcd571dfb1ba14e0156abf07dc3601f,False
 Wildcard Processor,mikey_nodes,https://github.com/bash-j/mikey_nodes,88e644dcda5c0267430ef3389c752b834a586dcc,False
 Empty Latent Ratio Select SDXL,mikey_nodes,https://github.com/bash-j/mikey_nodes,88e644dcda5c0267430ef3389c752b834a586dcc,False
 Empty Latent Ratio Custom SDXL,mikey_nodes,https://github.com/bash-j/mikey_nodes,88e644dcda5c0267430ef3389c752b834a586dcc,False
@@ -1048,6 +1107,32 @@ ReroutePrimitive|pysssss,ComfyUI-Custom-Scripts,https://github.com/pythongosssss
 LoadText|pysssss,ComfyUI-Custom-Scripts,https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git,51c138378eeb6c57a0c2cae9cee7ccbfc550f08a,False
 SaveText|pysssss,ComfyUI-Custom-Scripts,https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git,51c138378eeb6c57a0c2cae9cee7ccbfc550f08a,False
 Repeater|pysssss,ComfyUI-Custom-Scripts,https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git,51c138378eeb6c57a0c2cae9cee7ccbfc550f08a,False
+Primitive boolean [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Primitive string [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Primitive string multiline [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Primitive integer [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Primitive float [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Show any [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Show any to JSON [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+List of any [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+List of strings [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Switch any [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Switch latent [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Switch conditioning [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Switch image [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Switch mask [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Switch string [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Pipe to_edit any [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Pipe from any [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Load image with metadata [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Get resolution [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Preview from image [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Preview from metadata [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Save image with extra metadata [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Metadata extractor [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Metadata comparator [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Json comparator [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Stats system [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
 BNK_CLIPTextEncodeAdvanced,ComfyUI_ADV_CLIP_emb,https://github.com/BlenderNeko/ComfyUI_ADV_CLIP_emb.git,c8b14087afab8efae22fce098b742f01cce22947,True
 BNK_CLIPTextEncodeSDXLAdvanced,ComfyUI_ADV_CLIP_emb,https://github.com/BlenderNeko/ComfyUI_ADV_CLIP_emb.git,c8b14087afab8efae22fce098b742f01cce22947,True
 BNK_AddCLIPSDXLParams,ComfyUI_ADV_CLIP_emb,https://github.com/BlenderNeko/ComfyUI_ADV_CLIP_emb.git,c8b14087afab8efae22fce098b742f01cce22947,True
@@ -1272,27 +1357,6 @@ ACN_SparseCtrlMergedLoaderAdvanced,ComfyUI-Advanced-ControlNet,https://github.co
 ACN_SparseCtrlIndexMethodNode,ComfyUI-Advanced-ControlNet,https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git,bd5bcbf5c0074de54754760dd685c72cfd045bc3,True
 ACN_SparseCtrlSpreadMethodNode,ComfyUI-Advanced-ControlNet,https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git,bd5bcbf5c0074de54754760dd685c72cfd045bc3,True
 LoadImagesFromDirectory,ComfyUI-Advanced-ControlNet,https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git,bd5bcbf5c0074de54754760dd685c72cfd045bc3,True
-0246.Highway,ComfyUI-0246,https://github.com/Trung0246/ComfyUI-0246,d926ed16397c25c79505cbb5529969f9d09f9928,False
-0246.HighwayBatch,ComfyUI-0246,https://github.com/Trung0246/ComfyUI-0246,d926ed16397c25c79505cbb5529969f9d09f9928,False
-0246.Junction,ComfyUI-0246,https://github.com/Trung0246/ComfyUI-0246,d926ed16397c25c79505cbb5529969f9d09f9928,False
-0246.JunctionBatch,ComfyUI-0246,https://github.com/Trung0246/ComfyUI-0246,d926ed16397c25c79505cbb5529969f9d09f9928,False
-0246.RandomInt,ComfyUI-0246,https://github.com/Trung0246/ComfyUI-0246,d926ed16397c25c79505cbb5529969f9d09f9928,False
-0246.Count,ComfyUI-0246,https://github.com/Trung0246/ComfyUI-0246,d926ed16397c25c79505cbb5529969f9d09f9928,False
-0246.Hold,ComfyUI-0246,https://github.com/Trung0246/ComfyUI-0246,d926ed16397c25c79505cbb5529969f9d09f9928,False
-0246.Loop,ComfyUI-0246,https://github.com/Trung0246/ComfyUI-0246,d926ed16397c25c79505cbb5529969f9d09f9928,False
-0246.Beautify,ComfyUI-0246,https://github.com/Trung0246/ComfyUI-0246,d926ed16397c25c79505cbb5529969f9d09f9928,False
-0246.Stringify,ComfyUI-0246,https://github.com/Trung0246/ComfyUI-0246,d926ed16397c25c79505cbb5529969f9d09f9928,False
-0246.Merge,ComfyUI-0246,https://github.com/Trung0246/ComfyUI-0246,d926ed16397c25c79505cbb5529969f9d09f9928,False
-0246.BoxRange,ComfyUI-0246,https://github.com/Trung0246/ComfyUI-0246,d926ed16397c25c79505cbb5529969f9d09f9928,False
-0246.ScriptNode,ComfyUI-0246,https://github.com/Trung0246/ComfyUI-0246,d926ed16397c25c79505cbb5529969f9d09f9928,False
-0246.ScriptRule,ComfyUI-0246,https://github.com/Trung0246/ComfyUI-0246,d926ed16397c25c79505cbb5529969f9d09f9928,False
-0246.ScriptPile,ComfyUI-0246,https://github.com/Trung0246/ComfyUI-0246,d926ed16397c25c79505cbb5529969f9d09f9928,False
-0246.Script,ComfyUI-0246,https://github.com/Trung0246/ComfyUI-0246,d926ed16397c25c79505cbb5529969f9d09f9928,False
-0246.Hub,ComfyUI-0246,https://github.com/Trung0246/ComfyUI-0246,d926ed16397c25c79505cbb5529969f9d09f9928,False
-0246.Cloud,ComfyUI-0246,https://github.com/Trung0246/ComfyUI-0246,d926ed16397c25c79505cbb5529969f9d09f9928,False
-0246.Switch,ComfyUI-0246,https://github.com/Trung0246/ComfyUI-0246,d926ed16397c25c79505cbb5529969f9d09f9928,False
-0246.Meta,ComfyUI-0246,https://github.com/Trung0246/ComfyUI-0246,d926ed16397c25c79505cbb5529969f9d09f9928,False
-0246.Tag,ComfyUI-0246,https://github.com/Trung0246/ComfyUI-0246,d926ed16397c25c79505cbb5529969f9d09f9928,False
 ADE_AnimateDiffLoRALoader,ComfyUI-AnimateDiff-Evolved,https://github.com/Kosinkadink/ComfyUI-AnimateDiff-Evolved,e2cc5f35d57532bac25483411ceb3d5df0b34022,True
 ADE_AnimateDiffSamplingSettings,ComfyUI-AnimateDiff-Evolved,https://github.com/Kosinkadink/ComfyUI-AnimateDiff-Evolved,e2cc5f35d57532bac25483411ceb3d5df0b34022,True
 ADE_AnimateDiffKeyframe,ComfyUI-AnimateDiff-Evolved,https://github.com/Kosinkadink/ComfyUI-AnimateDiff-Evolved,e2cc5f35d57532bac25483411ceb3d5df0b34022,True
@@ -1356,7 +1420,7 @@ Power Prompt - Simple (rgthree),rgthree-comfy,https://github.com/rgthree/rgthree
 KSampler Config (rgthree),rgthree-comfy,https://github.com/rgthree/rgthree-comfy,9021670e9ff887d40e031334fc9f3e92c599d161,False
 SDXL Empty Latent Image (rgthree),rgthree-comfy,https://github.com/rgthree/rgthree-comfy,9021670e9ff887d40e031334fc9f3e92c599d161,False
 SDXL Power Prompt - Positive (rgthree),rgthree-comfy,https://github.com/rgthree/rgthree-comfy,9021670e9ff887d40e031334fc9f3e92c599d161,False
-SDXL Power Prompt - Simple / Negative (rgthree),rgthree-comfy,https://github.com/rgthree/rgthree-comfy,9021670e9ff887d40e031334fc9f3e92c599d161,False
+SDXL Power Prompt - Simple _ Negative (rgthree),rgthree-comfy,https://github.com/rgthree/rgthree-comfy,9021670e9ff887d40e031334fc9f3e92c599d161,False
 Any Switch (rgthree),rgthree-comfy,https://github.com/rgthree/rgthree-comfy,9021670e9ff887d40e031334fc9f3e92c599d161,False
 Image Comparer (rgthree),rgthree-comfy,https://github.com/rgthree/rgthree-comfy,9021670e9ff887d40e031334fc9f3e92c599d161,False
 BLIP Model Loader,was-node-suite-comfyui,https://github.com/WASasquatch/was-node-suite-comfyui,4f561248a9f15a6f483cdf8df4a7810fd86aeb40,True
