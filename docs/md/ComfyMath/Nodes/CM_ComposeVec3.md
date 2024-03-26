@@ -8,16 +8,16 @@ The `CM_ComposeVec3` node is designed for creating a 3-dimensional vector (Vec3)
 ## Input types
 ### Required
 - **`x`**
-    - Comfy dtype: `FLOAT`
     - The 'x' parameter represents the x-coordinate of the Vec3. It is crucial for defining the vector's position along the x-axis.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`y`**
-    - Comfy dtype: `FLOAT`
     - The 'y' parameter represents the y-coordinate of the Vec3. It plays a key role in specifying the vector's position along the y-axis.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`z`**
-    - Comfy dtype: `FLOAT`
     - The 'z' parameter signifies the z-coordinate of the Vec3. It is essential for determining the vector's position along the z-axis.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`vec3`**

@@ -8,12 +8,12 @@ This node is designed for compositing operations, specifically to join an image 
 ## Input types
 ### Required
 - **`image`**
-    - Comfy dtype: `IMAGE`
     - The main visual content to be combined with an alpha mask. It represents the image without transparency information.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`alpha`**
-    - Comfy dtype: `MASK`
     - The alpha mask that defines the transparency of the corresponding image. It is used to determine which parts of the image should be transparent or semi-transparent.
+    - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**

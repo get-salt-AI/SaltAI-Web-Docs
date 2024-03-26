@@ -4,40 +4,40 @@
 - Category: `Video Helper Suite 🎥🅥🅗🅢/mask`
 - Output node: `False`
 
-This node is designed to merge two mask tensors based on a specified merge strategy, potentially resizing one to match the other's dimensions. It supports different strategies for deciding which mask to resize (e.g., based on size or a specific preference for one of the masks) and allows for the application of scaling methods and cropping to achieve the desired alignment and size.
+This node is designed to merge two mask batches into a single batch, applying a specified merge strategy to handle size discrepancies and scaling between the masks. It facilitates the combination of mask data, ensuring compatibility and uniformity across different mask dimensions for further processing or analysis.
 ## Input types
 ### Required
 - **`mask_A`**
-    - The first mask tensor to be merged. Its dimensions may be adjusted based on the merge strategy and scaling method to align with the second mask.
-    - Python dtype: `torch.Tensor`
+    - The first mask batch to be merged. It plays a crucial role in determining the base template for merging when certain strategies are applied.
     - Comfy dtype: `MASK`
+    - Python dtype: `torch.Tensor`
 - **`mask_B`**
-    - The second mask tensor to be merged. Depending on the merge strategy and scaling method, its dimensions may be adjusted to align with the first mask.
-    - Python dtype: `torch.Tensor`
+    - The second mask batch to be merged. Depending on the merge strategy, it can either serve as the template for resizing or be resized to match the first mask batch.
     - Comfy dtype: `MASK`
+    - Python dtype: `torch.Tensor`
 - **`merge_strategy`**
-    - Determines the strategy for aligning and potentially resizing the masks before merging. It influences which mask is used as a template or whether the smaller or larger mask dictates the final size.
+    - Defines the strategy for handling size discrepancies between the two mask batches. It dictates whether to match the size of the first mask, the second mask, or the larger/smaller of the two.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `MergeStrategies`
-    - Comfy dtype: `ENUM`
 - **`scale_method`**
-    - Specifies the method used for scaling the masks during the merge process. This affects the quality and approach to resizing.
+    - Specifies the method to be used for scaling the masks during the merge process, ensuring that the masks are appropriately resized according to the merge strategy.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `ScaleMethods`
-    - Comfy dtype: `ENUM`
 - **`crop`**
-    - Defines the cropping method to be applied after scaling, ensuring the merged mask fits the desired dimensions.
+    - Determines whether and how to crop the masks after scaling, to ensure they fit the desired dimensions.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `CropMethods`
-    - Comfy dtype: `ENUM`
 ## Output types
-- **`mask`**
-    - The result of merging the two input masks into a single tensor.
-    - Python dtype: `torch.Tensor`
+- **`MASK`**
     - Comfy dtype: `MASK`
-- **`int`**
-    - The total number of masks in the merged tensor, indicating the size of the batch.
-    - Python dtype: `int`
+    - The merged mask batch, resulting from the combination of the two input masks according to the specified merge strategy and scaling method.
+    - Python dtype: `torch.Tensor`
+- **`count`**
     - Comfy dtype: `INT`
+    - The total number of masks in the merged batch, providing a count of the output masks for further processing or analysis.
+    - Python dtype: `int`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 

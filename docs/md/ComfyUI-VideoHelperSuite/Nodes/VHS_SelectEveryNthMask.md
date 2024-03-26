@@ -4,26 +4,26 @@
 - Category: `Video Helper Suite 🎥🅥🅗🅢/mask`
 - Output node: `False`
 
-This node selects every Nth mask from a batch of masks, allowing for the thinning of the mask collection based on a specified interval. This can be useful for reducing the number of masks to process or to select specific masks for further operations.
+This node is designed to streamline the process of selecting every Nth mask from a batch of masks, facilitating operations that require periodic sampling or thinning of data for efficiency or specific analytical purposes.
 ## Input types
 ### Required
 - **`mask`**
-    - The input batch of masks from which every Nth mask will be selected. This parameter is crucial for determining the subset of masks to be processed or analyzed further.
-    - Python dtype: `torch.Tensor`
+    - The input mask tensor from which every Nth mask will be selected. This parameter is crucial for defining the subset of masks to be processed.
     - Comfy dtype: `MASK`
+    - Python dtype: `Tensor`
 - **`select_every_nth`**
-    - Determines the interval at which masks are selected from the batch. A value of 1 means every mask is selected, while higher values thin out the selection, picking every Nth mask.
-    - Python dtype: `int`
+    - Determines the interval at which masks are selected from the input batch, playing a key role in controlling the density of the output mask set.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
-- **`mask`**
-    - The subset of masks selected from the input batch, based on the specified interval.
-    - Python dtype: `torch.Tensor`
+- **`MASK`**
     - Comfy dtype: `MASK`
-- **`int`**
-    - The total number of masks selected and returned by the node.
-    - Python dtype: `int`
+    - The output tensor containing the selected masks, providing a thinned or periodically sampled subset of the original mask batch.
+    - Python dtype: `Tensor`
+- **`count`**
     - Comfy dtype: `INT`
+    - The total number of masks selected and returned by the node, offering insight into the size of the processed subset.
+    - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

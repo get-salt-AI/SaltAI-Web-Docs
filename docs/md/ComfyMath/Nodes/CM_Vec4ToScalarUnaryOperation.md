@@ -8,12 +8,12 @@ This node performs unary operations on a 4-dimensional vector (Vec4) to produce 
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the unary operation to be performed on the Vec4. The choice of operation determines how the vector is transformed into a scalar value.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`a`**
-    - Comfy dtype: `VEC4`
     - The Vec4 on which the unary operation is to be performed. This vector serves as the input for the transformation process.
+    - Comfy dtype: `VEC4`
     - Python dtype: `Vec4`
 ## Output types
 - **`float`**

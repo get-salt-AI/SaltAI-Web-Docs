@@ -4,18 +4,18 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The `RemoveNoiseMask` node likely focuses on processing or manipulating noise masks within images or latent representations. It may involve operations such as removing, reducing, or altering the noise mask applied to an image or a set of images, potentially to improve image quality or prepare the images for further processing steps.
+The RemoveNoiseMask node is designed to process and modify latent representations by removing or altering the noise mask associated with them. This operation is crucial for refining the quality of generated images or for preparing the latent representations for further processing steps that require a specific noise configuration.
 ## Input types
 ### Required
 - **`samples`**
-    - The `samples` parameter represents the images or latent representations that contain noise masks. This parameter is crucial as it provides the data on which the noise mask removal or manipulation operations will be performed.
-    - Python dtype: `Dict[str, torch.Tensor]`
+    - The 'samples' parameter represents the latent representations that are to be processed. It plays a crucial role in determining the outcome of the noise mask removal or alteration, affecting the quality and characteristics of the resulting images.
     - Comfy dtype: `LATENT`
+    - Python dtype: `Dict[str, torch.Tensor]`
 ## Output types
 - **`latent`**
-    - The output `samples` are the modified images or latent representations after the noise mask has been removed or altered. This indicates the node's primary function is to enhance the quality of the input by manipulating the noise mask.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The 'latent' output represents the modified latent representations after the noise mask has been removed or altered. This output is essential for subsequent image generation or processing steps, as it provides a refined basis for further manipulations.
+    - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

@@ -4,31 +4,31 @@
 - Category: `ImpactPack/Logic`
 - Output node: `False`
 
-This node performs a conditional operation based on the input condition and selection mode. It evaluates the condition and, depending on the selection mode, either proceeds with the operation immediately or waits for execution to select the appropriate value.
+This node provides a conditional branching mechanism with a selection mode, allowing for dynamic control flow based on boolean conditions and selection preferences. It enables conditional execution paths in a workflow, enhancing decision-making capabilities.
 ## Input types
 ### Required
 - **`cond`**
-    - The condition to evaluate. It determines which value (true or false) to return based on its boolean state.
-    - Python dtype: `bool`
+    - A boolean condition that determines the branch of execution. It is pivotal in deciding which value (true or false branch) to return based on its truthiness.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`sel_mode`**
-    - The selection mode that decides when to select the true or false value. If true, selection is based on the prompt; if false, selection occurs at execution.
-    - Python dtype: `bool`
+    - A boolean parameter that influences the selection mode, determining whether the selection is made on prompt or on execution. This adds an additional layer of control over the conditional branching behavior.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ### Optional
 - **`tt_value`**
-    - The value to return if the condition is true. This parameter is optional.
-    - Python dtype: `typing.Union[None, typing.Any]`
+    - The value to return if the condition is true. This parameter is optional and allows for flexibility in defining the true branch outcome.
     - Comfy dtype: `*`
+    - Python dtype: `object`
 - **`ff_value`**
-    - The value to return if the condition is false. This parameter is optional.
-    - Python dtype: `typing.Union[None, typing.Any]`
+    - The value to return if the condition is false. This parameter is optional, providing flexibility in defining the false branch outcome.
     - Comfy dtype: `*`
+    - Python dtype: `object`
 ## Output types
 - **`*`**
-    - Returns the value based on the evaluated condition and selection mode.
-    - Python dtype: `typing.Union[None, typing.Any]`
     - Comfy dtype: `*`
+    - The output is either the tt_value or ff_value based on the evaluation of the condition and the selection mode.
+    - Python dtype: `object`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

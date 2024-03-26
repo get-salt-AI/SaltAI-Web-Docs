@@ -8,12 +8,12 @@ The LatentRotate node is designed to rotate latent representations of images by 
 ## Input types
 ### Required
 - **`samples`**
-    - Comfy dtype: `LATENT`
     - The 'samples' parameter represents the latent representations of images to be rotated. It is crucial for determining the starting point of the rotation operation.
+    - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 - **`rotation`**
-    - Comfy dtype: `COMBO[STRING]`
     - The 'rotation' parameter specifies the angle by which the latent images should be rotated. It directly influences the orientation of the resulting images.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`latent`**

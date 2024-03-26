@@ -8,44 +8,44 @@ This node is designed for advanced loading of AnimateDiff models, offering enhan
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - Specifies the model to be loaded, serving as the core component for the AnimateDiff process.
+    - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`latents`**
-    - Comfy dtype: `LATENT`
     - Defines the latent space representations to be utilized in conjunction with the model.
+    - Comfy dtype: `LATENT`
     - Python dtype: `torch.Tensor`
 - **`model_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - Determines the specific motion model to be loaded, allowing for targeted application of AnimateDiff functionalities.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 - **`unlimited_area_hack`**
-    - Comfy dtype: `BOOLEAN`
     - A boolean flag that, when enabled, allows for bypassing certain constraints, potentially enhancing the flexibility of the AnimateDiff process.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`context_length`**
-    - Comfy dtype: `INT`
     - Specifies the length of the context used in the AnimateDiff process.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`context_stride`**
-    - Comfy dtype: `INT`
     - Defines the stride of the context, affecting how the context is sampled or processed.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`context_overlap`**
-    - Comfy dtype: `INT`
     - Indicates the overlap between consecutive contexts, which can affect the continuity and smoothness of the AnimateDiff output.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`context_schedule`**
-    - Comfy dtype: `COMBO[STRING]`
     - Determines the scheduling of the context, which can influence the temporal dynamics of the AnimateDiff process.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 - **`closed_loop`**
-    - Comfy dtype: `BOOLEAN`
     - A boolean flag indicating whether the AnimateDiff process should operate in a closed-loop manner, potentially affecting the model's behavior.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`beta_schedule`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the schedule for the beta parameter, influencing the behavior of the AnimateDiff model over time.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 ## Output types
 - **`model`**

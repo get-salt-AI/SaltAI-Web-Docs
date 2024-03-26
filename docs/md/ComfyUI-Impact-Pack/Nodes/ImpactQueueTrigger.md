@@ -4,22 +4,22 @@
 - Category: `ImpactPack/Logic/_for_test`
 - Output node: `True`
 
-The `ImpactQueueTrigger` node is designed to conditionally trigger an action based on a boolean mode. If the mode is true, it sends a synchronous request to add a task to a queue, effectively acting as a conditional trigger for subsequent operations.
+The ImpactQueueTrigger node is designed to conditionally trigger an action within a queue system based on a boolean mode. It serves as a control mechanism to either proceed with or halt the execution of subsequent tasks in the queue.
 ## Input types
 ### Required
 - **`signal`**
-    - Acts as a pass-through for any type of signal, allowing the node to be integrated into various workflows without altering the signal's nature. Its primary role is to facilitate the conditional execution based on the 'mode' parameter.
-    - Python dtype: `typing.Any`
+    - A generic input signal that triggers the node's operation. Its primary role is to initiate the execution flow.
     - Comfy dtype: `*`
+    - Python dtype: `any_typ`
 - **`mode`**
-    - Determines whether the node should trigger the action. When true, it triggers an addition to a queue, serving as a conditional execution gate. This boolean input directly controls whether the subsequent operation in the queue is executed, making it a critical factor in the node's functionality.
-    - Python dtype: `bool`
+    - A boolean flag determining whether to trigger the subsequent action in the queue. When set to True, the action is triggered; otherwise, it is skipped.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ## Output types
-- **`*`**
-    - Outputs the same signal received as input, unaffected by the node's operation, ensuring seamless integration into the workflow. The presence of this output parameter named 'signal_opt' indicates that the node returns the input signal explicitly, maintaining the flow of data through the node.
-    - Python dtype: `typing.Any`
+- **`signal_opt`**
     - Comfy dtype: `*`
+    - The original input signal is passed through, allowing for the continuation of the execution flow.
+    - Python dtype: `any_typ`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

@@ -8,21 +8,21 @@ This node is designed to create and configure view options for generating animat
 ## Input types
 ### Required
 - **`view_length`**
-    - Comfy dtype: `INT`
     - Specifies the length of the view, affecting the granularity and extent of the animation frames generated.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`view_stride`**
-    - Comfy dtype: `INT`
     - Determines the stride between views, influencing the smoothness and speed of the animation.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`view_overlap`**
-    - Comfy dtype: `INT`
     - Sets the overlap between views, which can help in creating smoother transitions between animation frames.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`fuse_method`**
-    - Comfy dtype: `COMBO[STRING]`
     - Defines the method used to fuse multiple contexts together, impacting the continuity and coherence of the animation.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`view_opts`**

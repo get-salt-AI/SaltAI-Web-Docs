@@ -4,22 +4,22 @@
 - Category: `ImpactPack`
 - Output node: `False`
 
-The `SAMLoader` node is responsible for loading a SAM (Self-Attention Model) based on the model name and device mode specified. It filters out high-quality models, selects the appropriate model variant (vit_h, vit_l, vit_b), and ensures the model is loaded onto the preferred computational device (GPU or CPU). This process is crucial for initializing the model correctly for subsequent operations.
+The SAMLoader node is designed to load SAM models based on the model name and device mode specified. It supports loading different types of SAM models and ensures they are loaded onto the appropriate computing device, either GPU or CPU, based on user preference.
 ## Input types
 ### Required
 - **`model_name`**
-    - Specifies the name of the SAM model to be loaded. The selection excludes high-quality models and is crucial for determining the specific variant of the model to be used.
+    - Specifies the name of the SAM model to be loaded. The choice of model affects the type of SAM model instantiated and its subsequent application.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`device_mode`**
-    - Determines the computational device (AUTO, Prefer GPU, CPU) for model execution. This choice affects performance and resource utilization, with GPU generally offering faster processing.
+    - Determines the computing device (AUTO, Prefer GPU, CPU) on which the SAM model will be loaded. This choice influences the model's performance and resource utilization.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`sam_model`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `SAM_MODEL`
+    - The loaded SAM model, ready for further processing or application within the system.
+    - Python dtype: `SAMModel`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `FaceDetailer,ToDetailerPipe,SAMDetectorCombined,ToDetailerPipeSDXL,Reroute,ImpactSimpleDetectorSEGS,ImpactSimpleDetectorSEGS_for_AD,GroundingDinoSAMSegment (segment anything)`

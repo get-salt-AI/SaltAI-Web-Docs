@@ -4,111 +4,123 @@
 - Category: `ImpactPack/Detailer`
 - Output node: `False`
 
-The MaskDetailerPipe is designed to enhance or detail specific areas of an image, particularly focusing on masks. It operates within a pipeline to apply detailed modifications or enhancements to masked regions, improving the overall visual quality or adjusting specific aspects according to the given parameters.
+The MaskDetailerPipe node is designed to enhance and refine mask details within images, leveraging advanced processing techniques to improve the quality and precision of masks. It focuses on optimizing mask outlines and features for better visual clarity and accuracy.
 ## Input types
 ### Required
 - **`image`**
-    - unknown
-    - Python dtype: `unknown`
+    - The input image to which mask detailing will be applied, serving as the base for enhancement operations.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `torch.Tensor`
 - **`mask`**
-    - unknown
-    - Python dtype: `unknown`
+    - The mask to be detailed and refined, targeting improvements in its outlines and features.
     - Comfy dtype: `MASK`
+    - Python dtype: `torch.Tensor`
 - **`basic_pipe`**
-    - unknown
-    - Python dtype: `unknown`
+    - Configuration details for the basic processing pipeline, influencing the initial stages of mask detailing.
     - Comfy dtype: `BASIC_PIPE`
+    - Python dtype: `tuple`
 - **`guide_size`**
-    - unknown
-    - Python dtype: `unknown`
+    - Specifies the size of the guide used in the detailing process, affecting the precision and scale of mask enhancement.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `int`
 - **`guide_size_for`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `unknown`
 - **`max_size`**
-    - unknown
-    - Python dtype: `unknown`
+    - Defines the maximum size limit for the detailing operation, ensuring the process adheres to performance constraints.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `int`
 - **`mask_mode`**
-    - unknown
-    - Python dtype: `unknown`
+    - Indicates the mode of mask processing, such as binary or grayscale, influencing how the mask is interpreted and refined.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `str`
 - **`seed`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 - **`steps`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 - **`cfg`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`sampler_name`**
     - unknown
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `unknown`
-    - Comfy dtype: `['euler', 'euler_ancestral', 'heun'...]`
 - **`scheduler`**
     - unknown
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `unknown`
-    - Comfy dtype: `['normal', 'karras', 'exponential'...]`
 - **`denoise`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`feather`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 - **`crop_factor`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`drop_size`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 - **`refiner_ratio`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`batch_size`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 - **`cycle`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 ### Optional
 - **`refiner_basic_pipe_opt`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BASIC_PIPE`
+    - Python dtype: `unknown`
 - **`detailer_hook`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `DETAILER_HOOK`
+    - Python dtype: `unknown`
 - **`inpaint_model`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `unknown`
 - **`noise_mask_feather`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 ## Output types
 - **`image`**
+    - Comfy dtype: `IMAGE`
+    - Outputs the image with enhanced and refined mask details, showcasing improved clarity and precision.
+    - Python dtype: `torch.Tensor`
+- **`cropped_refined`**
+    - Comfy dtype: `IMAGE`
+    - Provides the cropped and refined segments of the mask, highlighting the detailed areas.
+    - Python dtype: `list[torch.Tensor]`
+- **`cropped_enhanced_alpha`**
+    - Comfy dtype: `IMAGE`
+    - Outputs the alpha channel of the cropped and enhanced mask segments, offering additional detail on mask transparency and edges.
+    - Python dtype: `list[torch.Tensor]`
+- **`basic_pipe`**
+    - Comfy dtype: `BASIC_PIPE`
+    - Returns the configuration of the basic processing pipeline after the detailing operations.
+    - Python dtype: `tuple`
+- **`refiner_basic_pipe_opt`**
+    - Comfy dtype: `BASIC_PIPE`
     - unknown
     - Python dtype: `unknown`
-    - Comfy dtype: `IMAGE`
-- **`basic_pipe`**
-    - The refined pipeline configuration after detailing operations, including any refinements applied.
-    - Python dtype: `Tuple[torch.nn.Module, ...]`
-    - Comfy dtype: `BASIC_PIPE`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

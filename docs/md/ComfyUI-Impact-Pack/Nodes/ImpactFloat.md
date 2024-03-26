@@ -4,18 +4,18 @@
 - Category: `ImpactPack/Logic`
 - Output node: `False`
 
-The `ImpactFloat` node processes a single floating-point input value and returns it unchanged. This node serves as a pass-through for floating-point values, allowing them to be used or transformed by subsequent nodes in a workflow.
+The ImpactFloat node is designed to process floating-point values, allowing for the manipulation and use of float data within a workflow. It serves as a fundamental building block in operations that require precise numerical computations.
 ## Input types
 ### Required
 - **`value`**
-    - This parameter represents the floating-point value to be processed. It plays a crucial role in the node's operation by being the value that is passed through unchanged.
-    - Python dtype: `float`
+    - Specifies the floating-point value to be processed. This parameter is central to the node's operation, as it determines the exact float value that will be manipulated or utilized.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 ## Output types
 - **`float`**
-    - The output is the same floating-point value that was input, demonstrating the node's function as a pass-through for floating-point values.
-    - Python dtype: `float`
     - Comfy dtype: `FLOAT`
+    - Outputs the processed floating-point value. This is the result of any computations or manipulations performed on the input float value.
+    - Python dtype: `float`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

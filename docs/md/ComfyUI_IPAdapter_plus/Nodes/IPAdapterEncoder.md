@@ -8,49 +8,49 @@ The IPAdapterEncoder node is designed to encode images using the IPAdapter mecha
 ## Input types
 ### Required
 - **`clip_vision`**
-    - Comfy dtype: `CLIP_VISION`
     - Represents the CLIP vision model used for encoding the image, playing a crucial role in the transformation process.
+    - Comfy dtype: `CLIP_VISION`
     - Python dtype: `torch.nn.Module`
 - **`image_1`**
-    - Comfy dtype: `IMAGE`
     - The primary image to be encoded, serving as the initial input for the encoding process.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`ipadapter_plus`**
-    - Comfy dtype: `BOOLEAN`
     - A boolean flag indicating whether to use the IPAdapter Plus mode, affecting the encoding strategy.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`noise`**
-    - Comfy dtype: `FLOAT`
     - A float value representing the level of noise to be added during the encoding process, offering a means to introduce variability.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`weight_1`**
-    - Comfy dtype: `FLOAT`
     - A float value that influences the encoding process for the primary image, allowing for adjustments in the encoding strength.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`image_2`**
-    - Comfy dtype: `IMAGE`
     - An optional second image to be encoded alongside the primary image.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`image_3`**
-    - Comfy dtype: `IMAGE`
     - An optional third image to be encoded alongside the primary and second images.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`image_4`**
-    - Comfy dtype: `IMAGE`
     - An optional fourth image to be encoded alongside the primary, second, and third images.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`weight_2`**
-    - Comfy dtype: `FLOAT`
     - A float value that influences the encoding process for the second image, if provided.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`weight_3`**
-    - Comfy dtype: `FLOAT`
     - A float value that influences the encoding process for the third image, if provided.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`weight_4`**
-    - Comfy dtype: `FLOAT`
     - A float value that influences the encoding process for the fourth image, if provided.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`embeds`**

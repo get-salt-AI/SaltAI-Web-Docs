@@ -8,37 +8,37 @@ The ADE_ApplyAnimateDiffModel node is designed to apply advanced AnimateDiff mod
 ## Input types
 ### Required
 - **`motion_model`**
-    - Comfy dtype: `MOTION_MODEL_ADE`
     - Specifies the motion model to be used for animation. It is crucial for defining the animation's behavior and characteristics.
+    - Comfy dtype: `MOTION_MODEL_ADE`
     - Python dtype: `MotionModelPatcher`
 - **`start_percent`**
-    - Comfy dtype: `FLOAT`
     - Defines the starting percentage of the animation effect, marking the beginning of the motion's application.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end_percent`**
-    - Comfy dtype: `FLOAT`
     - Specifies the ending percentage of the animation effect, determining the point at which the motion ceases.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`motion_lora`**
-    - Comfy dtype: `MOTION_LORA`
     - Optional parameter that allows for the adjustment of motion using LoRA (Low-Rank Adaptation) techniques, enhancing the animation's quality.
+    - Comfy dtype: `MOTION_LORA`
     - Python dtype: `MotionLoraList`
 - **`scale_multival`**
-    - Comfy dtype: `MULTIVAL`
     - Optional parameter that influences the scale of the animation effect, allowing for fine-tuning of the animation's intensity.
+    - Comfy dtype: `MULTIVAL`
     - Python dtype: `float`
 - **`effect_multival`**
-    - Comfy dtype: `MULTIVAL`
     - Optional parameter that adjusts the overall effect of the animation, enabling customization of the visual outcome.
+    - Comfy dtype: `MULTIVAL`
     - Python dtype: `float`
 - **`ad_keyframes`**
-    - Comfy dtype: `AD_KEYFRAMES`
     - Optional parameter that specifies keyframes for the animation, allowing for precise control over the motion's timing and sequence.
+    - Comfy dtype: `AD_KEYFRAMES`
     - Python dtype: `ADKeyframeGroup`
 - **`prev_m_models`**
-    - Comfy dtype: `M_MODELS`
     - Optional parameter that includes previous motion models to be considered in the current animation process, allowing for cumulative effects.
+    - Comfy dtype: `M_MODELS`
     - Python dtype: `M_MODELS`
 ## Output types
 - **`m_models`**

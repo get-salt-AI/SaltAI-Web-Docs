@@ -8,16 +8,16 @@ The EmptyLatentImage node is designed to generate a blank latent space represent
 ## Input types
 ### Required
 - **`width`**
-    - Comfy dtype: `INT`
     - Specifies the width of the latent image to be generated. This parameter directly influences the spatial dimensions of the resulting latent representation.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Comfy dtype: `INT`
     - Determines the height of the latent image to be generated. This parameter is crucial for defining the spatial dimensions of the latent space representation.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`batch_size`**
-    - Comfy dtype: `INT`
     - Controls the number of latent images to be generated in a single batch. This allows for the generation of multiple latent representations simultaneously, facilitating batch processing.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`latent`**

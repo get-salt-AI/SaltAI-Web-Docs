@@ -4,71 +4,71 @@
 - Category: `ImpactPack/Detailer`
 - Output node: `False`
 
-The SEGSDetailerForAnimateDiff node is designed to enhance the segmentation details for animation difference processing. It takes in image frames and segmentation data, applies detailed processing to improve the segmentation quality, and returns the enhanced segmentation data. This node is part of the ImpactPack/Detailer category, focusing on refining segmentation for animated content by adjusting various parameters like guide size, max size, seed, steps, and more.
+This node specializes in enhancing the detail and quality of segmentation maps (SEGS) for animated differences in images or frames. It operates by refining the segmentation maps based on various parameters such as guide size, maximum size, and configuration settings, aiming to improve the visual impact and accuracy of the animated content.
 ## Input types
 ### Required
 - **`image_frames`**
-    - Image frames to be processed for animation difference. These frames are the basis for segmentation enhancement.
-    - Python dtype: `List[torch.Tensor]`
+    - The sequence of image frames to be processed. It serves as the visual context for refining the segmentation maps.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `List[Image]`
 - **`segs`**
-    - Initial segmentation data that will be refined by the node. This data is crucial for identifying areas of interest in the animation frames.
-    - Python dtype: `Tuple[torch.Tensor, List[torch.Tensor]]`
+    - The initial segmentation maps that need enhancement. This input is crucial for determining the areas of interest and applying detailed refinements.
     - Comfy dtype: `SEGS`
+    - Python dtype: `List[SEGS]`
 - **`guide_size`**
-    - A parameter influencing the level of detail in the segmentation refinement process. It adjusts the guiding size for the detail enhancement.
-    - Python dtype: `int`
-    - Comfy dtype: `INT`
-- **`guide_size_for`**
-    - Specifies the target for the guide size adjustment, affecting how the detail refinement is applied.
-    - Python dtype: `str`
-    - Comfy dtype: `STRING`
-- **`max_size`**
-    - Sets the maximum size limit for the segmentation detail enhancement, ensuring the process stays within computational bounds.
-    - Python dtype: `int`
-    - Comfy dtype: `INT`
-- **`seed`**
-    - Seed for random number generation, ensuring reproducibility of the segmentation enhancement.
-    - Python dtype: `int`
-    - Comfy dtype: `INT`
-- **`steps`**
-    - Defines the number of steps in the detail enhancement process, controlling the depth of refinement.
-    - Python dtype: `int`
-    - Comfy dtype: `INT`
-- **`cfg`**
-    - Configuration settings for the detail enhancement process, allowing customization of the refinement.
-    - Python dtype: `str`
-    - Comfy dtype: `STRING`
-- **`sampler_name`**
-    - Specifies the sampler to be used in the detail enhancement process, affecting the quality of the output.
-    - Python dtype: `str`
-    - Comfy dtype: `STRING`
-- **`scheduler`**
-    - Determines the scheduling strategy for the detail enhancement steps, optimizing the process flow.
-    - Python dtype: `str`
-    - Comfy dtype: `STRING`
-- **`denoise`**
-    - A flag indicating whether denoising should be applied during the detail enhancement, improving the quality of the output.
-    - Python dtype: `bool`
-    - Comfy dtype: `BOOLEAN`
-- **`basic_pipe`**
-    - The basic pipeline configuration for the detail enhancement process, defining the overall workflow.
-    - Python dtype: `str`
-    - Comfy dtype: `STRING`
-- **`refiner_ratio`**
-    - Optional parameter to adjust the ratio of refinement applied, allowing for finer control over the enhancement.
-    - Python dtype: `Optional[float]`
+    - Specifies the guiding size for the detail enhancement process, influencing the scale and precision of the refinements.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `int`
+- **`guide_size_for`**
+    - Determines whether the guide size is applied based on the bounding box or the crop region, affecting the focus area for detail enhancement.
+    - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
+- **`max_size`**
+    - The maximum allowable size for the refined segmentation maps, ensuring that the output stays within reasonable bounds.
+    - Comfy dtype: `FLOAT`
+    - Python dtype: `int`
+- **`seed`**
+    - A seed value for random number generation, used to maintain consistency in the detail enhancement process.
+    - Comfy dtype: `INT`
+    - Python dtype: `int`
+- **`steps`**
+    - Defines the number of steps or iterations for the detail enhancement process, directly affecting the level of refinement.
+    - Comfy dtype: `INT`
+    - Python dtype: `int`
+- **`cfg`**
+    - Configuration settings that dictate the behavior and parameters of the detail enhancement process.
+    - Comfy dtype: `FLOAT`
+    - Python dtype: `Dict`
+- **`sampler_name`**
+    - The name of the sampler used in the refinement process, affecting the method of detail enhancement.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
+- **`scheduler`**
+    - Specifies the scheduling strategy for the refinement steps, influencing the progression and efficiency of the process.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
+- **`denoise`**
+    - A flag indicating whether denoising should be applied during the refinement process, aiming to improve the clarity of the segmentation maps.
+    - Comfy dtype: `FLOAT`
+    - Python dtype: `bool`
+- **`basic_pipe`**
+    - The basic pipeline configuration used as a foundation for the detail enhancement process.
+    - Comfy dtype: `BASIC_PIPE`
+    - Python dtype: `Dict`
+- **`refiner_ratio`**
+    - Optional. Specifies the ratio of refinement to be applied, allowing for adjustable levels of detail enhancement.
+    - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 ### Optional
 - **`refiner_basic_pipe_opt`**
-    - Optional parameter to specify an alternative basic pipeline for refinement, offering flexibility in the process.
-    - Python dtype: `Optional[str]`
-    - Comfy dtype: `STRING`
+    - Optional. Provides additional options for the basic pipeline during the refinement process, enabling further customization.
+    - Comfy dtype: `BASIC_PIPE`
+    - Python dtype: `Dict`
 ## Output types
 - **`segs`**
-    - The enhanced segmentation data, resulting from the detailed processing applied to the initial segmentation. This output is crucial for further animation difference processing.
-    - Python dtype: `Tuple[torch.Tensor, List[torch.Tensor]]`
     - Comfy dtype: `SEGS`
+    - The enhanced segmentation maps resulting from the detail enhancement process.
+    - Python dtype: `List[SEGS]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `SEGSPaste`

@@ -8,12 +8,12 @@ The RebatchLatents node is designed to reorganize a batch of latent representati
 ## Input types
 ### Required
 - **`latents`**
-    - Comfy dtype: `LATENT`
     - The 'latents' parameter represents the input latent representations to be rebatched. It is crucial for determining the structure and content of the output batch.
+    - Comfy dtype: `LATENT`
     - Python dtype: `List[Dict[str, torch.Tensor]]`
 - **`batch_size`**
-    - Comfy dtype: `INT`
     - The 'batch_size' parameter specifies the desired number of samples per batch in the output. It directly influences the grouping and division of the input latents into new batches.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`latent`**

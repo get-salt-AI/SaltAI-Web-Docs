@@ -4,36 +4,36 @@
 - Category: `Ebsynth Nodes`
 - Output node: `True`
 
-The PNG_Save node is designed to take an image or a batch of images and save them as PNG files to a specified location. It supports setting the image quality, deciding whether to overwrite existing files, and automatically handles the conversion of image tensors to the appropriate format for PNG encoding.
+The PNG Save Node is designed to take an image or a batch of images and save them to a specified location in PNG format. It handles the conversion and encoding of images using the PNG encoding provided by torchvision's encode_png, ensuring the images are saved with the desired quality and naming conventions. The node also supports overwrite control for existing files.
 ## Input types
 ### Required
 - **`save_path`**
-    - Specifies the directory where the image(s) will be saved. It allows for organizing output images in a structured manner.
-    - Python dtype: `str`
+    - Specifies the directory where the image(s) will be saved. It plays a crucial role in determining the output location of the saved images.
     - Comfy dtype: `STRING`
+    - Python dtype: `str`
 - **`file_name`**
-    - Determines the base name for the output file(s). This can be used to identify and differentiate between saved images.
-    - Python dtype: `str`
+    - Determines the base name for the saved image file(s). It influences the naming convention of the output files, allowing for easy identification and organization.
     - Comfy dtype: `STRING`
+    - Python dtype: `str`
 - **`images`**
-    - The image tensor or a batch of image tensors to be saved. This node handles the conversion and encoding of these tensors into PNG format.
-    - Python dtype: `torch.Tensor`
+    - The image or batch of images to be saved. This input is central to the node's operation, as it provides the actual content to be encoded and saved in PNG format.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `torch.Tensor`
 - **`quality`**
-    - Sets the quality of the saved PNG image(s). Higher values result in better image quality but larger file sizes, directly influencing the visual fidelity and the compression level of the output images.
-    - Python dtype: `int`
+    - Sets the quality of the saved PNG image(s), ranging from 0 to 100. This parameter allows for fine-tuning of the output image's visual fidelity.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`overwrite_mode`**
-    - Controls whether existing files with the same name should be overwritten. This is useful for avoiding accidental data loss.
-    - Python dtype: `bool`
+    - Controls whether existing files with the same name should be overwritten. This parameter ensures flexibility in managing file storage and avoiding unintended data loss.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ## Output types
 The node doesn't have output types
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
-Often used with image processing and transformation nodes to save the final, processed images as PNG files to a specified location, ensuring the output is readily accessible and in a widely supported format.
+
 ## Source code
 ```python
 class PNG_Save:

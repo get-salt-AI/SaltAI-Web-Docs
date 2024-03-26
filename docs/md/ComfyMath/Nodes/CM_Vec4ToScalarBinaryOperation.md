@@ -8,16 +8,16 @@ This node performs a binary operation between two Vec4 vectors, resulting in a s
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the binary operation to be performed, such as dot product or distance, affecting the scalar result.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`a`**
-    - Comfy dtype: `VEC4`
     - The first Vec4 vector operand in the binary operation.
+    - Comfy dtype: `VEC4`
     - Python dtype: `Vec4`
 - **`b`**
-    - Comfy dtype: `VEC4`
     - The second Vec4 vector operand in the binary operation.
+    - Comfy dtype: `VEC4`
     - Python dtype: `Vec4`
 ## Output types
 - **`float`**

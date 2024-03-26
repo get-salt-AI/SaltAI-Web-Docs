@@ -8,29 +8,29 @@ The ADE_AdjustPEManual node allows for manual adjustment of positional encoding 
 ## Input types
 ### Required
 - **`cap_initial_pe_length`**
-    - Comfy dtype: `INT`
     - Specifies the maximum length for the initial positional encoding. This parameter allows for capping the PE length at the beginning of the animation process, which can influence the animation's starting point or initial state.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`interpolate_pe_to_length`**
-    - Comfy dtype: `INT`
     - Determines the length to which the positional encoding should be interpolated. This adjustment can affect the smoothness and duration of the generated animation.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`initial_pe_idx_offset`**
-    - Comfy dtype: `INT`
     - Sets the starting index offset for the positional encoding. This parameter shifts the starting point of the positional encoding, potentially altering the animation's initial conditions.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`final_pe_idx_offset`**
-    - Comfy dtype: `INT`
     - Defines the ending index offset for the positional encoding. It allows for adjustments to the ending conditions of the animation, affecting its final state.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`print_adjustment`**
-    - Comfy dtype: `BOOLEAN`
     - A boolean flag that, when set to true, enables the printing of adjustments made to the positional encoding. This feature aids in debugging and fine-tuning the animation parameters.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`prev_pe_adjust`**
-    - Comfy dtype: `PE_ADJUST`
     - An optional parameter that takes a previous positional encoding adjustment group. It allows for the accumulation and application of multiple PE adjustments over time.
+    - Comfy dtype: `PE_ADJUST`
     - Python dtype: `AdjustPEGroup`
 ## Output types
 - **`pe_adjust`**

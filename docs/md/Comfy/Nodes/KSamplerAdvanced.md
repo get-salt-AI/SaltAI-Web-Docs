@@ -8,56 +8,56 @@ The KSamplerAdvanced node is designed to enhance the sampling process by providi
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - Specifies the model from which samples are to be generated, playing a crucial role in the sampling process.
+    - Comfy dtype: `MODEL`
     - Python dtype: `str`
 - **`add_noise`**
-    - Comfy dtype: `COMBO[STRING]`
     - Determines whether noise should be added to the sampling process, affecting the diversity and quality of the generated samples.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `bool`
 - **`noise_seed`**
-    - Comfy dtype: `INT`
     - Sets the seed for noise generation, ensuring reproducibility in the sampling process.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`steps`**
-    - Comfy dtype: `INT`
     - Defines the number of steps to be taken in the sampling process, impacting the detail and quality of the output.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - Comfy dtype: `FLOAT`
     - Controls the conditioning factor, influencing the direction and space of the sampling process.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sampler_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - Selects the specific sampler to be used, allowing for customization of the sampling technique.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - Comfy dtype: `COMBO[STRING]`
     - Chooses the scheduler for controlling the sampling process, affecting the progression and quality of samples.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`positive`**
-    - Comfy dtype: `CONDITIONING`
     - Specifies the positive conditioning to guide the sampling towards desired attributes.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `str`
 - **`negative`**
-    - Comfy dtype: `CONDITIONING`
     - Specifies the negative conditioning to steer the sampling away from certain attributes.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `str`
 - **`latent_image`**
-    - Comfy dtype: `LATENT`
     - Provides the initial latent image to be used in the sampling process, serving as a starting point.
+    - Comfy dtype: `LATENT`
     - Python dtype: `str`
 - **`start_at_step`**
-    - Comfy dtype: `INT`
     - Determines the starting step of the sampling process, allowing for control over the sampling progression.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`end_at_step`**
-    - Comfy dtype: `INT`
     - Sets the ending step of the sampling process, defining the scope of the sampling.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`return_with_leftover_noise`**
-    - Comfy dtype: `COMBO[STRING]`
     - Indicates whether to return the sample with leftover noise, affecting the final output's appearance.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`latent`**

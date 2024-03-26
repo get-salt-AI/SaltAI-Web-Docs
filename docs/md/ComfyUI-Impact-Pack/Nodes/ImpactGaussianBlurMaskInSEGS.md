@@ -4,28 +4,28 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-This node applies a Gaussian blur to the masks within a collection of segmentation elements (SEGS). It iterates over each segmentation element, blurs its cropped mask using specified kernel size and sigma values, and then constructs a new set of segmentation elements with the blurred masks. This process is useful for smoothing the edges of masks, potentially improving the visual quality or the performance of subsequent operations that are sensitive to mask precision.
+This node applies a Gaussian blur to the masks within a collection of segmentation elements (SEGS), potentially enhancing the visual quality or aiding in the processing of these elements. It allows for the adjustment of the blur intensity and size, enabling fine-tuned control over the appearance of the segmentation masks.
 ## Input types
 ### Required
 - **`segs`**
-    - The collection of segmentation elements (SEGS) to which the Gaussian blur will be applied. Each element's mask is blurred individually.
-    - Python dtype: `Tuple[str, List[SEG]]`
+    - The collection of segmentation elements (SEGS) to which the Gaussian blur will be applied. This parameter is crucial for specifying the input data that will undergo the blurring process.
     - Comfy dtype: `SEGS`
+    - Python dtype: `Tuple[str, List[SEG]]`
 - **`kernel_size`**
-    - The size of the Gaussian kernel used for blurring. A larger kernel size results in more blurring.
-    - Python dtype: `int`
+    - Specifies the size of the Gaussian kernel used for blurring. A larger kernel size results in a more pronounced blur effect, allowing for greater control over the visual outcome.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`sigma`**
-    - The standard deviation of the Gaussian kernel. Controls the extent of blurring; a higher sigma value results in more blurring.
-    - Python dtype: `float`
+    - Determines the standard deviation of the Gaussian kernel. This parameter influences the spread of the blur; a higher sigma value leads to a softer, more diffuse blur effect.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 ## Output types
 - **`segs`**
-    - The collection of segmentation elements (SEGS) with their masks blurred using the Gaussian blur operation.
-    - Python dtype: `Tuple[str, List[SEG]]`
     - Comfy dtype: `SEGS`
+    - The modified collection of segmentation elements (SEGS) with the masks blurred using the specified Gaussian parameters. This output reflects the visual alteration performed on the input data.
+    - Python dtype: `Tuple[str, List[SEG]]`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 

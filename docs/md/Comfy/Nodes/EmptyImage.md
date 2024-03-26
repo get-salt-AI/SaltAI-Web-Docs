@@ -8,20 +8,20 @@ The EmptyImage node is designed to generate blank images of specified dimensions
 ## Input types
 ### Required
 - **`width`**
-    - Comfy dtype: `INT`
     - Specifies the width of the generated image. It determines how wide the image will be.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Comfy dtype: `INT`
     - Determines the height of the generated image. It affects the vertical size of the image.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`batch_size`**
-    - Comfy dtype: `INT`
     - Indicates the number of images to generate in a single batch. This allows for the creation of multiple images at once.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`color`**
-    - Comfy dtype: `INT`
     - Defines the color of the generated image using a hexadecimal value, allowing for customization of the image's appearance. This parameter enables the selection of a wide range of colors.
+    - Comfy dtype: `INT`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**

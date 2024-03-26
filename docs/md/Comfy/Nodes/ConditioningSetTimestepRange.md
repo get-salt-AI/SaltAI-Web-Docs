@@ -8,16 +8,16 @@ This node is designed to adjust the temporal aspect of conditioning by setting a
 ## Input types
 ### Required
 - **`conditioning`**
-    - Comfy dtype: `CONDITIONING`
     - The conditioning input represents the current state of the generation process, which this node modifies by setting a specific range of timesteps.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 - **`start`**
-    - Comfy dtype: `FLOAT`
     - The start parameter specifies the beginning of the timestep range as a percentage of the total generation process, allowing for fine-tuned control over when the conditioning effects begin.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end`**
-    - Comfy dtype: `FLOAT`
     - The end parameter defines the endpoint of the timestep range as a percentage, enabling precise control over the duration and conclusion of the conditioning effects.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`conditioning`**

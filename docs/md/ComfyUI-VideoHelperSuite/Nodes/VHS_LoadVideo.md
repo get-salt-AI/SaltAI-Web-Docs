@@ -4,54 +4,54 @@
 - Category: `Video Helper Suite 🎥🅥🅗🅢`
 - Output node: `False`
 
-The `VHS_LoadVideo` node is designed to load video files uploaded by the user, process them according to specified parameters such as frame rate, size, and selection criteria, and convert them into a format suitable for use within the ComfyUI environment. This involves frame extraction, optional resizing, and conversion from BGR to RGB color space, facilitating further processing or visualization.
+The VHS_LoadVideo node is designed for uploading and processing video files. It allows users to specify various parameters such as frame rate and size to customize the video processing according to their needs. This node is essential for preparing video data for further analysis or manipulation within the Video Helper Suite.
 ## Input types
 ### Required
 - **`video`**
-    - Specifies the path to the video file to be processed. It is crucial for determining the source of the frames to be extracted and processed.
+    - Specifies the path to the video file to be processed. It is the primary input for the video processing operation.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`force_rate`**
-    - Determines the frame rate at which the video should be processed, allowing for control over the temporal resolution of the extracted frames.
-    - Python dtype: `int`
+    - Determines the frame rate at which the video should be processed. This allows for standardization or modification of the video's frame rate.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`force_size`**
-    - Indicates whether the video frames should be resized to a specific dimension, affecting the spatial resolution of the output.
+    - Defines the desired resolution for the video output. This parameter allows users to resize the video according to specific requirements.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `['Disabled', 'Custom Height', 'Custom Width', 'Custom', '256x?', '?x256', '256x256', '512x?', '?x512', '512x512']`
 - **`custom_width`**
-    - Specifies the desired width for frame resizing, directly influencing the aspect ratio and resolution of the output frames.
-    - Python dtype: `int`
+    - Sets the custom width for the video output, enabling precise control over the video's dimensions.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`custom_height`**
-    - Specifies the desired height for frame resizing, directly influencing the aspect ratio and resolution of the output frames.
-    - Python dtype: `int`
+    - Sets the custom height for the video output, providing the ability to tailor the video's dimensions to specific needs.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`frame_load_cap`**
-    - Sets a limit on the number of frames to be processed and loaded, enabling efficient memory usage and processing time management.
-    - Python dtype: `int`
+    - Limits the number of frames to be processed from the video. This is useful for handling large videos or focusing on specific segments.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`skip_first_frames`**
-    - Allows skipping a specified number of initial frames, useful for bypassing unneeded content at the beginning of the video.
-    - Python dtype: `int`
+    - Skips a specified number of frames at the beginning of the video. This can be used to bypass unneeded introductory content.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`select_every_nth`**
-    - Enables the selection of every Nth frame from the video, providing a mechanism to thin out the frame sequence for specific use cases.
-    - Python dtype: `int`
+    - Selects every Nth frame from the video for processing, allowing for sampling of the video content at a reduced rate.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
-- **`image`**
-    - The processed frames from the video, converted to a format compatible with ComfyUI, ready for further processing or visualization.
-    - Python dtype: `List[torch.Tensor]`
+- **`IMAGE`**
     - Comfy dtype: `IMAGE`
-- **`int`**
-    - The total number of frames processed from the video.
-    - Python dtype: `int`
+    - Returns the processed video frames as images.
+    - Python dtype: `List[Image]`
+- **`frame_count`**
     - Comfy dtype: `INT`
-- **`vhs_audio`**
-    - The audio extracted from the video, if any, processed for use within the ComfyUI environment.
-    - Python dtype: `torch.Tensor`
+    - Provides the total number of frames processed from the video.
+    - Python dtype: `int`
+- **`audio`**
     - Comfy dtype: `VHS_AUDIO`
+    - Returns the audio extracted from the video, if any.
+    - Python dtype: `VHS_AUDIO`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `PreviewImage,VHS_VideoCombine,VAEEncode,EmptyLatentImage,CannyEdgePreprocessor,ImageScaleToTotalPixels,ImageResize+,TilePreprocessor,LineArtPreprocessor,DWPreprocessor`

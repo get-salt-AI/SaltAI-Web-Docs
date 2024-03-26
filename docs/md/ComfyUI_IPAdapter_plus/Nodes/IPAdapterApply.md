@@ -8,49 +8,49 @@ This node is designed to apply an IPAdapter to a given model, adjusting the mode
 ## Input types
 ### Required
 - **`ipadapter`**
-    - Comfy dtype: `IPADAPTER`
     - The IPAdapter instance to be applied, enabling the dynamic adjustment of the model's behavior.
+    - Comfy dtype: `IPADAPTER`
     - Python dtype: `IPADAPTER`
 - **`clip_vision`**
-    - Comfy dtype: `CLIP_VISION`
     - Optional input for vision embeddings from CLIP, used for visual understanding tasks.
+    - Comfy dtype: `CLIP_VISION`
     - Python dtype: `torch.Tensor`
 - **`image`**
-    - Comfy dtype: `IMAGE`
     - Optional input image to be processed by the IPAdapter for tasks involving image data.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`model`**
-    - Comfy dtype: `MODEL`
     - The model to which the IPAdapter is applied, allowing for its behavior to be dynamically modified.
+    - Comfy dtype: `MODEL`
     - Python dtype: `MODEL`
 - **`weight`**
-    - Comfy dtype: `FLOAT`
     - A floating-point value that scales the influence of the IPAdapter on the model, affecting the degree of modification.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`noise`**
-    - Comfy dtype: `FLOAT`
     - Optional floating-point value representing noise level to be applied, enhancing model robustness or variability.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`weight_type`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the method of applying weight to the IPAdapter's influence, with options including 'original', 'linear', and 'channel penalty'.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`start_at`**
-    - Comfy dtype: `FLOAT`
     - Specifies the starting point of the IPAdapter's effect, allowing for phased application.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end_at`**
-    - Comfy dtype: `FLOAT`
     - Specifies the ending point of the IPAdapter's effect, allowing for phased withdrawal.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`unfold_batch`**
-    - Comfy dtype: `BOOLEAN`
     - A boolean indicating whether to unfold the batch for processing, affecting computational efficiency.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`attn_mask`**
-    - Comfy dtype: `MASK`
     - Optional attention mask to focus or ignore specific parts of the input, enhancing model attention mechanisms.
+    - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`model`**

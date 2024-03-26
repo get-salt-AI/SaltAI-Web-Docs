@@ -8,13 +8,13 @@ This node is designed to load the AnimateDiff model, facilitating the integratio
 ## Input types
 ### Required
 - **`model_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the name of the motion model to be loaded. This is a critical input as it determines which motion model will be utilized for animation within the AnimateDiff framework.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`ad_settings`**
-    - Comfy dtype: `AD_SETTINGS`
     - Optional parameter that allows for the inclusion of specific animation settings, providing additional customization and control over the animation process.
+    - Comfy dtype: `AD_SETTINGS`
     - Python dtype: `AnimateDiffSettings`
 ## Output types
 - **`MOTION_MODEL`**

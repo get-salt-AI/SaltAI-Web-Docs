@@ -8,16 +8,16 @@ The ImageBlur node applies a Gaussian blur to an image, allowing for the softeni
 ## Input types
 ### Required
 - **`image`**
-    - Comfy dtype: `IMAGE`
     - The input image to be blurred. This is the primary target for the blur effect.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`blur_radius`**
-    - Comfy dtype: `INT`
     - Determines the radius of the blur effect. A larger radius results in a more pronounced blur.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`sigma`**
-    - Comfy dtype: `FLOAT`
     - Controls the spread of the blur. A higher sigma value means the blur will affect a wider area around each pixel.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`image`**

@@ -8,20 +8,20 @@ The PolyexponentialScheduler node is designed to generate a sequence of noise le
 ## Input types
 ### Required
 - **`steps`**
-    - Comfy dtype: `INT`
     - Specifies the number of steps in the diffusion process, affecting the granularity of the generated noise levels.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`sigma_max`**
-    - Comfy dtype: `FLOAT`
     - The maximum noise level, setting the upper bound of the noise schedule.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sigma_min`**
-    - Comfy dtype: `FLOAT`
     - The minimum noise level, setting the lower bound of the noise schedule.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`rho`**
-    - Comfy dtype: `FLOAT`
     - A parameter that controls the shape of the polyexponential noise schedule, influencing how noise levels progress between the minimum and maximum values.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`sigmas`**

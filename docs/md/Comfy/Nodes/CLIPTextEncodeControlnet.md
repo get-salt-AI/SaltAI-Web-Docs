@@ -8,16 +8,16 @@ This node is designed for encoding text inputs using the CLIP model to produce c
 ## Input types
 ### Required
 - **`clip`**
-    - Comfy dtype: `CLIP`
     - The CLIP model used for text tokenization and encoding. It plays a crucial role in converting text inputs into a format suitable for further processing and conditioning.
+    - Comfy dtype: `CLIP`
     - Python dtype: `torch.nn.Module`
 - **`conditioning`**
-    - Comfy dtype: `CONDITIONING`
     - A list of conditioning data to be enhanced with control signals derived from the encoded text. It serves as the basis for applying text-based modifications to the generation process.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
 - **`text`**
-    - Comfy dtype: `STRING`
     - The text input to be encoded. This text is tokenized and encoded using the CLIP model to generate control signals for the conditioning data.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`conditioning`**

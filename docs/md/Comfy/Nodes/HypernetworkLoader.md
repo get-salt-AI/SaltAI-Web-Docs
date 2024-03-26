@@ -8,16 +8,16 @@ The HypernetworkLoader node is designed to enhance or modify the capabilities of
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - The model to which the hypernetwork will be applied. This parameter is crucial as it determines the base architecture that will be enhanced or modified by the hypernetwork.
+    - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`hypernetwork_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - The name of the hypernetwork to be loaded and applied to the model. This parameter specifies which hypernetwork is used, impacting the model's modified behavior or performance.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`strength`**
-    - Comfy dtype: `FLOAT`
     - A scalar that adjusts the intensity of the hypernetwork's effect on the model. It allows for fine-tuning how significantly the hypernetwork alters the model's behavior or performance.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`model`**

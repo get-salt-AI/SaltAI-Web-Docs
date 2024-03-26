@@ -4,26 +4,26 @@
 - Category: `ImpactPack/Logic`
 - Output node: `False`
 
-Executes conditional logic by returning one of two provided values based on the condition. If the condition is true, it returns the first value; otherwise, it returns the second value.
+This node provides a conditional branching mechanism, allowing for the execution of different logic or values based on a given condition. It serves as a fundamental building block for creating dynamic and conditional workflows within the ImpactPack.
 ## Input types
 ### Required
 - **`cond`**
-    - The condition to evaluate. Determines which of the two values will be returned based on its truthiness.
-    - Python dtype: `bool`
+    - The condition upon which the branching logic is based. It determines which of the two provided values (true or false branch) is returned by the node.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`tt_value`**
-    - The value to return if the condition is true. Its type can be any, making this node versatile in conditional operations.
-    - Python dtype: `typing.Any`
+    - The value to be returned if the condition evaluates to True. This allows for dynamic selection of output based on the condition.
     - Comfy dtype: `*`
+    - Python dtype: `object`
 - **`ff_value`**
-    - The value to return if the condition is false. Like 'tt_value', its type can be any, allowing for flexibility in conditional logic.
-    - Python dtype: `typing.Any`
+    - The value to be returned if the condition evaluates to False. This enables the node to selectively output values based on the evaluated condition.
     - Comfy dtype: `*`
+    - Python dtype: `object`
 ## Output types
 - **`*`**
-    - Returns either 'tt_value' or 'ff_value' based on the evaluation of 'cond'. The output type matches the type of the returned value.
-    - Python dtype: `typing.Any`
     - Comfy dtype: `*`
+    - The output of this node is either the tt_value or ff_value, depending on the evaluation of the condition.
+    - Python dtype: `object`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

@@ -8,8 +8,8 @@ The node is designed to decompose a 3-dimensional vector into its individual com
 ## Input types
 ### Required
 - **`a`**
-    - Comfy dtype: `VEC3`
     - This parameter represents the 3-dimensional vector to be decomposed. It allows for operations on individual vector components by breaking down the vector into its x, y, and z components.
+    - Comfy dtype: `VEC3`
     - Python dtype: `tuple[float, float, float]`
 ## Output types
 - **`float`**

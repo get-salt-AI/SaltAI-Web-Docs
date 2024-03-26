@@ -8,41 +8,41 @@ This node applies an IPAdapter to encoded embeddings, allowing for the modificat
 ## Input types
 ### Required
 - **`ipadapter`**
-    - Comfy dtype: `IPADAPTER`
     - The IPAdapter to be applied. It is crucial for modifying and enhancing the embeddings.
+    - Comfy dtype: `IPADAPTER`
     - Python dtype: `torch.nn.Module`
 - **`embeds`**
-    - Comfy dtype: `EMBEDS`
     - The encoded embeddings to which the IPAdapter will be applied. These embeddings are the target of the modification and enhancement.
+    - Comfy dtype: `EMBEDS`
     - Python dtype: `torch.Tensor`
 - **`model`**
-    - Comfy dtype: `MODEL`
     - The model used in conjunction with the IPAdapter and embeddings. It defines the context in which the embeddings are applied.
+    - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`weight`**
-    - Comfy dtype: `FLOAT`
     - A float value that adjusts the influence of the IPAdapter on the embeddings. It allows for fine-tuning the effect of the adapter.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`weight_type`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the method of applying the weight to the IPAdapter's influence on the embeddings. Options include 'original', 'linear', and 'channel penalty'.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`start_at`**
-    - Comfy dtype: `FLOAT`
     - A float value indicating the start point in the embedding to begin applying the IPAdapter. Allows for targeted modification.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end_at`**
-    - Comfy dtype: `FLOAT`
     - A float value indicating the end point in the embedding for applying the IPAdapter. Enables precise control over the modification range.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`unfold_batch`**
-    - Comfy dtype: `BOOLEAN`
     - A boolean indicating whether to unfold the batch during processing. This affects how the embeddings are processed by the IPAdapter.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`attn_mask`**
-    - Comfy dtype: `MASK`
     - An optional mask that can be applied during the IPAdapter's processing. It allows for selective attention in the embeddings.
+    - Comfy dtype: `MASK`
     - Python dtype: `Optional[torch.Tensor]`
 ## Output types
 - **`model`**

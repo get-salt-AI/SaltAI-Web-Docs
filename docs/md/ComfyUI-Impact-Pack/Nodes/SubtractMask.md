@@ -4,22 +4,22 @@
 - Category: `ImpactPack/Operation`
 - Output node: `False`
 
-The SubtractMask node performs a subtraction operation between two input masks. It utilizes the `subtract_masks` function to subtract one mask from another, ensuring the operation is only performed if the masks have compatible shapes. If the shapes are incompatible, the first mask is returned unchanged. This operation is useful for removing specific areas or features from a mask based on another mask.
+The SubtractMask node is designed to perform a subtraction operation between two given masks. It abstracts the complexity of handling mask data types and operations, providing a straightforward way to obtain the difference between two masks, which can be crucial in image processing tasks where distinguishing between varying elements is necessary.
 ## Input types
 ### Required
 - **`mask1`**
-    - The first input mask to be subtracted from. It serves as the base mask for the subtraction operation.
-    - Python dtype: `torch.Tensor`
+    - The first mask to be subtracted from. It plays a crucial role in determining the base of the subtraction operation.
     - Comfy dtype: `MASK`
+    - Python dtype: `torch.Tensor`
 - **`mask2`**
-    - The second input mask to subtract from the first mask. This mask specifies the areas or features to be removed from the first mask.
-    - Python dtype: `torch.Tensor`
+    - The second mask to subtract from the first one. This mask's values are subtracted from the first mask's values, influencing the final result of the operation.
     - Comfy dtype: `MASK`
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`mask`**
-    - The resulting mask after subtracting the second mask from the first. If the masks have incompatible shapes, the first mask is returned unchanged.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The result of the subtraction operation between the two input masks, represented as a mask where each pixel value reflects the difference.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

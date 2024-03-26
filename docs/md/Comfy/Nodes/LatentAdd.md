@@ -8,12 +8,12 @@ The LatentAdd node is designed for the addition of two latent representations. I
 ## Input types
 ### Required
 - **`samples1`**
-    - Comfy dtype: `LATENT`
     - The first set of latent samples to be added. It represents one of the inputs whose features are to be combined with another set of latent samples.
+    - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 - **`samples2`**
-    - Comfy dtype: `LATENT`
     - The second set of latent samples to be added. It serves as the other input whose features are combined with the first set of latent samples through element-wise addition.
+    - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 ## Output types
 - **`latent`**

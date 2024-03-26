@@ -8,16 +8,16 @@ This node performs binary conditional operations on numbers, evaluating the rela
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the binary conditional operation to be performed, determining how the two numbers are compared.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`a`**
-    - Comfy dtype: `NUMBER`
     - The first number to be compared in the conditional operation.
+    - Comfy dtype: `NUMBER`
     - Python dtype: `float`
 - **`b`**
-    - Comfy dtype: `NUMBER`
     - The second number to be compared in the conditional operation.
+    - Comfy dtype: `NUMBER`
     - Python dtype: `float`
 ## Output types
 - **`bool`**

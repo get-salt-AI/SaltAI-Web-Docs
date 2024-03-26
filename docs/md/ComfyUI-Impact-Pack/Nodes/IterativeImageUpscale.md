@@ -4,38 +4,38 @@
 - Category: `ImpactPack/Upscale`
 - Output node: `False`
 
-The `IterativeImageUpscale` node is designed to upscale images in a stepwise manner. It takes an image and applies a series of upscaling operations, each increasing the image's resolution or quality incrementally. This iterative approach allows for more controlled upscaling, potentially leading to higher quality results with fewer artifacts.
+The IterativeImageUpscale node is designed to progressively upscale images through a series of steps, enhancing the resolution and detail of the input image with each iteration. This node aims to achieve higher-quality upscaling by applying the upscale operation multiple times, each time increasing the image's dimensions towards a desired scale factor.
 ## Input types
 ### Required
 - **`pixels`**
-    - The input image to be upscaled. This image serves as the base for the iterative upscaling process.
-    - Python dtype: `torch.Tensor`
+    - The input pixels to be upscaled, typically representing images. This parameter is crucial for initiating the iterative upscaling process.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `torch.Tensor`
 - **`upscale_factor`**
-    - The total factor by which the image's resolution is to be increased. This factor guides the iterative upscaling process.
-    - Python dtype: `float`
+    - Specifies the target upscale factor by which the image's dimensions should be increased. This factor determines the final size of the upscaled image.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`steps`**
-    - The number of iterative steps to perform during the upscaling. Each step incrementally increases the image's resolution.
-    - Python dtype: `int`
+    - Defines the number of iterative steps to perform during the upscaling process. Each step incrementally increases the image's size, contributing to the gradual enhancement of image quality.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`temp_prefix`**
-    - A temporary prefix used for intermediate processing steps. It can be an empty string.
-    - Python dtype: `str`
+    - An optional prefix for temporary files generated during the upscaling process. This can be used for debugging or intermediate result inspection.
     - Comfy dtype: `STRING`
+    - Python dtype: `str`
 - **`upscaler`**
-    - The upscaling model or method to be applied at each iterative step.
-    - Python dtype: `object`
+    - The upscaling model or method to be used for each upscaling step. This parameter is central to the upscaling process, determining the approach for increasing image resolution.
     - Comfy dtype: `UPSCALER`
+    - Python dtype: `torch.nn.Module`
 - **`vae`**
-    - unknown
-    - Python dtype: `unknown`
+    - The variational autoencoder used in the upscaling process, particularly relevant when working with latent representations of images.
     - Comfy dtype: `VAE`
+    - Python dtype: `torch.nn.Module`
 ## Output types
 - **`image`**
-    - The upscaled image after all iterative steps have been completed.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The output of the IterativeImageUpscale node is the upscaled image, enhanced through the iterative upscaling process.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `PreviewImage,ImageBatch`

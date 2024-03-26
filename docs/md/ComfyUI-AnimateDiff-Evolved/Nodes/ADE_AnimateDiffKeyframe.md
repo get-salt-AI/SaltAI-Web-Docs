@@ -8,29 +8,29 @@ This node is designed for creating and managing keyframes within the AnimateDiff
 ## Input types
 ### Required
 - **`start_percent`**
-    - Comfy dtype: `FLOAT`
     - Specifies the starting point of the keyframe as a percentage of the total animation duration. It determines when the keyframe's effects begin to apply, playing a crucial role in the timing of animations.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`prev_ad_keyframes`**
-    - Comfy dtype: `AD_KEYFRAMES`
     - An optional collection of previously defined keyframes. This allows for the integration of the new keyframe into an existing sequence, enabling complex animations through the accumulation of keyframes.
+    - Comfy dtype: `AD_KEYFRAMES`
     - Python dtype: `ADKeyframeGroup`
 - **`scale_multival`**
-    - Comfy dtype: `MULTIVAL`
     - Defines the scaling factor for the keyframe, which can be a single value or a tensor. This parameter influences the size or scale of the animated elements at this keyframe.
+    - Comfy dtype: `MULTIVAL`
     - Python dtype: `Union[float, torch.Tensor]`
 - **`effect_multival`**
-    - Comfy dtype: `MULTIVAL`
     - Specifies the effect intensity or parameters for the keyframe, which can also be a single value or a tensor. This affects how pronounced or subtle the animation effects are at this point.
+    - Comfy dtype: `MULTIVAL`
     - Python dtype: `Union[float, torch.Tensor]`
 - **`inherit_missing`**
-    - Comfy dtype: `BOOLEAN`
     - A boolean flag indicating whether to inherit unspecified values from previous keyframes. This facilitates smoother transitions and continuity in animations.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`guarantee_steps`**
-    - Comfy dtype: `INT`
     - Determines the minimum number of steps to maintain the current keyframe's effects before transitioning to the next. This ensures a certain duration or stability for the keyframe's influence.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`ad_keyframes`**

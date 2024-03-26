@@ -8,8 +8,8 @@ The `MaskToImage` node is designed to convert a mask into an image format. This 
 ## Input types
 ### Required
 - **`mask`**
-    - Comfy dtype: `MASK`
     - The mask input is essential for the conversion process, serving as the source data that will be transformed into an image format. This input dictates the shape and content of the resulting image.
+    - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**

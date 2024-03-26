@@ -8,21 +8,21 @@ This node specializes in loading model checkpoints with an emphasis on noise sel
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the name of the checkpoint to be loaded. This parameter is crucial for identifying the specific model checkpoint file from a predefined list of available checkpoints.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`beta_schedule`**
-    - Comfy dtype: `COMBO[STRING]`
     - Determines the beta schedule to be applied to the model. This parameter allows for the adjustment of the model's sampling behavior, enhancing flexibility in model performance.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`use_custom_scale_factor`**
-    - Comfy dtype: `BOOLEAN`
     - A boolean flag indicating whether to apply a custom scale factor to the noise. When set to true, it enables fine-tuning of the noise's impact on the model's output.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`scale_factor`**
-    - Comfy dtype: `FLOAT`
     - Defines the magnitude of the noise scale factor, provided 'use_custom_scale_factor' is true. This allows for precise control over the noise level applied to the model.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`model`**

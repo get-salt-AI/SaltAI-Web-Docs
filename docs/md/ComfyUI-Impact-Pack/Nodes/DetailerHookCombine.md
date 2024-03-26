@@ -4,22 +4,22 @@
 - Category: `ImpactPack/Upscale`
 - Output node: `False`
 
-The `DetailerHookCombine` node is designed to sequentially apply two detailer hooks to the input data. It operates on two main processes: `cycle_latent` and `post_detection`. In `cycle_latent`, it processes latent representations through both hooks in sequence, while in `post_detection`, it applies both hooks to segmentation data, also in sequence. This node effectively combines the functionalities of two detailer hooks, allowing for more complex data manipulation and enhancement.
+The DetailerHookCombine node is designed to enhance the detail processing capabilities of image generation models by combining the functionalities of two distinct detailer hooks. This node sequentially applies the cycle_latent and post_detection methods of each hook to the input data, effectively integrating their individual effects to produce more refined and detailed outputs.
 ## Input types
 ### Required
 - **`hook1`**
-    - The first detailer hook to be applied. It plays a crucial role in the initial processing or transformation of the input data.
-    - Python dtype: `DetailerHook`
+    - The first detailer hook to be combined. It contributes to the initial phase of detail enhancement by applying its cycle_latent and post_detection methods to the input data.
     - Comfy dtype: `DETAILER_HOOK`
+    - Python dtype: `DetailerHook`
 - **`hook2`**
-    - The second detailer hook to be applied after the first. It further processes or transforms the data, building upon the modifications made by the first hook.
-    - Python dtype: `DetailerHook`
+    - The second detailer hook to be combined. It further processes the data already enhanced by the first hook, applying its own cycle_latent and post_detection methods to achieve additional detail refinement.
     - Comfy dtype: `DETAILER_HOOK`
+    - Python dtype: `DetailerHook`
 ## Output types
 - **`detailer_hook`**
-    - The combined detailer hook that encapsulates the sequential application of the two provided hooks.
-    - Python dtype: `DetailerHook`
     - Comfy dtype: `DETAILER_HOOK`
+    - The output of the DetailerHookCombine node, which represents the enhanced and refined data after the combined effects of the two detailer hooks have been applied.
+    - Python dtype: `DetailerHook`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

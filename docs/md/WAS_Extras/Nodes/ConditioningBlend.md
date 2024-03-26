@@ -4,39 +4,39 @@
 - Category: `conditioning`
 - Output node: `False`
 
-The ConditioningBlend node blends two conditioning inputs using specified blending modes and strength, potentially influenced by a seed for deterministic results. It supports operations like spherical linear interpolation (SLERP) and subtraction, allowing for flexible manipulation of conditioning data.
+The ConditioningBlend node specializes in blending two conditioning inputs using specified blending modes and strengths. It allows for the dynamic combination of conditioning contexts, enabling more nuanced control over the generation process.
 ## Input types
 ### Required
 - **`conditioning_a`**
-    - The first conditioning input to blend. It plays a crucial role in determining the base of the blend operation.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
+    - The first conditioning input to be blended. It plays a crucial role in determining the base of the blend.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
 - **`conditioning_b`**
-    - The second conditioning input to blend. It contributes to the blend operation by providing an additional set of conditioning data to mix with the first input.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
+    - The second conditioning input to be blended. It contributes to the blend by providing an additional layer of context.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
 - **`blending_mode`**
-    - Specifies the method used for blending the two conditioning inputs. Different modes can produce varied effects on the resulting conditioning.
+    - Specifies the method used for blending the two conditioning inputs. The choice of mode affects the blending behavior and outcome.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`blending_strength`**
-    - Determines the intensity of the blend between the two conditioning inputs. A higher value results in a stronger influence of the second input.
-    - Python dtype: `float`
+    - Controls the strength of the blend between the two conditioning inputs, allowing for fine-tuning of the blend's intensity.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`seed`**
-    - An optional seed for random number generation, ensuring reproducible results when blending.
-    - Python dtype: `int`
+    - A seed for random number generation, ensuring reproducibility of the blend when desired.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
 - **`conditioning`**
-    - The result of blending the two conditioning inputs according to the specified mode and strength.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
     - Comfy dtype: `CONDITIONING`
+    - The result of blending the two conditioning inputs, ready for use in further processing or generation tasks.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
-The ConditioningBlend node is utilized for merging two sets of conditioning data, such as those from different AI models or inputs, by applying a specified blending mode and strength, optionally influenced by a seed for consistent outcomes. It is particularly useful for adjusting the influence of one set of conditioning data over another, resulting in a customized conditioning output that can be used for more nuanced AI model interactions.
+
 ## Source code
 ```python
 class WAS_ConditioningBlend:

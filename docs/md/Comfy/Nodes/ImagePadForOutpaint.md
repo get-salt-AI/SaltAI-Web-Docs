@@ -8,28 +8,28 @@ This node is designed for preparing images for the outpainting process by adding
 ## Input types
 ### Required
 - **`image`**
-    - Comfy dtype: `IMAGE`
     - The 'image' input is the primary image to be prepared for outpainting, serving as the base for padding operations.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`left`**
-    - Comfy dtype: `INT`
     - Specifies the amount of padding to add to the left side of the image, influencing the expanded area for outpainting.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`top`**
-    - Comfy dtype: `INT`
     - Determines the amount of padding to add to the top of the image, affecting the vertical expansion for outpainting.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`right`**
-    - Comfy dtype: `INT`
     - Defines the amount of padding to add to the right side of the image, impacting the horizontal expansion for outpainting.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`bottom`**
-    - Comfy dtype: `INT`
     - Indicates the amount of padding to add to the bottom of the image, contributing to the vertical expansion for outpainting.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`feathering`**
-    - Comfy dtype: `INT`
     - Controls the smoothness of the transition between the original image and the added padding, enhancing the visual integration for outpainting.
+    - Comfy dtype: `INT`
     - Python dtype: `float`
 ## Output types
 - **`image`**

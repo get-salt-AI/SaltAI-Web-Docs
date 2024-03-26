@@ -8,36 +8,36 @@ The PatchModelAddDownscale node is designed to modify a given model by introduci
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - The model to be patched with downscaling and upscaling operations. This parameter is crucial as it defines the base model that will undergo modifications.
+    - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`block_number`**
-    - Comfy dtype: `INT`
     - Specifies the block number within the model where the downscaling operation should be applied. This parameter allows for targeted modification of the model's architecture.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`downscale_factor`**
-    - Comfy dtype: `FLOAT`
     - The factor by which the feature map's resolution is reduced during the downscaling operation. A higher downscale factor leads to a more significant reduction in resolution.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`start_percent`**
-    - Comfy dtype: `FLOAT`
     - Defines the starting point of the sigma range for applying the downscaling operation, based on the model's internal noise levels.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end_percent`**
-    - Comfy dtype: `FLOAT`
     - Defines the ending point of the sigma range for applying the downscaling operation, allowing for precise control over when the operation is performed.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`downscale_after_skip`**
-    - Comfy dtype: `BOOLEAN`
     - A boolean flag indicating whether the downscaling operation should be applied after skip connections within the model. This choice can affect the flow of information through the model.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`downscale_method`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the method used for downscaling the feature maps. Different methods can affect the quality and characteristics of the downscaled representations.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`upscale_method`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the method used for upscaling the feature maps back to their original resolution. This parameter complements the downscale_method by restoring the feature map size.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`model`**

@@ -8,16 +8,16 @@ This node specializes in loading a LoRA model without requiring a CLIP model, fo
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - The model to which LoRA adjustments will be applied. It serves as the base for modifications.
+    - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`lora_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - The name of the LoRA file to be loaded. This specifies which LoRA adjustments to apply to the model.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`strength_model`**
-    - Comfy dtype: `FLOAT`
     - Determines the intensity of the LoRA adjustments applied to the model. A higher value indicates stronger modifications.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`model`**

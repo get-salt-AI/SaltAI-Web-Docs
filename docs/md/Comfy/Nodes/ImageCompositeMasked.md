@@ -8,29 +8,29 @@ The ImageCompositeMasked node is designed for compositing images, allowing for t
 ## Input types
 ### Required
 - **`destination`**
-    - Comfy dtype: `IMAGE`
     - The destination image onto which the source image will be composited. It serves as the background for the composite operation.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`source`**
-    - Comfy dtype: `IMAGE`
     - The source image to be composited onto the destination image. This image can optionally be resized to fit the destination image's dimensions.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`x`**
-    - Comfy dtype: `INT`
     - The x-coordinate in the destination image where the top-left corner of the source image will be placed.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`y`**
-    - Comfy dtype: `INT`
     - The y-coordinate in the destination image where the top-left corner of the source image will be placed.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`resize_source`**
-    - Comfy dtype: `BOOLEAN`
     - A boolean flag indicating whether the source image should be resized to match the destination image's dimensions.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`mask`**
-    - Comfy dtype: `MASK`
     - An optional mask that specifies which parts of the source image should be composited onto the destination image. This allows for more complex compositing operations, such as blending or partial overlays.
+    - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**

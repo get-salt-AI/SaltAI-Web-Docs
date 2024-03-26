@@ -8,12 +8,12 @@ The IPAdapterSaveEmbeds node is designed for persisting IPAdapter embeddings to 
 ## Input types
 ### Required
 - **`embeds`**
-    - Comfy dtype: `EMBEDS`
     - The 'embeds' parameter represents the embeddings to be saved. It is crucial for specifying the data that will be persisted to disk, affecting the node's execution by determining the content of the output file.
+    - Comfy dtype: `EMBEDS`
     - Python dtype: `torch.Tensor`
 - **`filename_prefix`**
-    - Comfy dtype: `STRING`
     - The 'filename_prefix' parameter allows for customization of the saved file's name, providing a means to organize and easily identify the embeddings on disk. It influences the naming convention of the output file, aiding in the retrieval of specific embeddings.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 The node doesn't have output types

@@ -8,12 +8,12 @@ This node performs unary operations on floating-point numbers, allowing for the 
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the unary operation to be performed on the input float. The choice of operation directly influences the outcome.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`a`**
-    - Comfy dtype: `FLOAT`
     - The floating-point number to be operated on. It serves as the input to the unary operation specified.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`float`**

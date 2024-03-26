@@ -8,20 +8,20 @@ This node is designed to integrate CLIP vision outputs into the conditioning pro
 ## Input types
 ### Required
 - **`conditioning`**
-    - Comfy dtype: `CONDITIONING`
     - The base conditioning data to which the CLIP vision outputs are to be added, serving as the foundation for further modifications.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
 - **`clip_vision_output`**
-    - Comfy dtype: `CLIP_VISION_OUTPUT`
     - The output from a CLIP vision model, providing visual context that is integrated into the conditioning.
+    - Comfy dtype: `CLIP_VISION_OUTPUT`
     - Python dtype: `Dict[str, Any]`
 - **`strength`**
-    - Comfy dtype: `FLOAT`
     - Determines the intensity of the CLIP vision output's influence on the conditioning.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`noise_augmentation`**
-    - Comfy dtype: `FLOAT`
     - Specifies the level of noise augmentation to apply to the CLIP vision output before integrating it into the conditioning.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`conditioning`**

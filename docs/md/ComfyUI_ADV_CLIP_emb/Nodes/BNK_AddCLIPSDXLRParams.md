@@ -8,20 +8,20 @@ This node is designed to enhance the conditioning data for image generation by i
 ## Input types
 ### Required
 - **`conditioning`**
-    - Comfy dtype: `CONDITIONING`
     - The base conditioning data for image generation, which this node modifies by adding width, height, and an aesthetic score to each element.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
 - **`width`**
-    - Comfy dtype: `INT`
     - Specifies the width to be added to the conditioning data, influencing the dimensions of the generated image.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Comfy dtype: `INT`
     - Specifies the height to be added to the conditioning data, influencing the dimensions of the generated image.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`ascore`**
-    - Comfy dtype: `FLOAT`
     - An aesthetic score to be added to the conditioning data, aiming to guide the image generation towards more visually appealing results.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`conditioning`**

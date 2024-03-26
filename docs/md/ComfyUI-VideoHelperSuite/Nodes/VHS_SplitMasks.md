@@ -4,28 +4,36 @@
 - Category: `Video Helper Suite 🎥🅥🅗🅢/mask`
 - Output node: `False`
 
-The `VHS_SplitMasks` node is designed to divide a batch of masks into two groups based on a specified index. This operation allows for the separation of mask data into distinct sets, which can be useful in various image and video processing tasks where masks need to be handled or analyzed separately.
+The VHS_SplitMasks node is designed for dividing a batch of masks into two groups based on a specified index. This functionality is essential for workflows that require the separation of mask data into distinct sets for further processing or analysis.
 ## Input types
 ### Required
 - **`mask`**
-    - The input mask tensor that is to be split into two groups. This parameter is crucial for defining the point of division within the batch of masks.
-    - Python dtype: `torch.Tensor`
+    - The 'mask' parameter represents the batch of masks to be split. It is crucial for determining how the masks are divided into two groups.
     - Comfy dtype: `MASK`
+    - Python dtype: `Tensor`
 - **`split_index`**
-    - An integer specifying the index at which the input mask tensor should be split. The choice of this index directly influences the composition of the resulting mask groups.
-    - Python dtype: `int`
+    - The 'split_index' parameter specifies the index at which the batch of masks is split into two groups. Its value influences the distribution of masks between the two resulting sets.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
-- **`mask`**
-    - The second group of masks obtained after splitting the input tensor at the specified index.
-    - Python dtype: `torch.Tensor`
+- **`MASK_A`**
     - Comfy dtype: `MASK`
-- **`int`**
+    - The first group of masks obtained after the split.
+    - Python dtype: `Tensor`
+- **`A_count`**
+    - Comfy dtype: `INT`
+    - The count of masks in the first group.
+    - Python dtype: `int`
+- **`MASK_B`**
+    - Comfy dtype: `MASK`
+    - The second group of masks obtained after the split.
+    - Python dtype: `Tensor`
+- **`B_count`**
+    - Comfy dtype: `INT`
     - The count of masks in the second group.
     - Python dtype: `int`
-    - Comfy dtype: `INT`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 

@@ -4,22 +4,22 @@
 - Category: `ImpactPack/Operation`
 - Output node: `False`
 
-The `BitwiseAndMask` node performs a bitwise AND operation between two masks. This operation is useful for combining masks where the overlapping areas are retained, and non-overlapping areas are discarded.
+The BitwiseAndMask node performs a bitwise AND operation between two masks, resulting in a new mask that represents the intersection of the input masks. This operation is useful for combining or filtering mask data based on overlapping regions.
 ## Input types
 ### Required
 - **`mask1`**
-    - The first input mask for the bitwise AND operation. It plays a crucial role in determining the areas to be retained or discarded in the final mask.
-    - Python dtype: `torch.Tensor`
+    - The first input mask for the bitwise AND operation. It plays a crucial role in determining the resulting mask by intersecting its content with the second mask.
     - Comfy dtype: `MASK`
+    - Python dtype: `torch.Tensor`
 - **`mask2`**
-    - The second input mask for the bitwise AND operation. It equally contributes to the final outcome by specifying which areas of the first mask should be retained.
-    - Python dtype: `torch.Tensor`
+    - The second input mask for the bitwise AND operation. It intersects with the first mask to produce the resulting mask that highlights the overlapping areas.
     - Comfy dtype: `MASK`
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`mask`**
-    - The result of the bitwise AND operation between the two input masks, retaining only the overlapping areas.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The output mask resulting from the bitwise AND operation between the two input masks, highlighting the areas where both masks overlap.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

@@ -8,20 +8,20 @@ The BasicScheduler node is designed to compute a sequence of sigma values for di
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - The model parameter specifies the diffusion model for which the sigma values are to be calculated. It plays a crucial role in determining the appropriate sigma values for the diffusion process.
+    - Comfy dtype: `MODEL`
     - Python dtype: `comfy.model_management.Model`
 - **`scheduler`**
-    - Comfy dtype: `COMBO[STRING]`
     - The scheduler parameter determines the scheduling algorithm to be used for calculating the sigma values. It directly influences the progression and characteristics of the diffusion process.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`steps`**
-    - Comfy dtype: `INT`
     - The steps parameter indicates the total number of steps in the diffusion process. It affects the granularity and duration of the process.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`denoise`**
-    - Comfy dtype: `FLOAT`
     - The denoise parameter allows for adjusting the effective number of steps by scaling the total steps, enabling finer control over the diffusion process.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`sigmas`**

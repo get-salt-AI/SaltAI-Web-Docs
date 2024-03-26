@@ -8,8 +8,8 @@ The ADE_AnimateDiffUnload node is designed to revert any modifications made to t
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - The 'model' parameter represents the model to be restored to its original state. It is crucial for specifying the target model from which the AnimateDiff modifications will be unloaded, ensuring the model can be returned to its vanilla configuration.
+    - Comfy dtype: `MODEL`
     - Python dtype: `ModelPatcher`
 ## Output types
 - **`model`**

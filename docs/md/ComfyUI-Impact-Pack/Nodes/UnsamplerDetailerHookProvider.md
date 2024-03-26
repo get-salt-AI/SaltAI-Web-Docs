@@ -4,58 +4,58 @@
 - Category: `ImpactPack/Detailer`
 - Output node: `False`
 
-UnsamplerDetailerHookProvider is a class designed to provide hooks for detailer operations, specifically focusing on unsampling tasks within the Impact Pack. It leverages the UnsamplerDetailerHook to apply unsampling techniques, enhancing the detail and quality of images or samples during the processing pipeline.
+The UnsamplerDetailerHookProvider node is designed to provide hooks that modify the sampling process in image generation tasks. It focuses on adjusting the unsampling behavior, which is a critical step in refining the details and quality of generated images.
 ## Input types
 ### Required
 - **`model`**
-    - unknown
-    - Python dtype: `unknown`
+    - Specifies the model used in the unsampling process, serving as the foundation for generating images.
     - Comfy dtype: `MODEL`
+    - Python dtype: `str`
 - **`steps`**
-    - unknown
-    - Python dtype: `unknown`
+    - Determines the number of steps in the unsampling process, affecting the level of detail and refinement in the generated images.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`start_end_at_step`**
-    - unknown
-    - Python dtype: `unknown`
+    - Defines the starting point for the end step in the unsampling process, influencing the progression of image refinement.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`end_end_at_step`**
-    - unknown
-    - Python dtype: `unknown`
+    - Specifies the ending point for the end step in the unsampling process, further refining the progression of image detail enhancement.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`cfg`**
-    - unknown
-    - Python dtype: `unknown`
+    - Sets the configuration for the unsampling process, impacting the overall quality and characteristics of the generated images.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`sampler_name`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `['euler', 'euler_ancestral', 'heun'...]`
+    - Indicates the sampler used in the unsampling process, affecting the method of image generation.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
 - **`scheduler`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `['normal', 'karras', 'exponential'...]`
+    - Determines the scheduling strategy for the unsampling process, influencing the timing and sequence of image refinement steps.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
 - **`normalize`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `['disable', 'enable'...]`
+    - Specifies whether to normalize the output of the unsampling process, affecting the consistency and quality of the generated images.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `bool`
 - **`positive`**
-    - unknown
-    - Python dtype: `unknown`
+    - Defines positive conditioning factors for the unsampling process, guiding the generation towards desired attributes.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `str`
 - **`negative`**
-    - unknown
-    - Python dtype: `unknown`
+    - Sets negative conditioning factors for the unsampling process, steering the generation away from undesired attributes.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `str`
 - **`schedule_for_cycle`**
     - unknown
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `unknown`
-    - Comfy dtype: `['skip_start', 'from_start'...]`
 ## Output types
 - **`detailer_hook`**
-    - The output is a detailer hook specifically tailored for unsampling operations. It is designed to enhance image or sample quality by applying unsampling techniques.
-    - Python dtype: `DetailerHook`
     - Comfy dtype: `DETAILER_HOOK`
+    - Produces a detailer hook configured according to the specified unsampling parameters, ready to be integrated into the image generation pipeline.
+    - Python dtype: `DetailerHook`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

@@ -4,38 +4,38 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The `ImageReceiver` node processes an input image, optionally decodes it from base64 if `save_to_workflow` is true, applies EXIF orientation correction, converts it to an RGB format, and normalizes it. It also generates a mask based on the alpha channel if present, or a zero mask otherwise. This node is designed to prepare images for further processing within a workflow, handling both image data received as base64 strings and direct image inputs.
+The ImageReceiver node is designed to process and transform image data received in various formats, including base64-encoded strings. It decodes, transposes, and converts images to a standardized format for further processing or analysis, optionally applying a mask if transparency data is available. This node plays a crucial role in preparing image data for downstream tasks by ensuring images are in a consistent and usable state.
 ## Input types
 ### Required
 - **`image`**
-    - The primary image input for processing. It can be a direct image input or a base64-encoded string, depending on the `save_to_workflow` flag.
-    - Python dtype: `Union[torch.Tensor, str]`
-    - Comfy dtype: `IMAGE`
+    - The 'image' parameter represents the image to be processed. It is crucial for the node's operation as it serves as the primary input upon which all transformations and analyses are performed.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `torch.Tensor`
 - **`link_id`**
-    - An identifier for linking the processed image to other components or outputs in the workflow. Its specific use may vary depending on the workflow design.
-    - Python dtype: `int`
+    - The 'link_id' parameter is used to identify the specific processing task or workflow instance. It helps in tracking and managing the processed images within a larger system or application.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`save_to_workflow`**
-    - A flag indicating whether the input image is a base64-encoded string that needs to be decoded and processed. When true, additional processing steps are performed.
-    - Python dtype: `bool`
+    - This boolean parameter determines whether the processed image should be saved to the workflow. Enabling this option triggers the image processing and transformation steps.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`image_data`**
-    - Optional base64-encoded image data. When `save_to_workflow` is true, this data is decoded and processed as the input image.
-    - Python dtype: `str`
+    - The 'image_data' parameter contains the image information, typically as a base64-encoded string. It is essential for decoding and converting the image into a format suitable for further processing.
     - Comfy dtype: `STRING`
+    - Python dtype: `str`
 - **`trigger_always`**
-    - A flag that may control the node's execution behavior in response to workflow triggers, though its specific function is not detailed in the provided context.
-    - Python dtype: `bool`
+    - This parameter controls whether the node's processing should be triggered unconditionally. It allows for flexibility in workflow execution, ensuring that image processing can occur as needed.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ## Output types
 - **`image`**
-    - A mask generated based on the presence of an alpha channel in the input image, or a zero mask if no alpha channel is present.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The processed image, transformed and standardized for further use.
+    - Python dtype: `torch.Tensor`
 - **`mask`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `MASK`
+    - An optional mask generated based on the image's transparency data, useful for selective processing or analysis.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

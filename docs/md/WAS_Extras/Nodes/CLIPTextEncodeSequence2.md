@@ -4,47 +4,51 @@
 - Category: `conditioning`
 - Output node: `False`
 
-This node processes a sequence of text lines for conditioning, using either a basic or an advanced CLIP text encoding method based on configuration. It supports token normalization and weight interpretation for the advanced encoding method, and organizes the encoded data along with their indices for further processing.
+This node is designed to encode text inputs into a sequence of conditionings suitable for guiding generative models. It processes each line of the input text, optionally using an advanced encoding method if available, and organizes the encoded data into a structured sequence that can be utilized for conditional generation tasks.
 ## Input types
 ### Required
 - **`clip`**
-    - The CLIP model used for text encoding. It's crucial for converting text into a format that can be used for conditioning in generative models.
-    - Python dtype: `torch.nn.Module`
+    - The CLIP model used for encoding the text. It plays a crucial role in transforming textual descriptions into a format that can be understood by generative models.
     - Comfy dtype: `CLIP`
+    - Python dtype: `object`
 - **`token_normalization`**
-    - Indicates whether token normalization is applied during encoding, affecting the representation of the text in the conditioning.
-    - Python dtype: `str`
-    - Comfy dtype: `STRING`
+    - Determines whether or not to normalize tokens during encoding, impacting the consistency and quality of the generated output.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `bool`
 - **`weight_interpretation`**
-    - Determines how weights are interpreted in the advanced encoding process, influencing the final conditioning output.
-    - Python dtype: `str`
-    - Comfy dtype: `STRING`
+    - Controls how the weights are interpreted during the encoding process, potentially altering the emphasis on different aspects of the input text.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `bool`
 - **`cond_keyframes_type`**
-    - Defines the method used to distribute keyframes across the conditioning sequence, influencing the temporal structure of the generated content. The choice of method (linear, sinusoidal, etc.) affects how the narrative or visual elements are paced over time, providing a framework for dynamic storytelling or visual transitions.
+    - Specifies the type of keyframe conditioning to apply, influencing how the encoded text is structured into a sequence for generation.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`frame_count`**
-    - Specifies the total number of frames to be generated, directly affecting the length and coverage of the conditioning sequence.
-    - Python dtype: `int`
+    - The total number of frames to generate, affecting the distribution of conditionings across the sequence.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`text`**
-    - The input text, potentially containing multiple lines, each intended for separate encoding. The structure and content of this text directly influence the generated conditionings.
-    - Python dtype: `str`
+    - The input text to be encoded. It is processed line by line, with each line potentially representing a separate conditioning for the generative model.
     - Comfy dtype: `STRING`
+    - Python dtype: `str`
 ## Output types
-- **`conditioning`**
-    - A list of conditionings prepared for further generative processes.
-    - Python dtype: `List[Tuple[int, dict]]`
+- **`conditioning_sequence`**
     - Comfy dtype: `CONDITIONING`
-- **`int`**
-    - The total number of frames in the conditioning sequence, confirming the sequence length.
-    - Python dtype: `int`
+    - The sequence of encoded conditionings derived from the input text, ready for use in guiding generative models.
+    - Python dtype: `list`
+- **`cond_keyframes`**
     - Comfy dtype: `INT`
+    - The calculated keyframe conditionings based on the input parameters, providing a structured approach to sequence generation.
+    - Python dtype: `list`
+- **`frame_count`**
+    - Comfy dtype: `INT`
+    - The total number of frames that will be generated, reflecting the input parameter.
+    - Python dtype: `int`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
-The CLIPTextEncodeSequence2 node is primarily utilized for processing a sequence of text lines through either basic or advanced CLIP text encoding methods, tailored for dynamic storytelling or visual transitions in AI-generated content. It accepts multiline text as input and outputs a list of conditionings along with their indices and the total frame count, making it ideal for applications requiring nuanced text interpretation and temporal structuring in generative models.
+
 ## Source code
 ```python
 class CLIPTextEncodeSequence2:

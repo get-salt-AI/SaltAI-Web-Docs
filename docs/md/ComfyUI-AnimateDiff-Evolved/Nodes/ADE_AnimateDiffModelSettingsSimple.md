@@ -8,21 +8,21 @@ This node is designed to configure the motion model settings for the AnimateDiff
 ## Input types
 ### Required
 - **`motion_pe_stretch`**
-    - Comfy dtype: `INT`
     - Determines the stretch of positional encoding in the motion model, affecting the range and intensity of motion effects.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`mask_motion_scale`**
-    - Comfy dtype: `MASK`
     - An optional mask that can be applied to selectively adjust the motion scale across different parts of the animation.
+    - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`min_motion_scale`**
-    - Comfy dtype: `FLOAT`
     - Specifies the minimum scale for motion in the animation, setting a lower bound for how subtle the motion effects can be.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`max_motion_scale`**
-    - Comfy dtype: `FLOAT`
     - Defines the maximum scale for motion in the animation, establishing an upper limit for the intensity of motion effects.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`ad_settings`**

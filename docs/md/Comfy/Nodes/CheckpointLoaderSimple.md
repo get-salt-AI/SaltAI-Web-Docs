@@ -8,8 +8,8 @@ The CheckpointLoaderSimple node is designed for loading model checkpoints withou
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the name of the checkpoint to be loaded. This parameter is crucial as it determines which checkpoint file the node will attempt to load, directly affecting the node's execution and the model that is loaded.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`model`**

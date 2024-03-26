@@ -4,21 +4,21 @@
 - Category: `ImpactPack/Logic/_for_test`
 - Output node: `True`
 
-The `ImpactRemoteBoolean` node is designed to handle boolean inputs for widgets associated with a specific node in a user interface. It allows for the dynamic updating of widget values based on boolean inputs, facilitating interactive and responsive UI elements within the ComfyUI framework.
+The ImpactRemoteBoolean node is designed to interact with boolean widgets in a remote interface, allowing for the dynamic control of boolean values based on external inputs.
 ## Input types
 ### Required
 - **`node_id`**
-    - Identifies the specific node the widget is associated with, enabling targeted updates to the UI based on the input provided.
-    - Python dtype: `int`
+    - Specifies the unique identifier of the node whose widget is being controlled, playing a crucial role in targeting the correct widget for value updates.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`widget_name`**
-    - Specifies the name of the widget to be updated, allowing for precise control over which UI element is affected by the boolean input.
-    - Python dtype: `str`
+    - Identifies the specific widget within the node to be controlled, enabling precise manipulation of its boolean value.
     - Comfy dtype: `STRING`
+    - Python dtype: `str`
 - **`value`**
-    - The boolean input value to be sent to the specified widget, enabling dynamic updates to the UI based on user interactions or programmatic conditions.
-    - Python dtype: `bool`
+    - The boolean value to be set for the specified widget, dictating the widget's state as either true or false.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ## Output types
 The node doesn't have output types
 ## Usage tips

@@ -4,56 +4,56 @@
 - Category: `Video Helper Suite 🎥🅥🅗🅢`
 - Output node: `False`
 
-This node is designed to load video files from a specified path. It supports various customization options such as adjusting the frame rate, resizing the video dimensions, and selecting specific frames to load. This allows for flexible video processing tailored to the user's needs.
+This node is designed for loading video files from a specified path. It facilitates the process of importing video content into the system for further processing or analysis, making it a crucial component for workflows that involve video manipulation or analysis.
 ## Input types
 ### Required
 - **`video`**
-    - The path to the video file to be loaded. This parameter is crucial as it determines which video will be processed.
+    - Specifies the path to the video file that needs to be loaded. It is essential for locating and accessing the video content for processing.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`force_rate`**
-    - Specifies the frame rate to which the video should be adjusted. This can be used to standardize the frame rate across different videos.
-    - Python dtype: `int`
+    - Sets the frame rate to be forced on the loaded video, allowing for consistent frame rate across different videos.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`force_size`**
-    - Defines the target size for the video, allowing for resizing to a specific dimension. It includes options like 'Disabled', 'Custom Height', 'Custom Width', 'Custom', and various fixed sizes.
-    - Python dtype: `List[str]`
-    - Comfy dtype: `STRING`
+    - Determines the resolution to which the video should be resized during loading. This parameter is crucial for standardizing video dimensions across different processing steps.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
 - **`custom_width`**
-    - Sets the custom width for the video resizing, providing control over the video's aspect ratio.
-    - Python dtype: `int`
+    - Specifies the custom width to which the video should be resized if 'Custom Width' or 'Custom' force_size options are selected.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`custom_height`**
-    - Sets the custom height for the video resizing, offering further customization of the video's dimensions.
-    - Python dtype: `int`
+    - Specifies the custom height to which the video should be resized if 'Custom Height' or 'Custom' force_size options are selected.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`frame_load_cap`**
-    - Limits the number of frames to be loaded from the video, useful for processing shorter segments or reducing memory usage.
-    - Python dtype: `int`
+    - Limits the number of frames to be loaded from the video, useful for processing long videos or for sampling.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`skip_first_frames`**
-    - Allows skipping a specified number of initial frames, useful for bypassing unneeded content at the beginning of a video.
-    - Python dtype: `int`
+    - Skips a specified number of frames at the beginning of the video, useful for bypassing unneeded content.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`select_every_nth`**
-    - Enables the selection of every Nth frame from the video, facilitating the reduction of the total number of frames processed.
-    - Python dtype: `int`
+    - Loads every nth frame from the video, allowing for frame rate reduction or selective frame processing.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
-- **`image`**
-    - The processed video frames as images.
-    - Python dtype: `List[torch.Tensor]`
+- **`IMAGE`**
     - Comfy dtype: `IMAGE`
-- **`int`**
-    - The total number of frames processed and loaded from the video.
-    - Python dtype: `int`
+    - Returns the loaded video frames as images, facilitating further image-based processing or analysis.
+    - Python dtype: `List[Image]`
+- **`frame_count`**
     - Comfy dtype: `INT`
-- **`vhs_audio`**
-    - The audio track extracted from the video, if any.
-    - Python dtype: `Optional[torch.Tensor]`
+    - Provides the total number of frames loaded from the video, useful for understanding the video's length and for iteration purposes.
+    - Python dtype: `int`
+- **`audio`**
     - Comfy dtype: `VHS_AUDIO`
+    - Returns the audio track extracted from the video, enabling separate audio processing or analysis.
+    - Python dtype: `VHS_AUDIO`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 

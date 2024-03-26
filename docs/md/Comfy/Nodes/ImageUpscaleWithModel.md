@@ -8,12 +8,12 @@ This node is designed for upscaling images using a specified upscale model. It h
 ## Input types
 ### Required
 - **`upscale_model`**
-    - Comfy dtype: `UPSCALE_MODEL`
     - The upscale model to be used for upscaling the image. It is crucial for defining the upscaling algorithm and its parameters.
+    - Comfy dtype: `UPSCALE_MODEL`
     - Python dtype: `torch.nn.Module`
 - **`image`**
-    - Comfy dtype: `IMAGE`
     - The image to be upscaled. This input is essential for determining the source content that will undergo the upscaling process.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**

@@ -4,18 +4,18 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The `ImpactSEGSConcat` node is designed to concatenate multiple segmentation data (`SEGS`) based on their dimensions. It ensures that only `SEGS` with matching dimensions are concatenated, and provides error messages for mismatched dimensions.
+The ImpactSEGSConcat node is designed to concatenate multiple segmentation data structures (SEGS) into a single SEGS structure. It ensures that all concatenated segments have the same dimensions and combines them accordingly, handling discrepancies by ignoring incompatible segments.
 ## Input types
 ### Required
 - **`segs1`**
-    - Represents the first set of segmentation data to be concatenated. It is crucial for the operation as it sets the initial dimension to which subsequent `SEGS` will be compared and concatenated if they match.
-    - Python dtype: `Tuple[Tuple[int, int], List[Any]]`
+    - Represents the first set of segmentation data structures to be concatenated. It is crucial for combining multiple SEGS into a single structure, ensuring they share the same dimensions for successful concatenation.
     - Comfy dtype: `SEGS`
+    - Python dtype: `Tuple[Tuple[int, int], List[Any]]`
 ## Output types
 - **`segs`**
-    - Outputs the concatenated segmentation data with their dimensions. If no valid `SEGS` are provided, it returns an empty `SEGS` structure.
-    - Python dtype: `Tuple[Tuple[int, int], List[Any]]`
     - Comfy dtype: `SEGS`
+    - The output is a single SEGS data structure that combines the input SEGS structures, ensuring they share the same dimensions. It may return an empty SEGS if no compatible segments are found.
+    - Python dtype: `Tuple[Tuple[int, int], List[Any]]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `DetailerForEachDebugPipe`

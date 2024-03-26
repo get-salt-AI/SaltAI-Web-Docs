@@ -8,21 +8,21 @@ This node is designed to create and manage batched context options for Animate D
 ## Input types
 ### Required
 - **`context_length`**
-    - Comfy dtype: `INT`
     - Specifies the length of the context to be used in the batched processing. This parameter is crucial for defining the scope of the context over which the animation and diff operations are applied, directly influencing the granularity and precision of the process.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`start_percent`**
-    - Comfy dtype: `FLOAT`
     - Determines the starting point of the context as a percentage of the total length. This allows for fine-tuning the initial position of the context window, enabling more precise control over the animation and diffing operations.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`guarantee_steps`**
-    - Comfy dtype: `INT`
     - Defines the minimum number of steps guaranteed within the context. This parameter ensures that a certain level of detail and smoothness is maintained in the animation and diffing processes, regardless of the context length or start position.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`prev_context`**
-    - Comfy dtype: `CONTEXT_OPTIONS`
     - Allows for the inheritance and modification of previously defined context options. This facilitates the reuse and adaptation of context settings, promoting efficiency and consistency across batched processing tasks.
+    - Comfy dtype: `CONTEXT_OPTIONS`
     - Python dtype: `ContextOptionsGroup`
 ## Output types
 - **`CONTEXT_OPTS`**

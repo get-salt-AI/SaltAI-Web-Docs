@@ -4,68 +4,68 @@
 - Category: `sampling`
 - Output node: `False`
 
-This node provides an advanced sampling mechanism by wrapping around the KSamplerAdvanced class. It configures the sampler with specific parameters such as configuration (cfg), sampler name, scheduler, and the basic pipeline components. The node is designed for more complex sampling scenarios where advanced control over the sampling process is required.
+This node provides an advanced sampling mechanism for generating or modifying images based on a given configuration, sampler name, scheduler, and a basic pipeline setup. It encapsulates complex sampling strategies to offer enhanced control over the image generation process, leveraging advanced techniques to achieve specific visual outcomes.
 ## Input types
 ### Required
 - **`basic_pipe`**
-    - Provides the basic components required for the sampling process, including the model and positive/negative conditioning. It serves as the foundation for the sampling operation.
-    - Python dtype: `Tuple[torch.nn.Module, NoneType, NoneType, List[str], List[str]]`
+    - Represents the basic pipeline setup, providing essential components and context for the sampling operation.
     - Comfy dtype: `BASIC_PIPE`
+    - Python dtype: `tuple`
 - **`add_noise`**
-    - Determines whether noise should be added to the sampling process, enhancing the diversity of the generated samples.
+    - Indicates whether noise should be added to the sampling process, affecting the texture and details of the generated images.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
-    - Comfy dtype: `BOOLEAN`
 - **`noise_seed`**
-    - Specifies the seed for noise generation, ensuring reproducibility in the sampling process when adding noise.
-    - Python dtype: `int`
+    - Specifies the seed for noise generation, ensuring reproducibility of the noise patterns in the sampling process.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`steps`**
-    - Defines the number of steps in the sampling process, affecting the detail and quality of the generated samples.
+    - Defines the number of steps in the sampling process, impacting the refinement and detail of the generated images.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
-    - Comfy dtype: `INT`
 - **`cfg`**
-    - Specifies the configuration for the sampling process, affecting aspects like sampling precision and behavior.
-    - Python dtype: `float`
+    - Specifies the configuration for the sampling process, influencing the behavior and quality of the generated images.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`sampler_name`**
-    - Determines the specific sampler algorithm to be used during the sampling process. This choice influences the sampling strategy and outcomes.
+    - Determines the specific sampling algorithm to be used, allowing for customization of the sampling process.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`scheduler`**
-    - Selects the scheduling algorithm for controlling the sampling steps. The scheduler affects the progression and adjustment of sampling parameters over time.
+    - Defines the scheduling strategy for the sampling process, affecting how samples are generated over time.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`latent_image`**
-    - unknown
-    - Python dtype: `unknown`
+    - Provides the initial latent image to be modified or enhanced through the sampling process.
     - Comfy dtype: `LATENT`
+    - Python dtype: `torch.Tensor`
 - **`start_at_step`**
-    - unknown
-    - Python dtype: `unknown`
+    - Specifies the starting step for the sampling process, allowing for control over the initial phase of image generation.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`end_at_step`**
-    - unknown
-    - Python dtype: `unknown`
+    - Determines the ending step for the sampling process, defining the final phase of image refinement.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`return_with_leftover_noise`**
-    - unknown
-    - Python dtype: `unknown`
+    - Indicates whether the sampling process should return the image with leftover noise, affecting the final image texture.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ## Output types
 - **`basic_pipe`**
-    - Returns the basic pipeline components, including the model and conditioning information.
-    - Python dtype: `Tuple[torch.nn.Module, NoneType, NoneType, List[str], List[str]]`
     - Comfy dtype: `BASIC_PIPE`
+    - The basic pipeline setup, including model, clip, vae, and conditioning components.
+    - Python dtype: `tuple`
 - **`latent`**
-    - The generated latent representation as a result of the advanced sampling process.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `LATENT`
+    - The latent representation of the generated or modified image after the sampling process.
+    - Python dtype: `torch.Tensor`
 - **`vae`**
-    - The variational autoencoder used in the sampling process, facilitating the generation of detailed samples.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `VAE`
+    - The variational autoencoder component used in the sampling process for image generation or modification.
+    - Python dtype: `torch.nn.Module`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 

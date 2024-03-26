@@ -4,30 +4,30 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-This node provides a hook for filtering and ordering segmentation results based on specified criteria. It allows for the selection of segments based on their properties (e.g., area, width, height) and orders them according to a specified order (ascending or descending). It also supports taking a subset of the ordered segments starting from a specified index.
+The SEGSOrderedFilterDetailerHookProvider node is designed to create a detailer hook that filters and orders segmentation results based on specified criteria. It allows for the customization of the ordering and filtering process, enabling the selection and prioritization of segmentation results according to user-defined parameters.
 ## Input types
 ### Required
 - **`target`**
-    - Specifies the property of the segments to be used for filtering and ordering. This can include properties like area, width, height, and coordinates.
-    - Python dtype: `Tuple[str]`
-    - Comfy dtype: `STRING`
+    - Specifies the target attribute of the segmentation results to be filtered and ordered. This could be attributes like area, width, height, or coordinates, which determine the basis for filtering and ordering.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `Tuple[List[str]]`
 - **`order`**
-    - Determines the order in which the segments are sorted. A boolean value where True indicates descending order and False indicates ascending order.
-    - Python dtype: `bool`
+    - Determines the order in which the segmentation results are sorted. A boolean value where True indicates descending order and False indicates ascending order.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`take_start`**
-    - The starting index from which to take the segments after ordering. Allows for selecting a subset of segments.
-    - Python dtype: `int`
+    - Defines the starting index from which to take the filtered and ordered segmentation results, allowing for pagination or skipping initial results.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`take_count`**
-    - The number of segments to take starting from the 'take_start' index. This allows for limiting the number of segments to process.
-    - Python dtype: `int`
+    - Specifies the number of segmentation results to take after applying the filter and order, enabling control over the quantity of results returned.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
 - **`detailer_hook`**
-    - Returns a detailer hook configured to filter and order segmentation results based on the specified criteria.
-    - Python dtype: `hooks.SEGSOrderedFilterDetailerHook`
     - Comfy dtype: `DETAILER_HOOK`
+    - Returns a detailer hook configured to filter and order segmentation results based on the provided criteria.
+    - Python dtype: `Tuple[DetailerHook]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

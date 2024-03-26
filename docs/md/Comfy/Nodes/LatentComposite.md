@@ -8,24 +8,24 @@ The LatentComposite node is designed to blend or merge two latent representation
 ## Input types
 ### Required
 - **`samples_to`**
-    - Comfy dtype: `LATENT`
     - The 'samples_to' latent representation where the 'samples_from' will be composited onto. It serves as the base for the composite operation.
+    - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 - **`samples_from`**
-    - Comfy dtype: `LATENT`
     - The 'samples_from' latent representation to be composited onto the 'samples_to'. It contributes its features or characteristics to the final composite output.
+    - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 - **`x`**
-    - Comfy dtype: `INT`
     - The x-coordinate (horizontal position) where the 'samples_from' latent will be placed on the 'samples_to'. It determines the horizontal alignment of the composite.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`y`**
-    - Comfy dtype: `INT`
     - The y-coordinate (vertical position) where the 'samples_from' latent will be placed on the 'samples_to'. It determines the vertical alignment of the composite.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`feather`**
-    - Comfy dtype: `INT`
     - A boolean indicating whether the 'samples_from' latent should be resized to match the 'samples_to' before compositing. This can affect the scale and proportion of the composite result.
+    - Comfy dtype: `INT`
     - Python dtype: `bool`
 ## Output types
 - **`latent`**

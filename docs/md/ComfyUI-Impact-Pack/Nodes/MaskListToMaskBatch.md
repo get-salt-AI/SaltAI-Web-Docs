@@ -4,18 +4,18 @@
 - Category: `ImpactPack/Operation`
 - Output node: `False`
 
-This node transforms a list of masks into a batch of masks, handling different scenarios such as a single mask, multiple masks with potentially different dimensions, or no masks at all. It ensures that all masks in the batch have consistent dimensions, either by upsampling smaller masks or creating an empty mask if no input is provided.
+The MaskListToMaskBatch node is designed to transform a list of individual masks into a single batch of masks, handling differences in dimensions by upsampling and concatenating them as necessary. This operation facilitates the processing of multiple masks in a unified manner, optimizing for batch operations in image processing tasks.
 ## Input types
 ### Required
 - **`mask`**
-    - The input mask or list of masks to be transformed into a batch. This parameter is crucial for determining the output shape and content of the mask batch, affecting the node's execution by handling different scenarios like single or multiple masks.
-    - Python dtype: `List[torch.Tensor]`
+    - The 'mask' input represents a list of individual masks to be transformed into a batch. It is crucial for batch processing of images, allowing for the handling of multiple masks in a unified operation.
     - Comfy dtype: `MASK`
+    - Python dtype: `List[torch.Tensor]`
 ## Output types
 - **`mask`**
-    - The output is a batch of masks, which could be a single mask, a concatenated batch of multiple masks, or an empty mask, depending on the input.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The output is a batch of masks, either as a single 3D mask if the input list contains one mask, or a concatenated batch of 3D masks if the input list contains multiple masks. This facilitates batch processing in image manipulation tasks.
+    - Python dtype: `Tuple[torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

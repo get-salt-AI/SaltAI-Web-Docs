@@ -8,20 +8,20 @@ This node applies a control network to a given image and conditioning, adjusting
 ## Input types
 ### Required
 - **`conditioning`**
-    - Comfy dtype: `CONDITIONING`
     - The conditioning data to be modified by the control network. It serves as the basis for the control network's adjustments, influencing the final output.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
 - **`control_net`**
-    - Comfy dtype: `CONTROL_NET`
     - The control network to be applied. It defines the specific adjustments to be made to the image, based on its trained parameters.
+    - Comfy dtype: `CONTROL_NET`
     - Python dtype: `ControlNet`
 - **`image`**
-    - Comfy dtype: `IMAGE`
     - The image to which the control network's adjustments will be applied. It provides the visual context for the control network's operations.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`strength`**
-    - Comfy dtype: `FLOAT`
     - A scalar value determining the intensity of the control network's adjustments. It allows for fine-tuning the impact of the control network on the image.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`conditioning`**

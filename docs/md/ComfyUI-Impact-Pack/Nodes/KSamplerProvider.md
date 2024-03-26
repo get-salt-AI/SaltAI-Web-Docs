@@ -4,44 +4,44 @@
 - Category: `ImpactPack/Sampler`
 - Output node: `False`
 
-The KSamplerProvider node provides a mechanism to create a sampler object based on a predefined configuration and a basic pipeline. It initializes a KSamplerWrapper with the provided model, seed, steps, configuration, sampler name, scheduler, denoise level, and the positive and negative conditioning from the basic pipeline. This sampler can then be used for generating samples.
+KSamplerProvider is designed to facilitate the creation of custom samplers for generative models, allowing users to specify various parameters such as seed, steps, and configuration settings to tailor the sampling process.
 ## Input types
 ### Required
 - **`seed`**
-    - The seed parameter ensures reproducibility of the sampling process by initializing the random number generator with a specific value.
-    - Python dtype: `int`
+    - The seed parameter ensures reproducibility of the sampling process by initializing the random number generator to a specific state.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`steps`**
-    - The steps parameter determines the number of iterations the sampling process will perform, affecting the quality and the time of generation.
-    - Python dtype: `int`
+    - Defines the number of steps the sampler will take, affecting the detail and quality of the generated samples.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`cfg`**
-    - The cfg parameter adjusts the configuration of the sampling process, influencing the behavior and characteristics of the generated samples.
-    - Python dtype: `float`
+    - Configuration setting that influences the behavior of the sampler, allowing for fine-tuning of the sampling process.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`sampler_name`**
-    - The sampler_name parameter selects the specific sampling algorithm to be used, allowing for customization of the sampling process.
+    - Specifies the name of the sampler to be used, enabling the selection from a predefined list of samplers.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`scheduler`**
-    - The scheduler parameter selects the scheduling algorithm for controlling the sampling process, impacting the progression of sample generation.
+    - Determines the scheduling algorithm to be applied during the sampling process, chosen from a predefined list.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`denoise`**
-    - The denoise parameter controls the level of denoising applied to the generated samples, affecting their clarity and detail.
-    - Python dtype: `float`
+    - Controls the level of denoising applied to the samples, affecting the clarity and sharpness.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`basic_pipe`**
-    - The basic_pipe parameter provides the necessary components for the sampling process, including the model and conditioning information.
-    - Python dtype: `Tuple[torch.nn.Module, Any, Any, Any, Any]`
+    - A basic pipeline configuration that includes the model and conditioning information, serving as the foundation for the sampling process.
     - Comfy dtype: `BASIC_PIPE`
+    - Python dtype: `tuple`
 ## Output types
 - **`ksampler`**
-    - The sampler object configured and initialized for generating samples based on the provided parameters.
-    - Python dtype: `KSamplerWrapper`
     - Comfy dtype: `KSAMPLER`
+    - Returns a custom sampler instance configured according to the specified parameters.
+    - Python dtype: `KSamplerWrapper`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 

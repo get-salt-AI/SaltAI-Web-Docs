@@ -8,16 +8,16 @@ The ImageFromBatch node is designed for extracting a specific segment of images 
 ## Input types
 ### Required
 - **`image`**
-    - Comfy dtype: `IMAGE`
     - The batch of images from which a segment will be extracted. This parameter is crucial for specifying the source batch.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`batch_index`**
-    - Comfy dtype: `INT`
     - The starting index within the batch from which the extraction begins. It determines the initial position of the segment to be extracted from the batch.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`length`**
-    - Comfy dtype: `INT`
     - The number of images to extract from the batch starting from the batch_index. This parameter defines the size of the segment to be extracted.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**

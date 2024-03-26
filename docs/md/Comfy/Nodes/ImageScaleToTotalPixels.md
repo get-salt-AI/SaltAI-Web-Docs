@@ -8,16 +8,16 @@ The ImageScaleToTotalPixels node is designed for resizing images to a specified 
 ## Input types
 ### Required
 - **`image`**
-    - Comfy dtype: `IMAGE`
     - The input image to be upscaled to the specified total number of pixels.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`upscale_method`**
-    - Comfy dtype: `COMBO[STRING]`
     - The method used for upscaling the image. It affects the quality and characteristics of the upscaled image.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`megapixels`**
-    - Comfy dtype: `FLOAT`
     - The target size of the image in megapixels. This determines the total number of pixels in the upscaled image.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`image`**

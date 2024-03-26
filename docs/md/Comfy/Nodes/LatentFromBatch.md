@@ -8,16 +8,16 @@ This node is designed to extract a specific subset of latent samples from a give
 ## Input types
 ### Required
 - **`samples`**
-    - Comfy dtype: `LATENT`
     - The collection of latent samples from which a subset will be extracted. This parameter is crucial for determining the source batch of samples to be processed.
+    - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 - **`batch_index`**
-    - Comfy dtype: `INT`
     - Specifies the starting index within the batch from which the subset of samples will begin. This parameter enables targeted extraction of samples from specific positions in the batch.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`length`**
-    - Comfy dtype: `INT`
     - Defines the number of samples to be extracted from the specified starting index. This parameter controls the size of the subset to be processed, allowing for flexible manipulation of batch segments.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`latent`**

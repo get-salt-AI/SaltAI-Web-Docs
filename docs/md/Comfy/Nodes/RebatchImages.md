@@ -8,12 +8,12 @@ The RebatchImages node is designed to reorganize a batch of images into a new ba
 ## Input types
 ### Required
 - **`images`**
-    - Comfy dtype: `IMAGE`
     - A list of images to be rebatched. This parameter is crucial for determining the input data that will undergo the rebatching process.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `List[torch.Tensor]`
 - **`batch_size`**
-    - Comfy dtype: `INT`
     - Specifies the desired size of the output batches. This parameter directly influences how the input images are grouped and processed, impacting the structure of the output.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**

@@ -4,22 +4,22 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-This node scales the bounding box of a segmentation element (SEG_ELT) by a specified factor, adjusts the segmentation mask accordingly, and fills the area outside the new bounding box with zeros. It's useful for focusing on or excluding specific parts of an image based on segmentation.
+This node scales the bounding box of a segmentation element by a specified factor, adjusting the segmentation mask accordingly. It ensures that the scaled bounding box and its corresponding mask are correctly aligned and sized, maintaining the integrity of the segmentation element.
 ## Input types
 ### Required
 - **`seg`**
-    - The segmentation element to be scaled. It includes the original cropped image, segmentation mask, bounding box, and other metadata.
-    - Python dtype: `SEG_ELT`
+    - The segmentation element whose bounding box is to be scaled. It is crucial for determining the area of interest within the image.
     - Comfy dtype: `SEG_ELT`
+    - Python dtype: `SEG_ELT`
 - **`scale_by`**
-    - The factor by which the bounding box is scaled. A value greater than 1 enlarges the bounding box, while a value less than 1 shrinks it.
-    - Python dtype: `float`
+    - The factor by which the bounding box is to be scaled. This directly influences the size of the resulting bounding box and its associated mask.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 ## Output types
 - **`seg_elt`**
-    - The scaled segmentation element, including the adjusted bounding box and segmentation mask.
-    - Python dtype: `SEG_ELT`
     - Comfy dtype: `SEG_ELT`
+    - The scaled segmentation element, including the adjusted bounding box and mask.
+    - Python dtype: `SEG_ELT`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

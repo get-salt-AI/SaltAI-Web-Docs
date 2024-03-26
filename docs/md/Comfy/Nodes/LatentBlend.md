@@ -8,16 +8,16 @@ The LatentBlend node is designed to blend two sets of latent samples together, b
 ## Input types
 ### Required
 - **`samples1`**
-    - Comfy dtype: `LATENT`
     - The first set of latent samples to be blended. It serves as the base for the blending operation.
+    - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 - **`samples2`**
-    - Comfy dtype: `LATENT`
     - The second set of latent samples to be blended with the first set. It contributes to the new, hybrid samples created by the blend operation.
+    - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 - **`blend_factor`**
-    - Comfy dtype: `FLOAT`
     - A float value that determines the proportion of the first set of samples in the final blend. A higher value gives more weight to the first set, while a lower value favors the second set.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`latent`**

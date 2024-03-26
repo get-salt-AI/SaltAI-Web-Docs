@@ -8,12 +8,12 @@ The CM_ComposeVec2 node is designed to construct a 2-dimensional vector from ind
 ## Input types
 ### Required
 - **`x`**
-    - Comfy dtype: `FLOAT`
     - The 'x' parameter represents the x-coordinate of the 2-dimensional vector. It plays a crucial role in defining the vector's horizontal component.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`y`**
-    - Comfy dtype: `FLOAT`
     - The 'y' parameter represents the y-coordinate of the 2-dimensional vector. It is essential for defining the vector's vertical component.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`vec2`**

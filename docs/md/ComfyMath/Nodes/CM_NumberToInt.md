@@ -8,8 +8,8 @@ The CM_NumberToInt node is designed for converting numerical values from a gener
 ## Input types
 ### Required
 - **`a`**
-    - Comfy dtype: `NUMBER`
     - The input 'a' represents the numerical value to be converted to an integer. This parameter is crucial for the conversion process, determining the resultant integer value.
+    - Comfy dtype: `NUMBER`
     - Python dtype: `Union[int, float]`
 ## Output types
 - **`int`**

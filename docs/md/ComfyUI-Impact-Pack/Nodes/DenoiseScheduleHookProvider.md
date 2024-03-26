@@ -4,22 +4,22 @@
 - Category: `ImpactPack/Upscale`
 - Output node: `False`
 
-This node provides a mechanism to apply a denoising schedule to an image generation process. It selects a specific denoising schedule based on the iteration and applies it to progressively reduce noise in the generated image.
+The DenoiseScheduleHookProvider node is designed to create hooks that adjust denoising levels dynamically during the image generation process, based on a predefined schedule and target denoise value. It aims to enhance the quality of the generated images by fine-tuning the denoising parameter over the course of the generation.
 ## Input types
 ### Required
 - **`schedule_for_iteration`**
-    - Specifies the denoising schedule to be applied during the image generation process. It determines how denoising parameters are adjusted over iterations.
+    - Specifies the schedule to be used for adjusting the denoising level during the image generation process. The choice of schedule affects how the target denoising level is approached over time.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `Tuple[str]`
-    - Comfy dtype: `STRING`
 - **`target_denoise`**
-    - Defines the target denoise level to achieve by the end of the generation process. It influences the final clarity and detail of the generated image.
-    - Python dtype: `float`
+    - The target denoising level to be achieved by the end of the image generation process. This value influences the final clarity and detail of the generated image.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 ## Output types
 - **`pk_hook`**
-    - Returns a hook that implements the specified denoising schedule. This hook is used to adjust denoising parameters dynamically during the image generation process.
-    - Python dtype: `PixelKSampleHook`
     - Comfy dtype: `PK_HOOK`
+    - The output is a hook that can be applied to the image generation process to dynamically adjust the denoising level according to the specified schedule.
+    - Python dtype: `PixelKSampleHook`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `PixelKSampleUpscalerProvider`

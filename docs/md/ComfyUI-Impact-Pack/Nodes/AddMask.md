@@ -4,22 +4,22 @@
 - Category: `ImpactPack/Operation`
 - Output node: `False`
 
-The `AddMask` node combines two input masks into a single mask by adding them together. This operation is useful in scenarios where the effects or features of two masks need to be merged into one, enhancing or expanding the mask coverage.
+The AddMask node is designed to combine two mask inputs into a single mask output. It performs an operation that merges the features or areas covered by both input masks, effectively adding the second mask to the first.
 ## Input types
 ### Required
 - **`mask1`**
-    - The first input mask to be combined. It plays an equal role with `mask2` in the addition operation, contributing to the final merged mask.
-    - Python dtype: `torch.Tensor`
+    - The first mask input for the addition operation. It serves as the base to which the second mask will be added.
     - Comfy dtype: `MASK`
+    - Python dtype: `torch.Tensor`
 - **`mask2`**
-    - The second input mask to be combined with `mask1`. This mask equally contributes to the outcome of the merged mask, ensuring that features from both masks are represented in the final result.
-    - Python dtype: `torch.Tensor`
+    - The second mask input for the addition operation. It is added to the first mask, combining their features or covered areas.
     - Comfy dtype: `MASK`
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`mask`**
-    - The result of adding `mask1` and `mask2` together, producing a new mask that combines the features of both input masks.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The output is a single mask that represents the combined features or areas of the two input masks.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `InvertMask`

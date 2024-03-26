@@ -4,27 +4,27 @@
 - Category: `ImpactPack/Util`
 - Output node: `True`
 
-The ImpactSEGSPicker node processes segmentation data to generate candidate images based on provided segmentations and an optional fallback image. It applies a mask to each segmentation, adjusts the mask values, and optionally crops images from the fallback image if no cropped image is available. The node also allows for the selection of specific segments based on user input, filtering the segments accordingly.
+The ImpactSEGSPicker node is designed to select specific segments from a collection based on user-defined criteria, and optionally adjust their appearance using fallback images or masks. It facilitates the customization and refinement of segment collections for further processing or visualization.
 ## Input types
 ### Required
 - **`picks`**
-    - A comma-separated string of indices representing the user's selection of specific segments. This input is crucial for filtering the segments to only include those selected by the user.
-    - Python dtype: `str`
+    - Specifies the indices of the segments to be selected from the collection. It directly influences which segments are retained for further operations.
     - Comfy dtype: `STRING`
+    - Python dtype: `str`
 - **`segs`**
-    - The segmentation data to be processed. This includes both the segmentation masks and any associated cropped images.
-    - Python dtype: `Tuple[Any, List[Segment]]`
+    - The collection of segments from which selections are made. It serves as the primary input for the node's selection process.
     - Comfy dtype: `SEGS`
+    - Python dtype: `List[SEG]`
 ### Optional
 - **`fallback_image_opt`**
-    - An optional fallback image that can be used to crop images for segments that do not have an associated cropped image.
-    - Python dtype: `Optional[torch.Tensor]`
+    - An optional image used to modify the appearance of segments when their original images are not available.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `Optional[PIL.Image]`
 ## Output types
 - **`segs`**
-    - The filtered segmentation data, including only the segments selected by the user.
-    - Python dtype: `Tuple[Any, List[Segment]]`
     - Comfy dtype: `SEGS`
+    - Returns a tuple containing the original collection identifier and the new collection of selected and optionally modified segments.
+    - Python dtype: `Tuple[Any, List[SEG]]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

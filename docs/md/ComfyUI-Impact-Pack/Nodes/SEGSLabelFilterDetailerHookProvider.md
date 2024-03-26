@@ -4,26 +4,26 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The SEGSLabelFilterDetailerHookProvider node is designed to create a detailer hook that filters segments based on specified labels. It allows for the selection of segments to be included or excluded in the processing pipeline based on their labels, enhancing the flexibility and specificity of segment handling.
+The SEGSLabelFilterDetailerHookProvider node is designed to create and configure a detailer hook that filters segments based on specified labels. It allows for the customization of segment filtering through user-defined labels, enabling the targeting of specific segment types for processing or exclusion.
 ## Input types
 ### Required
 - **`segs`**
-    - Specifies the segments to be filtered. This parameter is crucial for determining which segments are subject to filtering based on the provided labels.
-    - Python dtype: `SEGS`
+    - The 'segs' parameter represents the segments to be filtered. It is crucial for determining which segments are subject to the filtering process.
     - Comfy dtype: `SEGS`
+    - Python dtype: `SEGS`
 - **`preset`**
-    - Defines a preset condition for the filter, allowing for a predefined set of labels to be used as a basis for filtering. This parameter offers a convenient way to apply common filtering criteria without specifying individual labels.
-    - Python dtype: `Union[str, List[str]]`
-    - Comfy dtype: `STRING`
+    - The 'preset' parameter allows for the selection of a predefined set of labels or the inclusion of all detection labels. This flexibility aids in quickly configuring the filter based on common use cases or custom requirements.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `List[str]`
 - **`labels`**
-    - Lists the specific types of segments to be allowed through the filter, separated by commas. This parameter directly influences the filtering process by specifying which labels are considered for inclusion or exclusion.
-    - Python dtype: `str`
+    - The 'labels' parameter specifies the types of segments to be allowed, separated by commas. It directly influences the filtering outcome by defining which segment labels are considered valid for inclusion.
     - Comfy dtype: `STRING`
+    - Python dtype: `str`
 ## Output types
 - **`detailer_hook`**
-    - Produces a detailer hook configured to filter segments based on the specified labels. This output is essential for integrating the label-based filtering functionality into the processing pipeline.
-    - Python dtype: `SEGSLabelFilterDetailerHook`
     - Comfy dtype: `DETAILER_HOOK`
+    - This output represents the configured detailer hook, ready to be applied for segment filtering based on the specified labels.
+    - Python dtype: `DetailerHook`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

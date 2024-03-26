@@ -8,16 +8,16 @@ This node applies a style model to a given conditioning, enhancing or altering i
 ## Input types
 ### Required
 - **`conditioning`**
-    - Comfy dtype: `CONDITIONING`
     - The original conditioning data to which the style model's conditioning will be applied. It's crucial for defining the base context or style that will be enhanced or altered.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[torch.Tensor, Dict]]`
 - **`style_model`**
-    - Comfy dtype: `STYLE_MODEL`
     - The style model used to generate new conditioning based on the CLIP vision model's output. It plays a key role in defining the new style to be applied.
+    - Comfy dtype: `STYLE_MODEL`
     - Python dtype: `StyleModel`
 - **`clip_vision_output`**
-    - Comfy dtype: `CLIP_VISION_OUTPUT`
     - The output from a CLIP vision model, which is used by the style model to generate new conditioning. It provides the visual context necessary for style application.
+    - Comfy dtype: `CLIP_VISION_OUTPUT`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`conditioning`**

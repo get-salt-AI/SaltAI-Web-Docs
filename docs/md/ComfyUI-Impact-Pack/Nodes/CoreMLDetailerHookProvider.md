@@ -4,18 +4,18 @@
 - Category: `ImpactPack/Detailer`
 - Output node: `False`
 
-This node provides a hook for CoreML models, allowing for the customization of the model's behavior based on the specified mode. It is part of the ImpactPack/Detailer category, designed to enhance or modify the processing of images or data in a detail-oriented manner.
+This node provides a mechanism to create and manage CoreML detailer hooks, which are specialized hooks designed to adjust and refine the details of generated images based on the specified mode. It encapsulates the complexity of configuring and applying these hooks, offering a streamlined interface for enhancing image quality.
 ## Input types
 ### Required
 - **`mode`**
-    - The mode parameter specifies the resolution at which the CoreML model operates. It affects the model's processing capabilities and output quality, allowing for flexibility in handling different image sizes.
-    - Python dtype: `Tuple[List[str]]`
-    - Comfy dtype: `['512x512', '768x768', '512x768', '768x512']`
+    - Specifies the resolution mode for the CoreML detailer hook, determining the dimensions of the output image. This choice directly influences the detail level and aspect ratio of the generated image.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `List[str]`
 ## Output types
 - **`detailer_hook`**
-    - Returns a CoreML hook configured with the specified mode, ready to be used for detailed processing or modification of data.
-    - Python dtype: `Tuple[CoreMLHook]`
     - Comfy dtype: `DETAILER_HOOK`
+    - Returns a CoreML detailer hook configured according to the specified mode, ready to be applied for image detail enhancement.
+    - Python dtype: `DetailerHook`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

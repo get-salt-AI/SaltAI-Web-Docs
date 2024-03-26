@@ -8,12 +8,12 @@ The SaveLatent node is designed for saving latent representations to a specified
 ## Input types
 ### Required
 - **`samples`**
-    - Comfy dtype: `LATENT`
     - The 'samples' parameter represents the latent representations to be saved. It is crucial for specifying the data that will be persisted for future use.
+    - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 - **`filename_prefix`**
-    - Comfy dtype: `STRING`
     - The 'filename_prefix' parameter allows for the specification of a prefix for the filename under which the latent representations will be saved. This aids in organizing and retrieving saved latents effectively.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 The node doesn't have output types

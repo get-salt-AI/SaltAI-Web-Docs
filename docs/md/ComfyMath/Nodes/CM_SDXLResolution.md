@@ -8,8 +8,8 @@ This node is designed to convert a string representation of a resolution into it
 ## Input types
 ### Required
 - **`resolution`**
-    - Comfy dtype: `COMBO[STRING]`
     - The 'resolution' parameter takes a string input representing an image resolution in the format 'widthxheight'. It is crucial for determining the output numerical values of width and height, effectively translating textual resolution data into a form that can be directly utilized in image processing tasks.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`width`**

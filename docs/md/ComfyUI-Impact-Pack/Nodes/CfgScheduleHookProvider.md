@@ -4,22 +4,22 @@
 - Category: `ImpactPack/Upscale`
 - Output node: `False`
 
-This node provides a configuration schedule hook for iterations, allowing the adjustment of configuration parameters over time based on a predefined schedule. It's particularly useful for dynamically adjusting parameters during the iterative process of model training or generation to achieve specific outcomes.
+The CfgScheduleHookProvider node is designed to create configuration schedule hooks based on a specified iteration schedule and target configuration. It aims to dynamically adjust the configuration during the iteration process to achieve desired outcomes.
 ## Input types
 ### Required
 - **`schedule_for_iteration`**
-    - Specifies the schedule to be used for iteration. The choice of schedule affects how the target configuration parameter is adjusted over time.
+    - Specifies the iteration schedule to use for adjusting the configuration. It determines how the configuration changes over time.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `Tuple[str]`
-    - Comfy dtype: `STRING`
 - **`target_cfg`**
-    - The target configuration value to be reached by the end of the iteration schedule. This parameter influences the adjustment of configuration settings over the course of iterations.
-    - Python dtype: `float`
+    - The target configuration value to reach by the end of the iteration process. It influences the adjustment of the configuration over time.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 ## Output types
 - **`pk_hook`**
-    - Returns a hook that applies the specified configuration schedule to the iterative process.
-    - Python dtype: `Tuple[SimpleCfgScheduleHook]`
     - Comfy dtype: `PK_HOOK`
+    - Produces a hook that can be used to adjust the configuration during the iteration process.
+    - Python dtype: `Tuple[PixelKSampleHook]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

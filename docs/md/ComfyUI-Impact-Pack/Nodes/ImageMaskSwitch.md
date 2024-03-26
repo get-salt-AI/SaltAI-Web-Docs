@@ -4,55 +4,55 @@
 - Category: `ImpactPack/Util`
 - Output node: `True`
 
-The `ImageMaskSwitch` node allows for the selection and output of a specific image and its associated optional mask from a set of up to four images and their corresponding masks, based on a selection index.
+The ImageMaskSwitch node allows for the selection and output of a specific image and its associated mask from a set of up to four image-mask pairs based on a selection input. This functionality is useful for dynamically choosing between different visual elements and their masks within a workflow.
 ## Input types
 ### Required
 - **`select`**
-    - Determines which image and its corresponding mask (if provided) are selected for output. The selection index ranges from 1 to 4.
-    - Python dtype: `int`
+    - Determines which image-mask pair to output, allowing for dynamic selection from up to four options.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`images1`**
-    - The first image in the selection set. It is always required.
-    - Python dtype: `torch.Tensor`
+    - The first image in the selection set.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `torch.Tensor`
 ### Optional
 - **`mask1_opt`**
-    - An optional mask associated with the first image.
-    - Python dtype: `Optional[torch.Tensor]`
+    - Optional mask associated with the first image.
     - Comfy dtype: `MASK`
+    - Python dtype: `torch.Tensor`
 - **`images2_opt`**
     - The second optional image in the selection set.
-    - Python dtype: `Optional[torch.Tensor]`
     - Comfy dtype: `IMAGE`
+    - Python dtype: `torch.Tensor`
 - **`mask2_opt`**
-    - An optional mask associated with the second image.
-    - Python dtype: `Optional[torch.Tensor]`
+    - Optional mask associated with the second image.
     - Comfy dtype: `MASK`
+    - Python dtype: `torch.Tensor`
 - **`images3_opt`**
     - The third optional image in the selection set.
-    - Python dtype: `Optional[torch.Tensor]`
     - Comfy dtype: `IMAGE`
+    - Python dtype: `torch.Tensor`
 - **`mask3_opt`**
-    - An optional mask associated with the third image.
-    - Python dtype: `Optional[torch.Tensor]`
+    - Optional mask associated with the third image.
     - Comfy dtype: `MASK`
+    - Python dtype: `torch.Tensor`
 - **`images4_opt`**
     - The fourth optional image in the selection set.
-    - Python dtype: `Optional[torch.Tensor]`
     - Comfy dtype: `IMAGE`
+    - Python dtype: `torch.Tensor`
 - **`mask4_opt`**
-    - An optional mask associated with the fourth image.
-    - Python dtype: `Optional[torch.Tensor]`
+    - Optional mask associated with the fourth image.
     - Comfy dtype: `MASK`
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**
-    - The selected image based on the `select` index.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The selected image based on the input selection.
+    - Python dtype: `torch.Tensor`
 - **`mask`**
-    - The optional mask associated with the selected image, if provided.
-    - Python dtype: `Optional[torch.Tensor]`
     - Comfy dtype: `MASK`
+    - The mask associated with the selected image, if provided.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `Reroute`

@@ -8,37 +8,37 @@ The ADE_NoiseLayerAdd node is designed to introduce additive noise layers into a
 ## Input types
 ### Required
 - **`batch_offset`**
-    - Comfy dtype: `INT`
     - Determines the offset for batch processing, allowing for sequential noise layer application across different batches.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`noise_type`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the type of noise to be added, influencing the texture and characteristics of the resulting noise layer.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`seed_gen_override`**
-    - Comfy dtype: `COMBO[STRING]`
     - Overrides the default seed generator, enabling the use of a custom seed for noise generation which can affect the randomness and pattern of the noise.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`seed_offset`**
-    - Comfy dtype: `INT`
     - Applies an additional offset to the seed value, further customizing the randomness and distribution of the noise.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`noise_weight`**
-    - Comfy dtype: `FLOAT`
     - Controls the intensity of the added noise, allowing for fine-tuning of the noise layer's impact on the overall output.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`prev_noise_layers`**
-    - Comfy dtype: `NOISE_LAYERS`
     - Optionally includes previous noise layers for cumulative noise layer application, enhancing the depth and complexity of the noise effect.
+    - Comfy dtype: `NOISE_LAYERS`
     - Python dtype: `NoiseLayerGroup`
 - **`mask_optional`**
-    - Comfy dtype: `MASK`
     - Optionally applies a mask to selectively add noise, enabling targeted noise application for specific areas or features.
+    - Comfy dtype: `MASK`
     - Python dtype: `Tensor`
 - **`seed_override`**
-    - Comfy dtype: `INT`
     - Allows for the explicit specification of a seed value, overriding the automatic seed generation for precise control over the noise pattern.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`noise_layers`**

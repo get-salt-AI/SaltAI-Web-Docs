@@ -8,24 +8,24 @@ The FreeU node is designed to enhance the flexibility and performance of neural 
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - The neural network model to be enhanced. It is the core component that undergoes dynamic scaling and Fourier filtering adjustments.
+    - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`b1`**
-    - Comfy dtype: `FLOAT`
     - A scaling factor for the model's hidden layers, contributing to the dynamic adjustment of the model's performance.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`b2`**
-    - Comfy dtype: `FLOAT`
     - Another scaling factor for the model's hidden layers, working alongside b1 to fine-tune the model's dynamic scaling.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`s1`**
-    - Comfy dtype: `FLOAT`
     - A scale parameter for the Fourier filtering process, influencing the handling of spatial frequencies in the data.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`s2`**
-    - Comfy dtype: `FLOAT`
     - Another scale parameter for the Fourier filtering, complementing s1 to optimize the spatial frequency management.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`model`**

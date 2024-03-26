@@ -4,22 +4,22 @@
 - Category: `ImpactPack/Operation`
 - Output node: `False`
 
-The `ImpactSegsAndMask` node applies a bitwise AND operation between the mask of each segment in the input 'segs' and a given 'mask', producing a new set of segments where each segment's mask is the result of this operation. This is useful for refining segment masks based on an external mask, such as removing parts of segments that fall outside a region of interest.
+This node applies a bitwise AND operation between the masks of segmented objects (SEGS) and a given mask (MASK), effectively filtering the segmented objects based on the mask. It's designed to refine segmentation results by combining them with an additional mask layer, enhancing the precision of the segmentation.
 ## Input types
 ### Required
 - **`segs`**
-    - The input 'segs' represents the segments to be processed. Each segment includes a mask that will be combined with the given 'mask' using a bitwise AND operation. This input is crucial for determining which parts of the segments are kept based on the external mask.
-    - Python dtype: `Tuple[torch.Tensor, List[SEG]]`
+    - The segmented objects (SEGS) to be refined. It represents the primary input for the operation, determining the base segmentation to be filtered.
     - Comfy dtype: `SEGS`
+    - Python dtype: `Tuple[torch.Size, List[SEG]]`
 - **`mask`**
-    - The 'mask' input is an external mask that will be applied to each segment's mask in the 'segs' input using a bitwise AND operation. This allows for refining the segments based on areas defined by the 'mask'.
-    - Python dtype: `torch.Tensor`
+    - The mask (MASK) to be applied to the segmented objects. It acts as a filter, refining the segmentation by retaining only the parts of the segmented objects that overlap with the mask.
     - Comfy dtype: `MASK`
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`segs`**
-    - The output 'segs' is a tuple containing the original shape information and a list of updated segments, where each segment's mask has been refined by applying the external 'mask' through a bitwise AND operation.
-    - Python dtype: `Tuple[torch.Tensor, List[SEG]]`
     - Comfy dtype: `SEGS`
+    - The refined segmented objects (SEGS) after applying the mask. It represents the output of the bitwise AND operation, containing only the parts of the original segmentation that overlap with the given mask.
+    - Python dtype: `Tuple[torch.Size, List[SEG]]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `ImpactSEGSOrderedFilter`

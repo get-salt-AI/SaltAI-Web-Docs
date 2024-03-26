@@ -4,79 +4,79 @@
 - Category: `ImpactPack/Upscale`
 - Output node: `False`
 
-The `PixelTiledKSampleUpscalerProvider` node is designed to upscale images using a tiled K-sample upscaling method. It checks for the presence of a specific custom node ('BNK_TiledKSampler') and, if not found, attempts to install it. This node facilitates the use of advanced sampling techniques for image upscaling, leveraging tile-based processing to enhance image quality.
+The PixelTiledKSampleUpscalerProvider node is designed to facilitate the upscaling of images through a tiled k-sample approach. It leverages a specific sampling technique to enhance image resolution in a segmented manner, ensuring detailed and high-quality upscaling.
 ## Input types
 ### Required
 - **`scale_method`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `['nearest-exact', 'bilinear', 'lanczos'...]`
+    - Specifies the method used for scaling the image, impacting the overall upscaling process.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
 - **`model`**
-    - unknown
-    - Python dtype: `unknown`
+    - The model used for upscaling, determining the quality and characteristics of the output image.
     - Comfy dtype: `MODEL`
+    - Python dtype: `str`
 - **`vae`**
-    - unknown
-    - Python dtype: `unknown`
+    - Variational Autoencoder (VAE) used in conjunction with the model to improve image quality through latent space manipulation.
     - Comfy dtype: `VAE`
+    - Python dtype: `str`
 - **`seed`**
-    - unknown
-    - Python dtype: `unknown`
+    - Seed for random number generation, ensuring reproducibility of the upscaling process.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`steps`**
-    - unknown
-    - Python dtype: `unknown`
+    - The number of steps to perform in the upscaling process, affecting the detail and quality of the output.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`cfg`**
-    - unknown
-    - Python dtype: `unknown`
+    - Configuration settings for the upscaling process, allowing customization of the upscaling behavior.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`sampler_name`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `['euler', 'euler_ancestral', 'heun'...]`
+    - Name of the sampler used in the upscaling process, influencing the texture and details of the upscaled image.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
 - **`scheduler`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `['normal', 'karras', 'exponential'...]`
+    - Scheduler used to adjust the upscaling process dynamically, optimizing the output quality.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
 - **`positive`**
-    - unknown
-    - Python dtype: `unknown`
+    - Positive keywords to guide the upscaling process, enhancing specific aspects of the image.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `str`
 - **`negative`**
-    - unknown
-    - Python dtype: `unknown`
+    - Negative keywords to counterbalance the positive ones, preventing undesired elements in the upscaled image.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `str`
 - **`denoise`**
-    - unknown
-    - Python dtype: `unknown`
+    - Denoising level applied to the upscaled image, improving clarity and reducing noise.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`tile_width`**
-    - unknown
-    - Python dtype: `unknown`
+    - Width of the tiles used in the upscaling process, determining the segmentation of the image.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`tile_height`**
-    - unknown
-    - Python dtype: `unknown`
+    - Height of the tiles used in the upscaling process, determining the segmentation of the image.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`tiling_strategy`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `['random', 'padded', 'simple'...]`
+    - Strategy for tiling the image during the upscaling process, affecting the overall approach to image segmentation.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
 ### Optional
 - **`upscale_model_opt`**
-    - unknown
-    - Python dtype: `unknown`
+    - Optional upscale model options, providing additional customization for the upscaling process.
     - Comfy dtype: `UPSCALE_MODEL`
+    - Python dtype: `str`
 - **`pk_hook_opt`**
-    - unknown
-    - Python dtype: `unknown`
+    - Optional post-kernel hook options, allowing for further customization after the upscaling kernel is applied.
     - Comfy dtype: `PK_HOOK`
+    - Python dtype: `str`
 ## Output types
 - **`upscaler`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `UPSCALER`
+    - The upscaler object created by the node, capable of performing the tiled k-sample upscaling on images.
+    - Python dtype: `core.PixelTiledKSampleUpscaler`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

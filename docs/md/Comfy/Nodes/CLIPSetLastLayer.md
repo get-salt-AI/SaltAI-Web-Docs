@@ -8,12 +8,12 @@ This node is designed to modify the behavior of a CLIP model by setting a specif
 ## Input types
 ### Required
 - **`clip`**
-    - Comfy dtype: `CLIP`
     - The CLIP model to be modified. This parameter allows the node to directly interact with and alter the structure of the CLIP model.
+    - Comfy dtype: `CLIP`
     - Python dtype: `torch.nn.Module`
 - **`stop_at_clip_layer`**
-    - Comfy dtype: `INT`
     - Specifies the layer at which the CLIP model should stop processing. This allows for control over the depth of computation and can be used to adjust the model's behavior or performance.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`clip`**

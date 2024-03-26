@@ -4,56 +4,56 @@
 - Category: `ImpactPack/Sampler`
 - Output node: `False`
 
-This node provides a mechanism for sampling images using a tiled approach, which allows for the generation of high-resolution images by processing smaller tiles in parallel. It utilizes a variety of samplers and schedulers to control the sampling process, and supports different tiling strategies to optimize the sampling for specific use cases.
+The TiledKSamplerProvider node is designed to facilitate the generation of samples using a tiled K-sampling approach. It configures and utilizes a specialized sampler that operates on tiles of an image, allowing for efficient and scalable image generation with customizable sampling strategies.
 ## Input types
 ### Required
 - **`seed`**
-    - A seed value to ensure reproducibility of the sampling process. It influences the randomness of the generated samples.
-    - Python dtype: `int`
+    - Specifies the initial seed for random number generation, ensuring reproducibility of the sampling process.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`steps`**
-    - The number of steps to perform during the sampling process. It affects the quality and detail of the generated images.
-    - Python dtype: `int`
+    - Determines the number of steps to be taken in the sampling process, affecting the detail and quality of the generated image.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`cfg`**
-    - A configuration parameter that influences the sampling behavior, potentially affecting the quality of the generated images.
-    - Python dtype: `float`
+    - Controls the configuration setting for the sampling process, influencing the behavior and characteristics of the generated samples.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`sampler_name`**
-    - Specifies the sampler to use for the image generation process. Different samplers can produce varied effects.
+    - Selects the specific K-sampler to be used, allowing for flexibility in choosing the sampling algorithm.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`scheduler`**
-    - Determines the scheduling strategy for the sampling process, affecting how samples are generated over time.
+    - Chooses the scheduler for controlling the sampling process, enabling fine-tuning of the sampling dynamics.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`denoise`**
-    - A parameter to control the denoising level applied to the generated images, affecting their clarity and detail.
-    - Python dtype: `float`
+    - Adjusts the denoising factor applied during sampling, impacting the clarity and noise level of the output.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`tile_width`**
-    - The width of the tiles used in the sampling process. It influences the granularity of the parallel processing.
-    - Python dtype: `int`
+    - Sets the width of the tiles used in the sampling process, defining the granularity of the tiled approach.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`tile_height`**
-    - The height of the tiles used in the sampling process. It influences the granularity of the parallel processing.
-    - Python dtype: `int`
+    - Sets the height of the tiles used in the sampling process, defining the granularity of the tiled approach.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`tiling_strategy`**
-    - The strategy used for tiling the image during the sampling process. Different strategies can affect the final image composition.
+    - Determines the strategy for tiling the image during sampling, affecting the overall sampling pattern and efficiency.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`basic_pipe`**
-    - A basic pipeline configuration that includes the model and other essential components for the sampling process.
-    - Python dtype: `tuple`
+    - Provides the basic pipeline components required for the sampling process, including the model and positive/negative conditioning.
     - Comfy dtype: `BASIC_PIPE`
+    - Python dtype: `tuple`
 ## Output types
 - **`ksampler`**
-    - The sampler configured and ready for generating images using the specified parameters.
-    - Python dtype: `object`
     - Comfy dtype: `KSAMPLER`
+    - Returns a configured KSampler instance ready for sampling operations.
+    - Python dtype: `KSamplerWrapper`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 

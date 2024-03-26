@@ -8,8 +8,8 @@ This node is designed to configure and apply specific settings for the AnimateDi
 ## Input types
 ### Optional
 - **`pe_adjust`**
-    - Comfy dtype: `PE_ADJUST`
     - Specifies the type of positional encoding (PE) adjustment to be applied, influencing the animation's dynamics and overall appearance.
+    - Comfy dtype: `PE_ADJUST`
     - Python dtype: `AdjustPEGroup`
 ## Output types
 - **`ad_settings`**

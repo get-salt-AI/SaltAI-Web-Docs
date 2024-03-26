@@ -8,8 +8,8 @@ The DiffusersLoader node is designed for loading models from the diffusers libra
 ## Input types
 ### Required
 - **`model_path`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the path to the model to be loaded. This path is crucial as it determines which model will be utilized for subsequent operations, affecting the output and capabilities of the node.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`model`**

@@ -4,79 +4,79 @@
 - Category: `ImpactPack/Pipe`
 - Output node: `False`
 
-The `ToDetailerPipeSDXL` class is designed to configure and prepare the detailer pipeline for execution, specifically tailored for the SDXL context. It involves setting up various models and parameters required for the detailer process, including models for image refinement, conditioning parameters for positive and negative influences, and optional components like segmentation detectors and hooks for further customization.
+The ToDetailerPipeSDXL node is designed to transform and refine input data through a series of conditioning and detection processes, preparing it for detailed image generation or enhancement. It leverages multiple models and techniques, including CLIP, VAE, and bounding box detection, to achieve precise and context-aware results.
 ## Input types
 ### Required
 - **`model`**
-    - Specifies the primary model used in the detailer pipeline. It is crucial for the initial stages of image processing and refinement.
-    - Python dtype: `str`
+    - Specifies the primary model used for generating or refining images, playing a central role in the overall processing pipeline.
     - Comfy dtype: `MODEL`
+    - Python dtype: `str`
 - **`clip`**
-    - Defines the CLIP model used for semantic image analysis and guidance within the pipeline.
-    - Python dtype: `str`
+    - Defines the CLIP model used for understanding and interpreting the content of images or text, aiding in the alignment of generated content with specified conditions.
     - Comfy dtype: `CLIP`
+    - Python dtype: `str`
 - **`vae`**
-    - Indicates the VAE (Variational Autoencoder) model employed for encoding and decoding images in the pipeline.
-    - Python dtype: `str`
+    - Indicates the VAE (Variational Autoencoder) model employed for encoding and decoding images, facilitating the manipulation of image features in latent space.
     - Comfy dtype: `VAE`
+    - Python dtype: `str`
 - **`positive`**
-    - Sets the positive conditioning parameters to guide the image generation towards desired attributes.
-    - Python dtype: `str`
+    - A set of positive conditioning factors that guide the generation or refinement process towards desired attributes or features.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `str`
 - **`negative`**
-    - Sets the negative conditioning parameters to steer the image generation away from undesired attributes.
-    - Python dtype: `str`
+    - A set of negative conditioning factors used to steer the generation or refinement process away from certain attributes or features.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `str`
 - **`refiner_model`**
-    - Specifies an additional model for refining the details of the generated images, enhancing their quality.
-    - Python dtype: `str`
+    - Specifies an additional model used for refining the generated or processed images, enhancing their quality or detail.
     - Comfy dtype: `MODEL`
+    - Python dtype: `str`
 - **`refiner_clip`**
-    - Defines an additional CLIP model for refined semantic analysis in the later stages of the pipeline.
-    - Python dtype: `str`
+    - Defines an additional CLIP model used for refining the alignment of generated content with specified conditions, enhancing the relevance and accuracy of the output.
     - Comfy dtype: `CLIP`
+    - Python dtype: `str`
 - **`refiner_positive`**
-    - Sets additional positive conditioning parameters for further refinement of the image generation process.
-    - Python dtype: `str`
+    - Additional positive conditioning factors for the refinement process, aimed at enhancing specific attributes or features in the refined output.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `str`
 - **`refiner_negative`**
-    - Sets additional negative conditioning parameters for further refinement, ensuring avoidance of undesired attributes in the final output.
-    - Python dtype: `str`
+    - Additional negative conditioning factors for the refinement process, aimed at reducing or eliminating certain attributes or features in the refined output.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `str`
 - **`bbox_detector`**
-    - Incorporates a bounding box detector for identifying specific regions of interest within images, aiding in focused refinement.
-    - Python dtype: `str`
+    - Specifies the bounding box detector model used for identifying and localizing objects within images, facilitating targeted processing or enhancement.
     - Comfy dtype: `BBOX_DETECTOR`
-- **`wildcard`**
-    - Allows for the inclusion of dynamic, user-defined text inputs that can influence the generation process in versatile ways.
     - Python dtype: `str`
+- **`wildcard`**
+    - A dynamic input that allows for the inclusion of custom text or conditions, providing flexibility in the generation or refinement process.
     - Comfy dtype: `STRING`
+    - Python dtype: `str`
 - **`Select to add LoRA`**
-    - Enables the selection of LoRA (Low-Rank Adaptation) techniques to be applied, enhancing the model's adaptability to specific text inputs.
-    - Python dtype: `List[str]`
-    - Comfy dtype: `STRING`
+    - Enables the selection of LoRA (Low-Rank Adaptation) techniques to be applied, enhancing the model's adaptability and performance on specific tasks or conditions.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `list`
 - **`Select to add Wildcard`**
-    - Facilitates the selection of wildcard options to introduce additional, user-defined influences on the generation process.
-    - Python dtype: `List[str]`
-    - Comfy dtype: `STRING`
+    - Allows for the selection of custom conditions or modifiers to be added, offering additional customization in the processing pipeline.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `list`
 ### Optional
 - **`sam_model_opt`**
-    - Optionally specifies a SAM model for advanced image analysis and processing within the pipeline.
-    - Python dtype: `str`
+    - Specifies an optional SAM model used for semantic segmentation, contributing to the refinement and detail enhancement processes.
     - Comfy dtype: `SAM_MODEL`
+    - Python dtype: `str`
 - **`segm_detector_opt`**
-    - Optionally includes a segmentation detector for detailed analysis and segmentation of image regions.
-    - Python dtype: `str`
+    - Defines an optional segmentation detector model used for identifying specific regions or features within images, aiding in targeted processing.
     - Comfy dtype: `SEGM_DETECTOR`
-- **`detailer_hook`**
-    - Optionally integrates a custom hook for further customization and control over the detailer pipeline's execution.
     - Python dtype: `str`
+- **`detailer_hook`**
+    - An optional hook for integrating custom processing or refinement steps, offering further customization of the pipeline.
     - Comfy dtype: `DETAILER_HOOK`
+    - Python dtype: `str`
 ## Output types
 - **`detailer_pipe`**
-    - Outputs the configured detailer pipeline, ready for execution within the SDXL context.
-    - Python dtype: `Tuple`
     - Comfy dtype: `DETAILER_PIPE`
+    - The output is a detailer pipe, which encapsulates the refined and processed data, ready for further stages of image generation or enhancement.
+    - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `FromDetailerPipe_v2`

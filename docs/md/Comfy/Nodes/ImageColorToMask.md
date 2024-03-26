@@ -8,12 +8,12 @@ The ImageColorToMask node is designed to convert a specified color in an image t
 ## Input types
 ### Required
 - **`image`**
-    - Comfy dtype: `IMAGE`
     - The 'image' parameter represents the input image to be processed. It is crucial for determining the areas of the image that match the specified color to be converted into a mask.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`color`**
-    - Comfy dtype: `INT`
     - The 'color' parameter specifies the target color in the image to be converted into a mask. It plays a key role in identifying the specific color areas to be highlighted in the resulting mask.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`mask`**

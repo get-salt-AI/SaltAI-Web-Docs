@@ -4,34 +4,38 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-This node applies an ordered filtering operation on segmentation data based on specified criteria. It allows for sorting and selecting a subset of the segmentation data according to the defined order and range.
+The ImpactSEGSOrderedFilter node is designed to filter and order segmentation data based on specified criteria. It allows for the sorting of segments according to various attributes such as area, width, height, or coordinates, and enables the selection of a subset of these segments based on their order.
 ## Input types
 ### Required
 - **`segs`**
-    - The segmentation data to be filtered and ordered.
-    - Python dtype: `List[SEG]`
+    - The segmentation data to be filtered and ordered. This is the primary input over which the ordering and filtering operations are performed.
     - Comfy dtype: `SEGS`
+    - Python dtype: `List[SEG]`
 - **`target`**
-    - Specifies the criterion used for ordering the segmentation data, such as area, width, or position.
-    - Python dtype: `Union[str, List[str]]`
-    - Comfy dtype: `STRING`
+    - Specifies the attribute based on which the segments should be ordered. This can include attributes like area, width, height, or coordinates, impacting how the segments are sorted.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `List[str]`
 - **`order`**
-    - Determines the sorting order of the segmentation data, where a boolean value indicates descending or ascending order.
-    - Python dtype: `bool`
+    - Determines the order in which the segments are sorted. A boolean value where True indicates descending order and False indicates ascending order.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`take_start`**
-    - Defines the starting index from which to take the segmentation data after ordering, allowing for selection of a specific range.
-    - Python dtype: `int`
+    - Defines the starting index from which segments should be taken after ordering, allowing for the selection of a specific subset of segments.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`take_count`**
-    - Specifies the number of segmentation data items to take from the starting index, enabling control over the subset size.
-    - Python dtype: `int`
+    - Specifies the number of segments to take starting from the 'take_start' index, enabling control over the size of the resulting segment subset.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
-- **`segs`**
-    - Produces the filtered and ordered segmentation data.
-    - Python dtype: `List[SEG]`
+- **`filtered_SEGS`**
     - Comfy dtype: `SEGS`
+    - The segments that have been filtered and ordered according to the specified criteria.
+    - Python dtype: `List[SEG]`
+- **`remained_SEGS`**
+    - Comfy dtype: `SEGS`
+    - The segments that did not meet the filtering criteria and were not included in the ordered subset.
+    - Python dtype: `List[SEG]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `ImpactDilateMaskInSEGS,DetailerForEachDebug`

@@ -4,22 +4,22 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-This node applies a dilation operation to the masks of segmentation elements (SEGS) provided as input. The dilation process enlarges the white (or foreground) regions in each mask by a specified dilation factor, which can be positive for dilation or negative for erosion, effectively modifying the segmentation boundaries.
+This node applies a dilation operation to the masks within a collection of segmentation elements (SEGS), potentially expanding their boundaries. It's designed to modify the spatial geometry of segmentation masks, making them larger or smaller based on the dilation parameter.
 ## Input types
 ### Required
 - **`segs`**
-    - The segmentation elements (SEGS) to which the dilation operation will be applied. This input is crucial for defining the segmentation areas to be modified.
-    - Python dtype: `Tuple[str, List[SEG]]`
+    - Represents the collection of segmentation elements (SEGS) to which the dilation operation will be applied. It's crucial for defining the input segmentation masks that will undergo geometric transformation.
     - Comfy dtype: `SEGS`
+    - Python dtype: `List[SEG]`
 - **`dilation`**
-    - The factor by which the masks of the segmentation elements are to be dilated. A positive value enlarges the white regions, while a negative value performs erosion, shrinking the white regions.
-    - Python dtype: `int`
+    - Specifies the intensity of the dilation operation. Positive values cause the masks to expand, while negative values lead to contraction. This parameter directly influences the geometric transformation of the segmentation masks.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
 - **`segs`**
-    - The modified segmentation elements (SEGS) after applying the dilation operation to their masks. This output reflects the changes in segmentation boundaries due to dilation or erosion.
-    - Python dtype: `Tuple[str, List[SEG]]`
     - Comfy dtype: `SEGS`
+    - The output is a modified collection of segmentation elements (SEGS) where each mask has been dilated according to the specified dilation parameter.
+    - Python dtype: `Tuple[str, List[SEG]]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `ImpactDilateMaskInSEGS`

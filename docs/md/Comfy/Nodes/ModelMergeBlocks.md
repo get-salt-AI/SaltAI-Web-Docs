@@ -8,24 +8,24 @@ ModelMergeBlocks is designed for advanced model merging operations, allowing for
 ## Input types
 ### Required
 - **`model1`**
-    - Comfy dtype: `MODEL`
     - The first model to be merged. It serves as the base model onto which patches from the second model are applied.
+    - Comfy dtype: `MODEL`
     - Python dtype: `comfy.model_base.Model`
 - **`model2`**
-    - Comfy dtype: `MODEL`
     - The second model from which patches are extracted and applied to the first model, based on the specified blending ratios.
+    - Comfy dtype: `MODEL`
     - Python dtype: `comfy.model_base.Model`
 - **`input`**
-    - Comfy dtype: `FLOAT`
     - Specifies the blending ratio for the input layer of the models. It determines how much of the second model's input layer is merged into the first model.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`middle`**
-    - Comfy dtype: `FLOAT`
     - Defines the blending ratio for the middle layers of the models. This parameter controls the integration level of the models' middle layers.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`out`**
-    - Comfy dtype: `FLOAT`
     - Determines the blending ratio for the output layer of the models. It affects the final output by adjusting the contribution of the second model's output layer.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`model`**

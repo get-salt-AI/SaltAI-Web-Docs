@@ -8,8 +8,8 @@ The SplitImageWithAlpha node is designed to separate the color and alpha compone
 ## Input types
 ### Required
 - **`image`**
-    - Comfy dtype: `IMAGE`
     - The 'image' parameter represents the input image tensor from which the RGB and alpha channels are to be separated. It is crucial for the operation as it provides the source data for the split.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**

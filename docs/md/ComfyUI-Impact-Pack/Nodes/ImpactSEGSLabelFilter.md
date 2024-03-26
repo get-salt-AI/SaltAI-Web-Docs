@@ -4,26 +4,30 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The `ImpactSEGSLabelFilter` node filters segments (SEGS) based on specified labels. It allows for the inclusion or exclusion of segments by matching their labels against a provided list, supporting special groupings like 'eyes', 'eyebrows', and 'pupils' for more granular control.
+The ImpactSEGSLabelFilter node is designed to filter segments (SEGS) based on specified labels, allowing for the selective processing of image segments. It supports custom label lists, including special groupings like 'eyes' or 'eyebrows', to fine-tune the segments that are included or excluded from further processing.
 ## Input types
 ### Required
 - **`segs`**
-    - The input segments to be filtered. This parameter is crucial as it provides the data on which the filtering operation is performed.
-    - Python dtype: `Tuple[Tuple[int, int], List[Segment]]`
+    - The 'segs' parameter represents the segments to be filtered. It is crucial for determining which segments of the image are subject to processing based on the labels provided.
     - Comfy dtype: `SEGS`
+    - Python dtype: `Tuple[Tuple[int, int], List[SEG]]`
 - **`preset`**
-    - A preset option that can include 'all' or specific detection labels. It influences the filtering process by pre-defining a set of labels to be included or excluded.
+    - The 'preset' parameter allows for the selection of predefined label sets or custom labels for filtering. It plays a key role in defining the scope of segments to be processed.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
-    - Comfy dtype: `STRING`
 - **`labels`**
-    - A comma-separated list of labels specifying which segments to allow through the filter. This parameter directly determines the outcome of the filtering process.
-    - Python dtype: `str`
+    - The 'labels' parameter specifies the list of labels based on which the segments are filtered. It directly influences which segments are included or excluded, enabling targeted segment processing.
     - Comfy dtype: `STRING`
+    - Python dtype: `List[str]`
 ## Output types
-- **`segs`**
-    - The segments that did not match the specified labels and were therefore excluded by the filter.
-    - Python dtype: `Tuple[Tuple[int, int], List[Segment]]`
+- **`filtered_SEGS`**
     - Comfy dtype: `SEGS`
+    - This output contains the segments that match the specified labels, ready for further processing.
+    - Python dtype: `Tuple[Tuple[int, int], List[SEG]]`
+- **`remained_SEGS`**
+    - Comfy dtype: `SEGS`
+    - This output includes the segments that did not match the specified labels, potentially for alternative processing or exclusion.
+    - Python dtype: `Tuple[Tuple[int, int], List[SEG]]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

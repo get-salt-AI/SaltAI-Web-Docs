@@ -4,20 +4,20 @@
 - Category: `ImpactPack/Operation`
 - Output node: `False`
 
-This node combines segmentation masks into a single mask. It iterates over each segmentation, applies a cropping based on the segmentation's region, and combines these cropped masks using a bitwise OR operation. The final mask is normalized to a range between 0 and 1.
+This node is designed to transform a collection of segmented objects (segs) into a single, combined mask. It effectively merges individual segment masks into a unified mask representation, facilitating operations that require a holistic view of all segments within an image.
 ## Input types
 ### Required
 - **`segs`**
-    - The input 'segs' represents a collection of segmentation masks along with their cropping regions. It is crucial for determining the spatial arrangement and combination of individual masks into a unified mask.
-    - Python dtype: `Tuple[torch.Size, List[Segmentation]]`
+    - The 'segs' parameter represents a collection of segmented objects. It is crucial for defining the segments to be combined into a single mask, affecting the overall composition and appearance of the resulting mask.
     - Comfy dtype: `SEGS`
+    - Python dtype: `List[SEG]`
 ## Output types
 - **`mask`**
-    - The output is a single combined mask derived from the input segmentations. It is normalized to have values between 0 and 1, suitable for further processing or visualization.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The output is a tensor representation of the combined mask, where the individual segment masks have been merged into a unified mask. This mask is suitable for further processing or analysis.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: `ImageCompositeMasked,Mask Gaussian Region`
 
 

@@ -4,50 +4,50 @@
 - Category: `ImpactPack/Detector`
 - Output node: `False`
 
-This node combines various detection techniques to generate a mask for an image. It utilizes a SAM model along with segmentation data, image details, and various parameters like detection hints, dilation, threshold, and more to produce a precise mask.
+The SAMDetectorCombined node is designed for generating segmentation masks by leveraging a SAM model. It combines various inputs, including image data and segmentation hints, to produce detailed masks that highlight specific areas of interest within the image. This process is crucial for tasks that require precise image analysis and manipulation, such as object detection and image editing.
 ## Input types
 ### Required
 - **`sam_model`**
-    - The SAM model used for generating the mask. It's a crucial component that directly influences the mask's accuracy and detail.
-    - Python dtype: `str`
+    - Specifies the SAM model to be used for mask generation. It plays a crucial role in determining the accuracy and quality of the output masks.
     - Comfy dtype: `SAM_MODEL`
+    - Python dtype: `str`
 - **`segs`**
-    - Segmentation data that provides additional context for mask generation, enhancing the accuracy of the output.
-    - Python dtype: `List[torch.Tensor]`
+    - Represents the segmentation data that will be refined by the SAM model to produce the final mask. It's essential for guiding the mask generation process.
     - Comfy dtype: `SEGS`
+    - Python dtype: `List[torch.Tensor]`
 - **`image`**
-    - The input image for which the mask is to be generated. It serves as the primary source of visual data for the process.
-    - Python dtype: `torch.Tensor`
+    - The input image on which the mask generation is performed. It serves as the primary data source for the detection process.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `torch.Tensor`
 - **`detection_hint`**
-    - Hints to guide the detection process, allowing for more tailored and effective mask generation.
-    - Python dtype: `str`
-    - Comfy dtype: `STRING`
+    - Provides hints to the model about the expected location and shape of the object to be masked, enhancing the precision of the detection.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `List[str]`
 - **`dilation`**
-    - The amount of dilation applied to the mask, affecting its size and the inclusion of surrounding areas.
-    - Python dtype: `int`
+    - Adjusts the thickness of the edges in the generated mask, allowing for finer control over the mask's appearance.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`threshold`**
-    - The threshold value for mask generation, determining the sensitivity of the detection.
-    - Python dtype: `float`
+    - Sets the confidence threshold for mask generation, determining which areas are included in the final mask.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`bbox_expansion`**
-    - Expands the bounding box around detected objects, potentially including more of the object or its context in the mask.
-    - Python dtype: `int`
+    - Controls the expansion of bounding boxes around detected objects, affecting the mask's coverage area.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`mask_hint_threshold`**
-    - Threshold for applying mask hints, influencing how hints are used to refine the mask.
-    - Python dtype: `float`
+    - Determines the threshold for applying mask hints, influencing how hints are used to refine the mask.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`mask_hint_use_negative`**
-    - Determines how negative spaces within the mask hints are treated, affecting the final mask's detail and accuracy.
-    - Python dtype: `str`
-    - Comfy dtype: `STRING`
+    - Indicates whether negative hints are used, which can exclude certain areas from the mask, providing more control over the mask's content.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `List[str]`
 ## Output types
 - **`mask`**
-    - The generated mask based on the input image and parameters. It highlights the areas of interest as determined by the detection process.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The output is a detailed mask that highlights specific areas of interest within the image, based on the provided inputs and model predictions.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `ImpactSegsAndMask,Segs & Mask,MaskToImage`

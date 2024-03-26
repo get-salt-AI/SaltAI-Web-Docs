@@ -8,29 +8,29 @@ This node is designed to create view options for generating looped uniform conte
 ## Input types
 ### Required
 - **`view_length`**
-    - Comfy dtype: `INT`
     - Specifies the length of the view. It determines how many frames or units are considered in a single view, affecting the granularity of the animation.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`view_stride`**
-    - Comfy dtype: `INT`
     - Defines the stride or step size between views. It affects how smoothly or rapidly the animation transitions between frames.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`view_overlap`**
-    - Comfy dtype: `INT`
     - Sets the overlap between consecutive views, influencing the continuity and smoothness of the animation.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`closed_loop`**
-    - Comfy dtype: `BOOLEAN`
     - Indicates whether the animation should loop back to the beginning, creating a seamless loop effect.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`fuse_method`**
-    - Comfy dtype: `COMBO[STRING]`
     - Determines the method used to fuse multiple views or contexts together, impacting the overall animation style.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`use_on_equal_length`**
-    - Comfy dtype: `BOOLEAN`
     - A flag to specify if the view options should be applied even when the animation length matches the view length, affecting the animation's versatility.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`view_opts`**

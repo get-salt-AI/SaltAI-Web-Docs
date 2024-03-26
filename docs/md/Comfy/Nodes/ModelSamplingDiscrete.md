@@ -8,16 +8,16 @@ This node is designed to modify the sampling behavior of a model by applying a d
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - The model to which the discrete sampling strategy will be applied. This parameter is crucial as it defines the base model that will undergo modification.
+    - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`sampling`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the discrete sampling method to be applied to the model. The choice of method affects how the model generates samples, offering different strategies for sampling.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`zsnr`**
-    - Comfy dtype: `BOOLEAN`
     - A boolean flag that, when enabled, adjusts the model's noise reduction strategy based on the zero-shot noise ratio. This can influence the quality and characteristics of the generated samples.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`model`**

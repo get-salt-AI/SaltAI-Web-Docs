@@ -4,24 +4,24 @@
 - Category: `ImpactPack/Operation`
 - Output node: `False`
 
-The `SubtractMaskForEach` node is designed to perform element-wise subtraction between pairs of masks for each frame or segment in a sequence. This operation is useful for removing common elements or reducing redundancy between consecutive frames or segments, enhancing the distinct features of each.
+This node is designed to perform a subtraction operation on masks for each frame or segment within a given dataset. It iteratively processes each mask by subtracting it from a subsequent one, effectively isolating changes or movements between frames. The node aims to highlight differences by generating a series of masks that represent the unique aspects of each frame when compared to its neighbors.
 ## Input types
 ### Required
 - **`base_segs`**
-    - The first set of segments to be subtracted from. It serves as the base in the subtraction operation, determining the initial state or features to be modified.
-    - Python dtype: `List[torch.Tensor]`
+    - A list of base segments. This input is crucial for the node's operation as it determines the sequence of segments to be subtracted from one another, thereby highlighting differences between consecutive frames.
     - Comfy dtype: `SEGS`
+    - Python dtype: `List[torch.Tensor]`
 - **`mask_segs`**
-    - The second set of segments to be subtracted. This represents the elements or features to be removed from the first set, effectively altering its composition.
-    - Python dtype: `List[torch.Tensor]`
+    - A list of mask segments to be subtracted from the base segments. This input is essential for performing the subtraction operation, highlighting the differences between the base and mask segments.
     - Comfy dtype: `SEGS`
+    - Python dtype: `List[torch.Tensor]`
 ## Output types
 - **`segs`**
-    - The resulting set of segments after subtracting `mask_segs` from `base_segs`. This emphasizes unique features or changes by highlighting the differences between the two input sets.
-    - Python dtype: `List[torch.Tensor]`
     - Comfy dtype: `SEGS`
+    - The output is a list of segments, each representing the unique aspects of a frame by subtracting it from its subsequent frame. This series of segments can be used for further analysis or processing.
+    - Python dtype: `List[torch.Tensor]`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 

@@ -8,12 +8,12 @@ The LatentSubtract node is designed for subtracting one latent representation fr
 ## Input types
 ### Required
 - **`samples1`**
-    - Comfy dtype: `LATENT`
     - The first set of latent samples to be subtracted from. It serves as the base for the subtraction operation.
+    - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 - **`samples2`**
-    - Comfy dtype: `LATENT`
     - The second set of latent samples that will be subtracted from the first set. This operation can alter the resulting generative model's output by removing attributes or features.
+    - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 ## Output types
 - **`latent`**

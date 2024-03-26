@@ -4,75 +4,75 @@
 - Category: `ImpactPack/Upscale`
 - Output node: `False`
 
-This node acts as a provider for the PixelKSampleUpscaler, facilitating the upscale process of images through a specified upscaling method. It serves as an interface to configure and utilize the PixelKSampleUpscaler, enabling enhanced image resolution and quality.
+This node serves as a provider for pixel-wise K-sample upscaling, facilitating the enhancement of image resolution through advanced sampling techniques. It acts as a foundational component in image processing pipelines, offering a method to upscale images with high fidelity.
 ## Input types
 ### Required
 - **`scale_method`**
-    - Specifies the method used for scaling the image, impacting the quality and characteristics of the upscaled image.
-    - Python dtype: `str`
-    - Comfy dtype: `STRING`
+    - unknown
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `unknown`
 - **`model`**
-    - The model used for upscaling, determining the algorithm and parameters for image enhancement.
-    - Python dtype: `str`
+    - unknown
     - Comfy dtype: `MODEL`
+    - Python dtype: `unknown`
 - **`vae`**
-    - Variational Autoencoder used in conjunction with the model to improve the upscaling process by generating high-quality details.
-    - Python dtype: `str`
-    - Comfy dtype: `STRING`
+    - unknown
+    - Comfy dtype: `VAE`
+    - Python dtype: `unknown`
 - **`seed`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 - **`steps`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 - **`cfg`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`sampler_name`**
     - unknown
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `unknown`
-    - Comfy dtype: `['euler', 'euler_ancestral', 'heun'...]`
 - **`scheduler`**
     - unknown
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `unknown`
-    - Comfy dtype: `['normal', 'karras', 'exponential'...]`
 - **`positive`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `unknown`
 - **`negative`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `unknown`
 - **`denoise`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`use_tiled_vae`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `unknown`
 - **`tile_size`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 ### Optional
 - **`upscale_model_opt`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `UPSCALE_MODEL`
+    - Python dtype: `unknown`
 - **`pk_hook_opt`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `PK_HOOK`
+    - Python dtype: `unknown`
 ## Output types
 - **`upscaler`**
-    - Provides an instance of PixelKSampleUpscaler configured with the specified parameters, ready for image upscaling tasks.
-    - Python dtype: `PixelKSampleUpscaler`
     - Comfy dtype: `UPSCALER`
+    - unknown
+    - Python dtype: `unknown`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `IterativeLatentUpscale`

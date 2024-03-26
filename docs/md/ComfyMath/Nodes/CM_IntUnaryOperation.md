@@ -8,12 +8,12 @@ Performs unary operations on integers, applying a specified operation to a singl
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the unary operation to be applied to the integer. This determines how the integer's value will be modified.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`a`**
-    - Comfy dtype: `INT`
     - The integer to which the unary operation will be applied. This is the input integer that will be modified by the specified operation.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`int`**

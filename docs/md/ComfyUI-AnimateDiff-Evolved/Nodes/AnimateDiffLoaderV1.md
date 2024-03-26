@@ -8,24 +8,24 @@ This node is designed for loading AnimateDiff models in a deprecated manner, ind
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - This input specifies the AnimateDiff model to be loaded. It is crucial for determining the specific legacy model or settings to be applied, affecting the node's execution and the resulting animation capabilities.
+    - Comfy dtype: `MODEL`
     - Python dtype: `str`
 - **`latents`**
-    - Comfy dtype: `LATENT`
     - The latents input represents the latent space vectors to be used with the AnimateDiff model. It is essential for defining the initial state or conditions under which the model operates, directly influencing the animation's characteristics.
+    - Comfy dtype: `LATENT`
     - Python dtype: `torch.Tensor`
 - **`model_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - This input specifies the name of the AnimateDiff model to be loaded. It is important for selecting the correct legacy model or settings, affecting the node's functionality and the animations it produces.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`unlimited_area_hack`**
-    - Comfy dtype: `BOOLEAN`
     - A boolean input that enables or disables the unlimited area hack, affecting how the model processes the animation.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`beta_schedule`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the beta schedule to be used by the AnimateDiff model. It influences the model's behavior during the animation process.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`model`**

@@ -8,8 +8,8 @@ The KSamplerSelect node is designed to select a specific sampler based on the pr
 ## Input types
 ### Required
 - **`sampler_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the name of the sampler to be selected. This parameter determines which sampling strategy will be used, impacting the overall sampling behavior and results.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`sampler`**

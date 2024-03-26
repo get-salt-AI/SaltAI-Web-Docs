@@ -4,67 +4,67 @@
 - Category: `ImpactPack/Upscale`
 - Output node: `False`
 
-This node provides a mechanism to upscale an image using two different samplers based on a mask. It utilizes one sampler for the areas specified by the mask and another sampler for the rest of the image. This approach allows for differentiated processing, enhancing specific regions of an image while treating the rest differently.
+This node provides a mechanism to upscale images using two distinct samplers, each responsible for different regions of the image, based on a mask. It enables the selective application of upscaling techniques to enhance image quality or add details in a controlled manner.
 ## Input types
 ### Required
 - **`scale_method`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `['nearest-exact', 'bilinear', 'lanczos'...]`
+    - Specifies the method used for scaling during the upscaling process.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
 - **`full_sample_schedule`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `['none', 'interleave1', 'interleave2'...]`
+    - Defines the sampling schedule for the full image upscaling.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `Dict[str, Any]`
 - **`use_tiled_vae`**
-    - unknown
-    - Python dtype: `unknown`
+    - Indicates whether a tiled VAE approach is used for upscaling.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`base_sampler`**
-    - The sampler used for upscaling the areas of the image not specified by the mask. It defines the upscaling behavior for the majority of the image.
-    - Python dtype: `KSAMPLER`
+    - The primary sampler used for upscaling the image, applied to the regions not covered by the mask.
     - Comfy dtype: `KSAMPLER`
+    - Python dtype: `torch.nn.Module`
 - **`mask_sampler`**
-    - The sampler specifically used for the areas of the image defined by the mask. It allows for targeted upscaling and processing of these regions.
-    - Python dtype: `KSAMPLER`
+    - A specialized sampler used for upscaling the regions of the image specified by the mask.
     - Comfy dtype: `KSAMPLER`
+    - Python dtype: `torch.nn.Module`
 - **`mask`**
-    - A binary mask defining areas of the image to be processed differently. It guides the application of the two samplers.
-    - Python dtype: `torch.Tensor`
+    - A binary mask indicating the regions of the image to be specifically upscaled by the mask_sampler.
     - Comfy dtype: `MASK`
+    - Python dtype: `torch.Tensor`
 - **`vae`**
-    - unknown
-    - Python dtype: `unknown`
+    - The variational autoencoder used in the upscaling process.
     - Comfy dtype: `VAE`
+    - Python dtype: `torch.nn.Module`
 - **`tile_size`**
-    - unknown
-    - Python dtype: `unknown`
+    - Specifies the size of the tiles when using a tiled VAE approach.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ### Optional
 - **`full_sampler_opt`**
-    - unknown
-    - Python dtype: `unknown`
+    - Options for the full sampler used in the upscaling process.
     - Comfy dtype: `KSAMPLER`
+    - Python dtype: `Dict[str, Any]`
 - **`upscale_model_opt`**
-    - unknown
-    - Python dtype: `unknown`
+    - Options for the upscale model used in the upscaling process.
     - Comfy dtype: `UPSCALE_MODEL`
+    - Python dtype: `Dict[str, Any]`
 - **`pk_hook_base_opt`**
-    - unknown
-    - Python dtype: `unknown`
+    - Options for the base hook in the upscaling process.
     - Comfy dtype: `PK_HOOK`
+    - Python dtype: `Dict[str, Any]`
 - **`pk_hook_mask_opt`**
-    - unknown
-    - Python dtype: `unknown`
+    - Options for the mask hook in the upscaling process.
     - Comfy dtype: `PK_HOOK`
+    - Python dtype: `Dict[str, Any]`
 - **`pk_hook_full_opt`**
-    - unknown
-    - Python dtype: `unknown`
+    - Options for the full hook in the upscaling process.
     - Comfy dtype: `PK_HOOK`
+    - Python dtype: `Dict[str, Any]`
 ## Output types
 - **`upscaler`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `UPSCALER`
+    - The upscaled latent image after applying both the base and mask samplers.
+    - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

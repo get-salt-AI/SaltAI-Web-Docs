@@ -8,28 +8,28 @@ The ConditioningSetAreaPercentage node specializes in adjusting the area of infl
 ## Input types
 ### Required
 - **`conditioning`**
-    - Comfy dtype: `CONDITIONING`
     - Represents the conditioning elements to be modified, serving as the foundation for applying area and strength adjustments.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 - **`width`**
-    - Comfy dtype: `FLOAT`
     - Specifies the width of the area as a percentage of the total image width, influencing how much of the image the conditioning affects horizontally.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`height`**
-    - Comfy dtype: `FLOAT`
     - Determines the height of the area as a percentage of the total image height, affecting the vertical extent of the conditioning's influence.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`x`**
-    - Comfy dtype: `FLOAT`
     - Indicates the horizontal starting point of the area as a percentage of the total image width, positioning the conditioning effect.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`y`**
-    - Comfy dtype: `FLOAT`
     - Specifies the vertical starting point of the area as a percentage of the total image height, positioning the conditioning effect.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`strength`**
-    - Comfy dtype: `FLOAT`
     - Controls the intensity of the conditioning effect within the specified area, allowing for fine-tuning of its impact.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`conditioning`**

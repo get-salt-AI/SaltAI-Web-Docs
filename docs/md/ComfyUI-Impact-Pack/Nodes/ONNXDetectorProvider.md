@@ -4,20 +4,20 @@
 - Category: `ImpactPack`
 - Output node: `False`
 
-The ONNXDetectorProvider class is responsible for loading ONNX models for object detection. It utilizes the `load_onnx` method to load a specified ONNX model from a given path and returns an instance of the ONNXDetector class initialized with the loaded model.
+The ONNXDetectorProvider node is designed to load and provide access to ONNX models for object detection. It serves as a bridge between the ONNX model files and the detection functionality, enabling the use of pre-trained ONNX models for detecting objects within images.
 ## Input types
 ### Required
 - **`model_name`**
-    - Specifies the name of the ONNX model to be loaded. This name is used to retrieve the full path of the model file from a predefined folder structure.
-    - Python dtype: `str`
-    - Comfy dtype: `STRING`
+    - Specifies the name of the ONNX model to be loaded. This parameter is crucial for identifying and accessing the correct model file for object detection.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `List[str]`
 ## Output types
 - **`bbox_detector`**
-    - Returns an instance of the ONNXDetector class, which is capable of performing object detection on images using the loaded ONNX model.
-    - Python dtype: `core.ONNXDetector`
     - Comfy dtype: `BBOX_DETECTOR`
+    - Provides an object detector initialized with the specified ONNX model. This detector is capable of identifying bounding boxes around objects within images.
+    - Python dtype: `core.ONNXDetector`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 

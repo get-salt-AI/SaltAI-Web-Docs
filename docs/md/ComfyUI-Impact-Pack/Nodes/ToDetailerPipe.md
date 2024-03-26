@@ -4,63 +4,63 @@
 - Category: `ImpactPack/Pipe`
 - Output node: `False`
 
-The `ToDetailerPipe` class is designed to encapsulate the functionality for transforming input components into a detailer pipe format. This process involves organizing and structuring various components such as models, clips, VAEs, and conditioning elements into a coherent pipeline that can be utilized for detailed image or text generation tasks.
+The ToDetailerPipe node is designed to transform various model components and configurations into a detailed pipeline format. It focuses on enhancing the specificity and impact of model outputs by incorporating additional conditioning and refinement processes.
 ## Input types
 ### Required
 - **`model`**
-    - The 'model' parameter represents the core generative model used in the pipeline. Its inclusion is crucial as it defines the backbone of the generation process, influencing the output's quality and characteristics.
-    - Python dtype: `str`
+    - The 'model' parameter represents the core model to be included in the detailer pipeline, serving as the foundation for further enhancements and conditioning.
     - Comfy dtype: `MODEL`
+    - Python dtype: `str`
 - **`clip`**
-    - The 'clip' parameter is used for semantic understanding and alignment between text and images, enhancing the relevance and accuracy of the generated output.
-    - Python dtype: `str`
+    - The 'clip' parameter specifies the CLIP model to be used in conjunction with the main model for enhanced content understanding and generation.
     - Comfy dtype: `CLIP`
+    - Python dtype: `str`
 - **`vae`**
-    - The 'vae' parameter stands for Variational Autoencoder. It's used for learning efficient data codings in an unsupervised manner, which is essential for generating or reconstructing images.
-    - Python dtype: `str`
+    - The 'vae' parameter involves a Variational Autoencoder (VAE) model, which is used for generating or modifying content within the pipeline.
     - Comfy dtype: `VAE`
+    - Python dtype: `str`
 - **`positive`**
-    - This parameter is used for specifying positive conditioning signals that guide the generation process towards desired attributes or features.
-    - Python dtype: `str`
+    - The 'positive' parameter is used for positive conditioning, influencing the model to generate content that aligns with specified positive attributes.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `str`
 - **`negative`**
-    - Similar to the 'positive' parameter, this one is used for specifying negative conditioning signals to steer away the generation from certain attributes or features.
-    - Python dtype: `str`
+    - The 'negative' parameter is used for negative conditioning, guiding the model to avoid generating content with specified negative attributes.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `str`
 - **`bbox_detector`**
-    - The 'bbox_detector' parameter is used for detecting bounding boxes in images. It's crucial for tasks that require understanding and manipulating specific regions within images.
-    - Python dtype: `str`
+    - The 'bbox_detector' parameter specifies the bounding box detector model used for identifying specific areas within images for focused processing or analysis.
     - Comfy dtype: `BBOX_DETECTOR`
-- **`wildcard`**
-    - A flexible parameter that allows for the inclusion of additional, unspecified data or instructions that can influence the generation process in various ways.
     - Python dtype: `str`
+- **`wildcard`**
+    - The 'wildcard' parameter allows for the inclusion of dynamic, user-defined text inputs that can influence the pipeline's processing and output generation.
     - Comfy dtype: `STRING`
+    - Python dtype: `str`
 - **`Select to add LoRA`**
-    - This parameter allows for the selection of a LoRA (Locally Reweighted Affine transformation) to be added to the text, enabling fine-grained control over the text generation process.
+    - This parameter enables the selection of LoRA (Low-Rank Adaptation) techniques to be added to the text, enhancing the model's adaptability and performance on specific tasks.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
-    - Comfy dtype: `['STRING']`
 - **`Select to add Wildcard`**
-    - Allows for the selection of a wildcard to be added to the text, providing additional flexibility and control over the text generation process.
+    - This parameter allows for the selection of predefined wildcard options to be added to the text, introducing variability and customization into the pipeline's output.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
-    - Comfy dtype: `['STRING']`
 ### Optional
 - **`sam_model_opt`**
-    - unknown
-    - Python dtype: `unknown`
+    - The 'sam_model_opt' parameter specifies an optional SAM (Sharpness-Aware Minimization) model to enhance the detailer pipeline's ability to generate sharp and clear images.
     - Comfy dtype: `SAM_MODEL`
+    - Python dtype: `str`
 - **`segm_detector_opt`**
-    - unknown
-    - Python dtype: `unknown`
+    - The 'segm_detector_opt' parameter specifies an optional segmentation detector model used for identifying and segmenting specific parts of images for detailed processing.
     - Comfy dtype: `SEGM_DETECTOR`
+    - Python dtype: `str`
 - **`detailer_hook`**
-    - unknown
-    - Python dtype: `unknown`
+    - The 'detailer_hook' parameter allows for the inclusion of custom processing hooks within the detailer pipeline, enabling tailored modifications or enhancements to the pipeline's operation.
     - Comfy dtype: `DETAILER_HOOK`
+    - Python dtype: `str`
 ## Output types
 - **`detailer_pipe`**
-    - The output is a detailer pipe, which is a structured collection of components including models, clips, VAEs, and conditioning elements, organized for detailed generation tasks.
-    - Python dtype: `Tuple`
     - Comfy dtype: `DETAILER_PIPE`
+    - The output 'detailer_pipe' represents the comprehensive pipeline configuration, including all model components and settings specified through the input parameters.
+    - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `FaceDetailerPipe,FromDetailerPipe`

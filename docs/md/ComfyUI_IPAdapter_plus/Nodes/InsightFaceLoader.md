@@ -8,8 +8,8 @@ The InsightFaceLoader node is designed to load the InsightFace model, which is a
 ## Input types
 ### Required
 - **`provider`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the execution provider for the InsightFace model, such as CPU, CUDA, or ROCM. This choice determines the computational backend that will be used for model operations.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`insightface`**

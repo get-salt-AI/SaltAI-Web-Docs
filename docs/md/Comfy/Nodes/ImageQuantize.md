@@ -8,16 +8,16 @@ The ImageQuantize node is designed to reduce the number of colors in an image to
 ## Input types
 ### Required
 - **`image`**
-    - Comfy dtype: `IMAGE`
     - The input image tensor to be quantized. It affects the node's execution by being the primary data upon which color reduction is performed.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`colors`**
-    - Comfy dtype: `INT`
     - Specifies the number of colors to reduce the image to. It directly influences the quantization process by determining the color palette size.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`dither`**
-    - Comfy dtype: `COMBO[STRING]`
     - Determines the dithering technique to be applied during quantization, affecting the visual quality and appearance of the output image.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`image`**

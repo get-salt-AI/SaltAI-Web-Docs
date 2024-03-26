@@ -8,21 +8,21 @@ This node is designed to adjust the positional encoding (PE) sweetspot in the co
 ## Input types
 ### Required
 - **`sweetspot`**
-    - Comfy dtype: `INT`
     - Specifies the original sweetspot value for positional encoding, serving as a baseline for adjustments.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`new_sweetspot`**
-    - Comfy dtype: `INT`
     - Defines the new sweetspot value to which the positional encoding should be adjusted, enabling the customization of animation dynamics.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`print_adjustment`**
-    - Comfy dtype: `BOOLEAN`
     - A boolean flag that, when set to True, enables the printing of adjustment details for debugging or informational purposes.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`prev_pe_adjust`**
-    - Comfy dtype: `PE_ADJUST`
     - An optional parameter that allows for the incorporation of previous positional encoding adjustments, facilitating cumulative adjustments.
+    - Comfy dtype: `PE_ADJUST`
     - Python dtype: `AdjustPEGroup`
 ## Output types
 - **`pe_adjust`**

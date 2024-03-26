@@ -8,8 +8,8 @@ The PhotoMakerLoader node is designed to load a specific photomaker model by nam
 ## Input types
 ### Required
 - **`photomaker_model_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the name of the photomaker model to be loaded. This parameter is crucial for identifying and retrieving the correct model from a predefined list of available models.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`photomaker`**

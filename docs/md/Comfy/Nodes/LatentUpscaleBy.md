@@ -8,16 +8,16 @@ The LatentUpscaleBy node is designed for upscaling latent representations of ima
 ## Input types
 ### Required
 - **`samples`**
-    - Comfy dtype: `LATENT`
     - The latent representation of images to be upscaled. This parameter is crucial for determining the input data that will undergo the upscaling process.
+    - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 - **`upscale_method`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the method used for upscaling the latent samples. The choice of method can significantly affect the quality and characteristics of the upscaled output.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scale_by`**
-    - Comfy dtype: `FLOAT`
     - Determines the factor by which the latent samples are scaled. This parameter directly influences the resolution of the output, allowing for precise control over the upscaling process.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`latent`**

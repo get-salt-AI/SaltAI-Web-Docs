@@ -8,25 +8,25 @@ This node is designed to apply a motion model to animate images or sequences, of
 ## Input types
 ### Required
 - **`motion_model`**
-    - Comfy dtype: `MOTION_MODEL_ADE`
     - Specifies the motion model to be applied. It is crucial for defining the animation behavior and effects on the target content.
+    - Comfy dtype: `MOTION_MODEL_ADE`
     - Python dtype: `MotionModelPatcher`
 ### Optional
 - **`motion_lora`**
-    - Comfy dtype: `MOTION_LORA`
     - Optional parameter for incorporating motion Lora adjustments, enhancing the animation with additional motion effects.
+    - Comfy dtype: `MOTION_LORA`
     - Python dtype: `MotionLoraList`
 - **`scale_multival`**
-    - Comfy dtype: `MULTIVAL`
     - Optional parameter for scaling effects, providing flexibility in the intensity of the applied motion.
+    - Comfy dtype: `MULTIVAL`
     - Python dtype: `Optional[MultiVal]`
 - **`effect_multival`**
-    - Comfy dtype: `MULTIVAL`
     - Optional parameter for effect adjustments, enabling customization of the visual impact of the motion.
+    - Comfy dtype: `MULTIVAL`
     - Python dtype: `Optional[MultiVal]`
 - **`ad_keyframes`**
-    - Comfy dtype: `AD_KEYFRAMES`
     - Optional parameter for specifying keyframes, allowing for more controlled and precise animation effects.
+    - Comfy dtype: `AD_KEYFRAMES`
     - Python dtype: `Optional[ADKeyframeGroup]`
 ## Output types
 - **`m_models`**

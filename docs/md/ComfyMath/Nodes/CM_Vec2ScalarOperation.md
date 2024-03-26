@@ -8,16 +8,16 @@ This node performs a scalar operation on a 2-dimensional vector, applying a spec
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the scalar operation to perform on the vector, such as multiplication or division, affecting the overall transformation of the vector.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`a`**
-    - Comfy dtype: `VEC2`
     - The 2-dimensional vector to be operated on, serving as the primary operand in the scalar operation.
+    - Comfy dtype: `VEC2`
     - Python dtype: `Vec2`
 - **`b`**
-    - Comfy dtype: `FLOAT`
     - The scalar value to be used in the operation, acting as the secondary operand that modifies the vector.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`vec2`**

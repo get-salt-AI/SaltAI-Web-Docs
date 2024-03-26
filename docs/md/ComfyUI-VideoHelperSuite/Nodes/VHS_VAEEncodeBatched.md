@@ -4,26 +4,26 @@
 - Category: `Video Helper Suite 🎥🅥🅗🅢/batched nodes`
 - Output node: `False`
 
-The `VHS_VAEEncodeBatched` node is designed for batch processing of images through a Variational Autoencoder (VAE) to produce latent representations. It processes images in smaller batches to manage memory usage effectively, especially useful for handling large datasets or high-resolution images.
+This node is designed for batch processing of images through a Variational Autoencoder (VAE) to encode them into a latent space representation. It efficiently handles large sets of images by dividing them into smaller batches, encoding each batch separately, and then aggregating the results. This approach optimizes resource utilization and accelerates the encoding process.
 ## Input types
 ### Required
 - **`pixels`**
-    - The `pixels` parameter represents the images to be encoded into latent space. It's crucial for defining the input data that will be transformed by the VAE.
-    - Python dtype: `torch.Tensor`
+    - The 'pixels' parameter represents the images to be encoded into the latent space. It plays a crucial role in the node's operation by serving as the primary input for the encoding process.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `torch.Tensor`
 - **`vae`**
-    - The `vae` parameter specifies the Variational Autoencoder model used for encoding the images into latent representations. It's essential for determining the transformation applied to the input images.
-    - Python dtype: `torch.nn.Module`
+    - The 'vae' parameter specifies the Variational Autoencoder model used for encoding the images. It is essential for determining how the images are transformed into their latent space representations.
     - Comfy dtype: `VAE`
+    - Python dtype: `VAE`
 - **`per_batch`**
-    - The `per_batch` parameter controls the number of images processed in each batch. This helps in managing memory usage and computational load during the encoding process.
-    - Python dtype: `int`
+    - The 'per_batch' parameter controls the number of images processed in each batch. Adjusting this value can optimize the encoding process by balancing between processing speed and resource consumption.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
 - **`latent`**
-    - The output `samples` are the encoded latent representations of the input images. These latent vectors are useful for various applications, including image generation and manipulation.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The output is a dictionary containing the encoded images in their latent space representation, facilitating further processing or analysis.
+    - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

@@ -8,12 +8,12 @@ This node is designed to enhance the sampling process of models by applying a st
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - The model to which the stable cascade sampling patch will be applied. This parameter is crucial as it determines the base model that will undergo modification.
+    - Comfy dtype: `MODEL`
     - Python dtype: `comfy.model_base.BaseModel`
 - **`shift`**
-    - Comfy dtype: `FLOAT`
     - A floating-point value that specifies the degree of shift to be applied during the sampling process. This parameter influences how the model's behavior is altered by the patch.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`model`**

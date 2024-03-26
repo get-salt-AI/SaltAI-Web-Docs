@@ -8,17 +8,17 @@ The ADE_AdjustPEFullStretch node is designed for adjusting the positional encodi
 ## Input types
 ### Required
 - **`pe_stretch`**
-    - Comfy dtype: `INT`
     - Specifies the amount by which the positional encoding (PE) should be stretched, effectively altering the animation's length and timing.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`print_adjustment`**
-    - Comfy dtype: `BOOLEAN`
     - A boolean flag that, when set to True, enables the printing of adjustment details for debugging or informational purposes.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`prev_pe_adjust`**
-    - Comfy dtype: `PE_ADJUST`
     - An optional parameter that allows for the chaining of multiple PE adjustments by taking a previous PE adjustment group as input.
+    - Comfy dtype: `PE_ADJUST`
     - Python dtype: `AdjustPEGroup`
 ## Output types
 - **`pe_adjust`**

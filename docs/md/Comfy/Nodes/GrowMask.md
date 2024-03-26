@@ -8,16 +8,16 @@ The GrowMask node is designed to modify the size of a given mask, either expandi
 ## Input types
 ### Required
 - **`mask`**
-    - Comfy dtype: `MASK`
     - The input mask to be modified. This parameter is central to the node's operation, serving as the base upon which the mask is either expanded or contracted.
+    - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`expand`**
-    - Comfy dtype: `INT`
     - Determines the magnitude and direction of the mask modification. Positive values cause the mask to expand, while negative values lead to contraction. This parameter directly influences the final size of the mask.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`tapered_corners`**
-    - Comfy dtype: `BOOLEAN`
     - A boolean flag that, when set to True, applies a tapered effect to the corners of the mask during modification. This option allows for smoother transitions and visually appealing results.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`mask`**

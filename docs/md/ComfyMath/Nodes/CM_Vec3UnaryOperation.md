@@ -8,12 +8,12 @@ The CM_Vec3UnaryOperation node performs unary operations on 3-dimensional vector
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the unary operation to be performed on the vector. The choice of operation directly influences the outcome of the transformation.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 - **`a`**
-    - Comfy dtype: `VEC3`
     - The 3-dimensional vector to be transformed. It serves as the input for the unary operation, determining the base vector for the transformation.
+    - Comfy dtype: `VEC3`
     - Python dtype: `Vec3`
 ## Output types
 - **`vec3`**

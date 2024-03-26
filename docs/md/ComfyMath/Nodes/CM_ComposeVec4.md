@@ -8,20 +8,20 @@ The `CM_ComposeVec4` node is designed for the mathematical conversion of individ
 ## Input types
 ### Required
 - **`x`**
-    - Comfy dtype: `FLOAT`
     - Represents the first component of the Vec4, influencing its spatial or graphical representation.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`y`**
-    - Comfy dtype: `FLOAT`
     - Denotes the second component of the Vec4, contributing to its spatial or graphical characteristics.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`z`**
-    - Comfy dtype: `FLOAT`
     - Defines the third component of the Vec4, affecting its spatial or graphical attributes.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`w`**
-    - Comfy dtype: `FLOAT`
     - Indicates the fourth component of the Vec4, impacting its spatial or graphical representation.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`vec4`**

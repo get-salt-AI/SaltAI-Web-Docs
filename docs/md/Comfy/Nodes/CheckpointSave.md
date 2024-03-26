@@ -8,20 +8,20 @@ The CheckpointSave node is designed for saving the state of various model compon
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - The model parameter represents the primary model whose state is to be saved. It is essential for capturing the current state of the model for future restoration or analysis.
+    - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`clip`**
-    - Comfy dtype: `CLIP`
     - The clip parameter is intended for the CLIP model associated with the primary model, allowing its state to be saved alongside the main model.
+    - Comfy dtype: `CLIP`
     - Python dtype: `torch.nn.Module`
 - **`vae`**
-    - Comfy dtype: `VAE`
     - The vae parameter is for the Variational Autoencoder (VAE) model, enabling its state to be saved for future use or analysis alongside the main model and CLIP.
+    - Comfy dtype: `VAE`
     - Python dtype: `torch.nn.Module`
 - **`filename_prefix`**
-    - Comfy dtype: `STRING`
     - This parameter specifies the prefix for the filename under which the checkpoint will be saved, providing a means to organize and identify saved checkpoints.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 The node doesn't have output types

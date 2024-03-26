@@ -8,12 +8,12 @@ This node combines two conditioning inputs into a single output, effectively mer
 ## Input types
 ### Required
 - **`conditioning_1`**
-    - Comfy dtype: `CONDITIONING`
     - The first conditioning input to be combined. It plays an equal role with conditioning_2 in the combination process.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `tuple`
 - **`conditioning_2`**
-    - Comfy dtype: `CONDITIONING`
     - The second conditioning input to be combined. It is equally important as conditioning_1 in the merging process.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `tuple`
 ## Output types
 - **`conditioning`**

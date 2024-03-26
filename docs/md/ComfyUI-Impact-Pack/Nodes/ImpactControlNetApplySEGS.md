@@ -4,35 +4,35 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-This node applies a control network to a given set of segmentation masks (SEGS), adjusting them based on the control network's parameters and optionally a control image. It allows for dynamic modification of segmentation masks with varying degrees of strength, enabling fine-tuned adjustments or transformations.
+This node applies a control network to segmentation data (SEGS), adjusting the segmentation according to the control network's parameters and potentially an additional control image. It's designed to modify segmentation outputs based on specified controls, enhancing or altering the segmentation results in a targeted manner.
 ## Input types
 ### Required
 - **`segs`**
-    - The segmentation masks to be modified. This is the primary input that the control network will adjust.
-    - Python dtype: `Tuple[Any, List[SEG]]`
+    - The segmentation data to be modified. It's the primary input over which the control network's effects are applied.
     - Comfy dtype: `SEGS`
+    - Python dtype: `Tuple[Tuple[Any, List[SEG]]]`
 - **`control_net`**
-    - The control network to apply to the segmentation masks. It defines the transformation or adjustment to be performed.
-    - Python dtype: `ControlNet`
+    - The control network to apply to the segmentation data. It defines how the segmentation should be adjusted.
     - Comfy dtype: `CONTROL_NET`
+    - Python dtype: `ControlNetWrapper`
 - **`strength`**
-    - Determines the intensity of the control network's effect on the segmentation masks. A higher value results in more pronounced changes.
-    - Python dtype: `float`
+    - A scalar value that determines the intensity of the control network's effect on the segmentation.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 ### Optional
 - **`segs_preprocessor`**
-    - An optional preprocessor for the segmentation masks before applying the control network. It can be used for additional adjustments or preprocessing steps.
-    - Python dtype: `Optional[SEGS_PREPROCESSOR]`
+    - An optional preprocessor for the segmentation data before applying the control network.
     - Comfy dtype: `SEGS_PREPROCESSOR`
+    - Python dtype: `Optional[SEGS_PREPROCESSOR]`
 - **`control_image`**
-    - An optional control image that can influence the control network's adjustments on the segmentation masks. It provides an additional layer of control.
-    - Python dtype: `Optional[torch.Tensor]`
+    - An optional image that can influence the control network's application to the segmentation data.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `Optional[torch.Tensor]`
 ## Output types
 - **`segs`**
-    - The modified segmentation masks after the control network's adjustments have been applied.
-    - Python dtype: `Tuple[Any, List[SEG]]`
     - Comfy dtype: `SEGS`
+    - The modified segmentation data after applying the control network.
+    - Python dtype: `Tuple[Tuple[Any, List[SEG]]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `DetailerForEachDebugPipe,ImpactControlNetApplySEGS`

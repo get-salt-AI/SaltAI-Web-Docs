@@ -4,38 +4,38 @@
 - Category: `ImpactPack/Upscale`
 - Output node: `False`
 
-This node performs iterative upscaling of latent images over a specified number of steps, gradually increasing the scale factor until the desired upscale factor is reached. It utilizes an upscaler to adjust the dimensions of the latent images at each step, providing a detailed and controlled approach to image upscaling.
+This node is designed to iteratively upscale latent representations of images over a specified number of steps, allowing for gradual and controlled image enlargement. It leverages an upscaling method to progressively increase the resolution of the latent space representation, enhancing the detail and quality of the generated images with each iteration.
 ## Input types
 ### Required
 - **`samples`**
-    - The latent representation of images to be upscaled. It serves as the starting point for the iterative upscaling process.
-    - Python dtype: `Dict[str, torch.Tensor]`
+    - The initial latent representation of the image to be upscaled. It serves as the starting point for the iterative upscaling process.
     - Comfy dtype: `LATENT`
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`upscale_factor`**
-    - The final scale factor to achieve after all iterative steps. It determines the overall increase in size of the latent images.
-    - Python dtype: `float`
+    - The total factor by which the image's dimensions are to be increased by the end of the iterative process.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`steps`**
-    - The number of iterative steps to perform the upscaling. Each step incrementally increases the size of the images, contributing to a gradual upscale.
-    - Python dtype: `int`
+    - The number of iterations to divide the upscaling process into, allowing for gradual enlargement and refinement.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`temp_prefix`**
-    - An optional prefix for temporary files generated during the upscaling process. It aids in organizing and identifying intermediate results.
-    - Python dtype: `Optional[str]`
+    - An optional prefix for temporary file saving during the upscaling process, facilitating intermediate result inspection.
     - Comfy dtype: `STRING`
+    - Python dtype: `Optional[str]`
 - **`upscaler`**
-    - The upscaling method or model to be used for resizing the images at each iterative step. It plays a crucial role in determining the quality and characteristics of the upscaled images.
-    - Python dtype: `Any`
+    - The specific upscaling method or model to be used for each upscaling step.
     - Comfy dtype: `UPSCALER`
+    - Python dtype: `torch.nn.Module`
 ## Output types
 - **`latent`**
-    - The final upscaled latent representation of the images after completing all iterative steps.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The upscaled latent representation after the iterative upscaling process.
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`vae`**
-    - The variational autoencoder used in the upscaling process. It is involved in encoding and decoding the images during the upscaling.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `VAE`
+    - The variational autoencoder used during the upscaling process.
+    - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `VAEDecode`

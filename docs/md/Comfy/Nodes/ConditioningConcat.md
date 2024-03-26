@@ -8,12 +8,12 @@ The ConditioningConcat node is designed to concatenate conditioning vectors, spe
 ## Input types
 ### Required
 - **`conditioning_to`**
-    - Comfy dtype: `CONDITIONING`
     - Represents the primary set of conditioning vectors to which the 'conditioning_from' vectors will be concatenated. It serves as the base for the concatenation process.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[torch.Tensor, Dict]]`
 - **`conditioning_from`**
-    - Comfy dtype: `CONDITIONING`
     - Consists of conditioning vectors that are to be concatenated to the 'conditioning_to' vectors. This parameter allows for additional conditioning information to be integrated into the existing set.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[torch.Tensor, Dict]]`
 ## Output types
 - **`conditioning`**

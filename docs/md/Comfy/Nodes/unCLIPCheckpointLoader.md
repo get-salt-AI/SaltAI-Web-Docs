@@ -8,8 +8,8 @@ The unCLIPCheckpointLoader node is designed for loading checkpoints specifically
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - The 'ckpt_name' parameter specifies the name of the checkpoint to be loaded. It is crucial for identifying and retrieving the correct checkpoint file from a predefined directory of checkpoints, thereby determining the models and configurations to be initialized.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`model`**

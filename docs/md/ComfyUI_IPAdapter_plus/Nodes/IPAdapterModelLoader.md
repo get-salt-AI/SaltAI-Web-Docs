@@ -8,8 +8,8 @@ The IPAdapterModelLoader node is designed to load IPAdapter models from specifie
 ## Input types
 ### Required
 - **`ipadapter_file`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the filename of the IPAdapter model to be loaded. It is crucial for locating and loading the correct model file.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 ## Output types
 - **`ipadapter`**

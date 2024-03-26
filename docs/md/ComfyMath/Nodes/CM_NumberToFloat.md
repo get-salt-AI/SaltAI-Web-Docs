@@ -8,8 +8,8 @@ The CM_NumberToFloat node is designed for converting numerical values from a gen
 ## Input types
 ### Required
 - **`a`**
-    - Comfy dtype: `NUMBER`
     - The input 'a' represents the numerical value to be converted into a floating-point number. This parameter is crucial for the conversion process, affecting the node's execution by determining the output's precision and value.
+    - Comfy dtype: `NUMBER`
     - Python dtype: `Union[int, float]`
 ## Output types
 - **`float`**

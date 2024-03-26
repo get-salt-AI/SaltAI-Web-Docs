@@ -8,8 +8,8 @@ The VAELoader node is designed for loading Variational Autoencoder (VAE) models,
 ## Input types
 ### Required
 - **`vae_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the name of the VAE to be loaded. This parameter determines which VAE model is fetched and loaded, supporting a range of predefined VAE names including 'taesd' and 'taesdxl'.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`vae`**

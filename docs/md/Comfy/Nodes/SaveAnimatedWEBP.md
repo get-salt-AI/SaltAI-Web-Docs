@@ -8,28 +8,28 @@ This node is designed for saving a sequence of images as an animated WEBP file. 
 ## Input types
 ### Required
 - **`images`**
-    - Comfy dtype: `IMAGE`
     - A list of images to be saved as frames in the animated WEBP. This parameter is essential for defining the visual content of the animation.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `List[PIL.Image]`
 - **`filename_prefix`**
-    - Comfy dtype: `STRING`
     - Specifies the base name for the output file, which will be appended with a counter and the '.webp' extension. This parameter is crucial for identifying and organizing the saved files.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`fps`**
-    - Comfy dtype: `FLOAT`
     - The frames per second rate for the animation, influencing the playback speed.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`lossless`**
-    - Comfy dtype: `BOOLEAN`
     - A boolean indicating whether to use lossless compression, affecting the file size and quality of the animation.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`quality`**
-    - Comfy dtype: `INT`
     - A value between 0 and 100 that sets the compression quality level, with higher values resulting in better image quality but larger file sizes.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`method`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the compression method to use, which can impact the encoding speed and file size.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`ui`**

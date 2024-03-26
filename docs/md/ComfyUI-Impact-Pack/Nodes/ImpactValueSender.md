@@ -4,27 +4,27 @@
 - Category: `ImpactPack/Logic`
 - Output node: `True`
 
-The `ImpactValueSender` node is designed to transmit a value along with a link identifier to a specified destination. It primarily serves in scenarios where data needs to be sent synchronously across different parts of a system, ensuring that the value is delivered accurately and efficiently.
+The ImpactValueSender node is designed to transmit a specified value to a designated link within the system, optionally carrying an additional signal. It serves as a conduit for sending data across different parts of the application, facilitating communication and data flow.
 ## Input types
 ### Required
 - **`value`**
-    - This parameter represents the data to be sent. Its flexibility in type allows for a wide range of data to be transmitted, making the node versatile in its application.
-    - Python dtype: `Any`
+    - The value to be sent. This parameter is central to the node's function as it determines the data that will be transmitted.
     - Comfy dtype: `*`
+    - Python dtype: `Any`
 - **`link_id`**
-    - The link identifier specifies the destination or channel through which the value should be sent. It plays a crucial role in ensuring that the data reaches the correct recipient.
-    - Python dtype: `int`
+    - Identifies the target link for sending the value. It specifies the destination within the system, ensuring the data reaches the intended recipient.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ### Optional
 - **`signal_opt`**
-    - An optional signal that can be sent along with the value. This allows for additional context or commands to be transmitted, enhancing the node's functionality.
-    - Python dtype: `Any`
+    - An optional signal that can be sent along with the value. It provides additional context or control information accompanying the main data.
     - Comfy dtype: `*`
+    - Python dtype: `Any`
 ## Output types
-- **`*`**
-    - Returns the optional signal if provided, allowing for further actions based on this signal.
-    - Python dtype: `Any`
+- **`signal`**
     - Comfy dtype: `*`
+    - The optional signal sent along with the value, if provided. It represents additional data or control information that accompanies the main value.
+    - Python dtype: `Any`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

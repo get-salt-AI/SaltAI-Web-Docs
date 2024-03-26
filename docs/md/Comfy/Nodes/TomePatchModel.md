@@ -8,12 +8,12 @@ The TomePatchModel node is designed to modify a given model by applying a specif
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - The model to be patched. This parameter is crucial as it determines the base model that will undergo the patching process.
+    - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`ratio`**
-    - Comfy dtype: `FLOAT`
     - A float value representing the ratio at which the model's attention mechanism is adjusted. This parameter influences the extent of the modification applied to the model, affecting its overall performance.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`model`**

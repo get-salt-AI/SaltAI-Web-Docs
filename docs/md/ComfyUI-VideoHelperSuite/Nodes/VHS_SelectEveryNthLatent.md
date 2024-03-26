@@ -4,26 +4,26 @@
 - Category: `Video Helper Suite 🎥🅥🅗🅢/latent`
 - Output node: `False`
 
-This node selects every Nth latent vector from a batch of latents based on the specified interval, effectively thinning the batch. This operation can be useful for reducing the size of the data to be processed or for selecting specific latents at regular intervals for analysis or visualization.
+This node is designed to filter a batch of latents by selecting every Nth latent from the batch. It's useful for thinning out dense latent sequences to reduce processing load or to select a subset of latents for specific purposes.
 ## Input types
 ### Required
 - **`latents`**
-    - The batch of latent vectors to be processed. This input is crucial for determining which latents will be selected based on the interval.
-    - Python dtype: `dict[str, torch.Tensor]`
+    - The input latents to be filtered. This parameter is crucial for determining which latents will be considered for selection.
     - Comfy dtype: `LATENT`
+    - Python dtype: `dict`
 - **`select_every_nth`**
-    - The interval at which latents are selected from the batch. A smaller value results in more latents being selected, while a larger value thins the batch more aggressively.
-    - Python dtype: `int`
+    - Determines the interval at which latents are selected from the input batch. A value of 1 means every latent is selected, while higher values thin out the selection.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
-- **`latent`**
-    - The thinned batch of latent vectors, containing only every Nth latent based on the specified interval.
-    - Python dtype: `dict[str, torch.Tensor]`
+- **`LATENT`**
     - Comfy dtype: `LATENT`
-- **`int`**
-    - The total number of latents in the thinned batch, providing a quick way to assess the result of the selection process.
-    - Python dtype: `int`
+    - The filtered subset of latents after selecting every Nth latent.
+    - Python dtype: `dict`
+- **`count`**
     - Comfy dtype: `INT`
+    - The total count of latents selected and returned by the node.
+    - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

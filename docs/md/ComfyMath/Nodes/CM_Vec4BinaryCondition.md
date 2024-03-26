@@ -8,16 +8,16 @@ This node performs binary conditional operations on two 4-dimensional vectors (V
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the binary conditional operation to be performed on the vectors, determining the nature of the comparison.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`a`**
-    - Comfy dtype: `VEC4`
     - The first 4-dimensional vector (Vec4) to be compared.
+    - Comfy dtype: `VEC4`
     - Python dtype: `Vec4`
 - **`b`**
-    - Comfy dtype: `VEC4`
     - The second 4-dimensional vector (Vec4) to be compared.
+    - Comfy dtype: `VEC4`
     - Python dtype: `Vec4`
 ## Output types
 - **`bool`**

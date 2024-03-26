@@ -8,37 +8,37 @@ This node is designed to generate a set of static context options for the Animat
 ## Input types
 ### Required
 - **`context_length`**
-    - Comfy dtype: `INT`
     - Specifies the length of the context, determining the size of the context window used in the animation process. It is crucial for defining the scope of each animation frame.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`context_overlap`**
-    - Comfy dtype: `INT`
     - Defines the amount of overlap between consecutive contexts in the animation, affecting the smoothness and continuity of the generated animation.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`fuse_method`**
-    - Comfy dtype: `COMBO[STRING]`
     - Determines the method used to fuse context options, offering flexibility in how animation frames are combined and processed.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`use_on_equal_length`**
-    - Comfy dtype: `BOOLEAN`
     - Indicates whether to use the view options on sequences of equal length, affecting the applicability of the context settings.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`start_percent`**
-    - Comfy dtype: `FLOAT`
     - Specifies the starting percentage of the animation, influencing the initial frame of the animation process.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`guarantee_steps`**
-    - Comfy dtype: `INT`
     - Defines the minimum number of steps guaranteed in the animation, ensuring a certain length of the generated animation.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`prev_context`**
-    - Comfy dtype: `CONTEXT_OPTIONS`
     - Allows for the inclusion of previous context settings, enabling the continuation or modification of existing animation configurations.
+    - Comfy dtype: `CONTEXT_OPTIONS`
     - Python dtype: `ContextOptionsGroup`
 - **`view_opts`**
-    - Comfy dtype: `VIEW_OPTS`
     - Specifies the view options to be used, providing additional customization for the animation generation.
+    - Comfy dtype: `VIEW_OPTS`
     - Python dtype: `ContextOptions`
 ## Output types
 - **`CONTEXT_OPTS`**

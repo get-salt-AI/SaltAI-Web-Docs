@@ -4,21 +4,21 @@
 - Category: `ImpactPack/Logic/_for_test`
 - Output node: `True`
 
-The `ImpactRemoteInt` node is designed to remotely set the value of an integer widget within the ComfyUI framework. It targets a specific widget by its name and node ID, updating its value based on the provided integer input.
+The ImpactRemoteInt node is designed to remotely set integer values for specified widgets within a user interface. It facilitates dynamic interaction with UI components by allowing integer values to be programmatically assigned based on logic or user input.
 ## Input types
 ### Required
 - **`node_id`**
-    - Identifies the target node for the widget value update. It is crucial for ensuring that the correct widget is targeted for the update.
-    - Python dtype: `int`
+    - Identifies the target node whose widget is to be updated. It ensures that the correct widget in the correct node receives the intended value, directly influencing which part of the UI is affected by the operation.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`widget_name`**
-    - Specifies the name of the widget within the target node to be updated. This ensures that the correct widget is targeted for the value change.
-    - Python dtype: `str`
+    - Specifies the name of the widget within the target node that is to be updated. This allows for precise targeting of UI components for value updates, affecting the specific aspect of the user interface that will display the new value.
     - Comfy dtype: `STRING`
+    - Python dtype: `str`
 - **`value`**
-    - The integer value to be set for the specified widget. This value updates the widget's current state to reflect the new integer value.
-    - Python dtype: `int`
+    - The integer value to be set for the specified widget. This value dictates the new state or display of the widget, enabling dynamic UI updates. The chosen value directly impacts the visual feedback or functionality provided by the widget, making it a crucial aspect of UI interaction.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
 The node doesn't have output types
 ## Usage tips

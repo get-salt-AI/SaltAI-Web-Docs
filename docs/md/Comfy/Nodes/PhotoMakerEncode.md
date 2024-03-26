@@ -8,20 +8,20 @@ The PhotoMakerEncode node is designed to integrate visual information from image
 ## Input types
 ### Required
 - **`photomaker`**
-    - Comfy dtype: `PHOTOMAKER`
     - Represents the model used for encoding and integrating visual information from images into the text embeddings. It is essential for the fusion process that combines visual and textual information.
+    - Comfy dtype: `PHOTOMAKER`
     - Python dtype: `PhotoMakerIDEncoder`
 - **`image`**
-    - Comfy dtype: `IMAGE`
     - The image input that provides visual information to be encoded and fused with text embeddings. It plays a crucial role in enhancing the contextual relevance of the generated embeddings.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`clip`**
-    - Comfy dtype: `CLIP`
     - The CLIP model used for processing the text and potentially the image. It is instrumental in generating text embeddings and may also contribute to image processing.
+    - Comfy dtype: `CLIP`
     - Python dtype: `CLIPModel`
 - **`text`**
-    - Comfy dtype: `STRING`
     - The textual prompt that will be enhanced with visual information from the image. It guides the generation of contextually relevant embeddings.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`conditioning`**

@@ -8,37 +8,37 @@ The ADE_AnimateDiffSamplingSettings node is designed to configure the sampling s
 ## Input types
 ### Required
 - **`batch_offset`**
-    - Comfy dtype: `INT`
     - Specifies the offset for the batch in the sampling process, affecting the starting point of sampling.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`noise_type`**
-    - Comfy dtype: `COMBO[STRING]`
     - Determines the type of noise to be applied during the sampling process, influencing the visual characteristics of the animation.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`seed_gen`**
-    - Comfy dtype: `COMBO[STRING]`
     - Defines the method for generating seeds used in the noise generation, impacting the randomness and variation in the animation.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`seed_offset`**
-    - Comfy dtype: `INT`
     - Sets the offset for the seed generation, modifying the starting point for random noise generation.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`noise_layers`**
-    - Comfy dtype: `NOISE_LAYERS`
     - Optional parameter that allows specifying custom noise layers for more granular control over the noise applied.
+    - Comfy dtype: `NOISE_LAYERS`
     - Python dtype: `NoiseLayerGroup`
 - **`iteration_opts`**
-    - Comfy dtype: `ITERATION_OPTS`
     - Optional parameter for setting iteration options, providing additional control over the sampling iterations.
+    - Comfy dtype: `ITERATION_OPTS`
     - Python dtype: `IterationOptions`
 - **`seed_override`**
-    - Comfy dtype: `INT`
     - Optional parameter to override the seed used in noise generation, enabling deterministic animations.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`adapt_denoise_steps`**
-    - Comfy dtype: `BOOLEAN`
     - Optional boolean parameter to adapt the number of denoising steps based on certain conditions, potentially improving animation quality.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`settings`**

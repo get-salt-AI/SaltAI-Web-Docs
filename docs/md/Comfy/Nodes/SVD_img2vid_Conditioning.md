@@ -8,40 +8,40 @@ This node is designed for generating conditioning data for video generation task
 ## Input types
 ### Required
 - **`clip_vision`**
-    - Comfy dtype: `CLIP_VISION`
     - Represents the CLIP vision model used for encoding visual features from the initial image, playing a crucial role in understanding the content and context of the image for video generation.
+    - Comfy dtype: `CLIP_VISION`
     - Python dtype: `torch.nn.Module`
 - **`init_image`**
-    - Comfy dtype: `IMAGE`
     - The initial image from which the video will be generated, serving as the starting point for the video generation process.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`vae`**
-    - Comfy dtype: `VAE`
     - A Variational Autoencoder (VAE) model used for encoding the initial image into a latent space, facilitating the generation of coherent and continuous video frames.
+    - Comfy dtype: `VAE`
     - Python dtype: `torch.nn.Module`
 - **`width`**
-    - Comfy dtype: `INT`
     - The desired width of the video frames to be generated, allowing for customization of the video's resolution.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Comfy dtype: `INT`
     - The desired height of the video frames, enabling control over the video's aspect ratio and resolution.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`video_frames`**
-    - Comfy dtype: `INT`
     - Specifies the number of frames to be generated for the video, determining the video's length.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`motion_bucket_id`**
-    - Comfy dtype: `INT`
     - An identifier for categorizing the type of motion to be applied in the video generation, aiding in the creation of dynamic and engaging videos.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`fps`**
-    - Comfy dtype: `INT`
     - The frames per second (fps) rate for the video, influencing the smoothness and realism of the generated video.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`augmentation_level`**
-    - Comfy dtype: `FLOAT`
     - A parameter controlling the level of augmentation applied to the initial image, affecting the diversity and variability of the generated video frames.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`positive`**

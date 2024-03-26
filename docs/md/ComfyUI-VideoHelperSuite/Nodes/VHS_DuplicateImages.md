@@ -4,26 +4,26 @@
 - Category: `Video Helper Suite 🎥🅥🅗🅢/image`
 - Output node: `False`
 
-Duplicates a batch of images a specified number of times. This node is useful for creating larger datasets from a smaller number of images or for data augmentation purposes by repeating the images multiple times.
+This node is designed to duplicate a batch of images a specified number of times. It is useful for creating larger datasets from a smaller number of images or for repeating visual elements in video or image processing tasks.
 ## Input types
 ### Required
 - **`images`**
-    - The input tensor containing the batch of images to be duplicated. This parameter is crucial for determining the content that will be replicated.
-    - Python dtype: `Tensor`
+    - The batch of images to be duplicated. This parameter is crucial for defining the input data that will be processed and replicated.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `Tensor`
 - **`multiply_by`**
-    - Specifies the number of times the input images should be duplicated. This affects the size of the output batch, directly influencing the amount of data generated.
-    - Python dtype: `int`
+    - Specifies the number of times the input images should be duplicated. This parameter directly influences the size of the output dataset by determining how many copies of each image will be created.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
-- **`image`**
-    - The output tensor containing the duplicated images. The size of this tensor is determined by the original batch size and the multiplication factor.
-    - Python dtype: `Tensor`
+- **`IMAGE`**
     - Comfy dtype: `IMAGE`
-- **`int`**
-    - The total number of images in the output batch, providing a quick reference to the size of the generated dataset.
-    - Python dtype: `int`
+    - The output is a batch of duplicated images, with the total number of images being the original count multiplied by the 'multiply_by' factor.
+    - Python dtype: `Tensor`
+- **`count`**
     - Comfy dtype: `INT`
+    - The total number of images in the output batch, calculated as the original count multiplied by the 'multiply_by' factor.
+    - Python dtype: `int`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

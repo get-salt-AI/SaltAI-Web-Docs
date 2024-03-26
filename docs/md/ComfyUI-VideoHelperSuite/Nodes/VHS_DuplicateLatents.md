@@ -4,26 +4,26 @@
 - Category: `Video Helper Suite 🎥🅥🅗🅢/latent`
 - Output node: `False`
 
-The `VHS_DuplicateLatents` node duplicates a batch of latent representations a specified number of times. This operation can be useful for creating larger datasets from a smaller set of unique latents or for data augmentation purposes.
+This node is designed to duplicate a batch of latent representations a specified number of times. It plays a crucial role in data augmentation or when a larger dataset is needed from a smaller set of latents for various processing or training purposes.
 ## Input types
 ### Required
 - **`latents`**
-    - The input latent representations to be duplicated. This parameter is crucial for defining the data that will undergo duplication.
-    - Python dtype: `dict[str, torch.Tensor]`
+    - The input latent representations to be duplicated. This parameter is essential for defining the starting point of the duplication process.
     - Comfy dtype: `LATENT`
+    - Python dtype: `dict[str, torch.Tensor]`
 - **`multiply_by`**
-    - Specifies the number of times the input latents should be duplicated. This parameter directly influences the size of the output dataset.
-    - Python dtype: `int`
+    - Specifies the number of times the input latents should be duplicated. This parameter directly influences the size of the output dataset, allowing for flexible data augmentation.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
-- **`latent`**
-    - The duplicated latent representations.
-    - Python dtype: `dict[str, torch.Tensor]`
+- **`LATENT`**
     - Comfy dtype: `LATENT`
-- **`int`**
-    - The total number of latent representations after duplication.
-    - Python dtype: `int`
+    - The duplicated latent representations, expanded according to the 'multiply_by' parameter.
+    - Python dtype: `dict[str, torch.Tensor]`
+- **`count`**
     - Comfy dtype: `INT`
+    - The total count of latent representations after duplication, providing a straightforward way to understand the scale of the output dataset.
+    - Python dtype: `int`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `KSampler,LatentComposite`

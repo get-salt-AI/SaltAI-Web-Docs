@@ -8,12 +8,12 @@ The ImageBatch node is designed for combining two images into a single batch. If
 ## Input types
 ### Required
 - **`image1`**
-    - Comfy dtype: `IMAGE`
     - The first image to be combined into the batch. It serves as the reference for the dimensions to which the second image will be adjusted if necessary.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`image2`**
-    - Comfy dtype: `IMAGE`
     - The second image to be combined into the batch. It is automatically rescaled to match the dimensions of the first image if they differ.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**

@@ -4,18 +4,18 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The `ImpactMakeImageList` node is designed to aggregate multiple images into a list. It accepts an arbitrary number of images as input and returns a list containing all the provided images. This functionality is useful for scenarios where handling a collection of images as a single entity is required, such as batch processing or when passing images through a pipeline that expects a list format.
+The `ImpactMakeImageList` node is designed to aggregate multiple image inputs into a single list. This functionality is essential for scenarios where handling a collection of images as a unified entity is required, facilitating operations that span across multiple images.
 ## Input types
 ### Required
 - **`image1`**
-    - The primary image to be included in the list. This parameter serves as the starting point for the list of images, with additional images appended as they are provided.
-    - Python dtype: `torch.Tensor`
+    - The primary image input for the node. It serves as the initial element in the resulting image list, setting the stage for additional images to be appended.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**
-    - A list of images aggregated from the input. This list is the primary output of the node, allowing for further processing or analysis of the images as a collective group.
-    - Python dtype: `List[torch.Tensor]`
     - Comfy dtype: `IMAGE`
+    - A list of images aggregated from the input. This output is crucial for subsequent operations that require processing multiple images simultaneously.
+    - Python dtype: `List[torch.Tensor]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `ImageListToImageBatch`

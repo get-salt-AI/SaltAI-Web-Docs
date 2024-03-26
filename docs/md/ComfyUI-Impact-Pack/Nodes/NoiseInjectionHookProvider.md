@@ -4,34 +4,34 @@
 - Category: `ImpactPack/Upscale`
 - Output node: `False`
 
-This node provides a mechanism to inject noise into a process at specified intervals or conditions, enhancing the variability or realism of the output. It utilizes a schedule to determine when the noise injection should occur and applies the noise based on the provided parameters.
+The NoiseInjectionHookProvider node is designed to inject noise into a given input based on a specified schedule, source, and strength parameters. It aims to enhance or alter the characteristics of the input by applying noise, which can be useful in various image and signal processing tasks to simulate real-world conditions or to introduce variability.
 ## Input types
 ### Required
 - **`schedule_for_iteration`**
-    - Defines the schedule or condition under which noise is injected. The 'simple' schedule indicates a straightforward, possibly uniform application of noise. The choice of schedule affects how and when the noise is applied, potentially altering the process's behavior or output characteristics over time.
-    - Python dtype: `str`
-    - Comfy dtype: `STRING`
+    - Specifies the schedule to be used for noise injection, affecting how noise is applied over iterations. It plays a crucial role in determining the pattern and intensity of noise injection throughout the process.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `Tuple[str]`
 - **`source`**
-    - Specifies the computational resource (CPU or GPU) used for the noise injection process. The choice of source can influence the performance and efficiency of the noise injection, with GPU potentially offering faster processing times.
-    - Python dtype: `str`
-    - Comfy dtype: `STRING`
+    - Indicates the source of the noise to be injected, which can be either CPU or GPU generated noise, affecting the characteristics of the noise.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `Tuple[str]`
 - **`seed`**
-    - A seed value for random number generation, ensuring reproducibility of the noise pattern. This parameter allows for consistent noise patterns across different runs, which is crucial for comparative analysis or debugging.
-    - Python dtype: `int`
+    - A seed value for random number generation, ensuring reproducibility of the noise pattern when the same seed is used.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`start_strength`**
-    - The initial strength of the noise to be injected, influencing the intensity of the effect. A higher start strength can lead to more pronounced noise effects initially, which can be adjusted dynamically with the end strength parameter.
-    - Python dtype: `float`
+    - The initial strength of the noise to be injected, influencing the intensity of the noise at the beginning of the process.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`end_strength`**
-    - The final strength of the noise to be injected, allowing for dynamic adjustment over time. This parameter enables the modulation of noise intensity, potentially leading to more nuanced or realistic effects.
-    - Python dtype: `float`
+    - The final strength of the noise to be injected, determining the intensity of the noise at the end of the process.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 ## Output types
 - **`pk_hook`**
-    - The noise injection hook created by this node, ready to be applied to the target process. It encapsulates the logic for injecting noise based on the specified parameters and schedule.
-    - Python dtype: `object`
     - Comfy dtype: `PK_HOOK`
+    - The output is a hook that conditions the input by injecting noise according to the specified parameters.
+    - Python dtype: `Tuple[InjectNoiseHook]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

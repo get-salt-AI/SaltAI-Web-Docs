@@ -4,37 +4,37 @@
 - Category: `ImpactPack/Detailer`
 - Output node: `False`
 
-The SEGSPaste node is designed for blending segmented images with a reference image, applying transformations such as Gaussian blur and alpha blending to seamlessly integrate segments. It supports handling different dimensions of masks and images, ensuring compatibility and flexibility in image composition.
+SEGSPaste is designed for the seamless integration of segmented elements into a given scene. It focuses on blending and adjusting segmented objects to ensure they harmonize with their new environment, enhancing the overall visual coherence.
 ## Input types
 ### Required
 - **`image`**
-    - The reference image onto which the segments are pasted. It acts as the canvas for the final composite image.
-    - Python dtype: `torch.Tensor`
+    - Specifies the image to which segmented elements will be pasted, serving as the base for the integration process.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `Image`
 - **`segs`**
-    - A collection of segmented images and associated metadata, crucial for determining how each segment is processed and integrated into the final image.
-    - Python dtype: `List[Dict[str, torch.Tensor]]`
+    - Defines the segmented elements to be integrated into the base image, playing a crucial role in the customization and enhancement of the scene.
     - Comfy dtype: `SEGS`
+    - Python dtype: `List[SEG]`
 - **`feather`**
-    - The feathering value applied to the edges of the segments, enhancing the blending effect for a more natural integration.
-    - Python dtype: `int`
+    - Determines the feathering amount applied to the edges of the segmented elements, aiding in a smoother transition and integration into the base image.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`alpha`**
-    - The alpha value used for blending the segments with the reference image, controlling the transparency of the pasted segments.
-    - Python dtype: `int`
+    - Specifies the alpha transparency level for the segmented elements, allowing for adjustable visibility when integrating into the base image.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ### Optional
 - **`ref_image_opt`**
-    - unknown
-    - Python dtype: `unknown`
+    - An optional reference image that can be used to guide the integration process, providing additional context or alignment cues.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `Optional[Image]`
 ## Output types
 - **`image`**
-    - The composite image resulting from the blending of segments onto the reference image, showcasing the integrated scene.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - Returns the image with the segmented elements successfully integrated, showcasing the seamless blend and enhanced visual coherence.
+    - Python dtype: `Image`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: `VHS_VideoCombine,ImageUpscaleWithModel`
 
 

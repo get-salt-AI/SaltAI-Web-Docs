@@ -4,67 +4,67 @@
 - Category: `ImpactPack/Pipe`
 - Output node: `False`
 
-The EditDetailerPipe node is designed to enhance and detail the content of a given input through a series of transformations and additions. It allows for the customization of text and images by applying specific detailer pipes, wildcards, LoRAs, and other optional parameters like models and detectors to refine the output further.
+The EditDetailerPipe node is designed to enhance and detail the editing process by allowing the integration of various editing components such as LoRA, Wildcards, and models for refining the output. It serves as a foundational element in constructing detailed and customized editing pipelines.
 ## Input types
 ### Required
 - **`detailer_pipe`**
-    - Represents the core transformation pipeline to which additional details and enhancements are applied. It is crucial for defining the base content and structure that will be further detailed.
-    - Python dtype: `Tuple[DETAILER_PIPE]`
+    - Represents the core pipeline for detailing, serving as the primary input around which additional detailing components are integrated.
     - Comfy dtype: `DETAILER_PIPE`
+    - Python dtype: `tuple`
 - **`wildcard`**
-    - Allows for the insertion of dynamic, user-defined text into the content, enhancing its customization and relevance.
+    - Allows for the inclusion of dynamic, multiline text inputs, known as wildcards, to add flexibility and customization to the editing process.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`Select to add LoRA`**
-    - Enables the selection and addition of specific LoRA (Locally Optimized Re-Attention) mechanisms to the text, offering a way to fine-tune and enhance the content's impact.
-    - Python dtype: `List[str]`
-    - Comfy dtype: `STRING`
+    - Enables the selection of LoRA (Locally Optimized Receptive Attention) components to be added to the text, enhancing its detail and specificity.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `list[str]`
 - **`Select to add Wildcard`**
-    - Provides options for incorporating predefined wildcards into the content, further customizing and enriching the output.
-    - Python dtype: `List[str]`
-    - Comfy dtype: `STRING`
+    - Facilitates the selection of predefined wildcards to be incorporated into the text, adding layers of customization.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `list[str]`
 ### Optional
 - **`model`**
-    - Specifies the model used for generating or refining the content, contributing to the overall quality and specificity of the output.
-    - Python dtype: `str`
+    - Specifies the model to be used in the detailing process, allowing for customization and refinement of outputs.
     - Comfy dtype: `MODEL`
+    - Python dtype: `str`
 - **`clip`**
-    - Defines the CLIP model used for guiding the content generation towards specific visual concepts or themes.
-    - Python dtype: `str`
+    - Defines the CLIP model to be integrated into the detailing process for enhanced content understanding and generation.
     - Comfy dtype: `CLIP`
+    - Python dtype: `str`
 - **`vae`**
-    - Specifies the VAE (Variational Autoencoder) model used for generating or refining the content, enhancing its diversity and creativity.
-    - Python dtype: `str`
+    - Specifies the VAE model to be used, enabling advanced image processing capabilities in the detailing process.
     - Comfy dtype: `VAE`
+    - Python dtype: `str`
 - **`positive`**
-    - Sets positive conditioning factors that guide the content generation towards desired attributes or themes.
-    - Python dtype: `str`
+    - Defines positive conditioning factors to guide the detailing process towards desired outcomes.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `str`
 - **`negative`**
-    - Sets negative conditioning factors that steer the content generation away from certain attributes or themes, refining the output.
-    - Python dtype: `str`
+    - Specifies negative conditioning factors to avoid certain outcomes in the detailing process.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `str`
 - **`bbox_detector`**
-    - Specifies a bounding box detector used for identifying and processing specific areas within images, enhancing the content's focus and relevance.
-    - Python dtype: `str`
+    - Integrates a bounding box detector for object localization in images, enhancing the detailing capabilities.
     - Comfy dtype: `BBOX_DETECTOR`
+    - Python dtype: `str`
 - **`sam_model`**
-    - Specifies a SAM model used for semantic adjustment of the content, improving its coherence and relevance.
-    - Python dtype: `str`
+    - Specifies the SAM model to be used, enabling advanced semantic understanding and manipulation.
     - Comfy dtype: `SAM_MODEL`
+    - Python dtype: `str`
 - **`segm_detector`**
-    - Specifies a segmentation detector used for identifying and processing specific segments within images, enhancing the content's detail and relevance.
-    - Python dtype: `str`
+    - Integrates a segmentation detector for detailed image segmentation, enhancing the editing capabilities.
     - Comfy dtype: `SEGM_DETECTOR`
-- **`detailer_hook`**
-    - Provides a mechanism for applying custom transformations or enhancements to the content, allowing for further customization and refinement.
     - Python dtype: `str`
+- **`detailer_hook`**
+    - Allows for the integration of custom hooks into the detailing process, enabling further customization.
     - Comfy dtype: `DETAILER_HOOK`
+    - Python dtype: `str`
 ## Output types
 - **`detailer_pipe`**
-    - Outputs the enhanced and detailed content as a result of the applied transformations and additions.
-    - Python dtype: `Tuple[DETAILER_PIPE]`
     - Comfy dtype: `DETAILER_PIPE`
+    - Outputs the enhanced detailer pipe, incorporating all specified modifications and integrations.
+    - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `FaceDetailerPipe`

@@ -8,20 +8,20 @@ The PrepImageForInsightFace node is designed to prepare images for processing wi
 ## Input types
 ### Required
 - **`image`**
-    - Comfy dtype: `IMAGE`
     - The input image to be processed. It is the primary subject for preparation before being fed into the InsightFace model.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`crop_position`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the position for cropping the image, which can significantly impact the focus area for face detection.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`sharpening`**
-    - Comfy dtype: `FLOAT`
     - An optional parameter to apply sharpening to the image, enhancing details that may improve face detection accuracy.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pad_around`**
-    - Comfy dtype: `BOOLEAN`
     - A boolean flag indicating whether to add padding around the image, which can affect the detection process by altering the image's dimensions.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`image`**

@@ -4,36 +4,36 @@
 - Category: `ImpactPack/Detailer`
 - Output node: `False`
 
-This node provides a mechanism to inject noise into the detailer process, allowing for more nuanced control over the noise characteristics throughout the cycle. It utilizes a schedule to determine when and how the noise injection should occur, and it can operate on either CPU or GPU sources.
+This node is designed to inject noise into the detailer process, allowing for enhanced control over the noise characteristics throughout the cycle. It leverages schedules and strength parameters to dynamically adjust the noise injection based on the cycle's progress.
 ## Input types
 ### Required
 - **`schedule_for_cycle`**
-    - Specifies the schedule according to which noise injection will be applied throughout the cycle. It can either skip the start or begin from the start, affecting the timing and progression of noise injection.
+    - Specifies the schedule to be used for the noise injection cycle, influencing how noise characteristics are adjusted over time.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `Tuple[str]`
-    - Comfy dtype: `STRING`
 - **`source`**
-    - Determines whether the noise injection process will utilize the CPU or GPU, impacting performance and compatibility.
-    - Python dtype: `Tuple[str]`
-    - Comfy dtype: `STRING`
+    - unknown
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `unknown`
 - **`seed`**
-    - A seed for random number generation, ensuring reproducibility of the noise injection process.
-    - Python dtype: `int`
+    - A seed value for noise generation, ensuring reproducibility of the noise characteristics.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`start_strength`**
-    - The initial strength of the noise to be injected, which can be adjusted to control the intensity of the effect at the beginning of the cycle.
-    - Python dtype: `float`
+    - The initial strength of the noise to be injected at the beginning of the cycle.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`end_strength`**
-    - The final strength of the noise to be injected, allowing for dynamic adjustment of the noise intensity towards the end of the cycle.
-    - Python dtype: `float`
+    - The final strength of the noise to be injected by the end of the cycle, allowing for dynamic adjustment.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 ## Output types
 - **`detailer_hook`**
-    - Produces a detailer hook configured for noise injection, which can be used to modify the detailing process by injecting noise according to the specified parameters.
-    - Python dtype: `hooks.InjectNoiseHookForDetailer`
     - Comfy dtype: `DETAILER_HOOK`
+    - Produces a detailer hook configured for noise injection, ready to be integrated into the detailer process.
+    - Python dtype: `hooks.InjectNoiseHookForDetailer`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: `ToDetailerPipe,FaceDetailer`
 
 

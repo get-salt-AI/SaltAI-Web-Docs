@@ -4,18 +4,18 @@
 - Category: `Video Helper Suite 🎥🅥🅗🅢/latent`
 - Output node: `False`
 
-This node counts the number of latent samples in a given batch. It's useful for understanding the size of the dataset or batch being worked with.
+This node is designed to count the number of latent representations present in a given input. It provides a straightforward way to quantify the size of latent batches, facilitating operations that require knowledge of batch dimensions.
 ## Input types
 ### Required
 - **`latents`**
-    - The input latent samples for which the count is to be determined. This parameter is crucial for the operation as it directly influences the result by providing the dataset to be counted.
-    - Python dtype: `dict`
+    - Represents the latent representations to be counted. This input is crucial for determining the total number of latents in the batch, which directly influences the node's output.
     - Comfy dtype: `LATENT`
+    - Python dtype: `dict`
 ## Output types
-- **`int`**
-    - The total number of latent samples present in the input batch. This output is essential for batch size management and further processing steps.
-    - Python dtype: `int`
+- **`count`**
     - Comfy dtype: `INT`
+    - The total number of latent representations in the input batch. This output is essential for understanding the size of the latent batch and for further processing that depends on batch size.
+    - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

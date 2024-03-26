@@ -8,16 +8,16 @@ SDTurboScheduler is designed to generate a sequence of sigma values for image sa
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - The model parameter specifies the generative model to be used for sigma value generation. It is crucial for determining the specific sampling behavior and capabilities of the scheduler.
+    - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`steps`**
-    - Comfy dtype: `INT`
     - The steps parameter determines the length of the sigma sequence to be generated, directly influencing the granularity of the denoising process.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`denoise`**
-    - Comfy dtype: `FLOAT`
     - The denoise parameter adjusts the starting point of the sigma sequence, allowing for finer control over the denoising level applied during image generation.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`sigmas`**

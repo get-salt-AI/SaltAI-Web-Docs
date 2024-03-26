@@ -4,14 +4,14 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The `EmptySegs` node is designed to generate an empty segmentation structure. This can be useful as a placeholder or initial value in workflows that manipulate segmentation data.
+The EmptySEGS node is designed to generate a base structure for segmentation data without any actual segments. It provides a foundational shape and an empty list to represent the absence of segments, serving as a starting point or placeholder in segmentation operations.
 ## Input types
 ### Required
 ## Output types
 - **`segs`**
-    - Returns an empty segmentation structure, consisting of a shape tuple set to (0, 0) and an empty list, indicating no segments.
-    - Python dtype: `Tuple[Tuple[int, int], List[Any]]`
     - Comfy dtype: `SEGS`
+    - Represents a tuple containing a shape and an empty list, indicating the absence of segmentation data.
+    - Python dtype: `Tuple[Tuple[int, int], List]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

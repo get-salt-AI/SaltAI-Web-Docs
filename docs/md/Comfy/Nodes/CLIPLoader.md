@@ -8,12 +8,12 @@ The CLIPLoader node is designed for loading CLIP models, supporting different ty
 ## Input types
 ### Required
 - **`clip_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the name of the CLIP model to be loaded. This name is used to locate the model file within a predefined directory structure.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`type`**
-    - Comfy dtype: `COMBO[STRING]`
     - Determines the type of CLIP model to load, offering options between 'stable_diffusion' and 'stable_cascade'. This affects how the model is initialized and configured.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`clip`**

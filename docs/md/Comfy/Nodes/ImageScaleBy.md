@@ -8,16 +8,16 @@ The ImageScaleBy node is designed for upscaling images by a specified scale fact
 ## Input types
 ### Required
 - **`image`**
-    - Comfy dtype: `IMAGE`
     - The input image to be upscaled. This parameter is crucial as it provides the base image that will undergo the upscaling process.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`upscale_method`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the interpolation method to be used for upscaling. The choice of method can affect the quality and characteristics of the upscaled image.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scale_by`**
-    - Comfy dtype: `FLOAT`
     - The factor by which the image will be upscaled. This determines the increase in size of the output image relative to the input image.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`image`**

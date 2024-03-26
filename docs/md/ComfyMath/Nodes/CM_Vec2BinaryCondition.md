@@ -8,16 +8,16 @@ This node performs a binary condition operation between two 2-dimensional vector
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the binary condition operation to be applied between the two vectors, determining the nature of the comparison.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`a`**
-    - Comfy dtype: `VEC2`
     - The first 2-dimensional vector involved in the binary condition operation.
+    - Comfy dtype: `VEC2`
     - Python dtype: `Vec2`
 - **`b`**
-    - Comfy dtype: `VEC2`
     - The second 2-dimensional vector involved in the binary condition operation.
+    - Comfy dtype: `VEC2`
     - Python dtype: `Vec2`
 ## Output types
 - **`bool`**

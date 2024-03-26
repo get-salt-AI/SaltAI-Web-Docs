@@ -8,13 +8,13 @@ The ADE_MultivalDynamic node dynamically generates multivalued outputs based on 
 ## Input types
 ### Required
 - **`float_val`**
-    - Comfy dtype: `FLOAT`
     - Specifies the float value or a list of float values for dynamic range manipulation. It sets the base for the output values, enabling the generation of multivalued outputs.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `Union[float, list[float]]`
 ### Optional
 - **`mask_optional`**
-    - Comfy dtype: `MASK`
     - An optional tensor representing the mask to be applied. The mask is used to selectively apply the scaling transformation to specific areas, enabling targeted manipulation of values.
+    - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`multival`**

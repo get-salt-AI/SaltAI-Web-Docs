@@ -8,8 +8,8 @@ The UNETLoader node is designed for loading U-Net models by name, facilitating t
 ## Input types
 ### Required
 - **`unet_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the name of the U-Net model to be loaded. This name is used to locate the model within a predefined directory structure, enabling the dynamic loading of different U-Net models.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`model`**

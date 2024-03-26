@@ -8,12 +8,12 @@ This node performs unary condition operations on 2-dimensional vectors, evaluati
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the unary condition operation to be performed on the vector. The choice of operation affects the outcome of the condition evaluation.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`a`**
-    - Comfy dtype: `VEC2`
     - The 2-dimensional vector on which the unary condition operation is to be performed.
+    - Comfy dtype: `VEC2`
     - Python dtype: `Vec2`
 ## Output types
 - **`bool`**

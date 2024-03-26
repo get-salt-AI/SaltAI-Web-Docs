@@ -8,8 +8,8 @@ This node zeroes out specific elements within the conditioning data structure, e
 ## Input types
 ### Required
 - **`conditioning`**
-    - Comfy dtype: `CONDITIONING`
     - The conditioning data structure to be modified. This node zeroes out the 'pooled_output' elements within each conditioning entry, if present.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
 ## Output types
 - **`conditioning`**

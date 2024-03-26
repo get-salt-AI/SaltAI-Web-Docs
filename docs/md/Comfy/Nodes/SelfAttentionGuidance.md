@@ -8,16 +8,16 @@ This node encapsulates the functionality of guiding the self-attention mechanism
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - The 'model' input type represents the neural network model that will be guided through the self-attention mechanism. It is essential for applying the guidance techniques to the correct model architecture.
+    - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`scale`**
-    - Comfy dtype: `FLOAT`
     - The 'scale' input type refers to the factor by which the attention weights are adjusted. It allows for fine-tuning the model's focus on relevant features.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`blur_sigma`**
-    - Comfy dtype: `FLOAT`
     - The 'blur_sigma' input type pertains to the standard deviation of the Gaussian blur applied to the attention weights. This preprocessing step can help in smoothing the attention landscape, potentially leading to better model performance.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`model`**

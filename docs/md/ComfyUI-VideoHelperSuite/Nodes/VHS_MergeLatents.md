@@ -4,38 +4,38 @@
 - Category: `Video Helper Suite 🎥🅥🅗🅢/latent`
 - Output node: `False`
 
-The `VHS_MergeLatents` node merges two batches of latents based on a specified merge strategy, scale method, and cropping option. It adjusts the dimensions of the latents if necessary to ensure compatibility before merging them.
+The VHS_MergeLatents node is designed for combining two sets of latents into a single set, applying various strategies for handling differences in dimensions and ensuring the merged set is suitable for further processing or generation tasks. It incorporates scaling and cropping methods to align the latents' dimensions before merging, making it a versatile tool in the manipulation and preparation of latent representations.
 ## Input types
 ### Required
 - **`latents_A`**
-    - The first batch of latents to be merged. It plays a crucial role in determining the final merged output, especially when the merge strategy is set to prioritize this batch.
-    - Python dtype: `dict`
+    - The first set of latents to be merged. It plays a crucial role in the merging process, potentially serving as the template for dimension matching and scaling.
     - Comfy dtype: `LATENT`
+    - Python dtype: `dict`
 - **`latents_B`**
-    - The second batch of latents to be merged. Depending on the merge strategy, this batch can either complement or serve as the primary basis for the merged output.
-    - Python dtype: `dict`
+    - The second set of latents to be merged. Depending on the merge strategy, it may be scaled to match the dimensions of the first set before merging.
     - Comfy dtype: `LATENT`
+    - Python dtype: `dict`
 - **`merge_strategy`**
-    - Determines how the dimensions of the two latent batches are aligned before merging, affecting the final structure of the merged output.
+    - Determines how the dimensions of the two latent sets are matched before merging, allowing for flexible handling of varying sizes.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `['match A', 'match B', 'match smaller', 'match larger']`
 - **`scale_method`**
-    - Specifies the method used for scaling latents to match dimensions, impacting the quality and appearance of the merged output.
+    - Specifies the method used for scaling latents to match dimensions, offering options like nearest-exact, bilinear, and bicubic among others.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `['nearest-exact', 'bilinear', 'area', 'bicubic', 'bislerp']`
 - **`crop`**
-    - Defines how the latents are cropped if necessary after scaling, influencing the final composition of the merged output.
+    - Defines the cropping method to be applied after scaling, if necessary, to ensure the dimensions are exactly aligned.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `['disabled', 'center']`
 ## Output types
-- **`latent`**
-    - The merged batch of latents, combining elements from both input batches according to the specified strategy, scale, and crop settings.
-    - Python dtype: `dict`
+- **`LATENT`**
     - Comfy dtype: `LATENT`
-- **`int`**
-    - The total number of latents in the merged batch, providing a quantitative measure of the merge operation's result.
-    - Python dtype: `int`
+    - The merged set of latents, ready for further processing or generation tasks.
+    - Python dtype: `dict`
+- **`count`**
     - Comfy dtype: `INT`
+    - The total number of latents in the merged set, providing a quick reference to the size of the output.
+    - Python dtype: `int`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

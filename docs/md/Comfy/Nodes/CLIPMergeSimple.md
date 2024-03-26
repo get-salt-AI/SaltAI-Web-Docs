@@ -8,16 +8,16 @@ This node specializes in merging two CLIP models based on a specified ratio, eff
 ## Input types
 ### Required
 - **`clip1`**
-    - Comfy dtype: `CLIP`
     - The first CLIP model to be merged. It serves as the base model for the merging process.
+    - Comfy dtype: `CLIP`
     - Python dtype: `comfy.model_base.Model`
 - **`clip2`**
-    - Comfy dtype: `CLIP`
     - The second CLIP model to be merged. Its key patches, except for position IDs and logit scale, are applied to the first model based on the specified ratio.
+    - Comfy dtype: `CLIP`
     - Python dtype: `comfy.model_base.Model`
 - **`ratio`**
-    - Comfy dtype: `FLOAT`
     - Determines the proportion of features from the second model to blend into the first model. A ratio of 1.0 means fully adopting the second model's features, while 0.0 retains only the first model's features.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`clip`**

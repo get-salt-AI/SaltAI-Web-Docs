@@ -8,8 +8,8 @@ The GLIGENLoader node is designed for loading GLIGEN models, which are specializ
 ## Input types
 ### Required
 - **`gligen_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - The name of the GLIGEN model to be loaded. This parameter specifies which model file to retrieve and load, playing a crucial role in the initialization of the GLIGEN model for use.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`gligen`**

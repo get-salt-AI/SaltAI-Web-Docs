@@ -4,26 +4,26 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The node 'LatentReceiver' is designed to handle the reception or processing of latent representations in a machine learning or AI context. This could involve operations such as loading, transforming, or transmitting latent vectors.
+The node 'LatentReceiver' is not explicitly defined in the provided context, indicating a potential misunderstanding or misnaming in the query. The context describes various nodes related to the manipulation and transformation of latent vectors in generative models, such as adding, subtracting, interpolating, and batch processing of latent samples. These operations are essential for advanced modifications and analyses of generated content, but do not directly relate to a 'LatentReceiver' node.
 ## Input types
 ### Required
 - **`latent`**
-    - The 'latent' input represents the latent representation to be processed. Its role is crucial for the node's operation as it directly influences the manipulation or transformation applied to the latent data.
+    - This parameter represents the latent vector or representation to be received or processed by the node. Its role is crucial for the node's operation, as it directly influences the manipulation or transformation applied to the latent space.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `torch.Tensor`
-    - Comfy dtype: `LATENT`
 - **`link_id`**
-    - The 'link_id' parameter is used for identifying the specific connection or link in a network of nodes, facilitating the targeted processing or routing of latent data.
+    - The 'link_id' parameter is likely intended for identifying or linking specific operations or data flows within the node's processing pipeline, although its exact purpose cannot be determined from the provided context.
+    - Comfy dtype: `INT`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`trigger_always`**
-    - The 'trigger_always' parameter determines whether the node should process the latent data unconditionally, ensuring continuous operation regardless of other conditions.
+    - This parameter suggests a control mechanism for the node's operation, possibly to trigger processing under certain conditions or to ensure continuous operation. The exact functionality cannot be inferred from the provided context.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
-    - Comfy dtype: `BOOL`
 ## Output types
 - **`latent`**
-    - The output 'latent' contains the processed latent representation. This could involve transformations such as scaling, rotation, or other manipulations based on the node's functionality.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `LATENT`
+    - The output 'latent' likely represents the transformed or manipulated latent vector resulting from the node's operation. This output is essential for further processing or analysis within the generative model's pipeline.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

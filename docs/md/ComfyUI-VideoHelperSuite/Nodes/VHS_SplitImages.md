@@ -4,26 +4,34 @@
 - Category: `Video Helper Suite 🎥🅥🅗🅢/image`
 - Output node: `False`
 
-The `VHS_SplitImages` node is designed to split a batch of images into two groups based on a specified index. This operation facilitates the manipulation of image batches by allowing users to separate them into distinct sets for further processing or analysis.
+The VHS_SplitImages node is designed to divide a batch of images into two groups based on a specified index. This functionality is essential for workflows that require the separation of image data into distinct sets for further processing or analysis.
 ## Input types
 ### Required
 - **`images`**
-    - Represents the batch of images to be split. This parameter is crucial for determining how the images are divided into two groups.
-    - Python dtype: `torch.Tensor`
+    - The 'images' parameter represents the batch of images to be split. It is crucial for determining how the images are divided into two groups.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `Tensor`
 - **`split_index`**
-    - The index at which the batch of images is split. This parameter directly influences the composition of the resulting image groups, determining which images belong to each group.
-    - Python dtype: `int`
+    - The 'split_index' parameter specifies the index at which the batch of images is split. It plays a pivotal role in defining the boundary between the two resulting groups of images.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
-- **`image`**
-    - The second group of images obtained after the split, determined by the `split_index`.
-    - Python dtype: `torch.Tensor`
+- **`IMAGE_A`**
     - Comfy dtype: `IMAGE`
-- **`int`**
-    - The number of images in the second group after the split.
-    - Python dtype: `int`
+    - The first group of images obtained after the split.
+    - Python dtype: `Tensor`
+- **`A_count`**
     - Comfy dtype: `INT`
+    - The count of images in the first group.
+    - Python dtype: `int`
+- **`IMAGE_B`**
+    - Comfy dtype: `IMAGE`
+    - The second group of images obtained after the split.
+    - Python dtype: `Tensor`
+- **`B_count`**
+    - Comfy dtype: `INT`
+    - The count of images in the second group.
+    - Python dtype: `int`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `SVD_img2vid_Conditioning,PreviewImage,SeargeIntegerMath,VHS_SplitImages,STMFNet VFI`

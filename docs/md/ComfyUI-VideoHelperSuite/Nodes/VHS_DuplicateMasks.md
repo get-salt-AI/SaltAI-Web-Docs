@@ -4,26 +4,26 @@
 - Category: `Video Helper Suite 🎥🅥🅗🅢/mask`
 - Output node: `False`
 
-The `VHS_DuplicateMasks` node duplicates a given mask tensor a specified number of times. This operation is useful for creating multiple copies of the same mask, which can be beneficial in various image processing or machine learning tasks where the same mask needs to be applied to multiple images or layers.
+The VHS_DuplicateMasks node is designed to replicate a given mask tensor a specified number of times, effectively creating a batch of identical masks. This functionality is useful in scenarios where multiple instances of the same mask are required for batch processing or augmentation purposes.
 ## Input types
 ### Required
 - **`mask`**
-    - The mask tensor to be duplicated. This tensor represents a mask that can be applied to images or used in other operations requiring a mask.
-    - Python dtype: `torch.Tensor`
+    - The 'mask' parameter represents the input mask tensor that is to be duplicated. It is central to the node's operation, as it defines the mask that will be replicated.
     - Comfy dtype: `MASK`
+    - Python dtype: `torch.Tensor`
 - **`multiply_by`**
-    - Specifies the number of times the input mask should be duplicated. This allows for the creation of multiple copies of the same mask, which can be used in subsequent operations.
-    - Python dtype: `int`
+    - The 'multiply_by' parameter specifies the number of times the input mask should be duplicated. It directly influences the size of the output batch of masks, enabling dynamic adjustment based on processing needs.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
-- **`mask`**
-    - The duplicated mask tensor, containing multiple copies of the original mask concatenated along the batch dimension.
-    - Python dtype: `torch.Tensor`
+- **`MASK`**
     - Comfy dtype: `MASK`
-- **`int`**
-    - The total number of masks in the duplicated mask tensor, which corresponds to the specified multiplication factor.
-    - Python dtype: `int`
+    - The output is a tensor containing the duplicated masks, arranged in a batch. This facilitates further processing or analysis of the masks in a batched manner.
+    - Python dtype: `torch.Tensor`
+- **`count`**
     - Comfy dtype: `INT`
+    - This output represents the total number of masks in the output batch, providing a straightforward way to ascertain the batch size.
+    - Python dtype: `int`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

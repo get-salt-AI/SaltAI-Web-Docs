@@ -8,20 +8,20 @@ This node is designed to enhance a model's sampling capabilities by integrating 
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - The model to be enhanced with continuous EDM sampling capabilities. It serves as the foundation for applying the advanced sampling techniques.
+    - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`sampling`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the type of sampling to be applied, either 'eps' for epsilon sampling or 'v_prediction' for velocity prediction, influencing the model's behavior during the sampling process.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`sigma_max`**
-    - Comfy dtype: `FLOAT`
     - The maximum sigma value for noise level, allowing for upper bound control in the noise injection process during sampling.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sigma_min`**
-    - Comfy dtype: `FLOAT`
     - The minimum sigma value for noise level, setting the lower limit for noise injection, thus affecting the model's sampling precision.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`model`**

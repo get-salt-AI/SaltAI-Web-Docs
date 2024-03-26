@@ -4,13 +4,13 @@
 - Category: `ImpactPack/Debug`
 - Output node: `True`
 
-The `ImpactLogger` node is designed for debugging purposes within the ImpactPack. It logs the shape and content of the input data, along with a specified prompt and additional PNG information, to the console. This functionality aids in understanding the flow of data and the execution of workflows, especially in complex scenarios.
+The ImpactLogger node is designed for debugging purposes within the ImpactPack. It logs data, including its shape if applicable, along with a specified prompt and additional PNG information, to the console. This functionality aids in tracking and understanding the flow of data and operations within a workflow.
 ## Input types
 ### Required
 - **`data`**
-    - The primary data that will be logged. This can be of any type and is crucial for understanding the content and structure of the data flowing through the node.
-    - Python dtype: `Any`
+    - The primary data to be logged. Its shape is logged if available, providing insights into the data structure being processed.
     - Comfy dtype: `*`
+    - Python dtype: `object`
 ## Output types
 The node doesn't have output types
 ## Usage tips

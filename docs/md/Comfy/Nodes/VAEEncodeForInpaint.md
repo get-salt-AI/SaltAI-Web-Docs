@@ -8,20 +8,20 @@ This node is designed for encoding images into a latent representation suitable 
 ## Input types
 ### Required
 - **`pixels`**
-    - Comfy dtype: `IMAGE`
     - The input image to be encoded. This image undergoes preprocessing and resizing to match the VAE model's expected input dimensions before encoding.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`vae`**
-    - Comfy dtype: `VAE`
     - The VAE model used for encoding the image into its latent representation. It plays a crucial role in the transformation process, determining the quality and characteristics of the output latent space.
+    - Comfy dtype: `VAE`
     - Python dtype: `torch.nn.Module`
 - **`mask`**
-    - Comfy dtype: `MASK`
     - A mask indicating the regions of the input image to be inpainted. It is used to modify the image before encoding, ensuring that the VAE focuses on the relevant areas.
+    - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`grow_mask_by`**
-    - Comfy dtype: `INT`
     - Specifies how much to expand the inpainting mask to ensure seamless transitions in the latent space. A larger value increases the area affected by inpainting.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`latent`**

@@ -195,6 +195,27 @@ CM_Vec4ToScalarBinaryOperation,ComfyMath,https://github.com/evanspearman/ComfyMa
 CM_Vec4ToScalarUnaryOperation,ComfyMath,https://github.com/evanspearman/ComfyMath,be9beab9923ccf5c5e4132dc1653bcdfa773ed70
 CM_Vec4UnaryCondition,ComfyMath,https://github.com/evanspearman/ComfyMath,be9beab9923ccf5c5e4132dc1653bcdfa773ed70
 CM_Vec4UnaryOperation,ComfyMath,https://github.com/evanspearman/ComfyMath,be9beab9923ccf5c5e4132dc1653bcdfa773ed70
+ACN_AdvancedControlNetApply,ComfyUI-Advanced-ControlNet,https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git,bd5bcbf5c0074de54754760dd685c72cfd045bc3
+ACN_DefaultUniversalWeights,ComfyUI-Advanced-ControlNet,https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git,bd5bcbf5c0074de54754760dd685c72cfd045bc3
+ACN_SparseCtrlIndexMethodNode,ComfyUI-Advanced-ControlNet,https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git,bd5bcbf5c0074de54754760dd685c72cfd045bc3
+ACN_SparseCtrlLoaderAdvanced,ComfyUI-Advanced-ControlNet,https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git,bd5bcbf5c0074de54754760dd685c72cfd045bc3
+ACN_SparseCtrlMergedLoaderAdvanced,ComfyUI-Advanced-ControlNet,https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git,bd5bcbf5c0074de54754760dd685c72cfd045bc3
+ACN_SparseCtrlRGBPreprocessor,ComfyUI-Advanced-ControlNet,https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git,bd5bcbf5c0074de54754760dd685c72cfd045bc3
+ACN_SparseCtrlSpreadMethodNode,ComfyUI-Advanced-ControlNet,https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git,bd5bcbf5c0074de54754760dd685c72cfd045bc3
+ControlNetLoaderAdvanced,ComfyUI-Advanced-ControlNet,https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git,bd5bcbf5c0074de54754760dd685c72cfd045bc3
+CustomControlNetWeights,ComfyUI-Advanced-ControlNet,https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git,bd5bcbf5c0074de54754760dd685c72cfd045bc3
+CustomT2IAdapterWeights,ComfyUI-Advanced-ControlNet,https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git,bd5bcbf5c0074de54754760dd685c72cfd045bc3
+DiffControlNetLoaderAdvanced,ComfyUI-Advanced-ControlNet,https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git,bd5bcbf5c0074de54754760dd685c72cfd045bc3
+LatentKeyframe,ComfyUI-Advanced-ControlNet,https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git,bd5bcbf5c0074de54754760dd685c72cfd045bc3
+LatentKeyframeBatchedGroup,ComfyUI-Advanced-ControlNet,https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git,bd5bcbf5c0074de54754760dd685c72cfd045bc3
+LatentKeyframeGroup,ComfyUI-Advanced-ControlNet,https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git,bd5bcbf5c0074de54754760dd685c72cfd045bc3
+LatentKeyframeTiming,ComfyUI-Advanced-ControlNet,https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git,bd5bcbf5c0074de54754760dd685c72cfd045bc3
+LoadImagesFromDirectory,ComfyUI-Advanced-ControlNet,https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git,bd5bcbf5c0074de54754760dd685c72cfd045bc3
+ScaledSoftControlNetWeights,ComfyUI-Advanced-ControlNet,https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git,bd5bcbf5c0074de54754760dd685c72cfd045bc3
+ScaledSoftMaskedUniversalWeights,ComfyUI-Advanced-ControlNet,https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git,bd5bcbf5c0074de54754760dd685c72cfd045bc3
+SoftControlNetWeights,ComfyUI-Advanced-ControlNet,https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git,bd5bcbf5c0074de54754760dd685c72cfd045bc3
+SoftT2IAdapterWeights,ComfyUI-Advanced-ControlNet,https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git,bd5bcbf5c0074de54754760dd685c72cfd045bc3
+TimestepKeyframe,ComfyUI-Advanced-ControlNet,https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git,bd5bcbf5c0074de54754760dd685c72cfd045bc3
 ADE_AdjustPEFullStretch,ComfyUI-AnimateDiff-Evolved,https://github.com/Kosinkadink/ComfyUI-AnimateDiff-Evolved,e2cc5f35d57532bac25483411ceb3d5df0b34022
 ADE_AdjustPEManual,ComfyUI-AnimateDiff-Evolved,https://github.com/Kosinkadink/ComfyUI-AnimateDiff-Evolved,e2cc5f35d57532bac25483411ceb3d5df0b34022
 ADE_AdjustPESweetspotStretch,ComfyUI-AnimateDiff-Evolved,https://github.com/Kosinkadink/ComfyUI-AnimateDiff-Evolved,e2cc5f35d57532bac25483411ceb3d5df0b34022
@@ -234,10 +255,394 @@ ADE_UseEvolvedSampling,ComfyUI-AnimateDiff-Evolved,https://github.com/Kosinkadin
 ADE_ViewsOnlyContextOptions,ComfyUI-AnimateDiff-Evolved,https://github.com/Kosinkadink/ComfyUI-AnimateDiff-Evolved,e2cc5f35d57532bac25483411ceb3d5df0b34022
 AnimateDiffLoaderV1,ComfyUI-AnimateDiff-Evolved,https://github.com/Kosinkadink/ComfyUI-AnimateDiff-Evolved,e2cc5f35d57532bac25483411ceb3d5df0b34022
 CheckpointLoaderSimpleWithNoiseSelect,ComfyUI-AnimateDiff-Evolved,https://github.com/Kosinkadink/ComfyUI-AnimateDiff-Evolved,e2cc5f35d57532bac25483411ceb3d5df0b34022
+AddMask,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+BasicPipeToDetailerPipe,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+BasicPipeToDetailerPipeSDXL,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+BboxDetectorCombined_v2,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+BboxDetectorSEGS,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+BitwiseAndMask,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+BitwiseAndMaskForEach,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+CLIPSegDetectorProvider,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+CfgScheduleHookProvider,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+CombineRegionalPrompts,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+CoreMLDetailerHookProvider,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+DenoiseScheduleHookProvider,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+DenoiseSchedulerDetailerHookProvider,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+DetailerForEach,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+DetailerForEachDebug,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+DetailerForEachDebugPipe,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+DetailerForEachPipe,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+DetailerForEachPipeForAnimateDiff,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+DetailerHookCombine,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+DetailerPipeToBasicPipe,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+EditBasicPipe,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+EditDetailerPipe,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+EditDetailerPipeSDXL,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+EmptySegs,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+FaceDetailer,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+FaceDetailerPipe,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+FromBasicPipe,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+FromBasicPipe_v2,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+FromDetailerPipe,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+FromDetailerPipeSDXL,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+FromDetailerPipe_v2,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImageListToImageBatch,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImageMaskSwitch,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImageReceiver,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImageSender,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactAssembleSEGS,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactCombineConditionings,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactCompare,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactConcatConditionings,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactConditionalBranch,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactConditionalBranchSelMode,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactConditionalStopIteration,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactControlBridge,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactControlNetApplyAdvancedSEGS,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactControlNetApplySEGS,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactControlNetClearSEGS,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactDecomposeSEGS,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactDilateMask,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactDilateMaskInSEGS,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactDilate_Mask_SEG_ELT,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactDummyInput,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactEdit_SEG_ELT,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactFloat,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactFrom_SEG_ELT,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactGaussianBlurMask,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactGaussianBlurMaskInSEGS,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactHFTransformersClassifierProvider,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactImageBatchToImageList,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactImageInfo,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactInt,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactInversedSwitch,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactIsNotEmptySEGS,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactKSamplerAdvancedBasicPipe,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactKSamplerBasicPipe,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactLatentInfo,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactLogger,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactMakeImageBatch,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactMakeImageList,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactMakeTileSEGS,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactMinMax,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactNeg,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactNodeSetMuteState,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactQueueTrigger,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactQueueTriggerCountdown,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactRemoteBoolean,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactRemoteInt,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactSEGSClassify,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactSEGSConcat,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactSEGSLabelFilter,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactSEGSOrderedFilter,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactSEGSPicker,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactSEGSRangeFilter,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactSEGSToMaskBatch,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactSEGSToMaskList,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactScaleBy_BBOX_SEG_ELT,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactSegsAndMask,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactSegsAndMaskForEach,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactSetWidgetValue,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactSimpleDetectorSEGS,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactSimpleDetectorSEGSPipe,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactSimpleDetectorSEGS_for_AD,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactSleep,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactStringSelector,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactSwitch,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactValueReceiver,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactValueSender,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactWildcardEncode,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ImpactWildcardProcessor,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+IterativeImageUpscale,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+IterativeLatentUpscale,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+KSamplerAdvancedProvider,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+KSamplerProvider,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+LatentPixelScale,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+LatentReceiver,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+LatentSender,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+LatentSwitch,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+MaskDetailerPipe,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+MaskListToMaskBatch,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+MaskToSEGS,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+MaskToSEGS_for_AnimateDiff,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+MasksToMaskList,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+MediaPipeFaceMeshToSEGS,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+NoiseInjectionDetailerHookProvider,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+NoiseInjectionHookProvider,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ONNXDetectorProvider,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ONNXDetectorSEGS,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+PixelKSampleHookCombine,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+PixelKSampleUpscalerProvider,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+PixelKSampleUpscalerProviderPipe,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+PixelTiledKSampleUpscalerProvider,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+PixelTiledKSampleUpscalerProviderPipe,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+PreviewBridge,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+PreviewBridgeLatent,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ReencodeLatent,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ReencodeLatentPipe,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+RegionalPrompt,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+RegionalSampler,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+RegionalSamplerAdvanced,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+RemoveImageFromSEGS,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+RemoveNoiseMask,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+SAMDetectorCombined,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+SAMDetectorSegmented,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+SAMLoader,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+SEGSDetailer,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+SEGSDetailerForAnimateDiff,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+SEGSLabelFilterDetailerHookProvider,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+SEGSOrderedFilterDetailerHookProvider,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+SEGSPaste,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+SEGSPreview,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+SEGSPreviewCNet,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+SEGSRangeFilterDetailerHookProvider,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+SEGSSwitch,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+SEGSToImageList,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+SegmDetectorCombined_v2,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+SegmDetectorSEGS,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+SegsToCombinedMask,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+SetDefaultImageForSEGS,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+SubtractMask,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+SubtractMaskForEach,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+TiledKSamplerProvider,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ToBasicPipe,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ToBinaryMask,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ToDetailerPipe,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+ToDetailerPipeSDXL,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+TwoAdvancedSamplersForMask,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+TwoSamplersForMask,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+TwoSamplersForMaskUpscalerProvider,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+TwoSamplersForMaskUpscalerProviderPipe,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+UltralyticsDetectorProvider,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+UnsamplerDetailerHookProvider,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+UnsamplerHookProvider,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171
+VHS_DuplicateImages,ComfyUI-VideoHelperSuite,https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite,ca317b85ba141cd5e95c0390efbcdce2d27fbe5d
+VHS_DuplicateLatents,ComfyUI-VideoHelperSuite,https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite,ca317b85ba141cd5e95c0390efbcdce2d27fbe5d
+VHS_DuplicateMasks,ComfyUI-VideoHelperSuite,https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite,ca317b85ba141cd5e95c0390efbcdce2d27fbe5d
+VHS_GetImageCount,ComfyUI-VideoHelperSuite,https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite,ca317b85ba141cd5e95c0390efbcdce2d27fbe5d
+VHS_GetLatentCount,ComfyUI-VideoHelperSuite,https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite,ca317b85ba141cd5e95c0390efbcdce2d27fbe5d
+VHS_GetMaskCount,ComfyUI-VideoHelperSuite,https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite,ca317b85ba141cd5e95c0390efbcdce2d27fbe5d
+VHS_LoadAudio,ComfyUI-VideoHelperSuite,https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite,ca317b85ba141cd5e95c0390efbcdce2d27fbe5d
+VHS_LoadImages,ComfyUI-VideoHelperSuite,https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite,ca317b85ba141cd5e95c0390efbcdce2d27fbe5d
+VHS_LoadImagesPath,ComfyUI-VideoHelperSuite,https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite,ca317b85ba141cd5e95c0390efbcdce2d27fbe5d
+VHS_LoadVideo,ComfyUI-VideoHelperSuite,https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite,ca317b85ba141cd5e95c0390efbcdce2d27fbe5d
+VHS_LoadVideoPath,ComfyUI-VideoHelperSuite,https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite,ca317b85ba141cd5e95c0390efbcdce2d27fbe5d
+VHS_MergeImages,ComfyUI-VideoHelperSuite,https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite,ca317b85ba141cd5e95c0390efbcdce2d27fbe5d
+VHS_MergeLatents,ComfyUI-VideoHelperSuite,https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite,ca317b85ba141cd5e95c0390efbcdce2d27fbe5d
+VHS_MergeMasks,ComfyUI-VideoHelperSuite,https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite,ca317b85ba141cd5e95c0390efbcdce2d27fbe5d
+VHS_PruneOutputs,ComfyUI-VideoHelperSuite,https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite,ca317b85ba141cd5e95c0390efbcdce2d27fbe5d
+VHS_SelectEveryNthImage,ComfyUI-VideoHelperSuite,https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite,ca317b85ba141cd5e95c0390efbcdce2d27fbe5d
+VHS_SelectEveryNthLatent,ComfyUI-VideoHelperSuite,https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite,ca317b85ba141cd5e95c0390efbcdce2d27fbe5d
+VHS_SelectEveryNthMask,ComfyUI-VideoHelperSuite,https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite,ca317b85ba141cd5e95c0390efbcdce2d27fbe5d
+VHS_SplitImages,ComfyUI-VideoHelperSuite,https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite,ca317b85ba141cd5e95c0390efbcdce2d27fbe5d
+VHS_SplitLatents,ComfyUI-VideoHelperSuite,https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite,ca317b85ba141cd5e95c0390efbcdce2d27fbe5d
+VHS_SplitMasks,ComfyUI-VideoHelperSuite,https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite,ca317b85ba141cd5e95c0390efbcdce2d27fbe5d
+VHS_VAEDecodeBatched,ComfyUI-VideoHelperSuite,https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite,ca317b85ba141cd5e95c0390efbcdce2d27fbe5d
+VHS_VAEEncodeBatched,ComfyUI-VideoHelperSuite,https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite,ca317b85ba141cd5e95c0390efbcdce2d27fbe5d
+VHS_VideoCombine,ComfyUI-VideoHelperSuite,https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite,ca317b85ba141cd5e95c0390efbcdce2d27fbe5d
 BNK_AddCLIPSDXLParams,ComfyUI_ADV_CLIP_emb,https://github.com/BlenderNeko/ComfyUI_ADV_CLIP_emb.git,c8b14087afab8efae22fce098b742f01cce22947
 BNK_AddCLIPSDXLRParams,ComfyUI_ADV_CLIP_emb,https://github.com/BlenderNeko/ComfyUI_ADV_CLIP_emb.git,c8b14087afab8efae22fce098b742f01cce22947
 BNK_CLIPTextEncodeAdvanced,ComfyUI_ADV_CLIP_emb,https://github.com/BlenderNeko/ComfyUI_ADV_CLIP_emb.git,c8b14087afab8efae22fce098b742f01cce22947
 BNK_CLIPTextEncodeSDXLAdvanced,ComfyUI_ADV_CLIP_emb,https://github.com/BlenderNeko/ComfyUI_ADV_CLIP_emb.git,c8b14087afab8efae22fce098b742f01cce22947
+CR 8 Channel In,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR 8 Channel Out,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Apply ControlNet,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_ApplyLoRAStack,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Apply Model Merge,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Apply Multi Upscale,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Apply Multi-ControlNet,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Aspect Ratio Banners,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Aspect Ratio SDXL,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Aspect Ratio Social Media,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Aspect Ratio,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_MakeBatchFromImageList,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Batch Process Switch,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Binary Pattern,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_BinaryToBitList,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Bit Schedule,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Central Schedule,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Checker Pattern,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Clamp Value,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Clip Input Switch,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Color Bars,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Color Gradient,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_ColorPanel,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Color Tint,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_CombinePrompt,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Combine Schedules,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Comic Panel Templates,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Composite Text,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_ConditioningInputSwitch,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Conditioning Mixer,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_ControlNetInputSwitch,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Current Frame,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Cycle Images Simple,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_CycleImages,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Cycle LoRAs,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Cycle Models,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Cycle Text Simple,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Cycle Text,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Data Bus In,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Data Bus Out,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_DebatchFrames,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_DiamondPanel,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_DrawPie,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Draw Shape,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_DrawText,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Encode Scheduled Prompts,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Feathered Border,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_FloatRangeList,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_FloatToInteger,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Float To String,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Font File List,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Get Parameter From Prompt,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_GradientFloat,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_GradientInteger,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Half Drop Panel,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Halftone Filter,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Halftone Grid,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_HiResFixProcessSwitch,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Image Border,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_ImageGridPanel,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Image Input Switch (4 way),ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Image Input Switch,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Image List Simple,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Image List,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Image Output,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Image Panel,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Image Pipe Edit,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Image Pipe In,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_ImagePipeOut,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Image Size,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Img2Img Process Switch,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_IncrementFloat,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_IncrementInteger,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Index Increment,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Index Multiply,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Index Reset,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Index,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_IntegerMultipleOf,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_IntegerRangeList,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Integer To String,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Interpolate Latents,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_IntertwineLists,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Keyframe List,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Latent Batch Size,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_LatentInputSwitch,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR LoRA List,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR LoRA Stack,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Load Animation Frames,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_LoadFlowFrames,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Load GIF As List,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Load Image List Plus,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Load Image List,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Load LoRA,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_LoadScheduleFromFile,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_LoadScheduledLoRAs,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Load Scheduled Models,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Load Text List,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Mask Text,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_MathOperation,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Model Input Switch,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Model List,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Model Merge Stack,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_ModuleInput,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Module Output,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Module Pipe Loader,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Multi Upscale Stack,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Multi-ControlNet Stack,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Multiline Text,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Output Flow Frames,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_OutputScheduleToFile,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Overlay Text,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Overlay Transparent Image,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Page Layout,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Pipe Switch,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Polygons,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Prompt List Keyframes,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Prompt List,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Prompt Scheduler,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Prompt Text,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Radial Gradient,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Random Hex Color,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_RandomLoRAStack,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Random Multiline Colors,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Random Multiline Values,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Random Panel Codes,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_RandomRGBGradient,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Random RGB,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_RandomShapePattern,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_RandomWeightLoRA,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Repeater,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR SD1.5 Aspect Ratio,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR SDXL Aspect Ratio,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR SDXL Base Prompt Encoder,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR SDXL Prompt Mix Presets,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR SDXL Prompt Mixer,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR SDXL Style Text,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_SaveTextToFile,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Schedule Input Switch,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Seamless Checker,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Seed to Int,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Seed,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Select Font,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Select ISO Size,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Select Model,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_SelectResizeMethod,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Set Switch From String,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_SetValueOnBinary,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_SetValueOnBoolean,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Set Value on String,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Simple Banner,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Simple Binary Pattern,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Simple Image Compare,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_SimpleList,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Simple Meme Template,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_SimplePromptListKeyframes,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Simple Prompt List,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_SimplePromptScheduler,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_SimpleSchedule,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Simple Text Panel,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Simple Text Scheduler,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Simple Text Watermark,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Simple Value Scheduler,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Split String,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Starburst Colors,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Starburst Lines,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR String To Boolean,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_StringToCombo,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR String To Number,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Style Bars,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Switch Model and CLIP,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Text Blacklist,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Text Concatenate,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Text Cycler,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_TextInputSwitch4way,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_TextInputSwitch,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Text Length,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Text List Simple,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Text List To String,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Text List,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Text Operation,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Text Replace,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Text Scheduler,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Text,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Thumbnail Preview,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Trigger,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Upscale Image,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_VAEDecode,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR VAE Input Switch,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_ValueCycler,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Value Scheduler,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Value,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR Vignette Filter,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR XY From Folder,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR XY Index,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR XY Interpolate,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR XY List,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR XY Product,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR XY Save Grid Image,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
+CR_Aspect Ratio For Print,ComfyUI_Comfyroll_CustomNodes,https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git,d78b780ae43fcf8c6b7c6505e6ffb4584281ceca
 IPAdapterApply,ComfyUI_IPAdapter_plus,https://github.com/cubiq/ComfyUI_IPAdapter_plus,46241f3ba5401f076f8d90c2aa85f2194910e1a9
 IPAdapterApplyEncoded,ComfyUI_IPAdapter_plus,https://github.com/cubiq/ComfyUI_IPAdapter_plus,46241f3ba5401f076f8d90c2aa85f2194910e1a9
 IPAdapterApplyFaceID,ComfyUI_IPAdapter_plus,https://github.com/cubiq/ComfyUI_IPAdapter_plus,46241f3ba5401f076f8d90c2aa85f2194910e1a9
@@ -249,6 +654,16 @@ IPAdapterSaveEmbeds,ComfyUI_IPAdapter_plus,https://github.com/cubiq/ComfyUI_IPAd
 InsightFaceLoader,ComfyUI_IPAdapter_plus,https://github.com/cubiq/ComfyUI_IPAdapter_plus,46241f3ba5401f076f8d90c2aa85f2194910e1a9
 PrepImageForClipVision,ComfyUI_IPAdapter_plus,https://github.com/cubiq/ComfyUI_IPAdapter_plus,46241f3ba5401f076f8d90c2aa85f2194910e1a9
 PrepImageForInsightFace,ComfyUI_IPAdapter_plus,https://github.com/cubiq/ComfyUI_IPAdapter_plus,46241f3ba5401f076f8d90c2aa85f2194910e1a9
+PNG_Save,SavePNG,,
+BLVAEEncode,WAS_Extras,https://github.com/WASasquatch/WAS_Extras.git,755e5597c787d4ef1d1bc1e099da11827c326e6f
+CLIPTextEncodeList,WAS_Extras,https://github.com/WASasquatch/WAS_Extras.git,755e5597c787d4ef1d1bc1e099da11827c326e6f
+CLIPTextEncodeSequence2,WAS_Extras,https://github.com/WASasquatch/WAS_Extras.git,755e5597c787d4ef1d1bc1e099da11827c326e6f
+ConditioningBlend,WAS_Extras,https://github.com/WASasquatch/WAS_Extras.git,755e5597c787d4ef1d1bc1e099da11827c326e6f
+DebugInput,WAS_Extras,https://github.com/WASasquatch/WAS_Extras.git,755e5597c787d4ef1d1bc1e099da11827c326e6f
+KSamplerSeq,WAS_Extras,https://github.com/WASasquatch/WAS_Extras.git,755e5597c787d4ef1d1bc1e099da11827c326e6f
+KSamplerSeq2,WAS_Extras,https://github.com/WASasquatch/WAS_Extras.git,755e5597c787d4ef1d1bc1e099da11827c326e6f
+VAEEncodeForInpaint (WAS),WAS_Extras,https://github.com/WASasquatch/WAS_Extras.git,755e5597c787d4ef1d1bc1e099da11827c326e6f
+VividSharpen,WAS_Extras,https://github.com/WASasquatch/WAS_Extras.git,755e5597c787d4ef1d1bc1e099da11827c326e6f
 GroundingDinoModelLoader,comfyui_segment_anything,https://github.com/storyicon/comfyui_segment_anything.git,681d977c2cc244de729fd9e08145ff365c609262
 GroundingDinoSAMSegment,comfyui_segment_anything,https://github.com/storyicon/comfyui_segment_anything.git,681d977c2cc244de729fd9e08145ff365c609262
 InvertMask,comfyui_segment_anything,https://github.com/storyicon/comfyui_segment_anything.git,681d977c2cc244de729fd9e08145ff365c609262

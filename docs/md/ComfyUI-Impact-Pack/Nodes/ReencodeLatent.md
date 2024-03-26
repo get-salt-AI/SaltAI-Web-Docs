@@ -4,34 +4,34 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The `ReencodeLatent` node is designed for re-encoding latent representations of images. It allows for the transformation of latent samples through a specified input VAE model and then re-encodes them using an output VAE model. This process can be modified by a tile mode, which dictates whether the decoding and encoding steps should be performed with tiling to handle larger images or specific parts of the process.
+The ReencodeLatent node is designed for the re-encoding of latent representations. It allows for the transformation of samples through a specified input and output variational autoencoder (VAE), optionally applying tiling strategies during the decode and encode phases to manage large images or patterns.
 ## Input types
 ### Required
 - **`samples`**
-    - Latent samples to be re-encoded. These are the core data that undergo transformation through the specified VAE models.
-    - Python dtype: `torch.Tensor`
+    - Specifies the latent samples to be re-encoded. This parameter is crucial as it determines the input data that will undergo the re-encoding process.
     - Comfy dtype: `LATENT`
+    - Python dtype: `torch.Tensor`
 - **`tile_mode`**
-    - Controls how tiling is applied during the re-encoding process, affecting how the latent samples are decoded and encoded.
+    - Determines the tiling strategy for decoding and encoding, allowing for optimization based on the specific needs of the input and output. It affects how the latent samples are processed, especially in handling large images.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`input_vae`**
-    - The VAE model used for decoding the input latent samples.
-    - Python dtype: `torch.nn.Module`
+    - The variational autoencoder used for decoding the input samples. It plays a key role in the initial phase of the re-encoding process.
     - Comfy dtype: `VAE`
+    - Python dtype: `VAE`
 - **`output_vae`**
-    - The VAE model used for encoding the output after processing the input latent samples.
-    - Python dtype: `torch.nn.Module`
+    - The variational autoencoder used for encoding the processed samples into new latent representations. It finalizes the re-encoding process.
     - Comfy dtype: `VAE`
+    - Python dtype: `VAE`
 - **`tile_size`**
-    - Specifies the size of tiles used when tiling is enabled, affecting the granularity of the process.
-    - Python dtype: `int`
+    - Specifies the size of the tiles when tiling is applied. This parameter influences the granularity of the processing, especially in large images or patterns.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
 - **`latent`**
-    - The re-encoded latent samples after processing through the input and output VAE models.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `LATENT`
+    - The re-encoded latent representations of the input samples. This output is the result of the transformation process applied by the node.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

@@ -8,28 +8,28 @@ This node is designed to modify the conditioning information by setting specific
 ## Input types
 ### Required
 - **`conditioning`**
-    - Comfy dtype: `CONDITIONING`
     - The conditioning data to be modified. It serves as the base for applying spatial adjustments.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
 - **`width`**
-    - Comfy dtype: `INT`
     - Specifies the width of the area to be set within the conditioning context, influencing the horizontal scope of the adjustment.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Comfy dtype: `INT`
     - Determines the height of the area to be set, affecting the vertical extent of the conditioning modification.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`x`**
-    - Comfy dtype: `INT`
     - The horizontal starting point of the area to be set, positioning the adjustment within the conditioning context.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`y`**
-    - Comfy dtype: `INT`
     - The vertical starting point for the area adjustment, establishing its position within the conditioning context.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`strength`**
-    - Comfy dtype: `FLOAT`
     - Defines the intensity of the conditioning modification within the specified area, allowing for nuanced control over the adjustment's impact.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`conditioning`**

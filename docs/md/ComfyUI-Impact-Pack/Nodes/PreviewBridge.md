@@ -4,28 +4,26 @@
 - Category: `ImpactPack/Util`
 - Output node: `True`
 
-The `PreviewBridge` node is designed to manage and refresh image previews based on unique identifiers. It checks if an image associated with a given ID needs to be refreshed in the cache. If so, it either loads the existing image or generates a new preview, updating the cache accordingly. This process ensures that the most current version of an image is always displayed.
+The PreviewBridge node serves as an intermediary for processing and caching images for preview purposes. It manages the refresh logic based on unique identifiers and cached states, loads images from cache or generates new previews as needed, and updates the cache with the new or existing image data.
 ## Input types
 ### Required
 - **`images`**
-    - A collection of images to potentially update the preview with. This parameter is crucial for determining whether the current preview is outdated and needs refreshing.
-    - Python dtype: `Union[List[torch.Tensor], torch.Tensor]`
+    - A collection of images to be processed or cached for preview. This parameter is central to determining whether a refresh is needed based on the cache state.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `List[torch.Tensor]`
 - **`image`**
-    - The current image to be potentially updated. It plays a key role in identifying the specific preview that might need refreshing.
-    - Python dtype: `str`
+    - A single image to be either loaded from cache or to be used in generating a new preview. This parameter plays a key role in the refresh logic and subsequent processing.
     - Comfy dtype: `STRING`
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**
-    - The pixel data of the image, which is part of the output when an image is loaded or refreshed.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The processed or cached image ready for preview. This output is crucial for accessing the updated or existing previews.
+    - Python dtype: `List[Dict[str, Any]]`
 - **`mask`**
-    - The mask associated with the image, used in certain conditions to modify the image preview.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
-- **`ui`**
-    - The updated image preview to be displayed.
+    - The mask associated with the processed or cached image, indicating areas of interest or modification.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `ACN_AdvancedControlNetApply,UltimateSDUpscale,SAMDetectorCombined,DetailerForEachDebug,BboxDetectorSEGS`

@@ -8,20 +8,20 @@ This node is designed to generate a sampler for the DPM++ SDE (Stochastic Differ
 ## Input types
 ### Required
 - **`eta`**
-    - Comfy dtype: `FLOAT`
     - Specifies the step size for the SDE solver, influencing the granularity of the sampling process.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`s_noise`**
-    - Comfy dtype: `FLOAT`
     - Determines the level of noise to be applied during the sampling process, affecting the diversity of the generated samples.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`r`**
-    - Comfy dtype: `FLOAT`
     - Controls the ratio of noise reduction in the sampling process, impacting the clarity and quality of the generated samples.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`noise_device`**
-    - Comfy dtype: `COMBO[STRING]`
     - Selects the execution environment (CPU or GPU) for the sampler, optimizing performance based on available hardware.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`sampler`**

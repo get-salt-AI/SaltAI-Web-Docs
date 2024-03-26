@@ -4,35 +4,35 @@
 - Category: `latent/inpaint`
 - Output node: `False`
 
-This node is designed for encoding images for inpainting tasks using a Variational Autoencoder (VAE). It preprocesses the input image and mask to ensure compatibility with the VAE's requirements, applies mask modifications based on the provided offset, and then encodes the modified image into a latent representation suitable for inpainting.
+This node is designed for encoding images for inpainting tasks using a Variational Autoencoder (VAE). It processes images, masks, and mask offsets to generate latent representations that are suitable for inpainting, adjusting the input mask based on the specified offset to prepare the image for encoding.
 ## Input types
 ### Required
 - **`pixels`**
-    - The input image to be encoded for inpainting. It undergoes preprocessing to match the VAE's input dimensions and is modified based on the mask before encoding.
-    - Python dtype: `torch.Tensor`
+    - The input image to be encoded for inpainting. It plays a crucial role in determining the output latent representation.
     - Comfy dtype: `IMAGE`
-- **`vae`**
-    - The Variational Autoencoder (VAE) model used for encoding the preprocessed image into a latent representation.
-    - Python dtype: `torch.nn.Module`
-    - Comfy dtype: `VAE`
-- **`mask`**
-    - A mask indicating the regions to inpaint. It is used to modify the input image before encoding.
     - Python dtype: `torch.Tensor`
+- **`vae`**
+    - The Variational Autoencoder (VAE) model used for encoding the input image into a latent representation.
+    - Comfy dtype: `VAE`
+    - Python dtype: `VAE`
+- **`mask`**
+    - A mask indicating the regions of the image to be inpainted. It is used to modify the input image before encoding.
     - Comfy dtype: `MASK`
+    - Python dtype: `torch.Tensor`
 - **`mask_offset`**
-    - Determines how much to erode or dilate the mask. This affects the area of the image that will be inpainted.
-    - Python dtype: `int`
+    - An integer specifying how much to modify the mask by. This affects the area of the image to be inpainted by either expanding or contracting the masked region.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
 - **`latent`**
-    - The encoded latent representation of the input image, suitable for inpainting tasks.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The latent representation of the input image, suitable for use in inpainting tasks.
+    - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
 
-The VAEEncodeForInpaint (WAS) node is designed for encoding images for inpainting tasks, where it preprocesses the input image and mask to match the VAE's requirements, modifies the mask based on the provided offset, and encodes the image into a latent representation suitable for inpainting. It is often used with inpainting models to prepare the image and mask for generating the inpainted output.
+
 ## Source code
 ```python
 class WAS_VAEEncodeForInpaint:

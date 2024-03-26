@@ -4,18 +4,18 @@
 - Category: `ImpactPack/Logic`
 - Output node: `False`
 
-This node checks if the input SEGS (segmentation data) is not empty. It returns a boolean value indicating whether there are any segments present in the input SEGS.
+This node checks if a given SEGS (segmentation data structure) is not empty. It is useful for determining whether segmentation results contain any segments, aiding in decision-making processes within workflows that involve image segmentation.
 ## Input types
 ### Required
 - **`segs`**
-    - The SEGS input represents segmentation data. This node checks if there are any segments within this data, which affects whether the output is true (not empty) or false (empty).
-    - Python dtype: `Tuple[Tuple[int, int], List[Any]]`
+    - The SEGS input represents the segmentation data structure to be checked for non-emptiness. It is crucial for determining the presence of segmentation results.
     - Comfy dtype: `SEGS`
+    - Python dtype: `Tuple[Tuple[int, int], List[Any]]`
 ## Output types
 - **`boolean`**
-    - A boolean value indicating whether the input SEGS contains any segments. True if not empty, false otherwise.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOLEAN`
+    - The output is a boolean indicating whether the input SEGS contains any segments. True means there are segments present, and False indicates an empty SEGS.
+    - Python dtype: `bool`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

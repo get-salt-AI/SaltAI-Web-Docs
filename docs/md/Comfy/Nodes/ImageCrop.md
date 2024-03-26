@@ -8,24 +8,24 @@ The ImageCrop node is designed for cropping images to a specified width and heig
 ## Input types
 ### Required
 - **`image`**
-    - Comfy dtype: `IMAGE`
     - The input image to be cropped. This parameter is crucial as it defines the source image from which a region will be extracted based on the specified dimensions and coordinates.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`width`**
-    - Comfy dtype: `INT`
     - Specifies the width of the cropped image. This parameter determines how wide the resulting cropped image will be.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Comfy dtype: `INT`
     - Specifies the height of the cropped image. This parameter determines the height of the resulting cropped image.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`x`**
-    - Comfy dtype: `INT`
     - The x-coordinate of the top-left corner of the cropping area. This parameter sets the starting point for the width dimension of the crop.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`y`**
-    - Comfy dtype: `INT`
     - The y-coordinate of the top-left corner of the cropping area. This parameter sets the starting point for the height dimension of the crop.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**

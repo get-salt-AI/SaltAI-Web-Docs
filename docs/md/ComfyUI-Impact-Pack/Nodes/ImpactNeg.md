@@ -4,18 +4,18 @@
 - Category: `ImpactPack/Logic`
 - Output node: `False`
 
-This node inverts the boolean value of its input. It takes a boolean input and returns the opposite boolean value, effectively functioning as a logical NOT operation.
+The ImpactNeg node is designed to invert the truth value of a given boolean input. It serves as a logical NOT operation, transforming true to false and vice versa, thus enabling conditional logic flows within a node network.
 ## Input types
 ### Required
 - **`value`**
-    - The boolean value to be inverted. This input determines the logical negation operation, directly affecting the node's output.
-    - Python dtype: `bool`
+    - The 'value' parameter represents the boolean input to be negated. Its inversion facilitates the execution of conditional logic based on the negated result.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ## Output types
 - **`boolean`**
-    - The inverted boolean value of the input. This output is the result of applying a logical NOT operation on the input value.
-    - Python dtype: `bool`
     - Comfy dtype: `BOOLEAN`
+    - The output is the negated boolean value of the input, enabling further conditional logic operations based on the result.
+    - Python dtype: `bool`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

@@ -4,18 +4,18 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The `ImpactMakeImageBatch` node is designed to combine multiple images into a single batch. It takes the first image as a reference and attempts to upscale any subsequent images to match its dimensions using a Lanczos filter for high-quality resampling. This process ensures that all images in the batch have the same dimensions, facilitating operations that require uniform image sizes. The node is part of the ImpactPack's utility functions, emphasizing its role in preprocessing images for batch processing in image enhancement or manipulation tasks.
+The ImpactMakeImageBatch node is designed to aggregate multiple images into a single batch. This process involves potentially resizing images to ensure uniform dimensions across the batch, facilitating operations that require consistent image sizes. The node serves as a utility within the Impact Pack, streamlining the handling of images for batch processing.
 ## Input types
 ### Required
 - **`image1`**
-    - The primary image to which all other images will be matched and combined into a single batch. It serves as the reference for dimensions and scaling.
-    - Python dtype: `torch.Tensor`
+    - The primary image to which subsequent images will be concatenated. It serves as the reference for resizing operations if other images differ in dimensions.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**
-    - A single tensor containing all input images combined into a batch, with each image resized as necessary to match the dimensions of the first image.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - A single tensor representing a batch of images, where each image has been resized as necessary to match the dimensions of the first image in the batch.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `CR Image Grid Panel`

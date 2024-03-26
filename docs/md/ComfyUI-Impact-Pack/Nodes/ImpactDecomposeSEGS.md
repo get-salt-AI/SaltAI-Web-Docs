@@ -4,22 +4,22 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The `ImpactDecomposeSEGS` node is designed to decompose a given SEGS (segmentation elements) into its constituent parts without altering them. This operation is useful for further processing or analysis of the individual segments.
+The ImpactDecomposeSEGS node is designed to decompose a given SEGS data structure into its constituent elements. This operation facilitates the manipulation and analysis of the segmented data by breaking it down into more manageable parts.
 ## Input types
 ### Required
 - **`segs`**
-    - The 'segs' parameter represents the segmentation elements to be decomposed. It is crucial for specifying the input segmentation that needs to be broken down into its constituent parts.
-    - Python dtype: `Tuple[str, List[Any]]`
+    - Represents the SEGS data structure to be decomposed. This input is crucial for the operation as it provides the segmented data that will be broken down into its constituent elements.
     - Comfy dtype: `SEGS`
+    - Python dtype: `tuple`
 ## Output types
 - **`segs_header`**
-    - Returns the header information of the input SEGS, which typically includes dimensions or other metadata.
-    - Python dtype: `str`
     - Comfy dtype: `SEGS_HEADER`
+    - Represents the header information of the decomposed SEGS data structure.
+    - Python dtype: `tuple`
 - **`seg_elt`**
-    - Returns a list of individual segment elements extracted from the input SEGS.
-    - Python dtype: `List[Any]`
     - Comfy dtype: `SEG_ELT`
+    - Represents the individual elements of the decomposed SEGS data structure. This output is a list, allowing for the representation of multiple segmented elements.
+    - Python dtype: `list`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

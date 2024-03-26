@@ -8,25 +8,25 @@ The ADE_UseEvolvedSampling node integrates evolved sampling techniques into the 
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - Specifies the model to be used for evolved sampling, playing a crucial role in determining the quality and efficiency of the generated animations.
+    - Comfy dtype: `MODEL`
     - Python dtype: `ModelPatcher`
 - **`beta_schedule`**
-    - Comfy dtype: `COMBO[STRING]`
     - Defines the beta schedule for the sampling process, influencing the progression of sampling steps and their impact on the animation quality.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`m_models`**
-    - Comfy dtype: `M_MODELS`
     - Optional parameter that allows for the specification of motion models, which can enhance the animation generation process by providing additional motion-related information.
+    - Comfy dtype: `M_MODELS`
     - Python dtype: `MotionModelGroup`
 - **`context_options`**
-    - Comfy dtype: `CONTEXT_OPTIONS`
     - Optional parameter for setting context options, which can modify the sampling behavior based on the provided context, affecting the final animation output.
+    - Comfy dtype: `CONTEXT_OPTIONS`
     - Python dtype: `ContextOptionsGroup`
 - **`sample_settings`**
-    - Comfy dtype: `SAMPLE_SETTINGS`
     - Optional parameter for defining sample settings, which can include various sampling parameters and options to fine-tune the animation generation process.
+    - Comfy dtype: `SAMPLE_SETTINGS`
     - Python dtype: `SampleSettings`
 ## Output types
 - **`model`**

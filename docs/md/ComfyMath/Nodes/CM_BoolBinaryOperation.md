@@ -8,16 +8,16 @@ This node performs binary operations on boolean values, allowing for the combina
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the binary operation to perform on the boolean inputs, such as 'And', 'Or', 'Xor', etc. This choice determines how the two boolean inputs will be combined.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`a`**
-    - Comfy dtype: `BOOL`
     - The first boolean input for the binary operation.
+    - Comfy dtype: `BOOL`
     - Python dtype: `bool`
 - **`b`**
-    - Comfy dtype: `BOOL`
     - The second boolean input for the binary operation.
+    - Comfy dtype: `BOOL`
     - Python dtype: `bool`
 ## Output types
 - **`bool`**

@@ -4,34 +4,34 @@
 - Category: `ImpactPack/Prompt`
 - Output node: `False`
 
-The `ImpactWildcardProcessor` node is designed to process text inputs by populating them with dynamic content based on wildcards. It allows for the text to be either populated with dynamic values or kept fixed, based on the mode selected. This functionality is crucial for generating dynamic content that can adapt to different contexts or requirements.
+The ImpactWildcardProcessor node is designed to process text inputs by populating them with dynamic content based on predefined wildcards. It allows for the customization of text through the use of wildcards, enabling the generation of varied and context-specific outputs.
 ## Input types
 ### Required
 - **`wildcard_text`**
-    - The text containing wildcards that need to be populated or processed. This parameter is essential for defining the template of the content that will be dynamically generated.
-    - Python dtype: `str`
+    - The text containing wildcards that need to be populated. It serves as the template for generating dynamic content.
     - Comfy dtype: `STRING`
+    - Python dtype: `str`
 - **`populated_text`**
-    - The text after wildcards have been populated. This parameter is crucial for receiving the output of the dynamic content generation process.
+    - The text after wildcards have been replaced with their corresponding values. It represents the final output with dynamic content populated.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`mode`**
-    - Determines whether the text should be populated with dynamic values (Populate) or kept as is (Fixed). This affects how the node processes the input text.
-    - Python dtype: `bool`
+    - A boolean flag indicating whether the text should be populated (True) or left as is (False). This allows for flexibility in processing the text based on user preference.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`seed`**
-    - A seed value for random number generation, affecting the selection of values for wildcard population. This ensures reproducibility of the dynamic content generation.
-    - Python dtype: `int`
+    - An integer used to seed the random number generator for consistent wildcard replacement. This ensures reproducibility of the output.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`Select to add Wildcard`**
-    - Allows selection of a specific wildcard to add to the text, enhancing the customization of the dynamic content generation.
-    - Python dtype: `List[str]`
-    - Comfy dtype: `STRING`
+    - Allows the user to select specific wildcards to add to the text, providing control over the customization of the output.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `list[str]`
 ## Output types
 - **`string`**
-    - The final text after all wildcards have been processed and populated, ready for use.
-    - Python dtype: `str`
     - Comfy dtype: `STRING`
+    - The processed text with wildcards replaced by their corresponding values, ready for use.
+    - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `CLIPTextEncode`

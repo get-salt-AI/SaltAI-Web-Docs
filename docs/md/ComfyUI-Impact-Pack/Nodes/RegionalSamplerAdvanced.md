@@ -4,70 +4,70 @@
 - Category: `ImpactPack/Regional`
 - Output node: `False`
 
-This node is designed to perform advanced regional sampling, integrating various input parameters to generate or modify latent images based on regional prompts and additional sampling configurations. It combines noise addition, step-based processing, and conditional sampling to achieve specific visual effects or modifications in generated images.
+The RegionalSamplerAdvanced node is designed for advanced sampling operations within specific regions of latent images. It utilizes a base sampler and additional samplers to apply complex sampling strategies, enabling precise control over the sampling process in targeted areas.
 ## Input types
 ### Required
 - **`add_noise`**
-    - Determines whether noise should be added to the sampling process, affecting the visual texture and details of the generated image.
-    - Python dtype: `bool`
+    - Determines whether noise is added to the sampling process, affecting the texture and details of the sampled output.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`noise_seed`**
-    - Specifies the seed for noise generation, ensuring reproducibility of the noise pattern in the sampling process.
-    - Python dtype: `int`
+    - Sets the seed for noise generation, ensuring reproducibility of the noise patterns in the sampling process.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`steps`**
-    - Defines the number of steps in the sampling process, impacting the detail and refinement of the generated image.
-    - Python dtype: `int`
+    - Specifies the number of steps to perform in the sampling process, influencing the depth and detail of the sampling.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`start_at_step`**
-    - Indicates the starting step for the sampling process, allowing for control over the initial state of image generation.
-    - Python dtype: `int`
+    - Defines the starting step for the sampling process, allowing for partial sampling starting from a specific point.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`end_at_step`**
-    - Specifies the ending step for the sampling process, determining the final state of image refinement.
-    - Python dtype: `int`
+    - Determines the ending step for the sampling process, enabling partial sampling up to a specific point.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`overlap_factor`**
-    - Controls the degree of overlap between sampled regions, affecting the blending and coherence of the generated image.
-    - Python dtype: `int`
+    - Controls the overlap between sampled regions, affecting the blending and transition between sampled areas.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`restore_latent`**
-    - Determines whether the original latent state should be restored after sampling, impacting the preservation of initial image characteristics.
-    - Python dtype: `bool`
+    - Indicates whether the original latent image is restored after sampling, preserving the original content outside the sampled regions.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`return_with_leftover_noise`**
-    - Decides if the sampling result should include leftover noise, influencing the final visual texture of the image.
-    - Python dtype: `bool`
+    - Determines whether the sampled output includes leftover noise, adding an additional layer of texture to the output.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`latent_image`**
-    - The latent image to be processed, serving as the base for the sampling operation.
-    - Python dtype: `torch.Tensor`
+    - The latent image to be sampled, serving as the base for the sampling operations.
     - Comfy dtype: `LATENT`
+    - Python dtype: `torch.Tensor`
 - **`base_sampler`**
-    - The base sampler used for the initial stage of the sampling process, setting the foundation for further modifications.
-    - Python dtype: `str`
+    - The base sampler used for the initial sampling process, setting the foundation for further sampling operations.
     - Comfy dtype: `KSAMPLER_ADVANCED`
+    - Python dtype: `str`
 - **`regional_prompts`**
-    - Regional prompts guiding the sampling process, directing the generation or modification of specific image regions.
-    - Python dtype: `List[RegionalPrompt]`
+    - Specifies the regional prompts used to guide the sampling process in specific areas, enhancing the relevance and accuracy of the sampled output.
     - Comfy dtype: `REGIONAL_PROMPTS`
+    - Python dtype: `List[Dict]`
 - **`additional_mode`**
-    - Specifies the mode for additional sampling, allowing for customization of the sampling strategy beyond the base configuration.
+    - Defines the mode for additional sampling operations, allowing for customization of the sampling strategy.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`additional_sampler`**
-    - The additional sampler to be used in conjunction with the base sampler, enhancing the sampling capabilities.
+    - Specifies the additional sampler used for enhanced sampling operations, providing flexibility in the sampling approach.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`additional_sigma_ratio`**
-    - Determines the ratio of sigma used in additional sampling, affecting the intensity and characteristics of the modifications.
-    - Python dtype: `float`
+    - Sets the sigma ratio for additional sampling operations, influencing the variance and intensity of the sampling.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 ## Output types
 - **`latent`**
-    - The resulting latent image after the advanced regional sampling process.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `LATENT`
+    - The latent image after the advanced regional sampling process, reflecting the targeted modifications and enhancements.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

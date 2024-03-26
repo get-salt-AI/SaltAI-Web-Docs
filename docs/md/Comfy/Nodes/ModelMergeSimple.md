@@ -8,16 +8,16 @@ The ModelMergeSimple node is designed for merging two models by blending their p
 ## Input types
 ### Required
 - **`model1`**
-    - Comfy dtype: `MODEL`
     - The first model to be merged. It serves as the base model onto which patches from the second model are applied.
+    - Comfy dtype: `MODEL`
     - Python dtype: `comfy.model_base.Model`
 - **`model2`**
-    - Comfy dtype: `MODEL`
     - The second model whose patches are applied onto the first model, influenced by the specified ratio.
+    - Comfy dtype: `MODEL`
     - Python dtype: `comfy.model_base.Model`
 - **`ratio`**
-    - Comfy dtype: `FLOAT`
     - Determines the blend ratio between the two models' parameters, affecting the degree to which each model influences the merged output.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`model`**

@@ -8,36 +8,36 @@ The GLIGENTextBoxApply node is designed to integrate text-based conditioning int
 ## Input types
 ### Required
 - **`conditioning_to`**
-    - Comfy dtype: `CONDITIONING`
     - Specifies the initial conditioning input to which the text box parameters and encoded text information will be appended. It plays a crucial role in determining the final output by integrating new conditioning data.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 - **`clip`**
-    - Comfy dtype: `CLIP`
     - The CLIP model used for encoding the provided text into a format that can be utilized by the generative model. It's essential for converting textual information into a compatible conditioning format.
+    - Comfy dtype: `CLIP`
     - Python dtype: `CLIP`
 - **`gligen_textbox_model`**
-    - Comfy dtype: `GLIGEN`
     - Represents the specific GLIGEN model configuration to be used for generating the text box. It's crucial for ensuring that the text box is generated according to the desired specifications.
+    - Comfy dtype: `GLIGEN`
     - Python dtype: `GLIGEN`
 - **`text`**
-    - Comfy dtype: `STRING`
     - The text content to be encoded and integrated into the conditioning. It provides the semantic information that guides the generative model.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`width`**
-    - Comfy dtype: `INT`
     - The width of the text box in pixels. It defines the spatial dimension of the text box within the generated image.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Comfy dtype: `INT`
     - The height of the text box in pixels. Similar to width, it defines the spatial dimension of the text box within the generated image.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`x`**
-    - Comfy dtype: `INT`
     - The x-coordinate of the top-left corner of the text box within the generated image. It specifies the text box's position horizontally.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`y`**
-    - Comfy dtype: `INT`
     - The y-coordinate of the top-left corner of the text box within the generated image. It specifies the text box's position vertically.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`conditioning`**

@@ -8,20 +8,20 @@ The KarrasScheduler node is designed to generate a sequence of noise levels (sig
 ## Input types
 ### Required
 - **`steps`**
-    - Comfy dtype: `INT`
     - Specifies the number of steps in the noise schedule, affecting the granularity of the generated sigmas sequence.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`sigma_max`**
-    - Comfy dtype: `FLOAT`
     - The maximum sigma value in the noise schedule, setting the upper bound of noise levels.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sigma_min`**
-    - Comfy dtype: `FLOAT`
     - The minimum sigma value in the noise schedule, setting the lower bound of noise levels.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`rho`**
-    - Comfy dtype: `FLOAT`
     - A parameter that controls the shape of the noise schedule curve, influencing how noise levels progress from sigma_min to sigma_max.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`sigmas`**

@@ -4,18 +4,18 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The `RemoveImageFromSEGS` node processes a collection of segmentation results (SEGS) to remove the image data associated with each segmentation, effectively leaving the segmentation masks and metadata intact. This operation is useful for scenarios where only the segmentation information is needed, without the original image data.
+The RemoveImageFromSEGS node is designed to process a collection of segmented images (SEGS) by removing the image data while preserving other segment attributes. This operation is useful for scenarios where the image data is no longer needed or desired, allowing for a focus on the remaining segment metadata.
 ## Input types
 ### Required
 - **`segs`**
-    - The input `segs` parameter represents a collection of segmentation results, including both the segmentation masks and the associated image data. This node operates by removing the image data from each segmentation result.
-    - Python dtype: `Tuple[Tuple[int, int], List[SEG]]`
+    - The 'segs' parameter represents the collection of segmented images to be processed. It is essential for specifying the input data from which the images will be removed, affecting the node's execution by determining the segments to be modified.
     - Comfy dtype: `SEGS`
+    - Python dtype: `Tuple[torch.Tensor, List[SEG]]`
 ## Output types
 - **`segs`**
-    - The output is a modified collection of segmentation results (SEGS) with the image data removed from each segmentation, leaving only the masks and metadata.
-    - Python dtype: `Tuple[Tuple[int, int], List[SEG]]`
     - Comfy dtype: `SEGS`
+    - The output is a modified version of the input SEGS, where the image data has been removed from each segment, leaving other attributes intact.
+    - Python dtype: `Tuple[torch.Tensor, List[SEG]]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

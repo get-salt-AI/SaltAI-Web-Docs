@@ -4,67 +4,67 @@
 - Category: `ImpactPack/Detector`
 - Output node: `False`
 
-The ImpactSimpleDetectorSEGS node is designed for detecting objects in images using segmentation models. It processes an image to identify and segment objects, returning segmented regions as output. This node is part of the ImpactPack's suite of nodes for image analysis and manipulation, specifically tailored for tasks involving segmentation.
+The ImpactSimpleDetectorSEGS node is designed for detecting simple segmentation patterns within images. It leverages segmentation models to identify and delineate distinct segments or objects, facilitating various image analysis and manipulation tasks.
 ## Input types
 ### Required
 - **`bbox_detector`**
-    - The bounding box detector used for initial object detection in the image. It's crucial for identifying potential objects to be segmented.
-    - Python dtype: `torch.nn.Module`
+    - Specifies the bounding box detector to be used for detection, crucial for determining the accuracy and type of segments detected.
     - Comfy dtype: `BBOX_DETECTOR`
+    - Python dtype: `object`
 - **`image`**
-    - unknown
-    - Python dtype: `unknown`
+    - The input image to be processed. The quality and resolution of the image can significantly affect the detection results.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `torch.Tensor`
 - **`bbox_threshold`**
-    - A threshold value for the bounding box detector to determine the cut-off point for object detection. It fine-tunes the sensitivity of the detection process.
-    - Python dtype: `float`
+    - A threshold value to determine the sensitivity of the bounding box detection. Adjusting this value can help in fine-tuning the detection results.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`bbox_dilation`**
-    - Controls the extent to which the detected bounding boxes are expanded, potentially capturing more of the object for accurate segmentation.
-    - Python dtype: `int`
+    - Determines the extent of dilation applied to the detected bounding boxes, useful for expanding the segments to include nearby relevant pixels.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`crop_factor`**
-    - Determines how much the detected object's bounding box is enlarged or reduced during the cropping process, affecting the segmentation's focus area.
-    - Python dtype: `float`
+    - Specifies the factor by which the detected segment's bounding box is enlarged or reduced for cropping purposes.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`drop_size`**
-    - Specifies the minimum size for detected objects to be considered valid, filtering out objects that are too small.
-    - Python dtype: `int`
+    - Defines the minimum size for detected segments. Segments smaller than this size are dropped.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`sub_threshold`**
-    - A threshold value used for fine-tuning the sensitivity of the sub-detection process, specifically for segmentation.
-    - Python dtype: `float`
+    - A threshold value for sub-detection processes, affecting the sensitivity of further segmentation detection.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`sub_dilation`**
-    - Controls the extent to which the segmented regions from the sub-detection process are expanded.
-    - Python dtype: `int`
+    - Determines the extent of dilation applied in sub-detection processes, useful for adjusting segment expansion.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`sub_bbox_expansion`**
-    - Determines the expansion of bounding boxes in the sub-detection process, potentially capturing more details of the object.
+    - Specifies the expansion factor for bounding boxes in sub-detection processes, affecting the final segment size.
+    - Comfy dtype: `INT`
     - Python dtype: `float`
-    - Comfy dtype: `FLOAT`
 - **`sam_mask_hint_threshold`**
-    - A threshold value used in generating SAM masks, which are hints for the segmentation process to focus on specific areas.
-    - Python dtype: `float`
+    - A threshold value for SAM mask hinting, influencing the mask generation process.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 ### Optional
 - **`post_dilation`**
-    - Applies additional dilation to the segmented regions after the main segmentation process, enhancing the final output.
-    - Python dtype: `int`
+    - Determines the extent of dilation applied after all detection processes, finalizing the segment expansion.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`sam_model_opt`**
-    - Optional SAM model used for generating SAM masks, providing hints for the segmentation process.
-    - Python dtype: `torch.nn.Module`
+    - Optional. Specifies the SAM model options for mask generation, affecting the detection and segmentation process.
     - Comfy dtype: `SAM_MODEL`
+    - Python dtype: `object`
 - **`segm_detector_opt`**
-    - Optional segmentation detector used for enhancing the segmentation process with additional segmentation models.
-    - Python dtype: `torch.nn.Module`
+    - Optional. Specifies the segmentation detector options for further refinement of detected segments.
     - Comfy dtype: `SEGM_DETECTOR`
+    - Python dtype: `object`
 ## Output types
 - **`segs`**
-    - The output segmented regions of the image. Each region corresponds to a detected object, providing valuable information for further analysis or processing.
-    - Python dtype: `List[torch.Tensor]`
     - Comfy dtype: `SEGS`
+    - The output segments detected from the input image, including their bounding boxes, masks, and other relevant information.
+    - Python dtype: `Tuple[torch.Size, List[object]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `ImpactMakeTileSEGS,ImpactControlNetApplySEGS,SegsToCombinedMask`

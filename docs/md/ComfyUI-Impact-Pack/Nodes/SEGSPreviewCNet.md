@@ -4,20 +4,20 @@
 - Category: `ImpactPack/Util`
 - Output node: `True`
 
-SEGSPreviewCNet node generates a preview of segmentation results with control networks applied. It saves the control network images to a specified output directory and returns a list of these images along with their metadata.
+SEGSPreviewCNet is designed to generate previews of segmentation results, specifically focusing on the control networks associated with each segmentation. It saves these previews as images, facilitating a visual inspection of how control networks influence the segmentation process.
 ## Input types
 ### Required
 - **`segs`**
-    - The segmentation results to be previewed, including control network information if available. This input is crucial for generating the preview images.
-    - Python dtype: `Tuple[Tuple[Any, Any], List[SEG]]`
+    - The 'segs' parameter represents the segmentation results to be previewed. It is crucial for generating the control network-based previews, as it contains the segmentation data along with associated control network information.
     - Comfy dtype: `SEGS`
+    - Python dtype: `Tuple[Tuple[Any, Any], List[Any]]`
 ## Output types
 - **`image`**
-    - A tuple containing a list of PIL images generated from the control networks.
-    - Python dtype: `Tuple[List[PIL.Image.Image]]`
     - Comfy dtype: `IMAGE`
+    - unknown
+    - Python dtype: `unknown`
 - **`ui`**
-    - A UI component displaying the generated preview images of the segmentation results.
+    - The 'ui' parameter contains the generated preview images of the segmentation results, specifically highlighting the control networks' impact.
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

@@ -4,26 +4,26 @@
 - Category: `ImpactPack/Logic/_for_test`
 - Output node: `True`
 
-This node is responsible for setting the mute state of a specified node within the system. It communicates with a server to update the mute state of the node based on the provided parameters.
+This node is designed to control the mute state of other nodes within a workflow. It sends a command to mute or activate specified nodes based on the provided state, enhancing the flexibility and control over the workflow's execution.
 ## Input types
 ### Required
 - **`signal`**
-    - Acts as a pass-through for signals within the system, allowing for the mute state setting operation to be integrated into a sequence of operations without disrupting the flow of data.
-    - Python dtype: `typing.Any`
+    - A generic signal input that triggers the node's operation. It's essential for initiating the mute or activation process.
     - Comfy dtype: `*`
+    - Python dtype: `Any`
 - **`node_id`**
-    - Identifies the specific node whose mute state is to be set, allowing for targeted control within a larger system.
-    - Python dtype: `int`
+    - Specifies the unique identifier of the node whose mute state is to be controlled. It determines the target node for the mute or activation command.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`set_state`**
-    - Determines the new mute state of the node, with options to either activate or mute the node, thereby controlling its participation in the system's operations.
-    - Python dtype: `bool`
+    - A boolean value indicating the desired mute state. When true, the target node is activated; when false, it is muted.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ## Output types
-- **`*`**
-    - Returns the original signal, ensuring continuity in the flow of data through the system after the mute state has been set.
-    - Python dtype: `typing.Any`
+- **`signal_opt`**
     - Comfy dtype: `*`
+    - Returns the original signal input, allowing for seamless integration into the workflow without altering the data flow.
+    - Python dtype: `Any`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

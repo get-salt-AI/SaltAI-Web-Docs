@@ -8,17 +8,17 @@ This node is designed to generate and manage iteration options for the AnimateDi
 ## Input types
 ### Required
 - **`iterations`**
-    - Comfy dtype: `INT`
     - Specifies the number of iterations to perform, directly influencing the depth or extent of the animation diffing process.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`iter_batch_offset`**
-    - Comfy dtype: `INT`
     - Determines the offset for batch processing within iterations, enabling fine-tuned control over the iteration sequence.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`iter_seed_offset`**
-    - Comfy dtype: `INT`
     - Sets the seed offset for iterations, affecting the randomness or variability in the animation diffing process.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`iteration_opts`**

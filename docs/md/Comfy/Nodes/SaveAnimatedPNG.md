@@ -8,20 +8,20 @@ The SaveAnimatedPNG node is designed for creating and saving animated PNG images
 ## Input types
 ### Required
 - **`images`**
-    - Comfy dtype: `IMAGE`
     - A list of images to be processed and saved as an animated PNG. Each image in the list represents a frame in the animation.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `List[torch.Tensor]`
 - **`filename_prefix`**
-    - Comfy dtype: `STRING`
     - Specifies the base name for the output file, which will be used as a prefix for the generated animated PNG files.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`fps`**
-    - Comfy dtype: `FLOAT`
     - The frames per second rate for the animation, controlling how quickly the frames are displayed.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`compress_level`**
-    - Comfy dtype: `INT`
     - The level of compression applied to the animated PNG files, affecting file size and image clarity.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`ui`**

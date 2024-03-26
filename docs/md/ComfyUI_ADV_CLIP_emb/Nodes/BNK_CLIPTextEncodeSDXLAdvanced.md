@@ -8,28 +8,28 @@ This node specializes in generating advanced CLIP text embeddings for Stable Dif
 ## Input types
 ### Required
 - **`text_l`**
-    - Comfy dtype: `STRING`
     - The local context text input, allowing for detailed specification of parts of the image.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`text_g`**
-    - Comfy dtype: `STRING`
     - The global context text input, providing an overarching theme or setting for the image.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`clip`**
-    - Comfy dtype: `CLIP`
     - A CLIP model instance used for text and image embeddings.
+    - Comfy dtype: `CLIP`
     - Python dtype: `object`
 - **`token_normalization`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the method for normalizing token weights, affecting the emphasis of certain words or phrases.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 - **`weight_interpretation`**
-    - Comfy dtype: `COMBO[STRING]`
     - Defines how weights are interpreted, influencing the final embedding by adjusting the significance of certain tokens.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 - **`balance`**
-    - Comfy dtype: `FLOAT`
     - A float value determining the balance between local and global text embeddings in the final output.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`conditioning`**

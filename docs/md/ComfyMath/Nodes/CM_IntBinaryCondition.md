@@ -8,16 +8,16 @@ This node performs binary conditional operations on integer inputs, evaluating t
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the binary conditional operation to perform on the integers, such as equality or greater than, and directly influences the outcome of the node's evaluation.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 - **`a`**
-    - Comfy dtype: `INT`
     - The first integer operand in the binary conditional operation, serving as one of the two values to be compared.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`b`**
-    - Comfy dtype: `INT`
     - The second integer operand in the binary conditional operation, serving as the other value to be compared with the first operand.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`bool`**

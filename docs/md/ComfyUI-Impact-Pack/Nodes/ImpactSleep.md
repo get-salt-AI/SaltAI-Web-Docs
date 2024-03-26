@@ -4,22 +4,22 @@
 - Category: `ImpactPack/Logic/_for_test`
 - Output node: `True`
 
-The `ImpactSleep` node introduces a delay in the execution flow by pausing for a specified number of seconds. This can be useful for timing operations or creating a pause in a sequence of actions.
+The ImpactSleep node introduces a delay in the execution flow by pausing for a specified number of seconds. This can be useful for timing operations or creating a pause in a sequence of actions.
 ## Input types
 ### Required
 - **`signal`**
-    - Acts as a pass-through for any type of signal, allowing the node to be integrated into various points in a workflow without altering the signal's content.
-    - Python dtype: `Any`
+    - The signal input acts as a pass-through, allowing the node to be integrated into a flow without affecting the data being transmitted.
     - Comfy dtype: `*`
+    - Python dtype: `object`
 - **`seconds`**
-    - Specifies the duration of the pause in seconds. This allows for precise control over the timing of subsequent operations in the workflow.
-    - Python dtype: `float`
+    - Specifies the duration of the sleep period in seconds. This determines how long the execution will pause before continuing.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 ## Output types
-- **`*`**
-    - Outputs the same signal that was input, effectively acting as a pass-through after the specified delay.
-    - Python dtype: `Any`
+- **`signal_opt`**
     - Comfy dtype: `*`
+    - Outputs the same signal that was input, effectively acting as a pass-through after the specified sleep duration.
+    - Python dtype: `object`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

@@ -8,16 +8,16 @@ The ADE_EmptyLatentImageLarge node is designed to initialize a large latent imag
 ## Input types
 ### Required
 - **`width`**
-    - Comfy dtype: `INT`
     - Specifies the width of the latent image to be generated. It determines the horizontal dimension of the resulting tensor.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Comfy dtype: `INT`
     - Determines the height of the latent image. It affects the vertical dimension of the resulting tensor.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`batch_size`**
-    - Comfy dtype: `INT`
     - Controls the number of latent images to generate in a single batch. It influences the first dimension of the resulting tensor, allowing for batch processing of multiple images.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`latent`**

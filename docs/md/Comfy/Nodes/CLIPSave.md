@@ -8,12 +8,12 @@ The CLIPSave node is designed for saving CLIP models along with additional infor
 ## Input types
 ### Required
 - **`clip`**
-    - Comfy dtype: `CLIP`
     - The CLIP model to be saved. This parameter is crucial as it represents the model whose state is to be serialized and stored.
+    - Comfy dtype: `CLIP`
     - Python dtype: `torch.nn.Module`
 - **`filename_prefix`**
-    - Comfy dtype: `STRING`
     - A prefix for the filename under which the model and its additional information will be saved. This parameter allows for organized storage and easy retrieval of saved models.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 The node doesn't have output types

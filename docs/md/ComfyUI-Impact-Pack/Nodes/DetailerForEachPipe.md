@@ -4,111 +4,115 @@
 - Category: `ImpactPack/Detailer`
 - Output node: `False`
 
-Given the context, it appears there was a misunderstanding in the original response. The node 'DetailerForEachPipe' does not exist within the provided context, which includes various classes related to the manipulation and transformation of detailer pipes in a pipeline architecture. The classes provided offer functionalities such as converting, editing, and extracting components from detailer and basic pipes, but there is no specific mention or functionality described as 'DetailerForEachPipe'. Therefore, it's not possible to provide a detailed explanation of functionality, input types, output types, or infra type for a node that is not defined.
+The DetailerForEachPipe node is designed to iterate over a collection of pipes, applying detailed processing or transformations to each. It focuses on enhancing or modifying the data flow within each pipe, ensuring that specific, detailed operations are performed according to the requirements of the pipeline.
 ## Input types
 ### Required
 - **`image`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `IMAGE`
+    - Python dtype: `unknown`
 - **`segs`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `SEGS`
+    - Python dtype: `unknown`
 - **`guide_size`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`guide_size_for`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `unknown`
 - **`max_size`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`seed`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 - **`steps`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 - **`cfg`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`sampler_name`**
     - unknown
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `unknown`
-    - Comfy dtype: `['euler', 'euler_ancestral', 'heun'...]`
 - **`scheduler`**
     - unknown
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `unknown`
-    - Comfy dtype: `['normal', 'karras', 'exponential'...]`
 - **`denoise`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`feather`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 - **`noise_mask`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `unknown`
 - **`force_inpaint`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `unknown`
 - **`basic_pipe`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BASIC_PIPE`
+    - Python dtype: `unknown`
 - **`wildcard`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `STRING`
+    - Python dtype: `unknown`
 - **`refiner_ratio`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`cycle`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 ### Optional
 - **`detailer_hook`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `DETAILER_HOOK`
+    - Python dtype: `unknown`
 - **`refiner_basic_pipe_opt`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BASIC_PIPE`
+    - Python dtype: `unknown`
 - **`inpaint_model`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `unknown`
 - **`noise_mask_feather`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 ## Output types
 - **`image`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `IMAGE`
+    - The output image after detailed processing has been applied to the collection of pipes.
+    - Python dtype: `List[Image]`
 - **`segs`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `SEGS`
+    - The segmentation results corresponding to the processed images.
+    - Python dtype: `List[Segmentation]`
 - **`basic_pipe`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BASIC_PIPE`
+    - The basic pipe configuration derived from the detailed processing.
+    - Python dtype: `List[Tuple]`
+- **`cnet_images`**
+    - Comfy dtype: `IMAGE`
+    - The cnet processed images resulting from the detailed processing.
+    - Python dtype: `List[Image]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

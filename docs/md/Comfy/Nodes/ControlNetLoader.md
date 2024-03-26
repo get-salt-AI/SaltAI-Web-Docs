@@ -8,8 +8,8 @@ The ControlNetLoader node is designed to load a ControlNet model from a specifie
 ## Input types
 ### Required
 - **`control_net_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the name of the ControlNet model to be loaded. This name is used to locate the model file within a predefined directory structure.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`control_net`**

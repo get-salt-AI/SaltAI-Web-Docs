@@ -8,12 +8,12 @@ The LatentBatch node is designed to merge two sets of latent samples into a sing
 ## Input types
 ### Required
 - **`samples1`**
-    - Comfy dtype: `LATENT`
     - The first set of latent samples to be merged. It plays a crucial role in determining the final shape of the merged batch.
+    - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 - **`samples2`**
-    - Comfy dtype: `LATENT`
     - The second set of latent samples to be merged. If its dimensions differ from the first set, it is resized to ensure compatibility before merging.
+    - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 ## Output types
 - **`latent`**

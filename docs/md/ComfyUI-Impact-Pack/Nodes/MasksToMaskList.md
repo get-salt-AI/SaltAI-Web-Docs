@@ -4,18 +4,18 @@
 - Category: `ImpactPack/Operation`
 - Output node: `False`
 
-Converts a list of masks into a list of 3D masks, handling cases where the input is empty by providing a default empty mask. This operation is useful for standardizing mask formats for further processing.
+The MasksToMaskList node is designed to transform a collection of individual masks into a list of masks, applying a 3D mask transformation to each mask in the process. This operation is essential for preparing mask data for further processing or analysis within a pipeline that requires masks in a standardized format.
 ## Input types
 ### Required
 - **`masks`**
-    - The input masks to be converted. If `None`, a default empty mask is generated. This parameter is crucial for the conversion process, affecting the output by either passing through the input masks or generating a default mask in case of `None`.
-    - Python dtype: `Optional[List[torch.Tensor]]`
+    - The 'masks' parameter represents the collection of masks to be transformed. It is crucial for the node's operation as it provides the raw data that will be processed into a standardized list format.
     - Comfy dtype: `MASK`
+    - Python dtype: `Optional[List[torch.Tensor]]`
 ## Output types
 - **`mask`**
-    - A list of 3D masks, either directly converted from the input or containing a single default empty mask if the input was `None`.
-    - Python dtype: `List[torch.Tensor]`
     - Comfy dtype: `MASK`
+    - The output is a list of masks, each transformed into a 3D format, ready for further processing or analysis.
+    - Python dtype: `List[torch.Tensor]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

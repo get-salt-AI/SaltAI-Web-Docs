@@ -8,32 +8,32 @@ This node is designed to augment the conditioning data with additional parameter
 ## Input types
 ### Required
 - **`conditioning`**
-    - Comfy dtype: `CONDITIONING`
     - The conditioning data to be augmented with image dimension and cropping parameters. It plays a crucial role in defining the context for image generation.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
 - **`width`**
-    - Comfy dtype: `INT`
     - Specifies the width of the image. It affects the conditioning by setting a specific dimension for image generation.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Comfy dtype: `INT`
     - Specifies the height of the image, contributing to the conditioning by defining a specific dimension for image generation.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`crop_w`**
-    - Comfy dtype: `INT`
     - Determines the width of the crop area, allowing for more focused image generation based on the specified region.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`crop_h`**
-    - Comfy dtype: `INT`
     - Determines the height of the crop area, enabling more targeted image generation based on the specified region.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`target_width`**
-    - Comfy dtype: `INT`
     - Sets the target width for the image generation, influencing the final dimensions of the generated image.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`target_height`**
-    - Comfy dtype: `INT`
     - Sets the target height for the image generation, impacting the final dimensions of the generated image.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`conditioning`**

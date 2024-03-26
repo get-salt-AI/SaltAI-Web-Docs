@@ -4,47 +4,47 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-This node facilitates the editing or modification of SEG_ELT objects, enabling operations such as scaling the bounding box, adjusting the segmentation mask, and updating metadata like confidence or labels. It's particularly useful for refining segmentation results for further analysis or processing.
+The ImpactEdit_SEG_ELT node is designed for editing and manipulating segmentation elements (SEG_ELT) within the ImpactPack framework. It focuses on modifying the properties of segmentation elements to achieve desired alterations, such as adjusting their bounding boxes or applying transformations, thereby enabling more precise control over the segmentation output.
 ## Input types
 ### Required
 - **`seg_elt`**
-    - unknown
-    - Python dtype: `unknown`
+    - The 'seg_elt' parameter represents the segmentation element (SEG_ELT) to be edited. It is crucial for specifying the target segmentation element whose properties are to be modified.
     - Comfy dtype: `SEG_ELT`
+    - Python dtype: `SEG`
 ### Optional
 - **`cropped_image_opt`**
-    - Optional. An alternative cropped image to replace the original in the SEG_ELT object.
-    - Python dtype: `Optional[Image]`
+    - Optional parameter for providing an alternative cropped image for the segmentation element.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `Optional[Image]`
 - **`cropped_mask_opt`**
-    - Optional. An alternative segmentation mask to replace the original in the SEG_ELT object.
-    - Python dtype: `Optional[Mask]`
+    - Optional parameter for providing an alternative cropped mask for the segmentation element.
     - Comfy dtype: `MASK`
+    - Python dtype: `Optional[Mask]`
 - **`crop_region_opt`**
-    - Optional. A new crop region to replace the original in the SEG_ELT object.
-    - Python dtype: `Optional[Tuple[int, int, int, int]]`
+    - Optional parameter for providing an alternative crop region for the segmentation element.
     - Comfy dtype: `SEG_ELT_crop_region`
+    - Python dtype: `Optional[SEG_ELT_crop_region]`
 - **`bbox_opt`**
-    - Optional. A new bounding box to replace the original in the SEG_ELT object.
-    - Python dtype: `Optional[Tuple[int, int, int, int]]`
+    - Optional parameter for providing an alternative bounding box for the segmentation element.
     - Comfy dtype: `SEG_ELT_bbox`
+    - Python dtype: `Optional[SEG_ELT_bbox]`
 - **`control_net_wrapper_opt`**
-    - Optional. A new control network wrapper to replace the original in the SEG_ELT object.
-    - Python dtype: `Optional[ControlNetWrapper]`
+    - Optional parameter for providing an alternative control net wrapper for the segmentation element.
     - Comfy dtype: `SEG_ELT_control_net_wrapper`
+    - Python dtype: `Optional[SEG_ELT_control_net_wrapper]`
 - **`confidence_opt`**
-    - Optional. A new confidence value to replace the original in the SEG_ELT object. This parameter must be explicitly provided by the user.
-    - Python dtype: `Optional[float]`
+    - Optional parameter for specifying the confidence level of the segmentation element. It affects the processing and interpretation of the segmentation element.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `Optional[float]`
 - **`label_opt`**
-    - Optional. A new label to replace the original in the SEG_ELT object. This parameter must be explicitly provided by the user.
-    - Python dtype: `Optional[str]`
+    - Optional parameter for specifying the label of the segmentation element. It affects the processing and categorization of the segmentation element.
     - Comfy dtype: `STRING`
+    - Python dtype: `Optional[str]`
 ## Output types
 - **`seg_elt`**
-    - The edited SEG_ELT object, updated according to the provided optional parameters.
-    - Python dtype: `SEG_ELT`
     - Comfy dtype: `SEG_ELT`
+    - Returns the modified segmentation element (SEG_ELT) after applying the specified edits, such as scaling the bounding box.
+    - Python dtype: `SEG`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

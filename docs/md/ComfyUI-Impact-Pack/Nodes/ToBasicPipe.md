@@ -4,34 +4,34 @@
 - Category: `ImpactPack/Pipe`
 - Output node: `False`
 
-ToBasicPipe node constructs a basic pipeline from individual components such as a model, clip, VAE, and conditioning elements. It encapsulates these components into a single tuple, facilitating their collective management and usage in further processing.
+The ToBasicPipe node is designed to aggregate essential components for a generative pipeline into a single, basic pipeline structure. It combines models, clips, VAEs, and conditioning information into a unified format, facilitating easier manipulation and use in subsequent processes.
 ## Input types
 ### Required
 - **`model`**
-    - The model component of the pipeline, essential for the generation or transformation process.
-    - Python dtype: `MODEL`
+    - The model parameter represents the core generative model to be included in the basic pipeline. It is crucial for the generation process.
     - Comfy dtype: `MODEL`
+    - Python dtype: `object`
 - **`clip`**
-    - The CLIP component, used for semantic understanding and alignment between text and images.
-    - Python dtype: `CLIP`
+    - The clip parameter is included to provide additional context or constraints for the generation process, enhancing the output's relevance or quality.
     - Comfy dtype: `CLIP`
+    - Python dtype: `object`
 - **`vae`**
-    - The VAE component, crucial for encoding and decoding images in the pipeline.
-    - Python dtype: `VAE`
+    - The vae parameter is a variational autoencoder used for processing or transforming the input data, playing a significant role in the pipeline's functionality.
     - Comfy dtype: `VAE`
+    - Python dtype: `object`
 - **`positive`**
-    - Positive conditioning element, guiding the generation towards desired attributes.
-    - Python dtype: `CONDITIONING`
+    - The positive conditioning information guides the generation towards desired attributes or characteristics.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `object`
 - **`negative`**
-    - Negative conditioning element, steering the generation away from undesired attributes.
-    - Python dtype: `CONDITIONING`
+    - The negative conditioning information steers the generation away from undesired attributes or characteristics, refining the output.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `object`
 ## Output types
 - **`basic_pipe`**
-    - The constructed basic pipeline, encapsulating the model, clip, VAE, and conditioning elements.
-    - Python dtype: `BASIC_PIPE`
     - Comfy dtype: `BASIC_PIPE`
+    - The basic_pipe output encapsulates the combined model, clip, VAE, and conditioning information into a single, manageable structure for further processing.
+    - Python dtype: `Tuple[object, object, object, object, object]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `FromBasicPipe,ImpactKSamplerBasicPipe,Reroute,DetailerForEachDebugPipe,DetailerForEachPipeForAnimateDiff,SEGSDetailerForAnimateDiff,PixelKSampleUpscalerProviderPipe`

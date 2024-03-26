@@ -8,49 +8,49 @@ This node is designed for configuring advanced motion model settings within the 
 ## Input types
 ### Required
 - **`pe_strength`**
-    - Comfy dtype: `FLOAT`
     - Specifies the strength of the positional encoding adjustments, influencing the overall motion intensity.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`attn_strength`**
-    - Comfy dtype: `FLOAT`
     - Determines the strength of the attention mechanism adjustments, affecting how motion is distributed across the image.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`other_strength`**
-    - Comfy dtype: `FLOAT`
     - Controls additional strength parameters that may influence the motion model's behavior in less direct ways.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`motion_pe_stretch`**
-    - Comfy dtype: `INT`
     - Defines the stretch of positional encoding in the motion direction, allowing for more dynamic motion effects.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cap_initial_pe_length`**
-    - Comfy dtype: `INT`
     - Sets a cap on the initial length of positional encoding, which can help in controlling the motion's initial state.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`interpolate_pe_to_length`**
-    - Comfy dtype: `INT`
     - Specifies the length to which positional encoding should be interpolated, enabling smoother transitions in motion.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`initial_pe_idx_offset`**
-    - Comfy dtype: `INT`
     - Determines the initial offset for positional encoding indices, affecting the starting point of motion.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`final_pe_idx_offset`**
-    - Comfy dtype: `INT`
     - Sets the final offset for positional encoding indices, influencing the motion's end point.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`mask_motion_scale`**
-    - Comfy dtype: `MASK`
     - Provides a tensor to scale the motion mask, allowing for fine-grained control over how motion is applied.
+    - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`min_motion_scale`**
-    - Comfy dtype: `FLOAT`
     - Specifies the minimum scale for motion, ensuring that motion effects do not fall below a certain threshold.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`max_motion_scale`**
-    - Comfy dtype: `FLOAT`
     - Defines the maximum scale for motion, preventing overly exaggerated motion effects.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`ad_settings`**

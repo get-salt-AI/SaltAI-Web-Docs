@@ -8,16 +8,16 @@ Performs scalar operations on 4-dimensional vectors, allowing for the manipulati
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the scalar operation to be performed on the vector, such as multiplication or division, influencing the resulting vector transformation.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`a`**
-    - Comfy dtype: `VEC4`
     - The 4-dimensional vector to be transformed, serving as the primary operand in the scalar operation.
+    - Comfy dtype: `VEC4`
     - Python dtype: `Vec4`
 - **`b`**
-    - Comfy dtype: `FLOAT`
     - The scalar value to be applied to the vector, acting as the secondary operand in the operation.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`vec4`**

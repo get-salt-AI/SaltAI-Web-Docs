@@ -8,16 +8,16 @@ This node performs a binary operation between two 3-dimensional vectors (Vec3) a
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the binary operation to be performed on the two Vec3 inputs, such as dot product or distance calculation. This choice determines how the vectors are mathematically combined.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`a`**
-    - Comfy dtype: `VEC3`
     - The first 3-dimensional vector (Vec3) input for the binary operation.
+    - Comfy dtype: `VEC3`
     - Python dtype: `Vec3`
 - **`b`**
-    - Comfy dtype: `VEC3`
     - The second 3-dimensional vector (Vec3) input for the binary operation.
+    - Comfy dtype: `VEC3`
     - Python dtype: `Vec3`
 ## Output types
 - **`float`**

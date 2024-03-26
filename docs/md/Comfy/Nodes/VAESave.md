@@ -8,12 +8,12 @@ The VAESave node is designed for saving VAE models along with their metadata, in
 ## Input types
 ### Required
 - **`vae`**
-    - Comfy dtype: `VAE`
     - The VAE model to be saved. This parameter is crucial as it represents the model whose state is to be serialized and stored.
+    - Comfy dtype: `VAE`
     - Python dtype: `torch.nn.Module`
 - **`filename_prefix`**
-    - Comfy dtype: `STRING`
     - A prefix for the filename under which the model and its metadata will be saved. This allows for organized storage and easy retrieval of models.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 The node doesn't have output types

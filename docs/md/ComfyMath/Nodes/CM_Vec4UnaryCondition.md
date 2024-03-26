@@ -8,12 +8,12 @@ This node performs unary operations on 4-dimensional vectors based on predefined
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the unary operation to be performed on the vector, chosen from a predefined set of conditions. This determines how the vector is evaluated.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 - **`a`**
-    - Comfy dtype: `VEC4`
     - The 4-dimensional vector to be operated on. It serves as the input for the unary operation.
+    - Comfy dtype: `VEC4`
     - Python dtype: `Vec4`
 ## Output types
 - **`bool`**

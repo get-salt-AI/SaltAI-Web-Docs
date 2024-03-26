@@ -8,12 +8,12 @@ This node is designed to set a prior for the conditioning process in a stable ca
 ## Input types
 ### Required
 - **`conditioning`**
-    - Comfy dtype: `CONDITIONING`
     - The conditioning data to be modified with the latent stage information, affecting the model's behavior in later stages.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
 - **`stage_c`**
-    - Comfy dtype: `LATENT`
     - The latent stage information to be integrated into the conditioning, influencing the model's subsequent stages.
+    - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 ## Output types
 - **`conditioning`**

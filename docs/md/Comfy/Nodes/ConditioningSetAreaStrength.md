@@ -8,12 +8,12 @@ This node is designed to modify the strength attribute of a given conditioning s
 ## Input types
 ### Required
 - **`conditioning`**
-    - Comfy dtype: `CONDITIONING`
     - The conditioning set to be modified, representing the current state of conditioning that influences the generation process.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
 - **`strength`**
-    - Comfy dtype: `FLOAT`
     - The strength value to be applied to the conditioning set, dictating the intensity of its influence.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`conditioning`**

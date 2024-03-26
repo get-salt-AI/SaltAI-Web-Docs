@@ -4,26 +4,26 @@
 - Category: `ImpactPack/Logic/_for_test`
 - Output node: `True`
 
-The `ImpactControlBridge` node is designed to manage the state of other nodes based on specific conditions, such as muting, bypassing, or activating them. It communicates these state changes to the PromptServer, which then executes the necessary actions. This node plays a crucial role in controlling the flow and behavior of nodes within a system, especially in scenarios where dynamic adjustments are required.
+The ImpactControlBridge node serves as a dynamic control mechanism for managing the state of other nodes within a ComfyUI environment. It enables the activation, muting, or bypassing of specified nodes based on operational modes, thereby facilitating flexible workflow adjustments and error handling through the use of signals.
 ## Input types
 ### Required
 - **`value`**
-    - unknown
-    - Python dtype: `unknown`
+    - Represents the value to be processed, which can influence the control bridge's decision-making process.
     - Comfy dtype: `*`
+    - Python dtype: `any`
 - **`mode`**
-    - Determines if the node should activate other nodes. When true, it activates nodes that are either muted or bypassed.
-    - Python dtype: `bool`
+    - Determines the operational mode of the node, such as active, mute, or bypass, affecting how other nodes are controlled.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `str`
 - **`behavior`**
-    - Controls the muting behavior of nodes. If true, it mutes nodes that are currently active or bypassed.
-    - Python dtype: `bool`
+    - Specifies the behavior of the node in terms of muting or bypassing, providing additional control over the workflow.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `str`
 ## Output types
-- **`*`**
-    - Returns a tuple containing the original input value, indicating the successful execution of the node's logic. This output reflects the node's operation without altering the input's nature.
-    - Python dtype: `Tuple[Any]`
+- **`value`**
     - Comfy dtype: `*`
+    - The processed value, reflecting the outcome of the control bridge's operations.
+    - Python dtype: `any`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

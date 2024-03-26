@@ -4,18 +4,18 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The `ImpactSEGSToMaskList` node transforms a collection of SEGS (segmentation data) into a list of masks. If the input SEGS collection is empty, it generates a single empty mask. Each mask in the resulting list is converted to a 3D mask format for further processing.
+This node is designed to convert segmentation data (SEGS) into a list of masks. It serves as a utility within the Impact Pack, facilitating the transformation of complex segmentation formats into a more universally applicable mask format, thereby enabling further image processing and analysis tasks.
 ## Input types
 ### Required
 - **`segs`**
-    - The `segs` parameter represents the input segmentation data. It is crucial for the node's operation as it determines the content and size of the output mask list.
-    - Python dtype: `List[torch.Tensor]`
+    - The 'segs' parameter represents the segmentation data to be converted into masks. It is crucial for the node's operation as it provides the raw segmentation information that will be transformed into a list of individual masks.
     - Comfy dtype: `SEGS`
+    - Python dtype: `Tuple[torch.Size, List[torch.Tensor]]`
 ## Output types
 - **`mask`**
-    - The output is a list of masks derived from the input SEGS. Each mask is adjusted to a 3D format, suitable for further image processing tasks.
-    - Python dtype: `List[torch.Tensor]`
     - Comfy dtype: `MASK`
+    - The output is a list of masks derived from the input segmentation data. Each mask corresponds to a segment in the input, allowing for detailed analysis and manipulation of individual segments.
+    - Python dtype: `List[torch.Tensor]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

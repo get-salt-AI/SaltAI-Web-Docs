@@ -8,16 +8,16 @@ The VAEDecodeTiled node is designed for decoding latent representations into ima
 ## Input types
 ### Required
 - **`samples`**
-    - Comfy dtype: `LATENT`
     - The 'samples' parameter represents the latent representations that are to be decoded into images. It is crucial for the decoding process as it contains the encoded information that will be transformed back into visual form.
+    - Comfy dtype: `LATENT`
     - Python dtype: `torch.Tensor`
 - **`vae`**
-    - Comfy dtype: `VAE`
     - The 'vae' parameter is the variational autoencoder model used for the decoding process. It plays a central role in transforming the latent representations into images.
+    - Comfy dtype: `VAE`
     - Python dtype: `torch.nn.Module`
 - **`tile_size`**
-    - Comfy dtype: `INT`
     - The 'tile_size' parameter specifies the dimensions of the tiles used in the tiled decoding process. It affects the granularity of the decoding, with smaller tiles potentially allowing for finer control over memory usage and processing time.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**

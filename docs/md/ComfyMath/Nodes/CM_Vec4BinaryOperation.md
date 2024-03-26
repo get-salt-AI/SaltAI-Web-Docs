@@ -8,16 +8,16 @@ The node CM_Vec4BinaryOperation performs binary operations on two 4-dimensional 
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the binary operation to be performed on the vectors. It determines how the two Vec4 inputs will be combined to produce the output Vec4.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`a`**
-    - Comfy dtype: `VEC4`
     - The first 4-dimensional vector (Vec4) input for the binary operation. Acts as one of the operands in the vector arithmetic.
+    - Comfy dtype: `VEC4`
     - Python dtype: `Vec4`
 - **`b`**
-    - Comfy dtype: `VEC4`
     - The second 4-dimensional vector (Vec4) input for the binary operation. Acts as the other operand in the vector arithmetic.
+    - Comfy dtype: `VEC4`
     - Python dtype: `Vec4`
 ## Output types
 - **`vec4`**

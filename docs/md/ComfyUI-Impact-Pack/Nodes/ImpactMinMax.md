@@ -4,26 +4,26 @@
 - Category: `ImpactPack/Logic/_for_test`
 - Output node: `False`
 
-The `ImpactMinMax` node performs a conditional comparison between two input values based on a mode. If the mode is set to true, it returns the maximum of the two values; otherwise, it returns the minimum. This functionality allows for dynamic selection between two values based on a condition, useful in scenarios where decision-making between two options is required based on a boolean flag.
+The ImpactMinMax node is designed to compare two input values and return either the maximum or minimum value based on a specified mode. This functionality is essential for operations requiring conditional selection between two values, such as optimizing performance or making decisions based on dynamic input.
 ## Input types
 ### Required
 - **`mode`**
-    - Determines the operation mode of the node. If true, the maximum of the two inputs is returned; if false, the minimum is returned. This boolean flag effectively toggles between a 'max' and 'min' operation, allowing for conditional logic in processing the inputs.
-    - Python dtype: `bool`
+    - Determines whether the maximum or minimum of the two inputs will be returned. When true, the maximum value is selected; otherwise, the minimum value is chosen.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`a`**
-    - One of the two values to be compared. This input, along with 'b', is subject to either a maximum or minimum operation based on the 'mode' flag, influencing the node's output.
-    - Python dtype: `typing.Union[int, float, str, list, dict, tuple]`
+    - One of the two values to be compared. This input, along with 'b', is essential for determining the output based on the selected mode.
     - Comfy dtype: `*`
+    - Python dtype: `Any`
 - **`b`**
-    - The second of the two values to be compared. Together with 'a', it is evaluated based on the 'mode' to determine the node's output.
-    - Python dtype: `typing.Union[int, float, str, list, dict, tuple]`
+    - The second of the two values to be compared. This input is crucial for the comparison operation alongside 'a'.
     - Comfy dtype: `*`
+    - Python dtype: `Any`
 ## Output types
 - **`int`**
-    - The result of the comparison, either the maximum or minimum of the two input values based on the 'mode'. This output is useful for conditional decision-making scenarios.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The result of the comparison, either the maximum or minimum value between the two inputs, depending on the mode.
+    - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

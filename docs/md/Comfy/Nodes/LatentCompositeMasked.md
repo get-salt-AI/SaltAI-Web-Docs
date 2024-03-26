@@ -8,29 +8,29 @@ The LatentCompositeMasked node is designed for blending two latent representatio
 ## Input types
 ### Required
 - **`destination`**
-    - Comfy dtype: `LATENT`
     - The latent representation onto which another latent representation will be composited. Acts as the base layer for the composite operation.
+    - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 - **`source`**
-    - Comfy dtype: `LATENT`
     - The latent representation to be composited onto the destination. This source layer can be resized and positioned according to the specified parameters.
+    - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 - **`x`**
-    - Comfy dtype: `INT`
     - The x-coordinate in the destination latent representation where the source will be placed. Allows for precise positioning of the source layer.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`y`**
-    - Comfy dtype: `INT`
     - The y-coordinate in the destination latent representation where the source will be placed, enabling accurate overlay positioning.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`resize_source`**
-    - Comfy dtype: `BOOLEAN`
     - A boolean flag indicating whether the source latent representation should be resized to match the destination's dimensions before compositing.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`mask`**
-    - Comfy dtype: `MASK`
     - An optional mask that can be used to control the blending of the source onto the destination. The mask defines which parts of the source will be visible in the final composite.
+    - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`latent`**

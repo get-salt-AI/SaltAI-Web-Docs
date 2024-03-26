@@ -4,30 +4,30 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The `CLIPSegDetectorProvider` node utilizes the CLIPSeg model to generate bounding box detections based on textual descriptions. It allows for fine-tuning the detection process through parameters such as blur, threshold, and dilation factor, enabling users to adjust the sensitivity and specificity of the detection to their needs.
+The CLIPSegDetectorProvider node is designed to leverage the capabilities of CLIPSeg for object detection within images. It processes textual descriptions and image characteristics to identify and delineate objects, utilizing parameters such as blur, threshold, and dilation factor to refine the detection process.
 ## Input types
 ### Required
 - **`text`**
-    - The textual description that guides the detection process, specifying what objects or features to detect within the image.
-    - Python dtype: `str`
+    - The textual description of the object to be detected. This parameter is crucial for guiding the CLIPSeg model in identifying the relevant objects within the image.
     - Comfy dtype: `STRING`
+    - Python dtype: `str`
 - **`blur`**
-    - Specifies the level of blur applied to the image before detection, affecting the smoothness of the detected boundaries.
-    - Python dtype: `float`
+    - Specifies the level of blur applied to the image before detection. This can help in reducing noise and improving the accuracy of object detection.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`threshold`**
-    - Determines the sensitivity of the detection, with higher values requiring stronger evidence for detection.
-    - Python dtype: `float`
+    - A threshold value that determines the sensitivity of object detection. Higher values may result in fewer detections, while lower values can increase the detection of minor features.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`dilation_factor`**
-    - Controls the extent to which the detected boundaries are expanded or contracted, affecting the size of the detected areas.
-    - Python dtype: `int`
+    - Determines the extent to which the detected object's boundaries are expanded or contracted. This can be useful in adjusting the preciseness of the object's outline.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
 - **`bbox_detector`**
-    - Produces a bounding box detector configured according to the provided textual description and detection parameters.
-    - Python dtype: `core.BBoxDetectorBasedOnCLIPSeg`
     - Comfy dtype: `BBOX_DETECTOR`
+    - Provides an object detector based on the CLIPSeg model, capable of identifying and bounding objects within images based on textual descriptions.
+    - Python dtype: `core.BBoxDetectorBasedOnCLIPSeg`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

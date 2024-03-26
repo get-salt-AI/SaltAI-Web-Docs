@@ -4,35 +4,39 @@
 - Category: `ImpactPack/HuggingFace`
 - Output node: `False`
 
-This node classifies segments (SEGS) based on the comparison of labels or numeric values. It filters and divides the segments into two groups: those that meet the specified condition (filtered_SEGS) and those that do not (remained_SEGS), based on the comparison operation (e.g., '>', '<', '>=', '<=', '==') between the values or labels assigned to each segment.
+The ImpactSEGSClassify node is designed to classify segments (SEGS) based on specified criteria, comparing attributes or labels within each segment to filter and categorize them accordingly. It supports complex conditional logic, allowing for dynamic segmentation based on the comparison results.
 ## Input types
 ### Required
 - **`classifier`**
-    - The classification model used to classify each segment. It's essential for determining the classification results which are then used to filter segments based on the comparison condition.
-    - Python dtype: `torch.nn.Module`
+    - The 'classifier' input specifies the classification model to be used for evaluating the segments. It is essential for determining the classification scores of each segment's attributes or labels.
     - Comfy dtype: `TRANSFORMERS_CLASSIFIER`
+    - Python dtype: `str`
 - **`segs`**
-    - The segments to be classified and filtered. This input is crucial for the node's operation as it provides the data that will be processed and divided based on the specified conditions.
-    - Python dtype: `List[Tuple[Any, Any]]`
+    - The 'segs' input represents the segments to be classified and filtered. It is crucial for providing the data that will be processed and evaluated by the classifier.
     - Comfy dtype: `SEGS`
+    - Python dtype: `List[Tuple[Any, Any]]`
 - **`preset_expr`**
-    - A predefined expression or a manual expression for comparison. It defines the basis for comparing segment labels or values, playing a critical role in how segments are filtered.
-    - Python dtype: `str`
-    - Comfy dtype: `STRING`
+    - The 'preset_expr' input allows for the selection of predefined classification expressions or criteria. It influences the classification logic applied to the segments.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `List[str]`
 - **`manual_expr`**
-    - A manually entered expression for comparison, used when 'preset_expr' is set to 'Manual expr'. It allows for custom comparison conditions to be defined.
-    - Python dtype: `str`
+    - The 'manual_expr' input enables the specification of custom classification expressions or criteria. It allows for flexible and dynamic classification based on user-defined conditions.
     - Comfy dtype: `STRING`
+    - Python dtype: `str`
 ### Optional
 - **`ref_image_opt`**
-    - An optional reference image that can be used for additional context or processing. It provides flexibility in how segments are handled and classified.
-    - Python dtype: `Optional[torch.Tensor]`
+    - The 'ref_image_opt' input optionally provides a reference image to enhance the classification process. It can affect the classification outcome by providing additional context.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `Optional[torch.Tensor]`
 ## Output types
-- **`segs`**
-    - Segments that do not meet the specified comparison condition.
-    - Python dtype: `List[Any]`
+- **`filtered_SEGS`**
     - Comfy dtype: `SEGS`
+    - This output contains the segments that meet the classification criteria, effectively categorizing the input segments based on the specified conditions.
+    - Python dtype: `List[Any]`
+- **`remained_SEGS`**
+    - Comfy dtype: `SEGS`
+    - This output contains the segments that do not meet the classification criteria, allowing for further analysis or processing of unclassified segments.
+    - Python dtype: `List[Any]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

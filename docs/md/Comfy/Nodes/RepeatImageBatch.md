@@ -8,12 +8,12 @@ The RepeatImageBatch node is designed to replicate a given image a specified num
 ## Input types
 ### Required
 - **`image`**
-    - Comfy dtype: `IMAGE`
     - The 'image' parameter represents the image to be replicated. It is crucial for defining the content that will be duplicated across the batch.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`amount`**
-    - Comfy dtype: `INT`
     - The 'amount' parameter specifies the number of times the input image should be replicated. It directly influences the size of the output batch, allowing for flexible batch creation.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**

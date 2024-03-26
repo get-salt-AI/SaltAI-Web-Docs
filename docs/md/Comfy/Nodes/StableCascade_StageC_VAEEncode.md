@@ -8,16 +8,16 @@ This node is designed to encode an image into a latent representation using a sp
 ## Input types
 ### Required
 - **`image`**
-    - Comfy dtype: `IMAGE`
     - The image to be encoded into a latent representation. It is crucial for the encoding process as it represents the visual data to be transformed.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`vae`**
-    - Comfy dtype: `VAE`
     - The VAE model used for encoding the image. It defines the specific encoding mechanism and parameters.
+    - Comfy dtype: `VAE`
     - Python dtype: `VAE class instance`
 - **`compression`**
-    - Comfy dtype: `INT`
     - Specifies the level of compression applied during the encoding process. It directly influences the dimensions of the output latent representation.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`stage_c`**

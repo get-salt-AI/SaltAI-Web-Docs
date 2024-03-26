@@ -8,8 +8,8 @@ The ImageInvert node is designed to invert the colors of an image, effectively t
 ## Input types
 ### Required
 - **`image`**
-    - Comfy dtype: `IMAGE`
     - The 'image' parameter represents the input image to be inverted. It is crucial for specifying the target image whose colors are to be inverted, affecting the node's execution and the visual outcome of the inversion process.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**

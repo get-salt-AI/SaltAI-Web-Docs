@@ -8,16 +8,16 @@ The Canny node is designed for edge detection in images, utilizing the Canny alg
 ## Input types
 ### Required
 - **`image`**
-    - Comfy dtype: `IMAGE`
     - The input image to be processed for edge detection. It is crucial as it serves as the base for the edge detection operation.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`low_threshold`**
-    - Comfy dtype: `FLOAT`
     - The lower threshold for the hysteresis procedure in edge detection. It determines the minimum intensity gradient considered for an edge, affecting the sensitivity of edge detection.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`high_threshold`**
-    - Comfy dtype: `FLOAT`
     - The upper threshold for the hysteresis procedure in edge detection. It sets the maximum intensity gradient considered for an edge, influencing the selectivity of edge detection.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`image`**

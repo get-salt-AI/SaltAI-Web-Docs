@@ -8,8 +8,8 @@ This node is designed to find the nearest supported SDXL resolution to the input
 ## Input types
 ### Required
 - **`image`**
-    - Comfy dtype: `IMAGE`
     - The input image for which the nearest SDXL resolution is to be found. The image's aspect ratio is used to determine the closest supported resolution.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`width`**

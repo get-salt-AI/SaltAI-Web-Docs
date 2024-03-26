@@ -8,8 +8,8 @@ The IsMaskEmptyNode node is designed to determine if a given mask is entirely em
 ## Input types
 ### Required
 - **`mask`**
-    - Comfy dtype: `MASK`
     - The 'mask' parameter represents the input mask to be analyzed. It is crucial for determining whether the mask is empty or contains any marked areas, directly influencing the node's output.
+    - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`boolean_number`**

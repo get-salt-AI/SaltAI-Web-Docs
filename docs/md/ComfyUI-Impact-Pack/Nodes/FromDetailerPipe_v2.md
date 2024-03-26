@@ -4,50 +4,54 @@
 - Category: `ImpactPack/Pipe`
 - Output node: `False`
 
-The `FromDetailerPipe_v2` node processes a detailer pipe, extracting and returning various components such as models, clips, VAEs, conditioning elements, bounding box detectors, SAM models, segmentation detectors, and detailer hooks. It essentially unpacks the detailer pipe into its constituent parts for further use.
+The `FromDetailerPipe_v2` node is designed to decompose a complex detailer pipe structure into its constituent components, facilitating the extraction and individual manipulation of each component for further processing or analysis.
 ## Input types
 ### Required
 - **`detailer_pipe`**
-    - The detailer pipe is a complex structure containing various components like models, clips, VAEs, and more. It serves as the input from which the node extracts and returns the individual components.
-    - Python dtype: `Tuple[torch.nn.Module, Any, Any, Any, Any, Any, Any, Any, Any, Any, Any, Any, Any, Any]`
+    - Represents the complex structure of a detailer pipe, encapsulating various models and processing elements. It is essential for the node to dissect and provide access to individual components.
     - Comfy dtype: `DETAILER_PIPE`
+    - Python dtype: `tuple`
 ## Output types
 - **`detailer_pipe`**
-    - Returns the original detailer pipe as received in the input.
-    - Python dtype: `Tuple[torch.nn.Module, Any, Any, Any, Any, Any, Any, Any, Any, Any, Any, Any, Any, Any]`
     - Comfy dtype: `DETAILER_PIPE`
+    - Returns the original detailer pipe structure, allowing for potential reassembly or further reference.
+    - Python dtype: `tuple`
 - **`model`**
-    - Returns the model extracted from the detailer pipe.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - Extracts the primary model component from the detailer pipe.
+    - Python dtype: `object`
 - **`clip`**
-    - Returns the CLIP model extracted from the detailer pipe.
-    - Python dtype: `Any`
     - Comfy dtype: `CLIP`
+    - Retrieves the CLIP model component, used for image-text matching and manipulation.
+    - Python dtype: `object`
 - **`vae`**
-    - Returns the VAE model extracted from the detailer pipe.
-    - Python dtype: `Any`
     - Comfy dtype: `VAE`
-- **`conditioning`**
-    - Returns the negative conditioning element extracted from the detailer pipe.
-    - Python dtype: `Any`
+    - Extracts the Variational Autoencoder (VAE) component, crucial for image generation and manipulation.
+    - Python dtype: `object`
+- **`positive`**
     - Comfy dtype: `CONDITIONING`
+    - Provides access to the positive conditioning component, essential for guiding the generation process.
+    - Python dtype: `object`
+- **`negative`**
+    - Comfy dtype: `CONDITIONING`
+    - Provides access to the negative conditioning component, essential for guiding the generation process.
+    - Python dtype: `object`
 - **`bbox_detector`**
-    - Returns the bounding box detector extracted from the detailer pipe.
-    - Python dtype: `Any`
     - Comfy dtype: `BBOX_DETECTOR`
-- **`sam_model`**
-    - Returns the SAM model extracted from the detailer pipe, if available.
-    - Python dtype: `Any`
+    - Extracts the bounding box detector component, used for object detection within images.
+    - Python dtype: `object`
+- **`sam_model_opt`**
     - Comfy dtype: `SAM_MODEL`
-- **`segm_detector`**
-    - Returns the segmentation detector extracted from the detailer pipe, if available.
-    - Python dtype: `Any`
+    - Retrieves the optional SAM model component, enhancing image quality and detail.
+    - Python dtype: `object`
+- **`segm_detector_opt`**
     - Comfy dtype: `SEGM_DETECTOR`
+    - Extracts the optional segmentation detector component, used for detailed image segmentation.
+    - Python dtype: `object`
 - **`detailer_hook`**
-    - Returns the detailer hook extracted from the detailer pipe.
-    - Python dtype: `Any`
     - Comfy dtype: `DETAILER_HOOK`
+    - Provides access to the detailer hook component, allowing for custom modifications and enhancements.
+    - Python dtype: `object`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `FaceDetailerPipe`

@@ -4,47 +4,47 @@
 - Category: `ImpactPack/Detector`
 - Output node: `False`
 
-This node appears to be a custom implementation for detecting segments in an image using an ONNX model. It likely involves loading a specific ONNX model and applying it to the input image to identify and segment relevant features or objects based on the model's training.
+This node is designed to utilize an ONNX model for detecting and segmenting objects within images. It leverages deep learning techniques to analyze image data and output segmented regions, making it suitable for applications requiring precise object localization and segmentation.
 ## Input types
 ### Required
 - **`bbox_detector`**
-    - unknown
-    - Python dtype: `unknown`
+    - The bounding box detector model used for detection. It plays a critical role in identifying regions of interest within the image, which are then processed for segmentation.
     - Comfy dtype: `BBOX_DETECTOR`
+    - Python dtype: `core.BBoxDetector`
 - **`image`**
-    - The input image on which segment detection is to be performed. The quality and resolution of the image can affect the detection results.
-    - Python dtype: `Image`
+    - The input image to be processed. This image is analyzed by the detector model to identify and segment objects within it.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `Image`
 - **`threshold`**
-    - A threshold value to determine the sensitivity of the detection. Higher values may result in fewer but more confident segments, while lower values can detect more segments with less confidence.
-    - Python dtype: `float`
+    - A threshold value for detection confidence. Objects with confidence scores above this threshold are considered detected and segmented.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`dilation`**
-    - The amount of dilation applied to the detected segments. This can help in making the segments more pronounced or merging close segments.
-    - Python dtype: `int`
+    - Specifies the dilation factor for the segmented regions. This can be used to expand or contract the segmented areas, affecting the final segmentation output.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`crop_factor`**
-    - Determines how much of the surrounding area around detected segments is included in the output. A higher crop factor means more surrounding area is included.
-    - Python dtype: `float`
+    - A factor that determines how much to crop around the detected objects. It affects the size of the output segmented regions by defining the margin around detected objects.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`drop_size`**
-    - Specifies the minimum size for detected segments. Segments smaller than this size are ignored, helping to reduce noise in the detection results.
-    - Python dtype: `int`
+    - The minimum size of objects to be considered in the segmentation. Objects smaller than this size are ignored, affecting the granularity of the segmentation.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`labels`**
-    - unknown
-    - Python dtype: `unknown`
+    - Optional labels to filter the detected objects. Only objects with these labels will be included in the segmentation output.
     - Comfy dtype: `STRING`
+    - Python dtype: `List[str]`
 ### Optional
 - **`detailer_hook`**
-    - unknown
-    - Python dtype: `unknown`
+    - An optional hook for custom post-processing of the detected objects. It allows for additional customization of the segmentation process.
     - Comfy dtype: `DETAILER_HOOK`
+    - Python dtype: `Callable`
 ## Output types
 - **`segs`**
-    - The detected segments in the input image. Each segment is likely represented by its bounding box, mask, or both, depending on the ONNX model's output.
-    - Python dtype: `List[Tuple]`
     - Comfy dtype: `SEGS`
+    - The output segmented regions of the image. These regions are the result of the detector model's detection and segmentation process, providing detailed localization of objects within the image.
+    - Python dtype: `Tuple[Shape, List[SEG]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

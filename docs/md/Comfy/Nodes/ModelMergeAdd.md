@@ -8,12 +8,12 @@ The ModelMergeAdd node is designed for merging two models by adding key patches 
 ## Input types
 ### Required
 - **`model1`**
-    - Comfy dtype: `MODEL`
     - The first model to be cloned and to which patches from the second model will be added. It serves as the base model for the merging process.
+    - Comfy dtype: `MODEL`
     - Python dtype: `comfy.model_base.Model`
 - **`model2`**
-    - Comfy dtype: `MODEL`
     - The second model from which key patches are extracted and added to the first model. It contributes additional features or behaviors to the merged model.
+    - Comfy dtype: `MODEL`
     - Python dtype: `comfy.model_base.Model`
 ## Output types
 - **`model`**

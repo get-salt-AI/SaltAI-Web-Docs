@@ -4,38 +4,38 @@
 - Category: `ImpactPack/Operation`
 - Output node: `False`
 
-This node transforms a mask into a series of segmented images (SEGS) specifically optimized for animations with differences between frames. It first converts the input mask into a 2D representation, then generates segmented images based on the provided parameters. Afterward, it combines all masks from the segmented images into a single mask and re-applies the segmentation process to ensure the final segmented images are optimized for animation differences.
+The MaskToSEGS_for_AnimateDiff node is designed to convert a mask into a segmented representation (SEGS) specifically tailored for animations with differences. It enhances the mask-to-SEGS conversion process by incorporating additional steps to handle the nuances of animated content, ensuring that the segmented output is optimized for subsequent processing in animation-focused workflows.
 ## Input types
 ### Required
 - **`mask`**
-    - The input mask to be transformed into segmented images. It is the primary input that drives the segmentation process.
-    - Python dtype: `torch.Tensor`
+    - The 'mask' parameter represents the input mask that is to be converted into segmented form. It plays a crucial role in defining the areas of interest within the animation frame.
     - Comfy dtype: `MASK`
+    - Python dtype: `torch.Tensor`
 - **`combined`**
-    - A boolean flag indicating whether the segmented images should be combined. It affects how the segmented images are processed and optimized for animation differences.
-    - Python dtype: `bool`
+    - The 'combined' parameter indicates whether the mask should be combined with other masks during the conversion process. This affects how the mask is processed and integrated into the segmented output.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`crop_factor`**
-    - Affects the cropping of the segmented images, influencing the focus and size of the segments.
-    - Python dtype: `float`
+    - The 'crop_factor' parameter determines the extent to which the input mask is cropped before conversion. This affects the granularity of the segmented output, allowing for finer control over the segmentation process.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`bbox_fill`**
-    - Determines whether the bounding boxes around the segments should be filled, affecting the visual representation of the segments.
-    - Python dtype: `bool`
+    - The 'bbox_fill' parameter specifies whether bounding boxes should be filled during the segmentation process. This can influence the visual representation of the segmented output.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`drop_size`**
-    - Specifies the minimum size of segments to be included, allowing for the filtering out of smaller, potentially irrelevant segments.
-    - Python dtype: `int`
+    - The 'drop_size' parameter sets the minimum size of segments to be included in the output. Smaller segments below this threshold are dropped, allowing for a cleaner, more focused segmented representation.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`contour_fill`**
-    - Controls whether the contours of the segments should be filled, impacting the detail level of the segmented images.
-    - Python dtype: `bool`
+    - The 'contour_fill' parameter indicates whether contours within the mask should be filled during the segmentation process. This can enhance the visual clarity of the segmented output, especially in animations with distinct boundaries.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ## Output types
 - **`segs`**
-    - The output segmented images optimized for animations with differences between frames.
-    - Python dtype: `Tuple[str, List[SEG]]`
     - Comfy dtype: `SEGS`
+    - The output is a segmented representation (SEGS) of the input mask, optimized for animations with differences. It provides a detailed and structured format that is suitable for further processing in animation-focused workflows.
+    - Python dtype: `Tuple[torch.Tensor, List[SEG]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

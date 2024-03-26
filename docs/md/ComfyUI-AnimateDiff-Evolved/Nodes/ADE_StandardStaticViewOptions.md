@@ -8,17 +8,17 @@ This node is designed to create static view options for the Animate Diff process
 ## Input types
 ### Required
 - **`view_length`**
-    - Comfy dtype: `INT`
     - Specifies the length of the view, affecting the granularity of the animation frames.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`view_overlap`**
-    - Comfy dtype: `INT`
     - Determines the overlap between consecutive views, influencing the smoothness of the animation transition.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`fuse_method`**
-    - Comfy dtype: `COMBO[STRING]`
     - Optional parameter that defines the method for fusing context, offering flexibility in the animation's visual continuity.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`view_opts`**

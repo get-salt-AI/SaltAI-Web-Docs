@@ -8,12 +8,12 @@ The CLIPTextEncode node is designed to encode textual inputs using a CLIP model,
 ## Input types
 ### Required
 - **`text`**
-    - Comfy dtype: `STRING`
     - The 'text' parameter is the textual input that will be encoded. It plays a crucial role in determining the output conditioning vector, as it is the primary source of information for the encoding process.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`clip`**
-    - Comfy dtype: `CLIP`
     - The 'clip' parameter represents the CLIP model used for text tokenization and encoding. It is essential for converting the textual input into a conditioning vector, influencing the quality and relevance of the generated output.
+    - Comfy dtype: `CLIP`
     - Python dtype: `torch.nn.Module`
 ## Output types
 - **`conditioning`**

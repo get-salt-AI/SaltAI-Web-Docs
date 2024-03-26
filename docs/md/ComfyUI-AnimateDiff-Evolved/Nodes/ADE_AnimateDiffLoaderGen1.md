@@ -8,45 +8,45 @@ This node is designed for loading and initializing the AnimateDiff model specifi
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - Specifies the model to be loaded for animation. This parameter is crucial for determining the base framework upon which the AnimateDiff functionalities will operate.
+    - Comfy dtype: `MODEL`
     - Python dtype: `Model`
 - **`model_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - Determines the specific AnimateDiff model to be loaded, chosen from a list of available motion models. This selection is essential for tailoring the animation effects to the desired outcome.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`beta_schedule`**
-    - Comfy dtype: `COMBO[STRING]`
     - Defines the beta schedule to be used in the animation process, allowing for customization of the animation's temporal dynamics.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `BetaSchedules`
 ### Optional
 - **`context_options`**
-    - Comfy dtype: `CONTEXT_OPTIONS`
     - Optionally specifies context options to further customize the animation process, enabling more detailed control over the animation settings.
+    - Comfy dtype: `CONTEXT_OPTIONS`
     - Python dtype: `ContextOptions`
 - **`motion_lora`**
-    - Comfy dtype: `MOTION_LORA`
     - Optionally specifies a motion LoRA to be applied, enhancing the animation with specific motion effects.
+    - Comfy dtype: `MOTION_LORA`
     - Python dtype: `MotionLoraList`
 - **`ad_settings`**
-    - Comfy dtype: `AD_SETTINGS`
     - Optionally specifies AnimateDiff settings to customize the animation process, providing fine control over various animation parameters.
+    - Comfy dtype: `AD_SETTINGS`
     - Python dtype: `AnimateDiffSettings`
 - **`ad_keyframes`**
-    - Comfy dtype: `AD_KEYFRAMES`
     - Optionally specifies keyframes for the animation, allowing for precise control over the animation timeline.
+    - Comfy dtype: `AD_KEYFRAMES`
     - Python dtype: `ADKeyframes`
 - **`sample_settings`**
-    - Comfy dtype: `SAMPLE_SETTINGS`
     - Optionally specifies sample settings for the animation, enabling customization of the sampling process.
+    - Comfy dtype: `SAMPLE_SETTINGS`
     - Python dtype: `SampleSettings`
 - **`scale_multival`**
-    - Comfy dtype: `MULTIVAL`
     - Optionally specifies a multival scale to adjust the scale of the animation effects, offering additional customization.
+    - Comfy dtype: `MULTIVAL`
     - Python dtype: `Multival`
 - **`effect_multival`**
-    - Comfy dtype: `MULTIVAL`
     - Optionally specifies a multival effect to enhance the animation with specific visual effects, adding another layer of customization.
+    - Comfy dtype: `MULTIVAL`
     - Python dtype: `Multival`
 ## Output types
 - **`model`**

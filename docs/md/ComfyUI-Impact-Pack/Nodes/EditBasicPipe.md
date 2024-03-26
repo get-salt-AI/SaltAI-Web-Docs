@@ -4,39 +4,39 @@
 - Category: `ImpactPack/Pipe`
 - Output node: `False`
 
-The EditBasicPipe node allows for the modification of an existing basic pipeline by optionally updating its components such as model, clip, VAE, and conditioning parameters. This enables customization and fine-tuning of the pipeline based on specific requirements.
+The EditBasicPipe node is designed to modify elements of a basic pipeline configuration, allowing for the customization of model, clip, VAE, and conditioning components.
 ## Input types
 ### Required
 - **`basic_pipe`**
-    - The basic pipeline to be modified. It consists of a model, clip, VAE, and conditioning parameters for positive and negative scenarios.
-    - Python dtype: `Tuple[torch.nn.Module, Any, Any, str, str]`
+    - Represents the initial state of the basic pipeline components, which include model, clip, VAE, and conditioning elements. It is essential for determining the starting point for modifications.
     - Comfy dtype: `BASIC_PIPE`
+    - Python dtype: `Tuple[torch.nn.Module, torch.nn.Module, torch.nn.Module, List[str], List[str]]`
 ### Optional
 - **`model`**
-    - Optional. A new model to replace the existing one in the basic pipeline, allowing for customization.
-    - Python dtype: `Optional[torch.nn.Module]`
+    - Optional parameter to replace the current model component of the basic pipe.
     - Comfy dtype: `MODEL`
+    - Python dtype: `torch.nn.Module`
 - **`clip`**
-    - Optional. A new CLIP model to replace the existing one in the basic pipeline, enhancing its capabilities.
-    - Python dtype: `Optional[Any]`
+    - Optional parameter to replace the current clip component of the basic pipe.
     - Comfy dtype: `CLIP`
+    - Python dtype: `torch.nn.Module`
 - **`vae`**
-    - Optional. A new VAE model to replace the existing one in the basic pipeline, enabling different generative capabilities.
-    - Python dtype: `Optional[Any]`
+    - Optional parameter to replace the current VAE component of the basic pipe.
     - Comfy dtype: `VAE`
+    - Python dtype: `torch.nn.Module`
 - **`positive`**
-    - Optional. New positive conditioning to refine the generation towards desired attributes.
-    - Python dtype: `Optional[str]`
+    - Optional parameter to add or replace the positive conditioning component of the basic pipe.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `List[str]`
 - **`negative`**
-    - Optional. New negative conditioning to steer the generation away from undesired attributes.
-    - Python dtype: `Optional[str]`
+    - Optional parameter to add or replace the negative conditioning component of the basic pipe.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `List[str]`
 ## Output types
 - **`basic_pipe`**
-    - The modified basic pipeline, potentially updated with new model, clip, VAE, and conditioning parameters.
-    - Python dtype: `Tuple[torch.nn.Module, Any, Any, str, str]`
     - Comfy dtype: `BASIC_PIPE`
+    - The modified basic pipeline configuration, reflecting any changes made to the model, clip, VAE, and conditioning components.
+    - Python dtype: `Tuple[torch.nn.Module, torch.nn.Module, torch.nn.Module, List[str], List[str]]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `ImpactKSamplerBasicPipe,DetailerForEachDebugPipe`

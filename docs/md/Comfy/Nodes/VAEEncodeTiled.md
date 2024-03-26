@@ -8,16 +8,16 @@ The VAEEncodeTiled node is designed for encoding images into a latent space repr
 ## Input types
 ### Required
 - **`pixels`**
-    - Comfy dtype: `IMAGE`
     - The 'pixels' parameter represents the image data to be encoded. It is crucial for defining the visual content that will be transformed into a latent representation.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`vae`**
-    - Comfy dtype: `VAE`
     - The 'vae' parameter specifies the Variational Autoencoder model used for the encoding process. It plays a key role in determining how the image data is transformed into the latent space.
+    - Comfy dtype: `VAE`
     - Python dtype: `comfy.sd.VAE`
 - **`tile_size`**
-    - Comfy dtype: `INT`
     - The 'tile_size' parameter determines the dimensions of the tiles into which the image is divided for encoding. It affects the granularity of the tiling process and can impact the encoding performance and quality.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`latent`**

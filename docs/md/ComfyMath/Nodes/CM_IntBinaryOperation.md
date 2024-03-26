@@ -8,16 +8,16 @@ The node `CM_IntBinaryOperation` performs binary operations on integer inputs, s
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the binary operation to be performed on the integer inputs. This affects the node's execution by determining the mathematical operation applied.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`a`**
-    - Comfy dtype: `INT`
     - Represents the first integer input for the binary operation. It is one of the operands on which the specified operation is performed.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`b`**
-    - Comfy dtype: `INT`
     - Represents the second integer input for the binary operation. It serves as the other operand in the operation alongside `a`.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`int`**

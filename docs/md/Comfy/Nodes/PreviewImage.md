@@ -8,8 +8,8 @@ The PreviewImage node is designed for creating temporary preview images. It auto
 ## Input types
 ### Required
 - **`images`**
-    - Comfy dtype: `IMAGE`
     - The 'images' input specifies the images to be processed and saved as temporary preview images. This is the primary input for the node, determining which images will undergo the preview generation process.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `Tuple[torch.Tensor]`
 ## Output types
 The node doesn't have output types

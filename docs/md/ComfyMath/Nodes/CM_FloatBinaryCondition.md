@@ -8,16 +8,16 @@ This node evaluates binary conditions between two floating-point numbers based o
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the operation to perform on the two floating-point numbers. It determines the type of comparison (e.g., equal, not equal, greater than) to be executed.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`a`**
-    - Comfy dtype: `FLOAT`
     - The first floating-point number to be compared.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`b`**
-    - Comfy dtype: `FLOAT`
     - The second floating-point number to be compared.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`bool`**

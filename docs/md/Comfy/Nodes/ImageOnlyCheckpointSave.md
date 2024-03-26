@@ -8,20 +8,20 @@ This node specializes in saving model checkpoints specifically for image-based a
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - The primary model whose state is to be saved as a checkpoint. It is central to the checkpoint creation process.
+    - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`clip_vision`**
-    - Comfy dtype: `CLIP_VISION`
     - The CLIP vision model to be included in the checkpoint, enabling enhanced image understanding capabilities.
+    - Comfy dtype: `CLIP_VISION`
     - Python dtype: `torch.nn.Module`
 - **`vae`**
-    - Comfy dtype: `VAE`
     - The VAE model to be included in the checkpoint, facilitating image generation or manipulation tasks.
+    - Comfy dtype: `VAE`
     - Python dtype: `torch.nn.Module`
 - **`filename_prefix`**
-    - Comfy dtype: `STRING`
     - A customizable prefix for the checkpoint filename, allowing for organized storage and easy identification.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 The node doesn't have output types

@@ -4,67 +4,67 @@
 - Category: `ImpactPack/Upscale`
 - Output node: `False`
 
-This node is designed to provide a pipeline for upscaling images using two different samplers specifically for masks. It likely orchestrates the process of applying one sampler to the image, followed by the application of a second sampler, tailored to work with masks, to further refine the upscaled image.
+This node is designed to provide a pipeline that integrates two distinct samplers specifically for the purpose of upscaling masks. It facilitates the enhancement of image quality by applying specialized sampling techniques to areas designated by masks, thereby improving the overall visual impact of the images.
 ## Input types
 ### Required
 - **`scale_method`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `['nearest-exact', 'bilinear', 'lanczos'...]`
+    - Specifies the method used for scaling during the upscaling process. It influences how the image is enlarged and the quality of the upscaling.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
 - **`full_sample_schedule`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `['none', 'interleave1', 'interleave2'...]`
+    - Defines the schedule for sampling throughout the upscaling process. It determines the sequence and parameters for sampling operations.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `list`
 - **`use_tiled_vae`**
-    - unknown
-    - Python dtype: `unknown`
+    - Indicates whether a tiled VAE approach is used for upscaling. This affects the handling of large images by breaking them into tiles for processing.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`base_sampler`**
-    - The primary sampler used in the upscaling process. It plays a fundamental role in the initial phase of image upscaling.
-    - Python dtype: `KSAMPLER`
+    - Specifies the base sampler used in the upscaling process, which is crucial for the initial sampling phase.
     - Comfy dtype: `KSAMPLER`
+    - Python dtype: `object`
 - **`mask_sampler`**
-    - A specialized sampler designed to work with masks. It is used after the base_sampler to refine the upscaling process by focusing on masked areas.
-    - Python dtype: `KSAMPLER`
+    - Defines the sampler used specifically for the mask areas during upscaling, enhancing the details in these regions.
     - Comfy dtype: `KSAMPLER`
+    - Python dtype: `object`
 - **`mask`**
-    - The mask that defines areas of interest for the mask_sampler to focus on during the upscaling process.
-    - Python dtype: `torch.Tensor`
+    - The mask that designates areas for specialized upscaling, playing a key role in the targeted enhancement of image quality.
     - Comfy dtype: `MASK`
+    - Python dtype: `object`
 - **`basic_pipe`**
-    - unknown
-    - Python dtype: `unknown`
+    - The basic processing pipeline that provides essential functionalities like VAE operations. It serves as the foundation for the upscaling process.
     - Comfy dtype: `BASIC_PIPE`
+    - Python dtype: `tuple`
 - **`tile_size`**
-    - unknown
-    - Python dtype: `unknown`
+    - The size of the tiles used when a tiled VAE approach is employed. It specifies the dimensions for breaking down large images.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ### Optional
 - **`full_sampler_opt`**
-    - unknown
-    - Python dtype: `unknown`
+    - Optional configurations for the full sampler used in the upscaling process. It allows customization of the sampling behavior.
     - Comfy dtype: `KSAMPLER`
+    - Python dtype: `dict`
 - **`upscale_model_opt`**
-    - unknown
-    - Python dtype: `unknown`
+    - Optional configurations for the upscale model. It enables fine-tuning of the model's parameters for better upscaling results.
     - Comfy dtype: `UPSCALE_MODEL`
+    - Python dtype: `dict`
 - **`pk_hook_base_opt`**
-    - unknown
-    - Python dtype: `unknown`
+    - Optional configurations for the base hook in the pipeline. It affects the initial phase of the upscaling process.
     - Comfy dtype: `PK_HOOK`
+    - Python dtype: `dict`
 - **`pk_hook_mask_opt`**
-    - unknown
-    - Python dtype: `unknown`
+    - Optional configurations for the mask hook. It influences how the mask is applied and processed during upscaling.
     - Comfy dtype: `PK_HOOK`
+    - Python dtype: `dict`
 - **`pk_hook_full_opt`**
-    - unknown
-    - Python dtype: `unknown`
+    - Optional configurations for the full hook, affecting the entire upscaling process. It allows for comprehensive customization of the upscaling behavior.
     - Comfy dtype: `PK_HOOK`
+    - Python dtype: `dict`
 ## Output types
 - **`upscaler`**
-    - The upscaled latent image after being processed by both the base_sampler and the mask_sampler.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `UPSCALER`
+    - The result of the upscaling process, providing an enhanced version of the image with improved quality in masked areas.
+    - Python dtype: `object`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

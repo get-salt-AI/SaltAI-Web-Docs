@@ -8,12 +8,12 @@ This node performs unary operations on numbers based on predefined conditions, a
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the unary operation to be performed, chosen from a predefined set of conditions. This determines how the input number is evaluated.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`a`**
-    - Comfy dtype: `NUMBER`
     - The numeric input on which the unary operation is to be performed. This is the subject of the mathematical condition being evaluated.
+    - Comfy dtype: `NUMBER`
     - Python dtype: `Union[int, float]`
 ## Output types
 - **`bool`**

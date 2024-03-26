@@ -4,26 +4,26 @@
 - Category: `ImpactPack/Logic`
 - Output node: `False`
 
-The `ImpactValueReceiver` node is designed to receive values and convert them into specific data types based on the input type specified. It supports conversion to integer, float, boolean, and string types, making it versatile for handling various data inputs.
+The ImpactValueReceiver node is designed to receive and convert values based on their specified type. It supports a variety of types including strings, integers, floats, and booleans, allowing for flexible data handling within the ImpactPack/Logic category.
 ## Input types
 ### Required
 - **`typ`**
-    - Specifies the data type to which the input value should be converted. It supports string, integer, float, and boolean types, affecting the output data type accordingly.
-    - Python dtype: `str`
-    - Comfy dtype: `['STRING', 'INT', 'FLOAT', 'BOOLEAN']`
+    - Specifies the type of the value to be received and converted. It supports string, integer, float, and boolean types, enabling the node to handle a wide range of data formats.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `List[str]`
 - **`value`**
-    - The value to be converted to the specified type. Its initial type is string, and it's transformed based on the 'typ' parameter.
-    - Python dtype: `str`
+    - The value to be converted according to the specified type. It's initially received as a string and then converted based on the 'typ' parameter.
     - Comfy dtype: `STRING`
+    - Python dtype: `str`
 - **`link_id`**
-    - An identifier for linking this node's operation within a larger workflow. It doesn't affect the conversion process directly.
-    - Python dtype: `int`
+    - An identifier for linking the received value to a specific context or usage within the system. It aids in the organization and tracking of data flow.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
 - **`*`**
-    - The output signal, which is the input value converted to the specified data type.
-    - Python dtype: `Union[int, float, bool, str]`
     - Comfy dtype: `*`
+    - The converted value, outputted in the specified type. This allows for the dynamic handling and utilization of data within the system.
+    - Python dtype: `Union[int, float, bool, str]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

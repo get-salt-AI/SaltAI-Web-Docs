@@ -4,25 +4,25 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The `SEGSToImageList` node is designed to convert segmentation data into a list of images. It optionally adjusts the scale of segmentations to match a fallback image if provided. This node processes each segmentation, extracting or generating the corresponding cropped image, and compiles these images into a list. If no images are generated, a placeholder image is added to the list to ensure it's never empty.
+The SEGSToImageList node is designed to convert segmentation data into a list of images. It optionally adjusts the scale of segmentation data to match a fallback image and extracts cropped images from the segmentation data, providing a flexible way to handle segmentation outputs for further processing or visualization.
 ## Input types
 ### Required
 - **`segs`**
-    - The primary input containing segmentation data. It is crucial for the operation as it provides the segments to be converted into images.
-    - Python dtype: `Tuple[Any, List[SEG]]`
+    - The primary input containing segmentation data. It is essential for the operation as it holds the segments to be converted into images.
     - Comfy dtype: `SEGS`
+    - Python dtype: `Tuple[Any, List[SEG]]`
 ### Optional
 - **`fallback_image_opt`**
-    - An optional image used to scale the segmentations to match its dimensions. This can influence the output images' dimensions and is useful for ensuring consistency across different inputs.
-    - Python dtype: `Optional[torch.Tensor]`
+    - An optional image used to match the scale of segmentation data. If provided, it ensures that the segmentation data is appropriately scaled to align with the fallback image's dimensions.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `Optional[torch.Tensor]`
 ## Output types
 - **`image`**
-    - The output is a list of images derived from the input segmentations. Each image corresponds to a cropped area from the original segmentation or the fallback image, ensuring visual consistency and relevance.
-    - Python dtype: `List[torch.Tensor]`
     - Comfy dtype: `IMAGE`
+    - A list of images extracted from the segmentation data. Each image corresponds to a cropped area from the original segmentation, potentially adjusted for scale.
+    - Python dtype: `List[torch.Tensor]`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 

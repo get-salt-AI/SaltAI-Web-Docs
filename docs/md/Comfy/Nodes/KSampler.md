@@ -8,44 +8,44 @@ The KSampler node is designed for advanced sampling operations within generative
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - Specifies the generative model to be used for sampling, playing a crucial role in determining the characteristics of the generated samples.
+    - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`seed`**
-    - Comfy dtype: `INT`
     - Controls the randomness of the sampling process, ensuring reproducibility of results when set to a specific value.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`steps`**
-    - Comfy dtype: `INT`
     - Determines the number of steps to be taken in the sampling process, affecting the detail and quality of the generated samples.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - Comfy dtype: `FLOAT`
     - Adjusts the conditioning factor, influencing the direction and strength of the conditioning applied during sampling.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sampler_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - Selects the specific sampling algorithm to be used, impacting the behavior and outcome of the sampling process.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - Comfy dtype: `COMBO[STRING]`
     - Chooses the scheduling algorithm for controlling the sampling process, affecting the progression and dynamics of sampling.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`positive`**
-    - Comfy dtype: `CONDITIONING`
     - Defines positive conditioning to guide the sampling towards desired attributes or features.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `dict`
 - **`negative`**
-    - Comfy dtype: `CONDITIONING`
     - Specifies negative conditioning to steer the sampling away from certain attributes or features.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `dict`
 - **`latent_image`**
-    - Comfy dtype: `LATENT`
     - Provides a latent space representation to be used as a starting point or reference for the sampling process.
+    - Comfy dtype: `LATENT`
     - Python dtype: `torch.Tensor`
 - **`denoise`**
-    - Comfy dtype: `FLOAT`
     - Controls the level of denoising applied to the samples, affecting the clarity and sharpness of the generated images.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`latent`**

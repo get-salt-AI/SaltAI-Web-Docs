@@ -4,26 +4,26 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The `ImpactStringSelector` node allows for the selection of a specific string from a list of strings based on a given index. It supports both single-line and multi-line strings, with the ability to treat multi-line strings as separate entries. This node is useful for extracting specific pieces of text from a larger set, potentially for further processing or display.
+The ImpactStringSelector node is designed to select a specific string or a set of strings from a given multiline string input based on user-defined criteria. It allows for the extraction of meaningful data or segments from larger text blocks, facilitating text manipulation and processing tasks within a workflow.
 ## Input types
 ### Required
 - **`strings`**
-    - A list of strings from which a specific string is to be selected. Supports both single and multi-line strings, with special handling for multi-line strings when enabled.
-    - Python dtype: `str`
+    - A multiline string from which specific strings or segments are to be selected. This parameter is crucial for defining the source text for selection.
     - Comfy dtype: `STRING`
+    - Python dtype: `str`
 - **`multiline`**
-    - A boolean flag indicating whether multi-line strings should be treated as separate entries. When enabled, multi-line strings are split and processed individually.
-    - Python dtype: `bool`
+    - A boolean flag indicating whether the selection should consider each line as a separate entity or treat the entire input as a single string. This affects how the selection is made.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`select`**
-    - The index of the string to be selected from the list. Supports dynamic selection through user input or programmatic control.
-    - Python dtype: `int`
+    - An integer specifying the index of the string or line to be selected from the input. This determines which part of the input is extracted and returned.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
 - **`string`**
-    - The string selected based on the provided index. This output can be used for further processing or display.
-    - Python dtype: `str`
     - Comfy dtype: `STRING`
+    - The selected string or line based on the specified index and criteria. This output is the result of the selection process.
+    - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

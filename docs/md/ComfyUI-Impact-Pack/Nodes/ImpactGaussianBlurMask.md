@@ -4,26 +4,26 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-This node applies a Gaussian blur to a given mask. It adjusts the mask's sharpness by using a specified kernel size and sigma value, effectively smoothing the mask's edges and features.
+The ImpactGaussianBlurMask node applies a Gaussian blur to a given mask, utilizing specified kernel size and sigma values. This process smooths the edges of the mask, effectively blending it more seamlessly with its surroundings.
 ## Input types
 ### Required
 - **`mask`**
-    - The mask to be blurred. This is the primary target for the Gaussian blur operation, aiming to smooth its features.
-    - Python dtype: `torch.Tensor`
+    - The 'mask' parameter represents the input mask to which the Gaussian blur will be applied. This is crucial for achieving a smoother, more integrated appearance of the mask within its context.
     - Comfy dtype: `MASK`
+    - Python dtype: `torch.Tensor`
 - **`kernel_size`**
-    - Determines the size of the Gaussian kernel used for blurring. A larger kernel size results in a more pronounced blur effect.
-    - Python dtype: `int`
+    - The 'kernel_size' parameter determines the size of the Gaussian kernel used for blurring. A larger kernel size results in a more pronounced blurring effect.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`sigma`**
-    - Controls the spread of the blur. A higher sigma value increases the radius of the blur effect, making the mask smoother.
-    - Python dtype: `float`
+    - The 'sigma' parameter controls the spread of the Gaussian blur. A higher sigma value increases the blurring effect, making the mask edges softer and more diffused.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 ## Output types
 - **`mask`**
-    - The blurred mask resulting from the application of the Gaussian blur operation.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The output is a modified version of the input mask, now smoothed by the Gaussian blur. This processed mask blends more naturally with its surroundings.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

@@ -8,20 +8,20 @@ The node is designed to generate empty latent images with specified dimensions a
 ## Input types
 ### Required
 - **`width`**
-    - Comfy dtype: `INT`
     - Specifies the width of the generated latent image. It determines the horizontal dimension of the output latent space.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Comfy dtype: `INT`
     - Determines the height of the generated latent image, affecting its vertical dimension in the latent space.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`compression`**
-    - Comfy dtype: `INT`
     - Controls the compression level of the latent image, influencing the granularity of the generated latent representation.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`batch_size`**
-    - Comfy dtype: `INT`
     - Indicates the number of latent images to generate in a single batch, allowing for batch processing.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`stage_c`**

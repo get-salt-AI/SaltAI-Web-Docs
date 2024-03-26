@@ -4,18 +4,18 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The `ImpactControlNetClearSEGS` node is designed to clear control networks from a given SEGS data structure. It iterates through each segment in the SEGS, maintaining all segment properties but removing any associated control network information.
+This node is designed to clear the control network information from a given set of segmentation elements (SEGS), effectively resetting their control network-related attributes to a default state. It's part of the ImpactPack/Util category, focusing on utility operations within the SEGS data structure.
 ## Input types
 ### Required
 - **`segs`**
-    - The SEGS data structure containing segments with associated control network information. This input is essential for the operation as it provides the segments to be processed.
-    - Python dtype: `Tuple[Tuple[Any, List[SEG]]]`
+    - The segmentation elements (SEGS) to be processed. This input is essential for determining which SEGS will have their control network information cleared.
     - Comfy dtype: `SEGS`
+    - Python dtype: `Tuple[Size, List[SEG]]`
 ## Output types
 - **`segs`**
-    - Returns a modified SEGS data structure with the control network information removed from each segment.
-    - Python dtype: `Tuple[Tuple[Any, List[SEG]]]`
     - Comfy dtype: `SEGS`
+    - The processed segmentation elements (SEGS) with their control network information cleared, ready for further processing or analysis.
+    - Python dtype: `Tuple[Size, List[SEG]]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

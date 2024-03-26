@@ -8,12 +8,12 @@ This node is designed to apply a noise mask to a set of latent samples. It modif
 ## Input types
 ### Required
 - **`samples`**
-    - Comfy dtype: `LATENT`
     - The latent samples to which the noise mask will be applied. This parameter is crucial for determining the base content that will be modified.
+    - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 - **`mask`**
-    - Comfy dtype: `MASK`
     - The mask to be applied to the latent samples. It defines the areas and intensity of noise alteration within the samples.
+    - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`latent`**

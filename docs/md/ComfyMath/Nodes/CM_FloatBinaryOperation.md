@@ -8,16 +8,16 @@ This node performs binary operations on two float inputs, such as addition, subt
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the binary operation to be performed on the float inputs. This parameter determines the mathematical operation (e.g., addition, subtraction) that will be applied.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`a`**
-    - Comfy dtype: `FLOAT`
     - The first float input for the binary operation. Acts as one of the operands in the mathematical operation.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`b`**
-    - Comfy dtype: `FLOAT`
     - The second float input for the binary operation. Serves as the other operand in the mathematical operation.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`float`**

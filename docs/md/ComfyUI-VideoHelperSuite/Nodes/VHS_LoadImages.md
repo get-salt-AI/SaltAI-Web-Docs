@@ -4,39 +4,39 @@
 - Category: `Video Helper Suite 🎥🅥🅗🅢`
 - Output node: `False`
 
-The `VHS_LoadImages` node is designed for loading a batch of images from a specified directory. It supports filtering the images by skipping initial ones and selecting every nth image, allowing for customizable batch creation. This node is part of the Video Helper Suite, aimed at facilitating video and image processing tasks.
+The VHS_LoadImages node is designed for loading a batch of images from a specified directory. It supports filtering and limiting the number of images loaded, making it a versatile tool for managing and preprocessing image datasets for video processing tasks.
 ## Input types
 ### Required
 - **`directory`**
-    - Specifies the directory from which images are to be loaded. It is crucial for defining the source of the images for processing.
+    - Specifies the directory from which images are to be loaded. It is crucial for identifying the source of the images to be processed.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ### Optional
 - **`image_load_cap`**
-    - Limits the number of images to be loaded from the directory. This parameter is useful for controlling the size of the data being processed, especially in cases with large numbers of images.
-    - Python dtype: `int`
+    - Limits the number of images to be loaded from the directory. This parameter is useful for controlling the dataset size or for testing purposes.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`skip_first_images`**
-    - Skips a specified number of initial images in the directory. This allows for starting the image loading process from a specific point within the directory.
-    - Python dtype: `int`
+    - Skips a specified number of images from the beginning of the directory. This can be used for excluding initial images that are not needed for processing.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`select_every_nth`**
-    - Loads every nth image from the directory, providing a way to thin out the dataset or to create a more sparse selection of images.
-    - Python dtype: `int`
+    - Loads every Nth image from the directory, allowing for subsampling of the dataset. This is useful for reducing the dataset size or for selecting a representative subset of images.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
 - **`image`**
-    - The loaded images, processed and returned as a batch. This output is essential for subsequent image processing or analysis tasks.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
-- **`mask`**
-    - The masks associated with the loaded images, if available. Masks are useful for tasks that require background removal or focus on specific parts of images.
+    - The loaded images as a batch, ready for further processing or analysis.
     - Python dtype: `torch.Tensor`
+- **`mask`**
     - Comfy dtype: `MASK`
+    - Generated masks for the loaded images, useful for image segmentation or editing tasks.
+    - Python dtype: `torch.Tensor`
 - **`int`**
-    - The total number of images loaded by the node. This information can be useful for understanding the size of the processed batch.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - The total number of images loaded, providing insight into the dataset size after applying the loading parameters.
+    - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `PreviewImage,Reroute,ScribblePreprocessor,EmptyLatentImage,DWPreprocessor,TilePreprocessor,LineArtPreprocessor,Zoe-DepthMapPreprocessor`

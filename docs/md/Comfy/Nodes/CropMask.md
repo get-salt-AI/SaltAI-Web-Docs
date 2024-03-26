@@ -8,24 +8,24 @@ The CropMask node is designed for cropping a specified area from a given mask. I
 ## Input types
 ### Required
 - **`mask`**
-    - Comfy dtype: `MASK`
     - The mask input represents the mask image to be cropped. It is essential for defining the area to be extracted based on the specified coordinates and dimensions.
+    - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`x`**
-    - Comfy dtype: `INT`
     - The x coordinate specifies the starting point on the horizontal axis from which the cropping should begin.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`y`**
-    - Comfy dtype: `INT`
     - The y coordinate determines the starting point on the vertical axis for the cropping operation.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`width`**
-    - Comfy dtype: `INT`
     - Width defines the horizontal extent of the crop area from the starting point.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Comfy dtype: `INT`
     - Height specifies the vertical extent of the crop area from the starting point.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`mask`**

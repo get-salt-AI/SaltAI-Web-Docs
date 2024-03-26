@@ -8,49 +8,49 @@ This node is designed to generate context options for the AnimateDiff process, f
 ## Input types
 ### Required
 - **`context_length`**
-    - Comfy dtype: `INT`
     - Specifies the length of the context to be generated. It's crucial for defining the scope of the animation sequence and affects the overall animation process.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`context_stride`**
-    - Comfy dtype: `INT`
     - Defines the stride between each context in the sequence, affecting the smoothness and speed of the animation.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`context_overlap`**
-    - Comfy dtype: `INT`
     - Sets the amount of overlap between contexts, influencing the continuity and fluidity of the animation.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`context_schedule`**
-    - Comfy dtype: `COMBO[STRING]`
     - Determines the scheduling method for the context, impacting the structure and timing of the animation.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`closed_loop`**
-    - Comfy dtype: `BOOLEAN`
     - Indicates whether the animation should loop back to the beginning, creating a seamless loop effect.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`fuse_method`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the method for fusing contexts, affecting the blending and transition between animation frames.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`use_on_equal_length`**
-    - Comfy dtype: `BOOLEAN`
     - Determines whether to use the context options when the length of all contexts is equal, optimizing for specific animation scenarios.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`start_percent`**
-    - Comfy dtype: `FLOAT`
     - Determines the starting point of the animation as a percentage of the total length. This parameter allows for fine-tuning the initial phase of the animation.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`guarantee_steps`**
-    - Comfy dtype: `INT`
     - Ensures a minimum number of steps in the animation, providing a baseline for the animation's complexity and duration.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`prev_context`**
-    - Comfy dtype: `CONTEXT_OPTIONS`
     - Allows for the inclusion of previously defined context options, enabling the chaining and layering of animation contexts for more complex animations.
+    - Comfy dtype: `CONTEXT_OPTIONS`
     - Python dtype: `ContextOptionsGroup`
 - **`view_opts`**
-    - Comfy dtype: `VIEW_OPTS`
     - Allows for the specification of view options, further customizing the visual aspects of the animation.
+    - Comfy dtype: `VIEW_OPTS`
     - Python dtype: `ContextOptions`
 ## Output types
 - **`CONTEXT_OPTS`**

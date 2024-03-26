@@ -8,12 +8,12 @@ The ImageToMask node is designed to convert an image into a mask based on a spec
 ## Input types
 ### Required
 - **`image`**
-    - Comfy dtype: `IMAGE`
     - The 'image' parameter represents the input image from which a mask will be generated based on the specified color channel. It plays a crucial role in determining the content and characteristics of the resulting mask.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`channel`**
-    - Comfy dtype: `COMBO[STRING]`
     - The 'channel' parameter specifies which color channel (red, green, blue, or alpha) of the input image should be used to generate the mask. This choice directly influences the mask's appearance and which parts of the image are highlighted or masked out.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`mask`**

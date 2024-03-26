@@ -4,28 +4,28 @@
 - Category: `Video Helper Suite 🎥🅥🅗🅢/image`
 - Output node: `False`
 
-The `VHS_SelectEveryNthImage` node selects every Nth image from a batch of images, allowing for the thinning of image sequences or datasets. This can be useful for reducing the amount of data to process or for selecting a subset of images that meet a specific criterion (e.g., every 5th frame of a video).
+This node is designed to filter a batch of images by selecting every Nth image from the batch. It's useful for thinning out image sequences or datasets to reduce processing load or to create a subset of images for specific purposes.
 ## Input types
 ### Required
 - **`images`**
-    - The batch of images from which every Nth image will be selected. This input is crucial for determining the subset of images to be processed or analyzed.
-    - Python dtype: `torch.Tensor`
+    - The batch of images to be filtered. This parameter is crucial for determining which images will be included in the output based on the selection criteria.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `Tensor`
 - **`select_every_nth`**
-    - Determines the interval at which images are selected from the batch. For example, a value of 3 means every 3rd image in the batch will be selected. This parameter allows for flexible control over the density of the resulting image subset.
-    - Python dtype: `int`
+    - Determines the interval at which images are selected from the batch. For example, a value of 2 would mean every second image is selected. This parameter directly influences the size of the output batch.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
-- **`image`**
-    - The subset of images obtained by selecting every Nth image from the input batch. This output is useful for downstream processing or analysis that requires a thinned version of the original image batch.
-    - Python dtype: `torch.Tensor`
+- **`IMAGE`**
     - Comfy dtype: `IMAGE`
-- **`int`**
-    - The total number of images selected from the input batch. This output provides information on the size of the resulting subset of images.
-    - Python dtype: `int`
+    - The filtered batch of images, containing only every Nth image based on the selection criteria.
+    - Python dtype: `Tensor`
+- **`count`**
     - Comfy dtype: `INT`
+    - The total number of images selected and included in the output batch.
+    - Python dtype: `int`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 

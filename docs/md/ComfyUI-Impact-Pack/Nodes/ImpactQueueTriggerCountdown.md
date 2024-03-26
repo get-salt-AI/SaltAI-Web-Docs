@@ -4,36 +4,38 @@
 - Category: `ImpactPack/Logic/_for_test`
 - Output node: `True`
 
-The `ImpactQueueTriggerCountdown` node is designed to manage a countdown process within a queue system. It increments a count towards a total and triggers specific actions based on the count's value and a mode setting. When the count is less than the total minus one and the mode is active, it sends a signal to increment the count and potentially add to the queue. If the count reaches or exceeds the total minus one, it resets the count to zero.
+This node is designed to manage a countdown mechanism within a queue system, allowing for the triggering of events based on a count relative to a total, with the option to reset or continue the count based on a mode setting.
 ## Input types
 ### Required
 - **`signal`**
-    - The `signal` input acts as a pass-through for any type of data, allowing this node to be integrated into various points of a workflow without altering the data flow.
-    - Python dtype: `typing.Any`
+    - Acts as a pass-through signal that can be modified or utilized in the countdown process.
     - Comfy dtype: `*`
+    - Python dtype: `object`
 - **`count`**
-    - The `count` input tracks the current count in the countdown process. It is crucial for determining the node's actions, such as whether to increment the count or reset it.
-    - Python dtype: `int`
+    - Represents the current count in the countdown process, influencing whether the countdown continues or resets.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`total`**
-    - The `total` input specifies the target count for the countdown. It defines the endpoint of the countdown process.
-    - Python dtype: `int`
+    - Defines the total count required to trigger a reset in the countdown process.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`mode`**
-    - The `mode` input determines whether the countdown process is active. When true, the node will perform its countdown logic; otherwise, it remains inactive.
-    - Python dtype: `bool`
+    - Determines the behavior of the countdown, either continuing the count or triggering a reset based on the count's relation to the total.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ## Output types
-- **`*`**
-    - The `signal_opt` output passes through the input signal, allowing for seamless integration into the workflow.
-    - Python dtype: `typing.Any`
+- **`signal_opt`**
     - Comfy dtype: `*`
-- **`int`**
-    - The `total` output passes through the input total, maintaining consistency in the workflow.
-    - Python dtype: `int`
+    - The modified or unmodified pass-through signal after the countdown process.
+    - Python dtype: `object`
+- **`count`**
     - Comfy dtype: `INT`
-- **`ui`**
-    - The `ui` parameter is not explicitly mentioned in the provided context, indicating that this node does not directly manipulate or generate UI elements.
+    - The updated count after the countdown operation.
+    - Python dtype: `int`
+- **`total`**
+    - Comfy dtype: `INT`
+    - The total count required for a reset, unchanged by the operation.
+    - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

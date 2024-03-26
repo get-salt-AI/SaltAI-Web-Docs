@@ -8,12 +8,12 @@ The RescaleCFG node is designed to adjust the conditioning and unconditioning sc
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - The model parameter represents the generative model to be adjusted. It is crucial as the node applies a rescaling function to the model's output, directly influencing the generation process.
+    - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`multiplier`**
-    - Comfy dtype: `FLOAT`
     - The multiplier parameter controls the extent of rescaling applied to the model's output. It determines the balance between the original and rescaled components, affecting the final output's characteristics.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`model`**

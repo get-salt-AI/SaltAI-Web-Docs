@@ -8,8 +8,8 @@ This node is designed to load a specific GroundingDINO model based on the provid
 ## Input types
 ### Required
 - **`model_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the name of the GroundingDINO model to be loaded. This parameter is crucial as it determines which model will be prepared for the segmentation task.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 ## Output types
 - **`grounding_dino_model`**

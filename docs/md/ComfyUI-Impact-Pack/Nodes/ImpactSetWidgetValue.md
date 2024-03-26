@@ -4,43 +4,43 @@
 - Category: `ImpactPack/Logic/_for_test`
 - Output node: `True`
 
-This node is designed to set the value of a widget within a node in a workflow based on various input types (boolean, integer, float, string). It determines the type of the input value and sends a synchronous request to update the widget's value accordingly.
+This node is designed to set the value of a widget within a node in a workflow, based on various types of input values such as boolean, integer, float, or string. It dynamically adjusts the widget's value and type according to the provided input, facilitating flexible and interactive adjustments within the workflow.
 ## Input types
 ### Required
 - **`signal`**
-    - Acts as a trigger for the node's operation. It doesn't directly influence the widget value but is necessary for the node's execution flow.
-    - Python dtype: `Any`
+    - A signal input that triggers the execution of the node, ensuring the node operates within the workflow's execution flow.
     - Comfy dtype: `*`
+    - Python dtype: `any`
 - **`node_id`**
-    - Identifies the target node whose widget value is to be updated. It is crucial for specifying the exact node in the workflow to be modified.
-    - Python dtype: `int`
+    - The unique identifier of the node whose widget value is to be set, enabling targeted updates within the workflow.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`widget_name`**
-    - Specifies the name of the widget within the target node that is to be updated. This is essential for identifying the correct widget to modify.
-    - Python dtype: `str`
+    - The name of the widget within the node to be updated, specifying which widget's value is to be changed.
     - Comfy dtype: `STRING`
+    - Python dtype: `str`
 ### Optional
 - **`boolean_value`**
-    - The boolean value to set for the widget, if applicable. This input allows for boolean-based widget updates.
-    - Python dtype: `Optional[bool]`
+    - An optional boolean value to set for the widget, allowing for true/false adjustments.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`int_value`**
-    - The integer value to set for the widget, if applicable. This input enables numeric widget updates.
-    - Python dtype: `Optional[int]`
+    - An optional integer value to set for the widget, enabling numerical adjustments.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`float_value`**
-    - The float value to set for the widget, if applicable. This input facilitates decimal-based widget updates.
-    - Python dtype: `Optional[float]`
+    - An optional float value to set for the widget, allowing for decimal adjustments.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`string_value`**
-    - The string value to set for the widget, if applicable. This input allows for text-based widget updates.
-    - Python dtype: `Optional[str]`
+    - An optional string value to set for the widget, enabling text adjustments.
     - Comfy dtype: `STRING`
+    - Python dtype: `str`
 ## Output types
-- **`*`**
-    - Returns the input signal, indicating the completion of the widget update operation.
-    - Python dtype: `Any`
+- **`signal_opt`**
     - Comfy dtype: `*`
+    - Returns the input signal, indicating the completion of the widget value update.
+    - Python dtype: `any`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

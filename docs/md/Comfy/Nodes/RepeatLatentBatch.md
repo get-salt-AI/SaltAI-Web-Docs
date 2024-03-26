@@ -8,12 +8,12 @@ The RepeatLatentBatch node is designed to replicate a given batch of latent repr
 ## Input types
 ### Required
 - **`samples`**
-    - Comfy dtype: `LATENT`
     - The 'samples' parameter represents the latent representations to be replicated. It is essential for defining the data that will undergo repetition.
+    - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 - **`amount`**
-    - Comfy dtype: `INT`
     - The 'amount' parameter specifies the number of times the input samples should be repeated. It directly influences the size of the output batch, thereby affecting the computational load and the diversity of the generated data.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`latent`**

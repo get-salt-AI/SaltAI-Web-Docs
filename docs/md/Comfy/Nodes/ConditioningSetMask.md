@@ -8,20 +8,20 @@ This node is designed to modify the conditioning of a generative model by applyi
 ## Input types
 ### Required
 - **`conditioning`**
-    - Comfy dtype: `CONDITIONING`
     - The conditioning data to be modified. It serves as the basis for applying the mask and strength adjustments.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 - **`mask`**
-    - Comfy dtype: `MASK`
     - A mask tensor that specifies the areas within the conditioning to be modified.
+    - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`strength`**
-    - Comfy dtype: `FLOAT`
     - The strength of the mask's effect on the conditioning, allowing for fine-tuning of the applied modifications.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`set_cond_area`**
-    - Comfy dtype: `COMBO[STRING]`
     - Determines whether the mask's effect is applied to the default area or bounded by the mask itself, offering flexibility in targeting specific regions.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`conditioning`**

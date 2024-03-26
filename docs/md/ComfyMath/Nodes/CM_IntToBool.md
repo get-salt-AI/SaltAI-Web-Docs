@@ -8,8 +8,8 @@ The node transforms an integer input into a boolean output, effectively converti
 ## Input types
 ### Required
 - **`a`**
-    - Comfy dtype: `INT`
     - The integer input to be converted into a boolean. If the input is non-zero, the output is True; otherwise, it is False.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`bool`**

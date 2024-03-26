@@ -4,18 +4,22 @@
 - Category: `ImpactPack/Pipe`
 - Output node: `False`
 
-The `DetailerPipeToBasicPipe` node transforms a detailer pipe into two basic pipes: a base basic pipe and a refiner basic pipe. This process involves extracting and reorganizing components from the input detailer pipe to form the output basic pipes.
+This node transforms a detailer pipe configuration into two basic pipe configurations, one for the base model and another for the refiner model. It abstracts the complexity of handling different components within a detailer pipe and simplifies it into more manageable basic pipe structures.
 ## Input types
 ### Required
 - **`detailer_pipe`**
-    - The detailer pipe input is a complex structure that encapsulates models, clips, VAEs, and conditioning information for both base and refiner configurations. It is essential for constructing the basic pipes.
-    - Python dtype: `Tuple[torch.nn.Module, Any, Any, Any, Any, Any, Any, Any, Any, Any, torch.nn.Module, Any, Any, Any]`
+    - The detailer pipe input is a comprehensive configuration that includes models, clips, VAEs, and conditioning information for both the base and refiner setups. It serves as the source from which the basic pipe configurations are derived.
     - Comfy dtype: `DETAILER_PIPE`
+    - Python dtype: `Tuple[torch.nn.Module, torch.nn.Module, torch.nn.Module, str, str, NoneType, NoneType, NoneType, NoneType, NoneType, torch.nn.Module, torch.nn.Module, str, str]`
 ## Output types
-- **`basic_pipe`**
-    - The refiner basic pipe includes a refiner model, clip, VAE, and positive and negative conditioning information, tailored for refinement tasks.
-    - Python dtype: `Tuple[torch.nn.Module, Any, Any, Any, Any]`
+- **`base_basic_pipe`**
     - Comfy dtype: `BASIC_PIPE`
+    - The base basic pipe configuration, derived from the input detailer pipe, containing the model, clip, VAE, and conditioning information for the base setup.
+    - Python dtype: `Tuple[torch.nn.Module, torch.nn.Module, torch.nn.Module, str, str]`
+- **`refiner_basic_pipe`**
+    - Comfy dtype: `BASIC_PIPE`
+    - The refiner basic pipe configuration, also derived from the input detailer pipe, but focusing on the refiner model's setup including its model, clip, VAE, and conditioning information.
+    - Python dtype: `Tuple[torch.nn.Module, torch.nn.Module, torch.nn.Module, str, str]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `EditBasicPipe`

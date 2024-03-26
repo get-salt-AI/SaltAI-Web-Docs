@@ -4,22 +4,22 @@
 - Category: `ImpactPack/Upscale`
 - Output node: `False`
 
-PixelKSampleHookCombine is a class designed to combine two PixelKSampleHook instances into a single hook. This allows for the sequential application of two separate hooks' functionalities on the same set of data, enhancing the flexibility and customization of the processing pipeline.
+This node is designed to combine two PixelKSampleHook instances into a single hook, enabling the sequential application of their functionalities in image processing tasks. It serves as a mechanism to extend or modify the behavior of image processing pipelines by chaining multiple hooks together.
 ## Input types
 ### Required
 - **`hook1`**
-    - The first PixelKSampleHook instance to be combined. It serves as the initial processing step in the combined hook.
-    - Python dtype: `PixelKSampleHook`
+    - The first PixelKSampleHook instance to be combined. It acts as the initial step in the combined hook's processing sequence.
     - Comfy dtype: `PK_HOOK`
+    - Python dtype: `PixelKSampleHook`
 - **`hook2`**
-    - The second PixelKSampleHook instance to be combined. It acts as the subsequent processing step, following the modifications made by the first hook.
-    - Python dtype: `PixelKSampleHook`
+    - The second PixelKSampleHook instance to be combined. It follows the first hook in the processing sequence, allowing for layered modifications or enhancements to the image processing task.
     - Comfy dtype: `PK_HOOK`
+    - Python dtype: `PixelKSampleHook`
 ## Output types
 - **`pk_hook`**
-    - The combined PixelKSampleHook instance, encapsulating the functionalities of both input hooks for sequential processing.
-    - Python dtype: `PixelKSampleHookCombine`
     - Comfy dtype: `PK_HOOK`
+    - The combined PixelKSampleHook instance, capable of executing the functionalities of both input hooks in sequence during image processing tasks.
+    - Python dtype: `PixelKSampleHook`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

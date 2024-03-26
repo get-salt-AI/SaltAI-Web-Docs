@@ -8,8 +8,8 @@ The UpscaleModelLoader node is designed for loading upscale models from a specif
 ## Input types
 ### Required
 - **`model_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the name of the upscale model to be loaded. This parameter is crucial for identifying and retrieving the correct model file from the upscale models directory.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`upscale_model`**

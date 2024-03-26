@@ -8,17 +8,17 @@ This node is designed for configuring motion model settings within the AnimateDi
 ## Input types
 ### Required
 - **`min_motion_scale`**
-    - Comfy dtype: `FLOAT`
     - Sets the minimum scaling factor for motion, ensuring a baseline level of motion intensity.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`max_motion_scale`**
-    - Comfy dtype: `FLOAT`
     - Defines the maximum scaling factor for motion, capping the intensity of movements.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`mask_motion_scale`**
-    - Comfy dtype: `MASK`
     - Applies a scaling factor to the motion mask, enabling finer control over the motion's intensity and distribution.
+    - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`ad_settings`**

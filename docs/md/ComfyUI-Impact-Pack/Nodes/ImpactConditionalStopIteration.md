@@ -4,13 +4,13 @@
 - Category: `ImpactPack/Logic`
 - Output node: `True`
 
-This node provides a mechanism to conditionally stop the iteration of a process based on a boolean condition. If the condition is met, it sends a signal to stop the iteration.
+This node is designed to conditionally halt the iteration process within a workflow, based on a specified condition. It serves as a control mechanism to dynamically manage the flow of execution based on logical conditions.
 ## Input types
 ### Required
 - **`cond`**
-    - The boolean condition upon which the iteration may be stopped. Setting this to true triggers the stopping of the iteration.
-    - Python dtype: `bool`
+    - Determines whether the iteration should be stopped. If true, the iteration is halted.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ## Output types
 The node doesn't have output types
 ## Usage tips

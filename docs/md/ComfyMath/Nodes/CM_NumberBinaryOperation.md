@@ -8,16 +8,16 @@ This node performs binary operations on numbers, such as addition, subtraction, 
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the binary operation to be performed on the two numbers. It determines the mathematical action (e.g., addition, subtraction) that will be executed.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 - **`a`**
-    - Comfy dtype: `NUMBER`
     - The first operand in the binary operation, representing one of the numbers involved in the calculation.
+    - Comfy dtype: `NUMBER`
     - Python dtype: `float`
 - **`b`**
-    - Comfy dtype: `NUMBER`
     - The second operand in the binary operation, representing the other number involved in the calculation.
+    - Comfy dtype: `NUMBER`
     - Python dtype: `float`
 ## Output types
 - **`number`**

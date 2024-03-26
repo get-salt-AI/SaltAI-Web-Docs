@@ -4,34 +4,38 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The ImpactSEGSRangeFilter node filters segments based on specified criteria related to their geometric properties, such as area, width, height, or position. It allows for the inclusion or exclusion of segments within a certain range of values, enhancing the ability to focus on segments of interest within an image.
+The ImpactSEGSRangeFilter node is designed to filter segments (SEGS) based on specified range criteria. It evaluates each segment against given parameters such as area, width, height, or specific coordinates, and segregates them into new segments that meet or do not meet the criteria. This functionality is crucial for refining segment selection based on geometric properties.
 ## Input types
 ### Required
 - **`segs`**
-    - The input segments to be filtered. This parameter is crucial as it determines the set of segments that will be subjected to the filtering criteria.
-    - Python dtype: `Tuple[str, List[SEG]]`
+    - The input segments to be filtered. It's the primary data upon which the range filtering operation is performed.
     - Comfy dtype: `SEGS`
+    - Python dtype: `Tuple[str, List[SEG]]`
 - **`target`**
-    - Specifies the geometric property (e.g., area, width, height, position) to be used as the basis for filtering. This choice directly influences which segments are included or excluded based on the specified range.
+    - Specifies the geometric property (e.g., area, width, height, x1, y1, x2, y2, length_percent) based on which the segments will be filtered.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`mode`**
-    - Determines whether segments inside or outside the specified range should be included. This parameter affects the filtering logic, allowing for more flexible segment selection.
-    - Python dtype: `bool`
+    - Determines the filtering mode. If true, segments within the specified range are included; if false, segments outside the range are included.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`min_value`**
-    - The minimum value of the specified geometric property for a segment to be included or excluded, depending on the mode. It sets the lower bound of the filtering range.
-    - Python dtype: `int`
+    - The minimum value of the specified geometric property for a segment to be included or excluded, depending on the mode.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`max_value`**
-    - The maximum value of the specified geometric property for a segment to be included or excluded, depending on the mode. It sets the upper bound of the filtering range.
-    - Python dtype: `int`
+    - The maximum value of the specified geometric property for a segment to be included or excluded, depending on the mode.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
-- **`segs`**
-    - The filtered segments after applying the specified geometric property criteria. This output allows for further processing or analysis of the segments of interest.
-    - Python dtype: `Tuple[str, List[SEG]]`
+- **`filtered_SEGS`**
     - Comfy dtype: `SEGS`
+    - Returns the segments that meet the specified criteria.
+    - Python dtype: `Tuple[str, List[SEG]]`
+- **`remained_SEGS`**
+    - Comfy dtype: `SEGS`
+    - Returns the segments that do not meet the specified criteria.
+    - Python dtype: `Tuple[str, List[SEG]]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

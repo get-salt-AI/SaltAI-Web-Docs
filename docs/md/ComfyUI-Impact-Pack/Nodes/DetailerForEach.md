@@ -4,111 +4,111 @@
 - Category: `ImpactPack/Detailer`
 - Output node: `False`
 
-The `DetailerForEach` node is designed to apply a specific detailing process to each element in a given collection. This process enhances or modifies the elements in some way, based on the implementation details of the node. It is typically used in scenarios where individual elements of a dataset require attention to detail, such as image processing or data refinement tasks.
+The DetailerForEach node is designed to iterate over a collection of items, applying a detailed processing or transformation to each item. This node is typically used in scenarios where individual elements within a dataset require specific, detailed attention or modification, enhancing the overall quality or utility of the data.
 ## Input types
 ### Required
 - **`image`**
-    - The image to be processed and detailed. This input is central to the detailing operation, as the entire process revolves around enhancing or modifying this image.
-    - Python dtype: `Image`
+    - The 'image' input type represents visual data that the node processes, crucial for operations involving image manipulation or analysis.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `torch.Tensor`
 - **`segs`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `SEGS`
+    - Python dtype: `unknown`
 - **`model`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `MODEL`
+    - Python dtype: `unknown`
 - **`clip`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `CLIP`
-- **`vae`**
-    - unknown
     - Python dtype: `unknown`
+- **`vae`**
+    - The 'vae' input type refers to a Variational Autoencoder model used by the node for generating or transforming images in a way that captures complex patterns and variations.
     - Comfy dtype: `VAE`
+    - Python dtype: `torch.nn.Module`
 - **`guide_size`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`guide_size_for`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `unknown`
 - **`max_size`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`seed`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 - **`steps`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 - **`cfg`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`sampler_name`**
     - unknown
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `unknown`
-    - Comfy dtype: `['euler', 'euler_ancestral', 'heun'...]`
 - **`scheduler`**
     - unknown
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `unknown`
-    - Comfy dtype: `['normal', 'karras', 'exponential'...]`
 - **`positive`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `unknown`
 - **`negative`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `unknown`
 - **`denoise`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`feather`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 - **`noise_mask`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `unknown`
 - **`force_inpaint`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `unknown`
 - **`wildcard`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `STRING`
+    - Python dtype: `unknown`
 - **`cycle`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 ### Optional
 - **`detailer_hook`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `DETAILER_HOOK`
+    - Python dtype: `unknown`
 - **`inpaint_model`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `unknown`
 - **`noise_mask_feather`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 ## Output types
 - **`image`**
-    - The output is the image that has been processed and detailed according to the specified pipeline configuration and parameters. It reflects the modifications or enhancements made to the original image.
-    - Python dtype: `Image`
     - Comfy dtype: `IMAGE`
+    - The 'image' output type represents the result of the node's detailed processing or transformation of each input item, encapsulating the enhanced or modified state of the visual data, ready for further use or analysis.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `PreviewImage,ImageUpscaleWithModel,Reroute,CR Image Output,SaveImage,ReroutePrimitive|pysssss`

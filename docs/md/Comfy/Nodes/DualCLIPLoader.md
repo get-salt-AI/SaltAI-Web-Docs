@@ -8,12 +8,12 @@ The DualCLIPLoader node is designed for loading two CLIP models simultaneously, 
 ## Input types
 ### Required
 - **`clip_name1`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the name of the first CLIP model to be loaded. This parameter is crucial for identifying and retrieving the correct model from a predefined list of available CLIP models.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`clip_name2`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the name of the second CLIP model to be loaded. This parameter enables the loading of a second distinct CLIP model for comparative or integrative analysis alongside the first model.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`clip`**

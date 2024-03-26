@@ -4,46 +4,50 @@
 - Category: `ImpactPack/Pipe`
 - Output node: `False`
 
-The `FromDetailerPipe` class processes a detailer pipe, extracting and returning various components such as models, clips, VAEs, conditioning elements, bounding box detectors, SAM models, segmentation detectors, and detailer hooks. This operation is essential for decomposing a complex pipeline into its constituent parts for further processing or analysis.
+The FromDetailerPipe node is designed to extract and return various components from a given detailer pipe, including models, clips, VAEs, conditioning information, bounding box detectors, SAM models, segmentation detectors, and detailer hooks. This node facilitates the decomposition of a complex detailer pipe into its constituent elements for further processing or analysis.
 ## Input types
 ### Required
 - **`detailer_pipe`**
-    - The `detailer_pipe` parameter is a complex data structure that encapsulates various components of a detailer pipeline. It is crucial for the operation as it contains all the necessary elements to be extracted and returned.
-    - Python dtype: `Tuple[torch.nn.Module, Any, Any, Any, Any, Any, torch.nn.Module, Optional[torch.nn.Module], Optional[torch.nn.Module], Any, Any, Any, Any, Any]`
+    - Represents the detailer pipe from which various components are extracted. It is crucial for the operation as it contains all the elements that need to be decomposed and returned individually.
     - Comfy dtype: `DETAILER_PIPE`
+    - Python dtype: `Tuple[torch.Tensor, ...]`
 ## Output types
 - **`model`**
-    - The extracted model component from the detailer pipe.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - Returns the model component extracted from the detailer pipe, essential for further processing or analysis.
+    - Python dtype: `torch.Tensor`
 - **`clip`**
-    - The extracted CLIP model component from the detailer pipe.
-    - Python dtype: `Any`
     - Comfy dtype: `CLIP`
+    - Returns the clip component extracted from the detailer pipe, essential for further processing or analysis.
+    - Python dtype: `torch.Tensor`
 - **`vae`**
-    - The extracted VAE model component from the detailer pipe.
-    - Python dtype: `Any`
     - Comfy dtype: `VAE`
-- **`conditioning`**
-    - The extracted negative conditioning component from the detailer pipe.
-    - Python dtype: `Any`
+    - Returns the VAE component extracted from the detailer pipe, essential for further processing or analysis.
+    - Python dtype: `torch.Tensor`
+- **`positive`**
     - Comfy dtype: `CONDITIONING`
+    - Returns the positive conditioning information extracted from the detailer pipe, essential for further processing or analysis.
+    - Python dtype: `torch.Tensor`
+- **`negative`**
+    - Comfy dtype: `CONDITIONING`
+    - Returns the negative conditioning information extracted from the detailer pipe, essential for further processing or analysis.
+    - Python dtype: `torch.Tensor`
 - **`bbox_detector`**
-    - The extracted bounding box detector component from the detailer pipe.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `BBOX_DETECTOR`
-- **`sam_model`**
-    - The optionally extracted SAM model component from the detailer pipe.
-    - Python dtype: `Optional[torch.nn.Module]`
+    - Returns the bounding box detector component extracted from the detailer pipe, essential for further processing or analysis.
+    - Python dtype: `torch.Tensor`
+- **`sam_model_opt`**
     - Comfy dtype: `SAM_MODEL`
-- **`segm_detector`**
-    - The optionally extracted segmentation detector component from the detailer pipe.
-    - Python dtype: `Optional[torch.nn.Module]`
+    - Returns the SAM model component extracted from the detailer pipe, essential for further processing or analysis.
+    - Python dtype: `torch.Tensor`
+- **`segm_detector_opt`**
     - Comfy dtype: `SEGM_DETECTOR`
+    - Returns the segmentation detector component extracted from the detailer pipe, essential for further processing or analysis.
+    - Python dtype: `torch.Tensor`
 - **`detailer_hook`**
-    - The extracted detailer hook component from the detailer pipe.
-    - Python dtype: `Any`
     - Comfy dtype: `DETAILER_HOOK`
+    - Returns the detailer hook component extracted from the detailer pipe, essential for further processing or analysis.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `DetailerForEachDebug,ToBasicPipe,CLIPTextEncode`

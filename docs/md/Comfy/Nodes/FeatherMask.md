@@ -8,24 +8,24 @@ The FeatherMask node applies a feathering effect to the edges of a given mask, s
 ## Input types
 ### Required
 - **`mask`**
-    - Comfy dtype: `MASK`
     - The mask to which the feathering effect will be applied. It determines the area of the image that will be affected by the feathering.
+    - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`left`**
-    - Comfy dtype: `INT`
     - Specifies the distance from the left edge within which the feathering effect will be applied.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`top`**
-    - Comfy dtype: `INT`
     - Specifies the distance from the top edge within which the feathering effect will be applied.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`right`**
-    - Comfy dtype: `INT`
     - Specifies the distance from the right edge within which the feathering effect will be applied.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`bottom`**
-    - Comfy dtype: `INT`
     - Specifies the distance from the bottom edge within which the feathering effect will be applied.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`mask`**

@@ -8,12 +8,12 @@ The SaveImage node is designed for saving images to disk. It handles the process
 ## Input types
 ### Required
 - **`images`**
-    - Comfy dtype: `IMAGE`
     - The images to be saved. This parameter is crucial as it directly contains the image data that will be processed and saved to disk.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `List[torch.Tensor]`
 - **`filename_prefix`**
-    - Comfy dtype: `STRING`
     - A prefix for the filename under which the image will be saved. This allows for organized storage and easy retrieval of saved images.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`ui`**

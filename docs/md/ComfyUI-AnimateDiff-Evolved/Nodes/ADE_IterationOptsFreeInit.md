@@ -8,45 +8,45 @@ This node is designed to create customized iteration options for the AnimateDiff
 ## Input types
 ### Required
 - **`iterations`**
-    - Comfy dtype: `INT`
     - Specifies the number of iterations to be performed. This parameter is crucial for defining the length and detail of the animation process.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`filter`**
-    - Comfy dtype: `COMBO[STRING]`
     - Defines the filter to be applied during the iteration process, affecting the visual characteristics of the animation.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `FreeInitFilter`
 - **`d_s`**
-    - Comfy dtype: `FLOAT`
     - Specifies the start distance for the filter effect, influencing the initial impact of the filter on the animation.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`d_t`**
-    - Comfy dtype: `FLOAT`
     - Determines the end distance for the filter effect, affecting the final appearance of the animation.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`n_butterworth`**
-    - Comfy dtype: `INT`
     - Sets the order of the Butterworth filter, controlling the smoothness and sharpness of the filter effect.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`sigma_step`**
-    - Comfy dtype: `INT`
     - Specifies the step size for the sigma parameter in the filtering process, affecting the granularity of the filter effect.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`apply_to_1st_iter`**
-    - Comfy dtype: `BOOLEAN`
     - Indicates whether the filter should be applied to the first iteration, affecting the starting point of the animation.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`init_type`**
-    - Comfy dtype: `COMBO[STRING]`
     - Defines the initialization type for the iteration process, influencing the starting conditions of the animation.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `FreeInitOptions`
 ### Optional
 - **`iter_batch_offset`**
-    - Comfy dtype: `INT`
     - Determines the offset for batch processing during iterations. This can be used to adjust the starting point for batch processing, affecting how animation frames are generated.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`iter_seed_offset`**
-    - Comfy dtype: `INT`
     - Sets the seed offset for iterations, influencing the randomness and variation in the animation process. This can be used to achieve different visual effects or to replicate specific animation outcomes.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`iteration_opts`**

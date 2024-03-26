@@ -8,16 +8,16 @@ This node is designed for advanced model merging operations, specifically to sub
 ## Input types
 ### Required
 - **`model1`**
-    - Comfy dtype: `MODEL`
     - The base model from which parameters will be subtracted.
+    - Comfy dtype: `MODEL`
     - Python dtype: `comfy.model_base.Model`
 - **`model2`**
-    - Comfy dtype: `MODEL`
     - The model whose parameters will be subtracted from the base model.
+    - Comfy dtype: `MODEL`
     - Python dtype: `comfy.model_base.Model`
 - **`multiplier`**
-    - Comfy dtype: `FLOAT`
     - A floating-point value that scales the subtraction effect on the base model's parameters.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`model`**

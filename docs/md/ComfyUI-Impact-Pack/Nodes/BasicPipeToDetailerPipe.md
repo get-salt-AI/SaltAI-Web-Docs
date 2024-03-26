@@ -4,47 +4,47 @@
 - Category: `ImpactPack/Pipe`
 - Output node: `False`
 
-This node is not explicitly detailed in the provided context, suggesting it may serve as a foundational or utility component within the Impact Pack's pipe module. Its role could involve transforming or preparing basic pipeline configurations for further processing or detailing, aligning with the naming convention of other classes in the module.
+This node is designed to transform a basic pipeline configuration into a more detailed pipeline configuration, enhancing its capabilities and allowing for more complex operations.
 ## Input types
 ### Required
 - **`basic_pipe`**
-    - Represents the basic pipeline configuration to be transformed or detailed. It is essential for the node's operation as it serves as the input from which further processing or detailing is derived.
-    - Python dtype: `Tuple[torch.nn.Module, torch.nn.Module, torch.nn.Module, str, str]`
+    - The basic pipeline configuration to be transformed into a detailed pipeline configuration. It serves as the foundation for the enhancement process.
     - Comfy dtype: `BASIC_PIPE`
+    - Python dtype: `Tuple[MODEL, CLIP, VAE, CONDITIONING, CONDITIONING]`
 - **`bbox_detector`**
-    - Specifies the bounding box detector component to be included in the detailer pipe. It plays a crucial role in object detection within images.
-    - Python dtype: `torch.nn.Module`
+    - A bounding box detector component to be included in the detailed pipeline configuration.
     - Comfy dtype: `BBOX_DETECTOR`
+    - Python dtype: `BBOX_DETECTOR`
 - **`wildcard`**
-    - A string parameter that allows for dynamic input, potentially influencing the behavior or output of the node in a flexible manner.
+    - A wildcard string that allows for dynamic customization of the detailed pipeline configuration.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`Select to add LoRA`**
-    - Allows the user to select a LoRA (Locally Optimized Receptive Attention) to add to the text, enhancing the detailer pipe's capabilities.
-    - Python dtype: `List[str]`
-    - Comfy dtype: `STRING`
+    - Allows the selection of a LoRA component to be added to the detailed pipeline configuration, enhancing its functionality.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
 - **`Select to add Wildcard`**
-    - Enables the user to select a wildcard option to add to the text, providing additional flexibility in the detailer pipe's configuration.
-    - Python dtype: `List[str]`
-    - Comfy dtype: `STRING`
+    - Enables the selection of an additional wildcard component to be added to the detailed pipeline configuration for further customization.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
 ### Optional
 - **`sam_model_opt`**
-    - An optional SAM model that can be included in the detailer pipe for enhanced semantic understanding or image processing.
-    - Python dtype: `Optional[torch.nn.Module]`
+    - An optional SAM model component that can be included in the detailed pipeline configuration for enhanced modeling capabilities.
     - Comfy dtype: `SAM_MODEL`
+    - Python dtype: `SAM_MODEL`
 - **`segm_detector_opt`**
-    - An optional segmentation detector that can be included to enhance the detailer pipe's ability to understand and process image segments.
-    - Python dtype: `Optional[torch.nn.Module]`
+    - An optional segmentation detector component that can be included in the detailed pipeline configuration for improved segmentation capabilities.
     - Comfy dtype: `SEGM_DETECTOR`
+    - Python dtype: `SEGM_DETECTOR`
 - **`detailer_hook`**
-    - An optional hook that allows for custom processing or modifications within the detailer pipe, providing a mechanism for customization.
-    - Python dtype: `Optional[torch.nn.Module]`
+    - An optional hook component that can be included in the detailed pipeline configuration for customized processing and enhancements.
     - Comfy dtype: `DETAILER_HOOK`
+    - Python dtype: `DETAILER_HOOK`
 ## Output types
 - **`detailer_pipe`**
-    - The output detailer pipe configuration, enriched with the specified inputs and potentially additional components for enhanced processing capabilities.
-    - Python dtype: `Tuple[torch.nn.Module, torch.nn.Module, torch.nn.Module, str, str, str, torch.nn.Module, Optional[torch.nn.Module], Optional[torch.nn.Module], Optional[torch.nn.Module], NoneType, NoneType, NoneType, NoneType]`
     - Comfy dtype: `DETAILER_PIPE`
+    - The resulting detailed pipeline configuration, which includes the basic pipeline components along with the specified enhancements.
+    - Python dtype: `Tuple[MODEL, CLIP, VAE, CONDITIONING, CONDITIONING, STRING, BBOX_DETECTOR, SEGM_DETECTOR, SAM_MODEL, DETAILER_HOOK, NoneType, NoneType, NoneType, NoneType]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

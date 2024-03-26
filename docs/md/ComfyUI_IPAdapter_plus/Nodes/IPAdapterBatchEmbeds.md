@@ -8,12 +8,12 @@ The IPAdapterBatchEmbeds node is designed for the purpose of combining two sets 
 ## Input types
 ### Required
 - **`embed1`**
-    - Comfy dtype: `EMBEDS`
     - The first set of embeddings to be combined. It plays a crucial role in the batch operation by providing one half of the data that will be concatenated.
+    - Comfy dtype: `EMBEDS`
     - Python dtype: `torch.Tensor`
 - **`embed2`**
-    - Comfy dtype: `EMBEDS`
     - The second set of embeddings to be combined. It complements the first set of embeddings, enabling the creation of a unified batch for further processing.
+    - Comfy dtype: `EMBEDS`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`embeds`**

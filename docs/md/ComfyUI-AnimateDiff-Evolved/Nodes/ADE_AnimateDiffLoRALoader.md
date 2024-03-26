@@ -8,17 +8,17 @@ The ADE_AnimateDiffLoRALoader node is designed to load motion LoRA (Locally Recu
 ## Input types
 ### Required
 - **`lora_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the name of the motion LoRA to be loaded. It is crucial for identifying the specific LoRA configuration to apply.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`strength`**
-    - Comfy dtype: `FLOAT`
     - Determines the strength of the motion LoRA effect. This parameter allows for fine-tuning the intensity of the motion applied, affecting the animation's overall dynamics.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`prev_motion_lora`**
-    - Comfy dtype: `MOTION_LORA`
     - Optional. Represents the previous motion LoRA configuration. If provided, it enables the chaining or layering of motion LoRA effects for more complex animations.
+    - Comfy dtype: `MOTION_LORA`
     - Python dtype: `MotionLoraList`
 ## Output types
 - **`motion_lora`**

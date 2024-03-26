@@ -4,17 +4,17 @@
 - Category: `Video Helper Suite 🎥🅥🅗🅢`
 - Output node: `True`
 
-The `VHS_PruneOutputs` node is designed to selectively delete files based on the specified options. It allows for the pruning of intermediate, utility, or all files within specified directories, enhancing file management and storage optimization in video processing workflows.
+This node is designed to selectively delete files based on specified criteria, aiming to manage and optimize storage by removing intermediate or unnecessary output files generated during video processing workflows.
 ## Input types
 ### Required
 - **`filenames`**
-    - Specifies the filenames to be considered for deletion. The structure indicates a prioritization or categorization of files, which influences the deletion process based on the selected option.
-    - Python dtype: `Tuple[List[str], List[str]]`
+    - Specifies the filenames to be considered for pruning. The selection of files to delete is based on the provided options and the structure of filenames.
     - Comfy dtype: `VHS_FILENAMES`
+    - Python dtype: `Tuple[str, List[str]]`
 - **`options`**
-    - Determines the scope of file deletion, allowing for the selection between intermediate files, intermediate and utility files, or all files. This option directly influences which files are pruned from the specified directories.
+    - Determines the criteria for file deletion, allowing for the selection between intermediate files, utility files, or all files.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
-    - Comfy dtype: `['Intermediate', 'Intermediate and Utility']`
 ## Output types
 The node doesn't have output types
 ## Usage tips

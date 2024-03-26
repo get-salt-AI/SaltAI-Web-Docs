@@ -8,12 +8,12 @@ The CheckpointLoader node is designed for advanced loading operations, specifica
 ## Input types
 ### Required
 - **`config_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the name of the configuration file to be used. This is crucial for determining the model's parameters and settings, affecting the model's behavior and performance.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 - **`ckpt_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - Indicates the name of the checkpoint file to be loaded. This directly influences the state of the model being initialized, impacting its initial weights and biases.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 ## Output types
 - **`model`**

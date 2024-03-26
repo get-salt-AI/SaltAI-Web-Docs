@@ -8,8 +8,8 @@ This node performs a type conversion from a boolean value to an integer. It abst
 ## Input types
 ### Required
 - **`a`**
-    - Comfy dtype: `BOOL`
     - The boolean input to be converted to an integer. This parameter is crucial as it directly influences the output by determining whether the result will be 0 (False) or 1 (True).
+    - Comfy dtype: `BOOL`
     - Python dtype: `bool`
 ## Output types
 - **`int`**

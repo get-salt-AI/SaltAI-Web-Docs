@@ -8,33 +8,33 @@ This node specializes in replacing specific noise layers within a given noise st
 ## Input types
 ### Required
 - **`batch_offset`**
-    - Comfy dtype: `INT`
     - Determines the offset for batch processing, influencing how noise is applied across different batches.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`noise_type`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the type of noise to be used in the replacement process, affecting the characteristics of the generated noise.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`seed_gen_override`**
-    - Comfy dtype: `COMBO[STRING]`
     - Overrides the default seed generation mechanism, allowing for customized noise generation based on the provided seed.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`seed_offset`**
-    - Comfy dtype: `INT`
     - Adjusts the seed value used in noise generation, enabling variations in the noise pattern.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`prev_noise_layers`**
-    - Comfy dtype: `NOISE_LAYERS`
     - The previous noise layers that will be modified by the replacement process.
+    - Comfy dtype: `NOISE_LAYERS`
     - Python dtype: `NoiseLayerGroup`
 - **`mask_optional`**
-    - Comfy dtype: `MASK`
     - An optional tensor mask that can be used for selective noise replacement, providing additional flexibility in the modification process. Despite its name suggesting optionality, it is a required parameter for the operation of this node.
+    - Comfy dtype: `MASK`
     - Python dtype: `Tensor`
 - **`seed_override`**
-    - Comfy dtype: `INT`
     - Directly specifies a seed value to be used, bypassing the normal seed generation process.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`noise_layers`**

@@ -4,35 +4,35 @@
 - Category: `conditioning`
 - Output node: `False`
 
-The node `CLIPTextEncodeList` is not explicitly defined in the provided context. However, based on the naming convention and the context of other CLIPTextEncode nodes, it can be inferred that if a `CLIPTextEncodeList` node existed, it would likely be involved in processing a list of text inputs through a CLIP model to generate encoded representations. These representations could then be used for various applications such as conditioning for generative models, text-based image editing, or enhancing text understanding in multimodal contexts.
+This node is designed for encoding textual inputs using a CLIP model, transforming them into a structured format that can be utilized for further computational tasks or analyses. It focuses on processing multiple text inputs, applying tokenization and encoding to extract relevant features for downstream applications.
 ## Input types
 ### Required
 - **`clip`**
-    - The CLIP model used for encoding the text inputs.
-    - Python dtype: `sd1_clip.SDClipModel`
+    - The 'clip' parameter represents the CLIP model used for text encoding. It is crucial for the node's operation as it determines how text inputs are processed and encoded.
     - Comfy dtype: `CLIP`
+    - Python dtype: `torch.nn.Module`
 - **`token_normalization`**
-    - Specifies the method for normalizing tokens.
+    - Specifies the method for normalizing tokens, affecting the encoding process's outcome. It plays a significant role in adjusting the encoding based on the chosen normalization strategy.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`weight_interpretation`**
-    - Defines how weights are interpreted in the encoding process.
+    - Defines how weights are interpreted during the encoding process, influencing the final encoded output. It's important for tailoring the encoding to specific weight interpretation preferences.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`text`**
-    - A list of text inputs to be processed.
-    - Python dtype: `List[str]`
+    - The textual input to be encoded. This parameter is essential as it provides the raw data for the encoding process.
     - Comfy dtype: `STRING`
+    - Python dtype: `str`
 ## Output types
-- **`conditioning_seq`**
-    - The encoded representations of the text inputs.
-    - Python dtype: `List[EncodedRepresentation]`
+- **`conditioning_sequence`**
     - Comfy dtype: `CONDITIONING_SEQ`
+    - The output is a sequence of conditionings derived from the encoded text inputs. It's significant for subsequent computational tasks that rely on these encoded representations.
+    - Python dtype: `List[torch.Tensor]`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
-The `CLIPTextEncodeList` node is primarily utilized for encoding a list of text inputs using a CLIP model, producing encoded representations suitable for tasks like text-based image editing, enhancing multimodal text understanding, or conditioning for generative models. It is often used with conditioning nodes to provide detailed textual context for image generation processes.
+
 ## Source code
 ```python
 class CLIPTextEncodeSequence:

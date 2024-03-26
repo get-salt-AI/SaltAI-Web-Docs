@@ -8,16 +8,16 @@ The SolidMask node generates a uniform mask with a specified value across its en
 ## Input types
 ### Required
 - **`value`**
-    - Comfy dtype: `FLOAT`
     - Specifies the intensity value of the mask, affecting its overall appearance and utility in subsequent operations.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`width`**
-    - Comfy dtype: `INT`
     - Determines the width of the generated mask, directly influencing its size and aspect ratio.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Comfy dtype: `INT`
     - Sets the height of the generated mask, affecting its size and aspect ratio.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`mask`**

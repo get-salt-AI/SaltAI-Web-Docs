@@ -4,22 +4,22 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The `ImpactAssembleSEGS` node assembles a SEGS data structure from provided segment header and segment element inputs. This operation is crucial for constructing a complete SEGS object, which is a fundamental data structure used for representing segmented images or regions within the ImpactPack.
+The ImpactAssembleSEGS node is designed to aggregate segment headers and segment elements into a unified structure, facilitating the organization and manipulation of segmented data within the ImpactPack framework.
 ## Input types
 ### Required
 - **`seg_header`**
-    - The segment header provides essential metadata for the SEGS structure, such as dimensions and properties of the segmented image or region.
-    - Python dtype: `Tuple[str]`
+    - The 'seg_header' parameter represents the header information for a segment, serving as a crucial component in assembling the overall segmented structure.
     - Comfy dtype: `SEGS_HEADER`
+    - Python dtype: `Tuple[str]`
 - **`seg_elt`**
-    - The segment element represents a specific segmented part or region within the overall SEGS structure. It is a key component in assembling the complete SEGS object.
-    - Python dtype: `Tuple[SEG_ELT]`
+    - The 'seg_elt' parameter signifies the individual segment elements, which are essential in constructing the complete segmented data structure.
     - Comfy dtype: `SEG_ELT`
+    - Python dtype: `Tuple[str]`
 ## Output types
 - **`segs`**
-    - The assembled SEGS object, representing a complete segmented image or region with its corresponding metadata and elements.
-    - Python dtype: `Tuple[Tuple[str], List[SEG_ELT]]`
     - Comfy dtype: `SEGS`
+    - Produces a unified segmented data structure, combining the provided segment headers and elements.
+    - Python dtype: `Tuple[Tuple[str], Tuple[str]]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

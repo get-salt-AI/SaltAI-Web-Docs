@@ -8,20 +8,20 @@ The VPScheduler node is designed to generate a sequence of noise levels (sigmas)
 ## Input types
 ### Required
 - **`steps`**
-    - Comfy dtype: `INT`
     - Specifies the number of steps in the diffusion process, affecting the granularity of the generated noise levels.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`beta_d`**
-    - Comfy dtype: `FLOAT`
     - Determines the overall noise level distribution, influencing the variance of the generated noise levels.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`beta_min`**
-    - Comfy dtype: `FLOAT`
     - Sets the minimum boundary for the noise level, ensuring the noise does not fall below a certain threshold.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`eps_s`**
-    - Comfy dtype: `FLOAT`
     - Adjusts the starting epsilon value, fine-tuning the initial noise level in the diffusion process.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`sigmas`**

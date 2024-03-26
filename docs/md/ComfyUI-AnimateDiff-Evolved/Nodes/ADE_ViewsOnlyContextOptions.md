@@ -8,21 +8,21 @@ This node is designed to create context options specifically tailored for viewin
 ## Input types
 ### Required
 - **`view_opts_req`**
-    - Comfy dtype: `VIEW_OPTS`
     - Specifies the required view options to tailor the context for viewing animations, ensuring the animation's parameters are set according to the provided view options.
+    - Comfy dtype: `VIEW_OPTS`
     - Python dtype: `ContextOptions`
 ### Optional
 - **`start_percent`**
-    - Comfy dtype: `FLOAT`
     - Determines the starting point of the animation as a percentage, allowing for precise control over where the animation begins.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`guarantee_steps`**
-    - Comfy dtype: `INT`
     - Specifies the minimum number of steps guaranteed in the animation, ensuring a certain length and progression.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`prev_context`**
-    - Comfy dtype: `CONTEXT_OPTIONS`
     - Allows for the inclusion of previous context options, enabling the chaining or layering of context configurations for complex animations.
+    - Comfy dtype: `CONTEXT_OPTIONS`
     - Python dtype: `ContextOptionsGroup or None`
 ## Output types
 - **`CONTEXT_OPTS`**

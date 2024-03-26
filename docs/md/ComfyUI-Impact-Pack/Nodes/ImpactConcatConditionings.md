@@ -4,18 +4,18 @@
 - Category: `ImpactPack/__for_testing`
 - Output node: `False`
 
-This node concatenates multiple conditioning inputs into a single conditioning output. It iterates through each conditioning input, concatenates the first conditioning of each input with the conditioning to be concatenated to, and updates the output conditioning accordingly.
+This node is designed to concatenate multiple conditioning inputs into a single conditioning output. It primarily serves to merge various conditioning elements, facilitating the creation of composite conditionings that can be utilized in further processing or model inference.
 ## Input types
 ### Required
 - **`conditioning1`**
-    - The primary conditioning to which other conditionings will be concatenated. It serves as the base for the concatenation process.
-    - Python dtype: `List[Tuple[torch.Tensor, Any]]`
+    - The primary conditioning input to which additional conditionings will be concatenated. It acts as the base for the concatenation process.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `List[Tuple[torch.Tensor, Any]]`
 ## Output types
 - **`conditioning`**
-    - The result of concatenating the specified conditionings. It represents the combined information from all inputs.
-    - Python dtype: `List[Tuple[torch.Tensor, Any]]`
     - Comfy dtype: `CONDITIONING`
+    - The result of concatenating the specified conditionings, producing a single, composite conditioning output.
+    - Python dtype: `List[Tuple[torch.Tensor, Any]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

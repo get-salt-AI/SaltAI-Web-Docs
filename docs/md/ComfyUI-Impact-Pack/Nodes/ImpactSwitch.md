@@ -4,35 +4,35 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The ImpactSwitch node is designed to dynamically select between multiple inputs based on a given condition or index. It is particularly useful in scenarios where the flow of data needs to be conditionally directed, allowing for more flexible and dynamic data processing pipelines within the ImpactPack framework.
+The ImpactSwitch node is designed to dynamically select between multiple inputs based on a specified condition or index. It serves as a control mechanism within a workflow, allowing for the conditional routing of data streams based on runtime decisions.
 ## Input types
 ### Required
 - **`select`**
-    - This parameter determines which input to select and pass through as the output. Its value dictates the flow of data, making it crucial for conditional logic and dynamic data routing in the node's operation.
-    - Python dtype: `int`
+    - Determines which input to select and pass as output. The choice is based on an index or condition evaluated at runtime, making the node's operation dynamic and adaptable to varying scenarios.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`sel_mode`**
-    - Specifies the mode of selection, enabling different criteria or conditions for selecting the input. This parameter enhances the node's flexibility by allowing various selection strategies.
-    - Python dtype: `bool`
+    - Specifies the mode of selection, enabling further customization of how the 'select' input is interpreted and applied within the node's logic.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ### Optional
 - **`input1`**
-    - An optional input parameter that can be dynamically selected based on the 'select' parameter. It adds an additional layer of flexibility, allowing for more complex conditional logic and data routing.
-    - Python dtype: `typing.Union[int, str, typing.Any]`
+    - An optional input that can be selected based on the 'select' parameter. It provides additional flexibility in the node's operation by allowing for more inputs to be conditionally routed.
     - Comfy dtype: `*`
+    - Python dtype: `object`
 ## Output types
-- **`*`**
-    - The output is the data from the selected input, which can vary in type. This dynamic selection mechanism allows for conditional data flow and processing.
-    - Python dtype: `typing.Any`
+- **`selected_value`**
     - Comfy dtype: `*`
-- **`string`**
-    - Provides a label associated with the selected input, enhancing the interpretability of the output.
-    - Python dtype: `str`
+    - The output value selected based on the 'select' parameter, demonstrating the node's ability to conditionally route data.
+    - Python dtype: `object`
+- **`selected_label`**
     - Comfy dtype: `STRING`
-- **`int`**
-    - Indicates the index of the selected input, offering insight into the selection process.
-    - Python dtype: `int`
+    - A label associated with the selected output, providing context or additional information about the selected data.
+    - Python dtype: `str`
+- **`selected_index`**
     - Comfy dtype: `INT`
+    - The index of the selected input, offering insight into which condition or option was chosen during the node's execution.
+    - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `EmptyLatentImage`

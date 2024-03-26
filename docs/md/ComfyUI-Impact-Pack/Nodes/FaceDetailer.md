@@ -4,167 +4,179 @@
 - Category: `ImpactPack/Simple`
 - Output node: `False`
 
-The `FaceDetailer` node is designed to enhance and detail faces in images. It is not intended for video detailing, and a warning is issued if an attempt is made to use it on video data. For video detailing, the `Detailer For AnimateDiff` node is recommended.
+The FaceDetailer node is designed to enhance the details of faces in images, utilizing a combination of models and techniques to refine facial features and improve overall image quality. It is specifically tailored for single images and warns against its use for video detailing, directing users to alternative nodes for such purposes.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be detailed. The node enhances faces within this image, applying various detailing processes.
-    - Python dtype: `Union[torch.Tensor, np.ndarray]`
+    - The input image to be enhanced. The node focuses on refining facial details within this image.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `torch.Tensor`
 - **`model`**
-    - unknown
-    - Python dtype: `unknown`
+    - The primary model used for enhancing facial details in the image.
     - Comfy dtype: `MODEL`
+    - Python dtype: `torch.nn.Module`
 - **`clip`**
-    - unknown
-    - Python dtype: `unknown`
+    - A CLIP model used for guiding the enhancement process based on textual descriptions.
     - Comfy dtype: `CLIP`
+    - Python dtype: `torch.nn.Module`
 - **`vae`**
-    - unknown
-    - Python dtype: `unknown`
+    - A Variational Autoencoder (VAE) model used for generating or refining facial features within the image.
     - Comfy dtype: `VAE`
+    - Python dtype: `torch.nn.Module`
 - **`guide_size`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`guide_size_for`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `unknown`
 - **`max_size`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`seed`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 - **`steps`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 - **`cfg`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`sampler_name`**
     - unknown
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `unknown`
-    - Comfy dtype: `['euler', 'euler_ancestral', 'heun'...]`
 - **`scheduler`**
     - unknown
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `unknown`
-    - Comfy dtype: `['normal', 'karras', 'exponential'...]`
 - **`positive`**
-    - unknown
-    - Python dtype: `unknown`
+    - Positive textual prompts that guide the enhancement process towards desired facial features.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `list[str]`
 - **`negative`**
-    - unknown
-    - Python dtype: `unknown`
+    - Negative textual prompts used to steer the enhancement process away from undesired facial features.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `list[str]`
 - **`denoise`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`feather`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 - **`noise_mask`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `unknown`
 - **`force_inpaint`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `unknown`
 - **`bbox_threshold`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`bbox_dilation`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 - **`bbox_crop_factor`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`sam_detection_hint`**
     - unknown
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `unknown`
-    - Comfy dtype: `['center-1', 'horizontal-2', 'vertical-2'...]`
 - **`sam_dilation`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 - **`sam_threshold`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`sam_bbox_expansion`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 - **`sam_mask_hint_threshold`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`sam_mask_hint_use_negative`**
     - unknown
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `unknown`
-    - Comfy dtype: `['False', 'Small', 'Outter'...]`
 - **`drop_size`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 - **`bbox_detector`**
-    - unknown
-    - Python dtype: `unknown`
+    - A bounding box detector used to identify and focus on facial regions within the image.
     - Comfy dtype: `BBOX_DETECTOR`
+    - Python dtype: `torch.nn.Module`
 - **`wildcard`**
-    - unknown
-    - Python dtype: `unknown`
+    - Optional wildcard prompts that introduce variability into the enhancement process.
     - Comfy dtype: `STRING`
+    - Python dtype: `list[str]`
 - **`cycle`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 ### Optional
 - **`sam_model_opt`**
-    - unknown
-    - Python dtype: `unknown`
+    - Optional SAM model configurations used to refine the selection and enhancement of facial features.
     - Comfy dtype: `SAM_MODEL`
+    - Python dtype: `dict`
 - **`segm_detector_opt`**
-    - unknown
-    - Python dtype: `unknown`
+    - A segmentation model used to delineate facial features more precisely for targeted enhancement.
     - Comfy dtype: `SEGM_DETECTOR`
+    - Python dtype: `torch.nn.Module`
 - **`detailer_hook`**
-    - unknown
-    - Python dtype: `unknown`
+    - Custom hooks or callbacks that allow for additional processing or modification during the enhancement process.
     - Comfy dtype: `DETAILER_HOOK`
+    - Python dtype: `callable`
 - **`inpaint_model`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `unknown`
 - **`noise_mask_feather`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 ## Output types
 - **`image`**
-    - A mask indicating the areas of the image that were detailed.
-    - Python dtype: `Union[torch.Tensor, np.ndarray]`
     - Comfy dtype: `IMAGE`
+    - The enhanced image with refined facial details.
+    - Python dtype: `torch.Tensor`
+- **`cropped_refined`**
+    - Comfy dtype: `IMAGE`
+    - A list of cropped regions from the image that have been enhanced.
+    - Python dtype: `list[torch.Tensor]`
+- **`cropped_enhanced_alpha`**
+    - Comfy dtype: `IMAGE`
+    - A list of alpha masks corresponding to the cropped enhanced regions, indicating the level of enhancement.
+    - Python dtype: `list[torch.Tensor]`
 - **`mask`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `MASK`
+    - A mask indicating the regions of the image that were enhanced.
+    - Python dtype: `torch.Tensor`
 - **`detailer_pipe`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `DETAILER_PIPE`
+    - A tuple containing the models and configurations used during the enhancement process.
+    - Python dtype: `tuple`
+- **`cnet_images`**
+    - Comfy dtype: `IMAGE`
+    - A list of images processed through the CNet model, providing additional detail enhancement.
+    - Python dtype: `list[torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `PreviewImage,FaceDetailerPipe,MaskToImage,Reroute,SaveImage,PlaySound|pysssss,InvertMask,ImageInvert,ImageCompositeMasked,ImageBlend`

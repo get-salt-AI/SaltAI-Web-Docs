@@ -8,12 +8,12 @@ The LoadImageMask node is designed to load images and their associated masks fro
 ## Input types
 ### Required
 - **`image`**
-    - Comfy dtype: `COMBO[STRING]`
     - The 'image' parameter specifies the image file to be loaded and processed. It plays a crucial role in determining the output by providing the source image for mask extraction and format conversion.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`channel`**
-    - Comfy dtype: `COMBO[STRING]`
     - The 'channel' parameter specifies the color channel of the image that will be used to generate the mask. This allows for flexibility in mask creation based on different color channels, enhancing the node's utility in various image processing scenarios.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`mask`**

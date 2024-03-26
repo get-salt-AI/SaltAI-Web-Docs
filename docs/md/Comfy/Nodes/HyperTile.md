@@ -8,24 +8,24 @@ The HyperTile node is designed to enhance the processing of image data by dynami
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - The model parameter represents the neural network model that will be modified by the HyperTile node. It is crucial for determining the appropriate tiling strategy based on the model's channel configuration.
+    - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`tile_size`**
-    - Comfy dtype: `INT`
     - Specifies the base size of the tiles into which the input image is divided. This size is dynamically adjusted to optimize processing.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`swap_size`**
-    - Comfy dtype: `INT`
     - Determines the granularity of the swap operation in the tiling process, affecting the final tile configuration.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`max_depth`**
-    - Comfy dtype: `INT`
     - Defines the maximum depth for the tiling strategy, influencing how deeply the tiling adjustments can be applied.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`scale_depth`**
-    - Comfy dtype: `BOOLEAN`
     - A boolean parameter that indicates whether the depth scaling factor should be applied to the tiling strategy, further customizing the tiling process.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`model`**

@@ -4,18 +4,18 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-This node converts a batch of images into a list of individual images. It is useful for processing scenarios where operations need to be applied on a per-image basis after batch processing.
+This node is designed to convert a batch of images into a list of individual images, facilitating operations that require handling images one at a time. It's particularly useful in workflows where images need to be processed or analyzed separately after being batch-processed.
 ## Input types
 ### Required
 - **`image`**
-    - The input image batch to be split into individual images. This is crucial for operations that require handling images one at a time.
-    - Python dtype: `torch.Tensor`
+    - The input parameter 'image' represents the batch of images to be split into individual images. It plays a crucial role in the node's operation by providing the data that will be decomposed.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**
-    - A list of individual images extracted from the input batch. This allows for subsequent operations to be applied to each image separately.
-    - Python dtype: `List[torch.Tensor]`
     - Comfy dtype: `IMAGE`
+    - The output is a list of individual images, each extracted from the input batch. This allows for further individual processing or analysis of each image.
+    - Python dtype: `List[torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `TilePreprocessor,VAEEncode,PreviewImage`

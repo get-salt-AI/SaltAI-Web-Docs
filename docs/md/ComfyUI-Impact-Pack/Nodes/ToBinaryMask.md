@@ -4,22 +4,22 @@
 - Category: `ImpactPack/Operation`
 - Output node: `False`
 
-This node converts a given mask to a binary mask based on a specified threshold. It is a part of the ImpactPack/Operation category and is used to simplify mask data by categorizing pixel values as either 0 or 1, depending on whether they fall below or above the threshold.
+The ToBinaryMask node is designed to convert a given mask into a binary mask based on a specified threshold. This operation is fundamental in image processing tasks where binary masks are required to distinguish between areas of interest and the background.
 ## Input types
 ### Required
 - **`mask`**
-    - The mask input is the primary data that will be processed to generate a binary mask. The threshold parameter will determine how the values in this mask are categorized.
-    - Python dtype: `torch.Tensor`
+    - The mask input represents the original mask that will be converted into a binary format. The conversion is based on the threshold value, making this input crucial for the operation's outcome.
     - Comfy dtype: `MASK`
+    - Python dtype: `torch.Tensor`
 - **`threshold`**
-    - The threshold parameter determines the cutoff value for converting the mask to binary. Pixels with values above this threshold will be considered as part of the mask (1), and those below will be considered as background (0).
-    - Python dtype: `int`
+    - The threshold input determines the cutoff value for converting the original mask into a binary mask. Pixels with values above this threshold will be considered as part of the mask, affecting the binary mask's final appearance.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
 - **`mask`**
-    - The output is a binary mask where each pixel is either 0 or 1, indicating absence or presence in the mask, respectively.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The output is a binary mask where each pixel is either 0 or 1, indicating whether it belongs to the mask or the background, respectively.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `MaskToImage,MaskToSEGS`

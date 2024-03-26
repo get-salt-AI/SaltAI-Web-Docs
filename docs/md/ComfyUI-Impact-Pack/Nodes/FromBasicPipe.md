@@ -4,30 +4,34 @@
 - Category: `ImpactPack/Pipe`
 - Output node: `False`
 
-The `FromBasicPipe` node is designed to decompose a basic pipe structure into its individual components. It takes a basic pipe as input, which is a tuple containing a model, a clip, a VAE, and two conditioning elements (positive and negative), and returns these components separately.
+The FromBasicPipe node is designed to decompose a basic pipe structure into its constituent components, facilitating access to individual elements such as models, clips, and VAEs for further processing or analysis.
 ## Input types
 ### Required
 - **`basic_pipe`**
-    - The basic pipe is a crucial input that encapsulates a model, a clip, a VAE, and two conditioning elements. It serves as the core structure for operations within the ImpactPack/Pipe category. The composition of this tuple directly influences the node's execution by determining the specific components to be extracted and returned, thus affecting the outcome of the decomposition process.
-    - Python dtype: `Tuple[torch.nn.Module, Any, Any, str, str]`
+    - Represents the basic pipe structure encapsulating a model, clip, VAE, and positive and negative conditioning elements. It serves as the input for decomposition into its constituent components.
     - Comfy dtype: `BASIC_PIPE`
+    - Python dtype: `Tuple[torch.nn.Module, torch.nn.Module, torch.nn.Module, torch.Tensor, torch.Tensor]`
 ## Output types
 - **`model`**
+    - Comfy dtype: `MODEL`
     - The model component extracted from the basic pipe.
     - Python dtype: `torch.nn.Module`
-    - Comfy dtype: `MODEL`
 - **`clip`**
-    - The clip component extracted from the basic pipe.
-    - Python dtype: `Any`
     - Comfy dtype: `CLIP`
+    - The clip component extracted from the basic pipe.
+    - Python dtype: `torch.nn.Module`
 - **`vae`**
-    - The VAE component extracted from the basic pipe.
-    - Python dtype: `Any`
     - Comfy dtype: `VAE`
-- **`conditioning`**
-    - The negative conditioning element extracted from the basic pipe.
-    - Python dtype: `str`
+    - The VAE component extracted from the basic pipe.
+    - Python dtype: `torch.nn.Module`
+- **`positive`**
     - Comfy dtype: `CONDITIONING`
+    - The positive conditioning element extracted from the basic pipe.
+    - Python dtype: `torch.Tensor`
+- **`negative`**
+    - Comfy dtype: `CONDITIONING`
+    - The negative conditioning element extracted from the basic pipe.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `UltimateSDUpscale,FaceDetailer,ToBasicPipe,KSampler,ControlNetApplyAdvanced,VAEEncode,VAEDecode,IterativeImageUpscale`

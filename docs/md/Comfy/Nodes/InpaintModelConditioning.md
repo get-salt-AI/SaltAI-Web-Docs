@@ -8,24 +8,24 @@ The InpaintModelConditioning node is designed to facilitate the conditioning pro
 ## Input types
 ### Required
 - **`positive`**
-    - Comfy dtype: `CONDITIONING`
     - Represents the positive conditioning information or parameters that are to be applied to the inpainting model. This input is crucial for defining the context or constraints under which the inpainting operation should be performed, affecting the final output significantly.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 - **`negative`**
-    - Comfy dtype: `CONDITIONING`
     - Represents the negative conditioning information or parameters that are to be applied to the inpainting model. This input is essential for specifying the conditions or contexts to avoid during the inpainting process, thereby influencing the final output.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 - **`vae`**
-    - Comfy dtype: `VAE`
     - Specifies the VAE model to be used in the conditioning process. This input is crucial for determining the specific architecture and parameters of the VAE model that will be utilized.
+    - Comfy dtype: `VAE`
     - Python dtype: `torch.nn.Module`
 - **`pixels`**
-    - Comfy dtype: `IMAGE`
     - Represents the pixel data of the image to be inpainted. This input is essential for providing the visual context necessary for the inpainting task.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`mask`**
-    - Comfy dtype: `MASK`
     - Specifies the mask to be applied to the image, indicating the areas to be inpainted. This input is crucial for defining the specific regions within the image that require inpainting.
+    - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`positive`**

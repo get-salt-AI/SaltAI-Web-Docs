@@ -4,34 +4,38 @@
 - Category: `ImpactPack/Pipe`
 - Output node: `False`
 
-The `FromBasicPipe_v2` node decomposes a basic pipe into its constituent components, including the basic pipe itself and its individual elements such as model, clip, VAE, and conditioning factors for positive and negative scenarios. This allows for direct access and manipulation of these components.
+The `FromBasicPipe_v2` node is designed to decompose a basic pipeline into its constituent components, facilitating access to individual elements such as models, clips, and conditioning parameters for further processing or analysis.
 ## Input types
 ### Required
 - **`basic_pipe`**
-    - The `basic_pipe` parameter represents a collection of core components used in generative models, including a model, clip, VAE, and conditioning factors. It serves as the input structure from which individual elements are extracted.
-    - Python dtype: `Tuple[torch.nn.Module, Any, Any, Any, Any]`
+    - Represents the basic pipeline to be decomposed into its individual components, enabling detailed examination and manipulation of each element.
     - Comfy dtype: `BASIC_PIPE`
+    - Python dtype: `Tuple[torch.nn.Module, Any, Any, Any, Any]`
 ## Output types
 - **`basic_pipe`**
-    - Returns the original basic pipe as received in the input.
-    - Python dtype: `Tuple[torch.nn.Module, Any, Any, Any, Any]`
     - Comfy dtype: `BASIC_PIPE`
+    - Returns the original basic pipeline as received in the input, allowing for its reuse or further manipulation.
+    - Python dtype: `Tuple[torch.nn.Module, Any, Any, Any, Any]`
 - **`model`**
-    - The generative model component extracted from the basic pipe.
-    - Python dtype: `torch.nn.Module`
     - Comfy dtype: `MODEL`
+    - Extracts the model component from the basic pipeline for independent use or analysis.
+    - Python dtype: `torch.nn.Module`
 - **`clip`**
-    - The CLIP model component extracted from the basic pipe.
-    - Python dtype: `Any`
     - Comfy dtype: `CLIP`
+    - Retrieves the CLIP model from the basic pipeline, making it available for separate operations.
+    - Python dtype: `Any`
 - **`vae`**
-    - The VAE model component extracted from the basic pipe.
-    - Python dtype: `Any`
     - Comfy dtype: `VAE`
-- **`conditioning`**
-    - The negative conditioning factor extracted from the basic pipe.
+    - Isolates the VAE model from the basic pipeline for individual application or study.
     - Python dtype: `Any`
+- **`positive`**
     - Comfy dtype: `CONDITIONING`
+    - Separates the positive conditioning parameter from the basic pipeline, providing it for distinct processing or examination.
+    - Python dtype: `Any`
+- **`negative`**
+    - Comfy dtype: `CONDITIONING`
+    - Separates the negative conditioning parameter from the basic pipeline, offering it for individual utilization or analysis.
+    - Python dtype: `Any`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `ToIPAdapterPipe //Inspire,EditBasicPipe`

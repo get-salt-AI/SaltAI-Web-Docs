@@ -8,20 +8,20 @@ This node is designed to generate a sampler for the DPMPP_2M_SDE model, allowing
 ## Input types
 ### Required
 - **`solver_type`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the solver type to be used in the sampling process, offering options between 'midpoint' and 'heun'. This choice influences the numerical integration method applied during sampling.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 - **`eta`**
-    - Comfy dtype: `FLOAT`
     - Determines the step size in the numerical integration, affecting the granularity of the sampling process. A higher value indicates a larger step size.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`s_noise`**
-    - Comfy dtype: `FLOAT`
     - Controls the level of noise introduced during the sampling process, influencing the variability of the generated samples.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`noise_device`**
-    - Comfy dtype: `COMBO[STRING]`
     - Indicates the computational device ('gpu' or 'cpu') on which the noise generation process is executed, affecting performance and efficiency.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 ## Output types
 - **`sampler`**

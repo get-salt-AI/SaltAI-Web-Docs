@@ -8,61 +8,61 @@ This node specializes in applying facial identification enhancements to images u
 ## Input types
 ### Required
 - **`ipadapter`**
-    - Comfy dtype: `IPADAPTER`
     - The IPAdapter instance to be used for processing the image. It's crucial for defining the transformation and enhancement parameters specific to the image.
+    - Comfy dtype: `IPADAPTER`
     - Python dtype: `IPADAPTER`
 - **`clip_vision`**
-    - Comfy dtype: `CLIP_VISION`
     - A CLIP vision model instance used for enhancing the image processing with visual understanding capabilities.
+    - Comfy dtype: `CLIP_VISION`
     - Python dtype: `CLIP_VISION`
 - **`insightface`**
-    - Comfy dtype: `INSIGHTFACE`
     - An InsightFace model instance used for detecting and embedding faces within the image. Essential for facial identification tasks.
+    - Comfy dtype: `INSIGHTFACE`
     - Python dtype: `INSIGHTFACE`
 - **`image`**
-    - Comfy dtype: `IMAGE`
     - The image to be processed and enhanced with facial identification features.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `IMAGE`
 - **`model`**
-    - Comfy dtype: `MODEL`
     - The model used for applying the IPAdapter transformations and enhancements to the image.
+    - Comfy dtype: `MODEL`
     - Python dtype: `MODEL`
 - **`weight`**
-    - Comfy dtype: `FLOAT`
     - A float value representing the weight of the transformation effect on the image. It influences the intensity of the applied enhancements.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`noise`**
-    - Comfy dtype: `FLOAT`
     - A float value indicating the amount of noise to be added to the image. This can affect the visual quality and the effectiveness of facial identification.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`weight_type`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the type of weighting to be applied during the transformation. Options include 'original', 'linear', and 'channel penalty', each affecting the enhancement differently.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`start_at`**
-    - Comfy dtype: `FLOAT`
     - A float value indicating the starting point of the transformation effect. It determines the initial intensity of the applied enhancements.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end_at`**
-    - Comfy dtype: `FLOAT`
     - A float value indicating the ending point of the transformation effect. It determines the final intensity of the applied enhancements.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`faceid_v2`**
-    - Comfy dtype: `BOOLEAN`
     - A boolean indicating whether to use the version 2 of the facial identification enhancements. This can alter the processing and results significantly.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`weight_v2`**
-    - Comfy dtype: `FLOAT`
     - A float value representing the weight of the version 2 transformation effect on the image. It influences the intensity of the applied enhancements when faceid_v2 is true.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`unfold_batch`**
-    - Comfy dtype: `BOOLEAN`
     - A boolean indicating whether to unfold the batch during processing. This can affect the performance and results of the facial identification enhancements.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`attn_mask`**
-    - Comfy dtype: `MASK`
     - An optional mask to be applied during the transformation. It can direct the focus of the enhancements and affect the outcome.
+    - Comfy dtype: `MASK`
     - Python dtype: `MASK`
 ## Output types
 - **`model`**

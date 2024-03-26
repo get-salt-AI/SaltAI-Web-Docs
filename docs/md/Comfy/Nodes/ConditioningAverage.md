@@ -8,16 +8,16 @@ The ConditioningAverage node is designed to blend two sets of conditioning data,
 ## Input types
 ### Required
 - **`conditioning_to`**
-    - Comfy dtype: `CONDITIONING`
     - Represents the primary set of conditioning data to which the blending will be applied. It serves as the base for the weighted average operation.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 - **`conditioning_from`**
-    - Comfy dtype: `CONDITIONING`
     - Denotes the secondary set of conditioning data that will be blended into the primary set. This data influences the final output based on the specified strength.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 - **`conditioning_to_strength`**
-    - Comfy dtype: `FLOAT`
     - A scalar value that determines the strength of the blend between the primary and secondary conditioning data. It directly influences the balance of the weighted average.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`conditioning`**

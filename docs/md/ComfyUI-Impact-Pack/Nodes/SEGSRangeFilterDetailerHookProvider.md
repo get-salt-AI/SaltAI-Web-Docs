@@ -4,30 +4,30 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The SEGSRangeFilterDetailerHookProvider node is designed to create a detailer hook that filters segments based on a range criteria. It configures the filtering process by specifying a target attribute, a mode to determine if the filtering should include or exclude segments within the specified range, and the minimum and maximum values defining the range. This allows for dynamic segmentation based on attributes like area, width, height, or coordinates, enhancing the flexibility and precision of segment processing.
+The SEGSRangeFilterDetailerHookProvider node is designed to create and configure a detailer hook that filters segments based on a range criteria. It allows for the dynamic filtering of segments within specified minimum and maximum values, tailored to various segment properties such as area, width, height, and coordinates. This node is instrumental in refining segment selection for further processing or analysis, enhancing the precision and relevance of the output.
 ## Input types
 ### Required
 - **`target`**
-    - Specifies the attribute of the segments to be filtered, such as area, width, height, or coordinates. This parameter determines the basis for the range filtering, allowing for versatile segment selection based on geometric properties.
-    - Python dtype: `Tuple[str]`
-    - Comfy dtype: `['STRING']`
+    - Specifies the segment property to be filtered on, such as area, width, height, or coordinates. This parameter determines the basis for the range filtering operation.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `List[str]`
 - **`mode`**
-    - Determines the filtering mode, either including or excluding segments within the specified range. This boolean parameter enhances control over the filtering process, allowing for both inclusive and exclusive segment selection.
-    - Python dtype: `bool`
+    - Determines the filtering mode, either including segments within the specified range ('inside') or excluding them ('outside'). This affects how the range criteria are applied to the segment selection.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`min_value`**
-    - Defines the minimum value of the range for filtering. Segments with the specified attribute below this value can be included or excluded based on the mode, enabling precise lower-bound control.
-    - Python dtype: `int`
+    - Sets the minimum value of the range for the specified segment property. Segments with values below this threshold can be either included or excluded based on the mode.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`max_value`**
-    - Sets the maximum value of the range for filtering. This parameter allows for upper-bound specification, ensuring segments with the target attribute above this value can be selectively processed.
-    - Python dtype: `int`
+    - Defines the maximum value of the range for the specified segment property. Segments with values above this threshold can be either included or excluded based on the mode.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
 - **`detailer_hook`**
-    - Produces a detailer hook configured for range-based segment filtering. This output enables the integration of the filtering logic into the segment processing workflow, facilitating targeted segment manipulation.
-    - Python dtype: `hooks.SEGSRangeFilterDetailerHook`
     - Comfy dtype: `DETAILER_HOOK`
+    - Produces a configured detailer hook capable of filtering segments based on the specified range criteria. This hook can be applied to segment data to refine the selection process.
+    - Python dtype: `hooks.SEGSRangeFilterDetailerHook`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

@@ -4,23 +4,23 @@
 - Category: `Video Helper Suite 🎥🅥🅗🅢`
 - Output node: `False`
 
-The `VHS_LoadAudio` node is designed for loading audio files into the system. It supports a variety of audio formats and allows for seeking a specific start time within the audio file. This functionality is crucial for applications requiring precise audio manipulation or synchronization with other media types.
+The VHS_LoadAudio node is designed for loading audio files into the Video Helper Suite environment. It supports a variety of audio formats and allows for seeking a specific start time within the audio file, making it a versatile tool for audio processing and manipulation within video projects.
 ## Input types
 ### Required
 - **`audio_file`**
-    - Specifies the path to the audio file to be loaded. The node supports a range of audio formats, making it versatile for different use cases.
-    - Python dtype: `str`
+    - Specifies the path to the audio file to be loaded. The node supports a range of audio formats, making it flexible for use with various audio sources.
     - Comfy dtype: `STRING`
+    - Python dtype: `str`
 ### Optional
 - **`seek_seconds`**
-    - Determines the start time in seconds from which the audio will begin playing. This allows for precise control over the playback start time, useful in editing or synchronization tasks.
-    - Python dtype: `float`
+    - Determines the start time in seconds from which the audio should begin playing. This allows for precise control over the playback start time within the audio file.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 ## Output types
-- **`vhs_audio`**
-    - The loaded audio data, ready for further processing or playback. This output enables the node to be integrated into workflows requiring audio manipulation or analysis.
-    - Python dtype: `Callable[[], Any]`
+- **`audio`**
     - Comfy dtype: `VHS_AUDIO`
+    - The loaded audio data, ready for use within the Video Helper Suite for further processing or integration into video projects.
+    - Python dtype: `VHS_AUDIO`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

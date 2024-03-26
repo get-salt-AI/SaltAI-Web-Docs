@@ -4,22 +4,22 @@
 - Category: `ImpactPack/Detailer`
 - Output node: `False`
 
-This node provides a mechanism to schedule denoising operations in a detailer process, allowing for the dynamic adjustment of denoise levels throughout the cycle based on a predefined schedule.
+This node provides a mechanism to dynamically adjust denoising levels throughout the generation cycle based on a predefined schedule. It aims to enhance image detail and quality by fine-tuning denoise parameters at different stages of the image generation process.
 ## Input types
 ### Required
 - **`schedule_for_cycle`**
-    - Specifies the scheduling strategy for denoising operations. It determines how denoise levels are adjusted over time.
+    - Specifies the scheduling strategy for adjusting denoise levels throughout the generation cycle. It determines how denoise levels are modified over time to achieve optimal image quality.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `Tuple[str]`
-    - Comfy dtype: `['simple']`
 - **`target_denoise`**
-    - Defines the target denoise level to achieve by the end of the cycle. It influences the final quality of the detailer output.
-    - Python dtype: `float`
+    - The target denoise level to achieve by the end of the generation cycle. This parameter sets the goal for the dynamic adjustment of denoise levels, influencing the final image detail and quality.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 ## Output types
 - **`detailer_hook`**
-    - Produces a detailer hook configured to perform denoising operations according to the specified schedule and target denoise level.
-    - Python dtype: `SimpleDetailerDenoiseSchedulerHook`
     - Comfy dtype: `DETAILER_HOOK`
+    - Produces a detailer hook that is used to dynamically adjust denoise levels throughout the image generation cycle, based on the specified schedule and target denoise level.
+    - Python dtype: `SimpleDetailerDenoiseSchedulerHook`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

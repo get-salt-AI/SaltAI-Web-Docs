@@ -4,48 +4,48 @@
 - Category: `latent`
 - Output node: `False`
 
-The BLVAEEncode node is designed for encoding images into a latent representation using a Variational Autoencoder (VAE). It supports both standard and tiled encoding modes, allowing for flexibility in handling images of various sizes. Additionally, it provides functionality for storing or loading the encoded latent representations, which can be useful in workflows that require persistent state or caching of intermediate results.
+The BLVAEEncode node is designed for encoding images into a latent space representation using a Variational Autoencoder (VAE). It supports both standard and tiled encoding modes, and offers functionality for storing or loading the encoded latent representations. This node is essential for tasks that require manipulation or analysis of images in their latent form, such as image generation or modification.
 ## Input types
 ### Required
 - **`vae`**
-    - Specifies the Variational Autoencoder (VAE) model to be used for encoding. This parameter is crucial as it determines the encoding mechanism and the quality of the generated latent representation.
-    - Python dtype: `VAEModel`
+    - Specifies the Variational Autoencoder (VAE) model to be used for encoding the images into latent space. This parameter is crucial for determining the characteristics of the latent representation.
     - Comfy dtype: `VAE`
+    - Python dtype: `object`
 - **`tiled`**
-    - A boolean flag indicating whether tiled encoding should be used. Tiled encoding can be beneficial for large images, as it processes the image in smaller, manageable tiles.
-    - Python dtype: `bool`
+    - A boolean flag indicating whether the encoding should be performed in a tiled manner. Tiled encoding can be beneficial for handling large images by processing them in smaller, manageable tiles.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`tile_size`**
-    - Defines the size of the tiles used in tiled encoding. This parameter is relevant only when tiled encoding is enabled and affects the granularity of the encoding process.
-    - Python dtype: `int`
+    - Defines the size of the tiles (in pixels) to be used when tiled encoding is enabled. This parameter allows for flexibility in managing the granularity of the encoding process.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`store_or_load_latent`**
-    - A boolean flag that controls whether the encoded latent representation should be stored or loaded. This functionality is useful for caching purposes or when working with precomputed latents.
-    - Python dtype: `bool`
+    - A boolean flag that determines whether the encoded latent representation should be stored or loaded. This functionality is useful for workflows that require persistence of latent data.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`remove_latent_on_load`**
-    - Determines whether the latent representation should be removed from storage after loading. This can help manage storage space when caching latents.
-    - Python dtype: `bool`
+    - A boolean flag that indicates whether the latent representation should be removed from storage upon loading. This can help manage storage space efficiently.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`delete_workflow_latent`**
-    - A boolean flag that indicates whether the latent representation associated with a workflow should be deleted. This is useful for cleaning up resources and managing storage.
-    - Python dtype: `bool`
+    - A boolean flag that specifies whether the latent representation associated with a workflow should be deleted. This parameter is useful for cleaning up data that is no longer needed.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ### Optional
 - **`image`**
-    - The input image to be encoded into a latent representation. This parameter is optional and is only required if an image is to be encoded.
-    - Python dtype: `ImageType`
+    - The image to be encoded into latent space. This parameter is optional and allows for direct encoding of provided images.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`latent`**
-    - The encoded latent representation of the input image. This output is crucial for subsequent processing steps that require a latent representation, such as decoding or manipulation.
-    - Python dtype: `dict`
     - Comfy dtype: `LATENT`
+    - The encoded latent representation of the input image. This output is essential for subsequent manipulation or analysis in the latent space.
+    - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
 
-The BLVAEEncode node is primarily utilized for transforming images into a compact latent representation using a Variational Autoencoder (VAE), suitable for both standard and tiled encoding to accommodate images of varying sizes. It is often used in scenarios requiring the storage or retrieval of these latent representations for efficient processing or caching in AI workflows.
+
 ## Source code
 ```python
 class BLVAEEncode:

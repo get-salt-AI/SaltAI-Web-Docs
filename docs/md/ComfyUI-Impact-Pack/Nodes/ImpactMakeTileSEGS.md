@@ -4,53 +4,53 @@
 - Category: `ImpactPack/__for_testing`
 - Output node: `False`
 
-The `ImpactMakeTileSEGS` node is designed to process segmentation masks (SEGS) by dividing them into smaller, overlapping tiles based on specified bounding box sizes and overlap parameters. It adjusts overlap and bounding box sizes if necessary, handles irregularities in masks, and can filter in or out specific segments. This node is crucial for handling large images or masks by breaking them down into manageable pieces for further processing or analysis.
+The ImpactMakeTileSEGS node is designed to process segmentation data (SEGS) by generating tiled segments based on specified bounding box sizes and overlap criteria. It adjusts for irregularities in mask shapes and ensures that the tiles cover the entire image area efficiently, taking into account optional filters to include or exclude certain segments.
 ## Input types
 ### Required
 - **`images`**
-    - The images to be processed and divided into tiles. This parameter is crucial for defining the source material that will undergo the tiling operation.
-    - Python dtype: `List[torch.Tensor]`
+    - The 'images' parameter represents the input images over which the segmentation and tiling process will be applied. It is crucial for determining the dimensions and the area to be covered by the generated tiles.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `torch.Tensor`
 - **`bbox_size`**
-    - Specifies the size of the bounding box for tiling. It determines how large each tile will be, playing a crucial role in dividing the image or mask into smaller segments for detailed analysis or processing.
-    - Python dtype: `int`
+    - Specifies the size of the bounding box for each tile. It is a key factor in determining how the image is divided into tiles, affecting the granularity of the segmentation.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`crop_factor`**
-    - Determines the factor by which the bounding box is enlarged or reduced during the cropping process. This affects the size of the tiles and their coverage area.
-    - Python dtype: `float`
+    - Determines the factor by which the bounding box is expanded or contracted during the cropping process. This parameter influences the size of the area around detected segments that is included in the output.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`min_overlap`**
-    - Defines the minimum overlap between tiles. This parameter ensures that there is sufficient overlap between adjacent tiles to maintain continuity and avoid missing or duplicating areas during processing.
-    - Python dtype: `int`
+    - Defines the minimum overlap between adjacent tiles. This parameter ensures that there is sufficient coverage and continuity between tiles, especially in areas of interest.
     - Comfy dtype: `INT`
+    - Python dtype: `float`
 - **`filter_segs_dilation`**
-    - Specifies the dilation amount for the segments to be filtered out. This parameter helps in adjusting the size of the exclusion zones around the specified segments, ensuring more precise control over what is excluded from the tiles.
-    - Python dtype: `int`
+    - Specifies the amount by which the segmentation masks are dilated or eroded. This parameter can adjust the boundaries of segments to include more or less surrounding area.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`mask_irregularity`**
-    - Controls the irregularity of the mask edges. A higher value leads to more irregular, non-uniform edges, which can be useful for certain types of analysis or when trying to simulate more naturalistic segmentation boundaries.
-    - Python dtype: `int`
-    - Comfy dtype: `INT`
+    - Controls the irregularity of the mask shapes within the tiles. A higher value leads to more irregular shapes, which can be useful for certain types of segmentation tasks.
+    - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`irregular_mask_mode`**
-    - Determines the mode for generating irregular masks, offering options between reusing masks for speed, quality, or generating all masks randomly for each tile. This affects the computational efficiency and quality of the generated tiles.
+    - Determines the mode of generating irregular masks, offering options between fast generation with lower quality or slower generation with higher quality.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ### Optional
 - **`filter_in_segs_opt`**
-    - Optional parameter to specify segments that should be included in the tiling process. This allows for focusing the analysis or processing on specific areas or features within the image or mask.
-    - Python dtype: `List[SEG]`
+    - An optional filter to include only certain segments in the tiling process. This allows for focusing on specific areas or features within the image.
     - Comfy dtype: `SEGS`
+    - Python dtype: `Optional[torch.Tensor]`
 - **`filter_out_segs_opt`**
-    - Optional parameter to specify segments that should be excluded from the tiling process. This allows for the removal of unwanted areas or features from the processed tiles.
-    - Python dtype: `List[SEG]`
+    - An optional filter to exclude certain segments from the tiling process. This can be used to remove unwanted areas or features from the final tiled segments.
     - Comfy dtype: `SEGS`
+    - Python dtype: `Optional[torch.Tensor]`
 ## Output types
 - **`segs`**
-    - The output is a collection of segmentation masks (SEGS) generated from the original image or mask. Each SEGS represents a smaller segment of the original, processed according to the specified parameters.
-    - Python dtype: `List[torch.Tensor]`
     - Comfy dtype: `SEGS`
+    - Returns the segmentation data (SEGS) of the generated tiled segments. This output facilitates further processing or analysis of the tiled segments.
+    - Python dtype: `Tuple[torch.Tensor, List[SEG]]`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: `SEGSPreview,ImpactSEGSConcat`
 
 

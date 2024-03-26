@@ -8,24 +8,24 @@ This node specializes in enhancing the resolution of images through a 4x upscale
 ## Input types
 ### Required
 - **`images`**
-    - Comfy dtype: `IMAGE`
     - The input images to be upscaled. This parameter is crucial as it directly influences the quality and resolution of the output images.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`positive`**
-    - Comfy dtype: `CONDITIONING`
     - Positive conditioning elements that guide the upscale process towards desired attributes or features in the output images.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `Dict[str, Any]`
 - **`negative`**
-    - Comfy dtype: `CONDITIONING`
     - Negative conditioning elements that the upscale process should avoid, helping to steer the output away from undesired attributes or features.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `Dict[str, Any]`
 - **`scale_ratio`**
-    - Comfy dtype: `FLOAT`
     - Determines the factor by which the image resolution is increased. A higher scale ratio results in a larger output image, allowing for greater detail and clarity.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`noise_augmentation`**
-    - Comfy dtype: `FLOAT`
     - Controls the level of noise augmentation applied during the upscale process. This can be used to introduce variability and improve the robustness of the output images.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`positive`**

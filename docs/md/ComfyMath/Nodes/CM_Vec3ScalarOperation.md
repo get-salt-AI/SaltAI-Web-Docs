@@ -8,16 +8,16 @@ Performs scalar operations on 3-dimensional vectors, allowing for mathematical m
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the scalar operation to be performed on the vector, such as multiplication or division, influencing the resulting vector's magnitude or direction.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`a`**
-    - Comfy dtype: `VEC3`
     - The 3-dimensional vector to be operated on, serving as the primary operand for the scalar operation.
+    - Comfy dtype: `VEC3`
     - Python dtype: `Vec3`
 - **`b`**
-    - Comfy dtype: `FLOAT`
     - The scalar value to be used in the operation, affecting the vector's magnitude or direction based on the specified operation.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`vec3`**

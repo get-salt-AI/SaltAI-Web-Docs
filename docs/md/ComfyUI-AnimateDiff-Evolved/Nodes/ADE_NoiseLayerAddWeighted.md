@@ -8,41 +8,41 @@ This node specializes in adding a weighted noise layer to a given noise structur
 ## Input types
 ### Required
 - **`batch_offset`**
-    - Comfy dtype: `INT`
     - Specifies the offset for batch processing, affecting how noise is applied across different batches.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`noise_type`**
-    - Comfy dtype: `COMBO[STRING]`
     - Defines the type of noise to be added, influencing the characteristics of the noise applied.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`seed_gen_override`**
-    - Comfy dtype: `COMBO[STRING]`
     - Allows for overriding the default seed generation mechanism, enabling custom seed generation strategies.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`seed_offset`**
-    - Comfy dtype: `INT`
     - Determines the offset applied to the seed value, providing a way to adjust the randomness of the noise.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`noise_weight`**
-    - Comfy dtype: `FLOAT`
     - Controls the weight of the new noise being added, affecting the overall impact of the noise on the system.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`balance_multiplier`**
-    - Comfy dtype: `FLOAT`
     - Adjusts the balance between new and existing noise, allowing for fine-tuned control over the noise layer's influence.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`prev_noise_layers`**
-    - Comfy dtype: `NOISE_LAYERS`
     - Optional previous noise layers that can be modified or extended with the new weighted noise layer.
+    - Comfy dtype: `NOISE_LAYERS`
     - Python dtype: `NoiseLayerGroup`
 - **`mask_optional`**
-    - Comfy dtype: `MASK`
     - An optional mask that can be applied to selectively add noise to certain areas.
+    - Comfy dtype: `MASK`
     - Python dtype: `Tensor`
 - **`seed_override`**
-    - Comfy dtype: `INT`
     - Directly overrides the seed value used for noise generation, offering precise control over the noise's randomness.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`noise_layers`**

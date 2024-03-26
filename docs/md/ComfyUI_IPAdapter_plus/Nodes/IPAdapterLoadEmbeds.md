@@ -8,8 +8,8 @@ This node is designed for loading pre-saved IPAdapter embeddings from a specifie
 ## Input types
 ### Required
 - **`embeds`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the file names of the embeddings to be loaded. This allows for selective loading of embeddings based on the user's requirements.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 ## Output types
 - **`embeds`**

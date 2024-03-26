@@ -8,12 +8,12 @@ This node performs unary operations on numbers, allowing for the manipulation of
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the unary operation to be performed on the input number. The choice of operation affects the outcome of the node's computation.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`a`**
-    - Comfy dtype: `NUMBER`
     - The numerical input on which the unary operation will be performed. This input is central to the node's functionality.
+    - Comfy dtype: `NUMBER`
     - Python dtype: `number`
 ## Output types
 - **`number`**

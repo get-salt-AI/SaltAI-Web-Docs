@@ -8,40 +8,40 @@ This node is designed to encode text inputs using the CLIP model specifically ta
 ## Input types
 ### Required
 - **`width`**
-    - Comfy dtype: `INT`
     - Specifies the width of the image in pixels. It determines the dimensions of the output image generated or manipulated.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Comfy dtype: `INT`
     - Specifies the height of the image in pixels. It determines the dimensions of the output image generated or manipulated.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`crop_w`**
-    - Comfy dtype: `INT`
     - Defines the width of the crop area in pixels. This parameter is used to crop the image to a specific width before processing.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`crop_h`**
-    - Comfy dtype: `INT`
     - Defines the height of the crop area in pixels. This parameter is used to crop the image to a specific height before processing.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`target_width`**
-    - Comfy dtype: `INT`
     - The target width for the output image after processing. It allows for resizing the image to a desired width.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`target_height`**
-    - Comfy dtype: `INT`
     - The target height for the output image after processing. It allows for resizing the image to a desired height.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`text_g`**
-    - Comfy dtype: `STRING`
     - The global textual description to be encoded. This input is crucial for generating the corresponding visual representations and understanding the content described.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`clip`**
-    - Comfy dtype: `CLIP`
     - The CLIP model instance used for encoding the text. It plays a vital role in processing the text input and converting it into a format suitable for image generation or manipulation tasks.
+    - Comfy dtype: `CLIP`
     - Python dtype: `torch.nn.Module`
 - **`text_l`**
-    - Comfy dtype: `STRING`
     - The local textual description to be encoded. This input provides additional detail or context to the global description, enhancing the specificity of the generated or manipulated image.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`conditioning`**

@@ -8,24 +8,24 @@ The GroundingDinoSAMSegment node is designed to leverage the capabilities of the
 ## Input types
 ### Required
 - **`sam_model`**
-    - Comfy dtype: `SAM_MODEL`
     - Specifies the SAM model to be used in conjunction with the GroundingDINO model for the segmentation task. This model assists in refining the segmentation results obtained from GroundingDINO.
+    - Comfy dtype: `SAM_MODEL`
     - Python dtype: `torch.nn.Module`
 - **`grounding_dino_model`**
-    - Comfy dtype: `GROUNDING_DINO_MODEL`
     - Specifies the GroundingDINO model to be used for initial object detection within the image. This model identifies potential objects of interest based on the provided prompt.
+    - Comfy dtype: `GROUNDING_DINO_MODEL`
     - Python dtype: `torch.nn.Module`
 - **`image`**
-    - Comfy dtype: `IMAGE`
     - The input image to be processed. The GroundingDINO model first identifies objects within this image, which are then segmented by the SAM model.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`prompt`**
-    - Comfy dtype: `STRING`
     - A text prompt that guides the GroundingDINO model in identifying objects of interest within the image. This prompt helps focus the model's attention on relevant objects.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`threshold`**
-    - Comfy dtype: `FLOAT`
     - A threshold value that determines the sensitivity of object detection by the GroundingDINO model. Objects with confidence scores above this threshold are considered for segmentation.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`image`**

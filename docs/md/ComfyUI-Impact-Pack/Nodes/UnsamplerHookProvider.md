@@ -4,58 +4,58 @@
 - Category: `ImpactPack/Upscale`
 - Output node: `False`
 
-The UnsamplerHookProvider is designed to create an UnsamplerHook, which is a custom hook for modifying the sampling process. It adjusts the sampling steps dynamically based on the current step in relation to the total number of steps, allowing for a more nuanced control over the sampling process. This is particularly useful for applications requiring precise manipulation of the sampling behavior over time.
+The UnsamplerHookProvider node is designed to create and manage UnsamplerHook instances, which are specialized hooks for adjusting the sampling process based on dynamic step calculations. This node plays a crucial role in customizing the sampling behavior, particularly in modifying the end step of the sampling process dynamically, to achieve desired effects or optimizations in image generation tasks.
 ## Input types
 ### Required
 - **`model`**
-    - The model parameter represents the neural network model that will be used for the sampling process. It is crucial as it defines the architecture and parameters that will be utilized during sampling.
-    - Python dtype: `torch.nn.Module`
+    - The model parameter represents the generative model to be used for sampling. It is crucial for defining the behavior and capabilities of the UnsamplerHook, as the hook will operate based on the characteristics and functionalities of this model.
     - Comfy dtype: `MODEL`
+    - Python dtype: `torch.nn.Module`
 - **`steps`**
-    - Specifies the total number of steps in the sampling process. It is important for determining the progression and completion of the sampling.
-    - Python dtype: `int`
+    - Specifies the total number of steps to be used in the sampling process. This parameter is essential for determining the duration and granularity of the sampling operation.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`start_end_at_step`**
-    - Indicates the starting step from which the end step adjustment begins. It plays a key role in determining when the dynamic adjustment of the sampling steps should start.
-    - Python dtype: `int`
+    - Defines the initial step at which the end step adjustment begins. This parameter is key to controlling when the dynamic modification of the sampling process starts.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`end_end_at_step`**
-    - Specifies the final step at which the dynamic adjustment of the sampling steps ends. This parameter is essential for defining the range of the sampling process adjustment.
-    - Python dtype: `int`
+    - Indicates the final step at which the end step adjustment concludes. This parameter helps in fine-tuning the end of the dynamic sampling modification period.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`cfg`**
-    - Configuration parameter that influences the behavior of the sampling process. It is a critical setting that can affect the outcome of the sampling.
-    - Python dtype: `float`
+    - The configuration setting for the sampling process. It influences the behavior of the UnsamplerHook by providing specific configuration values.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`sampler_name`**
-    - The name of the sampler to be used. This parameter determines which sampling algorithm will be applied during the process.
+    - The name of the sampler to be used. This parameter identifies which sampling algorithm the UnsamplerHook will apply during the sampling process.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`scheduler`**
-    - Defines the scheduling algorithm for the sampling process. It is important for controlling how the sampling steps are adjusted over time.
+    - Specifies the scheduler to be used in conjunction with the sampler. The scheduler manages the progression of steps during the sampling process.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`normalize`**
-    - A boolean parameter that indicates whether the samples should be normalized. This affects the preprocessing of the data before sampling.
+    - A boolean flag indicating whether to normalize the samples during the sampling process. Normalization can affect the quality and characteristics of the generated images.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `bool`
-    - Comfy dtype: `BOOLEAN`
 - **`positive`**
-    - Specifies the positive conditioning for the sampling process. It is used to guide the sampling towards desired outcomes.
-    - Python dtype: `str`
+    - A parameter that influences the sampling process by adjusting the positive aspects of the generated samples. It's part of the customization options provided by the UnsamplerHook.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `float`
 - **`negative`**
-    - Specifies the negative conditioning for the sampling process. It is used to steer the sampling away from undesired outcomes.
-    - Python dtype: `str`
+    - A parameter that influences the sampling process by adjusting the negative aspects of the generated samples. It's part of the customization options provided by the UnsamplerHook.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `float`
 - **`schedule_for_iteration`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `['simple'...]`
+    - Specifies the scheduling strategy for iteration within the sampling process. This parameter determines how the UnsamplerHook dynamically adjusts the sampling process.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
 ## Output types
 - **`pk_hook`**
-    - Returns an instance of UnsamplerHook, which is used to modify the sampling process according to the specified parameters.
-    - Python dtype: `UnsamplerHook`
     - Comfy dtype: `PK_HOOK`
+    - Returns an instance of UnsamplerHook, which is a specialized hook for dynamically adjusting the sampling process based on the provided parameters.
+    - Python dtype: `UnsamplerHook`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

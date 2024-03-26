@@ -4,24 +4,24 @@
 - Category: `ImpactPack/Operation`
 - Output node: `False`
 
-The `ImpactSegsAndMaskForEach` node applies a mask to each segmentation (seg) in a collection of segmentations. It operates by performing a bitwise AND operation between the mask and each segmentation's cropped mask, effectively filtering the segmentations based on the mask.
+This node applies a mask to each segment within a collection of segments, performing a bitwise AND operation between the mask and the segment's cropped mask. It's designed to process each segment individually, allowing for precise control over how masks are applied to segmented parts of an image.
 ## Input types
 ### Required
 - **`segs`**
-    - The collection of segmentations to which the masks will be applied. Each segmentation's cropped mask will be bitwise ANDed with the corresponding mask.
-    - Python dtype: `Tuple[torch.Size, List[SEG]]`
+    - The collection of segments to which the masks will be applied. Each segment represents a part of an image that has been isolated based on certain criteria.
     - Comfy dtype: `SEGS`
+    - Python dtype: `Tuple[torch.Tensor, List[SEG]]`
 - **`masks`**
-    - A collection of masks to apply to the segmentations. Each mask is applied to the corresponding segmentation in the `segs` collection.
-    - Python dtype: `List[torch.Tensor]`
+    - A collection of masks to be applied to each corresponding segment. Each mask defines areas to be kept or removed in the segment's cropped mask through a bitwise AND operation.
     - Comfy dtype: `MASK`
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`segs`**
-    - The modified collection of segmentations after applying the masks. Each segmentation's mask is updated to reflect the bitwise AND operation with the corresponding mask.
-    - Python dtype: `Tuple[torch.Size, List[SEG]]`
     - Comfy dtype: `SEGS`
+    - The modified collection of segments after applying the masks, where each segment's cropped mask has been updated based on the bitwise AND operation with the corresponding mask.
+    - Python dtype: `Tuple[torch.Tensor, List[SEG]]`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 

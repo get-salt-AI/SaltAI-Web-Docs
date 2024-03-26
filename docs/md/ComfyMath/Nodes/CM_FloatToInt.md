@@ -8,8 +8,8 @@ The CM_FloatToInt node is designed for mathematical conversion operations, speci
 ## Input types
 ### Required
 - **`a`**
-    - Comfy dtype: `FLOAT`
     - The floating-point number to be converted into an integer. This parameter is crucial as it directly influences the outcome of the conversion process.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`int`**

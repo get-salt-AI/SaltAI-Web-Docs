@@ -4,18 +4,18 @@
 - Category: `ImpactPack/Logic`
 - Output node: `False`
 
-The `ImpactInt` node is designed to pass through integer values. It serves as a simple utility within the ImpactPack Logic category, allowing for the direct transmission of an integer value without modification.
+The ImpactInt node is designed to process integer values within a specified range, allowing for the manipulation and validation of integer inputs in a workflow.
 ## Input types
 ### Required
 - **`value`**
-    - This parameter represents the integer value to be passed through the node. It is essential for the node's operation as it determines the output of the node.
-    - Python dtype: `int`
+    - Specifies the integer value to be processed. This parameter allows for the validation and manipulation of the input value within the defined range.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
 - **`int`**
-    - The output is the same integer value that was input, demonstrating the node's pass-through functionality.
-    - Python dtype: `int`
     - Comfy dtype: `INT`
+    - Returns the processed integer value, ensuring it adheres to the specified constraints.
+    - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `ImpactSwitch`

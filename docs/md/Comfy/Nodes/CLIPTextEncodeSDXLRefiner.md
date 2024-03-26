@@ -8,24 +8,24 @@ This node specializes in refining the encoding of text inputs using CLIP models,
 ## Input types
 ### Required
 - **`ascore`**
-    - Comfy dtype: `FLOAT`
     - The aesthetic score parameter influences the conditioning output by providing a measure of aesthetic quality.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`width`**
-    - Comfy dtype: `INT`
     - Specifies the width of the output conditioning, affecting the dimensions of the generated content.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Comfy dtype: `INT`
     - Determines the height of the output conditioning, influencing the dimensions of the generated content.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`text`**
-    - Comfy dtype: `STRING`
     - The text input to be encoded, serving as the primary content descriptor for conditioning.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`clip`**
-    - Comfy dtype: `CLIP`
     - A CLIP model instance used for text tokenization and encoding, central to generating the conditioning.
+    - Comfy dtype: `CLIP`
     - Python dtype: `object`
 ## Output types
 - **`conditioning`**

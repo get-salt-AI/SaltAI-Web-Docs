@@ -8,8 +8,8 @@ The FlipSigmas node is designed to manipulate the sequence of sigma values used 
 ## Input types
 ### Required
 - **`sigmas`**
-    - Comfy dtype: `SIGMAS`
     - The 'sigmas' parameter represents the sequence of sigma values to be flipped. This sequence is crucial for controlling the noise levels applied during the diffusion process, and flipping it is essential for the reverse generation process.
+    - Comfy dtype: `SIGMAS`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`sigmas`**

@@ -8,12 +8,12 @@ The DiffControlNetLoader node is designed for loading differential control netwo
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - The model parameter specifies the base model to which the differential control net will be applied. This allows for the customization of the model's behavior based on the control net's specifications.
+    - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`control_net_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - The control_net_name parameter identifies the specific differential control net to be loaded and applied to the base model. This enables the selection of the appropriate control net for the desired model behavior modification.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`control_net`**

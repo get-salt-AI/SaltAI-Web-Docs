@@ -8,21 +8,21 @@ This node is designed to dynamically adjust the scale of masks based on specifie
 ## Input types
 ### Required
 - **`min_float_val`**
-    - Comfy dtype: `FLOAT`
     - Specifies the minimum float value for scaling the mask. It sets the lower bound for the scale adjustment, ensuring that the mask's scale does not fall below this value.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`max_float_val`**
-    - Comfy dtype: `FLOAT`
     - Defines the maximum float value for scaling the mask. This value sets the upper limit for the scale adjustment, ensuring that the mask's scale does not exceed this threshold.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`mask`**
-    - Comfy dtype: `MASK`
     - The mask to be scaled. This input is crucial for determining the base mask that will undergo scaling adjustments based on the specified minimum and maximum float values.
+    - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ### Optional
 - **`scaling`**
-    - Comfy dtype: `COMBO[STRING]`
     - An optional parameter that specifies the scaling strategy to be applied. It can influence how the mask is scaled between the minimum and maximum float values, offering additional control over the scaling process.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`multival`**

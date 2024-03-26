@@ -8,8 +8,8 @@ This node is designed for converting integer values to a more general number for
 ## Input types
 ### Required
 - **`a`**
-    - Comfy dtype: `INT`
     - The integer value to be converted into a general number format. This conversion enables seamless integration and operation with other numeric types.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`number`**

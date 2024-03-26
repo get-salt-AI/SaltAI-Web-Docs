@@ -8,8 +8,8 @@ The node is designed to decompose a four-dimensional vector into its individual 
 ## Input types
 ### Required
 - **`a`**
-    - Comfy dtype: `VEC4`
     - This parameter represents the four-dimensional vector to be decomposed. It is crucial for the operation as it provides the vector whose components are to be extracted.
+    - Comfy dtype: `VEC4`
     - Python dtype: `Vec4`
 ## Output types
 - **`float`**

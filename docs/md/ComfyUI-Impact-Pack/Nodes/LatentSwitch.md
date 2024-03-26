@@ -4,35 +4,35 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The `LatentSwitch` node selects one of the provided latent inputs based on the specified index. It is primarily used for dynamically choosing between different latent representations.
+The LatentSwitch node is designed to dynamically select between multiple latent inputs based on a specified index. It facilitates conditional processing of latent data within a pipeline, allowing for flexible manipulation and routing of latent information.
 ## Input types
 ### Required
 - **`select`**
-    - Specifies the index of the latent input to be selected. It plays a crucial role in determining which latent representation is used for further processing.
-    - Python dtype: `int`
+    - Specifies the index of the latent input to be selected for output. This allows for dynamic selection between multiple latent inputs, enhancing the node's flexibility in processing.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`sel_mode`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `unknown`
 ### Optional
 - **`input1`**
-    - unknown
-    - Python dtype: `unknown`
+    - Represents the first latent input option. This input is selected by default if the specified index is invalid, ensuring a fallback latent data is always available.
     - Comfy dtype: `*`
+    - Python dtype: `torch.Tensor`
 ## Output types
-- **`*`**
-    - unknown
-    - Python dtype: `unknown`
+- **`selected_value`**
     - Comfy dtype: `*`
-- **`string`**
-    - unknown
-    - Python dtype: `unknown`
+    - Outputs the selected latent input based on the specified index. This enables dynamic routing and manipulation of latent data within a pipeline.
+    - Python dtype: `torch.Tensor`
+- **`selected_label`**
     - Comfy dtype: `STRING`
-- **`int`**
-    - unknown
-    - Python dtype: `unknown`
+    - Provides the label of the selected latent input, facilitating identification and tracking within a pipeline.
+    - Python dtype: `str`
+- **`selected_index`**
     - Comfy dtype: `INT`
+    - Indicates the index of the selected latent input, offering insight into the selection process.
+    - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

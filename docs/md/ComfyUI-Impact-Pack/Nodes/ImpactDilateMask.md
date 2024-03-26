@@ -4,22 +4,22 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The `ImpactDilateMask` node applies dilation or erosion to a given mask based on the dilation factor. If the dilation factor is positive, it dilates the mask, increasing the area of the foreground regions. If the factor is negative, it performs erosion, reducing the foreground areas. This operation is useful for adjusting the boundaries of mask regions in image processing tasks.
+The ImpactDilateMask node is designed to modify the spatial dimensions of a given mask by applying dilation or erosion. This process adjusts the mask's boundaries, either expanding or contracting them based on the specified dilation factor, thereby impacting the mask's coverage area.
 ## Input types
 ### Required
 - **`mask`**
-    - The input mask to be dilated or eroded. This mask represents the areas of interest in an image, and modifying its boundaries can be crucial for subsequent image analysis or processing steps.
-    - Python dtype: `torch.Tensor`
+    - The 'mask' parameter represents the input mask to be dilated or eroded. It is crucial for defining the area to be modified.
     - Comfy dtype: `MASK`
+    - Python dtype: `torch.Tensor`
 - **`dilation`**
-    - The factor by which the mask is dilated or eroded. A positive value causes dilation, expanding the mask areas, while a negative value causes erosion, shrinking them. This allows for flexible adjustments to the mask's boundaries.
-    - Python dtype: `int`
+    - The 'dilation' parameter specifies the degree of dilation or erosion to apply to the mask. Positive values cause dilation (expansion), while negative values lead to erosion (contraction).
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
 - **`mask`**
-    - The modified mask after applying dilation or erosion. This output is crucial for further processing or analysis where the precise definition of object boundaries in the mask is important.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - The output is a modified mask with adjusted boundaries, either dilated or eroded based on the input parameters.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `Mask Threshold Region`

@@ -8,40 +8,40 @@ The SamplerCustom node is designed to provide a flexible and customizable sampli
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - The 'model' input type specifies the model to be used for sampling, playing a crucial role in determining the sampling behavior and output.
+    - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`add_noise`**
-    - Comfy dtype: `BOOLEAN`
     - The 'add_noise' input type allows users to specify whether noise should be added to the sampling process, influencing the diversity and characteristics of the generated samples.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`noise_seed`**
-    - Comfy dtype: `INT`
     - The 'noise_seed' input type provides a seed for the noise generation, ensuring reproducibility and consistency in the sampling process when adding noise.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - Comfy dtype: `FLOAT`
     - The 'cfg' input type sets the configuration for the sampling process, allowing for fine-tuning of the sampling parameters and behavior.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`positive`**
-    - Comfy dtype: `CONDITIONING`
     - The 'positive' input type represents positive conditioning information, guiding the sampling process towards generating samples that align with specified positive attributes.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `dict`
 - **`negative`**
-    - Comfy dtype: `CONDITIONING`
     - The 'negative' input type represents negative conditioning information, steering the sampling process away from generating samples that exhibit specified negative attributes.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `dict`
 - **`sampler`**
-    - Comfy dtype: `SAMPLER`
     - The 'sampler' input type selects the specific sampling strategy to be employed, directly impacting the nature and quality of the generated samples.
+    - Comfy dtype: `SAMPLER`
     - Python dtype: `str`
 - **`sigmas`**
-    - Comfy dtype: `SIGMAS`
     - The 'sigmas' input type defines the noise levels to be used in the sampling process, affecting the exploration of the sample space and the diversity of the output.
+    - Comfy dtype: `SIGMAS`
     - Python dtype: `torch.Tensor`
 - **`latent_image`**
-    - Comfy dtype: `LATENT`
     - The 'latent_image' input type provides an initial latent image for the sampling process, serving as a starting point for sample generation.
+    - Comfy dtype: `LATENT`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`output`**

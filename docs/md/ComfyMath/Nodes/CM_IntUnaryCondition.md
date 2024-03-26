@@ -8,12 +8,12 @@ This node performs unary operations on integers based on a specified operation. 
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the unary operation to be performed on the integer. This operation determines how the integer is evaluated or transformed, impacting the node's output.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`a`**
-    - Comfy dtype: `INT`
     - The integer value to be operated on. This is the primary input for the unary operation, which will be evaluated or transformed according to the specified operation.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`bool`**

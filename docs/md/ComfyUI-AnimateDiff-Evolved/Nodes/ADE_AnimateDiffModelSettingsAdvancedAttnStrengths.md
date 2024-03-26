@@ -8,69 +8,69 @@ This node is designed to configure advanced attention strengths within the Anima
 ## Input types
 ### Required
 - **`pe_strength`**
-    - Comfy dtype: `FLOAT`
     - Defines the strength of positional encoding adjustments, influencing the overall animation effect by modifying how position information is factored into the animation.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`attn_strength`**
-    - Comfy dtype: `FLOAT`
     - Sets the base strength for attention mechanisms, affecting how strongly the model's attention layers contribute to the animation process.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`attn_q_strength`**
-    - Comfy dtype: `FLOAT`
     - Adjusts the strength specifically for the query component of the attention mechanism, offering nuanced control over how query vectors influence the animation.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`attn_k_strength`**
-    - Comfy dtype: `FLOAT`
     - Modifies the strength for the key component of the attention mechanism, affecting how key vectors are weighted in the animation process.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`attn_v_strength`**
-    - Comfy dtype: `FLOAT`
     - Alters the strength for the value component of the attention mechanism, impacting how value vectors contribute to the animation.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`attn_out_weight_strength`**
-    - Comfy dtype: `FLOAT`
     - Controls the strength of the output weights in the attention mechanism, fine-tuning the output layer's influence on the animation.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`attn_out_bias_strength`**
-    - Comfy dtype: `FLOAT`
     - Adjusts the strength of the output bias in the attention mechanism, allowing for detailed control over the bias's effect on the animation.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`other_strength`**
-    - Comfy dtype: `FLOAT`
     - Adjusts the strength of other unspecified model components, offering a way to fine-tune parts of the model not directly related to positional encoding or attention.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`motion_pe_stretch`**
-    - Comfy dtype: `INT`
     - Specifies the extent to which positional encoding is stretched, impacting the animation's motion characteristics.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cap_initial_pe_length`**
-    - Comfy dtype: `INT`
     - Caps the initial length of positional encoding, potentially limiting the range of motion in the animation.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`interpolate_pe_to_length`**
-    - Comfy dtype: `INT`
     - Determines the target length for positional encoding interpolation, affecting the smoothness and range of the animation's motion.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`initial_pe_idx_offset`**
-    - Comfy dtype: `INT`
     - Offsets the starting index for positional encoding, allowing for adjustments in the animation's starting position.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`final_pe_idx_offset`**
-    - Comfy dtype: `INT`
     - Offsets the ending index for positional encoding, enabling modifications to the animation's ending position.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`mask_motion_scale`**
-    - Comfy dtype: `MASK`
     - Applies a mask to scale the motion, providing a method to selectively enhance or reduce motion in specific areas of the animation.
+    - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`min_motion_scale`**
-    - Comfy dtype: `FLOAT`
     - Sets the minimum scale for motion, ensuring that the animation's motion does not fall below a certain threshold.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`max_motion_scale`**
-    - Comfy dtype: `FLOAT`
     - Defines the maximum scale for motion, capping the intensity of the animation's motion to prevent it from exceeding a desired level.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`ad_settings`**

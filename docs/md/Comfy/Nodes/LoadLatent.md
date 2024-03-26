@@ -8,8 +8,8 @@ The LoadLatent node is designed for loading latent representations from files wi
 ## Input types
 ### Required
 - **`latent`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the name of the latent file to be loaded. This file should be located in a predefined input directory and have a '.latent' extension.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`latent`**

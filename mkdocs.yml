@@ -207,6 +207,30 @@ nav:
                   - CM_Vec4ToScalarUnaryOperation: md/ComfyMath/Nodes/CM_Vec4ToScalarUnaryOperation.md
                   - CM_Vec4UnaryCondition: md/ComfyMath/Nodes/CM_Vec4UnaryCondition.md
                   - CM_Vec4UnaryOperation: md/ComfyMath/Nodes/CM_Vec4UnaryOperation.md
+          - ComfyUI-Advanced-ControlNet:
+              - Home: md/ComfyUI-Advanced-ControlNet/index.md
+              - Nodes:
+                  - ACN_AdvancedControlNetApply: md/ComfyUI-Advanced-ControlNet/Nodes/ACN_AdvancedControlNetApply.md
+                  - ACN_DefaultUniversalWeights: md/ComfyUI-Advanced-ControlNet/Nodes/ACN_DefaultUniversalWeights.md
+                  - ACN_SparseCtrlIndexMethodNode: md/ComfyUI-Advanced-ControlNet/Nodes/ACN_SparseCtrlIndexMethodNode.md
+                  - ACN_SparseCtrlLoaderAdvanced: md/ComfyUI-Advanced-ControlNet/Nodes/ACN_SparseCtrlLoaderAdvanced.md
+                  - ACN_SparseCtrlMergedLoaderAdvanced: md/ComfyUI-Advanced-ControlNet/Nodes/ACN_SparseCtrlMergedLoaderAdvanced.md
+                  - ACN_SparseCtrlRGBPreprocessor: md/ComfyUI-Advanced-ControlNet/Nodes/ACN_SparseCtrlRGBPreprocessor.md
+                  - ACN_SparseCtrlSpreadMethodNode: md/ComfyUI-Advanced-ControlNet/Nodes/ACN_SparseCtrlSpreadMethodNode.md
+                  - ControlNetLoaderAdvanced: md/ComfyUI-Advanced-ControlNet/Nodes/ControlNetLoaderAdvanced.md
+                  - CustomControlNetWeights: md/ComfyUI-Advanced-ControlNet/Nodes/CustomControlNetWeights.md
+                  - CustomT2IAdapterWeights: md/ComfyUI-Advanced-ControlNet/Nodes/CustomT2IAdapterWeights.md
+                  - DiffControlNetLoaderAdvanced: md/ComfyUI-Advanced-ControlNet/Nodes/DiffControlNetLoaderAdvanced.md
+                  - LatentKeyframe: md/ComfyUI-Advanced-ControlNet/Nodes/LatentKeyframe.md
+                  - LatentKeyframeBatchedGroup: md/ComfyUI-Advanced-ControlNet/Nodes/LatentKeyframeBatchedGroup.md
+                  - LatentKeyframeGroup: md/ComfyUI-Advanced-ControlNet/Nodes/LatentKeyframeGroup.md
+                  - LatentKeyframeTiming: md/ComfyUI-Advanced-ControlNet/Nodes/LatentKeyframeTiming.md
+                  - LoadImagesFromDirectory: md/ComfyUI-Advanced-ControlNet/Nodes/LoadImagesFromDirectory.md
+                  - ScaledSoftControlNetWeights: md/ComfyUI-Advanced-ControlNet/Nodes/ScaledSoftControlNetWeights.md
+                  - ScaledSoftMaskedUniversalWeights: md/ComfyUI-Advanced-ControlNet/Nodes/ScaledSoftMaskedUniversalWeights.md
+                  - SoftControlNetWeights: md/ComfyUI-Advanced-ControlNet/Nodes/SoftControlNetWeights.md
+                  - SoftT2IAdapterWeights: md/ComfyUI-Advanced-ControlNet/Nodes/SoftT2IAdapterWeights.md
+                  - TimestepKeyframe: md/ComfyUI-Advanced-ControlNet/Nodes/TimestepKeyframe.md
           - ComfyUI-AnimateDiff-Evolved:
               - Home: md/ComfyUI-AnimateDiff-Evolved/index.md
               - Nodes:
@@ -249,6 +273,197 @@ nav:
                   - ADE_ViewsOnlyContextOptions: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_ViewsOnlyContextOptions.md
                   - AnimateDiffLoaderV1: md/ComfyUI-AnimateDiff-Evolved/Nodes/AnimateDiffLoaderV1.md
                   - CheckpointLoaderSimpleWithNoiseSelect: md/ComfyUI-AnimateDiff-Evolved/Nodes/CheckpointLoaderSimpleWithNoiseSelect.md
+          - ComfyUI-Impact-Pack:
+              - Home: md/ComfyUI-Impact-Pack/index.md
+              - Nodes:
+                  - AddMask: md/ComfyUI-Impact-Pack/Nodes/AddMask.md
+                  - BasicPipeToDetailerPipe: md/ComfyUI-Impact-Pack/Nodes/BasicPipeToDetailerPipe.md
+                  - BasicPipeToDetailerPipeSDXL: md/ComfyUI-Impact-Pack/Nodes/BasicPipeToDetailerPipeSDXL.md
+                  - BboxDetectorCombined_v2: md/ComfyUI-Impact-Pack/Nodes/BboxDetectorCombined_v2.md
+                  - BboxDetectorSEGS: md/ComfyUI-Impact-Pack/Nodes/BboxDetectorSEGS.md
+                  - BitwiseAndMask: md/ComfyUI-Impact-Pack/Nodes/BitwiseAndMask.md
+                  - BitwiseAndMaskForEach: md/ComfyUI-Impact-Pack/Nodes/BitwiseAndMaskForEach.md
+                  - CLIPSegDetectorProvider: md/ComfyUI-Impact-Pack/Nodes/CLIPSegDetectorProvider.md
+                  - CfgScheduleHookProvider: md/ComfyUI-Impact-Pack/Nodes/CfgScheduleHookProvider.md
+                  - CombineRegionalPrompts: md/ComfyUI-Impact-Pack/Nodes/CombineRegionalPrompts.md
+                  - CoreMLDetailerHookProvider: md/ComfyUI-Impact-Pack/Nodes/CoreMLDetailerHookProvider.md
+                  - DenoiseScheduleHookProvider: md/ComfyUI-Impact-Pack/Nodes/DenoiseScheduleHookProvider.md
+                  - DenoiseSchedulerDetailerHookProvider: md/ComfyUI-Impact-Pack/Nodes/DenoiseSchedulerDetailerHookProvider.md
+                  - DetailerForEach: md/ComfyUI-Impact-Pack/Nodes/DetailerForEach.md
+                  - DetailerForEachDebug: md/ComfyUI-Impact-Pack/Nodes/DetailerForEachDebug.md
+                  - DetailerForEachDebugPipe: md/ComfyUI-Impact-Pack/Nodes/DetailerForEachDebugPipe.md
+                  - DetailerForEachPipe: md/ComfyUI-Impact-Pack/Nodes/DetailerForEachPipe.md
+                  - DetailerForEachPipeForAnimateDiff: md/ComfyUI-Impact-Pack/Nodes/DetailerForEachPipeForAnimateDiff.md
+                  - DetailerHookCombine: md/ComfyUI-Impact-Pack/Nodes/DetailerHookCombine.md
+                  - DetailerPipeToBasicPipe: md/ComfyUI-Impact-Pack/Nodes/DetailerPipeToBasicPipe.md
+                  - EditBasicPipe: md/ComfyUI-Impact-Pack/Nodes/EditBasicPipe.md
+                  - EditDetailerPipe: md/ComfyUI-Impact-Pack/Nodes/EditDetailerPipe.md
+                  - EditDetailerPipeSDXL: md/ComfyUI-Impact-Pack/Nodes/EditDetailerPipeSDXL.md
+                  - EmptySegs: md/ComfyUI-Impact-Pack/Nodes/EmptySegs.md
+                  - FaceDetailer: md/ComfyUI-Impact-Pack/Nodes/FaceDetailer.md
+                  - FaceDetailerPipe: md/ComfyUI-Impact-Pack/Nodes/FaceDetailerPipe.md
+                  - FromBasicPipe: md/ComfyUI-Impact-Pack/Nodes/FromBasicPipe.md
+                  - FromBasicPipe_v2: md/ComfyUI-Impact-Pack/Nodes/FromBasicPipe_v2.md
+                  - FromDetailerPipe: md/ComfyUI-Impact-Pack/Nodes/FromDetailerPipe.md
+                  - FromDetailerPipeSDXL: md/ComfyUI-Impact-Pack/Nodes/FromDetailerPipeSDXL.md
+                  - FromDetailerPipe_v2: md/ComfyUI-Impact-Pack/Nodes/FromDetailerPipe_v2.md
+                  - ImageListToImageBatch: md/ComfyUI-Impact-Pack/Nodes/ImageListToImageBatch.md
+                  - ImageMaskSwitch: md/ComfyUI-Impact-Pack/Nodes/ImageMaskSwitch.md
+                  - ImageReceiver: md/ComfyUI-Impact-Pack/Nodes/ImageReceiver.md
+                  - ImageSender: md/ComfyUI-Impact-Pack/Nodes/ImageSender.md
+                  - ImpactAssembleSEGS: md/ComfyUI-Impact-Pack/Nodes/ImpactAssembleSEGS.md
+                  - ImpactCombineConditionings: md/ComfyUI-Impact-Pack/Nodes/ImpactCombineConditionings.md
+                  - ImpactCompare: md/ComfyUI-Impact-Pack/Nodes/ImpactCompare.md
+                  - ImpactConcatConditionings: md/ComfyUI-Impact-Pack/Nodes/ImpactConcatConditionings.md
+                  - ImpactConditionalBranch: md/ComfyUI-Impact-Pack/Nodes/ImpactConditionalBranch.md
+                  - ImpactConditionalBranchSelMode: md/ComfyUI-Impact-Pack/Nodes/ImpactConditionalBranchSelMode.md
+                  - ImpactConditionalStopIteration: md/ComfyUI-Impact-Pack/Nodes/ImpactConditionalStopIteration.md
+                  - ImpactControlBridge: md/ComfyUI-Impact-Pack/Nodes/ImpactControlBridge.md
+                  - ImpactControlNetApplyAdvancedSEGS: md/ComfyUI-Impact-Pack/Nodes/ImpactControlNetApplyAdvancedSEGS.md
+                  - ImpactControlNetApplySEGS: md/ComfyUI-Impact-Pack/Nodes/ImpactControlNetApplySEGS.md
+                  - ImpactControlNetClearSEGS: md/ComfyUI-Impact-Pack/Nodes/ImpactControlNetClearSEGS.md
+                  - ImpactDecomposeSEGS: md/ComfyUI-Impact-Pack/Nodes/ImpactDecomposeSEGS.md
+                  - ImpactDilateMask: md/ComfyUI-Impact-Pack/Nodes/ImpactDilateMask.md
+                  - ImpactDilateMaskInSEGS: md/ComfyUI-Impact-Pack/Nodes/ImpactDilateMaskInSEGS.md
+                  - ImpactDilate_Mask_SEG_ELT: md/ComfyUI-Impact-Pack/Nodes/ImpactDilate_Mask_SEG_ELT.md
+                  - ImpactDummyInput: md/ComfyUI-Impact-Pack/Nodes/ImpactDummyInput.md
+                  - ImpactEdit_SEG_ELT: md/ComfyUI-Impact-Pack/Nodes/ImpactEdit_SEG_ELT.md
+                  - ImpactFloat: md/ComfyUI-Impact-Pack/Nodes/ImpactFloat.md
+                  - ImpactFrom_SEG_ELT: md/ComfyUI-Impact-Pack/Nodes/ImpactFrom_SEG_ELT.md
+                  - ImpactGaussianBlurMask: md/ComfyUI-Impact-Pack/Nodes/ImpactGaussianBlurMask.md
+                  - ImpactGaussianBlurMaskInSEGS: md/ComfyUI-Impact-Pack/Nodes/ImpactGaussianBlurMaskInSEGS.md
+                  - ImpactHFTransformersClassifierProvider: md/ComfyUI-Impact-Pack/Nodes/ImpactHFTransformersClassifierProvider.md
+                  - ImpactImageBatchToImageList: md/ComfyUI-Impact-Pack/Nodes/ImpactImageBatchToImageList.md
+                  - ImpactImageInfo: md/ComfyUI-Impact-Pack/Nodes/ImpactImageInfo.md
+                  - ImpactInt: md/ComfyUI-Impact-Pack/Nodes/ImpactInt.md
+                  - ImpactInversedSwitch: md/ComfyUI-Impact-Pack/Nodes/ImpactInversedSwitch.md
+                  - ImpactIsNotEmptySEGS: md/ComfyUI-Impact-Pack/Nodes/ImpactIsNotEmptySEGS.md
+                  - ImpactKSamplerAdvancedBasicPipe: md/ComfyUI-Impact-Pack/Nodes/ImpactKSamplerAdvancedBasicPipe.md
+                  - ImpactKSamplerBasicPipe: md/ComfyUI-Impact-Pack/Nodes/ImpactKSamplerBasicPipe.md
+                  - ImpactLatentInfo: md/ComfyUI-Impact-Pack/Nodes/ImpactLatentInfo.md
+                  - ImpactLogger: md/ComfyUI-Impact-Pack/Nodes/ImpactLogger.md
+                  - ImpactMakeImageBatch: md/ComfyUI-Impact-Pack/Nodes/ImpactMakeImageBatch.md
+                  - ImpactMakeImageList: md/ComfyUI-Impact-Pack/Nodes/ImpactMakeImageList.md
+                  - ImpactMakeTileSEGS: md/ComfyUI-Impact-Pack/Nodes/ImpactMakeTileSEGS.md
+                  - ImpactMinMax: md/ComfyUI-Impact-Pack/Nodes/ImpactMinMax.md
+                  - ImpactNeg: md/ComfyUI-Impact-Pack/Nodes/ImpactNeg.md
+                  - ImpactNodeSetMuteState: md/ComfyUI-Impact-Pack/Nodes/ImpactNodeSetMuteState.md
+                  - ImpactQueueTrigger: md/ComfyUI-Impact-Pack/Nodes/ImpactQueueTrigger.md
+                  - ImpactQueueTriggerCountdown: md/ComfyUI-Impact-Pack/Nodes/ImpactQueueTriggerCountdown.md
+                  - ImpactRemoteBoolean: md/ComfyUI-Impact-Pack/Nodes/ImpactRemoteBoolean.md
+                  - ImpactRemoteInt: md/ComfyUI-Impact-Pack/Nodes/ImpactRemoteInt.md
+                  - ImpactSEGSClassify: md/ComfyUI-Impact-Pack/Nodes/ImpactSEGSClassify.md
+                  - ImpactSEGSConcat: md/ComfyUI-Impact-Pack/Nodes/ImpactSEGSConcat.md
+                  - ImpactSEGSLabelFilter: md/ComfyUI-Impact-Pack/Nodes/ImpactSEGSLabelFilter.md
+                  - ImpactSEGSOrderedFilter: md/ComfyUI-Impact-Pack/Nodes/ImpactSEGSOrderedFilter.md
+                  - ImpactSEGSPicker: md/ComfyUI-Impact-Pack/Nodes/ImpactSEGSPicker.md
+                  - ImpactSEGSRangeFilter: md/ComfyUI-Impact-Pack/Nodes/ImpactSEGSRangeFilter.md
+                  - ImpactSEGSToMaskBatch: md/ComfyUI-Impact-Pack/Nodes/ImpactSEGSToMaskBatch.md
+                  - ImpactSEGSToMaskList: md/ComfyUI-Impact-Pack/Nodes/ImpactSEGSToMaskList.md
+                  - ImpactScaleBy_BBOX_SEG_ELT: md/ComfyUI-Impact-Pack/Nodes/ImpactScaleBy_BBOX_SEG_ELT.md
+                  - ImpactSegsAndMask: md/ComfyUI-Impact-Pack/Nodes/ImpactSegsAndMask.md
+                  - ImpactSegsAndMaskForEach: md/ComfyUI-Impact-Pack/Nodes/ImpactSegsAndMaskForEach.md
+                  - ImpactSetWidgetValue: md/ComfyUI-Impact-Pack/Nodes/ImpactSetWidgetValue.md
+                  - ImpactSimpleDetectorSEGS: md/ComfyUI-Impact-Pack/Nodes/ImpactSimpleDetectorSEGS.md
+                  - ImpactSimpleDetectorSEGSPipe: md/ComfyUI-Impact-Pack/Nodes/ImpactSimpleDetectorSEGSPipe.md
+                  - ImpactSimpleDetectorSEGS_for_AD: md/ComfyUI-Impact-Pack/Nodes/ImpactSimpleDetectorSEGS_for_AD.md
+                  - ImpactSleep: md/ComfyUI-Impact-Pack/Nodes/ImpactSleep.md
+                  - ImpactStringSelector: md/ComfyUI-Impact-Pack/Nodes/ImpactStringSelector.md
+                  - ImpactSwitch: md/ComfyUI-Impact-Pack/Nodes/ImpactSwitch.md
+                  - ImpactValueReceiver: md/ComfyUI-Impact-Pack/Nodes/ImpactValueReceiver.md
+                  - ImpactValueSender: md/ComfyUI-Impact-Pack/Nodes/ImpactValueSender.md
+                  - ImpactWildcardEncode: md/ComfyUI-Impact-Pack/Nodes/ImpactWildcardEncode.md
+                  - ImpactWildcardProcessor: md/ComfyUI-Impact-Pack/Nodes/ImpactWildcardProcessor.md
+                  - IterativeImageUpscale: md/ComfyUI-Impact-Pack/Nodes/IterativeImageUpscale.md
+                  - IterativeLatentUpscale: md/ComfyUI-Impact-Pack/Nodes/IterativeLatentUpscale.md
+                  - KSamplerAdvancedProvider: md/ComfyUI-Impact-Pack/Nodes/KSamplerAdvancedProvider.md
+                  - KSamplerProvider: md/ComfyUI-Impact-Pack/Nodes/KSamplerProvider.md
+                  - LatentPixelScale: md/ComfyUI-Impact-Pack/Nodes/LatentPixelScale.md
+                  - LatentReceiver: md/ComfyUI-Impact-Pack/Nodes/LatentReceiver.md
+                  - LatentSender: md/ComfyUI-Impact-Pack/Nodes/LatentSender.md
+                  - LatentSwitch: md/ComfyUI-Impact-Pack/Nodes/LatentSwitch.md
+                  - MaskDetailerPipe: md/ComfyUI-Impact-Pack/Nodes/MaskDetailerPipe.md
+                  - MaskListToMaskBatch: md/ComfyUI-Impact-Pack/Nodes/MaskListToMaskBatch.md
+                  - MaskToSEGS: md/ComfyUI-Impact-Pack/Nodes/MaskToSEGS.md
+                  - MaskToSEGS_for_AnimateDiff: md/ComfyUI-Impact-Pack/Nodes/MaskToSEGS_for_AnimateDiff.md
+                  - MasksToMaskList: md/ComfyUI-Impact-Pack/Nodes/MasksToMaskList.md
+                  - MediaPipeFaceMeshToSEGS: md/ComfyUI-Impact-Pack/Nodes/MediaPipeFaceMeshToSEGS.md
+                  - NoiseInjectionDetailerHookProvider: md/ComfyUI-Impact-Pack/Nodes/NoiseInjectionDetailerHookProvider.md
+                  - NoiseInjectionHookProvider: md/ComfyUI-Impact-Pack/Nodes/NoiseInjectionHookProvider.md
+                  - ONNXDetectorProvider: md/ComfyUI-Impact-Pack/Nodes/ONNXDetectorProvider.md
+                  - ONNXDetectorSEGS: md/ComfyUI-Impact-Pack/Nodes/ONNXDetectorSEGS.md
+                  - PixelKSampleHookCombine: md/ComfyUI-Impact-Pack/Nodes/PixelKSampleHookCombine.md
+                  - PixelKSampleUpscalerProvider: md/ComfyUI-Impact-Pack/Nodes/PixelKSampleUpscalerProvider.md
+                  - PixelKSampleUpscalerProviderPipe: md/ComfyUI-Impact-Pack/Nodes/PixelKSampleUpscalerProviderPipe.md
+                  - PixelTiledKSampleUpscalerProvider: md/ComfyUI-Impact-Pack/Nodes/PixelTiledKSampleUpscalerProvider.md
+                  - PixelTiledKSampleUpscalerProviderPipe: md/ComfyUI-Impact-Pack/Nodes/PixelTiledKSampleUpscalerProviderPipe.md
+                  - PreviewBridge: md/ComfyUI-Impact-Pack/Nodes/PreviewBridge.md
+                  - PreviewBridgeLatent: md/ComfyUI-Impact-Pack/Nodes/PreviewBridgeLatent.md
+                  - ReencodeLatent: md/ComfyUI-Impact-Pack/Nodes/ReencodeLatent.md
+                  - ReencodeLatentPipe: md/ComfyUI-Impact-Pack/Nodes/ReencodeLatentPipe.md
+                  - RegionalPrompt: md/ComfyUI-Impact-Pack/Nodes/RegionalPrompt.md
+                  - RegionalSampler: md/ComfyUI-Impact-Pack/Nodes/RegionalSampler.md
+                  - RegionalSamplerAdvanced: md/ComfyUI-Impact-Pack/Nodes/RegionalSamplerAdvanced.md
+                  - RemoveImageFromSEGS: md/ComfyUI-Impact-Pack/Nodes/RemoveImageFromSEGS.md
+                  - RemoveNoiseMask: md/ComfyUI-Impact-Pack/Nodes/RemoveNoiseMask.md
+                  - SAMDetectorCombined: md/ComfyUI-Impact-Pack/Nodes/SAMDetectorCombined.md
+                  - SAMDetectorSegmented: md/ComfyUI-Impact-Pack/Nodes/SAMDetectorSegmented.md
+                  - SAMLoader: md/ComfyUI-Impact-Pack/Nodes/SAMLoader.md
+                  - SEGSDetailer: md/ComfyUI-Impact-Pack/Nodes/SEGSDetailer.md
+                  - SEGSDetailerForAnimateDiff: md/ComfyUI-Impact-Pack/Nodes/SEGSDetailerForAnimateDiff.md
+                  - SEGSLabelFilterDetailerHookProvider: md/ComfyUI-Impact-Pack/Nodes/SEGSLabelFilterDetailerHookProvider.md
+                  - SEGSOrderedFilterDetailerHookProvider: md/ComfyUI-Impact-Pack/Nodes/SEGSOrderedFilterDetailerHookProvider.md
+                  - SEGSPaste: md/ComfyUI-Impact-Pack/Nodes/SEGSPaste.md
+                  - SEGSPreview: md/ComfyUI-Impact-Pack/Nodes/SEGSPreview.md
+                  - SEGSPreviewCNet: md/ComfyUI-Impact-Pack/Nodes/SEGSPreviewCNet.md
+                  - SEGSRangeFilterDetailerHookProvider: md/ComfyUI-Impact-Pack/Nodes/SEGSRangeFilterDetailerHookProvider.md
+                  - SEGSSwitch: md/ComfyUI-Impact-Pack/Nodes/SEGSSwitch.md
+                  - SEGSToImageList: md/ComfyUI-Impact-Pack/Nodes/SEGSToImageList.md
+                  - SegmDetectorCombined_v2: md/ComfyUI-Impact-Pack/Nodes/SegmDetectorCombined_v2.md
+                  - SegmDetectorSEGS: md/ComfyUI-Impact-Pack/Nodes/SegmDetectorSEGS.md
+                  - SegsToCombinedMask: md/ComfyUI-Impact-Pack/Nodes/SegsToCombinedMask.md
+                  - SetDefaultImageForSEGS: md/ComfyUI-Impact-Pack/Nodes/SetDefaultImageForSEGS.md
+                  - SubtractMask: md/ComfyUI-Impact-Pack/Nodes/SubtractMask.md
+                  - SubtractMaskForEach: md/ComfyUI-Impact-Pack/Nodes/SubtractMaskForEach.md
+                  - TiledKSamplerProvider: md/ComfyUI-Impact-Pack/Nodes/TiledKSamplerProvider.md
+                  - ToBasicPipe: md/ComfyUI-Impact-Pack/Nodes/ToBasicPipe.md
+                  - ToBinaryMask: md/ComfyUI-Impact-Pack/Nodes/ToBinaryMask.md
+                  - ToDetailerPipe: md/ComfyUI-Impact-Pack/Nodes/ToDetailerPipe.md
+                  - ToDetailerPipeSDXL: md/ComfyUI-Impact-Pack/Nodes/ToDetailerPipeSDXL.md
+                  - TwoAdvancedSamplersForMask: md/ComfyUI-Impact-Pack/Nodes/TwoAdvancedSamplersForMask.md
+                  - TwoSamplersForMask: md/ComfyUI-Impact-Pack/Nodes/TwoSamplersForMask.md
+                  - TwoSamplersForMaskUpscalerProvider: md/ComfyUI-Impact-Pack/Nodes/TwoSamplersForMaskUpscalerProvider.md
+                  - TwoSamplersForMaskUpscalerProviderPipe: md/ComfyUI-Impact-Pack/Nodes/TwoSamplersForMaskUpscalerProviderPipe.md
+                  - UltralyticsDetectorProvider: md/ComfyUI-Impact-Pack/Nodes/UltralyticsDetectorProvider.md
+                  - UnsamplerDetailerHookProvider: md/ComfyUI-Impact-Pack/Nodes/UnsamplerDetailerHookProvider.md
+                  - UnsamplerHookProvider: md/ComfyUI-Impact-Pack/Nodes/UnsamplerHookProvider.md
+          - ComfyUI-VideoHelperSuite:
+              - Home: md/ComfyUI-VideoHelperSuite/index.md
+              - Nodes:
+                  - VHS_DuplicateImages: md/ComfyUI-VideoHelperSuite/Nodes/VHS_DuplicateImages.md
+                  - VHS_DuplicateLatents: md/ComfyUI-VideoHelperSuite/Nodes/VHS_DuplicateLatents.md
+                  - VHS_DuplicateMasks: md/ComfyUI-VideoHelperSuite/Nodes/VHS_DuplicateMasks.md
+                  - VHS_GetImageCount: md/ComfyUI-VideoHelperSuite/Nodes/VHS_GetImageCount.md
+                  - VHS_GetLatentCount: md/ComfyUI-VideoHelperSuite/Nodes/VHS_GetLatentCount.md
+                  - VHS_GetMaskCount: md/ComfyUI-VideoHelperSuite/Nodes/VHS_GetMaskCount.md
+                  - VHS_LoadAudio: md/ComfyUI-VideoHelperSuite/Nodes/VHS_LoadAudio.md
+                  - VHS_LoadImages: md/ComfyUI-VideoHelperSuite/Nodes/VHS_LoadImages.md
+                  - VHS_LoadImagesPath: md/ComfyUI-VideoHelperSuite/Nodes/VHS_LoadImagesPath.md
+                  - VHS_LoadVideo: md/ComfyUI-VideoHelperSuite/Nodes/VHS_LoadVideo.md
+                  - VHS_LoadVideoPath: md/ComfyUI-VideoHelperSuite/Nodes/VHS_LoadVideoPath.md
+                  - VHS_MergeImages: md/ComfyUI-VideoHelperSuite/Nodes/VHS_MergeImages.md
+                  - VHS_MergeLatents: md/ComfyUI-VideoHelperSuite/Nodes/VHS_MergeLatents.md
+                  - VHS_MergeMasks: md/ComfyUI-VideoHelperSuite/Nodes/VHS_MergeMasks.md
+                  - VHS_PruneOutputs: md/ComfyUI-VideoHelperSuite/Nodes/VHS_PruneOutputs.md
+                  - VHS_SelectEveryNthImage: md/ComfyUI-VideoHelperSuite/Nodes/VHS_SelectEveryNthImage.md
+                  - VHS_SelectEveryNthLatent: md/ComfyUI-VideoHelperSuite/Nodes/VHS_SelectEveryNthLatent.md
+                  - VHS_SelectEveryNthMask: md/ComfyUI-VideoHelperSuite/Nodes/VHS_SelectEveryNthMask.md
+                  - VHS_SplitImages: md/ComfyUI-VideoHelperSuite/Nodes/VHS_SplitImages.md
+                  - VHS_SplitLatents: md/ComfyUI-VideoHelperSuite/Nodes/VHS_SplitLatents.md
+                  - VHS_SplitMasks: md/ComfyUI-VideoHelperSuite/Nodes/VHS_SplitMasks.md
+                  - VHS_VAEDecodeBatched: md/ComfyUI-VideoHelperSuite/Nodes/VHS_VAEDecodeBatched.md
+                  - VHS_VAEEncodeBatched: md/ComfyUI-VideoHelperSuite/Nodes/VHS_VAEEncodeBatched.md
+                  - VHS_VideoCombine: md/ComfyUI-VideoHelperSuite/Nodes/VHS_VideoCombine.md
           - ComfyUI_ADV_CLIP_emb:
               - Home: md/ComfyUI_ADV_CLIP_emb/index.md
               - Nodes:
@@ -256,6 +471,390 @@ nav:
                   - BNK_AddCLIPSDXLRParams: md/ComfyUI_ADV_CLIP_emb/Nodes/BNK_AddCLIPSDXLRParams.md
                   - BNK_CLIPTextEncodeAdvanced: md/ComfyUI_ADV_CLIP_emb/Nodes/BNK_CLIPTextEncodeAdvanced.md
                   - BNK_CLIPTextEncodeSDXLAdvanced: md/ComfyUI_ADV_CLIP_emb/Nodes/BNK_CLIPTextEncodeSDXLAdvanced.md
+          - ComfyUI_Comfyroll_CustomNodes:
+              - Home: md/ComfyUI_Comfyroll_CustomNodes/index.md
+              - Nodes:
+                  - CR 8 Channel In: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR 8 Channel
+                      In.md
+                  - CR 8 Channel Out: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR 8
+                      Channel Out.md
+                  - CR Apply ControlNet: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Apply ControlNet.md
+                  - CR Apply LoRA Stack: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Apply LoRA Stack.md
+                  - CR Apply Model Merge: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Apply Model Merge.md
+                  - CR Apply Multi Upscale: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Apply Multi Upscale.md
+                  - CR Apply Multi-ControlNet: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Apply Multi-ControlNet.md
+                  - CR Aspect Ratio Banners: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Aspect Ratio Banners.md
+                  - CR Aspect Ratio SDXL: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Aspect Ratio SDXL.md
+                  - CR Aspect Ratio Social Media: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Aspect Ratio Social Media.md
+                  - CR Aspect Ratio: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Aspect
+                      Ratio.md
+                  - CR Batch Images From List: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Batch Images From List.md
+                  - CR Batch Process Switch: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Batch Process Switch.md
+                  - CR Binary Pattern: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Binary
+                      Pattern.md
+                  - CR Binary To Bit List: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Binary To Bit List.md
+                  - CR Bit Schedule: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Bit
+                      Schedule.md
+                  - CR Central Schedule: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Central Schedule.md
+                  - CR Checker Pattern: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Checker Pattern.md
+                  - CR Clamp Value: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Clamp
+                      Value.md
+                  - CR Clip Input Switch: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Clip Input Switch.md
+                  - CR Color Bars: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Color
+                      Bars.md
+                  - CR Color Gradient: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Color
+                      Gradient.md
+                  - CR Color Panel: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Color
+                      Panel.md
+                  - CR Color Tint: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Color
+                      Tint.md
+                  - CR Combine Prompt: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Combine
+                      Prompt.md
+                  - CR Combine Schedules: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Combine Schedules.md
+                  - CR Comic Panel Templates: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Comic Panel Templates.md
+                  - CR Composite Text: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Composite
+                      Text.md
+                  - CR Conditioning Input Switch: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Conditioning Input Switch.md
+                  - CR Conditioning Mixer: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Conditioning Mixer.md
+                  - CR ControlNet Input Switch: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      ControlNet Input Switch.md
+                  - CR Current Frame: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Current
+                      Frame.md
+                  - CR Cycle Images Simple: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Cycle Images Simple.md
+                  - CR Cycle Images: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Cycle
+                      Images.md
+                  - CR Cycle LoRAs: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Cycle
+                      LoRAs.md
+                  - CR Cycle Models: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Cycle
+                      Models.md
+                  - CR Cycle Text Simple: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Cycle Text Simple.md
+                  - CR Cycle Text: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Cycle
+                      Text.md
+                  - CR Data Bus In: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Data
+                      Bus In.md
+                  - CR Data Bus Out: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Data
+                      Bus Out.md
+                  - CR Debatch Frames: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Debatch
+                      Frames.md
+                  - CR Diamond Panel: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Diamond
+                      Panel.md
+                  - CR Draw Pie: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Draw Pie.md
+                  - CR Draw Shape: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Draw
+                      Shape.md
+                  - CR Draw Text: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Draw Text.md
+                  - CR Encode Scheduled Prompts: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Encode Scheduled Prompts.md
+                  - CR Feathered Border: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Feathered Border.md
+                  - CR Float Range List: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Float Range List.md
+                  - CR Float To Integer: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Float To Integer.md
+                  - CR Float To String: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Float To String.md
+                  - CR Font File List: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Font
+                      File List.md
+                  - CR Get Parameter From Prompt: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Get Parameter From Prompt.md
+                  - CR Gradient Float: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Gradient
+                      Float.md
+                  - CR Gradient Integer: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Gradient Integer.md
+                  - CR Half Drop Panel: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Half Drop Panel.md
+                  - CR Halftone Filter: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Halftone Filter.md
+                  - CR Halftone Grid: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Halftone
+                      Grid.md
+                  - CR Hires Fix Process Switch: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Hires Fix Process Switch.md
+                  - CR Image Border: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Image
+                      Border.md
+                  - CR Image Grid Panel: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Image Grid Panel.md
+                  - CR Image Input Switch (4 way): md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Image Input Switch (4 way).md
+                  - CR Image Input Switch: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Image Input Switch.md
+                  - CR Image List Simple: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Image List Simple.md
+                  - CR Image List: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Image
+                      List.md
+                  - CR Image Output: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Image
+                      Output.md
+                  - CR Image Panel: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Image
+                      Panel.md
+                  - CR Image Pipe Edit: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Image Pipe Edit.md
+                  - CR Image Pipe In: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Image
+                      Pipe In.md
+                  - CR Image Pipe Out: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Image
+                      Pipe Out.md
+                  - CR Image Size: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Image
+                      Size.md
+                  - CR Img2Img Process Switch: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Img2Img Process Switch.md
+                  - CR Increment Float: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Increment Float.md
+                  - CR Increment Integer: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Increment Integer.md
+                  - CR Index Increment: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Index Increment.md
+                  - CR Index Multiply: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Index
+                      Multiply.md
+                  - CR Index Reset: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Index
+                      Reset.md
+                  - CR Index: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Index.md
+                  - CR Integer Multiple: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Integer Multiple.md
+                  - CR Integer Range List: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Integer Range List.md
+                  - CR Integer To String: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Integer To String.md
+                  - CR Interpolate Latents: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Interpolate Latents.md
+                  - CR Intertwine Lists: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Intertwine Lists.md
+                  - CR Keyframe List: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Keyframe
+                      List.md
+                  - CR Latent Batch Size: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Latent Batch Size.md
+                  - CR Latent Input Switch: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Latent Input Switch.md
+                  - CR LoRA List: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR LoRA List.md
+                  - CR LoRA Stack: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR LoRA
+                      Stack.md
+                  - CR Load Animation Frames: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Load Animation Frames.md
+                  - CR Load Flow Frames: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Load Flow Frames.md
+                  - CR Load GIF As List: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Load GIF As List.md
+                  - CR Load Image List Plus: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Load Image List Plus.md
+                  - CR Load Image List: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Load Image List.md
+                  - CR Load LoRA: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Load LoRA.md
+                  - CR Load Schedule From File: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Load Schedule From File.md
+                  - CR Load Scheduled LoRAs: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Load Scheduled LoRAs.md
+                  - CR Load Scheduled Models: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Load Scheduled Models.md
+                  - CR Load Text List: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Load
+                      Text List.md
+                  - CR Mask Text: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Mask Text.md
+                  - CR Math Operation: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Math
+                      Operation.md
+                  - CR Model Input Switch: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Model Input Switch.md
+                  - CR Model List: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Model
+                      List.md
+                  - CR Model Merge Stack: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Model Merge Stack.md
+                  - CR Module Input: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Module
+                      Input.md
+                  - CR Module Output: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Module
+                      Output.md
+                  - CR Module Pipe Loader: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Module Pipe Loader.md
+                  - CR Multi Upscale Stack: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Multi Upscale Stack.md
+                  - CR Multi-ControlNet Stack: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Multi-ControlNet Stack.md
+                  - CR Multiline Text: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Multiline
+                      Text.md
+                  - CR Output Flow Frames: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Output Flow Frames.md
+                  - CR Output Schedule To File: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Output Schedule To File.md
+                  - CR Overlay Text: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Overlay
+                      Text.md
+                  - CR Overlay Transparent Image: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Overlay Transparent Image.md
+                  - CR Page Layout: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Page
+                      Layout.md
+                  - CR Pipe Switch: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Pipe
+                      Switch.md
+                  - CR Polygons: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Polygons.md
+                  - CR Prompt List Keyframes: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Prompt List Keyframes.md
+                  - CR Prompt List: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Prompt
+                      List.md
+                  - CR Prompt Scheduler: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Prompt Scheduler.md
+                  - CR Prompt Text: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Prompt
+                      Text.md
+                  - CR Radial Gradient: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Radial Gradient.md
+                  - CR Random Hex Color: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Random Hex Color.md
+                  - CR Random LoRA Stack: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Random LoRA Stack.md
+                  - CR Random Multiline Colors: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Random Multiline Colors.md
+                  - CR Random Multiline Values: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Random Multiline Values.md
+                  - CR Random Panel Codes: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Random Panel Codes.md
+                  - CR Random RGB Gradient: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Random RGB Gradient.md
+                  - CR Random RGB: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Random
+                      RGB.md
+                  - CR Random Shape Pattern: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Random Shape Pattern.md
+                  - CR Random Weight LoRA: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Random Weight LoRA.md
+                  - CR Repeater: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Repeater.md
+                  - CR SD1.5 Aspect Ratio: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      SD1.5 Aspect Ratio.md
+                  - CR SDXL Aspect Ratio: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      SDXL Aspect Ratio.md
+                  - CR SDXL Base Prompt Encoder: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      SDXL Base Prompt Encoder.md
+                  - CR SDXL Prompt Mix Presets: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      SDXL Prompt Mix Presets.md
+                  - CR SDXL Prompt Mixer: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      SDXL Prompt Mixer.md
+                  - CR SDXL Style Text: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      SDXL Style Text.md
+                  - CR Save Text To File: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Save Text To File.md
+                  - CR Schedule Input Switch: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Schedule Input Switch.md
+                  - CR Seamless Checker: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Seamless Checker.md
+                  - CR Seed to Int: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Seed
+                      to Int.md
+                  - CR Seed: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Seed.md
+                  - CR Select Font: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Select
+                      Font.md
+                  - CR Select ISO Size: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Select ISO Size.md
+                  - CR Select Model: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Select
+                      Model.md
+                  - CR Select Resize Method: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Select Resize Method.md
+                  - CR Set Switch From String: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Set Switch From String.md
+                  - CR Set Value On Binary: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Set Value On Binary.md
+                  - CR Set Value On Boolean: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Set Value On Boolean.md
+                  - CR Set Value on String: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Set Value on String.md
+                  - CR Simple Banner: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Simple
+                      Banner.md
+                  - CR Simple Binary Pattern: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Simple Binary Pattern.md
+                  - CR Simple Image Compare: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Simple Image Compare.md
+                  - CR Simple List: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Simple
+                      List.md
+                  - CR Simple Meme Template: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Simple Meme Template.md
+                  - CR Simple Prompt List Keyframes: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Simple Prompt List Keyframes.md
+                  - CR Simple Prompt List: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Simple Prompt List.md
+                  - CR Simple Prompt Scheduler: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Simple Prompt Scheduler.md
+                  - CR Simple Schedule: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Simple Schedule.md
+                  - CR Simple Text Panel: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Simple Text Panel.md
+                  - CR Simple Text Scheduler: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Simple Text Scheduler.md
+                  - CR Simple Text Watermark: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Simple Text Watermark.md
+                  - CR Simple Value Scheduler: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Simple Value Scheduler.md
+                  - CR Split String: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Split
+                      String.md
+                  - CR Starburst Colors: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Starburst Colors.md
+                  - CR Starburst Lines: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Starburst Lines.md
+                  - CR String To Boolean: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      String To Boolean.md
+                  - CR String To Combo: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      String To Combo.md
+                  - CR String To Number: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      String To Number.md
+                  - CR Style Bars: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Style
+                      Bars.md
+                  - CR Switch Model and CLIP: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Switch Model and CLIP.md
+                  - CR Text Blacklist: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Text
+                      Blacklist.md
+                  - CR Text Concatenate: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Text Concatenate.md
+                  - CR Text Cycler: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Text
+                      Cycler.md
+                  - CR Text Input Switch (4 way): md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Text Input Switch (4 way).md
+                  - CR Text Input Switch: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Text Input Switch.md
+                  - CR Text Length: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Text
+                      Length.md
+                  - CR Text List Simple: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Text List Simple.md
+                  - CR Text List To String: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Text List To String.md
+                  - CR Text List: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Text List.md
+                  - CR Text Operation: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Text
+                      Operation.md
+                  - CR Text Replace: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Text
+                      Replace.md
+                  - CR Text Scheduler: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Text
+                      Scheduler.md
+                  - CR Text: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Text.md
+                  - CR Thumbnail Preview: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Thumbnail Preview.md
+                  - CR Trigger: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Trigger.md
+                  - CR Upscale Image: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Upscale
+                      Image.md
+                  - CR VAE Decode: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR VAE Decode.md
+                  - CR VAE Input Switch: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      VAE Input Switch.md
+                  - CR Value Cycler: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Value
+                      Cycler.md
+                  - CR Value Scheduler: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Value Scheduler.md
+                  - CR Value: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR Value.md
+                  - CR Vignette Filter: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      Vignette Filter.md
+                  - CR XY From Folder: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR XY
+                      From Folder.md
+                  - CR XY Index: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR XY Index.md
+                  - CR XY Interpolate: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR XY
+                      Interpolate.md
+                  - CR XY List: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR XY List.md
+                  - CR XY Product: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR XY Product.md
+                  - CR XY Save Grid Image: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR
+                      XY Save Grid Image.md
+                  - CR_Aspect Ratio For Print: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR_Aspect
+                      Ratio For Print.md
           - ComfyUI_IPAdapter_plus:
               - Home: md/ComfyUI_IPAdapter_plus/index.md
               - Nodes:
@@ -270,6 +869,23 @@ nav:
                   - InsightFaceLoader: md/ComfyUI_IPAdapter_plus/Nodes/InsightFaceLoader.md
                   - PrepImageForClipVision: md/ComfyUI_IPAdapter_plus/Nodes/PrepImageForClipVision.md
                   - PrepImageForInsightFace: md/ComfyUI_IPAdapter_plus/Nodes/PrepImageForInsightFace.md
+          - SavePNG:
+              - Home: md/SavePNG/index.md
+              - Nodes:
+                  - PNG_Save: md/SavePNG/Nodes/PNG_Save.md
+          - WAS_Extras:
+              - Home: md/WAS_Extras/index.md
+              - Nodes:
+                  - BLVAEEncode: md/WAS_Extras/Nodes/BLVAEEncode.md
+                  - CLIPTextEncodeList: md/WAS_Extras/Nodes/CLIPTextEncodeList.md
+                  - CLIPTextEncodeSequence2: md/WAS_Extras/Nodes/CLIPTextEncodeSequence2.md
+                  - ConditioningBlend: md/WAS_Extras/Nodes/ConditioningBlend.md
+                  - DebugInput: md/WAS_Extras/Nodes/DebugInput.md
+                  - KSamplerSeq: md/WAS_Extras/Nodes/KSamplerSeq.md
+                  - KSamplerSeq2: md/WAS_Extras/Nodes/KSamplerSeq2.md
+                  - VAEEncodeForInpaint (WAS): md/WAS_Extras/Nodes/VAEEncodeForInpaint
+                      (WAS).md
+                  - VividSharpen: md/WAS_Extras/Nodes/VividSharpen.md
           - comfyui_segment_anything:
               - Home: md/comfyui_segment_anything/index.md
               - Nodes:

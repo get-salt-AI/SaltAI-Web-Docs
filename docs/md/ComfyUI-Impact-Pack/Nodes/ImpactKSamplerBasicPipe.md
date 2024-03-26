@@ -4,54 +4,54 @@
 - Category: `sampling`
 - Output node: `False`
 
-The `ImpactKSamplerBasicPipe` node is designed for sampling operations within a basic pipeline. It utilizes a specific model, seed, number of steps, configuration, sampler name, scheduler, latent image, and denoise factor to generate a new latent representation. This process involves the use of a KSampler to perform the sampling based on the provided parameters and the content of the basic pipeline, which includes model, clip, VAE, and positive and negative prompts.
+This node is designed for sampling operations within a basic pipeline, utilizing a variety of samplers and schedulers to generate or modify latent images. It abstracts the complexity of sampling algorithms, providing a streamlined interface for applying advanced sampling techniques to basic pipeline components.
 ## Input types
 ### Required
 - **`basic_pipe`**
-    - Represents the basic pipeline components including model, clip, VAE, and positive and negative prompts, which are essential for the sampling process.
-    - Python dtype: `Tuple[torch.nn.Module, Any, Any, List[str], List[str]]`
+    - Represents the basic pipeline components, including models and configurations, essential for the sampling process.
     - Comfy dtype: `BASIC_PIPE`
+    - Python dtype: `tuple`
 - **`seed`**
-    - The seed value is used to ensure reproducibility of the sampling process. It directly influences the randomness of the sampling, affecting the uniqueness and variation of the generated latent image.
-    - Python dtype: `int`
+    - Determines the starting point for random number generation, ensuring reproducibility of the sampling process.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`steps`**
-    - Defines the number of steps to be taken in the sampling process, affecting the detail and quality of the generated latent image.
-    - Python dtype: `int`
+    - Specifies the number of steps to perform in the sampling process, affecting the detail and quality of the generated latent image.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`cfg`**
-    - Configuration parameter that influences the behavior of the sampling process. It can adjust the sampling intensity, impacting the overall appearance and characteristics of the generated latent image.
-    - Python dtype: `float`
+    - Controls the configuration of the sampling process, influencing the behavior and outcomes of the sampler.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`sampler_name`**
-    - Specifies the name of the sampler to be used, which determines the sampling algorithm. Different samplers can lead to variations in the sampling process and the final image quality.
+    - Selects the specific sampler to use from a predefined list of available samplers, tailoring the sampling process to specific needs.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`scheduler`**
-    - Determines the scheduling algorithm used during the sampling process. The choice of scheduler can affect the progression of sampling steps, potentially influencing the final image's fidelity and coherence.
+    - Chooses the scheduler to manage the sampling steps, optimizing the process for efficiency and effectiveness.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`latent_image`**
-    - The initial latent image that serves as a starting point for the sampling process.
-    - Python dtype: `torch.Tensor`
+    - The initial latent image to be modified or enhanced through the sampling process.
     - Comfy dtype: `LATENT`
+    - Python dtype: `torch.Tensor`
 - **`denoise`**
-    - A factor that influences the amount of denoising applied during the sampling process. Adjusting this parameter can help in reducing noise and improving the clarity of the generated image.
-    - Python dtype: `float`
+    - Adjusts the level of denoising applied to the latent image, fine-tuning the clarity and quality of the output.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 ## Output types
 - **`basic_pipe`**
-    - Returns the basic pipeline components unchanged.
-    - Python dtype: `Tuple[torch.nn.Module, Any, Any, List[str], List[str]]`
     - Comfy dtype: `BASIC_PIPE`
+    - Returns the basic pipeline components, including any modifications made during the sampling process.
+    - Python dtype: `tuple`
 - **`latent`**
-    - The newly generated latent representation as a result of the sampling process.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `LATENT`
+    - The resulting latent image after the sampling process, ready for further processing or visualization.
+    - Python dtype: `torch.Tensor`
 - **`vae`**
-    - Returns the VAE component of the basic pipeline unchanged.
-    - Python dtype: `Any`
     - Comfy dtype: `VAE`
+    - Returns the VAE component of the basic pipeline, potentially utilized or modified during the sampling process.
+    - Python dtype: `VAE`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `VAEDecode,Reroute,ImpactKSamplerBasicPipe,VAEEncode`

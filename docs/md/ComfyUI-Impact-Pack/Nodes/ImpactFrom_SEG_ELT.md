@@ -4,48 +4,48 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The `ImpactFrom_SEG_ELT` node processes a segment element (`SEG_ELT`) to extract various properties and representations, including the original segment, a cropped image and mask, crop region, bounding box, control network wrapper, confidence score, and label. This node is essential for further processing or analysis of segment elements within the ImpactPack framework.
+The `ImpactFrom_SEG_ELT` node is designed to process segmentation elements (SEG_ELT) by extracting and transforming relevant information such as cropped images, masks, and bounding boxes. It aims to facilitate further analysis or manipulation of these elements by providing detailed attributes including crop regions, bounding boxes, control network wrappers, confidence levels, and labels.
 ## Input types
 ### Required
 - **`seg_elt`**
-    - The segment element to be processed. It is crucial for extracting detailed information and representations for further analysis.
-    - Python dtype: `SEG_ELT`
+    - The segmentation element (SEG_ELT) input is crucial for extracting and transforming detailed attributes such as cropped images, masks, and bounding boxes. It serves as the foundation for the node's operation, enabling the analysis or manipulation of segmentation data.
     - Comfy dtype: `SEG_ELT`
+    - Python dtype: `SEG_ELT`
 ## Output types
 - **`seg_elt`**
-    - Returns the original segment element.
-    - Python dtype: `SEG_ELT`
     - Comfy dtype: `SEG_ELT`
-- **`image`**
-    - The cropped image extracted from the segment element.
-    - Python dtype: `Optional[torch.Tensor]`
+    - Returns the original segmentation element (SEG_ELT) with potentially modified attributes.
+    - Python dtype: `SEG_ELT`
+- **`cropped_image`**
     - Comfy dtype: `IMAGE`
-- **`mask`**
-    - The cropped mask corresponding to the segment element.
+    - Provides the cropped image extracted from the segmentation element.
     - Python dtype: `torch.Tensor`
+- **`cropped_mask`**
     - Comfy dtype: `MASK`
-- **`seg_elt_crop_region`**
-    - The crop region used for extracting the cropped image and mask.
-    - Python dtype: `Tuple[int, int, int, int]`
+    - Provides the cropped mask associated with the segmentation element.
+    - Python dtype: `torch.Tensor`
+- **`crop_region`**
     - Comfy dtype: `SEG_ELT_crop_region`
-- **`seg_elt_bbox`**
-    - The bounding box of the segment element.
+    - Returns the crop region used to extract the cropped image and mask.
     - Python dtype: `Tuple[int, int, int, int]`
+- **`bbox`**
     - Comfy dtype: `SEG_ELT_bbox`
-- **`seg_elt_control_net_wrapper`**
-    - A wrapper for the control network associated with the segment element.
-    - Python dtype: `Any`
+    - Returns the bounding box of the segmentation element.
+    - Python dtype: `Tuple[int, int, int, int]`
+- **`control_net_wrapper`**
     - Comfy dtype: `SEG_ELT_control_net_wrapper`
-- **`float`**
-    - The confidence score of the segment element.
-    - Python dtype: `float`
+    - Provides the control network wrapper associated with the segmentation element.
+    - Python dtype: `core.ControlNetWrapper`
+- **`confidence`**
     - Comfy dtype: `FLOAT`
-- **`string`**
-    - The label assigned to the segment element.
-    - Python dtype: `str`
+    - Returns the confidence level of the segmentation element.
+    - Python dtype: `float`
+- **`label`**
     - Comfy dtype: `STRING`
+    - Provides the label assigned to the segmentation element.
+    - Python dtype: `str`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 

@@ -8,16 +8,16 @@ The ExponentialScheduler node is designed to generate a sequence of sigma values
 ## Input types
 ### Required
 - **`steps`**
-    - Comfy dtype: `INT`
     - Specifies the number of steps in the diffusion process. It influences the length of the generated sigma sequence and thus the granularity of the noise application.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`sigma_max`**
-    - Comfy dtype: `FLOAT`
     - Defines the maximum sigma value, setting the upper limit of noise intensity in the diffusion process. It plays a crucial role in determining the range of noise levels applied.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sigma_min`**
-    - Comfy dtype: `FLOAT`
     - Sets the minimum sigma value, establishing the lower boundary of noise intensity. This parameter helps in fine-tuning the starting point of the noise application.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`sigmas`**

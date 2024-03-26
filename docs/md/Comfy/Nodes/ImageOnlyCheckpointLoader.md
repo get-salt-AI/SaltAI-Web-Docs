@@ -8,8 +8,8 @@ This node specializes in loading checkpoints specifically for image-based models
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the name of the checkpoint to load. This parameter is crucial for identifying and retrieving the correct checkpoint file from a predefined list of available checkpoints.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`model`**

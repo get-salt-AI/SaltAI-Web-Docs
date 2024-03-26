@@ -8,12 +8,12 @@ The LatentMultiply node is designed to scale the latent representation of sample
 ## Input types
 ### Required
 - **`samples`**
-    - Comfy dtype: `LATENT`
     - The 'samples' parameter represents the latent representations to be scaled. It is crucial for defining the input data on which the multiplication operation will be performed.
+    - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 - **`multiplier`**
-    - Comfy dtype: `FLOAT`
     - The 'multiplier' parameter specifies the scaling factor to be applied to the latent samples. It plays a key role in adjusting the magnitude of the latent features, allowing for nuanced control over the generated output.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`latent`**

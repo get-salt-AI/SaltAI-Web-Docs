@@ -8,8 +8,8 @@ The CLIPVisionLoader node is designed for loading CLIP Vision models from specif
 ## Input types
 ### Required
 - **`clip_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the name of the CLIP Vision model to be loaded. This name is used to locate the model file within a predefined directory structure.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`clip_vision`**

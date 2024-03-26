@@ -8,12 +8,12 @@ The node performs unary operations on 2-dimensional vectors, transforming a sing
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the unary operation to be performed on the vector, affecting the transformation result.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`a`**
-    - Comfy dtype: `VEC2`
     - The 2-dimensional vector to be transformed by the unary operation.
+    - Comfy dtype: `VEC2`
     - Python dtype: `Vec2`
 ## Output types
 - **`vec2`**

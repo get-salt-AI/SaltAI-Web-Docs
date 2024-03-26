@@ -8,12 +8,12 @@ The CM_Vec3UnaryCondition node is designed to evaluate unary conditions on 3-dim
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the unary operation to be performed on the vector. The choice of operation determines the condition being evaluated. The operations are limited to a predefined set of unary conditions applicable to 3-dimensional vectors.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 - **`a`**
-    - Comfy dtype: `VEC3`
     - The 3-dimensional vector on which the unary condition is evaluated.
+    - Comfy dtype: `VEC3`
     - Python dtype: `Vec3`
 ## Output types
 - **`bool`**

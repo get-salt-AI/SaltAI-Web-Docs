@@ -4,20 +4,20 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The `ImpactCombineConditionings` node is designed to merge multiple conditioning inputs into a single conditioning output. This process involves concatenating the conditioning data from all provided inputs, potentially modifying the structure or content of the conditioning to accommodate the combination. This node is useful in scenarios where multiple conditioning sources need to be unified for further processing or application.
+The node is designed to merge two or more conditioning inputs into a single conditioning output. It focuses on combining the specified conditioning elements to create a unified conditioning that can be used in subsequent operations or models.
 ## Input types
 ### Required
 - **`conditioning1`**
-    - The primary conditioning input to be combined. It serves as the initial base to which additional conditioning inputs are added, playing a crucial role in the combination process.
-    - Python dtype: `List[Tuple[torch.Tensor, Any]]`
+    - The primary conditioning input that serves as the base for combination. It plays a crucial role in the merging process, acting as the initial conditioning to which others are added.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `List[Tuple[torch.Tensor, Any]]`
 ## Output types
 - **`conditioning`**
-    - The result of combining multiple conditioning inputs. This output represents a unified conditioning that incorporates elements from all provided inputs.
-    - Python dtype: `List[Tuple[torch.Tensor, Any]]`
     - Comfy dtype: `CONDITIONING`
+    - The combined conditioning output, which is a result of merging the input conditionings. This unified conditioning is ready for use in further processing or model applications.
+    - Python dtype: `Tuple[List[Tuple[torch.Tensor, Any]], ...]`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: `SetNode`
 
 

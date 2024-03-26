@@ -8,24 +8,24 @@ The FreeU_V2 node is designed to enhance the flexibility and performance of neur
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - The neural network model to be enhanced. This parameter is crucial as it determines the base architecture that the FreeU_V2 node will operate on, directly influencing the effectiveness of the dynamic scaling mechanism.
+    - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`b1`**
-    - Comfy dtype: `FLOAT`
     - A scaling factor that influences the adjustment of the model's hidden layers, contributing to the dynamic scaling mechanism's ability to optimize the model's performance.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`b2`**
-    - Comfy dtype: `FLOAT`
     - Another scaling factor that works in conjunction with b1 to fine-tune the adjustment of the model's hidden layers, enhancing the dynamic scaling mechanism's effectiveness.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`s1`**
-    - Comfy dtype: `FLOAT`
     - A scale parameter that further refines the dynamic adjustment of the model's hidden layers, aiding in the optimization of the model's learning and inference processes.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`s2`**
-    - Comfy dtype: `FLOAT`
     - A scale parameter that complements s1, contributing to the precise tuning of the model's hidden layers for improved performance and flexibility.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`model`**

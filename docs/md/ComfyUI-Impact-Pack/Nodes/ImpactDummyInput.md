@@ -4,14 +4,14 @@
 - Category: `ImpactPack/Debug`
 - Output node: `False`
 
-The `ImpactDummyInput` node is designed to generate a dummy input value. It serves as a placeholder or a default value generator within the ImpactPack/Debug category, primarily used for testing or debugging purposes.
+The ImpactDummyInput node is designed to generate a simple dummy output, primarily for testing or placeholder purposes within the ImpactPack/Debug category. It serves as a straightforward mechanism to introduce a constant or a placeholder value into the data flow.
 ## Input types
 ### Required
 ## Output types
 - **`*`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `*`
+    - Represents a generic output type, indicating that this node can produce a value of any type, serving as a versatile placeholder or test value.
+    - Python dtype: `Any`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

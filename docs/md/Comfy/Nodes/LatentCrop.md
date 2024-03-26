@@ -8,24 +8,24 @@ The LatentCrop node is designed to perform cropping operations on latent represe
 ## Input types
 ### Required
 - **`samples`**
-    - Comfy dtype: `LATENT`
     - The 'samples' parameter represents the latent representations to be cropped. It is crucial for defining the data on which the cropping operation will be performed.
+    - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 - **`width`**
-    - Comfy dtype: `INT`
     - Specifies the width of the crop area. It directly influences the dimensions of the output latent representation.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Comfy dtype: `INT`
     - Specifies the height of the crop area, affecting the size of the resulting cropped latent representation.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`x`**
-    - Comfy dtype: `INT`
     - Determines the starting x-coordinate of the crop area, influencing the position of the crop within the original latent representation.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`y`**
-    - Comfy dtype: `INT`
     - Determines the starting y-coordinate of the crop area, setting the position of the crop within the original latent representation.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`latent`**

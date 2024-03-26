@@ -4,28 +4,28 @@
 - Category: `ImpactPack/Util`
 - Output node: `True`
 
-The `LatentSender` node is designed for preparing and sending latent image data. It involves loading a preview of the latent samples, saving the latent data along with metadata and a preview image to a file, and then sending this information to a server. This process supports the sharing of latent images by encapsulating the necessary data and metadata into a format suitable for transmission.
+LatentSender is designed for handling and transmitting latent representations of images. It encapsulates the functionality to prepare a preview of the latent image, save the latent tensor along with metadata and a preview image to a file, and send the latent image information to a specified destination. This node facilitates the sharing and manipulation of latent image representations by providing a structured way to save and communicate these representations.
 ## Input types
 ### Required
 - **`samples`**
-    - The `samples` parameter contains the latent tensor data that will be processed and sent. It is crucial for generating the preview and saving the latent image data.
-    - Python dtype: `Dict[str, torch.Tensor]`
+    - The 'samples' parameter represents the latent representations of images to be handled. It is crucial for the node's operation as it forms the basis of the latent image information that will be saved, previewed, and sent.
     - Comfy dtype: `LATENT`
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`filename_prefix`**
-    - This parameter specifies the prefix for the filename under which the latent data will be saved. It helps in organizing and identifying the saved latent files.
-    - Python dtype: `str`
+    - This parameter specifies the prefix for the filenames under which the latent images and their metadata will be saved. It plays a significant role in organizing the saved files.
     - Comfy dtype: `STRING`
+    - Python dtype: `str`
 - **`link_id`**
-    - The `link_id` is used to identify the specific link or session for sending the latent data. It ensures that the data is sent to the correct recipient or session.
-    - Python dtype: `int`
+    - The 'link_id' parameter is used to identify the specific destination or channel to which the latent image information will be sent. It is essential for routing the information correctly.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`preview_method`**
-    - Specifies the method used for generating a preview of the latent samples. This affects how the latent data is visualized before being sent.
+    - Specifies the method to be used for generating a preview of the latent image. This parameter affects how the latent representation is visualized before being saved or sent.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ## Output types
 - **`ui`**
-    - Provides a user interface element, specifically images, that represent the latent data that has been processed and is ready to be sent.
+    - The output includes a UI component that displays the information about the saved latent images, including filenames and subfolders. This facilitates user interaction with the saved latent representations.
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

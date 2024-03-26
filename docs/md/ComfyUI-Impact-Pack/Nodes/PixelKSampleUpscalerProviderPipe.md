@@ -4,63 +4,63 @@
 - Category: `ImpactPack/Upscale`
 - Output node: `False`
 
-This node acts as a provider for the PixelKSampleUpscaler, facilitating the upscaling process by configuring and initializing the upscaling model based on the provided parameters. It dynamically decides whether to use a tiled or non-tiled upscaling approach based on the availability of a specific node class mapping, ensuring flexibility and adaptability in the upscaling process.
+The PixelKSampleUpscalerProviderPipe node is designed to provide a streamlined pipeline for upscaling images using pixel-based K-sample upscaling techniques. It extends the capabilities of the PixelKSampleUpscalerProvider by incorporating additional processing steps and configurations, aiming to enhance the quality and efficiency of the upscaling process.
 ## Input types
 ### Required
 - **`scale_method`**
-    - Specifies the method used for scaling, impacting the quality and characteristics of the upscaled image.
+    - Specifies the method used for scaling the image, impacting the overall upscaling quality and technique.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`seed`**
-    - Determines the random seed used in the upscaling process, affecting the randomness and variation in the output.
-    - Python dtype: `int`
+    - Determines the random seed used for generating the upscaled image, ensuring reproducibility of results.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`steps`**
-    - Defines the number of steps in the upscaling process, influencing the detail and refinement of the upscaled image.
-    - Python dtype: `int`
+    - Defines the number of steps to perform during the upscaling process, affecting the detail and quality of the output.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`cfg`**
-    - Configures the upscaling process, allowing for customization of the upscaling behavior.
-    - Python dtype: `float`
+    - Configuration settings for the upscaling process, allowing for customization of various parameters.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`sampler_name`**
-    - Selects the sampler used in the upscaling process, affecting the sampling strategy and output quality.
+    - The name of the sampler used in the upscaling process, influencing the sampling technique and results.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`scheduler`**
-    - Chooses the scheduler for the upscaling process, managing the progression and timing of upscaling steps.
+    - Specifies the scheduler used to manage the upscaling steps, contributing to the efficiency and control of the process.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`denoise`**
-    - Determines the level of denoising applied during the upscaling process, impacting the clarity and smoothness of the upscaled image.
-    - Python dtype: `float`
+    - Indicates the level of denoising applied during the upscaling process, improving the visual quality of the output.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`use_tiled_vae`**
-    - Indicates whether a tiled VAE approach is used, affecting the upscaling process's efficiency and output.
-    - Python dtype: `bool`
+    - Determines whether a tiled VAE is used in the upscaling process, affecting the approach to image processing.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`basic_pipe`**
-    - Provides the basic components required for the upscaling process, including models and configurations.
-    - Python dtype: `Tuple[torch.nn.Module, Any, torch.nn.Module, bool, bool]`
+    - A basic pipeline configuration that includes essential components for the upscaling process.
     - Comfy dtype: `BASIC_PIPE`
+    - Python dtype: `tuple`
 - **`tile_size`**
-    - Specifies the size of tiles used in the tiled upscaling approach, affecting the granularity and parallelism of the process.
-    - Python dtype: `int`
+    - The size of the tiles used in the tiling strategy, affecting the granularity of the upscaling process.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ### Optional
 - **`upscale_model_opt`**
-    - Optional parameter for specifying additional options for the upscale model, allowing for further customization.
-    - Python dtype: `Optional[Dict[str, Any]]`
+    - Optional configurations for the upscale model, allowing for further customization of the upscaling technique.
     - Comfy dtype: `UPSCALE_MODEL`
+    - Python dtype: `dict`
 - **`pk_hook_opt`**
-    - Optional parameter for specifying options for post-processing hooks, enabling additional image processing steps after upscaling.
-    - Python dtype: `Optional[Dict[str, Any]]`
+    - Optional hook options for post-processing, enabling additional adjustments and enhancements to the upscaled image.
     - Comfy dtype: `PK_HOOK`
+    - Python dtype: `dict`
 ## Output types
 - **`upscaler`**
-    - The configured upscaling model ready for use, either tiled or non-tiled based on the input parameters and available node class mappings.
-    - Python dtype: `PixelTiledKSampleUpscaler`
     - Comfy dtype: `UPSCALER`
+    - The upscaler object configured and ready for use in image upscaling tasks.
+    - Python dtype: `object`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `IterativeImageUpscale`

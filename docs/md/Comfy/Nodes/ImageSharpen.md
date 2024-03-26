@@ -8,20 +8,20 @@ The ImageSharpen node enhances the clarity of an image by accentuating its edges
 ## Input types
 ### Required
 - **`image`**
-    - Comfy dtype: `IMAGE`
     - The input image to be sharpened. This parameter is crucial as it determines the base image on which the sharpening effect will be applied.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`sharpen_radius`**
-    - Comfy dtype: `INT`
     - Defines the radius of the sharpening effect. A larger radius means that more pixels around the edge will be affected, leading to a more pronounced sharpening effect.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`sigma`**
-    - Comfy dtype: `FLOAT`
     - Controls the spread of the sharpening effect. A higher sigma value results in a smoother transition at the edges, while a lower sigma makes the sharpening more localized.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`alpha`**
-    - Comfy dtype: `FLOAT`
     - Adjusts the intensity of the sharpening effect. Higher alpha values result in a stronger sharpening effect.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`image`**

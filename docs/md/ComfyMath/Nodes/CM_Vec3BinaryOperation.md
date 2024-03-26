@@ -8,16 +8,16 @@ Performs binary operations on two 3-dimensional vectors, resulting in a new 3-di
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the binary operation to perform on the vectors, such as addition or subtraction, influencing the result of the operation.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`a`**
-    - Comfy dtype: `VEC3`
     - The first 3-dimensional vector operand in the binary operation.
+    - Comfy dtype: `VEC3`
     - Python dtype: `Vec3`
 - **`b`**
-    - Comfy dtype: `VEC3`
     - The second 3-dimensional vector operand in the binary operation.
+    - Comfy dtype: `VEC3`
     - Python dtype: `Vec3`
 ## Output types
 - **`vec3`**

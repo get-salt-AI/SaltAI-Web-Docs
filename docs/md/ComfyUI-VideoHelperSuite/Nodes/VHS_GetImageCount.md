@@ -4,18 +4,18 @@
 - Category: `Video Helper Suite 🎥🅥🅗🅢/image`
 - Output node: `False`
 
-Counts the number of images in a given batch. This function is useful for understanding the size of a dataset or a batch of images processed or generated within a workflow.
+The `VHS_GetImageCount` node is designed to count the number of images in a given batch. It serves as a utility within the Video Helper Suite to facilitate operations that require knowledge of batch size, such as splitting or merging batches.
 ## Input types
 ### Required
 - **`images`**
-    - Represents the batch of images for which the count is to be determined. The count of images directly influences the output of this node, providing a simple yet essential metric for batch processing.
-    - Python dtype: `torch.Tensor`
+    - The `images` parameter represents the batch of images whose count is to be determined. It is crucial for calculating the total number of images present, which impacts subsequent operations that depend on batch size.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `torch.Tensor`
 ## Output types
-- **`int`**
-    - The total number of images present in the input batch. This output is crucial for batch processing tasks, enabling dynamic adjustments and insights into the data being handled.
-    - Python dtype: `int`
+- **`count`**
     - Comfy dtype: `INT`
+    - The `count` output represents the total number of images in the input batch. This information is essential for managing image batches and planning further processing steps.
+    - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

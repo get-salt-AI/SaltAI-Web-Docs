@@ -8,32 +8,32 @@ This node applies advanced control net transformations to conditioning data base
 ## Input types
 ### Required
 - **`positive`**
-    - Comfy dtype: `CONDITIONING`
     - The positive conditioning data to which the control net transformations will be applied. It represents the desired attributes or features to enhance or maintain in the generated content.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[str, Dict[str, Any]]]`
 - **`negative`**
-    - Comfy dtype: `CONDITIONING`
     - The negative conditioning data, representing attributes or features to diminish or remove from the generated content. The control net transformations are applied to this data as well, allowing for a balanced adjustment of the content's characteristics.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[str, Dict[str, Any]]]`
 - **`control_net`**
-    - Comfy dtype: `CONTROL_NET`
     - The control net model is crucial for defining the specific adjustments and enhancements to the conditioning data. It interprets the reference image and strength parameters to apply transformations, significantly influencing the final output by modifying attributes in both positive and negative conditioning data.
+    - Comfy dtype: `CONTROL_NET`
     - Python dtype: `ControlNet`
 - **`image`**
-    - Comfy dtype: `IMAGE`
     - The image serving as a reference for the control net transformations. It influences the adjustments made by the control net to the conditioning data, guiding the enhancement or suppression of specific features.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`strength`**
-    - Comfy dtype: `FLOAT`
     - A scalar value determining the intensity of the control net's influence on the conditioning data. Higher values result in more pronounced adjustments.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`start_percent`**
-    - Comfy dtype: `FLOAT`
     - The starting percentage of the control net's effect, allowing for gradual application of transformations over a specified range.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end_percent`**
-    - Comfy dtype: `FLOAT`
     - The ending percentage of the control net's effect, defining the range over which the transformations are applied. This enables more nuanced control over the adjustment process.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`positive`**

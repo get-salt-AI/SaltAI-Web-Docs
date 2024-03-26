@@ -4,18 +4,18 @@
 - Category: `ImpactPack/Operation`
 - Output node: `False`
 
-This node transforms a list of images into a single batched image tensor. If the images have different sizes, they are upscaled to match the first image's size using the Lanczos resampling method before being concatenated along the batch dimension.
+This node transforms a list of images into a single batched image tensor, ensuring all images have the same dimensions through upsampling if necessary. It's designed to facilitate operations that require batch processing of images by consolidating multiple images into a unified tensor format.
 ## Input types
 ### Required
 - **`images`**
-    - A list of image tensors to be batched together. The images are upscaled to match the size of the first image in the list if they differ in size, ensuring uniformity in the batch.
-    - Python dtype: `List[torch.Tensor]`
+    - A list of image tensors to be batched together. This input is crucial for the node's operation as it determines the composition of the resulting batched image tensor.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `List[torch.Tensor]`
 ## Output types
 - **`image`**
-    - A single tensor containing all input images batched along the first dimension. This tensor is suitable for batch processing in neural networks.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The output is a single batched image tensor, which is a consolidated version of the input images, potentially with upsampling applied to maintain dimension consistency.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `VHS_VideoCombine,RIFE VFI,ImageUpscaleWithModel,Reroute,ImageSelector`

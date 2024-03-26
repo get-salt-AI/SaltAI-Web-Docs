@@ -8,45 +8,45 @@ This node is designed for loading AnimateDiff models in a legacy context, facili
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - Specifies the generative model to be loaded and configured with AnimateDiff parameters, serving as the foundation for animation dynamics integration.
+    - Comfy dtype: `MODEL`
     - Python dtype: `ModelPatcher`
 - **`model_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - Identifies the specific AnimateDiff model to be loaded, acting as a key identifier for selecting the appropriate animation dynamics.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`beta_schedule`**
-    - Comfy dtype: `COMBO[STRING]`
     - Determines the beta schedule to be used, allowing for fine-tuned control over the diffusion process within the AnimateDiff framework.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `BetaSchedules`
 ### Optional
 - **`context_options`**
-    - Comfy dtype: `CONTEXT_OPTIONS`
     - Provides additional context-specific options for the AnimateDiff model, allowing for customized animation dynamics.
+    - Comfy dtype: `CONTEXT_OPTIONS`
     - Python dtype: `ContextOptions`
 - **`motion_lora`**
-    - Comfy dtype: `MOTION_LORA`
     - Specifies the LoRA parameters for motion, enabling fine-tuned control over the animation dynamics.
+    - Comfy dtype: `MOTION_LORA`
     - Python dtype: `MotionLoraList`
 - **`ad_settings`**
-    - Comfy dtype: `AD_SETTINGS`
     - Defines the AnimateDiff settings to be applied, offering further customization of the animation dynamics.
+    - Comfy dtype: `AD_SETTINGS`
     - Python dtype: `AnimateDiffSettings`
 - **`sample_settings`**
-    - Comfy dtype: `SAMPLE_SETTINGS`
     - Determines the sampling settings for the AnimateDiff model, affecting the quality and characteristics of the generated animation.
+    - Comfy dtype: `SAMPLE_SETTINGS`
     - Python dtype: `SampleSettings`
 - **`motion_scale`**
-    - Comfy dtype: `FLOAT`
     - Adjusts the scale of motion in the animation, allowing for more subtle or exaggerated movements.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`apply_v2_models_properly`**
-    - Comfy dtype: `BOOLEAN`
     - Ensures that version 2 models are applied correctly, maintaining compatibility and performance.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`ad_keyframes`**
-    - Comfy dtype: `AD_KEYFRAMES`
     - Specifies keyframes for the animation, enabling precise control over the animation timeline.
+    - Comfy dtype: `AD_KEYFRAMES`
     - Python dtype: `ADKeyframesList`
 ## Output types
 - **`model`**

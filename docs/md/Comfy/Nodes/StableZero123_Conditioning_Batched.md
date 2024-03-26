@@ -8,44 +8,44 @@ This node is designed to process conditioning information in a batched manner sp
 ## Input types
 ### Required
 - **`clip_vision`**
-    - Comfy dtype: `CLIP_VISION`
     - The CLIP vision embeddings that provide visual context for the conditioning process.
+    - Comfy dtype: `CLIP_VISION`
     - Python dtype: `torch.Tensor`
 - **`init_image`**
-    - Comfy dtype: `IMAGE`
     - The initial image to be conditioned upon, serving as a starting point for the generation process.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`vae`**
-    - Comfy dtype: `VAE`
     - The variational autoencoder used for encoding and decoding images in the conditioning process.
+    - Comfy dtype: `VAE`
     - Python dtype: `torch.nn.Module`
 - **`width`**
-    - Comfy dtype: `INT`
     - The width of the output image.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Comfy dtype: `INT`
     - The height of the output image.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`batch_size`**
-    - Comfy dtype: `INT`
     - The number of conditioning sets to be processed in a single batch.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`elevation`**
-    - Comfy dtype: `FLOAT`
     - The elevation angle for 3D model conditioning, affecting the perspective of the generated image.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`azimuth`**
-    - Comfy dtype: `FLOAT`
     - The azimuth angle for 3D model conditioning, affecting the orientation of the generated image.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`elevation_batch_increment`**
-    - Comfy dtype: `FLOAT`
     - The incremental change in elevation angle across the batch, allowing for varied perspectives.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`azimuth_batch_increment`**
-    - Comfy dtype: `FLOAT`
     - The incremental change in azimuth angle across the batch, allowing for varied orientations.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`positive`**

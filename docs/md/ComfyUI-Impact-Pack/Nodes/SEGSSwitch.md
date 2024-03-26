@@ -4,35 +4,35 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The SEGSSwitch node dynamically selects one of the input segmentation sets based on the provided index. It's designed to facilitate conditional processing of different segmentation sets within a workflow, enhancing flexibility and control over which data is processed at any given stage.
+SEGSSwitch is designed to dynamically select between multiple segmentation (SEGS) inputs based on a specified index. It facilitates conditional processing of segmentation data within a pipeline, allowing for flexible manipulation and routing of segmentation information.
 ## Input types
 ### Required
 - **`select`**
-    - Specifies the index of the segmentation set to be selected for output. It ensures that the workflow can dynamically choose between multiple segmentation inputs based on conditions or preferences.
-    - Python dtype: `int`
+    - Specifies the index of the segmentation input to be selected. This parameter enables dynamic selection, allowing the node to adapt to varying processing requirements.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`sel_mode`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `unknown`
 ### Optional
 - **`input1`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `*`
+    - Python dtype: `unknown`
 ## Output types
-- **`*`**
-    - Outputs the selected segmentation set. This allows for conditional processing and routing of segmentation data within a workflow.
-    - Python dtype: `Tuple[str, List[SEG]]`
+- **`selected_value`**
     - Comfy dtype: `*`
-- **`string`**
     - unknown
     - Python dtype: `unknown`
+- **`selected_label`**
     - Comfy dtype: `STRING`
-- **`int`**
     - unknown
     - Python dtype: `unknown`
+- **`selected_index`**
     - Comfy dtype: `INT`
+    - unknown
+    - Python dtype: `unknown`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

@@ -8,8 +8,8 @@ The InvertMask node is designed to invert the values of a given mask, effectivel
 ## Input types
 ### Required
 - **`mask`**
-    - Comfy dtype: `MASK`
     - The 'mask' parameter represents the input mask to be inverted. It is crucial for determining the areas to be flipped in the inversion process.
+    - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`mask`**

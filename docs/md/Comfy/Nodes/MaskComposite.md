@@ -8,24 +8,24 @@ This node specializes in combining two mask inputs through a variety of operatio
 ## Input types
 ### Required
 - **`destination`**
-    - Comfy dtype: `MASK`
     - The primary mask that will be modified based on the operation with the source mask. It plays a central role in the composite operation, acting as the base for modifications.
+    - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`source`**
-    - Comfy dtype: `MASK`
     - The secondary mask that will be used in conjunction with the destination mask to perform the specified operation, influencing the final output mask.
+    - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`x`**
-    - Comfy dtype: `INT`
     - The horizontal offset at which the source mask will be applied to the destination mask, affecting the positioning of the composite result.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`y`**
-    - Comfy dtype: `INT`
     - The vertical offset at which the source mask will be applied to the destination mask, affecting the positioning of the composite result.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`operation`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the type of operation to apply between the destination and source masks, such as 'add', 'subtract', or logical operations, determining the nature of the composite effect.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`mask`**

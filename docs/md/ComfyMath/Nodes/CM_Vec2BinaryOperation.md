@@ -8,16 +8,16 @@ The node performs binary operations on two-dimensional vectors, producing a new 
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the binary operation to be performed on the vectors. It determines how the two input vectors will be combined.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`a`**
-    - Comfy dtype: `VEC2`
     - The first two-dimensional vector involved in the binary operation.
+    - Comfy dtype: `VEC2`
     - Python dtype: `Vec2`
 - **`b`**
-    - Comfy dtype: `VEC2`
     - The second two-dimensional vector involved in the binary operation.
+    - Comfy dtype: `VEC2`
     - Python dtype: `Vec2`
 ## Output types
 - **`vec2`**

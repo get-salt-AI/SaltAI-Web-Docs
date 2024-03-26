@@ -8,32 +8,32 @@ The ADE_AnimateDiffCombine node was designed to facilitate the creation and mani
 ## Input types
 ### Required
 - **`images`**
-    - Comfy dtype: `IMAGE`
     - Represents the sequence of images to be combined into an animation. It plays a crucial role in determining the visual content of the final output.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `List[Image.Image]`
 - **`frame_rate`**
-    - Comfy dtype: `INT`
     - Specifies the playback speed of the animation, affecting how smooth or fast the animation appears.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`loop_count`**
-    - Comfy dtype: `INT`
     - Determines the number of times the animation will loop, with a specific focus on enabling repetitive playback.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`filename_prefix`**
-    - Comfy dtype: `STRING`
     - Acts as the base name for the output file, allowing users to identify and organize their animations.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`format`**
-    - Comfy dtype: `COMBO[STRING]`
     - Defines the output format of the animation, influencing compatibility and quality. It is not a list but a single string value representing the chosen format.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`pingpong`**
-    - Comfy dtype: `BOOLEAN`
     - Enables a back-and-forth playback mode, adding a dynamic effect to the animation.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`save_image`**
-    - Comfy dtype: `BOOLEAN`
     - Controls whether the first frame of the animation is saved as a separate image file, including metadata.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`gif`**

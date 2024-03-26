@@ -4,32 +4,32 @@
 - Category: `ImpactPack/Sampler`
 - Output node: `False`
 
-KSamplerAdvancedProvider is a class method that configures and returns an advanced KSampler sampler. It utilizes a basic pipeline and specific configurations such as sampler name and scheduler to create a customized sampling process.
+This node provides an advanced KSampler configuration, allowing for the customization of sampling behavior through various parameters. It is designed to enhance the flexibility and control over the sampling process, catering to specific needs and preferences.
 ## Input types
 ### Required
 - **`cfg`**
-    - Defines the configuration setting for the sampler, influencing its behavior and performance.
-    - Python dtype: `float`
+    - Specifies the configuration value for the sampler, influencing its behavior and performance.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`sampler_name`**
-    - Specifies the name of the sampler to be used, determining the sampling strategy.
+    - Determines the specific sampler to be used, chosen from a predefined set of samplers.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`scheduler`**
-    - Determines the scheduling strategy for the sampling process, affecting the progression of sampling steps.
+    - Selects the scheduling algorithm to be used, chosen from a predefined set of schedulers.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`basic_pipe`**
-    - Represents the basic pipeline inputs including the model and conditioning information, which are essential for the sampling process.
-    - Python dtype: `Tuple[torch.nn.Module, Any, Any, Any, Any]`
+    - Provides the basic pipeline components required for the sampling process.
     - Comfy dtype: `BASIC_PIPE`
+    - Python dtype: `tuple`
 ## Output types
 - **`ksampler_advanced`**
-    - The advanced KSampler sampler configured according to the provided inputs.
-    - Python dtype: `KSamplerAdvancedWrapper`
     - Comfy dtype: `KSAMPLER_ADVANCED`
+    - Returns an advanced KSampler instance, configured according to the provided parameters.
+    - Python dtype: `KSamplerAdvancedWrapper`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 

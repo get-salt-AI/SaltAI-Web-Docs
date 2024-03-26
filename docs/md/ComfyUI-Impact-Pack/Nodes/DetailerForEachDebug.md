@@ -4,111 +4,127 @@
 - Category: `ImpactPack/Detailer`
 - Output node: `False`
 
-The `DetailerForEachDebug` node is a specialized version of the `DetailerForEach` node designed for debugging purposes. It likely includes additional logging or diagnostic features to help understand the behavior of the detailer operations in a more granular way. This node is useful for developers or users who need to troubleshoot or optimize the detailer process.
+The DetailerForEachDebug node is a specialized version of the DetailerForEach node, designed for debugging purposes. It extends the functionality of DetailerForEach by incorporating additional diagnostic features to aid in the analysis and troubleshooting of the detailing process.
 ## Input types
 ### Required
 - **`image`**
-    - unknown
-    - Python dtype: `unknown`
+    - The 'image' input type represents the visual content that the node processes, serving as the primary subject for detailing. It is essential for the node's operation, directly influencing the detailing outcomes.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `torch.Tensor`
 - **`segs`**
-    - unknown
-    - Python dtype: `unknown`
+    - The 'segs' input type refers to segmentation maps associated with the image, providing contextual information for more precise detailing. It plays a crucial role in guiding the detailing process.
     - Comfy dtype: `SEGS`
+    - Python dtype: `List[torch.Tensor]`
 - **`model`**
-    - unknown
-    - Python dtype: `unknown`
+    - The 'model' input type specifies the generative model used for detailing, affecting the style and quality of the detailing outcomes.
     - Comfy dtype: `MODEL`
+    - Python dtype: `torch.nn.Module`
 - **`clip`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `CLIP`
+    - Python dtype: `unknown`
 - **`vae`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `VAE`
+    - Python dtype: `unknown`
 - **`guide_size`**
-    - unknown
-    - Python dtype: `unknown`
+    - The 'guide_size' input type determines the resolution of the guide for detailing, impacting the detail level and overall quality of the output.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`guide_size_for`**
-    - unknown
-    - Python dtype: `unknown`
+    - The 'guide_size_for' input type indicates whether the guide size is determined by the bounding box or the crop region, influencing the detailing scope.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`max_size`**
-    - unknown
-    - Python dtype: `unknown`
+    - The 'max_size' input type sets the maximum resolution for the output, ensuring the detailing process stays within computational limits.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`seed`**
-    - unknown
-    - Python dtype: `unknown`
+    - The 'seed' input type provides a way to reproduce detailing results by initializing the random number generator with a specific value.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`steps`**
-    - unknown
-    - Python dtype: `unknown`
+    - The 'steps' input type specifies the number of steps to perform in the detailing process, affecting the thoroughness and quality of the detailing.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`cfg`**
-    - unknown
-    - Python dtype: `unknown`
+    - The 'cfg' input type controls the configuration of the generative model during detailing, affecting the style and characteristics of the output.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`sampler_name`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `['euler', 'euler_ancestral', 'heun'...]`
+    - The 'sampler_name' input type selects the sampling method used in the detailing process, influencing the randomness and diversity of the detailing outcomes.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
 - **`scheduler`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `['normal', 'karras', 'exponential'...]`
+    - The 'scheduler' input type determines the scheduling strategy for the detailing steps, affecting the progression and refinement of the detailing.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
 - **`positive`**
-    - unknown
-    - Python dtype: `unknown`
+    - The 'positive' input type represents conditioning information that encourages certain features or aspects in the detailing outcomes.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`negative`**
-    - unknown
-    - Python dtype: `unknown`
+    - The 'negative' input type represents conditioning information that discourages certain features or aspects in the detailing outcomes.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`denoise`**
-    - unknown
-    - Python dtype: `unknown`
+    - The 'denoise' input type specifies the level of denoising applied during the detailing process, affecting the clarity and smoothness of the output.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`feather`**
-    - unknown
-    - Python dtype: `unknown`
+    - The 'feather' input type controls the feathering of edges in the detailing, affecting the blending and naturalness of the output.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`noise_mask`**
-    - unknown
-    - Python dtype: `unknown`
+    - The 'noise_mask' input type indicates whether a noise mask is applied during detailing, influencing the texture and detail distribution in the output.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`force_inpaint`**
-    - unknown
-    - Python dtype: `unknown`
+    - The 'force_inpaint' input type determines whether inpainting is enforced in areas lacking detail, affecting the completeness and coherence of the output.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`wildcard`**
-    - unknown
-    - Python dtype: `unknown`
+    - The 'wildcard' input type allows for the inclusion of additional, unspecified parameters that may influence the detailing process in unforeseen ways.
     - Comfy dtype: `STRING`
+    - Python dtype: `Any`
 - **`cycle`**
-    - unknown
-    - Python dtype: `unknown`
+    - The 'cycle' input type specifies whether the detailing process includes a cycle of operations for refinement, affecting the iterative improvement of the output.
     - Comfy dtype: `INT`
+    - Python dtype: `bool`
 ### Optional
 - **`detailer_hook`**
-    - unknown
-    - Python dtype: `unknown`
+    - The 'detailer_hook' input type provides a mechanism for custom modifications or enhancements during the detailing process, allowing for tailored detailing outcomes.
     - Comfy dtype: `DETAILER_HOOK`
+    - Python dtype: `Callable`
 - **`inpaint_model`**
-    - unknown
-    - Python dtype: `unknown`
+    - The 'inpaint_model' input type indicates whether an inpainting model is used for filling in missing details, affecting the restoration and enhancement of the image.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`noise_mask_feather`**
-    - unknown
-    - Python dtype: `unknown`
+    - The 'noise_mask_feather' input type controls the feathering of the noise mask, affecting the smoothness and transition of details in the output.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
 - **`image`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `IMAGE`
+    - The 'image' output type represents the detailed and enhanced visual content produced by the node, ready for further processing or analysis.
+    - Python dtype: `torch.Tensor`
+- **`cropped`**
+    - Comfy dtype: `IMAGE`
+    - The 'cropped' output type refers to the portion of the image that has been selected and processed for detailing, providing a focused area of enhancement.
+    - Python dtype: `torch.Tensor`
+- **`cropped_refined`**
+    - Comfy dtype: `IMAGE`
+    - The 'cropped_refined' output type represents the refined version of the cropped image, showcasing the improvements made during the detailing process.
+    - Python dtype: `torch.Tensor`
+- **`cropped_refined_alpha`**
+    - Comfy dtype: `IMAGE`
+    - The 'cropped_refined_alpha' output type includes the alpha channel of the cropped and refined image, allowing for transparency handling in further processing.
+    - Python dtype: `torch.Tensor`
+- **`cnet_images`**
+    - Comfy dtype: `IMAGE`
+    - The 'cnet_images' output type consists of images processed through a ControlNet model, offering additional refinement and detailing based on model predictions.
+    - Python dtype: `List[torch.Tensor]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `PreviewImage,DetailerForEachDebug`

@@ -8,20 +8,20 @@ The PrepImageForClipVision node is designed to prepare images for processing by 
 ## Input types
 ### Required
 - **`image`**
-    - Comfy dtype: `IMAGE`
     - The 'image' parameter represents the input image to be processed. It is crucial for the node's operation as it is the subject of the preparation process.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`interpolation`**
-    - Comfy dtype: `COMBO[STRING]`
     - The 'interpolation' parameter specifies the method used to resize the image, affecting the quality and the way pixels are interpolated.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`crop_position`**
-    - Comfy dtype: `COMBO[STRING]`
     - The 'crop_position' parameter determines the area of the image to focus on or how the image is cropped, influencing the portion of the image that will be analyzed by the CLIP model.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`sharpening`**
-    - Comfy dtype: `FLOAT`
     - The 'sharpening' parameter adjusts the sharpness of the image, enhancing edge definition and detail visibility, which can affect the model's ability to extract features.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`image`**

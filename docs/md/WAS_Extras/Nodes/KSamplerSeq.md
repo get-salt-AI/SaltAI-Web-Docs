@@ -4,99 +4,99 @@
 - Category: `sampling`
 - Output node: `False`
 
-The `KSamplerSeq` node is designed for advanced image sampling in sequences, incorporating features like latent interpolation, conditioning slerp, and optional unsampling of latents. It allows for dynamic adjustment of denoising levels and supports various seed modes and alternate value toggling for enhanced control over the sampling process.
+The KSamplerSeq node is designed for advanced sampling in generative models, specifically focusing on the iterative refinement of latent images through a sequence of steps. It incorporates mechanisms for unsampling latents, adjusting denoise levels dynamically, and optionally looping through the sequence to enhance the quality or diversity of the generated samples.
 ## Input types
 ### Required
 - **`model`**
-    - Specifies the model to be used for sampling, central to the operation of the node.
-    - Python dtype: `torch.nn.Module`
+    - Specifies the generative model to be used for sampling.
     - Comfy dtype: `MODEL`
+    - Python dtype: `str`
 - **`seed`**
-    - Determines the initial seed for randomness, affecting the sampling outcome. It can be dynamically adjusted based on the seed mode.
-    - Python dtype: `int`
+    - Determines the initial random seed for sampling, affecting the randomness and reproducibility of the generated samples.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`seed_mode_seq`**
-    - Controls how the seed is updated across sequence iterations, allowing for incremental, decremental, random, or fixed seed values.
-    - Python dtype: `str`
-    - Comfy dtype: `STRING`
+    - Defines the mode of seed progression throughout the sequence, allowing for incremental, decremental, random, or fixed seed values.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `List[str]`
 - **`alternate_values`**
-    - Enables or disables the alternation of certain parameters between sequence iterations, adding variability to the sampling process.
-    - Python dtype: `bool`
+    - Enables or disables the alternation of certain parameters between iterations to introduce variability.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`steps`**
-    - Defines the number of steps to be used in the sampling process, impacting the detail and quality of the generated images.
-    - Python dtype: `int`
+    - The total number of steps to execute in the sampling process, impacting the refinement and detail of the output.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`cfg`**
-    - Sets the classifier-free guidance scale, influencing the adherence to the provided conditioning.
-    - Python dtype: `float`
+    - Controls the conditioning factor, influencing the adherence of the generated samples to the specified conditions.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`sampler_name`**
-    - Selects the specific sampling algorithm to be used, affecting the characteristics of the generated images.
+    - Selects the specific sampling algorithm to be used, from a predefined set of samplers.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`scheduler`**
-    - Chooses the scheduler for controlling the sampling process, further customizing the generation.
+    - Chooses the scheduling algorithm for controlling the sampling process, affecting the progression of denoising and refinement.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`sequence_loop_count`**
-    - Determines the number of iterations for the sequence, allowing for extended or shortened sampling sequences.
-    - Python dtype: `int`
+    - Determines how many times the sampling sequence is looped, potentially enhancing the output through repeated refinement.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`positive_seq`**
-    - Provides the positive conditioning sequence, guiding the sampling towards desired attributes.
-    - Python dtype: `List[torch.Tensor]`
+    - Specifies the positive conditioning sequence, guiding the generative model towards desired attributes in the output.
     - Comfy dtype: `CONDITIONING_SEQ`
+    - Python dtype: `List[str]`
 - **`negative_seq`**
-    - Supplies the negative conditioning sequence, steering the sampling away from undesired attributes.
-    - Python dtype: `List[torch.Tensor]`
+    - Specifies the negative conditioning sequence, steering the generative model away from undesired attributes in the output.
     - Comfy dtype: `CONDITIONING_SEQ`
+    - Python dtype: `List[str]`
 - **`use_conditioning_slerp`**
-    - Enables spherical linear interpolation (slerp) for conditioning, blending positive and negative conditioning smoothly.
-    - Python dtype: `bool`
+    - Enables or disables spherical linear interpolation (slerp) for blending conditioning vectors, affecting the smoothness of transitions between conditions.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`cond_slerp_strength`**
-    - Adjusts the strength of the conditioning slerp, controlling the blend between positive and negative conditioning.
-    - Python dtype: `float`
+    - Controls the strength of the conditioning slerp, adjusting the influence of interpolated conditions on the output.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`latent_image`**
-    - Provides the initial latent image for the sampling process, serving as a starting point.
-    - Python dtype: `torch.Tensor`
+    - Provides the initial latent image to be refined through the sampling process.
     - Comfy dtype: `LATENT`
-- **`use_latent_interpolation`**
-    - Activates latent interpolation, allowing for smooth transitions between latent images.
-    - Python dtype: `bool`
-    - Comfy dtype: `BOOLEAN`
-- **`latent_interpolation_mode`**
-    - Determines the method of latent interpolation, offering options like blend, slerp, and cosine interpolation.
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
-- **`latent_interp_strength`**
-    - Controls the intensity of the latent interpolation, affecting the smoothness of transitions.
-    - Python dtype: `float`
-    - Comfy dtype: `FLOAT`
-- **`denoise_start`**
-    - Sets the initial denoising level, impacting the clarity and detail of the initial images in the sequence.
-    - Python dtype: `float`
-    - Comfy dtype: `FLOAT`
-- **`denoise_seq`**
-    - Specifies the denoising level for subsequent images in the sequence, allowing for dynamic adjustment of image clarity.
-    - Python dtype: `float`
-    - Comfy dtype: `FLOAT`
-- **`unsample_latents`**
-    - Determines whether to perform unsampling on the latents, potentially enhancing image quality at the cost of additional computation.
-    - Python dtype: `bool`
+- **`use_latent_interpolation`**
+    - Enables or disables the interpolation of latent images, affecting the diversity and smoothness of transitions in the output.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
+- **`latent_interpolation_mode`**
+    - Selects the mode of latent image interpolation, allowing for blend, slerp, or cosine interpolation methods.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `List[str]`
+- **`latent_interp_strength`**
+    - Determines the strength of the latent image interpolation, influencing the degree of blending or transition between latent images.
+    - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
+- **`denoise_start`**
+    - Sets the initial denoise level, affecting the clarity and detail of the generated samples at the start of the sequence.
+    - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
+- **`denoise_seq`**
+    - Specifies the denoise level for subsequent iterations in the sequence, allowing for dynamic adjustment of clarity and detail.
+    - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
+- **`unsample_latents`**
+    - Determines whether to perform unsampling on the latents, potentially enhancing the quality or diversity of the output.
+    - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ## Output types
 - **`latent`**
-    - Produces a sequence of sampled images based on the provided parameters and conditions, showcasing the node's capability to generate diverse and high-quality images.
-    - Python dtype: `List[torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - The latent representation of the generated samples, indicating the underlying data structure that defines the output images.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
 
-The `KSamplerSeq` node is pivotal for advanced image sequence generation, enabling features like latent interpolation and conditioning slerp, and is often used with conditioning sequences to guide the sampling towards or away from specific attributes. It takes a model, seed, and various sampling parameters as input, and outputs a sequence of sampled images, allowing for dynamic adjustments in denoising levels and seed modes for enhanced control over the image generation process.
+
 ## Source code
 ```python
 class KSamplerSeq:

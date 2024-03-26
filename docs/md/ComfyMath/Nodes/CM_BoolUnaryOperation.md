@@ -8,12 +8,12 @@ This node performs unary boolean operations on a given boolean value. It support
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the unary boolean operation to be performed, such as 'Not'. This choice determines how the input boolean value is manipulated.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 - **`a`**
-    - Comfy dtype: `BOOL`
     - The boolean value to be operated on. This is the primary input for the unary operation.
+    - Comfy dtype: `BOOL`
     - Python dtype: `bool`
 ## Output types
 - **`bool`**

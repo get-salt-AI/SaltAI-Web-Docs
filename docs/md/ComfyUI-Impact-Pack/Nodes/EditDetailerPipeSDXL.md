@@ -4,83 +4,83 @@
 - Category: `ImpactPack/Pipe`
 - Output node: `False`
 
-EditDetailerPipeSDXL extends the functionality of EditDetailerPipe by introducing additional input parameters that allow for more detailed and specific modifications to the detailer pipe. It enables the inclusion of LoRA and Wildcard elements to enhance the text, alongside a comprehensive set of tools for refining and conditioning the output.
+The EditDetailerPipeSDXL node is designed to enhance and refine the details of inputs through a sophisticated editing pipeline. It allows for the integration of various models and techniques, including LoRA and Wildcards, to achieve more precise and impactful modifications.
 ## Input types
 ### Required
 - **`detailer_pipe`**
-    - The base detailer pipe to be edited or enhanced. It serves as the foundation for further modifications and enhancements.
-    - Python dtype: `DETAILER_PIPE`
+    - Represents the initial detailer pipeline to be enhanced or modified. It serves as the foundation for further refinements.
     - Comfy dtype: `DETAILER_PIPE`
+    - Python dtype: `tuple`
 - **`wildcard`**
-    - A multiline string input that allows for dynamic text inputs, enabling users to add custom text or commands that can influence the detailer pipe's behavior.
+    - Allows for dynamic text input that can be used to modify or influence the detailer pipeline in a flexible manner.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 - **`Select to add LoRA`**
-    - Allows the user to select a LoRA (Low-Rank Adaptation) from a list to add to the text, enhancing the model's adaptability and performance.
+    - Provides a selection mechanism for integrating LoRA (Low-Rank Adaptation) techniques into the text, enhancing its detail and specificity.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
-    - Comfy dtype: `STRING`
 - **`Select to add Wildcard`**
-    - Enables the selection of predefined wildcard elements to be added to the text, offering more customization options.
+    - Enables the selection of predefined Wildcards to be added to the text, offering additional customization and detail enhancement.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
-    - Comfy dtype: `STRING`
 ### Optional
 - **`model`**
-    - The model to be used in the detailer pipe, providing the core functionality.
-    - Python dtype: `MODEL`
+    - Specifies the model to be used in the detailer pipeline, contributing to the enhancement process.
     - Comfy dtype: `MODEL`
+    - Python dtype: `MODEL`
 - **`clip`**
-    - A CLIP model used for image and text processing within the detailer pipe.
-    - Python dtype: `CLIP`
+    - Defines the CLIP model to be integrated into the pipeline for improved content understanding and manipulation.
     - Comfy dtype: `CLIP`
+    - Python dtype: `CLIP`
 - **`vae`**
-    - A Variational Autoencoder (VAE) model used for generating and manipulating images.
-    - Python dtype: `VAE`
+    - Specifies the VAE model to be used for generating or modifying content within the pipeline.
     - Comfy dtype: `VAE`
+    - Python dtype: `VAE`
 - **`positive`**
-    - Positive conditioning terms to guide the model's output towards desired attributes.
-    - Python dtype: `CONDITIONING`
+    - Defines positive conditioning to guide the generation or modification process towards desired attributes.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `CONDITIONING`
 - **`negative`**
-    - Negative conditioning terms to steer the model's output away from undesired attributes.
-    - Python dtype: `CONDITIONING`
+    - Specifies negative conditioning to steer the generation or modification process away from undesired attributes.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `CONDITIONING`
 - **`refiner_model`**
-    - An optional model used for refining the outputs further.
-    - Python dtype: `MODEL`
+    - Specifies an additional model for refining the details further in the pipeline.
     - Comfy dtype: `MODEL`
+    - Python dtype: `MODEL`
 - **`refiner_clip`**
-    - An optional CLIP model used in conjunction with the refiner model for enhanced processing capabilities.
-    - Python dtype: `CLIP`
+    - Defines an additional CLIP model for enhanced content understanding and manipulation in the refinement process.
     - Comfy dtype: `CLIP`
+    - Python dtype: `CLIP`
 - **`refiner_positive`**
-    - Positive conditioning terms for the refiner model, aiming to refine the outputs towards more desired attributes.
-    - Python dtype: `CONDITIONING`
+    - Defines additional positive conditioning for the refinement process, enhancing desired attributes.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `CONDITIONING`
 - **`refiner_negative`**
-    - Negative conditioning terms for the refiner model, used to avoid undesired attributes in the refined outputs.
-    - Python dtype: `CONDITIONING`
+    - Specifies additional negative conditioning for the refinement process, avoiding undesired attributes.
     - Comfy dtype: `CONDITIONING`
+    - Python dtype: `CONDITIONING`
 - **`bbox_detector`**
-    - A bounding box detector used for identifying and processing specific areas within images.
-    - Python dtype: `BBOX_DETECTOR`
+    - Specifies a bounding box detector to be used for object detection and localization within the pipeline.
     - Comfy dtype: `BBOX_DETECTOR`
+    - Python dtype: `BBOX_DETECTOR`
 - **`sam_model`**
-    - A SAM model used for semantic adjustment of the media content.
-    - Python dtype: `SAM_MODEL`
+    - Specifies a SAM model to be integrated for semantic adjustment or manipulation within the pipeline.
     - Comfy dtype: `SAM_MODEL`
+    - Python dtype: `SAM_MODEL`
 - **`segm_detector`**
-    - A segmentation detector used for detailed image segmentation tasks.
-    - Python dtype: `SEGM_DETECTOR`
+    - Defines a segmentation detector to be used for segmenting different parts or objects within the content.
     - Comfy dtype: `SEGM_DETECTOR`
+    - Python dtype: `SEGM_DETECTOR`
 - **`detailer_hook`**
-    - A hook for integrating custom processing or modifications into the detailer pipe.
-    - Python dtype: `DETAILER_HOOK`
+    - Provides a hook for custom detailer functions or modifications to be applied within the pipeline.
     - Comfy dtype: `DETAILER_HOOK`
+    - Python dtype: `DETAILER_HOOK`
 ## Output types
 - **`detailer_pipe`**
-    - The modified detailer pipe, incorporating all specified enhancements and adjustments.
-    - Python dtype: `DETAILER_PIPE`
     - Comfy dtype: `DETAILER_PIPE`
+    - Outputs the enhanced detailer pipeline, incorporating all specified models, techniques, and modifications.
+    - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

@@ -8,8 +8,8 @@ The SAMModelLoader node is designed to load and prepare SAM (Segment Anything Mo
 ## Input types
 ### Required
 - **`model_name`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the name of the SAM model to be loaded. This parameter is crucial for determining which specific model is retrieved and initialized for segmentation tasks.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`sam_model`**

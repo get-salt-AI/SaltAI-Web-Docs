@@ -4,46 +4,46 @@
 - Category: `ImpactPack/Sampler`
 - Output node: `False`
 
-This node applies advanced sampling techniques to a given latent image using two different samplers based on a mask. It first inverts the mask to apply the base sampler, then uses the mask erosion technique to refine the mask before applying the mask sampler. This process is iterated over a specified number of steps, allowing for detailed and controlled modifications of the latent image.
+This node provides advanced sampling capabilities for image masks, enabling precise control over the application and manipulation of masks in image processing tasks. It leverages specialized sampling techniques to modify latent images based on mask parameters, facilitating complex image transformations.
 ## Input types
 ### Required
 - **`seed`**
-    - The seed parameter is used to ensure reproducibility of the sampling process. It initializes the random number generator to produce the same results for the same input values.
-    - Python dtype: `int`
+    - The seed parameter ensures reproducibility of the sampling process, allowing for consistent results across different runs.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`steps`**
-    - Defines the total number of sampling iterations to be performed. This controls the depth of the sampling process, affecting the final image quality and detail.
-    - Python dtype: `int`
+    - Defines the number of steps to be taken in the advanced sampling process, affecting the granularity of the transformation.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`denoise`**
-    - A factor that determines the intensity of noise reduction applied during the sampling process. It influences the smoothness and clarity of the final image.
-    - Python dtype: `float`
+    - Controls the level of denoising applied during the sampling process, influencing the clarity and quality of the output image.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`samples`**
-    - The initial latent image to be modified through the sampling process. It serves as the starting point for the iterative application of the samplers.
-    - Python dtype: `Dict[str, torch.Tensor]`
+    - Represents the latent images to be processed, serving as the input for the advanced sampling operations.
     - Comfy dtype: `LATENT`
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`base_sampler`**
-    - The primary sampler used to modify the latent image. It is applied to the inverted mask regions of the image.
-    - Python dtype: `object`
+    - Specifies the base sampler used for the initial phase of image transformation, setting the foundation for further mask application.
     - Comfy dtype: `KSAMPLER_ADVANCED`
+    - Python dtype: `KSamplerAdvanced`
 - **`mask_sampler`**
-    - A secondary sampler specifically applied to the regions defined by the mask. It is used after the mask erosion process to refine these areas.
-    - Python dtype: `object`
+    - Determines the sampler used for applying the mask to the image, directly influencing the areas of the image to be modified.
     - Comfy dtype: `KSAMPLER_ADVANCED`
+    - Python dtype: `KSamplerAdvanced`
 - **`mask`**
-    - Defines the regions of the latent image to be modified by the mask_sampler. It is used to selectively apply changes to specific areas of the image.
-    - Python dtype: `torch.Tensor`
+    - The mask parameter defines the specific areas of the image to be targeted by the sampling process, enabling selective image manipulation.
     - Comfy dtype: `MASK`
+    - Python dtype: `torch.Tensor`
 - **`overlap_factor`**
-    - Determines the degree of mask erosion, which affects how the mask is expanded or contracted before being applied. This parameter allows for fine-tuning of the mask's influence on the sampling process.
-    - Python dtype: `int`
+    - Adjusts the degree of overlap between mask applications, affecting the blending and transition between masked and unmasked areas.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
 - **`latent`**
-    - The modified latent image resulting from the iterative application of the base and mask samplers, following the mask inversion and erosion processes.
-    - Python dtype: `Dict[str, torch.Tensor]`
     - Comfy dtype: `LATENT`
+    - Outputs the modified latent image after the advanced sampling and mask application process.
+    - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

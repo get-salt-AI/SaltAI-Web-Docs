@@ -4,20 +4,20 @@
 - Category: `Video Helper Suite 🎥🅥🅗🅢/mask`
 - Output node: `False`
 
-The `VHS_GetMaskCount` node is designed to count the number of masks in a given batch. It takes a batch of masks as input and returns the total count of masks present. This functionality is crucial for operations that require knowledge of the batch size, such as splitting or merging batches, and ensures efficient processing in workflows involving multiple masks.
+The `VHS_GetMaskCount` node is designed to count the number of masks in a given batch. It provides a straightforward way to quantify the number of mask elements, facilitating operations that require knowledge of batch size or element count.
 ## Input types
 ### Required
 - **`mask`**
-    - The `mask` parameter represents the batch of masks for which the count is to be determined. It is essential for calculating the total number of masks present in the batch, enabling further processing or analysis.
-    - Python dtype: `torch.Tensor`
+    - The `mask` parameter represents the batch of masks for which the count is to be determined. It is crucial for understanding the scale of operations or adjustments needed based on the batch size.
     - Comfy dtype: `MASK`
+    - Python dtype: `Tensor`
 ## Output types
-- **`int`**
-    - The `count` parameter indicates the total number of masks present in the input batch. This information is vital for managing batches of masks in various processing workflows.
-    - Python dtype: `int`
+- **`count`**
     - Comfy dtype: `INT`
+    - The `count` output represents the total number of masks in the input batch. This information is essential for batch processing or for scaling operations according to the batch size.
+    - Python dtype: `int`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 

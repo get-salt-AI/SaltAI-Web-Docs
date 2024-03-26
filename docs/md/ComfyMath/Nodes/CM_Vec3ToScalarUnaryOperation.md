@@ -8,12 +8,12 @@ This node performs a unary operation that transforms a 3-dimensional vector into
 ## Input types
 ### Required
 - **`op`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the unary operation to be performed on the 3-dimensional vector. This operation determines how the vector is transformed into a scalar value.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`a`**
-    - Comfy dtype: `VEC3`
     - The 3-dimensional vector to be transformed into a scalar value through the specified unary operation.
+    - Comfy dtype: `VEC3`
     - Python dtype: `Vec3`
 ## Output types
 - **`float`**

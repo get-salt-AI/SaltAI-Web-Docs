@@ -4,30 +4,30 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The `ReencodeLatentPipe` node is designed to re-encode latent representations of data. It takes samples in latent space, processes them through two basic pipelines (input and output), and re-encodes them based on the specified tile mode. This operation is useful for transforming latent representations using different encoding or decoding strategies, potentially enhancing or altering the data's characteristics for further applications.
+This node is designed to re-encode latent representations by transforming them through a specified input and output basic pipe. It facilitates the modification of latent spaces, enabling the transition of samples from one latent representation to another, potentially enhancing or altering their characteristics.
 ## Input types
 ### Required
 - **`samples`**
-    - The latent samples to be re-encoded. These are the core data representations that the node operates on, serving as the input for the re-encoding process.
-    - Python dtype: `torch.Tensor`
+    - The latent samples to be re-encoded. These samples are the starting point for the transformation process.
     - Comfy dtype: `LATENT`
+    - Python dtype: `torch.Tensor`
 - **`tile_mode`**
-    - Specifies the mode of tiling to be applied during the re-encoding process. It affects how the input and output are encoded or decoded, allowing for flexible processing strategies.
+    - Specifies the mode of tiling to be used during the re-encoding process, affecting how the samples are decoded and encoded.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `['None', 'Both', 'Decode(input) only', 'Encode(output) only']`
 - **`input_basic_pipe`**
-    - The basic pipeline through which the input samples are processed before re-encoding. It defines the initial transformations applied to the latent samples.
-    - Python dtype: `Tuple`
+    - The basic pipe through which the samples are initially passed for decoding or transformation.
     - Comfy dtype: `BASIC_PIPE`
+    - Python dtype: `tuple`
 - **`output_basic_pipe`**
-    - The basic pipeline for processing the re-encoded samples. It specifies the transformations applied to the output of the re-encoding process.
-    - Python dtype: `Tuple`
+    - The basic pipe used for the final encoding or transformation of the samples, determining their new latent representation.
     - Comfy dtype: `BASIC_PIPE`
+    - Python dtype: `tuple`
 ## Output types
 - **`latent`**
-    - The re-encoded latent samples. This output represents the transformed data after being processed through the input and output basic pipelines, according to the specified tile mode.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `LATENT`
+    - The re-encoded latent samples, representing the transformed latent space.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

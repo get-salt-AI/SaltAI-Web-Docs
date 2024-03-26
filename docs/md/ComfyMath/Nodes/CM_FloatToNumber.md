@@ -8,8 +8,8 @@ This node is designed for converting floating-point values to a more general num
 ## Input types
 ### Required
 - **`a`**
-    - Comfy dtype: `FLOAT`
     - The floating-point value to be converted into a general number type. This conversion enables seamless integration and manipulation within a broader range of mathematical operations.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`number`**

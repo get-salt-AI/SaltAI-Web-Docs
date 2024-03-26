@@ -8,36 +8,36 @@ This node is designed to process and condition data for use in StableZero123 mod
 ## Input types
 ### Required
 - **`clip_vision`**
-    - Comfy dtype: `CLIP_VISION`
     - Processes visual data to align with the model's requirements, enhancing the model's understanding of visual context.
+    - Comfy dtype: `CLIP_VISION`
     - Python dtype: `torch.Tensor`
 - **`init_image`**
-    - Comfy dtype: `IMAGE`
     - Serves as the initial image input for the model, setting the baseline for further image-based operations.
+    - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`vae`**
-    - Comfy dtype: `VAE`
     - Integrates variational autoencoder outputs, facilitating the model's ability to generate or modify images.
+    - Comfy dtype: `VAE`
     - Python dtype: `torch.nn.Module`
 - **`width`**
-    - Comfy dtype: `INT`
     - Specifies the width of the output image, allowing for dynamic resizing according to model needs.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Comfy dtype: `INT`
     - Determines the height of the output image, enabling customization of the output dimensions.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`batch_size`**
-    - Comfy dtype: `INT`
     - Controls the number of images processed in a single batch, optimizing computational efficiency.
+    - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`elevation`**
-    - Comfy dtype: `FLOAT`
     - Adjusts the elevation angle for 3D model rendering, enhancing the model's spatial understanding.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`azimuth`**
-    - Comfy dtype: `FLOAT`
     - Modifies the azimuth angle for 3D model visualization, improving the model's perception of orientation.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`positive`**

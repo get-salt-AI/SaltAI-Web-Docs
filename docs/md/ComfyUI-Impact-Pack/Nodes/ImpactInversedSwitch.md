@@ -4,22 +4,22 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-This node inverses the selection logic based on the input provided. If the input is a list with two elements, it retrieves a value from a specified node; otherwise, it directly uses the provided input value.
+This node is designed to selectively invert the input signal based on a specified condition. It operates by examining the 'select' input and, depending on its value and type, either directly uses the input value or retrieves and uses a specific value from another node. This functionality allows for dynamic control flow and decision-making within a node network, enabling the inversion of signals based on runtime conditions.
 ## Input types
 ### Required
 - **`select`**
-    - Determines the logic for inversion. If it's a list with two elements, it indicates a dynamic selection based on another node's output; otherwise, it's a static value.
-    - Python dtype: `Union[List[Any], Any]`
-    - Comfy dtype: `INT, *`
+    - The 'select' input determines the condition under which the input signal is inverted. It can be a direct value or a reference to another node's output, allowing for dynamic and conditional inversion based on the network's state.
+    - Comfy dtype: `INT`
+    - Python dtype: `Union[int, list]`
 - **`input`**
-    - unknown
-    - Python dtype: `unknown`
+    - The 'input' parameter represents the signal to be potentially inverted. The inversion is conditional, based on the evaluation of the 'select' parameter.
     - Comfy dtype: `*`
+    - Python dtype: `Any`
 ## Output types
 - **`*`**
-    - Holds the inversed selection logic result, either retrieved from another node's output or directly from the input.
-    - Python dtype: `Dict[str, Any]`
     - Comfy dtype: `*`
+    - unknown
+    - Python dtype: `unknown`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

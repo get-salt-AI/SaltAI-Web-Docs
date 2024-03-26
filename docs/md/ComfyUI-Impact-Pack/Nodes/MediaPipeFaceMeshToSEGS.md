@@ -4,70 +4,70 @@
 - Category: `ImpactPack/Operation`
 - Output node: `False`
 
-This node transforms facial landmarks detected by MediaPipe FaceMesh into a format compatible with the SEGS (Segmentation) system. It involves processing the facial landmarks to generate segmentation masks for various facial features, adjusting them based on provided parameters such as crop factor, bounding box fill, and dilation.
+The MediaPipeFaceMeshToSEGS node transforms facial landmarks detected by MediaPipe's FaceMesh into a structured format suitable for SEGS (Segmentation and Geometry Schema), enabling further manipulation and analysis of facial features within the SEGS framework.
 ## Input types
 ### Required
 - **`image`**
-    - The input image on which facial landmark detection and segmentation will be performed. It's crucial for detecting facial features accurately.
-    - Python dtype: `torch.Tensor`
+    - The input image on which facial landmark detection is performed. It serves as the basis for generating the SEGS representation of facial features.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `torch.Tensor`
 - **`crop_factor`**
-    - Determines how much the detected facial feature areas are cropped. Affects the size of the segmentation masks generated for each facial feature.
-    - Python dtype: `float`
+    - Determines the extent to which the detected facial region is cropped. A higher value results in a tighter crop around the facial landmarks, affecting the final SEGS output.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`bbox_fill`**
-    - Specifies how the bounding boxes around detected facial features are filled. Influences the segmentation mask's coverage area.
-    - Python dtype: `bool`
+    - Specifies how the bounding box around detected facial landmarks is filled, influencing the appearance and structure of the resulting SEGS.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`crop_min_size`**
-    - Sets the minimum size for cropping around detected facial features, ensuring that segmentation masks are not too small.
-    - Python dtype: `float`
-    - Comfy dtype: `FLOAT`
-- **`drop_size`**
-    - Defines the threshold for dropping small detected features, helping to filter out noise in the segmentation masks.
-    - Python dtype: `float`
-    - Comfy dtype: `FLOAT`
-- **`dilation`**
-    - Controls the dilation of the segmentation masks, allowing for adjustments in the mask boundaries for better coverage of facial features.
-    - Python dtype: `int`
+    - Sets the minimum size for the cropped facial region, ensuring that the output SEGS does not fall below a certain spatial resolution.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
+- **`drop_size`**
+    - Defines the threshold below which detected facial regions are disregarded, preventing the generation of SEGS for insignificantly small facial features.
+    - Comfy dtype: `INT`
+    - Python dtype: `int`
+- **`dilation`**
+    - Applies a dilation operation to the facial landmarks' bounding box, expanding its size and potentially including additional context in the SEGS output.
+    - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`face`**
-    - Indicates whether to include the face in the segmentation process, enabling or disabling the generation of a face mask.
-    - Python dtype: `bool`
+    - Indicates whether the face region should be included in the SEGS output, allowing for specific facial feature analysis.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`mouth`**
-    - Determines whether the mouth area is included in the segmentation, affecting the generation of a mouth mask.
-    - Python dtype: `bool`
+    - Determines whether the mouth region is included in the SEGS, enabling detailed examination and manipulation of this specific area.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`left_eyebrow`**
-    - Specifies whether to include the left eyebrow in the segmentation, influencing the generation of a left eyebrow mask.
-    - Python dtype: `bool`
+    - Specifies the inclusion of the left eyebrow in the SEGS output, facilitating focused analysis on this facial feature.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`left_eye`**
-    - Indicates whether to include the left eye in the segmentation, affecting the generation of a left eye mask.
-    - Python dtype: `bool`
+    - Controls the inclusion of the left eye in the SEGS, allowing for targeted manipulation and study of eye-related aspects.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`left_pupil`**
-    - Determines whether to include the left pupil in the segmentation, influencing the generation of a left pupil mask.
-    - Python dtype: `bool`
+    - Determines the inclusion of the left pupil in the SEGS, enabling precise analysis and adjustments to this specific part of the eye.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`right_eyebrow`**
-    - Specifies whether to include the right eyebrow in the segmentation, influencing the generation of a right eyebrow mask.
-    - Python dtype: `bool`
+    - Specifies the inclusion of the right eyebrow in the SEGS output, facilitating focused analysis on this facial feature.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`right_eye`**
-    - Indicates whether to include the right eye in the segmentation, affecting the generation of a right eye mask.
-    - Python dtype: `bool`
+    - Controls the inclusion of the right eye in the SEGS, allowing for targeted manipulation and study of eye-related aspects.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`right_pupil`**
-    - Determines whether to include the right pupil in the segmentation, influencing the generation of a right pupil mask.
-    - Python dtype: `bool`
+    - Determines the inclusion of the right pupil in the SEGS, enabling precise analysis and adjustments to this specific part of the eye.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ## Output types
 - **`segs`**
-    - The output is a set of segmentation masks corresponding to the specified facial features, formatted to be compatible with the SEGS system.
-    - Python dtype: `Tuple[torch.Tensor, List[torch.Tensor]]`
     - Comfy dtype: `SEGS`
+    - The output is a structured SEGS representation of the detected facial landmarks, ready for further processing and analysis within the SEGS framework.
+    - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

@@ -8,12 +8,12 @@ The VideoLinearCFGGuidance node applies a linear conditioning guidance scale to 
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - The model parameter represents the video model to which the linear CFG guidance will be applied. It is crucial for defining the base model that will be modified with the guidance scale.
+    - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`min_cfg`**
-    - Comfy dtype: `FLOAT`
     - The min_cfg parameter specifies the minimum conditioning guidance scale to be applied, serving as the starting point for the linear scale adjustment. It plays a key role in determining the lower bound of the guidance scale, influencing the model's output.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`model`**

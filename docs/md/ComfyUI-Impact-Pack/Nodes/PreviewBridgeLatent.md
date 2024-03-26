@@ -4,39 +4,39 @@
 - Category: `ImpactPack/Util`
 - Output node: `True`
 
-The `PreviewBridgeLatent` node is designed to handle the conversion of latent representations into preview images. It utilizes various decoding methods based on the provided preview method and optional VAE options to generate images from latent tensors. This process involves selecting appropriate decoders or previewers, potentially resizing images, and applying noise masks if present, to produce the final preview image.
+The PreviewBridgeLatent node is designed to facilitate the previewing of latent representations by decoding them into visual formats. It leverages various decoding strategies and optional VAE configurations to convert latent tensors into images, supporting different preview methods tailored to specific latent formats.
 ## Input types
 ### Required
 - **`latent`**
-    - The latent tensor representation that needs to be converted into an image. Its format and content can significantly influence the decoding process and the final image quality.
-    - Python dtype: `torch.Tensor`
+    - The latent representation to be decoded into an image. This input is crucial as it contains the encoded information of the image in a compressed form, which is then transformed into a visual format based on the specified preview method and optional VAE configuration.
     - Comfy dtype: `LATENT`
+    - Python dtype: `torch.Tensor`
 - **`image`**
     - unknown
+    - Comfy dtype: `STRING`
     - Python dtype: `unknown`
-    - Comfy dtype: `STRING`
 - **`preview_method`**
-    - Specifies the method to be used for decoding the latent tensor into an image. This choice determines which decoder or previewer is utilized and affects the final image appearance.
+    - Determines the decoding strategy and the format of the resulting image. This input is essential for selecting the appropriate method to decode the latent representation into its visual counterpart.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-    - Comfy dtype: `STRING`
 ### Optional
 - **`vae_opt`**
-    - unknown
-    - Python dtype: `unknown`
+    - An optional parameter that allows for the customization of the decoding process with specific VAE models and settings. Providing a VAE configuration can significantly influence the decoding outcome by utilizing tailored models.
     - Comfy dtype: `VAE`
+    - Python dtype: `Optional[Dict]`
 ## Output types
 - **`latent`**
-    - The latent representation of the image, which may be modified or utilized in further processing steps.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `LATENT`
+    - unknown
+    - Python dtype: `unknown`
 - **`mask`**
-    - A mask that may be applied to the image for various effects, such as noise reduction or focus enhancement.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `MASK`
+    - An optional output that represents a mask applied to the decoded image, used for further processing or visualization purposes.
+    - Python dtype: `Optional[torch.Tensor]`
 - **`ui`**
-    - The UI component containing the generated preview image, along with additional information such as filename and path. It facilitates the display and management of the image in the user interface.
+    - A UI parameter that encapsulates additional information or metadata about the decoding process, potentially including paths to saved images or other relevant details.
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 

@@ -4,47 +4,47 @@
 - Category: `ImpactPack/Detector`
 - Output node: `False`
 
-The `SegmDetectorSEGS` node appears to be a conceptual or misnamed entity within the provided context, as there is no direct reference to a class or method named `SegmDetectorSEGS`. However, based on the naming convention and context, it might be related to segmentation detection tasks, specifically designed to process images, detect segments within them, and possibly return segmented parts of the images along with additional metadata. This analysis would involve applying a segmentation model to an input image, processing the results to extract segments, and potentially applying post-processing steps such as dilation to refine the segments.
+This node is designed to process images through segmentation models to detect and segment objects within the images. It applies various operations such as thresholding and dilation to refine the segmentation masks, and optionally crops the images based on the detected segments. The node aims to facilitate detailed object analysis within images by providing segmented regions along with their corresponding metadata.
 ## Input types
 ### Required
 - **`segm_detector`**
-    - Specifies the segmentation model to be used for detecting segments within the image. The choice of model can significantly affect the accuracy and performance of the segmentation task.
-    - Python dtype: `torch.nn.Module`
+    - Specifies the segmentation detector to be used for detecting and segmenting objects within the image. It is crucial for defining the detection capabilities and accuracy of the node.
     - Comfy dtype: `SEGM_DETECTOR`
+    - Python dtype: `object`
 - **`image`**
-    - The input image to be processed. The segmentation model will be applied to this image to detect and segment relevant features or objects.
-    - Python dtype: `torch.Tensor`
+    - The input image to be processed. This image is analyzed by the segmentation model to identify and segment objects.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `numpy.ndarray`
 - **`threshold`**
-    - A threshold value used to filter the segmentation results. Segments with confidence scores below this threshold may be discarded, affecting the sensitivity of the detection.
-    - Python dtype: `float`
+    - A threshold value used to determine the sensitivity of object detection. Higher values result in fewer detections with higher confidence.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`dilation`**
-    - An optional post-processing step to dilate the detected segments. This can help in making the segments more pronounced or in merging closely located segments.
-    - Python dtype: `int`
+    - An integer value specifying the amount of dilation to apply to the segmentation masks, enhancing the visibility and separation of detected objects.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`crop_factor`**
-    - The factor by which the crop region around each detected segment is expanded or contracted, affecting the size of the cropped area around each segment.
-    - Python dtype: `float`
+    - Determines the extent to which the image is cropped around the detected segments, allowing for focused analysis on specific objects.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`drop_size`**
-    - The minimum size for detected segments. Segments smaller than this size are discarded, ensuring that only segments of significant size are processed.
-    - Python dtype: `int`
+    - Specifies the minimum size for detected objects to be considered valid. Objects smaller than this size are dropped from the results.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`labels`**
-    - Optional labels used to filter the detected segments. Only segments with matching labels are retained, allowing for targeted segmentation based on specific criteria.
-    - Python dtype: `Optional[List[str]]`
+    - A list of labels to filter the detected segments. Only segments with matching labels are included in the results.
     - Comfy dtype: `STRING`
+    - Python dtype: `List[str]`
 ### Optional
 - **`detailer_hook`**
-    - An optional hook for custom post-processing of detected segments. This allows for additional customization and refinement of the segmentation results.
-    - Python dtype: `Optional[Callable]`
-    - Comfy dtype: `FUNCTION`
+    - An optional hook for custom post-processing of the detected segments. It allows for further refinement of the segmentation results.
+    - Comfy dtype: `DETAILER_HOOK`
+    - Python dtype: `Callable`
 ## Output types
 - **`segs`**
-    - The output consists of segmented parts of the input image, potentially along with additional metadata such as confidence scores and bounding box coordinates.
-    - Python dtype: `List[torch.Tensor]`
     - Comfy dtype: `SEGS`
+    - Provides detailed segmentation results, including the shape of the original image and a list of segmented objects with their respective masks, confidence levels, and bounding boxes.
+    - Python dtype: `Tuple[numpy.ndarray, List[SEG]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: `ImpactSEGSOrderedFilter`

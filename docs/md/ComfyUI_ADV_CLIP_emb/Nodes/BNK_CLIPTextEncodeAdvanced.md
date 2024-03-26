@@ -8,20 +8,20 @@ This node specializes in generating advanced CLIP text embeddings by processing 
 ## Input types
 ### Required
 - **`text`**
-    - Comfy dtype: `STRING`
     - The input text to be encoded. It supports multiline input, allowing for more complex and detailed text representations.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`clip`**
-    - Comfy dtype: `CLIP`
     - A CLIP model instance used for text tokenization and embedding generation.
+    - Comfy dtype: `CLIP`
     - Python dtype: `object`
 - **`token_normalization`**
-    - Comfy dtype: `COMBO[STRING]`
     - Specifies the method for normalizing token embeddings, offering options like none, mean, length, and length+mean to adjust the embedding process.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 - **`weight_interpretation`**
-    - Comfy dtype: `COMBO[STRING]`
     - Defines the strategy for interpreting the weights of token embeddings, with options including comfy, A1111, compel, comfy++, and down_weight.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 ## Output types
 - **`conditioning`**

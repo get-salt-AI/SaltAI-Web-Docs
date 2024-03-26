@@ -4,24 +4,24 @@
 - Category: `ImpactPack/Util`
 - Output node: `True`
 
-The `ImageSender` node is designed to send images over a network. It saves images using a specified prefix and optional additional information, then sends these images along with a link ID to a server. This functionality is crucial for applications requiring real-time image sharing or processing across different systems.
+The ImageSender node is designed for sending images over a network to a specified destination, incorporating additional information such as a filename prefix and a link ID. It primarily serves the purpose of transmitting image data, potentially with extra metadata, to facilitate remote processing or storage.
 ## Input types
 ### Required
 - **`images`**
-    - The images to be sent. This parameter is central to the node's operation as it directly influences the content that will be transmitted.
-    - Python dtype: `List[torch.Tensor]`
+    - Specifies the images to be sent. This is the primary data that the node operates on, determining the content that will be transmitted.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `Tuple[IMAGE]`
 - **`filename_prefix`**
-    - A prefix for the filenames of the images to be saved. This allows for organized storage and easier identification of images on the server side.
-    - Python dtype: `str`
+    - A prefix for the filename under which the images will be saved or identified. This helps in organizing or categorizing the images on the receiving end.
     - Comfy dtype: `STRING`
+    - Python dtype: `str`
 - **`link_id`**
-    - An identifier used to link the sent images with a specific session or user on the server side. This ensures that the images are correctly associated upon receipt.
-    - Python dtype: `int`
+    - An identifier used to link the sent images to a specific context or session. This aids in tracking and managing images across different parts of a system.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
 - **`ui`**
-    - The user interface component displaying the sent images. This allows for immediate visual feedback within the application.
+    - The output includes UI elements or data related to the images processed by the node, potentially for display or further interaction.
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

@@ -8,16 +8,16 @@ The PerpNeg node is designed to modify a given model's behavior by adjusting its
 ## Input types
 ### Required
 - **`model`**
-    - Comfy dtype: `MODEL`
     - The model to be modified, providing the base for the node's operation. It's crucial for defining the starting point of the adjustment process.
+    - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`empty_conditioning`**
-    - Comfy dtype: `CONDITIONING`
     - An empty conditioning input used to generate a baseline for comparison, essential for calculating the perpendicular negative component.
+    - Comfy dtype: `CONDITIONING`
     - Python dtype: `torch.Tensor`
 - **`neg_scale`**
-    - Comfy dtype: `FLOAT`
     - A scaling factor for the perpendicular negative component, allowing fine-tuning of its influence on the model's output.
+    - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`model`**

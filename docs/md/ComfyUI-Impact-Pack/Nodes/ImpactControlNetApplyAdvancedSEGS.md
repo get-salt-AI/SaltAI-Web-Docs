@@ -4,43 +4,43 @@
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-This node applies an advanced control network to a set of segmentation masks (SEGS) with additional parameters for fine-tuning the effect. It allows for the dynamic adjustment of the control network's influence over the segmentation masks based on specified strength and percentage range, potentially using a preprocessor or a control image for enhanced customization.
+This node applies an advanced control network to SEGS (segmentation masks) with additional parameters for fine-tuning the application process. It allows for the dynamic adjustment of the control network's influence over the segmentation masks, enabling more precise and context-sensitive modifications.
 ## Input types
 ### Required
 - **`segs`**
-    - The segmentation masks to which the control network will be applied. This is the primary input for transformation.
-    - Python dtype: `Tuple[torch.Tensor, List[SEG]]`
+    - The segmentation masks to which the control network will be applied. It's crucial for defining the areas of interest for modification.
     - Comfy dtype: `SEGS`
+    - Python dtype: `Tuple[Size, List[SEG]]`
 - **`control_net`**
-    - The control network model used to modify the segmentation masks.
-    - Python dtype: `torch.nn.Module`
+    - The control network used to modify the segmentation masks. It determines the nature of the modifications applied to the segs.
     - Comfy dtype: `CONTROL_NET`
+    - Python dtype: `ControlNet`
 - **`strength`**
-    - Determines the intensity of the control network's effect on the segmentation masks.
-    - Python dtype: `float`
+    - A scalar value that adjusts the intensity of the control network's effect on the segmentation masks.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`start_percent`**
-    - The starting percentage of the control network's effect, allowing for gradual application.
-    - Python dtype: `float`
+    - The starting percentage of the control network's effect, allowing for gradual application from a certain point.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`end_percent`**
-    - The ending percentage of the control network's effect, enabling fine-tuning of the application.
-    - Python dtype: `float`
+    - The ending percentage of the control network's effect, enabling the control network's influence to taper off.
     - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 ### Optional
 - **`segs_preprocessor`**
-    - An optional preprocessor for the segmentation masks before applying the control network.
-    - Python dtype: `Optional[Callable]`
+    - An optional preprocessor for the segmentation masks before applying the control network. It can be used for initial adjustments.
     - Comfy dtype: `SEGS_PREPROCESSOR`
+    - Python dtype: `Optional[Preprocessor]`
 - **`control_image`**
-    - An optional control image to guide the control network's application.
-    - Python dtype: `Optional[torch.Tensor]`
+    - An optional image that can be used alongside the control network to further guide the modifications applied to the segmentation masks.
     - Comfy dtype: `IMAGE`
+    - Python dtype: `Optional[Image]`
 ## Output types
 - **`segs`**
-    - The transformed segmentation masks after the control network's application.
-    - Python dtype: `Tuple[torch.Tensor, List[SEG]]`
     - Comfy dtype: `SEGS`
+    - The modified segmentation masks after the application of the control network, reflecting the adjustments made.
+    - Python dtype: `Tuple[Size, List[SEG]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

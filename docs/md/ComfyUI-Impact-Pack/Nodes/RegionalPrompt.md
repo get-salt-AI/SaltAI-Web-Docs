@@ -4,24 +4,24 @@
 - Category: `ImpactPack/Regional`
 - Output node: `False`
 
-This node generates regional prompts based on a given mask and an advanced sampler. It utilizes the core functionality to create a regional prompt that can be used for further processing or generation tasks.
+The RegionalPrompt node is designed to generate regional prompts based on a given mask and an advanced sampler. It focuses on creating specific prompts that are tailored to particular regions of an image, enhancing the customization and precision of image generation tasks.
 ## Input types
 ### Required
 - **`mask`**
-    - The mask parameter is crucial for defining the region of interest within an image or a dataset. It directly influences the generation of regional prompts by specifying the area to focus on.
-    - Python dtype: `torch.Tensor`
+    - The mask parameter specifies the area of interest within an image for which the regional prompt will be generated. It plays a crucial role in defining the scope and focus of the prompt generation process.
     - Comfy dtype: `MASK`
+    - Python dtype: `torch.Tensor`
 - **`advanced_sampler`**
-    - The advanced_sampler parameter is essential for determining how the regional prompts are generated. It affects the complexity and quality of the generated prompts, making it a key component in the generation process.
-    - Python dtype: `torch.nn.Module`
+    - The advanced_sampler parameter is utilized to apply sophisticated sampling techniques for generating the regional prompt. It significantly influences the quality and characteristics of the generated prompt.
     - Comfy dtype: `KSAMPLER_ADVANCED`
+    - Python dtype: `KSAMPLER_ADVANCED`
 ## Output types
 - **`regional_prompts`**
-    - The output is a list of regional prompts generated based on the specified mask and advanced sampler. These prompts can be used for targeted generation or modification tasks.
-    - Python dtype: `List[torch.Tensor]`
     - Comfy dtype: `REGIONAL_PROMPTS`
+    - This output consists of regional prompts generated based on the specified mask and advanced sampler. It's essential for subsequent image generation or manipulation tasks.
+    - Python dtype: `List[str]`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 

@@ -4,26 +4,26 @@
 - Category: `Video Helper Suite 🎥🅥🅗🅢/batched nodes`
 - Output node: `False`
 
-This node performs batched decoding of latent representations into images using a specified VAE model. It processes the latent samples in smaller batches to manage memory usage effectively and concatenates the decoded images into a single tensor.
+This node is designed for batch processing of latent representations to decode them back into images using a specified VAE model. It efficiently handles large sets of data by processing them in smaller, manageable batches.
 ## Input types
 ### Required
 - **`samples`**
-    - The latent representations to be decoded into images. This input is crucial for generating the final output images from their compressed latent forms.
-    - Python dtype: `torch.Tensor`
+    - The latent representations to be decoded into images. It's crucial for reconstructing the original or modified images from their compressed form.
     - Comfy dtype: `LATENT`
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`vae`**
-    - The VAE model used for decoding the latent representations into images. It defines the specific architecture and parameters for the decoding process.
-    - Python dtype: `torch.nn.Module`
+    - The VAE model used for decoding the latent representations. It defines the architecture and parameters for the decoding process.
     - Comfy dtype: `VAE`
+    - Python dtype: `torch.nn.Module`
 - **`per_batch`**
-    - Specifies the number of samples to be processed in each batch. This allows for control over memory usage and computational load during the decoding process.
-    - Python dtype: `int`
+    - Specifies the number of samples to be processed in each batch. This allows for efficient memory management and processing speed optimization.
     - Comfy dtype: `INT`
+    - Python dtype: `int`
 ## Output types
 - **`image`**
-    - The decoded images generated from the latent representations. This output is a tensor containing all the images concatenated along the batch dimension.
-    - Python dtype: `torch.Tensor`
     - Comfy dtype: `IMAGE`
+    - The decoded images, reconstructed from the provided latent representations.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

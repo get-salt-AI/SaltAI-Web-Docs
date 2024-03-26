@@ -4,111 +4,127 @@
 - Category: `ImpactPack/Detailer`
 - Output node: `False`
 
-This node is designed for debugging purposes within the Detailer pipeline, allowing for the inspection and manipulation of data at various stages of the pipeline to ensure correct operation and to identify any issues.
+The node 'DetailerForEachDebugPipe' is designed to facilitate debugging within the context of detailer pipes, providing insights and diagnostics that help in understanding and improving the flow of data and operations. It aims to enhance the development and troubleshooting process by offering a detailed view into the workings of detailer pipes.
 ## Input types
 ### Required
 - **`image`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `IMAGE`
+    - Python dtype: `unknown`
 - **`segs`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `SEGS`
+    - Python dtype: `unknown`
 - **`guide_size`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`guide_size_for`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `unknown`
 - **`max_size`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`seed`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 - **`steps`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 - **`cfg`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`sampler_name`**
     - unknown
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `unknown`
-    - Comfy dtype: `['euler', 'euler_ancestral', 'heun'...]`
 - **`scheduler`**
     - unknown
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `unknown`
-    - Comfy dtype: `['normal', 'karras', 'exponential'...]`
 - **`denoise`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`feather`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 - **`noise_mask`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `unknown`
 - **`force_inpaint`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `unknown`
 - **`basic_pipe`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BASIC_PIPE`
+    - Python dtype: `unknown`
 - **`wildcard`**
-    - A flexible input that allows for dynamic data insertion into the pipeline for testing and debugging purposes. Its multiline and dynamic prompt capabilities enable complex debugging scenarios.
-    - Python dtype: `str`
+    - A string input that allows for dynamic prompts or additional debugging information to be passed into the pipe, enhancing the flexibility and depth of debugging.
     - Comfy dtype: `STRING`
+    - Python dtype: `str`
 - **`refiner_ratio`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
 - **`cycle`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 ### Optional
 - **`detailer_hook`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `DETAILER_HOOK`
+    - Python dtype: `unknown`
 - **`refiner_basic_pipe_opt`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BASIC_PIPE`
+    - Python dtype: `unknown`
 - **`inpaint_model`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `unknown`
 - **`noise_mask_feather`**
     - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 ## Output types
 - **`image`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `IMAGE`
+    - unknown
+    - Python dtype: `unknown`
 - **`segs`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `SEGS`
-- **`basic_pipe`**
     - unknown
     - Python dtype: `unknown`
+- **`basic_pipe`**
     - Comfy dtype: `BASIC_PIPE`
+    - unknown
+    - Python dtype: `unknown`
+- **`cropped`**
+    - Comfy dtype: `IMAGE`
+    - unknown
+    - Python dtype: `unknown`
+- **`cropped_refined`**
+    - Comfy dtype: `IMAGE`
+    - unknown
+    - Python dtype: `unknown`
+- **`cropped_refined_alpha`**
+    - Comfy dtype: `IMAGE`
+    - unknown
+    - Python dtype: `unknown`
+- **`cnet_images`**
+    - Comfy dtype: `IMAGE`
+    - unknown
+    - Python dtype: `unknown`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `PreviewImage,Reroute,UltimateSDUpscale,FromBasicPipe`

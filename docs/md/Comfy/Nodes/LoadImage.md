@@ -8,8 +8,8 @@ The LoadImage node is designed to load and preprocess images from a specified pa
 ## Input types
 ### Required
 - **`image`**
-    - Comfy dtype: `COMBO[STRING]`
     - The 'image' parameter specifies the identifier of the image to be loaded and processed. It is crucial for determining the path to the image file and subsequently loading the image for transformation and normalization.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`image`**

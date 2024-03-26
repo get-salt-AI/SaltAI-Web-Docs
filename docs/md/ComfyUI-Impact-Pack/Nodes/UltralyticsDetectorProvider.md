@@ -4,22 +4,22 @@
 - Category: `ImpactPack`
 - Output node: `False`
 
-The provided context does not include a node named UltralyticsDetectorProvider, hence a detailed analysis of its functionality cannot be provided. The documentation should focus on explaining the high-level functionality of a node's method, capturing the essence of what it does without needing to list inputs or outputs explicitly. Since UltralyticsDetectorProvider is not present, such an analysis is not possible.
+This node is designed to load and provide access to detection models, facilitating object detection tasks by leveraging models trained with the Ultralytics framework.
 ## Input types
 ### Required
 - **`model_name`**
-    - unknown
-    - Python dtype: `unknown`
-    - Comfy dtype: `[...]`
+    - Specifies the name of the model to be loaded, which is crucial for identifying and accessing the correct model file for object detection tasks.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
 ## Output types
 - **`bbox_detector`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `BBOX_DETECTOR`
+    - Provides an object detector that identifies bounding boxes around detected objects in images.
+    - Python dtype: `torch.nn.Module`
 - **`segm_detector`**
-    - unknown
-    - Python dtype: `unknown`
     - Comfy dtype: `SEGM_DETECTOR`
+    - Offers a segmentation model capable of delineating the precise shape of objects by classifying each pixel of the image.
+    - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: `FaceDetailer,BboxDetectorSEGS,ToDetailerPipe,ImpactSimpleDetectorSEGS,Reroute,ImpactSimpleDetectorSEGS_for_AD,SegmDetectorSEGS,ToDetailerPipeSDXL`
