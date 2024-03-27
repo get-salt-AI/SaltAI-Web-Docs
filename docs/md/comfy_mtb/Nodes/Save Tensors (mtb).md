@@ -1,6 +1,6 @@
 # Save Tensors (mtb)
 ## Documentation
-- Class name: `Save Tensors`
+- Class name: `Save Tensors (mtb)`
 - Category: `mtb/debug`
 - Output node: `True`
 

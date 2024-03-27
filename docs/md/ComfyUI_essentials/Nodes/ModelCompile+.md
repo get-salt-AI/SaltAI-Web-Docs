@@ -1,6 +1,6 @@
 # 🔧 Compile Model
 ## Documentation
-- Class name: `ModelCompile`
+- Class name: `ModelCompile+`
 - Category: `essentials`
 - Output node: `False`
 

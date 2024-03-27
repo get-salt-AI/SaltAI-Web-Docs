@@ -1,6 +1,6 @@
 # Plot Batch Float (mtb)
 ## Documentation
-- Class name: `Plot Batch Float`
+- Class name: `Plot Batch Float (mtb)`
 - Category: `mtb/batch`
 - Output node: `False`
 

@@ -1,6 +1,6 @@
 # HypernetworkLoader (dirty)
 ## Documentation
-- Class name: `HypernetworkLoader`
+- Class name: `HypernetworkLoader (dirty)`
 - Category: `Bmad/api/dirty loaders`
 - Output node: `False`
 

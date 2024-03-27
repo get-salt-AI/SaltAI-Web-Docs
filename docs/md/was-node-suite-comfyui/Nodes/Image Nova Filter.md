@@ -1,6 +1,6 @@
 # Image Nova Filter
 ## Documentation
-- Class name: `WAS_Image_Nova_Filter`
+- Class name: `Image Nova Filter`
 - Category: `WAS Suite/Image/Filter`
 - Output node: `False`
 

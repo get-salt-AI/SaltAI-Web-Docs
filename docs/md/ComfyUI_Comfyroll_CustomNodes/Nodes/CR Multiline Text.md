@@ -42,7 +42,10 @@ This node is designed to process and manipulate multiline text, allowing for ope
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `Reroute,CLIPTextEncode`
+- Common nodes:
+    - Reroute
+    - [CLIPTextEncode](../../Comfy/Nodes/CLIPTextEncode.md)
+
 
 
 ## Source code

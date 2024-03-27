@@ -26,7 +26,9 @@ This node performs binary operations on numbers, such as addition, subtraction, 
     - Python dtype: `Tuple[float]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `CM_NumberToInt`
+- Common nodes:
+    - [CM_NumberToInt](../../ComfyMath/Nodes/CM_NumberToInt.md)
+
 
 
 ## Source code

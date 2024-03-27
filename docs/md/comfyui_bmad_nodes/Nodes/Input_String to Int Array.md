@@ -1,6 +1,6 @@
 # Input/String to Int Array
 ## Documentation
-- Class name: `InputString2IntArray`
+- Class name: `Input_String to Int Array`
 - Category: `Bmad/api/parseInput`
 - Output node: `False`
 

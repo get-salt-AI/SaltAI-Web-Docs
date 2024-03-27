@@ -52,7 +52,10 @@ This node specializes in encoding text inputs using an advanced CLIP model, enha
     - A user interface element that displays the processed text, providing insight into how the text was interpreted and manipulated.
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSamplerAdvanced,KRestartSamplerAdv`
+- Common nodes:
+    - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
+    - KRestartSamplerAdv
+
 
 
 ## Source code

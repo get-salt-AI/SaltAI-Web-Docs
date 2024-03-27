@@ -51,7 +51,12 @@ This node applies an IPAdapter to encoded embeddings, allowing for the modificat
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,CR Apply LoRA Stack,Reroute,ADE_AnimateDiffLoaderWithContext`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [CR Apply LoRA Stack](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Apply LoRA Stack.md)
+    - Reroute
+    - [ADE_AnimateDiffLoaderWithContext](../../ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AnimateDiffLoaderWithContext.md)
+
 
 
 ## Source code

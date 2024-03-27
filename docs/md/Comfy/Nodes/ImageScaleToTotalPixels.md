@@ -26,7 +26,17 @@ The ImageScaleToTotalPixels node is designed for resizing images to a specified 
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `GetImageSize,ImageBatch,DWPreprocessor,VAEEncodeForInpaint,PreviewImage,ImpactImageInfo,Reroute,ControlNetApply,VAEEncode`
+- Common nodes:
+    - GetImageSize
+    - [ImageBatch](../../Comfy/Nodes/ImageBatch.md)
+    - DWPreprocessor
+    - [VAEEncodeForInpaint](../../Comfy/Nodes/VAEEncodeForInpaint.md)
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+    - [ImpactImageInfo](../../ComfyUI-Impact-Pack/Nodes/ImpactImageInfo.md)
+    - Reroute
+    - [ControlNetApply](../../Comfy/Nodes/ControlNetApply.md)
+    - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
+
 
 
 ## Source code

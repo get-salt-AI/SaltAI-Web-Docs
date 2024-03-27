@@ -22,7 +22,9 @@ The Logic Boolean node is designed to process a single boolean input and return 
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `Image Input Switch`
+- Common nodes:
+    - [Image Input Switch](../../was-node-suite-comfyui/Nodes/Image Input Switch.md)
+
 
 
 ## Source code

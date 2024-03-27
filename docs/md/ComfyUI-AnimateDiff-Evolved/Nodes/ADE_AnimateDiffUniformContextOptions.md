@@ -59,7 +59,9 @@ This node is designed to generate context options for the AnimateDiff process, f
     - Python dtype: `ContextOptionsGroup`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ADE_AnimateDiffLoaderWithContext`
+- Common nodes:
+    - [ADE_AnimateDiffLoaderWithContext](../../ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AnimateDiffLoaderWithContext.md)
+
 
 
 ## Source code

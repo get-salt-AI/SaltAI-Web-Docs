@@ -1,6 +1,6 @@
 # Interpolate Clip Sequential (mtb)
 ## Documentation
-- Class name: `Interpolate Clip Sequential`
+- Class name: `Interpolate Clip Sequential (mtb)`
 - Category: `mtb/conditioning`
 - Output node: `False`
 

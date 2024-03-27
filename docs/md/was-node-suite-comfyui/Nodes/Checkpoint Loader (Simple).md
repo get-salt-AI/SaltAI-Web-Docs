@@ -1,6 +1,6 @@
 # Checkpoint Loader (Simple)
 ## Documentation
-- Class name: `CheckpointLoaderSimple`
+- Class name: `Checkpoint Loader (Simple)`
 - Category: `WAS Suite/Loaders`
 - Output node: `False`
 
@@ -30,7 +30,17 @@ This node is designed to load checkpoints for models, specifically focusing on a
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `CLIPTextEncode,VAEDecode,LoraLoader,CLIPSetLastLayer,Reroute,CR Apply LoRA Stack,VAEEncode,KSampler,UltimateSDUpscale`
+- Common nodes:
+    - [CLIPTextEncode](../../Comfy/Nodes/CLIPTextEncode.md)
+    - [VAEDecode](../../Comfy/Nodes/VAEDecode.md)
+    - [LoraLoader](../../Comfy/Nodes/LoraLoader.md)
+    - [CLIPSetLastLayer](../../Comfy/Nodes/CLIPSetLastLayer.md)
+    - Reroute
+    - [CR Apply LoRA Stack](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Apply LoRA Stack.md)
+    - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - UltimateSDUpscale
+
 
 
 ## Source code

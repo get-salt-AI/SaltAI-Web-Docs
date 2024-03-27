@@ -54,7 +54,11 @@ The CR Select Model node is designed to select and load a specific model based o
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,CR Apply LoRA Stack,Anything Everywhere3`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [CR Apply LoRA Stack](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Apply LoRA Stack.md)
+    - [Anything Everywhere3](../../cg-use-everywhere/Nodes/Anything Everywhere3.md)
+
 
 
 ## Source code

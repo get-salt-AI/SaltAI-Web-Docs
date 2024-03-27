@@ -1,6 +1,6 @@
 # 🪛 Switch conditioning
 ## Documentation
-- Class name: `CSwitchBooleanConditioning`
+- Class name: `Switch conditioning [Crystools]`
 - Category: `crystools 🪛/Switch`
 - Output node: `False`
 

@@ -1,6 +1,6 @@
 # 🔧 Tensor Shape Debug
 ## Documentation
-- Class name: `DebugTensorShape`
+- Class name: `DebugTensorShape+`
 - Category: `essentials`
 - Output node: `True`
 

@@ -1,6 +1,6 @@
 # 🛠️ CR Debatch Frames
 ## Documentation
-- Class name: `CR_DebatchFrames`
+- Class name: `CR Debatch Frames`
 - Category: `🧩 Comfyroll Studio/🎥 Animation/🛠️ Utils`
 - Output node: `False`
 

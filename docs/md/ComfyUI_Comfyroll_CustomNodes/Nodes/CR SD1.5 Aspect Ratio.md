@@ -58,7 +58,13 @@ This node is designed to adjust the aspect ratio of images for Stable Diffusion 
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,ImpactSwitch,EmptyLatentImage,Reroute,Reroute (rgthree)`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [ImpactSwitch](../../ComfyUI-Impact-Pack/Nodes/ImpactSwitch.md)
+    - [EmptyLatentImage](../../Comfy/Nodes/EmptyLatentImage.md)
+    - Reroute
+    - Reroute (rgthree)
+
 
 
 ## Source code

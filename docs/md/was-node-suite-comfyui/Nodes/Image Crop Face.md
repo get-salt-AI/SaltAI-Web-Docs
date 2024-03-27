@@ -30,7 +30,11 @@ This node specializes in detecting and cropping faces within images, optionally 
     - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `PreviewImage,PrepImageForClipVision,ImageScale`
+- Common nodes:
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+    - [PrepImageForClipVision](../../ComfyUI_IPAdapter_plus/Nodes/PrepImageForClipVision.md)
+    - [ImageScale](../../Comfy/Nodes/ImageScale.md)
+
 
 
 ## Source code

@@ -39,7 +39,11 @@ This node allows for the selection of one out of four possible image inputs base
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `Save Image w/Metadata,CR Feathered Border,VAEEncode`
+- Common nodes:
+    - Save Image w/Metadata
+    - [CR Feathered Border](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Feathered Border.md)
+    - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
+
 
 
 ## Source code

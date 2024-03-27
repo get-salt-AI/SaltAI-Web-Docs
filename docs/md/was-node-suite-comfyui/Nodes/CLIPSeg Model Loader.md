@@ -18,7 +18,9 @@ This node is designed to load a CLIPSeg model, which is a specialized model for 
     - Python dtype: `Tuple[CLIPSegProcessor, CLIPSegForImageSegmentation]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `CLIPSeg Masking`
+- Common nodes:
+    - [CLIPSeg Masking](../../was-node-suite-comfyui/Nodes/CLIPSeg Masking.md)
+
 
 
 ## Source code

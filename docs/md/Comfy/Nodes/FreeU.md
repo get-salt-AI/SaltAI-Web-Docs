@@ -34,7 +34,14 @@ The FreeU node is designed to enhance the flexibility and performance of neural 
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,KSamplerAdvanced,UltimateSDUpscale,Bus Node,DynamicThresholdingFull,Anything Everywhere`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
+    - UltimateSDUpscale
+    - [Bus Node](../../was-node-suite-comfyui/Nodes/Bus Node.md)
+    - DynamicThresholdingFull
+    - [Anything Everywhere](../../cg-use-everywhere/Nodes/Anything Everywhere.md)
+
 
 
 ## Source code

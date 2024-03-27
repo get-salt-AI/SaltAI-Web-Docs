@@ -1,6 +1,6 @@
 # Number to Int
 ## Documentation
-- Class name: `Number_To_Int`
+- Class name: `Number to Int`
 - Category: `WAS Suite/Number/Operations`
 - Output node: `False`
 

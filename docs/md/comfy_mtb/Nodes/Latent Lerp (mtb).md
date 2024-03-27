@@ -1,6 +1,6 @@
 # Latent Lerp (mtb)
 ## Documentation
-- Class name: `LatentLerp`
+- Class name: `Latent Lerp (mtb)`
 - Category: `mtb/latent`
 - Output node: `False`
 

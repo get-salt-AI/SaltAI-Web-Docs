@@ -18,7 +18,10 @@ The UNETLoader node is designed for loading U-Net models by name, facilitating t
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `PatchModelAddDownscale,Reroute`
+- Common nodes:
+    - [PatchModelAddDownscale](../../Comfy/Nodes/PatchModelAddDownscale.md)
+    - Reroute
+
 
 
 ## Source code

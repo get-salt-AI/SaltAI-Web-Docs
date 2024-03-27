@@ -31,7 +31,9 @@ This node allows for dynamic selection between two VAE inputs based on a specifi
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `VAEDecode`
+- Common nodes:
+    - [VAEDecode](../../Comfy/Nodes/VAEDecode.md)
+
 
 
 ## Source code

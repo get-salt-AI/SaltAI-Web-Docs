@@ -1,6 +1,6 @@
 # Transform Image (mtb)
 ## Documentation
-- Class name: `Transform Image`
+- Class name: `Transform Image (mtb)`
 - Category: `mtb/transform`
 - Output node: `False`
 

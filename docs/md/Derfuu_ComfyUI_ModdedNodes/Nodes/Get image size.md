@@ -1,6 +1,6 @@
 # Get image size
 ## Documentation
-- Class name: `get_image_size`
+- Class name: `Get image size`
 - Category: `Derfuu_Nodes/Functions`
 - Output node: `False`
 

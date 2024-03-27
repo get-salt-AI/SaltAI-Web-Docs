@@ -1,6 +1,6 @@
 # Text Dictionary Keys
 ## Documentation
-- Class name: `Dictionary_Keys`
+- Class name: `Text Dictionary Keys`
 - Category: `WAS Suite/Text`
 - Output node: `False`
 

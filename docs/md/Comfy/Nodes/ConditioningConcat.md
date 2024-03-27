@@ -22,7 +22,11 @@ The ConditioningConcat node is designed to concatenate conditioning vectors, spe
     - Python dtype: `Tuple[List[Tuple[torch.Tensor, Dict]]]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `ControlNetApplyAdvanced,SamplerCustom,ConditioningConcat`
+- Common nodes:
+    - [ControlNetApplyAdvanced](../../Comfy/Nodes/ControlNetApplyAdvanced.md)
+    - [SamplerCustom](../../Comfy/Nodes/SamplerCustom.md)
+    - [ConditioningConcat](../../Comfy/Nodes/ConditioningConcat.md)
+
 
 
 ## Source code

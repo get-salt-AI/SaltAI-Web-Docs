@@ -1,6 +1,6 @@
 # Any To String (mtb)
 ## Documentation
-- Class name: `AnyToString`
+- Class name: `Any To String (mtb)`
 - Category: `mtb/converters`
 - Output node: `False`
 

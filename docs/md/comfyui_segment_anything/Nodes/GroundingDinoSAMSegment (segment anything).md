@@ -1,6 +1,6 @@
 # GroundingDinoSAMSegment (segment anything)
 ## Documentation
-- Class name: `GroundingDinoSAMSegment`
+- Class name: `GroundingDinoSAMSegment (segment anything)`
 - Category: `segment_anything`
 - Output node: `False`
 
@@ -38,7 +38,17 @@ The GroundingDinoSAMSegment node is designed to leverage the capabilities of the
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `PreviewImage,Reroute,VAEEncodeForInpaint,MaskToImage,Mask Gaussian Region,ArithmeticBlend,InvertMask (segment anything),InvertMask,GrowMask`
+- Common nodes:
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+    - Reroute
+    - [VAEEncodeForInpaint](../../Comfy/Nodes/VAEEncodeForInpaint.md)
+    - [MaskToImage](../../Comfy/Nodes/MaskToImage.md)
+    - [Mask Gaussian Region](../../was-node-suite-comfyui/Nodes/Mask Gaussian Region.md)
+    - ArithmeticBlend
+    - [InvertMask (segment anything)](../../comfyui_segment_anything/Nodes/InvertMask (segment anything).md)
+    - [InvertMask](../../Comfy/Nodes/InvertMask.md)
+    - [GrowMask](../../Comfy/Nodes/GrowMask.md)
+
 
 
 ## Source code

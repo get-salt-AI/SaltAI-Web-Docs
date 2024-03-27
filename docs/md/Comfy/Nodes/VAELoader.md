@@ -18,7 +18,17 @@ The VAELoader node is designed for loading Variational Autoencoder (VAE) models,
     - Python dtype: `comfy.sd.VAE`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `VAEDecode,VAEEncode,Reroute,CR Module Pipe Loader,VAEDecodeTiled,KSampler Adv. (Efficient),FaceDetailer,Anything Everywhere3,VAEEncodeTiled`
+- Common nodes:
+    - [VAEDecode](../../Comfy/Nodes/VAEDecode.md)
+    - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
+    - Reroute
+    - [CR Module Pipe Loader](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Module Pipe Loader.md)
+    - [VAEDecodeTiled](../../Comfy/Nodes/VAEDecodeTiled.md)
+    - KSampler Adv. (Efficient)
+    - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
+    - [Anything Everywhere3](../../cg-use-everywhere/Nodes/Anything Everywhere3.md)
+    - [VAEEncodeTiled](../../Comfy/Nodes/VAEEncodeTiled.md)
+
 
 
 ## Source code

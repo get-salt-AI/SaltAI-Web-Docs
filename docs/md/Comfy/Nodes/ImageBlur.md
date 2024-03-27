@@ -26,7 +26,10 @@ The ImageBlur node applies a Gaussian blur to an image, allowing for the softeni
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `ImageUpscaleWithModel,Cut By Mask`
+- Common nodes:
+    - [ImageUpscaleWithModel](../../Comfy/Nodes/ImageUpscaleWithModel.md)
+    - [Cut By Mask](../../masquerade-nodes-comfyui/Nodes/Cut By Mask.md)
+
 
 
 ## Source code

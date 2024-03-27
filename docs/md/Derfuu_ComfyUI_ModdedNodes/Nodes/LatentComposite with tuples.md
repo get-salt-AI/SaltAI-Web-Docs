@@ -1,6 +1,6 @@
 # LatentComposite with tuples
 ## Documentation
-- Class name: `LatentComposite`
+- Class name: `LatentComposite with tuples`
 - Category: `Derfuu_Nodes/Tuples/Modded nodes/Latents`
 - Output node: `False`
 
@@ -30,7 +30,10 @@ The LatentComposite node is designed for blending or overlaying two latent repre
     - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `LatentComposite,KSampler`
+- Common nodes:
+    - [LatentComposite](../../Comfy/Nodes/LatentComposite.md)
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+
 
 
 ## Source code

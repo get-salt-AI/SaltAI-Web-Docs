@@ -1,6 +1,6 @@
 # Model Input Switch
 ## Documentation
-- Class name: `WAS_Model_Input_Switch`
+- Class name: `Model Input Switch`
 - Category: `WAS Suite/Logic`
 - Output node: `False`
 

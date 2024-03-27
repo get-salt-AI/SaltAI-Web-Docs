@@ -22,7 +22,9 @@ The AddMask node is designed to combine two mask inputs into a single mask outpu
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `InvertMask`
+- Common nodes:
+    - [InvertMask](../../Comfy/Nodes/InvertMask.md)
+
 
 
 ## Source code

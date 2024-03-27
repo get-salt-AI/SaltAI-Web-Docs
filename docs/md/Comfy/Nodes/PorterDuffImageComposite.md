@@ -38,7 +38,9 @@ The PorterDuffImageComposite node is designed to perform image compositing using
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `PorterDuffImageComposite`
+- Common nodes:
+    - [PorterDuffImageComposite](../../Comfy/Nodes/PorterDuffImageComposite.md)
+
 
 
 ## Source code

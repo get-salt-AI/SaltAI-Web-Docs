@@ -1,6 +1,6 @@
 # Diffusers Hub Model Down-Loader
 ## Documentation
-- Class name: `WAS_Diffusers_Hub_Model_Loader`
+- Class name: `Diffusers Hub Model Down-Loader`
 - Category: `WAS Suite/Loaders/Advanced`
 - Output node: `False`
 

@@ -1,6 +1,6 @@
 # String to Float
 ## Documentation
-- Class name: `String2Float`
+- Class name: `String to Float`
 - Category: `Bmad/api/parseInput`
 - Output node: `False`
 

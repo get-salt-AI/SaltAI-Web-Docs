@@ -26,7 +26,11 @@ The SolidMask node generates a uniform mask with a specified value across its en
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `MaskComposite,MaskToImage,FeatherMask`
+- Common nodes:
+    - [MaskComposite](../../Comfy/Nodes/MaskComposite.md)
+    - [MaskToImage](../../Comfy/Nodes/MaskToImage.md)
+    - [FeatherMask](../../Comfy/Nodes/FeatherMask.md)
+
 
 
 ## Source code

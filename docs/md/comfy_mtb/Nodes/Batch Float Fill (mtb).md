@@ -1,6 +1,6 @@
 # Batch Float Fill (mtb)
 ## Documentation
-- Class name: `BatchFloatFill`
+- Class name: `Batch Float Fill (mtb)`
 - Category: `mtb/batch`
 - Output node: `False`
 

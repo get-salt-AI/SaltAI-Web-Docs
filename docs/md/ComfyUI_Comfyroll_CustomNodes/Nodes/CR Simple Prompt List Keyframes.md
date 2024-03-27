@@ -1,6 +1,6 @@
 # CR Simple Prompt List Keyframes (Legacy)
 ## Documentation
-- Class name: `CR_SimplePromptListKeyframes`
+- Class name: `CR Simple Prompt List Keyframes`
 - Category: `🧩 Comfyroll Studio/🎥 Animation/💀 Legacy`
 - Output node: `False`
 

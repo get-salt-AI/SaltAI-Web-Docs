@@ -1,6 +1,6 @@
 # Load Face Swap Model (mtb)
 ## Documentation
-- Class name: `LoadFaceSwapModel`
+- Class name: `Load Face Swap Model (mtb)`
 - Category: `mtb/facetools`
 - Output node: `False`
 

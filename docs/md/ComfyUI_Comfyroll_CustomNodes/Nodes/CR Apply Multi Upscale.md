@@ -38,7 +38,10 @@ This node is designed to apply multiple upscaling models sequentially to an imag
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `VAEEncode,VAEEncodeTiled`
+- Common nodes:
+    - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
+    - [VAEEncodeTiled](../../Comfy/Nodes/VAEEncodeTiled.md)
+
 
 
 ## Source code

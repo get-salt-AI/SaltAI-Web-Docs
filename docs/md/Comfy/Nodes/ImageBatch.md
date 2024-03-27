@@ -22,7 +22,13 @@ The ImageBatch node is designed for combining two images into a single batch. If
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `ImageBatch,IPAdapterApply,CR Batch Process Switch,PreviewImage,Preview Chooser`
+- Common nodes:
+    - [ImageBatch](../../Comfy/Nodes/ImageBatch.md)
+    - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
+    - [CR Batch Process Switch](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Batch Process Switch.md)
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+    - Preview Chooser
+
 
 
 ## Source code

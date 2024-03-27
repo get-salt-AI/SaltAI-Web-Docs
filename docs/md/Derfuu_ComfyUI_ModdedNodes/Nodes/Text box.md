@@ -18,7 +18,13 @@ The Text box node is designed to capture and return multiline string inputs. It 
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `SDXLPromptStyler,CLIPTextEncode,BatchPromptSchedule,Text Concatenate,Text Random Line`
+- Common nodes:
+    - SDXLPromptStyler
+    - [CLIPTextEncode](../../Comfy/Nodes/CLIPTextEncode.md)
+    - [BatchPromptSchedule](../../ComfyUI_FizzNodes/Nodes/BatchPromptSchedule.md)
+    - [Text Concatenate](../../was-node-suite-comfyui/Nodes/Text Concatenate.md)
+    - [Text Random Line](../../was-node-suite-comfyui/Nodes/Text Random Line.md)
+
 
 
 ## Source code

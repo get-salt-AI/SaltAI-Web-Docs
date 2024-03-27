@@ -22,7 +22,9 @@ This node is designed to determine the dimensions of an image, specifically its 
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `EmptyLatentImage`
+- Common nodes:
+    - [EmptyLatentImage](../../Comfy/Nodes/EmptyLatentImage.md)
+
 
 
 ## Source code

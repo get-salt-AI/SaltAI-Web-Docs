@@ -1,6 +1,6 @@
 # Batch Shape (mtb)
 ## Documentation
-- Class name: `BatchShape`
+- Class name: `Batch Shape (mtb)`
 - Category: `mtb/batch`
 - Output node: `False`
 

@@ -1,6 +1,6 @@
 # Image Tile Offset (mtb)
 ## Documentation
-- Class name: `Image Tile Offset`
+- Class name: `Image Tile Offset (mtb)`
 - Category: `mtb/generate`
 - Output node: `False`
 

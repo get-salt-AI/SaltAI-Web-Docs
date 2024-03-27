@@ -30,7 +30,11 @@ The ImpactImageInfo node is designed to extract and provide detailed information
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `EmptyImage,ttN pipeLoader,EmptyLatentImage`
+- Common nodes:
+    - [EmptyImage](../../Comfy/Nodes/EmptyImage.md)
+    - ttN pipeLoader
+    - [EmptyLatentImage](../../Comfy/Nodes/EmptyLatentImage.md)
+
 
 
 ## Source code

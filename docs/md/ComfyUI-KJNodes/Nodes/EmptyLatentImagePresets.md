@@ -34,7 +34,9 @@ The `EmptyLatentImagePresets` node provides a mechanism to generate latent image
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `Anything Everywhere`
+- Common nodes:
+    - [Anything Everywhere](../../cg-use-everywhere/Nodes/Anything Everywhere.md)
+
 
 
 ## Source code

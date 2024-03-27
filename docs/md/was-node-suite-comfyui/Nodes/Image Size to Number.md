@@ -1,6 +1,6 @@
 # Image Size to Number
 ## Documentation
-- Class name: `WAS_Image_Size_To_Number`
+- Class name: `Image Size to Number`
 - Category: `WAS Suite/Number/Operations`
 - Output node: `False`
 
@@ -38,7 +38,9 @@ This node is designed to convert the dimensions of an image into numerical value
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `Number Operation`
+- Common nodes:
+    - [Number Operation](../../was-node-suite-comfyui/Nodes/Number Operation.md)
+
 
 
 ## Source code

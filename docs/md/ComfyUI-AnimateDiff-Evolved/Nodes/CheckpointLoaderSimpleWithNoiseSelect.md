@@ -39,7 +39,16 @@ This node specializes in loading model checkpoints with an emphasis on noise sel
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `LoraLoader,CLIPTextEncode,ADE_AnimateDiffLoaderWithContext,BatchPromptSchedule,CLIPSetLastLayer,Lora Loader Stack (rgthree),IPAdapterApply,ToBasicPipe`
+- Common nodes:
+    - [LoraLoader](../../Comfy/Nodes/LoraLoader.md)
+    - [CLIPTextEncode](../../Comfy/Nodes/CLIPTextEncode.md)
+    - [ADE_AnimateDiffLoaderWithContext](../../ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AnimateDiffLoaderWithContext.md)
+    - [BatchPromptSchedule](../../ComfyUI_FizzNodes/Nodes/BatchPromptSchedule.md)
+    - [CLIPSetLastLayer](../../Comfy/Nodes/CLIPSetLastLayer.md)
+    - Lora Loader Stack (rgthree)
+    - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
+    - [ToBasicPipe](../../ComfyUI-Impact-Pack/Nodes/ToBasicPipe.md)
+
 
 
 ## Source code

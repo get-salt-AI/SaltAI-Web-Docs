@@ -18,7 +18,9 @@ The InsightFaceLoader node is designed to load the InsightFace model, which is a
     - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `IPAdapterApplyFaceID`
+- Common nodes:
+    - [IPAdapterApplyFaceID](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApplyFaceID.md)
+
 
 
 ## Source code

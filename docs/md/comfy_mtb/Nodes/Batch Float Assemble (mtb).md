@@ -1,6 +1,6 @@
 # Batch Float Assemble (mtb)
 ## Documentation
-- Class name: `BatchFloatAssemble`
+- Class name: `Batch Float Assemble (mtb)`
 - Category: `mtb/batch`
 - Output node: `False`
 

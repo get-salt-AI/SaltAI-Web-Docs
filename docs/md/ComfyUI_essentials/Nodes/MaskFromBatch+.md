@@ -1,6 +1,6 @@
 # 🔧 Mask From Batch
 ## Documentation
-- Class name: `MaskFromBatch`
+- Class name: `MaskFromBatch+`
 - Category: `essentials`
 - Output node: `False`
 

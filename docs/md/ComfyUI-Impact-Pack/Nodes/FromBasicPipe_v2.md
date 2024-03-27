@@ -38,7 +38,10 @@ The `FromBasicPipe_v2` node is designed to decompose a basic pipeline into its c
     - Python dtype: `Any`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ToIPAdapterPipe //Inspire,EditBasicPipe`
+- Common nodes:
+    - ToIPAdapterPipe //Inspire
+    - [EditBasicPipe](../../ComfyUI-Impact-Pack/Nodes/EditBasicPipe.md)
+
 
 
 ## Source code

@@ -1,6 +1,6 @@
 # Image Compare (mtb)
 ## Documentation
-- Class name: `Image Compare`
+- Class name: `Image Compare (mtb)`
 - Category: `mtb/image`
 - Output node: `False`
 

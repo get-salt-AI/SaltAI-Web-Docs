@@ -54,7 +54,18 @@ The KSampler node is designed for advanced sampling operations within generative
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `VAEDecode,LatentUpscaleBy,VAEDecodeTiled,Reroute,LatentComposite,NNLatentUpscale,LatentUpscale,KSampler,workflow/front,SetNode`
+- Common nodes:
+    - [VAEDecode](../../Comfy/Nodes/VAEDecode.md)
+    - [LatentUpscaleBy](../../Comfy/Nodes/LatentUpscaleBy.md)
+    - [VAEDecodeTiled](../../Comfy/Nodes/VAEDecodeTiled.md)
+    - Reroute
+    - [LatentComposite](../../Comfy/Nodes/LatentComposite.md)
+    - NNLatentUpscale
+    - [LatentUpscale](../../Comfy/Nodes/LatentUpscale.md)
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - workflow/front
+    - SetNode
+
 
 
 ## Source code

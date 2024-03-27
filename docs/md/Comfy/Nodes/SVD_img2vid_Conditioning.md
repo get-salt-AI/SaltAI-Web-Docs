@@ -58,7 +58,12 @@ This node is designed for generating conditioning data for video generation task
     - Python dtype: `Dict`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,Prompts Everywhere,KSamplerAdvanced,SeargeSDXLSamplerV3`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [Prompts Everywhere](../../cg-use-everywhere/Nodes/Prompts Everywhere.md)
+    - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
+    - SeargeSDXLSamplerV3
+
 
 
 ## Source code

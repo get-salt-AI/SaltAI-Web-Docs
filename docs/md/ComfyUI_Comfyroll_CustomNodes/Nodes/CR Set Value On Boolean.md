@@ -1,6 +1,6 @@
 # ⚙️ CR Set Value On Boolean
 ## Documentation
-- Class name: `CR_SetValueOnBoolean`
+- Class name: `CR Set Value On Boolean`
 - Category: `🧩 Comfyroll Studio/🛠️ Utils/🔀 Conditional`
 - Output node: `False`
 

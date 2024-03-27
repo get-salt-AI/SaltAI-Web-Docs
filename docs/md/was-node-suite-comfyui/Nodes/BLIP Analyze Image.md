@@ -31,7 +31,9 @@ The node provides functionality for analyzing images using the BLIP model, capab
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `ShowText|pysssss`
+- Common nodes:
+    - [ShowText|pysssss](../../ComfyUI-Custom-Scripts/Nodes/ShowText|pysssss.md)
+
 
 
 ## Source code

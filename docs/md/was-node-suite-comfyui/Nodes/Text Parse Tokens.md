@@ -1,6 +1,6 @@
 # Text Parse Tokens
 ## Documentation
-- Class name: `WAS_Text_Parse_Tokens`
+- Class name: `Text Parse Tokens`
 - Category: `WAS Suite/Text/Tokens`
 - Output node: `False`
 

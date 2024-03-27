@@ -1,6 +1,6 @@
 # String Replace (mtb)
 ## Documentation
-- Class name: `StringReplace`
+- Class name: `String Replace (mtb)`
 - Category: `mtb/string`
 - Output node: `False`
 

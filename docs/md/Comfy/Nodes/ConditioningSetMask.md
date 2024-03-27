@@ -30,7 +30,10 @@ This node is designed to modify the conditioning of a generative model by applyi
     - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `Attention couple,ConditioningCombine`
+- Common nodes:
+    - Attention couple
+    - [ConditioningCombine](../../Comfy/Nodes/ConditioningCombine.md)
+
 
 
 ## Source code

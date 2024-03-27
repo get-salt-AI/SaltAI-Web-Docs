@@ -31,7 +31,9 @@ This node allows for dynamic selection between two model inputs based on a speci
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `Reroute`
+- Common nodes:
+    - Reroute
+
 
 
 ## Source code

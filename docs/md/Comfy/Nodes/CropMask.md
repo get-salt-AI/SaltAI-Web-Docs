@@ -34,7 +34,10 @@ The CropMask node is designed for cropping a specified area from a given mask. I
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `VAEEncodeForInpaint,MaskToImage`
+- Common nodes:
+    - [VAEEncodeForInpaint](../../Comfy/Nodes/VAEEncodeForInpaint.md)
+    - [MaskToImage](../../Comfy/Nodes/MaskToImage.md)
+
 
 
 ## Source code

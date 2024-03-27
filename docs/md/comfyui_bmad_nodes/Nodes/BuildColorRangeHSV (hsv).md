@@ -1,6 +1,6 @@
 # BuildColorRangeHSV (hsv)
 ## Documentation
-- Class name: `BuildColorRangeHSV`
+- Class name: `BuildColorRangeHSV (hsv)`
 - Category: `Bmad/CV/Color A.`
 - Output node: `False`
 

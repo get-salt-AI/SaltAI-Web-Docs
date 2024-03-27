@@ -1,6 +1,6 @@
 # Integer place counter
 ## Documentation
-- Class name: `Integer_Place_Counter`
+- Class name: `Integer place counter`
 - Category: `WAS Suite/Integer`
 - Output node: `False`
 

@@ -18,7 +18,13 @@ The ImageInvert node is designed to invert the colors of an image, effectively t
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `PreviewImage,ImageScale,ImageCompositeMasked,Reroute,ArithmeticBlend`
+- Common nodes:
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+    - [ImageScale](../../Comfy/Nodes/ImageScale.md)
+    - [ImageCompositeMasked](../../Comfy/Nodes/ImageCompositeMasked.md)
+    - Reroute
+    - ArithmeticBlend
+
 
 
 ## Source code

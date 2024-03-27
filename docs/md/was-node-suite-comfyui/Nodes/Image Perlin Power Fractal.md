@@ -1,6 +1,6 @@
 # Image Perlin Power Fractal
 ## Documentation
-- Class name: `WAS_Image_Perlin_Power_Fractal`
+- Class name: `Image Perlin Power Fractal`
 - Category: `WAS Suite/Image/Generate/Noise`
 - Output node: `False`
 

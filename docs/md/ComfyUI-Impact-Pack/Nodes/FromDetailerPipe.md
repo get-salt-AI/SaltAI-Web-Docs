@@ -50,7 +50,11 @@ The FromDetailerPipe node is designed to extract and return various components f
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `DetailerForEachDebug,ToBasicPipe,CLIPTextEncode`
+- Common nodes:
+    - [DetailerForEachDebug](../../ComfyUI-Impact-Pack/Nodes/DetailerForEachDebug.md)
+    - [ToBasicPipe](../../ComfyUI-Impact-Pack/Nodes/ToBasicPipe.md)
+    - [CLIPTextEncode](../../Comfy/Nodes/CLIPTextEncode.md)
+
 
 
 ## Source code

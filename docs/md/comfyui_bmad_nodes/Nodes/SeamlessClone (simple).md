@@ -1,6 +1,6 @@
 # SeamlessClone (simple)
 ## Documentation
-- Class name: `SeamlessClone`
+- Class name: `SeamlessClone (simple)`
 - Category: `Bmad/CV/C.Photography`
 - Output node: `False`
 

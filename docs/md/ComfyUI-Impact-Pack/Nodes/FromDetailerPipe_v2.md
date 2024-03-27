@@ -54,7 +54,9 @@ The `FromDetailerPipe_v2` node is designed to decompose a complex detailer pipe 
     - Python dtype: `object`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `FaceDetailerPipe`
+- Common nodes:
+    - [FaceDetailerPipe](../../ComfyUI-Impact-Pack/Nodes/FaceDetailerPipe.md)
+
 
 
 ## Source code

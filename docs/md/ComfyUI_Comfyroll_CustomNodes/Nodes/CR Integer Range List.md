@@ -1,6 +1,6 @@
 # 📜 CR Integer Range List
 ## Documentation
-- Class name: `CR_IntegerRangeList`
+- Class name: `CR Integer Range List`
 - Category: `🧩 Comfyroll Studio/✨ Essential/📜 List`
 - Output node: `False`
 

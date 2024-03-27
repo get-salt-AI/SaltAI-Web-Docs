@@ -1,6 +1,6 @@
 # 🔂 CR Hires Fix Process Switch
 ## Documentation
-- Class name: `CR_HiResFixProcessSwitch`
+- Class name: `CR Hires Fix Process Switch`
 - Category: `🧩 Comfyroll Studio/🛠️ Utils/🔂 Process`
 - Output node: `False`
 

@@ -39,7 +39,9 @@ The GMFSS Fortuna VFI node is designed for video frame interpolation, leveraging
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `VHS_VideoCombine`
+- Common nodes:
+    - [VHS_VideoCombine](../../ComfyUI-VideoHelperSuite/Nodes/VHS_VideoCombine.md)
+
 
 
 ## Source code

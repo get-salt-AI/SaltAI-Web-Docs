@@ -26,7 +26,10 @@ This node is designed to duplicate a batch of latent representations a specified
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,LatentComposite`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [LatentComposite](../../Comfy/Nodes/LatentComposite.md)
+
 
 
 ## Source code

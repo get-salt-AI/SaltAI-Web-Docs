@@ -1,6 +1,6 @@
 # Text Contains
 ## Documentation
-- Class name: `WAS_Text_Contains`
+- Class name: `Text Contains`
 - Category: `WAS Suite/Logic`
 - Output node: `False`
 

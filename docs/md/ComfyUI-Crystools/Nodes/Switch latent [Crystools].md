@@ -1,6 +1,6 @@
 # 🪛 Switch latent
 ## Documentation
-- Class name: `CSwitchBooleanLatent`
+- Class name: `Switch latent [Crystools]`
 - Category: `crystools 🪛/Switch`
 - Output node: `False`
 

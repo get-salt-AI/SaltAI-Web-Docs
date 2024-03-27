@@ -54,7 +54,10 @@ This node is designed to process and condition data for use in StableZero123 mod
     - Python dtype: `List[torch.Tensor]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `KSampler,SamplerCustom`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [SamplerCustom](../../Comfy/Nodes/SamplerCustom.md)
+
 
 
 ## Source code

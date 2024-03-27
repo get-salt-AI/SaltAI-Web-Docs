@@ -18,7 +18,14 @@ The Text Multiline node is designed to process multiline text inputs, removing l
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `Text to Conditioning,CLIPTextEncodeSDXL,Text Concatenate,Efficient Loader,BNK_CutoffBasePrompt,Text Random Line`
+- Common nodes:
+    - [Text to Conditioning](../../was-node-suite-comfyui/Nodes/Text to Conditioning.md)
+    - [CLIPTextEncodeSDXL](../../Comfy/Nodes/CLIPTextEncodeSDXL.md)
+    - [Text Concatenate](../../was-node-suite-comfyui/Nodes/Text Concatenate.md)
+    - Efficient Loader
+    - BNK_CutoffBasePrompt
+    - [Text Random Line](../../was-node-suite-comfyui/Nodes/Text Random Line.md)
+
 
 
 ## Source code

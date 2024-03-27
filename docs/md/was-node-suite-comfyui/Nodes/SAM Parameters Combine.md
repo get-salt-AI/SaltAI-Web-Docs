@@ -1,6 +1,6 @@
 # SAM Parameters Combine
 ## Documentation
-- Class name: `SAM_Parameters_Combine`
+- Class name: `SAM Parameters Combine`
 - Category: `WAS Suite/Image/Masking`
 - Output node: `False`
 

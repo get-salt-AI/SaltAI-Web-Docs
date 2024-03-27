@@ -42,7 +42,14 @@ The Image Resize node is designed to modify the dimensions of an input image acc
     - Python dtype: `Image.Image`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `GroundingDinoSAMSegment (segment anything),IPAdapterEncoder,CLIPVisionEncode,VAEEncode,FaceDetailer,Reroute`
+- Common nodes:
+    - [GroundingDinoSAMSegment (segment anything)](../../comfyui_segment_anything/Nodes/GroundingDinoSAMSegment (segment anything).md)
+    - [IPAdapterEncoder](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterEncoder.md)
+    - [CLIPVisionEncode](../../Comfy/Nodes/CLIPVisionEncode.md)
+    - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
+    - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
+    - Reroute
+
 
 
 ## Source code

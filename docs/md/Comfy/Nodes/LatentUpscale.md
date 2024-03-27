@@ -34,7 +34,9 @@ The LatentUpscale node is designed for upscaling latent representations of image
     - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+
 
 
 ## Source code

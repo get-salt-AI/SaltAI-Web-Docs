@@ -1,6 +1,6 @@
 # 🔧 Transition Mask
 ## Documentation
-- Class name: `TransitionMask`
+- Class name: `TransitionMask+`
 - Category: `essentials`
 - Output node: `False`
 

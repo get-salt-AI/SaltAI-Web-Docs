@@ -34,7 +34,10 @@ This node specializes in refining the encoding of text inputs using CLIP models,
     - Python dtype: `list`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSamplerAdvanced,UltimateSDUpscale`
+- Common nodes:
+    - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
+    - UltimateSDUpscale
+
 
 
 ## Source code

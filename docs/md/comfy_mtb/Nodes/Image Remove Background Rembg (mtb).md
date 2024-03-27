@@ -1,6 +1,6 @@
 # Image Remove Background Rembg (mtb)
 ## Documentation
-- Class name: `Image Remove Background Rembg`
+- Class name: `Image Remove Background Rembg (mtb)`
 - Category: `mtb/image`
 - Output node: `False`
 

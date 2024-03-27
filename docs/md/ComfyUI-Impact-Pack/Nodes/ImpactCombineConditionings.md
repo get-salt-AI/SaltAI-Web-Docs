@@ -18,7 +18,9 @@ The node is designed to merge two or more conditioning inputs into a single cond
     - Python dtype: `Tuple[List[Tuple[torch.Tensor, Any]], ...]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `SetNode`
+- Common nodes:
+    - SetNode
+
 
 
 ## Source code

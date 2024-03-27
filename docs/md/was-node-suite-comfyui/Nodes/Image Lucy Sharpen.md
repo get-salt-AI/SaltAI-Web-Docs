@@ -26,7 +26,9 @@ The node applies a Lucy-Richardson deconvolution algorithm to sharpen images. It
     - Python dtype: `List[PIL.Image] or PIL.Image`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `TilePreprocessor`
+- Common nodes:
+    - TilePreprocessor
+
 
 
 ## Source code

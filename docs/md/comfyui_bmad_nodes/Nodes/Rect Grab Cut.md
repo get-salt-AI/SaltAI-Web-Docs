@@ -1,6 +1,6 @@
 # Rect Grab Cut
 ## Documentation
-- Class name: `RectGrabCut`
+- Class name: `Rect Grab Cut`
 - Category: `Bmad/CV/GrabCut`
 - Output node: `False`
 

@@ -22,7 +22,15 @@ The 'Text to Conditioning' node is designed to convert textual input into a cond
     - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `UltimateSDUpscale,FaceDetailer,KSamplerAdvanced,CR Module Pipe Loader,ToBasicPipe,KSampler,Prompts Everywhere`
+- Common nodes:
+    - UltimateSDUpscale
+    - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
+    - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
+    - [CR Module Pipe Loader](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Module Pipe Loader.md)
+    - [ToBasicPipe](../../ComfyUI-Impact-Pack/Nodes/ToBasicPipe.md)
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [Prompts Everywhere](../../cg-use-everywhere/Nodes/Prompts Everywhere.md)
+
 
 
 ## Source code

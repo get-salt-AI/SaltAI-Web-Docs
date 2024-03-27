@@ -22,7 +22,9 @@ This node transforms a detailer pipe configuration into two basic pipe configura
     - Python dtype: `Tuple[torch.nn.Module, torch.nn.Module, torch.nn.Module, str, str]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `EditBasicPipe`
+- Common nodes:
+    - [EditBasicPipe](../../ComfyUI-Impact-Pack/Nodes/EditBasicPipe.md)
+
 
 
 ## Source code

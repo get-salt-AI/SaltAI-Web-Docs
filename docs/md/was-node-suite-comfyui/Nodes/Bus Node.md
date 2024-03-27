@@ -59,7 +59,12 @@ The 'Bus Node' serves as a central hub for routing and overriding various compon
     - Python dtype: `Any`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `DetailerForEach,KSampler,Bus Node,VAEDecode`
+- Common nodes:
+    - [DetailerForEach](../../ComfyUI-Impact-Pack/Nodes/DetailerForEach.md)
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [Bus Node](../../was-node-suite-comfyui/Nodes/Bus Node.md)
+    - [VAEDecode](../../Comfy/Nodes/VAEDecode.md)
+
 
 
 ## Source code

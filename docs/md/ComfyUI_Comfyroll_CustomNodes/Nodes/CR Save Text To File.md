@@ -1,6 +1,6 @@
 # 🔤 CR Save Text To File
 ## Documentation
-- Class name: `CR_SaveTextToFile`
+- Class name: `CR Save Text To File`
 - Category: `🧩 Comfyroll Studio/🛠️ Utils/🔤 Text`
 - Output node: `True`
 

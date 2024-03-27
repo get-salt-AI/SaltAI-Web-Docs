@@ -1,6 +1,6 @@
 # Image Resize Factor (mtb)
 ## Documentation
-- Class name: `Image Resize Factor`
+- Class name: `Image Resize Factor (mtb)`
 - Category: `mtb/image`
 - Output node: `False`
 

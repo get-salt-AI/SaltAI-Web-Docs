@@ -1,6 +1,6 @@
 # Number to Float
 ## Documentation
-- Class name: `Number_To_Float`
+- Class name: `Number to Float`
 - Category: `WAS Suite/Number/Operations`
 - Output node: `False`
 

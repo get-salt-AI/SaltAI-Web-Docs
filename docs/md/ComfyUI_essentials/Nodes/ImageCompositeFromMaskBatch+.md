@@ -1,6 +1,6 @@
 # 🔧 Image Composite From Mask Batch
 ## Documentation
-- Class name: `ImageCompositeFromMaskBatch`
+- Class name: `ImageCompositeFromMaskBatch+`
 - Category: `essentials`
 - Output node: `False`
 

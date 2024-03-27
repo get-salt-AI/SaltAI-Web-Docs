@@ -58,7 +58,13 @@ The ImpactWildcardEncode node is designed to dynamically replace placeholders wi
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `KSampler,Reroute,CLIPTextEncode,FaceDetailer,ControlNetApplyAdvanced`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - Reroute
+    - [CLIPTextEncode](../../Comfy/Nodes/CLIPTextEncode.md)
+    - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
+    - [ControlNetApplyAdvanced](../../Comfy/Nodes/ControlNetApplyAdvanced.md)
+
 
 
 ## Source code

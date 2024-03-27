@@ -47,7 +47,11 @@ The Load Image Batch node is designed to aggregate multiple images into a single
     - Python dtype: `List[str]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `Reroute,BLIPCaption,Image scale to side`
+- Common nodes:
+    - Reroute
+    - BLIPCaption
+    - [Image scale to side](../../Derfuu_ComfyUI_ModdedNodes/Nodes/Image scale to side.md)
+
 
 
 ## Source code

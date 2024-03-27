@@ -22,7 +22,9 @@ This node applies a dilation operation to the masks within a collection of segme
     - Python dtype: `Tuple[str, List[SEG]]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ImpactDilateMaskInSEGS`
+- Common nodes:
+    - [ImpactDilateMaskInSEGS](../../ComfyUI-Impact-Pack/Nodes/ImpactDilateMaskInSEGS.md)
+
 
 
 ## Source code

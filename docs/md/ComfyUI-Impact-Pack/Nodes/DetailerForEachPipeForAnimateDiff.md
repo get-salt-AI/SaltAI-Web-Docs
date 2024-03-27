@@ -87,7 +87,9 @@ This node is designed to detail each pipe specifically for the purpose of animat
     - Python dtype: `Tuple[torch.Tensor, torch.Tensor, torch.Tensor, str, str]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `VHS_VideoCombine`
+- Common nodes:
+    - [VHS_VideoCombine](../../ComfyUI-VideoHelperSuite/Nodes/VHS_VideoCombine.md)
+
 
 
 ## Source code

@@ -26,7 +26,9 @@ This node applies a thresholding operation to a given mask or set of masks, effe
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `MaskBlur+`
+- Common nodes:
+    - [MaskBlur+](../../ComfyUI_essentials/Nodes/MaskBlur+.md)
+
 
 
 ## Source code

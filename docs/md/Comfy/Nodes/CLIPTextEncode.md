@@ -22,7 +22,17 @@ The CLIPTextEncode node is designed to encode textual inputs using a CLIP model,
     - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,ControlNetApplyAdvanced,KSampler //Inspire,SamplerCustom,Reroute,KSamplerAdvanced,ACN_AdvancedControlNetApply,ToBasicPipe,FaceDetailer`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [ControlNetApplyAdvanced](../../Comfy/Nodes/ControlNetApplyAdvanced.md)
+    - KSampler //Inspire
+    - [SamplerCustom](../../Comfy/Nodes/SamplerCustom.md)
+    - Reroute
+    - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
+    - [ACN_AdvancedControlNetApply](../../ComfyUI-Advanced-ControlNet/Nodes/ACN_AdvancedControlNetApply.md)
+    - [ToBasicPipe](../../ComfyUI-Impact-Pack/Nodes/ToBasicPipe.md)
+    - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
+
 
 
 ## Source code

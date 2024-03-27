@@ -35,7 +35,9 @@ This node is designed to initialize and configure an image processing pipeline, 
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `CR Image Pipe Out`
+- Common nodes:
+    - [CR Image Pipe Out](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Image Pipe Out.md)
+
 
 
 ## Source code

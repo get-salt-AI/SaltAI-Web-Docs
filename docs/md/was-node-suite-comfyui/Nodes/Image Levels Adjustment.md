@@ -30,7 +30,11 @@ The Image Levels Adjustment node is designed to modify the tonal range of an ima
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `CR Image Output,PreviewImage,Image To Mask`
+- Common nodes:
+    - [CR Image Output](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Image Output.md)
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+    - [Image To Mask](../../masquerade-nodes-comfyui/Nodes/Image To Mask.md)
+
 
 
 ## Source code

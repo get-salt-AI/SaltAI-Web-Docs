@@ -1,6 +1,6 @@
 # Smart Step (mtb)
 ## Documentation
-- Class name: `Smart Step`
+- Class name: `Smart Step (mtb)`
 - Category: `mtb/conditioning`
 - Output node: `False`
 

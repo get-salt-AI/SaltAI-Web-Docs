@@ -1,6 +1,6 @@
 # Filter Z (mtb)
 ## Documentation
-- Class name: `MTB_FilterZ`
+- Class name: `Filter Z (mtb)`
 - Category: `mtb/filters`
 - Output node: `False`
 

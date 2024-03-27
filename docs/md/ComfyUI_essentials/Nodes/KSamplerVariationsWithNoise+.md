@@ -1,6 +1,6 @@
 # 🔧 KSampler Variations with Noise Injection
 ## Documentation
-- Class name: `KSamplerVariationsWithNoise`
+- Class name: `KSamplerVariationsWithNoise+`
 - Category: `essentials`
 - Output node: `False`
 

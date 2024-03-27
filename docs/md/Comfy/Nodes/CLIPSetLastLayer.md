@@ -22,7 +22,18 @@ This node is designed to modify the behavior of a CLIP model by setting a specif
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `CLIPTextEncode,LoraLoader,CR Apply LoRA Stack,Text to Conditioning,Reroute,PromptControlSimple,BatchPromptSchedule,CLIPTextEncodeA1111,FaceDetailer,BNK_CutoffBasePrompt`
+- Common nodes:
+    - [CLIPTextEncode](../../Comfy/Nodes/CLIPTextEncode.md)
+    - [LoraLoader](../../Comfy/Nodes/LoraLoader.md)
+    - [CR Apply LoRA Stack](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Apply LoRA Stack.md)
+    - [Text to Conditioning](../../was-node-suite-comfyui/Nodes/Text to Conditioning.md)
+    - Reroute
+    - PromptControlSimple
+    - [BatchPromptSchedule](../../ComfyUI_FizzNodes/Nodes/BatchPromptSchedule.md)
+    - CLIPTextEncodeA1111
+    - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
+    - BNK_CutoffBasePrompt
+
 
 
 ## Source code

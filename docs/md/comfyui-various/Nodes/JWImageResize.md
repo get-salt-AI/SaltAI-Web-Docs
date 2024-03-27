@@ -30,7 +30,14 @@ The JWImageResize node is designed to adjust the size of an image to specified w
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `GroundingDinoSAMSegment (segment anything),IPAdapterEncoder,CLIPVisionEncode,VAEEncode,FaceDetailer,Reroute`
+- Common nodes:
+    - [GroundingDinoSAMSegment (segment anything)](../../comfyui_segment_anything/Nodes/GroundingDinoSAMSegment (segment anything).md)
+    - [IPAdapterEncoder](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterEncoder.md)
+    - [CLIPVisionEncode](../../Comfy/Nodes/CLIPVisionEncode.md)
+    - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
+    - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
+    - Reroute
+
 
 
 ## Source code

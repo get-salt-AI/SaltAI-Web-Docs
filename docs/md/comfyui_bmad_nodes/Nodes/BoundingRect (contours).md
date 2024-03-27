@@ -1,6 +1,6 @@
 # BoundingRect (contours)
 ## Documentation
-- Class name: `BoundingRect`
+- Class name: `BoundingRect (contours)`
 - Category: `Bmad/CV/Contour`
 - Output node: `False`
 

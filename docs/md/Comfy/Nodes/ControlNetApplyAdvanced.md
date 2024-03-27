@@ -46,7 +46,18 @@ This node applies advanced control net transformations to conditioning data base
     - Python dtype: `List[Tuple[str, Dict[str, Any]]]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,KSamplerAdvanced,ControlNetApplyAdvanced,KSampler //Inspire,UltimateSDUpscale,ToBasicPipe,FaceDetailer,Reroute,SamplerCustom,Bus Node`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
+    - [ControlNetApplyAdvanced](../../Comfy/Nodes/ControlNetApplyAdvanced.md)
+    - KSampler //Inspire
+    - UltimateSDUpscale
+    - [ToBasicPipe](../../ComfyUI-Impact-Pack/Nodes/ToBasicPipe.md)
+    - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
+    - Reroute
+    - [SamplerCustom](../../Comfy/Nodes/SamplerCustom.md)
+    - [Bus Node](../../was-node-suite-comfyui/Nodes/Bus Node.md)
+
 
 
 ## Source code

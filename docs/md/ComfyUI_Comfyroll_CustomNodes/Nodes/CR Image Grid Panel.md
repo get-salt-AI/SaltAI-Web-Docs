@@ -1,6 +1,6 @@
 # 🌁 CR Image Grid Panel
 ## Documentation
-- Class name: `CR_ImageGridPanel`
+- Class name: `CR Image Grid Panel`
 - Category: `🧩 Comfyroll Studio/👾 Graphics/🌁 Layout`
 - Output node: `False`
 

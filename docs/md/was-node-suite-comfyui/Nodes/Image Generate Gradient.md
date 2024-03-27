@@ -34,7 +34,9 @@ This node is designed to generate images with gradient effects based on specifie
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `Image Blending Mode`
+- Common nodes:
+    - [Image Blending Mode](../../was-node-suite-comfyui/Nodes/Image Blending Mode.md)
+
 
 
 ## Source code

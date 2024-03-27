@@ -34,7 +34,18 @@ The ImageScale node is designed for resizing images to specific dimensions, offe
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `VAEEncode,FILM VFI,LineArtPreprocessor,ControlNetApplyAdvanced,PreviewImage,VAEEncodeTiled,StableZero123_Conditioning,OpenposePreprocessor,IPAdapterApply,Image Rembg (Remove Background)`
+- Common nodes:
+    - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
+    - [FILM VFI](../../ComfyUI-Frame-Interpolation/Nodes/FILM VFI.md)
+    - LineArtPreprocessor
+    - [ControlNetApplyAdvanced](../../Comfy/Nodes/ControlNetApplyAdvanced.md)
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+    - [VAEEncodeTiled](../../Comfy/Nodes/VAEEncodeTiled.md)
+    - [StableZero123_Conditioning](../../Comfy/Nodes/StableZero123_Conditioning.md)
+    - OpenposePreprocessor
+    - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
+    - [Image Rembg (Remove Background)](../../was-node-suite-comfyui/Nodes/Image Rembg (Remove Background).md)
+
 
 
 ## Source code

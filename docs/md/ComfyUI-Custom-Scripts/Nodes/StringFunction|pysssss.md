@@ -1,6 +1,6 @@
 # String Function 🐍
 ## Documentation
-- Class name: `String Function`
+- Class name: `StringFunction|pysssss`
 - Category: `utils`
 - Output node: `True`
 

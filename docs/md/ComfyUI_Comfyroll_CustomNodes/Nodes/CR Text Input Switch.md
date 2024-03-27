@@ -1,6 +1,6 @@
 # 🔀 CR Text Input Switch
 ## Documentation
-- Class name: `CR_TextInputSwitch`
+- Class name: `CR Text Input Switch`
 - Category: `🧩 Comfyroll Studio/🛠️ Utils/🔀 Logic`
 - Output node: `False`
 

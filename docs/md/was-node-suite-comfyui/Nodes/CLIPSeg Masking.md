@@ -31,7 +31,9 @@ This node leverages the CLIPSeg model for image segmentation, utilizing both tex
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `ImpactDilateMask`
+- Common nodes:
+    - [ImpactDilateMask](../../ComfyUI-Impact-Pack/Nodes/ImpactDilateMask.md)
+
 
 
 ## Source code

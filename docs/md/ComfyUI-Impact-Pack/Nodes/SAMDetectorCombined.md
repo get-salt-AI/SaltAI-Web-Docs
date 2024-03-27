@@ -50,7 +50,11 @@ The SAMDetectorCombined node is designed for generating segmentation masks by le
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `ImpactSegsAndMask,Segs & Mask,MaskToImage`
+- Common nodes:
+    - [ImpactSegsAndMask](../../ComfyUI-Impact-Pack/Nodes/ImpactSegsAndMask.md)
+    - Segs & Mask
+    - [MaskToImage](../../Comfy/Nodes/MaskToImage.md)
+
 
 
 ## Source code

@@ -1,6 +1,6 @@
 # 🔀 CR Latent Input Switch
 ## Documentation
-- Class name: `CR_LatentInputSwitch`
+- Class name: `CR Latent Input Switch`
 - Category: `🧩 Comfyroll Studio/🛠️ Utils/🔀 Logic`
 - Output node: `False`
 

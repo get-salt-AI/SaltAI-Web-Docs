@@ -47,7 +47,9 @@ This node is designed to process images through segmentation models to detect an
     - Python dtype: `Tuple[numpy.ndarray, List[SEG]]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `ImpactSEGSOrderedFilter`
+- Common nodes:
+    - [ImpactSEGSOrderedFilter](../../ComfyUI-Impact-Pack/Nodes/ImpactSEGSOrderedFilter.md)
+
 
 
 ## Source code

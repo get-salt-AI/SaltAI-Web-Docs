@@ -39,7 +39,9 @@ The node is designed to load a Sparse ControlNet model, which is a specialized f
     - Python dtype: `SparseCtrlAdvanced`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `ACN_AdvancedControlNetApply`
+- Common nodes:
+    - [ACN_AdvancedControlNetApply](../../ComfyUI-Advanced-ControlNet/Nodes/ACN_AdvancedControlNetApply.md)
+
 
 
 ## Source code

@@ -50,7 +50,10 @@ This node provides a comprehensive suite of image adjustment tools, allowing use
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `SaveImage,PreviewImage`
+- Common nodes:
+    - [SaveImage](../../Comfy/Nodes/SaveImage.md)
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+
 
 
 ## Source code

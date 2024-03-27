@@ -1,6 +1,6 @@
 # Prompt Styles Selector
 ## Documentation
-- Class name: `WAS_Prompt_Styles_Selector`
+- Class name: `Prompt Styles Selector`
 - Category: `WAS Suite/Text`
 - Output node: `False`
 

@@ -1,6 +1,6 @@
 # Crop (mtb)
 ## Documentation
-- Class name: `Crop`
+- Class name: `Crop (mtb)`
 - Category: `mtb/crop`
 - Output node: `False`
 

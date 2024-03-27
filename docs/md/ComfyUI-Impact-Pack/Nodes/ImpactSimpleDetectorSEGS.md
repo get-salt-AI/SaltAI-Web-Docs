@@ -67,7 +67,11 @@ The ImpactSimpleDetectorSEGS node is designed for detecting simple segmentation 
     - Python dtype: `Tuple[torch.Size, List[object]]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `ImpactMakeTileSEGS,ImpactControlNetApplySEGS,SegsToCombinedMask`
+- Common nodes:
+    - [ImpactMakeTileSEGS](../../ComfyUI-Impact-Pack/Nodes/ImpactMakeTileSEGS.md)
+    - [ImpactControlNetApplySEGS](../../ComfyUI-Impact-Pack/Nodes/ImpactControlNetApplySEGS.md)
+    - [SegsToCombinedMask](../../ComfyUI-Impact-Pack/Nodes/SegsToCombinedMask.md)
+
 
 
 ## Source code

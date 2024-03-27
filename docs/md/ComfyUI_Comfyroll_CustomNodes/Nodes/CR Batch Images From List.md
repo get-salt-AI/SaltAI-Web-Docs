@@ -1,6 +1,6 @@
 # 🛠️ CR Batch Images From List
 ## Documentation
-- Class name: `CR_MakeBatchFromImageList`
+- Class name: `CR Batch Images From List`
 - Category: `🧩 Comfyroll Studio/✨ Essential/📜 List/🛠️ Utils`
 - Output node: `False`
 

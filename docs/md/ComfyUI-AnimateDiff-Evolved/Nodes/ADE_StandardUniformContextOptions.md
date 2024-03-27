@@ -51,7 +51,9 @@ This node is designed to create a uniform set of context options for animation d
     - Python dtype: `ContextOptionsGroup`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ADE_UseEvolvedSampling`
+- Common nodes:
+    - [ADE_UseEvolvedSampling](../../ComfyUI-AnimateDiff-Evolved/Nodes/ADE_UseEvolvedSampling.md)
+
 
 
 ## Source code

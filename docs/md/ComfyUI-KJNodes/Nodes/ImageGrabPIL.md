@@ -38,7 +38,11 @@ The ImageGrabPIL node is designed for capturing and processing images directly f
     - Python dtype: `PIL.Image or List[PIL.Image]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `VAEEncode,CannyEdgePreprocessor,PixelPerfectResolution`
+- Common nodes:
+    - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
+    - CannyEdgePreprocessor
+    - PixelPerfectResolution
+
 
 
 ## Source code

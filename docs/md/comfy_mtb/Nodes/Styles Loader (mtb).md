@@ -1,6 +1,6 @@
 # Styles Loader (mtb)
 ## Documentation
-- Class name: `StylesLoader`
+- Class name: `Styles Loader (mtb)`
 - Category: `mtb/conditioning`
 - Output node: `False`
 

@@ -34,7 +34,9 @@ The Checkpoint Loader node is designed for advanced loading operations, specific
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `ImpactWildcardEncode`
+- Common nodes:
+    - [ImpactWildcardEncode](../../ComfyUI-Impact-Pack/Nodes/ImpactWildcardEncode.md)
+
 
 
 ## Source code

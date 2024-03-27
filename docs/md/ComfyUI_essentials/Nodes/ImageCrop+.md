@@ -46,7 +46,17 @@ The ImageCrop+ node is designed for cropping images to a specified width and hei
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `PreviewImage,ImageSharpen,SetNode,IPAdapterApply,Reroute,DWPreprocessor,LineArtPreprocessor,MiDaS-DepthMapPreprocessor,IPAdapterApplyFaceID`
+- Common nodes:
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+    - [ImageSharpen](../../Comfy/Nodes/ImageSharpen.md)
+    - SetNode
+    - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
+    - Reroute
+    - DWPreprocessor
+    - LineArtPreprocessor
+    - MiDaS-DepthMapPreprocessor
+    - [IPAdapterApplyFaceID](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApplyFaceID.md)
+
 
 
 ## Source code

@@ -22,7 +22,9 @@ The node is designed to perform subtraction between two sets of masks, effective
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `ToBinaryMask`
+- Common nodes:
+    - [ToBinaryMask](../../ComfyUI-Impact-Pack/Nodes/ToBinaryMask.md)
+
 
 
 ## Source code

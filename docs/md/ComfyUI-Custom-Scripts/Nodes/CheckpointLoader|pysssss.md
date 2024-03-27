@@ -26,7 +26,18 @@ This node is a specialized version of the CheckpointLoaderSimple, enhanced to ha
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `LoraLoader|pysssss,VAEDecode,VAEEncodeForInpaint,CLIPTextEncode,VAEEncode,Anything Everywhere3,ImpactWildcardEncode,Anything Everywhere,Reroute,Junction`
+- Common nodes:
+    - [LoraLoader|pysssss](../../ComfyUI-Custom-Scripts/Nodes/LoraLoader|pysssss.md)
+    - [VAEDecode](../../Comfy/Nodes/VAEDecode.md)
+    - [VAEEncodeForInpaint](../../Comfy/Nodes/VAEEncodeForInpaint.md)
+    - [CLIPTextEncode](../../Comfy/Nodes/CLIPTextEncode.md)
+    - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
+    - [Anything Everywhere3](../../cg-use-everywhere/Nodes/Anything Everywhere3.md)
+    - [ImpactWildcardEncode](../../ComfyUI-Impact-Pack/Nodes/ImpactWildcardEncode.md)
+    - [Anything Everywhere](../../cg-use-everywhere/Nodes/Anything Everywhere.md)
+    - Reroute
+    - Junction
+
 
 
 ## Source code

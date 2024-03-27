@@ -1,6 +1,6 @@
 # 🔧 Mask From Color
 ## Documentation
-- Class name: `MaskFromColor`
+- Class name: `MaskFromColor+`
 - Category: `essentials`
 - Output node: `False`
 

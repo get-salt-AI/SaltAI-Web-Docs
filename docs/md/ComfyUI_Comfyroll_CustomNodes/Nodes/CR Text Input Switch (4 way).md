@@ -1,6 +1,6 @@
 # 🔀 CR Text Input Switch (4 way)
 ## Documentation
-- Class name: `CR_TextInputSwitch4way`
+- Class name: `CR Text Input Switch (4 way)`
 - Category: `🧩 Comfyroll Studio/🛠️ Utils/🔀 Logic`
 - Output node: `False`
 

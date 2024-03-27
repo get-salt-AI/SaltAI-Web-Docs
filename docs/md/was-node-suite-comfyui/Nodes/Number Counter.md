@@ -47,7 +47,9 @@ The node is designed to perform various numerical operations such as incrementin
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `Load Image Batch`
+- Common nodes:
+    - [Load Image Batch](../../was-node-suite-comfyui/Nodes/Load Image Batch.md)
+
 
 
 ## Source code

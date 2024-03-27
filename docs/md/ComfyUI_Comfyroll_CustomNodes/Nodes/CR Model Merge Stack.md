@@ -71,7 +71,9 @@ This node is designed to facilitate the merging of multiple models into a single
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `CR Apply Model Merge`
+- Common nodes:
+    - [CR Apply Model Merge](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Apply Model Merge.md)
+
 
 
 ## Source code

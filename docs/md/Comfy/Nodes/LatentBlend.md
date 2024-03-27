@@ -26,7 +26,12 @@ The LatentBlend node is designed to blend two sets of latent samples together, b
     - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `NNLatentUpscale,SamplerCustom,KSamplerAdvanced,Mute / Bypass Repeater (rgthree)`
+- Common nodes:
+    - NNLatentUpscale
+    - [SamplerCustom](../../Comfy/Nodes/SamplerCustom.md)
+    - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
+    - Mute / Bypass Repeater (rgthree)
+
 
 
 ## Source code

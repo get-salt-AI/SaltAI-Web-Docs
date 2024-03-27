@@ -55,7 +55,9 @@ This node is designed to add customizable borders around images. It allows for t
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `PreviewBridge`
+- Common nodes:
+    - [PreviewBridge](../../ComfyUI-Impact-Pack/Nodes/PreviewBridge.md)
+
 
 
 ## Source code

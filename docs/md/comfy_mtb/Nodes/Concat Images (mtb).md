@@ -1,6 +1,6 @@
 # Concat Images (mtb)
 ## Documentation
-- Class name: `Concat Images`
+- Class name: `Concat Images (mtb)`
 - Category: `mtb/image`
 - Output node: `False`
 

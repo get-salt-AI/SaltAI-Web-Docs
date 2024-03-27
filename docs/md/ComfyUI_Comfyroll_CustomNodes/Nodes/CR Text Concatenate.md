@@ -31,7 +31,10 @@ The CR Text Concatenate node is designed to merge two text strings into a single
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `CR Text Concatenate,ShowText|pysssss`
+- Common nodes:
+    - [CR Text Concatenate](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Text Concatenate.md)
+    - [ShowText|pysssss](../../ComfyUI-Custom-Scripts/Nodes/ShowText|pysssss.md)
+
 
 
 ## Source code

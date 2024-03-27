@@ -1,6 +1,6 @@
 # Load Image Sequence (mtb)
 ## Documentation
-- Class name: `Load Image Sequence`
+- Class name: `Load Image Sequence (mtb)`
 - Category: `mtb/IO`
 - Output node: `False`
 

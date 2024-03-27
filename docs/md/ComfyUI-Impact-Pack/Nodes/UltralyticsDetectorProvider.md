@@ -22,7 +22,16 @@ This node is designed to load and provide access to detection models, facilitati
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `FaceDetailer,BboxDetectorSEGS,ToDetailerPipe,ImpactSimpleDetectorSEGS,Reroute,ImpactSimpleDetectorSEGS_for_AD,SegmDetectorSEGS,ToDetailerPipeSDXL`
+- Common nodes:
+    - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
+    - [BboxDetectorSEGS](../../ComfyUI-Impact-Pack/Nodes/BboxDetectorSEGS.md)
+    - [ToDetailerPipe](../../ComfyUI-Impact-Pack/Nodes/ToDetailerPipe.md)
+    - [ImpactSimpleDetectorSEGS](../../ComfyUI-Impact-Pack/Nodes/ImpactSimpleDetectorSEGS.md)
+    - Reroute
+    - [ImpactSimpleDetectorSEGS_for_AD](../../ComfyUI-Impact-Pack/Nodes/ImpactSimpleDetectorSEGS_for_AD.md)
+    - [SegmDetectorSEGS](../../ComfyUI-Impact-Pack/Nodes/SegmDetectorSEGS.md)
+    - [ToDetailerPipeSDXL](../../ComfyUI-Impact-Pack/Nodes/ToDetailerPipeSDXL.md)
+
 
 
 ## Source code

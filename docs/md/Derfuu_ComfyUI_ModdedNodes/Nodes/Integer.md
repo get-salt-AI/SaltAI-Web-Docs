@@ -18,7 +18,12 @@ The Integer node is designed to convert a floating-point value to an integer. It
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `CLIPTextEncodeSDXL,SVD_img2vid_Conditioning,Image Resize,KSampler Adv. (Efficient)`
+- Common nodes:
+    - [CLIPTextEncodeSDXL](../../Comfy/Nodes/CLIPTextEncodeSDXL.md)
+    - [SVD_img2vid_Conditioning](../../Comfy/Nodes/SVD_img2vid_Conditioning.md)
+    - [Image Resize](../../was-node-suite-comfyui/Nodes/Image Resize.md)
+    - KSampler Adv. (Efficient)
+
 
 
 ## Source code

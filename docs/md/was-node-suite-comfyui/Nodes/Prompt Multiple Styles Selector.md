@@ -1,6 +1,6 @@
 # Prompt Multiple Styles Selector
 ## Documentation
-- Class name: `WAS_Prompt_Multiple_Styles_Selector`
+- Class name: `Prompt Multiple Styles Selector`
 - Category: `WAS Suite/Text`
 - Output node: `False`
 

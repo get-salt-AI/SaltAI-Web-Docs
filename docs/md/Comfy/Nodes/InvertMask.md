@@ -18,7 +18,13 @@ The InvertMask node is designed to invert the values of a given mask, effectivel
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `MaskToImage,PorterDuffImageComposite,ImageCompositeMasked,VAEEncodeForInpaint,FeatherMask`
+- Common nodes:
+    - [MaskToImage](../../Comfy/Nodes/MaskToImage.md)
+    - [PorterDuffImageComposite](../../Comfy/Nodes/PorterDuffImageComposite.md)
+    - [ImageCompositeMasked](../../Comfy/Nodes/ImageCompositeMasked.md)
+    - [VAEEncodeForInpaint](../../Comfy/Nodes/VAEEncodeForInpaint.md)
+    - [FeatherMask](../../Comfy/Nodes/FeatherMask.md)
+
 
 
 ## Source code

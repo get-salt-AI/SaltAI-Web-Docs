@@ -1,6 +1,6 @@
 # Batch Shake (mtb)
 ## Documentation
-- Class name: `BatchShake`
+- Class name: `Batch Shake (mtb)`
 - Category: `mtb/batch`
 - Output node: `False`
 

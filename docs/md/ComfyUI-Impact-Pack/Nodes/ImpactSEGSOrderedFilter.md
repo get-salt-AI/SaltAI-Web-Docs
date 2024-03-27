@@ -38,7 +38,10 @@ The ImpactSEGSOrderedFilter node is designed to filter and order segmentation da
     - Python dtype: `List[SEG]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ImpactDilateMaskInSEGS,DetailerForEachDebug`
+- Common nodes:
+    - [ImpactDilateMaskInSEGS](../../ComfyUI-Impact-Pack/Nodes/ImpactDilateMaskInSEGS.md)
+    - [DetailerForEachDebug](../../ComfyUI-Impact-Pack/Nodes/DetailerForEachDebug.md)
+
 
 
 ## Source code

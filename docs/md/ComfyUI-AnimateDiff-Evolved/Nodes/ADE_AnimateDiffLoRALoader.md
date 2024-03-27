@@ -27,7 +27,10 @@ The ADE_AnimateDiffLoRALoader node is designed to load motion LoRA (Locally Recu
     - Python dtype: `MotionLoraList`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ADE_AnimateDiffLoaderWithContext,ADE_AnimateDiffLoRALoader`
+- Common nodes:
+    - [ADE_AnimateDiffLoaderWithContext](../../ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AnimateDiffLoaderWithContext.md)
+    - [ADE_AnimateDiffLoRALoader](../../ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AnimateDiffLoRALoader.md)
+
 
 
 ## Source code

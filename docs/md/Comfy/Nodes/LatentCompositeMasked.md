@@ -39,7 +39,9 @@ The LatentCompositeMasked node is designed for blending two latent representatio
     - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSamplerAdvanced`
+- Common nodes:
+    - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
+
 
 
 ## Source code

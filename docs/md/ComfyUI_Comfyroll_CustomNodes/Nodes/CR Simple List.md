@@ -1,6 +1,6 @@
 # 📜 CR Simple List
 ## Documentation
-- Class name: `CR_SimpleList`
+- Class name: `CR Simple List`
 - Category: `🧩 Comfyroll Studio/✨ Essential/📜 List`
 - Output node: `False`
 

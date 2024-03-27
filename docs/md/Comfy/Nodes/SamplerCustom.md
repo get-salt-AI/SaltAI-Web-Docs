@@ -54,7 +54,11 @@ The SamplerCustom node is designed to provide a flexible and customizable sampli
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `VAEDecode,Preview Chooser,LatentUpscaleBy`
+- Common nodes:
+    - [VAEDecode](../../Comfy/Nodes/VAEDecode.md)
+    - Preview Chooser
+    - [LatentUpscaleBy](../../Comfy/Nodes/LatentUpscaleBy.md)
+
 
 
 ## Source code

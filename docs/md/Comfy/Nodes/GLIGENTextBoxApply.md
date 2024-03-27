@@ -46,7 +46,10 @@ The GLIGENTextBoxApply node is designed to integrate text-based conditioning int
     - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,ToDetailerPipe`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [ToDetailerPipe](../../ComfyUI-Impact-Pack/Nodes/ToDetailerPipe.md)
+
 
 
 ## Source code

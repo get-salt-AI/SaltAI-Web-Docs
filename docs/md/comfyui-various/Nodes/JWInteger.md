@@ -18,7 +18,12 @@ The JWInteger node is designed to encapsulate an integer value, allowing for the
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `CLIPTextEncodeSDXL,SVD_img2vid_Conditioning,Image Resize,KSampler Adv. (Efficient)`
+- Common nodes:
+    - [CLIPTextEncodeSDXL](../../Comfy/Nodes/CLIPTextEncodeSDXL.md)
+    - [SVD_img2vid_Conditioning](../../Comfy/Nodes/SVD_img2vid_Conditioning.md)
+    - [Image Resize](../../was-node-suite-comfyui/Nodes/Image Resize.md)
+    - KSampler Adv. (Efficient)
+
 
 
 ## Source code

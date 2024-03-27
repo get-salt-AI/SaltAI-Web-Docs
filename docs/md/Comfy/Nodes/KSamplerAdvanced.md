@@ -66,7 +66,17 @@ The KSamplerAdvanced node is designed to enhance the sampling process by providi
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `VAEDecode,Reroute,workflow/KSampler + Vae,gcLatentTunnel,Anything Everywhere,LatentCompositeMasked,KSampler,LatentBlend,Mute / Bypass Repeater (rgthree)`
+- Common nodes:
+    - [VAEDecode](../../Comfy/Nodes/VAEDecode.md)
+    - Reroute
+    - workflow/KSampler + Vae
+    - gcLatentTunnel
+    - [Anything Everywhere](../../cg-use-everywhere/Nodes/Anything Everywhere.md)
+    - [LatentCompositeMasked](../../Comfy/Nodes/LatentCompositeMasked.md)
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [LatentBlend](../../Comfy/Nodes/LatentBlend.md)
+    - Mute / Bypass Repeater (rgthree)
+
 
 
 ## Source code

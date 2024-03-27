@@ -1,6 +1,6 @@
 # Image Select Channel
 ## Documentation
-- Class name: `WAS_Image_Select_Channel`
+- Class name: `Image Select Channel`
 - Category: `WAS Suite/Image/Process`
 - Output node: `False`
 

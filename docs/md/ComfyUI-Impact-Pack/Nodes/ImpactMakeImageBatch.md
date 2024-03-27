@@ -18,7 +18,9 @@ The ImpactMakeImageBatch node is designed to aggregate multiple images into a si
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `CR Image Grid Panel`
+- Common nodes:
+    - [CR Image Grid Panel](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Image Grid Panel.md)
+
 
 
 ## Source code

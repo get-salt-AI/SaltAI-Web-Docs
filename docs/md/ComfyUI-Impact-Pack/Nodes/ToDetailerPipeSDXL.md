@@ -79,7 +79,9 @@ The ToDetailerPipeSDXL node is designed to transform and refine input data throu
     - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `FromDetailerPipe_v2`
+- Common nodes:
+    - [FromDetailerPipe_v2](../../ComfyUI-Impact-Pack/Nodes/FromDetailerPipe_v2.md)
+
 
 
 ## Source code

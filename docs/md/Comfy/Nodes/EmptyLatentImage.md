@@ -26,7 +26,18 @@ The EmptyLatentImage node is designed to generate a blank latent space represent
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,SamplerCustom,KSamplerAdvanced,CR Module Pipe Loader,KSampler Adv. (Efficient),ImpactKSamplerBasicPipe,Anything Everywhere,Reroute,KRestartSamplerAdv,LatentComposite`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [SamplerCustom](../../Comfy/Nodes/SamplerCustom.md)
+    - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
+    - [CR Module Pipe Loader](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Module Pipe Loader.md)
+    - KSampler Adv. (Efficient)
+    - [ImpactKSamplerBasicPipe](../../ComfyUI-Impact-Pack/Nodes/ImpactKSamplerBasicPipe.md)
+    - [Anything Everywhere](../../cg-use-everywhere/Nodes/Anything Everywhere.md)
+    - Reroute
+    - KRestartSamplerAdv
+    - [LatentComposite](../../Comfy/Nodes/LatentComposite.md)
+
 
 
 ## Source code

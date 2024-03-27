@@ -26,7 +26,10 @@ SDTurboScheduler is designed to generate a sequence of sigma values for image sa
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `SamplerCustom,SplitSigmas`
+- Common nodes:
+    - [SamplerCustom](../../Comfy/Nodes/SamplerCustom.md)
+    - [SplitSigmas](../../Comfy/Nodes/SplitSigmas.md)
+
 
 
 ## Source code

@@ -1,6 +1,6 @@
 # Math Expression 🐍
 ## Documentation
-- Class name: `MathExpression`
+- Class name: `MathExpression|pysssss`
 - Category: `utils`
 - Output node: `True`
 

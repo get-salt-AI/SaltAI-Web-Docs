@@ -1,6 +1,6 @@
 # Batch Float (mtb)
 ## Documentation
-- Class name: `BatchFloat`
+- Class name: `Batch Float (mtb)`
 - Category: `mtb/batch`
 - Output node: `False`
 

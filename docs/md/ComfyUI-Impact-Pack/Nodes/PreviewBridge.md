@@ -26,7 +26,13 @@ The PreviewBridge node serves as an intermediary for processing and caching imag
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ACN_AdvancedControlNetApply,UltimateSDUpscale,SAMDetectorCombined,DetailerForEachDebug,BboxDetectorSEGS`
+- Common nodes:
+    - [ACN_AdvancedControlNetApply](../../ComfyUI-Advanced-ControlNet/Nodes/ACN_AdvancedControlNetApply.md)
+    - UltimateSDUpscale
+    - [SAMDetectorCombined](../../ComfyUI-Impact-Pack/Nodes/SAMDetectorCombined.md)
+    - [DetailerForEachDebug](../../ComfyUI-Impact-Pack/Nodes/DetailerForEachDebug.md)
+    - [BboxDetectorSEGS](../../ComfyUI-Impact-Pack/Nodes/BboxDetectorSEGS.md)
+
 
 
 ## Source code

@@ -1,6 +1,6 @@
 # 📜 CR Float Range List
 ## Documentation
-- Class name: `CR_FloatRangeList`
+- Class name: `CR Float Range List`
 - Category: `🧩 Comfyroll Studio/✨ Essential/📜 List`
 - Output node: `False`
 

@@ -111,7 +111,14 @@ The DetailerForEach node is designed to iterate over a collection of items, appl
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `PreviewImage,ImageUpscaleWithModel,Reroute,CR Image Output,SaveImage,ReroutePrimitive|pysssss`
+- Common nodes:
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+    - [ImageUpscaleWithModel](../../Comfy/Nodes/ImageUpscaleWithModel.md)
+    - Reroute
+    - [CR Image Output](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Image Output.md)
+    - [SaveImage](../../Comfy/Nodes/SaveImage.md)
+    - [ReroutePrimitive|pysssss](../../ComfyUI-Custom-Scripts/Nodes/ReroutePrimitive|pysssss.md)
+
 
 
 ## Source code

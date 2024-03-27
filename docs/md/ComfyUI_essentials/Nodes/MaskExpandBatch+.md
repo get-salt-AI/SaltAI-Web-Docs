@@ -1,6 +1,6 @@
 # 🔧 Mask Expand Batch
 ## Documentation
-- Class name: `MaskExpandBatch`
+- Class name: `MaskExpandBatch+`
 - Category: `essentials`
 - Output node: `False`
 

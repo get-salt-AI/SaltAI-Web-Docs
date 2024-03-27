@@ -1,6 +1,6 @@
 # 🛩️ CR Image Pipe Out
 ## Documentation
-- Class name: `CR_ImagePipeOut`
+- Class name: `CR Image Pipe Out`
 - Category: `🧩 Comfyroll Studio/✨ Essential/🎷 Pipe/🛩️ Image`
 - Output node: `False`
 

@@ -18,7 +18,9 @@ The CM_NumberToInt node is designed for converting numerical values from a gener
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `SVD_img2vid_Conditioning`
+- Common nodes:
+    - [SVD_img2vid_Conditioning](../../Comfy/Nodes/SVD_img2vid_Conditioning.md)
+
 
 
 ## Source code

@@ -1,6 +1,6 @@
 # ⚙️ CR Select Resize Method
 ## Documentation
-- Class name: `CR_SelectResizeMethod`
+- Class name: `CR Select Resize Method`
 - Category: `🧩 Comfyroll Studio/🛠️ Utils/⚙️ Other`
 - Output node: `False`
 

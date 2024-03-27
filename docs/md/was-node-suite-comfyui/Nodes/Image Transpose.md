@@ -1,6 +1,6 @@
 # Image Transpose
 ## Documentation
-- Class name: `Image Overlay`
+- Class name: `Image Transpose`
 - Category: `WAS Suite/Image/Transform`
 - Output node: `False`
 

@@ -75,7 +75,9 @@ This node is designed to generate complex binary patterns, offering a creative t
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `CR Color Tint`
+- Common nodes:
+    - [CR Color Tint](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Color Tint.md)
+
 
 
 ## Source code

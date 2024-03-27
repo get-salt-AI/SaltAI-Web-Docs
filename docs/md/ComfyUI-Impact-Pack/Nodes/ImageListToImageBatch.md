@@ -18,7 +18,13 @@ This node transforms a list of images into a single batched image tensor, ensuri
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `VHS_VideoCombine,RIFE VFI,ImageUpscaleWithModel,Reroute,ImageSelector`
+- Common nodes:
+    - [VHS_VideoCombine](../../ComfyUI-VideoHelperSuite/Nodes/VHS_VideoCombine.md)
+    - [RIFE VFI](../../ComfyUI-Frame-Interpolation/Nodes/RIFE VFI.md)
+    - [ImageUpscaleWithModel](../../Comfy/Nodes/ImageUpscaleWithModel.md)
+    - Reroute
+    - ImageSelector
+
 
 
 ## Source code

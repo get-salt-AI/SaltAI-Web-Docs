@@ -39,7 +39,13 @@ The Text Concatenate node is designed to merge multiple text inputs into a singl
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ShowText|pysssss,Text Concatenate,CLIPTextEncodeSDXL,MileHighStyler,CR Text Concatenate`
+- Common nodes:
+    - [ShowText|pysssss](../../ComfyUI-Custom-Scripts/Nodes/ShowText|pysssss.md)
+    - [Text Concatenate](../../was-node-suite-comfyui/Nodes/Text Concatenate.md)
+    - [CLIPTextEncodeSDXL](../../Comfy/Nodes/CLIPTextEncodeSDXL.md)
+    - MileHighStyler
+    - [CR Text Concatenate](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Text Concatenate.md)
+
 
 
 ## Source code

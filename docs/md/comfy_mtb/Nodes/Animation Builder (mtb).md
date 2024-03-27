@@ -1,6 +1,6 @@
 # Animation Builder (mtb)
 ## Documentation
-- Class name: `Animation Builder`
+- Class name: `Animation Builder (mtb)`
 - Category: `mtb/animation`
 - Output node: `False`
 

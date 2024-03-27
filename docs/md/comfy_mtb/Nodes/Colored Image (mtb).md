@@ -1,6 +1,6 @@
 # Colored Image (mtb)
 ## Documentation
-- Class name: `Colored Image`
+- Class name: `Colored Image (mtb)`
 - Category: `mtb/generate`
 - Output node: `False`
 

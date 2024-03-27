@@ -18,7 +18,9 @@ The GLIGENLoader node is designed for loading GLIGEN models, which are specializ
     - Python dtype: `Gligen`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `GLIGENTextBoxApply`
+- Common nodes:
+    - [GLIGENTextBoxApply](../../Comfy/Nodes/GLIGENTextBoxApply.md)
+
 
 
 ## Source code

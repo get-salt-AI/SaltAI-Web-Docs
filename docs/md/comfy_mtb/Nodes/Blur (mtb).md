@@ -1,6 +1,6 @@
 # Blur (mtb)
 ## Documentation
-- Class name: `Blur`
+- Class name: `Blur (mtb)`
 - Category: `mtb/image processing`
 - Output node: `False`
 
@@ -26,7 +26,9 @@ This node applies a Gaussian blur to an image, utilizing separate horizontal and
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `Mix Images By Mask`
+- Common nodes:
+    - [Mix Images By Mask](../../masquerade-nodes-comfyui/Nodes/Mix Images By Mask.md)
+
 
 
 ## Source code

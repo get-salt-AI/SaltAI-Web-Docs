@@ -23,7 +23,9 @@ This node is designed to load the AnimateDiff model, facilitating the integratio
     - Python dtype: `MotionModelPatcher`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `ADE_ApplyAnimateDiffModel`
+- Common nodes:
+    - [ADE_ApplyAnimateDiffModel](../../ComfyUI-AnimateDiff-Evolved/Nodes/ADE_ApplyAnimateDiffModel.md)
+
 
 
 ## Source code

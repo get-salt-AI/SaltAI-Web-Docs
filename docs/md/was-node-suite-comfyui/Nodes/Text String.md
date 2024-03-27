@@ -1,6 +1,6 @@
 # Text String
 ## Documentation
-- Class name: `WAS_Text_String`
+- Class name: `Text String`
 - Category: `WAS Suite/Text`
 - Output node: `False`
 
@@ -31,7 +31,9 @@ The `WAS_Text_String` node is designed to process and manipulate text strings, a
     - Python dtype: `Tuple[str, str, str, str]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `Text Concatenate`
+- Common nodes:
+    - [Text Concatenate](../../was-node-suite-comfyui/Nodes/Text Concatenate.md)
+
 
 
 ## Source code

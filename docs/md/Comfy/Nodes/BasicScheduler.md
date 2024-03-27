@@ -30,7 +30,11 @@ The BasicScheduler node is designed to compute a sequence of sigma values for di
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `SamplerCustom,SplitSigmas,Reroute`
+- Common nodes:
+    - [SamplerCustom](../../Comfy/Nodes/SamplerCustom.md)
+    - [SplitSigmas](../../Comfy/Nodes/SplitSigmas.md)
+    - Reroute
+
 
 
 ## Source code

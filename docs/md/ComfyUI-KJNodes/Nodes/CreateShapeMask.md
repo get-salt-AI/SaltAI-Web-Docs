@@ -54,7 +54,9 @@ The CreateShapeMask node is designed to generate masks based on geometric shapes
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `MaskToImage`
+- Common nodes:
+    - [MaskToImage](../../Comfy/Nodes/MaskToImage.md)
+
 
 
 ## Source code

@@ -1,6 +1,6 @@
 # 🔧 Remove Latent Mask
 ## Documentation
-- Class name: `RemoveLatentMask`
+- Class name: `RemoveLatentMask+`
 - Category: `essentials`
 - Output node: `False`
 

@@ -47,7 +47,10 @@ This node is designed to generate a set of static context options for the Animat
     - Python dtype: `ContextOptionsGroup`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ADE_AnimateDiffLoaderGen1,ADE_UseEvolvedSampling`
+- Common nodes:
+    - [ADE_AnimateDiffLoaderGen1](../../ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AnimateDiffLoaderGen1.md)
+    - [ADE_UseEvolvedSampling](../../ComfyUI-AnimateDiff-Evolved/Nodes/ADE_UseEvolvedSampling.md)
+
 
 
 ## Source code

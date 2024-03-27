@@ -1,6 +1,6 @@
 # Deep Bump (mtb)
 ## Documentation
-- Class name: `Deep Bump`
+- Class name: `Deep Bump (mtb)`
 - Category: `mtb/textures`
 - Output node: `False`
 

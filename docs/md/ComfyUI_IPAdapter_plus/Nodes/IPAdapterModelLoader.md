@@ -18,7 +18,14 @@ The IPAdapterModelLoader node is designed to load IPAdapter models from specifie
     - Python dtype: `Dict[str, Any]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `IPAdapterApply,IPAdapterApplyFaceID,IPAdapterApplyEncoded,ToIPAdapterPipe //Inspire,Reroute,AV_IPAdapter`
+- Common nodes:
+    - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
+    - [IPAdapterApplyFaceID](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApplyFaceID.md)
+    - [IPAdapterApplyEncoded](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApplyEncoded.md)
+    - ToIPAdapterPipe //Inspire
+    - Reroute
+    - AV_IPAdapter
+
 
 
 ## Source code

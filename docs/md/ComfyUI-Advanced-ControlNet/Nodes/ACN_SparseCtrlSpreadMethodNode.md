@@ -18,7 +18,9 @@ This node is designed to generate a SparseSpreadMethod instance based on a speci
     - Python dtype: `SparseSpreadMethod`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ACN_SparseCtrlLoaderAdvanced`
+- Common nodes:
+    - [ACN_SparseCtrlLoaderAdvanced](../../ComfyUI-Advanced-ControlNet/Nodes/ACN_SparseCtrlLoaderAdvanced.md)
+
 
 
 ## Source code

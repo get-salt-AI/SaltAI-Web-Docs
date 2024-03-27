@@ -22,7 +22,10 @@ This node applies contrast adaptive sharpening to an image, enhancing its detail
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `ImageScaleBy,ImpactSimpleDetectorSEGS_for_AD`
+- Common nodes:
+    - [ImageScaleBy](../../Comfy/Nodes/ImageScaleBy.md)
+    - [ImpactSimpleDetectorSEGS_for_AD](../../ComfyUI-Impact-Pack/Nodes/ImpactSimpleDetectorSEGS_for_AD.md)
+
 
 
 ## Source code

@@ -1,6 +1,6 @@
 # Bbox (mtb)
 ## Documentation
-- Class name: `Bbox`
+- Class name: `Bbox (mtb)`
 - Category: `mtb/crop`
 - Output node: `False`
 

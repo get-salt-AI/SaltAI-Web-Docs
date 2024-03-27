@@ -42,7 +42,12 @@ The Load Lora node is designed to dynamically enhance the capabilities of machin
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `CLIPTextEncodeSDXL,PatchModelAddDownscale,FreeU_V2,CLIPTextEncode`
+- Common nodes:
+    - [CLIPTextEncodeSDXL](../../Comfy/Nodes/CLIPTextEncodeSDXL.md)
+    - [PatchModelAddDownscale](../../Comfy/Nodes/PatchModelAddDownscale.md)
+    - [FreeU_V2](../../Comfy/Nodes/FreeU_V2.md)
+    - [CLIPTextEncode](../../Comfy/Nodes/CLIPTextEncode.md)
+
 
 
 ## Source code

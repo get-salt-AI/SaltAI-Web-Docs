@@ -26,7 +26,17 @@ This node is designed to modify the sampling behavior of a model by applying a d
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `Reroute,KSampler,SamplerCustom,CR Module Pipe Loader,FreeU (Advanced),Anything Everywhere,ReroutePrimitive|pysssss,BasicScheduler,KSampler (Efficient)`
+- Common nodes:
+    - Reroute
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [SamplerCustom](../../Comfy/Nodes/SamplerCustom.md)
+    - [CR Module Pipe Loader](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Module Pipe Loader.md)
+    - FreeU (Advanced)
+    - [Anything Everywhere](../../cg-use-everywhere/Nodes/Anything Everywhere.md)
+    - [ReroutePrimitive|pysssss](../../ComfyUI-Custom-Scripts/Nodes/ReroutePrimitive|pysssss.md)
+    - [BasicScheduler](../../Comfy/Nodes/BasicScheduler.md)
+    - KSampler (Efficient)
+
 
 
 ## Source code

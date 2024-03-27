@@ -70,7 +70,10 @@ The CR SDXL Base Prompt Encoder node is designed to encode base prompts for the 
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `KSampler,DetailerForEach`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [DetailerForEach](../../ComfyUI-Impact-Pack/Nodes/DetailerForEach.md)
+
 
 
 ## Source code

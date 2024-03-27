@@ -35,7 +35,10 @@ This node utilizes the MiDaS model to approximate depth maps from input images. 
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `CR Multi-ControlNet Stack,PreviewImage`
+- Common nodes:
+    - [CR Multi-ControlNet Stack](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Multi-ControlNet Stack.md)
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+
 
 
 ## Source code

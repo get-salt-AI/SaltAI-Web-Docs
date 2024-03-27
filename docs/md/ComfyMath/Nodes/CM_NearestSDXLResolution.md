@@ -22,7 +22,11 @@ This node is designed to find the nearest supported SDXL resolution to the input
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ConstrainImage|pysssss,Reroute,ImageScale`
+- Common nodes:
+    - [ConstrainImage|pysssss](../../ComfyUI-Custom-Scripts/Nodes/ConstrainImage|pysssss.md)
+    - Reroute
+    - [ImageScale](../../Comfy/Nodes/ImageScale.md)
+
 
 
 ## Source code

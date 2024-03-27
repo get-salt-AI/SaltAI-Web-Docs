@@ -1,6 +1,6 @@
 # String
 ## Documentation
-- Class name: `StringNode`
+- Class name: `String`
 - Category: `Bmad`
 - Output node: `False`
 

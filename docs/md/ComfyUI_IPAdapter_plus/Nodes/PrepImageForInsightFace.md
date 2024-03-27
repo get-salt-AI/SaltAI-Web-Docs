@@ -30,7 +30,9 @@ The PrepImageForInsightFace node is designed to prepare images for processing wi
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `IPAdapterApplyFaceID`
+- Common nodes:
+    - [IPAdapterApplyFaceID](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApplyFaceID.md)
+
 
 
 ## Source code

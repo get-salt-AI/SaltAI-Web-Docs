@@ -26,7 +26,10 @@ The ColorMatch node is designed to adjust the color scheme of a target image to 
     - Python dtype: `Tuple[torch.Tensor]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ImageBatch,VHS_SplitImages`
+- Common nodes:
+    - [ImageBatch](../../Comfy/Nodes/ImageBatch.md)
+    - [VHS_SplitImages](../../ComfyUI-VideoHelperSuite/Nodes/VHS_SplitImages.md)
+
 
 
 ## Source code

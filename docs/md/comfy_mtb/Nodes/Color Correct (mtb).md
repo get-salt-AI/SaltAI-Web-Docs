@@ -1,6 +1,6 @@
 # Color Correct (mtb)
 ## Documentation
-- Class name: `Color Correct`
+- Class name: `Color Correct (mtb)`
 - Category: `mtb/image processing`
 - Output node: `False`
 

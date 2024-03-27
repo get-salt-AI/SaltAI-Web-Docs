@@ -35,7 +35,11 @@ The CR_ColorTint node applies a color tint to an image, allowing for the adjustm
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `CR Image Input Switch (4 way),TilePreprocessor,CR Thumbnail Preview`
+- Common nodes:
+    - [CR Image Input Switch (4 way)](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Image Input Switch (4 way).md)
+    - TilePreprocessor
+    - [CR Thumbnail Preview](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Thumbnail Preview.md)
+
 
 
 ## Source code

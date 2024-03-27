@@ -47,7 +47,9 @@ The ADE_ApplyAnimateDiffModel node is designed to apply advanced AnimateDiff mod
     - Python dtype: `M_MODELS`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `ADE_UseEvolvedSampling`
+- Common nodes:
+    - [ADE_UseEvolvedSampling](../../ComfyUI-AnimateDiff-Evolved/Nodes/ADE_UseEvolvedSampling.md)
+
 
 
 ## Source code

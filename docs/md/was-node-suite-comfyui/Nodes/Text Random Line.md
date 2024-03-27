@@ -22,7 +22,10 @@ This node selects a random line from a given text based on a seed value. It allo
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `CR Text Concatenate,Text Concatenate`
+- Common nodes:
+    - [CR Text Concatenate](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Text Concatenate.md)
+    - [Text Concatenate](../../was-node-suite-comfyui/Nodes/Text Concatenate.md)
+
 
 
 ## Source code

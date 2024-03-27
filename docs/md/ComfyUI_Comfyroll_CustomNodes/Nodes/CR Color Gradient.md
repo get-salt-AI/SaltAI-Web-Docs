@@ -55,7 +55,10 @@ The CR Color Gradient node is designed to generate a color gradient between two 
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `CR Thumbnail Preview,CR Image Input Switch (4 way)`
+- Common nodes:
+    - [CR Thumbnail Preview](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Thumbnail Preview.md)
+    - [CR Image Input Switch (4 way)](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Image Input Switch (4 way).md)
+
 
 
 ## Source code

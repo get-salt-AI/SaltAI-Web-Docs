@@ -26,7 +26,10 @@ The LatentInterpolate node is designed to perform interpolation between two sets
     - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler (Efficient),Latent Noise Injection`
+- Common nodes:
+    - KSampler (Efficient)
+    - [Latent Noise Injection](../../was-node-suite-comfyui/Nodes/Latent Noise Injection.md)
+
 
 
 ## Source code

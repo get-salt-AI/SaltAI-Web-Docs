@@ -22,7 +22,18 @@ The VAEDecode node is designed for decoding latent representations into images u
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `PreviewImage,SaveImage,VHS_VideoCombine,Reroute,ImageUpscaleWithModel,UltimateSDUpscale,RIFE VFI,FaceDetailer,FILM VFI,ColorMatch`
+- Common nodes:
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+    - [SaveImage](../../Comfy/Nodes/SaveImage.md)
+    - [VHS_VideoCombine](../../ComfyUI-VideoHelperSuite/Nodes/VHS_VideoCombine.md)
+    - Reroute
+    - [ImageUpscaleWithModel](../../Comfy/Nodes/ImageUpscaleWithModel.md)
+    - UltimateSDUpscale
+    - [RIFE VFI](../../ComfyUI-Frame-Interpolation/Nodes/RIFE VFI.md)
+    - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
+    - [FILM VFI](../../ComfyUI-Frame-Interpolation/Nodes/FILM VFI.md)
+    - [ColorMatch](../../ComfyUI-KJNodes/Nodes/ColorMatch.md)
+
 
 
 ## Source code

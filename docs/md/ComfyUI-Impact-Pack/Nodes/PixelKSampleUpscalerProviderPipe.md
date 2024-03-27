@@ -63,7 +63,9 @@ The PixelKSampleUpscalerProviderPipe node is designed to provide a streamlined p
     - Python dtype: `object`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `IterativeImageUpscale`
+- Common nodes:
+    - [IterativeImageUpscale](../../ComfyUI-Impact-Pack/Nodes/IterativeImageUpscale.md)
+
 
 
 ## Source code

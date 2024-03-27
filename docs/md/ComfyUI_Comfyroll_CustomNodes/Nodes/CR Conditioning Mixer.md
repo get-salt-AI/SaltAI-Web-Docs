@@ -34,7 +34,10 @@ The CR Conditioning Mixer node is designed to blend or combine different conditi
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,Reroute`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - Reroute
+
 
 
 ## Source code

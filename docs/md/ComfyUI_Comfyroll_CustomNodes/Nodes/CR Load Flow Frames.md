@@ -1,6 +1,6 @@
 # ⌨️ CR Load Flow Frames
 ## Documentation
-- Class name: `CR_LoadFlowFrames`
+- Class name: `CR Load Flow Frames`
 - Category: `🧩 Comfyroll Studio/🎥 Animation/⌨️ IO`
 - Output node: `False`
 

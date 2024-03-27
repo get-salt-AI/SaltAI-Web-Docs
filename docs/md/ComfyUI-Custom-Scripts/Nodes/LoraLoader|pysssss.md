@@ -38,7 +38,14 @@ This node specializes in loading and applying LoRA (Low-Rank Adaptation) adjustm
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `LoraLoader|pysssss,ModelSamplingDiscrete,Reroute,CLIPTextEncode,IPAdapterApply,Anything Everywhere`
+- Common nodes:
+    - [LoraLoader|pysssss](../../ComfyUI-Custom-Scripts/Nodes/LoraLoader|pysssss.md)
+    - [ModelSamplingDiscrete](../../Comfy/Nodes/ModelSamplingDiscrete.md)
+    - Reroute
+    - [CLIPTextEncode](../../Comfy/Nodes/CLIPTextEncode.md)
+    - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
+    - [Anything Everywhere](../../cg-use-everywhere/Nodes/Anything Everywhere.md)
+
 
 
 ## Source code

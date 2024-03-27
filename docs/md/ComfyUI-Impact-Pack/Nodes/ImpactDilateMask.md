@@ -22,7 +22,9 @@ The ImpactDilateMask node is designed to modify the spatial dimensions of a give
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `Mask Threshold Region`
+- Common nodes:
+    - [Mask Threshold Region](../../was-node-suite-comfyui/Nodes/Mask Threshold Region.md)
+
 
 
 ## Source code

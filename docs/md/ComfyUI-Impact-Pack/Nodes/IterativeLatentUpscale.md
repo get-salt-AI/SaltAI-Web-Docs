@@ -38,7 +38,9 @@ This node is designed to iteratively upscale latent representations of images ov
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `VAEDecode`
+- Common nodes:
+    - [VAEDecode](../../Comfy/Nodes/VAEDecode.md)
+
 
 
 ## Source code

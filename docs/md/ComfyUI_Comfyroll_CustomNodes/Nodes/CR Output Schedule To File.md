@@ -1,6 +1,6 @@
 # 📋 CR Output Schedule To File
 ## Documentation
-- Class name: `CR_OutputScheduleToFile`
+- Class name: `CR Output Schedule To File`
 - Category: `🧩 Comfyroll Studio/🎥 Animation/📋 Schedule`
 - Output node: `True`
 

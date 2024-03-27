@@ -1,6 +1,6 @@
 # CAIN VFI
 ## Documentation
-- Class name: `CAIN_VFI`
+- Class name: `CAIN VFI`
 - Category: `ComfyUI-Frame-Interpolation/VFI`
 - Output node: `False`
 

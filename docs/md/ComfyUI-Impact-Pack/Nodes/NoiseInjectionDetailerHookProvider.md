@@ -34,7 +34,10 @@ This node is designed to inject noise into the detailer process, allowing for en
     - Python dtype: `hooks.InjectNoiseHookForDetailer`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ToDetailerPipe,FaceDetailer`
+- Common nodes:
+    - [ToDetailerPipe](../../ComfyUI-Impact-Pack/Nodes/ToDetailerPipe.md)
+    - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
+
 
 
 ## Source code

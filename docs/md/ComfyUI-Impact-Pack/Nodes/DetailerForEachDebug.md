@@ -127,7 +127,10 @@ The DetailerForEachDebug node is a specialized version of the DetailerForEach no
     - Python dtype: `List[torch.Tensor]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `PreviewImage,DetailerForEachDebug`
+- Common nodes:
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+    - [DetailerForEachDebug](../../ComfyUI-Impact-Pack/Nodes/DetailerForEachDebug.md)
+
 
 
 ## Source code

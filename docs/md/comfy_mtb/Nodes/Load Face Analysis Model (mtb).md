@@ -1,6 +1,6 @@
 # Load Face Analysis Model (mtb)
 ## Documentation
-- Class name: `Load Face Analysis Model`
+- Class name: `Load Face Analysis Model (mtb)`
 - Category: `mtb/facetools`
 - Output node: `False`
 

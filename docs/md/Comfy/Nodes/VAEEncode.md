@@ -22,7 +22,18 @@ This node is designed for encoding images into a latent space representation usi
     - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,KSamplerAdvanced,SetLatentNoiseMask,ImpactKSamplerBasicPipe,KSampler (Efficient),BNK_Unsampler,LatentUpscale,KSampler //Inspire,DZ_Face_Detailer,LatentUpscaleBy`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
+    - [SetLatentNoiseMask](../../Comfy/Nodes/SetLatentNoiseMask.md)
+    - [ImpactKSamplerBasicPipe](../../ComfyUI-Impact-Pack/Nodes/ImpactKSamplerBasicPipe.md)
+    - KSampler (Efficient)
+    - BNK_Unsampler
+    - [LatentUpscale](../../Comfy/Nodes/LatentUpscale.md)
+    - KSampler //Inspire
+    - DZ_Face_Detailer
+    - [LatentUpscaleBy](../../Comfy/Nodes/LatentUpscaleBy.md)
+
 
 
 ## Source code

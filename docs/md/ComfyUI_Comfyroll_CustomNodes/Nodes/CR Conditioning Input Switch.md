@@ -1,6 +1,6 @@
 # 🔀 CR Conditioning Input Switch
 ## Documentation
-- Class name: `CR_ConditioningInputSwitch`
+- Class name: `CR Conditioning Input Switch`
 - Category: `🧩 Comfyroll Studio/🛠️ Utils/🔀 Logic`
 - Output node: `False`
 

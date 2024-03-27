@@ -22,7 +22,11 @@ This node is designed to apply a noise mask to a set of latent samples. It modif
     - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,KSampler (Efficient),Mute / Bypass Repeater (rgthree)`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - KSampler (Efficient)
+    - Mute / Bypass Repeater (rgthree)
+
 
 
 ## Source code

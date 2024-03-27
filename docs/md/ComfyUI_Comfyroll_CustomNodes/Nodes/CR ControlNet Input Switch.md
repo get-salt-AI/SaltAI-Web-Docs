@@ -1,6 +1,6 @@
 # 🔀 CR ControlNet Input Switch
 ## Documentation
-- Class name: `CR_ControlNetInputSwitch`
+- Class name: `CR ControlNet Input Switch`
 - Category: `🧩 Comfyroll Studio/🛠️ Utils/🔀 Logic`
 - Output node: `False`
 

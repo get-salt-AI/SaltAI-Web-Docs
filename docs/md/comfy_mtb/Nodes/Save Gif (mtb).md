@@ -1,6 +1,6 @@
 # Save Gif (mtb)
 ## Documentation
-- Class name: `Save Gif`
+- Class name: `Save Gif (mtb)`
 - Category: `mtb/IO`
 - Output node: `True`
 

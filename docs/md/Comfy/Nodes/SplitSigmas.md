@@ -22,7 +22,9 @@ The SplitSigmas node is designed for dividing a sequence of sigma values into tw
     - Python dtype: `Tuple[torch.Tensor, torch.Tensor]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `SamplerCustom`
+- Common nodes:
+    - [SamplerCustom](../../Comfy/Nodes/SamplerCustom.md)
+
 
 
 ## Source code

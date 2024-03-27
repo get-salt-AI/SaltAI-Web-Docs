@@ -35,7 +35,12 @@ The ADE_UseEvolvedSampling node integrates evolved sampling techniques into the 
     - Python dtype: `ModelPatcher`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,ToBasicPipe,SamplerCustom,LCMScheduler`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [ToBasicPipe](../../ComfyUI-Impact-Pack/Nodes/ToBasicPipe.md)
+    - [SamplerCustom](../../Comfy/Nodes/SamplerCustom.md)
+    - LCMScheduler
+
 
 
 ## Source code

@@ -18,7 +18,10 @@ The CM_NumberToFloat node is designed for converting numerical values from a gen
     - Python dtype: `float`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `FaceDetailer,CR Integer Multiple`
+- Common nodes:
+    - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
+    - [CR Integer Multiple](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Integer Multiple.md)
+
 
 
 ## Source code

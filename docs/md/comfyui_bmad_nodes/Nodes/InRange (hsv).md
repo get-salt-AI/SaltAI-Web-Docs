@@ -1,6 +1,6 @@
 # InRange (hsv)
 ## Documentation
-- Class name: `InRangeHSV`
+- Class name: `InRange (hsv)`
 - Category: `Bmad/CV/Thresholding`
 - Output node: `False`
 

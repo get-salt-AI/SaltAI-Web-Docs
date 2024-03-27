@@ -35,7 +35,9 @@ The ImpactSwitch node is designed to dynamically select between multiple inputs 
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `EmptyLatentImage`
+- Common nodes:
+    - [EmptyLatentImage](../../Comfy/Nodes/EmptyLatentImage.md)
+
 
 
 ## Source code

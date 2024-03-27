@@ -22,7 +22,10 @@ This node is designed to convert a string representation of a resolution into it
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `Eff. Loader SDXL,intToFloat _O`
+- Common nodes:
+    - Eff. Loader SDXL
+    - intToFloat _O
+
 
 
 ## Source code

@@ -22,7 +22,9 @@ This node applies a bitwise AND operation between the masks of segmented objects
     - Python dtype: `Tuple[torch.Size, List[SEG]]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ImpactSEGSOrderedFilter`
+- Common nodes:
+    - [ImpactSEGSOrderedFilter](../../ComfyUI-Impact-Pack/Nodes/ImpactSEGSOrderedFilter.md)
+
 
 
 ## Source code

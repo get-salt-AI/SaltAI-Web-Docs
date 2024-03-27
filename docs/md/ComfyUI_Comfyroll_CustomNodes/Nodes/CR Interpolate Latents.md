@@ -34,7 +34,10 @@ This node specializes in blending two latent representations based on a specifie
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,Anything Everywhere`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [Anything Everywhere](../../cg-use-everywhere/Nodes/Anything Everywhere.md)
+
 
 
 ## Source code

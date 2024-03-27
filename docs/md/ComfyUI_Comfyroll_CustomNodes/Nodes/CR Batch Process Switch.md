@@ -31,7 +31,9 @@ The CR Batch Process Switch node is designed to selectively process images or im
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `IPAdapter`
+- Common nodes:
+    - IPAdapter
+
 
 
 ## Source code

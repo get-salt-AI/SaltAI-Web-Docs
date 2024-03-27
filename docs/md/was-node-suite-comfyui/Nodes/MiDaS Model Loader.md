@@ -18,7 +18,9 @@ The MiDaS Model Loader node is designed to load and prepare the MiDaS model for 
     - Python dtype: `Tuple[torch.nn.Module, Callable]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `MiDaS Depth Approximation`
+- Common nodes:
+    - [MiDaS Depth Approximation](../../was-node-suite-comfyui/Nodes/MiDaS Depth Approximation.md)
+
 
 
 ## Source code

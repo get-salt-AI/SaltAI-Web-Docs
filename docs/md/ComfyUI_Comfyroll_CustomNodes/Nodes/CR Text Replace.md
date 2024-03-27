@@ -47,7 +47,9 @@ This node allows for the replacement of specified substrings within a given text
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `CR Aspect Ratio`
+- Common nodes:
+    - [CR Aspect Ratio](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Aspect Ratio.md)
+
 
 
 ## Source code

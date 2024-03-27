@@ -50,7 +50,14 @@ This node is designed to upscale images using a specified model, with options fo
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `IPAdapterApply,Anything Everywhere,VAEEncodeTiled,PreviewImage,VAEEncode,ImageScaleBy`
+- Common nodes:
+    - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
+    - [Anything Everywhere](../../cg-use-everywhere/Nodes/Anything Everywhere.md)
+    - [VAEEncodeTiled](../../Comfy/Nodes/VAEEncodeTiled.md)
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+    - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
+    - [ImageScaleBy](../../Comfy/Nodes/ImageScaleBy.md)
+
 
 
 ## Source code

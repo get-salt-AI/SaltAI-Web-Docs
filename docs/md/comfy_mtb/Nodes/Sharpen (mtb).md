@@ -1,6 +1,6 @@
 # Sharpen (mtb)
 ## Documentation
-- Class name: `Sharpen`
+- Class name: `Sharpen (mtb)`
 - Category: `mtb/image processing`
 - Output node: `False`
 

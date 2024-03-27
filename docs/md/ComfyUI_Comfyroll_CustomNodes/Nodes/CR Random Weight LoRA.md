@@ -1,6 +1,6 @@
 # 💊 CR Random Weight LoRA
 ## Documentation
-- Class name: `CR_RandomWeightLoRA`
+- Class name: `CR Random Weight LoRA`
 - Category: `🧩 Comfyroll Studio/✨ Essential/💊 LoRA`
 - Output node: `False`
 

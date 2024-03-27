@@ -31,7 +31,12 @@ This node allows for the dynamic selection between two image inputs based on a s
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ImageScaleToTotalPixels,SVD_img2vid_Conditioning,ReActorFaceSwap,Reroute`
+- Common nodes:
+    - [ImageScaleToTotalPixels](../../Comfy/Nodes/ImageScaleToTotalPixels.md)
+    - [SVD_img2vid_Conditioning](../../Comfy/Nodes/SVD_img2vid_Conditioning.md)
+    - ReActorFaceSwap
+    - Reroute
+
 
 
 ## Source code

@@ -22,7 +22,9 @@ The RepeatLatentBatch node is designed to replicate a given batch of latent repr
     - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSamplerAdvanced`
+- Common nodes:
+    - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
+
 
 
 ## Source code

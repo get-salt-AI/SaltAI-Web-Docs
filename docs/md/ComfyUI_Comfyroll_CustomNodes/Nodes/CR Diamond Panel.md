@@ -1,6 +1,6 @@
 # 🌁 CR Diamond Panel
 ## Documentation
-- Class name: `CR_DiamondPanel`
+- Class name: `CR Diamond Panel`
 - Category: `🧩 Comfyroll Studio/👾 Graphics/🌁 Layout`
 - Output node: `False`
 

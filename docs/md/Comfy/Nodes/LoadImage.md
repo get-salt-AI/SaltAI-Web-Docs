@@ -22,7 +22,18 @@ The LoadImage node is designed to load and preprocess images from a specified pa
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `SVD_img2vid_Conditioning,ReActorFaceSwap,IPAdapterApply,Reroute,VAEEncodeForInpaint,PrepImageForClipVision,MiDaS-DepthMapPreprocessor,OpenposePreprocessor,InpaintPreprocessor,VAEEncode`
+- Common nodes:
+    - [SVD_img2vid_Conditioning](../../Comfy/Nodes/SVD_img2vid_Conditioning.md)
+    - ReActorFaceSwap
+    - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
+    - Reroute
+    - [VAEEncodeForInpaint](../../Comfy/Nodes/VAEEncodeForInpaint.md)
+    - [PrepImageForClipVision](../../ComfyUI_IPAdapter_plus/Nodes/PrepImageForClipVision.md)
+    - MiDaS-DepthMapPreprocessor
+    - OpenposePreprocessor
+    - InpaintPreprocessor
+    - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
+
 
 
 ## Source code

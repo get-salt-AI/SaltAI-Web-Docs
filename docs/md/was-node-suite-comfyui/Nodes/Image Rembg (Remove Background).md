@@ -54,7 +54,11 @@ The Image Rembg (Remove Background) node is designed to process images by removi
     - Python dtype: `List[PIL.Image.Image]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `PreviewImage,ImageToMask,SplitImageWithAlpha`
+- Common nodes:
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+    - [ImageToMask](../../Comfy/Nodes/ImageToMask.md)
+    - [SplitImageWithAlpha](../../Comfy/Nodes/SplitImageWithAlpha.md)
+
 
 
 ## Source code

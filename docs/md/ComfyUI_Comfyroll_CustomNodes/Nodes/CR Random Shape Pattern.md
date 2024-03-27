@@ -1,6 +1,6 @@
 # 🔵 CR Random Shape Pattern
 ## Documentation
-- Class name: `CR_RandomShapePattern`
+- Class name: `CR Random Shape Pattern`
 - Category: `🧩 Comfyroll Studio/👾 Graphics/🟣 Shape`
 - Output node: `False`
 

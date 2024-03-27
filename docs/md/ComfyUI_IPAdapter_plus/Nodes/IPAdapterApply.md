@@ -59,7 +59,18 @@ This node is designed to apply an IPAdapter to a given model, adjusting the mode
     - Python dtype: `MODEL`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `Reroute,ADE_AnimateDiffLoaderWithContext,KSampler,ModelMergeSimple,IPAdapterApplyFaceID,KSampler (Efficient),IPAdapterApply,SelfAttentionGuidance,KSamplerAdvanced,ReroutePrimitive|pysssss`
+- Common nodes:
+    - Reroute
+    - [ADE_AnimateDiffLoaderWithContext](../../ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AnimateDiffLoaderWithContext.md)
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [ModelMergeSimple](../../Comfy/Nodes/ModelMergeSimple.md)
+    - [IPAdapterApplyFaceID](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApplyFaceID.md)
+    - KSampler (Efficient)
+    - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
+    - [SelfAttentionGuidance](../../Comfy/Nodes/SelfAttentionGuidance.md)
+    - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
+    - [ReroutePrimitive|pysssss](../../ComfyUI-Custom-Scripts/Nodes/ReroutePrimitive|pysssss.md)
+
 
 
 ## Source code

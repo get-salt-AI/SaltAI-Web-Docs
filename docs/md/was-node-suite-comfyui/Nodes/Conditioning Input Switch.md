@@ -1,6 +1,6 @@
 # Conditioning Input Switch
 ## Documentation
-- Class name: `WAS_Conditioning_Input_Switch`
+- Class name: `Conditioning Input Switch`
 - Category: `WAS Suite/Logic`
 - Output node: `False`
 

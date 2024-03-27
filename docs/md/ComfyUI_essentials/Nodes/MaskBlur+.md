@@ -1,6 +1,6 @@
 # 🔧 Mask Blur
 ## Documentation
-- Class name: `MaskBlur`
+- Class name: `MaskBlur+`
 - Category: `essentials`
 - Output node: `False`
 

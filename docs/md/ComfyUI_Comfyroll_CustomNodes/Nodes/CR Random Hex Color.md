@@ -34,7 +34,12 @@ This node generates a set of random hexadecimal color values based on a given se
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `CR Random Shape Pattern,CR Color Tint,CR Binary Pattern,CR Color Gradient`
+- Common nodes:
+    - [CR Random Shape Pattern](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Random Shape Pattern.md)
+    - [CR Color Tint](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Color Tint.md)
+    - [CR Binary Pattern](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Binary Pattern.md)
+    - [CR Color Gradient](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Color Gradient.md)
+
 
 
 ## Source code

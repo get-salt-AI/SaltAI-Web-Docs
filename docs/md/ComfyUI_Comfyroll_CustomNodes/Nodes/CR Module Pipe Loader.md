@@ -55,7 +55,10 @@ The CR Module Pipe Loader node is designed to aggregate various types of inputs,
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `CR Module Input,CR Pipe Switch`
+- Common nodes:
+    - [CR Module Input](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Module Input.md)
+    - [CR Pipe Switch](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Pipe Switch.md)
+
 
 
 ## Source code

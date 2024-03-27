@@ -26,7 +26,17 @@ This node specializes in loading checkpoints specifically for image-based models
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `SVD_img2vid_Conditioning,VAEDecode,VideoLinearCFGGuidance,Reroute,StableZero123_Conditioning,LoraLoader,Anything Everywhere,KSampler,workflow/front`
+- Common nodes:
+    - [SVD_img2vid_Conditioning](../../Comfy/Nodes/SVD_img2vid_Conditioning.md)
+    - [VAEDecode](../../Comfy/Nodes/VAEDecode.md)
+    - [VideoLinearCFGGuidance](../../Comfy/Nodes/VideoLinearCFGGuidance.md)
+    - Reroute
+    - [StableZero123_Conditioning](../../Comfy/Nodes/StableZero123_Conditioning.md)
+    - [LoraLoader](../../Comfy/Nodes/LoraLoader.md)
+    - [Anything Everywhere](../../cg-use-everywhere/Nodes/Anything Everywhere.md)
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - workflow/front
+
 
 
 ## Source code

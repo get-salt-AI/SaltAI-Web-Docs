@@ -63,7 +63,10 @@ The ToDetailerPipe node is designed to transform various model components and co
     - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `FaceDetailerPipe,FromDetailerPipe`
+- Common nodes:
+    - [FaceDetailerPipe](../../ComfyUI-Impact-Pack/Nodes/FaceDetailerPipe.md)
+    - [FromDetailerPipe](../../ComfyUI-Impact-Pack/Nodes/FromDetailerPipe.md)
+
 
 
 ## Source code

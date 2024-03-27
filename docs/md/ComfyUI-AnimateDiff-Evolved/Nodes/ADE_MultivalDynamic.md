@@ -23,7 +23,9 @@ The ADE_MultivalDynamic node dynamically generates multivalued outputs based on 
     - Python dtype: `MultivalDynamicNode`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ADE_ApplyAnimateDiffModel`
+- Common nodes:
+    - [ADE_ApplyAnimateDiffModel](../../ComfyUI-AnimateDiff-Evolved/Nodes/ADE_ApplyAnimateDiffModel.md)
+
 
 
 ## Source code

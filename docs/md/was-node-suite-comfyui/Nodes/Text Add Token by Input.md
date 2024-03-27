@@ -1,6 +1,6 @@
 # Text Add Token by Input
 ## Documentation
-- Class name: `WAS_Text_Add_Token_Input`
+- Class name: `Text Add Token by Input`
 - Category: `WAS Suite/Text/Tokens`
 - Output node: `True`
 

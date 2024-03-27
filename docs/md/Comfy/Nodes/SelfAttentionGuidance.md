@@ -26,7 +26,13 @@ This node encapsulates the functionality of guiding the self-attention mechanism
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,Reroute,ADE_AnimateDiffLoaderWithContext,Attention couple,UltimateSDUpscale`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - Reroute
+    - [ADE_AnimateDiffLoaderWithContext](../../ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AnimateDiffLoaderWithContext.md)
+    - Attention couple
+    - UltimateSDUpscale
+
 
 
 ## Source code

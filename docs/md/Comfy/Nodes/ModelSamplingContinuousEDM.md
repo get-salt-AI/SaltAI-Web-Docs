@@ -30,7 +30,9 @@ This node is designed to enhance a model's sampling capabilities by integrating 
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `FreeU_V2`
+- Common nodes:
+    - [FreeU_V2](../../Comfy/Nodes/FreeU_V2.md)
+
 
 
 ## Source code

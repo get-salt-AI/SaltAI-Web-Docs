@@ -18,7 +18,14 @@ The UpscaleModelLoader node is designed for loading upscale models from a specif
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ImageUpscaleWithModel,UltimateSDUpscale,Reroute,LatentPixelScale,Anything Everywhere,PixelKSampleUpscalerProvider`
+- Common nodes:
+    - [ImageUpscaleWithModel](../../Comfy/Nodes/ImageUpscaleWithModel.md)
+    - UltimateSDUpscale
+    - Reroute
+    - [LatentPixelScale](../../ComfyUI-Impact-Pack/Nodes/LatentPixelScale.md)
+    - [Anything Everywhere](../../cg-use-everywhere/Nodes/Anything Everywhere.md)
+    - [PixelKSampleUpscalerProvider](../../ComfyUI-Impact-Pack/Nodes/PixelKSampleUpscalerProvider.md)
+
 
 
 ## Source code

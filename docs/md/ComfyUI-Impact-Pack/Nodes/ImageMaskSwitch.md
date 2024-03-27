@@ -55,7 +55,9 @@ The ImageMaskSwitch node allows for the selection and output of a specific image
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `Reroute`
+- Common nodes:
+    - Reroute
+
 
 
 ## Source code

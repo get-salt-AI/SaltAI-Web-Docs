@@ -1,6 +1,6 @@
 # Get Contour from list
 ## Documentation
-- Class name: `GetContourFromList`
+- Class name: `Get Contour from list`
 - Category: `Bmad/CV/Contour`
 - Output node: `False`
 

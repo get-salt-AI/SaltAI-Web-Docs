@@ -38,7 +38,10 @@ This node is designed to modify the conditioning information by setting specific
     - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ConditioningCombine,SetNode`
+- Common nodes:
+    - [ConditioningCombine](../../Comfy/Nodes/ConditioningCombine.md)
+    - SetNode
+
 
 
 ## Source code

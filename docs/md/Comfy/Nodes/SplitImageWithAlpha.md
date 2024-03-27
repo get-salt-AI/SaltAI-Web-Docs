@@ -22,7 +22,9 @@ The SplitImageWithAlpha node is designed to separate the color and alpha compone
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `PorterDuffImageComposite`
+- Common nodes:
+    - [PorterDuffImageComposite](../../Comfy/Nodes/PorterDuffImageComposite.md)
+
 
 
 ## Source code

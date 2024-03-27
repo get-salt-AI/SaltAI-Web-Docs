@@ -34,7 +34,9 @@ The ImpactWildcardProcessor node is designed to process text inputs by populatin
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `CLIPTextEncode`
+- Common nodes:
+    - [CLIPTextEncode](../../Comfy/Nodes/CLIPTextEncode.md)
+
 
 
 ## Source code

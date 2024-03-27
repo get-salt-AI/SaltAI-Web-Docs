@@ -22,7 +22,11 @@ The ImageToMask node is designed to convert an image into a mask based on a spec
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `MaskComposite,GrowMask,IPAdapterApplyFaceID`
+- Common nodes:
+    - [MaskComposite](../../Comfy/Nodes/MaskComposite.md)
+    - [GrowMask](../../Comfy/Nodes/GrowMask.md)
+    - [IPAdapterApplyFaceID](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApplyFaceID.md)
+
 
 
 ## Source code

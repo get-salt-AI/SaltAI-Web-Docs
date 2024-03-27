@@ -1,6 +1,6 @@
 # 📋 CR Simple Schedule
 ## Documentation
-- Class name: `CR_SimpleSchedule`
+- Class name: `CR Simple Schedule`
 - Category: `🧩 Comfyroll Studio/🎥 Animation/📋 Schedule`
 - Output node: `False`
 

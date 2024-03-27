@@ -1,6 +1,6 @@
 # 📜 CR Binary To Bit List
 ## Documentation
-- Class name: `CR_BinaryToBitList`
+- Class name: `CR Binary To Bit List`
 - Category: `🧩 Comfyroll Studio/✨ Essential/📜 List`
 - Output node: `False`
 

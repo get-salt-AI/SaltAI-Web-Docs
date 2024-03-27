@@ -1,6 +1,6 @@
 # 🔧 CR String To Combo
 ## Documentation
-- Class name: `CR_StringToCombo`
+- Class name: `CR String To Combo`
 - Category: `🧩 Comfyroll Studio/🛠️ Utils/🔧 Conversion`
 - Output node: `False`
 

@@ -26,7 +26,9 @@ This node is designed to extract a specific subset of latent samples from a give
     - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `LatentBlend`
+- Common nodes:
+    - [LatentBlend](../../Comfy/Nodes/LatentBlend.md)
+
 
 
 ## Source code

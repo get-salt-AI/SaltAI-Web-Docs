@@ -1,6 +1,6 @@
 # Lora Loader
 ## Documentation
-- Class name: `LoraLoader`
+- Class name: `Lora Loader`
 - Category: `WAS Suite/Loaders`
 - Output node: `False`
 
@@ -42,7 +42,18 @@ The LoraLoader node is designed to dynamically load and apply LoRA (Low-Rank Ada
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `LoraLoader,CLIPTextEncode,Reroute,VideoLinearCFGGuidance,KSampler,FaceDetailer,Lora Loader,ModelSamplingDiscrete,KSamplerAdvanced,ADE_AnimateDiffLoaderWithContext`
+- Common nodes:
+    - [LoraLoader](../../Comfy/Nodes/LoraLoader.md)
+    - [CLIPTextEncode](../../Comfy/Nodes/CLIPTextEncode.md)
+    - Reroute
+    - [VideoLinearCFGGuidance](../../Comfy/Nodes/VideoLinearCFGGuidance.md)
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
+    - [Lora Loader](../../was-node-suite-comfyui/Nodes/Lora Loader.md)
+    - [ModelSamplingDiscrete](../../Comfy/Nodes/ModelSamplingDiscrete.md)
+    - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
+    - [ADE_AnimateDiffLoaderWithContext](../../ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AnimateDiffLoaderWithContext.md)
+
 
 
 ## Source code

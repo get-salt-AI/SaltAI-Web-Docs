@@ -34,7 +34,10 @@ The ImageCrop node is designed for cropping images to a specified width and heig
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `VAEEncodeForInpaint,PreviewImage`
+- Common nodes:
+    - [VAEEncodeForInpaint](../../Comfy/Nodes/VAEEncodeForInpaint.md)
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+
 
 
 ## Source code

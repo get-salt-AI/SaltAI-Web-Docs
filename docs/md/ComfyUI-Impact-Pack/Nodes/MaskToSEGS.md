@@ -38,7 +38,10 @@ The MaskToSEGS node is designed to transform a given mask into a structured repr
     - Python dtype: `Tuple[torch.Tensor, List[SEG]]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `DetailerForEachDebugPipe,DetailerForEachDebug`
+- Common nodes:
+    - [DetailerForEachDebugPipe](../../ComfyUI-Impact-Pack/Nodes/DetailerForEachDebugPipe.md)
+    - [DetailerForEachDebug](../../ComfyUI-Impact-Pack/Nodes/DetailerForEachDebug.md)
+
 
 
 ## Source code

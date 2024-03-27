@@ -66,7 +66,12 @@ This node is designed to adjust the aspect ratio of images, ensuring they fit sp
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `KSampler //Inspire,CR Image Pipe In,CR Module Pipe Loader,Anything Everywhere`
+- Common nodes:
+    - KSampler //Inspire
+    - [CR Image Pipe In](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Image Pipe In.md)
+    - [CR Module Pipe Loader](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Module Pipe Loader.md)
+    - [Anything Everywhere](../../cg-use-everywhere/Nodes/Anything Everywhere.md)
+
 
 
 ## Source code

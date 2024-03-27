@@ -43,7 +43,10 @@ The LatentPixelScale node is designed to upscale latent representations of image
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `VAEDecode,KSampler`
+- Common nodes:
+    - [VAEDecode](../../Comfy/Nodes/VAEDecode.md)
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+
 
 
 ## Source code

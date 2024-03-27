@@ -22,7 +22,11 @@ The VideoLinearCFGGuidance node applies a linear conditioning guidance scale to 
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,FreeU_V2,KSamplerAdvanced`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [FreeU_V2](../../Comfy/Nodes/FreeU_V2.md)
+    - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
+
 
 
 ## Source code

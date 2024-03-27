@@ -1,6 +1,6 @@
 # 🔧 Console Debug
 ## Documentation
-- Class name: `ConsoleDebug`
+- Class name: `ConsoleDebug+`
 - Category: `essentials`
 - Output node: `True`
 

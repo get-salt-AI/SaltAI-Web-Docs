@@ -22,7 +22,10 @@ This node is designed to load and prepare upscale models for use, ensuring they 
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `UltimateSDUpscale,Anything Everywhere`
+- Common nodes:
+    - UltimateSDUpscale
+    - [Anything Everywhere](../../cg-use-everywhere/Nodes/Anything Everywhere.md)
+
 
 
 ## Source code

@@ -1,6 +1,6 @@
 # Image Blank
 ## Documentation
-- Class name: `WAS_Image_Blank`
+- Class name: `Image Blank`
 - Category: `WAS Suite/Image`
 - Output node: `False`
 

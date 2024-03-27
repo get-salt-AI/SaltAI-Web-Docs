@@ -22,7 +22,18 @@ This node is designed for upscaling images using a specified upscale model. It h
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `ImageScaleBy,ImageScale,SaveImage,VHS_VideoCombine,PreviewImage,Reroute,ImageScaleToTotalPixels,FaceDetailer,CR Image Output,ImageCASharpening+`
+- Common nodes:
+    - [ImageScaleBy](../../Comfy/Nodes/ImageScaleBy.md)
+    - [ImageScale](../../Comfy/Nodes/ImageScale.md)
+    - [SaveImage](../../Comfy/Nodes/SaveImage.md)
+    - [VHS_VideoCombine](../../ComfyUI-VideoHelperSuite/Nodes/VHS_VideoCombine.md)
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+    - Reroute
+    - [ImageScaleToTotalPixels](../../Comfy/Nodes/ImageScaleToTotalPixels.md)
+    - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
+    - [CR Image Output](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Image Output.md)
+    - [ImageCASharpening+](../../ComfyUI_essentials/Nodes/ImageCASharpening+.md)
+
 
 
 ## Source code

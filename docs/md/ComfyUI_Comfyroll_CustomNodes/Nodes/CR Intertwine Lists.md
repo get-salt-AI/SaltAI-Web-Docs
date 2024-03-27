@@ -1,6 +1,6 @@
 # 🛠️ CR Intertwine Lists
 ## Documentation
-- Class name: `CR_IntertwineLists`
+- Class name: `CR Intertwine Lists`
 - Category: `🧩 Comfyroll Studio/✨ Essential/📜 List/🛠️ Utils`
 - Output node: `False`
 

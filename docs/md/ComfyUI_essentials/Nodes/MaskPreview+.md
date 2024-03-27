@@ -1,6 +1,6 @@
 # 🔧 Mask Preview
 ## Documentation
-- Class name: `MaskPreview`
+- Class name: `MaskPreview+`
 - Category: `essentials`
 - Output node: `True`
 

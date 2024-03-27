@@ -1,6 +1,6 @@
 # Save Image (api)
 ## Documentation
-- Class name: `Save Image`
+- Class name: `Save Image (api)`
 - Category: `Bmad/api`
 - Output node: `False`
 

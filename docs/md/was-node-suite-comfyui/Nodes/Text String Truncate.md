@@ -1,6 +1,6 @@
 # Text String Truncate
 ## Documentation
-- Class name: `WAS_Text_String_Truncate`
+- Class name: `Text String Truncate`
 - Category: `WAS Suite/Text/Operations`
 - Output node: `False`
 

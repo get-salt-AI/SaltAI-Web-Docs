@@ -34,7 +34,10 @@ The FeatherMask node applies a feathering effect to the edges of a given mask, s
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `MaskComposite,Reroute`
+- Common nodes:
+    - [MaskComposite](../../Comfy/Nodes/MaskComposite.md)
+    - Reroute
+
 
 
 ## Source code

@@ -1,6 +1,6 @@
 # Stack Images (mtb)
 ## Documentation
-- Class name: `Stack Images`
+- Class name: `Stack Images (mtb)`
 - Category: `mtb/image utils`
 - Output node: `False`
 

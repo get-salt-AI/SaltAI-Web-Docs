@@ -1,6 +1,6 @@
 # 📋 CR Load Schedule From File
 ## Documentation
-- Class name: `CR_LoadScheduleFromFile`
+- Class name: `CR Load Schedule From File`
 - Category: `🧩 Comfyroll Studio/🎥 Animation/📋 Schedule`
 - Output node: `False`
 

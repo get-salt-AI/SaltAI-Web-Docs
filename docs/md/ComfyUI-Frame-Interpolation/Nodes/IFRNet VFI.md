@@ -1,6 +1,6 @@
 # IFRNet VFI
 ## Documentation
-- Class name: `IFRNet_VFI`
+- Class name: `IFRNet VFI`
 - Category: `ComfyUI-Frame-Interpolation/VFI`
 - Output node: `False`
 

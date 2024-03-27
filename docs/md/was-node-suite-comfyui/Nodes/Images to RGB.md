@@ -1,6 +1,6 @@
 # Images to RGB
 ## Documentation
-- Class name: `Images_To_RGB`
+- Class name: `Images to RGB`
 - Category: `WAS Suite/Image`
 - Output node: `False`
 

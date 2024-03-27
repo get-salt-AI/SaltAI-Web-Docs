@@ -1,6 +1,6 @@
 # Image Premultiply (mtb)
 ## Documentation
-- Class name: `Image Premultiply`
+- Class name: `Image Premultiply (mtb)`
 - Category: `mtb/image`
 - Output node: `False`
 

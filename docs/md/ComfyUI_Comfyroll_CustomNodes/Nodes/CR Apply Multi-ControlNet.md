@@ -38,7 +38,10 @@ This node is designed to apply a stack of multiple ControlNets to a given set of
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSamplerAdvanced,KSampler Adv. (Efficient)`
+- Common nodes:
+    - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
+    - KSampler Adv. (Efficient)
+
 
 
 ## Source code

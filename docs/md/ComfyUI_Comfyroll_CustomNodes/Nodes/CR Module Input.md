@@ -1,6 +1,6 @@
 # ✈️ CR Module Input
 ## Documentation
-- Class name: `CR_ModuleInput`
+- Class name: `CR Module Input`
 - Category: `🧩 Comfyroll Studio/✨ Essential/🎷 Pipe/✈️ Module`
 - Output node: `False`
 

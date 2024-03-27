@@ -1,6 +1,6 @@
 # 🌁 CR Color Panel
 ## Documentation
-- Class name: `CR_ColorPanel`
+- Class name: `CR Color Panel`
 - Category: `🧩 Comfyroll Studio/👾 Graphics/🌁 Layout`
 - Output node: `False`
 

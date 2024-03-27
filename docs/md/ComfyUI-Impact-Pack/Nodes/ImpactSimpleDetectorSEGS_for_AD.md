@@ -71,7 +71,10 @@ This node is designed to perform simplified detection tasks specifically tailore
     - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `DetailerForEachPipeForAnimateDiff,ImpactControlNetApplySEGS`
+- Common nodes:
+    - [DetailerForEachPipeForAnimateDiff](../../ComfyUI-Impact-Pack/Nodes/DetailerForEachPipeForAnimateDiff.md)
+    - [ImpactControlNetApplySEGS](../../ComfyUI-Impact-Pack/Nodes/ImpactControlNetApplySEGS.md)
+
 
 
 ## Source code

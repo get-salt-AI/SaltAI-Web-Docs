@@ -1,6 +1,6 @@
 # Text Compare
 ## Documentation
-- Class name: `WAS_Text_Compare`
+- Class name: `Text Compare`
 - Category: `WAS Suite/Text/Search`
 - Output node: `False`
 

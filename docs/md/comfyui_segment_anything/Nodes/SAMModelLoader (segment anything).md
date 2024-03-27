@@ -18,7 +18,9 @@ The SAMModelLoader node is designed to load and prepare SAM (Segment Anything Mo
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `GroundingDinoSAMSegment (segment anything)`
+- Common nodes:
+    - [GroundingDinoSAMSegment (segment anything)](../../comfyui_segment_anything/Nodes/GroundingDinoSAMSegment (segment anything).md)
+
 
 
 ## Source code

@@ -30,7 +30,11 @@ This node specializes in generating advanced CLIP text embeddings by processing 
     - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,SamplerCustom,ControlNetApplyAdvanced`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [SamplerCustom](../../Comfy/Nodes/SamplerCustom.md)
+    - [ControlNetApplyAdvanced](../../Comfy/Nodes/ControlNetApplyAdvanced.md)
+
 
 
 ## Source code

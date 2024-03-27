@@ -1,6 +1,6 @@
 # Text Random Prompt
 ## Documentation
-- Class name: `WAS_Text_Random_Prompt`
+- Class name: `Text Random Prompt`
 - Category: `WAS Suite/Text`
 - Output node: `False`
 

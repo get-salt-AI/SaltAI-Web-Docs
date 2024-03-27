@@ -1,6 +1,6 @@
 # Text to String
 ## Documentation
-- Class name: `WAS_Text_To_String`
+- Class name: `Text to String`
 - Category: `WAS Suite/Text/Operations`
 - Output node: `False`
 

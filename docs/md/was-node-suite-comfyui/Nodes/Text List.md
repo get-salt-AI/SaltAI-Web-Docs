@@ -1,6 +1,6 @@
 # Text List
 ## Documentation
-- Class name: `WAS_Text_List`
+- Class name: `Text List`
 - Category: `WAS Suite/Text`
 - Output node: `False`
 

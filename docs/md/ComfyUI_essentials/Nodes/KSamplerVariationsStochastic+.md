@@ -1,6 +1,6 @@
 # 🔧 KSampler Stochastic Variations
 ## Documentation
-- Class name: `KSamplerVariationsStochastic`
+- Class name: `KSamplerVariationsStochastic+`
 - Category: `essentials`
 - Output node: `False`
 

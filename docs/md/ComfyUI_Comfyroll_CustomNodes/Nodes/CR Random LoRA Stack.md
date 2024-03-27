@@ -1,6 +1,6 @@
 # 💊 CR Random LoRA Stack
 ## Documentation
-- Class name: `CR_RandomLoRAStack`
+- Class name: `CR Random LoRA Stack`
 - Category: `🧩 Comfyroll Studio/✨ Essential/💊 LoRA`
 - Output node: `False`
 

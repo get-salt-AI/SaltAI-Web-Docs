@@ -1,6 +1,6 @@
 # Save Image Sequence (mtb)
 ## Documentation
-- Class name: `Save Image Sequence`
+- Class name: `Save Image Sequence (mtb)`
 - Category: `mtb/IO`
 - Output node: `True`
 

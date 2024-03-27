@@ -1,6 +1,6 @@
 # 📑 CR Simple Prompt Scheduler
 ## Documentation
-- Class name: `CR_SimplePromptScheduler`
+- Class name: `CR Simple Prompt Scheduler`
 - Category: `🧩 Comfyroll Studio/🎥 Animation/📑 Schedulers`
 - Output node: `False`
 

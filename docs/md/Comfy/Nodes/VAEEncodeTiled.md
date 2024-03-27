@@ -26,7 +26,13 @@ The VAEEncodeTiled node is designed for encoding images into a latent space repr
     - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,CR Interpolate Latents,KSampler //Inspire,BNK_TiledKSampler,KSampler (Efficient)`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [CR Interpolate Latents](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Interpolate Latents.md)
+    - KSampler //Inspire
+    - BNK_TiledKSampler
+    - KSampler (Efficient)
+
 
 
 ## Source code

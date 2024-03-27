@@ -71,7 +71,9 @@ This node specializes in enhancing the detail and quality of segmentation maps (
     - Python dtype: `List[SEGS]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `SEGSPaste`
+- Common nodes:
+    - [SEGSPaste](../../ComfyUI-Impact-Pack/Nodes/SEGSPaste.md)
+
 
 
 ## Source code

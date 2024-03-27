@@ -18,7 +18,10 @@ This node is designed to transform a collection of segmented objects (segs) into
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ImageCompositeMasked,Mask Gaussian Region`
+- Common nodes:
+    - [ImageCompositeMasked](../../Comfy/Nodes/ImageCompositeMasked.md)
+    - [Mask Gaussian Region](../../was-node-suite-comfyui/Nodes/Mask Gaussian Region.md)
+
 
 
 ## Source code

@@ -1,6 +1,6 @@
 # Debug Number to Console
 ## Documentation
-- Class name: `WAS_Debug_Number_to_Console`
+- Class name: `Debug Number to Console`
 - Category: `WAS Suite/Debug`
 - Output node: `True`
 

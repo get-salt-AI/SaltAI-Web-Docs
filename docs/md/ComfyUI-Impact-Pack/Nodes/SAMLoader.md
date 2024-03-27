@@ -22,7 +22,16 @@ The SAMLoader node is designed to load SAM models based on the model name and de
     - Python dtype: `SAMModel`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `FaceDetailer,ToDetailerPipe,SAMDetectorCombined,ToDetailerPipeSDXL,Reroute,ImpactSimpleDetectorSEGS,ImpactSimpleDetectorSEGS_for_AD,GroundingDinoSAMSegment (segment anything)`
+- Common nodes:
+    - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
+    - [ToDetailerPipe](../../ComfyUI-Impact-Pack/Nodes/ToDetailerPipe.md)
+    - [SAMDetectorCombined](../../ComfyUI-Impact-Pack/Nodes/SAMDetectorCombined.md)
+    - [ToDetailerPipeSDXL](../../ComfyUI-Impact-Pack/Nodes/ToDetailerPipeSDXL.md)
+    - Reroute
+    - [ImpactSimpleDetectorSEGS](../../ComfyUI-Impact-Pack/Nodes/ImpactSimpleDetectorSEGS.md)
+    - [ImpactSimpleDetectorSEGS_for_AD](../../ComfyUI-Impact-Pack/Nodes/ImpactSimpleDetectorSEGS_for_AD.md)
+    - [GroundingDinoSAMSegment (segment anything)](../../comfyui_segment_anything/Nodes/GroundingDinoSAMSegment (segment anything).md)
+
 
 
 ## Source code

@@ -1,6 +1,6 @@
 # 📜 CR Value Cycler
 ## Documentation
-- Class name: `CR_ValueCycler`
+- Class name: `CR Value Cycler`
 - Category: `🧩 Comfyroll Studio/✨ Essential/📜 List`
 - Output node: `False`
 

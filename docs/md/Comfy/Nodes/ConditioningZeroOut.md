@@ -18,7 +18,9 @@ This node zeroes out specific elements within the conditioning data structure, e
     - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `UltimateSDUpscale`
+- Common nodes:
+    - UltimateSDUpscale
+
 
 
 ## Source code

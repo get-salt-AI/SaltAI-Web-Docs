@@ -1,6 +1,6 @@
 # Vae Decode (mtb)
 ## Documentation
-- Class name: `Vae Decode`
+- Class name: `Vae Decode (mtb)`
 - Category: `mtb/decode`
 - Output node: `False`
 

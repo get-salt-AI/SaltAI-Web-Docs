@@ -1,6 +1,6 @@
 # LoraLoader (dirty)
 ## Documentation
-- Class name: `LoraLoader`
+- Class name: `LoraLoader (dirty)`
 - Category: `Bmad/api/dirty loaders`
 - Output node: `False`
 
@@ -38,7 +38,18 @@ The LoraLoader node is designed to dynamically load and apply LoRA (Low-Rank Ada
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `LoraLoader,CLIPTextEncode,Reroute,VideoLinearCFGGuidance,KSampler,FaceDetailer,ModelSamplingDiscrete,ADE_AnimateDiffLoaderWithContext,KSampler //Inspire,ToBasicPipe`
+- Common nodes:
+    - [LoraLoader](../../Comfy/Nodes/LoraLoader.md)
+    - [CLIPTextEncode](../../Comfy/Nodes/CLIPTextEncode.md)
+    - Reroute
+    - [VideoLinearCFGGuidance](../../Comfy/Nodes/VideoLinearCFGGuidance.md)
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
+    - [ModelSamplingDiscrete](../../Comfy/Nodes/ModelSamplingDiscrete.md)
+    - [ADE_AnimateDiffLoaderWithContext](../../ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AnimateDiffLoaderWithContext.md)
+    - KSampler //Inspire
+    - [ToBasicPipe](../../ComfyUI-Impact-Pack/Nodes/ToBasicPipe.md)
+
 
 
 ## Source code

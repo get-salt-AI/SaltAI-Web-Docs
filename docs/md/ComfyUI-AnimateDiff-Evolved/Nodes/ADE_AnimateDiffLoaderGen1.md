@@ -55,7 +55,9 @@ This node is designed for loading and initializing the AnimateDiff model specifi
     - Python dtype: `Model`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `KSampler`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+
 
 
 ## Source code

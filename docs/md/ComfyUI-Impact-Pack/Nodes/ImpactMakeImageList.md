@@ -18,7 +18,9 @@ The `ImpactMakeImageList` node is designed to aggregate multiple image inputs in
     - Python dtype: `List[torch.Tensor]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ImageListToImageBatch`
+- Common nodes:
+    - [ImageListToImageBatch](../../ComfyUI-Impact-Pack/Nodes/ImageListToImageBatch.md)
+
 
 
 ## Source code

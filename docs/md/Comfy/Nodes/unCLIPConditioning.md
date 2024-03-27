@@ -30,7 +30,10 @@ This node is designed to integrate CLIP vision outputs into the conditioning pro
     - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ControlNetApplyAdvanced,ConditioningConcat`
+- Common nodes:
+    - [ControlNetApplyAdvanced](../../Comfy/Nodes/ControlNetApplyAdvanced.md)
+    - [ConditioningConcat](../../Comfy/Nodes/ConditioningConcat.md)
+
 
 
 ## Source code

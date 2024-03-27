@@ -1,6 +1,6 @@
 # FILM VFI
 ## Documentation
-- Class name: `FILM_VFI`
+- Class name: `FILM VFI`
 - Category: `ComfyUI-Frame-Interpolation/VFI`
 - Output node: `False`
 
@@ -39,7 +39,10 @@ The FILM_VFI node specializes in frame interpolation using the FILM (Feature-wis
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `VHS_VideoCombine,SaveAnimatedWEBP`
+- Common nodes:
+    - [VHS_VideoCombine](../../ComfyUI-VideoHelperSuite/Nodes/VHS_VideoCombine.md)
+    - [SaveAnimatedWEBP](../../Comfy/Nodes/SaveAnimatedWEBP.md)
+
 
 
 ## Source code

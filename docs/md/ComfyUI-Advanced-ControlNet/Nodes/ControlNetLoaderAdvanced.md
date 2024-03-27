@@ -23,7 +23,13 @@ This node is designed to load an advanced ControlNet model, optionally incorpora
     - Python dtype: `ControlNet`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ControlNetApplyAdvanced,ACN_AdvancedControlNetApply,ControlNetApply,Control Net Stacker,ImpactControlNetApplySEGS`
+- Common nodes:
+    - [ControlNetApplyAdvanced](../../Comfy/Nodes/ControlNetApplyAdvanced.md)
+    - [ACN_AdvancedControlNetApply](../../ComfyUI-Advanced-ControlNet/Nodes/ACN_AdvancedControlNetApply.md)
+    - [ControlNetApply](../../Comfy/Nodes/ControlNetApply.md)
+    - Control Net Stacker
+    - [ImpactControlNetApplySEGS](../../ComfyUI-Impact-Pack/Nodes/ImpactControlNetApplySEGS.md)
+
 
 
 ## Source code

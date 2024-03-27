@@ -22,7 +22,9 @@ The Multiply node performs a multiplication operation on two input values, produ
     - Python dtype: `float`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `floatToInt _O`
+- Common nodes:
+    - floatToInt _O
+
 
 
 ## Source code

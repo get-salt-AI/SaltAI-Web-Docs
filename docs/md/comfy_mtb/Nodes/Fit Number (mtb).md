@@ -1,6 +1,6 @@
 # Fit Number (mtb)
 ## Documentation
-- Class name: `Fit Number`
+- Class name: `Fit Number (mtb)`
 - Category: `mtb/math`
 - Output node: `False`
 

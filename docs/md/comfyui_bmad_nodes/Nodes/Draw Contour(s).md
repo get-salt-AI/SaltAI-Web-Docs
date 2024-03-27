@@ -1,6 +1,6 @@
 # Draw Contour(s)
 ## Documentation
-- Class name: `DrawContours`
+- Class name: `Draw Contour(s)`
 - Category: `Bmad/CV/Contour`
 - Output node: `False`
 

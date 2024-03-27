@@ -42,7 +42,12 @@ This node is designed to merge multiple models and CLIPs based on specified rati
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,LoraLoader|pysssss,CLIPSetLastLayer,Display Any (rgthree)`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [LoraLoader|pysssss](../../ComfyUI-Custom-Scripts/Nodes/LoraLoader|pysssss.md)
+    - [CLIPSetLastLayer](../../Comfy/Nodes/CLIPSetLastLayer.md)
+    - Display Any (rgthree)
+
 
 
 ## Source code

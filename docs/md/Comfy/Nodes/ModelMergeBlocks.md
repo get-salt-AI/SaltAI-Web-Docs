@@ -34,7 +34,10 @@ ModelMergeBlocks is designed for advanced model merging operations, allowing for
     - Python dtype: `comfy.model_base.Model`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,CR Load LoRA`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [CR Load LoRA](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Load LoRA.md)
+
 
 
 ## Source code

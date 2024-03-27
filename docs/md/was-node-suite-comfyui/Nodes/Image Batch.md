@@ -31,7 +31,9 @@ The Image Batch node is designed to combine multiple images into a single batch,
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `FakeScribblePreprocessor`
+- Common nodes:
+    - FakeScribblePreprocessor
+
 
 
 ## Source code

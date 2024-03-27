@@ -1,6 +1,6 @@
 # Text Add Tokens
 ## Documentation
-- Class name: `WAS_Text_Add_Tokens`
+- Class name: `Text Add Tokens`
 - Category: `WAS Suite/Text/Tokens`
 - Output node: `True`
 

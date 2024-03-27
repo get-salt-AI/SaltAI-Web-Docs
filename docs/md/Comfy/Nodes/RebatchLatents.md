@@ -22,7 +22,9 @@ The RebatchLatents node is designed to reorganize a batch of latent representati
     - Python dtype: `List[Dict[str, torch.Tensor]]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `VAEDecode`
+- Common nodes:
+    - [VAEDecode](../../Comfy/Nodes/VAEDecode.md)
+
 
 
 ## Source code

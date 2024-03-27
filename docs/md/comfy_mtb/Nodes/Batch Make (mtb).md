@@ -1,6 +1,6 @@
 # Batch Make (mtb)
 ## Documentation
-- Class name: `Batch Make`
+- Class name: `Batch Make (mtb)`
 - Category: `mtb/batch`
 - Output node: `False`
 

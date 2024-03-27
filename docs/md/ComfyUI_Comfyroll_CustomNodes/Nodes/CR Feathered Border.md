@@ -51,7 +51,9 @@ The CR Feathered Border node is designed to add a customizable feathered border 
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `VAEEncode`
+- Common nodes:
+    - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
+
 
 
 ## Source code

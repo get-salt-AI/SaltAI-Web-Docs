@@ -22,7 +22,10 @@ The Latent Noise Injection node is designed to augment latent representations wi
     - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,Reroute`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - Reroute
+
 
 
 ## Source code

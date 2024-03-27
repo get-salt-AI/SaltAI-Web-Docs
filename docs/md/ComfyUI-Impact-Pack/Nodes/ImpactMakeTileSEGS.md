@@ -51,7 +51,10 @@ The ImpactMakeTileSEGS node is designed to process segmentation data (SEGS) by g
     - Python dtype: `Tuple[torch.Tensor, List[SEG]]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `SEGSPreview,ImpactSEGSConcat`
+- Common nodes:
+    - [SEGSPreview](../../ComfyUI-Impact-Pack/Nodes/SEGSPreview.md)
+    - [ImpactSEGSConcat](../../ComfyUI-Impact-Pack/Nodes/ImpactSEGSConcat.md)
+
 
 
 ## Source code

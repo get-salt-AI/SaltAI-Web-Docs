@@ -34,7 +34,11 @@ This node proportionally scales an image to fit a specified side length, either 
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `Reroute,ImpactImageInfo,VAEEncode`
+- Common nodes:
+    - Reroute
+    - [ImpactImageInfo](../../ComfyUI-Impact-Pack/Nodes/ImpactImageInfo.md)
+    - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
+
 
 
 ## Source code

@@ -38,7 +38,10 @@ The IterativeImageUpscale node is designed to progressively upscale images throu
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `PreviewImage,ImageBatch`
+- Common nodes:
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+    - [ImageBatch](../../Comfy/Nodes/ImageBatch.md)
+
 
 
 ## Source code

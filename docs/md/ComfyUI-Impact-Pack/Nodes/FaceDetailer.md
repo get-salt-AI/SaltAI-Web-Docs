@@ -179,7 +179,18 @@ The FaceDetailer node is designed to enhance the details of faces in images, uti
     - Python dtype: `list[torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `PreviewImage,FaceDetailerPipe,MaskToImage,Reroute,SaveImage,PlaySound|pysssss,InvertMask,ImageInvert,ImageCompositeMasked,ImageBlend`
+- Common nodes:
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+    - [FaceDetailerPipe](../../ComfyUI-Impact-Pack/Nodes/FaceDetailerPipe.md)
+    - [MaskToImage](../../Comfy/Nodes/MaskToImage.md)
+    - Reroute
+    - [SaveImage](../../Comfy/Nodes/SaveImage.md)
+    - [PlaySound|pysssss](../../ComfyUI-Custom-Scripts/Nodes/PlaySound|pysssss.md)
+    - [InvertMask](../../Comfy/Nodes/InvertMask.md)
+    - [ImageInvert](../../Comfy/Nodes/ImageInvert.md)
+    - [ImageCompositeMasked](../../Comfy/Nodes/ImageCompositeMasked.md)
+    - [ImageBlend](../../Comfy/Nodes/ImageBlend.md)
+
 
 
 ## Source code

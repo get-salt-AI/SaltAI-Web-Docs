@@ -34,7 +34,16 @@ The FromBasicPipe node is designed to decompose a basic pipe structure into its 
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `UltimateSDUpscale,FaceDetailer,ToBasicPipe,KSampler,ControlNetApplyAdvanced,VAEEncode,VAEDecode,IterativeImageUpscale`
+- Common nodes:
+    - UltimateSDUpscale
+    - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
+    - [ToBasicPipe](../../ComfyUI-Impact-Pack/Nodes/ToBasicPipe.md)
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [ControlNetApplyAdvanced](../../Comfy/Nodes/ControlNetApplyAdvanced.md)
+    - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
+    - [VAEDecode](../../Comfy/Nodes/VAEDecode.md)
+    - [IterativeImageUpscale](../../ComfyUI-Impact-Pack/Nodes/IterativeImageUpscale.md)
+
 
 
 ## Source code

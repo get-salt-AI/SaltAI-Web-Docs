@@ -43,7 +43,9 @@ STMFNet VFI is designed for video frame interpolation, specifically focusing on 
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `ImageUpscaleWithModel`
+- Common nodes:
+    - [ImageUpscaleWithModel](../../Comfy/Nodes/ImageUpscaleWithModel.md)
+
 
 
 ## Source code

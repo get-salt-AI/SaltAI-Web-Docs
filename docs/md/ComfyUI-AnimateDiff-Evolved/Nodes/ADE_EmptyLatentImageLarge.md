@@ -26,7 +26,10 @@ The ADE_EmptyLatentImageLarge node is designed to initialize a large latent imag
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `BatchPromptScheduleLatentInput,KSampler`
+- Common nodes:
+    - [BatchPromptScheduleLatentInput](../../ComfyUI_FizzNodes/Nodes/BatchPromptScheduleLatentInput.md)
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+
 
 
 ## Source code

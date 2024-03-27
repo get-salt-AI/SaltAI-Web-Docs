@@ -1,6 +1,6 @@
 # Text List to Text
 ## Documentation
-- Class name: `WAS_Text_List_to_Text`
+- Class name: `Text List to Text`
 - Category: `WAS Suite/Text`
 - Output node: `False`
 

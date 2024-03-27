@@ -1,6 +1,6 @@
 # GroundingDinoModelLoader (segment anything)
 ## Documentation
-- Class name: `GroundingDinoModelLoader`
+- Class name: `GroundingDinoModelLoader (segment anything)`
 - Category: `segment_anything`
 - Output node: `False`
 
@@ -18,7 +18,9 @@ This node is designed to load a specific GroundingDINO model based on the provid
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `GroundingDinoSAMSegment (segment anything)`
+- Common nodes:
+    - [GroundingDinoSAMSegment (segment anything)](../../comfyui_segment_anything/Nodes/GroundingDinoSAMSegment (segment anything).md)
+
 
 
 ## Source code

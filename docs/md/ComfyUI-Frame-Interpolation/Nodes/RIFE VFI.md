@@ -1,6 +1,6 @@
 # RIFE VFI (recommend rife47 and rife49)
 ## Documentation
-- Class name: `RIFE_VFI`
+- Class name: `RIFE VFI`
 - Category: `ComfyUI-Frame-Interpolation/VFI`
 - Output node: `False`
 

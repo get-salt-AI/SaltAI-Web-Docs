@@ -1,6 +1,6 @@
 # 💊 CR Apply LoRA Stack
 ## Documentation
-- Class name: `CR_ApplyLoRAStack`
+- Class name: `CR Apply LoRA Stack`
 - Category: `🧩 Comfyroll Studio/✨ Essential/💊 LoRA`
 - Output node: `False`
 

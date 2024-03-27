@@ -30,7 +30,10 @@ The CR Pipe Switch node is designed to dynamically select between two pipeline p
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `Reroute,CR Module Input`
+- Common nodes:
+    - Reroute
+    - [CR Module Input](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Module Input.md)
+
 
 
 ## Source code

@@ -1,6 +1,6 @@
 # M2M VFI
 ## Documentation
-- Class name: `M2M_VFI`
+- Class name: `M2M VFI`
 - Category: `ComfyUI-Frame-Interpolation/VFI`
 - Output node: `False`
 

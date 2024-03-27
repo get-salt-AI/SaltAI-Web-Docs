@@ -34,7 +34,10 @@ The `Number Operation` node performs a variety of mathematical operations on two
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `UltimateSDUpscale,Display Int (rgthree)`
+- Common nodes:
+    - UltimateSDUpscale
+    - Display Int (rgthree)
+
 
 
 ## Source code

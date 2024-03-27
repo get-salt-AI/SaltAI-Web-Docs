@@ -67,7 +67,9 @@ The EditDetailerPipe node is designed to enhance and detail the editing process 
     - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `FaceDetailerPipe`
+- Common nodes:
+    - [FaceDetailerPipe](../../ComfyUI-Impact-Pack/Nodes/FaceDetailerPipe.md)
+
 
 
 ## Source code

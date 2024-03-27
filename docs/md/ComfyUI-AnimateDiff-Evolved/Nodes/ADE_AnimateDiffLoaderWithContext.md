@@ -55,7 +55,17 @@ This node is designed for loading AnimateDiff models in a legacy context, facili
     - Python dtype: `ModelPatcher`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `KSampler,FreeU_V2,KSamplerAdvanced,LoraLoaderModelOnly,LoraLoader,ToBasicPipe,IPAdapterApply,DynamicThresholdingSimple,Reroute`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [FreeU_V2](../../Comfy/Nodes/FreeU_V2.md)
+    - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
+    - [LoraLoaderModelOnly](../../Comfy/Nodes/LoraLoaderModelOnly.md)
+    - [LoraLoader](../../Comfy/Nodes/LoraLoader.md)
+    - [ToBasicPipe](../../ComfyUI-Impact-Pack/Nodes/ToBasicPipe.md)
+    - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
+    - DynamicThresholdingSimple
+    - Reroute
+
 
 
 ## Source code

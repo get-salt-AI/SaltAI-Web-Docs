@@ -1,6 +1,6 @@
 # ⚙️ CR Combine Prompt
 ## Documentation
-- Class name: `CR_CombinePrompt`
+- Class name: `CR Combine Prompt`
 - Category: `🧩 Comfyroll Studio/✨ Essential/📦 Core`
 - Output node: `False`
 

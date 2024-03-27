@@ -34,7 +34,13 @@ The VHS_SplitImages node is designed to divide a batch of images into two groups
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `SVD_img2vid_Conditioning,PreviewImage,SeargeIntegerMath,VHS_SplitImages,STMFNet VFI`
+- Common nodes:
+    - [SVD_img2vid_Conditioning](../../Comfy/Nodes/SVD_img2vid_Conditioning.md)
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+    - SeargeIntegerMath
+    - [VHS_SplitImages](../../ComfyUI-VideoHelperSuite/Nodes/VHS_SplitImages.md)
+    - [STMFNet VFI](../../ComfyUI-Frame-Interpolation/Nodes/STMFNet VFI.md)
+
 
 
 ## Source code

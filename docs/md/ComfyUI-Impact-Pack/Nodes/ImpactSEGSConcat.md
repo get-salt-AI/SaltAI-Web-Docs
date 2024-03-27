@@ -18,7 +18,9 @@ The ImpactSEGSConcat node is designed to concatenate multiple segmentation data 
     - Python dtype: `Tuple[Tuple[int, int], List[Any]]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `DetailerForEachDebugPipe`
+- Common nodes:
+    - [DetailerForEachDebugPipe](../../ComfyUI-Impact-Pack/Nodes/DetailerForEachDebugPipe.md)
+
 
 
 ## Source code

@@ -1,6 +1,6 @@
 # Debug (mtb)
 ## Documentation
-- Class name: `Debug`
+- Class name: `Debug (mtb)`
 - Category: `mtb/debug`
 - Output node: `True`
 

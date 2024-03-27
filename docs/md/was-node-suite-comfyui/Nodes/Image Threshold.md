@@ -1,6 +1,6 @@
 # Image Threshold
 ## Documentation
-- Class name: `WAS_Image_Threshold`
+- Class name: `Image Threshold`
 - Category: `WAS Suite/Image/Process`
 - Output node: `False`
 

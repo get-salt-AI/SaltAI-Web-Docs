@@ -30,7 +30,9 @@ The EmptyImage node is designed to generate blank images of specified dimensions
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `ImageCompositeMasked`
+- Common nodes:
+    - [ImageCompositeMasked](../../Comfy/Nodes/ImageCompositeMasked.md)
+
 
 
 ## Source code

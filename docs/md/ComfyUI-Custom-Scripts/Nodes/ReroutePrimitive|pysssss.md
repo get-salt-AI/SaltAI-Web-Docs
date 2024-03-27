@@ -18,7 +18,15 @@ The ReroutePrimitive node is designed to pass through any given input without mo
     - Python dtype: `Tuple[AnyType]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ImageUpscaleWithModel,CLIPTextEncodeSDXL,CLIPTextEncode,ColorCorrect,ImageCompositeMasked,ReroutePrimitive|pysssss,SaveImage`
+- Common nodes:
+    - [ImageUpscaleWithModel](../../Comfy/Nodes/ImageUpscaleWithModel.md)
+    - [CLIPTextEncodeSDXL](../../Comfy/Nodes/CLIPTextEncodeSDXL.md)
+    - [CLIPTextEncode](../../Comfy/Nodes/CLIPTextEncode.md)
+    - ColorCorrect
+    - [ImageCompositeMasked](../../Comfy/Nodes/ImageCompositeMasked.md)
+    - [ReroutePrimitive|pysssss](../../ComfyUI-Custom-Scripts/Nodes/ReroutePrimitive|pysssss.md)
+    - [SaveImage](../../Comfy/Nodes/SaveImage.md)
+
 
 
 ## Source code

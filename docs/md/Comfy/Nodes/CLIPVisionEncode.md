@@ -22,7 +22,9 @@ The CLIPVisionEncode node is designed to encode images using a CLIP vision model
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `unCLIPConditioning`
+- Common nodes:
+    - [unCLIPConditioning](../../Comfy/Nodes/unCLIPConditioning.md)
+
 
 
 ## Source code

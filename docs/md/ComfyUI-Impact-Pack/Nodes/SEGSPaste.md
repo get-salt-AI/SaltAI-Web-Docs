@@ -35,7 +35,10 @@ SEGSPaste is designed for the seamless integration of segmented elements into a 
     - Python dtype: `Image`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `VHS_VideoCombine,ImageUpscaleWithModel`
+- Common nodes:
+    - [VHS_VideoCombine](../../ComfyUI-VideoHelperSuite/Nodes/VHS_VideoCombine.md)
+    - [ImageUpscaleWithModel](../../Comfy/Nodes/ImageUpscaleWithModel.md)
+
 
 
 ## Source code

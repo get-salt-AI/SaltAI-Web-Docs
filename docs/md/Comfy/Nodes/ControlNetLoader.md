@@ -18,7 +18,13 @@ The ControlNetLoader node is designed to load a ControlNet model from a specifie
     - Python dtype: `comfy.controlnet.ControlNet`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ControlNetApplyAdvanced,ControlNetApply,ACN_AdvancedControlNetApply,Reroute,ImpactControlNetApplySEGS`
+- Common nodes:
+    - [ControlNetApplyAdvanced](../../Comfy/Nodes/ControlNetApplyAdvanced.md)
+    - [ControlNetApply](../../Comfy/Nodes/ControlNetApply.md)
+    - [ACN_AdvancedControlNetApply](../../ComfyUI-Advanced-ControlNet/Nodes/ACN_AdvancedControlNetApply.md)
+    - Reroute
+    - [ImpactControlNetApplySEGS](../../ComfyUI-Impact-Pack/Nodes/ImpactControlNetApplySEGS.md)
+
 
 
 ## Source code

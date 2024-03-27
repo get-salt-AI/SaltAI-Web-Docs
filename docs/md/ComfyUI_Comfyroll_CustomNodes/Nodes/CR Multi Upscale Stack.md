@@ -59,7 +59,9 @@ This node is designed to create a stack of upscale operations based on specified
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `CR Apply Multi Upscale`
+- Common nodes:
+    - [CR Apply Multi Upscale](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Apply Multi Upscale.md)
+
 
 
 ## Source code

@@ -47,7 +47,13 @@ The BboxDetectorSEGS node is designed to detect bounding boxes around objects wi
     - Python dtype: `List[Dict[str, Any]]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `DetailerForEach,SAMDetectorCombined,ImpactSegsAndMask,Segs & Mask,ImpactSEGSOrderedFilter`
+- Common nodes:
+    - [DetailerForEach](../../ComfyUI-Impact-Pack/Nodes/DetailerForEach.md)
+    - [SAMDetectorCombined](../../ComfyUI-Impact-Pack/Nodes/SAMDetectorCombined.md)
+    - [ImpactSegsAndMask](../../ComfyUI-Impact-Pack/Nodes/ImpactSegsAndMask.md)
+    - Segs & Mask
+    - [ImpactSEGSOrderedFilter](../../ComfyUI-Impact-Pack/Nodes/ImpactSEGSOrderedFilter.md)
+
 
 
 ## Source code

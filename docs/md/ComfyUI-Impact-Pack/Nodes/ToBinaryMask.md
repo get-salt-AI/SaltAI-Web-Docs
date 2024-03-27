@@ -22,7 +22,10 @@ The ToBinaryMask node is designed to convert a given mask into a binary mask bas
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `MaskToImage,MaskToSEGS`
+- Common nodes:
+    - [MaskToImage](../../Comfy/Nodes/MaskToImage.md)
+    - [MaskToSEGS](../../ComfyUI-Impact-Pack/Nodes/MaskToSEGS.md)
+
 
 
 ## Source code

@@ -18,7 +18,9 @@ This node is designed for converting integer values to a more general number for
     - Python dtype: `number`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `CM_NumberBinaryOperation`
+- Common nodes:
+    - [CM_NumberBinaryOperation](../../ComfyMath/Nodes/CM_NumberBinaryOperation.md)
+
 
 
 ## Source code

@@ -26,7 +26,18 @@ The ImageScaleBy node is designed for upscaling images by a specified scale fact
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `VAEEncode,RIFE VFI,VHS_VideoCombine,VAEEncodeTiled,Reroute,PreviewImage,SaveImage,SVD_img2vid_Conditioning,SEGSPreview,ImageFilterSharpen`
+- Common nodes:
+    - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
+    - [RIFE VFI](../../ComfyUI-Frame-Interpolation/Nodes/RIFE VFI.md)
+    - [VHS_VideoCombine](../../ComfyUI-VideoHelperSuite/Nodes/VHS_VideoCombine.md)
+    - [VAEEncodeTiled](../../Comfy/Nodes/VAEEncodeTiled.md)
+    - Reroute
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+    - [SaveImage](../../Comfy/Nodes/SaveImage.md)
+    - [SVD_img2vid_Conditioning](../../Comfy/Nodes/SVD_img2vid_Conditioning.md)
+    - [SEGSPreview](../../ComfyUI-Impact-Pack/Nodes/SEGSPreview.md)
+    - ImageFilterSharpen
+
 
 
 ## Source code

@@ -26,7 +26,12 @@ The GrowMask node is designed to modify the size of a given mask, either expandi
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `MaskBlur+,ImageCompositeMasked,MaskToImage,VAEEncodeForInpaint`
+- Common nodes:
+    - [MaskBlur+](../../ComfyUI_essentials/Nodes/MaskBlur+.md)
+    - [ImageCompositeMasked](../../Comfy/Nodes/ImageCompositeMasked.md)
+    - [MaskToImage](../../Comfy/Nodes/MaskToImage.md)
+    - [VAEEncodeForInpaint](../../Comfy/Nodes/VAEEncodeForInpaint.md)
+
 
 
 ## Source code

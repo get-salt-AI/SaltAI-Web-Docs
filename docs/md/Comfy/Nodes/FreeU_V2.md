@@ -34,7 +34,18 @@ The FreeU_V2 node is designed to enhance the flexibility and performance of neur
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,UltimateSDUpscale,FaceDetailer,Anything Everywhere,Reroute,PatchModelAddDownscale,KSamplerAdvanced,VideoLinearCFGGuidance,IPAdapter,UltimateSDUpscaleNoUpscale`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - UltimateSDUpscale
+    - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
+    - [Anything Everywhere](../../cg-use-everywhere/Nodes/Anything Everywhere.md)
+    - Reroute
+    - [PatchModelAddDownscale](../../Comfy/Nodes/PatchModelAddDownscale.md)
+    - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
+    - [VideoLinearCFGGuidance](../../Comfy/Nodes/VideoLinearCFGGuidance.md)
+    - IPAdapter
+    - UltimateSDUpscaleNoUpscale
+
 
 
 ## Source code

@@ -1,6 +1,6 @@
 # 🔤️ CR Draw Text
 ## Documentation
-- Class name: `CR_DrawText`
+- Class name: `CR Draw Text`
 - Category: `🧩 Comfyroll Studio/👾 Graphics/🔤 Text`
 - Output node: `False`
 

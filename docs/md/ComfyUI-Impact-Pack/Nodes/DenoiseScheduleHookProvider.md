@@ -22,7 +22,9 @@ The DenoiseScheduleHookProvider node is designed to create hooks that adjust den
     - Python dtype: `PixelKSampleHook`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `PixelKSampleUpscalerProvider`
+- Common nodes:
+    - [PixelKSampleUpscalerProvider](../../ComfyUI-Impact-Pack/Nodes/PixelKSampleUpscalerProvider.md)
+
 
 
 ## Source code

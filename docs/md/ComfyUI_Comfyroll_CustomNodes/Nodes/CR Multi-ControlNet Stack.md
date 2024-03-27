@@ -95,7 +95,11 @@ This node is designed to create a stack of ControlNet configurations, each with 
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `CR Apply Multi-ControlNet,Efficient Loader,Eff. Loader SDXL`
+- Common nodes:
+    - [CR Apply Multi-ControlNet](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Apply Multi-ControlNet.md)
+    - Efficient Loader
+    - Eff. Loader SDXL
+
 
 
 ## Source code

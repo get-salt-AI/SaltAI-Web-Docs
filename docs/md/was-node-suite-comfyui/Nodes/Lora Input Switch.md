@@ -1,6 +1,6 @@
 # Lora Input Switch
 ## Documentation
-- Class name: `WAS_Lora_Input_Switch`
+- Class name: `Lora Input Switch`
 - Category: `WAS Suite/Logic`
 - Output node: `False`
 

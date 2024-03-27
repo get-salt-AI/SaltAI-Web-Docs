@@ -26,7 +26,13 @@ The LatentUpscaleBy node is designed for upscaling latent representations of ima
     - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,Reroute,VAEDecode,KSampler (Efficient),LatentInterpolate`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - Reroute
+    - [VAEDecode](../../Comfy/Nodes/VAEDecode.md)
+    - KSampler (Efficient)
+    - [LatentInterpolate](../../Comfy/Nodes/LatentInterpolate.md)
+
 
 
 ## Source code

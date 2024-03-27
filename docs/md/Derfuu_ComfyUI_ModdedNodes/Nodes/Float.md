@@ -18,7 +18,13 @@ The Float node is designed to return a floating-point value as specified by the 
     - Python dtype: `float`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `SVD_img2vid_Conditioning,ezMath,KSampler Adv. (Efficient),Reroute,workflow/IP Adapter full bundle`
+- Common nodes:
+    - [SVD_img2vid_Conditioning](../../Comfy/Nodes/SVD_img2vid_Conditioning.md)
+    - ezMath
+    - KSampler Adv. (Efficient)
+    - Reroute
+    - workflow/IP Adapter full bundle
+
 
 
 ## Source code

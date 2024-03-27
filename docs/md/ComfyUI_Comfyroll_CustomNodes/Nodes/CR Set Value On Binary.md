@@ -1,6 +1,6 @@
 # ⚙️ CR Set Value On Binary
 ## Documentation
-- Class name: `CR_SetValueOnBinary`
+- Class name: `CR Set Value On Binary`
 - Category: `🧩 Comfyroll Studio/🛠️ Utils/🔀 Conditional`
 - Output node: `False`
 

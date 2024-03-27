@@ -18,7 +18,13 @@ Provides a constant integer value as specified by the user. This node is designe
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `SVD_img2vid_Conditioning,SetNode,ImageGrabPIL,PixelPerfectResolution,EmptyLatentImage`
+- Common nodes:
+    - [SVD_img2vid_Conditioning](../../Comfy/Nodes/SVD_img2vid_Conditioning.md)
+    - SetNode
+    - [ImageGrabPIL](../../ComfyUI-KJNodes/Nodes/ImageGrabPIL.md)
+    - PixelPerfectResolution
+    - [EmptyLatentImage](../../Comfy/Nodes/EmptyLatentImage.md)
+
 
 
 ## Source code

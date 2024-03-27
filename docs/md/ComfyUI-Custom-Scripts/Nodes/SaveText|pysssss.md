@@ -1,6 +1,6 @@
 # Save Text 🐍
 ## Documentation
-- Class name: `SaveText`
+- Class name: `SaveText|pysssss`
 - Category: `utils`
 - Output node: `False`
 

@@ -1,6 +1,6 @@
 # CR Cycle Images (Legacy)
 ## Documentation
-- Class name: `CR_CycleImages`
+- Class name: `CR Cycle Images`
 - Category: `🧩 Comfyroll Studio/🎥 Animation/💀 Legacy`
 - Output node: `False`
 

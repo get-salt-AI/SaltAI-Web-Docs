@@ -42,7 +42,10 @@ This node transforms an input image into a noise pattern, incorporating various 
     - Python dtype: `Union[List[PIL.Image], torch.Tensor]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `VAEEncode,Mute / Bypass Repeater (rgthree)`
+- Common nodes:
+    - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
+    - Mute / Bypass Repeater (rgthree)
+
 
 
 ## Source code

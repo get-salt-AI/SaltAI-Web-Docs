@@ -30,7 +30,15 @@ This node is designed for encoding images into a latent representation suitable 
     - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `VHS_DuplicateLatents,KSampler,Reroute,KSampler Adv. (Efficient),Fast Muter (rgthree),KSampler (Efficient),VAEDecode`
+- Common nodes:
+    - [VHS_DuplicateLatents](../../ComfyUI-VideoHelperSuite/Nodes/VHS_DuplicateLatents.md)
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - Reroute
+    - KSampler Adv. (Efficient)
+    - Fast Muter (rgthree)
+    - KSampler (Efficient)
+    - [VAEDecode](../../Comfy/Nodes/VAEDecode.md)
+
 
 
 ## Source code

@@ -26,7 +26,9 @@ The ConditioningAverage node is designed to blend two sets of conditioning data,
     - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `FaceFixerOpenCV`
+- Common nodes:
+    - [FaceFixerOpenCV](../../mikey_nodes/Nodes/FaceFixerOpenCV.md)
+
 
 
 ## Source code

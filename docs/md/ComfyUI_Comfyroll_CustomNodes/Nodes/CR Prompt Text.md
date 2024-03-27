@@ -22,7 +22,17 @@ This node is designed to process and return a user-defined text prompt, along wi
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `SeargePromptCombiner,PromptControlSimple,TagsSelector,CR Text Replace,CR Text Concatenate,BatchPromptSchedule,CR SDXL Base Prompt Encoder,CLIPTextEncodeSDXL,Assemble Tags`
+- Common nodes:
+    - SeargePromptCombiner
+    - PromptControlSimple
+    - TagsSelector
+    - [CR Text Replace](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Text Replace.md)
+    - [CR Text Concatenate](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Text Concatenate.md)
+    - [BatchPromptSchedule](../../ComfyUI_FizzNodes/Nodes/BatchPromptSchedule.md)
+    - [CR SDXL Base Prompt Encoder](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR SDXL Base Prompt Encoder.md)
+    - [CLIPTextEncodeSDXL](../../Comfy/Nodes/CLIPTextEncodeSDXL.md)
+    - Assemble Tags
+
 
 
 ## Source code

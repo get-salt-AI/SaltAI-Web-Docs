@@ -46,7 +46,14 @@ This node is designed to dynamically load and apply Learning Rate Annealing (LoR
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `CLIPTextEncode,KSampler,ModelSamplingDiscrete,LoraLoader,KSampler Adv. (Efficient),ToDetailerPipe`
+- Common nodes:
+    - [CLIPTextEncode](../../Comfy/Nodes/CLIPTextEncode.md)
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [ModelSamplingDiscrete](../../Comfy/Nodes/ModelSamplingDiscrete.md)
+    - [LoraLoader](../../Comfy/Nodes/LoraLoader.md)
+    - KSampler Adv. (Efficient)
+    - [ToDetailerPipe](../../ComfyUI-Impact-Pack/Nodes/ToDetailerPipe.md)
+
 
 
 ## Source code

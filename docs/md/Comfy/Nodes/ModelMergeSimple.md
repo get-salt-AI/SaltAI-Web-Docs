@@ -26,7 +26,13 @@ The ModelMergeSimple node is designed for merging two models by blending their p
     - Python dtype: `comfy.model_base.Model`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `KSampler,Anything Everywhere,CR Apply LoRA Stack,ModelMergeSimple,Reroute`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [Anything Everywhere](../../cg-use-everywhere/Nodes/Anything Everywhere.md)
+    - [CR Apply LoRA Stack](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Apply LoRA Stack.md)
+    - [ModelMergeSimple](../../Comfy/Nodes/ModelMergeSimple.md)
+    - Reroute
+
 
 
 ## Source code

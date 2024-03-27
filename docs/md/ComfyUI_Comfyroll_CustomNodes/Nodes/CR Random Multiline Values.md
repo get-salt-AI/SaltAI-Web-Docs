@@ -42,7 +42,9 @@ This node generates a multiline string composed of randomly selected characters 
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `CR Binary Pattern`
+- Common nodes:
+    - [CR Binary Pattern](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Binary Pattern.md)
+
 
 
 ## Source code

@@ -38,7 +38,9 @@ The Image Perlin Noise node generates a Perlin noise pattern, a type of gradient
     - Python dtype: `PIL.Image`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `Image Blending Mode`
+- Common nodes:
+    - [Image Blending Mode](../../was-node-suite-comfyui/Nodes/Image Blending Mode.md)
+
 
 
 ## Source code

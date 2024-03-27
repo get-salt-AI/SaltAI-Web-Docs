@@ -1,6 +1,6 @@
 # Mask To Image (mtb)
 ## Documentation
-- Class name: `Mask To Image`
+- Class name: `Mask To Image (mtb)`
 - Category: `mtb/generate`
 - Output node: `False`
 

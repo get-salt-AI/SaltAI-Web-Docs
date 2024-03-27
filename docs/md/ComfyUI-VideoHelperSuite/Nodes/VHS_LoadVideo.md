@@ -54,7 +54,18 @@ The VHS_LoadVideo node is designed for uploading and processing video files. It 
     - Python dtype: `VHS_AUDIO`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `PreviewImage,VHS_VideoCombine,VAEEncode,EmptyLatentImage,CannyEdgePreprocessor,ImageScaleToTotalPixels,ImageResize+,TilePreprocessor,LineArtPreprocessor,DWPreprocessor`
+- Common nodes:
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+    - [VHS_VideoCombine](../../ComfyUI-VideoHelperSuite/Nodes/VHS_VideoCombine.md)
+    - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
+    - [EmptyLatentImage](../../Comfy/Nodes/EmptyLatentImage.md)
+    - CannyEdgePreprocessor
+    - [ImageScaleToTotalPixels](../../Comfy/Nodes/ImageScaleToTotalPixels.md)
+    - [ImageResize+](../../ComfyUI_essentials/Nodes/ImageResize+.md)
+    - TilePreprocessor
+    - LineArtPreprocessor
+    - DWPreprocessor
+
 
 
 ## Source code

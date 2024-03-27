@@ -1,6 +1,6 @@
 # 🔢 CR Gradient Float
 ## Documentation
-- Class name: `CR_GradientFloat`
+- Class name: `CR Gradient Float`
 - Category: `🧩 Comfyroll Studio/🎥 Animation/🔢 Interpolate`
 - Output node: `False`
 

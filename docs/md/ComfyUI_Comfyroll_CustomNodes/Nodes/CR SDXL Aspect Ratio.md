@@ -58,7 +58,14 @@ This node is designed to adjust the aspect ratio of images specifically for the 
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `ImpactSwitch,EmptyLatentImage,KSampler,Anything Everywhere,Reroute (rgthree),KSamplerAdvanced`
+- Common nodes:
+    - [ImpactSwitch](../../ComfyUI-Impact-Pack/Nodes/ImpactSwitch.md)
+    - [EmptyLatentImage](../../Comfy/Nodes/EmptyLatentImage.md)
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [Anything Everywhere](../../cg-use-everywhere/Nodes/Anything Everywhere.md)
+    - Reroute (rgthree)
+    - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
+
 
 
 ## Source code

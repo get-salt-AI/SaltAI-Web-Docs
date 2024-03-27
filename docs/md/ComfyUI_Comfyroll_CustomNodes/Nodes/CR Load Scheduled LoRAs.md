@@ -1,6 +1,6 @@
 # 📑 CR Load Scheduled LoRAs
 ## Documentation
-- Class name: `CR_LoadScheduledLoRAs`
+- Class name: `CR Load Scheduled LoRAs`
 - Category: `🧩 Comfyroll Studio/🎥 Animation/📑 Schedulers`
 - Output node: `False`
 

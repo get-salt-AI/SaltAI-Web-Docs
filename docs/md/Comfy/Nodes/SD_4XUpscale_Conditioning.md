@@ -42,7 +42,9 @@ This node specializes in enhancing the resolution of images through a 4x upscale
     - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+
 
 
 ## Source code

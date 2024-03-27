@@ -1,6 +1,6 @@
 # Image Aspect Ratio
 ## Documentation
-- Class name: `WAS_Image_Aspect_Ratio`
+- Class name: `Image Aspect Ratio`
 - Category: `WAS Suite/Logic`
 - Output node: `False`
 
@@ -43,7 +43,9 @@ This node calculates the aspect ratio of an image, determining whether it is lan
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `Image Input Switch`
+- Common nodes:
+    - [Image Input Switch](../../was-node-suite-comfyui/Nodes/Image Input Switch.md)
+
 
 
 ## Source code

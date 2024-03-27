@@ -71,7 +71,18 @@ This node specializes in applying facial identification enhancements to images u
     - Python dtype: `MODEL`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler //Inspire,FreeU_V2,KSampler,Anything Everywhere,IPAdapterApply,ToIPAdapterPipe //Inspire,ToDetailerPipe,CR Apply LoRA Stack,IPAdapterApplyFaceID,FaceDetailer`
+- Common nodes:
+    - KSampler //Inspire
+    - [FreeU_V2](../../Comfy/Nodes/FreeU_V2.md)
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [Anything Everywhere](../../cg-use-everywhere/Nodes/Anything Everywhere.md)
+    - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
+    - ToIPAdapterPipe //Inspire
+    - [ToDetailerPipe](../../ComfyUI-Impact-Pack/Nodes/ToDetailerPipe.md)
+    - [CR Apply LoRA Stack](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Apply LoRA Stack.md)
+    - [IPAdapterApplyFaceID](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApplyFaceID.md)
+    - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
+
 
 
 ## Source code

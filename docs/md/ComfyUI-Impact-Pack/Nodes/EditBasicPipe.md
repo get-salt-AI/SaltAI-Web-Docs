@@ -39,7 +39,10 @@ The EditBasicPipe node is designed to modify elements of a basic pipeline config
     - Python dtype: `Tuple[torch.nn.Module, torch.nn.Module, torch.nn.Module, List[str], List[str]]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ImpactKSamplerBasicPipe,DetailerForEachDebugPipe`
+- Common nodes:
+    - [ImpactKSamplerBasicPipe](../../ComfyUI-Impact-Pack/Nodes/ImpactKSamplerBasicPipe.md)
+    - [DetailerForEachDebugPipe](../../ComfyUI-Impact-Pack/Nodes/DetailerForEachDebugPipe.md)
+
 
 
 ## Source code

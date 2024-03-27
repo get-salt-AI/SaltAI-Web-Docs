@@ -22,7 +22,15 @@ The CR Seed node is designed to provide a consistent starting point for random n
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `KSampler,FaceDetailer,CR Module Pipe Loader,Reroute,KSamplerAdvanced,KSampler SDXL (Eff.),NEW_PhotoMaker_Generation`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
+    - [CR Module Pipe Loader](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Module Pipe Loader.md)
+    - Reroute
+    - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
+    - KSampler SDXL (Eff.)
+    - NEW_PhotoMaker_Generation
+
 
 
 ## Source code

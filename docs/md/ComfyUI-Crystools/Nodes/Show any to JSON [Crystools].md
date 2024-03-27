@@ -1,6 +1,6 @@
 # 🪛 Show any to JSON
 ## Documentation
-- Class name: `CConsoleAnyToJson`
+- Class name: `Show any to JSON [Crystools]`
 - Category: `crystools 🪛/Debugger`
 - Output node: `True`
 

@@ -1,6 +1,6 @@
 # Int To Number (mtb)
 ## Documentation
-- Class name: `IntToNumber`
+- Class name: `Int To Number (mtb)`
 - Category: `mtb/number`
 - Output node: `False`
 
@@ -18,7 +18,9 @@ The IntToNumber node is designed to seamlessly convert an integer value into a n
     - Python dtype: `float`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `CM_NumberToFloat`
+- Common nodes:
+    - [CM_NumberToFloat](../../ComfyMath/Nodes/CM_NumberToFloat.md)
+
 
 
 ## Source code

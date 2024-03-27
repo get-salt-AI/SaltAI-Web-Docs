@@ -91,7 +91,9 @@ The CR Page Layout node is designed for arranging visual elements within a speci
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `CR Image Border`
+- Common nodes:
+    - [CR Image Border](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Image Border.md)
+
 
 
 ## Source code

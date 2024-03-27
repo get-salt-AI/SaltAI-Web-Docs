@@ -1,6 +1,6 @@
 # 🪛 Metadata comparator
 ## Documentation
-- Class name: `CMetadataCompare`
+- Class name: `Metadata comparator [Crystools]`
 - Category: `crystools 🪛/Metadata`
 - Output node: `True`
 

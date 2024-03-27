@@ -1,6 +1,6 @@
 # 🔢 CR Increment Float
 ## Documentation
-- Class name: `CR_IncrementFloat`
+- Class name: `CR Increment Float`
 - Category: `🧩 Comfyroll Studio/🎥 Animation/🔢 Interpolate`
 - Output node: `True`
 

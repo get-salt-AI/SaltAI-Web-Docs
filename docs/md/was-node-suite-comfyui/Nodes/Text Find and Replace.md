@@ -38,7 +38,9 @@ This node provides functionality for searching and replacing specified substring
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ShowText|pysssss`
+- Common nodes:
+    - [ShowText|pysssss](../../ComfyUI-Custom-Scripts/Nodes/ShowText|pysssss.md)
+
 
 
 ## Source code

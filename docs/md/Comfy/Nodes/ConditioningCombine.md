@@ -22,7 +22,16 @@ This node combines two conditioning inputs into a single output, effectively mer
     - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `KSampler,ConditioningCombine,KSampler Adv. (Efficient),CR Conditioning Input Switch,Attention couple,KSampler with Variations,CR Module Pipe Loader,ControlNetApplyAdvanced`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [ConditioningCombine](../../Comfy/Nodes/ConditioningCombine.md)
+    - KSampler Adv. (Efficient)
+    - [CR Conditioning Input Switch](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Conditioning Input Switch.md)
+    - Attention couple
+    - KSampler with Variations
+    - [CR Module Pipe Loader](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Module Pipe Loader.md)
+    - [ControlNetApplyAdvanced](../../Comfy/Nodes/ControlNetApplyAdvanced.md)
+
 
 
 ## Source code

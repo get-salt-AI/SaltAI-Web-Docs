@@ -42,7 +42,10 @@ This node is designed to switch between two sets of models and CLIPs based on a 
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `workflow/Input,workflow/Rescaled K Sampler`
+- Common nodes:
+    - workflow/Input
+    - workflow/Rescaled K Sampler
+
 
 
 ## Source code

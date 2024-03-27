@@ -1,6 +1,6 @@
 # Math Expression (mtb)
 ## Documentation
-- Class name: `MTB_MathExpression`
+- Class name: `Math Expression (mtb)`
 - Category: `mtb/math`
 - Output node: `False`
 

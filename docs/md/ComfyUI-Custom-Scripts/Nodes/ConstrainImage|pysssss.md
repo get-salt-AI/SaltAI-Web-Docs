@@ -1,6 +1,6 @@
 # Constrain Image 🐍
 ## Documentation
-- Class name: `ConstrainImage`
+- Class name: `ConstrainImage|pysssss`
 - Category: `image`
 - Output node: `False`
 

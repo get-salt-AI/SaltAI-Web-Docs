@@ -26,7 +26,11 @@ The Canny node is designed for edge detection in images, utilizing the Canny alg
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `ControlNetApply,PreviewImage,Reroute`
+- Common nodes:
+    - [ControlNetApply](../../Comfy/Nodes/ControlNetApply.md)
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+    - Reroute
+
 
 
 ## Source code

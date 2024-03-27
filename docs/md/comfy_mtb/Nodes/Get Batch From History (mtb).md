@@ -1,6 +1,6 @@
 # Get Batch From History (mtb)
 ## Documentation
-- Class name: `Get Batch From History`
+- Class name: `Get Batch From History (mtb)`
 - Category: `mtb/animation`
 - Output node: `False`
 

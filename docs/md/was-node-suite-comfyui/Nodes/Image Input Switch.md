@@ -26,7 +26,10 @@ This node is designed to switch between two input images based on a boolean cond
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `PreviewImage,ImageCompositeMasked`
+- Common nodes:
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+    - [ImageCompositeMasked](../../Comfy/Nodes/ImageCompositeMasked.md)
+
 
 
 ## Source code

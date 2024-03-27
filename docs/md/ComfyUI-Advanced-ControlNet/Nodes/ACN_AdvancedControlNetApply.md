@@ -63,7 +63,14 @@ This node applies advanced control networks to modify the conditioning of an ima
     - Python dtype: `List[Tuple[str, Dict]]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,SamplerCustom,ACN_AdvancedControlNetApply,ControlNetApplyAdvanced,KSampler (Efficient),ConditioningSetMask`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [SamplerCustom](../../Comfy/Nodes/SamplerCustom.md)
+    - [ACN_AdvancedControlNetApply](../../ComfyUI-Advanced-ControlNet/Nodes/ACN_AdvancedControlNetApply.md)
+    - [ControlNetApplyAdvanced](../../Comfy/Nodes/ControlNetApplyAdvanced.md)
+    - KSampler (Efficient)
+    - [ConditioningSetMask](../../Comfy/Nodes/ConditioningSetMask.md)
+
 
 
 ## Source code

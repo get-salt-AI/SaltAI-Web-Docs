@@ -1,6 +1,6 @@
 # Read Playlist (mtb)
 ## Documentation
-- Class name: `Read Playlist`
+- Class name: `Read Playlist (mtb)`
 - Category: `mtb/IO`
 - Output node: `False`
 

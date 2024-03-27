@@ -147,7 +147,18 @@ The FaceDetailerPipe node is designed to enhance facial details in images, focus
     - Python dtype: `List[torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `PreviewImage,MaskToImage,PlaySound|pysssss,Reroute,SaveImage,ReroutePrimitive|pysssss,DetailerForEachDebugPipe,DetailerPipeToBasicPipe,ImageUpscaleWithModel,FaceDetailerPipe`
+- Common nodes:
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+    - [MaskToImage](../../Comfy/Nodes/MaskToImage.md)
+    - [PlaySound|pysssss](../../ComfyUI-Custom-Scripts/Nodes/PlaySound|pysssss.md)
+    - Reroute
+    - [SaveImage](../../Comfy/Nodes/SaveImage.md)
+    - [ReroutePrimitive|pysssss](../../ComfyUI-Custom-Scripts/Nodes/ReroutePrimitive|pysssss.md)
+    - [DetailerForEachDebugPipe](../../ComfyUI-Impact-Pack/Nodes/DetailerForEachDebugPipe.md)
+    - [DetailerPipeToBasicPipe](../../ComfyUI-Impact-Pack/Nodes/DetailerPipeToBasicPipe.md)
+    - [ImageUpscaleWithModel](../../Comfy/Nodes/ImageUpscaleWithModel.md)
+    - [FaceDetailerPipe](../../ComfyUI-Impact-Pack/Nodes/FaceDetailerPipe.md)
+
 
 
 ## Source code

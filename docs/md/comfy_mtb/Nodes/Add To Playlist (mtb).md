@@ -1,6 +1,6 @@
 # Add To Playlist (mtb)
 ## Documentation
-- Class name: `Add To Playlist`
+- Class name: `Add To Playlist (mtb)`
 - Category: `mtb/IO`
 - Output node: `True`
 

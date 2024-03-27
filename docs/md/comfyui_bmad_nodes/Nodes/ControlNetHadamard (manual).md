@@ -1,6 +1,6 @@
 # ControlNetHadamard (manual)
 ## Documentation
-- Class name: `ControlNetHadamard`
+- Class name: `ControlNetHadamard (manual)`
 - Category: `Bmad/conditioning`
 - Output node: `False`
 

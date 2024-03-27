@@ -30,7 +30,11 @@ This node is designed to blend two images together using a variety of blending m
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `PreviewImage,VAEEncode,Image Blending Mode`
+- Common nodes:
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+    - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
+    - [Image Blending Mode](../../was-node-suite-comfyui/Nodes/Image Blending Mode.md)
+
 
 
 ## Source code

@@ -35,7 +35,10 @@ This node applies a control network to segmentation data (SEGS), adjusting the s
     - Python dtype: `Tuple[Tuple[Any, List[SEG]]]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `DetailerForEachDebugPipe,ImpactControlNetApplySEGS`
+- Common nodes:
+    - [DetailerForEachDebugPipe](../../ComfyUI-Impact-Pack/Nodes/DetailerForEachDebugPipe.md)
+    - [ImpactControlNetApplySEGS](../../ComfyUI-Impact-Pack/Nodes/ImpactControlNetApplySEGS.md)
+
 
 
 ## Source code

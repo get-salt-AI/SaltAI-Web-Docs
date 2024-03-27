@@ -1,6 +1,6 @@
 # Int To Bool (mtb)
 ## Documentation
-- Class name: `IntToBool`
+- Class name: `Int To Bool (mtb)`
 - Category: `mtb/number`
 - Output node: `False`
 
@@ -18,7 +18,9 @@ The IntToBool node provides a straightforward conversion from an integer value t
     - Python dtype: `bool`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ReActorFaceSwap`
+- Common nodes:
+    - ReActorFaceSwap
+
 
 
 ## Source code

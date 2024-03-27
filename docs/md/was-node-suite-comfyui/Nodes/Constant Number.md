@@ -1,6 +1,6 @@
 # Constant Number
 ## Documentation
-- Class name: `WAS_Constant_Number`
+- Class name: `Constant Number`
 - Category: `WAS Suite/Number`
 - Output node: `False`
 
@@ -35,7 +35,9 @@ This node is designed to process numerical inputs and convert them based on spec
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `Number Operation`
+- Common nodes:
+    - [Number Operation](../../was-node-suite-comfyui/Nodes/Number Operation.md)
+
 
 
 ## Source code

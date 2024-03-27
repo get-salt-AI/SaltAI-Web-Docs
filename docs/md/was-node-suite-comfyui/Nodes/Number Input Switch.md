@@ -1,6 +1,6 @@
 # Number Input Switch
 ## Documentation
-- Class name: `WAS_Number_Input_Switch`
+- Class name: `Number Input Switch`
 - Category: `WAS Suite/Logic`
 - Output node: `False`
 

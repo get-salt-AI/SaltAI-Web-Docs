@@ -71,7 +71,10 @@ The CR LoRA Stack node is designed to create and manage a stack of LoRA (Low-Ran
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `CR Apply LoRA Stack,CR LoRA Stack`
+- Common nodes:
+    - [CR Apply LoRA Stack](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Apply LoRA Stack.md)
+    - [CR LoRA Stack](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR LoRA Stack.md)
+
 
 
 ## Source code

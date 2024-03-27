@@ -1,6 +1,6 @@
 # Face Swap (mtb)
 ## Documentation
-- Class name: `Face Swap`
+- Class name: `Face Swap (mtb)`
 - Category: `mtb/facetools`
 - Output node: `False`
 

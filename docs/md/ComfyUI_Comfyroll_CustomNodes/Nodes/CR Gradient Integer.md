@@ -1,6 +1,6 @@
 # 🔢 CR Gradient Integer
 ## Documentation
-- Class name: `CR_GradientInteger`
+- Class name: `CR Gradient Integer`
 - Category: `🧩 Comfyroll Studio/🎥 Animation/🔢 Interpolate`
 - Output node: `False`
 

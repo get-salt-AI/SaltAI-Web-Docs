@@ -63,7 +63,13 @@ The BatchPromptSchedule node is designed to process animation prompts in batches
     - Python dtype: `object`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `ControlNetApplyAdvanced,KSampler,Prompts Everywhere,ACN_AdvancedControlNetApply,LinearBatchCreativeInterpolation`
+- Common nodes:
+    - [ControlNetApplyAdvanced](../../Comfy/Nodes/ControlNetApplyAdvanced.md)
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [Prompts Everywhere](../../cg-use-everywhere/Nodes/Prompts Everywhere.md)
+    - [ACN_AdvancedControlNetApply](../../ComfyUI-Advanced-ControlNet/Nodes/ACN_AdvancedControlNetApply.md)
+    - LinearBatchCreativeInterpolation
+
 
 
 ## Source code

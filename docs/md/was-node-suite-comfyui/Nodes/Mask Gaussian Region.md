@@ -22,7 +22,11 @@ This node applies a Gaussian blur to specified regions within given masks, effec
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `VAEEncodeForInpaint,MaskToSEGS,MaskToImage`
+- Common nodes:
+    - [VAEEncodeForInpaint](../../Comfy/Nodes/VAEEncodeForInpaint.md)
+    - [MaskToSEGS](../../ComfyUI-Impact-Pack/Nodes/MaskToSEGS.md)
+    - [MaskToImage](../../Comfy/Nodes/MaskToImage.md)
+
 
 
 ## Source code

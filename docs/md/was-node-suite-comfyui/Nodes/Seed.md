@@ -1,6 +1,6 @@
 # Seed
 ## Documentation
-- Class name: `WAS_Seed`
+- Class name: `Seed`
 - Category: `WAS Suite/Number`
 - Output node: `False`
 
@@ -30,7 +30,9 @@ The WAS_Seed node initializes a seed value for random number generation, providi
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `KSampler SDXL (Eff.)`
+- Common nodes:
+    - KSampler SDXL (Eff.)
+
 
 
 ## Source code

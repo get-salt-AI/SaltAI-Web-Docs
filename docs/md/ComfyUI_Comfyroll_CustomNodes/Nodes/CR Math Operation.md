@@ -1,6 +1,6 @@
 # ⚙️ CR Math Operation
 ## Documentation
-- Class name: `CR_MathOperation`
+- Class name: `CR Math Operation`
 - Category: `🧩 Comfyroll Studio/🛠️ Utils/⚙️ Other`
 - Output node: `False`
 

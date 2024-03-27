@@ -1,6 +1,6 @@
 # 🟢 CR Draw Pie
 ## Documentation
-- Class name: `CR_DrawPie`
+- Class name: `CR Draw Pie`
 - Category: `🧩 Comfyroll Studio/👾 Graphics/🟣 Shape`
 - Output node: `False`
 

@@ -1,6 +1,6 @@
 # 🎲 CR Random RGB Gradient
 ## Documentation
-- Class name: `CR_RandomRGBGradient`
+- Class name: `CR Random RGB Gradient`
 - Category: `🧩 Comfyroll Studio/🛠️ Utils/🎲 Random`
 - Output node: `False`
 

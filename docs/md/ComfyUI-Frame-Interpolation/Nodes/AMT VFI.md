@@ -1,6 +1,6 @@
 # AMT VFI
 ## Documentation
-- Class name: `AMT_VFI`
+- Class name: `AMT VFI`
 - Category: `ComfyUI-Frame-Interpolation/VFI`
 - Output node: `False`
 

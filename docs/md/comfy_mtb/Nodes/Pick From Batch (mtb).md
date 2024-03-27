@@ -1,6 +1,6 @@
 # Pick From Batch (mtb)
 ## Documentation
-- Class name: `Pick From Batch`
+- Class name: `Pick From Batch (mtb)`
 - Category: `mtb/image utils`
 - Output node: `False`
 

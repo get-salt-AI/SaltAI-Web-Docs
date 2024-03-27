@@ -46,7 +46,11 @@ The ImageResize+ node is designed for resizing images to specified dimensions, o
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `SetNode,SVD_img2vid_Conditioning,PrepImageForClipVision`
+- Common nodes:
+    - SetNode
+    - [SVD_img2vid_Conditioning](../../Comfy/Nodes/SVD_img2vid_Conditioning.md)
+    - [PrepImageForClipVision](../../ComfyUI_IPAdapter_plus/Nodes/PrepImageForClipVision.md)
+
 
 
 ## Source code

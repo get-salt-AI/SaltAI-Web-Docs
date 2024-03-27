@@ -34,7 +34,15 @@ The ToBasicPipe node is designed to aggregate essential components for a generat
     - Python dtype: `Tuple[object, object, object, object, object]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `FromBasicPipe,ImpactKSamplerBasicPipe,Reroute,DetailerForEachDebugPipe,DetailerForEachPipeForAnimateDiff,SEGSDetailerForAnimateDiff,PixelKSampleUpscalerProviderPipe`
+- Common nodes:
+    - [FromBasicPipe](../../ComfyUI-Impact-Pack/Nodes/FromBasicPipe.md)
+    - [ImpactKSamplerBasicPipe](../../ComfyUI-Impact-Pack/Nodes/ImpactKSamplerBasicPipe.md)
+    - Reroute
+    - [DetailerForEachDebugPipe](../../ComfyUI-Impact-Pack/Nodes/DetailerForEachDebugPipe.md)
+    - [DetailerForEachPipeForAnimateDiff](../../ComfyUI-Impact-Pack/Nodes/DetailerForEachPipeForAnimateDiff.md)
+    - [SEGSDetailerForAnimateDiff](../../ComfyUI-Impact-Pack/Nodes/SEGSDetailerForAnimateDiff.md)
+    - [PixelKSampleUpscalerProviderPipe](../../ComfyUI-Impact-Pack/Nodes/PixelKSampleUpscalerProviderPipe.md)
+
 
 
 ## Source code

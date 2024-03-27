@@ -1,6 +1,6 @@
 # RemapFromQuadrilateral (homography)
 ## Documentation
-- Class name: `RemapFromQuadrilateral`
+- Class name: `RemapFromQuadrilateral (homography)`
 - Category: `Bmad/CV/Transform`
 - Output node: `False`
 

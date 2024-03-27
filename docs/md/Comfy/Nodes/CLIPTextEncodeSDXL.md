@@ -50,7 +50,18 @@ This node is designed to encode text inputs using the CLIP model specifically ta
     - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,KSamplerAdvanced,ControlNetApplyAdvanced,Reroute,ToBasicPipe,KSampler (Efficient),Prompts Everywhere,ACN_AdvancedControlNetApply,FaceDetailer,KRestartSamplerAdv`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
+    - [ControlNetApplyAdvanced](../../Comfy/Nodes/ControlNetApplyAdvanced.md)
+    - Reroute
+    - [ToBasicPipe](../../ComfyUI-Impact-Pack/Nodes/ToBasicPipe.md)
+    - KSampler (Efficient)
+    - [Prompts Everywhere](../../cg-use-everywhere/Nodes/Prompts Everywhere.md)
+    - [ACN_AdvancedControlNetApply](../../ComfyUI-Advanced-ControlNet/Nodes/ACN_AdvancedControlNetApply.md)
+    - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
+    - KRestartSamplerAdv
+
 
 
 ## Source code

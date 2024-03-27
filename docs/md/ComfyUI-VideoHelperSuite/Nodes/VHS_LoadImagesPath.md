@@ -39,7 +39,12 @@ This node is designed for loading images from a specified directory path. It sup
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ImpactImageBatchToImageList,PreviewImage,IPAdapterEncoder,LinearBatchCreativeInterpolation`
+- Common nodes:
+    - [ImpactImageBatchToImageList](../../ComfyUI-Impact-Pack/Nodes/ImpactImageBatchToImageList.md)
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+    - [IPAdapterEncoder](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterEncoder.md)
+    - LinearBatchCreativeInterpolation
+
 
 
 ## Source code

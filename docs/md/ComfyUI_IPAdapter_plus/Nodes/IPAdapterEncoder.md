@@ -59,7 +59,9 @@ The IPAdapterEncoder node is designed to encode images using the IPAdapter mecha
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `IPAdapterApplyEncoded`
+- Common nodes:
+    - [IPAdapterApplyEncoded](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApplyEncoded.md)
+
 
 
 ## Source code

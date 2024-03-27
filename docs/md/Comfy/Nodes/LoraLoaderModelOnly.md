@@ -26,7 +26,13 @@ This node specializes in loading a LoRA model without requiring a CLIP model, fo
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `IPAdapterApplyFaceID,LoraLoaderModelOnly,KSampler,FreeU_V2,UltimateSDUpscale`
+- Common nodes:
+    - [IPAdapterApplyFaceID](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApplyFaceID.md)
+    - [LoraLoaderModelOnly](../../Comfy/Nodes/LoraLoaderModelOnly.md)
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [FreeU_V2](../../Comfy/Nodes/FreeU_V2.md)
+    - UltimateSDUpscale
+
 
 
 ## Source code

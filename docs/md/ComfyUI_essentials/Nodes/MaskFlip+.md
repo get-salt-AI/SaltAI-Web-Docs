@@ -1,6 +1,6 @@
 # 🔧 Mask Flip
 ## Documentation
-- Class name: `MaskFlip`
+- Class name: `MaskFlip+`
 - Category: `essentials`
 - Output node: `False`
 

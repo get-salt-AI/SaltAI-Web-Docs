@@ -75,7 +75,9 @@ This node serves as a provider for pixel-wise K-sample upscaling, facilitating t
     - Python dtype: `unknown`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `IterativeLatentUpscale`
+- Common nodes:
+    - [IterativeLatentUpscale](../../ComfyUI-Impact-Pack/Nodes/IterativeLatentUpscale.md)
+
 
 
 ## Source code

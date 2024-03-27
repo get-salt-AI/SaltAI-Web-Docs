@@ -34,7 +34,11 @@ This node specializes in combining two mask inputs through a variety of operatio
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ToBinaryMask,LatentCompositeMasked,MaskToImage`
+- Common nodes:
+    - [ToBinaryMask](../../ComfyUI-Impact-Pack/Nodes/ToBinaryMask.md)
+    - [LatentCompositeMasked](../../Comfy/Nodes/LatentCompositeMasked.md)
+    - [MaskToImage](../../Comfy/Nodes/MaskToImage.md)
+
 
 
 ## Source code

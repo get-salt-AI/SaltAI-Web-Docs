@@ -1,6 +1,6 @@
 # Repeater 🐍
 ## Documentation
-- Class name: `Repeater`
+- Class name: `Repeater|pysssss`
 - Category: `utils`
 - Output node: `False`
 

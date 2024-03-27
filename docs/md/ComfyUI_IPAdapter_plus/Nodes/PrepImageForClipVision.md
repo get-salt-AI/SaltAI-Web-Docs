@@ -30,7 +30,18 @@ The PrepImageForClipVision node is designed to prepare images for processing by 
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `IDGenerationNode,IPAdapterApply,AIO_Preprocessor,ImageBatch,CLIPVisionEncode,PrepImageForInsightFace,SetNode,IPAdapterApplyFaceID,PreviewImage,IPAdapterEncoder`
+- Common nodes:
+    - IDGenerationNode
+    - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
+    - AIO_Preprocessor
+    - [ImageBatch](../../Comfy/Nodes/ImageBatch.md)
+    - [CLIPVisionEncode](../../Comfy/Nodes/CLIPVisionEncode.md)
+    - [PrepImageForInsightFace](../../ComfyUI_IPAdapter_plus/Nodes/PrepImageForInsightFace.md)
+    - SetNode
+    - [IPAdapterApplyFaceID](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApplyFaceID.md)
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+    - [IPAdapterEncoder](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterEncoder.md)
+
 
 
 ## Source code

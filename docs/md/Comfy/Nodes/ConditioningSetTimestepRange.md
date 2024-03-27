@@ -26,7 +26,9 @@ This node is designed to adjust the temporal aspect of conditioning by setting a
     - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `CR Conditioning Mixer`
+- Common nodes:
+    - [CR Conditioning Mixer](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Conditioning Mixer.md)
+
 
 
 ## Source code

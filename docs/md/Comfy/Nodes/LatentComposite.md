@@ -34,7 +34,10 @@ The LatentComposite node is designed to blend or merge two latent representation
     - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `LatentComposite,KSampler`
+- Common nodes:
+    - [LatentComposite](../../Comfy/Nodes/LatentComposite.md)
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+
 
 
 ## Source code

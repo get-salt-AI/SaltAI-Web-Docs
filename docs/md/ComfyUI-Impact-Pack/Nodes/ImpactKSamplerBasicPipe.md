@@ -54,7 +54,12 @@ This node is designed for sampling operations within a basic pipeline, utilizing
     - Python dtype: `VAE`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `VAEDecode,Reroute,ImpactKSamplerBasicPipe,VAEEncode`
+- Common nodes:
+    - [VAEDecode](../../Comfy/Nodes/VAEDecode.md)
+    - Reroute
+    - [ImpactKSamplerBasicPipe](../../ComfyUI-Impact-Pack/Nodes/ImpactKSamplerBasicPipe.md)
+    - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
+
 
 
 ## Source code

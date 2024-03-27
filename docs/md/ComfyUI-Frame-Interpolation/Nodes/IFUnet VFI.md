@@ -1,6 +1,6 @@
 # IFUnet VFI
 ## Documentation
-- Class name: `IFUnet_VFI`
+- Class name: `IFUnet VFI`
 - Category: `ComfyUI-Frame-Interpolation/VFI`
 - Output node: `False`
 

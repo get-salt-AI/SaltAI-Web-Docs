@@ -46,7 +46,13 @@ The PatchModelAddDownscale node is designed to modify a given model by introduci
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,KRestartSamplerAdv,ModelSamplingDiscrete,LoraLoader,IPAdapterApply`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - KRestartSamplerAdv
+    - [ModelSamplingDiscrete](../../Comfy/Nodes/ModelSamplingDiscrete.md)
+    - [LoraLoader](../../Comfy/Nodes/LoraLoader.md)
+    - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
+
 
 
 ## Source code

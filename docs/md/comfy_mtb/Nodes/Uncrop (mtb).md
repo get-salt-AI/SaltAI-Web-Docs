@@ -1,6 +1,6 @@
 # Uncrop (mtb)
 ## Documentation
-- Class name: `Uncrop`
+- Class name: `Uncrop (mtb)`
 - Category: `mtb/crop`
 - Output node: `False`
 

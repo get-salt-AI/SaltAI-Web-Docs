@@ -1,6 +1,6 @@
 # ⚙️ CR VAE Decode
 ## Documentation
-- Class name: `CR_VAEDecode`
+- Class name: `CR VAE Decode`
 - Category: `🧩 Comfyroll Studio/✨ Essential/📦 Core`
 - Output node: `False`
 

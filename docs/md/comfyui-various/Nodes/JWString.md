@@ -1,6 +1,6 @@
 # String
 ## Documentation
-- Class name: `JWStringListToFormatedString`
+- Class name: `JWString`
 - Category: `jamesWalker55`
 - Output node: `False`
 

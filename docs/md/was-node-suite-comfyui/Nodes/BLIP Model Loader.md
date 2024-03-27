@@ -18,7 +18,9 @@ The BLIP Model Loader node is designed to dynamically load and initialize BLIP m
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `BLIP Analyze Image`
+- Common nodes:
+    - [BLIP Analyze Image](../../was-node-suite-comfyui/Nodes/BLIP Analyze Image.md)
+
 
 
 ## Source code

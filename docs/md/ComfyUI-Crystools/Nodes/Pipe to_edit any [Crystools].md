@@ -1,6 +1,6 @@
 # 🪛 Pipe to/edit any
 ## Documentation
-- Class name: `Pipe to/edit any [Crystools]`
+- Class name: `Pipe to_edit any [Crystools]`
 - Category: `crystools 🪛/Pipe`
 - Output node: `False`
 

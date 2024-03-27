@@ -127,7 +127,12 @@ The node 'DetailerForEachDebugPipe' is designed to facilitate debugging within t
     - Python dtype: `unknown`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `PreviewImage,Reroute,UltimateSDUpscale,FromBasicPipe`
+- Common nodes:
+    - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
+    - Reroute
+    - UltimateSDUpscale
+    - [FromBasicPipe](../../ComfyUI-Impact-Pack/Nodes/FromBasicPipe.md)
+
 
 
 ## Source code

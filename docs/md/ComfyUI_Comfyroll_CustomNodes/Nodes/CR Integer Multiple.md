@@ -1,6 +1,6 @@
 # ⚙️ CR Integer Multiple
 ## Documentation
-- Class name: `CR_IntegerMultipleOf`
+- Class name: `CR Integer Multiple`
 - Category: `🧩 Comfyroll Studio/🛠️ Utils/⚙️ Other`
 - Output node: `False`
 

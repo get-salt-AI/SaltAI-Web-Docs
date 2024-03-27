@@ -1,6 +1,6 @@
 # Bbox From Mask (mtb)
 ## Documentation
-- Class name: `Bbox From Mask`
+- Class name: `Bbox From Mask (mtb)`
 - Category: `mtb/crop`
 - Output node: `False`
 

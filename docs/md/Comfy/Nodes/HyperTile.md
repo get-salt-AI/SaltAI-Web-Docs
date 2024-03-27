@@ -34,7 +34,10 @@ The HyperTile node is designed to enhance the processing of image data by dynami
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `PatchModelAddDownscale,FreeU_V2`
+- Common nodes:
+    - [PatchModelAddDownscale](../../Comfy/Nodes/PatchModelAddDownscale.md)
+    - [FreeU_V2](../../Comfy/Nodes/FreeU_V2.md)
+
 
 
 ## Source code

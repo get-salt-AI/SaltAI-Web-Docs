@@ -1,6 +1,6 @@
 # 🔧 CR Float To Integer
 ## Documentation
-- Class name: `CR_FloatToInteger`
+- Class name: `CR Float To Integer`
 - Category: `🧩 Comfyroll Studio/🛠️ Utils/🔧 Conversion`
 - Output node: `False`
 

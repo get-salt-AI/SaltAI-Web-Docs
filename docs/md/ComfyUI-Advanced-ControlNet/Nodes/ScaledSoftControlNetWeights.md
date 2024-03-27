@@ -26,7 +26,9 @@ This node specializes in adjusting the control net weights based on a base multi
     - Python dtype: `TimestepKeyframeGroup`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ControlNetLoaderAdvanced`
+- Common nodes:
+    - [ControlNetLoaderAdvanced](../../ComfyUI-Advanced-ControlNet/Nodes/ControlNetLoaderAdvanced.md)
+
 
 
 ## Source code

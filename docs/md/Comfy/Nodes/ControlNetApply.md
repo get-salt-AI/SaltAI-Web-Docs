@@ -30,7 +30,18 @@ This node applies a control network to a given image and conditioning, adjusting
     - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `KSampler,Reroute,ConditioningSetArea,UltimateSDUpscale,KSampler Adv. (Efficient),ttN pipeKSampler,YDetailer,ToBasicPipe,ToDetailerPipe,ControlNetApply`
+- Common nodes:
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - Reroute
+    - [ConditioningSetArea](../../Comfy/Nodes/ConditioningSetArea.md)
+    - UltimateSDUpscale
+    - KSampler Adv. (Efficient)
+    - ttN pipeKSampler
+    - YDetailer
+    - [ToBasicPipe](../../ComfyUI-Impact-Pack/Nodes/ToBasicPipe.md)
+    - [ToDetailerPipe](../../ComfyUI-Impact-Pack/Nodes/ToDetailerPipe.md)
+    - [ControlNetApply](../../Comfy/Nodes/ControlNetApply.md)
+
 
 
 ## Source code

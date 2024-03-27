@@ -1,6 +1,6 @@
 # Batch Merge (mtb)
 ## Documentation
-- Class name: `Batch Merge`
+- Class name: `Batch Merge (mtb)`
 - Category: `mtb/batch`
 - Output node: `False`
 

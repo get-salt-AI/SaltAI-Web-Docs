@@ -67,7 +67,11 @@ This node is designed to handle the scheduling of latent inputs based on a batch
     - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `ConditioningCombine,KSampler,KSampler Adv. (Efficient)`
+- Common nodes:
+    - [ConditioningCombine](../../Comfy/Nodes/ConditioningCombine.md)
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - KSampler Adv. (Efficient)
+
 
 
 ## Source code

@@ -26,7 +26,10 @@ This node specializes in merging two CLIP models based on a specified ratio, eff
     - Python dtype: `comfy.model_base.Model`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `CR Apply LoRA Stack,CLIPSetLastLayer`
+- Common nodes:
+    - [CR Apply LoRA Stack](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Apply LoRA Stack.md)
+    - [CLIPSetLastLayer](../../Comfy/Nodes/CLIPSetLastLayer.md)
+
 
 
 ## Source code

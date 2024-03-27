@@ -1,6 +1,6 @@
 # Text List Concatenate
 ## Documentation
-- Class name: `WAS_Text_List_Concatenate`
+- Class name: `Text List Concatenate`
 - Category: `WAS Suite/Text`
 - Output node: `False`
 

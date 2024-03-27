@@ -67,7 +67,9 @@ This node is designed to facilitate the creation of simple meme templates, allow
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ImpactMakeImageBatch`
+- Common nodes:
+    - [ImpactMakeImageBatch](../../ComfyUI-Impact-Pack/Nodes/ImpactMakeImageBatch.md)
+
 
 
 ## Source code

@@ -30,7 +30,12 @@ The ImageBlend node is designed to blend two images together based on a specifie
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `ImageCombine,Image Aspect Ratio,ImageSender,Mute / Bypass Repeater (rgthree)`
+- Common nodes:
+    - ImageCombine
+    - [Image Aspect Ratio](../../was-node-suite-comfyui/Nodes/Image Aspect Ratio.md)
+    - [ImageSender](../../ComfyUI-Impact-Pack/Nodes/ImageSender.md)
+    - Mute / Bypass Repeater (rgthree)
+
 
 
 ## Source code

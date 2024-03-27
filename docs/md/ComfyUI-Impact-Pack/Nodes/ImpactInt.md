@@ -18,7 +18,9 @@ The ImpactInt node is designed to process integer values within a specified rang
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `ImpactSwitch`
+- Common nodes:
+    - [ImpactSwitch](../../ComfyUI-Impact-Pack/Nodes/ImpactSwitch.md)
+
 
 
 ## Source code

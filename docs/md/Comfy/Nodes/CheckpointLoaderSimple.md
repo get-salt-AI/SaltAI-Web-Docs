@@ -26,7 +26,17 @@ The CheckpointLoaderSimple node is designed for loading model checkpoints withou
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes: `CLIPTextEncode,VAEDecode,LoraLoader,CLIPSetLastLayer,Reroute,CR Apply LoRA Stack,VAEEncode,KSampler,UltimateSDUpscale`
+- Common nodes:
+    - [CLIPTextEncode](../../Comfy/Nodes/CLIPTextEncode.md)
+    - [VAEDecode](../../Comfy/Nodes/VAEDecode.md)
+    - [LoraLoader](../../Comfy/Nodes/LoraLoader.md)
+    - [CLIPSetLastLayer](../../Comfy/Nodes/CLIPSetLastLayer.md)
+    - Reroute
+    - [CR Apply LoRA Stack](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Apply LoRA Stack.md)
+    - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - UltimateSDUpscale
+
 
 
 ## Source code

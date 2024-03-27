@@ -18,7 +18,10 @@ The KSamplerSelect node is designed to select a specific sampler based on the pr
     - Python dtype: `comfy.samplers.Sampler`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `SamplerCustom,Reroute`
+- Common nodes:
+    - [SamplerCustom](../../Comfy/Nodes/SamplerCustom.md)
+    - Reroute
+
 
 
 ## Source code

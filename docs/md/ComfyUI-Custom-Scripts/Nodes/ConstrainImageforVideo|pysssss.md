@@ -1,6 +1,6 @@
 # Constrain Image for Video 🐍
 ## Documentation
-- Class name: `ConstrainImageforVideo`
+- Class name: `ConstrainImageforVideo|pysssss`
 - Category: `image`
 - Output node: `False`
 

@@ -20,7 +20,13 @@ The ShowText node is designed to display text within a workflow, optionally upda
     - The UI representation of the text to be displayed.
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: `Text Concatenate,Efficient Loader,CLIPTextEncode,CR Image Output,SavePromptToFile`
+- Common nodes:
+    - [Text Concatenate](../../was-node-suite-comfyui/Nodes/Text Concatenate.md)
+    - Efficient Loader
+    - [CLIPTextEncode](../../Comfy/Nodes/CLIPTextEncode.md)
+    - [CR Image Output](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Image Output.md)
+    - SavePromptToFile
+
 
 
 ## Source code

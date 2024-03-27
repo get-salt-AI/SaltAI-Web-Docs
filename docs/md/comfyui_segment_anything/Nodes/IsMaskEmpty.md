@@ -1,6 +1,6 @@
 # IsMaskEmpty
 ## Documentation
-- Class name: `IsMaskEmptyNode`
+- Class name: `IsMaskEmpty`
 - Category: `segment_anything`
 - Output node: `False`
 

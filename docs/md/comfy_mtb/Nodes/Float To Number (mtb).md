@@ -1,6 +1,6 @@
 # Float To Number (mtb)
 ## Documentation
-- Class name: `Float To Number`
+- Class name: `Float To Number (mtb)`
 - Category: `mtb/number`
 - Output node: `False`
 

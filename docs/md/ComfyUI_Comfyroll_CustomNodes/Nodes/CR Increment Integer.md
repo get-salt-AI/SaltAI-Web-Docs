@@ -1,6 +1,6 @@
 # 🔢 CR Increment Integer
 ## Documentation
-- Class name: `CR_IncrementInteger`
+- Class name: `CR Increment Integer`
 - Category: `🧩 Comfyroll Studio/🎥 Animation/🔢 Interpolate`
 - Output node: `True`
 
