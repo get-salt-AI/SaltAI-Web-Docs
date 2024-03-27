@@ -148,7 +148,7 @@ Transform Image (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056
 Animation Builder (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
 Image Remove Background Rembg (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
 Save Gif (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
-Export With Ffmpeg (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Export With Ffmpeg (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,True
 Add To Playlist (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
 Read Playlist (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
 Face Swap (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
@@ -175,7 +175,7 @@ Math Expression (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056
 Float To Number (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
 Int To Bool (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
 Int To Number (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
-Curve (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Curve (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,True
 Color Correct (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
 Image Compare (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
 Image Tile Offset (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
@@ -184,17 +184,17 @@ Mask To Image (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2
 Colored Image (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
 Image Premultiply (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
 Image Resize Factor (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
-Save Image Grid (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
-Load Image From Url (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Save Image Grid (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,True
+Load Image From Url (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,True
 Sharpen (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
-Model Patch Seamless (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Model Patch Seamless (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,True
 Vae Decode (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
 Bbox From Mask (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
 Bbox (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
 Crop (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
 Uncrop (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
 Batch Float (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
-Batch Transform (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
+Batch Transform (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,True
 Batch Shape (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
 Batch Make (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
 Batch Float Assemble (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
@@ -202,37 +202,37 @@ Batch Float Fill (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c330105
 Batch Merge (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
 Batch Shake (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
 Plot Batch Float (mtb),comfy_mtb,https://github.com/melMass/comfy_mtb,501c3301056b2851555cccd75ab3ff15b1ab8e0c,False
-Lerp,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-SinWave,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-InvSinWave,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-CosWave,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-InvCosWave,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-SquareWave,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-SawtoothWave,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-TriangleWave,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-AbsCosWave,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-AbsSinWave,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-PromptSchedule,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-ValueSchedule,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-PromptScheduleNodeFlow,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-PromptScheduleNodeFlowEnd,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-PromptScheduleEncodeSDXL,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-StringSchedule,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-BatchPromptSchedule,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-BatchValueSchedule,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-BatchPromptScheduleEncodeSDXL,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-BatchStringSchedule,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-BatchValueScheduleLatentInput,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-BatchPromptScheduleSDXLLatentInput,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-BatchPromptScheduleLatentInput,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-ImageBatchFromValueSchedule,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-StringConcatenate,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-Init FizzFrame,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-FizzFrame,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-FizzFrameConcatenate,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-ConcatStringSingle,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-convertKeyframeKeysToBatchKeys,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
-CalculateFrameOffset,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,False
+Lerp,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+SinWave,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+InvSinWave,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+CosWave,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+InvCosWave,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+SquareWave,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+SawtoothWave,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+TriangleWave,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+AbsCosWave,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+AbsSinWave,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+PromptSchedule,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+ValueSchedule,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+PromptScheduleNodeFlow,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+PromptScheduleNodeFlowEnd,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+PromptScheduleEncodeSDXL,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+StringSchedule,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+BatchPromptSchedule,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+BatchValueSchedule,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+BatchPromptScheduleEncodeSDXL,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+BatchStringSchedule,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+BatchValueScheduleLatentInput,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+BatchPromptScheduleSDXLLatentInput,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+BatchPromptScheduleLatentInput,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+ImageBatchFromValueSchedule,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+StringConcatenate,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+Init FizzFrame,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+FizzFrame,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+FizzFrameConcatenate,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+ConcatStringSingle,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+convertKeyframeKeysToBatchKeys,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
+CalculateFrameOffset,ComfyUI_FizzNodes,https://github.com/FizzleDorf/ComfyUI_FizzNodes,d32d37cf9576cd1c902df30da07fa47d726c2fbe,True
 CreateRequestMetadata,comfyui_bmad_nodes,https://github.com/bmad4ever/comfyui_bmad_nodes,2fbf9004dccb9135adc36f5575c3aa5701dac2bf,True
 SetRequestStateToComplete,comfyui_bmad_nodes,https://github.com/bmad4ever/comfyui_bmad_nodes,2fbf9004dccb9135adc36f5575c3aa5701dac2bf,True
 Save Image (api),comfyui_bmad_nodes,https://github.com/bmad4ever/comfyui_bmad_nodes,2fbf9004dccb9135adc36f5575c3aa5701dac2bf,False
@@ -641,65 +641,65 @@ CM_Vec4ToScalarBinaryOperation,ComfyMath,https://github.com/evanspearman/ComfyMa
 CM_Vec4ScalarOperation,ComfyMath,https://github.com/evanspearman/ComfyMath,be9beab9923ccf5c5e4132dc1653bcdfa773ed70,True
 CM_SDXLResolution,ComfyMath,https://github.com/evanspearman/ComfyMath,be9beab9923ccf5c5e4132dc1653bcdfa773ed70,True
 CM_NearestSDXLResolution,ComfyMath,https://github.com/evanspearman/ComfyMath,be9beab9923ccf5c5e4132dc1653bcdfa773ed70,True
-INTConstant,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-FloatConstant,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-ConditioningMultiCombine,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-ConditioningSetMaskAndCombine,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-ConditioningSetMaskAndCombine3,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-ConditioningSetMaskAndCombine4,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-ConditioningSetMaskAndCombine5,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-GrowMaskWithBlur,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-ColorToMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-CreateGradientMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-CreateTextMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-CreateAudioMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-CreateFadeMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-CreateFadeMaskAdvanced,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-CreateFluidMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-VRAM_Debug,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-SomethingToString,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-CrossFadeImages,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-EmptyLatentImagePresets,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-ColorMatch,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-GetImageRangeFromBatch,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-SaveImageWithAlpha,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-ReverseImageBatch,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-ImageGridComposite2x2,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-ImageGridComposite3x3,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-ImageConcanate,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-ImageBatchTestPattern,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-ReplaceImagesInBatch,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-BatchCropFromMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-BatchCropFromMaskAdvanced,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-FilterZeroMasksAndCorrespondingImages,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-InsertImageBatchByIndexes,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-BatchUncrop,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-BatchUncropAdvanced,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-BatchCLIPSeg,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-RoundMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-ResizeMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-OffsetMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-WidgetToString,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-CreateShapeMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-CreateVoronoiMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-CreateMagicMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-BboxToInt,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-SplitBboxes,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-ImageGrabPIL,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-DummyLatentOut,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-NormalizeLatent,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-FlipSigmasAdjusted,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-InjectNoiseToLatent,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-AddLabel,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-ReferenceOnlySimple3,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-SoundReactive,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-GenerateNoise,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-StableZero123_BatchSchedule,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-GetImagesFromBatchIndexed,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-ImageBatchRepeatInterleaving,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-NormalizedAmplitudeToMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-OffsetMaskByNormalizedAmplitude,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
-ImageTransformByNormalizedAmplitude,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,False
+INTConstant,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+FloatConstant,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+ConditioningMultiCombine,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+ConditioningSetMaskAndCombine,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+ConditioningSetMaskAndCombine3,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+ConditioningSetMaskAndCombine4,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+ConditioningSetMaskAndCombine5,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+GrowMaskWithBlur,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+ColorToMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+CreateGradientMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+CreateTextMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+CreateAudioMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+CreateFadeMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+CreateFadeMaskAdvanced,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+CreateFluidMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+VRAM_Debug,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+SomethingToString,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+CrossFadeImages,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+EmptyLatentImagePresets,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+ColorMatch,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+GetImageRangeFromBatch,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+SaveImageWithAlpha,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+ReverseImageBatch,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+ImageGridComposite2x2,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+ImageGridComposite3x3,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+ImageConcanate,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+ImageBatchTestPattern,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+ReplaceImagesInBatch,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+BatchCropFromMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+BatchCropFromMaskAdvanced,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+FilterZeroMasksAndCorrespondingImages,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+InsertImageBatchByIndexes,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+BatchUncrop,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+BatchUncropAdvanced,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+BatchCLIPSeg,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+RoundMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+ResizeMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+OffsetMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+WidgetToString,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+CreateShapeMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+CreateVoronoiMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+CreateMagicMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+BboxToInt,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+SplitBboxes,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+ImageGrabPIL,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+DummyLatentOut,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+NormalizeLatent,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+FlipSigmasAdjusted,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+InjectNoiseToLatent,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+AddLabel,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+ReferenceOnlySimple3,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+SoundReactive,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+GenerateNoise,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+StableZero123_BatchSchedule,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+GetImagesFromBatchIndexed,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+ImageBatchRepeatInterleaving,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+NormalizedAmplitudeToMask,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+OffsetMaskByNormalizedAmplitude,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
+ImageTransformByNormalizedAmplitude,ComfyUI-KJNodes,https://github.com/kijai/ComfyUI-KJNodes.git,e227539a2a6dd938d069e8eef827c5e6ffa2afeb,True
 SAMLoader,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171,True
 CLIPSegDetectorProvider,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171,True
 ONNXDetectorProvider,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171,True
@@ -861,55 +861,55 @@ ImpactRemoteInt,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-P
 ImpactHFTransformersClassifierProvider,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171,True
 ImpactSEGSClassify,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171,True
 UltralyticsDetectorProvider,ComfyUI-Impact-Pack,https://github.com/ltdrdata/ComfyUI-Impact-Pack.git,cc7812bcfe3b9f8fbb2559f2c9ad62768110f171,True
-SeamlessTile,ComfyUI-seamless-tiling,https://github.com/spinagon/ComfyUI-seamless-tiling.git,8dd3a2ddc5f11386fe11db99d9c691c2be9da3a3,False
-CircularVAEDecode,ComfyUI-seamless-tiling,https://github.com/spinagon/ComfyUI-seamless-tiling.git,8dd3a2ddc5f11386fe11db99d9c691c2be9da3a3,False
-MakeCircularVAE,ComfyUI-seamless-tiling,https://github.com/spinagon/ComfyUI-seamless-tiling.git,8dd3a2ddc5f11386fe11db99d9c691c2be9da3a3,False
-OffsetImage,ComfyUI-seamless-tiling,https://github.com/spinagon/ComfyUI-seamless-tiling.git,8dd3a2ddc5f11386fe11db99d9c691c2be9da3a3,False
-ImageDirIterator,ComfyUI_cspnodes,https://github.com/cerspense/ComfyUI_cspnodes,9b60341a095eefd66b4bb24c5f0a2c41771cf66a,False
-Modelscopet2v,ComfyUI_cspnodes,https://github.com/cerspense/ComfyUI_cspnodes,9b60341a095eefd66b4bb24c5f0a2c41771cf66a,False
-Modelscopev2v,ComfyUI_cspnodes,https://github.com/cerspense/ComfyUI_cspnodes,9b60341a095eefd66b4bb24c5f0a2c41771cf66a,False
+SeamlessTile,ComfyUI-seamless-tiling,https://github.com/spinagon/ComfyUI-seamless-tiling.git,8dd3a2ddc5f11386fe11db99d9c691c2be9da3a3,True
+CircularVAEDecode,ComfyUI-seamless-tiling,https://github.com/spinagon/ComfyUI-seamless-tiling.git,8dd3a2ddc5f11386fe11db99d9c691c2be9da3a3,True
+MakeCircularVAE,ComfyUI-seamless-tiling,https://github.com/spinagon/ComfyUI-seamless-tiling.git,8dd3a2ddc5f11386fe11db99d9c691c2be9da3a3,True
+OffsetImage,ComfyUI-seamless-tiling,https://github.com/spinagon/ComfyUI-seamless-tiling.git,8dd3a2ddc5f11386fe11db99d9c691c2be9da3a3,True
+ImageDirIterator,ComfyUI_cspnodes,https://github.com/cerspense/ComfyUI_cspnodes,9b60341a095eefd66b4bb24c5f0a2c41771cf66a,True
+Modelscopet2v,ComfyUI_cspnodes,https://github.com/cerspense/ComfyUI_cspnodes,9b60341a095eefd66b4bb24c5f0a2c41771cf66a,True
+Modelscopev2v,ComfyUI_cspnodes,https://github.com/cerspense/ComfyUI_cspnodes,9b60341a095eefd66b4bb24c5f0a2c41771cf66a,True
 Seed Everywhere,cg-use-everywhere,https://github.com/chrisgoringe/cg-use-everywhere,b4a3d003b8653d24e3441e4419f27b3676da76f3,False
 Anything Everywhere,cg-use-everywhere,https://github.com/chrisgoringe/cg-use-everywhere,b4a3d003b8653d24e3441e4419f27b3676da76f3,False
 Anything Everywhere3,cg-use-everywhere,https://github.com/chrisgoringe/cg-use-everywhere,b4a3d003b8653d24e3441e4419f27b3676da76f3,False
 Anything Everywhere?,cg-use-everywhere,https://github.com/chrisgoringe/cg-use-everywhere,b4a3d003b8653d24e3441e4419f27b3676da76f3,False
 Prompts Everywhere,cg-use-everywhere,https://github.com/chrisgoringe/cg-use-everywhere,b4a3d003b8653d24e3441e4419f27b3676da76f3,False
 Simple String,cg-use-everywhere,https://github.com/chrisgoringe/cg-use-everywhere,b4a3d003b8653d24e3441e4419f27b3676da76f3,False
-Float,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Integer,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Text,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Text box,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Float debug print,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Int debug print,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Tuple debug print,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-String debug print,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Random,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Tuple,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Int to tuple,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Tuple to floats,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Tuple to ints,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Tuple swap,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Tuple multiply,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Int to float,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Ceil,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Floor,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Absolute value,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Get latent size,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
+Float,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Integer,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Text,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Text box,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Float debug print,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Int debug print,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Tuple debug print,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+String debug print,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Random,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Tuple,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Int to tuple,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Tuple to floats,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Tuple to ints,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Tuple swap,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Tuple multiply,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Int to float,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Ceil,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Floor,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Absolute value,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Get latent size,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
 Get image size,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Sum,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Subtract,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Multiply,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Divide,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Power,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Square root,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Sinus,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Cosines,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Tangent,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Latent Scale by ratio,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Latent Scale to side,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Image scale by ratio,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Image scale to side,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-Conditioning area scale by ratio,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
-ConditioningSetArea with tuples,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
+Sum,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Subtract,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Multiply,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Divide,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Power,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Square root,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Sinus,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Cosines,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Tangent,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Latent Scale by ratio,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Latent Scale to side,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Image scale by ratio,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Image scale to side,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+Conditioning area scale by ratio,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
+ConditioningSetArea with tuples,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,True
 LatentComposite with tuples,Derfuu_ComfyUI_ModdedNodes,https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git,2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4,False
 PLRAGSimple,rag_blocks,https://gitlab.com/plai-app/ai-studio/orchestra-nodes/rag_blocks.git,06601bbaa895406b9e2532ba435d9e824b0b7101,False
 PLRAGNodeHelper,rag_blocks,https://gitlab.com/plai-app/ai-studio/orchestra-nodes/rag_blocks.git,06601bbaa895406b9e2532ba435d9e824b0b7101,False
@@ -946,53 +946,53 @@ GroundingDinoModelLoader (segment anything),comfyui_segment_anything,https://git
 GroundingDinoSAMSegment (segment anything),comfyui_segment_anything,https://github.com/storyicon/comfyui_segment_anything.git,681d977c2cc244de729fd9e08145ff365c609262,False
 InvertMask (segment anything),comfyui_segment_anything,https://github.com/storyicon/comfyui_segment_anything.git,681d977c2cc244de729fd9e08145ff365c609262,False
 IsMaskEmpty,comfyui_segment_anything,https://github.com/storyicon/comfyui_segment_anything.git,681d977c2cc244de729fd9e08145ff365c609262,False
-GetImageSize+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
-ImageResize+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
-ImageCrop+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
-ImageFlip+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
-ImageDesaturate+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
-ImagePosterize+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
-ImageCASharpening+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
-ImageSeamCarving+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
-ImageEnhanceDifference+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
-ImageExpandBatch+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
-ImageFromBatch+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
+GetImageSize+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,True
+ImageResize+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,True
+ImageCrop+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,True
+ImageFlip+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,True
+ImageDesaturate+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,True
+ImagePosterize+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,True
+ImageCASharpening+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,True
+ImageSeamCarving+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,True
+ImageEnhanceDifference+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,True
+ImageExpandBatch+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,True
+ImageFromBatch+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,True
 ImageCompositeFromMaskBatch+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
-ExtractKeyframes+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
-ImageApplyLUT+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
+ExtractKeyframes+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,True
+ImageApplyLUT+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,True
 MaskBlur+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
 MaskFlip+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
 MaskPreview+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
-MaskBatch+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
+MaskBatch+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,True
 MaskExpandBatch+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
 TransitionMask+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
 MaskFromColor+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
 MaskFromBatch+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
-SimpleMath+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
+SimpleMath+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,True
 ConsoleDebug+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
 DebugTensorShape+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
 ModelCompile+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
-BatchCount+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
+BatchCount+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,True
 KSamplerVariationsStochastic+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
 KSamplerVariationsWithNoise+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
-CLIPTextEncodeSDXL+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
-SDXLEmptyLatentSizePicker+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
-DrawText+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
-RemBGSession+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
-ImageRemoveBackground+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
+CLIPTextEncodeSDXL+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,True
+SDXLEmptyLatentSizePicker+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,True
+DrawText+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,True
+RemBGSession+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,True
+ImageRemoveBackground+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,True
 RemoveLatentMask+,ComfyUI_essentials,https://github.com/cubiq/ComfyUI_essentials,702ecc5bafff85dd329d5920558235d81ed45996,False
-KSampler Gradually Adding More Denoise (efficient),ComfyUI-Frame-Interpolation,https://github.com/Fannovel16/ComfyUI-Frame-Interpolation,9318f4cb0644f419fdd6e6705dbf07304b0b043f,False
-GMFSS Fortuna VFI,ComfyUI-Frame-Interpolation,https://github.com/Fannovel16/ComfyUI-Frame-Interpolation,9318f4cb0644f419fdd6e6705dbf07304b0b043f,False
+KSampler Gradually Adding More Denoise (efficient),ComfyUI-Frame-Interpolation,https://github.com/Fannovel16/ComfyUI-Frame-Interpolation,9318f4cb0644f419fdd6e6705dbf07304b0b043f,True
+GMFSS Fortuna VFI,ComfyUI-Frame-Interpolation,https://github.com/Fannovel16/ComfyUI-Frame-Interpolation,9318f4cb0644f419fdd6e6705dbf07304b0b043f,True
 IFRNet VFI,ComfyUI-Frame-Interpolation,https://github.com/Fannovel16/ComfyUI-Frame-Interpolation,9318f4cb0644f419fdd6e6705dbf07304b0b043f,False
 IFUnet VFI,ComfyUI-Frame-Interpolation,https://github.com/Fannovel16/ComfyUI-Frame-Interpolation,9318f4cb0644f419fdd6e6705dbf07304b0b043f,False
 M2M VFI,ComfyUI-Frame-Interpolation,https://github.com/Fannovel16/ComfyUI-Frame-Interpolation,9318f4cb0644f419fdd6e6705dbf07304b0b043f,False
 RIFE VFI,ComfyUI-Frame-Interpolation,https://github.com/Fannovel16/ComfyUI-Frame-Interpolation,9318f4cb0644f419fdd6e6705dbf07304b0b043f,False
-Sepconv VFI,ComfyUI-Frame-Interpolation,https://github.com/Fannovel16/ComfyUI-Frame-Interpolation,9318f4cb0644f419fdd6e6705dbf07304b0b043f,False
+Sepconv VFI,ComfyUI-Frame-Interpolation,https://github.com/Fannovel16/ComfyUI-Frame-Interpolation,9318f4cb0644f419fdd6e6705dbf07304b0b043f,True
 AMT VFI,ComfyUI-Frame-Interpolation,https://github.com/Fannovel16/ComfyUI-Frame-Interpolation,9318f4cb0644f419fdd6e6705dbf07304b0b043f,False
 FILM VFI,ComfyUI-Frame-Interpolation,https://github.com/Fannovel16/ComfyUI-Frame-Interpolation,9318f4cb0644f419fdd6e6705dbf07304b0b043f,False
-Make Interpolation State List,ComfyUI-Frame-Interpolation,https://github.com/Fannovel16/ComfyUI-Frame-Interpolation,9318f4cb0644f419fdd6e6705dbf07304b0b043f,False
-STMFNet VFI,ComfyUI-Frame-Interpolation,https://github.com/Fannovel16/ComfyUI-Frame-Interpolation,9318f4cb0644f419fdd6e6705dbf07304b0b043f,False
-FLAVR VFI,ComfyUI-Frame-Interpolation,https://github.com/Fannovel16/ComfyUI-Frame-Interpolation,9318f4cb0644f419fdd6e6705dbf07304b0b043f,False
+Make Interpolation State List,ComfyUI-Frame-Interpolation,https://github.com/Fannovel16/ComfyUI-Frame-Interpolation,9318f4cb0644f419fdd6e6705dbf07304b0b043f,True
+STMFNet VFI,ComfyUI-Frame-Interpolation,https://github.com/Fannovel16/ComfyUI-Frame-Interpolation,9318f4cb0644f419fdd6e6705dbf07304b0b043f,True
+FLAVR VFI,ComfyUI-Frame-Interpolation,https://github.com/Fannovel16/ComfyUI-Frame-Interpolation,9318f4cb0644f419fdd6e6705dbf07304b0b043f,True
 CAIN VFI,ComfyUI-Frame-Interpolation,https://github.com/Fannovel16/ComfyUI-Frame-Interpolation,9318f4cb0644f419fdd6e6705dbf07304b0b043f,False
 IPAdapterModelLoader,ComfyUI_IPAdapter_plus,https://github.com/cubiq/ComfyUI_IPAdapter_plus,46241f3ba5401f076f8d90c2aa85f2194910e1a9,True
 IPAdapterApply,ComfyUI_IPAdapter_plus,https://github.com/cubiq/ComfyUI_IPAdapter_plus,46241f3ba5401f076f8d90c2aa85f2194910e1a9,True
@@ -1006,67 +1006,67 @@ IPAdapterBatchEmbeds,ComfyUI_IPAdapter_plus,https://github.com/cubiq/ComfyUI_IPA
 InsightFaceLoader,ComfyUI_IPAdapter_plus,https://github.com/cubiq/ComfyUI_IPAdapter_plus,46241f3ba5401f076f8d90c2aa85f2194910e1a9,True
 PrepImageForInsightFace,ComfyUI_IPAdapter_plus,https://github.com/cubiq/ComfyUI_IPAdapter_plus,46241f3ba5401f076f8d90c2aa85f2194910e1a9,True
 PNG_Save,SavePNG,unknown,unknown,True
-JWImageLoadRGB,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWImageLoadRGBA,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWLoadImagesFromString,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWImageSaveToPath,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWImageExtractFromBatch,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWImageBatchCount,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWImageResize,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWImageFlip,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWMaskResize,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWMaskLikeImageSize,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWImageResizeToSquare,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWImageResizeByFactor,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWImageResizeByShorterSide,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWImageResizeByLongerSide,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWInteger,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWIntegerToFloat,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWIntegerToString,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWIntegerAdd,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWIntegerSub,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWIntegerMul,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWIntegerDiv,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWIntegerAbsolute,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWIntegerMin,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWIntegerMax,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWFloat,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWFloatToInteger,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWFloatToString,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWFloatAdd,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWFloatSub,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWFloatMul,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWFloatDiv,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWFloatAbsolute,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWFloatMin,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWFloatMax,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
+JWImageLoadRGB,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWImageLoadRGBA,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWLoadImagesFromString,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWImageSaveToPath,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWImageExtractFromBatch,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWImageBatchCount,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWImageResize,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWImageFlip,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWMaskResize,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWMaskLikeImageSize,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWImageResizeToSquare,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWImageResizeByFactor,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWImageResizeByShorterSide,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWImageResizeByLongerSide,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWInteger,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWIntegerToFloat,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWIntegerToString,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWIntegerAdd,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWIntegerSub,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWIntegerMul,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWIntegerDiv,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWIntegerAbsolute,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWIntegerMin,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWIntegerMax,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWFloat,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWFloatToInteger,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWFloatToString,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWFloatAdd,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWFloatSub,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWFloatMul,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWFloatDiv,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWFloatAbsolute,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWFloatMin,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWFloatMax,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
 JWString,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWStringToInteger,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWStringToFloat,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWStringMultiline,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWStringConcat,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWStringReplace,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWStringSplit,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWStringGetLine,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWStringUnescape,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-RAFTEstimate,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-RAFTFlowToImage,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-RAFTLoadFlowFromEXRChannels,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWImageStackChannels,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWImageMix,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWImageContrast,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWImageSaturation,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWImageLevels,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWDatetimeString,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWLoadImageSequence,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWLoadImageSequenceWithStopIndex,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWImageSequenceExtractFromBatch,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWSaveImageSequence,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWLoopImageSequence,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWMaskSequenceFromMask,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWMaskSequenceJoin,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWMaskSequenceApplyToLatent,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
-JWImageLoadRGBIfExists,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,False
+JWStringToInteger,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWStringToFloat,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWStringMultiline,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWStringConcat,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWStringReplace,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWStringSplit,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWStringGetLine,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWStringUnescape,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+RAFTEstimate,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+RAFTFlowToImage,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+RAFTLoadFlowFromEXRChannels,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWImageStackChannels,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWImageMix,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWImageContrast,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWImageSaturation,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWImageLevels,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWDatetimeString,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWLoadImageSequence,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWLoadImageSequenceWithStopIndex,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWImageSequenceExtractFromBatch,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWSaveImageSequence,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWLoopImageSequence,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWMaskSequenceFromMask,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWMaskSequenceJoin,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWMaskSequenceApplyToLatent,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
+JWImageLoadRGBIfExists,comfyui-various,https://github.com/jamesWalker55/comfyui-various,9e43419df54910de5b6fd365fe93a5f9ba3416f5,True
 PlaiFlowPlayerAppInfo,plaiflowplayer_blocks,https://gitlab.com/plai-app/ai-studio/orchestra-nodes/plaiflowplayer_blocks,ce26a8d5c7aeae5f698ecf02b3010482f1dd191b,False
 PlaiFlowPlayerAppFooter,plaiflowplayer_blocks,https://gitlab.com/plai-app/ai-studio/orchestra-nodes/plaiflowplayer_blocks,ce26a8d5c7aeae5f698ecf02b3010482f1dd191b,False
 PlaiFlowPlayerInput,plaiflowplayer_blocks,https://gitlab.com/plai-app/ai-studio/orchestra-nodes/plaiflowplayer_blocks,ce26a8d5c7aeae5f698ecf02b3010482f1dd191b,False
@@ -1097,42 +1097,42 @@ Convert Color Space,masquerade-nodes-comfyui,https://github.com/BadCafeCode/masq
 MasqueradeIncrementer,masquerade-nodes-comfyui,https://github.com/BadCafeCode/masquerade-nodes-comfyui,240209bc2574bcbe67ff4271100112b61b269b05,False
 ConstrainImageforVideo|pysssss,ComfyUI-Custom-Scripts,https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git,51c138378eeb6c57a0c2cae9cee7ccbfc550f08a,False
 StringFunction|pysssss,ComfyUI-Custom-Scripts,https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git,51c138378eeb6c57a0c2cae9cee7ccbfc550f08a,False
-LoraLoader|pysssss,ComfyUI-Custom-Scripts,https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git,51c138378eeb6c57a0c2cae9cee7ccbfc550f08a,False
-CheckpointLoader|pysssss,ComfyUI-Custom-Scripts,https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git,51c138378eeb6c57a0c2cae9cee7ccbfc550f08a,False
-ShowText|pysssss,ComfyUI-Custom-Scripts,https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git,51c138378eeb6c57a0c2cae9cee7ccbfc550f08a,False
+LoraLoader|pysssss,ComfyUI-Custom-Scripts,https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git,51c138378eeb6c57a0c2cae9cee7ccbfc550f08a,True
+CheckpointLoader|pysssss,ComfyUI-Custom-Scripts,https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git,51c138378eeb6c57a0c2cae9cee7ccbfc550f08a,True
+ShowText|pysssss,ComfyUI-Custom-Scripts,https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git,51c138378eeb6c57a0c2cae9cee7ccbfc550f08a,True
 ConstrainImage|pysssss,ComfyUI-Custom-Scripts,https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git,51c138378eeb6c57a0c2cae9cee7ccbfc550f08a,False
 MathExpression|pysssss,ComfyUI-Custom-Scripts,https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git,51c138378eeb6c57a0c2cae9cee7ccbfc550f08a,False
-PlaySound|pysssss,ComfyUI-Custom-Scripts,https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git,51c138378eeb6c57a0c2cae9cee7ccbfc550f08a,False
-ReroutePrimitive|pysssss,ComfyUI-Custom-Scripts,https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git,51c138378eeb6c57a0c2cae9cee7ccbfc550f08a,False
-LoadText|pysssss,ComfyUI-Custom-Scripts,https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git,51c138378eeb6c57a0c2cae9cee7ccbfc550f08a,False
+PlaySound|pysssss,ComfyUI-Custom-Scripts,https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git,51c138378eeb6c57a0c2cae9cee7ccbfc550f08a,True
+ReroutePrimitive|pysssss,ComfyUI-Custom-Scripts,https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git,51c138378eeb6c57a0c2cae9cee7ccbfc550f08a,True
+LoadText|pysssss,ComfyUI-Custom-Scripts,https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git,51c138378eeb6c57a0c2cae9cee7ccbfc550f08a,True
 SaveText|pysssss,ComfyUI-Custom-Scripts,https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git,51c138378eeb6c57a0c2cae9cee7ccbfc550f08a,False
 Repeater|pysssss,ComfyUI-Custom-Scripts,https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git,51c138378eeb6c57a0c2cae9cee7ccbfc550f08a,False
-Primitive boolean [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
-Primitive string [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
-Primitive string multiline [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
-Primitive integer [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
-Primitive float [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
-Show any [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Primitive boolean [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,True
+Primitive string [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,True
+Primitive string multiline [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,True
+Primitive integer [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,True
+Primitive float [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,True
+Show any [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,True
 Show any to JSON [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
-List of any [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
-List of strings [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
-Switch any [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+List of any [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,True
+List of strings [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,True
+Switch any [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,True
 Switch latent [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
 Switch conditioning [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
-Switch image [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
-Switch mask [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
-Switch string [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Switch image [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,True
+Switch mask [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,True
+Switch string [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,True
 Pipe to_edit any [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
-Pipe from any [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
-Load image with metadata [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
-Get resolution [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
-Preview from image [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
-Preview from metadata [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
-Save image with extra metadata [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
-Metadata extractor [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Pipe from any [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,True
+Load image with metadata [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,True
+Get resolution [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,True
+Preview from image [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,True
+Preview from metadata [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,True
+Save image with extra metadata [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,True
+Metadata extractor [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,True
 Metadata comparator [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
-Json comparator [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
-Stats system [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,False
+Json comparator [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,True
+Stats system [Crystools],ComfyUI-Crystools,https://github.com/crystian/ComfyUI-Crystools,8c257748b98f59357ac20cebd4b4b67c0a9e53fe,True
 BNK_CLIPTextEncodeAdvanced,ComfyUI_ADV_CLIP_emb,https://github.com/BlenderNeko/ComfyUI_ADV_CLIP_emb.git,c8b14087afab8efae22fce098b742f01cce22947,True
 BNK_CLIPTextEncodeSDXLAdvanced,ComfyUI_ADV_CLIP_emb,https://github.com/BlenderNeko/ComfyUI_ADV_CLIP_emb.git,c8b14087afab8efae22fce098b742f01cce22947,True
 BNK_AddCLIPSDXLParams,ComfyUI_ADV_CLIP_emb,https://github.com/BlenderNeko/ComfyUI_ADV_CLIP_emb.git,c8b14087afab8efae22fce098b742f01cce22947,True
@@ -1681,4 +1681,4 @@ PixelPerfectResolution,comfyui_controlnet_aux,https://github.com/Fannovel16/comf
 ImageGenResolutionFromImage,comfyui_controlnet_aux,https://github.com/Fannovel16/comfyui_controlnet_aux,420e1c6e103fee3a93fde00b850efb9ece4a5da1,False
 ImageGenResolutionFromLatent,comfyui_controlnet_aux,https://github.com/Fannovel16/comfyui_controlnet_aux,420e1c6e103fee3a93fde00b850efb9ece4a5da1,False
 HintImageEnchance,comfyui_controlnet_aux,https://github.com/Fannovel16/comfyui_controlnet_aux,420e1c6e103fee3a93fde00b850efb9ece4a5da1,False
-Automatic CFG,ComfyUI-AutomaticCFG,https://github.com/Extraltodeus/ComfyUI-AutomaticCFG,df6edfdebb159823977fea0d7006e86f030e0aec,False
+Automatic CFG,ComfyUI-AutomaticCFG,https://github.com/Extraltodeus/ComfyUI-AutomaticCFG,df6edfdebb159823977fea0d7006e86f030e0aec,True
