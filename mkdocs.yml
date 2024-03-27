@@ -1,4 +1,4 @@
-site_name: Salt AI Documentation
+site_name: Salt Documentation
 nav:
   - Getting Started: index.md
   - Platform Resources: resources.md
@@ -1942,7 +1942,7 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/get-salt-AI
-      name: Salt AI Github
+      name: Salt Github
     - icon: fontawesome/brands/discord
       link: https://discord.gg/saltai
-      name: Salt AI Discord
+      name: Salt Discord
