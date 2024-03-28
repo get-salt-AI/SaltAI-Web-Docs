@@ -1,16 +1,16 @@
-# Welcome to Salt AI Docs
+# Welcome to Salt Docs
 
-## How to deploy your ComfyUI Workflow to Discord in minutes with SaltAI 
+## How to deploy your ComfyUI Workflow to Discord in minutes with Salt
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/0IntF6SkwJc?si=si51CZixlNhHZYxa" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-# How to deploy your ComfyUI workflow to Discord with Salt AI
+# How to deploy your ComfyUI workflow to Discord with Salt
 
-This guide walks you through deploying your ComfyUI workflow to Discord using Salt AI, enabling you to run and share it in any Discord server. Please note that the Salt AI platform is in early alpha, so you may encounter bugs, and certain operations like loading times could be slower than expected. You can share feedback and get help in our Discord server here: [https://discord.gg/saltai](https://discord.gg/saltai)
+This guide walks you through deploying your ComfyUI workflow to Discord using Salt, enabling you to run and share it in any Discord server. Please note that the Salt platform is in early alpha, so you may encounter bugs, and certain operations like loading times could be slower than expected. You can share feedback and get help in our Discord server here: [https://discord.gg/saltai](https://discord.gg/saltai)
 
 ## Initial Setup
 
-### Logging Into Salt AI
+### Logging Into Salt
 
 - First, head to https://getsalt.ai and sign in or create your account.
 - After logging in, click on the “Machines” tab in the top navigation bar.
@@ -64,27 +64,27 @@ This guide walks you through deploying your ComfyUI workflow to Discord using Sa
     ![Screenshot 6](images/screenshot6.png)
 
     
-3. Once your workflow has been deployed successfully in ComfyUI, click “View here” to see it in the “Workflows” tab of Salt AI.
+3. Once your workflow has been deployed successfully in ComfyUI, click “View here” to see it in the “Workflows” tab of Salt.
     
     ![Screenshot 7](images/screenshot7.png)
 
 
 ### Discord Deployment Submission
 
-- Your workflow requires manual approval by the Salt team before it becomes accessible through the Salt AI Discord bot. Once approved, it’s ready for use.
+- Your workflow requires manual approval by the Salt team before it becomes accessible through the Salt Discord bot. Once approved, it’s ready for use.
 
 ## Executing Your Workflow on Discord
 
-### Adding the Salt AI bot
+### Adding the Salt bot
 
-1. [**Click here**](https://discord.com/oauth2/authorize?client_id=1113909066587185274&scope=bot&permissions=2147605568) to add the Salt AI bot to any server where you have the required permissions
+1. [**Click here**](https://discord.com/oauth2/authorize?client_id=1113909066587185274&scope=bot&permissions=2147605568) to add the Salt bot to any server where you have the required permissions
     
     ![Screenshot 8](images/screenshot8.png)
 
 
 ### Running Workflows
 
-1. In any Discord with the Salt AI bot added, use the `/workflows` command and hit enter to open up the bot modal. 
+1. In any Discord with the Salt bot added, use the `/workflows` command and hit enter to open up the bot modal. 
 2. Select “Browse Workflows”, then “New Workflows” —> “Select a recent workflow”. Find your workflow and click “Play” to enter your prompt and run. Based on the type of workflow, you can use text or image to generate your output. 
     
     ![Screenshot 9](images/screenshot9.png)
@@ -93,10 +93,10 @@ This guide walks you through deploying your ComfyUI workflow to Discord using Sa
 
     1. You can also choose “Set default” to make your workflow the default option when others in the server use the /workflows or /play commands.
 
-### Showcasing your workflows in the Salt AI catalog
+### Showcasing your workflows in the Salt catalog
 
-1. To share your workflow with the Salt team and others in the community, first [**join the Salt AI Discord**](https://discord.gg/saltai) and complete onboarding.
-2. Then, head to the [**#flow-catalog**](https://discord.gg/FcbmPDf3E7) channel and follow the example template to share your workflow. Be sure to run it using the Salt AI bot in a comment below and pin the comment, so others can easily grab and run it themselves.
+1. To share your workflow with the Salt team and others in the community, first [**join the Salt Discord**](https://discord.gg/saltai) and complete onboarding.
+2. Then, head to the [**#flow-catalog**](https://discord.gg/FcbmPDf3E7) channel and follow the example template to share your workflow. Be sure to run it using the Salt bot in a comment below and pin the comment, so others can easily grab and run it themselves.
 
 <aside>
 💡 Note: Your workflow can handle a variety of inputs and outputs for
@@ -106,4 +106,4 @@ comprehensive customization. You can expose 5 inputs and 1 output.
 
 ## Need Help?
 
-- This guide is based on the early alpha version of Salt AI. Should you run into any issues or have questions, get in touch with our team via the #support channel in Discord!
+- This guide is based on the early alpha version of Salt. Should you run into any issues or have questions, get in touch with our team via the #support channel in Discord!
