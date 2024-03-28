@@ -22,7 +22,7 @@ Provides a constant integer value as specified by the user. This node is designe
     - [SVD_img2vid_Conditioning](../../Comfy/Nodes/SVD_img2vid_Conditioning.md)
     - SetNode
     - [ImageGrabPIL](../../ComfyUI-KJNodes/Nodes/ImageGrabPIL.md)
-    - PixelPerfectResolution
+    - [PixelPerfectResolution](../../comfyui_controlnet_aux/Nodes/PixelPerfectResolution.md)
     - [EmptyLatentImage](../../Comfy/Nodes/EmptyLatentImage.md)
 
 

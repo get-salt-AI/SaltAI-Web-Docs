@@ -52,9 +52,9 @@ The ImageCrop+ node is designed for cropping images to a specified width and hei
     - SetNode
     - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
     - Reroute
-    - DWPreprocessor
-    - LineArtPreprocessor
-    - MiDaS-DepthMapPreprocessor
+    - [DWPreprocessor](../../comfyui_controlnet_aux/Nodes/DWPreprocessor.md)
+    - [LineArtPreprocessor](../../comfyui_controlnet_aux/Nodes/LineArtPreprocessor.md)
+    - [MiDaS-DepthMapPreprocessor](../../comfyui_controlnet_aux/Nodes/MiDaS-DepthMapPreprocessor.md)
     - [IPAdapterApplyFaceID](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApplyFaceID.md)
 
 

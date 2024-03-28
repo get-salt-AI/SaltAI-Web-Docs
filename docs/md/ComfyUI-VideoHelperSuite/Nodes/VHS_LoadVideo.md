@@ -59,12 +59,12 @@ The VHS_LoadVideo node is designed for uploading and processing video files. It 
     - [VHS_VideoCombine](../../ComfyUI-VideoHelperSuite/Nodes/VHS_VideoCombine.md)
     - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
     - [EmptyLatentImage](../../Comfy/Nodes/EmptyLatentImage.md)
-    - CannyEdgePreprocessor
+    - [CannyEdgePreprocessor](../../comfyui_controlnet_aux/Nodes/CannyEdgePreprocessor.md)
     - [ImageScaleToTotalPixels](../../Comfy/Nodes/ImageScaleToTotalPixels.md)
     - [ImageResize+](../../ComfyUI_essentials/Nodes/ImageResize+.md)
-    - TilePreprocessor
-    - LineArtPreprocessor
-    - DWPreprocessor
+    - [TilePreprocessor](../../comfyui_controlnet_aux/Nodes/TilePreprocessor.md)
+    - [LineArtPreprocessor](../../comfyui_controlnet_aux/Nodes/LineArtPreprocessor.md)
+    - [DWPreprocessor](../../comfyui_controlnet_aux/Nodes/DWPreprocessor.md)
 
 
 

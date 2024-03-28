@@ -37,12 +37,12 @@ The ImageScale node is designed for resizing images to specific dimensions, offe
 - Common nodes:
     - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
     - [FILM VFI](../../ComfyUI-Frame-Interpolation/Nodes/FILM VFI.md)
-    - LineArtPreprocessor
+    - [LineArtPreprocessor](../../comfyui_controlnet_aux/Nodes/LineArtPreprocessor.md)
     - [ControlNetApplyAdvanced](../../Comfy/Nodes/ControlNetApplyAdvanced.md)
     - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
     - [VAEEncodeTiled](../../Comfy/Nodes/VAEEncodeTiled.md)
     - [StableZero123_Conditioning](../../Comfy/Nodes/StableZero123_Conditioning.md)
-    - OpenposePreprocessor
+    - [OpenposePreprocessor](../../comfyui_controlnet_aux/Nodes/OpenposePreprocessor.md)
     - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
     - [Image Rembg (Remove Background)](../../was-node-suite-comfyui/Nodes/Image Rembg (Remove Background).md)
 

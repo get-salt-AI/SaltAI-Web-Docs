@@ -33,7 +33,7 @@ The PrepImageForClipVision node is designed to prepare images for processing by 
 - Common nodes:
     - IDGenerationNode
     - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
-    - AIO_Preprocessor
+    - [AIO_Preprocessor](../../comfyui_controlnet_aux/Nodes/AIO_Preprocessor.md)
     - [ImageBatch](../../Comfy/Nodes/ImageBatch.md)
     - [CLIPVisionEncode](../../Comfy/Nodes/CLIPVisionEncode.md)
     - [PrepImageForInsightFace](../../ComfyUI_IPAdapter_plus/Nodes/PrepImageForInsightFace.md)

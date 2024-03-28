@@ -19,7 +19,7 @@ This node is designed to convert a batch of images into a list of individual ima
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes:
-    - TilePreprocessor
+    - [TilePreprocessor](../../comfyui_controlnet_aux/Nodes/TilePreprocessor.md)
     - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
     - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
 

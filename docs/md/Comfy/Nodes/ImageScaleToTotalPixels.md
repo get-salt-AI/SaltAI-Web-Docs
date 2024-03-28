@@ -29,7 +29,7 @@ The ImageScaleToTotalPixels node is designed for resizing images to a specified 
 - Common nodes:
     - GetImageSize
     - [ImageBatch](../../Comfy/Nodes/ImageBatch.md)
-    - DWPreprocessor
+    - [DWPreprocessor](../../comfyui_controlnet_aux/Nodes/DWPreprocessor.md)
     - [VAEEncodeForInpaint](../../Comfy/Nodes/VAEEncodeForInpaint.md)
     - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
     - [ImpactImageInfo](../../ComfyUI-Impact-Pack/Nodes/ImpactImageInfo.md)

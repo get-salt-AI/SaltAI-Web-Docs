@@ -36,7 +36,7 @@ The `Number Operation` node performs a variety of mathematical operations on two
 - Infra type: `CPU`
 - Common nodes:
     - UltimateSDUpscale
-    - Display Int (rgthree)
+    - [Display Int (rgthree)](../../rgthree-comfy/Nodes/Display Int (rgthree).md)
 
 
 

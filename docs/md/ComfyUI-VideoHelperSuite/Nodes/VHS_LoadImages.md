@@ -42,12 +42,12 @@ The VHS_LoadImages node is designed for loading a batch of images from a specifi
 - Common nodes:
     - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
     - Reroute
-    - ScribblePreprocessor
+    - [ScribblePreprocessor](../../comfyui_controlnet_aux/Nodes/ScribblePreprocessor.md)
     - [EmptyLatentImage](../../Comfy/Nodes/EmptyLatentImage.md)
-    - DWPreprocessor
-    - TilePreprocessor
-    - LineArtPreprocessor
-    - Zoe-DepthMapPreprocessor
+    - [DWPreprocessor](../../comfyui_controlnet_aux/Nodes/DWPreprocessor.md)
+    - [TilePreprocessor](../../comfyui_controlnet_aux/Nodes/TilePreprocessor.md)
+    - [LineArtPreprocessor](../../comfyui_controlnet_aux/Nodes/LineArtPreprocessor.md)
+    - [Zoe-DepthMapPreprocessor](../../comfyui_controlnet_aux/Nodes/Zoe-DepthMapPreprocessor.md)
 
 
 

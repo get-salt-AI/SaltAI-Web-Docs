@@ -43,7 +43,7 @@ The LMStudioPrompt node is designed to generate prompts using the LM Studio API,
     - [LMStudioPrompt](../../mikey_nodes/Nodes/LMStudioPrompt.md)
     - [ShowText|pysssss](../../ComfyUI-Custom-Scripts/Nodes/ShowText|pysssss.md)
     - [CLIPTextEncode](../../Comfy/Nodes/CLIPTextEncode.md)
-    - Display Any (rgthree)
+    - [Display Any (rgthree)](../../rgthree-comfy/Nodes/Display Any (rgthree).md)
 
 
 

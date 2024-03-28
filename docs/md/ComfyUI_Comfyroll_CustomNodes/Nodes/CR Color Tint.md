@@ -37,7 +37,7 @@ The CR_ColorTint node applies a color tint to an image, allowing for the adjustm
 - Infra type: `GPU`
 - Common nodes:
     - [CR Image Input Switch (4 way)](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Image Input Switch (4 way).md)
-    - TilePreprocessor
+    - [TilePreprocessor](../../comfyui_controlnet_aux/Nodes/TilePreprocessor.md)
     - [CR Thumbnail Preview](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Thumbnail Preview.md)
 
 

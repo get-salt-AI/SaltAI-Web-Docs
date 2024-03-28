@@ -32,7 +32,7 @@ The Image Batch node is designed to combine multiple images into a single batch,
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes:
-    - FakeScribblePreprocessor
+    - [FakeScribblePreprocessor](../../comfyui_controlnet_aux/Nodes/FakeScribblePreprocessor.md)
 
 
 

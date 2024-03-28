@@ -27,7 +27,7 @@ The node applies a Lucy-Richardson deconvolution algorithm to sharpen images. It
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
-    - TilePreprocessor
+    - [TilePreprocessor](../../comfyui_controlnet_aux/Nodes/TilePreprocessor.md)
 
 
 

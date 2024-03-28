@@ -29,9 +29,9 @@ The LoadImage node is designed to load and preprocess images from a specified pa
     - Reroute
     - [VAEEncodeForInpaint](../../Comfy/Nodes/VAEEncodeForInpaint.md)
     - [PrepImageForClipVision](../../ComfyUI_IPAdapter_plus/Nodes/PrepImageForClipVision.md)
-    - MiDaS-DepthMapPreprocessor
-    - OpenposePreprocessor
-    - InpaintPreprocessor
+    - [MiDaS-DepthMapPreprocessor](../../comfyui_controlnet_aux/Nodes/MiDaS-DepthMapPreprocessor.md)
+    - [OpenposePreprocessor](../../comfyui_controlnet_aux/Nodes/OpenposePreprocessor.md)
+    - [InpaintPreprocessor](../../comfyui_controlnet_aux/Nodes/InpaintPreprocessor.md)
     - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
 
 

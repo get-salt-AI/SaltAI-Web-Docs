@@ -1157,6 +1157,56 @@ nav:
               - Tuple to floats: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Tuple to floats.md
               - Tuple to ints: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Tuple to ints.md
               - Tuple: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Tuple.md
+      - SaltAI:
+          - Home: md/SaltAI/index.md
+          - Nodes:
+              - LLMChat: md/SaltAI/Nodes/LLMChat.md
+              - LLMChatEngine: md/SaltAI/Nodes/LLMChatEngine.md
+              - LLMChatMessageConcat: md/SaltAI/Nodes/LLMChatMessageConcat.md
+              - LLMChatMessages: md/SaltAI/Nodes/LLMChatMessages.md
+              - LLMChatMessagesAdv: md/SaltAI/Nodes/LLMChatMessagesAdv.md
+              - LLMComplete: md/SaltAI/Nodes/LLMComplete.md
+              - LLMDirectoryReader: md/SaltAI/Nodes/LLMDirectoryReader.md
+              - LLMHtmlComposer: md/SaltAI/Nodes/LLMHtmlComposer.md
+              - LLMHtmlRepair: md/SaltAI/Nodes/LLMHtmlRepair.md
+              - LLMJsonComposer: md/SaltAI/Nodes/LLMJsonComposer.md
+              - LLMJsonRepair: md/SaltAI/Nodes/LLMJsonRepair.md
+              - LLMMarkdownComposer: md/SaltAI/Nodes/LLMMarkdownComposer.md
+              - LLMMarkdownRepair: md/SaltAI/Nodes/LLMMarkdownRepair.md
+              - LLMNotionReader: md/SaltAI/Nodes/LLMNotionReader.md
+              - LLMPostProcessDocuments: md/SaltAI/Nodes/LLMPostProcessDocuments.md
+              - LLMQueryEngine: md/SaltAI/Nodes/LLMQueryEngine.md
+              - LLMQueryEngineAdv: md/SaltAI/Nodes/LLMQueryEngineAdv.md
+              - LLMRegexCreator: md/SaltAI/Nodes/LLMRegexCreator.md
+              - LLMRegexRepair: md/SaltAI/Nodes/LLMRegexRepair.md
+              - LLMRssReaderNode: md/SaltAI/Nodes/LLMRssReaderNode.md
+              - LLMSemanticSplitterNodeParser: md/SaltAI/Nodes/LLMSemanticSplitterNodeParser.md
+              - LLMSentenceSplitterNodeCreator: md/SaltAI/Nodes/LLMSentenceSplitterNodeCreator.md
+              - LLMServiceContextAdv: md/SaltAI/Nodes/LLMServiceContextAdv.md
+              - LLMServiceContextDefault: md/SaltAI/Nodes/LLMServiceContextDefault.md
+              - LLMSimpleWebPageReader: md/SaltAI/Nodes/LLMSimpleWebPageReader.md
+              - LLMSummaryIndex: md/SaltAI/Nodes/LLMSummaryIndex.md
+              - LLMTrafilaturaWebReader: md/SaltAI/Nodes/LLMTrafilaturaWebReader.md
+              - LLMTreeIndex: md/SaltAI/Nodes/LLMTreeIndex.md
+              - LLMVectorStoreIndex: md/SaltAI/Nodes/LLMVectorStoreIndex.md
+              - LLMYamlComposer: md/SaltAI/Nodes/LLMYamlComposer.md
+              - LLMYamlRepair: md/SaltAI/Nodes/LLMYamlRepair.md
+              - OPAC: md/SaltAI/Nodes/OPAC.md
+              - OPAC2Floats: md/SaltAI/Nodes/OPAC2Floats.md
+              - OPACList2ExecList: md/SaltAI/Nodes/OPACList2ExecList.md
+              - OPACListVariance: md/SaltAI/Nodes/OPACListVariance.md
+              - OPACPerlinSettings: md/SaltAI/Nodes/OPACPerlinSettings.md
+              - OPCSLayerExtractor: md/SaltAI/Nodes/OPCSLayerExtractor.md
+              - OPCScheduler: md/SaltAI/Nodes/OPCScheduler.md
+              - OpenAIModel: md/SaltAI/Nodes/OpenAIModel.md
+              - ParallaxMotion: md/SaltAI/Nodes/ParallaxMotion.md
+              - SAIPrimitiveConverter: md/SaltAI/Nodes/SAIPrimitiveConverter.md
+              - SAIStringRegexSearchMatch: md/SaltAI/Nodes/SAIStringRegexSearchMatch.md
+              - SAIStringRegexSearchReplace: md/SaltAI/Nodes/SAIStringRegexSearchReplace.md
+              - SaltAIStableVideoDiffusion: md/SaltAI/Nodes/SaltAIStableVideoDiffusion.md
+              - SaltInfo: md/SaltAI/Nodes/SaltInfo.md
+              - SaltInput: md/SaltAI/Nodes/SaltInput.md
+              - SaltOutput: md/SaltAI/Nodes/SaltOutput.md
       - SavePNG:
           - Home: md/SavePNG/index.md
           - Nodes:
@@ -1465,6 +1515,55 @@ nav:
               - ToStringList: md/comfyui_bmad_nodes/Nodes/ToStringList.md
               - UnGridify (image): md/comfyui_bmad_nodes/Nodes/UnGridify (image).md
               - VAEEncodeBatch: md/comfyui_bmad_nodes/Nodes/VAEEncodeBatch.md
+      - comfyui_controlnet_aux:
+          - Home: md/comfyui_controlnet_aux/index.md
+          - Nodes:
+              - AIO_Preprocessor: md/comfyui_controlnet_aux/Nodes/AIO_Preprocessor.md
+              - AnimalPosePreprocessor: md/comfyui_controlnet_aux/Nodes/AnimalPosePreprocessor.md
+              - AnimeFace_SemSegPreprocessor: md/comfyui_controlnet_aux/Nodes/AnimeFace_SemSegPreprocessor.md
+              - AnimeLineArtPreprocessor: md/comfyui_controlnet_aux/Nodes/AnimeLineArtPreprocessor.md
+              - BAE-NormalMapPreprocessor: md/comfyui_controlnet_aux/Nodes/BAE-NormalMapPreprocessor.md
+              - BinaryPreprocessor: md/comfyui_controlnet_aux/Nodes/BinaryPreprocessor.md
+              - CannyEdgePreprocessor: md/comfyui_controlnet_aux/Nodes/CannyEdgePreprocessor.md
+              - ColorPreprocessor: md/comfyui_controlnet_aux/Nodes/ColorPreprocessor.md
+              - DWPreprocessor: md/comfyui_controlnet_aux/Nodes/DWPreprocessor.md
+              - DensePosePreprocessor: md/comfyui_controlnet_aux/Nodes/DensePosePreprocessor.md
+              - DepthAnythingPreprocessor: md/comfyui_controlnet_aux/Nodes/DepthAnythingPreprocessor.md
+              - DiffusionEdge_Preprocessor: md/comfyui_controlnet_aux/Nodes/DiffusionEdge_Preprocessor.md
+              - FacialPartColoringFromPoseKps: md/comfyui_controlnet_aux/Nodes/FacialPartColoringFromPoseKps.md
+              - FakeScribblePreprocessor: md/comfyui_controlnet_aux/Nodes/FakeScribblePreprocessor.md
+              - HEDPreprocessor: md/comfyui_controlnet_aux/Nodes/HEDPreprocessor.md
+              - HintImageEnchance: md/comfyui_controlnet_aux/Nodes/HintImageEnchance.md
+              - ImageGenResolutionFromImage: md/comfyui_controlnet_aux/Nodes/ImageGenResolutionFromImage.md
+              - ImageGenResolutionFromLatent: md/comfyui_controlnet_aux/Nodes/ImageGenResolutionFromLatent.md
+              - InpaintPreprocessor: md/comfyui_controlnet_aux/Nodes/InpaintPreprocessor.md
+              - LeReS-DepthMapPreprocessor: md/comfyui_controlnet_aux/Nodes/LeReS-DepthMapPreprocessor.md
+              - LineArtPreprocessor: md/comfyui_controlnet_aux/Nodes/LineArtPreprocessor.md
+              - LineartStandardPreprocessor: md/comfyui_controlnet_aux/Nodes/LineartStandardPreprocessor.md
+              - M-LSDPreprocessor: md/comfyui_controlnet_aux/Nodes/M-LSDPreprocessor.md
+              - Manga2Anime_LineArt_Preprocessor: md/comfyui_controlnet_aux/Nodes/Manga2Anime_LineArt_Preprocessor.md
+              - MaskOptFlow: md/comfyui_controlnet_aux/Nodes/MaskOptFlow.md
+              - MediaPipe-FaceMeshPreprocessor: md/comfyui_controlnet_aux/Nodes/MediaPipe-FaceMeshPreprocessor.md
+              - MeshGraphormer-DepthMapPreprocessor: md/comfyui_controlnet_aux/Nodes/MeshGraphormer-DepthMapPreprocessor.md
+              - MiDaS-DepthMapPreprocessor: md/comfyui_controlnet_aux/Nodes/MiDaS-DepthMapPreprocessor.md
+              - MiDaS-NormalMapPreprocessor: md/comfyui_controlnet_aux/Nodes/MiDaS-NormalMapPreprocessor.md
+              - OneFormer-ADE20K-SemSegPreprocessor: md/comfyui_controlnet_aux/Nodes/OneFormer-ADE20K-SemSegPreprocessor.md
+              - OneFormer-COCO-SemSegPreprocessor: md/comfyui_controlnet_aux/Nodes/OneFormer-COCO-SemSegPreprocessor.md
+              - OpenposePreprocessor: md/comfyui_controlnet_aux/Nodes/OpenposePreprocessor.md
+              - PiDiNetPreprocessor: md/comfyui_controlnet_aux/Nodes/PiDiNetPreprocessor.md
+              - PixelPerfectResolution: md/comfyui_controlnet_aux/Nodes/PixelPerfectResolution.md
+              - SAMPreprocessor: md/comfyui_controlnet_aux/Nodes/SAMPreprocessor.md
+              - SavePoseKpsAsJsonFile: md/comfyui_controlnet_aux/Nodes/SavePoseKpsAsJsonFile.md
+              - ScribblePreprocessor: md/comfyui_controlnet_aux/Nodes/ScribblePreprocessor.md
+              - Scribble_XDoG_Preprocessor: md/comfyui_controlnet_aux/Nodes/Scribble_XDoG_Preprocessor.md
+              - SemSegPreprocessor: md/comfyui_controlnet_aux/Nodes/SemSegPreprocessor.md
+              - ShufflePreprocessor: md/comfyui_controlnet_aux/Nodes/ShufflePreprocessor.md
+              - TEEDPreprocessor: md/comfyui_controlnet_aux/Nodes/TEEDPreprocessor.md
+              - TilePreprocessor: md/comfyui_controlnet_aux/Nodes/TilePreprocessor.md
+              - UniFormer-SemSegPreprocessor: md/comfyui_controlnet_aux/Nodes/UniFormer-SemSegPreprocessor.md
+              - Unimatch_OptFlowPreprocessor: md/comfyui_controlnet_aux/Nodes/Unimatch_OptFlowPreprocessor.md
+              - Zoe-DepthMapPreprocessor: md/comfyui_controlnet_aux/Nodes/Zoe-DepthMapPreprocessor.md
+              - Zoe_DepthAnythingPreprocessor: md/comfyui_controlnet_aux/Nodes/Zoe_DepthAnythingPreprocessor.md
       - comfyui_segment_anything:
           - Home: md/comfyui_segment_anything/index.md
           - Nodes:
@@ -1578,6 +1677,37 @@ nav:
               - Wildcard Processor: md/mikey_nodes/Nodes/Wildcard Processor.md
               - WildcardAndLoraSyntaxProcessor: md/mikey_nodes/Nodes/WildcardAndLoraSyntaxProcessor.md
               - WildcardOobaPrompt: md/mikey_nodes/Nodes/WildcardOobaPrompt.md
+      - rgthree-comfy:
+          - Home: md/rgthree-comfy/index.md
+          - Nodes:
+              - Any Switch (rgthree): md/rgthree-comfy/Nodes/Any Switch (rgthree).md
+              - Context (rgthree): md/rgthree-comfy/Nodes/Context (rgthree).md
+              - Context Big (rgthree): md/rgthree-comfy/Nodes/Context Big (rgthree).md
+              - Context Merge (rgthree): md/rgthree-comfy/Nodes/Context Merge (rgthree).md
+              - Context Merge Big (rgthree): md/rgthree-comfy/Nodes/Context Merge
+                  Big (rgthree).md
+              - Context Switch (rgthree): md/rgthree-comfy/Nodes/Context Switch (rgthree).md
+              - Context Switch Big (rgthree): md/rgthree-comfy/Nodes/Context Switch
+                  Big (rgthree).md
+              - Display Any (rgthree): md/rgthree-comfy/Nodes/Display Any (rgthree).md
+              - Display Int (rgthree): md/rgthree-comfy/Nodes/Display Int (rgthree).md
+              - Image Comparer (rgthree): md/rgthree-comfy/Nodes/Image Comparer (rgthree).md
+              - Image Inset Crop (rgthree): md/rgthree-comfy/Nodes/Image Inset Crop
+                  (rgthree).md
+              - KSampler Config (rgthree): md/rgthree-comfy/Nodes/KSampler Config
+                  (rgthree).md
+              - Lora Loader Stack (rgthree): md/rgthree-comfy/Nodes/Lora Loader Stack
+                  (rgthree).md
+              - Power Prompt (rgthree): md/rgthree-comfy/Nodes/Power Prompt (rgthree).md
+              - Power Prompt - Simple (rgthree): md/rgthree-comfy/Nodes/Power Prompt
+                  - Simple (rgthree).md
+              - SDXL Empty Latent Image (rgthree): md/rgthree-comfy/Nodes/SDXL Empty
+                  Latent Image (rgthree).md
+              - SDXL Power Prompt - Positive (rgthree): md/rgthree-comfy/Nodes/SDXL
+                  Power Prompt - Positive (rgthree).md
+              - SDXL Power Prompt - Simple _ Negative (rgthree): md/rgthree-comfy/Nodes/SDXL
+                  Power Prompt - Simple _ Negative (rgthree).md
+              - Seed (rgthree): md/rgthree-comfy/Nodes/Seed (rgthree).md
       - tiled_ksampler:
           - Home: md/tiled_ksampler/index.md
           - Nodes:
@@ -1955,10 +2085,8 @@ extra:
         - icon: material/thumb-up-outline
           name: This page was helpful
           data: 1
-          note: >-
-            Thanks for your feedback!
+          note: Thanks for your feedback!
         - icon: material/thumb-down-outline
           name: This page could be improved
           data: 0
-          note: >- 
-            Thanks for your feedback!
+          note: Thanks for your feedback!

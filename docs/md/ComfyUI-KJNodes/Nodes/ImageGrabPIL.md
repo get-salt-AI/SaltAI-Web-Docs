@@ -40,8 +40,8 @@ The ImageGrabPIL node is designed for capturing and processing images directly f
 - Infra type: `CPU`
 - Common nodes:
     - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
-    - CannyEdgePreprocessor
-    - PixelPerfectResolution
+    - [CannyEdgePreprocessor](../../comfyui_controlnet_aux/Nodes/CannyEdgePreprocessor.md)
+    - [PixelPerfectResolution](../../comfyui_controlnet_aux/Nodes/PixelPerfectResolution.md)
 
 
 
