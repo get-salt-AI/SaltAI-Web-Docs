@@ -2,7 +2,7 @@ site_name: Salt Documentation
 nav:
   - Getting Started: index.md
   - Platform Resources: resources.md
-  - Nodes packs documentation:
+  - Node Documentation:
       - Home: md/index.md
       - Comfy:
           - Home: md/Comfy/index.md
