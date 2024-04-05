@@ -1,3 +1,3 @@
 # SavePNG
-- repo url: ``
-- commit hash: ``
+- Repo url: ``
+- Commit hash: ``

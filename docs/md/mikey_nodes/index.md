@@ -1,3 +1,3 @@
 # mikey_nodes
-- repo url: `https://github.com/bash-j/mikey_nodes`
-- commit hash: `88e644dcda5c0267430ef3389c752b834a586dcc`
+- Repo url: `https://github.com/bash-j/mikey_nodes`
+- Commit hash: `88e644dcda5c0267430ef3389c752b834a586dcc`

@@ -6,6 +6,7 @@ nav:
       - Home: md/index.md
       - Comfy:
           - Home: md/Comfy/index.md
+          - Licenses: md/Comfy/licenses.md
           - Nodes:
               - BasicScheduler: md/Comfy/Nodes/BasicScheduler.md
               - CLIPLoader: md/Comfy/Nodes/CLIPLoader.md
@@ -154,6 +155,7 @@ nav:
               - unCLIPConditioning: md/Comfy/Nodes/unCLIPConditioning.md
       - ComfyMath:
           - Home: md/ComfyMath/index.md
+          - Licenses: md/ComfyMath/licenses.md
           - Nodes:
               - CM_BoolBinaryOperation: md/ComfyMath/Nodes/CM_BoolBinaryOperation.md
               - CM_BoolToInt: md/ComfyMath/Nodes/CM_BoolToInt.md
@@ -208,6 +210,7 @@ nav:
               - CM_Vec4UnaryOperation: md/ComfyMath/Nodes/CM_Vec4UnaryOperation.md
       - ComfyUI-Advanced-ControlNet:
           - Home: md/ComfyUI-Advanced-ControlNet/index.md
+          - Licenses: md/ComfyUI-Advanced-ControlNet/licenses.md
           - Nodes:
               - ACN_AdvancedControlNetApply: md/ComfyUI-Advanced-ControlNet/Nodes/ACN_AdvancedControlNetApply.md
               - ACN_DefaultUniversalWeights: md/ComfyUI-Advanced-ControlNet/Nodes/ACN_DefaultUniversalWeights.md
@@ -232,6 +235,7 @@ nav:
               - TimestepKeyframe: md/ComfyUI-Advanced-ControlNet/Nodes/TimestepKeyframe.md
       - ComfyUI-AnimateDiff-Evolved:
           - Home: md/ComfyUI-AnimateDiff-Evolved/index.md
+          - Licenses: md/ComfyUI-AnimateDiff-Evolved/licenses.md
           - Nodes:
               - ADE_AdjustPEFullStretch: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AdjustPEFullStretch.md
               - ADE_AdjustPEManual: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AdjustPEManual.md
@@ -274,10 +278,12 @@ nav:
               - CheckpointLoaderSimpleWithNoiseSelect: md/ComfyUI-AnimateDiff-Evolved/Nodes/CheckpointLoaderSimpleWithNoiseSelect.md
       - ComfyUI-AutomaticCFG:
           - Home: md/ComfyUI-AutomaticCFG/index.md
+          - Licenses: md/ComfyUI-AutomaticCFG/licenses.md
           - Nodes:
               - Automatic CFG: md/ComfyUI-AutomaticCFG/Nodes/Automatic CFG.md
       - ComfyUI-Crystools:
           - Home: md/ComfyUI-Crystools/index.md
+          - Licenses: md/ComfyUI-Crystools/licenses.md
           - Nodes:
               - Get resolution [Crystools]: md/ComfyUI-Crystools/Nodes/Get resolution
                   [Crystools].md
@@ -329,6 +335,7 @@ nav:
                   [Crystools].md
       - ComfyUI-Custom-Scripts:
           - Home: md/ComfyUI-Custom-Scripts/index.md
+          - Licenses: md/ComfyUI-Custom-Scripts/licenses.md
           - Nodes:
               - CheckpointLoader|pysssss: md/ComfyUI-Custom-Scripts/Nodes/CheckpointLoader|pysssss.md
               - ConstrainImageforVideo|pysssss: md/ComfyUI-Custom-Scripts/Nodes/ConstrainImageforVideo|pysssss.md
@@ -344,6 +351,7 @@ nav:
               - StringFunction|pysssss: md/ComfyUI-Custom-Scripts/Nodes/StringFunction|pysssss.md
       - ComfyUI-Frame-Interpolation:
           - Home: md/ComfyUI-Frame-Interpolation/index.md
+          - Licenses: md/ComfyUI-Frame-Interpolation/licenses.md
           - Nodes:
               - AMT VFI: md/ComfyUI-Frame-Interpolation/Nodes/AMT VFI.md
               - CAIN VFI: md/ComfyUI-Frame-Interpolation/Nodes/CAIN VFI.md
@@ -363,6 +371,7 @@ nav:
               - Sepconv VFI: md/ComfyUI-Frame-Interpolation/Nodes/Sepconv VFI.md
       - ComfyUI-Impact-Pack:
           - Home: md/ComfyUI-Impact-Pack/index.md
+          - Licenses: md/ComfyUI-Impact-Pack/licenses.md
           - Nodes:
               - AddMask: md/ComfyUI-Impact-Pack/Nodes/AddMask.md
               - BasicPipeToDetailerPipe: md/ComfyUI-Impact-Pack/Nodes/BasicPipeToDetailerPipe.md
@@ -527,6 +536,7 @@ nav:
               - UnsamplerHookProvider: md/ComfyUI-Impact-Pack/Nodes/UnsamplerHookProvider.md
       - ComfyUI-KJNodes:
           - Home: md/ComfyUI-KJNodes/index.md
+          - Licenses: md/ComfyUI-KJNodes/licenses.md
           - Nodes:
               - AddLabel: md/ComfyUI-KJNodes/Nodes/AddLabel.md
               - BatchCLIPSeg: md/ComfyUI-KJNodes/Nodes/BatchCLIPSeg.md
@@ -589,6 +599,7 @@ nav:
               - WidgetToString: md/ComfyUI-KJNodes/Nodes/WidgetToString.md
       - ComfyUI-VideoHelperSuite:
           - Home: md/ComfyUI-VideoHelperSuite/index.md
+          - Licenses: md/ComfyUI-VideoHelperSuite/licenses.md
           - Nodes:
               - VHS_DuplicateImages: md/ComfyUI-VideoHelperSuite/Nodes/VHS_DuplicateImages.md
               - VHS_DuplicateLatents: md/ComfyUI-VideoHelperSuite/Nodes/VHS_DuplicateLatents.md
@@ -616,6 +627,7 @@ nav:
               - VHS_VideoCombine: md/ComfyUI-VideoHelperSuite/Nodes/VHS_VideoCombine.md
       - ComfyUI-seamless-tiling:
           - Home: md/ComfyUI-seamless-tiling/index.md
+          - Licenses: md/ComfyUI-seamless-tiling/licenses.md
           - Nodes:
               - CircularVAEDecode: md/ComfyUI-seamless-tiling/Nodes/CircularVAEDecode.md
               - MakeCircularVAE: md/ComfyUI-seamless-tiling/Nodes/MakeCircularVAE.md
@@ -623,6 +635,7 @@ nav:
               - SeamlessTile: md/ComfyUI-seamless-tiling/Nodes/SeamlessTile.md
       - ComfyUI_ADV_CLIP_emb:
           - Home: md/ComfyUI_ADV_CLIP_emb/index.md
+          - Licenses: md/ComfyUI_ADV_CLIP_emb/licenses.md
           - Nodes:
               - BNK_AddCLIPSDXLParams: md/ComfyUI_ADV_CLIP_emb/Nodes/BNK_AddCLIPSDXLParams.md
               - BNK_AddCLIPSDXLRParams: md/ComfyUI_ADV_CLIP_emb/Nodes/BNK_AddCLIPSDXLRParams.md
@@ -630,6 +643,7 @@ nav:
               - BNK_CLIPTextEncodeSDXLAdvanced: md/ComfyUI_ADV_CLIP_emb/Nodes/BNK_CLIPTextEncodeSDXLAdvanced.md
       - ComfyUI_Comfyroll_CustomNodes:
           - Home: md/ComfyUI_Comfyroll_CustomNodes/index.md
+          - Licenses: md/ComfyUI_Comfyroll_CustomNodes/licenses.md
           - Nodes:
               - CR 8 Channel In: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR 8 Channel
                   In.md
@@ -982,6 +996,7 @@ nav:
                   Ratio For Print.md
       - ComfyUI_FizzNodes:
           - Home: md/ComfyUI_FizzNodes/index.md
+          - Licenses: md/ComfyUI_FizzNodes/licenses.md
           - Nodes:
               - AbsCosWave: md/ComfyUI_FizzNodes/Nodes/AbsCosWave.md
               - AbsSinWave: md/ComfyUI_FizzNodes/Nodes/AbsSinWave.md
@@ -1016,6 +1031,7 @@ nav:
               - convertKeyframeKeysToBatchKeys: md/ComfyUI_FizzNodes/Nodes/convertKeyframeKeysToBatchKeys.md
       - ComfyUI_IPAdapter_plus:
           - Home: md/ComfyUI_IPAdapter_plus/index.md
+          - Licenses: md/ComfyUI_IPAdapter_plus/licenses.md
           - Nodes:
               - IPAdapterApply: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md
               - IPAdapterApplyEncoded: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterApplyEncoded.md
@@ -1030,12 +1046,14 @@ nav:
               - PrepImageForInsightFace: md/ComfyUI_IPAdapter_plus/Nodes/PrepImageForInsightFace.md
       - ComfyUI_cspnodes:
           - Home: md/ComfyUI_cspnodes/index.md
+          - Licenses: md/ComfyUI_cspnodes/licenses.md
           - Nodes:
               - ImageDirIterator: md/ComfyUI_cspnodes/Nodes/ImageDirIterator.md
               - Modelscopet2v: md/ComfyUI_cspnodes/Nodes/Modelscopet2v.md
               - Modelscopev2v: md/ComfyUI_cspnodes/Nodes/Modelscopev2v.md
       - ComfyUI_essentials:
           - Home: md/ComfyUI_essentials/index.md
+          - Licenses: md/ComfyUI_essentials/licenses.md
           - Nodes:
               - BatchCount+: md/ComfyUI_essentials/Nodes/BatchCount+.md
               - CLIPTextEncodeSDXL+: md/ComfyUI_essentials/Nodes/CLIPTextEncodeSDXL+.md
@@ -1074,6 +1092,7 @@ nav:
               - TransitionMask+: md/ComfyUI_essentials/Nodes/TransitionMask+.md
       - ComfyUI_experiments:
           - Home: md/ComfyUI_experiments/index.md
+          - Licenses: md/ComfyUI_experiments/licenses.md
           - Nodes:
               - ModelMergeBlockNumber: md/ComfyUI_experiments/Nodes/ModelMergeBlockNumber.md
               - ModelMergeSDXL: md/ComfyUI_experiments/Nodes/ModelMergeSDXL.md
@@ -1085,6 +1104,7 @@ nav:
               - TonemapNoiseWithRescaleCFG: md/ComfyUI_experiments/Nodes/TonemapNoiseWithRescaleCFG.md
       - Comfy_KepListStuff:
           - Home: md/Comfy_KepListStuff/index.md
+          - Licenses: md/Comfy_KepListStuff/licenses.md
           - Nodes:
               - Empty Images: md/Comfy_KepListStuff/Nodes/Empty Images.md
               - Image Overlay: md/Comfy_KepListStuff/Nodes/Image Overlay.md
@@ -1109,6 +1129,7 @@ nav:
               - XYImage: md/Comfy_KepListStuff/Nodes/XYImage.md
       - Derfuu_ComfyUI_ModdedNodes:
           - Home: md/Derfuu_ComfyUI_ModdedNodes/index.md
+          - Licenses: md/Derfuu_ComfyUI_ModdedNodes/licenses.md
           - Nodes:
               - Absolute value: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Absolute value.md
               - Ceil: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Ceil.md
@@ -1159,6 +1180,7 @@ nav:
               - Tuple: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Tuple.md
       - SaltAI:
           - Home: md/SaltAI/index.md
+          - Licenses: md/SaltAI/licenses.md
           - Nodes:
               - LLMChat: md/SaltAI/Nodes/LLMChat.md
               - LLMChatEngine: md/SaltAI/Nodes/LLMChatEngine.md
@@ -1209,10 +1231,12 @@ nav:
               - SaltOutput: md/SaltAI/Nodes/SaltOutput.md
       - SavePNG:
           - Home: md/SavePNG/index.md
+          - Licenses: md/SavePNG/licenses.md
           - Nodes:
               - PNG_Save: md/SavePNG/Nodes/PNG_Save.md
       - WAS_Extras:
           - Home: md/WAS_Extras/index.md
+          - Licenses: md/WAS_Extras/licenses.md
           - Nodes:
               - BLVAEEncode: md/WAS_Extras/Nodes/BLVAEEncode.md
               - CLIPTextEncodeList: md/WAS_Extras/Nodes/CLIPTextEncodeList.md
@@ -1226,6 +1250,7 @@ nav:
               - VividSharpen: md/WAS_Extras/Nodes/VividSharpen.md
       - cg-use-everywhere:
           - Home: md/cg-use-everywhere/index.md
+          - Licenses: md/cg-use-everywhere/licenses.md
           - Nodes:
               - Anything Everywhere: md/cg-use-everywhere/Nodes/Anything Everywhere.md
               - Anything Everywhere3: md/cg-use-everywhere/Nodes/Anything Everywhere3.md
@@ -1235,6 +1260,7 @@ nav:
               - Simple String: md/cg-use-everywhere/Nodes/Simple String.md
       - comfy_mtb:
           - Home: md/comfy_mtb/index.md
+          - Licenses: md/comfy_mtb/licenses.md
           - Nodes:
               - Add To Playlist (mtb): md/comfy_mtb/Nodes/Add To Playlist (mtb).md
               - Animation Builder (mtb): md/comfy_mtb/Nodes/Animation Builder (mtb).md
@@ -1307,6 +1333,7 @@ nav:
               - Vae Decode (mtb): md/comfy_mtb/Nodes/Vae Decode (mtb).md
       - comfyui-various:
           - Home: md/comfyui-various/index.md
+          - Licenses: md/comfyui-various/licenses.md
           - Nodes:
               - JWDatetimeString: md/comfyui-various/Nodes/JWDatetimeString.md
               - JWFloat: md/comfyui-various/Nodes/JWFloat.md
@@ -1371,6 +1398,7 @@ nav:
               - RAFTLoadFlowFromEXRChannels: md/comfyui-various/Nodes/RAFTLoadFlowFromEXRChannels.md
       - comfyui_bmad_nodes:
           - Home: md/comfyui_bmad_nodes/index.md
+          - Licenses: md/comfyui_bmad_nodes/licenses.md
           - Nodes:
               - AdaptiveThresholding: md/comfyui_bmad_nodes/Nodes/AdaptiveThresholding.md
               - Add String To Many: md/comfyui_bmad_nodes/Nodes/Add String To Many.md
@@ -1517,6 +1545,7 @@ nav:
               - VAEEncodeBatch: md/comfyui_bmad_nodes/Nodes/VAEEncodeBatch.md
       - comfyui_controlnet_aux:
           - Home: md/comfyui_controlnet_aux/index.md
+          - Licenses: md/comfyui_controlnet_aux/licenses.md
           - Nodes:
               - AIO_Preprocessor: md/comfyui_controlnet_aux/Nodes/AIO_Preprocessor.md
               - AnimalPosePreprocessor: md/comfyui_controlnet_aux/Nodes/AnimalPosePreprocessor.md
@@ -1566,6 +1595,7 @@ nav:
               - Zoe_DepthAnythingPreprocessor: md/comfyui_controlnet_aux/Nodes/Zoe_DepthAnythingPreprocessor.md
       - comfyui_segment_anything:
           - Home: md/comfyui_segment_anything/index.md
+          - Licenses: md/comfyui_segment_anything/licenses.md
           - Nodes:
               - GroundingDinoModelLoader (segment anything): md/comfyui_segment_anything/Nodes/GroundingDinoModelLoader
                   (segment anything).md
@@ -1578,6 +1608,7 @@ nav:
                   (segment anything).md
       - masquerade-nodes-comfyui:
           - Home: md/masquerade-nodes-comfyui/index.md
+          - Licenses: md/masquerade-nodes-comfyui/licenses.md
           - Nodes:
               - Blur: md/masquerade-nodes-comfyui/Nodes/Blur.md
               - Change Channel Count: md/masquerade-nodes-comfyui/Nodes/Change Channel
@@ -1608,6 +1639,7 @@ nav:
               - Unary Mask Op: md/masquerade-nodes-comfyui/Nodes/Unary Mask Op.md
       - mikey_nodes:
           - Home: md/mikey_nodes/index.md
+          - Licenses: md/mikey_nodes/licenses.md
           - Nodes:
               - AddMetaData: md/mikey_nodes/Nodes/AddMetaData.md
               - Batch Crop Image: md/mikey_nodes/Nodes/Batch Crop Image.md
@@ -1679,6 +1711,7 @@ nav:
               - WildcardOobaPrompt: md/mikey_nodes/Nodes/WildcardOobaPrompt.md
       - rgthree-comfy:
           - Home: md/rgthree-comfy/index.md
+          - Licenses: md/rgthree-comfy/licenses.md
           - Nodes:
               - Any Switch (rgthree): md/rgthree-comfy/Nodes/Any Switch (rgthree).md
               - Context (rgthree): md/rgthree-comfy/Nodes/Context (rgthree).md
@@ -1710,6 +1743,7 @@ nav:
               - Seed (rgthree): md/rgthree-comfy/Nodes/Seed (rgthree).md
       - tiled_ksampler:
           - Home: md/tiled_ksampler/index.md
+          - Licenses: md/tiled_ksampler/licenses.md
           - Nodes:
               - Asymmetric Tiled KSampler: md/tiled_ksampler/Nodes/Asymmetric Tiled
                   KSampler.md
@@ -1717,6 +1751,7 @@ nav:
               - Tiled KSampler: md/tiled_ksampler/Nodes/Tiled KSampler.md
       - was-node-suite-comfyui:
           - Home: md/was-node-suite-comfyui/index.md
+          - Licenses: md/was-node-suite-comfyui/licenses.md
           - Nodes:
               - BLIP Analyze Image: md/was-node-suite-comfyui/Nodes/BLIP Analyze Image.md
               - BLIP Model Loader: md/was-node-suite-comfyui/Nodes/BLIP Model Loader.md

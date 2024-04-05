@@ -1,3 +1,3 @@
 # ComfyUI-Impact-Pack
-- repo url: `https://github.com/ltdrdata/ComfyUI-Impact-Pack.git`
-- commit hash: `cc7812bcfe3b9f8fbb2559f2c9ad62768110f171`
+- Repo url: `https://github.com/ltdrdata/ComfyUI-Impact-Pack.git`
+- Commit hash: `cc7812bcfe3b9f8fbb2559f2c9ad62768110f171`
