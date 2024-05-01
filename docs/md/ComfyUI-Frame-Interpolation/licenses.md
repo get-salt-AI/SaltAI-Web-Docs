@@ -27,11 +27,6 @@ SOFTWARE.
 # Other detected licenses
 File name: `nvrtc_dlls/nvrtc-builtins64_118.dll`
 
-**LicenseRef-scancode-proprietary-license**
-```
-* These Licensed Deliverables contained herein is PROPRIETARY and
-* CONFIDENTIAL to NVIDIA and is being provided under the terms and
-```
 **LicenseRef-scancode-nvidia-gov**
 ```
 * subject to NVIDIA intellectual property rights under U.S. and
@@ -71,6 +66,11 @@ File name: `nvrtc_dlls/nvrtc-builtins64_118.dll`
 * software must include, in the user documentation and internal
 * comments to the code, the above Disclaimer and U.S. Government End
 * Users Notice.
+```
+**LicenseRef-scancode-proprietary-license**
+```
+* These Licensed Deliverables contained herein is PROPRIETARY and
+* CONFIDENTIAL to NVIDIA and is being provided under the terms and
 ```
 **LicenseRef-scancode-unknown-license-reference**
 ```

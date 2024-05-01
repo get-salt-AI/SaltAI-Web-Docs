@@ -707,12 +707,6 @@ File name: `modules/animation/image_animator.py`
 # OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ```
-File name: `pyproject.toml`
-
-**GPL-1.0-or-later**
-```
-license = "General Public License"
-```
 File name: `nodes/SaltAI-Llama-Index/nodes_core.py`
 
 **MIT**
@@ -737,4 +731,10 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+```
+File name: `pyproject.toml`
+
+**GPL-1.0-or-later**
+```
+license = "General Public License"
 ```

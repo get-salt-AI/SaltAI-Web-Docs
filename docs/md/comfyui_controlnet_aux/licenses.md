@@ -409,445 +409,24 @@ File name: `LICENSE.txt`
    limitations under the License.
 ```
 # Other detected licenses
-File name: `src/custom_oneformer/modeling/pixel_decoder/ops/make.sh`
+File name: `src/controlnet_aux/depth_anything/torchhub/facebookresearch_dinov2_main/CONTRIBUTING.md`
 
-**Apache-2.0**
+**LicenseRef-scancode-generic-cla**
 ```
-# Licensed under the Apache License, Version 2.0 [see LICENSE for details]
-```
-File name: `src/custom_timm/data/tf_preprocessing.py`
-
-**Apache-2.0**
-```
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-```
-File name: `src/custom_timm/models/efficientformer.py`
-
-**Apache-2.0**
-```
-Based on Apache 2.0 licensed code at https://github.com/snap-research/EfficientFormer, Copyright (c) 2022 Snap Inc.
-```
-File name: `src/controlnet_aux/mlsd/utils.py`
-
-**Apache-2.0**
-```
-Apache License v2.0
-```
-File name: `src/custom_mmpkg/custom_mmseg/models/losses/dice_loss.py`
-
-**Apache-2.0**
-```
-segmentron/solver/loss.py (Apache-2.0 License)"""
-```
-File name: `src/custom_timm/data/random_erasing.py`
-
-**Apache-2.0**
-```
-Originally inspired by impl at https://github.com/zhunzhong07/Random-Erasing, Apache 2.0
-```
-File name: `src/controlnet_aux/mlsd/LICENSE`
-
-**Apache-2.0**
-```
-                                Apache License
-                           Version 2.0, January 2004
-                        http://www.apache.org/licenses/
-
-   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
-
-   1. Definitions.
-
-      "License" shall mean the terms and conditions for use, reproduction,
-      and distribution as defined by Sections 1 through 9 of this document.
-
-      "Licensor" shall mean the copyright owner or entity authorized by
-      the copyright owner that is granting the License.
-
-      "Legal Entity" shall mean the union of the acting entity and all
-      other entities that control, are controlled by, or are under common
-      control with that entity. For the purposes of this definition,
-      "control" means (i) the power, direct or indirect, to cause the
-      direction or management of such entity, whether by contract or
-      otherwise, or (ii) ownership of fifty percent (50%) or more of the
-      outstanding shares, or (iii) beneficial ownership of such entity.
-
-      "You" (or "Your") shall mean an individual or Legal Entity
-      exercising permissions granted by this License.
-
-      "Source" form shall mean the preferred form for making modifications,
-      including but not limited to software source code, documentation
-      source, and configuration files.
-
-      "Object" form shall mean any form resulting from mechanical
-      transformation or translation of a Source form, including but
-      not limited to compiled object code, generated documentation,
-      and conversions to other media types.
-
-      "Work" shall mean the work of authorship, whether in Source or
-      Object form, made available under the License, as indicated by a
-      copyright notice that is included in or attached to the work
-      (an example is provided in the Appendix below).
-
-      "Derivative Works" shall mean any work, whether in Source or Object
-      form, that is based on (or derived from) the Work and for which the
-      editorial revisions, annotations, elaborations, or other modifications
-      represent, as a whole, an original work of authorship. For the purposes
-      of this License, Derivative Works shall not include works that remain
-      separable from, or merely link (or bind by name) to the interfaces of,
-      the Work and Derivative Works thereof.
-
-      "Contribution" shall mean any work of authorship, including
-      the original version of the Work and any modifications or additions
-      to that Work or Derivative Works thereof, that is intentionally
-      submitted to Licensor for inclusion in the Work by the copyright owner
-      or by an individual or Legal Entity authorized to submit on behalf of
-      the copyright owner. For the purposes of this definition, "submitted"
-      means any form of electronic, verbal, or written communication sent
-      to the Licensor or its representatives, including but not limited to
-      communication on electronic mailing lists, source code control systems,
-      and issue tracking systems that are managed by, or on behalf of, the
-      Licensor for the purpose of discussing and improving the Work, but
-      excluding communication that is conspicuously marked or otherwise
-      designated in writing by the copyright owner as "Not a Contribution."
-
-      "Contributor" shall mean Licensor and any individual or Legal Entity
-      on behalf of whom a Contribution has been received by Licensor and
-      subsequently incorporated within the Work.
-
-   2. Grant of Copyright License. Subject to the terms and conditions of
-      this License, each Contributor hereby grants to You a perpetual,
-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-      copyright license to reproduce, prepare Derivative Works of,
-      publicly display, publicly perform, sublicense, and distribute the
-      Work and such Derivative Works in Source or Object form.
-
-   3. Grant of Patent License. Subject to the terms and conditions of
-      this License, each Contributor hereby grants to You a perpetual,
-      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
-      (except as stated in this section) patent license to make, have made,
-      use, offer to sell, sell, import, and otherwise transfer the Work,
-      where such license applies only to those patent claims licensable
-      by such Contributor that are necessarily infringed by their
-      Contribution(s) alone or by combination of their Contribution(s)
-      with the Work to which such Contribution(s) was submitted. If You
-      institute patent litigation against any entity (including a
-      cross-claim or counterclaim in a lawsuit) alleging that the Work
-      or a Contribution incorporated within the Work constitutes direct
-      or contributory patent infringement, then any patent licenses
-      granted to You under this License for that Work shall terminate
-      as of the date such litigation is filed.
-
-   4. Redistribution. You may reproduce and distribute copies of the
-      Work or Derivative Works thereof in any medium, with or without
-      modifications, and in Source or Object form, provided that You
-      meet the following conditions:
-
-      (a) You must give any other recipients of the Work or
-          Derivative Works a copy of this License; and
-
-      (b) You must cause any modified files to carry prominent notices
-          stating that You changed the files; and
-
-      (c) You must retain, in the Source form of any Derivative Works
-          that You distribute, all copyright, patent, trademark, and
-          attribution notices from the Source form of the Work,
-          excluding those notices that do not pertain to any part of
-          the Derivative Works; and
-
-      (d) If the Work includes a "NOTICE" text file as part of its
-          distribution, then any Derivative Works that You distribute must
-          include a readable copy of the attribution notices contained
-          within such NOTICE file, excluding those notices that do not
-          pertain to any part of the Derivative Works, in at least one
-          of the following places: within a NOTICE text file distributed
-          as part of the Derivative Works; within the Source form or
-          documentation, if provided along with the Derivative Works; or,
-          within a display generated by the Derivative Works, if and
-          wherever such third-party notices normally appear. The contents
-          of the NOTICE file are for informational purposes only and
-          do not modify the License. You may add Your own attribution
-          notices within Derivative Works that You distribute, alongside
-          or as an addendum to the NOTICE text from the Work, provided
-          that such additional attribution notices cannot be construed
-          as modifying the License.
-
-      You may add Your own copyright statement to Your modifications and
-      may provide additional or different license terms and conditions
-      for use, reproduction, or distribution of Your modifications, or
-      for any such Derivative Works as a whole, provided Your use,
-      reproduction, and distribution of the Work otherwise complies with
-      the conditions stated in this License.
-
-   5. Submission of Contributions. Unless You explicitly state otherwise,
-      any Contribution intentionally submitted for inclusion in the Work
-      by You to the Licensor shall be under the terms and conditions of
-      this License, without any additional terms or conditions.
-      Notwithstanding the above, nothing herein shall supersede or modify
-      the terms of any separate license agreement you may have executed
-      with Licensor regarding such Contributions.
-
-   6. Trademarks. This License does not grant permission to use the trade
-      names, trademarks, service marks, or product names of the Licensor,
-      except as required for reasonable and customary use in describing the
-      origin of the Work and reproducing the content of the NOTICE file.
-
-   7. Disclaimer of Warranty. Unless required by applicable law or
-      agreed to in writing, Licensor provides the Work (and each
-      Contributor provides its Contributions) on an "AS IS" BASIS,
-      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-      implied, including, without limitation, any warranties or conditions
-      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
-      PARTICULAR PURPOSE. You are solely responsible for determining the
-      appropriateness of using or redistributing the Work and assume any
-      risks associated with Your exercise of permissions under this License.
-
-   8. Limitation of Liability. In no event and under no legal theory,
-      whether in tort (including negligence), contract, or otherwise,
-      unless required by applicable law (such as deliberate and grossly
-      negligent acts) or agreed to in writing, shall any Contributor be
-      liable to You for damages, including any direct, indirect, special,
-      incidental, or consequential damages of any character arising as a
-      result of this License or out of the use or inability to use the
-      Work (including but not limited to damages for loss of goodwill,
-      work stoppage, computer failure or malfunction, or any and all
-      other commercial damages or losses), even if such Contributor
-      has been advised of the possibility of such damages.
-
-   9. Accepting Warranty or Additional Liability. While redistributing
-      the Work or Derivative Works thereof, You may choose to offer,
-      and charge a fee for, acceptance of support, warranty, indemnity,
-      or other liability obligations and/or rights consistent with this
-      License. However, in accepting such obligations, You may act only
-      on Your own behalf and on Your sole responsibility, not on behalf
-      of any other Contributor, and only if You agree to indemnify,
-      defend, and hold each Contributor harmless for any liability
-      incurred by, or claims asserted against, such Contributor by reason
-      of your accepting any such warranty or additional liability.
-
-   END OF TERMS AND CONDITIONS
-
-   APPENDIX: How to apply the Apache License to your work.
-
-      To apply the Apache License to your work, attach the following
-      boilerplate notice, with the fields enclosed by brackets "{}"
-      replaced with your own identifying information. (Don't include
-      the brackets!)  The text should be enclosed in the appropriate
-      comment syntax for the file format. We also recommend that a
-      file or class name and description of purpose be included on the
-      same "printed page" as the copyright notice for easier
-      identification within third-party archives.
+6. If you haven't already, complete the Contributor License Agreement ("CLA").
 ```
 ```
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-```
-File name: `src/controlnet_aux/hed/__init__.py`
-
-**Apache-2.0**
-```
-# This is an improved version and model of HED edge detection with Apache License, Version 2.0.
-```
-File name: `src/custom_timm/models/sequencer.py`
-
-**Apache-2.0**
-```
-#  Licensed under the Apache License, Version 2.0 (the "License");
-```
-File name: `src/custom_detectron2/layers/csrc/deformable/deform_conv_cuda.cu`
-
-**Apache-2.0**
-```
-// Original license: Apache 2.0
-```
-```
-// Original license: Apache 2.0
-```
-File name: `src/custom_timm/models/twins.py`
-
-**Apache-2.0**
-```
-Code/weights from https://github.com/Meituan-AutoML/Twins, original copyright/license info below
-
-"""
-# --------------------------------------------------------
-# Twins
-# Copyright (c) 2021 Meituan
-# Licensed under The Apache 2.0 License [see LICENSE for details]
+## Contributor License Agreement ("CLA")
 ```
 **LicenseRef-scancode-unknown-license-reference**
 ```
-# Licensed under The Apache 2.0 License [see LICENSE for details]
+By contributing to DINOv2, you agree that your contributions will be licensed
+under the LICENSE file in the root directory of this source tree.
 ```
-File name: `src/custom_timm/models/mvitv2.py`
-
-**Apache-2.0**
-```
-Code adapted from original Apache 2.0 licensed impl at https://github.com/facebookresearch/mvit
-```
-File name: `src/controlnet_aux/normalbae/nets/submodules/efficientnet_repo/setup.py`
-
-**Apache-2.0**
-```
-        'License :: OSI Approved :: Apache Software License',
-```
-File name: `src/custom_detectron2/layers/csrc/deformable/deform_conv_cuda_kernel.cu`
-
-**Apache-2.0**
-```
-// Original license: Apache 2.0
-```
-File name: `src/custom_timm/models/crossvit.py`
-
-**Apache-2.0**
-```
-# SPDX-License-Identifier: Apache-2.0
-```
-File name: `src/custom_timm/models/byobnet.py`
-
 **MIT**
 ```
-Code and weights: https://github.com/DingXiaoH/RepVGG, licensed MIT
-```
-**Apache-2.0**
-```
-Code and weights: https://github.com/idstcv/GPU-Efficient-Networks, licensed Apache 2.0
-```
-File name: `src/custom_detectron2/modeling/backbone/swin.py`
-
-**MIT**
-```
-Licensed under The MIT License [see LICENSE for details]
-```
-**Apache-2.0**
-```
-Licensed under The MIT License [see LICENSE for details]
-Written by Ze Liu, Yutong Lin, Yixuan Wei
---------------------------------------------------------
-LICENSE: https://github.com/SwinTransformer/Swin-Transformer-Object-Detection/blob/461e003166a8083d0b620beacd4662a2df306bd6/LICENSE
-```
-File name: `src/custom_timm/optim/lamb.py`
-
-**MIT**
-```
-# limitations under the License.
-
-# MIT License
-```
-```
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-```
-**Apache-2.0**
-```
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#       http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-```
-File name: `src/custom_timm/models/gcvit.py`
-
-**CC-BY-NC-SA-4.0**
-```
-(https://creativecommons.org/licenses/by-nc-sa/4.0/) until I have a chance to train new ones...
-```
-**LicenseRef-scancode-proprietary-license**
-```
-However, weight files adapted from NVIDIA GCVit impl ARE under a non-commercial share-alike license
-```
-**Apache-2.0**
-```
-The license for this code release is Apache 2.0 with no commercial restrictions.
-```
-File name: `src/controlnet_aux/leres/pix2pix/LICENSE`
-
-**BSD-1-Clause**
-```
-This software is for academic use only. A redistribution of this 
-software, with or  without modifications, has to be for academic 
-use only, while giving the appropriate credit to the original 
-authors of the software. The methods implemented as a part of 
-this software may be covered under patents or patent applications.
-
-THIS SOFTWARE IS PROVIDED BY THE AUTHOR ''AS IS'' AND ANY EXPRESS OR IMPLIED
-WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
-FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR
-CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
-ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-```
-File name: `src/custom_timm/models/densenet.py`
-
-**BSD-3-Clause**
-```
-This file is a copy of https://github.com/pytorch/vision 'densenet.py' (BSD-3-Clause) with
-```
-File name: `src/custom_pycocotools/cocoeval.py`
-
-**BSD-2-Clause**
-```
-    # Licensed under the Simplified BSD License [see coco/license.txt]
-```
-File name: `src/custom_pycocotools/coco.py`
-
-**BSD-2-Clause**
-```
-# Licensed under the Simplified BSD License [see bsd.txt]
-```
-File name: `src/controlnet_aux/depth_anything/torchhub/facebookresearch_dinov2_main/hubconf.py`
-
-**MIT**
-```
-# This source code is licensed under the Apache License, Version 2.0
-# found in the LICENSE file in the root directory of this source tree.
-```
-**Apache-2.0**
-```
-# This source code is licensed under the Apache License, Version 2.0
-# found in the LICENSE file in the root directory of this source tree.
+By contributing to DINOv2, you agree that your contributions will be licensed
+under the LICENSE file in the root directory of this source tree.
 ```
 File name: `src/controlnet_aux/depth_anything/torchhub/facebookresearch_dinov2_main/LICENSE`
 
@@ -3659,37 +3238,6 @@ public licenses.
 
 Creative Commons may be contacted at creativecommons.org.
 ```
-File name: `src/controlnet_aux/depth_anything/torchhub/facebookresearch_dinov2_main/vision_transformer.py`
-
-**MIT**
-```
-# This source code is licensed under the Apache License, Version 2.0
-# found in the LICENSE file in the root directory of this source tree.
-```
-**Apache-2.0**
-```
-# This source code is licensed under the Apache License, Version 2.0
-# found in the LICENSE file in the root directory of this source tree.
-```
-File name: `src/controlnet_aux/depth_anything/torchhub/facebookresearch_dinov2_main/setup.py`
-
-**MIT**
-```
-# This source code is licensed under the license found in the
-# LICENSE file in the root directory of this source tree.
-```
-**LicenseRef-scancode-proprietary-license**
-```
-        "License :: Other/Proprietary License",
-```
-**CC-BY-NC-4.0**
-```
-    license="CC-BY-NC",
-```
-**LicenseRef-scancode-unknown-license-reference**
-```
-    license_files=("LICENSE",),
-```
 File name: `src/controlnet_aux/depth_anything/torchhub/facebookresearch_dinov2_main/MODEL_CARD.md`
 
 **CC-BY-NC-4.0**
@@ -3706,83 +3254,58 @@ CC-BY-NC 4.0
 ```
 license. See [LICENSE](LICENSE)
 ```
-File name: `src/custom_timm/models/resnet.py`
+File name: `src/controlnet_aux/depth_anything/torchhub/facebookresearch_dinov2_main/dinov2/__init__.py`
 
-**LicenseRef-scancode-proprietary-license**
+**MIT**
 ```
-    #  Please note the CC-BY-NC 4.0 license on theses weights, non-commercial use only.
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
 ```
-**CC-BY-NC-4.0**
-```
-    #  Please note the CC-BY-NC 4.0 license on theses weights, non-commercial use only.
-```
-File name: `src/controlnet_aux/depth_anything/torchhub/facebookresearch_dinov2_main/CONTRIBUTING.md`
+File name: `src/controlnet_aux/depth_anything/torchhub/facebookresearch_dinov2_main/hubconf.py`
 
-**LicenseRef-scancode-generic-cla**
+**Apache-2.0**
 ```
-6. If you haven't already, complete the Contributor License Agreement ("CLA").
-```
-```
-## Contributor License Agreement ("CLA")
+# This source code is licensed under the Apache License, Version 2.0
+# found in the LICENSE file in the root directory of this source tree.
 ```
 **MIT**
 ```
-By contributing to DINOv2, you agree that your contributions will be licensed
-under the LICENSE file in the root directory of this source tree.
+# This source code is licensed under the Apache License, Version 2.0
+# found in the LICENSE file in the root directory of this source tree.
+```
+File name: `src/controlnet_aux/depth_anything/torchhub/facebookresearch_dinov2_main/setup.py`
+
+**CC-BY-NC-4.0**
+```
+    license="CC-BY-NC",
+```
+**LicenseRef-scancode-proprietary-license**
+```
+        "License :: Other/Proprietary License",
 ```
 **LicenseRef-scancode-unknown-license-reference**
 ```
-By contributing to DINOv2, you agree that your contributions will be licensed
-under the LICENSE file in the root directory of this source tree.
+    license_files=("LICENSE",),
+```
+**MIT**
+```
+# This source code is licensed under the license found in the
+# LICENSE file in the root directory of this source tree.
+```
+File name: `src/controlnet_aux/depth_anything/torchhub/facebookresearch_dinov2_main/vision_transformer.py`
+
+**Apache-2.0**
+```
+# This source code is licensed under the Apache License, Version 2.0
+# found in the LICENSE file in the root directory of this source tree.
+```
+**MIT**
+```
+# This source code is licensed under the Apache License, Version 2.0
+# found in the LICENSE file in the root directory of this source tree.
 ```
 File name: `src/controlnet_aux/dwpose/LICENSE`
 
-**LicenseRef-scancode-proprietary-license**
-```
-NONCOMMERCIAL
-```
-```
-noncommercial
-```
-**PostgreSQL**
-```
-be liable for direct, indirect, special, incidental, or consequential damages or lost profits related to Licensee's use of and/or inability to use the Software, even if Licensor is advised of the possibility of such damage.
-```
-**LicenseRef-scancode-unknown-license-reference**
-```
-SOFTWARE LICENSE AGREEMENT
-```
-```
-LICENSE AGREEMENT.
-```
-```
-license agreement ("
-```
-```
-licensed under
-```
-```
-WARRANTY OF ANY KIND INCLUDING ANY WARRANTIES OF PERFORMANCE OR MERCHANTABILITY OR FITNESS FOR A PARTICULAR
-```
-```
-LIMITATION OF LIABILITY:
-```
-**LicenseRef-scancode-generic-cla**
-```
-uses a shared copyright model: each contributor holds copyright over
-their contributions to Caffe. The project versioning records all such
-contribution and copyright details. If a contributor wants to further mark
-their specific copyright on a particular contribution, they should indicate
-their copyright solely in the commit message of the change when it is
-committed.
-```
-```
-CONTRIBUTION AGREEMENT
-
-By contributing to the BVLC/caffe repository through pull-request, comment,
-or otherwise, the contributor releases their content to the
-license and copyright terms herein.
-```
 **BSD-2-Clause**
 ```
 LICENSE
@@ -3806,6 +3329,426 @@ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
 ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+```
+**LicenseRef-scancode-generic-cla**
+```
+uses a shared copyright model: each contributor holds copyright over
+their contributions to Caffe. The project versioning records all such
+contribution and copyright details. If a contributor wants to further mark
+their specific copyright on a particular contribution, they should indicate
+their copyright solely in the commit message of the change when it is
+committed.
+```
+```
+CONTRIBUTION AGREEMENT
+
+By contributing to the BVLC/caffe repository through pull-request, comment,
+or otherwise, the contributor releases their content to the
+license and copyright terms herein.
+```
+**LicenseRef-scancode-proprietary-license**
+```
+NONCOMMERCIAL
+```
+```
+noncommercial
+```
+**LicenseRef-scancode-unknown-license-reference**
+```
+SOFTWARE LICENSE AGREEMENT
+```
+```
+LICENSE AGREEMENT.
+```
+```
+license agreement ("
+```
+```
+licensed under
+```
+```
+WARRANTY OF ANY KIND INCLUDING ANY WARRANTIES OF PERFORMANCE OR MERCHANTABILITY OR FITNESS FOR A PARTICULAR
+```
+```
+LIMITATION OF LIABILITY:
+```
+**PostgreSQL**
+```
+be liable for direct, indirect, special, incidental, or consequential damages or lost profits related to Licensee's use of and/or inability to use the Software, even if Licensor is advised of the possibility of such damage.
+```
+File name: `src/controlnet_aux/dwpose/__init__.py`
+
+**LicenseRef-scancode-proprietary-license**
+```
+# This preprocessor is licensed by CMU for non-commercial use only.
+```
+File name: `src/controlnet_aux/hed/__init__.py`
+
+**Apache-2.0**
+```
+# This is an improved version and model of HED edge detection with Apache License, Version 2.0.
+```
+File name: `src/controlnet_aux/leres/leres/LICENSE`
+
+**MIT**
+```
+MIT License
+```
+```
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+File name: `src/controlnet_aux/leres/pix2pix/LICENSE`
+
+**BSD-1-Clause**
+```
+This software is for academic use only. A redistribution of this 
+software, with or  without modifications, has to be for academic 
+use only, while giving the appropriate credit to the original 
+authors of the software. The methods implemented as a part of 
+this software may be covered under patents or patent applications.
+
+THIS SOFTWARE IS PROVIDED BY THE AUTHOR ''AS IS'' AND ANY EXPRESS OR IMPLIED
+WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+```
+File name: `src/controlnet_aux/mlsd/LICENSE`
+
+**Apache-2.0**
+```
+                                Apache License
+                           Version 2.0, January 2004
+                        http://www.apache.org/licenses/
+
+   TERMS AND CONDITIONS FOR USE, REPRODUCTION, AND DISTRIBUTION
+
+   1. Definitions.
+
+      "License" shall mean the terms and conditions for use, reproduction,
+      and distribution as defined by Sections 1 through 9 of this document.
+
+      "Licensor" shall mean the copyright owner or entity authorized by
+      the copyright owner that is granting the License.
+
+      "Legal Entity" shall mean the union of the acting entity and all
+      other entities that control, are controlled by, or are under common
+      control with that entity. For the purposes of this definition,
+      "control" means (i) the power, direct or indirect, to cause the
+      direction or management of such entity, whether by contract or
+      otherwise, or (ii) ownership of fifty percent (50%) or more of the
+      outstanding shares, or (iii) beneficial ownership of such entity.
+
+      "You" (or "Your") shall mean an individual or Legal Entity
+      exercising permissions granted by this License.
+
+      "Source" form shall mean the preferred form for making modifications,
+      including but not limited to software source code, documentation
+      source, and configuration files.
+
+      "Object" form shall mean any form resulting from mechanical
+      transformation or translation of a Source form, including but
+      not limited to compiled object code, generated documentation,
+      and conversions to other media types.
+
+      "Work" shall mean the work of authorship, whether in Source or
+      Object form, made available under the License, as indicated by a
+      copyright notice that is included in or attached to the work
+      (an example is provided in the Appendix below).
+
+      "Derivative Works" shall mean any work, whether in Source or Object
+      form, that is based on (or derived from) the Work and for which the
+      editorial revisions, annotations, elaborations, or other modifications
+      represent, as a whole, an original work of authorship. For the purposes
+      of this License, Derivative Works shall not include works that remain
+      separable from, or merely link (or bind by name) to the interfaces of,
+      the Work and Derivative Works thereof.
+
+      "Contribution" shall mean any work of authorship, including
+      the original version of the Work and any modifications or additions
+      to that Work or Derivative Works thereof, that is intentionally
+      submitted to Licensor for inclusion in the Work by the copyright owner
+      or by an individual or Legal Entity authorized to submit on behalf of
+      the copyright owner. For the purposes of this definition, "submitted"
+      means any form of electronic, verbal, or written communication sent
+      to the Licensor or its representatives, including but not limited to
+      communication on electronic mailing lists, source code control systems,
+      and issue tracking systems that are managed by, or on behalf of, the
+      Licensor for the purpose of discussing and improving the Work, but
+      excluding communication that is conspicuously marked or otherwise
+      designated in writing by the copyright owner as "Not a Contribution."
+
+      "Contributor" shall mean Licensor and any individual or Legal Entity
+      on behalf of whom a Contribution has been received by Licensor and
+      subsequently incorporated within the Work.
+
+   2. Grant of Copyright License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      copyright license to reproduce, prepare Derivative Works of,
+      publicly display, publicly perform, sublicense, and distribute the
+      Work and such Derivative Works in Source or Object form.
+
+   3. Grant of Patent License. Subject to the terms and conditions of
+      this License, each Contributor hereby grants to You a perpetual,
+      worldwide, non-exclusive, no-charge, royalty-free, irrevocable
+      (except as stated in this section) patent license to make, have made,
+      use, offer to sell, sell, import, and otherwise transfer the Work,
+      where such license applies only to those patent claims licensable
+      by such Contributor that are necessarily infringed by their
+      Contribution(s) alone or by combination of their Contribution(s)
+      with the Work to which such Contribution(s) was submitted. If You
+      institute patent litigation against any entity (including a
+      cross-claim or counterclaim in a lawsuit) alleging that the Work
+      or a Contribution incorporated within the Work constitutes direct
+      or contributory patent infringement, then any patent licenses
+      granted to You under this License for that Work shall terminate
+      as of the date such litigation is filed.
+
+   4. Redistribution. You may reproduce and distribute copies of the
+      Work or Derivative Works thereof in any medium, with or without
+      modifications, and in Source or Object form, provided that You
+      meet the following conditions:
+
+      (a) You must give any other recipients of the Work or
+          Derivative Works a copy of this License; and
+
+      (b) You must cause any modified files to carry prominent notices
+          stating that You changed the files; and
+
+      (c) You must retain, in the Source form of any Derivative Works
+          that You distribute, all copyright, patent, trademark, and
+          attribution notices from the Source form of the Work,
+          excluding those notices that do not pertain to any part of
+          the Derivative Works; and
+
+      (d) If the Work includes a "NOTICE" text file as part of its
+          distribution, then any Derivative Works that You distribute must
+          include a readable copy of the attribution notices contained
+          within such NOTICE file, excluding those notices that do not
+          pertain to any part of the Derivative Works, in at least one
+          of the following places: within a NOTICE text file distributed
+          as part of the Derivative Works; within the Source form or
+          documentation, if provided along with the Derivative Works; or,
+          within a display generated by the Derivative Works, if and
+          wherever such third-party notices normally appear. The contents
+          of the NOTICE file are for informational purposes only and
+          do not modify the License. You may add Your own attribution
+          notices within Derivative Works that You distribute, alongside
+          or as an addendum to the NOTICE text from the Work, provided
+          that such additional attribution notices cannot be construed
+          as modifying the License.
+
+      You may add Your own copyright statement to Your modifications and
+      may provide additional or different license terms and conditions
+      for use, reproduction, or distribution of Your modifications, or
+      for any such Derivative Works as a whole, provided Your use,
+      reproduction, and distribution of the Work otherwise complies with
+      the conditions stated in this License.
+
+   5. Submission of Contributions. Unless You explicitly state otherwise,
+      any Contribution intentionally submitted for inclusion in the Work
+      by You to the Licensor shall be under the terms and conditions of
+      this License, without any additional terms or conditions.
+      Notwithstanding the above, nothing herein shall supersede or modify
+      the terms of any separate license agreement you may have executed
+      with Licensor regarding such Contributions.
+
+   6. Trademarks. This License does not grant permission to use the trade
+      names, trademarks, service marks, or product names of the Licensor,
+      except as required for reasonable and customary use in describing the
+      origin of the Work and reproducing the content of the NOTICE file.
+
+   7. Disclaimer of Warranty. Unless required by applicable law or
+      agreed to in writing, Licensor provides the Work (and each
+      Contributor provides its Contributions) on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+      implied, including, without limitation, any warranties or conditions
+      of TITLE, NON-INFRINGEMENT, MERCHANTABILITY, or FITNESS FOR A
+      PARTICULAR PURPOSE. You are solely responsible for determining the
+      appropriateness of using or redistributing the Work and assume any
+      risks associated with Your exercise of permissions under this License.
+
+   8. Limitation of Liability. In no event and under no legal theory,
+      whether in tort (including negligence), contract, or otherwise,
+      unless required by applicable law (such as deliberate and grossly
+      negligent acts) or agreed to in writing, shall any Contributor be
+      liable to You for damages, including any direct, indirect, special,
+      incidental, or consequential damages of any character arising as a
+      result of this License or out of the use or inability to use the
+      Work (including but not limited to damages for loss of goodwill,
+      work stoppage, computer failure or malfunction, or any and all
+      other commercial damages or losses), even if such Contributor
+      has been advised of the possibility of such damages.
+
+   9. Accepting Warranty or Additional Liability. While redistributing
+      the Work or Derivative Works thereof, You may choose to offer,
+      and charge a fee for, acceptance of support, warranty, indemnity,
+      or other liability obligations and/or rights consistent with this
+      License. However, in accepting such obligations, You may act only
+      on Your own behalf and on Your sole responsibility, not on behalf
+      of any other Contributor, and only if You agree to indemnify,
+      defend, and hold each Contributor harmless for any liability
+      incurred by, or claims asserted against, such Contributor by reason
+      of your accepting any such warranty or additional liability.
+
+   END OF TERMS AND CONDITIONS
+
+   APPENDIX: How to apply the Apache License to your work.
+
+      To apply the Apache License to your work, attach the following
+      boilerplate notice, with the fields enclosed by brackets "{}"
+      replaced with your own identifying information. (Don't include
+      the brackets!)  The text should be enclosed in the appropriate
+      comment syntax for the file format. We also recommend that a
+      file or class name and description of purpose be included on the
+      same "printed page" as the copyright notice for easier
+      identification within third-party archives.
+```
+```
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+```
+File name: `src/controlnet_aux/mlsd/utils.py`
+
+**Apache-2.0**
+```
+Apache License v2.0
+```
+File name: `src/controlnet_aux/normalbae/nets/submodules/efficientnet_repo/setup.py`
+
+**Apache-2.0**
+```
+        'License :: OSI Approved :: Apache Software License',
+```
+File name: `src/controlnet_aux/pidi/LICENSE`
+
+**LicenseRef-scancode-proprietary-license**
+```
+It is just for research purpose, and commercial use should be contacted with authors first.
+```
+**MIT**
+```
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+File name: `src/controlnet_aux/uniformer/uniformer.py`
+
+**MIT**
+```
+# Licensed under The MIT License [see LICENSE for details]
+```
+File name: `src/controlnet_aux/unimatch/utils/flow_viz.py`
+
+**ICU**
+```
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to conditions.
+```
+**MIT**
+```
+# MIT License
+```
+File name: `src/controlnet_aux/zoe/zoedepth/models/base_models/midas.py`
+
+**MIT**
+```
+# MIT License
+```
+```
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+```
+File name: `src/custom_detectron2/layers/csrc/deformable/deform_conv_cuda.cu`
+
+**Apache-2.0**
+```
+// Original license: Apache 2.0
+```
+```
+// Original license: Apache 2.0
+```
+File name: `src/custom_detectron2/layers/csrc/deformable/deform_conv_cuda_kernel.cu`
+
+**Apache-2.0**
+```
+// Original license: Apache 2.0
+```
+File name: `src/custom_detectron2/modeling/backbone/swin.py`
+
+**Apache-2.0**
+```
+Licensed under The MIT License [see LICENSE for details]
+Written by Ze Liu, Yutong Lin, Yixuan Wei
+--------------------------------------------------------
+LICENSE: https://github.com/SwinTransformer/Swin-Transformer-Object-Detection/blob/461e003166a8083d0b620beacd4662a2df306bd6/LICENSE
+```
+**MIT**
+```
+Licensed under The MIT License [see LICENSE for details]
 ```
 File name: `src/custom_manopth/LICENSE`
 
@@ -4486,87 +4429,11 @@ the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 <https://www.gnu.org/licenses/why-not-lgpl.html>.
 ```
-File name: `src/controlnet_aux/depth_anything/torchhub/facebookresearch_dinov2_main/dinov2/__init__.py`
-
-**MIT**
-```
-# This source code is licensed under the license found in the
-# LICENSE file in the root directory of this source tree.
-```
-File name: `src/controlnet_aux/leres/leres/LICENSE`
-
-**MIT**
-```
-MIT License
-```
-```
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
 File name: `src/custom_mesh_graphormer/datasets/build.py`
 
 **MIT**
 ```
 Licensed under the MIT license.
-```
-File name: `src/controlnet_aux/uniformer/uniformer.py`
-
-**MIT**
-```
-# Licensed under The MIT License [see LICENSE for details]
-```
-File name: `src/controlnet_aux/zoe/zoedepth/models/base_models/midas.py`
-
-**MIT**
-```
-# MIT License
-```
-```
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
-
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-```
-File name: `src/custom_timm/optim/adafactor.py`
-
-**MIT**
-```
-# This source code is licensed under the MIT license found in the
-# LICENSE file in the root directory of this source tree.
-```
-File name: `src/custom_timm/models/convnext.py`
-
-**MIT**
-```
-# This source code is licensed under the MIT license
 ```
 File name: `src/custom_midas_repo/README.md`
 
@@ -4575,6 +4442,121 @@ File name: `src/custom_midas_repo/README.md`
 License 
 
 MIT License
+```
+File name: `src/custom_mmpkg/custom_mmseg/models/losses/dice_loss.py`
+
+**Apache-2.0**
+```
+segmentron/solver/loss.py (Apache-2.0 License)"""
+```
+File name: `src/custom_oneformer/modeling/pixel_decoder/ops/make.sh`
+
+**Apache-2.0**
+```
+# Licensed under the Apache License, Version 2.0 [see LICENSE for details]
+```
+File name: `src/custom_pycocotools/coco.py`
+
+**BSD-2-Clause**
+```
+# Licensed under the Simplified BSD License [see bsd.txt]
+```
+File name: `src/custom_pycocotools/cocoeval.py`
+
+**BSD-2-Clause**
+```
+    # Licensed under the Simplified BSD License [see coco/license.txt]
+```
+File name: `src/custom_timm/data/random_erasing.py`
+
+**Apache-2.0**
+```
+Originally inspired by impl at https://github.com/zhunzhong07/Random-Erasing, Apache 2.0
+```
+File name: `src/custom_timm/data/tf_preprocessing.py`
+
+**Apache-2.0**
+```
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+```
+File name: `src/custom_timm/models/byobnet.py`
+
+**Apache-2.0**
+```
+Code and weights: https://github.com/idstcv/GPU-Efficient-Networks, licensed Apache 2.0
+```
+**MIT**
+```
+Code and weights: https://github.com/DingXiaoH/RepVGG, licensed MIT
+```
+File name: `src/custom_timm/models/convit.py`
+
+**CC-BY-NC-4.0**
+```
+# This source code is licensed under the CC-by-NC license found in the
+```
+**MIT**
+```
+# This source code is licensed under the CC-by-NC license found in the
+# LICENSE file in the root directory of this source tree.
+```
+File name: `src/custom_timm/models/convnext.py`
+
+**MIT**
+```
+# This source code is licensed under the MIT license
+```
+File name: `src/custom_timm/models/crossvit.py`
+
+**Apache-2.0**
+```
+# SPDX-License-Identifier: Apache-2.0
+```
+File name: `src/custom_timm/models/densenet.py`
+
+**BSD-3-Clause**
+```
+This file is a copy of https://github.com/pytorch/vision 'densenet.py' (BSD-3-Clause) with
+```
+File name: `src/custom_timm/models/efficientformer.py`
+
+**Apache-2.0**
+```
+Based on Apache 2.0 licensed code at https://github.com/snap-research/EfficientFormer, Copyright (c) 2022 Snap Inc.
+```
+File name: `src/custom_timm/models/gcvit.py`
+
+**Apache-2.0**
+```
+The license for this code release is Apache 2.0 with no commercial restrictions.
+```
+**CC-BY-NC-SA-4.0**
+```
+(https://creativecommons.org/licenses/by-nc-sa/4.0/) until I have a chance to train new ones...
+```
+**LicenseRef-scancode-proprietary-license**
+```
+However, weight files adapted from NVIDIA GCVit impl ARE under a non-commercial share-alike license
+```
+File name: `src/custom_timm/models/inception_resnet_v2.py`
+
+**Apache-2.0**
+```
+based upon Google's Tensorflow implementation and pretrained weights (Apache 2.0 License)
+```
+**MIT**
+```
+Sourced from https://github.com/Cadene/tensorflow-model-zoo.torch (MIT License) which is
 ```
 File name: `src/custom_timm/models/layers/eca.py`
 
@@ -4603,79 +4585,97 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
+File name: `src/custom_timm/models/mvitv2.py`
+
+**Apache-2.0**
+```
+Code adapted from original Apache 2.0 licensed impl at https://github.com/facebookresearch/mvit
+```
+File name: `src/custom_timm/models/resnet.py`
+
+**CC-BY-NC-4.0**
+```
+    #  Please note the CC-BY-NC 4.0 license on theses weights, non-commercial use only.
+```
+**LicenseRef-scancode-proprietary-license**
+```
+    #  Please note the CC-BY-NC 4.0 license on theses weights, non-commercial use only.
+```
+File name: `src/custom_timm/models/sequencer.py`
+
+**Apache-2.0**
+```
+#  Licensed under the Apache License, Version 2.0 (the "License");
+```
+File name: `src/custom_timm/models/twins.py`
+
+**Apache-2.0**
+```
+Code/weights from https://github.com/Meituan-AutoML/Twins, original copyright/license info below
+
+"""
+# --------------------------------------------------------
+# Twins
+# Copyright (c) 2021 Meituan
+# Licensed under The Apache 2.0 License [see LICENSE for details]
+```
+**LicenseRef-scancode-unknown-license-reference**
+```
+# Licensed under The Apache 2.0 License [see LICENSE for details]
+```
+File name: `src/custom_timm/optim/adafactor.py`
+
+**MIT**
+```
+# This source code is licensed under the MIT license found in the
+# LICENSE file in the root directory of this source tree.
+```
 File name: `src/custom_timm/optim/adahessian.py`
 
 **MIT**
 ```
 Originally licensed MIT, Copyright 2020, David Samuel
 ```
-File name: `src/custom_timm/models/inception_resnet_v2.py`
+File name: `src/custom_timm/optim/lamb.py`
 
-**MIT**
-```
-Sourced from https://github.com/Cadene/tensorflow-model-zoo.torch (MIT License) which is
-```
 **Apache-2.0**
 ```
-based upon Google's Tensorflow implementation and pretrained weights (Apache 2.0 License)
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#       http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 ```
-File name: `src/custom_timm/models/convit.py`
-
 **MIT**
 ```
-# This source code is licensed under the CC-by-NC license found in the
-# LICENSE file in the root directory of this source tree.
-```
-**CC-BY-NC-4.0**
-```
-# This source code is licensed under the CC-by-NC license found in the
-```
-File name: `src/controlnet_aux/unimatch/utils/flow_viz.py`
+# limitations under the License.
 
-**MIT**
-```
 # MIT License
 ```
-**ICU**
 ```
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
 # in the Software without restriction, including without limitation the rights
 # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 # copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to conditions.
-```
-File name: `src/controlnet_aux/dwpose/__init__.py`
-
-**LicenseRef-scancode-proprietary-license**
-```
-# This preprocessor is licensed by CMU for non-commercial use only.
-```
-File name: `src/controlnet_aux/pidi/LICENSE`
-
-**LicenseRef-scancode-proprietary-license**
-```
-It is just for research purpose, and commercial use should be contacted with authors first.
-```
-**MIT**
-```
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
 ```
 File name: `src/custom_timm/optim/rmsprop_tf.py`
 

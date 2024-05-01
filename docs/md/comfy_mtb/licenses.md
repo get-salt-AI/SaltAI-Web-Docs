@@ -25,16 +25,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 # Other detected licenses
-File name: `web/extern/dom-purify.js`
-
-**Apache-2.0**
-```
-under the Apache license 2.0
-```
-**MPL-2.0**
-```
-Mozilla Public License 2.0 |
-```
 File name: `README.md`
 
 **GPL-3.0-only**
@@ -49,4 +39,14 @@ File name: `pyproject.toml`
 ```
 ```
 license = "MIT"
+```
+File name: `web/extern/dom-purify.js`
+
+**Apache-2.0**
+```
+under the Apache license 2.0
+```
+**MPL-2.0**
+```
+Mozilla Public License 2.0 |
 ```
