@@ -2111,3 +2111,17 @@ extra:
     - icon: fontawesome/brands/discord
       link: https://discord.gg/saltai
       name: Salt Discord
+  analytics:
+    provider: google
+    property: G-MHLEW2T4PQ
+    feedback:
+      title: Was this page helpful?
+      ratings:
+        - icon: material/thumb-up-outline
+          name: This page was helpful
+          data: 1
+          note: Thanks for your feedback!
+        - icon: material/thumb-down-outline
+          name: This page could be improved
+          data: 0
+          note: Thanks for your feedback!
