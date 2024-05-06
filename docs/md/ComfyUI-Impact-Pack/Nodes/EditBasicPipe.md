@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- Pipeline
+- PipelineTransformation
+---
+
 # Edit BasicPipe
 ## Documentation
 - Class name: `EditBasicPipe`

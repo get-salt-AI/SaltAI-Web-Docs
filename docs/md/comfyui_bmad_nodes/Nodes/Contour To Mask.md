@@ -1,3 +1,9 @@
+---
+tags:
+- Contour
+- Image
+---
+
 # Contour To Mask
 ## Documentation
 - Class name: `Contour To Mask`

@@ -1,3 +1,8 @@
+---
+tags:
+- Counting
+---
+
 # 🔧 Batch Count
 ## Documentation
 - Class name: `BatchCount+`

@@ -1,3 +1,9 @@
+---
+tags:
+- String
+- Text
+---
+
 # String Selector
 ## Documentation
 - Class name: `ImpactStringSelector`

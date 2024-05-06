@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Pipeline
+---
+
 # 🔀️ CR Pipe Switch
 ## Documentation
 - Class name: `CR Pipe Switch`

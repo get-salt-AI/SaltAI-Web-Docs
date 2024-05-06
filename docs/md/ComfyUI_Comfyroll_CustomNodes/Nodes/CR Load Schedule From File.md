@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- Scheduling
+---
+
 # 📋 CR Load Schedule From File
 ## Documentation
 - Class name: `CR Load Schedule From File`

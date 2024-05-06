@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Pipeline
+---
+
 # ✈️ CR Module Output
 ## Documentation
 - Class name: `CR Module Output`

@@ -1,3 +1,8 @@
+---
+tags:
+- ConditionalSelection
+---
+
 # 🪛 Switch latent
 ## Documentation
 - Class name: `Switch latent [Crystools]`

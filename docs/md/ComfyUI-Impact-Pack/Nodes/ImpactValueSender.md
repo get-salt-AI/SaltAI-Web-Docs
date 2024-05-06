@@ -1,3 +1,9 @@
+---
+tags:
+- ConditionalSelection
+- ImpactPack
+---
+
 # ImpactValueSender
 ## Documentation
 - Class name: `ImpactValueSender`

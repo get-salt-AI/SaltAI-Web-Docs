@@ -1,3 +1,8 @@
+---
+tags:
+- ImageEnhancement
+---
+
 # NoiseInjectionDetailerHookProvider
 ## Documentation
 - Class name: `NoiseInjectionDetailerHookProvider`

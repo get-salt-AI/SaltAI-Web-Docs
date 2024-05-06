@@ -1,29 +1,34 @@
+---
+tags:
+- SigmaScheduling
+---
+
 # ExponentialScheduler
 ## Documentation
 - Class name: `ExponentialScheduler`
 - Category: `sampling/custom_sampling/schedulers`
 - Output node: `False`
 
-The ExponentialScheduler node is designed to generate a sequence of sigma values following an exponential schedule for diffusion sampling processes. It provides a customizable approach to control the noise levels applied at each step of the diffusion process, allowing for fine-tuning of the sampling behavior.
+The ExponentialScheduler node is designed to generate a sequence of sigma values following an exponential schedule for diffusion processes. It calculates these values based on the number of steps and the specified minimum and maximum sigma values, providing a foundational mechanism for controlling the noise level across the diffusion steps.
 ## Input types
 ### Required
 - **`steps`**
-    - Specifies the number of steps in the diffusion process. It influences the length of the generated sigma sequence and thus the granularity of the noise application.
+    - Specifies the total number of steps for the diffusion process, directly influencing the length of the generated sigma sequence.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`sigma_max`**
-    - Defines the maximum sigma value, setting the upper limit of noise intensity in the diffusion process. It plays a crucial role in determining the range of noise levels applied.
+    - Defines the maximum sigma value, setting the upper limit of noise to be introduced at the beginning of the diffusion process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sigma_min`**
-    - Sets the minimum sigma value, establishing the lower boundary of noise intensity. This parameter helps in fine-tuning the starting point of the noise application.
+    - Determines the minimum sigma value, establishing the lower noise limit towards the end of the diffusion process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`sigmas`**
     - Comfy dtype: `SIGMAS`
-    - A sequence of sigma values generated according to the exponential schedule. These values are used to control the noise levels at each step of the diffusion process.
-    - Python dtype: `Tuple[torch.Tensor]`
+    - A sequence of sigma values calculated based on an exponential schedule, used to control the noise level in each step of the diffusion process.
+    - Python dtype: `Tuple[float]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -36,8 +41,8 @@ class ExponentialScheduler:
     def INPUT_TYPES(s):
         return {"required":
                     {"steps": ("INT", {"default": 20, "min": 1, "max": 10000}),
-                     "sigma_max": ("FLOAT", {"default": 14.614642, "min": 0.0, "max": 1000.0, "step":0.01, "round": False}),
-                     "sigma_min": ("FLOAT", {"default": 0.0291675, "min": 0.0, "max": 1000.0, "step":0.01, "round": False}),
+                     "sigma_max": ("FLOAT", {"default": 14.614642, "min": 0.0, "max": 5000.0, "step":0.01, "round": False}),
+                     "sigma_min": ("FLOAT", {"default": 0.0291675, "min": 0.0, "max": 5000.0, "step":0.01, "round": False}),
                     }
                }
     RETURN_TYPES = ("SIGMAS",)

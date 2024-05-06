@@ -1,3 +1,8 @@
+---
+tags:
+- Sampling
+---
+
 # KSampler Sequence (v2)
 ## Documentation
 - Class name: `KSamplerSeq2`

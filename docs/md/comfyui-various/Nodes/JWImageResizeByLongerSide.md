@@ -1,3 +1,11 @@
+---
+tags:
+- ImageResize
+- ImageScaling
+- ImageSize
+- ImageTransformation
+---
+
 # Image Resize by Longer Side
 ## Documentation
 - Class name: `JWImageResizeByLongerSide`

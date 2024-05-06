@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Pipeline
+---
+
 # 🚌 CR Data Bus In
 ## Documentation
 - Class name: `CR Data Bus In`

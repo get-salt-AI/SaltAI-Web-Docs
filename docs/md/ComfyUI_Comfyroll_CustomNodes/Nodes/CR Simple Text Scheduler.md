@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- Scheduling
+---
+
 # 📑 CR Simple Text Scheduler
 ## Documentation
 - Class name: `CR Simple Text Scheduler`

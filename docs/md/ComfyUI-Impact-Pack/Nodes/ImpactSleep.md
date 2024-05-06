@@ -1,3 +1,8 @@
+---
+tags:
+- Time
+---
+
 # Sleep
 ## Documentation
 - Class name: `ImpactSleep`

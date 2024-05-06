@@ -1,3 +1,8 @@
+---
+tags:
+- Preview
+---
+
 # 🪛 Preview from metadata
 ## Documentation
 - Class name: `Preview from metadata [Crystools]`

@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Tiled
+---
+
 # Image Tiled
 ## Documentation
 - Class name: `Image Tiled`

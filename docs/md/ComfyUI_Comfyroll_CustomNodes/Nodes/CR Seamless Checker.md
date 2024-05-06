@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- VisualEffects
+---
+
 # 📱 CR Seamless Checker
 ## Documentation
 - Class name: `CR Seamless Checker`

@@ -1,3 +1,12 @@
+---
+tags:
+- DataConversion
+- DataTypeConversion
+- Float
+- FloatData
+- NumericConversion
+---
+
 # Float
 ## Documentation
 - Class name: `JWFloat`
@@ -21,7 +30,7 @@ This node is designed to handle floating-point operations, providing a platform 
 - Common nodes:
     - [SVD_img2vid_Conditioning](../../Comfy/Nodes/SVD_img2vid_Conditioning.md)
     - ezMath
-    - KSampler Adv. (Efficient)
+    - [KSampler Adv. (Efficient)](../../efficiency-nodes-comfyui/Nodes/KSampler Adv. (Efficient).md)
     - Reroute
     - workflow/IP Adapter full bundle
 

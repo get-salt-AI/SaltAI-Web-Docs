@@ -1,41 +1,46 @@
+---
+tags:
+- Conditioning
+---
+
 # Conditioning (Set Area with Percentage)
 ## Documentation
 - Class name: `ConditioningSetAreaPercentage`
 - Category: `conditioning`
 - Output node: `False`
 
-The ConditioningSetAreaPercentage node specializes in adjusting the area of influence for conditioning elements based on percentage values. It allows for the specification of the area's dimensions and position as percentages of the total image size, alongside a strength parameter to modulate the intensity of the conditioning effect.
+This node specializes in adjusting the conditioning of generative models by setting a specific area of interest in terms of percentage values for width, height, and position (x, y), along with a strength parameter to modulate the effect. It allows for fine-tuning the focus and intensity of the conditioning within a given area, enhancing the model's ability to generate or modify content with precision.
 ## Input types
 ### Required
 - **`conditioning`**
-    - Represents the conditioning elements to be modified, serving as the foundation for applying area and strength adjustments.
+    - The conditioning input represents the current state of conditioning to be modified. It is crucial for determining the context and area of focus for the generative model's output.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
+    - Python dtype: `tuple`
 - **`width`**
-    - Specifies the width of the area as a percentage of the total image width, influencing how much of the image the conditioning affects horizontally.
+    - Specifies the width of the area of interest as a percentage of the total width, allowing for precise control over the horizontal span of the conditioning effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`height`**
-    - Determines the height of the area as a percentage of the total image height, affecting the vertical extent of the conditioning's influence.
+    - Defines the height of the area of interest as a percentage of the total height, enabling precise vertical focus within the conditioning effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`x`**
-    - Indicates the horizontal starting point of the area as a percentage of the total image width, positioning the conditioning effect.
+    - Determines the horizontal starting point of the area of interest as a percentage of the total width, setting the left boundary of the conditioning effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`y`**
-    - Specifies the vertical starting point of the area as a percentage of the total image height, positioning the conditioning effect.
+    - Sets the vertical starting point of the area of interest as a percentage of the total height, establishing the top boundary of the conditioning effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`strength`**
-    - Controls the intensity of the conditioning effect within the specified area, allowing for fine-tuning of its impact.
+    - Controls the intensity of the conditioning effect within the specified area, allowing for modulation from subtle to strong influences.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`conditioning`**
     - Comfy dtype: `CONDITIONING`
-    - Returns the modified conditioning elements with updated area and strength parameters, ready for further processing or application.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
+    - The modified conditioning output, reflecting the adjustments made to the area of interest and strength parameters.
+    - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -59,13 +64,9 @@ class ConditioningSetAreaPercentage:
     CATEGORY = "conditioning"
 
     def append(self, conditioning, width, height, x, y, strength):
-        c = []
-        for t in conditioning:
-            n = [t[0], t[1].copy()]
-            n[1]['area'] = ("percentage", height, width, y, x)
-            n[1]['strength'] = strength
-            n[1]['set_area_to_bounds'] = False
-            c.append(n)
+        c = node_helpers.conditioning_set_values(conditioning, {"area": ("percentage", height, width, y, x),
+                                                                "strength": strength,
+                                                                "set_area_to_bounds": False})
         return (c, )
 
 ```

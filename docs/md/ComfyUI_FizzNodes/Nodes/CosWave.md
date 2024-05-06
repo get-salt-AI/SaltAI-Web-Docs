@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- WavePatterns
+---
+
 # CosWave 📅🅕🅝
 ## Documentation
 - Class name: `CosWave`

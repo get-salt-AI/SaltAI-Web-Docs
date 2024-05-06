@@ -1,34 +1,40 @@
+---
+tags:
+- DataTypeConversion
+- NumericConversion
+---
+
 # Primitive Value Converter
 ## Documentation
 - Class name: `SAIPrimitiveConverter`
 - Category: `SALT/Utility/Conversion`
 - Output node: `False`
 
-The SAIPrimitiveConverter node is designed to facilitate the conversion of input values between different primitive data types. It supports a wide range of conversions, including string, integer, float, boolean, list, and dictionary types, making it a versatile tool for data type manipulation within workflows.
+The SAIPrimitiveConverter node is designed to facilitate the conversion of input data between different primitive data types, handling various formats such as strings, lists, and dictionaries. It aims to provide a flexible solution for data type conversion, supporting custom sub-data types and enabling specific indexing or key-based access within complex data structures.
 ## Input types
 ### Required
 - **`input_value`**
-    - The value to be converted. This parameter is central to the node's functionality, as it determines the input data that will undergo type conversion.
+    - The raw input value to be converted. Its role is pivotal in determining the final output, as it undergoes transformation based on the specified output and sub-data types.
     - Comfy dtype: `*`
-    - Python dtype: `Any`
+    - Python dtype: `Union[str, list, dict, Any]`
 - **`output_type`**
-    - Specifies the desired output data type for the conversion, such as string, integer, float, etc. This parameter directly influences the result of the conversion process.
+    - Specifies the desired output data type, guiding the conversion process and determining the structure of the result.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`sub_data_type`**
-    - An optional parameter that allows for further specification of the data type for the conversion, enhancing the node's flexibility in handling different data formats.
+    - An optional parameter that defines the sub-type for the conversion, further refining the transformation process.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`index_or_key`**
-    - Optionally specifies an index or key for targeted conversion within complex data structures like lists or dictionaries, providing more granular control over the conversion process.
+    - An optional parameter that allows for indexing into lists or accessing values by key in dictionaries, enabling precise data extraction.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`output`**
     - Comfy dtype: `*`
-    - The result of the conversion process, which can be of various primitive data types depending on the specified output type.
-    - Python dtype: `Any`
+    - The converted data, presented in the specified output type, reflecting the transformation applied to the input value.
+    - Python dtype: `Union[list, dict, str]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -127,32 +133,32 @@ class SAIPrimitiveConverter:
             else:
                 return [cast_value(input_val, sub_data_type)]
 
-        if index_or_key != "" and isinstance(input_value, (list, dict)):
-            try:
-                if isinstance(input_value, list):
-                    input_value = input_value[int(index_or_key)]
-                elif isinstance(input_value, dict):
-                    if index_or_key in input_value:
+        if output_type == "STRING" or (sub_data_type == "STRING" and isinstance(input_value, (list, dict))):
+            if index_or_key != "":
+                try:
+                    if isinstance(input_value, list):
+                        input_value = input_value[int(index_or_key)]
+                    elif isinstance(input_value, dict):
                         input_value = input_value[index_or_key]
-                    else:
-                        raise KeyError
-            except (ValueError, IndexError, KeyError, TypeError) as e:
-                print(f"Error: Invalid index or key '{index_or_key}'. Defaulting to base value for {output_type}. Exception: {e}")
-                return (default_values[output_type], )
-        elif index_or_key == "" and output_type == "STRING":
-            return (json.dumps(input_value, indent=4),)
+                    return (cast_value(input_value, sub_data_type),)
+                except (ValueError, IndexError, KeyError, TypeError) as e:
+                    print(f"Error: Invalid index or key '{index_or_key}'. Exception: {e}")
+                    return (default_values["STRING"],)
+            elif index_or_key == "" and output_type == "STRING":
+                return (json.dumps(input_value, indent=4),)
 
         try:
             processed_input = process_input_value(input_value)
             if output_type == "LIST":
                 output = processed_input if isinstance(processed_input, list) else list(processed_input.values())
             elif output_type == "DICT":
-                output = processed_input
+                print(processed_input)
+                output = processed_input if isinstance(processed_input, str) else processed_input
             else:
                 print(f"Error: Unsupported type '{output_type}' for conversion. Defaulting to LIST.")
                 output = processed_input if isinstance(processed_input, list) else list(processed_input.values())
-        except (ValueError, TypeError) as e:
-            print(f"Error: Conversion failed. Defaulting to base value.")
+        except (ValueError, TypeError):
+            print(f"Error: Conversion failed. Defaulting to base value for {output_type}.")
             output = default_values.get(output_type, [])
 
         return (output,)

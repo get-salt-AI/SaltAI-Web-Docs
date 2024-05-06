@@ -1,3 +1,9 @@
+---
+tags:
+- Math
+- VectorMath
+---
+
 # Number Operation
 ## Documentation
 - Class name: `Number Operation`
@@ -35,7 +41,7 @@ The `Number Operation` node performs a variety of mathematical operations on two
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
-    - UltimateSDUpscale
+    - [UltimateSDUpscale](../../ComfyUI_UltimateSDUpscale/Nodes/UltimateSDUpscale.md)
     - [Display Int (rgthree)](../../rgthree-comfy/Nodes/Display Int (rgthree).md)
 
 

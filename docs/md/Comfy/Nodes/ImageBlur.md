@@ -1,28 +1,34 @@
+---
+tags:
+- Blur
+- VisualEffects
+---
+
 # ImageBlur
 ## Documentation
 - Class name: `ImageBlur`
 - Category: `image/postprocessing`
 - Output node: `False`
 
-The ImageBlur node applies a Gaussian blur to an image, allowing for the softening of edges and reduction of detail and noise. It provides control over the intensity and spread of the blur through parameters.
+The ImageBlur node applies a Gaussian blur to an image, utilizing a specified blur radius and sigma value to control the extent and intensity of the blurring effect. This process can help in reducing image noise and detail, creating a smoother appearance.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be blurred. This is the primary target for the blur effect.
+    - The input image to be blurred, provided as a torch.Tensor. This image undergoes a Gaussian blur transformation based on the specified blur radius and sigma.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`blur_radius`**
-    - Determines the radius of the blur effect. A larger radius results in a more pronounced blur.
+    - Specifies the radius of the blur effect. A larger radius results in a more pronounced blurring effect.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`sigma`**
-    - Controls the spread of the blur. A higher sigma value means the blur will affect a wider area around each pixel.
+    - Determines the spread of the blur effect. A higher sigma value increases the extent of blurring, affecting the smoothness of the output image.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is the blurred version of the input image, with the degree of blur determined by the input parameters.
+    - The output image after applying the Gaussian blur, returned as a torch.Tensor. This image will have a smoother appearance compared to the input.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -67,6 +73,7 @@ class Blur:
         if blur_radius == 0:
             return (image,)
 
+        image = image.to(comfy.model_management.get_torch_device())
         batch_size, height, width, channels = image.shape
 
         kernel_size = blur_radius * 2 + 1
@@ -77,6 +84,6 @@ class Blur:
         blurred = F.conv2d(padded_image, kernel, padding=kernel_size // 2, groups=channels)[:,:,blur_radius:-blur_radius, blur_radius:-blur_radius]
         blurred = blurred.permute(0, 2, 3, 1)
 
-        return (blurred,)
+        return (blurred.to(comfy.model_management.intermediate_device()),)
 
 ```

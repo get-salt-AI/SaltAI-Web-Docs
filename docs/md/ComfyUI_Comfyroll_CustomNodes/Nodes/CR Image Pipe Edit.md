@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Pipeline
+---
+
 # 🛩️ CR Image Pipe Edit
 ## Documentation
 - Class name: `CR Image Pipe Edit`

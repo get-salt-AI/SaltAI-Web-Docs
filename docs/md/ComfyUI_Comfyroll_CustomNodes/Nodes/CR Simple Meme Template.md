@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- TextOnImage
+---
+
 # 📱 CR Simple Meme Template
 ## Documentation
 - Class name: `CR Simple Meme Template`

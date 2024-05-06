@@ -1,3 +1,11 @@
+---
+tags:
+- DepthMap
+- Image
+- ImagePreprocessing
+- LineExtraction
+---
+
 # TEEDPreprocessor
 ## Documentation
 - Class name: `TEEDPreprocessor`

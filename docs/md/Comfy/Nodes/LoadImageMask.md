@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageLoad
+---
+
 # Load Image (as Mask)
 ## Documentation
 - Class name: `LoadImageMask`

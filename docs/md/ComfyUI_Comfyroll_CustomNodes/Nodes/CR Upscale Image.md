@@ -1,3 +1,10 @@
+---
+tags:
+- ImageScaling
+- ImageUpscaling
+- Upscale
+---
+
 # 🔍 CR Upscale Image
 ## Documentation
 - Class name: `CR Upscale Image`
@@ -51,7 +58,7 @@ This node is designed to upscale images using a specified model, with options fo
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes:
-    - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
+    - IPAdapterApply
     - [Anything Everywhere](../../cg-use-everywhere/Nodes/Anything Everywhere.md)
     - [VAEEncodeTiled](../../Comfy/Nodes/VAEEncodeTiled.md)
     - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)

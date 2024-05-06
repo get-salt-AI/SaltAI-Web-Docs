@@ -1,3 +1,10 @@
+---
+tags:
+- DepthMap
+- DepthMapEstimation
+- Image
+---
+
 # MiDaS Normal Map
 ## Documentation
 - Class name: `MiDaS-NormalMapPreprocessor`

@@ -1,3 +1,8 @@
+---
+tags:
+- ModelMerge
+---
+
 # Join Float Lists
 ## Documentation
 - Class name: `Join Float Lists`

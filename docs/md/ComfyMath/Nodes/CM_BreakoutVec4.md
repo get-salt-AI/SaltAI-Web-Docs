@@ -1,3 +1,8 @@
+---
+tags:
+- VectorMath
+---
+
 # BreakoutVec4
 ## Documentation
 - Class name: `CM_BreakoutVec4`

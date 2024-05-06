@@ -1,3 +1,8 @@
+---
+tags:
+- MathematicalFunctions
+---
+
 # Float Absolute Value
 ## Documentation
 - Class name: `JWFloatAbsolute`

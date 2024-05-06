@@ -1,3 +1,10 @@
+---
+tags:
+- AnimateDiff
+- AnimateDiffContext
+- Animation
+---
+
 # Load AnimateDiff Model 🎭🅐🅓②
 ## Documentation
 - Class name: `ADE_LoadAnimateDiffModel`

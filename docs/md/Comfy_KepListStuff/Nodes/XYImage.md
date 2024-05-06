@@ -1,3 +1,9 @@
+---
+tags:
+- DataVisualization
+- XYPlotData
+---
+
 # XYImage
 ## Documentation
 - Class name: `XYImage`

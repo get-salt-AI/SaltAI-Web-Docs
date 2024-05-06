@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- PanelDesign
+- VisualEffects
+---
+
 # 🌁 CR Half Drop Panel
 ## Documentation
 - Class name: `CR Half Drop Panel`

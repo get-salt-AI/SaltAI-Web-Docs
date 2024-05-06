@@ -1,3 +1,9 @@
+---
+tags:
+- Contour
+- Image
+---
+
 # Draw Contour(s)
 ## Documentation
 - Class name: `Draw Contour(s)`

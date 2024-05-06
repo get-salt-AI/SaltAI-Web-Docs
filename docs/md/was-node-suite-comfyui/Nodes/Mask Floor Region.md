@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskRegion
+---
+
 # Mask Floor Region
 ## Documentation
 - Class name: `Mask Floor Region`

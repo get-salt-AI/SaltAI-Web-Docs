@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskMorphology
+---
+
 # Mask Dilate Region
 ## Documentation
 - Class name: `Mask Dilate Region`

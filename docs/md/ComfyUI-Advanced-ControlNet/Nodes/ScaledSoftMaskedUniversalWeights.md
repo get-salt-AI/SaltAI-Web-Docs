@@ -1,3 +1,9 @@
+---
+tags:
+- ControlNet
+- Weight
+---
+
 # Scaled Soft Masked Weights 🛂🅐🅒🅝
 ## Documentation
 - Class name: `ScaledSoftMaskedUniversalWeights`

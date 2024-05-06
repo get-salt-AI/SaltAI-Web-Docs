@@ -1,3 +1,9 @@
+---
+tags:
+- ImpactPack
+- Segmentation
+---
+
 # SEGSOrderedFilterDetailerHookProvider
 ## Documentation
 - Class name: `SEGSOrderedFilterDetailerHookProvider`

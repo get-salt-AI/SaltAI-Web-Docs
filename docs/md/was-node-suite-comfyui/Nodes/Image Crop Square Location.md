@@ -1,3 +1,10 @@
+---
+tags:
+- Crop
+- Image
+- ImageTransformation
+---
+
 # Image Crop Square Location
 ## Documentation
 - Class name: `Image Crop Square Location`

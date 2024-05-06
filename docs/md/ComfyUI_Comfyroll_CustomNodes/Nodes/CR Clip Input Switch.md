@@ -1,3 +1,8 @@
+---
+tags:
+- ConditionalSelection
+---
+
 # 🔀 CR Clip Input Switch
 ## Documentation
 - Class name: `CR Clip Input Switch`

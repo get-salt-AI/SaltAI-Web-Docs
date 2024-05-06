@@ -1,3 +1,10 @@
+---
+tags:
+- CLIP
+- Loader
+- ModelIO
+---
+
 # Load CLIP
 ## Documentation
 - Class name: `CLIPLoader`

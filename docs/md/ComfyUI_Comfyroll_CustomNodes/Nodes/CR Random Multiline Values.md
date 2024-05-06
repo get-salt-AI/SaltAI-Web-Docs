@@ -1,3 +1,9 @@
+---
+tags:
+- RandomGeneration
+- Randomization
+---
+
 # 🎲 CR Random Multiline Values
 ## Documentation
 - Class name: `CR Random Multiline Values`

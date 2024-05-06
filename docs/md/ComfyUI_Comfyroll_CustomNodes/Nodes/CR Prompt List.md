@@ -1,3 +1,8 @@
+---
+tags:
+- Prompt
+---
+
 # 📜 CR Prompt List
 ## Documentation
 - Class name: `CR Prompt List`

@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageSave
+---
+
 # Save Image With Prompt Data
 ## Documentation
 - Class name: `Save Image With Prompt Data`

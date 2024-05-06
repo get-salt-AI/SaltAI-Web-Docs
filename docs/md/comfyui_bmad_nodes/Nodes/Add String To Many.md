@@ -1,3 +1,8 @@
+---
+tags:
+- Concatenate
+---
+
 # Add String To Many
 ## Documentation
 - Class name: `Add String To Many`

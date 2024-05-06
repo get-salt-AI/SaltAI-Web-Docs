@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Metadata
+---
+
 # 🪛 Save image with extra metadata
 ## Documentation
 - Class name: `Save image with extra metadata [Crystools]`

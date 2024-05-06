@@ -1,3 +1,9 @@
+---
+tags:
+- BackgroundRemoval
+- Image
+---
+
 # Image Rembg (Remove Background)
 ## Documentation
 - Class name: `Image Rembg (Remove Background)`

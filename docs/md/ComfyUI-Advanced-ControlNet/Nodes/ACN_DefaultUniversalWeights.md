@@ -1,3 +1,9 @@
+---
+tags:
+- ControlNet
+- Weight
+---
+
 # Force Default Weights 🛂🅐🅒🅝
 ## Documentation
 - Class name: `ACN_DefaultUniversalWeights`

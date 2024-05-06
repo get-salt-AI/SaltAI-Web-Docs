@@ -1,3 +1,11 @@
+---
+tags:
+- Loader
+- Model
+- ModelIO
+- ModelLoader
+---
+
 # DiffusersLoader
 ## Documentation
 - Class name: `DiffusersLoader`

@@ -1,45 +1,51 @@
-# Load Merged SparseCtrl Model 🛂🅐🅒🅝
+---
+tags:
+- ControlNet
+- ControlNetLoader
+---
+
+# 🧪Load Merged SparseCtrl Model 🛂🅐🅒🅝
 ## Documentation
 - Class name: `ACN_SparseCtrlMergedLoaderAdvanced`
 - Category: `Adv-ControlNet 🛂🅐🅒🅝/SparseCtrl/experimental`
 - Output node: `False`
 
-This node is designed to load a merged Sparse Control model, integrating advanced control mechanisms for enhanced manipulation and generation capabilities within the context of AI-driven creative processes. It leverages sparse control techniques to efficiently manage and apply complex control structures, facilitating the creation of nuanced and dynamic content.
+This node is designed for advanced loading of merged Sparse Control Networks, integrating both standard control networks and sparse control mechanisms with enhanced settings for motion. It facilitates the combination of these networks to leverage the strengths of each, providing a more versatile and dynamic control network for applications requiring nuanced control over motion and other attributes.
 ## Input types
 ### Required
 - **`sparsectrl_name`**
-    - Specifies the name of the sparse control model to be loaded. This parameter is crucial for identifying and retrieving the correct model from a predefined list of available control nets.
+    - Specifies the name of the sparse control network to be loaded. This name is used to locate the network within a predefined directory structure.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`control_net_name`**
-    - Specifies the name of the control net to be merged with the sparse control model, essential for combining the functionalities of both models for advanced content generation.
+    - Specifies the name of the standard control network to be merged with the sparse control network. This name is used to identify and load the corresponding standard control network.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`use_motion`**
-    - Determines whether motion-based control mechanisms should be utilized in the sparse control model, enhancing dynamic content generation.
+    - A boolean flag indicating whether motion settings should be applied to the sparse control network, enhancing its dynamic capabilities.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`motion_strength`**
-    - Adjusts the intensity of motion effects within the sparse control model, allowing for fine-tuned control over the dynamism of generated content.
+    - Defines the strength of the motion effect to be applied, allowing for fine-tuning of how motion influences the control network's behavior.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`motion_scale`**
-    - Scales the overall impact of motion within the sparse control model, providing a means to adjust the extent of motion-based effects on the generated content.
+    - Sets the scale of motion effects, providing control over the magnitude of motion adjustments within the network.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`sparse_method`**
-    - Defines the method of sparsity to be applied in the control model, influencing how control signals are distributed and applied for content generation.
+    - Determines the method used for sparse control within the network, affecting how control signals are generated and applied.
     - Comfy dtype: `SPARSE_METHOD`
-    - Python dtype: `str`
+    - Python dtype: `SparseMethod`
 - **`tk_optional`**
-    - Optionally includes a timestep keyframe group to be used in conjunction with the sparse control model, enabling more precise temporal control over content generation.
+    - Optional timestep keyframe group to be used for temporal control, offering additional flexibility in how motion and other dynamics are handled.
     - Comfy dtype: `TIMESTEP_KEYFRAME`
-    - Python dtype: `str`
+    - Python dtype: `TimestepKeyframeGroup`
 ## Output types
 - **`control_net`**
     - Comfy dtype: `CONTROL_NET`
-    - Returns the loaded sparse control model, ready for integration and use in advanced content generation processes.
+    - The merged and enhanced control network, incorporating both standard and sparse control mechanisms with motion settings applied.
     - Python dtype: `SparseCtrlAdvanced`
 ## Usage tips
 - Infra type: `CPU`

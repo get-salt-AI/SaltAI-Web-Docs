@@ -1,3 +1,8 @@
+---
+tags:
+- LoRA
+---
+
 # CR Cycle LoRAs (Legacy)
 ## Documentation
 - Class name: `CR Cycle LoRAs`

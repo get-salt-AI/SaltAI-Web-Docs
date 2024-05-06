@@ -1,3 +1,8 @@
+---
+tags:
+- MaskMath
+---
+
 # Masks Subtract
 ## Documentation
 - Class name: `Masks Subtract`

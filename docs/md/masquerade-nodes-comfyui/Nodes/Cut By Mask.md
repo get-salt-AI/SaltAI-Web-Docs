@@ -1,37 +1,43 @@
+---
+tags:
+- Image
+- ImageComposite
+---
+
 # Cut By Mask
 ## Documentation
 - Class name: `Cut By Mask`
 - Category: `Masquerade Nodes`
 - Output node: `False`
 
-The 'Cut By Mask' node is designed to selectively extract or remove parts of an image based on a provided mask. It allows for precise image manipulation by using the mask to define which areas of the image should be retained or discarded, and it supports resizing the output to specific dimensions.
+The 'Cut By Mask' node is designed to precisely extract or isolate parts of an image based on a specified mask. It allows for the resizing of the cut-out image to specific dimensions, optionally handling multiple image segments in a batch when provided with mask mappings from a 'Separate Mask Components' node.
 ## Input types
 ### Required
 - **`image`**
-    - The 'image' parameter represents the input image to be processed. It is the primary subject for the cut operation, where parts of it will be either retained or removed based on the mask.
+    - The input image to be processed. It serves as the primary canvas from which parts will be cut out based on the mask.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`mask`**
-    - The 'mask' parameter is used to specify which areas of the image should be retained or removed. It acts as a guide for the cut operation, with its values determining the fate of corresponding areas in the image.
+    - The mask that defines the areas of the input image to be cut out. It acts as a stencil, specifying which parts of the image are to be extracted or isolated.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`force_resize_width`**
-    - This parameter specifies the desired width to which the output image should be resized after the cut operation is performed.
+    - An optional width to which the cut-out image(s) will be resized. If specified, it overrides the natural size of the cut-out segments, enabling uniformity in output dimensions.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`force_resize_height`**
-    - This parameter specifies the desired height to which the output image should be resized after the cut operation is performed.
+    - An optional height to which the cut-out image(s) will be resized. Similar to force_resize_width, it allows for the standardization of output sizes across different cut-outs.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`mask_mapping_optional`**
-    - An optional parameter that allows for additional mapping instructions to be provided for the mask, potentially influencing how the cut operation is executed.
+    - An optional mapping of mask components, typically provided by a 'Separate Mask Components' node. It enables the cutting of multiple image segments in a single operation, based on distinct mask parts.
     - Comfy dtype: `MASK_MAPPING`
-    - Python dtype: `Optional[torch.Tensor]`
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is the processed image after applying the cut operation based on the mask, with optional resizing to the specified dimensions.
+    - The output image(s) after being cut by the mask. This can be a single image or multiple images, depending on whether mask mapping was used, resized as specified.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -43,6 +49,9 @@ The 'Cut By Mask' node is designed to selectively extract or remove parts of an 
 ## Source code
 ```python
 class CutByMask:
+    """
+    Cuts the image to the bounding box of the mask. If force_resize_width or force_resize_height are provided, the image will be resized to those dimensions. The `mask_mapping_optional` input can be provided from a 'Separate Mask Components' node to cut multiple pieces out of a single image in a batch.
+    """
     def __init__(self):
         pass
 

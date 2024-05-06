@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- VisualEffects
+---
+
 # 🟫 CR Halftone Grid
 ## Documentation
 - Class name: `CR Halftone Grid`

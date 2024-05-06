@@ -1,3 +1,8 @@
+---
+tags:
+- ControlNet
+---
+
 # ControlNetApplyAdvanced (SEGS)
 ## Documentation
 - Class name: `ImpactControlNetApplyAdvancedSEGS`

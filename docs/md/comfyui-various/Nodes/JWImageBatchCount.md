@@ -1,3 +1,8 @@
+---
+tags:
+- Counting
+---
+
 # Get Image Batch Count
 ## Documentation
 - Class name: `JWImageBatchCount`

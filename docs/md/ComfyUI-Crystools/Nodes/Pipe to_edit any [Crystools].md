@@ -1,46 +1,32 @@
+---
+tags:
+- Image
+- Pipeline
+---
+
 # 🪛 Pipe to/edit any
 ## Documentation
 - Class name: `Pipe to_edit any [Crystools]`
 - Category: `crystools 🪛/Pipe`
 - Output node: `False`
 
-The 'Pipe to/edit any' node is designed to facilitate the modification or updating of data flowing through a pipeline. It allows for the selective editing of up to six arbitrary data elements, enabling users to easily modify or replace these elements as needed within the flow of data.
+The 'Pipe to/edit any' node is designed to facilitate the modification or updating of a sequence of any data types. It allows for the flexible editing of inputs by replacing or retaining original values, making it a versatile tool for data manipulation and flow control within pipelines.
 ## Input types
 ### Required
 ### Optional
 - **`CPipeAny`**
-    - Represents the original data elements to be potentially modified. It serves as a baseline for the modifications applied by the node, allowing for selective editing of the data elements.
+    - Represents the original sequence of data to be potentially modified. It serves as the baseline for any edits or updates applied through the node.
     - Comfy dtype: `CPipeAny`
-    - Python dtype: `Tuple[Any, Any, Any, Any, Any, Any]`
-- **`any_1`**
-    - An optional data element that can replace or modify the first element of the original data.
-    - Comfy dtype: `*`
-    - Python dtype: `Any`
-- **`any_2`**
-    - An optional data element that can replace or modify the second element of the original data.
-    - Comfy dtype: `*`
-    - Python dtype: `Any`
-- **`any_3`**
-    - An optional data element that can replace or modify the third element of the original data.
-    - Comfy dtype: `*`
-    - Python dtype: `Any`
-- **`any_4`**
-    - An optional data element that can replace or modify the fourth element of the original data.
-    - Comfy dtype: `*`
-    - Python dtype: `Any`
-- **`any_5`**
-    - An optional data element that can replace or modify the fifth element of the original data.
-    - Comfy dtype: `*`
-    - Python dtype: `Any`
-- **`any_6`**
-    - An optional data element that can replace or modify the sixth element of the original data.
+    - Python dtype: `Tuple[Any, ...]`
+- **`any_i`**
+    - An optional parameter that, if provided, replaces the corresponding element of the original data sequence. The index 'i' can range from 1 to 6, allowing for targeted modifications to the sequence.
     - Comfy dtype: `*`
     - Python dtype: `Any`
 ## Output types
 - **`cpipeany`**
     - Comfy dtype: `CPipeAny`
-    - A list containing the modified or updated data elements, reflecting any changes made through the node.
-    - Python dtype: `List[Any]`
+    - unknown
+    - Python dtype: `unknown`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

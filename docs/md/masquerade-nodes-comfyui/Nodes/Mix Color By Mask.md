@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- ImageBlend
+- ImageComposite
+---
+
 # Mix Color By Mask
 ## Documentation
 - Class name: `Mix Color By Mask`

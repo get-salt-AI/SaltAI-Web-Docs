@@ -1,14 +1,19 @@
+---
+tags:
+- Preview
+---
+
 # 🔧 Mask Preview
 ## Documentation
 - Class name: `MaskPreview+`
 - Category: `essentials`
 - Output node: `True`
 
-The MaskPreview node is designed for generating a preview of masks by reshaping and expanding the mask tensor for visualization purposes. It temporarily saves these visualizations with a unique prefix to a designated output directory.
+The MaskPreview node is designed for generating a preview of masks by reshaping and expanding the input mask tensor, and then saving these images to a temporary directory with optional compression. It facilitates the visualization of mask data by converting it into a more interpretable form.
 ## Input types
 ### Required
 - **`mask`**
-    - The 'mask' parameter represents the mask tensor to be visualized. It is crucial for generating the preview image.
+    - The mask input is the primary data that this node processes, transforming it into a visual format for preview purposes.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ## Output types
@@ -26,14 +31,14 @@ class MaskPreview(SaveImage):
         self.type = "temp"
         self.prefix_append = "_temp_" + ''.join(random.choice("abcdefghijklmnopqrstupvxyz") for x in range(5))
         self.compress_level = 4
-    
+
     @classmethod
     def INPUT_TYPES(s):
         return {
             "required": {"mask": ("MASK",), },
             "hidden": {"prompt": "PROMPT", "extra_pnginfo": "EXTRA_PNGINFO"},
         }
-    
+
     FUNCTION = "execute"
     CATEGORY = "essentials"
 

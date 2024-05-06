@@ -1,3 +1,9 @@
+---
+tags:
+- Animation
+- Image
+---
+
 # 🛠️ CR Current Frame
 ## Documentation
 - Class name: `CR Current Frame`

@@ -1,3 +1,9 @@
+---
+tags:
+- Concatenate
+- Text
+---
+
 # 🔤 CR Text Concatenate
 ## Documentation
 - Class name: `CR Text Concatenate`

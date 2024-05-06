@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- Pipeline
+- PipelineTransformation
+---
+
 # DetailerPipe -> BasicPipe
 ## Documentation
 - Class name: `DetailerPipeToBasicPipe`

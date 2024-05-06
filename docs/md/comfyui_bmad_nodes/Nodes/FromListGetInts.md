@@ -1,3 +1,8 @@
+---
+tags:
+- List
+---
+
 # FromListGetInts
 ## Documentation
 - Class name: `FromListGetInts`

@@ -1,3 +1,10 @@
+---
+tags:
+- CLIP
+- CLIPConditioning
+- Conditioning
+---
+
 # CLIP Text Encode Sequence (Advanced)
 ## Documentation
 - Class name: `CLIPTextEncodeList`

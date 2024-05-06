@@ -1,3 +1,8 @@
+---
+tags:
+- MaskMath
+---
+
 # LatentSubtract
 ## Documentation
 - Class name: `LatentSubtract`

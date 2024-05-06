@@ -1,24 +1,31 @@
+---
+tags:
+- Batch
+- Image
+- ImageDuplication
+---
+
 # ImageBatchRepeatInterleaving
 ## Documentation
 - Class name: `ImageBatchRepeatInterleaving`
-- Category: `KJNodes`
+- Category: `KJNodes/image`
 - Output node: `False`
 
-This node specializes in duplicating images within a batch, allowing each image to be repeated a specified number of times. It enhances the flexibility of image batch manipulation by enabling the creation of larger batches from existing images through repetition.
+The ImageBatchRepeatInterleaving node is designed to expand a batch of images by repeating each image in the batch a specified number of times. This operation effectively increases the batch size by duplicating images, which can be useful for data augmentation or ensuring uniform batch processing sizes.
 ## Input types
 ### Required
 - **`images`**
-    - The collection of images to be repeated. This parameter is crucial for determining the content of the output batch.
+    - The 'images' parameter represents the batch of images to be repeated. It is crucial for defining the input data that will undergo the repetition process.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`repeats`**
-    - Specifies the number of times each image in the input batch should be repeated. This parameter directly influences the size of the output batch.
+    - The 'repeats' parameter specifies the number of times each image in the batch should be repeated. It directly influences the resulting batch size by determining the duplication factor for each image.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - A batch of images where each input image has been repeated according to the specified 'repeats' parameter.
+    - The output is a new batch of images where each original image has been repeated according to the 'repeats' parameter, effectively enlarging the batch size.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -31,7 +38,12 @@ class ImageBatchRepeatInterleaving:
     
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "repeat"
-    CATEGORY = "KJNodes"
+    CATEGORY = "KJNodes/image"
+    DESCRIPTION = """
+Repeats each image in a batch by the specified number of times.  
+Example batch of 5 images: 0, 1 ,2, 3, 4  
+with repeats 2 becomes batch of 10 images: 0, 0, 1, 1, 2, 2, 3, 3, 4, 4  
+"""
 
     @classmethod
     def INPUT_TYPES(s):

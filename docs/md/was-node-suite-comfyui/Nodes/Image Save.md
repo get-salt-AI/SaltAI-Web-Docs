@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageSave
+---
+
 # Image Save
 ## Documentation
 - Class name: `Image Save`

@@ -1,3 +1,8 @@
+---
+tags:
+- Sampling
+---
+
 # Asymmetric Tiled KSampler
 ## Documentation
 - Class name: `Asymmetric Tiled KSampler`

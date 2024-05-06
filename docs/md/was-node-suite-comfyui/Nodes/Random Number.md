@@ -1,3 +1,9 @@
+---
+tags:
+- RandomGeneration
+- Randomization
+---
+
 # Random Number
 ## Documentation
 - Class name: `Random Number`

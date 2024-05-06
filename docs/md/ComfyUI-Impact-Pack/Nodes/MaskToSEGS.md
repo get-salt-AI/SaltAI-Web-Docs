@@ -1,3 +1,9 @@
+---
+tags:
+- SEGSPrep
+- Segmentation
+---
+
 # MASK to SEGS
 ## Documentation
 - Class name: `MaskToSEGS`

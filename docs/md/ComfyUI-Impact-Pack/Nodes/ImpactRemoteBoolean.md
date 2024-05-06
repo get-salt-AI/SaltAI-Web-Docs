@@ -1,3 +1,9 @@
+---
+tags:
+- BooleanLogic
+- ConditionalSelection
+---
+
 # Remote Boolean (on prompt)
 ## Documentation
 - Class name: `ImpactRemoteBoolean`

@@ -1,20 +1,25 @@
+---
+tags:
+- Conditioning
+---
+
 # Concat Conditionings
 ## Documentation
 - Class name: `ImpactConcatConditionings`
-- Category: `ImpactPack/__for_testing`
+- Category: `ImpactPack/Util`
 - Output node: `False`
 
-This node is designed to concatenate multiple conditioning inputs into a single conditioning output. It primarily serves to merge various conditioning elements, facilitating the creation of composite conditionings that can be utilized in further processing or model inference.
+The ImpactConcatConditionings node is designed to concatenate multiple conditioning inputs into a single conditioning output. This process involves merging the features of the given conditionings, facilitating the combination of different conditioning elements for enhanced model input preparation.
 ## Input types
 ### Required
 - **`conditioning1`**
-    - The primary conditioning input to which additional conditionings will be concatenated. It acts as the base for the concatenation process.
+    - The primary conditioning input to which additional conditionings will be concatenated. It serves as the base for the concatenation process.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[torch.Tensor, Any]]`
 ## Output types
 - **`conditioning`**
     - Comfy dtype: `CONDITIONING`
-    - The result of concatenating the specified conditionings, producing a single, composite conditioning output.
+    - The result of concatenating the given conditionings into a single, unified conditioning output.
     - Python dtype: `List[Tuple[torch.Tensor, Any]]`
 ## Usage tips
 - Infra type: `GPU`
@@ -34,7 +39,7 @@ class ConcatConditionings:
     RETURN_TYPES = ("CONDITIONING", )
     FUNCTION = "doit"
 
-    CATEGORY = "ImpactPack/__for_testing"
+    CATEGORY = "ImpactPack/Util"
 
     def doit(self, **kwargs):
         conditioning_to = list(kwargs.values())[0]

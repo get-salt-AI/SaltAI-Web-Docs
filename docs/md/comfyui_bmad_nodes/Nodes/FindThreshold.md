@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageThresholding
+---
+
 # FindThreshold
 ## Documentation
 - Class name: `FindThreshold`

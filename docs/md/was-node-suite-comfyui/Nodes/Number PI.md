@@ -1,3 +1,9 @@
+---
+tags:
+- DataTypeConversion
+- NumericConversion
+---
+
 # Number PI
 ## Documentation
 - Class name: `Number PI`

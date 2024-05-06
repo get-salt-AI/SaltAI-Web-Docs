@@ -1,3 +1,8 @@
+---
+tags:
+- VAE
+---
+
 # Reencode Latent
 ## Documentation
 - Class name: `ReencodeLatent`

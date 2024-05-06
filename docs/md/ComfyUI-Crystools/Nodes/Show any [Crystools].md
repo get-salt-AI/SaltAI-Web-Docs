@@ -1,3 +1,8 @@
+---
+tags:
+- Debugging
+---
+
 # 🪛 Show any value to console/display
 ## Documentation
 - Class name: `Show any [Crystools]`

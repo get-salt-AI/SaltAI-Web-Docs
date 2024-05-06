@@ -1,3 +1,8 @@
+---
+tags:
+- Mask
+---
+
 # IsMaskEmpty
 ## Documentation
 - Class name: `IsMaskEmpty`

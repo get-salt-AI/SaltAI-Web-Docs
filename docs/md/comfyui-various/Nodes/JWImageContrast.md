@@ -1,3 +1,10 @@
+---
+tags:
+- ImageEnhancement
+- ImageTransformation
+- VisualEffects
+---
+
 # Image Contrast
 ## Documentation
 - Class name: `JWImageContrast`

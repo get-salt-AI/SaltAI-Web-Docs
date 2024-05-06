@@ -1,42 +1,49 @@
+---
+tags:
+- AnimateDiff
+- Animation
+- ModelTuning
+---
+
 # Adjust PE [Manual] 🎭🅐🅓
 ## Documentation
 - Class name: `ADE_AdjustPEManual`
 - Category: `Animate Diff 🎭🅐🅓/ad settings/pe adjust`
 - Output node: `False`
 
-The ADE_AdjustPEManual node allows for manual adjustment of positional encoding (PE) parameters within the AnimateDiff framework. It provides a flexible interface for users to specify various PE modification strategies, such as stretching, offsetting, or capping the length of PEs, to tailor the animation generation process to specific needs.
+The ADE_AdjustPEManual node allows for manual adjustments to the positional encoding (PE) parameters within the AnimateDiff framework. It provides fine-grained control over the PE adjustments, enabling users to tailor the animation process to specific needs.
 ## Input types
 ### Required
 - **`cap_initial_pe_length`**
-    - Specifies the maximum length for the initial positional encoding. This parameter allows for capping the PE length at the beginning of the animation process, which can influence the animation's starting point or initial state.
+    - Specifies the maximum initial length of the positional encoding to be used, allowing for the capping of PE at the beginning of the process. This can be crucial for controlling the animation's starting point.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`interpolate_pe_to_length`**
-    - Determines the length to which the positional encoding should be interpolated. This adjustment can affect the smoothness and duration of the generated animation.
+    - Determines the length to which the positional encoding should be interpolated, enabling the adjustment of PE length to match specific animation requirements.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`initial_pe_idx_offset`**
-    - Sets the starting index offset for the positional encoding. This parameter shifts the starting point of the positional encoding, potentially altering the animation's initial conditions.
+    - Sets the starting index offset for the positional encoding, allowing for the adjustment of the animation's initial phase.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`final_pe_idx_offset`**
-    - Defines the ending index offset for the positional encoding. It allows for adjustments to the ending conditions of the animation, affecting its final state.
+    - Defines the ending index offset for the positional encoding, facilitating the control over the animation's final phase.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`print_adjustment`**
-    - A boolean flag that, when set to true, enables the printing of adjustments made to the positional encoding. This feature aids in debugging and fine-tuning the animation parameters.
+    - Enables the printing of adjustment information, useful for debugging and understanding the impact of the applied adjustments.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`prev_pe_adjust`**
-    - An optional parameter that takes a previous positional encoding adjustment group. It allows for the accumulation and application of multiple PE adjustments over time.
+    - Allows for the inclusion of previous positional encoding adjustments, enabling cumulative adjustments over multiple steps.
     - Comfy dtype: `PE_ADJUST`
-    - Python dtype: `AdjustPEGroup`
+    - Python dtype: `AdjustGroup`
 ## Output types
 - **`pe_adjust`**
     - Comfy dtype: `PE_ADJUST`
-    - Returns an updated positional encoding adjustment group, incorporating the manual adjustments specified by the input parameters.
-    - Python dtype: `AdjustPEGroup`
+    - Returns an adjusted positional encoding object, reflecting the manual adjustments made to the PE settings.
+    - Python dtype: `AdjustGroup`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -66,9 +73,9 @@ class ManualAdjustPENode:
 
     def get_pe_adjust(self, cap_initial_pe_length: int, interpolate_pe_to_length: int, 
                       initial_pe_idx_offset: int, final_pe_idx_offset: int, print_adjustment: bool,
-                      prev_pe_adjust: AdjustPEGroup=None):
+                      prev_pe_adjust: AdjustGroup=None):
         if prev_pe_adjust is None:
-            prev_pe_adjust = AdjustPEGroup()
+            prev_pe_adjust = AdjustGroup()
         prev_pe_adjust = prev_pe_adjust.clone()
         adjust = AdjustPE(cap_initial_pe_length=cap_initial_pe_length, interpolate_pe_to_length=interpolate_pe_to_length,
                           initial_pe_idx_offset=initial_pe_idx_offset, final_pe_idx_offset=final_pe_idx_offset,

@@ -1,3 +1,8 @@
+---
+tags:
+- Sampling
+---
+
 # KSampler Cycle
 ## Documentation
 - Class name: `KSampler Cycle`

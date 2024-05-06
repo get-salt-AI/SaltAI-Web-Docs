@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Tiled
+---
+
 # Image Seamless Texture
 ## Documentation
 - Class name: `Image Seamless Texture`

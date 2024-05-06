@@ -1,3 +1,8 @@
+---
+tags:
+- Color
+---
+
 # CLAHE
 ## Documentation
 - Class name: `CLAHE`

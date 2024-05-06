@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Segmentation
+---
+
 # CLIPSegDetectorProvider
 ## Documentation
 - Class name: `CLIPSegDetectorProvider`

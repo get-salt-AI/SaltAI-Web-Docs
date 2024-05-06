@@ -1,3 +1,10 @@
+---
+tags:
+- Crop
+- Image
+- ImageTransformation
+---
+
 # Image Inset Crop (rgthree)
 ## Documentation
 - Class name: `Image Inset Crop (rgthree)`

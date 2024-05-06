@@ -1,3 +1,10 @@
+---
+tags:
+- AspectRatio
+- ImageSize
+- ImageTransformation
+---
+
 # 🔳 CR SD1.5 Aspect Ratio
 ## Documentation
 - Class name: `CR SD1.5 Aspect Ratio`

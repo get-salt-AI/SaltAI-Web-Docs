@@ -1,3 +1,9 @@
+---
+tags:
+- BooleanLogic
+- ConditionalSelection
+---
+
 # 🔧 CR String To Boolean
 ## Documentation
 - Class name: `CR String To Boolean`

@@ -1,3 +1,9 @@
+---
+tags:
+- Blur
+- VisualEffects
+---
+
 # Gaussian Blur Mask (SEGS)
 ## Documentation
 - Class name: `ImpactGaussianBlurMaskInSEGS`

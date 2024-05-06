@@ -1,3 +1,8 @@
+---
+tags:
+- Text
+---
+
 # Text Load Line From File
 ## Documentation
 - Class name: `Text Load Line From File`

@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- Scheduling
+---
+
 # 📝 CR Keyframe List
 ## Documentation
 - Class name: `CR Keyframe List`

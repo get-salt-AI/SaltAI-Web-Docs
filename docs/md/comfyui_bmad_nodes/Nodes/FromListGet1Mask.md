@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskList
+---
+
 # FromListGet1Mask
 ## Documentation
 - Class name: `FromListGet1Mask`

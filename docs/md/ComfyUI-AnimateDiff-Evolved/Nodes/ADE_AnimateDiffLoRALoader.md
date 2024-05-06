@@ -1,3 +1,9 @@
+---
+tags:
+- AnimateDiff
+- Animation
+---
+
 # Load AnimateDiff LoRA 🎭🅐🅓
 ## Documentation
 - Class name: `ADE_AnimateDiffLoRALoader`

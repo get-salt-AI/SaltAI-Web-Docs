@@ -1,3 +1,8 @@
+---
+tags:
+- Prompt
+---
+
 # ⚙️ CR Get Parameter From Prompt
 ## Documentation
 - Class name: `CR Get Parameter From Prompt`

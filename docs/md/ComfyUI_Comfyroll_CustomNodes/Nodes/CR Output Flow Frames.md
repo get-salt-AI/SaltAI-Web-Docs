@@ -1,3 +1,9 @@
+---
+tags:
+- Animation
+- Image
+---
+
 # ⌨️ CR Output Flow Frames
 ## Documentation
 - Class name: `CR Output Flow Frames`

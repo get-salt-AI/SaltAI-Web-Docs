@@ -1,20 +1,25 @@
-# Load IPAdapter Embeds
+---
+tags:
+- IPAdapter
+---
+
+# IPAdapter Load Embeds
 ## Documentation
 - Class name: `IPAdapterLoadEmbeds`
-- Category: `ipadapter`
+- Category: `ipadapter/embeds`
 - Output node: `False`
 
-This node is designed for loading pre-saved IPAdapter embeddings from a specified directory. It facilitates the retrieval of embeddings for further processing or analysis within the IPAdapter framework.
+The IPAdapterLoadEmbeds node is designed for loading pre-saved embedding vectors from files with a specific extension, facilitating the reuse of embeddings in image processing applications.
 ## Input types
 ### Required
 - **`embeds`**
-    - Specifies the file names of the embeddings to be loaded. This allows for selective loading of embeddings based on the user's requirements.
+    - Specifies the file names from which to load the embeddings, enabling the selection of specific pre-saved embeddings for use in the node's operation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 ## Output types
 - **`embeds`**
     - Comfy dtype: `EMBEDS`
-    - Returns the loaded embeddings as tensors, ready for use in subsequent IPAdapter operations.
+    - Returns the loaded embedding vectors, making them available for further processing or application within the image generation pipeline.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
@@ -32,12 +37,10 @@ class IPAdapterLoadEmbeds:
 
     RETURN_TYPES = ("EMBEDS", )
     FUNCTION = "load"
-    CATEGORY = "ipadapter"
+    CATEGORY = "ipadapter/embeds"
 
     def load(self, embeds):
         path = folder_paths.get_annotated_filepath(embeds)
-        output = torch.load(path).cpu()
-
-        return (output, )
+        return (torch.load(path).cpu(), )
 
 ```

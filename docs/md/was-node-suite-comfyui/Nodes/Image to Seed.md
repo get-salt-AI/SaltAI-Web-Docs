@@ -1,3 +1,8 @@
+---
+tags:
+- Image
+---
+
 # Image to Seed
 ## Documentation
 - Class name: `Image to Seed`

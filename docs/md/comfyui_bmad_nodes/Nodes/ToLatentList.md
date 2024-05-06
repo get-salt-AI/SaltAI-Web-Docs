@@ -1,3 +1,8 @@
+---
+tags:
+- Latent
+---
+
 # ToLatentList
 ## Documentation
 - Class name: `ToLatentList`

@@ -1,3 +1,8 @@
+---
+tags:
+- Latent
+---
+
 # Preview Bridge (Latent)
 ## Documentation
 - Class name: `PreviewBridgeLatent`

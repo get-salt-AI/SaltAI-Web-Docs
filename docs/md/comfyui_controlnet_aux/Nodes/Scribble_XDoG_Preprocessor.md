@@ -1,3 +1,11 @@
+---
+tags:
+- DepthMap
+- Image
+- ImagePreprocessing
+- LineExtraction
+---
+
 # Scribble XDoG Lines
 ## Documentation
 - Class name: `Scribble_XDoG_Preprocessor`

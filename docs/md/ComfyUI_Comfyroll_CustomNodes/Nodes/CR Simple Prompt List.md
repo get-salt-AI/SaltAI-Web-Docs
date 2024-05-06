@@ -1,3 +1,8 @@
+---
+tags:
+- Prompt
+---
+
 # CR Simple Prompt List (Legacy)
 ## Documentation
 - Class name: `CR Simple Prompt List`

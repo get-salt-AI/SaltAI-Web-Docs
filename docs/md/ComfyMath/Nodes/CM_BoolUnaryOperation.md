@@ -1,3 +1,9 @@
+---
+tags:
+- Math
+- VectorMath
+---
+
 # BoolUnaryOperation
 ## Documentation
 - Class name: `CM_BoolUnaryOperation`

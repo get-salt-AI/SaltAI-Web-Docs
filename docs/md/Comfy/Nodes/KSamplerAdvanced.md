@@ -1,3 +1,8 @@
+---
+tags:
+- Sampling
+---
+
 # KSampler (Advanced)
 ## Documentation
 - Class name: `KSamplerAdvanced`

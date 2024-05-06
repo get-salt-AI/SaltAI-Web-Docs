@@ -1,3 +1,9 @@
+---
+tags:
+- Loader
+- ModelIO
+---
+
 # BLIP Analyze Image
 ## Documentation
 - Class name: `BLIP Analyze Image`

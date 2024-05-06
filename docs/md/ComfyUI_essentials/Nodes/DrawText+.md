@@ -1,67 +1,73 @@
+---
+tags:
+- Image
+- TextOnImage
+---
+
 # 🔧 Draw Text
 ## Documentation
 - Class name: `DrawText+`
 - Category: `essentials`
 - Output node: `False`
 
-The DrawText+ node is designed to overlay text onto images, providing a wide range of customization options such as font selection, size, color, background color, shadow effects, and alignment. It enables users to enhance visual content by adding descriptive or artistic textual elements directly onto their images.
+The DrawText+ node is designed for rendering text onto images, allowing for customization of text appearance including font, size, color, and background. It supports text alignment and shadow effects, providing a versatile tool for image annotation and graphic design tasks.
 ## Input types
 ### Required
 - **`text`**
-    - The text to be drawn on the image. This parameter allows users to specify the content of the textual overlay.
+    - The text to be rendered on the image. It's a crucial parameter as it defines the content of the annotation.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`font`**
-    - Specifies the font used for the text. This parameter enables customization of the text's appearance to match the image's aesthetic or the user's preference.
+    - Specifies the font used to render the text, affecting the style and appearance of the text on the image.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`size`**
-    - Determines the size of the text. This parameter allows for the adjustment of the text's scale relative to the image, ensuring that it is appropriately proportioned.
+    - Determines the size of the text, impacting its visibility and how it occupies space within the image.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`color`**
-    - The color of the text. This parameter enables users to specify the text color, allowing for visual contrast or harmony with the image background.
+    - The color of the text, defining its visual impact and how it contrasts with the image background.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`background_color`**
-    - The background color of the text. This parameter allows for the addition of a background color to the text, enhancing readability or aesthetic appeal.
+    - The color of the text background, which can enhance readability or aesthetic appeal depending on the image context.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`shadow_distance`**
-    - The distance of the shadow effect from the text. This parameter allows for the creation of a shadow effect, adding depth and emphasis to the text.
+    - The distance of the shadow from the text, adding depth and emphasis to the text rendering.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`shadow_blur`**
-    - The blur radius of the text shadow. This parameter controls the softness of the shadow effect, contributing to the text's visual impact.
+    - Controls the blur intensity of the text shadow, affecting the softness and spread of the shadow effect.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`shadow_color`**
-    - The color of the text shadow. This parameter enables customization of the shadow's color, further enhancing the text's visual appeal.
+    - The color of the shadow, which can add visual interest or improve text legibility.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`alignment`**
-    - Specifies the alignment of the text within the image. This parameter allows for the strategic placement of text to achieve the desired visual composition.
+    - Determines the text alignment (left, center, right) within the specified area, influencing the layout and overall appearance.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`width`**
-    - The width of the area where the text will be drawn. This parameter defines the horizontal bounds for text placement, ensuring it fits within the specified area.
+    - The width of the area where the text is to be rendered, defining the text wrapping and layout constraints.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - The height of the area where the text will be drawn. This parameter defines the vertical bounds for text placement, ensuring it fits within the specified area.
+    - The height of the area where the text is to be rendered, defining the vertical space available for the text.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The resulting image after text has been drawn onto it. This output is the visual content enhanced with the specified textual elements.
+    - The resulting image with the rendered text.
     - Python dtype: `torch.Tensor`
 - **`mask`**
     - Comfy dtype: `MASK`
-    - A mask indicating the areas where text has been added to the image. This output can be used for further processing or compositing.
+    - A mask indicating the areas of the image occupied by the text, useful for further processing or compositing.
     - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -72,7 +78,7 @@ class DrawText:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "text": ("STRING", { "multiline": True, "default": "Hello, World!" }),
+                "text": ("STRING", { "multiline": True, "dynamicPrompts": True, "default": "Hello, World!" }),
                 "font": ([f for f in os.listdir(FONTS_DIR) if f.endswith('.ttf') or f.endswith('.otf')], ),
                 "size": ("INT", { "default": 56, "min": 1, "max": 9999, "step": 1 }),
                 "color": ("STRING", { "multiline": False, "default": "#FFFFFF" }),
@@ -92,7 +98,7 @@ class DrawText:
 
     def execute(self, text, font, size, color, background_color, shadow_distance, shadow_blur, shadow_color, alignment, width, height):
         font = ImageFont.truetype(os.path.join(FONTS_DIR, font), size)
-        
+
         lines = text.split("\n")
 
         # Calculate the width and height of the text
@@ -123,7 +129,7 @@ class DrawText:
 
             draw = ImageDraw.Draw(image)
             draw.text((x, y), line, font=font, fill=color)
-            
+
             if image_shadow is not None:
                 draw = ImageDraw.Draw(image_shadow)
                 draw.text((x + shadow_distance, y + shadow_distance), line, font=font, fill=shadow_color)

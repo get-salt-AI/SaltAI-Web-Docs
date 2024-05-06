@@ -1,3 +1,3 @@
 # Comfy
 - Repo url: `https://github.com/comfyanonymous/ComfyUI`
-- Commit hash: `36f7face37320ec3c6ac85ec3c625738241deaa9`
+- Commit hash: `b8218522f112be2e69fd49bbefbe68b57868baa0`

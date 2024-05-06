@@ -1,44 +1,51 @@
+---
+tags:
+- BoundingBox
+- Image
+- ImageTransformation
+---
+
 # BboxToInt
 ## Documentation
 - Class name: `BboxToInt`
 - Category: `KJNodes/masking`
 - Output node: `False`
 
-The BboxToInt node is designed to convert bounding box coordinates into integer values, including the calculation of the center points. It focuses on extracting specific bounding box details based on an index, facilitating operations that require precise location and dimension information.
+The BboxToInt node is designed to convert bounding box coordinates from a list into integer values, including the calculation of the center points of the bounding boxes. This node facilitates the manipulation and analysis of bounding box data by providing precise integer coordinates.
 ## Input types
 ### Required
 - **`bboxes`**
-    - The 'bboxes' parameter represents the list of bounding boxes from which specific details are to be extracted. It is crucial for determining the exact bounding box to process based on the provided index.
+    - The 'bboxes' parameter represents the list of bounding boxes to be processed. Each bounding box is expected to be a tuple or list of coordinates. This parameter is crucial for determining which bounding boxes will be converted into integer values.
     - Comfy dtype: `BBOX`
-    - Python dtype: `Tuple[int, int, int, int]`
+    - Python dtype: `List[Tuple[int, int, int, int]]`
 - **`index`**
-    - The 'index' parameter specifies the position of the bounding box in the 'bboxes' list to be processed. It determines which bounding box's details are to be converted into integer values.
+    - The 'index' parameter specifies the position of the bounding box in the 'bboxes' list that should be processed. It allows for selective conversion of bounding boxes, enhancing flexibility in handling bounding box data.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`x_min`**
     - Comfy dtype: `INT`
-    - The minimum x-coordinate of the bounding box.
+    - The minimum x-coordinate of the selected bounding box.
     - Python dtype: `int`
 - **`y_min`**
     - Comfy dtype: `INT`
-    - The minimum y-coordinate of the bounding box.
+    - The minimum y-coordinate of the selected bounding box.
     - Python dtype: `int`
 - **`width`**
     - Comfy dtype: `INT`
-    - The width of the bounding box.
+    - The width of the selected bounding box.
     - Python dtype: `int`
 - **`height`**
     - Comfy dtype: `INT`
-    - The height of the bounding box.
+    - The height of the selected bounding box.
     - Python dtype: `int`
 - **`center_x`**
     - Comfy dtype: `INT`
-    - The x-coordinate of the center of the bounding box.
+    - The x-coordinate of the center point of the selected bounding box.
     - Python dtype: `int`
 - **`center_y`**
     - Comfy dtype: `INT`
-    - The y-coordinate of the center of the bounding box.
+    - The y-coordinate of the center point of the selected bounding box.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
@@ -61,9 +68,10 @@ class BboxToInt:
     RETURN_TYPES = ("INT","INT","INT","INT","INT","INT",)
     RETURN_NAMES = ("x_min","y_min","width","height", "center_x","center_y",)
     FUNCTION = "bboxtoint"
-
     CATEGORY = "KJNodes/masking"
-
+    DESCRIPTION = """
+Returns selected index from bounding box list as integers.
+"""
     def bboxtoint(self, bboxes, index):
         x_min, y_min, width, height = bboxes[index]
         center_x = int(x_min + width / 2)

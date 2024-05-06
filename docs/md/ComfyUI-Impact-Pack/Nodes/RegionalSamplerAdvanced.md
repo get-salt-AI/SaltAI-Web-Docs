@@ -1,3 +1,8 @@
+---
+tags:
+- Sampling
+---
+
 # RegionalSamplerAdvanced
 ## Documentation
 - Class name: `RegionalSamplerAdvanced`

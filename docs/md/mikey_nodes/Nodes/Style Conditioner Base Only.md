@@ -1,52 +1,57 @@
+---
+tags:
+- Style
+---
+
 # Style Conditioner Base Only (Mikey)
 ## Documentation
 - Class name: `Style Conditioner Base Only`
 - Category: `Mikey/Conditioning`
 - Output node: `False`
 
-The StyleConditionerBaseOnly node is designed to apply a specific style to a base conditioning without utilizing a seed for style selection. It focuses on modifying the base conditioning layers to reflect the chosen style, enhancing the overall aesthetic or thematic presentation of the content.
+This node is designed to conditionally apply styling to a base input without the additional refinement layer, focusing on modifying the base attributes according to a specified style and strength. It abstracts the complexity of style application, ensuring that the base input is enhanced or altered in a manner consistent with the desired aesthetic or thematic direction.
 ## Input types
 ### Required
 - **`style`**
-    - The 'style' parameter specifies the aesthetic or thematic style to be applied to the base conditioning. It plays a crucial role in determining the visual or thematic output of the node.
+    - Specifies the style to be applied. This affects the overall aesthetic or thematic direction of the base input.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`strength`**
-    - The 'strength' parameter controls the intensity of the style applied to the base conditioning, affecting how prominently the chosen style influences the final output.
+    - Determines the intensity of the style application, influencing how significantly the base input is altered.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`positive_cond_base`**
-    - This parameter represents the positive aspect of the base conditioning that will be modified according to the selected style.
+    - The base positive conditioning to which the style will be applied, serving as the initial state before styling.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `torch.Tensor`
 - **`negative_cond_base`**
-    - This parameter represents the negative aspect of the base conditioning that will be modified according to the selected style.
+    - The base negative conditioning to which the style will be applied, complementing the positive conditioning in defining the initial styling state.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `torch.Tensor`
 - **`base_clip`**
-    - The 'base_clip' parameter is used for encoding the style prompts before they are applied to the base conditioning.
+    - The CLIP model used for encoding the style prompts, integral to the process of applying the specified style.
     - Comfy dtype: `CLIP`
-    - Python dtype: `CLIP`
+    - Python dtype: `torch.nn.Module`
 - **`use_seed`**
-    - This boolean parameter determines whether a seed should be used for selecting the style. If 'true', the style is selected based on the seed value; otherwise, the style is directly taken from the 'style' parameter.
+    - Indicates whether a seed should be used to deterministically select a style from a predefined set, ensuring reproducibility.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `bool`
 - **`seed`**
-    - The 'seed' parameter is used in conjunction with 'use_seed' to deterministically select a style from a predefined list based on the seed value.
+    - The seed value used for deterministic style selection when 'use_seed' is true, affecting the style choice.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`base_pos_cond`**
     - Comfy dtype: `CONDITIONING`
-    - Represents the modified positive aspect of the base conditioning after the application of the selected style.
+    - The modified positive base conditioning after the style has been applied, reflecting the desired aesthetic changes.
     - Python dtype: `torch.Tensor`
 - **`base_neg_cond`**
     - Comfy dtype: `CONDITIONING`
-    - Represents the modified negative aspect of the base conditioning after the application of the selected style.
+    - The modified negative base conditioning after the style has been applied, complementing the positive conditioning in the styled output.
     - Python dtype: `torch.Tensor`
 - **`style_str`**
     - Comfy dtype: `STRING`
-    - A string indicating the specific style that has been applied to the base conditioning.
+    - The style that was applied, providing a reference to the aesthetic or thematic direction chosen.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
@@ -59,7 +64,7 @@ class StyleConditionerBaseOnly:
     @classmethod
     def INPUT_TYPES(s):
         s.styles, s.pos_style, s.neg_style = read_styles()
-        return {"required": {"style": (s.styles,),"strength": ("FLOAT", {"default": 0.5, "min": 0.0, "max": 1.0, "step": 0.1}),
+        return {"required": {"style": (s.styles,),"strength": ("FLOAT", {"default": 0.5, "min": 0.0, "max": 1.0, "step": 0.01}),
                              "positive_cond_base": ("CONDITIONING",), "negative_cond_base": ("CONDITIONING",),
                              "base_clip": ("CLIP",),
                              "use_seed": (['true','false'], {'default': 'false'}),

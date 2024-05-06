@@ -1,3 +1,9 @@
+---
+tags:
+- SamplerScheduler
+- Sampling
+---
+
 # KSamplerSelect
 ## Documentation
 - Class name: `KSamplerSelect`

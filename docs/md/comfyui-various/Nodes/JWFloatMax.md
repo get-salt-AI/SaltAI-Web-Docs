@@ -1,3 +1,8 @@
+---
+tags:
+- MathematicalFunctions
+---
+
 # Float Maximum
 ## Documentation
 - Class name: `JWFloatMax`

@@ -1,3 +1,11 @@
+---
+tags:
+- AnimationScheduling
+- FrameInterpolation
+- Interpolation
+- VisualEffects
+---
+
 # 🔢 CR Gradient Float
 ## Documentation
 - Class name: `CR Gradient Float`

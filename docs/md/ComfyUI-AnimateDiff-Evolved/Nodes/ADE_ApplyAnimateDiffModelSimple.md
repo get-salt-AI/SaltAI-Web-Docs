@@ -1,3 +1,9 @@
+---
+tags:
+- AnimateDiff
+- Animation
+---
+
 # Apply AnimateDiff Model 🎭🅐🅓②
 ## Documentation
 - Class name: `ADE_ApplyAnimateDiffModelSimple`

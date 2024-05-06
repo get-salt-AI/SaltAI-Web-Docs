@@ -1,3 +1,8 @@
+---
+tags:
+- Counting
+---
+
 # Get Image Count 🎥🅥🅗🅢
 ## Documentation
 - Class name: `VHS_GetImageCount`

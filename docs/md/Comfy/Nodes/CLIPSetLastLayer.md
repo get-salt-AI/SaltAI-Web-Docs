@@ -1,3 +1,9 @@
+---
+tags:
+- CLIP
+- Conditioning
+---
+
 # CLIP Set Last Layer
 ## Documentation
 - Class name: `CLIPSetLastLayer`

@@ -1,3 +1,8 @@
+---
+tags:
+- MathematicalFunctions
+---
+
 # Integer Absolute Value
 ## Documentation
 - Class name: `JWIntegerAbsolute`

@@ -1,3 +1,10 @@
+---
+tags:
+- DataConversion
+- DataTypeConversion
+- NumericConversion
+---
+
 # Integer to String
 ## Documentation
 - Class name: `JWIntegerToString`

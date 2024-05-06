@@ -1,28 +1,33 @@
+---
+tags:
+- Conditioning
+---
+
 # ConditioningAverage
 ## Documentation
 - Class name: `ConditioningAverage`
 - Category: `conditioning`
 - Output node: `False`
 
-The ConditioningAverage node is designed to blend two sets of conditioning data, applying a weighted average based on a specified strength. This process allows for the dynamic adjustment of conditioning influence, facilitating the fine-tuning of generated content or features.
+The ConditioningAverage node is designed to blend conditioning vectors from two sources by averaging them, with the ability to adjust the strength of influence from each source. This functionality is crucial for scenarios where a balanced integration of conditioning information is needed to guide the generation process or modify existing conditioning in a controlled manner.
 ## Input types
 ### Required
 - **`conditioning_to`**
-    - Represents the primary set of conditioning data to which the blending will be applied. It serves as the base for the weighted average operation.
+    - Represents the target conditioning vectors to which the blending will be applied. It plays a crucial role in determining the final output by receiving modifications based on the averaged input.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 - **`conditioning_from`**
-    - Denotes the secondary set of conditioning data that will be blended into the primary set. This data influences the final output based on the specified strength.
+    - Serves as the source of conditioning vectors that will be averaged with the target vectors. Its content significantly influences the blending process by providing the base vectors for modification.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 - **`conditioning_to_strength`**
-    - A scalar value that determines the strength of the blend between the primary and secondary conditioning data. It directly influences the balance of the weighted average.
+    - Determines the weighting of the target conditioning vectors in the averaging process, thereby controlling the influence of the source vectors on the final outcome.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`conditioning`**
     - Comfy dtype: `CONDITIONING`
-    - The result of blending the primary and secondary conditioning data, producing a new set of conditioning that reflects the weighted average.
+    - The output is a modified list of conditioning vectors, reflecting the averaged blend of the input sources with adjusted strengths.
     - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 ## Usage tips
 - Infra type: `GPU`
@@ -48,7 +53,7 @@ class ConditioningAverage :
         out = []
 
         if len(conditioning_from) > 1:
-            print("Warning: ConditioningAverage conditioning_from contains more than 1 cond, only the first one will actually be applied to conditioning_to.")
+            logging.warning("Warning: ConditioningAverage conditioning_from contains more than 1 cond, only the first one will actually be applied to conditioning_to.")
 
         cond_from = conditioning_from[0][0]
         pooled_output_from = conditioning_from[0][1].get("pooled_output", None)

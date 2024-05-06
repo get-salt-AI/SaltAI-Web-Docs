@@ -1,20 +1,25 @@
+---
+tags:
+- Face
+---
+
 # Load Face Analysis Model (mtb)
 ## Documentation
 - Class name: `Load Face Analysis Model (mtb)`
 - Category: `mtb/facetools`
 - Output node: `False`
 
-This node is designed to load a face analysis model, facilitating the analysis of facial features and characteristics within images. It supports loading different models tailored for face analysis, enhancing the flexibility and applicability of face-related operations in various contexts.
+This node is designed to load a face analysis model, facilitating the analysis of facial features and characteristics within images. It supports the selection of different model types to accommodate various analysis needs.
 ## Input types
 ### Required
 - **`faceswap_model`**
-    - Specifies the face analysis model to be loaded. The choice of model affects the analysis capabilities and performance, allowing for customization based on specific requirements.
+    - Specifies the model to be used for face analysis. The choice of model affects the accuracy and type of analysis performed.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`face_analysis_model`**
     - Comfy dtype: `FACE_ANALYSIS_MODEL`
-    - The loaded face analysis model, ready for use in analyzing facial features and characteristics within images.
+    - The loaded face analysis model, ready for performing facial feature analysis.
     - Python dtype: `insightface.app.FaceAnalysis`
 ## Usage tips
 - Infra type: `CPU`
@@ -23,7 +28,7 @@ This node is designed to load a face analysis model, facilitating the analysis o
 
 ## Source code
 ```python
-class LoadFaceAnalysisModel:
+class MTB_LoadFaceAnalysisModel:
     """Loads a face analysis model"""
 
     models = []
@@ -49,7 +54,7 @@ class LoadFaceAnalysisModel:
 
         face_analyser = insightface.app.FaceAnalysis(
             name=faceswap_model,
-            root=get_model_path("insightface"),
+            root=get_model_path("insightface").as_posix(),
         )
         return (face_analyser,)
 

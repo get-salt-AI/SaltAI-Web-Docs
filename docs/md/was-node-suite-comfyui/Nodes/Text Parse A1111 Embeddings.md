@@ -1,3 +1,9 @@
+---
+tags:
+- Text
+- TextReplacement
+---
+
 # Text Parse A1111 Embeddings
 ## Documentation
 - Class name: `Text Parse A1111 Embeddings`

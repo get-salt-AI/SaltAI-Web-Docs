@@ -1,3 +1,10 @@
+---
+tags:
+- List
+- MultilineText
+- Text
+---
+
 # Text Multiline
 ## Documentation
 - Class name: `Text Multiline`
@@ -22,7 +29,7 @@ The Text Multiline node is designed to process multiline text inputs, removing l
     - [Text to Conditioning](../../was-node-suite-comfyui/Nodes/Text to Conditioning.md)
     - [CLIPTextEncodeSDXL](../../Comfy/Nodes/CLIPTextEncodeSDXL.md)
     - [Text Concatenate](../../was-node-suite-comfyui/Nodes/Text Concatenate.md)
-    - Efficient Loader
+    - [Efficient Loader](../../efficiency-nodes-comfyui/Nodes/Efficient Loader.md)
     - BNK_CutoffBasePrompt
     - [Text Random Line](../../was-node-suite-comfyui/Nodes/Text Random Line.md)
 

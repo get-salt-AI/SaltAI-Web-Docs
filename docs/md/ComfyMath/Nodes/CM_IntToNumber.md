@@ -1,3 +1,10 @@
+---
+tags:
+- DataConversion
+- DataTypeConversion
+- NumericConversion
+---
+
 # IntToNumber
 ## Documentation
 - Class name: `CM_IntToNumber`

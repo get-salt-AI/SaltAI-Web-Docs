@@ -1,20 +1,26 @@
+---
+tags:
+- Image
+- ImageTransformation
+---
+
 # Stack Images (mtb)
 ## Documentation
 - Class name: `Stack Images (mtb)`
 - Category: `mtb/image utils`
 - Output node: `False`
 
-The Stack Images node is designed to combine multiple input images into a single image, either by stacking them horizontally or vertically, based on the specified orientation. This functionality is essential for creating composite images or for visualization purposes where multiple images need to be compared side by side or in a sequence.
+The Stack Images node is designed to combine multiple input images into a single image by stacking them either horizontally or vertically, based on the specified orientation.
 ## Input types
 ### Required
 - **`vertical`**
-    - Determines the orientation of the stacking process. If set to True, images are stacked vertically; otherwise, they are stacked horizontally. This affects the final layout of the combined image.
+    - Determines the orientation of the stacking process. If true, images are stacked vertically; otherwise, they are stacked horizontally.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is a single tensor representing the stacked image, which combines all input images according to the specified orientation.
+    - The output is a single image that results from stacking the input images in the specified orientation.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -23,8 +29,8 @@ The Stack Images node is designed to combine multiple input images into a single
 
 ## Source code
 ```python
-class StackImages:
-    """Stack the input images horizontally or vertically"""
+class MTB_StackImages:
+    """Stack the input images horizontally or vertically."""
 
     @classmethod
     def INPUT_TYPES(cls):
@@ -40,21 +46,51 @@ class StackImages:
 
         tensors = list(kwargs.values())
         log.debug(
-            f"Stacking {len(tensors)} tensors {'vertically' if vertical else 'horizontally'}"
+            f"Stacking {len(tensors)} tensors "
+            f"{'vertically' if vertical else 'horizontally'}"
         )
-        log.debug(list(kwargs.keys()))
 
-        ref_shape = tensors[0].shape
-        for tensor in tensors[1:]:
-            if tensor.shape[1:] != ref_shape[1:]:
+        normalized_tensors = [
+            self.normalize_to_rgba(tensor) for tensor in tensors
+        ]
+
+        if vertical:
+            width = normalized_tensors[0].shape[2]
+            if any(tensor.shape[2] != width for tensor in normalized_tensors):
                 raise ValueError(
-                    "All tensors must have the same dimensions except for the stacking dimension."
+                    "All tensors must have the same width "
+                    "for vertical stacking."
                 )
+            dim = 1
+        else:
+            height = normalized_tensors[0].shape[1]
+            if any(tensor.shape[1] != height for tensor in normalized_tensors):
+                raise ValueError(
+                    "All tensors must have the same height "
+                    "for horizontal stacking."
+                )
+            dim = 2
 
-        dim = 1 if vertical else 2
-
-        stacked_tensor = torch.cat(tensors, dim=dim)
+        stacked_tensor = torch.cat(normalized_tensors, dim=dim)
 
         return (stacked_tensor,)
+
+    def normalize_to_rgba(self, tensor):
+        """Normalize tensor to have 4 channels (RGBA)."""
+        _, _, _, channels = tensor.shape
+        # already RGBA
+        if channels == 4:
+            return tensor
+        # RGB to RGBA
+        elif channels == 3:
+            alpha_channel = torch.ones(
+                tensor.shape[:-1] + (1,), device=tensor.device
+            )  # Add an alpha channel
+            return torch.cat((tensor, alpha_channel), dim=-1)
+        else:
+            raise ValueError(
+                "Tensor has an unsupported number of channels: "
+                "expected 3 (RGB) or 4 (RGBA)."
+            )
 
 ```

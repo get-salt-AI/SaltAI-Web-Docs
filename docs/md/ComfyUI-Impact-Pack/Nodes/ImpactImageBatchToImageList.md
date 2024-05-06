@@ -1,3 +1,10 @@
+---
+tags:
+- Batch
+- Image
+- ImageBatch
+---
+
 # Image batch to Image List
 ## Documentation
 - Class name: `ImpactImageBatchToImageList`

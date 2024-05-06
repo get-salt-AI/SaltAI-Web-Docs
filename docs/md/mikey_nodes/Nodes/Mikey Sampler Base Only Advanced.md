@@ -1,78 +1,79 @@
+---
+tags:
+- Sampling
+---
+
 # Mikey Sampler Base Only Advanced
 ## Documentation
 - Class name: `Mikey Sampler Base Only Advanced`
 - Category: `Mikey/Sampling`
 - Output node: `False`
 
-This node specializes in advanced sampling techniques for base models only, focusing on generating high-quality samples by leveraging intricate algorithms and optimizations specific to base models. It aims to enhance the output quality and efficiency of sampling processes without the need for additional refinement steps.
+The MikeySamplerBaseOnlyAdvanced node is designed for advanced sampling operations, focusing on providing a base-only approach to sampling tasks. It aims to offer enhanced control and flexibility in generating samples, catering to specific needs without the complexity of additional layers or processes.
 ## Input types
 ### Required
 - **`base_model`**
-    - Specifies the base model used for sampling, serving as the foundation for generating samples.
+    - Specifies the base model used for sampling, serving as the foundation for generating new samples.
     - Comfy dtype: `MODEL`
     - Python dtype: `str`
 - **`positive_cond_base`**
-    - Defines the positive conditioning to guide the sampling process towards desired attributes or features.
+    - Defines the positive conditioning to guide the sampling process towards desired attributes or content.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `str`
 - **`negative_cond_base`**
-    - Defines the negative conditioning to steer the sampling process away from undesired attributes or features.
+    - Specifies the negative conditioning to avoid certain attributes or content in the generated samples.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `str`
 - **`samples`**
-    - Represents the initial latent samples to be processed and refined by the node.
+    - Represents the initial set of samples or latent space from which the sampling process begins.
     - Comfy dtype: `LATENT`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `str`
 - **`vae`**
-    - Specifies the variational autoencoder used in conjunction with the base model to enhance sample quality.
+    - The variational autoencoder used in conjunction with the base model to refine and generate samples.
     - Comfy dtype: `VAE`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `str`
 - **`add_noise`**
-    - Determines whether noise should be added to the samples, enhancing diversity and potentially improving quality.
+    - Determines whether noise should be added to the sampling process, enhancing diversity or realism in the generated samples.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `bool`
+    - Python dtype: `str`
 - **`denoise`**
-    - Controls the level of denoising applied to the samples, affecting the clarity and sharpness of the output.
+    - Controls the level of denoising applied to the samples, affecting the clarity and quality of the output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`steps`**
-    - Specifies the number of steps to be taken in the sampling process, impacting the detail and quality of the generated samples.
+    - The number of steps to perform in the sampling process, affecting the detail and quality of the generated samples.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`smooth_step`**
-    - Adjusts the smoothness of the transition between steps in the sampling process, affecting the gradual evolution of the samples.
+    - Adjusts the smoothness of the sampling steps, potentially enhancing the transition or variation between samples.
     - Comfy dtype: `INT`
     - Python dtype: `int`
-- **`cfg_1`**
-    - Configures the first set of parameters for the sampling algorithm, allowing for fine-tuning of the process.
+- **`cfg_i`**
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
-- **`cfg_2`**
-    - Configures the second set of parameters for the sampling algorithm, providing additional control over the sampling characteristics.
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 - **`sampler_name`**
-    - Selects the specific sampling algorithm to be used, influencing the approach and techniques employed in generating samples.
+    - Specifies the sampler algorithm used, influencing the diversity and quality of the generated samples.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - Chooses the scheduling algorithm for managing the sampling process, affecting the progression and adaptation over time.
+    - Determines the scheduling algorithm for sampling, affecting the progression and variation of samples.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`upscale_model`**
-    - Specifies the model used for upscaling the samples, enhancing their resolution and detail.
+    - The model used for upscaling the generated samples, enhancing their resolution or detail.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`seed`**
-    - Sets the seed for random number generation, ensuring reproducibility of the sampling process.
+    - A seed value for the random number generator, ensuring reproducibility of the sampling process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`upscale_by`**
-    - Determines the factor by which the samples are upscaled, affecting their final size and resolution.
+    - Defines the factor by which the samples are upscaled, affecting their final size and detail.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`hires_denoise`**
-    - Controls the level of denoising applied to the high-resolution samples, impacting their clarity and detail.
+    - Controls the level of denoising applied to high-resolution samples, affecting their clarity and quality.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`hires_steps`**
@@ -82,10 +83,10 @@ This node specializes in advanced sampling techniques for base models only, focu
 ## Output types
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - The primary output of the node, consisting of generated samples after processing through the base model and additional algorithms.
-    - Python dtype: `torch.Tensor`
+    - Represents the final generated samples after the sampling process, in a latent form.
+    - Python dtype: `str`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes:
     - [VAEDecode](../../Comfy/Nodes/VAEDecode.md)
 

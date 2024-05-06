@@ -1,3 +1,8 @@
+---
+tags:
+- Prompt
+---
+
 # LM Studio Prompt (Mikey)
 ## Documentation
 - Class name: `LMStudioPrompt`

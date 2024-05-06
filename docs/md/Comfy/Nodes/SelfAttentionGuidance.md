@@ -1,28 +1,33 @@
+---
+tags:
+- ModelGuidance
+---
+
 # Self-Attention Guidance
 ## Documentation
 - Class name: `SelfAttentionGuidance`
 - Category: `_for_testing`
 - Output node: `False`
 
-This node encapsulates the functionality of guiding the self-attention mechanism within neural networks. It aims to enhance the model's focus on relevant features by adjusting the attention weights, thereby improving the interpretability and performance of the model.
+The SelfAttentionGuidance node is designed to modify the attention mechanism within a given model to enhance its focus on specific aspects of the input data. It achieves this by guiding the self-attention process, potentially leading to improved model performance and interpretability.
 ## Input types
 ### Required
 - **`model`**
-    - The 'model' input type represents the neural network model that will be guided through the self-attention mechanism. It is essential for applying the guidance techniques to the correct model architecture.
+    - The model parameter represents the neural network model that will be modified by the SelfAttentionGuidance node. It is crucial for defining the structure and behavior of the attention mechanism to be guided.
     - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`scale`**
-    - The 'scale' input type refers to the factor by which the attention weights are adjusted. It allows for fine-tuning the model's focus on relevant features.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 - **`blur_sigma`**
-    - The 'blur_sigma' input type pertains to the standard deviation of the Gaussian blur applied to the attention weights. This preprocessing step can help in smoothing the attention landscape, potentially leading to better model performance.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The 'model' output type represents the neural network model after the self-attention guidance has been applied. It indicates the adjustments made to the model's attention mechanism to enhance focus on relevant features.
+    - The modified model with an adjusted self-attention mechanism, reflecting the guidance applied through the SelfAttentionGuidance node.
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
@@ -31,7 +36,7 @@ This node encapsulates the functionality of guiding the self-attention mechanism
     - Reroute
     - [ADE_AnimateDiffLoaderWithContext](../../ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AnimateDiffLoaderWithContext.md)
     - Attention couple
-    - UltimateSDUpscale
+    - [UltimateSDUpscale](../../ComfyUI_UltimateSDUpscale/Nodes/UltimateSDUpscale.md)
 
 
 
@@ -94,7 +99,7 @@ class SelfAttentionGuidance:
             degraded = create_blur_map(uncond_pred, uncond_attn, sag_sigma, sag_threshold)
             degraded_noised = degraded + x - uncond_pred
             # call into the UNet
-            (sag, _) = comfy.samplers.calc_cond_uncond_batch(model, uncond, None, degraded_noised, sigma, model_options)
+            (sag,) = comfy.samplers.calc_cond_batch(model, [uncond], degraded_noised, sigma, model_options)
             return cfg_result + (degraded - sag) * sag_scale
 
         m.set_model_sampler_post_cfg_function(post_cfg_function, disable_cfg1_optimization=True)

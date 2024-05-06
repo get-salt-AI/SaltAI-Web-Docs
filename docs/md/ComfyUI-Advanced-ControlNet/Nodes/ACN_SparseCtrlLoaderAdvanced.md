@@ -1,3 +1,9 @@
+---
+tags:
+- ControlNet
+- ControlNetLoader
+---
+
 # Load SparseCtrl Model 🛂🅐🅒🅝
 ## Documentation
 - Class name: `ACN_SparseCtrlLoaderAdvanced`

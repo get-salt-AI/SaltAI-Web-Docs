@@ -1,3 +1,9 @@
+---
+tags:
+- RandomGeneration
+- Randomization
+---
+
 # 🎲 CR Random Multiline Colors
 ## Documentation
 - Class name: `CR Random Multiline Colors`

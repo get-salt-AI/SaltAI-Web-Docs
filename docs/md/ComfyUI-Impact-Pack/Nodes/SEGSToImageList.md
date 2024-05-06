@@ -1,3 +1,9 @@
+---
+tags:
+- ImpactPack
+- Segmentation
+---
+
 # SEGSToImageList
 ## Documentation
 - Class name: `SEGSToImageList`

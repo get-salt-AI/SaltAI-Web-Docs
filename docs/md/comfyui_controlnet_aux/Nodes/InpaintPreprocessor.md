@@ -1,3 +1,10 @@
+---
+tags:
+- DepthMap
+- Image
+- Inpaint
+---
+
 # Inpaint Preprocessor
 ## Documentation
 - Class name: `InpaintPreprocessor`

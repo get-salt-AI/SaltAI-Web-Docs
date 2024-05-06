@@ -1,3 +1,10 @@
+---
+tags:
+- Crop
+- Image
+- ImageTransformation
+---
+
 # Bounded Image Crop
 ## Documentation
 - Class name: `Bounded Image Crop`

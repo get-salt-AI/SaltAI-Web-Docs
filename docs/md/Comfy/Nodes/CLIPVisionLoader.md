@@ -1,3 +1,10 @@
+---
+tags:
+- CLIP
+- Loader
+- ModelIO
+---
+
 # Load CLIP Vision
 ## Documentation
 - Class name: `CLIPVisionLoader`
@@ -19,14 +26,14 @@ The CLIPVisionLoader node is designed for loading CLIP Vision models from specif
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
-    - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
-    - [IPAdapterApplyFaceID](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApplyFaceID.md)
-    - IPAdapter
+    - IPAdapterApply
+    - IPAdapterApplyFaceID
+    - [IPAdapter](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapter.md)
     - [IPAdapterEncoder](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterEncoder.md)
     - [CLIPVisionEncode](../../Comfy/Nodes/CLIPVisionEncode.md)
     - ToIPAdapterPipe //Inspire
     - Reroute
-    - AV_IPAdapter
+    - [AV_IPAdapter](../../comfyui-art-venture/Nodes/AV_IPAdapter.md)
 
 
 

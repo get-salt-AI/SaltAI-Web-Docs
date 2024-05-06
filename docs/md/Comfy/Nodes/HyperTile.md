@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Tiled
+---
+
 # HyperTile
 ## Documentation
 - Class name: `HyperTile`

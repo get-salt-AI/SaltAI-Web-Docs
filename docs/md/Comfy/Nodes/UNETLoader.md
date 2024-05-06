@@ -1,3 +1,10 @@
+---
+tags:
+- Loader
+- ModelIO
+- ModelLoader
+---
+
 # UNETLoader
 ## Documentation
 - Class name: `UNETLoader`

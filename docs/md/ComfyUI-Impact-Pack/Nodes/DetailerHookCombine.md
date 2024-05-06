@@ -1,3 +1,8 @@
+---
+tags:
+- ImageEnhancement
+---
+
 # DetailerHookCombine
 ## Documentation
 - Class name: `DetailerHookCombine`

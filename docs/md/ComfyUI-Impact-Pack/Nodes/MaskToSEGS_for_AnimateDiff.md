@@ -1,3 +1,9 @@
+---
+tags:
+- SEGSPrep
+- Segmentation
+---
+
 # MASK to SEGS for AnimateDiff
 ## Documentation
 - Class name: `MaskToSEGS_for_AnimateDiff`

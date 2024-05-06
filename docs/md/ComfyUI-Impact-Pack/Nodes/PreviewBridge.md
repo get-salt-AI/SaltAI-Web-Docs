@@ -1,3 +1,8 @@
+---
+tags:
+- Preview
+---
+
 # Preview Bridge (Image)
 ## Documentation
 - Class name: `PreviewBridge`
@@ -28,7 +33,7 @@ The PreviewBridge node serves as an intermediary for processing and caching imag
 - Infra type: `CPU`
 - Common nodes:
     - [ACN_AdvancedControlNetApply](../../ComfyUI-Advanced-ControlNet/Nodes/ACN_AdvancedControlNetApply.md)
-    - UltimateSDUpscale
+    - [UltimateSDUpscale](../../ComfyUI_UltimateSDUpscale/Nodes/UltimateSDUpscale.md)
     - [SAMDetectorCombined](../../ComfyUI-Impact-Pack/Nodes/SAMDetectorCombined.md)
     - [DetailerForEachDebug](../../ComfyUI-Impact-Pack/Nodes/DetailerForEachDebug.md)
     - [BboxDetectorSEGS](../../ComfyUI-Impact-Pack/Nodes/BboxDetectorSEGS.md)

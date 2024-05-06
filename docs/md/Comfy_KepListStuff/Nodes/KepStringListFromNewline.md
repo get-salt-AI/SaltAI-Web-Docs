@@ -1,3 +1,9 @@
+---
+tags:
+- List
+- Text
+---
+
 # String List From Newline
 ## Documentation
 - Class name: `KepStringListFromNewline`

@@ -1,3 +1,8 @@
+---
+tags:
+- ModelMerge
+---
+
 # ModelMergeSubtract
 ## Documentation
 - Class name: `ModelMergeSubtract`

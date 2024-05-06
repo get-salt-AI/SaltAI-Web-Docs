@@ -1,21 +1,26 @@
+---
+tags:
+- Face
+---
+
 # Load Face Swap Model (mtb)
 ## Documentation
 - Class name: `Load Face Swap Model (mtb)`
 - Category: `mtb/facetools`
 - Output node: `False`
 
-The LoadFaceSwapModel node is designed to load a faceswap model from a specified path. It supports loading models with specific file extensions and is essential for initializing the faceswap process by ensuring the required model is available and correctly loaded.
+This node is responsible for loading a faceswap model from a specified path, ensuring the model is available for face swapping operations. It dynamically lists available models based on the files present in a designated directory, offering flexibility in model selection.
 ## Input types
 ### Required
 - **`faceswap_model`**
-    - Specifies the name of the faceswap model to be loaded. This parameter is crucial for identifying and loading the correct model file for the faceswap operation.
+    - Specifies the name of the faceswap model to load. The selection is dynamically generated based on the available model files in the insightface directory, allowing for a flexible and up-to-date choice of models.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`faceswap_model`**
     - Comfy dtype: `FACESWAP_MODEL`
-    - Represents the loaded faceswap model, ready for use in faceswap operations.
-    - Python dtype: `Tuple[INSwapper]`
+    - Returns an instance of the faceswap model, ready for use in face swapping operations. This enables the application of the model to input images for generating swapped face images.
+    - Python dtype: `INSwapper`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -23,13 +28,16 @@ The LoadFaceSwapModel node is designed to load a faceswap model from a specified
 
 ## Source code
 ```python
-class LoadFaceSwapModel:
+class MTB_LoadFaceSwapModel:
     """Loads a faceswap model"""
 
     @staticmethod
-    def get_models() -> List[Path]:
-        models_path = get_model_path("insightface").iterdir()
-        return [x for x in models_path if x.suffix in [".onnx", ".pth"]]
+    def get_models() -> list[Path]:
+        models_path = get_model_path("insightface")
+        if models_path.exists():
+            models = models_path.iterdir()
+            return [x for x in models if x.suffix in [".onnx", ".pth"]]
+        return []
 
     @classmethod
     def INPUT_TYPES(cls):

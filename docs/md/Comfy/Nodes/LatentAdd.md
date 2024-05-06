@@ -1,3 +1,9 @@
+---
+tags:
+- Latent
+- LatentBlend
+---
+
 # LatentAdd
 ## Documentation
 - Class name: `LatentAdd`

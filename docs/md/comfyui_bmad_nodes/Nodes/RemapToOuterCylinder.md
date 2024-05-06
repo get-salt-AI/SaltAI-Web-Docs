@@ -1,3 +1,8 @@
+---
+tags:
+- ImageTransformation
+---
+
 # RemapToOuterCylinder
 ## Documentation
 - Class name: `RemapToOuterCylinder`

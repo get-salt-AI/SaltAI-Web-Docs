@@ -1,3 +1,10 @@
+---
+tags:
+- ImageEnhancement
+- ImageTransformation
+- VisualEffects
+---
+
 # Image Levels
 ## Documentation
 - Class name: `JWImageLevels`

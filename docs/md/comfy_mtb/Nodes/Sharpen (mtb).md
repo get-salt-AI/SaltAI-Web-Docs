@@ -1,36 +1,42 @@
+---
+tags:
+- ImageEnhancement
+- VisualEffects
+---
+
 # Sharpen (mtb)
 ## Documentation
 - Class name: `Sharpen (mtb)`
 - Category: `mtb/image processing`
 - Output node: `False`
 
-The Sharpen node enhances the details of an image by applying a sharpening filter. This process involves using a Gaussian kernel to accentuate edges and fine details, making the image appear more crisp and defined.
+The Sharpen node enhances the visual clarity of images by applying a sharpening effect, utilizing a Gaussian kernel to accentuate edges and details.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be sharpened. This is the primary data upon which the sharpening process is applied, affecting the visual clarity and detail of the output.
+    - The input image to be sharpened. This is the primary data upon which the sharpening process is applied, affecting the overall visual outcome.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`sharpen_radius`**
-    - Defines the radius of the sharpening effect. A larger radius results in a more pronounced sharpening effect, impacting the overall sharpness of the image.
+    - Defines the radius of the sharpening effect. A larger radius increases the area of influence around edges, contributing to a more pronounced sharpening effect.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`sigma_x`**
-    - The standard deviation in the x-direction for the Gaussian kernel. This parameter influences the spread of the sharpening effect horizontally.
+    - The horizontal standard deviation of the Gaussian kernel. It influences the spread of the sharpening effect horizontally across the image.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sigma_y`**
-    - The standard deviation in the y-direction for the Gaussian kernel. This parameter influences the spread of the sharpening effect vertically.
+    - The vertical standard deviation of the Gaussian kernel. It influences the spread of the sharpening effect vertically across the image.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`alpha`**
-    - Controls the intensity of the sharpening effect. A higher alpha value results in a stronger sharpening effect, enhancing the contrast between edges and the surrounding areas.
+    - Controls the intensity of the sharpening effect. A higher alpha value results in a more aggressive sharpening.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The sharpened image. This output showcases the enhanced details and edges, resulting from the application of the sharpening filter.
+    - The output image after the sharpening process has been applied, showcasing enhanced edges and details.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -39,7 +45,7 @@ The Sharpen node enhances the details of an image by applying a sharpening filte
 
 ## Source code
 ```python
-class Sharpen_:
+class MTB_Sharpen:
     """Sharpens an image using a Gaussian kernel."""
 
     @classmethod

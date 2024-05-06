@@ -1,3 +1,8 @@
+---
+tags:
+- Counting
+---
+
 # Get Latent Count 🎥🅥🅗🅢
 ## Documentation
 - Class name: `VHS_GetLatentCount`

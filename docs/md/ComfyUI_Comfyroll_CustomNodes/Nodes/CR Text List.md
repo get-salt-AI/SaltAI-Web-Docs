@@ -1,3 +1,10 @@
+---
+tags:
+- List
+- MultilineText
+- Text
+---
+
 # 📜 CR Text List
 ## Documentation
 - Class name: `CR Text List`

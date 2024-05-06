@@ -1,24 +1,30 @@
+---
+tags:
+- Image
+- ImageSequence
+---
+
 # Load Images From String
 ## Documentation
 - Class name: `JWLoadImagesFromString`
 - Category: `jamesWalker55`
 - Output node: `False`
 
-This node is designed to load images directly from a string input, facilitating the conversion of textual image data into a usable image format for further processing or visualization.
+This node is designed to load images directly from a string input, facilitating the conversion of textual image data into usable image formats for further processing or visualization.
 ## Input types
 ### Required
 - **`paths`**
-    - Specifies the textual path or string representation of the image location, serving as the source from which the image is loaded.
+    - Accepts a list of file paths as strings, indicating the locations of images to be loaded. This input is crucial for identifying and accessing the images specified by the user.
     - Comfy dtype: `STRING`
-    - Python dtype: `str`
+    - Python dtype: `List[str]`
 - **`ignore_missing_images`**
-    - Determines whether to ignore images that cannot be found at the specified paths, allowing for graceful handling of missing files.
+    - A boolean flag that determines how to handle missing images specified in the 'paths'. If set to True, missing images will be ignored without causing errors; otherwise, an error will be raised for any missing image.
     - Comfy dtype: `['false', 'true']`
     - Python dtype: `bool`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is the image tensor loaded from the specified string path or the default image tensor if the path is invalid.
+    - Produces an output image or a batch of images loaded from the specified file paths. This output is essential for further image processing or visualization tasks.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`

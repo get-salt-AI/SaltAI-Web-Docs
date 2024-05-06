@@ -1,3 +1,10 @@
+---
+tags:
+- ImageScaling
+- ImageUpscaling
+- Upscale
+---
+
 # TwoSamplersForMask Upscaler Provider
 ## Documentation
 - Class name: `TwoSamplersForMaskUpscalerProvider`

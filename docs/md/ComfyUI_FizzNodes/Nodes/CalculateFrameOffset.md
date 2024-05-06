@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- Frame
+---
+
 # Calculate Frame Offset 📅🅕🅝
 ## Documentation
 - Class name: `CalculateFrameOffset`

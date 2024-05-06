@@ -1,58 +1,65 @@
+---
+tags:
+- AnimateDiff
+- AnimateDiffContext
+- Animation
+---
+
 # AnimateDiff Loader [Legacy] 🎭🅐🅓①
 ## Documentation
 - Class name: `ADE_AnimateDiffLoaderWithContext`
 - Category: `Animate Diff 🎭🅐🅓/① Gen1 nodes ①`
 - Output node: `False`
 
-This node is designed for loading AnimateDiff models in a legacy context, facilitating the integration of animation dynamics into generative models. It aims to provide backward compatibility and ease the transition for models developed in earlier versions of the AnimateDiff framework.
+This node is designed to load the AnimateDiff model along with a specific context, facilitating the integration of additional information or settings that influence the animation process. It serves as a bridge between the legacy AnimateDiff model and newer, context-aware functionalities, ensuring compatibility and enhanced control over the animation generation.
 ## Input types
 ### Required
 - **`model`**
-    - Specifies the generative model to be loaded and configured with AnimateDiff parameters, serving as the foundation for animation dynamics integration.
+    - Specifies the AnimateDiff model to be loaded, serving as the core component for the animation process.
     - Comfy dtype: `MODEL`
-    - Python dtype: `ModelPatcher`
+    - Python dtype: `str`
 - **`model_name`**
-    - Identifies the specific AnimateDiff model to be loaded, acting as a key identifier for selecting the appropriate animation dynamics.
+    - Identifies the specific AnimateDiff model by name, allowing for precise selection within the available options.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`beta_schedule`**
-    - Determines the beta schedule to be used, allowing for fine-tuned control over the diffusion process within the AnimateDiff framework.
+    - Adjusts the beta schedule for the animation, influencing the diffusion process.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `BetaSchedules`
+    - Python dtype: `str`
 ### Optional
 - **`context_options`**
-    - Provides additional context-specific options for the AnimateDiff model, allowing for customized animation dynamics.
+    - Provides context-specific options that modify how the AnimateDiff model processes animations, allowing for customized animation behaviors.
     - Comfy dtype: `CONTEXT_OPTIONS`
-    - Python dtype: `ContextOptions`
+    - Python dtype: `str`
 - **`motion_lora`**
-    - Specifies the LoRA parameters for motion, enabling fine-tuned control over the animation dynamics.
+    - Specifies the LoRA parameters for motion, enhancing the model's ability to generate dynamic animations.
     - Comfy dtype: `MOTION_LORA`
-    - Python dtype: `MotionLoraList`
+    - Python dtype: `str`
 - **`ad_settings`**
-    - Defines the AnimateDiff settings to be applied, offering further customization of the animation dynamics.
+    - Defines the settings for AnimateDiff, tailoring the animation process to specific requirements.
     - Comfy dtype: `AD_SETTINGS`
-    - Python dtype: `AnimateDiffSettings`
+    - Python dtype: `str`
 - **`sample_settings`**
-    - Determines the sampling settings for the AnimateDiff model, affecting the quality and characteristics of the generated animation.
+    - Determines the sampling settings for the animation, affecting the quality and characteristics of the generated animation.
     - Comfy dtype: `SAMPLE_SETTINGS`
-    - Python dtype: `SampleSettings`
+    - Python dtype: `str`
 - **`motion_scale`**
-    - Adjusts the scale of motion in the animation, allowing for more subtle or exaggerated movements.
+    - Controls the scale of motion in the animation, allowing for finer adjustment of movement intensity.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `str`
 - **`apply_v2_models_properly`**
-    - Ensures that version 2 models are applied correctly, maintaining compatibility and performance.
+    - Ensures that version 2 models are applied correctly, optimizing compatibility and performance.
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `bool`
+    - Python dtype: `str`
 - **`ad_keyframes`**
-    - Specifies keyframes for the animation, enabling precise control over the animation timeline.
+    - Specifies keyframes for the animation, guiding the AnimateDiff model in generating targeted animation sequences.
     - Comfy dtype: `AD_KEYFRAMES`
-    - Python dtype: `ADKeyframesList`
+    - Python dtype: `str`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - Returns the configured generative model, now enhanced with AnimateDiff animation dynamics for subsequent processing.
-    - Python dtype: `ModelPatcher`
+    - The loaded AnimateDiff model, ready for animation generation with the specified context and settings.
+    - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
@@ -62,7 +69,7 @@ This node is designed for loading AnimateDiff models in a legacy context, facili
     - [LoraLoaderModelOnly](../../Comfy/Nodes/LoraLoaderModelOnly.md)
     - [LoraLoader](../../Comfy/Nodes/LoraLoader.md)
     - [ToBasicPipe](../../ComfyUI-Impact-Pack/Nodes/ToBasicPipe.md)
-    - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
+    - IPAdapterApply
     - DynamicThresholdingSimple
     - Reroute
 
@@ -127,7 +134,7 @@ class LegacyAnimateDiffLoaderWithContext:
 
         motion_model.keyframes = ad_keyframes.clone() if ad_keyframes else ADKeyframeGroup()
 
-        model = ModelPatcherAndInjector(model)
+        model = ModelPatcherAndInjector.create_from(model, hooks_only=True)
         model.motion_models = MotionModelGroup(motion_model)
         model.sample_settings = sample_settings if sample_settings is not None else SampleSettings()
         model.motion_injection_params = params

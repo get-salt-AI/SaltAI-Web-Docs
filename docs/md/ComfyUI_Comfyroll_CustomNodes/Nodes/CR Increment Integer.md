@@ -1,3 +1,11 @@
+---
+tags:
+- AnimationScheduling
+- FrameInterpolation
+- Interpolation
+- VisualEffects
+---
+
 # 🔢 CR Increment Integer
 ## Documentation
 - Class name: `CR Increment Integer`

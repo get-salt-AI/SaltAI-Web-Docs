@@ -1,3 +1,8 @@
+---
+tags:
+- Latent
+---
+
 # SDXL Empty Latent Image (rgthree)
 ## Documentation
 - Class name: `SDXL Empty Latent Image (rgthree)`

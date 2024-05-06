@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- PanelDesign
+- VisualEffects
+---
+
 # 🌁 CR Page Layout
 ## Documentation
 - Class name: `CR Page Layout`

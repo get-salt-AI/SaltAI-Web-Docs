@@ -1,3 +1,10 @@
+---
+tags:
+- Math
+- UnaryOperations
+- VectorMath
+---
+
 # IntUnaryOperation
 ## Documentation
 - Class name: `CM_IntUnaryOperation`

@@ -1,3 +1,8 @@
+---
+tags:
+- Debugging
+---
+
 # Dictionary to Console
 ## Documentation
 - Class name: `Dictionary to Console`

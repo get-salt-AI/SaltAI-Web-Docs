@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- Scheduling
+---
+
 # 📋 CR Combine Schedules
 ## Documentation
 - Class name: `CR Combine Schedules`

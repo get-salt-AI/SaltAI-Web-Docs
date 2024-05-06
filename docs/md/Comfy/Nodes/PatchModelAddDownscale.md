@@ -1,3 +1,8 @@
+---
+tags:
+- ImageScaling
+---
+
 # PatchModelAddDownscale (Kohya Deep Shrink)
 ## Documentation
 - Class name: `PatchModelAddDownscale`
@@ -51,7 +56,7 @@ The PatchModelAddDownscale node is designed to modify a given model by introduci
     - KRestartSamplerAdv
     - [ModelSamplingDiscrete](../../Comfy/Nodes/ModelSamplingDiscrete.md)
     - [LoraLoader](../../Comfy/Nodes/LoraLoader.md)
-    - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
+    - IPAdapterApply
 
 
 

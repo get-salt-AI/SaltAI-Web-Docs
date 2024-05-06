@@ -1,3 +1,10 @@
+---
+tags:
+- DepthMap
+- DepthMapEstimation
+- Image
+---
+
 # LeReS Depth Map (enable boost for leres++)
 ## Documentation
 - Class name: `LeReS-DepthMapPreprocessor`

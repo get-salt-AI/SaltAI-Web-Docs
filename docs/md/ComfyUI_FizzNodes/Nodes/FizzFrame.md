@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- Frame
+---
+
 # Node Frame 📅🅕🅝
 ## Documentation
 - Class name: `FizzFrame`

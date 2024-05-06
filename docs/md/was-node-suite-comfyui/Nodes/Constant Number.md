@@ -1,3 +1,10 @@
+---
+tags:
+- DataConversion
+- DataTypeConversion
+- NumericConversion
+---
+
 # Constant Number
 ## Documentation
 - Class name: `Constant Number`

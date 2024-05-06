@@ -1,3 +1,8 @@
+---
+tags:
+- Sampling
+---
+
 # Tiled KSampler
 ## Documentation
 - Class name: `Tiled KSampler`

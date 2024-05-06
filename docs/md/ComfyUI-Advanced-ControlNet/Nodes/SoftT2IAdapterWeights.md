@@ -1,41 +1,35 @@
+---
+tags:
+- ControlNet
+- Weight
+---
+
 # T2IAdapter Soft Weights 🛂🅐🅒🅝
 ## Documentation
 - Class name: `SoftT2IAdapterWeights`
 - Category: `Adv-ControlNet 🛂🅐🅒🅝/weights/T2IAdapter`
 - Output node: `False`
 
-The SoftT2IAdapterWeights node is designed to adjust the influence of control weights on the generation process in a soft, adaptable manner. It allows for fine-tuning the balance between different aspects of generated content by modifying the weights applied to control nets, enhancing the flexibility and precision of content generation.
+The SoftT2IAdapterWeights node is designed to adjust the influence of control weights within a text-to-image adaptation process, allowing for a more nuanced and customizable image generation based on the specified weights and the option to flip these weights.
 ## Input types
 ### Required
-- **`weight_00`**
-    - Specifies the initial weight for the first control net, allowing for fine-tuning of its influence on the generation process.
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
-- **`weight_01`**
-    - Defines the weight for the second control net, enabling adjustments to its impact on content generation.
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
-- **`weight_02`**
-    - Sets the weight for the third control net, facilitating control over its contribution to the generated content.
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
-- **`weight_03`**
-    - Determines the weight for the fourth control net, allowing for precise manipulation of its effect on the generation outcome.
+- **`weight_i`**
+    - Specifies a control weight at index 'i', influencing the adaptation process at various stages. The index 'i' represents a sequence of control weights, allowing for detailed customization of the image generation process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`flip_weights`**
-    - A boolean flag that, when set to True, reverses the order of weights, potentially altering the generation dynamics.
+    - A boolean flag that, when true, reverses the order of control weights, potentially altering the adaptation process.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`CN_WEIGHTS`**
     - Comfy dtype: `CONTROL_NET_WEIGHTS`
-    - The adjusted control net weights after applying the specified modifications.
-    - Python dtype: `List[float]`
+    - The adjusted control weights after processing through the SoftT2IAdapterWeights node.
+    - Python dtype: `list`
 - **`TK_SHORTCUT`**
     - Comfy dtype: `TIMESTEP_KEYFRAME`
-    - A timestep keyframe object that encapsulates the adjusted control weights for use in the generation process.
-    - Python dtype: `TimestepKeyframe`
+    - A keyframe group indicating specific timesteps where the control weights have significant influence.
+    - Python dtype: `TimestepKeyframeGroup`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageListLoader
+---
+
 # ⌨️ CR Load Image List Plus
 ## Documentation
 - Class name: `CR Load Image List Plus`

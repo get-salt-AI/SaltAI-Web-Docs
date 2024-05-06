@@ -1,42 +1,49 @@
+---
+tags:
+- BoundingBox
+- Image
+- ImageTransformation
+---
+
 # Bbox From Mask (mtb)
 ## Documentation
 - Class name: `Bbox From Mask (mtb)`
 - Category: `mtb/crop`
 - Output node: `False`
 
-This node is designed to extract a bounding box from a given mask, optionally inverting the mask and considering an image for size compatibility. It is capable of handling batch operations and ensures the bounding box accurately represents the area of interest within the mask or image.
+The `Bbox From Mask` node is designed to extract a bounding box from a given mask, optionally inverting the mask and considering an image for size compatibility. It aims to identify the minimal bounding area that encapsulates the non-zero elements of the mask, providing a foundational tool for image cropping and processing tasks.
 ## Input types
 ### Required
 - **`mask`**
-    - The mask tensor from which the bounding box is to be extracted. It plays a crucial role in determining the area of interest for cropping or analysis.
+    - The mask tensor from which the bounding box is to be extracted. It plays a crucial role in determining the area of interest within an image or a set of images.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`invert`**
-    - A boolean flag indicating whether the mask should be inverted before extracting the bounding box. This affects the area considered as the foreground for bounding box calculation.
+    - A boolean flag indicating whether the mask should be inverted before extracting the bounding box. This inversion can alter the focus area within the mask, affecting the resulting bounding box.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`image`**
-    - An optional image tensor that, if provided, is used to ensure size compatibility with the mask. It affects the validation of mask and image sizes for batch operations.
+    - An optional image tensor that, if provided, ensures the extracted bounding box is compatible with the image's dimensions. It's used for additional validation and processing when both mask and image are provided.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`bbox`**
     - Comfy dtype: `BBOX`
-    - The calculated bounding box, represented as a tuple of minimum x, minimum y, width, and height.
+    - The bounding box extracted from the mask, represented as a tuple of coordinates and dimensions (x, y, width, height).
     - Python dtype: `Tuple[int, int, int, int]`
 - **`image (optional)`**
     - Comfy dtype: `IMAGE`
-    - The optional cropped image tensor, returned only if an image tensor was provided as input. This output is optional and may not always be present, depending on whether an image input was provided.
-    - Python dtype: `torch.Tensor`
+    - unknown
+    - Python dtype: `unknown`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
 ## Source code
 ```python
-class BboxFromMask:
+class MTB_BboxFromMask:
     """From a mask extract the bounding box"""
 
     @classmethod
@@ -62,7 +69,9 @@ class BboxFromMask:
     FUNCTION = "extract_bounding_box"
     CATEGORY = "mtb/crop"
 
-    def extract_bounding_box(self, mask: torch.Tensor, invert: bool, image=None):
+    def extract_bounding_box(
+        self, mask: torch.Tensor, invert: bool, image=None
+    ):
         # if image != None:
         #     if mask.size(0) != image.size(0):
         #         if mask.size(0) != 1:

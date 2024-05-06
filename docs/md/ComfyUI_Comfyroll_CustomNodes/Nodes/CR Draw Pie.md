@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- VisualEffects
+---
+
 # 🟢 CR Draw Pie
 ## Documentation
 - Class name: `CR Draw Pie`

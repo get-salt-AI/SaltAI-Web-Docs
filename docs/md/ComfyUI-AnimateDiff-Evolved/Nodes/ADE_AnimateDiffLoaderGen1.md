@@ -1,58 +1,65 @@
+---
+tags:
+- AnimateDiff
+- AnimateDiffContext
+- Animation
+---
+
 # AnimateDiff Loader 🎭🅐🅓①
 ## Documentation
 - Class name: `ADE_AnimateDiffLoaderGen1`
 - Category: `Animate Diff 🎭🅐🅓/① Gen1 nodes ①`
 - Output node: `False`
 
-This node is designed for loading and initializing the AnimateDiff model specifically tailored for the first generation of the AnimateDiff framework. It facilitates the integration of motion and animation into static images, leveraging the capabilities of the AnimateDiff model to bring still images to life.
+The ADE_AnimateDiffLoaderGen1 node is designed to load and initialize the first generation of AnimateDiff models, setting the stage for subsequent animation or image manipulation tasks. It encapsulates the complexities of model loading and configuration, providing a streamlined interface for the generation of dynamic content.
 ## Input types
 ### Required
 - **`model`**
-    - Specifies the model to be loaded for animation. This parameter is crucial for determining the base framework upon which the AnimateDiff functionalities will operate.
+    - This input specifies the AnimateDiff model to be loaded, central to initializing the animation or image manipulation process.
     - Comfy dtype: `MODEL`
-    - Python dtype: `Model`
+    - Python dtype: `str`
 - **`model_name`**
-    - Determines the specific AnimateDiff model to be loaded, chosen from a list of available motion models. This selection is essential for tailoring the animation effects to the desired outcome.
+    - The model_name parameter allows for the selection of a specific AnimateDiff model by name, facilitating a more targeted initialization.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`beta_schedule`**
-    - Defines the beta schedule to be used in the animation process, allowing for customization of the animation's temporal dynamics.
+    - The beta_schedule parameter determines the scheduling of beta values used in the diffusion process, impacting the quality and characteristics of the generated content.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `BetaSchedules`
+    - Python dtype: `str`
 ### Optional
 - **`context_options`**
-    - Optionally specifies context options to further customize the animation process, enabling more detailed control over the animation settings.
+    - Optional settings that provide additional context or preferences for the model loading process, allowing for customized initialization.
     - Comfy dtype: `CONTEXT_OPTIONS`
-    - Python dtype: `ContextOptions`
+    - Python dtype: `str`
 - **`motion_lora`**
-    - Optionally specifies a motion LoRA to be applied, enhancing the animation with specific motion effects.
+    - Specifies the LoRA parameters for motion models, enabling fine-tuned control over the animation dynamics.
     - Comfy dtype: `MOTION_LORA`
-    - Python dtype: `MotionLoraList`
+    - Python dtype: `str`
 - **`ad_settings`**
-    - Optionally specifies AnimateDiff settings to customize the animation process, providing fine control over various animation parameters.
+    - Animation and diffusion settings that customize the behavior of the AnimateDiff model during the loading process.
     - Comfy dtype: `AD_SETTINGS`
-    - Python dtype: `AnimateDiffSettings`
+    - Python dtype: `str`
 - **`ad_keyframes`**
-    - Optionally specifies keyframes for the animation, allowing for precise control over the animation timeline.
+    - Defines keyframes for animation, guiding the model in generating dynamic content over specified intervals.
     - Comfy dtype: `AD_KEYFRAMES`
-    - Python dtype: `ADKeyframes`
+    - Python dtype: `str`
 - **`sample_settings`**
-    - Optionally specifies sample settings for the animation, enabling customization of the sampling process.
+    - Settings that influence the sampling process, such as temperature and top-k filtering, to refine the generated output.
     - Comfy dtype: `SAMPLE_SETTINGS`
-    - Python dtype: `SampleSettings`
+    - Python dtype: `str`
 - **`scale_multival`**
-    - Optionally specifies a multival scale to adjust the scale of the animation effects, offering additional customization.
+    - Multipliers for scaling the effects in the generated content, allowing for varied intensities of certain features.
     - Comfy dtype: `MULTIVAL`
-    - Python dtype: `Multival`
+    - Python dtype: `str`
 - **`effect_multival`**
-    - Optionally specifies a multival effect to enhance the animation with specific visual effects, adding another layer of customization.
+    - Multipliers for adjusting the intensity of specific effects within the generated content, providing creative control over the output.
     - Comfy dtype: `MULTIVAL`
-    - Python dtype: `Multival`
+    - Python dtype: `str`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - Returns the loaded AnimateDiff model, ready for animation processing.
-    - Python dtype: `Model`
+    - This output is the loaded AnimateDiff model, ready for use in animation or image manipulation tasks.
+    - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
@@ -123,18 +130,25 @@ class AnimateDiffLoaderGen1:
         
         # need to use a ModelPatcher that supports injection of motion modules into unet
         # need to use a ModelPatcher that supports injection of motion modules into unet
-        model = ModelPatcherAndInjector(model)
+        model = ModelPatcherAndInjector.create_from(model, hooks_only=True)
         model.motion_models = MotionModelGroup(motion_model)
         model.sample_settings = sample_settings if sample_settings is not None else SampleSettings()
         model.motion_injection_params = params
         
-        # save model sampling from BetaSchedule as object patch
-        # if autoselect, get suggested beta_schedule from motion model
-        if beta_schedule == BetaSchedules.AUTOSELECT and not model.motion_models.is_empty():
-            beta_schedule = model.motion_models[0].model.get_best_beta_schedule(log=True)
-        new_model_sampling = BetaSchedules.to_model_sampling(beta_schedule, model)
-        if new_model_sampling is not None:
-            model.add_object_patch("model_sampling", new_model_sampling)
+        if model.sample_settings.custom_cfg is not None:
+            logger.info("[Sample Settings] custom_cfg is set; will override any KSampler cfg values or patches.")
+
+        if model.sample_settings.sigma_schedule is not None:
+            logger.info("[Sample Settings] sigma_schedule is set; will override beta_schedule.")
+            model.add_object_patch("model_sampling", model.sample_settings.sigma_schedule.clone().model_sampling)
+        else:
+            # save model sampling from BetaSchedule as object patch
+            # if autoselect, get suggested beta_schedule from motion model
+            if beta_schedule == BetaSchedules.AUTOSELECT and not model.motion_models.is_empty():
+                beta_schedule = model.motion_models[0].model.get_best_beta_schedule(log=True)
+            new_model_sampling = BetaSchedules.to_model_sampling(beta_schedule, model)
+            if new_model_sampling is not None:
+                model.add_object_patch("model_sampling", new_model_sampling)
 
         del motion_model
         return (model,)

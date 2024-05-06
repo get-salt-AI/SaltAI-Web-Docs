@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskGeneration
+---
+
 # Mask Arbitrary Region
 ## Documentation
 - Class name: `Mask Arbitrary Region`

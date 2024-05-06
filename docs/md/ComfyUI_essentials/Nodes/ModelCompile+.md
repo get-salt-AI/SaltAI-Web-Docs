@@ -1,32 +1,37 @@
+---
+tags:
+- Model
+---
+
 # 🔧 Compile Model
 ## Documentation
 - Class name: `ModelCompile+`
 - Category: `essentials`
 - Output node: `False`
 
-This node compiles a given model for optimized execution, allowing for dynamic adjustments and full graph compilation based on the specified mode. It aims to enhance model performance by leveraging PyTorch's compilation capabilities.
+The ModelCompile node is designed to optimize and compile PyTorch models for improved execution performance. It allows for dynamic compilation with options for full graph compilation and various optimization modes, aiming to enhance model efficiency and runtime.
 ## Input types
 ### Required
 - **`model`**
-    - The model to be compiled for optimized execution. It is the primary subject of the compilation process.
+    - The PyTorch model to be compiled. This parameter is crucial as it determines the model that will undergo optimization and compilation for enhanced performance.
     - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`fullgraph`**
-    - Indicates whether the full computational graph of the model should be considered during compilation, potentially enhancing optimization.
+    - A boolean flag indicating whether to compile the entire computational graph of the model. Enabling this can potentially improve performance by optimizing the model's execution as a whole.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`dynamic`**
-    - Determines if dynamic shapes and operations within the model are allowed during compilation, offering flexibility in handling variable input sizes.
+    - A boolean flag that enables dynamic compilation of the model. This allows for more flexible optimizations based on the model's runtime behavior.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`mode`**
-    - Specifies the compilation mode, which can range from default settings to aggressive autotuning and optimization strategies, affecting the compilation's thoroughness and performance impact.
+    - Specifies the compilation mode, which can range from default settings to modes focused on reducing overhead or maximizing autotuning, with or without CUDA graphs.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The compiled model, optimized for improved performance and efficiency.
+    - The optimized and compiled PyTorch model, ready for improved execution.
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
@@ -35,7 +40,7 @@ This node compiles a given model for optimized execution, allowing for dynamic a
 
 ## Source code
 ```python
-class ModelCompile():  
+class ModelCompile():
     @classmethod
     def INPUT_TYPES(s):
         return {
@@ -46,7 +51,7 @@ class ModelCompile():
                 "mode": (["default", "reduce-overhead", "max-autotune", "max-autotune-no-cudagraphs"],),
             },
         }
-    
+
     RETURN_TYPES = ("MODEL", )
     FUNCTION = "execute"
     CATEGORY = "essentials"

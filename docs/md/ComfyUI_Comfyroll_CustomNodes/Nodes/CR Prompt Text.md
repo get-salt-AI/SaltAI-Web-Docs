@@ -1,3 +1,8 @@
+---
+tags:
+- Prompt
+---
+
 # ⚙️ CR Prompt Text
 ## Documentation
 - Class name: `CR Prompt Text`
@@ -23,7 +28,7 @@ This node is designed to process and return a user-defined text prompt, along wi
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
-    - SeargePromptCombiner
+    - [SeargePromptCombiner](../../SeargeSDXL/Nodes/SeargePromptCombiner.md)
     - PromptControlSimple
     - TagsSelector
     - [CR Text Replace](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Text Replace.md)

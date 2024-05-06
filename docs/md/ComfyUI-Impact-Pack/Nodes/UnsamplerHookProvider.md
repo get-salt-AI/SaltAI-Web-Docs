@@ -1,3 +1,9 @@
+---
+tags:
+- ImageEnhancement
+- Scheduling
+---
+
 # UnsamplerHookProvider
 ## Documentation
 - Class name: `UnsamplerHookProvider`

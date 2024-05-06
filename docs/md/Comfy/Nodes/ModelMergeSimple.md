@@ -1,3 +1,8 @@
+---
+tags:
+- ModelMerge
+---
+
 # ModelMergeSimple
 ## Documentation
 - Class name: `ModelMergeSimple`

@@ -1,3 +1,8 @@
+---
+tags:
+- Dictionary
+---
+
 # Text Dictionary Convert
 ## Documentation
 - Class name: `Text Dictionary Convert`

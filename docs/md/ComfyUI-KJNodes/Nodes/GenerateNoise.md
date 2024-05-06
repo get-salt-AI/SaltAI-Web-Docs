@@ -1,53 +1,59 @@
+---
+tags:
+- LatentNoise
+- Noise
+---
+
 # GenerateNoise
 ## Documentation
 - Class name: `GenerateNoise`
 - Category: `KJNodes/noise`
 - Output node: `False`
 
-The GenerateNoise node is designed to create a batch of noise samples with specified dimensions and properties. It allows for the generation of noise with controlled variability through parameters like seed and multiplier, and offers options for normalization and constant batch noise, making it versatile for various generative tasks.
+The GenerateNoise node is designed to create synthetic noise data. It can generate noise patterns based on specified dimensions, seed, and scaling factors, and offers options for normalization and producing constant noise across a batch. This functionality is essential for tasks that require noise injection into latent spaces or for use as a base in generative models, where the noise acts as a seed for further transformations.
 ## Input types
 ### Required
 - **`width`**
-    - Determines the width of each noise sample, influencing the spatial dimensions of the generated noise.
+    - Determines the width of the generated noise pattern, affecting the spatial dimensions of the output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Sets the height of each noise sample, impacting the spatial dimensions of the generated noise.
+    - Sets the height of the generated noise pattern, influencing the spatial dimensions of the noise output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`batch_size`**
-    - Specifies the number of noise samples to generate in a batch, affecting the overall volume of data produced.
+    - Specifies the number of noise samples to generate, allowing for batch processing of noise generation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`seed`**
-    - Controls the randomness of noise generation, ensuring reproducibility of results when the same seed is used.
+    - A seed value for the random number generator, ensuring reproducibility of the noise patterns.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`multiplier`**
-    - Applies a scaling factor to the noise, adjusting its amplitude.
+    - A scaling factor applied to the noise, adjusting its intensity or amplitude.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`constant_batch_noise`**
-    - When enabled, uses the same noise sample across the entire batch, ensuring uniformity in noise characteristics.
+    - A boolean flag that, when true, makes the entire batch use the same noise pattern, enhancing consistency across generated samples.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`normalize`**
-    - Normalizes the noise samples, typically to have a standard deviation of 1, enhancing consistency in their distribution.
+    - When enabled, normalizes the noise patterns to have a standard deviation of 1, standardizing the output.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`model`**
-    - An optional model parameter that, if provided, is used to further adjust the noise based on the model's characteristics.
+    - The model parameter is optional and allows for the adjustment of the noise generation based on the model's characteristics, particularly when sigmas are provided.
     - Comfy dtype: `MODEL`
-    - Python dtype: `Optional[torch.nn.Module]`
+    - Python dtype: `object`
 - **`sigmas`**
-    - Optional parameter for adjusting the noise intensity based on a range of sigma values, allowing for dynamic control over the noise's variability.
+    - An optional parameter that, when provided, adjusts the noise intensity based on the sigma values, which can be crucial for specific generative tasks.
     - Comfy dtype: `SIGMAS`
-    - Python dtype: `Optional[torch.Tensor]`
+    - Python dtype: `List[float]`
 ## Output types
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - The generated noise samples, ready for use in various generative tasks.
+    - Outputs a dictionary containing the generated noise patterns, ready for use in further processing or as input to generative models.
     - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `CPU`
@@ -76,8 +82,10 @@ class GenerateNoise:
     
     RETURN_TYPES = ("LATENT",)
     FUNCTION = "generatenoise"
-
     CATEGORY = "KJNodes/noise"
+    DESCRIPTION = """
+Generates noise for injection or to be used as empty latents on samplers with add_noise off.
+"""
         
     def generatenoise(self, batch_size, width, height, seed, multiplier, constant_batch_noise, normalize, sigmas=None, model=None):
 

@@ -3304,140 +3304,56 @@ File name: `src/controlnet_aux/depth_anything/torchhub/facebookresearch_dinov2_m
 # This source code is licensed under the Apache License, Version 2.0
 # found in the LICENSE file in the root directory of this source tree.
 ```
-File name: `src/controlnet_aux/dwpose/LICENSE`
+File name: `src/controlnet_aux/dsine/LICENSE`
 
-**BSD-2-Clause**
+**Apache-2.0**
 ```
-LICENSE
-
+exclude all liability whether in contract, tort, negligence or otherwise, in
+```
+**BSD-3-Clause**
+```
 Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are met: 
+modification, are permitted provided that the following conditions are met:
 
 1. Redistributions of source code must retain the above copyright notice, this
-   list of conditions and the following disclaimer. 
+list of conditions and the following disclaimer.
+
 2. Redistributions in binary form must reproduce the above copyright notice,
-   this list of conditions and the following disclaimer in the documentation
-   and/or other materials provided with the distribution. 
+this list of conditions and the following disclaimer in the documentation
+and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors
+may be used to endorse or promote products derived from this software without
+specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
 ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
-ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-```
-**LicenseRef-scancode-generic-cla**
-```
-uses a shared copyright model: each contributor holds copyright over
-their contributions to Caffe. The project versioning records all such
-contribution and copyright details. If a contributor wants to further mark
-their specific copyright on a particular contribution, they should indicate
-their copyright solely in the commit message of the change when it is
-committed.
-```
-```
-CONTRIBUTION AGREEMENT
-
-By contributing to the BVLC/caffe repository through pull-request, comment,
-or otherwise, the contributor releases their content to the
-license and copyright terms herein.
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ```
 **LicenseRef-scancode-proprietary-license**
 ```
-NONCOMMERCIAL
-```
-```
-noncommercial
+(b) You may use the Software solely for non-commercial, internal  or academic
 ```
 **LicenseRef-scancode-unknown-license-reference**
 ```
-SOFTWARE LICENSE AGREEMENT
+5. Limitation of Liability
 ```
 ```
-LICENSE AGREEMENT.
+licence agreement free of charge and on condition that the limitation of
+liability set out below shall apply. Accordingly, subject to Clause 5(b), we
 ```
-```
-license agreement ("
-```
-```
-licensed under
-```
-```
-WARRANTY OF ANY KIND INCLUDING ANY WARRANTIES OF PERFORMANCE OR MERCHANTABILITY OR FITNESS FOR A PARTICULAR
-```
-```
-LIMITATION OF LIABILITY:
-```
-**PostgreSQL**
-```
-be liable for direct, indirect, special, incidental, or consequential damages or lost profits related to Licensee's use of and/or inability to use the Software, even if Licensor is advised of the possibility of such damage.
-```
-File name: `src/controlnet_aux/dwpose/__init__.py`
-
-**LicenseRef-scancode-proprietary-license**
-```
-# This preprocessor is licensed by CMU for non-commercial use only.
-```
-File name: `src/controlnet_aux/hed/__init__.py`
+File name: `src/controlnet_aux/dsine/models/submodules/efficientnet_repo/LICENSE`
 
 **Apache-2.0**
 ```
-# This is an improved version and model of HED edge detection with Apache License, Version 2.0.
-```
-File name: `src/controlnet_aux/leres/leres/LICENSE`
-
-**MIT**
-```
-MIT License
-```
-```
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-```
-File name: `src/controlnet_aux/leres/pix2pix/LICENSE`
-
-**BSD-1-Clause**
-```
-This software is for academic use only. A redistribution of this 
-software, with or  without modifications, has to be for academic 
-use only, while giving the appropriate credit to the original 
-authors of the software. The methods implemented as a part of 
-this software may be covered under patents or patent applications.
-
-THIS SOFTWARE IS PROVIDED BY THE AUTHOR ''AS IS'' AND ANY EXPRESS OR IMPLIED
-WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
-FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR
-CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
-CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
-ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
-NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-```
-File name: `src/controlnet_aux/mlsd/LICENSE`
-
-**Apache-2.0**
-```
-                                Apache License
+                                 Apache License
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/
 
@@ -3638,17 +3554,146 @@ File name: `src/controlnet_aux/mlsd/LICENSE`
    See the License for the specific language governing permissions and
    limitations under the License.
 ```
+File name: `src/controlnet_aux/dsine/models/submodules/efficientnet_repo/setup.py`
+
+**Apache-2.0**
+```
+        'License :: OSI Approved :: Apache Software License',
+```
+File name: `src/controlnet_aux/dwpose/LICENSE`
+
+**BSD-2-Clause**
+```
+LICENSE
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met: 
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer. 
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution. 
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+```
+**LicenseRef-scancode-generic-cla**
+```
+uses a shared copyright model: each contributor holds copyright over
+their contributions to Caffe. The project versioning records all such
+contribution and copyright details. If a contributor wants to further mark
+their specific copyright on a particular contribution, they should indicate
+their copyright solely in the commit message of the change when it is
+committed.
+```
+```
+CONTRIBUTION AGREEMENT
+
+By contributing to the BVLC/caffe repository through pull-request, comment,
+or otherwise, the contributor releases their content to the
+license and copyright terms herein.
+```
+**LicenseRef-scancode-proprietary-license**
+```
+NONCOMMERCIAL
+```
+```
+noncommercial
+```
+**LicenseRef-scancode-unknown-license-reference**
+```
+SOFTWARE LICENSE AGREEMENT
+```
+```
+LICENSE AGREEMENT.
+```
+```
+license agreement ("
+```
+```
+licensed under
+```
+```
+WARRANTY OF ANY KIND INCLUDING ANY WARRANTIES OF PERFORMANCE OR MERCHANTABILITY OR FITNESS FOR A PARTICULAR
+```
+```
+LIMITATION OF LIABILITY:
+```
+**PostgreSQL**
+```
+be liable for direct, indirect, special, incidental, or consequential damages or lost profits related to Licensee's use of and/or inability to use the Software, even if Licensor is advised of the possibility of such damage.
+```
+File name: `src/controlnet_aux/dwpose/__init__.py`
+
+**LicenseRef-scancode-proprietary-license**
+```
+# This preprocessor is licensed by CMU for non-commercial use only.
+```
+File name: `src/controlnet_aux/hed/__init__.py`
+
+**Apache-2.0**
+```
+# This is an improved version and model of HED edge detection with Apache License, Version 2.0.
+```
+File name: `src/controlnet_aux/leres/leres/LICENSE`
+
+**MIT**
+```
+MIT License
+```
+```
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+File name: `src/controlnet_aux/leres/pix2pix/LICENSE`
+
+**BSD-1-Clause**
+```
+This software is for academic use only. A redistribution of this 
+software, with or  without modifications, has to be for academic 
+use only, while giving the appropriate credit to the original 
+authors of the software. The methods implemented as a part of 
+this software may be covered under patents or patent applications.
+
+THIS SOFTWARE IS PROVIDED BY THE AUTHOR ''AS IS'' AND ANY EXPRESS OR IMPLIED
+WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
+FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+```
 File name: `src/controlnet_aux/mlsd/utils.py`
 
 **Apache-2.0**
 ```
 Apache License v2.0
-```
-File name: `src/controlnet_aux/normalbae/nets/submodules/efficientnet_repo/setup.py`
-
-**Apache-2.0**
-```
-        'License :: OSI Approved :: Apache Software License',
 ```
 File name: `src/controlnet_aux/pidi/LICENSE`
 

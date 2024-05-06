@@ -1,3 +1,8 @@
+---
+tags:
+- SAM
+---
+
 # GroundingDinoSAMSegment (segment anything)
 ## Documentation
 - Class name: `GroundingDinoSAMSegment (segment anything)`

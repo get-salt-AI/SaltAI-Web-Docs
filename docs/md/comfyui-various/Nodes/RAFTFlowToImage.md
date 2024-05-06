@@ -1,3 +1,8 @@
+---
+tags:
+- OpticalFlow
+---
+
 # RAFT Flow to Image
 ## Documentation
 - Class name: `RAFTFlowToImage`

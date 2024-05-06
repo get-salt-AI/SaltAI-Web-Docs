@@ -1,3 +1,9 @@
+---
+tags:
+- Segmentation
+- SemanticSegmentationPreprocessing
+---
+
 # OneFormer ADE20K Segmentor
 ## Documentation
 - Class name: `OneFormer-ADE20K-SemSegPreprocessor`

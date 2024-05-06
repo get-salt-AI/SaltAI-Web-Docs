@@ -1,3 +1,10 @@
+---
+tags:
+- Batch
+- Image
+- ImageBatch
+---
+
 # Tensor Batch to Image
 ## Documentation
 - Class name: `Tensor Batch to Image`

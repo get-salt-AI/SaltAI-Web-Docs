@@ -1,3 +1,10 @@
+---
+tags:
+- GridLayout
+- Image
+- Tiled
+---
+
 # FlatLatentsIntoSingleGrid
 ## Documentation
 - Class name: `FlatLatentsIntoSingleGrid`

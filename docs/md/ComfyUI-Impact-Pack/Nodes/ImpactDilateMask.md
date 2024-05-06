@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskMorphology
+---
+
 # Dilate Mask
 ## Documentation
 - Class name: `ImpactDilateMask`

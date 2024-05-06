@@ -1,3 +1,9 @@
+---
+tags:
+- ImpactPack
+- Segmentation
+---
+
 # EmptySegs
 ## Documentation
 - Class name: `EmptySegs`

@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- ImageBlend
+- ImageComposite
+---
+
 # Bounded Image Blend with Mask
 ## Documentation
 - Class name: `Bounded Image Blend with Mask`

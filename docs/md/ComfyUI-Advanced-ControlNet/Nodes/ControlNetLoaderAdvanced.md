@@ -1,3 +1,9 @@
+---
+tags:
+- ControlNet
+- ControlNetLoader
+---
+
 # Load Advanced ControlNet Model 🛂🅐🅒🅝
 ## Documentation
 - Class name: `ControlNetLoaderAdvanced`
@@ -27,7 +33,7 @@ This node is designed to load an advanced ControlNet model, optionally incorpora
     - [ControlNetApplyAdvanced](../../Comfy/Nodes/ControlNetApplyAdvanced.md)
     - [ACN_AdvancedControlNetApply](../../ComfyUI-Advanced-ControlNet/Nodes/ACN_AdvancedControlNetApply.md)
     - [ControlNetApply](../../Comfy/Nodes/ControlNetApply.md)
-    - Control Net Stacker
+    - [Control Net Stacker](../../efficiency-nodes-comfyui/Nodes/Control Net Stacker.md)
     - [ImpactControlNetApplySEGS](../../ComfyUI-Impact-Pack/Nodes/ImpactControlNetApplySEGS.md)
 
 

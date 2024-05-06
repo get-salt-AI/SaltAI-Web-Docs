@@ -1,3 +1,9 @@
+---
+tags:
+- MediaPipeFaceMesh
+- Segmentation
+---
+
 # MediaPipe FaceMesh to SEGS
 ## Documentation
 - Class name: `MediaPipeFaceMeshToSEGS`

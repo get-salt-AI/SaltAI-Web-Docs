@@ -1,3 +1,8 @@
+---
+tags:
+- ControlNet
+---
+
 # 🕹️ CR Apply Multi-ControlNet
 ## Documentation
 - Class name: `CR Apply Multi-ControlNet`
@@ -40,7 +45,7 @@ This node is designed to apply a stack of multiple ControlNets to a given set of
 - Infra type: `GPU`
 - Common nodes:
     - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
-    - KSampler Adv. (Efficient)
+    - [KSampler Adv. (Efficient)](../../efficiency-nodes-comfyui/Nodes/KSampler Adv. (Efficient).md)
 
 
 

@@ -1,24 +1,29 @@
+---
+tags:
+- Text
+---
+
 # Text Preserve (Mikey)
 ## Documentation
 - Class name: `TextPreserve`
 - Category: `Mikey/Text`
 - Output node: `True`
 
-The TextPreserve node is designed to maintain the original text input while applying specific transformations based on search and replace patterns, wildcard syntax, and workflow modifications. It aims to preserve the initial text input for further use or reference, while also updating the workflow's nodes with new widget values reflecting the original and transformed texts.
+The TextPreserve node is designed to manipulate and transform text inputs based on specific patterns and random choices, while preserving the original text for further use. It incorporates functionalities such as search and replace, wildcard text selection, and updating workflow states with modified text values.
 ## Input types
 ### Required
 - **`text`**
-    - The original text input that will be preserved and potentially transformed based on the provided patterns and syntax.
+    - The original text input that will be preserved and potentially modified through various text manipulation processes.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`result_text`**
-    - The text resulting from applying the search and replace operations and wildcard syntax to the original text.
+    - A modified version of the original text after applying search and replace operations and wildcard selections.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`text`**
     - Comfy dtype: `STRING`
-    - The transformed text after applying search and replace operations and wildcard syntax.
+    - The final text output after all manipulations, including search and replace operations and wildcard text selections, have been applied.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -42,6 +47,8 @@ class TextPreserve:
     CATEGORY = 'Mikey/Text'
 
     def process(self, text, result_text, unique_id=None, extra_pnginfo=None, prompt=None):
+        # reset random seed
+        random.seed()
         preserve_text = text
         # search and replace
         text = search_and_replace(text, extra_pnginfo, prompt)

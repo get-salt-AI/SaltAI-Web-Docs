@@ -1,3 +1,9 @@
+---
+tags:
+- ImpactPack
+- Segmentation
+---
+
 # SEGS Filter (range)
 ## Documentation
 - Class name: `ImpactSEGSRangeFilter`

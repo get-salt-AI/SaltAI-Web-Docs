@@ -1,3 +1,9 @@
+---
+tags:
+- Math
+- VectorMath
+---
+
 # BoolBinaryOperation
 ## Documentation
 - Class name: `CM_BoolBinaryOperation`

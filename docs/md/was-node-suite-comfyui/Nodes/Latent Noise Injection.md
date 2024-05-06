@@ -1,3 +1,9 @@
+---
+tags:
+- LatentNoise
+- Noise
+---
+
 # Latent Noise Injection
 ## Documentation
 - Class name: `Latent Noise Injection`

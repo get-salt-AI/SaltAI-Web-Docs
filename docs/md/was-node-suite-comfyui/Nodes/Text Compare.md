@@ -1,48 +1,53 @@
+---
+tags:
+- Comparison
+---
+
 # Text Compare
 ## Documentation
 - Class name: `Text Compare`
 - Category: `WAS Suite/Text/Search`
 - Output node: `False`
 
-This node compares two text strings based on a specified mode of similarity or difference, incorporating a tolerance level to fine-tune the comparison. It abstractly evaluates the relationship between two pieces of text, providing insights into their similarity or distinctness.
+The Text Compare node is designed to compare two text strings, evaluating their similarity or difference based on a specified mode and tolerance level. It abstractly measures how closely the texts match or diverge, providing a boolean result, a numerical score, and a comparison text as outputs.
 ## Input types
 ### Required
 - **`text_a`**
-    - The first text string to be compared. It plays a crucial role in the comparison process, serving as one of the two primary texts being analyzed.
+    - The first text string to be compared. Its content is crucial for the comparison process, influencing the outcome of the similarity or difference evaluation.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`text_b`**
-    - The second text string to be compared. It is essential for the comparison, acting as the counterpart to the first text in the analysis.
+    - The second text string to be compared against the first. The comparison results are directly affected by its content, playing a key role in determining the similarity or difference.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`mode`**
-    - Determines the mode of comparison: 'similarity' to assess how alike the texts are, or 'difference' to identify how they diverge.
+    - Specifies the mode of comparison: 'similarity' to evaluate how similar the texts are, or 'difference' to assess how they diverge. This choice dictates the nature of the comparison.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `str`
 - **`tolerance`**
-    - A threshold value that fine-tunes the sensitivity of the comparison, affecting the outcome of the similarity or difference evaluation.
+    - A threshold value that defines the level of tolerance for differences between the texts. It influences the sensitivity of the comparison, affecting the similarity or difference score.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`TEXT_A_PASS`**
     - Comfy dtype: `STRING`
-    - The original first text string, returned unchanged.
+    - The text string from 'text_a' that is evaluated in the comparison process.
     - Python dtype: `str`
 - **`TEXT_B_PASS`**
     - Comfy dtype: `STRING`
-    - The original second text string, returned unchanged.
+    - The text string from 'text_b' that is evaluated in the comparison process.
     - Python dtype: `str`
-- **`BOOL_NUMBER`**
-    - Comfy dtype: `NUMBER`
-    - A boolean value represented as a number, indicating if the texts are identical (1) or not (0).
-    - Python dtype: `int`
+- **`BOOLEAN`**
+    - Comfy dtype: `BOOLEAN`
+    - A boolean value indicating whether the texts are considered similar or different according to the specified mode and tolerance.
+    - Python dtype: `bool`
 - **`SCORE_NUMBER`**
     - Comfy dtype: `NUMBER`
-    - A numerical score representing the degree of similarity or difference between the texts.
+    - A numerical score representing the degree of similarity or difference between the two text strings.
     - Python dtype: `float`
 - **`COMPARISON_TEXT`**
     - Comfy dtype: `STRING`
-    - A text string that provides a detailed comparison result, highlighting the similarities or differences.
+    - A text output providing detailed comparison results or insights.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -65,8 +70,8 @@ class WAS_Text_Compare:
                 "tolerance": ("FLOAT", {"default":0.0,"min":0.0,"max":1.0,"step":0.01}),
             }
         }
-    RETURN_TYPES = (TEXT_TYPE,TEXT_TYPE,"NUMBER","NUMBER",TEXT_TYPE)
-    RETURN_NAMES = ("TEXT_A_PASS","TEXT_B_PASS","BOOL_NUMBER","SCORE_NUMBER","COMPARISON_TEXT")
+    RETURN_TYPES = (TEXT_TYPE,TEXT_TYPE,"BOOLEAN","NUMBER",TEXT_TYPE)
+    RETURN_NAMES = ("TEXT_A_PASS","TEXT_B_PASS","BOOLEAN","SCORE_NUMBER","COMPARISON_TEXT")
     FUNCTION = "text_compare"
 
     CATEGORY = "WAS Suite/Text/Search"
@@ -79,7 +84,7 @@ class WAS_Text_Compare:
         sim_result = ' '.join(sim[1][::-1])
         sim_result = ' '.join(sim_result.split())
 
-        return (text_a, text_b, boolean, score, sim_result)
+        return (text_a, text_b, bool(boolean), score, sim_result)
 
     def string_compare(self, str1, str2, threshold=1.0, difference_mode=False):
         m = len(str1)

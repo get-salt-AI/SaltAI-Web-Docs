@@ -1,33 +1,42 @@
+---
+tags:
+- FloatData
+---
+
 # Plot Batch Float (mtb)
 ## Documentation
 - Class name: `Plot Batch Float (mtb)`
 - Category: `mtb/batch`
 - Output node: `False`
 
-The Plot Batch Float node is designed for visualizing float values over time, creating a plot that can be customized in terms of dimensions and appearance. It allows for the dynamic representation of data, facilitating the analysis and interpretation of trends and patterns.
+The MTB_PlotBatchFloat node is designed for visualizing batches of floating-point numbers as images. It generates plots based on the provided float values, allowing for a graphical representation of data distributions or patterns.
 ## Input types
 ### Required
 - **`width`**
-    - Specifies the width of the plot. A larger width allows for a more detailed visualization of the data.
+    - Specifies the width of the generated plot image. Affects the resolution and size of the output image.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Determines the height of the plot, affecting the vertical scale and potentially the readability of the plot.
+    - Specifies the height of the generated plot image. Influences the resolution and size of the output visualization.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`point_size`**
-    - Controls the size of the points plotted, which can enhance clarity or focus on specific data points.
+    - Determines the size of each point in the plot. Larger values produce bigger points, enhancing visibility but potentially reducing clarity in dense areas.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`seed`**
-    - Used to initialize the random number generator, ensuring reproducibility of the plot's appearance.
+    - A seed value for random number generation, ensuring reproducibility of the plot's layout when using random elements.
     - Comfy dtype: `INT`
     - Python dtype: `int`
+- **`start_at_zero`**
+    - A boolean flag that, when true, forces the plot's axis to start at zero, potentially altering the plot's scale and appearance.
+    - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ## Output types
 - **`plot`**
     - Comfy dtype: `IMAGE`
-    - The generated plot as an image, encapsulating the visualized float values over time.
-    - Python dtype: `torch.Tensor`
+    - The generated plot image, visualizing the input float values as a graphical representation.
+    - Python dtype: `Image`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -35,7 +44,7 @@ The Plot Batch Float node is designed for visualizing float values over time, cr
 
 ## Source code
 ```python
-class PlotBatchFloat:
+class MTB_PlotBatchFloat:
     """Plot floats"""
 
     @classmethod
@@ -46,6 +55,7 @@ class PlotBatchFloat:
                 "height": ("INT", {"default": 768}),
                 "point_size": ("INT", {"default": 4}),
                 "seed": ("INT", {"default": 1}),
+                "start_at_zero": ("BOOLEAN", {"default": False}),
             }
         }
 
@@ -54,10 +64,21 @@ class PlotBatchFloat:
     FUNCTION = "plot"
     CATEGORY = "mtb/batch"
 
-    def plot(self, width, height, point_size, seed, **kwargs):
+    def plot(
+        self,
+        width: int,
+        height: int,
+        point_size: int,
+        seed: int,
+        start_at_zero: bool,
+        interactive_backend: bool = False,
+        **kwargs,
+    ):
         import matplotlib
 
-        matplotlib.use("Agg")
+        # NOTE: This is for notebook usage or tests, i.e not exposed to comfy that should always use Agg
+        if not interactive_backend:
+            matplotlib.use("Agg")
         import matplotlib.pyplot as plt
 
         fig, ax = plt.subplots(figsize=(width / 100, height / 100), dpi=100)
@@ -68,26 +89,30 @@ class PlotBatchFloat:
         ax.grid(color="gray", linestyle="-", linewidth=0.5, alpha=0.5)
 
         # Finding global min and max across all lists for scaling the plot
-        global_min = min(min(values) for values in kwargs.values())
-        global_max = max(max(values) for values in kwargs.values())
+        all_values = [value for values in kwargs.values() for value in values]
+        global_min = min(all_values)
+        global_max = max(all_values)
 
-        # Color cycle to ensure each plot has a distinct color
-        colormap = plt.cm.get_cmap("viridis", len(kwargs))
-        color_normalization_factor = (
-            0.5 if len(kwargs) == 1 else (len(kwargs) - 1)
-        )
+        y_padding = 0.05 * (global_max - global_min)
+        ax.set_ylim(global_min - y_padding, global_max + y_padding)
 
-        # Plotting each list with a unique color
-        for i, (label, values) in enumerate(kwargs.items()):
-            color_value = i / color_normalization_factor
-            ax.plot(values, label=label, color=colormap(color_value))
+        max_length = max(len(values) for values in kwargs.values())
+        if start_at_zero:
+            x_values = np.linspace(0, max_length - 1, max_length)
+        else:
+            x_values = np.linspace(1, max_length, max_length)
 
-        ax.set_ylim(global_min, global_max)  # Scaling the y-axis
+        ax.set_xlim(1, max_length)  # Set X-axis limits
+        np.random.seed(seed)
+        colors = np.random.rand(len(kwargs), 3)  # Generate random RGB values
+        for color, (label, values) in zip(colors, kwargs.items()):
+            ax.plot(x_values[: len(values)], values, label=label, color=color)
         ax.legend(
             title="Legend",
             title_fontsize="large",
             fontsize="medium",
             edgecolor="black",
+            loc="best",
         )
 
         # Setting labels and title

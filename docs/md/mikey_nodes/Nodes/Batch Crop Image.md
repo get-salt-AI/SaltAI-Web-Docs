@@ -1,3 +1,10 @@
+---
+tags:
+- Crop
+- Image
+- ImageTransformation
+---
+
 # Batch Crop Image (Mikey)
 ## Documentation
 - Class name: `Batch Crop Image`

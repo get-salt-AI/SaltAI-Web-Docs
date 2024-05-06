@@ -1,3 +1,9 @@
+---
+tags:
+- RandomGeneration
+- Seed
+---
+
 # CR Seed to Int (Legacy)
 ## Documentation
 - Class name: `CR Seed to Int`

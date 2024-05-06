@@ -1,3 +1,8 @@
+---
+tags:
+- SAM
+---
+
 # SAM Segmentor
 ## Documentation
 - Class name: `SAMPreprocessor`

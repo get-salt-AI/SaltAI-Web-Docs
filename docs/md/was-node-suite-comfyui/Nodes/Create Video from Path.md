@@ -1,3 +1,9 @@
+---
+tags:
+- Animation
+- Image
+---
+
 # Create Video from Path
 ## Documentation
 - Class name: `Create Video from Path`

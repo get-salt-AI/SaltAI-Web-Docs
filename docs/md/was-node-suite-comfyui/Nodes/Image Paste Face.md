@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageComposite
+---
+
 # Image Paste Face
 ## Documentation
 - Class name: `Image Paste Face`

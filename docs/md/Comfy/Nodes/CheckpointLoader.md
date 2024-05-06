@@ -1,3 +1,12 @@
+---
+tags:
+- Checkpoint
+- CheckpointLoader
+- Loader
+- ModelIO
+- ModelLoader
+---
+
 # Load Checkpoint With Config (DEPRECATED)
 ## Documentation
 - Class name: `CheckpointLoader`

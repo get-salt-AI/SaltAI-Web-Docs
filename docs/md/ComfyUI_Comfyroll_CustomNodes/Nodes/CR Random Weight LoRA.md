@@ -1,3 +1,8 @@
+---
+tags:
+- LoRA
+---
+
 # 💊 CR Random Weight LoRA
 ## Documentation
 - Class name: `CR Random Weight LoRA`

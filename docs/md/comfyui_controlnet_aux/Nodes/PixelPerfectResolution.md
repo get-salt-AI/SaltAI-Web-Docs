@@ -1,3 +1,9 @@
+---
+tags:
+- ImageResolution
+- ImageTransformation
+---
+
 # Pixel Perfect Resolution
 ## Documentation
 - Class name: `PixelPerfectResolution`

@@ -1,3 +1,9 @@
+---
+tags:
+- Animation
+- PoseEstimation
+---
+
 # DWPose Estimator
 ## Documentation
 - Class name: `DWPreprocessor`

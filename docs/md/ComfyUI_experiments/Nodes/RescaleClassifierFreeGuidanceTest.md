@@ -1,3 +1,9 @@
+---
+tags:
+- ModelGuidance
+- ModelPatch
+---
+
 # RescaleClassifierFreeGuidanceTest
 ## Documentation
 - Class name: `RescaleClassifierFreeGuidanceTest`

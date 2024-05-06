@@ -1,44 +1,50 @@
+---
+tags:
+- Prompt
+- Text
+---
+
 # Lora Syntax Processor (Mikey)
 ## Documentation
 - Class name: `LoraSyntaxProcessor`
 - Category: `Mikey/Lora`
 - Output node: `False`
 
-The LoraSyntaxProcessor node is designed to process text inputs by identifying and handling specific syntax related to LoRA (Low-Rank Adaptation) configurations. It dynamically loads and applies LoRA modifications to models and clips based on the directives found within the text, enhancing the flexibility and customization of model behavior.
+The LoraSyntaxProcessor node is designed to interpret and process specific syntax within text inputs to dynamically modify machine learning models and their parameters. It focuses on parsing 'lora' syntax to apply corresponding adjustments to models and clips, facilitating the customization of model behavior based on textual prompts.
 ## Input types
 ### Required
 - **`model`**
-    - The model parameter represents the initial model to which LoRA modifications will be applied. It plays a crucial role in the dynamic adaptation of the model's behavior based on the LoRA configurations specified in the text.
+    - The machine learning model to be adjusted based on the 'lora' syntax within the text input.
     - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`clip`**
-    - The clip parameter is the initial clip to which LoRA modifications will be applied, allowing for dynamic adjustments in clip behavior based on LoRA configurations found in the text.
+    - A clip parameter that may be modified alongside the model as part of the 'lora' syntax processing.
     - Comfy dtype: `CLIP`
     - Python dtype: `torch.Tensor`
 - **`text`**
-    - The text parameter contains the input text which may include specific LoRA syntax that dictates how LoRA modifications should be applied to the model and clip.
+    - The text input containing 'lora' syntax that specifies how the model and clip should be adjusted.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`seed`**
-    - The seed parameter is used for processing random syntax within the text, ensuring reproducibility of the text processing.
+    - A seed value used for processing random syntax within the text input, ensuring reproducibility.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The modified model after applying LoRA modifications.
+    - The adjusted machine learning model after processing the 'lora' syntax.
     - Python dtype: `torch.nn.Module`
 - **`clip`**
     - Comfy dtype: `CLIP`
-    - The modified clip after applying LoRA modifications.
+    - The modified clip parameter after 'lora' syntax processing.
     - Python dtype: `torch.Tensor`
 - **`text`**
     - Comfy dtype: `STRING`
-    - The processed text stripped of LoRA syntax.
+    - The original text input before any processing, for reference or further use.
     - Python dtype: `str`
 - **`unprocessed_text`**
     - Comfy dtype: `STRING`
-    - The original text before processing.
+    - The original text input with 'lora' syntax removed, indicating the adjustments have been applied.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
@@ -87,11 +93,13 @@ class LoraSyntaxProcessor:
                 if '.safetensors' not in lora_filename:
                     lora_filename += '.safetensors'
                 # get the lora multiplier
-                lora_multiplier = float(lora_prompt[1]) if lora_prompt[1] != '' else 1.0
-                print('Loading LoRA: ' + lora_filename + ' with multiplier: ' + str(lora_multiplier))
-                model, clip_lora = LoraLoader.load_lora(self, model, clip, lora_filename, lora_multiplier, lora_multiplier)
+                try:
+                    lora_multiplier = float(lora_prompt[1]) if lora_prompt[1] != '' else 1.0
+                except:
+                    lora_multiplier = 1.0    
+                model, clip = load_lora(model, clip, lora_filename, lora_multiplier, lora_multiplier)
         # strip lora syntax from text
         stripped_text = re.sub(lora_re, '', stripped_text)
-        return (model, clip_lora, stripped_text,  text, )
+        return (model, clip, stripped_text,  text, )
 
 ```

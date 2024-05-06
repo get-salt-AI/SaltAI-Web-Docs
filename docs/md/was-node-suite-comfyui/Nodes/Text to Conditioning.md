@@ -1,3 +1,10 @@
+---
+tags:
+- CLIP
+- CLIPConditioning
+- Conditioning
+---
+
 # Text to Conditioning
 ## Documentation
 - Class name: `Text to Conditioning`
@@ -23,7 +30,7 @@ The 'Text to Conditioning' node is designed to convert textual input into a cond
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
-    - UltimateSDUpscale
+    - [UltimateSDUpscale](../../ComfyUI_UltimateSDUpscale/Nodes/UltimateSDUpscale.md)
     - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
     - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
     - [CR Module Pipe Loader](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Module Pipe Loader.md)

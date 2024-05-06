@@ -1,3 +1,3 @@
 # cg-use-everywhere
 - Repo url: `https://github.com/chrisgoringe/cg-use-everywhere`
-- Commit hash: `b4a3d003b8653d24e3441e4419f27b3676da76f3`
+- Commit hash: `87743d7030b0602970a8bb7cb3567a008e5a4628`

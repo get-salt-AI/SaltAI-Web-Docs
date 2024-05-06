@@ -1990,12 +1990,6 @@ File name: `comfy_extras/nodes_photomaker.py`
 ```
 # code for model from: https://github.com/TencentARC/PhotoMaker/blob/main/photomaker/model.py under Apache License Version 2.0
 ```
-File name: `comfyui_8189.log`
-
-**LicenseRef-scancode-proprietary-license**
-```
-END-USER LICENSE AGREEMENT[
-```
 File name: `tests-ui/package-lock.json`
 
 **GPL-3.0-only**

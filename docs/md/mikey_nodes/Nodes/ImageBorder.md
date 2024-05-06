@@ -1,3 +1,8 @@
+---
+tags:
+- Image
+---
+
 # Image Border (Mikey)
 ## Documentation
 - Class name: `ImageBorder`

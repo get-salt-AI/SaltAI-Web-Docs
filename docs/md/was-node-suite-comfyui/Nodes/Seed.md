@@ -1,3 +1,9 @@
+---
+tags:
+- RandomGeneration
+- Seed
+---
+
 # Seed
 ## Documentation
 - Class name: `Seed`
@@ -31,7 +37,7 @@ The WAS_Seed node initializes a seed value for random number generation, providi
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
-    - KSampler SDXL (Eff.)
+    - [KSampler SDXL (Eff.)](../../efficiency-nodes-comfyui/Nodes/KSampler SDXL (Eff.).md)
 
 
 

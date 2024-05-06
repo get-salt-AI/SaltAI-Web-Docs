@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Segmentation
+---
+
 # SEGM Detector (SEGS)
 ## Documentation
 - Class name: `SegmDetectorSEGS`

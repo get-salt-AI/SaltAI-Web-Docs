@@ -1,3 +1,9 @@
+---
+tags:
+- Model
+- ModelList
+---
+
 # FromListGet1Model
 ## Documentation
 - Class name: `FromListGet1Model`

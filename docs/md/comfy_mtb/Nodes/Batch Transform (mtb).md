@@ -1,49 +1,55 @@
+---
+tags:
+- Image
+- ImageTransformation
+---
+
 # Batch Transform (mtb)
 ## Documentation
 - Class name: `Batch Transform (mtb)`
 - Category: `mtb/batch`
 - Output node: `False`
 
-The Batch2dTransform node is designed to apply a series of 2D transformations to a batch of images. These transformations can include translation, rotation, zoom, and shear adjustments, allowing for dynamic and complex image manipulation.
+This node is designed to apply a series of 2D transformations to batches of images, including operations such as translation, rotation, and scaling. It abstracts complex image manipulation processes into a more accessible interface for batch processing, enhancing the efficiency and flexibility of image transformation tasks.
 ## Input types
 ### Required
 - **`image`**
-    - The primary image tensor to which the batch of 2D transformations will be applied. This tensor serves as the foundation for the transformation process, dictating the visual content that will undergo modification.
+    - The input image tensor to be transformed, serving as the primary data upon which the batch transformations are applied.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`border_handling`**
-    - Specifies how the borders of the image are handled during transformations, such as whether they are extended, reflected, or filled with a constant color. This affects the visual outcome of the transformation.
+    - Specifies the method for handling borders during the transformation process, affecting how the image is extended or cropped.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`constant_color`**
-    - Defines the color used to fill the borders of the image when 'constant' border handling is selected, influencing the aesthetic of the transformed image.
+    - Defines the color used to fill any new areas of the image created as a result of the transformation, ensuring visual consistency.
     - Comfy dtype: `COLOR`
     - Python dtype: `str`
 ### Optional
 - **`x`**
-    - Optional horizontal translation values for each image in the batch, enabling lateral movement.
+    - Optional list of floats representing the translation distances along the x-axis for each image in the batch.
     - Comfy dtype: `FLOATS`
-    - Python dtype: `Optional[torch.Tensor]`
+    - Python dtype: `list[float] | None`
 - **`y`**
-    - Optional vertical translation values for each image in the batch, enabling vertical movement.
+    - Optional list of floats representing the translation distances along the y-axis for each image in the batch.
     - Comfy dtype: `FLOATS`
-    - Python dtype: `Optional[torch.Tensor]`
+    - Python dtype: `list[float] | None`
 - **`zoom`**
-    - Optional zoom values for each image in the batch, allowing for image scaling.
+    - Optional list of floats indicating the zoom levels to be applied to each image in the batch.
     - Comfy dtype: `FLOATS`
-    - Python dtype: `Optional[torch.Tensor]`
+    - Python dtype: `list[float] | None`
 - **`angle`**
-    - Optional rotation angles for each image in the batch, enabling rotational transformation.
+    - Optional list of floats specifying the rotation angles for each image in the batch, in degrees.
     - Comfy dtype: `FLOATS`
-    - Python dtype: `Optional[torch.Tensor]`
+    - Python dtype: `list[float] | None`
 - **`shear`**
-    - Optional shear values for each image in the batch, allowing for skewing transformations.
+    - Optional list of floats detailing the shear angles to be applied to each image in the batch, adding a skew effect.
     - Comfy dtype: `FLOATS`
-    - Python dtype: `Optional[torch.Tensor]`
+    - Python dtype: `list[float] | None`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The transformed batch of images, each having undergone the specified 2D transformations.
+    - The transformed image tensor, resulting from the applied batch of 2D transformations.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -52,7 +58,7 @@ The Batch2dTransform node is designed to apply a series of 2D transformations to
 
 ## Source code
 ```python
-class Batch2dTransform:
+class MTB_Batch2dTransform:
     """Transform a batch of images using a batch of keyframes"""
 
     @classmethod
@@ -79,9 +85,12 @@ class Batch2dTransform:
     FUNCTION = "transform_batch"
     CATEGORY = "mtb/batch"
 
-    def get_num_elements(self, param) -> int:
+    def get_num_elements(
+        self, param: None | torch.Tensor | list[torch.Tensor] | list[float]
+    ) -> int:
         if isinstance(param, torch.Tensor):
             return torch.numel(param)
+
         elif isinstance(param, list):
             return len(param)
 
@@ -90,13 +99,13 @@ class Batch2dTransform:
     def transform_batch(
         self,
         image: torch.Tensor,
-        border_handling,
-        constant_color,
-        x=None,
-        y=None,
-        zoom=None,
-        angle=None,
-        shear=None,
+        border_handling: str,
+        constant_color: str,
+        x: list[float] | None = None,
+        y: list[float] | None = None,
+        zoom: list[float] | None = None,
+        angle: list[float] | None = None,
+        shear: list[float] | None = None,
     ):
         if all(
             self.get_num_elements(param) <= 0
@@ -106,19 +115,26 @@ class Batch2dTransform:
                 "At least one transform parameter must be provided"
             )
 
-        keyframes = {"x": [], "y": [], "zoom": [], "angle": [], "shear": []}
+        keyframes: dict[str, list[float]] = {
+            "x": [],
+            "y": [],
+            "zoom": [],
+            "angle": [],
+            "shear": [],
+        }
 
         default_vals = {"x": 0, "y": 0, "zoom": 1.0, "angle": 0, "shear": 0}
 
-        if self.get_num_elements(x) > 0:
+        if x and self.get_num_elements(x) > 0:
             keyframes["x"] = x
-        if self.get_num_elements(y) > 0:
+        if y and self.get_num_elements(y) > 0:
             keyframes["y"] = y
-        if self.get_num_elements(zoom) > 0:
-            keyframes["zoom"] = zoom
-        if self.get_num_elements(angle) > 0:
+        if zoom and self.get_num_elements(zoom) > 0:
+            # some easing types like elastic can pull back... maybe it should abs the value?
+            keyframes["zoom"] = [max(x, 0.00001) for x in zoom]
+        if angle and self.get_num_elements(angle) > 0:
             keyframes["angle"] = angle
-        if self.get_num_elements(shear) > 0:
+        if shear and self.get_num_elements(shear) > 0:
             keyframes["shear"] = shear
 
         for name, values in keyframes.items():
@@ -130,7 +146,7 @@ class Batch2dTransform:
             if count == 0:
                 keyframes[name] = [default_vals[name]] * image.shape[0]
 
-        transformer = TransformImage()
+        transformer = MTB_TransformImage()
         res = [
             transformer.transform(
                 image[i].unsqueeze(0),

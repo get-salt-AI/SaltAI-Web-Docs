@@ -1,21 +1,27 @@
+---
+tags:
+- Loader
+- ModelIO
+---
+
 # BLIP Model Loader
 ## Documentation
 - Class name: `BLIP Model Loader`
 - Category: `WAS Suite/Loaders`
 - Output node: `False`
 
-The BLIP Model Loader node is designed to dynamically load and initialize BLIP models based on the specified mode, such as caption generation or visual question answering. It supports loading models from predefined URLs or custom paths, ensuring the models are ready for inference tasks.
+The BLIP Model Loader node is designed to dynamically load and initialize BLIP models based on the specified configuration, such as model type (caption or interrogate). It ensures the models are ready for inference by setting them to evaluation mode and moving them to the appropriate device.
 ## Input types
 ### Required
 - **`blip_model`**
-    - Specifies the mode of the BLIP model to be loaded, such as 'caption' for caption generation or 'interrogate' for visual question answering, influencing the type of model and its initialization.
+    - Specifies the type of BLIP model to load, such as 'caption' or 'interrogate', determining the model's functionality and application.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`blip_model`**
     - Comfy dtype: `BLIP_MODEL`
-    - The loaded and initialized BLIP model, ready for performing tasks like caption generation or visual question answering.
-    - Python dtype: `torch.nn.Module`
+    - The type of BLIP model loaded, reflecting the input specification.
+    - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes:
@@ -47,11 +53,11 @@ class WAS_BLIP_Model_Loader:
         if ( 'timm' not in packages()
             or 'transformers' not in packages()
             or 'fairscale' not in packages() ):
-            cstr(f"Modules or packages are missing to use BLIP models. Please run the `{os.path.join(WAS_SUITE_ROOT, 'requirements.txt')}` through ComfyUI's ptyhon executable.").error.print()
+            cstr(f"Modules or packages are missing to use BLIP models. Please run the `{os.path.join(WAS_SUITE_ROOT, 'requirements.txt')}` through ComfyUI's python executable.").error.print()
             exit
 
         if 'transformers==4.26.1' not in packages(True):
-            cstr(f"`transformers==4.26.1` is required for BLIP models. Please run the `{os.path.join(WAS_SUITE_ROOT, 'requirements.txt')}` through ComfyUI's ptyhon executable.").error.print()
+            cstr(f"`transformers==4.26.1` is required for BLIP models. Please run the `{os.path.join(WAS_SUITE_ROOT, 'requirements.txt')}` through ComfyUI's python executable.").error.print()
             exit
 
         device = 'cpu'

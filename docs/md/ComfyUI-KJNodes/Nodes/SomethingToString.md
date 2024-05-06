@@ -1,21 +1,36 @@
+---
+tags:
+- String
+- Text
+---
+
 # SomethingToString
 ## Documentation
 - Class name: `SomethingToString`
-- Category: `KJNodes`
+- Category: `KJNodes/text`
 - Output node: `False`
 
-The SomethingToString node is designed to convert various basic data types (integers, floats, and booleans) into their string representations. This node emphasizes simplicity and utility, providing a straightforward way to transform numerical or boolean inputs into a format that can be easily displayed or processed as text.
+Provides a flexible way to convert various input types into a string format, optionally allowing for the addition of prefixes or suffixes to customize the output.
 ## Input types
 ### Required
 - **`input`**
-    - The 'input' parameter accepts integers, floats, and booleans, converting them into their string representations. This conversion facilitates the easy display or further processing of these values as text.
+    - The primary input for conversion to string. This parameter is central to the node's operation, as it determines the base content that will be transformed into a string format.
     - Comfy dtype: `*`
     - Python dtype: `Union[int, float, bool]`
+### Optional
+- **`prefix`**
+    - An optional prefix to prepend to the stringified input. This allows for additional context or formatting to be applied to the beginning of the output.
+    - Comfy dtype: `STRING`
+    - Python dtype: `str`
+- **`suffix`**
+    - An optional suffix to append to the stringified input. This enables further customization or formatting at the end of the output.
+    - Comfy dtype: `STRING`
+    - Python dtype: `str`
 ## Output types
 - **`string`**
     - Comfy dtype: `STRING`
-    - Returns the string representation of the input value.
-    - Python dtype: `Tuple[str]`
+    - The result of the conversion process, potentially including any specified prefixes or suffixes, formatted as a string.
+    - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -29,17 +44,27 @@ class SomethingToString:
     def INPUT_TYPES(s):
      return {
         "required": {
-        "input": ("*", {"forceinput": True, "default": ""}),
+        "input": (any, {}),
     },
+    "optional": {
+        "prefix": ("STRING", {"default": ""}),
+        "suffix": ("STRING", {"default": ""}),
+    }
     }
     RETURN_TYPES = ("STRING",)
     FUNCTION = "stringify"
-    CATEGORY = "KJNodes"
+    CATEGORY = "KJNodes/text"
+    DESCRIPTION = """
+Converts any type to a string.
+"""
 
-    def stringify(self, input):
+    def stringify(self, input, prefix="", suffix=""):
         if isinstance(input, (int, float, bool)):   
             stringified = str(input)
-            print(stringified)
+            if prefix:  # Check if prefix is not empty
+                stringified = prefix + stringified  # Add the prefix
+            if suffix:  # Check if suffix is not empty
+                stringified = stringified + suffix  # Add the suffix
         else:
             return
         return (stringified,)

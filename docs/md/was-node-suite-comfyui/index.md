@@ -1,3 +1,3 @@
 # was-node-suite-comfyui
 - Repo url: `https://github.com/WASasquatch/was-node-suite-comfyui`
-- Commit hash: `4f561248a9f15a6f483cdf8df4a7810fd86aeb40`
+- Commit hash: `6629ddc410f60a2bfb99f07a3fc8bd6cb496b7c4`

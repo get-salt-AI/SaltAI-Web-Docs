@@ -1,3 +1,10 @@
+---
+tags:
+- Batch
+- Image
+- ImageDuplication
+---
+
 # Repeat Latent Batch
 ## Documentation
 - Class name: `RepeatLatentBatch`

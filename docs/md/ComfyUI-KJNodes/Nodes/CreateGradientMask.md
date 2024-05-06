@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskGeneration
+---
+
 # CreateGradientMask
 ## Documentation
 - Class name: `CreateGradientMask`

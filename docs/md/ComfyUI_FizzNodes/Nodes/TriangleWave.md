@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- WavePatterns
+---
+
 # TriangleWave 📅🅕🅝
 ## Documentation
 - Class name: `TriangleWave`

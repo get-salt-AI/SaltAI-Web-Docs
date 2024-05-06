@@ -1,3 +1,8 @@
+---
+tags:
+- MathematicalFunctions
+---
+
 # Integer Minimum
 ## Documentation
 - Class name: `JWIntegerMin`

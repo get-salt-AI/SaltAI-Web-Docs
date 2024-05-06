@@ -1,3 +1,9 @@
+---
+tags:
+- Contour
+- Image
+---
+
 # Filter Contour
 ## Documentation
 - Class name: `Filter Contour`

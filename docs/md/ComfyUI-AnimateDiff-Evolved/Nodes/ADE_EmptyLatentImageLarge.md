@@ -1,3 +1,8 @@
+---
+tags:
+- Latent
+---
+
 # Empty Latent Image (Big Batch) 🎭🅐🅓
 ## Documentation
 - Class name: `ADE_EmptyLatentImageLarge`

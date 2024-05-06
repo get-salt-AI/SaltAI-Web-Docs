@@ -1,3 +1,9 @@
+---
+tags:
+- RandomGeneration
+- Randomization
+---
+
 # Text Shuffle
 ## Documentation
 - Class name: `Text Shuffle`

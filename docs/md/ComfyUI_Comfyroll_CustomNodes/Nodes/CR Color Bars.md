@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- PatternGeneration
+- VisualEffects
+---
+
 # 🟫 CR Color Bars
 ## Documentation
 - Class name: `CR Color Bars`

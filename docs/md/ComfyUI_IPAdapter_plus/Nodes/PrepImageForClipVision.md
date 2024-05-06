@@ -1,44 +1,51 @@
-# Prepare Image For Clip Vision
+---
+tags:
+- CLIP
+- Loader
+- ModelIO
+---
+
+# Prep Image For ClipVision
 ## Documentation
 - Class name: `PrepImageForClipVision`
-- Category: `ipadapter`
+- Category: `ipadapter/utils`
 - Output node: `False`
 
-The PrepImageForClipVision node is designed to prepare images for processing by CLIP vision models. It adjusts images according to specified parameters such as interpolation, crop position, and sharpening to ensure they are in the optimal format for feature extraction by CLIP models.
+The node PrepImageForClipVision is designed to prepare images for processing by CLIP vision models, adapting them to the specific input requirements of these models for enhanced image understanding and analysis.
 ## Input types
 ### Required
 - **`image`**
-    - The 'image' parameter represents the input image to be processed. It is crucial for the node's operation as it is the subject of the preparation process.
+    - The initial image to be processed, serving as the raw input for feature extraction and encoding.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`interpolation`**
-    - The 'interpolation' parameter specifies the method used to resize the image, affecting the quality and the way pixels are interpolated.
+    - The method used for resizing the image, affecting the quality and the way pixels are interpolated.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`crop_position`**
-    - The 'crop_position' parameter determines the area of the image to focus on or how the image is cropped, influencing the portion of the image that will be analyzed by the CLIP model.
+    - Specifies the position from which the image is cropped, influencing the focus area of the processed image.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`sharpening`**
-    - The 'sharpening' parameter adjusts the sharpness of the image, enhancing edge definition and detail visibility, which can affect the model's ability to extract features.
+    - Determines the level of sharpness applied to the image, enhancing edge definition and detail visibility.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is a processed image, optimized for feature extraction by CLIP vision models, ensuring that the image is in the best possible state for analysis.
+    - The processed image, optimized for compatibility with CLIP vision models, ready for further analysis or encoding.
     - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes:
     - IDGenerationNode
-    - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
+    - IPAdapterApply
     - [AIO_Preprocessor](../../comfyui_controlnet_aux/Nodes/AIO_Preprocessor.md)
     - [ImageBatch](../../Comfy/Nodes/ImageBatch.md)
     - [CLIPVisionEncode](../../Comfy/Nodes/CLIPVisionEncode.md)
-    - [PrepImageForInsightFace](../../ComfyUI_IPAdapter_plus/Nodes/PrepImageForInsightFace.md)
+    - PrepImageForInsightFace
     - SetNode
-    - [IPAdapterApplyFaceID](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApplyFaceID.md)
+    - IPAdapterApplyFaceID
     - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
     - [IPAdapterEncoder](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterEncoder.md)
 
@@ -60,11 +67,53 @@ class PrepImageForClipVision:
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "prep_image"
 
-    CATEGORY = "ipadapter"
+    CATEGORY = "ipadapter/utils"
 
     def prep_image(self, image, interpolation="LANCZOS", crop_position="center", sharpening=0.0):
         size = (224, 224)
-        output = prepImage(image, interpolation, crop_position, size, sharpening, 0)
+        _, oh, ow, _ = image.shape
+        output = image.permute([0,3,1,2])
+
+        if crop_position == "pad":
+            if oh != ow:
+                if oh > ow:
+                    pad = (oh - ow) // 2
+                    pad = (pad, 0, pad, 0)
+                elif ow > oh:
+                    pad = (ow - oh) // 2
+                    pad = (0, pad, 0, pad)
+                output = T.functional.pad(output, pad, fill=0)
+        else:
+            crop_size = min(oh, ow)
+            x = (ow-crop_size) // 2
+            y = (oh-crop_size) // 2
+            if "top" in crop_position:
+                y = 0
+            elif "bottom" in crop_position:
+                y = oh-crop_size
+            elif "left" in crop_position:
+                x = 0
+            elif "right" in crop_position:
+                x = ow-crop_size
+
+            x2 = x+crop_size
+            y2 = y+crop_size
+
+            output = output[:, :, y:y2, x:x2]
+
+        imgs = []
+        for img in output:
+            img = T.ToPILImage()(img) # using PIL for better results
+            img = img.resize(size, resample=Image.Resampling[interpolation])
+            imgs.append(T.ToTensor()(img))
+        output = torch.stack(imgs, dim=0)
+        del imgs, img
+
+        if sharpening > 0:
+            output = contrast_adaptive_sharpening(output, sharpening)
+
+        output = output.permute([0,2,3,1])
+
         return (output, )
 
 ```

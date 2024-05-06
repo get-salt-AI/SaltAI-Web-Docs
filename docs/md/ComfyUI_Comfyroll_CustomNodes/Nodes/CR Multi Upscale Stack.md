@@ -1,3 +1,10 @@
+---
+tags:
+- ImageScaling
+- ImageUpscaling
+- Upscale
+---
+
 # 🔍 CR Multi Upscale Stack
 ## Documentation
 - Class name: `CR Multi Upscale Stack`

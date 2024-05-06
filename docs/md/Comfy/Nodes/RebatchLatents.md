@@ -1,3 +1,9 @@
+---
+tags:
+- Batch
+- Image
+---
+
 # Rebatch Latents
 ## Documentation
 - Class name: `RebatchLatents`

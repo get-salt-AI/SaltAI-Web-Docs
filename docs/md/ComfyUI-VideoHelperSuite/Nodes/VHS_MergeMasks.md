@@ -1,3 +1,8 @@
+---
+tags:
+- Mask
+---
+
 # Merge Mask Batches 🎥🅥🅗🅢
 ## Documentation
 - Class name: `VHS_MergeMasks`

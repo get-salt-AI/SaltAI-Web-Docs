@@ -1,3 +1,9 @@
+---
+tags:
+- Text
+- TextReplacement
+---
+
 # String Replace
 ## Documentation
 - Class name: `JWStringReplace`

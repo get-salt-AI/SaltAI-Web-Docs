@@ -1,3 +1,10 @@
+---
+tags:
+- ImageEnhancement
+- ImageTransformation
+- VisualEffects
+---
+
 # Image Saturation
 ## Documentation
 - Class name: `JWImageSaturation`

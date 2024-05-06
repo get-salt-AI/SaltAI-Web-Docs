@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- PanelDesign
+- VisualEffects
+---
+
 # 🌁 CR Diamond Panel
 ## Documentation
 - Class name: `CR Diamond Panel`

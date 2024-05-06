@@ -1,3 +1,9 @@
+---
+tags:
+- Animation
+- Image
+---
+
 # SaveAnimatedPNG
 ## Documentation
 - Class name: `SaveAnimatedPNG`

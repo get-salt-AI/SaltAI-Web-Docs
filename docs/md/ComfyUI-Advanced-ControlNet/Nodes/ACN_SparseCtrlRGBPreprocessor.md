@@ -1,28 +1,35 @@
+---
+tags:
+- DepthMap
+- Image
+- ImagePreprocessing
+---
+
 # RGB SparseCtrl 🛂🅐🅒🅝
 ## Documentation
 - Class name: `ACN_SparseCtrlRGBPreprocessor`
 - Category: `Adv-ControlNet 🛂🅐🅒🅝/SparseCtrl/preprocess`
 - Output node: `False`
 
-This node is designed for preprocessing images in the context of Sparse Control Networks, specifically for RGB Sparse Control. It adjusts the input image to match the latent dimensions required by the network, encodes the image using a VAE (Variational Autoencoder), and wraps the encoded latent representation in a special wrapper that ensures it is directly compatible with Apply ControlNet nodes. This preprocessing step is crucial for integrating image data into the Sparse Control workflow, particularly when dealing with RGB images.
+The ACN_SparseCtrlRGBPreprocessor node is designed for preprocessing images for use with RGB Sparse ControlNet models. It adjusts the input image to match the latent size required by the model, encodes the image into a latent representation, and wraps this representation in a format that is specifically tailored for subsequent processing by Advanced ControlNet nodes. This preprocessing step is crucial for ensuring that the input images are compatible with the unique requirements of RGB Sparse ControlNet models.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be preprocessed. This image is resized and encoded to match the latent dimensions required by the network.
+    - The input image to be preprocessed. This image is resized and encoded into a latent representation suitable for RGB Sparse ControlNet models.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `Tensor`
 - **`vae`**
-    - The Variational Autoencoder (VAE) used for encoding the input image into a latent representation. It is crucial for transforming the image into a format suitable for the Sparse Control workflow.
+    - The variational autoencoder (VAE) used for encoding the input image into a latent representation.
     - Comfy dtype: `VAE`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `VAE`
 - **`latent_size`**
-    - Specifies the target size for the latent representation. This size is used to resize the input image appropriately before encoding.
+    - The target size for the latent representation, ensuring compatibility with the RGB Sparse ControlNet model's requirements.
     - Comfy dtype: `LATENT`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `Tensor`
 ## Output types
 - **`proc_IMAGE`**
     - Comfy dtype: `IMAGE`
-    - The processed image, wrapped in a PreprocSparseRGBWrapper, ensuring it is ready for direct use with Apply ControlNet nodes.
+    - The processed image, now in a latent format wrapped in a PreprocSparseRGBWrapper, ready for use with Advanced ControlNet nodes.
     - Python dtype: `PreprocSparseRGBWrapper`
 ## Usage tips
 - Infra type: `GPU`
@@ -48,13 +55,16 @@ class RgbSparseCtrlPreprocessor:
 
     CATEGORY = "Adv-ControlNet 🛂🅐🅒🅝/SparseCtrl/preprocess"
 
-    def preprocess_images(self, vae, image: Tensor, latent_size: Tensor):
+    def preprocess_images(self, vae: VAE, image: Tensor, latent_size: Tensor):
         # first, resize image to match latents
         image = image.movedim(-1,1)
         image = comfy.utils.common_upscale(image, latent_size["samples"].shape[3] * 8, latent_size["samples"].shape[2] * 8, 'nearest-exact', "center")
         image = image.movedim(1,-1)
         # then, vae encode
-        image = VAEEncode.vae_encode_crop_pixels(image)
+        try:
+            image = vae.vae_encode_crop_pixels(image)
+        except Exception:
+            image = VAEEncode.vae_encode_crop_pixels(image)
         encoded = vae.encode(image[:,:,:,:3])
         return (PreprocSparseRGBWrapper(condhint=encoded),)
 

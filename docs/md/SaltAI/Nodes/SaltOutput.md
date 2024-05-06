@@ -1,39 +1,49 @@
-# Salt Flow Output
+---
+tags:
+- Audio
+---
+
+# Salt Workflow Output
 ## Documentation
 - Class name: `SaltOutput`
 - Category: `SALT/IO`
 - Output node: `True`
 
-The SaltOutput node is designed for handling various types of output data within a workflow, including images and strings. It supports a range of output formats and is capable of generating assets for multimedia content, making it a versatile component for output management in data processing pipelines.
+The SaltOutput node is designed to handle various types of output data, including images, audio, and text, formatting and saving them appropriately based on the specified output type. It supports a wide range of file formats and is capable of generating complex UI structures to represent the output data effectively.
 ## Input types
 ### Required
 - **`output_name`**
-    - Specifies the name of the output, which is used for identification and file naming purposes. It plays a crucial role in organizing and accessing the generated outputs.
+    - Specifies the name of the output, which is used as the base for generating filenames and identifiers in the saved output files.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`output_desc`**
-    - Provides a description for the output, aiding in the contextual understanding and documentation of the generated data or asset.
+    - Provides a description for the output, which may be used for metadata or UI display purposes.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`output_type`**
-    - Determines the format of the output, supporting a variety of types including image formats and strings. This parameter is essential for correctly processing and rendering the output data.
+    - Determines the format of the output file (e.g., PNG, JPEG, MP3, WAV, STRING), influencing how the output data is processed and saved.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `str`
 - **`output_data`**
-    - Contains the actual data to be outputted, which can be of various types depending on the specified output_type. This parameter is central to the node's functionality, as it directly influences the output generation.
+    - The actual data to be output, which can vary widely in type (e.g., bytes for audio, torch.Tensor for images, string for text outputs).
     - Comfy dtype: `*`
-    - Python dtype: `Union[torch.Tensor, str]`
+    - Python dtype: `Union[bytes, torch.Tensor, str]`
 ### Optional
+- **`video_audio`**
+    - Optional audio data for video outputs, specifying the audio track to be included in video files.
+    - Comfy dtype: `AUDIO`
+    - Python dtype: `bytes`
 - **`animation_fps`**
-    - Specifies the frames per second for animated outputs, allowing control over the animation speed. This parameter is relevant for outputs that are animations, enhancing their visual quality.
+    - Specifies the frames per second for animated outputs, allowing control over the animation speed.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`animation_quality`**
-    - Defines the quality of the animation, offering options between default and high. This parameter allows for optimization of the output based on desired quality levels.
+    - Defines the quality level of the animation (DEFAULT or HIGH), affecting the output file's visual fidelity.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
-The node doesn't have output types
+- **`ui`**
+    - Generates a complex UI structure representing the output data, including metadata and previews for supported file types.
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -49,11 +59,12 @@ class SaltOutput:
                 "output_name": ("STRING", {}),
                 "output_desc": ("STRING", {}),
                 "output_type": (
-                    ["PNG", "JPEG", "GIF", "WEBP", "AVI", "MP4", "WEBM", "STRING"],
+                    ["PNG", "JPEG", "GIF", "WEBP", "AVI", "MP4", "WEBM", "MP3", "WAV", "STRING"],
                 ),
                 "output_data": (WILDCARD, {}),
             },
             "optional": {
+                "video_audio": ("AUDIO", {}),
                 "animation_fps": ("INT", {"min": 1, "max": 60, "default": 8}),
                 "animation_quality": (["DEFAULT", "HIGH"],),
             },
@@ -72,6 +83,7 @@ class SaltOutput:
         output_desc,
         output_type,
         output_data,
+        video_audio=None,
         animation_fps=8,
         animation_quality="DEFAULT",
         unique_id=0,
@@ -81,24 +93,25 @@ class SaltOutput:
         asset_id = str(uuid.uuid4())
 
         # Determine if valid type
-        if output_type.strip() == "" or output_type not in [
-            "GIF",
-            "WEBP",
-            "AVI",
-            "MP4",
-            "WEBM",
-        ]:
-            if isinstance(output_data, torch.Tensor):
-                output_type = "JPEG" if output_type == "JPEG" else "PNG"
-            elif isinstance(output_data, str):
-                output_type = "STRING"
-            else:
-                raise ValueError(
-                    "Unsupported `output_type` supplied. Please provide `IMAGE` or `STRING` input."
-                )
+        if not isinstance(output_data, torch.Tensor) and not isinstance(output_data, str) and not isinstance(output_data, bytes) and not is_lambda(output_data):
+            raise ValueError(
+                f"Unsupported output_data supplied `{str(type(output_data).__name__)}`. Please provide `IMAGE` (torch.Tensor), `STRING` (str), or `AUDIO` (bytes) input."
+            )
+        
+        # Support VHS audio
+        if output_type in ["AVI", "MP4", "WEBM", "MP3", "WAV"]:
+            if video_audio is not None and is_lambda(video_audio):
+                video_audio = video_audio()
+            if is_lambda(output_data):
+                output_data = output_data()
+        
+        if video_audio and not isinstance(video_audio, bytes):
+            raise ValueError(
+                f"Unsupported video_audio supplied `{str(type(output_data).__name__)}. Please provide `AUDIO` (bytes)"
+            )  
 
         # Is asset? I may have misunderstood this part
-        if output_type in ["GIF", "WEBP", "AVI", "MP4", "WEBM"]:
+        if output_type in ["GIF", "WEBP", "AVI", "MP4", "WEBM", "MP3", "WAV"]:
             is_asset = True
 
         # Determine output name, and sanitize if input (for filesystem)
@@ -116,7 +129,7 @@ class SaltOutput:
             print(f"[SALT] Unable to create output directory `{output_path}`")
 
         results = []
-        if output_type in ("PNG", "JPEG"):
+        if output_type in ("PNG", "JPEG") and isinstance(output_data, torch.Tensor):
             # Save all images in the tensor batch as specified by output_type
             try:
                 for index, img in enumerate(output_data):
@@ -139,13 +152,13 @@ class SaltOutput:
             except Exception as e:
                 raise e
 
-        if output_type in ["GIF", "WEBP", "AVI", "MP4", "WEBM"]:
+        if output_type in ["GIF", "WEBP", "AVI", "MP4", "WEBM"] and isinstance(output_data, torch.Tensor):
             # Save animation file
             filename = os.path.join(output_path, f"{output_name}.{output_type.lower()}")
             animator = ImageAnimator(
                 output_data, fps=int(animation_fps), quality=animation_quality
             )
-            animator.save_animation(filename, format=output_type)
+            animator.save_animation(filename, format=output_type, audio=video_audio)
             results.append({
                 "filename": os.path.basename(filename),
                 "subfolder": subfolder,
@@ -155,8 +168,31 @@ class SaltOutput:
                 print(f"[SALT] Saved file to `{filename}`")
             else:
                 print(f"[SALT] Unable to save file to `{filename}`")
+        elif output_type in ["MP3", "WAV"] and isinstance(output_data, bytes):
+            # Save audio file
+            filename = os.path.join(output_path, f"{output_name}.{output_type.lower()}")
+
+            audio_buffer = io.BytesIO(output_data)
+            audio = AudioSegment.from_file(audio_buffer)
+
+            if output_type == "MP3":
+                audio.export(filename, format="mp3")
+            else:
+                audio.export(filename, format="wav")
+
+            results.append({
+                "filename": os.path.basename(filename),
+                "subfolder": subfolder,
+                "type": "output"
+            })
+
+            if os.path.exists(filename):
+                print(f"[SALT] Saved file to `{filename}`")
+            else:
+                print(f"[SALT] Unable to save file to `{filename}`")
+
         else:
-            # Prepare output string
+            # Assume string output
             if output_type == "STRING":
                 results.append(str(output_data))
 

@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskBatch
+---
+
 # Mask Batch
 ## Documentation
 - Class name: `Mask Batch`

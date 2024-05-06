@@ -1,3 +1,10 @@
+---
+tags:
+- DepthMap
+- Image
+- Inpaint
+---
+
 # Inpaint
 ## Documentation
 - Class name: `Inpaint`

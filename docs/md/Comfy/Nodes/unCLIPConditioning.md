@@ -1,3 +1,10 @@
+---
+tags:
+- CLIP
+- CLIPConditioning
+- Conditioning
+---
+
 # unCLIPConditioning
 ## Documentation
 - Class name: `unCLIPConditioning`

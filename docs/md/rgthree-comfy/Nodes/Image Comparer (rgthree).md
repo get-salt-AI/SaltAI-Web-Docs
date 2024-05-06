@@ -1,3 +1,8 @@
+---
+tags:
+- Comparison
+---
+
 # Image Comparer (rgthree)
 ## Documentation
 - Class name: `Image Comparer (rgthree)`

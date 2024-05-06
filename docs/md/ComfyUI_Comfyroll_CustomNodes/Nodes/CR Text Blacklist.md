@@ -1,3 +1,8 @@
+---
+tags:
+- Text
+---
+
 # 🔤 Text Blacklist
 ## Documentation
 - Class name: `CR Text Blacklist`

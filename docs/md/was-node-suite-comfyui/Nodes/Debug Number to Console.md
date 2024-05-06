@@ -1,3 +1,8 @@
+---
+tags:
+- Debugging
+---
+
 # Debug Number to Console
 ## Documentation
 - Class name: `Debug Number to Console`

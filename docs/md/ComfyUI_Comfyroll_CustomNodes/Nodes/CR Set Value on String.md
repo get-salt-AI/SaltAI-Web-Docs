@@ -1,3 +1,8 @@
+---
+tags:
+- ComfyrollNodes
+---
+
 # ⚙️ CR Set Value on String
 ## Documentation
 - Class name: `CR Set Value on String`

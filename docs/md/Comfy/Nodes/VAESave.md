@@ -1,3 +1,8 @@
+---
+tags:
+- VAE
+---
+
 # VAESave
 ## Documentation
 - Class name: `VAESave`

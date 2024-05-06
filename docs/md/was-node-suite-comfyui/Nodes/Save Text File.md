@@ -1,3 +1,8 @@
+---
+tags:
+- Text
+---
+
 # Save Text File
 ## Documentation
 - Class name: `Save Text File`

@@ -1,3 +1,3 @@
 # ComfyUI-AnimateDiff-Evolved
 - Repo url: `https://github.com/Kosinkadink/ComfyUI-AnimateDiff-Evolved`
-- Commit hash: `e2cc5f35d57532bac25483411ceb3d5df0b34022`
+- Commit hash: `4aee1498cf6f9e71f06ddfe2dcd5ff5f7d15ab0e`

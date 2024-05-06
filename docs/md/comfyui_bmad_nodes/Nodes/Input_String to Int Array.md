@@ -1,3 +1,10 @@
+---
+tags:
+- DataConversion
+- DataTypeConversion
+- NumericConversion
+---
+
 # Input/String to Int Array
 ## Documentation
 - Class name: `Input_String to Int Array`

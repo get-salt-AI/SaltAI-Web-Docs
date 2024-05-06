@@ -1,3 +1,8 @@
+---
+tags:
+- Image
+---
+
 # 🌁 CR Feathered Border
 ## Documentation
 - Class name: `CR Feathered Border`

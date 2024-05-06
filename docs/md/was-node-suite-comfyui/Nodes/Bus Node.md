@@ -1,3 +1,12 @@
+---
+tags:
+- Loader
+- Model
+- ModelIO
+- ModelLoader
+- ModelSwitching
+---
+
 # Bus Node
 ## Documentation
 - Class name: `Bus Node`

@@ -1,3 +1,8 @@
+---
+tags:
+- Concatenate
+---
+
 # String Concatenate
 ## Documentation
 - Class name: `JWStringConcat`

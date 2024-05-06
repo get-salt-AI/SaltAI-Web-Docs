@@ -1,3 +1,9 @@
+---
+tags:
+- Arithmetic
+- MathematicalFunctions
+---
+
 # Integer Subtract
 ## Documentation
 - Class name: `JWIntegerSub`

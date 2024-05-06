@@ -1,3 +1,9 @@
+---
+tags:
+- AnimateDiff
+- Animation
+---
+
 # View Options◆Standard Uniform 🎭🅐🅓
 ## Documentation
 - Class name: `ADE_StandardUniformViewOptions`

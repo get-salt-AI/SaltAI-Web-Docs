@@ -1,3 +1,9 @@
+---
+tags:
+- List
+- ListExtension
+---
+
 # ExtendColorList
 ## Documentation
 - Class name: `ExtendColorList`

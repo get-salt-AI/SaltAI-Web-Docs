@@ -1,3 +1,11 @@
+---
+tags:
+- DepthMap
+- Image
+- ImagePreprocessing
+- LineExtraction
+---
+
 # HED Soft-Edge Lines
 ## Documentation
 - Class name: `HEDPreprocessor`

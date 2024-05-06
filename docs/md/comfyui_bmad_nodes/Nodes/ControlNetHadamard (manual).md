@@ -1,3 +1,8 @@
+---
+tags:
+- ControlNet
+---
+
 # ControlNetHadamard (manual)
 ## Documentation
 - Class name: `ControlNetHadamard (manual)`

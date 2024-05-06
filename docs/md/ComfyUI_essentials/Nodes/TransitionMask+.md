@@ -1,44 +1,50 @@
+---
+tags:
+- Mask
+- MaskGeneration
+---
+
 # 🔧 Transition Mask
 ## Documentation
 - Class name: `TransitionMask+`
 - Category: `essentials`
 - Output node: `False`
 
-This node is designed to perform operations on masks, allowing for the combination of two masks through various mathematical operations. It enables the manipulation of mask data to achieve desired effects, such as blending, masking, or creating new mask patterns.
+The TransitionMask node is designed to facilitate transitions between different mask states or values within a digital image processing or generation context. Its primary function is to apply transformations to masks, enabling dynamic changes in mask properties or the blending of multiple masks. This node likely plays a crucial role in operations where mask manipulation is essential for achieving desired visual effects or for preparing masks for further processing steps.
 ## Input types
 ### Required
 - **`width`**
-    - Specifies the width of the mask to be generated or modified.
+    - The 'width' parameter specifies the width of the mask, affecting the spatial dimensions of the transition effect.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Specifies the height of the mask to be generated or modified.
+    - The 'height' parameter specifies the height of the mask, impacting the spatial dimensions of the transition effect.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`frames`**
-    - Determines the number of frames for the transition effect between masks.
+    - The 'frames' parameter determines the number of frames to be generated for the transition, defining the length of the transition animation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`start_frame`**
-    - Specifies the starting frame number for the transition effect.
+    - The 'start_frame' parameter indicates the starting frame of the transition, setting the initial state of the animation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`end_frame`**
-    - Specifies the ending frame number for the transition effect.
+    - The 'end_frame' parameter specifies the ending frame of the transition, determining the final state of the animation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`transition_type`**
-    - Defines the type of transition effect to be applied between the masks.
+    - The 'transition_type' parameter defines the type of transition effect to be applied, such as fading or morphing, influencing the visual style of the transition.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`timing_function`**
-    - Specifies the timing function to control the pacing of the transition effect.
+    - The 'timing_function' parameter controls the pacing of the transition, affecting how the transition progresses over time.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The result of combining the two input masks according to the specified operation.
+    - The output is a transformed mask that has undergone the specified transition, reflecting changes in mask properties or values.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
@@ -61,7 +67,7 @@ class TransitionMask:
                 "timing_function": (["linear", "in", "out", "in-out"],)
             }
         }
-    
+
     RETURN_TYPES = ("MASK",)
     FUNCTION = "execute"
     CATEGORY = "essentials"
@@ -141,12 +147,12 @@ class TransitionMask:
                 frame[:,:] = progress
 
             out.append(frame)
-        
+
         if end_frame < frames:
             out = out + [torch.full((height, width), 1.0, dtype=torch.float32, device="cpu")] * (frames - end_frame)
 
         out = torch.stack(out, dim=0)
-           
+
         return (out, )
 
 ```

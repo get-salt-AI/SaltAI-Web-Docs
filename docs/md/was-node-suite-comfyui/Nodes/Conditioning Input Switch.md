@@ -1,28 +1,33 @@
+---
+tags:
+- ConditionalSelection
+---
+
 # Conditioning Input Switch
 ## Documentation
 - Class name: `Conditioning Input Switch`
 - Category: `WAS Suite/Logic`
 - Output node: `False`
 
-This node is designed to switch between two conditioning inputs based on a boolean value, effectively allowing conditional logic to be applied to the flow of conditioning data within a workflow.
+The Conditioning Input Switch node is designed to selectively switch between two conditioning inputs based on a boolean value, facilitating dynamic control over which conditioning data is passed forward in a processing pipeline.
 ## Input types
 ### Required
 - **`conditioning_a`**
-    - The first conditioning input to be considered for the switch. It plays a crucial role in determining the output based on the boolean condition.
+    - The first conditioning input option. It serves as one of the two possible conditioning data inputs to be selected based on the boolean value.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `tuple`
 - **`conditioning_b`**
-    - The second conditioning input to be considered for the switch. It serves as an alternative to the first input, depending on the boolean condition.
+    - The second conditioning input option. It acts as an alternative to the first conditioning input, offering a choice that can be selected based on the boolean value.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `tuple`
-- **`boolean_number`**
-    - A numeric boolean value (typically 1 or 0) that determines which conditioning input to pass through. It acts as the condition for the switch.
-    - Comfy dtype: `NUMBER`
-    - Python dtype: `int`
+- **`boolean`**
+    - A boolean value that determines which conditioning input (either conditioning_a or conditioning_b) is passed forward. When true, conditioning_a is selected; otherwise, conditioning_b is chosen.
+    - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ## Output types
 - **`conditioning`**
     - Comfy dtype: `CONDITIONING`
-    - The selected conditioning input based on the boolean condition. It represents the outcome of the conditional logic applied.
+    - The selected conditioning input, determined by the boolean value. It outputs the chosen conditioning data for further processing.
     - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `CPU`
@@ -41,7 +46,7 @@ class WAS_Conditioning_Input_Switch:
             "required": {
                 "conditioning_a": ("CONDITIONING",),
                 "conditioning_b": ("CONDITIONING",),
-                "boolean_number": ("NUMBER",),
+                "boolean": ("BOOLEAN", {"forceInput": True}),
             }
         }
 
@@ -50,9 +55,9 @@ class WAS_Conditioning_Input_Switch:
 
     CATEGORY = "WAS Suite/Logic"
 
-    def conditioning_input_switch(self, conditioning_a, conditioning_b, boolean_number=1):
+    def conditioning_input_switch(self, conditioning_a, conditioning_b, boolean=True):
 
-        if int(round(boolean_number)) == 1:
+        if boolean:
             return (conditioning_a, )
         else:
             return (conditioning_b, )

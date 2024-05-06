@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageLoad
+---
+
 # Load Image
 ## Documentation
 - Class name: `LoadImage`
@@ -24,8 +30,8 @@ The LoadImage node is designed to load and preprocess images from a specified pa
 - Infra type: `GPU`
 - Common nodes:
     - [SVD_img2vid_Conditioning](../../Comfy/Nodes/SVD_img2vid_Conditioning.md)
-    - ReActorFaceSwap
-    - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
+    - [ReActorFaceSwap](../../comfyui-reactor-node/Nodes/ReActorFaceSwap.md)
+    - IPAdapterApply
     - Reroute
     - [VAEEncodeForInpaint](../../Comfy/Nodes/VAEEncodeForInpaint.md)
     - [PrepImageForClipVision](../../ComfyUI_IPAdapter_plus/Nodes/PrepImageForClipVision.md)

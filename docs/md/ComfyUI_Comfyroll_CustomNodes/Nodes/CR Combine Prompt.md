@@ -1,3 +1,9 @@
+---
+tags:
+- Concatenate
+- PromptComposer
+---
+
 # ⚙️ CR Combine Prompt
 ## Documentation
 - Class name: `CR Combine Prompt`

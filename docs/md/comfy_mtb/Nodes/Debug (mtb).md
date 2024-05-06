@@ -1,19 +1,24 @@
+---
+tags:
+- Debugging
+---
+
 # Debug (mtb)
 ## Documentation
 - Class name: `Debug (mtb)`
 - Category: `mtb/debug`
 - Output node: `True`
 
-The Debug node is designed for experimental purposes to facilitate debugging of various Comfy values. It aims to provide a flexible debugging tool with planned support for additional types and widgets, enhancing the development and troubleshooting process within the Comfy environment.
+The MTB_Debug node is designed for experimental debugging of various Comfy values, with future enhancements planned to support more types and widgets. It allows for the inspection and output of debugging information, facilitating the troubleshooting process in development.
 ## Input types
 ### Required
 - **`output_to_console`**
-    - Determines whether the debug output should be printed to the console. This affects the node's execution by enabling or disabling console logging of the debug information.
+    - Determines whether the debug output should be printed to the console. This affects how the node processes and displays the debugging information.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`ui`**
-    - Contains the debugging information processed from the input, including base64-encoded images and text data, structured for UI display.
+    - Contains the debugging output, including base64-encoded images and text, structured for UI display.
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -21,8 +26,11 @@ The Debug node is designed for experimental purposes to facilitate debugging of 
 
 ## Source code
 ```python
-class Debug:
-    """Experimental node to debug any Comfy values, support for more types and widgets is planned"""
+class MTB_Debug:
+    """Experimental node to debug any Comfy values.
+
+    support for more types and widgets is planned.
+    """
 
     @classmethod
     def INPUT_TYPES(cls):
@@ -35,7 +43,7 @@ class Debug:
     CATEGORY = "mtb/debug"
     OUTPUT_NODE = True
 
-    def do_debug(self, output_to_console, **kwargs):
+    def do_debug(self, output_to_console: bool, **kwargs):
         output = {
             "ui": {"b64_images": [], "text": []},
             # "result": ("A"),
@@ -48,7 +56,8 @@ class Debug:
             bool: process_bool,
         }
         if output_to_console:
-            print("bouh!")
+            for k, v in kwargs.items():
+                print(f"{k}: {v}")
 
         for anything in kwargs.values():
             processor = processors.get(type(anything), process_text)
@@ -56,9 +65,6 @@ class Debug:
 
             for ui_key, ui_value in processed_data.items():
                 output["ui"][ui_key].extend(ui_value)
-            # log.debug(
-            #     f"Processed input {k}, found {len(processed_data.get('b64_images', []))} images and {len(processed_data.get('text', []))} text items."
-            # )
 
         return output
 

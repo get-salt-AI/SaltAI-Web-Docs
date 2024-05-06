@@ -1,3 +1,10 @@
+---
+tags:
+- GridLayout
+- Image
+- Tiled
+---
+
 # Merge Latent Batch Gridwise
 ## Documentation
 - Class name: `Merge Latent Batch Gridwise`

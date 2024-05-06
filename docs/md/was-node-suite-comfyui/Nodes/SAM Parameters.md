@@ -1,3 +1,8 @@
+---
+tags:
+- SAM
+---
+
 # SAM Parameters
 ## Documentation
 - Class name: `SAM Parameters`

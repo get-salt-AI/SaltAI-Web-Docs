@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskList
+---
+
 # Mask List to Masks
 ## Documentation
 - Class name: `MaskListToMaskBatch`

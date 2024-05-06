@@ -1,3 +1,8 @@
+---
+tags:
+- ConditionalSelection
+---
+
 # 🪛 Switch any
 ## Documentation
 - Class name: `Switch any [Crystools]`

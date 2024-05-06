@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageThresholding
+---
+
 # AdaptiveThresholding
 ## Documentation
 - Class name: `AdaptiveThresholding`

@@ -1,3 +1,8 @@
+---
+tags:
+- ComfyrollNodes
+---
+
 # ⚙️ CR Set Value On Binary
 ## Documentation
 - Class name: `CR Set Value On Binary`

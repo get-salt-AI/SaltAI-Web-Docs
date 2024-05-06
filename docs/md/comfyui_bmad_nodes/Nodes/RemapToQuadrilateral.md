@@ -1,25 +1,32 @@
+---
+tags:
+- ImageTransformation
+---
+
 # RemapToQuadrilateral
 ## Documentation
 - Class name: `RemapToQuadrilateral`
 - Category: `Bmad/CV/Transform`
 - Output node: `False`
 
-This node is designed to transform an image by remapping it to fit within a specified quadrilateral shape. It leverages various remapping techniques, including homography and custom methods, to adjust the image's perspective and alignment according to the defined quadrilateral boundaries.
+This node specializes in transforming images by remapping them based on quadrilateral shapes. It adjusts the perspective of images or maps them to or from a quadrilateral shape, utilizing various methods including homography.
 ## Input types
 ### Required
-- **`dst_mask_with_4_points`**
-    - Specifies the destination mask that outlines the quadrilateral shape within which the image is to be remapped. This mask is crucial for determining the transformation's target geometry.
+- **`dst_mask_with_i_points`**
+    - Specifies the destination mask with four points defining the quadrilateral to which the image will be remapped. This input is crucial for determining the transformation's target geometry.
     - Comfy dtype: `MASK`
     - Python dtype: `ndarray`
 - **`mode`**
-    - Determines the remapping technique to be used, such as homography or custom methods, based on the quadrilateral's properties. The mode influences how the image is transformed to fit the specified shape.
+    - Defines the method used for the remapping process, such as homography or other quadrilateral remapping techniques. The choice of mode affects how the image is transformed.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`remap`**
     - Comfy dtype: `REMAP`
-    - Contains the data necessary for performing the remapping operation, including the transformation function, arguments, and dimensions of the target quadrilateral.
+    - Provides the details of the remapping process, including the transformed image and any relevant geometric transformations applied.
     - Python dtype: `tuple`
+- **`ui`**
+    - The output includes a transformed image according to the specified quadrilateral shape and remapping method.
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

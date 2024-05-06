@@ -1,3 +1,9 @@
+---
+tags:
+- Math
+- VectorMath
+---
+
 # Vec2BinaryOperation
 ## Documentation
 - Class name: `CM_Vec2BinaryOperation`

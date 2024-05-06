@@ -1,3 +1,10 @@
+---
+tags:
+- Loader
+- ModelIO
+- ModelLoader
+---
+
 # GLIGENLoader
 ## Documentation
 - Class name: `GLIGENLoader`

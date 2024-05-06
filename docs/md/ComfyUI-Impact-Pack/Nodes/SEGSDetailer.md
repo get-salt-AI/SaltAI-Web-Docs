@@ -1,56 +1,63 @@
+---
+tags:
+- DetailEnhancement
+- Image
+- Pipeline
+---
+
 # SEGSDetailer
 ## Documentation
 - Class name: `SEGSDetailer`
 - Category: `ImpactPack/Detailer`
 - Output node: `False`
 
-The SEGSDetailer node is designed to enhance the detail and clarity of segmentation results. It operates by applying specific detailing hooks to the segmentation outputs, refining their accuracy and relevance for further processing or analysis.
+The SEGSDetailer node is designed to provide detailed analysis or modifications to segmentation data. It focuses on enhancing, refining, or otherwise processing segmentation results to meet specific criteria or to improve their utility for further analysis or visualization.
 ## Input types
 ### Required
 - **`image`**
-    - The input image or images to be detailed. This is the primary data upon which the detailing process is applied, affecting the visual quality and clarity of the output.
+    - The 'image' parameter is essential for operations that require a visual context or background against which segmentation elements are analyzed or modified.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `List[torch.Tensor] or torch.Tensor`
+    - Python dtype: `numpy.ndarray`
 - **`segs`**
-    - The segmentation results to be enhanced. The detailing process aims to refine these results for improved accuracy and visual quality.
+    - The 'segs' parameter represents the collection of segmentation elements to be analyzed or modified, serving as the primary data structure for segmentation operations.
     - Comfy dtype: `SEGS`
-    - Python dtype: `Tuple[torch.Size, List[custom segmentation element type]]`
+    - Python dtype: `tuple`
 - **`guide_size`**
-    - Determines the size of the guide used in the detailing process, influencing the level of detail achieved in the output.
+    - The 'guide_size' parameter provides dimensional guidance for scaling or adjusting segmentation elements, ensuring compatibility with other data or specific analysis requirements.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `int`
+    - Python dtype: `tuple`
 - **`guide_size_for`**
-    - Specifies the guide size for a particular operation within the detailing process, affecting the detail level and clarity of the output.
+    - unknown
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`max_size`**
-    - The maximum size limit for the detailing process, which can impact the overall quality and detail of the output.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`seed`**
-    - A seed value for random number generation, ensuring reproducibility of the detailing process.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`steps`**
-    - The number of steps to execute in the detailing process, directly influencing the depth of detail enhancement.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`cfg`**
-    - Configuration settings for the detailing process, affecting various aspects of execution and output quality.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `Dict[str, any]`
+    - Python dtype: `unknown`
 - **`sampler_name`**
-    - Specifies the sampler to be used in the detailing process, impacting the method of detail enhancement.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`scheduler`**
-    - Determines the scheduling strategy for the detailing process, influencing the order and manner in which details are enhanced.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`denoise`**
-    - A boolean flag indicating whether to apply denoising in the detailing process, affecting the clarity of the output.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `bool`
+    - Python dtype: `unknown`
 - **`noise_mask`**
     - unknown
     - Comfy dtype: `BOOLEAN`
@@ -85,18 +92,18 @@ The SEGSDetailer node is designed to enhance the detail and clarity of segmentat
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `unknown`
 - **`noise_mask_feather`**
-    - Specifies the feathering level for the noise mask, affecting the smoothness of transitions in the detailed output.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 ## Output types
 - **`segs`**
     - Comfy dtype: `SEGS`
-    - The enhanced segmentation results, with improved detail and clarity, ready for further processing or analysis.
-    - Python dtype: `Tuple[torch.Size, List[custom segmentation element type]]`
+    - This output type represents the enhanced or modified segmentation data, ready for further analysis or visualization.
+    - Python dtype: `tuple`
 - **`cnet_images`**
     - Comfy dtype: `IMAGE`
-    - unknown
-    - Python dtype: `unknown`
+    - The 'cnet_images' output includes images processed through a control network, showcasing the applied modifications or enhancements.
+    - Python dtype: `list`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -130,7 +137,7 @@ class SEGSDetailer:
                 "optional": {
                      "refiner_basic_pipe_opt": ("BASIC_PIPE",),
                      "inpaint_model": ("BOOLEAN", {"default": False, "label_on": "enabled", "label_off": "disabled"}),
-                     "noise_mask_feather": ("INT", {"default": 0, "min": 0, "max": 100, "step": 1}),
+                     "noise_mask_feather": ("INT", {"default": 20, "min": 0, "max": 100, "step": 1}),
                      }
                 }
 
@@ -176,9 +183,25 @@ class SEGSDetailer:
                 else:
                     cropped_mask = None
 
+                cropped_positive = [
+                    [condition, {
+                        k: core.crop_condition_mask(v, image, seg.crop_region) if k == "mask" else v
+                        for k, v in details.items()
+                    }]
+                    for condition, details in positive
+                ]
+
+                cropped_negative = [
+                    [condition, {
+                        k: core.crop_condition_mask(v, image, seg.crop_region) if k == "mask" else v
+                        for k, v in details.items()
+                    }]
+                    for condition, details in negative
+                ]
+
                 enhanced_image, cnet_pils = core.enhance_detail(cropped_image, model, clip, vae, guide_size, guide_size_for, max_size,
                                                                 seg.bbox, seed, steps, cfg, sampler_name, scheduler,
-                                                                positive, negative, denoise, cropped_mask, force_inpaint,
+                                                                cropped_positive, cropped_negative, denoise, cropped_mask, force_inpaint,
                                                                 refiner_ratio=refiner_ratio, refiner_model=refiner_model,
                                                                 refiner_clip=refiner_clip, refiner_positive=refiner_positive, refiner_negative=refiner_negative,
                                                                 control_net_wrapper=seg.control_net_wrapper, cycle=cycle,

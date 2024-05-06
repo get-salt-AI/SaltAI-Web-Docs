@@ -1,3 +1,9 @@
+---
+tags:
+- Segmentation
+- SemanticSegmentationPreprocessing
+---
+
 # UniFormer Segmentor
 ## Documentation
 - Class name: `UniFormer-SemSegPreprocessor`

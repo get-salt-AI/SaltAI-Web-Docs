@@ -1,29 +1,38 @@
+---
+tags:
+- Image
+---
+
 # ImageConcatenate
 ## Documentation
 - Class name: `ImageConcanate`
-- Category: `KJNodes`
+- Category: `KJNodes/image`
 - Output node: `False`
 
-The ImageConcanate node is designed to concatenate two images either horizontally or vertically, based on the specified direction. It enables the creation of composite images by seamlessly joining individual images together.
+The ImageConcanate node is designed to concatenate two images together in a specified direction, optionally adjusting the size of the second image to match the first. This functionality is useful for creating composite images or expanding the visual context of an existing image.
 ## Input types
 ### Required
 - **`image1`**
-    - The first image to be concatenated. It serves as the base image to which the second image will be joined.
+    - The first image to which the second image will be concatenated. It serves as the base image in the concatenation process.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`image2`**
-    - The second image to be concatenated. It is joined to the first image in the specified direction.
+    - The second image to be concatenated to the first. This image can be resized to match the dimensions of the first image if specified.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`direction`**
-    - Specifies the direction in which the second image will be concatenated to the first. Options include 'right', 'down', 'left', and 'up', with 'right' being the default.
+    - Specifies the direction in which the second image will be concatenated to the first. Options include 'right', 'down', 'left', and 'up'.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
+- **`match_image_size`**
+    - A boolean flag that determines whether the second image should be resized to match the dimensions of the first image before concatenation.
+    - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The concatenated image as a result of joining the two input images in the specified direction.
-    - Python dtype: `Tuple[torch.Tensor]`
+    - The result of concatenating the second image to the first in the specified direction. This output is a single composite image.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -46,13 +55,19 @@ class ImageConcanate:
             {
             "default": 'right'
              }),
+            "match_image_size": ("BOOLEAN", {"default": False}),
         }}
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "concanate"
-    CATEGORY = "KJNodes"
+    CATEGORY = "KJNodes/image"
+    DESCRIPTION = """
+Concatenates the image2 to image1 in the specified direction.
+"""
 
-    def concanate(self, image1, image2, direction):
+    def concanate(self, image1, image2, direction, match_image_size):
+        if match_image_size:
+            image2 = torch.nn.functional.interpolate(image2, size=(image1.shape[2], image1.shape[3]), mode="bilinear")
         if direction == 'right':
             row = torch.cat((image1, image2), dim=2)
         elif direction == 'down':

@@ -1,3 +1,9 @@
+---
+tags:
+- Face
+- FaceRestoration
+---
+
 # Face Fixer OpenCV (Mikey)
 ## Documentation
 - Class name: `FaceFixerOpenCV`

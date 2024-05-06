@@ -1,62 +1,67 @@
+---
+tags:
+- Sampling
+---
+
 # SamplerCustom
 ## Documentation
 - Class name: `SamplerCustom`
 - Category: `sampling/custom_sampling`
 - Output node: `False`
 
-The SamplerCustom node is designed to provide a flexible and customizable sampling mechanism for various applications. It enables users to select and configure different sampling strategies tailored to their specific needs, enhancing the adaptability and efficiency of the sampling process.
+The SamplerCustom node is designed to provide a customizable sampling framework within a generative model pipeline, allowing for the integration of various sampling strategies and configurations to tailor the generation process according to specific requirements or preferences.
 ## Input types
 ### Required
 - **`model`**
-    - The 'model' input type specifies the model to be used for sampling, playing a crucial role in determining the sampling behavior and output.
+    - Specifies the generative model to be used for sampling, serving as the foundation for the generation process.
     - Comfy dtype: `MODEL`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `str`
 - **`add_noise`**
-    - The 'add_noise' input type allows users to specify whether noise should be added to the sampling process, influencing the diversity and characteristics of the generated samples.
+    - Determines whether noise should be added to the sampling process, affecting the texture and details of the generated output.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`noise_seed`**
-    - The 'noise_seed' input type provides a seed for the noise generation, ensuring reproducibility and consistency in the sampling process when adding noise.
+    - Sets the seed for noise generation, ensuring consistency in the noise pattern when adding noise to the sampling process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - The 'cfg' input type sets the configuration for the sampling process, allowing for fine-tuning of the sampling parameters and behavior.
+    - Controls the conditioning factor, adjusting the influence of specified conditions on the generation outcome.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`positive`**
-    - The 'positive' input type represents positive conditioning information, guiding the sampling process towards generating samples that align with specified positive attributes.
+    - Specifies positive conditioning to guide the generation towards desired attributes or content.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `dict`
+    - Python dtype: `str`
 - **`negative`**
-    - The 'negative' input type represents negative conditioning information, steering the sampling process away from generating samples that exhibit specified negative attributes.
+    - Specifies negative conditioning to steer the generation away from undesired attributes or content.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `dict`
+    - Python dtype: `str`
 - **`sampler`**
-    - The 'sampler' input type selects the specific sampling strategy to be employed, directly impacting the nature and quality of the generated samples.
+    - Selects the specific sampling strategy to be employed, allowing for customization of the sampling behavior.
     - Comfy dtype: `SAMPLER`
     - Python dtype: `str`
 - **`sigmas`**
-    - The 'sigmas' input type defines the noise levels to be used in the sampling process, affecting the exploration of the sample space and the diversity of the output.
+    - Defines the noise levels to be used at each step of the sampling process, influencing the detail and quality of the generated output.
     - Comfy dtype: `SIGMAS`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `list`
 - **`latent_image`**
-    - The 'latent_image' input type provides an initial latent image for the sampling process, serving as a starting point for sample generation.
+    - Provides the initial latent image to be transformed through the sampling process, serving as the starting point for generation.
     - Comfy dtype: `LATENT`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `str`
 ## Output types
 - **`output`**
     - Comfy dtype: `LATENT`
-    - The 'output' represents the primary result of the sampling process, containing the generated samples.
-    - Python dtype: `torch.Tensor`
+    - Produces a latent representation of the generated content, encapsulating the result of the sampling process.
+    - Python dtype: `str`
 - **`denoised_output`**
     - Comfy dtype: `LATENT`
-    - The 'denoised_output' represents the samples after a denoising process has been applied, potentially enhancing the clarity and quality of the generated samples.
-    - Python dtype: `torch.Tensor`
+    - Provides a denoised version of the generated content, offering an alternative representation with potentially clearer details.
+    - Python dtype: `str`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes:
     - [VAEDecode](../../Comfy/Nodes/VAEDecode.md)
-    - Preview Chooser
+    - [Preview Chooser](../../cg-image-picker/Nodes/Preview Chooser.md)
     - [LatentUpscaleBy](../../Comfy/Nodes/LatentUpscaleBy.md)
 
 
@@ -90,10 +95,9 @@ class SamplerCustom:
         latent = latent_image
         latent_image = latent["samples"]
         if not add_noise:
-            noise = torch.zeros(latent_image.size(), dtype=latent_image.dtype, layout=latent_image.layout, device="cpu")
+            noise = Noise_EmptyNoise().generate_noise(latent)
         else:
-            batch_inds = latent["batch_index"] if "batch_index" in latent else None
-            noise = comfy.sample.prepare_noise(latent_image, noise_seed, batch_inds)
+            noise = Noise_RandomNoise(noise_seed).generate_noise(latent)
 
         noise_mask = None
         if "noise_mask" in latent:

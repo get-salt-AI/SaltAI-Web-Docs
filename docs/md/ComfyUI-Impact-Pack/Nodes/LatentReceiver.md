@@ -1,3 +1,8 @@
+---
+tags:
+- Latent
+---
+
 # LatentReceiver
 ## Documentation
 - Class name: `LatentReceiver`

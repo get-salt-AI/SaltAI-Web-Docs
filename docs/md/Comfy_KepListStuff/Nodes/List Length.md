@@ -1,3 +1,8 @@
+---
+tags:
+- Text
+---
+
 # List Length
 ## Documentation
 - Class name: `List Length`

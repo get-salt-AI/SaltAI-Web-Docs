@@ -1,3 +1,9 @@
+---
+tags:
+- ConditionalSelection
+- ImpactPack
+---
+
 # ImpactLatentInfo
 ## Documentation
 - Class name: `ImpactLatentInfo`

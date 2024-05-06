@@ -1,3 +1,9 @@
+---
+tags:
+- ImpactPack
+- Segmentation
+---
+
 # Set Default Image for SEGS
 ## Documentation
 - Class name: `SetDefaultImageForSEGS`

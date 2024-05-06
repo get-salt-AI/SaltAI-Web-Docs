@@ -1,3 +1,8 @@
+---
+tags:
+- VAE
+---
+
 # VAE Decode
 ## Documentation
 - Class name: `VAEDecode`
@@ -28,7 +33,7 @@ The VAEDecode node is designed for decoding latent representations into images u
     - [VHS_VideoCombine](../../ComfyUI-VideoHelperSuite/Nodes/VHS_VideoCombine.md)
     - Reroute
     - [ImageUpscaleWithModel](../../Comfy/Nodes/ImageUpscaleWithModel.md)
-    - UltimateSDUpscale
+    - [UltimateSDUpscale](../../ComfyUI_UltimateSDUpscale/Nodes/UltimateSDUpscale.md)
     - [RIFE VFI](../../ComfyUI-Frame-Interpolation/Nodes/RIFE VFI.md)
     - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
     - [FILM VFI](../../ComfyUI-Frame-Interpolation/Nodes/FILM VFI.md)

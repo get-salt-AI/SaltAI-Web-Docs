@@ -1,3 +1,9 @@
+---
+tags:
+- Math
+- VectorMath
+---
+
 # ⚙️ CR Math Operation
 ## Documentation
 - Class name: `CR Math Operation`

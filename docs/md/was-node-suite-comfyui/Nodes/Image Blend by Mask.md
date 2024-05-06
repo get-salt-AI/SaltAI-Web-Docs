@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- ImageBlend
+- ImageComposite
+---
+
 # Image Blend by Mask
 ## Documentation
 - Class name: `Image Blend by Mask`

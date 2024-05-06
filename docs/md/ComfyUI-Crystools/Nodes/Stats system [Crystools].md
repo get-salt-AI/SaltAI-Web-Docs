@@ -1,3 +1,8 @@
+---
+tags:
+- Latent
+---
+
 # 🪛 Stats system (powered by WAS)
 ## Documentation
 - Class name: `Stats system [Crystools]`

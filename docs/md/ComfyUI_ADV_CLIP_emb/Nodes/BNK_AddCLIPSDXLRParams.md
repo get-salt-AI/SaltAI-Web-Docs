@@ -1,3 +1,8 @@
+---
+tags:
+- Conditioning
+---
+
 # Add CLIP SDXL Refiner Params
 ## Documentation
 - Class name: `BNK_AddCLIPSDXLRParams`

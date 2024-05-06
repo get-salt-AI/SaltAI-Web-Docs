@@ -1,3 +1,10 @@
+---
+tags:
+- CLIP
+- CLIPConditioning
+- Conditioning
+---
+
 # CLIPTextEncode (BlenderNeko Advanced + NSP)
 ## Documentation
 - Class name: `CLIPTextEncode (BlenderNeko Advanced + NSP)`

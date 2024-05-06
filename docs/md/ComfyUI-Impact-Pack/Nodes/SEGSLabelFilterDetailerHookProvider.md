@@ -1,3 +1,9 @@
+---
+tags:
+- ImpactPack
+- Segmentation
+---
+
 # SEGSLabelFilterDetailerHookProvider
 ## Documentation
 - Class name: `SEGSLabelFilterDetailerHookProvider`

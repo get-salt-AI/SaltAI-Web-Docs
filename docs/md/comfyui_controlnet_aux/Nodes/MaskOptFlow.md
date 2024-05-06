@@ -1,3 +1,8 @@
+---
+tags:
+- OpticalFlow
+---
+
 # Mask Optical Flow (DragNUWA)
 ## Documentation
 - Class name: `MaskOptFlow`

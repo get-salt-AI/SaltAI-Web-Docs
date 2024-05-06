@@ -1,3 +1,9 @@
+---
+tags:
+- Math
+- VectorMath
+---
+
 # Vec3ToScalarBinaryOperation
 ## Documentation
 - Class name: `CM_Vec3ToScalarBinaryOperation`

@@ -1,3 +1,10 @@
+---
+tags:
+- DataConversion
+- DataTypeConversion
+- NumericConversion
+---
+
 # Float to String (Mikey)
 ## Documentation
 - Class name: `Float to String`

@@ -1,3 +1,8 @@
+---
+tags:
+- Comparison
+---
+
 # 🪛 Metadata comparator
 ## Documentation
 - Class name: `Metadata comparator [Crystools]`

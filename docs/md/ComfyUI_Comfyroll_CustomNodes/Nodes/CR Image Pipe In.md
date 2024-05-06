@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Pipeline
+---
+
 # 🛩 CR Image Pipe In
 ## Documentation
 - Class name: `CR Image Pipe In`

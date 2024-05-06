@@ -1,3 +1,8 @@
+---
+tags:
+- ConditionalSelection
+---
+
 # 🔀 CR Conditioning Input Switch
 ## Documentation
 - Class name: `CR Conditioning Input Switch`

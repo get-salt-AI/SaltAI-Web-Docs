@@ -1,3 +1,9 @@
+---
+tags:
+- Color
+- ColorChannelManipulation
+---
+
 # Image Remove Color
 ## Documentation
 - Class name: `Image Remove Color`

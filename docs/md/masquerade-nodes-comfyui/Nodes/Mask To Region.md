@@ -1,48 +1,54 @@
+---
+tags:
+- Mask
+- MaskGeneration
+---
+
 # Mask To Region
 ## Documentation
 - Class name: `Mask To Region`
 - Category: `Masquerade Nodes`
 - Output node: `False`
 
-The 'Mask To Region' node is designed to convert a given mask into a region representation. It identifies non-empty areas within the mask and marks them as regions, effectively translating binary mask data into a spatial format that delineates specific areas of interest.
+The 'Mask To Region' node is designed to transform a given mask into a rectangular region that encompasses the mask, adhering to specified constraints such as padding, aspect ratio, and minimum dimensions. This node facilitates the extraction of meaningful regions from masks for further processing or analysis.
 ## Input types
 ### Required
 - **`mask`**
-    - The 'mask' parameter represents the input mask that is to be converted into a region. It plays a crucial role in determining the areas that will be marked as regions within the output.
+    - The 'mask' parameter represents the input mask image that the node will process to identify and extract the rectangular region.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`padding`**
-    - The 'padding' parameter specifies the amount of padding to apply around the identified regions. This affects the size and boundaries of the resulting regions, allowing for adjustments in their spatial representation.
+    - The 'padding' parameter allows specifying additional space around the identified region, enhancing flexibility in region extraction.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`constraints`**
-    - The 'constraints' parameter allows for the specification of constraints on the region dimensions. It enables the filtering of regions based on size, ensuring that only regions meeting certain criteria are included.
+    - The 'constraints' parameter defines the rules for adjusting the extracted region's dimensions, including keeping aspect ratios and size multiples.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `Dict[str, int]`
+    - Python dtype: `List[str]`
 - **`constraint_x`**
-    - This parameter specifies the horizontal constraint for the region dimensions, affecting the selection and sizing of regions along the x-axis.
+    - The 'constraint_x' parameter sets a constraint on the region's width, ensuring it adheres to specified requirements.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`constraint_y`**
-    - This parameter specifies the vertical constraint for the region dimensions, affecting the selection and sizing of regions along the y-axis.
+    - The 'constraint_y' parameter sets a constraint on the region's height, ensuring it adheres to specified requirements.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`min_width`**
-    - The 'min_width' parameter sets the minimum width for the regions to be included. It ensures that regions below this width are excluded from the output.
+    - The 'min_width' parameter establishes a minimum width for the extracted region, ensuring it meets a certain size threshold.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`min_height`**
-    - The 'min_height' parameter sets the minimum height for the regions to be included. It ensures that regions below this height are excluded from the output.
+    - The 'min_height' parameter establishes a minimum height for the extracted region, ensuring it meets a certain size threshold.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`batch_behavior`**
-    - This parameter determines how the node handles batches of masks. It affects the processing and output of regions when multiple masks are provided as input.
+    - The 'batch_behavior' parameter dictates how the node should handle multiple masks in a batch, focusing on matching aspect ratios or sizes.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `List[str]`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output 'image' is a tensor representation of the identified regions within the input mask. It marks specific areas of interest, delineating them from the rest of the mask.
+    - The output is an image of the rectangular region extracted from the input mask, conforming to the specified constraints.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -52,6 +58,9 @@ The 'Mask To Region' node is designed to convert a given mask into a region repr
 ## Source code
 ```python
 class MaskToRegion:
+    """
+    Given a mask, returns a rectangular region that fits the mask with the given constraints
+    """
     def __init__(self):
         pass
 

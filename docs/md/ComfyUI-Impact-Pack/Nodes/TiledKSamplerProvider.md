@@ -1,3 +1,9 @@
+---
+tags:
+- SamplerScheduler
+- Sampling
+---
+
 # TiledKSamplerProvider
 ## Documentation
 - Class name: `TiledKSamplerProvider`

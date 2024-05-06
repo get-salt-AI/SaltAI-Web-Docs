@@ -1,3 +1,12 @@
+---
+tags:
+- DataConversion
+- DataTypeConversion
+- Float
+- FloatData
+- NumericConversion
+---
+
 # ImpactFloat
 ## Documentation
 - Class name: `ImpactFloat`

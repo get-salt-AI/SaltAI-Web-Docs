@@ -1,3 +1,10 @@
+---
+tags:
+- DepthMap
+- Image
+- ImagePreprocessing
+---
+
 # Enchance And Resize Hint Images
 ## Documentation
 - Class name: `HintImageEnchance`

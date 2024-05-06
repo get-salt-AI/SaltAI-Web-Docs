@@ -1,59 +1,65 @@
+---
+tags:
+- Mask
+- MaskGeneration
+---
+
 # CreateFluidMask
 ## Documentation
 - Class name: `CreateFluidMask`
 - Category: `KJNodes/masking/generate`
 - Output node: `False`
 
-The CreateFluidMask node is designed to generate dynamic fluid masks based on specified parameters, utilizing a fluid simulation to create visually appealing and customizable mask patterns.
+The CreateFluidMask node is designed to generate dynamic fluid-based masks for images, utilizing parameters such as inflow characteristics and dimensions to simulate fluid motion and interactions. This process is aimed at creating visually complex and varied masks that can be applied to images for artistic or processing purposes.
 ## Input types
 ### Required
 - **`invert`**
-    - Determines whether the generated fluid mask should be inverted, affecting the visual appearance of the mask.
+    - Determines whether the fluid mask should be inverted, affecting the visual representation of the mask in relation to the fluid's motion.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`frames`**
-    - Specifies the number of frames for the fluid animation, influencing the duration and fluidity of the mask.
+    - Specifies the number of frames to simulate, dictating the duration of the fluid's motion and the complexity of the resulting mask.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`width`**
-    - Sets the width of the generated fluid mask, defining the horizontal dimension of the mask.
+    - Sets the width of the mask, defining the horizontal dimension of the fluid simulation space.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Sets the height of the generated fluid mask, defining the vertical dimension of the mask.
+    - Sets the height of the mask, defining the vertical dimension of the fluid simulation space.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`inflow_count`**
-    - Determines the number of inflow points in the fluid simulation, affecting the complexity and dynamics of the mask.
+    - Determines the number of inflow points in the fluid simulation, influencing the number of sources from which fluid enters the space.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`inflow_velocity`**
-    - Specifies the velocity of the inflow points, influencing the speed and direction of the fluid movement.
+    - Controls the velocity of the inflow, affecting the speed at which fluid enters the simulation space.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`inflow_radius`**
-    - Sets the radius of the inflow points, affecting the size and spread of the fluid in the mask.
+    - Specifies the radius of the inflow points, impacting the size of the area through which fluid is introduced.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`inflow_padding`**
-    - Defines the padding around inflow points, ensuring they are positioned within the mask boundaries.
+    - Sets the padding around inflow points, ensuring there is a defined space between the fluid's entry points and the simulation boundaries.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`inflow_duration`**
-    - Specifies the duration of inflow activity, affecting the longevity and persistence of fluid movement in the mask.
+    - Defines the duration for which each inflow point remains active, influencing the overall flow and distribution of fluid within the simulation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The generated fluid mask as an image.
+    - The generated image mask that visually represents the fluid simulation.
     - Python dtype: `numpy.ndarray`
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The generated fluid mask as a binary mask, useful for masking operations in image processing.
+    - A binary mask that delineates the areas affected by the fluid simulation, useful for image processing applications.
     - Python dtype: `numpy.ndarray`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -78,11 +84,12 @@ class CreateFluidMask:
                  "inflow_radius": ("INT", {"default": 8,"min": 0, "max": 255, "step": 1}),
                  "inflow_padding": ("INT", {"default": 50,"min": 0, "max": 255, "step": 1}),
                  "inflow_duration": ("INT", {"default": 60,"min": 0, "max": 255, "step": 1}),
-
         },
     } 
     #using code from https://github.com/GregTJ/stable-fluids
     def createfluidmask(self, frames, width, height, invert, inflow_count, inflow_velocity, inflow_radius, inflow_padding, inflow_duration):
+        from ..utility.fluid import Fluid
+        from scipy.spatial import erf
         out = []
         masks = []
         RESOLUTION = width, height

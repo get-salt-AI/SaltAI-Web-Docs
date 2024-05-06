@@ -1,3 +1,9 @@
+---
+tags:
+- ImageFilter
+- VisualEffects
+---
+
 # Image Nova Filter
 ## Documentation
 - Class name: `Image Nova Filter`

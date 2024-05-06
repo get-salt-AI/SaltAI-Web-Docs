@@ -1,3 +1,8 @@
+---
+tags:
+- Sampling
+---
+
 # Mikey Sampler Tiled Base Only
 ## Documentation
 - Class name: `Mikey Sampler Tiled Base Only`

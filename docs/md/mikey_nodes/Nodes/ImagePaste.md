@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageComposite
+---
+
 # Image Paste (Mikey)
 ## Documentation
 - Class name: `ImagePaste`

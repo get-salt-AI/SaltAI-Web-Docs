@@ -1,36 +1,41 @@
+---
+tags:
+- VAE
+---
+
 # Vae Decode (mtb)
 ## Documentation
 - Class name: `Vae Decode (mtb)`
 - Category: `mtb/decode`
 - Output node: `False`
 
-The VaeDecode_ node provides a flexible decoding mechanism for variational autoencoder (VAE) models, supporting both standard and tiled decoding approaches. It incorporates a seamless model option to adjust convolutional layers for circular padding, enhancing the generation of seamless images. This node is designed to adaptively choose between decoding methods based on the input configuration, optimizing for image quality and computational efficiency.
+This node is designed to decode latent representations into images using a VAE model, with options for seamless decoding or tiled decoding to handle larger images efficiently.
 ## Input types
 ### Required
 - **`samples`**
-    - The latent representations to be decoded into images. This input is crucial for generating the final image output from the encoded latent space.
+    - The latent representations to be decoded into images. These samples are the input that the VAE model decodes, directly influencing the output images.
     - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 - **`vae`**
-    - The variational autoencoder model used for decoding the samples. It defines the architecture and parameters for the decoding process.
+    - The VAE model used for decoding the latent representations into images. It is central to the node's functionality, determining the decoding process and the quality of the output images.
     - Comfy dtype: `VAE`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `comfy.sd.VAE`
 - **`seamless_model`**
-    - A boolean flag indicating whether to adjust the VAE's convolutional layers for circular padding, enabling seamless image generation.
+    - A flag indicating whether to use seamless mode for decoding, which adjusts the padding mode of convolutional layers for seamless image generation.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`use_tiling_decoder`**
-    - A boolean flag that determines whether to use a tiling decoder for image generation, which can enhance image quality for large images.
+    - A flag that determines whether to use a tiling decoder for image generation, enabling efficient handling of larger images by processing them in tiles.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`tile_size`**
-    - The size of the tiles used in the tiling decoder. This parameter influences the granularity of the tiling process and can affect the final image quality.
+    - The size of the tiles used in tiling decoder mode, affecting the granularity of the decoding process and the handling of larger images.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The decoded images, either as a single image or a batch of images, depending on the input samples.
+    - The decoded image or images from the latent representations, produced by the VAE model.
     - Python dtype: `Tuple[torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
@@ -39,7 +44,7 @@ The VaeDecode_ node provides a flexible decoding mechanism for variational autoe
 
 ## Source code
 ```python
-class VaeDecode_:
+class MTB_VaeDecode:
     """Wrapper for the 2 core decoders but also adding the sd seamless hack, taken from: FlyingFireCo/tiled_ksampler"""
 
     @classmethod
@@ -63,7 +68,12 @@ class VaeDecode_:
     CATEGORY = "mtb/decode"
 
     def decode(
-        self, vae, samples, seamless_model, use_tiling_decoder=True, tile_size=512
+        self,
+        vae,
+        samples,
+        seamless_model,
+        use_tiling_decoder=True,
+        tile_size=512,
     ):
         if seamless_model:
             if use_tiling_decoder:

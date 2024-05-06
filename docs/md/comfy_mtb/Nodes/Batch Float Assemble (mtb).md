@@ -1,21 +1,27 @@
+---
+tags:
+- Batch
+- FloatData
+---
+
 # Batch Float Assemble (mtb)
 ## Documentation
 - Class name: `Batch Float Assemble (mtb)`
 - Category: `mtb/batch`
 - Output node: `False`
 
-The BatchFloatAssemble node is designed to aggregate multiple batches of floating-point numbers into a single, unified batch. This process can optionally reverse the order of the batches before combining them, allowing for flexible data manipulation and organization.
+The MTB_BatchFloatAssemble node is designed to aggregate multiple batches of floating-point numbers into a unified batch, optionally reversing the order of the batches before combining them. This functionality is crucial for scenarios where the sequential order of data points impacts the processing or analysis outcomes.
 ## Input types
 ### Required
 - **`reverse`**
-    - Determines whether the input batches should be reversed before being assembled into the final batch. This can affect the order in which data points are combined, potentially impacting downstream processing or analysis.
+    - Determines whether the input batches of floats should be reversed before being assembled into a single batch. This option allows for flexibility in handling the order of data, which can be critical for certain analyses or processing tasks.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`floats`**
     - Comfy dtype: `FLOATS`
-    - The assembled batch of floating-point numbers, which may have been reordered based on the 'reverse' parameter. This output is suitable for further numerical processing or analysis.
-    - Python dtype: `List[float]`
+    - The output is a single batch of floats, assembled from the input batches. This consolidated batch can be used for further processing or analysis, providing a streamlined dataset.
+    - Python dtype: `list[float]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -23,7 +29,7 @@ The BatchFloatAssemble node is designed to aggregate multiple batches of floatin
 
 ## Source code
 ```python
-class BatchFloatAssemble:
+class MTB_BatchFloatAssemble:
     """Assembles mutiple batches of floats into a single stream (batch)"""
 
     @classmethod

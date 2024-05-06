@@ -1,28 +1,33 @@
+---
+tags:
+- ConditionalSelection
+---
+
 # CLIP Vision Input Switch
 ## Documentation
 - Class name: `CLIP Vision Input Switch`
 - Category: `WAS Suite/Logic`
 - Output node: `False`
 
-This node provides a mechanism to switch between two CLIP vision models based on a boolean condition. It's part of the logic suite within the WAS node collection, enabling dynamic selection of models for further processing.
+This node provides a mechanism to switch between two CLIP vision models based on a boolean condition. It enables dynamic selection of vision models within a workflow, facilitating conditional processing of visual data.
 ## Input types
 ### Required
 - **`clip_vision_a`**
-    - The first CLIP vision model to choose from. It plays a crucial role in determining the output based on the boolean condition.
+    - The first CLIP vision model to choose from. Acts as a potential input for the switch operation, contributing to conditional logic in processing visual data.
     - Comfy dtype: `CLIP_VISION`
     - Python dtype: `CLIP_VISION`
 - **`clip_vision_b`**
-    - The second CLIP vision model to choose from. This model is selected if the boolean condition evaluates to false.
+    - The second CLIP vision model to choose from. Serves as an alternative input for the switch operation, enabling a choice between two models based on a condition.
     - Comfy dtype: `CLIP_VISION`
     - Python dtype: `CLIP_VISION`
-- **`boolean_number`**
-    - A numeric boolean condition that determines which CLIP vision model is selected. A value of 1 selects the first model, while any other value selects the second.
-    - Comfy dtype: `NUMBER`
-    - Python dtype: `NUMBER`
+- **`boolean`**
+    - A boolean value determining which CLIP vision model (A or B) to pass through. True selects 'clip_vision_a', and False selects 'clip_vision_b'.
+    - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ## Output types
 - **`clip_vision`**
     - Comfy dtype: `CLIP_VISION`
-    - The selected CLIP vision model, determined by the boolean condition.
+    - The selected CLIP vision model based on the boolean condition. Enables conditional routing of visual model processing.
     - Python dtype: `CLIP_VISION`
 ## Usage tips
 - Infra type: `CPU`
@@ -41,7 +46,7 @@ class WAS_CLIP_Vision_Input_Switch:
             "required": {
                 "clip_vision_a": ("CLIP_VISION",),
                 "clip_vision_b": ("CLIP_VISION",),
-                "boolean_number": ("NUMBER",),
+                "boolean": ("BOOLEAN", {"forceInput": True}),
             }
         }
 
@@ -50,9 +55,9 @@ class WAS_CLIP_Vision_Input_Switch:
 
     CATEGORY = "WAS Suite/Logic"
 
-    def clip_vision_switch(self, clip_vision_a, clip_vision_b, boolean_number=1):
+    def clip_vision_switch(self, clip_vision_a, clip_vision_b, boolean=True):
 
-        if int(round(boolean_number)) == 1:
+        if boolean:
             return (clip_vision_a, )
         else:
             return (clip_vision_b)

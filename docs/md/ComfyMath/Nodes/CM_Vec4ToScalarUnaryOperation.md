@@ -1,3 +1,9 @@
+---
+tags:
+- Math
+- VectorMath
+---
+
 # Vec4ToScalarUnaryOperation
 ## Documentation
 - Class name: `CM_Vec4ToScalarUnaryOperation`

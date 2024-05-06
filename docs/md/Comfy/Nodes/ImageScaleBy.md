@@ -1,3 +1,10 @@
+---
+tags:
+- ImageScaling
+- ImageUpscaling
+- Upscale
+---
+
 # Upscale Image By
 ## Documentation
 - Class name: `ImageScaleBy`
@@ -36,7 +43,7 @@ The ImageScaleBy node is designed for upscaling images by a specified scale fact
     - [SaveImage](../../Comfy/Nodes/SaveImage.md)
     - [SVD_img2vid_Conditioning](../../Comfy/Nodes/SVD_img2vid_Conditioning.md)
     - [SEGSPreview](../../ComfyUI-Impact-Pack/Nodes/SEGSPreview.md)
-    - ImageFilterSharpen
+    - [ImageFilterSharpen](../../ComfyUI-Allor/Nodes/ImageFilterSharpen.md)
 
 
 

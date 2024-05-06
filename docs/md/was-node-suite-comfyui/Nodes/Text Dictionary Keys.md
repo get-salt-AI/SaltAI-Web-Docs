@@ -1,3 +1,8 @@
+---
+tags:
+- Dictionary
+---
+
 # Text Dictionary Keys
 ## Documentation
 - Class name: `Text Dictionary Keys`

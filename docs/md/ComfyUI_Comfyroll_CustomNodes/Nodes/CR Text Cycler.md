@@ -1,3 +1,8 @@
+---
+tags:
+- Text
+---
+
 # 📜 CR Text Cycler
 ## Documentation
 - Class name: `CR Text Cycler`

@@ -1,25 +1,30 @@
+---
+tags:
+- Conditioning
+---
+
 # StableCascade_StageB_Conditioning
 ## Documentation
 - Class name: `StableCascade_StageB_Conditioning`
-- Category: `_for_testing/stable_cascade`
+- Category: `conditioning/stable_cascade`
 - Output node: `False`
 
-This node is designed to set a prior for the conditioning process in a stable cascade model, integrating latent stage information into the conditioning data to influence subsequent model stages.
+This node is designed for conditioning in the context of a stable cascade process, specifically at stage B. It integrates prior information from a later stage (stage C) into the conditioning data, preparing it for subsequent processing steps.
 ## Input types
 ### Required
 - **`conditioning`**
-    - The conditioning data to be modified with the latent stage information, affecting the model's behavior in later stages.
+    - The conditioning data to be modified, incorporating prior information from stage C for enhanced processing.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
+    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
 - **`stage_c`**
-    - The latent stage information to be integrated into the conditioning, influencing the model's subsequent stages.
+    - The prior information from stage C, used to enrich the conditioning data with relevant context.
     - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 ## Output types
 - **`conditioning`**
     - Comfy dtype: `CONDITIONING`
-    - The modified conditioning data, now containing latent stage information for influencing later model stages.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
+    - The modified conditioning data, now augmented with prior information from stage C.
+    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -37,7 +42,7 @@ class StableCascade_StageB_Conditioning:
 
     FUNCTION = "set_prior"
 
-    CATEGORY = "_for_testing/stable_cascade"
+    CATEGORY = "conditioning/stable_cascade"
 
     def set_prior(self, conditioning, stage_c):
         c = []

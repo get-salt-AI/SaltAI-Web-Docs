@@ -1,3 +1,10 @@
+---
+tags:
+- Batch
+- Image
+- ImageBatch
+---
+
 # Batch Images
 ## Documentation
 - Class name: `ImageBatch`
@@ -24,10 +31,10 @@ The ImageBatch node is designed for combining two images into a single batch. If
 - Infra type: `GPU`
 - Common nodes:
     - [ImageBatch](../../Comfy/Nodes/ImageBatch.md)
-    - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
+    - IPAdapterApply
     - [CR Batch Process Switch](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Batch Process Switch.md)
     - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
-    - Preview Chooser
+    - [Preview Chooser](../../cg-image-picker/Nodes/Preview Chooser.md)
 
 
 

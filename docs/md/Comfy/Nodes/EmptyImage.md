@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageGeneration
+---
+
 # EmptyImage
 ## Documentation
 - Class name: `EmptyImage`

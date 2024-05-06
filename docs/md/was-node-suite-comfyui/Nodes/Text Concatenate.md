@@ -1,3 +1,9 @@
+---
+tags:
+- Concatenate
+- Text
+---
+
 # Text Concatenate
 ## Documentation
 - Class name: `Text Concatenate`

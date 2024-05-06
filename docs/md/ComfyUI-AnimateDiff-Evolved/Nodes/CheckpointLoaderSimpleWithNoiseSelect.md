@@ -1,3 +1,12 @@
+---
+tags:
+- Checkpoint
+- CheckpointLoader
+- Loader
+- ModelIO
+- ModelLoader
+---
+
 # Load Checkpoint w/ Noise Select 🎭🅐🅓
 ## Documentation
 - Class name: `CheckpointLoaderSimpleWithNoiseSelect`
@@ -46,7 +55,7 @@ This node specializes in loading model checkpoints with an emphasis on noise sel
     - [BatchPromptSchedule](../../ComfyUI_FizzNodes/Nodes/BatchPromptSchedule.md)
     - [CLIPSetLastLayer](../../Comfy/Nodes/CLIPSetLastLayer.md)
     - [Lora Loader Stack (rgthree)](../../rgthree-comfy/Nodes/Lora Loader Stack (rgthree).md)
-    - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
+    - IPAdapterApply
     - [ToBasicPipe](../../ComfyUI-Impact-Pack/Nodes/ToBasicPipe.md)
 
 

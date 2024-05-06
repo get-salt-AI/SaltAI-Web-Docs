@@ -1,3 +1,9 @@
+---
+tags:
+- ConditionalSelection
+- ImpactPack
+---
+
 # ImpactLogger
 ## Documentation
 - Class name: `ImpactLogger`

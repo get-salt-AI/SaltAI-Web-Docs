@@ -1,3 +1,9 @@
+---
+tags:
+- ImpactPack
+- Segmentation
+---
+
 # SEGSRangeFilterDetailerHookProvider
 ## Documentation
 - Class name: `SEGSRangeFilterDetailerHookProvider`

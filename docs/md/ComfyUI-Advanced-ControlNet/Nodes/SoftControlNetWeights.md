@@ -1,79 +1,37 @@
+---
+tags:
+- ControlNet
+- Weight
+---
+
 # ControlNet Soft Weights 🛂🅐🅒🅝
 ## Documentation
 - Class name: `SoftControlNetWeights`
 - Category: `Adv-ControlNet 🛂🅐🅒🅝/weights/ControlNet`
 - Output node: `False`
 
-This node is designed for loading and applying soft control net weights with customizable base multipliers and optional locking mechanisms. It enables dynamic adjustment of control net weights based on a mask, facilitating fine-grained control over the weight application process.
+The SoftControlNetWeights node is designed for generating dynamic control net weights based on a series of individual weight parameters and an optional flip weights flag. This configuration allows for customizing the distribution and orientation of control net weights, enabling precise adjustments to the control net's behavior.
 ## Input types
 ### Required
-- **`weight_00`**
-    - Specifies the first weight in the sequence, allowing for granular control over the initial weight value.
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
-- **`weight_01`**
-    - Defines the second weight in the sequence, contributing to the nuanced adjustment of control net weights.
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
-- **`weight_02`**
-    - Represents the third weight in the sequence, enabling further customization of the weight distribution.
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
-- **`weight_03`**
-    - Indicates the fourth weight in the sequence, allowing for detailed control over the weight application.
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
-- **`weight_04`**
-    - Specifies the fifth weight in the sequence, contributing to the overall weight configuration.
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
-- **`weight_05`**
-    - Defines the sixth weight in the sequence, enhancing the flexibility of weight adjustment.
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
-- **`weight_06`**
-    - Represents the seventh weight in the sequence, enabling precise control over the weight distribution.
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
-- **`weight_07`**
-    - Indicates the eighth weight in the sequence, allowing for detailed customization of the weight application.
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
-- **`weight_08`**
-    - Specifies the ninth weight in the sequence, contributing to the overall weight configuration.
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
-- **`weight_09`**
-    - Defines the tenth weight in the sequence, enhancing the flexibility of weight adjustment.
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
-- **`weight_10`**
-    - Represents the eleventh weight in the sequence, enabling precise control over the weight distribution.
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
-- **`weight_11`**
-    - Indicates the twelfth weight in the sequence, allowing for detailed customization of the weight application.
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
-- **`weight_12`**
-    - Specifies the thirteenth weight in the sequence, contributing to the overall weight configuration.
+- **`weight_i`**
+    - Specifies the value for an individual weight in the control net, contributing to the overall weight configuration. The index 'i' ranges from 0 to 3, indicating each specific weight's position.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`flip_weights`**
-    - A boolean parameter that determines whether the weights should be flipped, offering an additional layer of control.
+    - A boolean flag that, when set to true, flips the weights, altering their application and effect on the control net.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`CN_WEIGHTS`**
     - Comfy dtype: `CONTROL_NET_WEIGHTS`
-    - Represents the computed control net weights after applying the mask and base multipliers.
+    - Represents the customized control net weights, adjusted according to the specified individual weight values and flip flag.
     - Python dtype: `ControlWeights`
 - **`TK_SHORTCUT`**
     - Comfy dtype: `TIMESTEP_KEYFRAME`
-    - A timestep keyframe object that encapsulates the control weights for use in further processing or visualization.
-    - Python dtype: `TimestepKeyframe`
+    - A timestep keyframe group that incorporates the customized control weights, facilitating their application in temporal control scenarios.
+    - Python dtype: `TimestepKeyframeGroup`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 

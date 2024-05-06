@@ -1,3 +1,8 @@
+---
+tags:
+- Text
+---
+
 # 🔤 CR Text Length
 ## Documentation
 - Class name: `CR Text Length`

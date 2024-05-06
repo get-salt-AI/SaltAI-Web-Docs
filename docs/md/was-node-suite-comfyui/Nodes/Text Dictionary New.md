@@ -1,57 +1,30 @@
+---
+tags:
+- Dictionary
+---
+
 # Text Dictionary New
 ## Documentation
 - Class name: `Text Dictionary New`
 - Category: `WAS Suite/Text`
 - Output node: `False`
 
-This node is designed to create a new dictionary from a set of key-value pairs provided as inputs. It allows for the dynamic construction of dictionaries within a workflow, enabling the storage and manipulation of data in a structured format.
+This node is designed to create a new dictionary from a given string representation of a dictionary. It focuses on converting textual representations of dictionaries into actual dictionary objects, enabling further manipulation or usage within the flow.
 ## Input types
 ### Required
-- **`key_1`**
-    - The first key to be included in the new dictionary. This input, along with its corresponding value, forms the first key-value pair in the constructed dictionary.
+- **`key_i`**
+    - unknown
     - Comfy dtype: `STRING`
-    - Python dtype: `str`
-- **`value_1`**
-    - The value associated with the first key in the new dictionary. This input is crucial for establishing the initial content of the dictionary.
+    - Python dtype: `unknown`
+- **`value_i`**
+    - unknown
     - Comfy dtype: `STRING`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 ### Optional
-- **`key_2`**
-    - An optional second key for the dictionary. If provided, it adds another key-value pair to the dictionary, expanding its content.
-    - Comfy dtype: `STRING`
-    - Python dtype: `str`
-- **`value_2`**
-    - The value associated with the optional second key, contributing to the dictionary's expanded content.
-    - Comfy dtype: `STRING`
-    - Python dtype: `str`
-- **`key_3`**
-    - An optional third key for the dictionary, further extending its structure with additional data.
-    - Comfy dtype: `STRING`
-    - Python dtype: `str`
-- **`value_3`**
-    - The value for the optional third key, enhancing the dictionary with more detailed information.
-    - Comfy dtype: `STRING`
-    - Python dtype: `str`
-- **`key_4`**
-    - An optional fourth key, allowing for even more data to be structured within the dictionary.
-    - Comfy dtype: `STRING`
-    - Python dtype: `str`
-- **`value_4`**
-    - The corresponding value for the fourth key, adding further detail to the dictionary's data.
-    - Comfy dtype: `STRING`
-    - Python dtype: `str`
-- **`key_5`**
-    - The fifth optional key, providing the possibility to include more comprehensive data in the dictionary.
-    - Comfy dtype: `STRING`
-    - Python dtype: `str`
-- **`value_5`**
-    - The value associated with the fifth key, completing the dictionary's structure with a wide range of information.
-    - Comfy dtype: `STRING`
-    - Python dtype: `str`
 ## Output types
 - **`dict`**
     - Comfy dtype: `DICT`
-    - The newly constructed dictionary, formed from the provided key-value pairs, enabling structured data storage and manipulation.
+    - The output is a dictionary object created from the input string representation. This allows for the dynamic creation and utilization of dictionaries within the workflow.
     - Python dtype: `dict`
 ## Usage tips
 - Infra type: `CPU`

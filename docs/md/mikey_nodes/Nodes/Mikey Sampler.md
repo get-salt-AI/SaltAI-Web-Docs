@@ -1,3 +1,8 @@
+---
+tags:
+- Sampling
+---
+
 # Mikey Sampler
 ## Documentation
 - Class name: `Mikey Sampler`

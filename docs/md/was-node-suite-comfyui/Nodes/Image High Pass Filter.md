@@ -1,3 +1,9 @@
+---
+tags:
+- ImageFilter
+- VisualEffects
+---
+
 # Image High Pass Filter
 ## Documentation
 - Class name: `Image High Pass Filter`

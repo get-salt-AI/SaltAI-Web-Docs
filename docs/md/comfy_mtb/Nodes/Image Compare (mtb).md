@@ -1,28 +1,33 @@
+---
+tags:
+- Comparison
+---
+
 # Image Compare (mtb)
 ## Documentation
 - Class name: `Image Compare (mtb)`
 - Category: `mtb/image`
 - Output node: `False`
 
-This node compares two images based on a specified mode and returns a difference image, allowing for visual comparison between the two inputs.
+This node compares two images using different modes such as checkerboard, diff, or blend, and returns a difference image that highlights the variations between them.
 ## Input types
 ### Required
 - **`imageA`**
-    - The first image to be compared. It plays a crucial role in the comparison process as the base image against which the second image is compared.
+    - The first image to compare. It plays a crucial role in the comparison process as one of the two images being analyzed for differences.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`imageB`**
-    - The second image to be compared. It is compared against the first image to identify differences or similarities.
+    - The second image to compare. It is essential for the comparison process, serving as the counterpart to the first image in identifying differences.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`mode`**
-    - Specifies the method of comparison (checkerboard, diff, blend). This affects how the differences between the two images are visualized.
+    - Specifies the method of comparison (checkerboard, diff, blend) to apply, influencing how the differences between the images are visualized.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The resulting image after comparing the two input images according to the specified mode.
+    - The resulting image after comparison, highlighting differences based on the selected mode.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -31,7 +36,7 @@ This node compares two images based on a specified mode and returns a difference
 
 ## Source code
 ```python
-class ImageCompare_:
+class MTB_ImageCompare:
     """Compare two images and return a difference image"""
 
     @classmethod

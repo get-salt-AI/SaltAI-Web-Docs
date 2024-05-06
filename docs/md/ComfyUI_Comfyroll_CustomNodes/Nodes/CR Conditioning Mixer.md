@@ -1,3 +1,8 @@
+---
+tags:
+- Conditioning
+---
+
 # ⚙️ CR Conditioning Mixer
 ## Documentation
 - Class name: `CR Conditioning Mixer`

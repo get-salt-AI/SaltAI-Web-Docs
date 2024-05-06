@@ -1,3 +1,8 @@
+---
+tags:
+- List
+---
+
 # Make Image List
 ## Documentation
 - Class name: `ImpactMakeImageList`

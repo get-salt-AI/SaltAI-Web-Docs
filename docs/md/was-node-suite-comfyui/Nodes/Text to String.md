@@ -1,3 +1,9 @@
+---
+tags:
+- String
+- Text
+---
+
 # Text to String
 ## Documentation
 - Class name: `Text to String`

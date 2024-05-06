@@ -1,3 +1,8 @@
+---
+tags:
+- ModelMerge
+---
+
 # ⛏️ CR Apply Model Merge
 ## Documentation
 - Class name: `CR Apply Model Merge`

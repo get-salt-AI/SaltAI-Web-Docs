@@ -1,3 +1,9 @@
+---
+tags:
+- RandomGeneration
+- Randomization
+---
+
 # 🎲 CR Random Panel Codes
 ## Documentation
 - Class name: `CR Random Panel Codes`

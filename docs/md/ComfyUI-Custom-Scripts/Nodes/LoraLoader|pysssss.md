@@ -1,3 +1,8 @@
+---
+tags:
+- LoRA
+---
+
 # Lora Loader 🐍
 ## Documentation
 - Class name: `LoraLoader|pysssss`
@@ -43,7 +48,7 @@ This node specializes in loading and applying LoRA (Low-Rank Adaptation) adjustm
     - [ModelSamplingDiscrete](../../Comfy/Nodes/ModelSamplingDiscrete.md)
     - Reroute
     - [CLIPTextEncode](../../Comfy/Nodes/CLIPTextEncode.md)
-    - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
+    - IPAdapterApply
     - [Anything Everywhere](../../cg-use-everywhere/Nodes/Anything Everywhere.md)
 
 

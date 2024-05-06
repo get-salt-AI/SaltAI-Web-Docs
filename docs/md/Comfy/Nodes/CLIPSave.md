@@ -1,3 +1,11 @@
+---
+tags:
+- Checkpoint
+- Loader
+- ModelIO
+- ModelLoader
+---
+
 # CLIPSave
 ## Documentation
 - Class name: `CLIPSave`

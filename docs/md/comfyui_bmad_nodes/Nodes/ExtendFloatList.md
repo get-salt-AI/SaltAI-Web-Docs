@@ -1,3 +1,9 @@
+---
+tags:
+- List
+- ListExtension
+---
+
 # ExtendFloatList
 ## Documentation
 - Class name: `ExtendFloatList`

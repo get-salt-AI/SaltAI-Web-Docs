@@ -1,26 +1,33 @@
+---
+tags:
+- ImageScaling
+- ImageUpscaling
+- Upscale
+---
+
 # PixelTiledKSampleUpscalerProvider
 ## Documentation
 - Class name: `PixelTiledKSampleUpscalerProvider`
 - Category: `ImpactPack/Upscale`
 - Output node: `False`
 
-The PixelTiledKSampleUpscalerProvider node is designed to facilitate the upscaling of images through a tiled k-sample approach. It leverages a specific sampling technique to enhance image resolution in a segmented manner, ensuring detailed and high-quality upscaling.
+This node provides an interface for upscaling images using a tiled K-sample approach, integrating with external sampling tools and strategies for enhanced detail and quality in image upscaling tasks. It leverages a combination of model parameters, sampling techniques, and tiling strategies to optimize the upscaling process.
 ## Input types
 ### Required
 - **`scale_method`**
-    - Specifies the method used for scaling the image, impacting the overall upscaling process.
+    - Specifies the method used for scaling images, impacting the overall upscaling quality and technique.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`model`**
-    - The model used for upscaling, determining the quality and characteristics of the output image.
+    - Defines the model used for upscaling, determining the core algorithm and its capabilities.
     - Comfy dtype: `MODEL`
     - Python dtype: `str`
 - **`vae`**
-    - Variational Autoencoder (VAE) used in conjunction with the model to improve image quality through latent space manipulation.
+    - The variational autoencoder used in conjunction with the model to enhance image details during upscaling.
     - Comfy dtype: `VAE`
     - Python dtype: `str`
 - **`seed`**
-    - Seed for random number generation, ensuring reproducibility of the upscaling process.
+    - Seed for random number generation, ensuring reproducibility of the upscaling results.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`steps`**
@@ -28,55 +35,59 @@ The PixelTiledKSampleUpscalerProvider node is designed to facilitate the upscali
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - Configuration settings for the upscaling process, allowing customization of the upscaling behavior.
+    - Configuration setting for controlling aspects of the upscaling process, such as detail levels.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sampler_name`**
-    - Name of the sampler used in the upscaling process, influencing the texture and details of the upscaled image.
+    - The name of the sampler used, influencing the sampling strategy and outcome of the upscaling.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - Scheduler used to adjust the upscaling process dynamically, optimizing the output quality.
+    - Scheduler used to manage the upscaling process, coordinating the execution of steps and tasks.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`positive`**
-    - Positive keywords to guide the upscaling process, enhancing specific aspects of the image.
+    - Positive feedback to guide the upscaling process towards desired outcomes.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `str`
 - **`negative`**
-    - Negative keywords to counterbalance the positive ones, preventing undesired elements in the upscaled image.
+    - Negative feedback to steer the upscaling away from undesired results.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `str`
 - **`denoise`**
-    - Denoising level applied to the upscaled image, improving clarity and reducing noise.
+    - Indicates whether denoising is applied during upscaling, improving image clarity.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `bool`
 - **`tile_width`**
-    - Width of the tiles used in the upscaling process, determining the segmentation of the image.
+    - The width of the tiles used in the tiling strategy, affecting the granularity of the upscaling.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`tile_height`**
-    - Height of the tiles used in the upscaling process, determining the segmentation of the image.
+    - The height of the tiles used in the tiling strategy, impacting the detail level in specific image areas.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`tiling_strategy`**
-    - Strategy for tiling the image during the upscaling process, affecting the overall approach to image segmentation.
+    - The strategy employed for tiling during upscaling, influencing the overall approach and effectiveness.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`upscale_model_opt`**
-    - Optional upscale model options, providing additional customization for the upscaling process.
+    - Optional upscale model to enhance the upscaling process.
     - Comfy dtype: `UPSCALE_MODEL`
     - Python dtype: `str`
 - **`pk_hook_opt`**
-    - Optional post-kernel hook options, allowing for further customization after the upscaling kernel is applied.
+    - Optional post-kernel hook for additional processing or adjustments during upscaling.
     - Comfy dtype: `PK_HOOK`
+    - Python dtype: `str`
+- **`tile_cnet_opt`**
+    - Optional control network for managing tile-based upscaling strategies.
+    - Comfy dtype: `CONTROL_NET`
     - Python dtype: `str`
 ## Output types
 - **`upscaler`**
     - Comfy dtype: `UPSCALER`
-    - The upscaler object created by the node, capable of performing the tiled k-sample upscaling on images.
-    - Python dtype: `core.PixelTiledKSampleUpscaler`
+    - The result of the upscaling process, providing enhanced image quality and detail.
+    - Python dtype: `object`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -108,6 +119,7 @@ class PixelTiledKSampleUpscalerProvider:
                 "optional": {
                         "upscale_model_opt": ("UPSCALE_MODEL", ),
                         "pk_hook_opt": ("PK_HOOK", ),
+                        "tile_cnet_opt": ("CONTROL_NET", ),
                     }
                 }
 
@@ -116,9 +128,9 @@ class PixelTiledKSampleUpscalerProvider:
 
     CATEGORY = "ImpactPack/Upscale"
 
-    def doit(self, scale_method, model, vae, seed, steps, cfg, sampler_name, scheduler, positive, negative, denoise, tile_width, tile_height, tiling_strategy, upscale_model_opt=None, pk_hook_opt=None):
+    def doit(self, scale_method, model, vae, seed, steps, cfg, sampler_name, scheduler, positive, negative, denoise, tile_width, tile_height, tiling_strategy, upscale_model_opt=None, pk_hook_opt=None, tile_cnet_opt=None):
         if "BNK_TiledKSampler" in nodes.NODE_CLASS_MAPPINGS:
-            upscaler = core.PixelTiledKSampleUpscaler(scale_method, model, vae, seed, steps, cfg, sampler_name, scheduler, positive, negative, denoise, tile_width, tile_height, tiling_strategy, upscale_model_opt, pk_hook_opt, tile_size=max(tile_width, tile_height))
+            upscaler = core.PixelTiledKSampleUpscaler(scale_method, model, vae, seed, steps, cfg, sampler_name, scheduler, positive, negative, denoise, tile_width, tile_height, tiling_strategy, upscale_model_opt, pk_hook_opt, tile_cnet_opt, tile_size=max(tile_width, tile_height))
             return (upscaler, )
         else:
             print("[ERROR] PixelTiledKSampleUpscalerProvider: ComfyUI_TiledKSampler custom node isn't installed. You must install BlenderNeko/ComfyUI_TiledKSampler extension to use this node.")

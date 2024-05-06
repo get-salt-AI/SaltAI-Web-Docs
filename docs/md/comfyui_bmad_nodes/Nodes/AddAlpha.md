@@ -1,3 +1,9 @@
+---
+tags:
+- AlphaChannel
+- Image
+---
+
 # AddAlpha
 ## Documentation
 - Class name: `AddAlpha`

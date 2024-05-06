@@ -1,3 +1,8 @@
+---
+tags:
+- Sampling
+---
+
 # MaskGrid N KSamplers Advanced
 ## Documentation
 - Class name: `MaskGrid N KSamplers Advanced`

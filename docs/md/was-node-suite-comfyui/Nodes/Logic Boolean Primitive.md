@@ -1,3 +1,9 @@
+---
+tags:
+- BooleanLogic
+- ConditionalSelection
+---
+
 # Logic Boolean Primitive
 ## Documentation
 - Class name: `Logic Boolean Primitive`

@@ -1,28 +1,35 @@
+---
+tags:
+- Batch
+- Image
+- ImageBatch
+---
+
 # 🔧 Image From Batch
 ## Documentation
 - Class name: `ImageFromBatch+`
 - Category: `essentials`
 - Output node: `False`
 
-This node is designed to extract a specific segment from a batch of images based on the provided start index and length. It allows for flexible manipulation of image batches by enabling selective retrieval of images, which can be particularly useful in processing or analyzing subsets of image collections.
+The `ImageFromBatch` node extracts a specific range of images from a batch based on the provided start index and length, allowing for selective processing or analysis of batched image data.
 ## Input types
 ### Required
 - **`image`**
-    - The batch of images from which a segment is to be extracted. This parameter is crucial for specifying the source of the images.
+    - The batched image input from which a subset will be extracted. This parameter is crucial for specifying the source of the images to be processed.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`start`**
-    - The starting index from which the image segment extraction should begin. It determines the initial position in the batch from which images will be selected.
+    - Specifies the starting index within the batch from which images will be extracted. This parameter determines the beginning of the subset to be processed.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`length`**
-    - The number of images to extract from the specified starting index. This parameter defines the size of the segment to be retrieved from the batch.
+    - Defines the number of images to extract from the specified starting index. This parameter controls the size of the subset to be processed.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The extracted segment of images from the specified batch. This output is a subset of the original batch, determined by the 'start' and 'length' parameters.
+    - The extracted subset of images from the original batch, based on the specified start index and length.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -41,7 +48,7 @@ class ImageFromBatch:
                 "length": ("INT", { "default": -1, "min": -1, "step": 1, }),
             }
         }
-    
+
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "execute"
     CATEGORY = "essentials"

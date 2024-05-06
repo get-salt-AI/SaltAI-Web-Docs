@@ -1,3 +1,11 @@
+---
+tags:
+- ImageMask
+- ImageMaskConversion
+- Mask
+- MaskGeneration
+---
+
 # Convert Image to Mask
 ## Documentation
 - Class name: `ImageToMask`
@@ -25,7 +33,7 @@ The ImageToMask node is designed to convert an image into a mask based on a spec
 - Common nodes:
     - [MaskComposite](../../Comfy/Nodes/MaskComposite.md)
     - [GrowMask](../../Comfy/Nodes/GrowMask.md)
-    - [IPAdapterApplyFaceID](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApplyFaceID.md)
+    - IPAdapterApplyFaceID
 
 
 

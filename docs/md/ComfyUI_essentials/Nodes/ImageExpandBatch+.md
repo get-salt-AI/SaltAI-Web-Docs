@@ -1,28 +1,35 @@
+---
+tags:
+- Batch
+- Image
+- ImageBatch
+---
+
 # 🔧 Image Expand Batch
 ## Documentation
 - Class name: `ImageExpandBatch+`
 - Category: `essentials`
 - Output node: `False`
 
-This node is designed to expand a batch of images by applying transformations and compositing techniques. It allows for the manipulation of image batches to adjust their size, composition, or both, using masks and other images as inputs to create a new, modified batch of images.
+The ImageExpandBatch+ node is designed to expand the batch size of images, allowing for the inclusion of additional images into an existing batch. This functionality is crucial for operations that require batch processing of images, such as batch image transformations, augmentations, or processing in machine learning models.
 ## Input types
 ### Required
 - **`image`**
-    - The source image to be used as the base for expansion or transformation within the batch.
+    - The 'image' parameter represents the input image or images to be expanded into a larger batch. This parameter is crucial for defining the set of images that will undergo batch expansion.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`size`**
-    - Specifies the target size for the image expansion, determining the final dimensions of the output images.
+    - The 'size' parameter specifies the desired size of the expanded batch, determining how many times the input images are replicated or how additional images are included.
     - Comfy dtype: `INT`
-    - Python dtype: `int or tuple`
+    - Python dtype: `int`
 - **`method`**
-    - Defines the method of expansion or transformation to be applied to the images, such as resizing, cropping, or applying filters.
+    - The 'method' parameter defines the technique used for expanding the batch, such as replication of existing images or inclusion of new images, affecting the approach to batch expansion.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is a modified batch of images that have been expanded or transformed based on the input images and mask.
+    - The output 'image' parameter represents the expanded batch of images, ready for further processing or analysis.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -41,7 +48,7 @@ class ImageExpandBatch:
                 "method": (["expand", "repeat all", "repeat first", "repeat last"],)
             }
         }
-    
+
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "execute"
     CATEGORY = "essentials"

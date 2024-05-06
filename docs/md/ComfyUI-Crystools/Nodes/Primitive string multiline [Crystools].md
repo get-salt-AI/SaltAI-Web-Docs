@@ -1,3 +1,10 @@
+---
+tags:
+- List
+- MultilineText
+- Text
+---
+
 # 🪛 Primitive string multiline
 ## Documentation
 - Class name: `Primitive string multiline [Crystools]`

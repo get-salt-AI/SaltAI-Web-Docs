@@ -1,3 +1,8 @@
+---
+tags:
+- Text
+---
+
 # 📉 CR XY List
 ## Documentation
 - Class name: `CR XY List`

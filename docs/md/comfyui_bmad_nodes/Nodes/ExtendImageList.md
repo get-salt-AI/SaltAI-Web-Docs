@@ -1,3 +1,9 @@
+---
+tags:
+- List
+- ListExtension
+---
+
 # ExtendImageList
 ## Documentation
 - Class name: `ExtendImageList`

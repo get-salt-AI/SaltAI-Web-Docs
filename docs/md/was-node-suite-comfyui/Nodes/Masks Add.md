@@ -1,3 +1,8 @@
+---
+tags:
+- Mask
+---
+
 # Masks Add
 ## Documentation
 - Class name: `Masks Add`

@@ -1,3 +1,10 @@
+---
+tags:
+- Crop
+- Image
+- ImageTransformation
+---
+
 # Batch Crop Resize Inplace (Mikey)
 ## Documentation
 - Class name: `Batch Crop Resize Inplace`

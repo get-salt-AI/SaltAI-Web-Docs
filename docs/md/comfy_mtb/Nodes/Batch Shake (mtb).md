@@ -1,60 +1,66 @@
+---
+tags:
+- Batch
+- Image
+---
+
 # Batch Shake (mtb)
 ## Documentation
 - Class name: `Batch Shake (mtb)`
 - Category: `mtb/batch`
 - Output node: `False`
 
-The BatchShake node applies a dynamic shaking effect to a batch of images, simulating motion or instability through adjustable parameters such as position, rotation, and frequency. This node is designed to enhance visual content by introducing a sense of movement or vibration, making it suitable for creating more engaging and lively images.
+The Batch Shake node applies a dynamic shaking effect to a batch of images, utilizing parameters such as position, rotation, and frequency to simulate motion or instability effects.
 ## Input types
 ### Required
 - **`images`**
-    - The collection of images to which the shaking effect will be applied. This parameter is crucial as it defines the base content that will be transformed.
+    - The batch of images to be processed. This input is crucial for defining the visual content that will undergo the shaking effect.
     - Comfy dtype: `IMAGE`
     - Python dtype: `List[Image]`
 - **`position_amount_x`**
-    - Determines the magnitude of horizontal shaking. A higher value increases the intensity of the shake effect horizontally.
+    - Determines the horizontal intensity of the shaking effect, affecting how far images can move along the x-axis.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`position_amount_y`**
-    - Determines the magnitude of vertical shaking. A higher value increases the intensity of the shake effect vertically.
+    - Determines the vertical intensity of the shaking effect, affecting how far images can move along the y-axis.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`rotation_amount`**
-    - Controls the degree of rotation applied to the images. Higher values result in more pronounced rotational movement.
+    - Controls the amount of rotation applied to the images, simulating a twisting motion.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`frequency`**
-    - Defines the frequency of the shake effect. Higher frequencies result in a more rapid shaking motion.
+    - Defines the frequency of the shaking effect, influencing the speed of motion changes.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`frequency_divider`**
-    - Modulates the base frequency, allowing for finer control over the shake effect's pacing.
+    - Modifies the base frequency, allowing for finer control over the shaking effect's speed.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`octaves`**
-    - Adjusts the complexity of the shake pattern. Higher values produce more intricate shaking motions.
+    - Adjusts the complexity of the shaking pattern, adding layers of motion for a more nuanced effect.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`seed`**
-    - Sets the random seed for generating the shake effect, ensuring reproducibility of the results.
+    - Sets the initial seed for random number generation, ensuring reproducible shaking patterns.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The transformed image with the applied shaking effect.
+    - The processed image after applying the shaking effect.
     - Python dtype: `Image`
 - **`pos_x`**
     - Comfy dtype: `FLOATS`
-    - The horizontal translation values used for the shaking effect.
+    - The horizontal translation values applied to each image in the batch.
     - Python dtype: `List[float]`
 - **`pos_y`**
     - Comfy dtype: `FLOATS`
-    - The vertical translation values used for the shaking effect.
+    - The vertical translation values applied to each image in the batch.
     - Python dtype: `List[float]`
 - **`rot`**
     - Comfy dtype: `FLOATS`
-    - The rotation values applied to each image in the batch for the shaking effect.
+    - The rotation values applied to each image in the batch, reflecting the degree of twist.
     - Python dtype: `List[float]`
 ## Usage tips
 - Infra type: `GPU`
@@ -63,7 +69,7 @@ The BatchShake node applies a dynamic shaking effect to a batch of images, simul
 
 ## Source code
 ```python
-class BatchShake:
+class MTB_BatchShake:
     """Applies a shaking effect to batches of images."""
 
     @classmethod
@@ -105,10 +111,12 @@ class BatchShake:
             interpolant: The interpolation function, defaults to
                 t*t*t*(t*(t*6 - 15) + 10).
 
-        Returns:
+        Returns
+        -------
             A numpy array of shape shape with the generated noise.
 
-        Raises:
+        Raises
+        ------
             ValueError: If shape is not a multiple of res.
         """
         interpolant = interpolant or DEFAULT_INTERPOLANT
@@ -171,11 +179,13 @@ class BatchShake:
             interpolant: The, interpolation function, defaults to
                 t*t*t*(t*(t*6 - 15) + 10).
 
-        Returns:
+        Returns
+        -------
             A numpy array of fractal noise and of shape shape generated by
             combining several octaves of perlin noise.
 
-        Raises:
+        Raises
+        ------
             ValueError: If shape is not a multiple of
                 (lacunarity**(octaves-1)*res).
         """
@@ -264,7 +274,7 @@ class BatchShake:
         # rotations = torch.tensor(rotations, dtype=torch.float32)
 
         # Create an instance of Batch2dTransform
-        transform = Batch2dTransform()
+        transform = MTB_Batch2dTransform()
 
         log.debug(
             f"Applying shaking with parameters: \nposition {position_amount_x}, {position_amount_y}\nrotation {rotation_amount}\nfrequency {frequency}\noctaves {octaves}"

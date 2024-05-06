@@ -1,20 +1,26 @@
+---
+tags:
+- String
+- Text
+---
+
 # Any To String (mtb)
 ## Documentation
 - Class name: `Any To String (mtb)`
 - Category: `mtb/converters`
 - Output node: `False`
 
-This node is designed to convert various types of input into their string representations, making it versatile for handling different data formats.
+This node is designed to convert various types of inputs into their string representations, aiming to provide a versatile solution for handling and displaying different data types as strings.
 ## Input types
 ### Required
 - **`input`**
-    - The input parameter accepts any data type, aiming to convert it into a string representation. Its versatility allows for a wide range of data types to be processed, making the node highly adaptable.
+    - Accepts a wide range of input types, including strings, tensors, images, numpy arrays, and dictionaries, converting them into a string format that describes their characteristics.
     - Comfy dtype: `*`
-    - Python dtype: `Union[str, torch.Tensor, PIL.Image.Image, np.ndarray, dict, Any]`
+    - Python dtype: `Union[str, torch.Tensor, PIL.Image.Image, np.ndarray, dict]`
 ## Output types
 - **`string`**
     - Comfy dtype: `STRING`
-    - The output is a string representation of the input, providing a textual description of the input's type and characteristics.
+    - Outputs a string representation of the input, detailing its type and key characteristics.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -23,8 +29,8 @@ This node is designed to convert various types of input into their string repres
 
 ## Source code
 ```python
-class AnyToString:
-    """Tries to take any input and convert it to a string"""
+class MTB_AnyToString:
+    """Tries to take any input and convert it to a string."""
 
     @classmethod
     def INPUT_TYPES(cls):
@@ -44,10 +50,14 @@ class AnyToString:
         elif isinstance(input, Image.Image):
             return (f"PIL Image of size {input.size} and mode {input.mode}",)
         elif isinstance(input, np.ndarray):
-            return (f"Numpy array of shape {input.shape} and dtype {input.dtype}",)
+            return (
+                f"Numpy array of shape {input.shape} and dtype {input.dtype}",
+            )
 
         elif isinstance(input, dict):
-            return (f"Dictionary of {len(input)} items, with keys {input.keys()}",)
+            return (
+                f"Dictionary of {len(input)} items, with keys {input.keys()}",
+            )
 
         else:
             log.debug(f"Falling back to string conversion of {input}")

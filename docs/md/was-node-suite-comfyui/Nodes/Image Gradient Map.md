@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- VisualEffects
+---
+
 # Image Gradient Map
 ## Documentation
 - Class name: `Image Gradient Map`

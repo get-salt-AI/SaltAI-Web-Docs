@@ -1,33 +1,39 @@
-# Load Images [DEPRECATED] 🛂🅐🅒🅝
+---
+tags:
+- Image
+- ImageLoad
+---
+
+# 🚫Load Images [DEPRECATED] 🛂🅐🅒🅝
 ## Documentation
 - Class name: `LoadImagesFromDirectory`
 - Category: `Adv-ControlNet 🛂🅐🅒🅝/deprecated`
 - Output node: `False`
 
-This node is designed to load images from a specified directory, handling various image formats and converting them into a standardized format for further processing. It supports loading a capped number of images, handling transparency by generating masks, and ensuring images are correctly oriented based on their EXIF data.
+This node is designed to load images from a specified directory, handling various image formats and optionally applying transformations such as EXIF orientation correction and conversion to a consistent color space. It supports loading a capped number of images, and can also generate masks for images with transparency, making it suitable for tasks that require both image and mask inputs.
 ## Input types
 ### Required
 - **`directory`**
-    - Specifies the path to the directory from which images are to be loaded. It's crucial for locating the images intended for processing.
+    - The path to the directory from which images are to be loaded. This parameter is crucial as it determines the source of the images for processing.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ### Optional
 - **`image_load_cap`**
-    - Determines the maximum number of images to load from the directory. If set to 0, there is no limit on the number of images to be loaded.
+    - Limits the number of images to load from the directory, enabling control over the volume of data processed.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`start_index`**
-    - Indicates the index from which to start loading images within the directory, allowing for partial loading of images.
+    - Specifies the index of the first image to load from the sorted list of files in the directory, allowing for selective loading of images.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - A tensor containing all loaded images, concatenated along the first dimension.
+    - A batch of loaded images, preprocessed and converted into tensors.
     - Python dtype: `torch.Tensor`
 - **`mask`**
     - Comfy dtype: `MASK`
-    - A tensor of masks corresponding to the loaded images, indicating areas of transparency.
+    - A batch of masks corresponding to the loaded images, useful for segmentation tasks.
     - Python dtype: `torch.Tensor`
 - **`int`**
     - Comfy dtype: `INT`
@@ -48,8 +54,8 @@ class LoadImagesFromDirectory:
                 "directory": ("STRING", {"default": ""}),
             },
             "optional": {
-                "image_load_cap": ("INT", {"default": 0, "min": 0, "step": 1}),
-                "start_index": ("INT", {"default": 0, "min": 0, "step": 1}),
+                "image_load_cap": ("INT", {"default": 0, "min": 0, "max": BIGMAX, "step": 1}),
+                "start_index": ("INT", {"default": 0, "min": 0, "max": BIGMAX, "step": 1}),
             }
         }
     

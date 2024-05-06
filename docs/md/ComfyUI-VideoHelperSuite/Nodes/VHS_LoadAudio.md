@@ -1,3 +1,9 @@
+---
+tags:
+- Multimedia
+- VideoHelperSuite
+---
+
 # Load Audio (Path)🎥🅥🅗🅢
 ## Documentation
 - Class name: `VHS_LoadAudio`

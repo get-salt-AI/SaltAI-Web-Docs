@@ -1,3 +1,8 @@
+---
+tags:
+- Latent
+---
+
 # LoadLatent
 ## Documentation
 - Class name: `LoadLatent`

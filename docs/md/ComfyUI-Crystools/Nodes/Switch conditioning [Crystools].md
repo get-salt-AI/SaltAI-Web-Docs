@@ -1,3 +1,8 @@
+---
+tags:
+- ConditionalSelection
+---
+
 # 🪛 Switch conditioning
 ## Documentation
 - Class name: `Switch conditioning [Crystools]`

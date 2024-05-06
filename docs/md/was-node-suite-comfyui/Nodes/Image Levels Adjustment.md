@@ -1,3 +1,10 @@
+---
+tags:
+- ImageEnhancement
+- ImageTransformation
+- VisualEffects
+---
+
 # Image Levels Adjustment
 ## Documentation
 - Class name: `Image Levels Adjustment`

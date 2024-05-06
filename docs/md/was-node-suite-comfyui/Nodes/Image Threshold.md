@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageThresholding
+---
+
 # Image Threshold
 ## Documentation
 - Class name: `Image Threshold`

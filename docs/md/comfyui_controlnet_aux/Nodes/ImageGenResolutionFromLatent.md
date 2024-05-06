@@ -1,3 +1,9 @@
+---
+tags:
+- ImageResolution
+- ImageTransformation
+---
+
 # Generation Resolution From Latent
 ## Documentation
 - Class name: `ImageGenResolutionFromLatent`

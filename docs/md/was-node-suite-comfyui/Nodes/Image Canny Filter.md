@@ -1,3 +1,11 @@
+---
+tags:
+- DepthMap
+- Image
+- ImageFilter
+- ImagePreprocessing
+---
+
 # Image Canny Filter
 ## Documentation
 - Class name: `Image Canny Filter`

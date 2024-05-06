@@ -1,41 +1,44 @@
+---
+tags:
+- AnimationScheduling
+- FrameInterpolation
+- VisualEffects
+---
+
 # CAIN VFI
 ## Documentation
 - Class name: `CAIN VFI`
 - Category: `ComfyUI-Frame-Interpolation/VFI`
 - Output node: `False`
 
-The CAIN_VFI node encapsulates the functionality of the CAIN model for video frame interpolation, leveraging deep learning techniques to predict intermediate frames between two consecutive frames in a video sequence. It aims to enhance video fluidity and generate high-quality intermediate frames by understanding and processing the temporal and spatial information contained within the video frames.
+The CAIN_VFI node is designed for video frame interpolation, leveraging deep learning models to predict intermediate frames between existing ones in a video sequence. It focuses on enhancing video fluidity and frame rate by generating high-quality intermediate frames.
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - The checkpoint name specifies the pre-trained model to be used for frame interpolation, playing a crucial role in determining the quality and effectiveness of the generated frames.
+    - Specifies the checkpoint name for loading the pre-trained CAIN model, which is essential for initializing the model with learned weights for frame interpolation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`frames`**
-    - The input frames tensor contains the consecutive frames between which the intermediate frames are to be interpolated. This tensor is critical for the model to analyze and understand the motion and content present in the video sequence.
+    - The input frames to be interpolated. This tensor contains the consecutive frames between which the intermediate frames are to be generated.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`clear_cache_after_n_frames`**
-    - This parameter controls the frequency of cache clearing during frame interpolation, affecting memory management and potentially the speed of the interpolation process.
+    - Determines after how many frames the cache should be cleared to manage memory usage efficiently during the interpolation process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`multiplier`**
-    - The multiplier determines the number of intermediate frames to be generated between each pair of input frames, directly influencing the smoothness and fluidity of the output video.
+    - Defines the factor by which the frame rate is to be increased, indicating how many intermediate frames are to be generated between each pair of original frames.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`optional_interpolation_states`**
-    - Optional states for interpolation that can be used to customize or optimize the interpolation process, providing flexibility in handling different video content or requirements.
+    - Allows for the passing of optional states that can influence the interpolation process, providing flexibility in handling different interpolation scenarios.
     - Comfy dtype: `INTERPOLATION_STATES`
     - Python dtype: `InterpolationStateList`
-- **`cache_in_fp16`**
-    - This flag indicates whether the cache should be stored in half-precision floating-point format (FP16), which can reduce memory usage at the cost of potential precision loss.
-    - Comfy dtype: `BOOLEAN`
-    - Python dtype: `bool`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is a tensor containing the interpolated frames, enhancing the original video sequence with additional frames to improve smoothness and visual quality.
+    - The output tensor containing the interpolated frames, enhancing the video's fluidity by filling in the gaps between original frames.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -55,8 +58,7 @@ class CAIN_VFI:
                 "multiplier": ("INT", {"default": 2, "min": 2, "max": 1000})
             },
             "optional": {
-                "optional_interpolation_states": ("INTERPOLATION_STATES", ),
-                "cache_in_fp16": ("BOOLEAN", {"default": True})
+                "optional_interpolation_states": ("INTERPOLATION_STATES", )
             }
         }
     
@@ -71,7 +73,7 @@ class CAIN_VFI:
         clear_cache_after_n_frames: typing.SupportsInt = 1,
         multiplier: typing.SupportsInt = 2,
         optional_interpolation_states: InterpolationStateList = None,
-        cache_in_fp16: bool = True
+        **kwargs
     ):
         from .cain_arch import CAIN
         model_path = load_file_from_github_release(MODEL_TYPE, ckpt_name)
@@ -95,7 +97,7 @@ class CAIN_VFI:
         args = [interpolation_model]
         out = postprocess_frames(
             generic_frame_loop(frames, clear_cache_after_n_frames, multiplier, return_middle_frame, *args, 
-                               interpolation_states=optional_interpolation_states, use_timestep=False, dtype=torch.float16 if cache_in_fp16 else torch.float32)
+                               interpolation_states=optional_interpolation_states, use_timestep=False, dtype=torch.float32)
         )
         return (out,)
 

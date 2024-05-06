@@ -1,3 +1,8 @@
+---
+tags:
+- Image
+---
+
 # Image Load RGB If Exists
 ## Documentation
 - Class name: `JWImageLoadRGBIfExists`

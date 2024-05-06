@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageSave
+---
+
 # Image Sender
 ## Documentation
 - Class name: `ImageSender`

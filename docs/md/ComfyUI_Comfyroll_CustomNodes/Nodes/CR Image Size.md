@@ -1,3 +1,10 @@
+---
+tags:
+- AspectRatio
+- ImageSize
+- ImageTransformation
+---
+
 # CR Image Size (Legacy)
 ## Documentation
 - Class name: `CR Image Size`

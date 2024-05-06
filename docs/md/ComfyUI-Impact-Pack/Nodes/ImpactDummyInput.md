@@ -1,3 +1,9 @@
+---
+tags:
+- ConditionalSelection
+- ImpactPack
+---
+
 # ImpactDummyInput
 ## Documentation
 - Class name: `ImpactDummyInput`

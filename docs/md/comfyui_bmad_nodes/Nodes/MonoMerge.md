@@ -1,3 +1,8 @@
+---
+tags:
+- Image
+---
+
 # MonoMerge
 ## Documentation
 - Class name: `MonoMerge`

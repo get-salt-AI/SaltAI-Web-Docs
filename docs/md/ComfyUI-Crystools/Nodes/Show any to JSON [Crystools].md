@@ -1,3 +1,8 @@
+---
+tags:
+- Debugging
+---
+
 # 🪛 Show any to JSON
 ## Documentation
 - Class name: `Show any to JSON [Crystools]`

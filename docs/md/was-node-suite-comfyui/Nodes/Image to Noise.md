@@ -1,3 +1,9 @@
+---
+tags:
+- ImageNoise
+- Noise
+---
+
 # Image to Noise
 ## Documentation
 - Class name: `Image to Noise`

@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- ImagePadding
+- ImageTransformation
+---
+
 # Image Padding
 ## Documentation
 - Class name: `Image Padding`

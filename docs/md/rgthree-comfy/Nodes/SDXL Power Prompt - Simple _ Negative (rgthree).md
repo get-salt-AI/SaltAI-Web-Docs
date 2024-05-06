@@ -1,3 +1,9 @@
+---
+tags:
+- Prompt
+- PromptStyling
+---
+
 # SDXL Power Prompt - Simple / Negative (rgthree)
 ## Documentation
 - Class name: `SDXL Power Prompt - Simple _ Negative (rgthree)`

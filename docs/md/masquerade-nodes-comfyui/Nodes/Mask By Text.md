@@ -1,36 +1,46 @@
+---
+tags:
+- Mask
+- MaskGeneration
+---
+
 # Mask By Text
 ## Documentation
 - Class name: `Mask By Text`
 - Category: `Masquerade Nodes`
 - Output node: `False`
 
-This node is designed to generate masks based on textual descriptions, allowing for the creation of complex mask shapes and patterns that can be applied to images for various image processing tasks. It leverages natural language understanding to interpret the text and produce corresponding masks, facilitating a wide range of creative and functional applications in image editing and manipulation.
+This node automatically generates masks based on textual prompts, allowing for the creation of image masks that are aligned with the semantic content of the provided text. It utilizes natural language processing to interpret the prompts and generate corresponding masks, facilitating targeted image editing and manipulation.
 ## Input types
 ### Required
 - **`image`**
-    - The image to which the generated mask will be applied. This input is crucial for determining the dimensions and context of the mask in relation to the target image.
+    - The input image for which the mask will be generated, serving as the canvas for the text-based mask creation.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`prompt`**
-    - The textual description from which the mask will be generated. This description allows users to specify the shape, pattern, or concept they wish to see represented as a mask, enabling a high degree of control and creativity in the mask creation process.
+    - The positive text prompt that guides the mask generation, focusing on what should be included or highlighted in the generated mask.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`negative_prompt`**
-    - A textual description specifying what should not be included in the generated mask. This allows for more precise control over the mask generation by excluding certain elements or patterns.
+    - The negative text prompt that guides the mask generation by specifying what should be excluded from the generated mask, helping to refine the mask's focus.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`precision`**
-    - A threshold value that determines the level of detail or precision in the generated mask. Higher values result in more detailed masks, while lower values produce more generalized shapes.
+    - Specifies the precision of the mask generation, allowing for control over the mask's sensitivity to the text prompts.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`normalize`**
-    - A flag indicating whether the mask should be normalized. Normalization adjusts the mask values to a standard range, improving consistency and compatibility with further image processing operations.
+    - Determines whether the mask should be normalized, affecting the scale and distribution of the mask values.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `List[str]`
 ## Output types
-- **`image`**
+- **`thresholded_mask`**
     - Comfy dtype: `IMAGE`
-    - The generated mask based on the input textual description and additional parameters. This mask can be used for various image processing tasks, such as editing, manipulation, or as a component in more complex image processing pipelines.
+    - The mask generated based on the text prompts, thresholded to distinguish between the areas of interest and the background.
+    - Python dtype: `torch.Tensor`
+- **`raw_mask`**
+    - Comfy dtype: `IMAGE`
+    - The raw mask generated from the text prompts before any thresholding, providing a more nuanced view of the mask's response to the text.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -40,6 +50,9 @@ This node is designed to generate masks based on textual descriptions, allowing 
 ## Source code
 ```python
 class ClipSegNode:
+    """
+        Automatically calculates a mask based on the text prompt
+    """
     def __init__(self):
         pass
 
@@ -56,6 +69,7 @@ class ClipSegNode:
         }
 
     RETURN_TYPES = ("IMAGE","IMAGE",)
+    RETURN_NAMES = ("thresholded_mask", "raw_mask",)
     FUNCTION = "get_mask"
 
     CATEGORY = "Masquerade Nodes"

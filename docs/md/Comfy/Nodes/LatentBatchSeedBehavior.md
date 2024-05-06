@@ -1,3 +1,9 @@
+---
+tags:
+- Batch
+- Image
+---
+
 # LatentBatchSeedBehavior
 ## Documentation
 - Class name: `LatentBatchSeedBehavior`

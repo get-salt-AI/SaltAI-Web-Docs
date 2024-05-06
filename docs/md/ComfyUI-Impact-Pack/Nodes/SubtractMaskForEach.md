@@ -1,27 +1,32 @@
+---
+tags:
+- MaskMath
+---
+
 # Bitwise(SEGS - SEGS)
 ## Documentation
 - Class name: `SubtractMaskForEach`
 - Category: `ImpactPack/Operation`
 - Output node: `False`
 
-This node is designed to perform a subtraction operation on masks for each frame or segment within a given dataset. It iteratively processes each mask by subtracting it from a subsequent one, effectively isolating changes or movements between frames. The node aims to highlight differences by generating a series of masks that represent the unique aspects of each frame when compared to its neighbors.
+This node is designed to perform a bitwise subtraction operation on masks for each frame or segment within a given dataset. It aims to identify and isolate changes or differences between consecutive frames or segments by subtracting one mask from another, thereby facilitating the analysis of temporal or spatial variations in the data.
 ## Input types
 ### Required
 - **`base_segs`**
-    - A list of base segments. This input is crucial for the node's operation as it determines the sequence of segments to be subtracted from one another, thereby highlighting differences between consecutive frames.
+    - This parameter represents the base segments from which the mask segments will be subtracted. It serves as the reference point for the subtraction operation, highlighting areas present in these segments but not in the mask segments.
     - Comfy dtype: `SEGS`
-    - Python dtype: `List[torch.Tensor]`
+    - Python dtype: `torch.Tensor`
 - **`mask_segs`**
-    - A list of mask segments to be subtracted from the base segments. This input is essential for performing the subtraction operation, highlighting the differences between the base and mask segments.
+    - The mask segments to be subtracted from the base segments. These segments represent the changes or additional areas not present in the base segments, and their subtraction helps in isolating these differences.
     - Comfy dtype: `SEGS`
-    - Python dtype: `List[torch.Tensor]`
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`segs`**
     - Comfy dtype: `SEGS`
-    - The output is a list of segments, each representing the unique aspects of a frame by subtracting it from its subsequent frame. This series of segments can be used for further analysis or processing.
-    - Python dtype: `List[torch.Tensor]`
+    - The result of the bitwise subtraction between the base segments and mask segments, highlighting the differences or changes between them. This output is crucial for analyzing temporal or spatial variations within the dataset.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -77,7 +82,7 @@ class SubtractMaskForEach:
                     item = SEG(bseg.cropped_image, cropped_mask1, bseg.confidence, bseg.crop_region, bseg.bbox, bseg.label, None)
                     result.append(item)
                 else:
-                    result.append(base_segs)
+                    result.append(bseg)
 
         return ((base_segs[0], result),)
 

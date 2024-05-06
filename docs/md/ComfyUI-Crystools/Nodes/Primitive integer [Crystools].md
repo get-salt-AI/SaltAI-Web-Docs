@@ -1,3 +1,10 @@
+---
+tags:
+- DataConversion
+- DataTypeConversion
+- NumericConversion
+---
+
 # 🪛 Primitive integer
 ## Documentation
 - Class name: `Primitive integer [Crystools]`

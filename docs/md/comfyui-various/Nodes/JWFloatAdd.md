@@ -1,3 +1,9 @@
+---
+tags:
+- DataTypeConversion
+- MathematicalFunctions
+---
+
 # Float Add
 ## Documentation
 - Class name: `JWFloatAdd`

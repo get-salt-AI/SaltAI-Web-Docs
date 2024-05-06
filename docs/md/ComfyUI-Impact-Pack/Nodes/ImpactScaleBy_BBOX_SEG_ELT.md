@@ -1,3 +1,9 @@
+---
+tags:
+- ImpactPack
+- Segmentation
+---
+
 # ScaleBy BBOX (SEG_ELT)
 ## Documentation
 - Class name: `ImpactScaleBy_BBOX_SEG_ELT`

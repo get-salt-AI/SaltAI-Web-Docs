@@ -1,48 +1,53 @@
+---
+tags:
+- Noise
+---
+
 # Noise Layer [Replace] 🎭🅐🅓
 ## Documentation
 - Class name: `ADE_NoiseLayerReplace`
 - Category: `Animate Diff 🎭🅐🅓/noise layers`
 - Output node: `False`
 
-This node specializes in replacing specific noise layers within a given noise structure, utilizing parameters such as noise type, batch offset, and seed generation overrides. It aims to modify the noise characteristics by selectively replacing parts of the noise based on a mask, thereby enabling fine-tuned control over the noise's impact on the generation process.
+This node is designed to replace specific noise layers within an animation or image generation process, allowing for the customization of noise patterns by overlaying new noise on top of existing noise based on a mask. It facilitates the creation of varied visual textures and effects by selectively modifying the noise characteristics.
 ## Input types
 ### Required
 - **`batch_offset`**
-    - Determines the offset for batch processing, influencing how noise is applied across different batches.
+    - Determines the offset for batch processing, affecting how noise patterns are applied across different items in a batch.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`noise_type`**
-    - Specifies the type of noise to be used in the replacement process, affecting the characteristics of the generated noise.
+    - Specifies the type of noise to be used in the replacement process, influencing the visual texture and characteristics of the output.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`seed_gen_override`**
-    - Overrides the default seed generation mechanism, allowing for customized noise generation based on the provided seed.
+    - Overrides the default seed generator, allowing for custom seed generation strategies that can affect the randomness and distribution of the noise.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`seed_offset`**
-    - Adjusts the seed value used in noise generation, enabling variations in the noise pattern.
+    - Applies an additional offset to the seed value, further customizing the randomness of the noise generation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`prev_noise_layers`**
-    - The previous noise layers that will be modified by the replacement process.
+    - Specifies the previous configuration of noise layers to be modified, allowing for the integration of the new noise layer into the existing sequence.
     - Comfy dtype: `NOISE_LAYERS`
     - Python dtype: `NoiseLayerGroup`
 - **`mask_optional`**
-    - An optional tensor mask that can be used for selective noise replacement, providing additional flexibility in the modification process. Despite its name suggesting optionality, it is a required parameter for the operation of this node.
+    - Defines a mask to control where the noise is replaced, enabling selective application of new noise patterns on specific areas.
     - Comfy dtype: `MASK`
-    - Python dtype: `Tensor`
+    - Python dtype: `torch.Tensor`
 - **`seed_override`**
-    - Directly specifies a seed value to be used, bypassing the normal seed generation process.
+    - Directly specifies a seed value, overriding any automatic seed generation for precise control over the noise pattern.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`noise_layers`**
     - Comfy dtype: `NOISE_LAYERS`
-    - The updated noise layers after the replacement process, incorporating the modifications made.
+    - Returns the modified noise layer configuration, incorporating the newly replaced noise layer for subsequent processing.
     - Python dtype: `NoiseLayerGroup`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -64,7 +69,7 @@ class NoiseLayerReplaceNode:
                 "seed_override": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff, "forceInput": True}),
             }
         }
-    
+
     RETURN_TYPES = ("NOISE_LAYERS",)
     CATEGORY = "Animate Diff 🎭🅐🅓/noise layers"
     FUNCTION = "create_layers"

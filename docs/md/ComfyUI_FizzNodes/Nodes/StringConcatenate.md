@@ -1,3 +1,9 @@
+---
+tags:
+- Concatenate
+- Text
+---
+
 # String Concatenate 📅🅕🅝
 ## Documentation
 - Class name: `StringConcatenate`

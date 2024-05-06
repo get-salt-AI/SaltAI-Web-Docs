@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Metadata
+---
+
 # 🪛 Metadata extractor
 ## Documentation
 - Class name: `Metadata extractor [Crystools]`

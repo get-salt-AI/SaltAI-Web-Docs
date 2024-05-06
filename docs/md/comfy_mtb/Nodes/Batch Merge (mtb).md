@@ -1,24 +1,30 @@
+---
+tags:
+- Batch
+- Image
+---
+
 # Batch Merge (mtb)
 ## Documentation
 - Class name: `Batch Merge (mtb)`
 - Category: `mtb/batch`
 - Output node: `False`
 
-The BatchMerge node is designed to merge multiple image batches of varying frame counts into a single batch. It adjusts the frame count of each batch to match the maximum frame count found among them, using a specified filling strategy, and then merges them using a specified fusion mode.
+The MTB_BatchMerge node is designed to merge multiple image batches into a single batch, adjusting for different frame counts among the batches and applying a specified fusion method to combine images.
 ## Input types
 ### Required
 - **`fusion_mode`**
-    - Specifies the method of merging the adjusted image batches. It can be 'add', 'multiply', or 'average', affecting the final merged image's appearance based on the selected operation.
+    - Specifies the method for merging images from different batches. It affects how the final merged image is created, with options including adding, multiplying, or averaging the images.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`fill`**
-    - Determines the strategy for filling frames in batches with fewer frames than the maximum. 'head' fills from the beginning, and 'tail' fills from the end, influencing the content and appearance of the adjusted batches.
+    - Determines how to fill the frame count discrepancy in batches, either by repeating the first (head) or last (tail) frame of the batch.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The merged image batch resulting from combining the adjusted image batches according to the specified fusion mode and fill strategy.
+    - The output is a single image batch that results from merging and adjusting the input image batches according to the specified fusion mode and fill method.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -27,7 +33,7 @@ The BatchMerge node is designed to merge multiple image batches of varying frame
 
 ## Source code
 ```python
-class BatchMerge:
+class MTB_BatchMerge:
     """Merges multiple image batches with different frame counts"""
 
     @classmethod
@@ -46,7 +52,7 @@ class BatchMerge:
     FUNCTION = "merge_batches"
     CATEGORY = "mtb/batch"
 
-    def merge_batches(self, fusion_mode, fill, **kwargs):
+    def merge_batches(self, fusion_mode: str, fill: str, **kwargs):
         images = kwargs.values()
         max_frames = max(img.shape[0] for img in images)
 

@@ -1,24 +1,25 @@
+---
+tags:
+- Mask
+---
+
 # Join Mask Sequence
 ## Documentation
 - Class name: `JWMaskSequenceJoin`
 - Category: `jamesWalker55`
 - Output node: `False`
 
-This node is designed to concatenate two mask sequences along the dimension of sequence length, effectively joining them into a single, longer mask sequence. It serves to combine mask data from different sources or processing stages for further operations.
+This node is designed to join two mask sequences into a single, concatenated mask sequence. It operates by merging the input mask sequences along a specified dimension, effectively combining them into a unified sequence that can be used for further processing or analysis.
 ## Input types
 ### Required
-- **`mask_sequence_1`**
-    - The first mask sequence to be joined. It plays a crucial role in determining the starting point of the concatenated sequence.
+- **`mask_sequence_i`**
+    - unknown
     - Comfy dtype: `MASK_SEQUENCE`
-    - Python dtype: `torch.Tensor`
-- **`mask_sequence_2`**
-    - The second mask sequence to be joined. It is appended to the end of the first mask sequence, extending the overall length of the combined sequence.
-    - Comfy dtype: `MASK_SEQUENCE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `unknown`
 ## Output types
 - **`mask_sequence`**
     - Comfy dtype: `MASK_SEQUENCE`
-    - The result of concatenating the two input mask sequences, yielding a single, extended mask sequence.
+    - The resulting mask sequence obtained by concatenating the two input mask sequences. This unified sequence can be utilized for subsequent operations that require a combined view of the input masks.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`

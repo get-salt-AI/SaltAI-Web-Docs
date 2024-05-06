@@ -1,3 +1,8 @@
+---
+tags:
+- Counting
+---
+
 # Get Mask Count 🎥🅥🅗🅢
 ## Documentation
 - Class name: `VHS_GetMaskCount`

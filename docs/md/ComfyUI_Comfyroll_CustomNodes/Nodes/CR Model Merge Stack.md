@@ -1,3 +1,8 @@
+---
+tags:
+- ModelMerge
+---
+
 # ⛏️ CR Model Merge Stack
 ## Documentation
 - Class name: `CR Model Merge Stack`

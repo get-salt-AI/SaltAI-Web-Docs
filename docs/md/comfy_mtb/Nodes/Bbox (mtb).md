@@ -1,32 +1,39 @@
+---
+tags:
+- BoundingBox
+- Image
+- ImageTransformation
+---
+
 # Bbox (mtb)
 ## Documentation
 - Class name: `Bbox (mtb)`
 - Category: `mtb/crop`
 - Output node: `False`
 
-The Bbox node is designed to define and manipulate bounding boxes within images. It abstracts the concept of a rectangular area specified by its top-left corner coordinates along with its width and height, facilitating operations like cropping or analyzing specific regions of an image.
+The Bbox (mtb) node is designed to generate a bounding box (bbox) based on specified dimensions. It abstracts the process of defining a rectangular area within an image or a frame, facilitating operations like cropping or region of interest (ROI) identification.
 ## Input types
 ### Required
 - **`x`**
-    - The 'x' parameter represents the x-coordinate of the top-left corner of the bounding box. It is crucial for determining the horizontal starting point of the region of interest.
+    - Specifies the x-coordinate of the top-left corner of the bounding box, serving as a starting point for the rectangle's horizontal dimension.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`y`**
-    - The 'y' parameter signifies the y-coordinate of the top-left corner of the bounding box, essential for identifying the vertical starting point of the region of interest.
+    - Specifies the y-coordinate of the top-left corner of the bounding box, serving as a starting point for the rectangle's vertical dimension.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`width`**
-    - The 'width' parameter defines the horizontal extent of the bounding box, determining how wide the area of interest spans.
+    - Defines the width of the bounding box, determining how far it extends horizontally from the x-coordinate.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - The 'height' parameter specifies the vertical extent of the bounding box, indicating the height of the area of interest.
+    - Defines the height of the bounding box, determining how far it extends vertically from the y-coordinate.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`bbox`**
     - Comfy dtype: `BBOX`
-    - Returns a tuple representing the bounding box, encapsulating the top-left corner coordinates, width, and height of the specified region.
+    - The output is a tuple representing the bounding box, structured as (x, y, width, height), which can be used for further image processing tasks.
     - Python dtype: `Tuple[int, int, int, int]`
 ## Usage tips
 - Infra type: `CPU`
@@ -35,7 +42,7 @@ The Bbox node is designed to define and manipulate bounding boxes within images.
 
 ## Source code
 ```python
-class Bbox:
+class MTB_Bbox:
     """The bounding box (BBOX) custom type used by other nodes"""
 
     @classmethod
@@ -43,8 +50,14 @@ class Bbox:
         return {
             "required": {
                 # "bbox": ("BBOX",),
-                "x": ("INT", {"default": 0, "max": 10000000, "min": 0, "step": 1}),
-                "y": ("INT", {"default": 0, "max": 10000000, "min": 0, "step": 1}),
+                "x": (
+                    "INT",
+                    {"default": 0, "max": 10000000, "min": 0, "step": 1},
+                ),
+                "y": (
+                    "INT",
+                    {"default": 0, "max": 10000000, "min": 0, "step": 1},
+                ),
                 "width": (
                     "INT",
                     {"default": 256, "max": 10000000, "min": 0, "step": 1},
@@ -60,8 +73,7 @@ class Bbox:
     FUNCTION = "do_crop"
     CATEGORY = "mtb/crop"
 
-    def do_crop(self, x, y, width, height):  # bbox
+    def do_crop(self, x: int, y: int, width: int, height: int):  # bbox
         return ((x, y, width, height),)
-        # return bbox
 
 ```

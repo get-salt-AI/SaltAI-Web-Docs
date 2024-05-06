@@ -1,3 +1,10 @@
+---
+tags:
+- ImageScaling
+- ImageUpscaling
+- Upscale
+---
+
 # SD_4XUpscale_Conditioning
 ## Documentation
 - Class name: `SD_4XUpscale_Conditioning`

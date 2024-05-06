@@ -1,3 +1,10 @@
+---
+tags:
+- AnimationScheduling
+- Frame
+- Keyframe
+---
+
 # Latent Keyframe Batched Group 🛂🅐🅒🅝
 ## Documentation
 - Class name: `LatentKeyframeBatchedGroup`

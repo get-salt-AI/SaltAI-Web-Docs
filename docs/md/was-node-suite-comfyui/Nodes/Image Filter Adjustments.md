@@ -1,3 +1,10 @@
+---
+tags:
+- ImageEnhancement
+- ImageTransformation
+- VisualEffects
+---
+
 # Image Filter Adjustments
 ## Documentation
 - Class name: `Image Filter Adjustments`

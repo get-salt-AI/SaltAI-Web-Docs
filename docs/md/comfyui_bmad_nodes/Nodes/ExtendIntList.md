@@ -1,3 +1,9 @@
+---
+tags:
+- List
+- ListExtension
+---
+
 # ExtendIntList
 ## Documentation
 - Class name: `ExtendIntList`

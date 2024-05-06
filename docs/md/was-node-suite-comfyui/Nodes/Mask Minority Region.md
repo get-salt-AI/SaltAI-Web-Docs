@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskRegion
+---
+
 # Mask Minority Region
 ## Documentation
 - Class name: `Mask Minority Region`

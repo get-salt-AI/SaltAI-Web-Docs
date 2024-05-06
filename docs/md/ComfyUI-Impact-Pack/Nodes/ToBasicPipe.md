@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- Pipeline
+- PipelineTransformation
+---
+
 # ToBasicPipe
 ## Documentation
 - Class name: `ToBasicPipe`

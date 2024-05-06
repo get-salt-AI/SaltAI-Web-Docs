@@ -1,40 +1,45 @@
+---
+tags:
+- Mask
+---
+
 # FilterZeroMasksAndCorrespondingImages
 ## Documentation
 - Class name: `FilterZeroMasksAndCorrespondingImages`
 - Category: `KJNodes/masking`
 - Output node: `False`
 
-This node is designed to filter out all zero-value masks from a given set of masks and, if provided, filter out the corresponding images based on the indexes of the zero-value masks. It ensures that the output contains only masks with non-zero values and their corresponding images, maintaining data integrity and relevance for further processing.
+This node is designed to filter out all zero-value masks from a batch of masks and, optionally, filter out corresponding images based on the presence of non-zero masks. It aims to streamline the preprocessing of image and mask data by ensuring that only relevant, non-empty masks and their associated images are passed forward for further processing.
 ## Input types
 ### Required
 - **`masks`**
-    - The 'masks' parameter represents the collection of masks to be filtered. Masks with all zero values are removed, ensuring that only masks with non-zero values are processed, which is crucial for maintaining data relevance and integrity in image processing tasks.
+    - A list of masks to be filtered, removing those that are entirely zero-valued. This parameter is essential for identifying relevant data for further processing.
     - Comfy dtype: `MASK`
     - Python dtype: `List[torch.Tensor]`
 ### Optional
 - **`original_images`**
-    - The 'original_images' parameter is optional and represents the collection of images corresponding to the masks. If provided, images corresponding to zero-value masks are filtered out, maintaining alignment between the filtered masks and images.
+    - An optional list of images corresponding to the masks. If provided, images associated with non-zero masks are retained, aligning image data with filtered mask data.
     - Comfy dtype: `IMAGE`
     - Python dtype: `Optional[List[torch.Tensor]]`
 ## Output types
 - **`non_zero_masks_out`**
     - Comfy dtype: `MASK`
-    - The filtered non-zero masks, ensuring that only masks with non-zero values are processed for further steps.
+    - The filtered list of non-zero masks.
     - Python dtype: `torch.Tensor`
 - **`non_zero_mask_images_out`**
     - Comfy dtype: `IMAGE`
-    - The corresponding images for the non-zero masks, if original images were provided.
+    - The list of images corresponding to the non-zero masks, if original images were provided.
     - Python dtype: `Optional[torch.Tensor]`
 - **`zero_mask_images_out`**
     - Comfy dtype: `IMAGE`
-    - The images corresponding to zero-value masks, useful for analysis or further processing.
+    - The list of images corresponding to the zero masks, if original images were provided.
     - Python dtype: `Optional[torch.Tensor]`
 - **`zero_mask_images_out_indexes`**
     - Comfy dtype: `INDEXES`
-    - The indexes of the zero-value masks, useful for tracking and analysis purposes.
+    - The indexes of images corresponding to the zero masks, useful for tracking which images were filtered out.
     - Python dtype: `Optional[List[int]]`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -53,29 +58,18 @@ class FilterZeroMasksAndCorrespondingImages:
             },
         }
 
-    RETURN_TYPES = (
-        "MASK",
-        "IMAGE",
-        "IMAGE",
-        "INDEXES"
-    )
-    RETURN_NAMES = (
-        "non_zero_masks_out",
-        "non_zero_mask_images_out",
-        "zero_mask_images_out",
-        "zero_mask_images_out_indexes"
-    )
+    RETURN_TYPES = ("MASK", "IMAGE", "IMAGE", "INDEXES",)
+    RETURN_NAMES = ("non_zero_masks_out", "non_zero_mask_images_out", "zero_mask_images_out", "zero_mask_images_out_indexes",)
     FUNCTION = "filter"
     CATEGORY = "KJNodes/masking"
+    DESCRIPTION = """
+Filter out all the empty (i.e. all zero) mask in masks  
+Also filter out all the corresponding images in original_images by indexes if provide  
+  
+original_images (optional): If provided, need have same length as masks.
+"""
     
     def filter(self, masks, original_images=None):
-        """
-        Filter out all the empty (i.e. all zero) mask in masks
-        Also filter out all the corresponding images in original_images by indexes if provide
-
-        Args:
-            original_images (optional): If provide, it need have same length as masks.
-        """
         non_zero_masks = []
         non_zero_mask_images = []
         zero_mask_images = []

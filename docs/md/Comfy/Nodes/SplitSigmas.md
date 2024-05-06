@@ -1,3 +1,8 @@
+---
+tags:
+- SigmaScheduling
+---
+
 # SplitSigmas
 ## Documentation
 - Class name: `SplitSigmas`

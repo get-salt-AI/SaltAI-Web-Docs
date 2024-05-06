@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageComposite
+---
+
 # Image Paste Crop
 ## Documentation
 - Class name: `Image Paste Crop`

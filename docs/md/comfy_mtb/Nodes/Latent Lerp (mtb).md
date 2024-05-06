@@ -1,28 +1,33 @@
+---
+tags:
+- Latent
+---
+
 # Latent Lerp (mtb)
 ## Documentation
 - Class name: `Latent Lerp (mtb)`
 - Category: `mtb/latent`
 - Output node: `False`
 
-The LatentLerp node performs linear interpolation between two latent vectors, blending them together based on a specified ratio. This operation is useful for generating intermediate representations between two given states in a latent space.
+Performs linear interpolation between two latent vectors, blending them based on a specified ratio to create a new latent vector.
 ## Input types
 ### Required
 - **`A`**
-    - The first latent vector to be interpolated. It serves as the starting point for the linear interpolation.
+    - The first latent vector to be interpolated.
     - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 - **`B`**
-    - The second latent vector to be interpolated. It serves as the endpoint for the linear interpolation.
+    - The second latent vector to be interpolated.
     - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 - **`t`**
-    - The interpolation ratio, determining the blend between the first and second latent vectors. A value of 0 corresponds to the first vector, while 1 corresponds to the second.
+    - The interpolation ratio, determining the blend between the two latent vectors.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - The interpolated latent vector, representing a blend between the input latent vectors based on the specified ratio.
+    - The resulting latent vector after interpolation.
     - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
 ## Usage tips
 - Infra type: `GPU`
@@ -31,7 +36,7 @@ The LatentLerp node performs linear interpolation between two latent vectors, bl
 
 ## Source code
 ```python
-class LatentLerp:
+class MTB_LatentLerp:
     """Linear interpolation (blend) between two latent vectors"""
 
     @classmethod
@@ -40,7 +45,10 @@ class LatentLerp:
             "required": {
                 "A": ("LATENT",),
                 "B": ("LATENT",),
-                "t": ("FLOAT", {"default": 0.5, "min": 0.0, "max": 1.0, "step": 0.01}),
+                "t": (
+                    "FLOAT",
+                    {"default": 0.5, "min": 0.0, "max": 1.0, "step": 0.01},
+                ),
             }
         }
 

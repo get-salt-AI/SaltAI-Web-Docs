@@ -1,3 +1,9 @@
+---
+tags:
+- ImpactPack
+- Segmentation
+---
+
 # SEGS Classify
 ## Documentation
 - Class name: `ImpactSEGSClassify`

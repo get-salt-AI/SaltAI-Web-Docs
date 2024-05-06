@@ -1,3 +1,9 @@
+---
+tags:
+- Concatenate
+- Text
+---
+
 # Text Concat (Mikey)
 ## Documentation
 - Class name: `TextConcat`

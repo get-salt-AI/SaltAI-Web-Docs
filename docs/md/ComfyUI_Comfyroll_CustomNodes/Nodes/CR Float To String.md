@@ -1,3 +1,10 @@
+---
+tags:
+- DataConversion
+- DataTypeConversion
+- NumericConversion
+---
+
 # 🔧 CR Float To String
 ## Documentation
 - Class name: `CR Float To String`

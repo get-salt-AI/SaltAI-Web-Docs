@@ -1,3 +1,9 @@
+---
+tags:
+- DataTypeConversion
+- Math
+---
+
 # Eval Floats (Mikey)
 ## Documentation
 - Class name: `EvalFloats`

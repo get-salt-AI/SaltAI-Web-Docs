@@ -1,21 +1,27 @@
+---
+tags:
+- AnimateDiff
+- Animation
+---
+
 # AnimateDiff Unload 🎭🅐🅓
 ## Documentation
 - Class name: `ADE_AnimateDiffUnload`
 - Category: `Animate Diff 🎭🅐🅓/extras`
 - Output node: `False`
 
-The ADE_AnimateDiffUnload node is designed to revert any modifications made to the motion modules of a model, effectively restoring it to its original, unaltered state. This process involves unloading or ejecting specific parameters from the model, ensuring that it can be used in its vanilla form without the influence of previously applied AnimateDiff settings.
+This node is designed to unload or release resources associated with the AnimateDiff model from memory, ensuring efficient resource management and freeing up memory for subsequent tasks.
 ## Input types
 ### Required
 - **`model`**
-    - The 'model' parameter represents the model to be restored to its original state. It is crucial for specifying the target model from which the AnimateDiff modifications will be unloaded, ensuring the model can be returned to its vanilla configuration.
+    - Specifies the AnimateDiff model to be unloaded, allowing for the release of its resources from memory.
     - Comfy dtype: `MODEL`
-    - Python dtype: `ModelPatcher`
+    - Python dtype: `AnimateDiffModel`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The output is a clone of the input model, but with AnimateDiff modifications unloaded, effectively restoring the model to its original, unmodified state.
-    - Python dtype: `ModelPatcher`
+    - Confirms the successful unloading of the specified AnimateDiff model, ensuring its resources are freed.
+    - Python dtype: `NoneType`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -25,7 +31,7 @@ The ADE_AnimateDiffUnload node is designed to revert any modifications made to t
 ```python
 class AnimateDiffUnload:
     def __init__(self) -> None:
-        self.change = IsChangedHelper()
+        pass
 
     @classmethod
     def INPUT_TYPES(s):

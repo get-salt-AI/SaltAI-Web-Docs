@@ -1,3 +1,8 @@
+---
+tags:
+- ImageTransformation
+---
+
 # RemapPinch
 ## Documentation
 - Class name: `RemapPinch`

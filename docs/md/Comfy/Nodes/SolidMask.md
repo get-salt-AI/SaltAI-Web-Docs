@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskGeneration
+---
+
 # SolidMask
 ## Documentation
 - Class name: `SolidMask`

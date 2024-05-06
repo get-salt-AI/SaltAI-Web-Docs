@@ -1,3 +1,11 @@
+---
+tags:
+- AnimationScheduling
+- FrameInterpolation
+- Interpolation
+- VisualEffects
+---
+
 # Lerp 📅🅕🅝
 ## Documentation
 - Class name: `Lerp`

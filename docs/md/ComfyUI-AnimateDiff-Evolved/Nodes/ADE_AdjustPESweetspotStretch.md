@@ -1,34 +1,41 @@
+---
+tags:
+- AnimateDiff
+- Animation
+- ModelTuning
+---
+
 # Adjust PE [Sweetspot Stretch] 🎭🅐🅓
 ## Documentation
 - Class name: `ADE_AdjustPESweetspotStretch`
 - Category: `Animate Diff 🎭🅐🅓/ad settings/pe adjust`
 - Output node: `False`
 
-This node is designed to adjust the positional encoding (PE) sweetspot in the context of animating differences, allowing for the modification of the initial sweetspot and the introduction of a new sweetspot value. It facilitates the fine-tuning of animation parameters to achieve desired effects.
+This node is designed to adjust the position encoding (PE) sweetspot stretch in the AnimateDiff framework, allowing for dynamic modification of the PE stretch based on input parameters. It facilitates the fine-tuning of animation effects by modifying how the position encoding adapts over the course of an animation.
 ## Input types
 ### Required
 - **`sweetspot`**
-    - Specifies the original sweetspot value for positional encoding, serving as a baseline for adjustments.
+    - Defines the initial position encoding length, serving as a baseline for adjustments.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`new_sweetspot`**
-    - Defines the new sweetspot value to which the positional encoding should be adjusted, enabling the customization of animation dynamics.
+    - Specifies the target position encoding length to adjust towards, enabling the stretch or compression of the encoding.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`print_adjustment`**
-    - A boolean flag that, when set to True, enables the printing of adjustment details for debugging or informational purposes.
+    - A flag to control the logging of adjustment details, aiding in debugging and fine-tuning.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`prev_pe_adjust`**
-    - An optional parameter that allows for the incorporation of previous positional encoding adjustments, facilitating cumulative adjustments.
+    - Allows for the incorporation of previous position encoding adjustments, enabling cumulative modifications.
     - Comfy dtype: `PE_ADJUST`
-    - Python dtype: `AdjustPEGroup`
+    - Python dtype: `custom.AdjustGroup`
 ## Output types
 - **`pe_adjust`**
     - Comfy dtype: `PE_ADJUST`
-    - Returns the updated positional encoding adjustment group, encapsulating the applied sweetspot adjustments.
-    - Python dtype: `AdjustPEGroup`
+    - Returns the updated position encoding adjustment, encapsulating the modifications applied.
+    - Python dtype: `custom.AdjustGroup`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -54,9 +61,9 @@ class SweetspotStretchPENode:
     CATEGORY = "Animate Diff 🎭🅐🅓/ad settings/pe adjust"
     FUNCTION = "get_pe_adjust"
 
-    def get_pe_adjust(self, sweetspot: int, new_sweetspot: int, print_adjustment: bool, prev_pe_adjust: AdjustPEGroup=None):
+    def get_pe_adjust(self, sweetspot: int, new_sweetspot: int, print_adjustment: bool, prev_pe_adjust: AdjustGroup=None):
         if prev_pe_adjust is None:
-            prev_pe_adjust = AdjustPEGroup()
+            prev_pe_adjust = AdjustGroup()
         prev_pe_adjust = prev_pe_adjust.clone()
         adjust = AdjustPE(cap_initial_pe_length=sweetspot, interpolate_pe_to_length=new_sweetspot,
                           print_adjustment=print_adjustment)

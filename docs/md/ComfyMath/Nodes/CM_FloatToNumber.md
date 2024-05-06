@@ -1,3 +1,10 @@
+---
+tags:
+- DataConversion
+- DataTypeConversion
+- NumericConversion
+---
+
 # FloatToNumber
 ## Documentation
 - Class name: `CM_FloatToNumber`

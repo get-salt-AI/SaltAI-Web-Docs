@@ -1,3 +1,9 @@
+---
+tags:
+- Animation
+- PoseEstimation
+---
+
 # OpenPose Pose
 ## Documentation
 - Class name: `OpenposePreprocessor`

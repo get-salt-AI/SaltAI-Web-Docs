@@ -1,3 +1,9 @@
+---
+tags:
+- ConditionalSelection
+- ImageSwitching
+---
+
 # Switch (images, mask)
 ## Documentation
 - Class name: `ImageMaskSwitch`

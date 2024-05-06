@@ -1,3 +1,12 @@
+---
+tags:
+- Checkpoint
+- CheckpointLoader
+- Loader
+- ModelIO
+- ModelLoader
+---
+
 # unCLIPCheckpointLoader
 ## Documentation
 - Class name: `unCLIPCheckpointLoader`

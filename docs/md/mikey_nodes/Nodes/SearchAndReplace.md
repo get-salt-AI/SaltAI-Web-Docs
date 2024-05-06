@@ -1,3 +1,9 @@
+---
+tags:
+- Text
+- TextReplacement
+---
+
 # Search And Replace (Mikey)
 ## Documentation
 - Class name: `SearchAndReplace`

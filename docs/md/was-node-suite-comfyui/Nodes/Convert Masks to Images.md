@@ -1,3 +1,11 @@
+---
+tags:
+- ImageMask
+- ImageMaskConversion
+- Mask
+- MaskGeneration
+---
+
 # Convert Masks to Images
 ## Documentation
 - Class name: `Convert Masks to Images`

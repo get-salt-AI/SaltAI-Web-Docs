@@ -1,49 +1,56 @@
+---
+tags:
+- AnimateDiff
+- AnimateDiffContext
+- Animation
+---
+
 # Context Options◆Standard Static 🎭🅐🅓
 ## Documentation
 - Class name: `ADE_StandardStaticContextOptions`
 - Category: `Animate Diff 🎭🅐🅓/context opts`
 - Output node: `False`
 
-This node is designed to generate a set of static context options for the AnimateDiff process, allowing for the customization of animation generation through predefined context settings. It focuses on providing a consistent and unchanging context configuration throughout the animation process.
+This node is designed to generate a set of static context options for the Animate Diff process, providing a standardized configuration for animation generation.
 ## Input types
 ### Required
 - **`context_length`**
-    - Specifies the length of the context, determining the size of the context window used in the animation process. It is crucial for defining the scope of each animation frame.
+    - Specifies the length of the context to be used in the animation, determining how many frames or steps are considered for each segment of the animation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`context_overlap`**
-    - Defines the amount of overlap between consecutive contexts in the animation, affecting the smoothness and continuity of the generated animation.
+    - Defines the overlap between consecutive contexts in the animation, affecting the smoothness and continuity between frames.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`fuse_method`**
-    - Determines the method used to fuse context options, offering flexibility in how animation frames are combined and processed.
+    - Determines the method used to fuse multiple contexts together, influencing the final animation's fluidity and coherence.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`use_on_equal_length`**
-    - Indicates whether to use the view options on sequences of equal length, affecting the applicability of the context settings.
+    - A boolean flag that specifies whether to use the fuse method when contexts are of equal length, affecting the animation's uniformity.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`start_percent`**
-    - Specifies the starting percentage of the animation, influencing the initial frame of the animation process.
+    - Defines the starting point of the animation as a percentage, allowing for customization of where the animation begins within the provided context.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`guarantee_steps`**
-    - Defines the minimum number of steps guaranteed in the animation, ensuring a certain length of the generated animation.
+    - Ensures a minimum number of steps or frames in the animation, providing a baseline for animation smoothness and continuity.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`prev_context`**
-    - Allows for the inclusion of previous context settings, enabling the continuation or modification of existing animation configurations.
+    - Allows for the integration of previously defined context options, enabling the chaining or layering of context configurations for complex animations.
     - Comfy dtype: `CONTEXT_OPTIONS`
     - Python dtype: `ContextOptionsGroup`
 - **`view_opts`**
-    - Specifies the view options to be used, providing additional customization for the animation generation.
+    - Specifies view options for the animation, offering additional customization for how the animation is rendered and displayed.
     - Comfy dtype: `VIEW_OPTS`
     - Python dtype: `ContextOptions`
 ## Output types
 - **`CONTEXT_OPTS`**
     - Comfy dtype: `CONTEXT_OPTIONS`
-    - Outputs the configured context options, encapsulating the static context settings tailored for the animation generation.
+    - Outputs a configured set of context options tailored for static animation scenarios, ready for use in the Animate Diff process.
     - Python dtype: `ContextOptionsGroup`
 ## Usage tips
 - Infra type: `CPU`
@@ -64,7 +71,7 @@ class StandardStaticContextOptionsNode:
                 "context_overlap": ("INT", {"default": 4, "min": 0, "max": OVERLAP_MAX}),
             },
             "optional": {
-                "fuse_method": (ContextFuseMethod.LIST,),
+                "fuse_method": (ContextFuseMethod.LIST_STATIC,),
                 "use_on_equal_length": ("BOOLEAN", {"default": False},),
                 "start_percent": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 1.0, "step": 0.001}),
                 "guarantee_steps": ("INT", {"default": 1, "min": 0, "max": BIGMAX}),

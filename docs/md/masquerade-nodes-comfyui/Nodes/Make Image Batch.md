@@ -1,41 +1,48 @@
+---
+tags:
+- Batch
+- Image
+- ImageBatch
+---
+
 # Make Image Batch
 ## Documentation
 - Class name: `Make Image Batch`
 - Category: `Masquerade Nodes`
 - Output node: `False`
 
-The Make Image Batch node is designed to aggregate multiple image inputs into a single batched image tensor. It allows for the dynamic inclusion of up to six images, concatenating them along a specified dimension to form a unified batch that can be processed collectively.
+The Make Image Batch node is designed to aggregate multiple individual images or smaller batches of images into a larger batch. This functionality is crucial for processing multiple images in parallel, enhancing efficiency in batch operations.
 ## Input types
 ### Required
 - **`image1`**
-    - The primary image to be included in the batch. It serves as the initial component of the resulting batched image tensor.
+    - The primary image to start the batch. It is a required input that serves as the base to which additional images can be appended.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 ### Optional
 - **`image2`**
-    - An optional second image to be appended to the batch. Its inclusion increases the batch size by one.
+    - An optional image that can be appended to the initial image to form a larger batch.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`image3`**
-    - An optional third image that can be appended to the batch, further expanding the batch size.
+    - An optional image that can be appended to the growing batch, further increasing its size.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`image4`**
-    - An optional fourth image that can be appended to the batch, contributing to the overall batch size.
+    - An optional image that can be appended to the batch, contributing to the batch's expansion.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`image5`**
-    - An optional fifth image that can be appended to the batch, increasing the batch's diversity.
+    - An optional image that can be appended, further enlarging the batch size.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`image6`**
-    - An optional sixth image that can be appended to the batch, maximizing the batch size.
+    - An optional image that can be appended, maximizing the batch's capacity.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The resulting batched image tensor, comprising the concatenated input images.
+    - The resulting larger batch of images, aggregated from the individual inputs.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -45,6 +52,9 @@ The Make Image Batch node is designed to aggregate multiple image inputs into a 
 ## Source code
 ```python
 class MakeImageBatch:
+    """
+    Creates a batch of images from multiple individual images or batches.
+    """
     def __init__(self):
         pass
 

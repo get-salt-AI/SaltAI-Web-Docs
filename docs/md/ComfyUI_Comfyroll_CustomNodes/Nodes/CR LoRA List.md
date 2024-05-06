@@ -1,3 +1,8 @@
+---
+tags:
+- LoRA
+---
+
 # CR LoRA List (Legacy)
 ## Documentation
 - Class name: `CR LoRA List`

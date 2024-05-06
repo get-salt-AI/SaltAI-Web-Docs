@@ -1,24 +1,29 @@
+---
+tags:
+- Style
+---
+
 # Styles Loader (mtb)
 ## Documentation
 - Class name: `Styles Loader (mtb)`
 - Category: `mtb/conditioning`
 - Output node: `False`
 
-The StylesLoader node is designed to manage and provide access to a collection of styles, allowing for the retrieval of specific styles based on their names. It abstracts the complexity of handling style data, offering a streamlined way to query and manipulate style information.
+The MTB_StylesLoader node is designed to manage and provide access to various styles for conditioning, enabling the selection and application of predefined styles to modify or enhance content generation processes.
 ## Input types
 ### Required
 - **`style_name`**
-    - The name of the style to retrieve. This parameter enables the selection of a specific style from the collection, facilitating targeted operations on style data.
+    - Specifies the name of the style to be loaded. This parameter is crucial for identifying and retrieving the specific style's attributes from a collection of available styles.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`positive`**
     - Comfy dtype: `STRING`
-    - Returns the first element of the requested style's details.
+    - Returns the positive aspect of the selected style, which is part of the style's characteristics.
     - Python dtype: `str`
 - **`negative`**
     - Comfy dtype: `STRING`
-    - Returns the second element of the requested style's details.
+    - Returns the negative aspect of the selected style, which is another part of the style's characteristics.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -27,7 +32,7 @@ The StylesLoader node is designed to manage and provide access to a collection o
 
 ## Source code
 ```python
-class StylesLoader:
+class MTB_StylesLoader:
     """Load csv files and populate a dropdown from the rows (à la A111)"""
 
     options = {}
@@ -39,13 +44,15 @@ class StylesLoader:
             if not input_dir.exists():
                 install_default_styles()
 
-            if not (files := [f for f in input_dir.iterdir() if f.suffix == ".csv"]):
+            if not (
+                files := [f for f in input_dir.iterdir() if f.suffix == ".csv"]
+            ):
                 log.warn(
                     "No styles found in the styles folder, place at least one csv file in the styles folder at the root of ComfyUI (for instance ComfyUI/styles/mystyle.csv)"
                 )
 
             for file in files:
-                with open(file, "r", encoding="utf8") as f:
+                with open(file, encoding="utf8") as f:
                     parsed = csv.reader(f)
                     for i, row in enumerate(parsed):
                         log.debug(f"Adding style {row[0]}")

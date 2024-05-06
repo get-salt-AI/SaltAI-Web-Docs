@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageListLoader
+---
+
 # CR Image List Simple (Legacy)
 ## Documentation
 - Class name: `CR Image List Simple`

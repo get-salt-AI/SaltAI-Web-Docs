@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Metadata
+---
+
 # SaveMetaData (Mikey)
 ## Documentation
 - Class name: `SaveMetaData`

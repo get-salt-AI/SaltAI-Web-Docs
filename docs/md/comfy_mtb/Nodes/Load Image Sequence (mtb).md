@@ -1,32 +1,38 @@
+---
+tags:
+- Image
+- ImageSequence
+---
+
 # Load Image Sequence (mtb)
 ## Documentation
 - Class name: `Load Image Sequence (mtb)`
 - Category: `mtb/IO`
 - Output node: `False`
 
-The Load Image Sequence node is designed to load a sequence of images from a specified folder, based on the current frame number. It supports loading either a single image corresponding to the current frame or all images in the sequence if a specific condition is met. This functionality is particularly useful for creating animations or processing image sequences in a batch.
+The MTB_LoadImageSequence node is designed to load a sequence of images from a specified folder, based on the current frame number. It supports loading individual frames or all frames in a batch, making it suitable for tasks that require processing image sequences, such as video editing or animation.
 ## Input types
 ### Required
 - **`path`**
-    - The file path to the folder containing the image sequence. This path determines where the node looks to find the images to load.
+    - Specifies the folder path where the image sequence is stored. This path is used to locate and load the images.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`current_frame`**
-    - Specifies the frame number to load. A value of -1 indicates that all frames in the sequence should be loaded as a batch, otherwise, it loads the image corresponding to the current frame number.
+    - Determines which frame to load from the sequence. A special value of -1 indicates that all frames should be loaded as a batch.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The loaded image or images. If multiple images are loaded, they are concatenated into a single tensor.
+    - The loaded image or images. In the case of loading all frames, this will be a batch of images.
     - Python dtype: `torch.Tensor`
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The mask or masks associated with the loaded image or images, concatenated into a single tensor if applicable.
+    - The mask associated with the loaded image or images, if available.
     - Python dtype: `torch.Tensor`
 - **`current_frame`**
     - Comfy dtype: `INT`
-    - The current frame number that was loaded. This is returned as is from the input.
+    - The current frame number that was loaded. This is relevant when loading individual frames.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `GPU`
@@ -35,7 +41,7 @@ The Load Image Sequence node is designed to load a sequence of images from a spe
 
 ## Source code
 ```python
-class LoadImageSequence:
+class MTB_LoadImageSequence:
     """Load an image sequence from a folder. The current frame is used to determine which image to load.
 
     Usually used in conjunction with the `Primitive` node set to increment to load a sequence of images from a folder.

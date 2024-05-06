@@ -1,3 +1,8 @@
+---
+tags:
+- Preview
+---
+
 # Preview Image
 ## Documentation
 - Class name: `PreviewImage`

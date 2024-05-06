@@ -1,3 +1,8 @@
+---
+tags:
+- Segmentation
+---
+
 # Bitwise(SEGS & SEGS)
 ## Documentation
 - Class name: `BitwiseAndMaskForEach`

@@ -1,3 +1,8 @@
+---
+tags:
+- Mask
+---
+
 # Masks Combine Batch
 ## Documentation
 - Class name: `Masks Combine Batch`

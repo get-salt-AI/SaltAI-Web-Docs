@@ -1,3 +1,9 @@
+---
+tags:
+- RandomGeneration
+- Seed
+---
+
 # 🌱 CR Seed
 ## Documentation
 - Class name: `CR Seed`
@@ -28,7 +34,7 @@ The CR Seed node is designed to provide a consistent starting point for random n
     - [CR Module Pipe Loader](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Module Pipe Loader.md)
     - Reroute
     - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
-    - KSampler SDXL (Eff.)
+    - [KSampler SDXL (Eff.)](../../efficiency-nodes-comfyui/Nodes/KSampler SDXL (Eff.).md)
     - NEW_PhotoMaker_Generation
 
 

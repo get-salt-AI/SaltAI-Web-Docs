@@ -1,3 +1,12 @@
+---
+tags:
+- Checkpoint
+- CheckpointLoader
+- Loader
+- ModelIO
+- ModelLoader
+---
+
 # Image Only Checkpoint Loader (img2vid model)
 ## Documentation
 - Class name: `ImageOnlyCheckpointLoader`

@@ -1,3 +1,8 @@
+---
+tags:
+- ComfyrollNodes
+---
+
 # ⚙️ CR Value
 ## Documentation
 - Class name: `CR Value`

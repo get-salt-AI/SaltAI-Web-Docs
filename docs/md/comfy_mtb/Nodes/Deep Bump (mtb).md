@@ -1,36 +1,44 @@
+---
+tags:
+- DepthMap
+- DepthMapEstimation
+- Image
+- NormalMap
+---
+
 # Deep Bump (mtb)
 ## Documentation
 - Class name: `Deep Bump (mtb)`
 - Category: `mtb/textures`
 - Output node: `False`
 
-The Deep Bump node is designed for generating normal and height maps from single images. It supports various modes of operation, including converting color images to normal maps, generating curvature maps from normal maps, and converting normal maps to height maps. This node utilizes advanced image processing techniques to achieve detailed and accurate texture mappings, making it suitable for applications in texture generation and enhancement.
+The Deep Bump node is designed for generating normal and height maps from single images, offering a versatile approach to texture processing by converting color images to normal maps, normal maps to curvature maps, or normal maps to height maps, depending on the selected mode. It utilizes advanced image processing techniques to achieve detailed and accurate representations of surface textures.
 ## Input types
 ### Required
 - **`image`**
-    - The input image for which the normal or height map is to be generated. This image serves as the base for all transformations and is crucial for the node's operation.
+    - The input image for which the normal or height map will be generated. It serves as the foundational data from which the node derives texture maps.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`mode`**
-    - Specifies the operation mode of the node, which can be either 'Color to Normals', 'Normals to Curvature', or 'Normals to Height'. This determines the type of processing applied to the input image.
+    - Specifies the operation mode of the node, which can be converting color images to normal maps, normal maps to curvature maps, or normal maps to height maps, affecting the type of texture map produced.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`color_to_normals_overlap`**
-    - Defines the overlap size when converting color images to normal maps. This parameter influences the smoothness and accuracy of the generated normal maps.
+    - Determines the overlap size when converting color images to normal maps, influencing the smoothness and continuity of the generated normal map.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `int`
+    - Python dtype: `str`
 - **`normals_to_curvature_blur_radius`**
-    - Specifies the blur radius when generating curvature maps from normal maps. This affects the level of detail and smoothness in the curvature map.
+    - Specifies the blur radius when converting normal maps to curvature maps, affecting the level of detail and smoothness in the curvature map.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `int`
+    - Python dtype: `str`
 - **`normals_to_height_seamless`**
-    - A boolean flag indicating whether the conversion from normal maps to height maps should be seamless. This affects the continuity and visual quality of the generated height maps.
+    - A boolean indicating whether the conversion from normal maps to height maps should be seamless, impacting the continuity and uniformity of the height map.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is an image, specifically either a normal map or a height map generated from the input image, depending on the selected mode of operation. This image can be used for further processing or visualization.
+    - The output is either a normal map, curvature map, or height map based on the selected mode, representing the processed texture of the input image.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -39,7 +47,7 @@ The Deep Bump node is designed for generating normal and height maps from single
 
 ## Source code
 ```python
-class DeepBump:
+class MTB_DeepBump:
     """Normal & height maps generation from single pictures"""
 
     @classmethod
@@ -48,7 +56,11 @@ class DeepBump:
             "required": {
                 "image": ("IMAGE",),
                 "mode": (
-                    ["Color to Normals", "Normals to Curvature", "Normals to Height"],
+                    [
+                        "Color to Normals",
+                        "Normals to Curvature",
+                        "Normals to Height",
+                    ],
                 ),
                 "color_to_normals_overlap": (["SMALL", "MEDIUM", "LARGE"],),
                 "normals_to_curvature_blur_radius": (
@@ -73,6 +85,7 @@ class DeepBump:
 
     def apply(
         self,
+        *,
         image,
         mode="Color to Normals",
         color_to_normals_overlap="SMALL",
@@ -91,13 +104,17 @@ class DeepBump:
 
             # Apply processing
             if mode == "Color to Normals":
-                out_img = color_to_normals(in_img, color_to_normals_overlap, None)
+                out_img = color_to_normals(
+                    in_img, color_to_normals_overlap, None
+                )
             if mode == "Normals to Curvature":
                 out_img = normals_to_curvature(
                     in_img, normals_to_curvature_blur_radius, None
                 )
             if mode == "Normals to Height":
-                out_img = normals_to_height(in_img, normals_to_height_seamless, None)
+                out_img = normals_to_height(
+                    in_img, normals_to_height_seamless, None
+                )
 
             if out_img is not None:
                 log.debug(f"Output image shape: {out_img.shape}")

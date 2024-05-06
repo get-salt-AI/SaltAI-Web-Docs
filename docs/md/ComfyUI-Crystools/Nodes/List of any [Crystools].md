@@ -1,49 +1,27 @@
+---
+tags:
+- List
+- Text
+---
+
 # 🪛 List of any
 ## Documentation
 - Class name: `List of any [Crystools]`
 - Category: `crystools 🪛/List`
 - Output node: `False`
 
-This node is designed to aggregate multiple inputs of any type into a single list, facilitating the handling and manipulation of diverse data types together. It serves as a versatile tool for collecting a variable number of inputs into a unified structure.
+This node is designed to aggregate multiple inputs of any type into a single list, facilitating the handling of diverse data types within a unified structure. It emphasizes flexibility and inclusiveness in data aggregation, allowing for a broad range of input types.
 ## Input types
 ### Required
 ### Optional
-- **`any_1`**
-    - Represents the first optional input of any type that can be included in the list. Its inclusion enhances the node's flexibility in aggregating diverse data.
-    - Comfy dtype: `*`
-    - Python dtype: `Any`
-- **`any_2`**
-    - Serves as the second optional input, allowing for the aggregation of additional diverse data into the list.
-    - Comfy dtype: `*`
-    - Python dtype: `Any`
-- **`any_3`**
-    - Acts as the third optional input, further extending the node's capability to compile a varied set of data into a single list.
-    - Comfy dtype: `*`
-    - Python dtype: `Any`
-- **`any_4`**
-    - Functions as the fourth optional input, contributing to the node's versatility in collecting different types of data.
-    - Comfy dtype: `*`
-    - Python dtype: `Any`
-- **`any_5`**
-    - Represents the fifth optional input, enabling the inclusion of more varied data into the aggregated list.
-    - Comfy dtype: `*`
-    - Python dtype: `Any`
-- **`any_6`**
-    - Serves as the sixth optional input, further broadening the scope of data types that can be compiled into the list.
-    - Comfy dtype: `*`
-    - Python dtype: `Any`
-- **`any_7`**
-    - Acts as the seventh optional input, enhancing the node's ability to aggregate a wide range of data types.
-    - Comfy dtype: `*`
-    - Python dtype: `Any`
-- **`any_8`**
-    - Functions as the eighth optional input, maximizing the node's capacity to collect diverse data into a unified list.
+- **`any_i`**
+    - Represents an optional input of any type to be included in the list. Its inclusion enhances the node's versatility in data aggregation, allowing for a dynamic number of inputs.
     - Comfy dtype: `*`
     - Python dtype: `Any`
 ## Output types
 - **`any_list`**
     - Comfy dtype: `COMBO[STRING]`
-    - The output is a list containing all the provided inputs, regardless of their type, facilitating further operations on a unified data structure.
+    - Outputs a list containing all provided inputs, encapsulating a diverse range of data types in a unified structure.
     - Python dtype: `List[Any]`
 ## Usage tips
 - Infra type: `CPU`

@@ -1,3 +1,11 @@
+---
+tags:
+- DepthMap
+- Image
+- ImagePreprocessing
+- LineExtraction
+---
+
 # Manga Lineart (aka lineart_anime_denoise)
 ## Documentation
 - Class name: `Manga2Anime_LineArt_Preprocessor`

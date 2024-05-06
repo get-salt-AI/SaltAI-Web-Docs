@@ -1,3 +1,9 @@
+---
+tags:
+- Blur
+- VisualEffects
+---
+
 # MaskOuterBlur
 ## Documentation
 - Class name: `MaskOuterBlur`

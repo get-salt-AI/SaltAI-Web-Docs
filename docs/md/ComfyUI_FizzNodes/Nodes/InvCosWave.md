@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- WavePatterns
+---
+
 # InvCosWave 📅🅕🅝
 ## Documentation
 - Class name: `InvCosWave`

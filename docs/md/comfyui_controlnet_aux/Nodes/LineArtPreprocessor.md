@@ -1,3 +1,11 @@
+---
+tags:
+- DepthMap
+- Image
+- ImagePreprocessing
+- LineExtraction
+---
+
 # Realistic Lineart
 ## Documentation
 - Class name: `LineArtPreprocessor`
@@ -31,7 +39,7 @@ The LineArtPreprocessor node is designed for extracting line art from images, sp
     - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
     - [ControlNetApplyAdvanced](../../Comfy/Nodes/ControlNetApplyAdvanced.md)
     - [ControlNetApply](../../Comfy/Nodes/ControlNetApply.md)
-    - Control Net Stacker
+    - [Control Net Stacker](../../efficiency-nodes-comfyui/Nodes/Control Net Stacker.md)
     - [ImageInvert](../../Comfy/Nodes/ImageInvert.md)
     - [CR Multi-ControlNet Stack](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Multi-ControlNet Stack.md)
     - [ACN_AdvancedControlNetApply](../../ComfyUI-Advanced-ControlNet/Nodes/ACN_AdvancedControlNetApply.md)

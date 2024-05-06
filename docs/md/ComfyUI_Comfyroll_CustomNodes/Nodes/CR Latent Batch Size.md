@@ -1,3 +1,9 @@
+---
+tags:
+- Batch
+- Image
+---
+
 # ⚙️ CR Latent Batch Size
 ## Documentation
 - Class name: `CR Latent Batch Size`

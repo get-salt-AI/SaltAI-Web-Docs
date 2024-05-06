@@ -1,3 +1,9 @@
+---
+tags:
+- ImpactPack
+- Segmentation
+---
+
 # ImpactControlNetClearSEGS
 ## Documentation
 - Class name: `ImpactControlNetClearSEGS`

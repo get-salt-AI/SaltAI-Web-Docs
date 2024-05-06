@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskList
+---
+
 # ExtendMaskList
 ## Documentation
 - Class name: `ExtendMaskList`

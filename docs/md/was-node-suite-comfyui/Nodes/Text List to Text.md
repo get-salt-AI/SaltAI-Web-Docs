@@ -1,3 +1,9 @@
+---
+tags:
+- List
+- Text
+---
+
 # Text List to Text
 ## Documentation
 - Class name: `Text List to Text`

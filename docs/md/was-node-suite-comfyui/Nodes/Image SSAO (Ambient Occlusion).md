@@ -1,3 +1,8 @@
+---
+tags:
+- VisualEffects
+---
+
 # Image SSAO (Ambient Occlusion)
 ## Documentation
 - Class name: `Image SSAO (Ambient Occlusion)`

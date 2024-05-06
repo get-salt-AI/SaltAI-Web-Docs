@@ -1,3 +1,9 @@
+---
+tags:
+- Model
+- ModelList
+---
+
 # ExtendModelList
 ## Documentation
 - Class name: `ExtendModelList`

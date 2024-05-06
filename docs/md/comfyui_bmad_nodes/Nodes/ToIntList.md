@@ -1,3 +1,8 @@
+---
+tags:
+- List
+---
+
 # ToIntList
 ## Documentation
 - Class name: `ToIntList`

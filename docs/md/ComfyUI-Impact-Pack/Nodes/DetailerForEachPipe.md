@@ -1,10 +1,17 @@
+---
+tags:
+- Image
+- Pipeline
+- PipelineTransformation
+---
+
 # Detailer (SEGS/pipe)
 ## Documentation
 - Class name: `DetailerForEachPipe`
 - Category: `ImpactPack/Detailer`
 - Output node: `False`
 
-The DetailerForEachPipe node is designed to iterate over a collection of pipes, applying detailed processing or transformations to each. It focuses on enhancing or modifying the data flow within each pipe, ensuring that specific, detailed operations are performed according to the requirements of the pipeline.
+This node is designed to iterate over a collection of data, applying a detailed analysis or transformation to each element. It focuses on enhancing or extracting specific details from each item in the collection, tailored to the requirements of the Impact Pack framework.
 ## Input types
 ### Required
 - **`image`**
@@ -68,9 +75,9 @@ The DetailerForEachPipe node is designed to iterate over a collection of pipes, 
     - Comfy dtype: `BASIC_PIPE`
     - Python dtype: `unknown`
 - **`wildcard`**
-    - unknown
+    - Provides additional, dynamic context or parameters that can be used to customize the processing of each item in the collection. This flexibility allows for more tailored and nuanced detail extraction or enhancement.
     - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`refiner_ratio`**
     - unknown
     - Comfy dtype: `FLOAT`
@@ -99,20 +106,20 @@ The DetailerForEachPipe node is designed to iterate over a collection of pipes, 
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output image after detailed processing has been applied to the collection of pipes.
-    - Python dtype: `List[Image]`
+    - unknown
+    - Python dtype: `unknown`
 - **`segs`**
     - Comfy dtype: `SEGS`
-    - The segmentation results corresponding to the processed images.
-    - Python dtype: `List[Segmentation]`
+    - unknown
+    - Python dtype: `unknown`
 - **`basic_pipe`**
     - Comfy dtype: `BASIC_PIPE`
-    - The basic pipe configuration derived from the detailed processing.
-    - Python dtype: `List[Tuple]`
+    - unknown
+    - Python dtype: `unknown`
 - **`cnet_images`**
     - Comfy dtype: `IMAGE`
-    - The cnet processed images resulting from the detailed processing.
-    - Python dtype: `List[Image]`
+    - unknown
+    - Python dtype: `unknown`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -133,7 +140,7 @@ class DetailerForEachPipe:
                       "steps": ("INT", {"default": 20, "min": 1, "max": 10000}),
                       "cfg": ("FLOAT", {"default": 8.0, "min": 0.0, "max": 100.0}),
                       "sampler_name": (comfy.samplers.KSampler.SAMPLERS,),
-                      "scheduler": (comfy.samplers.KSampler.SCHEDULERS,),
+                      "scheduler": (core.SCHEDULERS,),
                       "denoise": ("FLOAT", {"default": 0.5, "min": 0.0001, "max": 1.0, "step": 0.01}),
                       "feather": ("INT", {"default": 5, "min": 0, "max": 100, "step": 1}),
                       "noise_mask": ("BOOLEAN", {"default": True, "label_on": "enabled", "label_off": "disabled"}),
@@ -148,7 +155,7 @@ class DetailerForEachPipe:
                      "detailer_hook": ("DETAILER_HOOK",),
                      "refiner_basic_pipe_opt": ("BASIC_PIPE",),
                      "inpaint_model": ("BOOLEAN", {"default": False, "label_on": "enabled", "label_off": "disabled"}),
-                     "noise_mask_feather": ("INT", {"default": 0, "min": 0, "max": 100, "step": 1}),
+                     "noise_mask_feather": ("INT", {"default": 20, "min": 0, "max": 100, "step": 1}),
                     }
                 }
 

@@ -1,3 +1,9 @@
+---
+tags:
+- BooleanLogic
+- ConditionalSelection
+---
+
 # Boolean To Text
 ## Documentation
 - Class name: `Boolean To Text`

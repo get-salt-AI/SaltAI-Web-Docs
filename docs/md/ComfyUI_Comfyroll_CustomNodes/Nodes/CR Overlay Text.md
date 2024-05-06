@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- TextOnImage
+---
+
 # 🔤 CR Overlay Text
 ## Documentation
 - Class name: `CR Overlay Text`

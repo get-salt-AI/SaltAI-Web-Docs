@@ -1,3 +1,8 @@
+---
+tags:
+- ModelGuidance
+---
+
 # RescaleCFG
 ## Documentation
 - Class name: `RescaleCFG`

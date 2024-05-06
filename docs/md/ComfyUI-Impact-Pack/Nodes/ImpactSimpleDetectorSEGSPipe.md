@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Segmentation
+---
+
 # Simple Detector (SEGS/pipe)
 ## Documentation
 - Class name: `ImpactSimpleDetectorSEGSPipe`

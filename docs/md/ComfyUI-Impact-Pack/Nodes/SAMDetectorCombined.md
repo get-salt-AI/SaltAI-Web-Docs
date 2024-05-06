@@ -1,3 +1,8 @@
+---
+tags:
+- SAM
+---
+
 # SAMDetector (combined)
 ## Documentation
 - Class name: `SAMDetectorCombined`

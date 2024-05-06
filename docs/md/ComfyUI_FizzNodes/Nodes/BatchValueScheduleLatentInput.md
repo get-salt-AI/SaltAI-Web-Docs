@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- Scheduling
+---
+
 # Batch Value Schedule (Latent Input) 📅🅕🅝
 ## Documentation
 - Class name: `BatchValueScheduleLatentInput`

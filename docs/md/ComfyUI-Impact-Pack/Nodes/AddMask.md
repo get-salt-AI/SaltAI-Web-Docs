@@ -1,3 +1,8 @@
+---
+tags:
+- Mask
+---
+
 # Bitwise(MASK + MASK)
 ## Documentation
 - Class name: `AddMask`

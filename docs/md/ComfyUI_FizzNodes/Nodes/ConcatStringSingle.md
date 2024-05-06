@@ -1,3 +1,8 @@
+---
+tags:
+- Concatenate
+---
+
 # Concat String (Single) 📅🅕🅝
 ## Documentation
 - Class name: `ConcatStringSingle`

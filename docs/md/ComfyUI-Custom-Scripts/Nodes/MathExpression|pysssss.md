@@ -1,3 +1,10 @@
+---
+tags:
+- DataTypeConversion
+- Math
+- MathematicalExpressions
+---
+
 # Math Expression 🐍
 ## Documentation
 - Class name: `MathExpression|pysssss`

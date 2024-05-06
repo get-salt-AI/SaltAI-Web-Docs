@@ -1,3 +1,9 @@
+---
+tags:
+- Noise
+- NoisePatterns
+---
+
 # Image Voronoi Noise Filter
 ## Documentation
 - Class name: `Image Voronoi Noise Filter`

@@ -1,3 +1,11 @@
+---
+tags:
+- DataConversion
+- DataTypeConversion
+- Integer
+- NumericConversion
+---
+
 # Remote Int (on prompt)
 ## Documentation
 - Class name: `ImpactRemoteInt`

@@ -1,33 +1,38 @@
+---
+tags:
+- ImageTransformation
+---
+
 # RemapInsideParabolasAdvanced
 ## Documentation
 - Class name: `RemapInsideParabolasAdvanced`
 - Category: `Bmad/CV/Transform`
 - Output node: `False`
 
-This node is designed for advanced remapping of images based on the geometry of two parabolas within a destination mask. It allows for fine-tuned adjustments in both curve-wise and orthogonal directions, and offers the option to flip the orthogonal adjustment, enabling a high degree of control over the remapping process.
+This node specializes in remapping images based on the geometry of two parabolas within a given mask. It allows for advanced adjustments to the remapping process, including curve-wise and ortho-wise adjustments, as well as the option to flip the ortho direction, providing a high degree of control over the remapping output.
 ## Input types
 ### Required
-- **`dst_mask_with_2_parabolas`**
-    - A mask image containing two parabolas. This mask is used as a reference for the remapping process, dictating the geometric constraints within which the image is transformed.
+- **`dst_mask_with_i_parabolas`**
+    - Specifies the destination mask containing two parabolas. This mask is used to guide the remapping process, determining how pixels are relocated.
     - Comfy dtype: `MASK`
     - Python dtype: `numpy.ndarray`
 - **`curve_wise_adjust`**
-    - A floating-point value that adjusts the intensity of the curve-wise (along the parabolas) remapping. This allows for nuanced control over how the image is stretched or compressed along the curves.
+    - Adjusts the remapping intensity along the curve of the parabolas, allowing for finer control over the curvature effect in the remapped image.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`ortho_wise_adjust`**
-    - A floating-point value that adjusts the intensity of the orthogonal (perpendicular to the parabolas) remapping. This enables precise control over the image's distortion in the direction orthogonal to the curves.
+    - Adjusts the remapping intensity orthogonally to the curve of the parabolas, enabling control over the spread of the remapping effect perpendicular to the parabolas' curvature.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`flip_ortho`**
-    - A boolean flag that, when set to True, flips the direction of the orthogonal adjustment. This can be used to invert the direction of distortion perpendicular to the parabolas.
+    - Determines whether the orthogonal adjustment direction should be flipped, offering an additional layer of customization to the remapping effect.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`remap`**
     - Comfy dtype: `REMAP`
-    - The result of the remapping process, which includes the transformed image based on the specified parabolas and adjustments. This output is crucial for understanding the effect of the remapping on the original image.
-    - Python dtype: `numpy.ndarray`
+    - The output is a remapped image based on the specified parabolas and adjustments. It reflects the changes in pixel locations as dictated by the input parameters, offering a visually modified version of the original image.
+    - Python dtype: `Dict[str, numpy.ndarray]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

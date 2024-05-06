@@ -1,34 +1,39 @@
+---
+tags:
+- Color
+---
+
 # Color Correct (mtb)
 ## Documentation
 - Class name: `Color Correct (mtb)`
 - Category: `mtb/image processing`
 - Output node: `False`
 
-The Color Correct node provides a suite of color correction operations for images, including adjustments for gamma, contrast, exposure, offset, hue, saturation, and value. It aims to enhance or modify the visual appearance of images according to specified parameters.
+Provides a suite of color correction functionalities for images, including adjustments for gamma, contrast, exposure, hue, saturation, and value. It aims to enhance or modify the visual appearance of images according to specified parameters.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be color corrected. This parameter is crucial as it serves as the base for all subsequent color correction operations.
+    - The input image to be color corrected. This is the primary data upon which all color correction operations are performed.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`clamp`**
-    - A boolean flag indicating whether the corrected image's pixel values should be clamped to the range [0.0, 1.0]. This ensures the output image's pixel values remain within a standard range.
+    - A boolean parameter that determines whether the color values should be clamped. Clamping ensures that the color values do not exceed the allowable range.
     - Comfy dtype: `COMBO[BOOLEAN]`
     - Python dtype: `bool`
 - **`gamma`**
-    - Adjusts the gamma value of the image, affecting the luminance of mid-tones without altering shadows and highlights significantly.
+    - Adjusts the gamma value of the image, affecting the luminance of the image. A higher gamma value brightens the image, while a lower value darkens it.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`contrast`**
-    - Modifies the contrast level of the image, making the darks darker and the lights lighter.
+    - Modifies the contrast of the image. Higher values increase contrast, making darks darker and lights lighter.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`exposure`**
-    - Adjusts the exposure level of the image, simulating the effect of changing the amount of light captured.
+    - Adjusts the exposure level of the image, simulating the effect of changing the amount of light captured in a photograph.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`offset`**
-    - Applies an offset to the brightness of the image, shifting all pixel values by a specified amount.
+    - Applies an offset to the color values of the image, shifting all colors by a fixed amount.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`hue`**
@@ -36,17 +41,17 @@ The Color Correct node provides a suite of color correction operations for image
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`saturation`**
-    - Adjusts the saturation level, enhancing or reducing the intensity of colors in the image.
+    - Adjusts the saturation of the image, affecting the intensity of the colors. Higher values make colors more vivid, while lower values result in a more muted color palette.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`value`**
-    - Modifies the value (brightness) of the image, affecting the overall lightness or darkness.
+    - Modifies the value (brightness) of the image, allowing for adjustments in how light or dark the image appears.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The color-corrected image, with adjustments applied according to the specified parameters.
+    - The color-corrected image, after applying the specified adjustments.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -55,7 +60,7 @@ The Color Correct node provides a suite of color correction operations for image
 
 ## Source code
 ```python
-class ColorCorrect:
+class MTB_ColorCorrect:
     """Various color correction methods"""
 
     @classmethod

@@ -1,3 +1,9 @@
+---
+tags:
+- ImageEnhancement
+- Scheduling
+---
+
 # DenoiseScheduleHookProvider
 ## Documentation
 - Class name: `DenoiseScheduleHookProvider`

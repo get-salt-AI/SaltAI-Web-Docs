@@ -1,70 +1,77 @@
+---
+tags:
+- AspectRatio
+- ImageSize
+- ImageTransformation
+---
+
 # Ratio Advanced (Mikey)
 ## Documentation
 - Class name: `Ratio Advanced`
 - Category: `Mikey/Utils`
 - Output node: `False`
 
-The Ratio Advanced node is designed to manage and apply various aspect ratios for image generation tasks. It enables the selection of predefined ratios, custom ratios, and adjustments to these ratios based on specific parameters, facilitating flexible and precise control over the dimensions of generated images.
+The `Ratio Advanced` node is designed to provide advanced functionalities for managing and selecting image ratios. It encompasses reading, updating, and utilizing predefined and custom ratio presets for image generation tasks, allowing for flexible image dimension specifications based on user input or predefined standards.
 ## Input types
 ### Required
 - **`preset`**
-    - Allows the selection of a predefined ratio preset for image generation, offering a quick and standardized way to set aspect ratios.
+    - Specifies the ratio preset to be used. If 'none' is selected, custom dimensions can be specified, allowing for greater flexibility in image generation.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `str`
 - **`swap_axis`**
-    - Determines whether the width and height of the selected ratio should be swapped, enabling the inversion of aspect ratios for different orientations.
+    - Determines whether the width and height of the selected ratio should be swapped, enabling orientation changes without altering the ratio itself.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `str`
 - **`select_latent_ratio`**
-    - Enables the selection of a specific ratio for the latent space dimensions, which influences the initial shape and size of the generated image.
+    - Selects a specific ratio for the latent space dimensions, which can influence the aspect ratio of the generated image.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `str`
 - **`custom_latent_w`**
-    - Specifies a custom width for the latent space, allowing for precise control over the initial width of the generated image.
+    - Allows for the specification of a custom width for the latent space, offering precise control over the generated image's dimensions.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`custom_latent_h`**
-    - Specifies a custom height for the latent space, allowing for precise control over the initial height of the generated image.
+    - Allows for the specification of a custom height for the latent space, offering precise control over the generated image's dimensions.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`select_cte_ratio`**
-    - Allows the selection of a specific ratio for the constant tensor extension (CTE), which can affect the final dimensions of the generated image.
+    - Selects a specific ratio for constant tensor extension (CTE), which can affect the final image dimensions.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `str`
 - **`cte_w`**
-    - Specifies a custom width for the constant tensor extension (CTE), enabling precise adjustments to the width of the generated image.
+    - Specifies a custom width for the constant tensor extension, providing flexibility in adjusting the image dimensions.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cte_h`**
-    - Specifies a custom height for the constant tensor extension (CTE), enabling precise adjustments to the height of the generated image.
+    - Specifies a custom height for the constant tensor extension, providing flexibility in adjusting the image dimensions.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cte_mult`**
-    - Applies a multiplier to the dimensions of the constant tensor extension (CTE), allowing for proportional scaling of the generated image's dimensions.
+    - Applies a multiplier to the constant tensor extension dimensions, allowing for dynamic scaling of the image size.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`cte_res`**
-    - Sets a resolution for the constant tensor extension (CTE), which can influence the clarity and detail level of the generated image.
+    - Specifies a resolution for the constant tensor extension, enabling precise control over the image quality and detail.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cte_fit_size`**
-    - Adjusts the constant tensor extension (CTE) dimensions to fit within a specified size, ensuring the generated image meets certain size constraints.
+    - Adjusts the constant tensor extension dimensions to fit within a specified size, ensuring the generated image meets certain size constraints.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`select_target_ratio`**
-    - Enables the selection of a target ratio for the final image dimensions, guiding the aspect ratio of the output image.
+    - Selects a target ratio for the final image, influencing its aspect ratio and overall appearance.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `str`
 - **`target_w`**
-    - Specifies a custom width for the target image dimensions, allowing for precise control over the final width of the generated image.
+    - Specifies a custom width for the target image, allowing for detailed control over its dimensions.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`target_h`**
-    - Specifies a custom height for the target image dimensions, allowing for precise control over the final height of the generated image.
+    - Specifies a custom height for the target image, allowing for detailed control over its dimensions.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`target_mult`**
-    - Applies a multiplier to the target image dimensions, enabling proportional scaling of the final image size.
+    - Applies a multiplier to the target image dimensions, facilitating dynamic adjustments to its size.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`target_res`**
@@ -76,53 +83,53 @@ The Ratio Advanced node is designed to manage and apply various aspect ratios fo
     - Comfy dtype: `INT`
     - Python dtype: `unknown`
 - **`crop_w`**
-    - Specifies a custom width for cropping the generated image, allowing for precise control over the visible area of the output.
+    - Specifies the width for cropping the image, allowing for precise control over the portion of the image to be used.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`crop_h`**
-    - Specifies a custom height for cropping the generated image, allowing for precise control over the visible area of the output.
+    - Specifies the height for cropping the image, allowing for precise control over the portion of the image to be used.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`use_preset_seed`**
-    - Determines whether a preset seed should be used for image generation, ensuring reproducibility of results.
+    - Determines whether a preset seed should be used for generating images, ensuring consistency in image generation.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `str`
 - **`seed`**
-    - Specifies a custom seed for the image generation process, allowing for controlled variation in the output.
+    - Specifies the seed value to be used for image generation, allowing for reproducible results.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`latent_w`**
     - Comfy dtype: `INT`
-    - The width of the latent space after applying the selected ratios and adjustments.
+    - The width of the latent space after processing, reflecting the dimensions used for image generation.
     - Python dtype: `int`
 - **`latent_h`**
     - Comfy dtype: `INT`
-    - The height of the latent space after applying the selected ratios and adjustments.
+    - The height of the latent space after processing, reflecting the dimensions used for image generation.
     - Python dtype: `int`
 - **`cte_w`**
     - Comfy dtype: `INT`
-    - The width of the constant tensor extension (CTE) after applying the selected ratios and adjustments.
+    - The width of the constant tensor extension after processing, which can influence the final image dimensions.
     - Python dtype: `int`
 - **`cte_h`**
     - Comfy dtype: `INT`
-    - The height of the constant tensor extension (CTE) after applying the selected ratios and adjustments.
+    - The height of the constant tensor extension after processing, which can influence the final image dimensions.
     - Python dtype: `int`
 - **`target_w`**
     - Comfy dtype: `INT`
-    - The width of the target image dimensions after applying the selected ratios and adjustments.
+    - The width of the target image after processing, reflecting the final dimensions of the generated image.
     - Python dtype: `int`
 - **`target_h`**
     - Comfy dtype: `INT`
-    - The height of the target image dimensions after applying the selected ratios and adjustments.
+    - The height of the target image after processing, reflecting the final dimensions of the generated image.
     - Python dtype: `int`
 - **`crop_w`**
     - Comfy dtype: `INT`
-    - The width of the cropped area of the generated image, based on the specified cropping parameters.
+    - The width used for cropping the image, reflecting the portion of the image that was selected for use.
     - Python dtype: `int`
 - **`crop_h`**
     - Comfy dtype: `INT`
-    - The height of the cropped area of the generated image, based on the specified cropping parameters.
+    - The height used for cropping the image, reflecting the portion of the image that was selected for use.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
@@ -274,14 +281,14 @@ class RatioAdvanced:
         # check if target_fit_size not 0
         if target_fit_size != 0:
             target_w, target_h = self.fit(target_w, target_h, target_fit_size)
-        prompt.get(str(unique_id))['inputs']['output_latent_w'] = str(latent_width)
-        prompt.get(str(unique_id))['inputs']['output_latent_h'] = str(latent_height)
-        prompt.get(str(unique_id))['inputs']['output_cte_w'] = str(cte_w)
-        prompt.get(str(unique_id))['inputs']['output_cte_h'] = str(cte_h)
-        prompt.get(str(unique_id))['inputs']['output_target_w'] = str(target_w)
-        prompt.get(str(unique_id))['inputs']['output_target_h'] = str(target_h)
-        prompt.get(str(unique_id))['inputs']['output_crop_w'] = str(crop_w)
-        prompt.get(str(unique_id))['inputs']['output_crop_h'] = str(crop_h)
+        #prompt.get(str(unique_id))['inputs']['output_latent_w'] = str(latent_width)
+        #prompt.get(str(unique_id))['inputs']['output_latent_h'] = str(latent_height)
+        #prompt.get(str(unique_id))['inputs']['output_cte_w'] = str(cte_w)
+        #prompt.get(str(unique_id))['inputs']['output_cte_h'] = str(cte_h)
+        #prompt.get(str(unique_id))['inputs']['output_target_w'] = str(target_w)
+        #prompt.get(str(unique_id))['inputs']['output_target_h'] = str(target_h)
+        #prompt.get(str(unique_id))['inputs']['output_crop_w'] = str(crop_w)
+        #prompt.get(str(unique_id))['inputs']['output_crop_h'] = str(crop_h)
         return (latent_width, latent_height,
                 cte_w, cte_h,
                 target_w, target_h,

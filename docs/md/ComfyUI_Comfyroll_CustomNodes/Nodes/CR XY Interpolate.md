@@ -1,3 +1,11 @@
+---
+tags:
+- AnimationScheduling
+- FrameInterpolation
+- Interpolation
+- VisualEffects
+---
+
 # 📉 CR XY Interpolate
 ## Documentation
 - Class name: `CR XY Interpolate`

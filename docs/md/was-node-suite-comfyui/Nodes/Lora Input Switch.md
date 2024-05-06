@@ -1,41 +1,46 @@
+---
+tags:
+- ConditionalSelection
+---
+
 # Lora Input Switch
 ## Documentation
 - Class name: `Lora Input Switch`
 - Category: `WAS Suite/Logic`
 - Output node: `False`
 
-This node is designed to switch between two sets of inputs (model and clip pairs) based on a boolean condition. It facilitates dynamic selection in workflows that require conditional logic to determine the appropriate inputs for further processing.
+The WAS_Lora_Input_Switch node is designed to selectively switch between two sets of model and CLIP inputs based on a boolean condition. It facilitates dynamic input selection for further processing or model application.
 ## Input types
 ### Required
 - **`model_a`**
-    - The first model input for the switch. It represents one of the potential choices based on the boolean condition.
+    - The first model input option. This model is selected if the boolean condition is true.
     - Comfy dtype: `MODEL`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `object`
 - **`clip_a`**
-    - The first clip input paired with `model_a`. It complements the model input in the selection process.
+    - The first CLIP input option. This CLIP is selected if the boolean condition is true.
     - Comfy dtype: `CLIP`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `object`
 - **`model_b`**
-    - The second model input for the switch. It serves as an alternative choice to `model_a` based on the boolean condition.
+    - The second model input option. This model is selected if the boolean condition is false.
     - Comfy dtype: `MODEL`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `object`
 - **`clip_b`**
-    - The second clip input paired with `model_b`. It provides an alternative to `clip_a` in the selection process.
+    - The second CLIP input option. This CLIP is selected if the boolean condition is false.
     - Comfy dtype: `CLIP`
-    - Python dtype: `torch.nn.Module`
-- **`boolean_number`**
-    - A numeric boolean condition that determines which set of inputs (A or B) to select. A value of 1 selects the A set, while any other value selects the B set.
-    - Comfy dtype: `NUMBER`
-    - Python dtype: `int`
+    - Python dtype: `object`
+- **`boolean`**
+    - A boolean condition that determines which set of inputs (model_a and clip_a or model_b and clip_b) is selected.
+    - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The selected model input based on the boolean condition.
-    - Python dtype: `torch.nn.Module`
+    - The selected model based on the boolean condition.
+    - Python dtype: `object`
 - **`clip`**
     - Comfy dtype: `CLIP`
-    - The selected clip input paired with the chosen model.
-    - Python dtype: `torch.nn.Module`
+    - The selected CLIP based on the boolean condition.
+    - Python dtype: `object`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -55,7 +60,7 @@ class WAS_Lora_Input_Switch:
                 "clip_a": ("CLIP",),
                 "model_b": ("MODEL",),
                 "clip_b": ("CLIP",),
-                "boolean_number": ("NUMBER",),
+                "boolean": ("BOOLEAN", {"forceInput": True}),
             }
         }
     RETURN_TYPES = ("MODEL", "CLIP")
@@ -63,8 +68,8 @@ class WAS_Lora_Input_Switch:
 
     CATEGORY = "WAS Suite/Logic"
 
-    def lora_input_switch(self, model_a, clip_a, model_b, clip_b, boolean_number=1):
-        if int(round(boolean_number)) == 1:
+    def lora_input_switch(self, model_a, clip_a, model_b, clip_b, boolean=True):
+        if boolean:
             return (model_a, clip_a)
         else:
             return (model_b, clip_b)

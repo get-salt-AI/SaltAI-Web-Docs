@@ -1,3 +1,8 @@
+---
+tags:
+- MathematicalFunctions
+---
+
 # Integer Maximum
 ## Documentation
 - Class name: `JWIntegerMax`

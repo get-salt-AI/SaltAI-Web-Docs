@@ -1,3 +1,9 @@
+---
+tags:
+- ImageFilter
+- VisualEffects
+---
+
 # Image Analyze
 ## Documentation
 - Class name: `Image Analyze`

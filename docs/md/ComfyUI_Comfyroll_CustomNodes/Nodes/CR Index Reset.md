@@ -1,3 +1,9 @@
+---
+tags:
+- ComfyrollNodes
+- Index
+---
+
 # 🔢 CR Index Reset
 ## Documentation
 - Class name: `CR Index Reset`

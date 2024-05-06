@@ -1,3 +1,9 @@
+---
+tags:
+- Latent
+- LatentBlend
+---
+
 # Latent Blend
 ## Documentation
 - Class name: `LatentBlend`

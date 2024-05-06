@@ -1,3 +1,9 @@
+---
+tags:
+- ImageEnhancement
+- VisualEffects
+---
+
 # VividSharpen
 ## Documentation
 - Class name: `VividSharpen`

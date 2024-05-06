@@ -1,3 +1,9 @@
+---
+tags:
+- Math
+- VectorMath
+---
+
 # Number Input Condition
 ## Documentation
 - Class name: `Number Input Condition`

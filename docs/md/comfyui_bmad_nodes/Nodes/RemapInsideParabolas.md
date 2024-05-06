@@ -1,21 +1,26 @@
+---
+tags:
+- ImageTransformation
+---
+
 # RemapInsideParabolas
 ## Documentation
 - Class name: `RemapInsideParabolas`
 - Category: `Bmad/CV/Transform`
 - Output node: `False`
 
-This node is designed to perform a remapping operation based on the geometry of two parabolas within a given mask. It adjusts the spatial layout of an image or a mask to align with the contours defined by these parabolas, potentially altering the image's perspective or distortion to fit within the new bounds.
+This node is designed to perform a remapping operation based on the geometry of two parabolas within an image. It adjusts the image's pixels according to the specified parabolas, aiming to transform or correct the image's perspective or distortion in a way that aligns with these curves.
 ## Input types
 ### Required
-- **`dst_mask_with_2_parabolas`**
-    - Specifies the destination mask that contains two parabolas. This mask is used to determine the new spatial layout for the remapping operation.
+- **`dst_mask_with_i_parabolas`**
+    - Specifies the destination mask that contains parabolas. This mask is crucial for determining the transformation's geometry and guiding the remapping process.
     - Comfy dtype: `MASK`
     - Python dtype: `numpy.ndarray`
 ## Output types
 - **`remap`**
     - Comfy dtype: `REMAP`
-    - The output includes the remapped coordinates and potentially the bounding box of the region of interest, adjusted according to the parabolas' geometry.
-    - Python dtype: `Dict[str, numpy.ndarray]`
+    - The output is a transformed version of the input image, adjusted according to the geometry of the specified parabolas.
+    - Python dtype: `Dict[str, Any]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

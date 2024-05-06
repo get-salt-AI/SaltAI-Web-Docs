@@ -1,55 +1,62 @@
+---
+tags:
+- Crop
+- Image
+- ImageTransformation
+---
+
 # BatchUncrop
 ## Documentation
 - Class name: `BatchUncrop`
 - Category: `KJNodes/masking`
 - Output node: `False`
 
-The BatchUncrop node is designed to reverse the cropping process on a batch of images. It takes original images and their cropped versions along with additional parameters to accurately restore the images to their original state, considering aspects like blending and scaling.
+The BatchUncrop node is designed to reverse the cropping process on a batch of images. It takes original images and their cropped versions along with cropping metadata to reconstruct the original images with the cropped areas seamlessly integrated, adjusting for borders and scaling as necessary.
 ## Input types
 ### Required
 - **`original_images`**
-    - Original images before cropping. These are used as a reference for the uncropping process to restore the images to their initial state.
+    - Original images before cropping, used as a base for the uncropping process.
     - Comfy dtype: `IMAGE`
     - Python dtype: `List[torch.Tensor]`
 - **`cropped_images`**
-    - Cropped versions of the original images. The node uses these along with the original images to perform the uncropping.
+    - Cropped images that need to be integrated back into the original images.
     - Comfy dtype: `IMAGE`
     - Python dtype: `List[torch.Tensor]`
 - **`bboxes`**
-    - Bounding boxes that define the cropped areas in the original images. These are crucial for accurately positioning the cropped images back into their original context.
+    - Bounding boxes specifying the cropped areas in the original images.
     - Comfy dtype: `BBOX`
     - Python dtype: `List[Tuple[int, int, int, int]]`
 - **`border_blending`**
-    - Controls the blending of borders during the uncropping process to ensure a seamless transition between the cropped and original areas.
+    - Controls the blending of the borders during the uncropping process to ensure a seamless integration.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`crop_rescale`**
-    - Determines if and how the cropped images should be rescaled during the uncropping process to fit their original dimensions.
+    - Indicates whether the cropped images should be rescaled to their original size before uncropping.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`border_top`**
-    - The top border size to be considered during the uncropping process.
+    - Specifies whether to apply a top border during the uncropping process.
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `int`
+    - Python dtype: `bool`
 - **`border_bottom`**
-    - The bottom border size to be considered during the uncropping process.
+    - Specifies whether to apply a bottom border during the uncropping process.
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `int`
+    - Python dtype: `bool`
 - **`border_left`**
-    - The left border size to be considered during the uncropping process.
+    - Specifies whether to apply a left border during the uncropping process.
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `int`
+    - Python dtype: `bool`
 - **`border_right`**
-    - The right border size to be considered during the uncropping process.
+    - Specifies whether to apply a right border during the uncropping process.
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `int`
+    - Python dtype: `bool`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The result of the uncropping process, where the original images are restored to their full size with the cropped areas seamlessly integrated.
+    - The original images with the cropped areas seamlessly integrated.
     - Python dtype: `List[torch.Tensor]`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -92,8 +99,15 @@ class BatchUncrop:
                 draw.rectangle((width - border_width, 0, width, height), fill=border_color)
             return image
 
-        if len(original_images) != len(cropped_images) or len(original_images) != len(bboxes):
-            raise ValueError("The number of images, crop_images, and bboxes should be the same")
+        if len(original_images) != len(cropped_images):
+            raise ValueError(f"The number of original_images ({len(original_images)}) and cropped_images ({len(cropped_images)}) should be the same")
+
+        # Ensure there are enough bboxes, but drop the excess if there are more bboxes than images
+        if len(bboxes) > len(original_images):
+            print(f"Warning: Dropping excess bounding boxes. Expected {len(original_images)}, but got {len(bboxes)}")
+            bboxes = bboxes[:len(original_images)]
+        elif len(bboxes) < len(original_images):
+            raise ValueError("There should be at least as many bboxes as there are original and cropped images")
 
         input_images = tensor2pil(original_images)
         crop_imgs = tensor2pil(cropped_images)

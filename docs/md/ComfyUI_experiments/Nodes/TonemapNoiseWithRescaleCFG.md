@@ -1,3 +1,8 @@
+---
+tags:
+- ImageEnhancement
+---
+
 # TonemapNoiseWithRescaleCFG
 ## Documentation
 - Class name: `TonemapNoiseWithRescaleCFG`
@@ -27,7 +32,7 @@ This node applies a tonemapping and noise rescaling technique to a given model's
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes:
-    - Pack SDXL Tuple
+    - [Pack SDXL Tuple](../../efficiency-nodes-comfyui/Nodes/Pack SDXL Tuple.md)
 
 
 

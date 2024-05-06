@@ -1,31 +1,38 @@
+---
+tags:
+- Batch
+- Image
+- ImageBatch
+---
+
 # GetImageRangeFromBatch
 ## Documentation
 - Class name: `GetImageRangeFromBatch`
-- Category: `KJNodes`
+- Category: `KJNodes/image`
 - Output node: `False`
 
-This node extracts a specific range of images from a batch based on the provided start index and the number of frames. It is designed to facilitate the selection and manipulation of subsets of images within a larger collection.
+This node is designed to extract a specific range of images from a given batch based on a starting index and the number of frames desired. It facilitates selective processing or viewing of subsets within larger image collections.
 ## Input types
 ### Required
 - **`images`**
-    - The batch of images from which a range will be selected. This parameter is crucial for determining the subset of images to be extracted.
+    - The collection of images from which a range will be selected. This parameter is crucial for defining the subset of images to be processed.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `List[torch.Tensor]`
 - **`start_index`**
-    - The index within the batch from which to start the selection. A special value of -1 indicates starting from the end backwards. This parameter determines the starting point of the image range to be extracted.
+    - The index at which to start the selection of images. This parameter determines the beginning of the image range to be extracted.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`num_frames`**
-    - The number of images to be selected from the start index. This defines the size of the image range to be extracted from the batch.
+    - The number of images to include in the selected range, starting from the start_index. This defines the size of the output batch.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The selected range of images from the batch.
-    - Python dtype: `torch.Tensor`
+    - The selected range of images from the input batch, returned as a new batch of images.
+    - Python dtype: `List[torch.Tensor]`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -35,7 +42,11 @@ class GetImageRangeFromBatch:
     
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "imagesfrombatch"
-    CATEGORY = "KJNodes"
+    CATEGORY = "KJNodes/image"
+    DESCRIPTION = """
+Creates a new batch using images from the input,  
+batch, starting from start_index.
+"""
 
     @classmethod
     def INPUT_TYPES(s):

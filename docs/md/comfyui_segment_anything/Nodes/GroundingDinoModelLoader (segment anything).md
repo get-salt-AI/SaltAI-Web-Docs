@@ -1,3 +1,10 @@
+---
+tags:
+- Loader
+- ModelIO
+- ModelLoader
+---
+
 # GroundingDinoModelLoader (segment anything)
 ## Documentation
 - Class name: `GroundingDinoModelLoader (segment anything)`

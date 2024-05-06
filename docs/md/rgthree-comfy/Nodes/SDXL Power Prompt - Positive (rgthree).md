@@ -1,88 +1,94 @@
+---
+tags:
+- Prompt
+- PromptStyling
+---
+
 # SDXL Power Prompt - Positive (rgthree)
 ## Documentation
 - Class name: `SDXL Power Prompt - Positive (rgthree)`
 - Category: `rgthree`
 - Output node: `False`
 
-This node specializes in generating positive conditioning for prompts, leveraging the power of SDXL and CLIP models. It is designed to enhance the quality and relevance of generated images by applying positive conditioning techniques.
+This node is designed for positive conditioning in text generation, utilizing advanced techniques such as Lora tags for enhanced customization and control over the generated content. It integrates with CLIPTextEncodeSDXL for semantic understanding and optimization of prompts.
 ## Input types
 ### Required
 - **`prompt_g`**
-    - The global prompt input, which provides a broad context or theme for the image generation process. It's crucial for setting the overall direction and tone of the generated content.
+    - The primary prompt for generation, supporting multiline input. It plays a crucial role in guiding the text generation process towards the desired positive outcome.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`prompt_l`**
-    - The local prompt input, offering more specific guidance or details to fine-tune the image generation. It complements the global prompt by adding depth and specificity to the desired output.
+    - A secondary prompt, also supporting multiline input, that complements the primary prompt to refine and direct the generation towards positive conditioning.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ### Optional
 - **`opt_model`**
-    - An optional model input that allows for further customization and refinement of the generated images.
+    - An optional model parameter that allows for further customization and control over the text generation process.
     - Comfy dtype: `MODEL`
     - Python dtype: `str`
 - **`opt_clip`**
-    - An optional CLIP model input to further refine the conditioning based on visual concepts, enhancing the alignment between text prompts and generated images.
+    - An optional CLIP parameter that can be used to enhance the semantic understanding of the prompts.
     - Comfy dtype: `CLIP`
     - Python dtype: `str`
 - **`opt_clip_width`**
-    - Specifies the width for the CLIP model's input, influencing the aspect ratio of the conditioning and, consequently, the generated images.
+    - Specifies the width for the CLIP encoding process, enhancing the conditioning's focus.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`opt_clip_height`**
-    - Defines the height for the CLIP model's input, affecting the aspect ratio of the conditioning and the resulting images.
+    - Specifies the height for the CLIP encoding process, refining the conditioning's scope.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`insert_lora`**
-    - Allows the insertion of a LoRA model to modify the behavior of the underlying model dynamically.
+    - Allows the insertion of Lora tags for advanced customization and control over the generated content.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`insert_embedding`**
-    - Enables the insertion of a specific embedding to influence the generation process.
+    - Enables the inclusion of specific embeddings to influence the generation process.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`insert_saved`**
-    - Permits the use of a previously saved prompt or configuration, facilitating reuse and consistency in generation.
+    - Permits the use of saved prompts to guide the generation, offering a way to reuse successful configurations.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`target_width`**
-    - The target width for the generated image, which can override the default width derived from the CLIP model's input if specified.
+    - The target width for the generated content, affecting the output's dimensions.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`target_height`**
-    - The target height for the generated image, allowing to override the default height from the CLIP model's input if provided.
+    - The target height for the generated content, impacting the output's scale.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`crop_width`**
-    - Determines the width of the crop applied to the CLIP model's input, which can influence the focus area of the conditioning.
+    - Defines the width of the crop area for the CLIP encoding, focusing the analysis.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`crop_height`**
-    - Specifies the height of the crop applied to the CLIP model's input, potentially affecting the focus area of the conditioning.
+    - Defines the height of the crop area for the CLIP encoding, concentrating the examination.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`CONDITIONING`**
     - Comfy dtype: `CONDITIONING`
-    - unknown
-    - Python dtype: `unknown`
+    - The output conditioning data used for text generation.
+    - Python dtype: `str`
 - **`MODEL`**
     - Comfy dtype: `MODEL`
-    - unknown
-    - Python dtype: `unknown`
+    - The model used in the generation process, if any.
+    - Python dtype: `str`
 - **`CLIP`**
     - Comfy dtype: `CLIP`
-    - unknown
-    - Python dtype: `unknown`
+    - The CLIP data used for enhancing the prompts, if any.
+    - Python dtype: `str`
 - **`TEXT_G`**
     - Comfy dtype: `STRING`
-    - unknown
-    - Python dtype: `unknown`
+    - The primary generated text output.
+    - Python dtype: `str`
 - **`TEXT_L`**
     - Comfy dtype: `STRING`
-    - unknown
-    - Python dtype: `unknown`
+    - The secondary generated text output.
+    - Python dtype: `str`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -181,15 +187,15 @@ class RgthreeSDXLPowerPromptPositive:
            values_insert_saved=None):
 
     if insert_lora == 'DISABLE LORAS':
-      prompt_g, loras_g = get_and_strip_loras(prompt_g, True)
-      prompt_l, loras_l = get_and_strip_loras(prompt_l, True)
+      prompt_g, loras_g = get_and_strip_loras(prompt_g, True, log_node=self.NAME)
+      prompt_l, loras_l = get_and_strip_loras(prompt_l, True, log_node=self.NAME)
       loras = loras_g + loras_l
       log_node_info(
         NODE_NAME,
         f'Disabling all found loras ({len(loras)}) and stripping lora tags for TEXT output.')
     elif opt_model != None and opt_clip != None:
-      prompt_g, loras_g = get_and_strip_loras(prompt_g)
-      prompt_l, loras_l = get_and_strip_loras(prompt_l)
+      prompt_g, loras_g = get_and_strip_loras(prompt_g, log_node=self.NAME)
+      prompt_l, loras_l = get_and_strip_loras(prompt_l, log_node=self.NAME)
       loras = loras_g + loras_l
       if len(loras):
         for lora in loras:
@@ -198,8 +204,8 @@ class RgthreeSDXLPowerPromptPositive:
           log_node_success(NODE_NAME, f'Loaded "{lora["lora"]}" from prompt')
         log_node_info(NODE_NAME, f'{len(loras)} Loras processed; stripping tags for TEXT output.')
     elif '<lora:' in prompt_g or '<lora:' in prompt_l:
-      _prompt_stripped_g, loras_g = get_and_strip_loras(prompt_g, True)
-      _prompt_stripped_l, loras_l = get_and_strip_loras(prompt_l, True)
+      _prompt_stripped_g, loras_g = get_and_strip_loras(prompt_g, True, log_node=self.NAME)
+      _prompt_stripped_l, loras_l = get_and_strip_loras(prompt_l, True, log_node=self.NAME)
       loras = loras_g + loras_l
       if len(loras):
         log_node_warn(

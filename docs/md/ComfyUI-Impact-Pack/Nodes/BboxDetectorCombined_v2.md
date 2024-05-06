@@ -1,33 +1,39 @@
+---
+tags:
+- Image
+- Segmentation
+---
+
 # BBOX Detector (combined)
 ## Documentation
 - Class name: `BboxDetectorCombined_v2`
 - Category: `ImpactPack/Detector`
 - Output node: `False`
 
-This node is designed to perform combined bounding box detection on images, leveraging a specified bounding box detector model. It processes images to identify and delineate objects within them, applying a threshold and dilation parameter to refine the detection results. The node aims to generate precise object masks by combining the capabilities of bounding box detection and segmentation techniques.
+This node combines bounding box detection with segmentation mask creation and optional dilation, providing a comprehensive solution for object detection and segmentation in images. It leverages a bounding box model to detect objects and generate segmentation masks, which can then be optionally dilated for improved coverage or specificity.
 ## Input types
 ### Required
 - **`bbox_detector`**
-    - Specifies the bounding box detector model to be used for detecting objects within the image. It plays a crucial role in determining the accuracy and effectiveness of the detection process.
+    - Specifies the bounding box model to be used for object detection. It plays a crucial role in identifying objects within the image and generating initial bounding boxes.
     - Comfy dtype: `BBOX_DETECTOR`
     - Python dtype: `str`
 - **`image`**
-    - The input image on which object detection is to be performed. The quality and characteristics of the image can significantly influence the detection outcomes.
+    - The input image on which object detection and segmentation are to be performed. It serves as the primary data source for the detection process.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `numpy.ndarray`
+    - Python dtype: `torch.Tensor`
 - **`threshold`**
-    - A threshold value used to filter detection results based on confidence scores. It helps in eliminating detections with low confidence, thereby improving the overall precision.
+    - A threshold value to filter detected objects based on confidence scores. It helps in eliminating detections with low confidence.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`dilation`**
-    - Specifies the amount of dilation to be applied to the detected object masks. Dilation can help in expanding the masks to cover more of the object area, useful in certain detection scenarios.
+    - Determines the extent to which the segmentation masks are dilated. This can enhance the mask's coverage over the detected objects.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The output mask representing the detected objects within the input image. It provides a visual representation of the detection results, highlighting the areas of interest.
-    - Python dtype: `numpy.ndarray`
+    - The output segmentation mask representing detected objects. It combines all individual object masks into a single mask layer.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -48,6 +54,10 @@ class BboxDetectorCombined(SegmDetectorCombined):
 
     def doit(self, bbox_detector, image, threshold, dilation):
         mask = bbox_detector.detect_combined(image, threshold, dilation)
-        return (mask,)
+
+        if mask is None:
+            mask = torch.zeros((image.shape[2], image.shape[1]), dtype=torch.float32, device="cpu")
+
+        return (mask.unsqueeze(0),)
 
 ```

@@ -1,3 +1,9 @@
+---
+tags:
+- Math
+- VectorMath
+---
+
 # Vec3UnaryOperation
 ## Documentation
 - Class name: `CM_Vec3UnaryOperation`

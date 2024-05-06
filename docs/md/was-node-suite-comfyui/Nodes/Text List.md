@@ -1,3 +1,9 @@
+---
+tags:
+- List
+- Text
+---
+
 # Text List
 ## Documentation
 - Class name: `Text List`

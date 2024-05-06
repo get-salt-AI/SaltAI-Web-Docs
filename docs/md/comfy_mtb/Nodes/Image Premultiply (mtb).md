@@ -1,37 +1,43 @@
+---
+tags:
+- Image
+- ImageTransformation
+---
+
 # Image Premultiply (mtb)
 ## Documentation
 - Class name: `Image Premultiply (mtb)`
 - Category: `mtb/image`
 - Output node: `False`
 
-The Image Premultiply node is designed to blend an image with a mask, optionally inverting the mask, to produce premultiplied images. This process is essential for compositing tasks where the transparency and blending of images need to be controlled.
+The MTB_ImagePremultiply node is designed to premultiply an image with a mask, optionally inverting the mask. This operation is commonly used in image processing to combine an image with a transparency mask, affecting the image's transparency according to the mask's values.
 ## Input types
 ### Required
 - **`image`**
-    - The 'image' parameter represents the source image to be premultiplied with the mask. It plays a crucial role in determining the final appearance of the output image.
+    - The 'image' parameter represents the image to be premultiplied with the mask. It plays a crucial role in the node's operation by serving as the primary visual content to be processed.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`mask`**
-    - The 'mask' parameter is used to define the areas of the image that will be affected during the premultiplication process. It is essential for achieving the desired transparency and blending effects.
+    - The 'mask' parameter is used to define the transparency mask that will be applied to the image. Its values determine the transparency of the corresponding areas in the image, significantly influencing the output.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`invert`**
-    - The 'invert' parameter allows for the inversion of the mask before premultiplication, offering flexibility in how the mask is applied to the image.
+    - The 'invert' parameter allows for the inversion of the mask's values before applying it to the image. This inversion can alter the visual outcome by changing which parts of the image are transparent.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`RGBA`**
     - Comfy dtype: `IMAGE`
-    - The output is a premultiplied image with the mask applied, potentially inverted, resulting in an RGBA image where transparency and blending have been adjusted.
+    - The output is an image that has been premultiplied with the mask, reflecting the combined visual effect of the image and mask transparency.
     - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
 ## Source code
 ```python
-class ImagePremultiply:
+class MTB_ImagePremultiply:
     """Premultiply image with mask"""
 
     @classmethod

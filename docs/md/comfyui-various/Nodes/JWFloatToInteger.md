@@ -1,18 +1,24 @@
+---
+tags:
+- DataTypeConversion
+- MathematicalFunctions
+---
+
 # Float to Integer
 ## Documentation
 - Class name: `JWFloatToInteger`
 - Category: `jamesWalker55`
 - Output node: `False`
 
-This node converts a floating-point number to an integer, offering different rounding modes to accommodate various numerical precision requirements.
+This node converts a floating-point number to an integer, offering different rounding modes such as round, floor, and ceiling to control the conversion process.
 ## Input types
 ### Required
 - **`value`**
-    - The floating-point number to be converted to an integer. This parameter is the primary input for the conversion process.
+    - The floating-point number to be converted to an integer. The conversion behavior can be controlled through the 'mode' parameter.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`mode`**
-    - Specifies the rounding mode to be used for the conversion: 'round' for standard rounding, 'floor' for rounding down, and 'ceiling' for rounding up. This allows for flexible control over the conversion outcome.
+    - Specifies the rounding mode for the conversion: 'round' for nearest integer, 'floor' for the nearest lower integer, and 'ceiling' for the nearest higher integer. This parameter determines how the floating-point number is rounded to produce an integer result.
     - Comfy dtype: `['round', 'floor', 'ceiling']`
     - Python dtype: `Literal['round', 'floor', 'ceiling']`
 ## Output types

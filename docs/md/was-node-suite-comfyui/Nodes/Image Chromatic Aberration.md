@@ -1,3 +1,9 @@
+---
+tags:
+- LensEffects
+- VisualEffects
+---
+
 # Image Chromatic Aberration
 ## Documentation
 - Class name: `Image Chromatic Aberration`

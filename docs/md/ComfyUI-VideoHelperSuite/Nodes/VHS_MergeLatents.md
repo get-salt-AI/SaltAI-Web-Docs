@@ -1,3 +1,9 @@
+---
+tags:
+- Latent
+- LatentBatch
+---
+
 # Merge Latent Batches 🎥🅥🅗🅢
 ## Documentation
 - Class name: `VHS_MergeLatents`

@@ -1,3 +1,8 @@
+---
+tags:
+- MaskInversion
+---
+
 # InvertMask (segment anything)
 ## Documentation
 - Class name: `InvertMask (segment anything)`

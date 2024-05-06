@@ -1,3 +1,8 @@
+---
+tags:
+- Counting
+---
+
 # Change Channel Count
 ## Documentation
 - Class name: `Change Channel Count`

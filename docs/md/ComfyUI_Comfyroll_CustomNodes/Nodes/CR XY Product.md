@@ -1,3 +1,8 @@
+---
+tags:
+- Text
+---
+
 # 🛠️ CR XY Product
 ## Documentation
 - Class name: `CR XY Product`

@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- VisualEffects
+---
+
 # 🎨 Halftone Filter
 ## Documentation
 - Class name: `CR Halftone Filter`

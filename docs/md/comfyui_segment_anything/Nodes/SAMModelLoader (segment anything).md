@@ -1,3 +1,8 @@
+---
+tags:
+- SAM
+---
+
 # SAMModelLoader (segment anything)
 ## Documentation
 - Class name: `SAMModelLoader (segment anything)`

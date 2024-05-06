@@ -1,3 +1,9 @@
+---
+tags:
+- Contour
+- Image
+---
+
 # BoundingRect (contours)
 ## Documentation
 - Class name: `BoundingRect (contours)`

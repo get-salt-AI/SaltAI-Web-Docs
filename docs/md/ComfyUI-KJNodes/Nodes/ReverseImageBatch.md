@@ -1,20 +1,27 @@
+---
+tags:
+- Batch
+- Image
+- ImageBatch
+---
+
 # ReverseImageBatch
 ## Documentation
 - Class name: `ReverseImageBatch`
-- Category: `KJNodes`
+- Category: `KJNodes/image`
 - Output node: `False`
 
-The ReverseImageBatch node is designed to reverse the order of images in a batch. It provides a simple yet effective way to manipulate the sequence of images, making it useful for tasks that require the inversion of image order.
+Reverses the order of images in a batch, providing a simple yet effective method for manipulating image sequences.
 ## Input types
 ### Required
 - **`images`**
-    - The 'images' parameter represents the batch of images to be reversed. It plays a crucial role in determining the output, as the node will reverse the order of these images.
+    - The batch of images to be reversed. This input is crucial for determining the order in which images will appear in the output.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is a batch of images with their order reversed from the input batch.
+    - The batch of images after being reversed in order. This output is essential for applications requiring a specific sequence of images.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -27,7 +34,10 @@ class ReverseImageBatch:
     
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "reverseimagebatch"
-    CATEGORY = "KJNodes"
+    CATEGORY = "KJNodes/image"
+    DESCRIPTION = """
+Reverses the order of the images in a batch.
+"""
 
     @classmethod
     def INPUT_TYPES(s):

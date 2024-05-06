@@ -1,3 +1,8 @@
+---
+tags:
+- Color
+---
+
 # HaldCLUT 
 ## Documentation
 - Class name: `HaldCLUT `

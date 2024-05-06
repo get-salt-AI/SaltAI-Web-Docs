@@ -1,45 +1,50 @@
+---
+tags:
+- Image
+---
+
 # 🔧 Image Seam Carving
 ## Documentation
 - Class name: `ImageSeamCarving+`
 - Category: `essentials`
 - Output node: `False`
 
-This node specializes in dynamically resizing images through the process of seam carving, a technique that selectively removes or adds pixels in paths (or seams) from an image to reduce or increase its size without distorting the content. It supports custom energy functions, seam ordering, and the use of masks to protect or target specific areas during the resizing process.
+The ImageSeamCarving node is designed for dynamically resizing images while preserving their essential content features. It employs seam carving techniques to selectively remove or add pixels in paths (seams) across the image, taking into consideration content importance indicated by energy maps, and optionally, keep and drop masks to protect or remove specific areas.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be resized using seam carving. It serves as the primary subject for the dynamic resizing process.
+    - The input image to be processed for seam carving. It serves as the primary data on which the seam carving algorithm operates, dynamically resizing the image while preserving or discarding content as specified by other parameters.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`width`**
-    - The target width for the resized image. This parameter determines the new width dimension the image will be resized to.
+    - The target width for the resized image. This parameter dictates the new width dimension the image should be resized to, influencing the number of seams to be carved or added.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - The target height for the resized image. This parameter determines the new height dimension the image will be resized to.
+    - The target height for the resized image. Similar to width, this parameter sets the new height dimension for the image, affecting the seam carving process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`energy`**
-    - Specifies the energy function to use for identifying seams. It influences how seams are chosen for removal or addition based on pixel importance.
+    - Specifies the energy calculation mode to determine the importance of pixels in the image. This mode influences which pixels are prioritized for removal or retention during the resizing process.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`order`**
-    - Determines the order in which seams are processed (e.g., width-first or height-first), affecting the resizing strategy.
+    - Determines the order in which seams are processed (e.g., width-first or height-first), affecting the direction and strategy of the seam carving operation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`keep_mask`**
-    - A mask indicating areas of the image to preserve during the seam carving process. It helps in protecting specific content from being altered.
+    - An optional mask to indicate areas of the image that should be preserved during the seam carving process. It helps in protecting specific content from being altered or removed.
     - Comfy dtype: `MASK`
-    - Python dtype: `Optional[torch.Tensor]`
+    - Python dtype: `torch.Tensor`
 - **`drop_mask`**
-    - A mask indicating areas of the image that can be preferentially removed during the seam carving process. It targets specific content for alteration.
+    - An optional mask to specify areas of the image that can be preferentially removed during the resizing process. It is used to target less important areas for seam removal.
     - Comfy dtype: `MASK`
-    - Python dtype: `Optional[torch.Tensor]`
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The resized image after applying the seam carving process. It reflects the dynamic resizing outcome, adhering to the specified width, height, and other parameters.
+    - The output image after seam carving. It is the resized version of the input image, adjusted according to the specified parameters and preserving or discarding content as directed.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -93,14 +98,14 @@ class ImageSeamCarving:
         for i in range(img.shape[0]):
             resized = seam_carving(
                 T.ToPILImage()(img[i]),
-                size=(width, height), 
+                size=(width, height),
                 energy_mode=energy,
                 order=order,
                 keep_mask=T.ToPILImage()(keep_mask[i]) if keep_mask is not None else None,
                 drop_mask=T.ToPILImage()(drop_mask[i]) if drop_mask is not None else None,
             )
             out.append(T.ToTensor()(resized))
-        
+
         out = torch.stack(out)
         out = pb(out)
 

@@ -1,3 +1,11 @@
+---
+tags:
+- Checkpoint
+- Loader
+- ModelIO
+- ModelLoader
+---
+
 # CheckpointSave
 ## Documentation
 - Class name: `CheckpointSave`

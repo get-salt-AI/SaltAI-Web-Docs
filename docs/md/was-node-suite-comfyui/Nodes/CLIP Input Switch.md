@@ -1,29 +1,34 @@
+---
+tags:
+- ConditionalSelection
+---
+
 # CLIP Input Switch
 ## Documentation
 - Class name: `CLIP Input Switch`
 - Category: `WAS Suite/Logic`
 - Output node: `False`
 
-The WAS_CLIP_Input_Switch node is designed to toggle between two CLIP model inputs based on a boolean condition. It facilitates dynamic input selection within a workflow, enabling conditional logic and branching paths.
+The WAS_CLIP_Input_Switch node is designed to toggle between two CLIP model inputs based on a boolean condition. It facilitates dynamic input selection within workflows that utilize CLIP models, enhancing flexibility in processing visual content.
 ## Input types
 ### Required
 - **`clip_a`**
     - The first CLIP model input. Acts as the default selection when the boolean condition is true.
     - Comfy dtype: `CLIP`
-    - Python dtype: `object`
+    - Python dtype: `CLIP`
 - **`clip_b`**
-    - The second CLIP model input. Selected when the boolean condition is false.
+    - The second CLIP model input. It is selected when the boolean condition is false.
     - Comfy dtype: `CLIP`
-    - Python dtype: `object`
-- **`boolean_number`**
-    - A numeric boolean condition that determines which CLIP input to select. A value of 1 selects `clip_a`, while any other value selects `clip_b`.
-    - Comfy dtype: `NUMBER`
-    - Python dtype: `int`
+    - Python dtype: `CLIP`
+- **`boolean`**
+    - A boolean condition that determines which CLIP model input (clip_a or clip_b) is selected for output.
+    - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ## Output types
 - **`clip`**
     - Comfy dtype: `CLIP`
     - The selected CLIP model input based on the boolean condition.
-    - Python dtype: `object`
+    - Python dtype: `CLIP`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -41,7 +46,7 @@ class WAS_CLIP_Input_Switch:
             "required": {
                 "clip_a": ("CLIP",),
                 "clip_b": ("CLIP",),
-                "boolean_number": ("NUMBER",),
+                "boolean": ("BOOLEAN", {"forceInput": True}),
             }
         }
 
@@ -50,9 +55,9 @@ class WAS_CLIP_Input_Switch:
 
     CATEGORY = "WAS Suite/Logic"
 
-    def clip_switch(self, clip_a, clip_b, boolean_number=1):
+    def clip_switch(self, clip_a, clip_b, boolean=True):
 
-        if int(round(boolean_number)) == 1:
+        if boolean:
             return (clip_a, )
         else:
             return (clip_b, )

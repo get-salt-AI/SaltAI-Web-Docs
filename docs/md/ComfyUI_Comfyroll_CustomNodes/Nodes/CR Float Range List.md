@@ -1,3 +1,8 @@
+---
+tags:
+- NumberRangeGeneration
+---
+
 # 📜 CR Float Range List
 ## Documentation
 - Class name: `CR Float Range List`

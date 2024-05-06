@@ -1,31 +1,32 @@
+---
+tags:
+- Conditioning
+---
+
 # Conditioning (Combine)
 ## Documentation
 - Class name: `ConditioningCombine`
 - Category: `conditioning`
 - Output node: `False`
 
-This node combines two conditioning inputs into a single output, effectively merging their information.
+The ConditioningCombine node is designed to merge two conditioning inputs into a single, combined conditioning output. This functionality is essential for scenarios where multiple conditioning contexts need to be applied simultaneously to a generative model.
 ## Input types
 ### Required
-- **`conditioning_1`**
-    - The first conditioning input to be combined. It plays an equal role with conditioning_2 in the combination process.
+- **`conditioning_i`**
+    - unknown
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `tuple`
-- **`conditioning_2`**
-    - The second conditioning input to be combined. It is equally important as conditioning_1 in the merging process.
-    - Comfy dtype: `CONDITIONING`
-    - Python dtype: `tuple`
+    - Python dtype: `unknown`
 ## Output types
 - **`conditioning`**
     - Comfy dtype: `CONDITIONING`
-    - The result of combining conditioning_1 and conditioning_2, encapsulating the merged information.
+    - The combined conditioning output, which encapsulates the merged context of the two input conditionings.
     - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
     - [KSampler](../../Comfy/Nodes/KSampler.md)
     - [ConditioningCombine](../../Comfy/Nodes/ConditioningCombine.md)
-    - KSampler Adv. (Efficient)
+    - [KSampler Adv. (Efficient)](../../efficiency-nodes-comfyui/Nodes/KSampler Adv. (Efficient).md)
     - [CR Conditioning Input Switch](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Conditioning Input Switch.md)
     - Attention couple
     - KSampler with Variations

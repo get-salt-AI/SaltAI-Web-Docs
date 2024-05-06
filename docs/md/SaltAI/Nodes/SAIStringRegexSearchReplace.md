@@ -1,3 +1,8 @@
+---
+tags:
+- Text
+---
+
 # Regex Search and Replace
 ## Documentation
 - Class name: `SAIStringRegexSearchReplace`

@@ -1,3 +1,10 @@
+---
+tags:
+- Prompt
+- Text
+- Wildcard
+---
+
 # Wildcard Processor (Mikey)
 ## Documentation
 - Class name: `Wildcard Processor`

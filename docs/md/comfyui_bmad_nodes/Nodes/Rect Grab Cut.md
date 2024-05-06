@@ -1,3 +1,8 @@
+---
+tags:
+- Segmentation
+---
+
 # Rect Grab Cut
 ## Documentation
 - Class name: `Rect Grab Cut`

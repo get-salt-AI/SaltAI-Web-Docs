@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageSequence
+---
+
 # Loop Image Sequence
 ## Documentation
 - Class name: `JWLoopImageSequence`

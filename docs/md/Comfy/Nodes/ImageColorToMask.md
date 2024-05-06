@@ -1,3 +1,10 @@
+---
+tags:
+- ImageMask
+- Mask
+- MaskGeneration
+---
+
 # ImageColorToMask
 ## Documentation
 - Class name: `ImageColorToMask`

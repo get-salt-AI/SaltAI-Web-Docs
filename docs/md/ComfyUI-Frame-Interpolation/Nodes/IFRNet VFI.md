@@ -1,45 +1,48 @@
+---
+tags:
+- AnimationScheduling
+- FrameInterpolation
+- VisualEffects
+---
+
 # IFRNet VFI
 ## Documentation
 - Class name: `IFRNet VFI`
 - Category: `ComfyUI-Frame-Interpolation/VFI`
 - Output node: `False`
 
-The IFRNet_VFI node is designed for video frame interpolation, leveraging deep learning models to predict and generate intermediate frames between existing frames in a video sequence. This node aims to enhance video fluidity and quality by filling in missing frames, making it suitable for applications in video editing, slow-motion effects, and improving video streaming experiences.
+The IFRNet VFI node is designed for video frame interpolation, leveraging deep learning models to predict and generate intermediate frames between existing frames in a video sequence. This process enhances video smoothness and can be used to increase the frame rate of videos.
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - The checkpoint name specifies the pre-trained model to be used for frame interpolation. It is crucial for determining the interpolation model's parameters and behavior.
+    - Specifies the checkpoint name for the model to use, affecting the interpolation quality and style based on the trained data.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`frames`**
-    - This input represents the sequence of frames to be interpolated. It is essential for providing the raw data from which intermediate frames will be generated.
+    - The input video frames to be interpolated, serving as the basis for generating intermediate frames.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`clear_cache_after_n_frames`**
-    - Specifies after how many frames the cache should be cleared to prevent memory overflow. It is important for managing memory usage during the interpolation process.
+    - Determines after how many frames the cache should be cleared to prevent memory overflow, impacting performance and memory usage.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`multiplier`**
-    - Defines the number of intermediate frames to be generated between each pair of original frames. It is key to determining the smoothness of the output video.
+    - Defines the number of intermediate frames to be generated between each pair of original frames, directly affecting the output video's frame rate.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`scale_factor`**
-    - The scale factor adjusts the resolution of the interpolated frames. It is significant for matching the output frame size with the original frames or upscaling/downscaling as needed.
+    - The scale factor for resizing frames during the interpolation process, influencing the resolution of the output frames.
     - Comfy dtype: `COMBO[FLOAT]`
     - Python dtype: `float`
 ### Optional
 - **`optional_interpolation_states`**
-    - Optional states that can skip certain frames during interpolation, useful for customizing the interpolation process based on specific requirements.
+    - Optional states to control the interpolation process, allowing for customization of frame skipping and other behaviors.
     - Comfy dtype: `INTERPOLATION_STATES`
     - Python dtype: `InterpolationStateList`
-- **`cache_in_fp16`**
-    - Determines whether the cache should be stored in fp16 format to save memory. It is important for optimizing memory usage during the interpolation process.
-    - Comfy dtype: `BOOLEAN`
-    - Python dtype: `bool`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - This output consists of the interpolated frames generated between the initial and final frames of the video sequence, enhancing video fluidity and quality.
+    - The output interpolated frames, enhancing the smoothness and frame rate of the input video sequence.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -60,8 +63,7 @@ class IFRNet_VFI:
                 "scale_factor": ([0.25, 0.5, 1.0, 2.0, 4.0], {"default": 1.0}),
             },
             "optional": {
-                "optional_interpolation_states": ("INTERPOLATION_STATES", ),
-                "cache_in_fp16": ("BOOLEAN", {"default": True})
+                "optional_interpolation_states": ("INTERPOLATION_STATES", )
             }
         }
     
@@ -77,7 +79,7 @@ class IFRNet_VFI:
         multiplier: typing.SupportsInt = 2,
         scale_factor: typing.SupportsFloat = 1.0,
         optional_interpolation_states: InterpolationStateList = None,
-        cache_in_fp16: bool = True
+        **kwargs
     ):
         from .IFRNet_S_arch import IRFNet_S
         from .IFRNet_L_arch import IRFNet_L
@@ -93,7 +95,7 @@ class IFRNet_VFI:
         args = [interpolation_model, scale_factor]
         out = postprocess_frames(
             generic_frame_loop(frames, clear_cache_after_n_frames, multiplier, return_middle_frame, *args, 
-                               interpolation_states=optional_interpolation_states, dtype=torch.float16 if cache_in_fp16 else torch.float32)
+                               interpolation_states=optional_interpolation_states, dtype=torch.float32)
         )
         return (out,)
 

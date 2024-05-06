@@ -1,3 +1,9 @@
+---
+tags:
+- Animation
+- Image
+---
+
 # 🛠️ CR Debatch Frames
 ## Documentation
 - Class name: `CR Debatch Frames`

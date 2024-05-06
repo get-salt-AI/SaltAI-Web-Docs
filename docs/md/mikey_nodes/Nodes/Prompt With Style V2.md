@@ -1,3 +1,9 @@
+---
+tags:
+- Prompt
+- PromptStyling
+---
+
 # Prompt With Style V2 (Mikey)
 ## Documentation
 - Class name: `Prompt With Style V2`

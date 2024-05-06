@@ -1,3 +1,9 @@
+---
+tags:
+- Batch
+- Image
+---
+
 # Rebatch Images
 ## Documentation
 - Class name: `RebatchImages`

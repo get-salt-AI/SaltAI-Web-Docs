@@ -1,3 +1,11 @@
+---
+tags:
+- Loader
+- Model
+- ModelIO
+- ModelLoader
+---
+
 # Diffusers Hub Model Down-Loader
 ## Documentation
 - Class name: `Diffusers Hub Model Down-Loader`

@@ -1,3 +1,9 @@
+---
+tags:
+- MediaPipeFaceMesh
+- Segmentation
+---
+
 # MediaPipe Face Mesh
 ## Documentation
 - Class name: `MediaPipe-FaceMeshPreprocessor`

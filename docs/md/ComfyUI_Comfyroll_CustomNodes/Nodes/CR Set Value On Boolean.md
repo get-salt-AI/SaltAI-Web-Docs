@@ -1,3 +1,9 @@
+---
+tags:
+- BooleanLogic
+- ConditionalSelection
+---
+
 # ⚙️ CR Set Value On Boolean
 ## Documentation
 - Class name: `CR Set Value On Boolean`

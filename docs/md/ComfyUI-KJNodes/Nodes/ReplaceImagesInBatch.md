@@ -1,28 +1,35 @@
+---
+tags:
+- Batch
+- Image
+- ImageBatch
+---
+
 # ReplaceImagesInBatch
 ## Documentation
 - Class name: `ReplaceImagesInBatch`
-- Category: `KJNodes`
+- Category: `KJNodes/image`
 - Output node: `False`
 
-This node is designed to replace a subset of images within a batch with another set of images, starting from a specified index. It facilitates the modification of image batches by allowing selective replacement, enhancing flexibility in batch processing tasks.
+This node is designed to replace a subset of images within a batch with a new set of images, starting from a specified index. It facilitates the modification of image batches by allowing selective replacement, thereby enabling dynamic content updates or corrections within a batch of images.
 ## Input types
 ### Required
 - **`original_images`**
-    - The batch of original images from which a subset will be replaced. This parameter is crucial for defining the base set of images to be modified.
+    - The batch of original images that will undergo replacement. This parameter is crucial as it provides the base content that will be modified.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`replacement_images`**
-    - The batch of images to replace the original subset with. This parameter is essential for specifying the new images to be inserted into the batch.
+    - The images that will replace a portion of the original batch, starting from the specified index. This parameter is essential for defining the new content to be introduced into the batch.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`start_index`**
-    - The index within the original batch from which the replacement should start. This parameter determines the position at which the new images will be inserted, affecting the outcome of the replacement process.
+    - The index within the original batch from which the replacement will begin. This parameter determines the starting point for modifications, allowing precise control over the update location.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The modified batch of images after the replacement operation, reflecting the changes made by inserting the new images.
+    - The modified batch of images after the replacement operation, reflecting the updates or corrections made.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -35,7 +42,11 @@ class ReplaceImagesInBatch:
     
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "replace"
-    CATEGORY = "KJNodes"
+    CATEGORY = "KJNodes/image"
+    DESCRIPTION = """
+Replaces the images in a batch, starting from the specified start index,  
+with the replacement images.
+"""
 
     @classmethod
     def INPUT_TYPES(s):

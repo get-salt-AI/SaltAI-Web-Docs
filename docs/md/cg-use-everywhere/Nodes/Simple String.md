@@ -1,3 +1,9 @@
+---
+tags:
+- String
+- Text
+---
+
 # Simple String
 ## Documentation
 - Class name: `Simple String`

@@ -1,24 +1,31 @@
+---
+tags:
+- Flip
+- Image
+- ImageTransformation
+---
+
 # 🔧 Image Flip
 ## Documentation
 - Class name: `ImageFlip+`
 - Category: `essentials`
 - Output node: `False`
 
-The ImageFlip+ node provides functionality for flipping images along specified axes. It can flip images horizontally, vertically, or both, allowing for versatile image manipulation.
+The ImageFlip+ node provides functionality for flipping images along specified axes. It allows for the manipulation of image orientation by flipping it horizontally, vertically, or both, offering a versatile tool for image preprocessing and augmentation tasks.
 ## Input types
 ### Required
 - **`image`**
-    - The image to be flipped. This parameter is crucial as it specifies the target image for the flipping operation.
+    - The 'image' parameter represents the input image to be flipped. It is crucial for determining the content and structure of the output image after the flipping operation is performed.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`axis`**
-    - Specifies the axis or axes along which the image will be flipped. Can be 'x' for horizontal, 'y' for vertical, or 'xy' for both.
+    - The 'axis' parameter specifies the axes along which the image will be flipped. It can be 'x' for horizontal flipping, 'y' for vertical flipping, or 'xy' for flipping along both axes, affecting the orientation and appearance of the output image.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `Tuple[str]`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The flipped image. This output is the result of flipping the input image along the specified axis or axes.
+    - The output is the flipped version of the input image, modified according to the specified axis or axes of flipping.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -36,7 +43,7 @@ class ImageFlip:
                 "axis": (["x", "y", "xy"],),
             }
         }
-    
+
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "execute"
     CATEGORY = "essentials"

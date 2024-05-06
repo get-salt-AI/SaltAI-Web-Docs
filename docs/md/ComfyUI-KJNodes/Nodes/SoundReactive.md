@@ -1,44 +1,49 @@
+---
+tags:
+- Audio
+---
+
 # SoundReactive
 ## Documentation
 - Class name: `SoundReactive`
-- Category: `KJNodes/experimental`
+- Category: `KJNodes/audio`
 - Output node: `False`
 
-The SoundReactive node is designed to process audio input by adjusting the sound level based on a range of frequencies, a multiplier, and a smoothing factor. It optionally normalizes the sound level, providing a flexible tool for audio-reactive applications.
+The SoundReactive node is designed to process audio input, adjusting its behavior based on the sound level. It dynamically reacts to variations in sound intensity within a specified frequency range, offering customization through parameters like sound level, frequency range, and normalization. This node is particularly useful for creating audio-reactive visualizations or effects in real-time applications.
 ## Input types
 ### Required
 - **`sound_level`**
-    - Represents the initial sound level to be adjusted. It's a crucial parameter as it directly influences the output sound level after processing.
+    - Specifies the current sound level to be processed. It influences the node's output by scaling according to the multiplier and normalization settings, directly affecting the dynamic response to audio input.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`start_range_hz`**
-    - Defines the lower bound of the frequency range of interest. It helps in focusing the sound level adjustment within a specific frequency spectrum.
+    - Defines the lower bound of the frequency range of interest. This parameter helps in focusing the node's sensitivity to a specific part of the audio spectrum.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`end_range_hz`**
-    - Sets the upper limit of the frequency range, allowing the node to target adjustments within a defined spectral range.
+    - Sets the upper limit of the frequency range to be considered. It complements the start_range_hz to fine-tune the node's reactivity to the desired frequency band.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`multiplier`**
-    - Acts as a scaling factor for the sound level, enabling amplification or attenuation of the input sound level.
+    - Applies a scaling factor to the sound level, allowing for enhanced control over the node's responsiveness to audio input.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`smoothing_factor`**
-    - Determines the degree of smoothing applied to the sound level, affecting the output's smoothness and stability.
+    - Determines the degree of smoothing applied to the sound level, aiding in the creation of smoother transitions and effects.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`normalize`**
-    - A boolean flag that, when true, normalizes the sound level to a standard range, enhancing consistency across different inputs.
+    - Enables or disables normalization of the sound level, which can standardize the input range for consistent processing across different audio sources.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`sound_level`**
     - Comfy dtype: `FLOAT`
-    - The adjusted sound level after processing, reflecting the effects of the input parameters.
+    - The processed sound level, adjusted according to the node's parameters. It reflects the dynamic changes in audio intensity after scaling and optional normalization.
     - Python dtype: `float`
 - **`sound_level_int`**
     - Comfy dtype: `INT`
-    - An integer representation of the adjusted sound level, providing a discrete output option.
+    - An integer representation of the processed sound level, providing a simplified or quantized output for scenarios where discrete levels are preferred.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
@@ -63,8 +68,12 @@ class SoundReactive:
     RETURN_TYPES = ("FLOAT","INT",)
     RETURN_NAMES =("sound_level", "sound_level_int",)
     FUNCTION = "react"
-
-    CATEGORY = "KJNodes/experimental"
+    CATEGORY = "KJNodes/audio"
+    DESCRIPTION = """
+Reacts to the sound level of the input.  
+Uses your browsers sound input options and requires.  
+Meant to be used with realtime diffusion with autoqueue.
+"""
         
     def react(self, sound_level, start_range_hz, end_range_hz, smoothing_factor, multiplier, normalize):
 

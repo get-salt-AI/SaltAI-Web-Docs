@@ -1,33 +1,38 @@
+---
+tags:
+- SigmaScheduling
+---
+
 # PolyexponentialScheduler
 ## Documentation
 - Class name: `PolyexponentialScheduler`
 - Category: `sampling/custom_sampling/schedulers`
 - Output node: `False`
 
-The PolyexponentialScheduler node is designed to generate a sequence of noise levels (sigmas) based on a polyexponential noise schedule. This schedule is a polynomial function in the logarithm of sigma, allowing for a flexible and customizable progression of noise levels throughout the diffusion process.
+The PolyexponentialScheduler node is designed to generate a sequence of sigma values based on a polyexponential function. These sigma values are used to control the noise level at each step of a diffusion process, allowing for fine-tuned adjustments to the sampling behavior.
 ## Input types
 ### Required
 - **`steps`**
-    - Specifies the number of steps in the diffusion process, affecting the granularity of the generated noise levels.
+    - Specifies the number of steps for which sigma values are to be generated, affecting the granularity of the diffusion process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`sigma_max`**
-    - The maximum noise level, setting the upper bound of the noise schedule.
+    - The maximum sigma value, setting the upper limit of noise to be introduced in the early stages of the diffusion process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sigma_min`**
-    - The minimum noise level, setting the lower bound of the noise schedule.
+    - The minimum sigma value, determining the lower limit of noise for the final stages, ensuring the process gradually refines the generated output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`rho`**
-    - A parameter that controls the shape of the polyexponential noise schedule, influencing how noise levels progress between the minimum and maximum values.
+    - A parameter influencing the shape of the polyexponential curve, thereby affecting the distribution of sigma values across the steps.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`sigmas`**
     - Comfy dtype: `SIGMAS`
-    - The output is a sequence of noise levels (sigmas) tailored to the specified polyexponential noise schedule.
-    - Python dtype: `torch.Tensor`
+    - A sequence of sigma values calculated based on the polyexponential function, tailored for each step of the diffusion process.
+    - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -40,8 +45,8 @@ class PolyexponentialScheduler:
     def INPUT_TYPES(s):
         return {"required":
                     {"steps": ("INT", {"default": 20, "min": 1, "max": 10000}),
-                     "sigma_max": ("FLOAT", {"default": 14.614642, "min": 0.0, "max": 1000.0, "step":0.01, "round": False}),
-                     "sigma_min": ("FLOAT", {"default": 0.0291675, "min": 0.0, "max": 1000.0, "step":0.01, "round": False}),
+                     "sigma_max": ("FLOAT", {"default": 14.614642, "min": 0.0, "max": 5000.0, "step":0.01, "round": False}),
+                     "sigma_min": ("FLOAT", {"default": 0.0291675, "min": 0.0, "max": 5000.0, "step":0.01, "round": False}),
                      "rho": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 100.0, "step":0.01, "round": False}),
                     }
                }

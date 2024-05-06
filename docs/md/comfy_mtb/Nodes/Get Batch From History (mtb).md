@@ -1,38 +1,44 @@
+---
+tags:
+- Batch
+- Image
+---
+
 # Get Batch From History (mtb)
 ## Documentation
 - Class name: `Get Batch From History (mtb)`
 - Category: `mtb/animation`
 - Output node: `False`
 
-This node is designed to retrieve a batch of frames from a historical data source based on specified parameters. It enables conditional fetching of data, allowing for the inclusion of a passthrough image or the retrieval of frames from a server's history, depending on the configuration.
+The MTB_GetBatchFromHistory node is designed to retrieve a batch of data from a historical dataset based on specified parameters. It enables conditional fetching of data, allowing for dynamic data loading and manipulation within a pipeline.
 ## Input types
 ### Required
 - **`enable`**
-    - Determines whether the node should attempt to load from history. If disabled, it may return a passthrough image or an empty tensor, depending on the inputs.
+    - Determines whether the node should attempt to load data from history. If disabled, it can pass through an alternative image if provided.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`count`**
-    - Specifies the number of frames to retrieve from the history. A count of 0 will result in no attempt to fetch frames, potentially returning a passthrough image or an empty tensor.
+    - Specifies the number of historical data entries to retrieve. A count of 0 disables data loading.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`offset`**
-    - Defines the starting point from which to count backwards when fetching frames from the history, allowing for more precise control over the data retrieval process.
+    - Defines the starting point within the historical dataset from which to begin data retrieval, allowing for pagination or skipping entries.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`internal_count`**
-    - A hacky parameter used to invalidate the node, forcing a refresh or update in certain scenarios. This parameter is crucial for controlling the node's behavior in dynamic environments, ensuring that data is fetched only when necessary.
+    - A hacky parameter used to invalidate the node's cache, forcing a reload under certain conditions.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`passthrough_image`**
-    - An optional image that can be returned directly if the node is disabled or if the count is set to 0, providing a fallback mechanism.
+    - An optional image to pass through when data loading is disabled or the count is 0, providing a fallback mechanism.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`images`**
     - Comfy dtype: `IMAGE`
-    - The output is a tuple containing either the fetched frames as tensors or a specified passthrough image, depending on the input parameters.
-    - Python dtype: `Tuple[torch.Tensor]`
+    - The batch of images retrieved from history, or a zero tensor if no data is found or loading is disabled.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -40,10 +46,11 @@ This node is designed to retrieve a batch of frames from a historical data sourc
 
 ## Source code
 ```python
-class GetBatchFromHistory:
+class MTB_GetBatchFromHistory:
     """Very experimental node to load images from the history of the server.
 
-    Queue items without output are ignored in the count."""
+    Queue items without output are ignored in the count.
+    """
 
     @classmethod
     def INPUT_TYPES(cls):
@@ -66,6 +73,7 @@ class GetBatchFromHistory:
 
     def load_from_history(
         self,
+        *,
         enable=True,
         count=0,
         offset=0,
@@ -103,7 +111,9 @@ class GetBatchFromHistory:
                 if "images" in node_output:
                     for image in node_output["images"]:
                         image_data = get_image(
-                            image["filename"], image["subfolder"], image["type"]
+                            image["filename"],
+                            image["subfolder"],
+                            image["type"],
                         )
                         output_images.append(image_data)
 

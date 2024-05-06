@@ -1,3 +1,9 @@
+---
+tags:
+- DataTypeConversion
+- MathematicalFunctions
+---
+
 # Integer to Float
 ## Documentation
 - Class name: `JWIntegerToFloat`

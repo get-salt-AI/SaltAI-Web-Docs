@@ -1,41 +1,44 @@
+---
+tags:
+- AnimationScheduling
+- FrameInterpolation
+- VisualEffects
+---
+
 # GMFSS Fortuna VFI
 ## Documentation
 - Class name: `GMFSS Fortuna VFI`
 - Category: `ComfyUI-Frame-Interpolation/VFI`
 - Output node: `False`
 
-The GMFSS Fortuna VFI node is designed for video frame interpolation, leveraging deep learning models to predict intermediate frames between two given frames. It utilizes a specialized architecture to enhance the quality and accuracy of the interpolated frames, aiming to achieve seamless transitions in video sequences.
+GMFSS Fortuna VFI is a frame interpolation node designed to generate intermediate frames between two given images using a deep learning model. It leverages the GMFSS Fortuna architecture to predict and synthesize high-quality intermediate frames, enhancing video fluidity and realism.
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - The name of the checkpoint file for the model. It is crucial for loading the specific model configuration and weights for frame interpolation.
+    - The checkpoint name for the model used in frame interpolation. It specifies the pre-trained model to be loaded for generating intermediate frames.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`frames`**
-    - A tensor containing the sequence of frames for interpolation. It serves as the input data from which intermediate frames will be generated.
+    - A tensor containing the sequence of frames for which intermediate frames are to be generated. It serves as the input sequence for the interpolation process.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`clear_cache_after_n_frames`**
-    - Specifies after how many frames the CUDA cache should be cleared to prevent memory overflow. It helps in managing memory usage during the interpolation process.
+    - An integer specifying how often to clear the CUDA cache to prevent memory overflow during processing.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`multiplier`**
-    - Defines the number of intermediate frames to be generated between each pair of input frames. It determines the smoothness of the output video sequence.
+    - An integer indicating the number of intermediate frames to generate between each pair of input frames, effectively controlling the frame rate increase.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`optional_interpolation_states`**
-    - An optional parameter that allows for skipping certain frames during interpolation, based on predefined states. It can be used to optimize the interpolation process.
+    - An optional parameter providing state information for selective frame interpolation, allowing for more control over which frames are interpolated.
     - Comfy dtype: `INTERPOLATION_STATES`
     - Python dtype: `InterpolationStateList`
-- **`cache_in_fp16`**
-    - A boolean flag indicating whether to cache frames in half-precision format (fp16) to save memory. It affects the memory efficiency of the interpolation process.
-    - Comfy dtype: `BOOLEAN`
-    - Python dtype: `bool`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output tensor containing the interpolated frames, showcasing the model's ability to create high-quality, seamless transitions between the input frames.
+    - The output tensor containing the interpolated frames, enhancing the fluidity and realism of the input video sequence.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -57,8 +60,7 @@ class GMFSS_Fortuna_VFI:
                 "multiplier": ("INT", {"default": 2, "min": 2, "max": 1000}),
             },
             "optional": {
-                "optional_interpolation_states": ("INTERPOLATION_STATES", ),
-                "cache_in_fp16": ("BOOLEAN", {"default": True})
+                "optional_interpolation_states": ("INTERPOLATION_STATES", )
             }
         }
     
@@ -73,7 +75,7 @@ class GMFSS_Fortuna_VFI:
         clear_cache_after_n_frames = 10,
         multiplier: typing.SupportsInt = 2,
         optional_interpolation_states: InterpolationStateList = None,
-        cache_in_fp16: bool = True
+        **kwargs
     ):
         """
         Perform video frame interpolation using a given checkpoint model.
@@ -109,7 +111,7 @@ class GMFSS_Fortuna_VFI:
         args = [interpolation_model, scale]
         out = postprocess_frames(
             generic_frame_loop(frames, clear_cache_after_n_frames, multiplier, return_middle_frame, *args, 
-                               interpolation_states=optional_interpolation_states, dtype=torch.float16 if cache_in_fp16 else torch.float32)
+                               interpolation_states=optional_interpolation_states, dtype=torch.float32)
         )
         return (out,)
 

@@ -1,48 +1,54 @@
+---
+tags:
+- Image
+- ImageTransformation
+---
+
 # Transform Image (mtb)
 ## Documentation
 - Class name: `Transform Image (mtb)`
 - Category: `mtb/transform`
 - Output node: `False`
 
-This node is designed to apply a series of geometric transformations to an image, including translation, rotation, scaling, and shearing. It allows for flexible image manipulation with options for border handling and color filling, making it suitable for a wide range of image processing tasks.
+The Transform Image (mtb) node is designed to apply a series of affine transformations to an image, including translation, rotation, scaling (zoom), and shearing. It allows for flexible image manipulation with options for border handling and filling with a constant color, making it suitable for a wide range of image processing tasks.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be transformed, provided as a tensor. This image undergoes various geometric transformations based on the other parameters.
+    - The input image tensor to be transformed. It serves as the primary data on which the affine transformations are applied, affecting the visual outcome of the operation.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`x`**
-    - The horizontal translation of the image, affecting its position along the x-axis.
+    - The horizontal translation distance. It shifts the image left or right, influencing the image's position.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`y`**
-    - The vertical translation of the image, affecting its position along the y-axis.
+    - The vertical translation distance. It shifts the image up or down, affecting the image's vertical positioning.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`zoom`**
-    - The scaling factor for the image, allowing for zooming in or out.
+    - The scaling factor. It enlarges or reduces the image size, impacting the level of detail visible in the transformed image.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`angle`**
-    - The rotation angle of the image in degrees, enabling its rotation around the center.
+    - The rotation angle in degrees. It rotates the image around its center, changing its orientation.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`shear`**
-    - The shear angle of the image, allowing for a shearing transformation to be applied.
+    - The shear intensity. It distorts the image by slanting it, modifying the shape and angles within the image.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`border_handling`**
-    - Specifies how the borders of the image are handled during transformations, such as 'edge' or 'constant'.
+    - The method used for handling image borders during transformation. It determines how the edges of the image are treated, affecting the appearance of the image's periphery.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`constant_color`**
-    - The color used to fill the constant areas when 'constant' border handling is selected. It's specified as a hex color code.
+    - The color used to fill in new areas when the image is transformed. It specifies the fill color for areas that become exposed as a result of the transformation.
     - Comfy dtype: `COLOR`
     - Python dtype: `str`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The transformed image, returned as a tensor after applying the specified geometric transformations.
+    - The transformed image tensor, reflecting the applied affine transformations.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -51,9 +57,8 @@ This node is designed to apply a series of geometric transformations to an image
 
 ## Source code
 ```python
-class TransformImage:
+class MTB_TransformImage:
     """Save torch tensors (image, mask or latent) to disk, useful to debug things outside comfy
-
 
     it return a tensor representing the transformed images with the same shape as the input tensor
     """
@@ -63,10 +68,22 @@ class TransformImage:
         return {
             "required": {
                 "image": ("IMAGE",),
-                "x": ("FLOAT", {"default": 0, "step": 1, "min": -4096, "max": 4096}),
-                "y": ("FLOAT", {"default": 0, "step": 1, "min": -4096, "max": 4096}),
-                "zoom": ("FLOAT", {"default": 1.0, "min": 0.001, "step": 0.01}),
-                "angle": ("FLOAT", {"default": 0, "step": 1, "min": -360, "max": 360}),
+                "x": (
+                    "FLOAT",
+                    {"default": 0, "step": 1, "min": -4096, "max": 4096},
+                ),
+                "y": (
+                    "FLOAT",
+                    {"default": 0, "step": 1, "min": -4096, "max": 4096},
+                ),
+                "zoom": (
+                    "FLOAT",
+                    {"default": 1.0, "min": 0.001, "step": 0.01},
+                ),
+                "angle": (
+                    "FLOAT",
+                    {"default": 0, "step": 1, "min": -360, "max": 360},
+                ),
                 "shear": (
                     "FLOAT",
                     {"default": 0, "step": 1, "min": -4096, "max": 4096},
@@ -98,14 +115,21 @@ class TransformImage:
         y = int(y)
         angle = int(angle)
 
-        log.debug(f"Zoom: {zoom} | x: {x}, y: {y}, angle: {angle}, shear: {shear}")
+        log.debug(
+            f"Zoom: {zoom} | x: {x}, y: {y}, angle: {angle}, shear: {shear}"
+        )
 
         if image.size(0) == 0:
             return (torch.zeros(0),)
         transformed_images = []
-        frames_count, frame_height, frame_width, frame_channel_count = image.size()
+        frames_count, frame_height, frame_width, frame_channel_count = (
+            image.size()
+        )
 
-        new_height, new_width = int(frame_height * zoom), int(frame_width * zoom)
+        new_height, new_width = (
+            int(frame_height * zoom),
+            int(frame_width * zoom),
+        )
 
         log.debug(f"New height: {new_height}, New width: {new_width}")
 
@@ -119,7 +143,12 @@ class TransformImage:
         pw += abs(max_padding)
         ph += abs(max_padding)
 
-        padding = [max(0, pw + x), max(0, ph + y), max(0, pw - x), max(0, ph - y)]
+        padding = [
+            max(0, pw + x),
+            max(0, ph + y),
+            max(0, pw - x),
+            max(0, ph - y),
+        ]
 
         constant_color = hex_to_rgb(constant_color)
         log.debug(f"Fill Tuple: {constant_color}")
@@ -134,7 +163,9 @@ class TransformImage:
 
             img = cast(
                 Image.Image,
-                TF.affine(img, angle=angle, scale=zoom, translate=[x, y], shear=shear),
+                TF.affine(
+                    img, angle=angle, scale=zoom, translate=[x, y], shear=shear
+                ),
             )
 
             left = abs(padding[0])

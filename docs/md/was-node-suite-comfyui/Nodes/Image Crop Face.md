@@ -1,3 +1,10 @@
+---
+tags:
+- Crop
+- Image
+- ImageTransformation
+---
+
 # Image Crop Face
 ## Documentation
 - Class name: `Image Crop Face`

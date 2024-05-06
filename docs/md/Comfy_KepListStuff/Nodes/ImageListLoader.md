@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageListLoader
+---
+
 # Image List Loader
 ## Documentation
 - Class name: `ImageListLoader`

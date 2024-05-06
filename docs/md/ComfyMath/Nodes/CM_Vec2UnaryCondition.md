@@ -1,3 +1,9 @@
+---
+tags:
+- Math
+- VectorMath
+---
+
 # Vec2UnaryCondition
 ## Documentation
 - Class name: `CM_Vec2UnaryCondition`

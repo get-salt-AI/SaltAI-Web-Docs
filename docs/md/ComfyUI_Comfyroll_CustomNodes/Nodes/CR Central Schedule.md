@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- Scheduling
+---
+
 # 📋 CR Central Schedule
 ## Documentation
 - Class name: `CR Central Schedule`

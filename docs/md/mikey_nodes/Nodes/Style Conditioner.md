@@ -1,3 +1,8 @@
+---
+tags:
+- Style
+---
+
 # Style Conditioner (Mikey)
 ## Documentation
 - Class name: `Style Conditioner`

@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- VisualEffects
+---
+
 # 🟨 CR Color Gradient
 ## Documentation
 - Class name: `CR Color Gradient`

@@ -1,32 +1,37 @@
+---
+tags:
+- Latent
+---
+
 # 🔧 SDXL Empty Latent Size Picker
 ## Documentation
 - Class name: `SDXLEmptyLatentSizePicker+`
 - Category: `essentials`
 - Output node: `False`
 
-This node is designed to select an appropriate latent size based on a given resolution and batch size. It facilitates the generation of empty latent spaces with dimensions tailored to specific resolutions, ensuring compatibility and optimal performance for subsequent image generation tasks.
+This node is designed to generate a tensor representing an empty latent space of a specified size, tailored for use in generative models. It allows for the dynamic creation of latent spaces based on resolution and batch size inputs, facilitating the generation of content at varying dimensions.
 ## Input types
 ### Required
 - **`resolution`**
-    - Specifies the desired resolution for the latent space. The selection of resolution directly influences the dimensions of the generated latent space, catering to various aspect ratios and sizes.
+    - Specifies the resolution of the generated latent space, influencing the dimensions of the output tensor. The choice of resolution directly impacts the size and aspect ratio of the generated content.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`batch_size`**
-    - Determines the number of latent spaces to generate in a batch. A higher batch size allows for the simultaneous generation of multiple latent spaces, optimizing workflow efficiency.
+    - Determines the number of latent spaces to generate in a single batch, allowing for efficient bulk generation of content.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`LATENT`**
     - Comfy dtype: `LATENT`
-    - The generated latent space, structured as a tensor, tailored to the specified resolution and batch size.
-    - Python dtype: `Dict[str, torch.Tensor]`
+    - The generated empty latent space tensor, ready for further processing or generation tasks.
+    - Python dtype: `torch.Tensor`
 - **`width`**
     - Comfy dtype: `INT`
-    - The width of the generated latent space, derived from the specified resolution.
+    - The width dimension of the generated latent space, derived from the specified resolution.
     - Python dtype: `int`
 - **`height`**
     - Comfy dtype: `INT`
-    - The height of the generated latent space, derived from the specified resolution.
+    - The height dimension of the generated latent space, derived from the specified resolution.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `GPU`
@@ -38,7 +43,7 @@ This node is designed to select an appropriate latent size based on a given reso
 class SDXLEmptyLatentSizePicker:
     def __init__(self):
         self.device = comfy.model_management.intermediate_device()
- 
+
     @classmethod
     def INPUT_TYPES(s):
         return {"required": {

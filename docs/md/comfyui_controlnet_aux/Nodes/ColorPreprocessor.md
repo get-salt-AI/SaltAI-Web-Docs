@@ -1,3 +1,11 @@
+---
+tags:
+- DepthMap
+- Image
+- ImageEnhancement
+- ImagePreprocessing
+---
+
 # Color Pallete
 ## Documentation
 - Class name: `ColorPreprocessor`

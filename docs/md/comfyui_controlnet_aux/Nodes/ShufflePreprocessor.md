@@ -1,3 +1,8 @@
+---
+tags:
+- Image
+---
+
 # Content Shuffle
 ## Documentation
 - Class name: `ShufflePreprocessor`

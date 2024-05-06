@@ -1,36 +1,41 @@
+---
+tags:
+- Image
+---
+
 # Stable Video Diffusion
 ## Documentation
 - Class name: `SaltAIStableVideoDiffusion`
 - Category: `SALT/API/Stability API`
 - Output node: `False`
 
-The SaltAIStableVideoDiffusion node is designed to interface with the Stability AI API to generate video content based on a given image. It encapsulates the process of sending an image to the API, managing API keys, handling responses, and converting the received video data into a series of frames for further processing or display. This node abstracts the complexities involved in interacting with the Stability AI API, providing a streamlined approach to creating dynamic video content from static images.
+The SaltAIStableVideoDiffusion node is designed to interface with Stability AI's API to generate video content based on a given image. It utilizes advanced diffusion techniques to produce high-quality video animations, transforming static images into dynamic video sequences through a series of API calls and image processing steps.
 ## Input types
 ### Required
 - **`image`**
-    - The input image based on which the video is to be generated. This image is the starting point for the video diffusion process, setting the visual context for the generated video content.
+    - The input image to be transformed into a video sequence. It plays a crucial role in determining the visual content of the generated video.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`api_key`**
-    - The API key required to authenticate requests to the Stability AI API. This key enables access to the video generation capabilities of the API.
+    - The API key required to authenticate requests to the Stability AI API. It is essential for accessing the video generation capabilities of the API.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`seed`**
-    - An optional seed value to ensure reproducibility of the video generation process. It influences the randomness of the video content generated.
+    - A seed value to ensure reproducibility of the video generation process. It influences the randomness of the video's visual evolution.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - The CFG scale parameter controls the creativity of the video generation. A higher value encourages more creative and less deterministic outputs.
+    - The CFG scale parameter controls the creativity of the video generation. A higher value encourages more novel video content.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`mbi`**
-    - The motion bucket ID parameter influences the motion dynamics in the generated video, affecting how elements within the video move and interact.
+    - The motion bucket ID parameter influences the motion dynamics within the generated video, affecting how the image animates over time.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`frames`**
     - Comfy dtype: `IMAGE`
-    - A batch of frames representing the generated video. Each frame is a snapshot of the video at a specific point in time, collectively forming the entire video content.
+    - A batch of video frames as a tensor, representing the generated video sequence. Each frame is a transformation of the input image, collectively forming a coherent video.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -57,7 +62,7 @@ class SaltAIStableVideoDiffusion:
     RETURN_NAMES = ("frames",)
 
     FUNCTION = "generate_video"
-    CATEGORY = f"SALT/API/Stability API"
+    CATEGORY = "SALT/API/Stability API"
 
     def generate_video(self, image, api_key, seed=0, cfg=2.5, mbi=40):
 

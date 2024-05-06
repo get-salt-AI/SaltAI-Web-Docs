@@ -1,3 +1,9 @@
+---
+tags:
+- Animation
+- Image
+---
+
 # CR Cycle Images (Legacy)
 ## Documentation
 - Class name: `CR Cycle Images`

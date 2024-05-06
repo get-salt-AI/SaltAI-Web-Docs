@@ -1,3 +1,9 @@
+---
+tags:
+- ComfyrollNodes
+- Index
+---
+
 # 🔢 CR Index Increment
 ## Documentation
 - Class name: `CR Index Increment`

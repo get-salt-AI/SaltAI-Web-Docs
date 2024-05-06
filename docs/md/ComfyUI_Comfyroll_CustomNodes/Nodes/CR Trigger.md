@@ -1,3 +1,9 @@
+---
+tags:
+- ComfyrollNodes
+- Index
+---
+
 # 🔢 CR Trigger
 ## Documentation
 - Class name: `CR Trigger`

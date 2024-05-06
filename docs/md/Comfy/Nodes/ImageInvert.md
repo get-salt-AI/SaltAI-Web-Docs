@@ -1,3 +1,8 @@
+---
+tags:
+- MaskInversion
+---
+
 # Invert Image
 ## Documentation
 - Class name: `ImageInvert`

@@ -1,3 +1,10 @@
+---
+tags:
+- Blur
+- MaskBlur
+- VisualEffects
+---
+
 # Mask Gaussian Region
 ## Documentation
 - Class name: `Mask Gaussian Region`

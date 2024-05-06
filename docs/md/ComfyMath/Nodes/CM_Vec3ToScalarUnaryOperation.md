@@ -1,3 +1,9 @@
+---
+tags:
+- Math
+- VectorMath
+---
+
 # Vec3ToScalarUnaryOperation
 ## Documentation
 - Class name: `CM_Vec3ToScalarUnaryOperation`

@@ -1,3 +1,9 @@
+---
+tags:
+- Contour
+- Image
+---
+
 # AdjustRect
 ## Documentation
 - Class name: `AdjustRect`

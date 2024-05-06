@@ -1,3 +1,9 @@
+---
+tags:
+- Color
+- HSVColorSpace
+---
+
 # SampleColorHSV
 ## Documentation
 - Class name: `SampleColorHSV`

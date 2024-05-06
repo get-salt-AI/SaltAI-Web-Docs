@@ -1,3 +1,8 @@
+---
+tags:
+- VisualEffects
+---
+
 # Image Film Grain
 ## Documentation
 - Class name: `Image Film Grain`

@@ -1,3 +1,8 @@
+---
+tags:
+- Segmentation
+---
+
 # SEGSPreview
 ## Documentation
 - Class name: `SEGSPreview`

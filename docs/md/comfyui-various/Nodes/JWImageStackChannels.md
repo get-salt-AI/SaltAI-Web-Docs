@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageTransformation
+---
+
 # Image Stack Channels
 ## Documentation
 - Class name: `JWImageStackChannels`

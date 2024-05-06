@@ -1,3 +1,8 @@
+---
+tags:
+- Color
+---
+
 # Color (hexadecimal)
 ## Documentation
 - Class name: `Color (hexadecimal)`

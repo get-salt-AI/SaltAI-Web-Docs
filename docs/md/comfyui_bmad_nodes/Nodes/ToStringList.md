@@ -1,3 +1,8 @@
+---
+tags:
+- List
+---
+
 # ToStringList
 ## Documentation
 - Class name: `ToStringList`

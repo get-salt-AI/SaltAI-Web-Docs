@@ -1,3 +1,10 @@
+---
+tags:
+- CLIP
+- Loader
+- ModelIO
+---
+
 # DualCLIPLoader
 ## Documentation
 - Class name: `DualCLIPLoader`

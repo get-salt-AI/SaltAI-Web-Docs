@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Segmentation
+---
+
 # ONNXDetectorProvider
 ## Documentation
 - Class name: `ONNXDetectorProvider`

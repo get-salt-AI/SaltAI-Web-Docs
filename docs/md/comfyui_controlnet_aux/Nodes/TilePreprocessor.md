@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Tiled
+---
+
 # Tile
 ## Documentation
 - Class name: `TilePreprocessor`

@@ -1,3 +1,8 @@
+---
+tags:
+- Debugging
+---
+
 # 🔧 Console Debug
 ## Documentation
 - Class name: `ConsoleDebug+`

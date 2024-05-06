@@ -1,41 +1,46 @@
+---
+tags:
+- Conditioning
+---
+
 # Conditioning (Set Area)
 ## Documentation
 - Class name: `ConditioningSetArea`
 - Category: `conditioning`
 - Output node: `False`
 
-This node is designed to modify the conditioning information by setting specific areas within the conditioning context. It allows for the precise spatial manipulation of conditioning elements, enabling targeted adjustments and enhancements based on specified dimensions and strength.
+This node specializes in adjusting the conditioning of an image generation process by setting specific areas with defined dimensions and strength. It allows for precise control over the conditioning's spatial attributes, enabling targeted modifications to the generated image's characteristics within specified regions.
 ## Input types
 ### Required
 - **`conditioning`**
-    - The conditioning data to be modified. It serves as the base for applying spatial adjustments.
+    - The conditioning input represents the current state of the image generation process, which this node modifies by setting specific areas.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
+    - Python dtype: `tuple`
 - **`width`**
-    - Specifies the width of the area to be set within the conditioning context, influencing the horizontal scope of the adjustment.
+    - Specifies the width of the area to be set, allowing for precise spatial control within the conditioning.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Determines the height of the area to be set, affecting the vertical extent of the conditioning modification.
+    - Defines the height of the area to be set, contributing to the spatial specificity of the conditioning modification.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`x`**
-    - The horizontal starting point of the area to be set, positioning the adjustment within the conditioning context.
+    - The x-coordinate of the top-left corner of the area to be set, positioning the modification within the conditioning.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`y`**
-    - The vertical starting point for the area adjustment, establishing its position within the conditioning context.
+    - The y-coordinate of the top-left corner of the area to be set, positioning the modification within the conditioning.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`strength`**
-    - Defines the intensity of the conditioning modification within the specified area, allowing for nuanced control over the adjustment's impact.
+    - Determines the intensity of the conditioning modification within the specified area, affecting the generated image's characteristics.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`conditioning`**
     - Comfy dtype: `CONDITIONING`
-    - The modified conditioning data, reflecting the specified area settings and adjustments.
-    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
+    - The modified conditioning, with specific areas set according to the provided dimensions and strength, ready for further processing in the image generation pipeline.
+    - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
@@ -62,13 +67,9 @@ class ConditioningSetArea:
     CATEGORY = "conditioning"
 
     def append(self, conditioning, width, height, x, y, strength):
-        c = []
-        for t in conditioning:
-            n = [t[0], t[1].copy()]
-            n[1]['area'] = (height // 8, width // 8, y // 8, x // 8)
-            n[1]['strength'] = strength
-            n[1]['set_area_to_bounds'] = False
-            c.append(n)
+        c = node_helpers.conditioning_set_values(conditioning, {"area": (height // 8, width // 8, y // 8, x // 8),
+                                                                "strength": strength,
+                                                                "set_area_to_bounds": False})
         return (c, )
 
 ```

@@ -1,3 +1,9 @@
+---
+tags:
+- ImageResolution
+- ImageTransformation
+---
+
 # NearestSDXLResolution
 ## Documentation
 - Class name: `CM_NearestSDXLResolution`

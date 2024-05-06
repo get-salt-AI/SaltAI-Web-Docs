@@ -1,3 +1,10 @@
+---
+tags:
+- DataConversion
+- DataTypeConversion
+- NumericConversion
+---
+
 # Number to Float
 ## Documentation
 - Class name: `Number to Float`

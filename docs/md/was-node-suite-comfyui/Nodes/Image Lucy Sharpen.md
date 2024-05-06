@@ -1,3 +1,9 @@
+---
+tags:
+- ImageEnhancement
+- VisualEffects
+---
+
 # Image Lucy Sharpen
 ## Documentation
 - Class name: `Image Lucy Sharpen`

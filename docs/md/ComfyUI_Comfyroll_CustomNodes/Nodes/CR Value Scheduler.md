@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- Scheduling
+---
+
 # 📑 CR Value Scheduler
 ## Documentation
 - Class name: `CR Value Scheduler`

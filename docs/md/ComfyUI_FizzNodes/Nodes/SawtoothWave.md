@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- WavePatterns
+---
+
 # SawtoothWave 📅🅕🅝
 ## Documentation
 - Class name: `SawtoothWave`

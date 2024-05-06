@@ -1,3 +1,9 @@
+---
+tags:
+- ControlNet
+- Weight
+---
+
 # Scaled Soft Weights 🛂🅐🅒🅝
 ## Documentation
 - Class name: `ScaledSoftControlNetWeights`

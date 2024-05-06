@@ -1,3 +1,9 @@
+---
+tags:
+- BooleanLogic
+- ConditionalSelection
+---
+
 # ImpactConditionalBranchSelMode
 ## Documentation
 - Class name: `ImpactConditionalBranchSelMode`

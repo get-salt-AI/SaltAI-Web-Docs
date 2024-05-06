@@ -1,3 +1,9 @@
+---
+tags:
+- ConditionalSelection
+- ImpactPack
+---
+
 # ImpactImageInfo
 ## Documentation
 - Class name: `ImpactImageInfo`
@@ -32,7 +38,7 @@ The ImpactImageInfo node is designed to extract and provide detailed information
 - Infra type: `CPU`
 - Common nodes:
     - [EmptyImage](../../Comfy/Nodes/EmptyImage.md)
-    - ttN pipeLoader
+    - [ttN pipeLoader](../../ComfyUI_tinyterraNodes/Nodes/ttN pipeLoader.md)
     - [EmptyLatentImage](../../Comfy/Nodes/EmptyLatentImage.md)
 
 

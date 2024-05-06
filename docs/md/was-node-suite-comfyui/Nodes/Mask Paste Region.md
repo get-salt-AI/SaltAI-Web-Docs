@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageComposite
+---
+
 # Mask Paste Region
 ## Documentation
 - Class name: `Mask Paste Region`

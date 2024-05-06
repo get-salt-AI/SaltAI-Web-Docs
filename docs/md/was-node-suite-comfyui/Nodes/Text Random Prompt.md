@@ -1,3 +1,8 @@
+---
+tags:
+- RandomGeneration
+---
+
 # Text Random Prompt
 ## Documentation
 - Class name: `Text Random Prompt`

@@ -1,3 +1,10 @@
+---
+tags:
+- Batch
+- Image
+- ImageBatch
+---
+
 # Load Image Batch
 ## Documentation
 - Class name: `Load Image Batch`
@@ -49,8 +56,8 @@ The Load Image Batch node is designed to aggregate multiple images into a single
 - Infra type: `GPU`
 - Common nodes:
     - Reroute
-    - BLIPCaption
-    - [Image scale to side](../../Derfuu_ComfyUI_ModdedNodes/Nodes/Image scale to side.md)
+    - [BLIPCaption](../../comfyui-art-venture/Nodes/BLIPCaption.md)
+    - Image scale to side
 
 
 

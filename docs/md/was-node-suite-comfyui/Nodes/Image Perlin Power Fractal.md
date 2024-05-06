@@ -1,3 +1,9 @@
+---
+tags:
+- Noise
+- NoisePatterns
+---
+
 # Image Perlin Power Fractal
 ## Documentation
 - Class name: `Image Perlin Power Fractal`

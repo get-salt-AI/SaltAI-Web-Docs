@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskMorphology
+---
+
 # GrowMask
 ## Documentation
 - Class name: `GrowMask`

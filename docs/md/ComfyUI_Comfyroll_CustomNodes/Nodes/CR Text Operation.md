@@ -1,3 +1,8 @@
+---
+tags:
+- Text
+---
+
 # 🔤 CR Text Operation
 ## Documentation
 - Class name: `CR Text Operation`

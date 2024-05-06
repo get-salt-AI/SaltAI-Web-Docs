@@ -1,3 +1,8 @@
+---
+tags:
+- Conditioning
+---
+
 # ToCondList
 ## Documentation
 - Class name: `ToCondList`

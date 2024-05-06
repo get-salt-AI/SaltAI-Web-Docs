@@ -1,25 +1,30 @@
+---
+tags:
+- Conditioning
+---
+
 # ConditioningSetAreaStrength
 ## Documentation
 - Class name: `ConditioningSetAreaStrength`
 - Category: `conditioning`
 - Output node: `False`
 
-This node is designed to modify the strength attribute of a given conditioning set, allowing for the adjustment of the influence or intensity of the conditioning on the generation process.
+This node specializes in adjusting the strength of conditioning applied to a specific area, allowing for fine-tuned control over the intensity of effects or modifications within that area.
 ## Input types
 ### Required
 - **`conditioning`**
-    - The conditioning set to be modified, representing the current state of conditioning that influences the generation process.
+    - The conditioning context to which the strength adjustment will be applied, serving as the foundation for the modification.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
+    - Python dtype: `tuple`
 - **`strength`**
-    - The strength value to be applied to the conditioning set, dictating the intensity of its influence.
+    - Specifies the intensity of the conditioning effect, enabling precise control over how strongly the area is influenced.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`conditioning`**
     - Comfy dtype: `CONDITIONING`
-    - The modified conditioning set with updated strength values for each element.
-    - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
+    - Returns the modified conditioning context with the updated strength value applied.
+    - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -39,11 +44,7 @@ class ConditioningSetAreaStrength:
     CATEGORY = "conditioning"
 
     def append(self, conditioning, strength):
-        c = []
-        for t in conditioning:
-            n = [t[0], t[1].copy()]
-            n[1]['strength'] = strength
-            c.append(n)
+        c = node_helpers.conditioning_set_values(conditioning, {"strength": strength})
         return (c, )
 
 ```

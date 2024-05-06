@@ -1,3 +1,9 @@
+---
+tags:
+- SamplerScheduler
+- Sampling
+---
+
 # KSampler Config (rgthree)
 ## Documentation
 - Class name: `KSampler Config (rgthree)`

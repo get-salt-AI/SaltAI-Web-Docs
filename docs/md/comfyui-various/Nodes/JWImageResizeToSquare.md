@@ -1,3 +1,11 @@
+---
+tags:
+- ImageResize
+- ImageScaling
+- ImageSize
+- ImageTransformation
+---
+
 # Image Resize to Square
 ## Documentation
 - Class name: `JWImageResizeToSquare`

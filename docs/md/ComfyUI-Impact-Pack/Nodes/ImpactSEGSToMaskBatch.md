@@ -1,3 +1,9 @@
+---
+tags:
+- SEGSPrep
+- Segmentation
+---
+
 # SEGS to Mask Batch
 ## Documentation
 - Class name: `ImpactSEGSToMaskBatch`

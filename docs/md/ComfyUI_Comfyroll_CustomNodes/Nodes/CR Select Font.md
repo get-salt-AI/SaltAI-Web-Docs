@@ -1,3 +1,8 @@
+---
+tags:
+- ComfyrollNodes
+---
+
 # 🔤️ CR Select Font
 ## Documentation
 - Class name: `CR Select Font`

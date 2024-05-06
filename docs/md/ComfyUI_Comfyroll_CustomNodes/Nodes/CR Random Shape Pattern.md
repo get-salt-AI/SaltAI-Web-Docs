@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- PatternGeneration
+- VisualEffects
+---
+
 # 🔵 CR Random Shape Pattern
 ## Documentation
 - Class name: `CR Random Shape Pattern`

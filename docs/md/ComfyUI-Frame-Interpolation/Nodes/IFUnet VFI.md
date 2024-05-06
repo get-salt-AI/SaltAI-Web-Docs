@@ -1,50 +1,53 @@
+---
+tags:
+- AnimationScheduling
+- FrameInterpolation
+- VisualEffects
+---
+
 # IFUnet VFI
 ## Documentation
 - Class name: `IFUnet VFI`
 - Category: `ComfyUI-Frame-Interpolation/VFI`
 - Output node: `False`
 
-The IFUnet_VFI node is designed for video frame interpolation, leveraging deep learning models to predict and generate intermediate frames between existing frames in a video sequence. This process enhances video fluidity and can be used for various applications such as slow-motion video generation, video restoration, and improving video frame rates.
+The IFUnet_VFI node is designed for video frame interpolation, leveraging deep learning models to predict and generate intermediate frames between existing frames in a video sequence. This process enhances video smoothness and can be used for various applications such as slow-motion video generation, video restoration, and improving video frame rates.
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - Specifies the checkpoint name for the IFUnet model, determining the specific pre-trained model weights to be used for frame interpolation.
+    - Specifies the checkpoint name for the model to be used in the interpolation process, determining the specific pre-trained weights and configuration.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `typing.AnyStr`
 - **`frames`**
-    - The sequence of frames to be interpolated. This input is crucial for determining the start and end points of the interpolation process.
+    - The input video frames to be interpolated, provided as a tensor. This is the core data on which the interpolation model operates.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `List[torch.Tensor]`
+    - Python dtype: `torch.Tensor`
 - **`clear_cache_after_n_frames`**
-    - Controls the cache clearing mechanism to manage memory usage during the interpolation process.
+    - Controls how often the cache is cleared during the interpolation process to manage memory usage effectively.
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `typing.SupportsInt`
 - **`multiplier`**
-    - Defines the number of intermediate frames to be generated between each pair of original frames, directly affecting the smoothness of the output video.
+    - Determines the number of intermediate frames to be generated between each pair of original frames, directly affecting the smoothness of the output video.
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `typing.SupportsInt`
 - **`scale_factor`**
-    - Determines the scaling factor for the output frames, allowing for adjustments in the resolution of the interpolated frames.
+    - A factor that scales the resolution of the output frames, allowing for adjustments in the size of the interpolated frames.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `typing.SupportsFloat`
 - **`ensemble`**
-    - A boolean flag that enables or disables the ensemble method for frame interpolation, potentially improving the quality of the output.
+    - A boolean flag indicating whether to use ensemble methods for interpolation, potentially improving the quality of the output frames.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`optional_interpolation_states`**
-    - Provides optional states for frame interpolation, allowing for more control over which frames are interpolated.
+    - Provides the option to specify states for selective frame interpolation, enabling more control over which frames are processed.
     - Comfy dtype: `INTERPOLATION_STATES`
     - Python dtype: `InterpolationStateList`
-- **`cache_in_fp16`**
-    - Determines whether the cache should be stored in fp16 format, optimizing memory usage during the interpolation process.
-    - Comfy dtype: `BOOLEAN`
-    - Python dtype: `bool`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is a sequence of interpolated frames, enhancing the fluidity of the original video by filling in gaps between frames.
-    - Python dtype: `List[torch.Tensor]`
+    - The output interpolated video frames, enhancing the smoothness and temporal resolution of the input video sequence.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -65,8 +68,7 @@ class IFUnet_VFI:
                 "ensemble": ("BOOLEAN", {"default":True})
             },
             "optional": {
-                "optional_interpolation_states": ("INTERPOLATION_STATES", ),
-                "cache_in_fp16": ("BOOLEAN", {"default": True})
+                "optional_interpolation_states": ("INTERPOLATION_STATES", )
             }
         }
     
@@ -83,7 +85,7 @@ class IFUnet_VFI:
         scale_factor: typing.SupportsFloat = 1.0,
         ensemble: bool = True,
         optional_interpolation_states: InterpolationStateList = None,
-        cache_in_fp16: bool = True
+        **kwargs
     ):
         from .IFUNet_arch import IFUNetModel
         model_path = load_file_from_github_release(MODEL_TYPE, ckpt_name)
@@ -98,7 +100,7 @@ class IFUnet_VFI:
         args = [interpolation_model, scale_factor, ensemble]
         out = postprocess_frames(
             generic_frame_loop(frames, clear_cache_after_n_frames, multiplier, return_middle_frame, *args, 
-                               interpolation_states=optional_interpolation_states, dtype=torch.float16 if cache_in_fp16 else torch.float32)
+                               interpolation_states=optional_interpolation_states, dtype=torch.float32)
         )
         return (out,)
 

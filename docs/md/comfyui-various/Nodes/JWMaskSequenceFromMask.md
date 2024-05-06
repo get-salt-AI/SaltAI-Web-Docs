@@ -1,3 +1,8 @@
+---
+tags:
+- Mask
+---
+
 # Mask Sequence From Mask
 ## Documentation
 - Class name: `JWMaskSequenceFromMask`

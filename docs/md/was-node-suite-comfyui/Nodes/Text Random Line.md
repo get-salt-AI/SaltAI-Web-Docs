@@ -1,3 +1,9 @@
+---
+tags:
+- RandomGeneration
+- Randomization
+---
+
 # Text Random Line
 ## Documentation
 - Class name: `Text Random Line`

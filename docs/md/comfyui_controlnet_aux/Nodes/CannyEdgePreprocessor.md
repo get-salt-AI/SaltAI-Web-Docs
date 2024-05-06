@@ -1,3 +1,11 @@
+---
+tags:
+- DepthMap
+- Image
+- ImageFilter
+- ImagePreprocessing
+---
+
 # Canny Edge
 ## Documentation
 - Class name: `CannyEdgePreprocessor`
@@ -36,7 +44,7 @@ The CannyEdgePreprocessor node is designed for edge detection in images using th
     - [ACN_AdvancedControlNetApply](../../ComfyUI-Advanced-ControlNet/Nodes/ACN_AdvancedControlNetApply.md)
     - [ControlNetApplyAdvanced](../../Comfy/Nodes/ControlNetApplyAdvanced.md)
     - Reroute
-    - Control Net Stacker
+    - [Control Net Stacker](../../efficiency-nodes-comfyui/Nodes/Control Net Stacker.md)
     - [CR Multi-ControlNet Stack](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Multi-ControlNet Stack.md)
 
 

@@ -1,3 +1,8 @@
+---
+tags:
+- LoRA
+---
+
 # 💊 CR LoRA Stack
 ## Documentation
 - Class name: `CR LoRA Stack`

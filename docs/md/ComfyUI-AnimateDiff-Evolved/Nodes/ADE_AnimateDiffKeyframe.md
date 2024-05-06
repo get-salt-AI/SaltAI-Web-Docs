@@ -1,41 +1,47 @@
+---
+tags:
+- AnimateDiff
+- Animation
+---
+
 # AnimateDiff Keyframe 🎭🅐🅓
 ## Documentation
 - Class name: `ADE_AnimateDiffKeyframe`
 - Category: `Animate Diff 🎭🅐🅓`
 - Output node: `False`
 
-This node is designed for creating and managing keyframes within the AnimateDiff framework, allowing users to define and manipulate animation parameters such as start percentage, scale, and effects over time. It facilitates the dynamic generation of animation sequences by integrating new keyframes into existing sequences or creating new ones.
+The node is designed to manage and apply keyframe configurations for animation effects within the AnimateDiff framework. It allows for the dynamic adjustment of animation parameters such as scale, effect intensity, and camera control settings at specific points in the animation timeline, enhancing the flexibility and expressiveness of the animation process.
 ## Input types
 ### Required
 - **`start_percent`**
-    - Specifies the starting point of the keyframe as a percentage of the total animation duration. It determines when the keyframe's effects begin to apply, playing a crucial role in the timing of animations.
+    - Specifies the starting point of the keyframe within the animation timeline as a percentage, dictating when the keyframe's effects begin to apply. This parameter is crucial for timing the application of animation effects precisely.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`prev_ad_keyframes`**
-    - An optional collection of previously defined keyframes. This allows for the integration of the new keyframe into an existing sequence, enabling complex animations through the accumulation of keyframes.
+    - Allows for the inclusion of previous animation keyframes to be considered or modified in the current operation, enabling continuity and layering of animation effects.
     - Comfy dtype: `AD_KEYFRAMES`
     - Python dtype: `ADKeyframeGroup`
 - **`scale_multival`**
-    - Defines the scaling factor for the keyframe, which can be a single value or a tensor. This parameter influences the size or scale of the animated elements at this keyframe.
+    - Determines the scaling factor to be applied to the animation at this keyframe, affecting the size or zoom level of the animated elements.
     - Comfy dtype: `MULTIVAL`
     - Python dtype: `Union[float, torch.Tensor]`
 - **`effect_multival`**
-    - Specifies the effect intensity or parameters for the keyframe, which can also be a single value or a tensor. This affects how pronounced or subtle the animation effects are at this point.
+    - Controls the intensity of specific visual effects applied at this keyframe, allowing for dynamic visual transformations throughout the animation.
     - Comfy dtype: `MULTIVAL`
     - Python dtype: `Union[float, torch.Tensor]`
 - **`inherit_missing`**
-    - A boolean flag indicating whether to inherit unspecified values from previous keyframes. This facilitates smoother transitions and continuity in animations.
+    - Indicates whether the keyframe should inherit unspecified parameters from previous keyframes, ensuring continuity in the animation effects.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`guarantee_steps`**
-    - Determines the minimum number of steps to maintain the current keyframe's effects before transitioning to the next. This ensures a certain duration or stability for the keyframe's influence.
+    - Guarantees a minimum number of steps for which the keyframe's effects are applied, ensuring that certain effects persist for a desired duration within the animation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`ad_keyframes`**
     - Comfy dtype: `AD_KEYFRAMES`
-    - Returns the updated collection of keyframes, including the newly added keyframe, ready for use in further animation processing.
+    - Returns an updated collection of keyframes, including the newly added or modified keyframe, facilitating the management and sequencing of animation effects.
     - Python dtype: `ADKeyframeGroup`
 ## Usage tips
 - Infra type: `CPU`
@@ -67,12 +73,14 @@ class ADKeyframeNode:
 
     def load_keyframe(self,
                       start_percent: float, prev_ad_keyframes=None,
-                      scale_multival: [float, torch.Tensor]=None, effect_multival: [float, torch.Tensor]=None,
+                      scale_multival: Union[float, torch.Tensor]=None, effect_multival: Union[float, torch.Tensor]=None,
+                      cameractrl_multival: Union[float, torch.Tensor]=None,
                       inherit_missing: bool=True, guarantee_steps: int=1):
         if not prev_ad_keyframes:
             prev_ad_keyframes = ADKeyframeGroup()
         prev_ad_keyframes = prev_ad_keyframes.clone()
-        keyframe = ADKeyframe(start_percent=start_percent, scale_multival=scale_multival, effect_multival=effect_multival,
+        keyframe = ADKeyframe(start_percent=start_percent,
+                              scale_multival=scale_multival, effect_multival=effect_multival, cameractrl_multival=cameractrl_multival,
                               inherit_missing=inherit_missing, guarantee_steps=guarantee_steps)
         prev_ad_keyframes.add(keyframe)
         return (prev_ad_keyframes,)

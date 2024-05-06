@@ -1,3 +1,9 @@
+---
+tags:
+- Arithmetic
+- MathematicalFunctions
+---
+
 # Float Divide
 ## Documentation
 - Class name: `JWFloatDiv`

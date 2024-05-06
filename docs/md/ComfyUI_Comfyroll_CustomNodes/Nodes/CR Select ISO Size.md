@@ -1,3 +1,8 @@
+---
+tags:
+- ImageTransformation
+---
+
 # ⚙️ CR Select ISO Size
 ## Documentation
 - Class name: `CR Select ISO Size`

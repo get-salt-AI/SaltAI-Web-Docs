@@ -1,3 +1,10 @@
+---
+tags:
+- Math
+- UnaryOperations
+- VectorMath
+---
+
 # FloatUnaryCondition
 ## Documentation
 - Class name: `CM_FloatUnaryCondition`

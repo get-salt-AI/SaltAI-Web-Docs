@@ -1,3 +1,9 @@
+---
+tags:
+- MathematicalFunctions
+- Multiplication
+---
+
 # Float Multiply
 ## Documentation
 - Class name: `JWFloatMul`

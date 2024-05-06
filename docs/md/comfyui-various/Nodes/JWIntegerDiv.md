@@ -1,3 +1,9 @@
+---
+tags:
+- Arithmetic
+- MathematicalFunctions
+---
+
 # Integer Divide
 ## Documentation
 - Class name: `JWIntegerDiv`

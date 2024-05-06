@@ -1,3 +1,10 @@
+---
+tags:
+- Crop
+- Image
+- ImageTransformation
+---
+
 # Mask Crop Minority Region
 ## Documentation
 - Class name: `Mask Crop Minority Region`

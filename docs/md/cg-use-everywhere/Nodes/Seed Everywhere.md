@@ -1,3 +1,9 @@
+---
+tags:
+- RandomGeneration
+- Seed
+---
+
 # Seed Everywhere
 ## Documentation
 - Class name: `Seed Everywhere`
@@ -25,8 +31,8 @@ The Seed Everywhere node is designed to propagate a given seed value throughout 
     - [Anything Everywhere](../../cg-use-everywhere/Nodes/Anything Everywhere.md)
     - [CR Random Hex Color](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Random Hex Color.md)
     - [CR Random Multiline Values](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Random Multiline Values.md)
-    - SeargeSDXLSamplerV3
-    - KSampler Adv. (Efficient)
+    - [SeargeSDXLSamplerV3](../../SeargeSDXL/Nodes/SeargeSDXLSamplerV3.md)
+    - [KSampler Adv. (Efficient)](../../efficiency-nodes-comfyui/Nodes/KSampler Adv. (Efficient).md)
     - Preset_Model_Merge
 
 

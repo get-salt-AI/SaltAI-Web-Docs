@@ -1,3 +1,10 @@
+---
+tags:
+- AnimationScheduling
+- Frame
+- Keyframe
+---
+
 # Keyframe Keys To Batch Keys 📅🅕🅝
 ## Documentation
 - Class name: `convertKeyframeKeysToBatchKeys`

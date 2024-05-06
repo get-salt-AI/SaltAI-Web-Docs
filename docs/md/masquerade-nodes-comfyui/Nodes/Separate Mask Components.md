@@ -1,24 +1,29 @@
+---
+tags:
+- Mask
+---
+
 # Separate Mask Components
 ## Documentation
 - Class name: `Separate Mask Components`
 - Category: `Masquerade Nodes`
 - Output node: `False`
 
-This node is designed to process a given mask tensor, identifying and separating its distinct components based on connectivity. It effectively segments the mask into individual, non-overlapping regions, each corresponding to a connected component within the original mask.
+This node is designed to process a given mask by separating it into multiple contiguous components, effectively breaking down a complex mask into simpler, individual parts. It returns these separated components along with a mapping that can be utilized in subsequent operations, particularly useful in batch processing scenarios.
 ## Input types
 ### Required
 - **`mask`**
-    - The mask tensor to be segmented into distinct components. It plays a crucial role in determining the segmentation outcome by identifying connected regions within the mask.
+    - The mask input is a crucial component for the operation of this node, as it represents the complex mask that needs to be broken down into simpler, contiguous components. The processing of this mask determines the output of separated mask components and their mapping.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 ## Output types
-- **`image`**
+- **`mask`**
     - Comfy dtype: `IMAGE`
-    - A tensor containing the separated mask components, where each component is represented as a distinct region in the tensor.
+    - The output masks represent the separated contiguous components derived from the original complex mask input.
     - Python dtype: `torch.Tensor`
-- **`mask_mapping`**
+- **`mask_mappings`**
     - Comfy dtype: `MASK_MAPPING`
-    - A tensor mapping each separated component to its original index in the batch, facilitating tracking of component origins.
+    - The mask mappings provide a reference to the original mask from which each separated component was derived, facilitating further processing or analysis.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -28,6 +33,9 @@ This node is designed to process a given mask tensor, identifying and separating
 ## Source code
 ```python
 class SeparateMaskComponents:
+    """
+    Separates a mask into multiple contiguous components. Returns the individual masks created as well as a MASK_MAPPING which can be used in other nodes when dealing with batches.
+    """
     def __init__(self):
         pass
 
@@ -40,6 +48,7 @@ class SeparateMaskComponents:
         }
 
     RETURN_TYPES = ("IMAGE","MASK_MAPPING")
+    RETURN_NAMES = ("mask", "mask_mappings")
     FUNCTION = "separate"
 
     CATEGORY = "Masquerade Nodes"

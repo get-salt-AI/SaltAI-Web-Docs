@@ -1,3 +1,8 @@
+---
+tags:
+- Dictionary
+---
+
 # Text Dictionary Update
 ## Documentation
 - Class name: `Text Dictionary Update`

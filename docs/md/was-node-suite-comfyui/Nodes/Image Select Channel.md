@@ -1,3 +1,9 @@
+---
+tags:
+- Color
+- ColorChannelManipulation
+---
+
 # Image Select Channel
 ## Documentation
 - Class name: `Image Select Channel`

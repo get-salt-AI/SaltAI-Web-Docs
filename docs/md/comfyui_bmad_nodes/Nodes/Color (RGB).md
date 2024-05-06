@@ -1,3 +1,8 @@
+---
+tags:
+- Color
+---
+
 # Color (RGB)
 ## Documentation
 - Class name: `Color (RGB)`

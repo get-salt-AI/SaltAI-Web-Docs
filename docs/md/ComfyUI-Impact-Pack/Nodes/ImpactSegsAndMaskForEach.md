@@ -1,3 +1,8 @@
+---
+tags:
+- Segmentation
+---
+
 # Bitwise(SEGS & MASKS ForEach)
 ## Documentation
 - Class name: `ImpactSegsAndMaskForEach`

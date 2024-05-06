@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- Frame
+---
+
 # Frame Concatenate 📅🅕🅝
 ## Documentation
 - Class name: `FizzFrameConcatenate`

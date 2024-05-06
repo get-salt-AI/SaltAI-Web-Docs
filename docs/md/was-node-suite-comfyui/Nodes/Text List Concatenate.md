@@ -1,3 +1,9 @@
+---
+tags:
+- List
+- Text
+---
+
 # Text List Concatenate
 ## Documentation
 - Class name: `Text List Concatenate`

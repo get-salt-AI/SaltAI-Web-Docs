@@ -1,40 +1,47 @@
+---
+tags:
+- DetailEnhancement
+- Image
+- Pipeline
+---
+
 # FaceDetailer
 ## Documentation
 - Class name: `FaceDetailer`
 - Category: `ImpactPack/Simple`
 - Output node: `False`
 
-The FaceDetailer node is designed to enhance the details of faces in images, utilizing a combination of models and techniques to refine facial features and improve overall image quality. It is specifically tailored for single images and warns against its use for video detailing, directing users to alternative nodes for such purposes.
+The FaceDetailer node is designed to enhance the details of faces in images, focusing on improving visual quality and clarity. It is not intended for video detailing but excels in processing still images to refine facial features and expressions.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be enhanced. The node focuses on refining facial details within this image.
+    - The input image to be enhanced. It is the primary subject for the detailing process, focusing on facial features.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`model`**
-    - The primary model used for enhancing facial details in the image.
+    - unknown
     - Comfy dtype: `MODEL`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `unknown`
 - **`clip`**
-    - A CLIP model used for guiding the enhancement process based on textual descriptions.
+    - unknown
     - Comfy dtype: `CLIP`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `unknown`
 - **`vae`**
-    - A Variational Autoencoder (VAE) model used for generating or refining facial features within the image.
+    - unknown
     - Comfy dtype: `VAE`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `unknown`
 - **`guide_size`**
-    - unknown
+    - Specifies the size for guiding the enhancement process, influencing the level of detail achievable.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`guide_size_for`**
-    - unknown
+    - Determines the size for bounding box guidance, affecting the focus area of the enhancement.
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`max_size`**
-    - unknown
+    - The maximum size limit for the images being processed, ensuring optimal performance and quality.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`seed`**
     - unknown
     - Comfy dtype: `INT`
@@ -48,135 +55,135 @@ The FaceDetailer node is designed to enhance the details of faces in images, uti
     - Comfy dtype: `FLOAT`
     - Python dtype: `unknown`
 - **`sampler_name`**
-    - unknown
+    - The name of the sampling method used in the enhancement process, affecting the detailing outcome.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`scheduler`**
-    - unknown
+    - Controls the scheduling of the enhancement steps, managing the progression of detailing.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`positive`**
-    - Positive textual prompts that guide the enhancement process towards desired facial features.
+    - unknown
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `list[str]`
+    - Python dtype: `unknown`
 - **`negative`**
-    - Negative textual prompts used to steer the enhancement process away from undesired facial features.
+    - unknown
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `list[str]`
+    - Python dtype: `unknown`
 - **`denoise`**
-    - unknown
+    - A flag to enable or disable denoising in the enhancement process, affecting image clarity.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `bool`
 - **`feather`**
-    - unknown
+    - The feathering amount applied to the edges of the enhancement areas, smoothing transitions.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`noise_mask`**
-    - unknown
+    - A mask applied to specify areas for noise reduction, enhancing visual clarity in targeted regions.
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `unknown`
+    - Python dtype: `torch.Tensor`
 - **`force_inpaint`**
-    - unknown
+    - Forces the inpainting process in specified areas, allowing for targeted detail correction.
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `unknown`
+    - Python dtype: `bool`
 - **`bbox_threshold`**
-    - unknown
+    - The threshold for bounding box detection, influencing the selection of areas for enhancement.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`bbox_dilation`**
-    - unknown
+    - The dilation amount for bounding boxes, expanding the area considered for detailing.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`bbox_crop_factor`**
-    - unknown
+    - Determines the cropping factor for bounding boxes, affecting the area of the image focused on.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`sam_detection_hint`**
-    - unknown
+    - Hints for the SAM detection process, guiding the detection of areas for enhancement.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`sam_dilation`**
-    - unknown
+    - The dilation setting for SAM detection, affecting the expansiveness of area selection.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`sam_threshold`**
-    - unknown
+    - The threshold for SAM detection, determining the sensitivity of area selection for enhancement.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`sam_bbox_expansion`**
-    - unknown
+    - Controls the expansion of bounding boxes based on SAM detection, affecting the enhancement focus area.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`sam_mask_hint_threshold`**
-    - unknown
+    - The threshold for applying mask hints in SAM detection, influencing the precision of area selection.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`sam_mask_hint_use_negative`**
-    - unknown
+    - Determines whether negative hints are used in SAM mask detection, affecting the exclusion of areas from enhancement.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `bool`
 - **`drop_size`**
-    - unknown
+    - Specifies the size below which areas are dropped from consideration, focusing enhancement on significant features.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`bbox_detector`**
-    - A bounding box detector used to identify and focus on facial regions within the image.
+    - The model used for bounding box detection, crucial for identifying areas of interest for detailing.
     - Comfy dtype: `BBOX_DETECTOR`
     - Python dtype: `torch.nn.Module`
 - **`wildcard`**
-    - Optional wildcard prompts that introduce variability into the enhancement process.
+    - A wildcard option for extending functionality or customization within the enhancement process.
     - Comfy dtype: `STRING`
-    - Python dtype: `list[str]`
+    - Python dtype: `str`
 - **`cycle`**
-    - unknown
+    - The number of cycles the enhancement process is run, affecting the depth of detailing.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 ### Optional
 - **`sam_model_opt`**
-    - Optional SAM model configurations used to refine the selection and enhancement of facial features.
+    - Optional settings for the SAM model, allowing for customization of the detection process.
     - Comfy dtype: `SAM_MODEL`
     - Python dtype: `dict`
 - **`segm_detector_opt`**
-    - A segmentation model used to delineate facial features more precisely for targeted enhancement.
+    - Optional settings for the segmentation detector, influencing the accuracy and focus of segmentation.
     - Comfy dtype: `SEGM_DETECTOR`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `dict`
 - **`detailer_hook`**
-    - Custom hooks or callbacks that allow for additional processing or modification during the enhancement process.
+    - A hook for additional processing or customization within the detailing workflow.
     - Comfy dtype: `DETAILER_HOOK`
     - Python dtype: `callable`
 - **`inpaint_model`**
-    - unknown
+    - Enables or disables the use of an inpainting model for detail correction within specified areas.
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `unknown`
+    - Python dtype: `bool`
 - **`noise_mask_feather`**
-    - unknown
+    - The feathering amount applied to the noise mask, smoothing the application of noise reduction.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The enhanced image with refined facial details.
+    - The enhanced image with improved facial details, showcasing the node's ability to refine and clarify facial features.
     - Python dtype: `torch.Tensor`
 - **`cropped_refined`**
     - Comfy dtype: `IMAGE`
-    - A list of cropped regions from the image that have been enhanced.
-    - Python dtype: `list[torch.Tensor]`
+    - unknown
+    - Python dtype: `unknown`
 - **`cropped_enhanced_alpha`**
     - Comfy dtype: `IMAGE`
-    - A list of alpha masks corresponding to the cropped enhanced regions, indicating the level of enhancement.
-    - Python dtype: `list[torch.Tensor]`
+    - A list of alpha masks corresponding to the cropped and enhanced images, used for blending or further processing.
+    - Python dtype: `List[torch.Tensor]`
 - **`mask`**
     - Comfy dtype: `MASK`
-    - A mask indicating the regions of the image that were enhanced.
+    - The mask generated during the enhancement process, indicating areas of focus or modification.
     - Python dtype: `torch.Tensor`
 - **`detailer_pipe`**
     - Comfy dtype: `DETAILER_PIPE`
-    - A tuple containing the models and configurations used during the enhancement process.
-    - Python dtype: `tuple`
+    - A tuple containing models and configurations used in the detailing process, encapsulating the operational setup.
+    - Python dtype: `Tuple[torch.nn.Module]`
 - **`cnet_images`**
     - Comfy dtype: `IMAGE`
-    - A list of images processed through the CNet model, providing additional detail enhancement.
-    - Python dtype: `list[torch.Tensor]`
+    - A list of images processed through the control net, providing additional detail enhancements.
+    - Python dtype: `List[torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes:
@@ -210,7 +217,7 @@ class FaceDetailer:
                      "steps": ("INT", {"default": 20, "min": 1, "max": 10000}),
                      "cfg": ("FLOAT", {"default": 8.0, "min": 0.0, "max": 100.0}),
                      "sampler_name": (comfy.samplers.KSampler.SAMPLERS,),
-                     "scheduler": (comfy.samplers.KSampler.SCHEDULERS,),
+                     "scheduler": (core.SCHEDULERS,),
                      "positive": ("CONDITIONING",),
                      "negative": ("CONDITIONING",),
                      "denoise": ("FLOAT", {"default": 0.5, "min": 0.0001, "max": 1.0, "step": 0.01}),
@@ -241,7 +248,7 @@ class FaceDetailer:
                     "segm_detector_opt": ("SEGM_DETECTOR", ),
                     "detailer_hook": ("DETAILER_HOOK",),
                     "inpaint_model": ("BOOLEAN", {"default": False, "label_on": "enabled", "label_off": "disabled"}),
-                    "noise_mask_feather": ("INT", {"default": 0, "min": 0, "max": 100, "step": 1}),
+                    "noise_mask_feather": ("INT", {"default": 20, "min": 0, "max": 100, "step": 1}),
                 }}
 
     RETURN_TYPES = ("IMAGE", "IMAGE", "IMAGE", "MASK", "DETAILER_PIPE", "IMAGE")

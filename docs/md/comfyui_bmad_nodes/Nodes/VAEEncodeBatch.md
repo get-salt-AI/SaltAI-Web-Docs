@@ -1,3 +1,8 @@
+---
+tags:
+- VAE
+---
+
 # VAEEncodeBatch
 ## Documentation
 - Class name: `VAEEncodeBatch`

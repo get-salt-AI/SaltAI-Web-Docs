@@ -1,3 +1,9 @@
+---
+tags:
+- ImageResolution
+- ImageTransformation
+---
+
 # Generation Resolution From Image
 ## Documentation
 - Class name: `ImageGenResolutionFromImage`

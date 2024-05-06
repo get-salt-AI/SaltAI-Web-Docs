@@ -1,3 +1,9 @@
+---
+tags:
+- Math
+- VectorMath
+---
+
 # Vec3BinaryCondition
 ## Documentation
 - Class name: `CM_Vec3BinaryCondition`

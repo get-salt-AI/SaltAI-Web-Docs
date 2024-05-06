@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- Pipeline
+- PipelineTransformation
+---
+
 # FromBasicPipe
 ## Documentation
 - Class name: `FromBasicPipe`
@@ -35,7 +42,7 @@ The FromBasicPipe node is designed to decompose a basic pipe structure into its 
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
-    - UltimateSDUpscale
+    - [UltimateSDUpscale](../../ComfyUI_UltimateSDUpscale/Nodes/UltimateSDUpscale.md)
     - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
     - [ToBasicPipe](../../ComfyUI-Impact-Pack/Nodes/ToBasicPipe.md)
     - [KSampler](../../Comfy/Nodes/KSampler.md)

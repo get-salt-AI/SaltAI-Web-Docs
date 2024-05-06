@@ -1,3 +1,8 @@
+---
+tags:
+- Latent
+---
+
 # 🔢 CR Interpolate Latents
 ## Documentation
 - Class name: `CR Interpolate Latents`

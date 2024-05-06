@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskBatch
+---
+
 # Mask Batch to Mask
 ## Documentation
 - Class name: `Mask Batch to Mask`

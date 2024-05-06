@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskGeneration
+---
+
 # Mask Resize
 ## Documentation
 - Class name: `JWMaskResize`

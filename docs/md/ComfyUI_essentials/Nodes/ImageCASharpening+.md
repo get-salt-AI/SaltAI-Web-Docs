@@ -1,24 +1,30 @@
+---
+tags:
+- ImageEnhancement
+- VisualEffects
+---
+
 # 🔧 Image Contrast Adaptive Sharpening
 ## Documentation
 - Class name: `ImageCASharpening+`
 - Category: `essentials`
 - Output node: `False`
 
-This node applies contrast adaptive sharpening to an image, enhancing its details and improving visual clarity without significantly altering the overall composition.
+The ImageCASharpening+ node applies contrast adaptive sharpening to images, enhancing their clarity and detail by adjusting local contrast. This process is particularly useful for improving the visual quality of images by making them appear more crisp and defined without significantly altering their overall appearance.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be sharpened. It's crucial for defining the base upon which the sharpening effect will be applied.
+    - The 'image' parameter represents the input image to be processed. It is crucial for defining the visual content on which the contrast adaptive sharpening will be applied, directly influencing the outcome of the node's operation.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`amount`**
-    - Specifies the intensity of the sharpening effect. A higher value results in a more pronounced sharpening effect, allowing for finer control over the image's final appearance.
+    - The 'amount' parameter controls the intensity of the contrast adaptive sharpening applied to the image. It plays a key role in determining the strength of the effect, allowing for fine-tuning of the image's sharpness and detail enhancement.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is the sharpened version of the input image, with enhanced details and improved clarity.
+    - The output 'image' parameter is the result of applying contrast adaptive sharpening to the input image. It showcases enhanced clarity and detail, reflecting the adjustments made to the local contrast.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -56,22 +62,22 @@ class ImageCAS:
         g = img[..., 2:, :-2]
         h = img[..., 2:, 1:-1]
         i = img[..., 2:, 2:]
-        
+
         # Computing contrast
         cross = (b, d, e, f, h)
         mn = min_(cross)
         mx = max_(cross)
-        
+
         diag = (a, c, g, i)
         mn2 = min_(diag)
         mx2 = max_(diag)
         mx = mx + mx2
         mn = mn + mn2
-        
+
         # Computing local weight
         inv_mx = torch.reciprocal(mx + EPSILON)
         amp = inv_mx * torch.minimum(mn, (2 - mx))
-    
+
         # scaling
         amp = torch.sqrt(amp)
         w = - amp * (amount * (1/5 - 1/8) + 1/8)
@@ -81,7 +87,7 @@ class ImageCAS:
         output = output.clamp(0, 1)
         #output = torch.nan_to_num(output)   # this seems the only way to ensure there are no NaNs
 
-        output = pb(output) 
+        output = pb(output)
 
         return (output,)
 

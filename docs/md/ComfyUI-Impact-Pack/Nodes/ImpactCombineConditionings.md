@@ -1,3 +1,8 @@
+---
+tags:
+- Conditioning
+---
+
 # Combine Conditionings
 ## Documentation
 - Class name: `ImpactCombineConditionings`

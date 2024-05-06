@@ -1,45 +1,51 @@
+---
+tags:
+- AnimateDiff
+- Animation
+---
+
 # Use Evolved Sampling 🎭🅐🅓②
 ## Documentation
 - Class name: `ADE_UseEvolvedSampling`
 - Category: `Animate Diff 🎭🅐🅓/② Gen2 nodes ②`
 - Output node: `False`
 
-The ADE_UseEvolvedSampling node integrates evolved sampling techniques into the AnimateDiff framework, enhancing the generation of animations by applying advanced sampling strategies. This node is designed to leverage evolved algorithms for improved sampling efficiency and quality in the context of animation generation.
+The ADE_UseEvolvedSampling node integrates advanced sampling techniques into the animation diffusion process, leveraging evolved model sampling configurations to enhance the quality and efficiency of generated animations. It adapts the sampling process based on model configurations and dynamic conditions, aiming to optimize the animation output with respect to visual fidelity and computational performance.
 ## Input types
 ### Required
 - **`model`**
-    - Specifies the model to be used for evolved sampling, playing a crucial role in determining the quality and efficiency of the generated animations.
+    - Specifies the model to be used in the animation diffusion process, affecting the overall quality and characteristics of the generated animations.
     - Comfy dtype: `MODEL`
-    - Python dtype: `ModelPatcher`
+    - Python dtype: `Model`
 - **`beta_schedule`**
-    - Defines the beta schedule for the sampling process, influencing the progression of sampling steps and their impact on the animation quality.
+    - Determines the beta schedule to be applied during the sampling process, influencing the smoothness and quality of the animation transitions.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `BetaSchedules.ALIAS_LIST`
 ### Optional
 - **`m_models`**
-    - Optional parameter that allows for the specification of motion models, which can enhance the animation generation process by providing additional motion-related information.
+    - Optional. Provides additional models for consideration in the animation process, potentially enhancing the diversity and richness of the output.
     - Comfy dtype: `M_MODELS`
-    - Python dtype: `MotionModelGroup`
+    - Python dtype: `list`
 - **`context_options`**
-    - Optional parameter for setting context options, which can modify the sampling behavior based on the provided context, affecting the final animation output.
+    - Optional. Defines context-specific options that can modify the behavior of the sampling process, tailoring it to specific requirements or preferences.
     - Comfy dtype: `CONTEXT_OPTIONS`
-    - Python dtype: `ContextOptionsGroup`
+    - Python dtype: `dict`
 - **`sample_settings`**
-    - Optional parameter for defining sample settings, which can include various sampling parameters and options to fine-tune the animation generation process.
+    - Optional. Specifies settings related to the sampling process, such as resolution and temporal adjustments, directly impacting the animation's visual quality.
     - Comfy dtype: `SAMPLE_SETTINGS`
-    - Python dtype: `SampleSettings`
+    - Python dtype: `dict`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - Outputs the model enhanced with evolved sampling techniques, ready for use in generating animations within the AnimateDiff framework.
-    - Python dtype: `ModelPatcher`
+    - The enhanced model instance, equipped with evolved sampling configurations for improved animation diffusion.
+    - Python dtype: `Model`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes:
     - [KSampler](../../Comfy/Nodes/KSampler.md)
     - [ToBasicPipe](../../ComfyUI-Impact-Pack/Nodes/ToBasicPipe.md)
     - [SamplerCustom](../../Comfy/Nodes/SamplerCustom.md)
-    - LCMScheduler
+    - [LCMScheduler](../../ComfyUI-sampler-lcm-alternative/Nodes/LCMScheduler.md)
 
 
 
@@ -83,18 +89,28 @@ class UseEvolvedSamplingNode:
         if context_options:
             params.set_context(context_options)
         # need to use a ModelPatcher that supports injection of motion modules into unet
-        model = ModelPatcherAndInjector(model)
+        model = ModelPatcherAndInjector.create_from(model, hooks_only=True)
         model.motion_models = m_models
         model.sample_settings = sample_settings if sample_settings is not None else SampleSettings()
         model.motion_injection_params = params
 
-        # save model_sampling from BetaSchedule as object patch
-        # if autoselect, get suggested beta_schedule from motion model
-        if beta_schedule == BetaSchedules.AUTOSELECT and not model.motion_models.is_empty():
-            beta_schedule = model.motion_models[0].model.get_best_beta_schedule(log=True)
-        new_model_sampling = BetaSchedules.to_model_sampling(beta_schedule, model)
-        if new_model_sampling is not None:
-            model.add_object_patch("model_sampling", new_model_sampling)
+        if model.sample_settings.custom_cfg is not None:
+            logger.info("[Sample Settings] custom_cfg is set; will override any KSampler cfg values or patches.")
+
+        if model.sample_settings.sigma_schedule is not None:
+            logger.info("[Sample Settings] sigma_schedule is set; will override beta_schedule.")
+            model.add_object_patch("model_sampling", model.sample_settings.sigma_schedule.clone().model_sampling)
+        else:
+            # save model_sampling from BetaSchedule as object patch
+            # if autoselect, get suggested beta_schedule from motion model
+            if beta_schedule == BetaSchedules.AUTOSELECT:
+                if model.motion_models is None or model.motion_models.is_empty():
+                    beta_schedule = BetaSchedules.USE_EXISTING
+                else:
+                    beta_schedule = model.motion_models[0].model.get_best_beta_schedule(log=True)
+            new_model_sampling = BetaSchedules.to_model_sampling(beta_schedule, model)
+            if new_model_sampling is not None:
+                model.add_object_patch("model_sampling", new_model_sampling)
         
         del m_models
         return (model,)

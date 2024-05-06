@@ -1,3 +1,9 @@
+---
+tags:
+- Animation
+- Image
+---
+
 # ⌨️ CR Load GIF As List
 ## Documentation
 - Class name: `CR Load GIF As List`

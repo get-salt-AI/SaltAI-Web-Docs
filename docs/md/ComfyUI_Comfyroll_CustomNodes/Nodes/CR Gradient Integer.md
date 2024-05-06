@@ -1,3 +1,11 @@
+---
+tags:
+- AnimationScheduling
+- FrameInterpolation
+- Interpolation
+- VisualEffects
+---
+
 # 🔢 CR Gradient Integer
 ## Documentation
 - Class name: `CR Gradient Integer`

@@ -1,43 +1,43 @@
 # OffsetMaskByNormalizedAmplitude
 ## Documentation
 - Class name: `OffsetMaskByNormalizedAmplitude`
-- Category: `KJNodes/masking`
+- Category: `KJNodes/audio`
 - Output node: `False`
 
-This node is designed to modify a given mask by applying an offset and rotation based on normalized amplitude values. It ensures that the amplitude values are within a specific range and uses these values to determine the degree of rotation and the magnitude of the offset in both the x and y directions, effectively transforming the mask in a way that is proportional to the provided amplitude.
+This node applies transformations to a mask based on the normalized amplitude of an audio signal. It adjusts the mask's orientation and position, leveraging the amplitude to dictate the degree of rotation and shift, thereby enabling dynamic visual effects synchronized with audio intensity.
 ## Input types
 ### Required
 - **`normalized_amp`**
-    - An array of normalized amplitude values, each within the range [0, 1], used to determine the degree of offset and rotation to apply to the mask.
+    - An array of normalized amplitude values from an audio signal, used to determine the extent of transformation.
     - Comfy dtype: `NORMALIZED_AMPLITUDE`
     - Python dtype: `numpy.ndarray`
 - **`mask`**
-    - The mask tensor to be transformed. It serves as the base for applying the offset and rotation transformations.
+    - The mask to be transformed, representing a visual element whose modifications are driven by audio amplitude.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`x`**
-    - The horizontal offset multiplier. It influences the magnitude of horizontal shift applied to the mask.
+    - The horizontal shift factor, influencing the mask's lateral movement in response to amplitude changes.
     - Comfy dtype: `INT`
     - Python dtype: `float`
 - **`y`**
-    - The vertical offset multiplier. It influences the magnitude of vertical shift applied to the mask.
+    - The vertical shift factor, affecting the mask's vertical displacement as dictated by the amplitude.
     - Comfy dtype: `INT`
     - Python dtype: `float`
 - **`rotate`**
-    - A boolean flag indicating whether rotation should be applied to the mask based on the normalized amplitude.
+    - A boolean indicating whether the mask should be rotated based on the normalized amplitude.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`angle_multiplier`**
-    - A multiplier for the rotation angle, which is determined by the normalized amplitude. It affects the degree of rotation applied to the mask.
+    - A multiplier for the rotation angle, scaling the effect of the normalized amplitude on the mask's rotation.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The transformed mask after applying the specified offsets and rotations, based on the normalized amplitude values.
+    - The transformed mask after applying rotation and shift adjustments based on the audio's normalized amplitude.
     - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -60,7 +60,12 @@ class OffsetMaskByNormalizedAmplitude:
     RETURN_TYPES = ("MASK",)
     RETURN_NAMES = ("mask",)
     FUNCTION = "offset"
-    CATEGORY = "KJNodes/masking"
+    CATEGORY = "KJNodes/audio"
+    DESCRIPTION = """
+Works as a bridge to the AudioScheduler -nodes:  
+https://github.com/a1lazydog/ComfyUI-AudioScheduler  
+Offsets masks based on the normalized amplitude.
+"""
 
     def offset(self, mask, x, y, angle_multiplier, rotate, normalized_amp):
 

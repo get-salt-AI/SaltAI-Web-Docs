@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- Curve
+---
+
 # Curve (mtb)
 ## Documentation
 - Class name: `Curve (mtb)`

@@ -1,61 +1,66 @@
+---
+tags:
+- Conditioning
+---
+
 # StableZero123_BatchSchedule
 ## Documentation
 - Class name: `StableZero123_BatchSchedule`
-- Category: `KJNodes`
+- Category: `KJNodes/experimental`
 - Output node: `False`
 
-The `StableZero123_BatchSchedule` node is designed to manage and optimize the scheduling of batch processing tasks. It focuses on efficiently organizing the execution of tasks that are part of a batch, aiming to enhance throughput and reduce processing time by leveraging advanced scheduling techniques.
+The StableZero123_BatchSchedule node is designed to manage and schedule batch processing tasks for Stable Diffusion models, optimizing the workflow for generating images in batches. It focuses on efficiently organizing the rendering process to accommodate various frame counts and scheduling requirements, ensuring a streamlined operation for large-scale image generation projects.
 ## Input types
 ### Required
 - **`clip_vision`**
-    - This input is essential for providing visual context or features that are crucial for the batch scheduling process, influencing how tasks are prioritized and arranged.
+    - Specifies the CLIP vision model to be used for conditioning the generation process, impacting the visual style and content of the generated images.
     - Comfy dtype: `CLIP_VISION`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `str`
 - **`init_image`**
-    - Represents the initial image data that may be used as a reference or starting point in the batch processing tasks, affecting the scheduling based on visual content requirements.
+    - Defines the initial image to start the batch processing from, setting the visual basis for subsequent image generations.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `str`
 - **`vae`**
-    - A variational autoencoder model input that could be used for tasks involving image generation or manipulation within the batch, influencing the scheduling based on computational needs.
+    - Determines the variational autoencoder used for encoding and decoding images, crucial for the quality and characteristics of the output.
     - Comfy dtype: `VAE`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `str`
 - **`width`**
-    - Specifies the width dimension for images involved in the batch tasks, impacting the scheduling by defining the size constraints of processing.
+    - Sets the width of the images to be generated, directly affecting the resolution and aspect ratio of the output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Defines the height dimension for images involved in the batch tasks, similarly impacting the scheduling by setting size constraints for processing.
+    - Specifies the height of the images to be generated, directly affecting the resolution and aspect ratio of the output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`batch_size`**
-    - Determines the number of tasks or items to be processed in a single batch, directly affecting the efficiency and organization of the batch scheduling.
+    - Defines the number of images to be processed in a single batch, influencing the efficiency and speed of the batch processing task.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`interpolation`**
-    - Specifies the interpolation method to be used in tasks that require image resizing, influencing the scheduling based on the computational complexity of different methods.
+    - Determines the interpolation method used for processing images, affecting the smoothness and quality of transitions between frames.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`azimuth_points_string`**
-    - A string representing key points for azimuth adjustments in 3D model processing tasks, affecting the scheduling by defining specific requirements for task execution.
+    - Specifies the azimuth conditions for 3D model rendering, influencing the orientation and angle of the generated images.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`elevation_points_string`**
-    - A string detailing key points for elevation adjustments in 3D model tasks, impacting the scheduling by outlining specific execution requirements.
+    - Defines the elevation conditions for 3D model rendering, affecting the vertical angle and perspective of the generated images.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`positive`**
     - Comfy dtype: `CONDITIONING`
-    - The output representing the positively conditioned data or results from the batch processing tasks, organized for efficient execution.
-    - Python dtype: `torch.Tensor`
+    - Represents the positive conditioning output, influencing the generation towards desired attributes.
+    - Python dtype: `str`
 - **`negative`**
     - Comfy dtype: `CONDITIONING`
-    - This output includes negatively conditioned data or results, providing a contrast or alternative outcomes from the batch processing tasks.
-    - Python dtype: `torch.Tensor`
+    - Represents the negative conditioning output, used to steer the generation away from undesired attributes.
+    - Python dtype: `str`
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - Represents the latent representations or features extracted from the batch processing tasks, essential for further processing or analysis.
-    - Python dtype: `torch.Tensor`
+    - Outputs the latent representation of the generated images, crucial for further processing or manipulation.
+    - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -69,8 +74,8 @@ class StableZero123_BatchSchedule:
         return {"required": { "clip_vision": ("CLIP_VISION",),
                               "init_image": ("IMAGE",),
                               "vae": ("VAE",),
-                              "width": ("INT", {"default": 256, "min": 16, "max": nodes.MAX_RESOLUTION, "step": 8}),
-                              "height": ("INT", {"default": 256, "min": 16, "max": nodes.MAX_RESOLUTION, "step": 8}),
+                              "width": ("INT", {"default": 256, "min": 16, "max": MAX_RESOLUTION, "step": 8}),
+                              "height": ("INT", {"default": 256, "min": 16, "max": MAX_RESOLUTION, "step": 8}),
                               "batch_size": ("INT", {"default": 1, "min": 1, "max": 4096}),
                               "interpolation": (["linear", "ease_in", "ease_out", "ease_in_out"],),
                               "azimuth_points_string": ("STRING", {"default": "0:(0.0),\n7:(1.0),\n15:(0.0)\n", "multiline": True}),
@@ -79,10 +84,8 @@ class StableZero123_BatchSchedule:
     
     RETURN_TYPES = ("CONDITIONING", "CONDITIONING", "LATENT")
     RETURN_NAMES = ("positive", "negative", "latent")
-
     FUNCTION = "encode"
-
-    CATEGORY = "KJNodes"
+    CATEGORY = "KJNodes/experimental"
 
     def encode(self, clip_vision, init_image, vae, width, height, batch_size, azimuth_points_string, elevation_points_string, interpolation):
         output = clip_vision.encode_image(init_image)

@@ -1,3 +1,8 @@
+---
+tags:
+- NumberRangeGeneration
+---
+
 # 📜 CR Integer Range List
 ## Documentation
 - Class name: `CR Integer Range List`

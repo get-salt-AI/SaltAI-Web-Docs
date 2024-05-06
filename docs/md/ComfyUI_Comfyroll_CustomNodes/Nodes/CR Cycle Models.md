@@ -1,3 +1,12 @@
+---
+tags:
+- Loader
+- Model
+- ModelIO
+- ModelLoader
+- ModelSwitching
+---
+
 # CR Cycle Models (Legacy)
 ## Documentation
 - Class name: `CR Cycle Models`

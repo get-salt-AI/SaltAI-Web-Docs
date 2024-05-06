@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageThresholding
+---
+
 # DistanceTransform
 ## Documentation
 - Class name: `DistanceTransform`

@@ -1,3 +1,10 @@
+---
+tags:
+- DataConversion
+- DataTypeConversion
+- NumericConversion
+---
+
 # Text to Number
 ## Documentation
 - Class name: `Text to Number`

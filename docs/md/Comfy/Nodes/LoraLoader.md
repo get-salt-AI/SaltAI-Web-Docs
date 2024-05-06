@@ -1,3 +1,8 @@
+---
+tags:
+- LoRA
+---
+
 # Load LoRA
 ## Documentation
 - Class name: `LoraLoader`

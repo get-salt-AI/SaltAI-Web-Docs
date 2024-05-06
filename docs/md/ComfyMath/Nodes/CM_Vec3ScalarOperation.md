@@ -1,3 +1,9 @@
+---
+tags:
+- Math
+- VectorMath
+---
+
 # Vec3ScalarOperation
 ## Documentation
 - Class name: `CM_Vec3ScalarOperation`

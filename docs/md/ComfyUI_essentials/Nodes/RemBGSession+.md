@@ -1,3 +1,9 @@
+---
+tags:
+- BackgroundRemoval
+- Image
+---
+
 # 🔧 RemBG Session
 ## Documentation
 - Class name: `RemBGSession+`

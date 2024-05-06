@@ -1,3 +1,8 @@
+---
+tags:
+- Mask
+---
+
 # Masks Combine Regions
 ## Documentation
 - Class name: `Masks Combine Regions`

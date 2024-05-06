@@ -1,3 +1,9 @@
+---
+tags:
+- SEGSPrep
+- Segmentation
+---
+
 # SEGS to Mask List
 ## Documentation
 - Class name: `ImpactSEGSToMaskList`

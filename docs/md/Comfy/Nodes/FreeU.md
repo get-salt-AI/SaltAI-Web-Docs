@@ -1,43 +1,48 @@
+---
+tags:
+- Sampling
+---
+
 # FreeU
 ## Documentation
 - Class name: `FreeU`
 - Category: `model_patches`
 - Output node: `False`
 
-The FreeU node is designed to enhance the flexibility and performance of neural network models by dynamically adjusting the scaling of hidden layers based on their mean activation values. It employs Fourier filtering to manage spatial frequencies in the data, adapting to different computational resources by switching to CPU processing when necessary.
+The FreeU node is designed to enhance and modify the output of generative models by applying a Fourier filter to adjust the frequency components of the generated images. This process aims to improve image quality or introduce specific effects based on the scale and threshold parameters.
 ## Input types
 ### Required
 - **`model`**
-    - The neural network model to be enhanced. It is the core component that undergoes dynamic scaling and Fourier filtering adjustments.
+    - The generative model to be enhanced or modified. This parameter is crucial as it determines the base model whose output will be adjusted by the FreeU node.
     - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`b1`**
-    - A scaling factor for the model's hidden layers, contributing to the dynamic adjustment of the model's performance.
+    - A scale factor applied to the higher frequency components of the image, influencing the intensity of the adjustment.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`b2`**
-    - Another scaling factor for the model's hidden layers, working alongside b1 to fine-tune the model's dynamic scaling.
+    - A scale factor applied to the lower frequency components of the image, influencing the intensity of the adjustment.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`s1`**
-    - A scale parameter for the Fourier filtering process, influencing the handling of spatial frequencies in the data.
+    - A threshold parameter for the higher frequency components, determining the range of frequencies to be adjusted.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`s2`**
-    - Another scale parameter for the Fourier filtering, complementing s1 to optimize the spatial frequency management.
+    - A threshold parameter for the lower frequency components, determining the range of frequencies to be adjusted.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The enhanced neural network model, featuring dynamically scaled hidden layers and optimized spatial frequency handling through Fourier filtering.
+    - The modified generative model with an output block patched to apply the Fourier filter, enhancing or altering the generated images.
     - Python dtype: `torch.nn.Module`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes:
     - [KSampler](../../Comfy/Nodes/KSampler.md)
     - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
-    - UltimateSDUpscale
+    - [UltimateSDUpscale](../../ComfyUI_UltimateSDUpscale/Nodes/UltimateSDUpscale.md)
     - [Bus Node](../../was-node-suite-comfyui/Nodes/Bus Node.md)
     - DynamicThresholdingFull
     - [Anything Everywhere](../../cg-use-everywhere/Nodes/Anything Everywhere.md)
@@ -73,7 +78,7 @@ class FreeU:
                     try:
                         hsp = Fourier_filter(hsp, threshold=1, scale=scale[1])
                     except:
-                        print("Device", hsp.device, "does not support the torch.fft functions used in the FreeU node, switching to CPU.")
+                        logging.warning("Device {} does not support the torch.fft functions used in the FreeU node, switching to CPU.".format(hsp.device))
                         on_cpu_devices[hsp.device] = True
                         hsp = Fourier_filter(hsp.cpu(), threshold=1, scale=scale[1]).to(hsp.device)
                 else:

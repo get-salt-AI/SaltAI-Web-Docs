@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- WavePatterns
+---
+
 # SinWave 📅🅕🅝
 ## Documentation
 - Class name: `SinWave`

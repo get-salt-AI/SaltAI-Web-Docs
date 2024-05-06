@@ -1,3 +1,10 @@
+---
+tags:
+- AnimateDiff
+- AnimateDiffContext
+- Animation
+---
+
 # Context Options◆Looped Uniform 🎭🅐🅓
 ## Documentation
 - Class name: `ADE_LoopedUniformContextOptions`

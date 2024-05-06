@@ -1,3 +1,8 @@
+---
+tags:
+- MaskInversion
+---
+
 # InvertMask
 ## Documentation
 - Class name: `InvertMask`

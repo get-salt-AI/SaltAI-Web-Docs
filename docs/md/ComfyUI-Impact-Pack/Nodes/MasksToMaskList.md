@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskList
+---
+
 # Masks to Mask List
 ## Documentation
 - Class name: `MasksToMaskList`

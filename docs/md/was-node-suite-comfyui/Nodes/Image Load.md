@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageLoad
+---
+
 # Image Load
 ## Documentation
 - Class name: `Image Load`

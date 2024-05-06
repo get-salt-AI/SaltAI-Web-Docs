@@ -1,3 +1,8 @@
+---
+tags:
+- Segmentation
+---
+
 # Bitwise(MASK & MASK)
 ## Documentation
 - Class name: `BitwiseAndMask`

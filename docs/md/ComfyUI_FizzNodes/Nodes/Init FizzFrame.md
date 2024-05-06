@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- Frame
+---
+
 # Init Node Frame 📅🅕🅝
 ## Documentation
 - Class name: `Init FizzFrame`

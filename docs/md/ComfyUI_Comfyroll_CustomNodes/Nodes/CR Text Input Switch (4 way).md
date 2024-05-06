@@ -1,3 +1,8 @@
+---
+tags:
+- ConditionalSelection
+---
+
 # 🔀 CR Text Input Switch (4 way)
 ## Documentation
 - Class name: `CR Text Input Switch (4 way)`

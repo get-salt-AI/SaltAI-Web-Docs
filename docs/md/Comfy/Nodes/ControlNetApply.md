@@ -1,3 +1,8 @@
+---
+tags:
+- ControlNet
+---
+
 # Apply ControlNet
 ## Documentation
 - Class name: `ControlNetApply`
@@ -34,9 +39,9 @@ This node applies a control network to a given image and conditioning, adjusting
     - [KSampler](../../Comfy/Nodes/KSampler.md)
     - Reroute
     - [ConditioningSetArea](../../Comfy/Nodes/ConditioningSetArea.md)
-    - UltimateSDUpscale
-    - KSampler Adv. (Efficient)
-    - ttN pipeKSampler
+    - [UltimateSDUpscale](../../ComfyUI_UltimateSDUpscale/Nodes/UltimateSDUpscale.md)
+    - [KSampler Adv. (Efficient)](../../efficiency-nodes-comfyui/Nodes/KSampler Adv. (Efficient).md)
+    - [ttN pipeKSampler](../../ComfyUI_tinyterraNodes/Nodes/ttN pipeKSampler.md)
     - YDetailer
     - [ToBasicPipe](../../ComfyUI-Impact-Pack/Nodes/ToBasicPipe.md)
     - [ToDetailerPipe](../../ComfyUI-Impact-Pack/Nodes/ToDetailerPipe.md)

@@ -1,3 +1,8 @@
+---
+tags:
+- Comparison
+---
+
 # 📱 CR Simple Image Compare
 ## Documentation
 - Class name: `CR Simple Image Compare`

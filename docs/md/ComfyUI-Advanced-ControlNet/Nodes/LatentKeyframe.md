@@ -1,29 +1,36 @@
+---
+tags:
+- AnimationScheduling
+- Frame
+- Keyframe
+---
+
 # Latent Keyframe 🛂🅐🅒🅝
 ## Documentation
 - Class name: `LatentKeyframe`
 - Category: `Adv-ControlNet 🛂🅐🅒🅝/keyframes`
 - Output node: `False`
 
-The LatentKeyframe node is designed for managing and manipulating latent keyframes within a generative model's control network. It focuses on loading and updating keyframe data based on given parameters, such as batch index and strength, to influence the generation process.
+The LatentKeyframe node is designed for managing and manipulating keyframes within a latent space, specifically for controlling the progression and transformation of generative models' outputs over time. It allows for the loading and updating of keyframe data, facilitating the creation of smooth transitions and animations in generated content.
 ## Input types
 ### Required
 - **`batch_index`**
-    - Specifies the index of the batch for which the keyframe is being loaded or updated. It plays a crucial role in identifying the specific part of the generation process to be influenced.
+    - Specifies the index of the batch for which the keyframe is being loaded or manipulated, serving as a key identifier for operations within the batch.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`strength`**
-    - Determines the intensity or influence of the keyframe on the generation process. A higher strength value indicates a stronger influence.
+    - Determines the intensity or influence of the keyframe on the generated output, allowing for fine-tuned control over the appearance or characteristics of the generated content.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`prev_latent_kf`**
-    - An optional parameter that allows for the inclusion of a previously existing LatentKeyframeGroup, enabling the accumulation or modification of keyframes over time.
+    - An optional parameter that allows for the chaining or sequencing of keyframes by providing a reference to a previously defined keyframe or keyframe group, enabling complex animations and transitions.
     - Comfy dtype: `LATENT_KEYFRAME`
     - Python dtype: `LatentKeyframeGroup`
 ## Output types
 - **`LATENT_KF`**
     - Comfy dtype: `LATENT_KEYFRAME`
-    - Returns an updated LatentKeyframeGroup, which includes the newly loaded or modified keyframe along with any existing keyframes.
+    - Represents the updated or newly created keyframe or keyframe group, encapsulating the changes made through the node's operation.
     - Python dtype: `LatentKeyframeGroup`
 ## Usage tips
 - Infra type: `CPU`
@@ -37,7 +44,7 @@ class LatentKeyframeNode:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "batch_index": ("INT", {"default": 0, "min": -1000, "max": 1000, "step": 1}),
+                "batch_index": ("INT", {"default": 0, "min": BIGMIN, "max": BIGMAX, "step": 1}),
                 "strength": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 10.0, "step": 0.001}, ),
             },
             "optional": {

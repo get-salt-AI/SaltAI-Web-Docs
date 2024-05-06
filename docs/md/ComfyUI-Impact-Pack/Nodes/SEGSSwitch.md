@@ -1,14 +1,19 @@
+---
+tags:
+- ConditionalSelection
+---
+
 # Switch (SEGS/legacy)
 ## Documentation
 - Class name: `SEGSSwitch`
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-SEGSSwitch is designed to dynamically select between multiple segmentation (SEGS) inputs based on a specified index. It facilitates conditional processing of segmentation data within a pipeline, allowing for flexible manipulation and routing of segmentation information.
+The SEGSSwitch node dynamically selects between multiple segmentation (SEGS) inputs based on a specified index. It facilitates conditional processing paths within a pipeline, allowing for the flexible use of different segmentation data.
 ## Input types
 ### Required
 - **`select`**
-    - Specifies the index of the segmentation input to be selected. This parameter enables dynamic selection, allowing the node to adapt to varying processing requirements.
+    - Specifies the index of the segmentation input to select. This index determines which segmentation data is used for processing, enabling dynamic choice based on conditions or preferences.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`sel_mode`**
@@ -65,16 +70,20 @@ class GeneralSwitch:
 
         selected_label = input_name
         node_id = kwargs['unique_id']
-        nodelist = kwargs['extra_pnginfo']['workflow']['nodes']
-        for node in nodelist:
-            if str(node['id']) == node_id:
-                inputs = node['inputs']
 
-                for slot in inputs:
-                    if slot['name'] == input_name and 'label' in slot:
-                        selected_label = slot['label']
+        if 'extra_pnginfo' in kwargs and kwargs['extra_pnginfo'] is not None:
+            nodelist = kwargs['extra_pnginfo']['workflow']['nodes']
+            for node in nodelist:
+                if str(node['id']) == node_id:
+                    inputs = node['inputs']
 
-                break
+                    for slot in inputs:
+                        if slot['name'] == input_name and 'label' in slot:
+                            selected_label = slot['label']
+
+                    break
+        else:
+            print(f"[Impact-Pack] The switch node does not guarantee proper functioning in API mode.")
 
         if input_name in kwargs:
             return (kwargs[input_name], selected_label, selected_index)

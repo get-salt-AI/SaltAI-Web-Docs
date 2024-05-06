@@ -1,3 +1,8 @@
+---
+tags:
+- Mask
+---
+
 # FeatherMask
 ## Documentation
 - Class name: `FeatherMask`

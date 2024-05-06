@@ -1,90 +1,101 @@
+---
+tags:
+- DetailEnhancement
+- Image
+- Pipeline
+---
+
 # Detailer For AnimateDiff (SEGS/pipe)
 ## Documentation
 - Class name: `DetailerForEachPipeForAnimateDiff`
 - Category: `ImpactPack/Detailer`
 - Output node: `False`
 
-This node is designed to detail each pipe specifically for the purpose of animation difference analysis within the SEGS/pipe context. It focuses on enhancing the granularity and precision of animation frames by applying detailed adjustments and analysis to each pipeline stage, thereby improving the overall animation quality and consistency.
+This node is designed to apply detailed processing for each pipe within the context of animating differences, focusing on enhancing or modifying the animation output by iterating through each pipe segment. It aims to refine the animation process by applying specific detail enhancements tailored to the animation's requirements.
 ## Input types
 ### Required
 - **`image_frames`**
-    - The sequence of image frames to be detailed for animation difference analysis. It serves as the primary input for the detailing process, influencing the enhancement of animation quality.
+    - The 'image_frames' input represents the sequence of images to be processed, serving as the foundation for animation detailing and enhancement.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `List[torch.Tensor]`
+    - Python dtype: `List[Image]`
 - **`segs`**
-    - Segmentation information for the image frames, used to guide the detailing process by specifying areas of interest or importance.
+    - The 'segs' input specifies segmentation information, crucial for identifying and isolating different elements within the images for targeted detailing.
     - Comfy dtype: `SEGS`
-    - Python dtype: `Tuple[torch.Tensor, List[torch.Tensor]]`
+    - Python dtype: `Tuple[Image, List[Segment]]`
 - **`guide_size`**
-    - Specifies the target size for guiding the detailing process, affecting the scale and precision of the adjustments made.
+    - Specifies the size used for guiding the detailing process, affecting how details are scaled and applied across the animation frames.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `int`
+    - Python dtype: `float`
 - **`guide_size_for`**
-    - Determines the specific application of the guide size within the detailing process, influencing how adjustments are scaled.
+    - A boolean flag that determines whether the guide size is applied based on bounding boxes or crop regions, influencing the detailing scope.
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `str`
+    - Python dtype: `bool`
 - **`max_size`**
-    - The maximum allowable size for the detailed image frames, ensuring that the detailing process does not exceed computational or quality constraints.
+    - Defines the maximum size limit for the detailing process, ensuring that the enhancements stay within computational bounds.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `int`
+    - Python dtype: `float`
 - **`seed`**
-    - A seed value for random number generation, ensuring reproducibility and consistency in the detailing process.
+    - The seed value for random number generation, ensuring reproducibility and consistency in the detailing outcomes.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`steps`**
-    - The number of steps to be taken in the detailing process, directly influencing the depth and thoroughness of the adjustments made.
+    - Determines the number of steps or iterations for the detailing process, directly impacting the depth of detailing applied.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - Configuration settings for the detailing process, allowing for customization and optimization of the detailing operations.
+    - Configuration parameter affecting the detailing algorithm's behavior, allowing for fine-tuning of the process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sampler_name`**
-    - Specifies the sampling method to be used in the detailing process, affecting the quality and characteristics of the detailed image frames.
+    - Specifies the sampler to be used in the detailing process, influencing the algorithm's approach to detail generation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - Determines the scheduling strategy for the detailing process, influencing the order and timing of detailing operations.
+    - The scheduler parameter controls the progression of steps in the detailing process, affecting how details evolve over time.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`denoise`**
-    - A boolean flag indicating whether denoising operations should be applied during the detailing process, affecting the clarity and quality of the detailed image frames.
+    - A parameter to adjust the level of denoising applied during detailing, balancing detail clarity with noise reduction.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `bool`
+    - Python dtype: `float`
 - **`feather`**
-    - unknown
+    - Controls the feathering of edges in detailed segments, smoothing transitions for a more cohesive visual output.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`basic_pipe`**
-    - The basic pipeline configuration to be used as a foundation for the detailing process, influencing the overall approach and capabilities of the detailing operations.
+    - The basic processing pipeline to be used as a reference or starting point for the detailing process.
     - Comfy dtype: `BASIC_PIPE`
-    - Python dtype: `Tuple[torch.Tensor, torch.Tensor, torch.Tensor, str, str]`
+    - Python dtype: `BasicPipe`
 - **`refiner_ratio`**
-    - An optional ratio for refining the detailing process, allowing for fine-tuning of the adjustments made.
+    - Optional parameter to adjust the ratio of refinement applied, allowing for customization of the detailing intensity.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `Optional[float]`
+    - Python dtype: `float`
 ### Optional
 - **`detailer_hook`**
-    - An optional hook for custom detailing operations, providing flexibility and extensibility to the detailing process.
+    - unknown
     - Comfy dtype: `DETAILER_HOOK`
-    - Python dtype: `Optional[Callable]`
+    - Python dtype: `unknown`
 - **`refiner_basic_pipe_opt`**
-    - An optional refined basic pipeline configuration, offering an alternative approach to the detailing process for enhanced results.
+    - unknown
     - Comfy dtype: `BASIC_PIPE`
-    - Python dtype: `Optional[Tuple[torch.Tensor, torch.Tensor, torch.Tensor, str, str]]`
+    - Python dtype: `unknown`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The enhanced image frames resulting from the detailing process, showcasing improved animation quality and consistency.
-    - Python dtype: `List[torch.Tensor]`
+    - The enhanced image frames after detailing, showcasing the applied enhancements and modifications.
+    - Python dtype: `List[Image]`
 - **`segs`**
     - Comfy dtype: `SEGS`
-    - The updated segmentation information after the detailing process, reflecting adjustments made to areas of interest.
-    - Python dtype: `Tuple[torch.Tensor, List[torch.Tensor]]`
+    - The updated segmentation information post-detailing, reflecting changes made to individual segments.
+    - Python dtype: `Tuple[Image, List[Segment]]`
 - **`basic_pipe`**
     - Comfy dtype: `BASIC_PIPE`
-    - The basic pipeline configuration used during the detailing process, potentially modified based on detailing operations.
-    - Python dtype: `Tuple[torch.Tensor, torch.Tensor, torch.Tensor, str, str]`
+    - The basic processing pipeline, potentially modified through the detailing process.
+    - Python dtype: `BasicPipe`
+- **`cnet_images`**
+    - Comfy dtype: `IMAGE`
+    - A collection of images generated during the detailing process, providing additional visual outputs.
+    - Python dtype: `List[Image]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
@@ -117,12 +128,12 @@ class DetailerForEachPipeForAnimateDiff:
                      "detailer_hook": ("DETAILER_HOOK",),
                      "refiner_basic_pipe_opt": ("BASIC_PIPE",),
                      # "inpaint_model": ("BOOLEAN", {"default": False, "label_on": "enabled", "label_off": "disabled"}),
-                     # "noise_mask_feather": ("INT", {"default": 0, "min": 0, "max": 100, "step": 1}),
+                     # "noise_mask_feather": ("INT", {"default": 20, "min": 0, "max": 100, "step": 1}),
                     }
                 }
 
-    RETURN_TYPES = ("IMAGE", "SEGS", "BASIC_PIPE")
-    RETURN_NAMES = ("image", "segs", "basic_pipe")
+    RETURN_TYPES = ("IMAGE", "SEGS", "BASIC_PIPE", "IMAGE")
+    RETURN_NAMES = ("image", "segs", "basic_pipe", "cnet_images")
     OUTPUT_IS_LIST = (False, False, False, True)
     FUNCTION = "doit"
 
@@ -134,15 +145,24 @@ class DetailerForEachPipeForAnimateDiff:
              inpaint_model=False, noise_mask_feather=0):
 
         enhanced_segs = []
+        cnet_image_list = []
+
         for sub_seg in segs[1]:
             single_seg = segs[0], [sub_seg]
-            enhanced_seg = SEGSDetailerForAnimateDiff().do_detail(image_frames, single_seg, guide_size, guide_size_for, max_size, seed, steps, cfg, sampler_name, scheduler,
-                                                                  denoise, basic_pipe, refiner_ratio, refiner_basic_pipe_opt, inpaint_model, noise_mask_feather)
+            enhanced_seg, cnet_images = SEGSDetailerForAnimateDiff().do_detail(image_frames, single_seg, guide_size, guide_size_for, max_size, seed, steps, cfg, sampler_name, scheduler,
+                                                                               denoise, basic_pipe, refiner_ratio, refiner_basic_pipe_opt, inpaint_model, noise_mask_feather)
 
             image_frames = SEGSPaste.doit(image_frames, enhanced_seg, feather, alpha=255)[0]
+
+            if cnet_images is not None:
+                cnet_image_list.extend(cnet_images)
+
+            if detailer_hook is not None:
+                detailer_hook.post_paste(image_frames)
+
             enhanced_segs += enhanced_seg[1]
 
         new_segs = segs[0], enhanced_segs
-        return image_frames, new_segs, basic_pipe
+        return image_frames, new_segs, basic_pipe, cnet_image_list
 
 ```

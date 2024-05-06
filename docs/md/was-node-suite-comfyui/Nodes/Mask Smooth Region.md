@@ -1,3 +1,9 @@
+---
+tags:
+- Blur
+- VisualEffects
+---
+
 # Mask Smooth Region
 ## Documentation
 - Class name: `Mask Smooth Region`

@@ -1,3 +1,10 @@
+---
+tags:
+- Loader
+- ModelIO
+- ModelLoader
+---
+
 # HypernetworkLoader
 ## Documentation
 - Class name: `HypernetworkLoader`

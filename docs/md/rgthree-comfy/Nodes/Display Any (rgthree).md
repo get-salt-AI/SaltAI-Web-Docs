@@ -1,3 +1,9 @@
+---
+tags:
+- DataTypeAgnostic
+- Debugging
+---
+
 # Display Any (rgthree)
 ## Documentation
 - Class name: `Display Any (rgthree)`

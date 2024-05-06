@@ -1,3 +1,10 @@
+---
+tags:
+- ImageScaling
+- ImageUpscaling
+- Upscale
+---
+
 # ImageScaleToTotalPixels
 ## Documentation
 - Class name: `ImageScaleToTotalPixels`
@@ -27,7 +34,7 @@ The ImageScaleToTotalPixels node is designed for resizing images to a specified 
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes:
-    - GetImageSize
+    - [GetImageSize](../../stability-ComfyUI-nodes/Nodes/GetImageSize.md)
     - [ImageBatch](../../Comfy/Nodes/ImageBatch.md)
     - [DWPreprocessor](../../comfyui_controlnet_aux/Nodes/DWPreprocessor.md)
     - [VAEEncodeForInpaint](../../Comfy/Nodes/VAEEncodeForInpaint.md)

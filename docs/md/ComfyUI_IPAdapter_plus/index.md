@@ -1,3 +1,3 @@
 # ComfyUI_IPAdapter_plus
 - Repo url: `https://github.com/cubiq/ComfyUI_IPAdapter_plus`
-- Commit hash: `46241f3ba5401f076f8d90c2aa85f2194910e1a9`
+- Commit hash: `d7ff848ac87040a7917938f656c8b1738a2d486d`

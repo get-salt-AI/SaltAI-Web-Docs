@@ -1,14 +1,19 @@
+---
+tags:
+- Image
+---
+
 # Export With Ffmpeg (mtb)
 ## Documentation
 - Class name: `Export With Ffmpeg (mtb)`
 - Category: `mtb/IO`
 - Output node: `True`
 
-The Export With Ffmpeg (mtb) node provides functionality for exporting multimedia content using FFmpeg, supporting both image sequences and video playlists. It allows for customization of the export process through various parameters such as frame rate, format, and codec, catering to different requirements and preferences.
+The Export With Ffmpeg (mtb) node provides functionality for exporting media files using FFmpeg, supporting various formats and codecs. It allows for the conversion of image sequences or playlists into video files, with customizable frame rates, formats, and codecs, catering to different requirements for video production.
 ## Input types
 ### Required
 - **`fps`**
-    - Specifies the frames per second for the video export, affecting the playback speed and overall duration of the output video.
+    - Specifies the frames per second for the video export, affecting the playback speed and smoothness of the resulting video.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`prefix`**
@@ -16,26 +21,26 @@ The Export With Ffmpeg (mtb) node provides functionality for exporting multimedi
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`format`**
-    - Determines the file format of the exported video, such as MOV, MP4, MKV, or AVI, providing flexibility in output compatibility.
+    - Determines the video file format (e.g., mov, mp4, mkv), influencing compatibility with different players and platforms.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`codec`**
-    - Selects the codec used for video compression, offering options like ProRes, H.264, and H.265 to balance between quality and file size.
+    - Selects the codec used for encoding the video, impacting the balance between quality and file size.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`images`**
-    - An optional tensor of images to be exported as a video sequence, enabling the creation of videos from individual frames.
+    - An optional tensor of images to be exported as a video, enabling the creation of video content from individual frames.
     - Comfy dtype: `IMAGE`
     - Python dtype: `Optional[torch.Tensor]`
 - **`playlist`**
-    - An optional list of video file paths to be concatenated into a single video, facilitating the merging of multiple videos.
+    - An optional list of video file paths for concatenation, facilitating the compilation of multiple videos into a single file.
     - Comfy dtype: `PLAYLIST`
     - Python dtype: `Optional[List[str]]`
 ## Output types
 - **`video`**
     - Comfy dtype: `VIDEO`
-    - The path to the exported video file.
+    - The path to the exported video file, indicating the successful creation of the video.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -44,7 +49,7 @@ The Export With Ffmpeg (mtb) node provides functionality for exporting multimedi
 
 ## Source code
 ```python
-class ExportWithFfmpeg:
+class MTB_ExportWithFfmpeg:
     """Export with FFmpeg (Experimental)"""
 
     @classmethod
@@ -55,12 +60,14 @@ class ExportWithFfmpeg:
                 "playlist": ("PLAYLIST",),
             },
             "required": {
-                # "frames": ("FRAMES",),
                 "fps": ("FLOAT", {"default": 24, "min": 1}),
                 "prefix": ("STRING", {"default": "export"}),
-                "format": (["mov", "mp4", "mkv", "avi"], {"default": "mov"}),
+                "format": (
+                    ["mov", "mp4", "mkv", "gif", "avi"],
+                    {"default": "mov"},
+                ),
                 "codec": (
-                    ["prores_ks", "libx264", "libx265"],
+                    ["prores_ks", "libx264", "libx265", "gif"],
                     {"default": "prores_ks"},
                 ),
             },
@@ -92,7 +99,9 @@ class ExportWithFfmpeg:
                 log.debug("Playlist is empty, skipping")
                 return ("",)
 
-            temp_playlist_path = output_dir / f"temp_playlist_{uuid.uuid4()}.txt"
+            temp_playlist_path = (
+                output_dir / f"temp_playlist_{uuid.uuid4()}.txt"
+            )
             log.debug(
                 f"Create a temporary file to list the videos for concatenation to {temp_playlist_path}"
             )
@@ -133,7 +142,32 @@ class ExportWithFfmpeg:
         log.debug(f"Frames type {type(frames[0])}")
         log.debug(f"Exporting {len(frames)} frames")
 
-        frames = [frame.astype(np.uint16) * 257 for frame in frames]
+        if codec == "gif":
+            out_path = (output_dir / file_id).as_posix()
+            command = [
+                "ffmpeg",
+                "-f",
+                "image2pipe",
+                "-vcodec",
+                "png",
+                "-r",
+                str(fps),
+                "-i",
+                "-",
+                "-vcodec",
+                "gif",
+                "-y",
+                out_path,
+            ]
+            process = subprocess.Popen(command, stdin=subprocess.PIPE)
+            for frame in frames:
+                model_management.throw_exception_if_processing_interrupted()
+                Image.fromarray(frame).save(process.stdin, "PNG")
+
+            process.stdin.close()
+            process.wait()
+        else:
+            frames = [frame.astype(np.uint16) * 257 for frame in frames]
 
         height, width, _ = frames[0].shape
 

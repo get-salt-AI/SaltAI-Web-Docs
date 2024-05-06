@@ -1,45 +1,48 @@
+---
+tags:
+- AnimationScheduling
+- FrameInterpolation
+- VisualEffects
+---
+
 # STMFNet VFI
 ## Documentation
 - Class name: `STMFNet VFI`
 - Category: `ComfyUI-Frame-Interpolation/VFI`
 - Output node: `False`
 
-STMFNet VFI is designed for video frame interpolation, specifically focusing on achieving high-quality results by employing a sophisticated architecture that includes multiple decoders and a refiner. It leverages pre-trained weights for initialization and provides support for 2x frame rate interpolation, ensuring enhanced fluidity and realism in video playback.
+STMFNet_VFI specializes in enhancing video sequences through frame interpolation, utilizing advanced neural network models to accurately predict and insert intermediate frames. This process aims to increase the frame rate of videos, resulting in smoother playback and improved visual quality.
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - The name of the checkpoint file for the model weights. This parameter is crucial for loading the pre-trained model to perform the interpolation.
+    - Specifies the checkpoint name for the model, determining the specific pre-trained weights to be used for frame interpolation.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `List[str]`
 - **`frames`**
-    - The input frames to be interpolated. These frames are the basis for generating intermediate frames to achieve smoother motion in videos.
+    - Represents the sequence of video frames to be interpolated. This input is crucial for determining the starting and ending points of interpolation.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`clear_cache_after_n_frames`**
-    - Determines after how many frames the CUDA cache should be cleared to prevent memory overflow. This helps in managing memory usage efficiently during the interpolation process.
+    - Controls the frequency of cache clearing to manage memory usage during the interpolation process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`multiplier`**
-    - Specifies the factor by which the frame rate is to be increased. Currently, STMFNet VFI supports only 2x interpolation, aiming to double the frame rate of the input video.
+    - Defines the factor by which the frame rate is to be increased, directly influencing the number of frames to be interpolated.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`duplicate_first_last_frames`**
-    - A boolean flag indicating whether to duplicate the first and last frames of the input. This can be used to maintain temporal consistency at the boundaries of the video.
+    - A boolean flag indicating whether to duplicate the first and last frames, affecting the output video's length and smoothness.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`optional_interpolation_states`**
-    - Optional states that can be used to skip certain frames during interpolation, providing flexibility in handling specific frames differently.
+    - Allows for the specification of custom interpolation states, offering flexibility in handling frame skipping and other advanced interpolation scenarios.
     - Comfy dtype: `INTERPOLATION_STATES`
     - Python dtype: `InterpolationStateList`
-- **`cache_in_fp16`**
-    - A flag indicating whether to cache frames in fp16 format to save memory. This can be beneficial for devices with limited memory capacity.
-    - Comfy dtype: `BOOLEAN`
-    - Python dtype: `bool`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The interpolated frames produced by STMFNet VFI. These frames are inserted between the original input frames to achieve the desired frame rate increase.
+    - The output consists of the interpolated video frames, enhancing the original sequence with additional frames to achieve smoother motion.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -62,8 +65,7 @@ class STMFNet_VFI:
                 "duplicate_first_last_frames": ("BOOLEAN", {"default": False})
             },
             "optional": {
-                "optional_interpolation_states": ("INTERPOLATION_STATES", ),
-                "cache_in_fp16": ("BOOLEAN", {"default": True})
+                "optional_interpolation_states": ("INTERPOLATION_STATES", )
             }
         }
     
@@ -80,7 +82,7 @@ class STMFNet_VFI:
         multiplier: typing.SupportsInt = 2,
         duplicate_first_last_frames: bool = False,
         optional_interpolation_states: InterpolationStateList = None,
-        cache_in_fp16: bool = True
+        **kwargs
     ):
         from .stmfnet_arch import STMFNet_Model
         if multiplier != 2:
@@ -131,7 +133,7 @@ class STMFNet_VFI:
                 print("Comfy-VFI: Done cache clearing")
             gc.collect()
         
-        dtype = torch.float16 if cache_in_fp16 else torch.float32
+        dtype = torch.float32
         output_frames = [frame.cpu().to(dtype=dtype) for frame in output_frames] #Ensure all frames are in cpu
         out = torch.cat(output_frames, dim=0)
         # clear cache for courtesy

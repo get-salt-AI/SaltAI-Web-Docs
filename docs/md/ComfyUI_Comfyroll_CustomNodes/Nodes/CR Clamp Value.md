@@ -1,3 +1,8 @@
+---
+tags:
+- ComfyrollNodes
+---
+
 # ⚙️ CR Clamp Value
 ## Documentation
 - Class name: `CR Clamp Value`

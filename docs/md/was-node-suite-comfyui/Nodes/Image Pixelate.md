@@ -1,3 +1,9 @@
+---
+tags:
+- ImageTransformation
+- VisualEffects
+---
+
 # Image Pixelate
 ## Documentation
 - Class name: `Image Pixelate`

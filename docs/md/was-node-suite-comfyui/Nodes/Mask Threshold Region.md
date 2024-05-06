@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskGeneration
+---
+
 # Mask Threshold Region
 ## Documentation
 - Class name: `Mask Threshold Region`

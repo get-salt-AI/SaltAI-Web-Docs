@@ -1,3 +1,10 @@
+---
+tags:
+- ImageEnhancement
+- ImageTransformation
+- VisualEffects
+---
+
 # Image Shadows and Highlights
 ## Documentation
 - Class name: `Image Shadows and Highlights`

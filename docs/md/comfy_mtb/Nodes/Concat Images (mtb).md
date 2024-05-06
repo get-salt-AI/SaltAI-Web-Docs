@@ -1,20 +1,25 @@
+---
+tags:
+- Image
+---
+
 # Concat Images (mtb)
 ## Documentation
 - Class name: `Concat Images (mtb)`
 - Category: `mtb/image`
 - Output node: `False`
 
-The Concat Images node is designed to merge multiple image tensors into a single batch tensor. It dynamically adjusts the batch size based on the input tensors, facilitating the processing of images in bulk while maintaining their individual characteristics.
+The Concat Images node is designed to merge multiple tensor representations of images into a single batch tensor. This operation is essential for processing multiple images simultaneously, optimizing computational efficiency and facilitating batch operations in image processing workflows.
 ## Input types
 ### Required
 - **`reverse`**
-    - Determines the order in which images are concatenated. When set to True, images are concatenated in reverse order, affecting the final batch's arrangement.
+    - Determines the order in which images are concatenated. When set to True, images are concatenated in reverse order; otherwise, they are concatenated in the order they are received.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is a single tensor that combines all input image tensors into one, with an updated batch size to reflect the total number of images.
+    - The output is a single tensor that combines all input images into one batch, preserving the original image data while adjusting the batch size to accommodate all images.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -23,8 +28,8 @@ The Concat Images node is designed to merge multiple image tensors into a single
 
 ## Source code
 ```python
-class ConcatImages:
-    """Add images to batch"""
+class MTB_ConcatImages:
+    """Add images to batch."""
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "concatenate_tensors"

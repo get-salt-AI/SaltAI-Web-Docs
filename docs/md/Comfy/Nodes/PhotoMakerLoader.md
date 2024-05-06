@@ -1,3 +1,8 @@
+---
+tags:
+- Loader
+---
+
 # PhotoMakerLoader
 ## Documentation
 - Class name: `PhotoMakerLoader`

@@ -1,3 +1,8 @@
+---
+tags:
+- Debugging
+---
+
 # Debug Input
 ## Documentation
 - Class name: `DebugInput`

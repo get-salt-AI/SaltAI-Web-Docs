@@ -1,66 +1,47 @@
+---
+tags:
+- LoRA
+---
+
 # Lora Loader Stack (rgthree)
 ## Documentation
 - Class name: `Lora Loader Stack (rgthree)`
 - Category: `rgthree`
 - Output node: `False`
 
-The Lora Loader Stack (rgthree) node is designed to sequentially load multiple LoRA (Low-Rank Adaptation) modifications into a given model and CLIP instance. It allows for the dynamic enhancement or alteration of model behaviors by applying up to four distinct LoRA adjustments, each with its own strength level, thereby enabling fine-tuned control over the model's output characteristics.
+The Lora Loader Stack (rgthree) node is designed to dynamically load multiple LoRA (Low-Rank Adaptation) modifications into a given model and clip, enhancing or altering their capabilities based on specified LoRA files and their associated strengths. It allows for the sequential application of up to four LoRA modifications, providing a flexible mechanism for model customization.
 ## Input types
 ### Required
 - **`model`**
-    - The model to which LoRA modifications will be applied. It serves as the base for subsequent enhancements or alterations.
+    - The model parameter represents the neural network model to which LoRA modifications will be applied. It is crucial for defining the base architecture that will be enhanced or altered by the LoRA layers.
     - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`clip`**
-    - The CLIP instance to be modified alongside the model. It is used for text-image matching and can be adjusted with LoRA modifications.
+    - The clip parameter signifies the CLIP model that will be adjusted using LoRA modifications. It plays a key role in specifying the target for LoRA enhancements alongside the primary model.
     - Comfy dtype: `CLIP`
     - Python dtype: `torch.nn.Module`
-- **`lora_01`**
-    - The first LoRA modification to apply. It specifies the particular LoRA file to use for the adjustment.
+- **`lora_i`**
+    - Specifies a LoRA file to be applied to the model and clip. The choice of LoRA file directly influences the nature of the modification, allowing for targeted adjustments.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-- **`strength_01`**
-    - The strength of the first LoRA modification. It determines the intensity of the adjustment applied to the model and CLIP.
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
-- **`lora_02`**
-    - The second LoRA modification to apply. Allows for additional adjustments beyond the first LoRA.
-    - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
-- **`strength_02`**
-    - The strength of the second LoRA modification. Adjusts the model and CLIP with a specified intensity.
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
-- **`lora_03`**
-    - The third LoRA modification to apply. Enables further fine-tuning of the model and CLIP.
-    - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
-- **`strength_03`**
-    - The strength of the third LoRA modification. Controls the level of adjustment applied.
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
-- **`lora_04`**
-    - The fourth and final LoRA modification to apply. Provides the last layer of adjustment.
-    - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
-- **`strength_04`**
-    - The strength of the fourth LoRA modification. Determines the final adjustment intensity.
+- **`strength_i`**
+    - Determines the intensity of the LoRA modification's impact on the model and clip, enabling fine-tuned control over the adaptation's effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The model after applying all specified LoRA modifications. It reflects the cumulative adjustments made.
+    - The modified neural network model, now enhanced with up to four LoRA modifications as specified.
     - Python dtype: `torch.nn.Module`
 - **`clip`**
     - Comfy dtype: `CLIP`
-    - The CLIP instance after all LoRA modifications have been applied. It shows the adjusted text-image matching capabilities.
+    - The adjusted CLIP model, reflecting the cumulative effects of the applied LoRA modifications.
     - Python dtype: `torch.nn.Module`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes:
     - [Text to Conditioning](../../was-node-suite-comfyui/Nodes/Text to Conditioning.md)
-    - UltimateSDUpscale
+    - [UltimateSDUpscale](../../ComfyUI_UltimateSDUpscale/Nodes/UltimateSDUpscale.md)
     - Reroute
     - [KSampler](../../Comfy/Nodes/KSampler.md)
     - [BNK_CLIPTextEncodeAdvanced](../../ComfyUI_ADV_CLIP_emb/Nodes/BNK_CLIPTextEncodeAdvanced.md)

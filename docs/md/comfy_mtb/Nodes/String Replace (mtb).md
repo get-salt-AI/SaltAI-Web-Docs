@@ -1,28 +1,34 @@
+---
+tags:
+- Text
+- TextReplacement
+---
+
 # String Replace (mtb)
 ## Documentation
 - Class name: `String Replace (mtb)`
 - Category: `mtb/string`
 - Output node: `False`
 
-The StringReplace node is designed for performing basic string manipulation tasks, specifically replacing occurrences of a substring within a given string with another substring. This functionality is essential in text processing and data cleaning operations, allowing for the modification of text data in a straightforward manner.
+Provides a basic string replacement functionality, allowing for the substitution of a specified substring with another within a given string. This node is designed to facilitate text manipulation by enabling users to easily replace parts of strings.
 ## Input types
 ### Required
 - **`string`**
-    - The 'string' parameter is the original text in which replacements will be made. It serves as the primary input for the operation, determining the context and content of the manipulation.
+    - The original string where replacements will be made. It serves as the base text for the operation.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`old`**
-    - The 'old' parameter specifies the substring that should be identified and replaced within the original string. Its presence is crucial for targeting the specific text segments for replacement.
+    - The substring to be replaced. This parameter specifies the part of the original string that should be substituted.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`new`**
-    - The 'new' parameter defines the substring that will replace occurrences of the 'old' substring within the original string. This parameter directly influences the outcome of the text manipulation, enabling the customization of the text.
+    - The replacement substring. This parameter defines the new text that will replace the specified 'old' substring in the original string.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`string`**
     - Comfy dtype: `STRING`
-    - The output is the modified string after all occurrences of the 'old' substring have been replaced with the 'new' substring.
+    - The modified string after the specified replacements have been made.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -31,8 +37,8 @@ The StringReplace node is designed for performing basic string manipulation task
 
 ## Source code
 ```python
-class StringReplace:
-    """Basic string replacement"""
+class MTB_StringReplace:
+    """Basic string replacement."""
 
     @classmethod
     def INPUT_TYPES(cls):

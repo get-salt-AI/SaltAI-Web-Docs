@@ -1,3 +1,8 @@
+---
+tags:
+- Mask
+---
+
 # FadeMaskEdges
 ## Documentation
 - Class name: `FadeMaskEdges`

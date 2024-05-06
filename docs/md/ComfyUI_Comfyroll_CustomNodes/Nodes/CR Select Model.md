@@ -1,3 +1,12 @@
+---
+tags:
+- Loader
+- Model
+- ModelIO
+- ModelLoader
+- ModelSwitching
+---
+
 # 🔮 CR Select Model
 ## Documentation
 - Class name: `CR Select Model`

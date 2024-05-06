@@ -1,56 +1,62 @@
+---
+tags:
+- Mask
+- MaskGeneration
+---
+
 # CreateShapeMask
 ## Documentation
 - Class name: `CreateShapeMask`
 - Category: `KJNodes/masking/generate`
 - Output node: `False`
 
-The CreateShapeMask node is designed to generate masks based on geometric shapes such as circles, squares, and triangles. It allows for the creation of shape-based masks by specifying the shape, size, and location, enabling the customization of masks for various image processing and computer vision tasks.
+The CreateShapeMask node is designed for generating masks or batches of masks with specific shapes. It allows for dynamic creation of animated masks by adjusting the growth of the shape across frames, providing a versatile tool for mask generation in various dimensions and shapes.
 ## Input types
 ### Required
 - **`shape`**
-    - Specifies the geometric shape of the mask to be created. It determines the overall form and structure of the resulting mask, playing a crucial role in the mask's appearance and utility.
+    - Specifies the geometric shape of the mask to be created. This choice influences the visual appearance and boundary of the generated mask.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`frames`**
-    - Defines the number of frames for the mask, allowing for the creation of multiple masks in a sequence. This can be useful for generating masks for animations or video processing.
+    - Determines the number of frames for the animated mask, allowing for the creation of a sequence of masks with progressive growth.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`location_x`**
-    - Determines the x-coordinate of the shape's location within the mask. It affects the horizontal positioning of the shape, influencing the mask's spatial arrangement.
+    - The x-coordinate for the center location of the shape, defining where the shape will be positioned horizontally within the frame.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`location_y`**
-    - Determines the y-coordinate of the shape's location within the mask. It affects the vertical positioning of the shape, influencing the mask's spatial arrangement.
+    - The y-coordinate for the center location of the shape, defining where the shape will be positioned vertically within the frame.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`grow`**
-    - Specifies the amount by which the shape should grow or shrink. This parameter allows for dynamic adjustment of the shape's size, enabling more flexible mask creation.
+    - Controls the amount by which the shape grows on each frame, enabling the animation of the mask.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`frame_width`**
-    - Sets the width of the frame for the mask. This determines the horizontal dimension of the mask, affecting its size and aspect ratio.
+    - The width of the frame in which the shape is placed, setting the horizontal boundary for the mask.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`frame_height`**
-    - Sets the height of the frame for the mask. This determines the vertical dimension of the mask, affecting its size and aspect ratio.
+    - The height of the frame in which the shape is placed, setting the vertical boundary for the mask.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`shape_width`**
-    - Specifies the width of the shape within the mask. This parameter allows for precise control over the size of the shape, affecting its visibility and impact on the mask.
+    - Specifies the initial width of the shape, determining its size before any growth is applied.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`shape_height`**
-    - Specifies the height of the shape within the mask. This parameter allows for precise control over the size of the shape, affecting its visibility and impact on the mask.
+    - Specifies the initial height of the shape, determining its size before any growth is applied.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The output is a mask generated based on the specified geometric shape. It serves as a customizable shape-based mask for various applications.
+    - The generated mask with the specified shape and dimensions.
     - Python dtype: `torch.Tensor`
 - **`mask_inverted`**
     - Comfy dtype: `MASK`
-    - The output is an inverted version of the mask generated based on the specified geometric shape. This inversion can be useful for creating complementary masks for certain applications.
+    - An inverted version of the generated mask, where the shape's area is transparent and the rest is opaque.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
@@ -67,6 +73,11 @@ class CreateShapeMask:
     RETURN_NAMES = ("mask", "mask_inverted",)
     FUNCTION = "createshapemask"
     CATEGORY = "KJNodes/masking/generate"
+    DESCRIPTION = """
+Creates a mask or batch of masks with the specified shape.  
+Locations are center locations.  
+Grow value is the amount to grow the shape on each frame, creating animated masks.
+"""
 
     @classmethod
     def INPUT_TYPES(s):
@@ -125,6 +136,7 @@ class CreateShapeMask:
             image = pil2tensor(image)
             mask = image[:, :, :, 0]
             out.append(mask)
-        return (torch.cat(out, dim=0), 1.0 - torch.cat(out, dim=0),)
+        outstack = torch.cat(out, dim=0)
+        return (outstack, 1.0 - outstack,)
 
 ```

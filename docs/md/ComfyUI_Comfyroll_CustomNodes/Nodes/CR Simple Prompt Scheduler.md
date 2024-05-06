@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- Scheduling
+---
+
 # 📑 CR Simple Prompt Scheduler
 ## Documentation
 - Class name: `CR Simple Prompt Scheduler`

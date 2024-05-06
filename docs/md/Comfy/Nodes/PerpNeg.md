@@ -1,31 +1,36 @@
-# Perp-Neg
+---
+tags:
+- ModelGuidance
+---
+
+# Perp-Neg (DEPRECATED by PerpNegGuider)
 ## Documentation
 - Class name: `PerpNeg`
 - Category: `_for_testing`
 - Output node: `False`
 
-The PerpNeg node is designed to modify a given model's behavior by adjusting its sampling process. It introduces a perpendicular negative component to the model's noise prediction, aiming to enhance the generation quality by mitigating the influence of undesired conditioning.
+The PerpNeg node is designed to adjust the conditioning of a model by applying a perpendicular negative guidance technique. This technique modifies the input conditioning vectors to enhance the generation of content that diverges from undesired directions, effectively guiding the model towards more desirable outputs.
 ## Input types
 ### Required
 - **`model`**
-    - The model to be modified, providing the base for the node's operation. It's crucial for defining the starting point of the adjustment process.
+    - The model parameter represents the generative model to which the perpendicular negative guidance will be applied. It is crucial for determining the base behavior and capabilities of the node.
     - Comfy dtype: `MODEL`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `comfy.model_management.MODEL`
 - **`empty_conditioning`**
-    - An empty conditioning input used to generate a baseline for comparison, essential for calculating the perpendicular negative component.
+    - The empty_conditioning parameter is used to provide a baseline or neutral conditioning context, against which positive and negative deviations are calculated and adjusted.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `CONDITIONING`
 - **`neg_scale`**
-    - A scaling factor for the perpendicular negative component, allowing fine-tuning of its influence on the model's output.
+    - The neg_scale parameter controls the intensity of the negative guidance applied, allowing for fine-tuning of the perpendicular negative effect on the model's output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The modified model with an updated sampling process, incorporating the perpendicular negative adjustment.
-    - Python dtype: `torch.nn.Module`
+    - The output is a modified version of the input model, adjusted with perpendicular negative guidance to influence its generation process towards desired outcomes.
+    - Python dtype: `comfy.model_management.MODEL`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -36,7 +41,7 @@ class PerpNeg:
     def INPUT_TYPES(s):
         return {"required": {"model": ("MODEL", ),
                              "empty_conditioning": ("CONDITIONING", ),
-                             "neg_scale": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 100.0}),
+                             "neg_scale": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 100.0, "step": 0.01}),
                             }}
     RETURN_TYPES = ("MODEL",)
     FUNCTION = "patch"
@@ -45,7 +50,7 @@ class PerpNeg:
 
     def patch(self, model, empty_conditioning, neg_scale):
         m = model.clone()
-        nocond = comfy.sample.convert_cond(empty_conditioning)
+        nocond = comfy.sampler_helpers.convert_cond(empty_conditioning)
 
         def cfg_function(args):
             model = args["model"]
@@ -57,14 +62,9 @@ class PerpNeg:
             model_options = args["model_options"]
             nocond_processed = comfy.samplers.encode_model_conds(model.extra_conds, nocond, x, x.device, "negative")
 
-            (noise_pred_nocond, _) = comfy.samplers.calc_cond_uncond_batch(model, nocond_processed, None, x, sigma, model_options)
+            (noise_pred_nocond,) = comfy.samplers.calc_cond_batch(model, [nocond_processed], x, sigma, model_options)
 
-            pos = noise_pred_pos - noise_pred_nocond
-            neg = noise_pred_neg - noise_pred_nocond
-            perp = neg - ((torch.mul(neg, pos).sum())/(torch.norm(pos)**2)) * pos
-            perp_neg = perp * neg_scale
-            cfg_result = noise_pred_nocond + cond_scale*(pos - perp_neg)
-            cfg_result = x - cfg_result
+            cfg_result = x - perp_neg(x, noise_pred_pos, noise_pred_neg, noise_pred_nocond, neg_scale, cond_scale)
             return cfg_result
 
         m.set_model_sampler_cfg_function(cfg_function)

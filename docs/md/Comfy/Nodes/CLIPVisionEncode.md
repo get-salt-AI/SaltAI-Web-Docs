@@ -1,3 +1,10 @@
+---
+tags:
+- CLIP
+- Loader
+- ModelIO
+---
+
 # CLIP Vision Encode
 ## Documentation
 - Class name: `CLIPVisionEncode`

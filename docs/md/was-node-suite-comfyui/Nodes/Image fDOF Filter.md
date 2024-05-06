@@ -1,3 +1,9 @@
+---
+tags:
+- ImageFilter
+- VisualEffects
+---
+
 # Image fDOF Filter
 ## Documentation
 - Class name: `Image fDOF Filter`

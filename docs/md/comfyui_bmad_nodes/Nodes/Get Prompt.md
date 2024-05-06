@@ -1,3 +1,8 @@
+---
+tags:
+- Prompt
+---
+
 # Get Prompt
 ## Documentation
 - Class name: `Get Prompt`

@@ -1,39 +1,44 @@
+---
+tags:
+- VAE
+---
+
 # StableCascade_EmptyLatentImage
 ## Documentation
 - Class name: `StableCascade_EmptyLatentImage`
-- Category: `_for_testing/stable_cascade`
+- Category: `latent/stable_cascade`
 - Output node: `False`
 
-The node is designed to generate empty latent images with specified dimensions and compression settings. It serves as a foundational step in generating images by providing a blank canvas in the form of latent representations.
+This node is designed to generate empty latent images with specified dimensions and compression settings. It primarily serves in the initialization or preparation stages of image generation processes, where creating a blank canvas or base for further modifications is required.
 ## Input types
 ### Required
 - **`width`**
-    - Specifies the width of the generated latent image. It determines the horizontal dimension of the output latent space.
+    - Specifies the width of the generated latent image. It influences the spatial dimensions of the output latent representation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Determines the height of the generated latent image, affecting its vertical dimension in the latent space.
+    - Determines the height of the generated latent image, affecting the vertical dimension of the output latent representation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`compression`**
-    - Controls the compression level of the latent image, influencing the granularity of the generated latent representation.
+    - Controls the compression level applied to the latent image dimensions, directly impacting the resolution and size of the output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`batch_size`**
-    - Indicates the number of latent images to generate in a single batch, allowing for batch processing.
+    - Indicates the number of latent images to generate in a single batch, allowing for batch processing of multiple images.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`stage_c`**
     - Comfy dtype: `LATENT`
-    - Represents the first stage latent image with a specific compression applied.
+    - Represents the 'C' stage latent output of the generation process, typically a lower-resolution base for further image refinement.
     - Python dtype: `torch.Tensor`
 - **`stage_b`**
     - Comfy dtype: `LATENT`
-    - Denotes the second stage latent image, typically with a different level of detail or compression.
+    - Denotes the 'B' stage latent output, offering a slightly higher resolution latent base for subsequent image development stages.
     - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -55,7 +60,7 @@ class StableCascade_EmptyLatentImage:
     RETURN_NAMES = ("stage_c", "stage_b")
     FUNCTION = "generate"
 
-    CATEGORY = "_for_testing/stable_cascade"
+    CATEGORY = "latent/stable_cascade"
 
     def generate(self, width, height, compression, batch_size=1):
         c_latent = torch.zeros([batch_size, 16, height // compression, width // compression])

@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskMorphology
+---
+
 # Mask Morphology
 ## Documentation
 - Class name: `Mask Morphology`

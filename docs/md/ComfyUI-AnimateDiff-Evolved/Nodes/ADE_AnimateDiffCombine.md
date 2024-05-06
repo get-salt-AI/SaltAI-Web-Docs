@@ -1,44 +1,50 @@
-# DO NOT USE, USE VideoCombine from ComfyUI-VideoHelperSuite instead! AnimateDiff Combine [DEPRECATED, DO NOT USE] 🎭🅐🅓
+---
+tags:
+- AnimateDiff
+- Animation
+---
+
+# 🚫AnimateDiff Combine [DEPRECATED, Use Video Combine (VHS) Instead!] 🎭🅐🅓
 ## Documentation
 - Class name: `ADE_AnimateDiffCombine`
 - Category: ``
 - Output node: `True`
 
-The ADE_AnimateDiffCombine node was designed to facilitate the creation and manipulation of animated sequences by combining different elements or frames into a cohesive animation. It abstracts the complexities involved in the animation process, providing a streamlined workflow for users to generate dynamic content.
+Originally designed for combining multiple animation frames into a cohesive sequence, this node facilitates the creation of complex animations from individual frames.
 ## Input types
 ### Required
 - **`images`**
-    - Represents the sequence of images to be combined into an animation. It plays a crucial role in determining the visual content of the final output.
+    - A collection of animation frames to be combined into a single sequence, supporting the creation of complex animations from individual frames.
     - Comfy dtype: `IMAGE`
     - Python dtype: `List[Image.Image]`
 - **`frame_rate`**
-    - Specifies the playback speed of the animation, affecting how smooth or fast the animation appears.
+    - Specifies the playback speed of the combined animation sequence, determining how fast the frames are displayed.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`loop_count`**
-    - Determines the number of times the animation will loop, with a specific focus on enabling repetitive playback.
+    - Defines how many times the animation sequence will repeat, with a value of 0 indicating infinite looping.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`filename_prefix`**
-    - Acts as the base name for the output file, allowing users to identify and organize their animations.
+    - The prefix for the output file name, aiding in the organization and identification of generated animations.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`format`**
-    - Defines the output format of the animation, influencing compatibility and quality. It is not a list but a single string value representing the chosen format.
+    - The format of the output animation file, such as GIF, allowing for customization of the output type.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`pingpong`**
-    - Enables a back-and-forth playback mode, adding a dynamic effect to the animation.
+    - A boolean indicating whether the animation should play forwards and then backwards, creating a seamless looping effect.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`save_image`**
-    - Controls whether the first frame of the animation is saved as a separate image file, including metadata.
+    - Determines whether the combined animation sequence should be saved as an image file, providing flexibility in output handling.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`gif`**
     - Comfy dtype: `GIF`
-    - The output is an animated GIF file, encapsulating the combined frames into a single, loopable animation. This format is widely supported and allows for easy sharing and viewing.
+    - The resulting animation file, combining the input frames according to the specified parameters.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`

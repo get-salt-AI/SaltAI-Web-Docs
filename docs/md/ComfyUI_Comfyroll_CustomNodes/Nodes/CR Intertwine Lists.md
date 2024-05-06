@@ -1,3 +1,8 @@
+---
+tags:
+- Text
+---
+
 # 🛠️ CR Intertwine Lists
 ## Documentation
 - Class name: `CR Intertwine Lists`

@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- ImageBlend
+- ImageComposite
+---
+
 # Image Blend
 ## Documentation
 - Class name: `Image Blend`

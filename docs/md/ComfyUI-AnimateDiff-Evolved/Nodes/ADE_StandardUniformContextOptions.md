@@ -1,3 +1,10 @@
+---
+tags:
+- AnimateDiff
+- AnimateDiffContext
+- Animation
+---
+
 # Context Options◆Standard Uniform 🎭🅐🅓
 ## Documentation
 - Class name: `ADE_StandardUniformContextOptions`

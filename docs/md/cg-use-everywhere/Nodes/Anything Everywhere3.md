@@ -1,3 +1,9 @@
+---
+tags:
+- DataTypeAgnostic
+- Debugging
+---
+
 # Anything Everywhere3
 ## Documentation
 - Class name: `Anything Everywhere3`

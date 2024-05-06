@@ -1,3 +1,10 @@
+---
+tags:
+- DepthMap
+- DepthMapEstimation
+- Image
+---
+
 # MiDaS Depth Approximation
 ## Documentation
 - Class name: `MiDaS Depth Approximation`

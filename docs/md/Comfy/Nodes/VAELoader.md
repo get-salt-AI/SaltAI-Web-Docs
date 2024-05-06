@@ -1,3 +1,8 @@
+---
+tags:
+- VAE
+---
+
 # Load VAE
 ## Documentation
 - Class name: `VAELoader`
@@ -24,7 +29,7 @@ The VAELoader node is designed for loading Variational Autoencoder (VAE) models,
     - Reroute
     - [CR Module Pipe Loader](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Module Pipe Loader.md)
     - [VAEDecodeTiled](../../Comfy/Nodes/VAEDecodeTiled.md)
-    - KSampler Adv. (Efficient)
+    - [KSampler Adv. (Efficient)](../../efficiency-nodes-comfyui/Nodes/KSampler Adv. (Efficient).md)
     - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
     - [Anything Everywhere3](../../cg-use-everywhere/Nodes/Anything Everywhere3.md)
     - [VAEEncodeTiled](../../Comfy/Nodes/VAEEncodeTiled.md)

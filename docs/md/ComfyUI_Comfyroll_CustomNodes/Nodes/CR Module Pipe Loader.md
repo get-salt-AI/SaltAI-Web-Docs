@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Pipeline
+---
+
 # ✈️ CR Module Pipe Loader
 ## Documentation
 - Class name: `CR Module Pipe Loader`

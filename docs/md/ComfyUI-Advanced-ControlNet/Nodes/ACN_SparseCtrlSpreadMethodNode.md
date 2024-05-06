@@ -1,3 +1,8 @@
+---
+tags:
+- ControlNet
+---
+
 # SparseCtrl Spread Method 🛂🅐🅒🅝
 ## Documentation
 - Class name: `ACN_SparseCtrlSpreadMethodNode`

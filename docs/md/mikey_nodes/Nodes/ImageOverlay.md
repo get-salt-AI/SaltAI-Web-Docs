@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageComposite
+---
+
 # Image Overlay (Mikey)
 ## Documentation
 - Class name: `ImageOverlay`

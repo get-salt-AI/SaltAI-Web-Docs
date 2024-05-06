@@ -1,3 +1,11 @@
+---
+tags:
+- DepthMap
+- DepthMapEstimation
+- Image
+- NormalMap
+---
+
 # BAE Normal Map
 ## Documentation
 - Class name: `BAE-NormalMapPreprocessor`

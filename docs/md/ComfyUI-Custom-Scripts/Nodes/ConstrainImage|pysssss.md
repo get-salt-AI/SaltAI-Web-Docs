@@ -1,3 +1,11 @@
+---
+tags:
+- ImageResize
+- ImageScaling
+- ImageSize
+- ImageTransformation
+---
+
 # Constrain Image 🐍
 ## Documentation
 - Class name: `ConstrainImage|pysssss`

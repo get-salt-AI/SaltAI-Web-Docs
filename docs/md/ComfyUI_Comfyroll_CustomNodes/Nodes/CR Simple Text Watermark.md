@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- TextOnImage
+---
+
 # 🔤️ CR Simple Text Watermark
 ## Documentation
 - Class name: `CR Simple Text Watermark`

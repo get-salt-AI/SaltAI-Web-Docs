@@ -1,31 +1,40 @@
+---
+tags:
+- ImageScaling
+- ImageUpscaling
+- Upscale
+---
+
 # Upscale Model Switch
 ## Documentation
 - Class name: `Upscale Model Switch`
 - Category: `WAS Suite/Logic`
 - Output node: `False`
 
-The Upscale Model Switch node is designed to toggle between two upscale models based on a boolean condition. It abstracts the decision-making process involved in selecting an appropriate upscale model for image processing tasks, thereby facilitating dynamic model switching in image upscaling pipelines.
+This node facilitates the dynamic selection between two upscale models based on a boolean condition, enabling the choice of an appropriate model for image upscaling within a workflow. It exemplifies conditional logic in model selection, optimizing the upscaling process for varying requirements.
 ## Input types
 ### Required
 - **`upscale_model_a`**
-    - The first upscale model option. This model is selected if the boolean condition evaluates to true.
+    - Specifies the first upscale model option for enhancing image resolution, playing a pivotal role in the conditional selection process.
     - Comfy dtype: `UPSCALE_MODEL`
     - Python dtype: `torch.nn.Module`
 - **`upscale_model_b`**
-    - The second upscale model option. This model is selected if the boolean condition evaluates to false.
+    - Defines the second upscale model option, offering an alternative for conditional selection based on the boolean input, thus affecting the upscaling outcome.
     - Comfy dtype: `UPSCALE_MODEL`
     - Python dtype: `torch.nn.Module`
-- **`boolean_number`**
-    - A numeric value that determines which upscale model to select. A value of 1 selects the first model, while any other value selects the second model.
-    - Comfy dtype: `NUMBER`
-    - Python dtype: `float`
+- **`boolean`**
+    - A boolean condition that determines which upscale model (A or B) is selected for the upscaling process, directly influencing the node's execution path and the quality of the output image.
+    - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ## Output types
 - **`upscale_model`**
     - Comfy dtype: `UPSCALE_MODEL`
-    - The selected upscale model based on the boolean condition.
+    - The selected upscale model based on the boolean condition, ready for use in the image upscaling process.
     - Python dtype: `torch.nn.Module`
+- **`ui`**
+    - A user interface component that may reflect the result of the upscale model switch, showcasing the enhanced images or relevant information.
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -41,7 +50,7 @@ class WAS_Upscale_Model_Input_Switch:
             "required": {
                 "upscale_model_a": ("UPSCALE_MODEL",),
                 "upscale_model_b": ("UPSCALE_MODEL",),
-                "boolean_number": ("NUMBER",),
+                "boolean": ("BOOLEAN", {"forceInput": True}),
             }
         }
 
@@ -50,9 +59,9 @@ class WAS_Upscale_Model_Input_Switch:
 
     CATEGORY = "WAS Suite/Logic"
 
-    def upscale_model_switch(self, upscale_model_a, upscale_model_b, boolean_number=1):
+    def upscale_model_switch(self, upscale_model_a, upscale_model_b, boolean=True):
 
-        if int(round(boolean_number)) == 1:
+        if boolean:
             return (upscale_model_a, )
         else:
             return (upscale_model_b, )

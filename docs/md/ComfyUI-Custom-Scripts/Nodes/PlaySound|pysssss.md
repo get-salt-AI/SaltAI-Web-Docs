@@ -1,3 +1,8 @@
+---
+tags:
+- Audio
+---
+
 # PlaySound 🐍
 ## Documentation
 - Class name: `PlaySound|pysssss`

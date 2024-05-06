@@ -1,3 +1,9 @@
+---
+tags:
+- Color
+- HSVColorSpace
+---
+
 # BuildColorRangeHSV (hsv)
 ## Documentation
 - Class name: `BuildColorRangeHSV (hsv)`

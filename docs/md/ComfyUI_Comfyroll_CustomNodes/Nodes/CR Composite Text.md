@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- TextOnImage
+---
+
 # 🔤️ CR Composite Text
 ## Documentation
 - Class name: `CR Composite Text`

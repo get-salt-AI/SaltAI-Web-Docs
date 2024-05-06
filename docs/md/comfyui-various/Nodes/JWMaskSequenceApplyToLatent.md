@@ -1,3 +1,8 @@
+---
+tags:
+- Mask
+---
+
 # Apply Mask Sequence to Latent
 ## Documentation
 - Class name: `JWMaskSequenceApplyToLatent`

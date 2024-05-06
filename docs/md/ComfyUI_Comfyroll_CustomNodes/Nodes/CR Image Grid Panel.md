@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- PanelDesign
+- VisualEffects
+---
+
 # 🌁 CR Image Grid Panel
 ## Documentation
 - Class name: `CR Image Grid Panel`

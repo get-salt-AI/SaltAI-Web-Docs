@@ -1,3 +1,9 @@
+---
+tags:
+- ControlNet
+- ControlNetLoader
+---
+
 # Load ControlNet Model
 ## Documentation
 - Class name: `ControlNetLoader`

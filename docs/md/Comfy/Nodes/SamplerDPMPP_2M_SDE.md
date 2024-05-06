@@ -1,3 +1,8 @@
+---
+tags:
+- Sampling
+---
+
 # SamplerDPMPP_2M_SDE
 ## Documentation
 - Class name: `SamplerDPMPP_2M_SDE`

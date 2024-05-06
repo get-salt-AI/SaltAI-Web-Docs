@@ -1,38 +1,44 @@
+---
+tags:
+- Image
+- ImageComposite
+---
+
 # SEGSPaste
 ## Documentation
 - Class name: `SEGSPaste`
 - Category: `ImpactPack/Detailer`
 - Output node: `False`
 
-SEGSPaste is designed for the seamless integration of segmented elements into a given scene. It focuses on blending and adjusting segmented objects to ensure they harmonize with their new environment, enhancing the overall visual coherence.
+The SEGSPaste node is designed for combining multiple segmented images or elements into a single composite image. It focuses on pasting segmented elements onto a base image, allowing for the creation of complex scenes or compositions from simpler segmented parts.
 ## Input types
 ### Required
 - **`image`**
-    - Specifies the image to which segmented elements will be pasted, serving as the base for the integration process.
+    - The base image onto which the segmented elements will be pasted. It serves as the backdrop for the composition, influencing the final appearance of the combined image.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `Image`
+    - Python dtype: `torch.Tensor`
 - **`segs`**
-    - Defines the segmented elements to be integrated into the base image, playing a crucial role in the customization and enhancement of the scene.
+    - The segmented elements or images to be pasted onto the base image. These segments define the additional components of the scene, contributing to the complexity and detail of the final composition.
     - Comfy dtype: `SEGS`
-    - Python dtype: `List[SEG]`
+    - Python dtype: `List[torch.Tensor]`
 - **`feather`**
-    - Determines the feathering amount applied to the edges of the segmented elements, aiding in a smoother transition and integration into the base image.
+    - Determines the blending edge softness between the pasted segments and the base image, affecting the smoothness of the transitions and integration of elements.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`alpha`**
-    - Specifies the alpha transparency level for the segmented elements, allowing for adjustable visibility when integrating into the base image.
+    - Specifies the opacity level of the pasted segments, allowing for adjustable transparency and layering effects in the composition.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`ref_image_opt`**
-    - An optional reference image that can be used to guide the integration process, providing additional context or alignment cues.
+    - An optional reference image that can be used for additional context or guidance in the pasting process, enhancing the accuracy or aesthetic of the final image.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `Optional[Image]`
+    - Python dtype: `Optional[torch.Tensor]`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - Returns the image with the segmented elements successfully integrated, showcasing the seamless blend and enhanced visual coherence.
-    - Python dtype: `Image`
+    - Outputs the composite image as a combination of the input base image and pasted segmented elements, effectively merging them into a single cohesive visual entity.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
@@ -96,6 +102,12 @@ class SEGSPaste:
 
                     mask = tensor_gaussian_blur_mask(mask, feather) * (alpha/255)
                     x, y, *_ = seg.crop_region
+
+                    # ensure same device
+                    mask.cpu()
+                    image_i.cpu()
+                    ref_image.cpu()
+
                     tensor_paste(image_i, ref_image, (x, y), mask)
 
             if result is None:

@@ -1,3 +1,9 @@
+---
+tags:
+- AnimateDiff
+- Animation
+---
+
 # View Options◆Looped Uniform 🎭🅐🅓
 ## Documentation
 - Class name: `ADE_LoopedUniformViewOptions`

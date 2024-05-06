@@ -1,3 +1,11 @@
+---
+tags:
+- DepthMap
+- Image
+- ImagePreprocessing
+- LineExtraction
+---
+
 # Fake Scribble Lines (aka scribble_hed)
 ## Documentation
 - Class name: `FakeScribblePreprocessor`

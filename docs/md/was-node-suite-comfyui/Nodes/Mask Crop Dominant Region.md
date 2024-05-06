@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskRegion
+---
+
 # Mask Crop Dominant Region
 ## Documentation
 - Class name: `Mask Crop Dominant Region`

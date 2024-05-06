@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- PatternGeneration
+- VisualEffects
+---
+
 # 🟦 CR Checker Pattern
 ## Documentation
 - Class name: `CR Checker Pattern`

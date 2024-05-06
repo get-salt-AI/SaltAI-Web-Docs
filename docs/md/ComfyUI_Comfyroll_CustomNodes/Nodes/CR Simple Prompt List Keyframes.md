@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- Scheduling
+---
+
 # CR Simple Prompt List Keyframes (Legacy)
 ## Documentation
 - Class name: `CR Simple Prompt List Keyframes`

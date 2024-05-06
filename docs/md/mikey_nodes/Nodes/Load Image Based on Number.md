@@ -1,3 +1,10 @@
+---
+tags:
+- Crop
+- Image
+- ImageTransformation
+---
+
 # Load Image Based on Number (Mikey)
 ## Documentation
 - Class name: `Load Image Based on Number`

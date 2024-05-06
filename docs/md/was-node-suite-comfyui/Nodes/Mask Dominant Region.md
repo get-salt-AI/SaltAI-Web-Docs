@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskRegion
+---
+
 # Mask Dominant Region
 ## Documentation
 - Class name: `Mask Dominant Region`

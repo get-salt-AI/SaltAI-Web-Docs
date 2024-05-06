@@ -4,13 +4,13 @@
 - Category: `essentials`
 - Output node: `True`
 
-This node is designed to analyze and print the shapes of tensors within a given input structure, which can include nested lists, dictionaries, or tensors themselves. It recursively traverses the input to identify and list the shapes of all tensors, providing a clear overview of their dimensions for debugging purposes.
+The DebugTensorShape+ node is designed to assist in debugging by printing the shapes of tensors within a given structure, such as lists, dictionaries, or tensors themselves. This functionality aids in understanding the dimensions and structure of data flowing through a model or computation graph.
 ## Input types
 ### Required
 - **`tensor`**
-    - The input tensor or a nested structure containing tensors. This parameter is crucial for the node to traverse and identify the shapes of all tensors within the given structure, aiding in debugging tensor dimensions.
+    - The 'tensor' parameter can be a tensor, list, or dictionary containing tensors. It is crucial for determining the structure and dimensions of the data to be debugged, impacting the node's execution by dictating which shapes are printed.
     - Comfy dtype: `*`
-    - Python dtype: `Union[torch.Tensor, Dict, List]`
+    - Python dtype: `Union[torch.Tensor, List[torch.Tensor], Dict[str, torch.Tensor]]`
 ## Output types
 The node doesn't have output types
 ## Usage tips
@@ -50,7 +50,7 @@ class DebugTensorShape:
                 shapes.append(list(tensor.shape))
 
         tensorShape(tensor)
-        
+
         print(f"\033[96mShapes found: {shapes}\033[0m")
 
         return (None,)

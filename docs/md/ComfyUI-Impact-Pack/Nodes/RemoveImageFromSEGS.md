@@ -1,3 +1,9 @@
+---
+tags:
+- ImpactPack
+- Segmentation
+---
+
 # Remove Image from SEGS
 ## Documentation
 - Class name: `RemoveImageFromSEGS`

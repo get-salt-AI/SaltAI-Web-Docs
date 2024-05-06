@@ -1,3 +1,8 @@
+---
+tags:
+- Sampling
+---
+
 # ModelSamplingDiscrete
 ## Documentation
 - Class name: `ModelSamplingDiscrete`
@@ -35,7 +40,7 @@ This node is designed to modify the sampling behavior of a model by applying a d
     - [Anything Everywhere](../../cg-use-everywhere/Nodes/Anything Everywhere.md)
     - [ReroutePrimitive|pysssss](../../ComfyUI-Custom-Scripts/Nodes/ReroutePrimitive|pysssss.md)
     - [BasicScheduler](../../Comfy/Nodes/BasicScheduler.md)
-    - KSampler (Efficient)
+    - [KSampler (Efficient)](../../efficiency-nodes-comfyui/Nodes/KSampler (Efficient).md)
 
 
 

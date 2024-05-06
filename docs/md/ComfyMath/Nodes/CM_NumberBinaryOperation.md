@@ -1,3 +1,9 @@
+---
+tags:
+- Math
+- VectorMath
+---
+
 # NumberBinaryOperation
 ## Documentation
 - Class name: `CM_NumberBinaryOperation`

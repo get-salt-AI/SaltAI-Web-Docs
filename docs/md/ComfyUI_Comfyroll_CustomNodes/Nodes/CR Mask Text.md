@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskGeneration
+---
+
 # 🔤️ CR Mask Text
 ## Documentation
 - Class name: `CR Mask Text`

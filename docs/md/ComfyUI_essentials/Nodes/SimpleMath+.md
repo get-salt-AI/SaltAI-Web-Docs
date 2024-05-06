@@ -1,3 +1,10 @@
+---
+tags:
+- DataTypeConversion
+- Math
+- MathematicalExpressions
+---
+
 # 🔧 Simple Math
 ## Documentation
 - Class name: `SimpleMath+`

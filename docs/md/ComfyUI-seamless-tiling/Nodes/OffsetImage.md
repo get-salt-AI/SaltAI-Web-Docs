@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageTransformation
+---
+
 # Offset Image
 ## Documentation
 - Class name: `OffsetImage`

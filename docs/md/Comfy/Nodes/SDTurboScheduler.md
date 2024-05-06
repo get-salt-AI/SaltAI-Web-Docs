@@ -1,3 +1,8 @@
+---
+tags:
+- SigmaScheduling
+---
+
 # SDTurboScheduler
 ## Documentation
 - Class name: `SDTurboScheduler`

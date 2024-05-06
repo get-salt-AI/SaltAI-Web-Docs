@@ -1,35 +1,38 @@
+---
+tags:
+- ImageTransformation
+---
+
 # RemapStretch
 ## Documentation
 - Class name: `RemapStretch`
 - Category: `Bmad/CV/Transform`
 - Output node: `False`
 
-The RemapStretch node applies a stretching transformation to an image based on specified power and center parameters. It utilizes a mathematical remapping technique to adjust the spatial distribution of pixels, effectively stretching the image in a controlled manner around a given center point.
+The RemapStretch node applies a stretching transformation to images, adjusting their geometry based on specified power factors along the x and y axes, centered around a given point. This node is designed to manipulate image dimensions in a non-linear fashion, offering a way to simulate or correct distortions.
 ## Input types
 ### Required
 - **`power_x`**
-    - Specifies the power of stretching along the x-axis. It determines the intensity of the stretch effect horizontally.
+    - Specifies the power factor for stretching along the x-axis. A higher value results in more pronounced stretching.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`power_y`**
-    - Specifies the power of stretching along the y-axis. It determines the intensity of the stretch effect vertically.
+    - Specifies the power factor for stretching along the y-axis. Similar to `power_x`, it controls the degree of stretching but in the vertical direction.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`center_x`**
-    - Defines the x-coordinate of the center around which the image will be stretched. This parameter sets the focal point of the stretching effect horizontally.
+    - Determines the horizontal center point of the stretch effect. Values range from 0 to 1, representing a percentage of the image's width.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`center_y`**
-    - Defines the y-coordinate of the center around which the image will be stretched. This parameter sets the focal point of the stretching effect vertically.
+    - Determines the vertical center point of the stretch effect. Values range from 0 to 1, representing a percentage of the image's height.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`remap`**
     - Comfy dtype: `REMAP`
-    - The output is a set of parameters or a function that defines how the image should be remapped or transformed, applying the stretching effect based on the input parameters.
+    - The output is a set of parameters or a transformation map that defines how the image should be stretched according to the input parameters. This map is used to adjust the image geometry for stretching effects.
     - Python dtype: `Dict[str, Any]`
-- **`ui`**
-    - The output is a transformed image with the applied stretching effect, based on the input parameters.
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -46,7 +49,7 @@ class RemapStretch(RemapBase):
         from .utils.remaps import remap_pinch_or_stretch
         return ({
                     "func": remap_pinch_or_stretch,
-                    "xargs": [(1/power_x, 1/power_y), (center_x, center_y)]
+                    "xargs": [(1 / power_x, 1 / power_y), (center_x, center_y)]
                 },)
 
 ```

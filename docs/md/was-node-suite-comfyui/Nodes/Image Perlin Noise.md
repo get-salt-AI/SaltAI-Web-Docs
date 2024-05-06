@@ -1,3 +1,9 @@
+---
+tags:
+- Noise
+- NoisePatterns
+---
+
 # Image Perlin Noise
 ## Documentation
 - Class name: `Image Perlin Noise`

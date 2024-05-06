@@ -1,68 +1,75 @@
+---
+tags:
+- DetailEnhancement
+- Image
+- Pipeline
+---
+
 # FaceDetailer (pipe)
 ## Documentation
 - Class name: `FaceDetailerPipe`
 - Category: `ImpactPack/Simple`
 - Output node: `False`
 
-The FaceDetailerPipe node is designed to enhance facial details in images, focusing on improving aspects such as texture, clarity, and overall facial features. It utilizes advanced processing techniques to refine and accentuate facial characteristics, aiming to produce more visually appealing and detailed images.
+The FaceDetailerPipe node specializes in enhancing facial details within images, leveraging advanced processing techniques to refine and accentuate facial features for improved visual quality.
 ## Input types
 ### Required
 - **`image`**
-    - The input image or images to be processed for facial detail enhancement. This node is not designed for video detailing but can process image batches with caution.
+    - unknown
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `unknown`
 - **`detailer_pipe`**
-    - A tuple containing models and configurations used in the detailing process, including models for detection, segmentation, and enhancement.
+    - Represents the core data structure for detailing operations, essential for processing and enhancing facial details within images.
     - Comfy dtype: `DETAILER_PIPE`
-    - Python dtype: `Tuple`
+    - Python dtype: `tuple`
 - **`guide_size`**
-    - Specifies the target size for guiding the detail enhancement process, affecting the scale at which details are refined.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`guide_size_for`**
-    - Determines the specific application or context for the guide size, tailoring the enhancement process to particular types of detailing.
+    - unknown
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`max_size`**
-    - The maximum size limit for the images being processed, ensuring that the detailing does not exceed computational or quality thresholds.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`seed`**
-    - A seed value for random number generation, ensuring reproducibility and consistency in the detailing outcomes.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`steps`**
-    - The number of steps or iterations the detailing process undergoes, affecting the depth and thoroughness of the enhancement.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`cfg`**
-    - Configuration settings for the detailing process, allowing for customization and optimization of the enhancement techniques.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `dict`
+    - Python dtype: `unknown`
 - **`sampler_name`**
-    - Specifies the sampling method used in the detailing process, influencing the approach to image enhancement.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`scheduler`**
-    - The scheduling mechanism for the detailing process, managing the sequence and timing of enhancement operations.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`denoise`**
-    - A flag indicating whether denoising operations should be applied during the detailing process, improving image clarity.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `bool`
+    - Python dtype: `unknown`
 - **`feather`**
-    - Specifies the degree of feathering applied to the edges of enhanced regions, blending them smoothly with the rest of the image.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 - **`noise_mask`**
-    - A mask applied to specific areas of the image to target noise reduction, enhancing clarity in those regions.
+    - unknown
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `unknown`
 - **`force_inpaint`**
-    - A flag indicating whether inpainting should be forcibly applied to missing or damaged areas of the image during detailing.
+    - unknown
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `bool`
+    - Python dtype: `unknown`
 - **`bbox_threshold`**
     - unknown
     - Comfy dtype: `FLOAT`
@@ -108,45 +115,45 @@ The FaceDetailerPipe node is designed to enhance facial details in images, focus
     - Comfy dtype: `FLOAT`
     - Python dtype: `unknown`
 - **`cycle`**
-    - Indicates the number of cycles the detailing process should repeat, potentially enhancing results through iterative refinement.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 ### Optional
 - **`inpaint_model`**
-    - Specifies whether an inpainting model should be used to fill in missing or damaged areas of the image during detailing.
+    - unknown
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `bool`
+    - Python dtype: `unknown`
 - **`noise_mask_feather`**
-    - Determines the degree of feathering applied to the noise mask, blending it smoothly with the image.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output image with enhanced facial details, reflecting improvements in texture, clarity, and overall facial features.
-    - Python dtype: `torch.Tensor`
+    - unknown
+    - Python dtype: `unknown`
 - **`cropped_refined`**
     - Comfy dtype: `IMAGE`
     - unknown
     - Python dtype: `unknown`
 - **`cropped_enhanced_alpha`**
     - Comfy dtype: `IMAGE`
-    - A list of alpha values corresponding to the cropped and enhanced regions, indicating the level of enhancement applied.
-    - Python dtype: `List[torch.Tensor]`
-- **`mask`**
-    - Comfy dtype: `MASK`
-    - A tensor representing the mask applied during the enhancement process, indicating areas of focus or exclusion.
-    - Python dtype: `torch.Tensor`
-- **`detailer_pipe`**
-    - Comfy dtype: `DETAILER_PIPE`
     - unknown
     - Python dtype: `unknown`
+- **`mask`**
+    - Comfy dtype: `MASK`
+    - unknown
+    - Python dtype: `unknown`
+- **`detailer_pipe`**
+    - Comfy dtype: `DETAILER_PIPE`
+    - Outputs the enhanced detailer_pipe structure, encapsulating the refined facial details for subsequent processing or visualization.
+    - Python dtype: `tuple`
 - **`cnet_images`**
     - Comfy dtype: `IMAGE`
-    - A list of images processed through the CNet model, providing additional detailing or enhancement.
-    - Python dtype: `List[torch.Tensor]`
+    - unknown
+    - Python dtype: `unknown`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes:
     - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
     - [MaskToImage](../../Comfy/Nodes/MaskToImage.md)
@@ -176,7 +183,7 @@ class FaceDetailerPipe:
                     "steps": ("INT", {"default": 20, "min": 1, "max": 10000}),
                     "cfg": ("FLOAT", {"default": 8.0, "min": 0.0, "max": 100.0}),
                     "sampler_name": (comfy.samplers.KSampler.SAMPLERS,),
-                    "scheduler": (comfy.samplers.KSampler.SCHEDULERS,),
+                    "scheduler": (core.SCHEDULERS,),
                     "denoise": ("FLOAT", {"default": 0.5, "min": 0.0001, "max": 1.0, "step": 0.01}),
                     "feather": ("INT", {"default": 5, "min": 0, "max": 100, "step": 1}),
                     "noise_mask": ("BOOLEAN", {"default": True, "label_on": "enabled", "label_off": "disabled"}),
@@ -200,7 +207,7 @@ class FaceDetailerPipe:
                    },
                 "optional": {
                     "inpaint_model": ("BOOLEAN", {"default": False, "label_on": "enabled", "label_off": "disabled"}),
-                    "noise_mask_feather": ("INT", {"default": 0, "min": 0, "max": 100, "step": 1}),
+                    "noise_mask_feather": ("INT", {"default": 20, "min": 0, "max": 100, "step": 1}),
                    }
                 }
 

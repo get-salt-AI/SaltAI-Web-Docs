@@ -1,3 +1,8 @@
+---
+tags:
+- NumberRangeGeneration
+---
+
 # Range(Step) - Int
 ## Documentation
 - Class name: `Range(Step) - Int`

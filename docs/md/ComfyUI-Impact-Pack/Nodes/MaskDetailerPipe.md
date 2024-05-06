@@ -1,40 +1,47 @@
+---
+tags:
+- DetailEnhancement
+- Image
+- Pipeline
+---
+
 # MaskDetailer (pipe)
 ## Documentation
 - Class name: `MaskDetailerPipe`
 - Category: `ImpactPack/Detailer`
 - Output node: `False`
 
-The MaskDetailerPipe node is designed to enhance and refine mask details within images, leveraging advanced processing techniques to improve the quality and precision of masks. It focuses on optimizing mask outlines and features for better visual clarity and accuracy.
+The MaskDetailerPipe node is designed to enhance and refine mask details within images, leveraging advanced image processing techniques to improve the visual quality and accuracy of masks in various applications.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to which mask detailing will be applied, serving as the base for enhancement operations.
+    - The 'image' parameter specifies the input image to be processed, serving as the primary subject for mask detailing and enhancement.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`mask`**
-    - The mask to be detailed and refined, targeting improvements in its outlines and features.
+    - The 'mask' parameter provides the initial mask to be refined, playing a key role in the detailing process by indicating areas of interest.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`basic_pipe`**
-    - Configuration details for the basic processing pipeline, influencing the initial stages of mask detailing.
+    - The 'basic_pipe' parameter refers to a set of pre-configured models and settings used as a baseline for the detailing process, ensuring consistency and quality in output.
     - Comfy dtype: `BASIC_PIPE`
     - Python dtype: `tuple`
 - **`guide_size`**
-    - Specifies the size of the guide used in the detailing process, affecting the precision and scale of mask enhancement.
+    - Specifies the size of the guide for the detailing process, affecting the level of detail achievable.
     - Comfy dtype: `FLOAT`
     - Python dtype: `int`
 - **`guide_size_for`**
-    - unknown
+    - Specifies the guide size for the detailing process, affecting the precision and detail of the enhancement.
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`max_size`**
-    - Defines the maximum size limit for the detailing operation, ensuring the process adheres to performance constraints.
+    - Defines the maximum size limit for the detailing process, ensuring the output stays within desired dimensions.
     - Comfy dtype: `FLOAT`
     - Python dtype: `int`
 - **`mask_mode`**
-    - Indicates the mode of mask processing, such as binary or grayscale, influencing how the mask is interpreted and refined.
+    - unknown
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`seed`**
     - unknown
     - Comfy dtype: `INT`
@@ -48,79 +55,79 @@ The MaskDetailerPipe node is designed to enhance and refine mask details within 
     - Comfy dtype: `FLOAT`
     - Python dtype: `unknown`
 - **`sampler_name`**
-    - unknown
+    - Specifies the sampler to use during the detailing process, affecting the quality of the output.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`scheduler`**
-    - unknown
+    - Determines the scheduling algorithm for the detailing process, impacting the efficiency and outcome.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`denoise`**
-    - unknown
+    - Flag to enable or disable denoising during the detailing process, affecting the clarity of the output.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `bool`
 - **`feather`**
-    - unknown
+    - Feathering parameter to smooth edges in the detailing process, enhancing the visual quality of the mask.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`crop_factor`**
-    - unknown
+    - Factor by which to crop the image during the detailing process, affecting the focus area.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`drop_size`**
-    - unknown
+    - Minimum size of details to be dropped during the detailing, affecting the level of detail retained.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`refiner_ratio`**
-    - unknown
+    - Ratio for refining the mask, affecting the intensity of refinement.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`batch_size`**
-    - unknown
+    - The size of the batch for processing, affecting the throughput of the detailing process.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`cycle`**
-    - unknown
+    - Number of cycles to perform the detailing process, affecting the thoroughness of enhancement.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 ### Optional
 - **`refiner_basic_pipe_opt`**
-    - unknown
+    - Optional parameter for an alternative set of models and settings for refining, offering customization.
     - Comfy dtype: `BASIC_PIPE`
-    - Python dtype: `unknown`
+    - Python dtype: `tuple or None`
 - **`detailer_hook`**
-    - unknown
+    - Hook for custom detailing logic, allowing for extended functionality.
     - Comfy dtype: `DETAILER_HOOK`
-    - Python dtype: `unknown`
+    - Python dtype: `callable or None`
 - **`inpaint_model`**
-    - unknown
+    - Flag to enable or disable the use of an inpainting model during the detailing process, affecting the handling of missing areas.
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `unknown`
+    - Python dtype: `bool`
 - **`noise_mask_feather`**
-    - unknown
+    - Feathering parameter for the noise mask, affecting the blending of noise in the detailing.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - Outputs the image with enhanced and refined mask details, showcasing improved clarity and precision.
+    - The refined or enhanced image after mask detailing, showcasing improved visual quality.
     - Python dtype: `torch.Tensor`
 - **`cropped_refined`**
     - Comfy dtype: `IMAGE`
-    - Provides the cropped and refined segments of the mask, highlighting the detailed areas.
-    - Python dtype: `list[torch.Tensor]`
+    - A list of cropped and refined images, highlighting detailed areas of interest.
+    - Python dtype: `list`
 - **`cropped_enhanced_alpha`**
     - Comfy dtype: `IMAGE`
-    - Outputs the alpha channel of the cropped and enhanced mask segments, offering additional detail on mask transparency and edges.
-    - Python dtype: `list[torch.Tensor]`
+    - A list of cropped images with enhanced alpha channels, providing transparency details.
+    - Python dtype: `list`
 - **`basic_pipe`**
     - Comfy dtype: `BASIC_PIPE`
-    - Returns the configuration of the basic processing pipeline after the detailing operations.
+    - The set of models and settings used in the detailing process, returned for potential further use.
     - Python dtype: `tuple`
 - **`refiner_basic_pipe_opt`**
     - Comfy dtype: `BASIC_PIPE`
-    - unknown
-    - Python dtype: `unknown`
+    - The optional set of alternative models and settings for refining, if used, returned for potential further use.
+    - Python dtype: `tuple or None`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -145,7 +152,7 @@ class MaskDetailerPipe:
                     "steps": ("INT", {"default": 20, "min": 1, "max": 10000}),
                     "cfg": ("FLOAT", {"default": 8.0, "min": 0.0, "max": 100.0}),
                     "sampler_name": (comfy.samplers.KSampler.SAMPLERS,),
-                    "scheduler": (comfy.samplers.KSampler.SCHEDULERS,),
+                    "scheduler": (core.SCHEDULERS,),
                     "denoise": ("FLOAT", {"default": 0.5, "min": 0.0001, "max": 1.0, "step": 0.01}),
 
                     "feather": ("INT", {"default": 5, "min": 0, "max": 100, "step": 1}),
@@ -160,7 +167,7 @@ class MaskDetailerPipe:
                     "refiner_basic_pipe_opt": ("BASIC_PIPE", ),
                     "detailer_hook": ("DETAILER_HOOK",),
                     "inpaint_model": ("BOOLEAN", {"default": False, "label_on": "enabled", "label_off": "disabled"}),
-                    "noise_mask_feather": ("INT", {"default": 0, "min": 0, "max": 100, "step": 1}),
+                    "noise_mask_feather": ("INT", {"default": 20, "min": 0, "max": 100, "step": 1}),
                    }
                 }
 

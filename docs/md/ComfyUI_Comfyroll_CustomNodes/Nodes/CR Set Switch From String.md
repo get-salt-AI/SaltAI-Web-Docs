@@ -1,3 +1,8 @@
+---
+tags:
+- ConditionalSelection
+---
+
 # ⚙️ CR Set Switch From String
 ## Documentation
 - Class name: `CR Set Switch From String`

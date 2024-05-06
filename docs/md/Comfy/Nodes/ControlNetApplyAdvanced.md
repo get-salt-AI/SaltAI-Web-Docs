@@ -1,3 +1,8 @@
+---
+tags:
+- ControlNet
+---
+
 # Apply ControlNet (Advanced)
 ## Documentation
 - Class name: `ControlNetApplyAdvanced`
@@ -51,7 +56,7 @@ This node applies advanced control net transformations to conditioning data base
     - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
     - [ControlNetApplyAdvanced](../../Comfy/Nodes/ControlNetApplyAdvanced.md)
     - KSampler //Inspire
-    - UltimateSDUpscale
+    - [UltimateSDUpscale](../../ComfyUI_UltimateSDUpscale/Nodes/UltimateSDUpscale.md)
     - [ToBasicPipe](../../ComfyUI-Impact-Pack/Nodes/ToBasicPipe.md)
     - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
     - Reroute

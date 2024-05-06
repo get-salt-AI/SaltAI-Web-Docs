@@ -1,3 +1,3 @@
 # ComfyUI-VideoHelperSuite
 - Repo url: `https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite`
-- Commit hash: `ca317b85ba141cd5e95c0390efbcdce2d27fbe5d`
+- Commit hash: `47e56f3e42c3ab4fb33f1407c2c40b5391226621`

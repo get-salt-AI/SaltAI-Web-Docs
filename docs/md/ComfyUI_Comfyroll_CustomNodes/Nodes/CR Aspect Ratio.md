@@ -1,3 +1,10 @@
+---
+tags:
+- AspectRatio
+- ImageSize
+- ImageTransformation
+---
+
 # 🔳 CR Aspect Ratio
 ## Documentation
 - Class name: `CR Aspect Ratio`

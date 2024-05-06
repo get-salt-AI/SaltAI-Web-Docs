@@ -1,14 +1,21 @@
+---
+tags:
+- AnimationScheduling
+- FrameInterpolation
+- VisualEffects
+---
+
 # FLAVR VFI
 ## Documentation
 - Class name: `FLAVR VFI`
 - Category: `ComfyUI-Frame-Interpolation/VFI`
 - Output node: `False`
 
-FLAVR VFI is designed for frame interpolation, specifically focusing on 2x interpolation. It utilizes a deep learning model to enhance video quality by interpolating frames, aiming to create smoother transitions and improve visual fluidity.
+The FLAVR_VFI node specializes in video frame interpolation, specifically designed to enhance video quality by interpolating frames to achieve a smoother motion at a 2x rate. It emphasizes the use of the FLAVR model for generating intermediate frames in a video sequence, ensuring a more fluid and visually appealing playback experience.
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - The name of the checkpoint file to load the pre-trained FLAVR model, crucial for initializing the model with learned weights for frame interpolation.
+    - The checkpoint name for loading the specific pretrained FLAVR model, facilitating the use of trained weights for interpolation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`frames`**
@@ -16,31 +23,27 @@ FLAVR VFI is designed for frame interpolation, specifically focusing on 2x inter
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`clear_cache_after_n_frames`**
-    - Specifies the number of frames processed before clearing the CUDA cache to avoid memory overflow.
+    - Specifies the number of frames processed before clearing the CUDA cache to prevent memory overflow.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`multiplier`**
-    - Specifies the interpolation factor. Currently, FLAVR only supports 2x interpolation, which is essential for achieving the desired frame enhancement.
+    - Specifies the interpolation rate, with a strong recommendation for a 2x rate to align with FLAVR's optimal performance capabilities.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`duplicate_first_last_frames`**
-    - Indicates whether to duplicate the first and last frames to potentially enhance the visual continuity of the interpolated video.
+    - Indicates whether to duplicate the first and last frames in the output, potentially enhancing the visual continuity of the interpolated video.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`optional_interpolation_states`**
-    - Optional states that can be used to influence the interpolation process, providing flexibility in handling different video processing scenarios.
+    - Optional states that can be used to influence the interpolation process, providing flexibility in handling various video processing scenarios.
     - Comfy dtype: `INTERPOLATION_STATES`
-    - Python dtype: `Dict`
-- **`cache_in_fp16`**
-    - Determines if the cache should be stored in fp16 format to potentially reduce memory usage.
-    - Comfy dtype: `BOOLEAN`
-    - Python dtype: `bool`
+    - Python dtype: `Dict[str, Any]`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The interpolated frames produced by the FLAVR model, resulting in a smoother and visually enhanced video.
-    - Python dtype: `torch.Tensor`
+    - The interpolated frames produced by the FLAVR model, resulting in a smoother and more visually appealing video sequence.
+    - Python dtype: `List[torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -60,8 +63,7 @@ class FLAVR_VFI:
                 "duplicate_first_last_frames": ("BOOLEAN", {"default": False})
             },
             "optional": {
-                "optional_interpolation_states": ("INTERPOLATION_STATES", ),
-                "cache_in_fp16": ("BOOLEAN", {"default": True})
+                "optional_interpolation_states": ("INTERPOLATION_STATES", )
             }
         }
     
@@ -78,7 +80,7 @@ class FLAVR_VFI:
         multiplier: typing.SupportsInt = 2,
         duplicate_first_last_frames: bool = False,
         optional_interpolation_states: InterpolationStateList = None,
-        cache_in_fp16: bool = True
+        **kwargs
     ):
         if multiplier != 2:
             warnings.warn("Currently, FLAVR only supports 2x interpolation. The process will continue but please set multiplier=2 afterward")
@@ -128,7 +130,7 @@ class FLAVR_VFI:
                 print("Done cache clearing")
             gc.collect()
         
-        dtype = torch.float16 if cache_in_fp16 else torch.float32
+        dtype = torch.float32
         output_frames = [frame.cpu().to(dtype=dtype) for frame in output_frames] #Ensure all frames are in cpu
         out = torch.cat(output_frames, dim=0)
         out = padder.unpad(out)

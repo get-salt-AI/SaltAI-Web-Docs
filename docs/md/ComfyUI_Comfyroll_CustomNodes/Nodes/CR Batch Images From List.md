@@ -1,3 +1,10 @@
+---
+tags:
+- Batch
+- Image
+- ImageBatch
+---
+
 # 🛠️ CR Batch Images From List
 ## Documentation
 - Class name: `CR Batch Images From List`

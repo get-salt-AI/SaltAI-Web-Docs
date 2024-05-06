@@ -1,57 +1,62 @@
+---
+tags:
+- Conditioning
+---
+
 # StableZero123_Conditioning
 ## Documentation
 - Class name: `StableZero123_Conditioning`
 - Category: `conditioning/3d_models`
 - Output node: `False`
 
-This node is designed to process and condition data for use in StableZero123 models, focusing on preparing the input in a specific format that is compatible and optimized for these models.
+This node is designed to apply specific conditioning transformations tailored for the StableZero123 model, enhancing its ability to generate or process 3D content. It focuses on adjusting and optimizing the input data to better suit the model's requirements for 3D generation tasks.
 ## Input types
 ### Required
 - **`clip_vision`**
-    - Processes visual data to align with the model's requirements, enhancing the model's understanding of visual context.
+    - The 'clip_vision' input is used to provide visual context or cues that the model can use to guide the generation process, enhancing the relevance and accuracy of the 3D content produced.
     - Comfy dtype: `CLIP_VISION`
     - Python dtype: `torch.Tensor`
 - **`init_image`**
-    - Serves as the initial image input for the model, setting the baseline for further image-based operations.
+    - The 'init_image' input serves as an initial image or starting point for the generation process, allowing the model to modify or build upon this base to create the final 3D content.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`vae`**
-    - Integrates variational autoencoder outputs, facilitating the model's ability to generate or modify images.
+    - The 'vae' input refers to a Variational Autoencoder used for encoding and decoding images, playing a crucial role in the model's ability to understand and manipulate visual data.
     - Comfy dtype: `VAE`
     - Python dtype: `torch.nn.Module`
 - **`width`**
-    - Specifies the width of the output image, allowing for dynamic resizing according to model needs.
+    - The 'width' input specifies the desired width of the output image, allowing for customization of the generated content's dimensions.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Determines the height of the output image, enabling customization of the output dimensions.
+    - The 'height' input determines the desired height of the output image, enabling control over the size of the generated 3D content.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`batch_size`**
-    - Controls the number of images processed in a single batch, optimizing computational efficiency.
+    - The 'batch_size' input indicates the number of images to be processed or generated in a single batch, affecting the model's performance and efficiency.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`elevation`**
-    - Adjusts the elevation angle for 3D model rendering, enhancing the model's spatial understanding.
+    - The 'elevation' input allows for specifying the elevation angle for 3D model viewing, enabling different perspectives of the generated content.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`azimuth`**
-    - Modifies the azimuth angle for 3D model visualization, improving the model's perception of orientation.
+    - The 'azimuth' input enables setting the azimuth angle for 3D model viewing, offering various viewpoints of the generated 3D content.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`positive`**
     - Comfy dtype: `CONDITIONING`
-    - Generates positive conditioning vectors, aiding in the model's positive feature reinforcement.
-    - Python dtype: `List[torch.Tensor]`
+    - This output delivers conditioning data that positively influences the generation process, enhancing the desired aspects of the generated content.
+    - Python dtype: `list`
 - **`negative`**
     - Comfy dtype: `CONDITIONING`
-    - Produces negative conditioning vectors, assisting in the model's avoidance of certain features.
-    - Python dtype: `List[torch.Tensor]`
+    - This output provides conditioning data intended to negate or avoid certain elements, refining the generation process by excluding undesired aspects.
+    - Python dtype: `list`
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - Creates latent representations, facilitating deeper model insights into the data.
-    - Python dtype: `List[torch.Tensor]`
+    - The 'latent' output represents the encoded latent space representation of the input data, crucial for the model's understanding and manipulation of the content.
+    - Python dtype: `dict`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
@@ -71,8 +76,8 @@ class StableZero123_Conditioning:
                               "width": ("INT", {"default": 256, "min": 16, "max": nodes.MAX_RESOLUTION, "step": 8}),
                               "height": ("INT", {"default": 256, "min": 16, "max": nodes.MAX_RESOLUTION, "step": 8}),
                               "batch_size": ("INT", {"default": 1, "min": 1, "max": 4096}),
-                              "elevation": ("FLOAT", {"default": 0.0, "min": -180.0, "max": 180.0}),
-                              "azimuth": ("FLOAT", {"default": 0.0, "min": -180.0, "max": 180.0}),
+                              "elevation": ("FLOAT", {"default": 0.0, "min": -180.0, "max": 180.0, "step": 0.1, "round": False}),
+                              "azimuth": ("FLOAT", {"default": 0.0, "min": -180.0, "max": 180.0, "step": 0.1, "round": False}),
                              }}
     RETURN_TYPES = ("CONDITIONING", "CONDITIONING", "LATENT")
     RETURN_NAMES = ("positive", "negative", "latent")

@@ -1,3 +1,8 @@
+---
+tags:
+- Image
+---
+
 # Images to RGB
 ## Documentation
 - Class name: `Images to RGB`

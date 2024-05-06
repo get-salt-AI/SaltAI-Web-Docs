@@ -1,3 +1,9 @@
+---
+tags:
+- ImageSize
+- ImageTransformation
+---
+
 # 🔧 Get Image Size
 ## Documentation
 - Class name: `GetImageSize+`

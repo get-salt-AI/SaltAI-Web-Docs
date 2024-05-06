@@ -1,3 +1,8 @@
+---
+tags:
+- Text
+---
+
 # Text Combinations 2 (Mikey)
 ## Documentation
 - Class name: `TextCombinations`

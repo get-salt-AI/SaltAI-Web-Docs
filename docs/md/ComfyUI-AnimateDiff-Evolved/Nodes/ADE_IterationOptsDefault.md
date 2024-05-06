@@ -1,29 +1,35 @@
+---
+tags:
+- AnimateDiff
+- Animation
+---
+
 # Default Iteration Options 🎭🅐🅓
 ## Documentation
 - Class name: `ADE_IterationOptsDefault`
 - Category: `Animate Diff 🎭🅐🅓/iteration opts`
 - Output node: `False`
 
-This node is designed to generate and manage iteration options for the AnimateDiff process, allowing for customization of iteration parameters such as the number of iterations and various offsets. It plays a crucial role in defining how the animation diffing process iterates over frames or elements, providing flexibility in the animation generation workflow.
+This node provides the default iteration options for the AnimateDiff process, allowing users to configure the iteration parameters for their animation generation tasks.
 ## Input types
 ### Required
 - **`iterations`**
-    - Specifies the number of iterations to perform, directly influencing the depth or extent of the animation diffing process.
+    - Specifies the number of iterations to perform, affecting the depth of the animation generation process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`iter_batch_offset`**
-    - Determines the offset for batch processing within iterations, enabling fine-tuned control over the iteration sequence.
+    - Determines the starting offset for batch processing within the iterations, enabling fine-tuned control over the animation generation sequence.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`iter_seed_offset`**
-    - Sets the seed offset for iterations, affecting the randomness or variability in the animation diffing process.
+    - Sets the seed offset for iterations, offering a way to influence the randomness and variation in the generated animations.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`iteration_opts`**
     - Comfy dtype: `ITERATION_OPTS`
-    - Outputs the configured iteration options, encapsulating all specified parameters for use in the animation diffing process.
+    - Outputs the configured iteration options, encapsulating the settings for the animation generation process.
     - Python dtype: `IterationOptions`
 ## Usage tips
 - Infra type: `CPU`
@@ -44,7 +50,7 @@ class IterationOptionsNode:
                 "iter_seed_offset": ("INT", {"default": 0, "min": BIGMIN, "max": BIGMAX}),
             }
         }
-    
+
     RETURN_TYPES = ("ITERATION_OPTS",)
     CATEGORY = "Animate Diff 🎭🅐🅓/iteration opts"
     FUNCTION = "create_iter_opts"

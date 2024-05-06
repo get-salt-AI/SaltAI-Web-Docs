@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Pipeline
+---
+
 # ✈️ CR Module Input
 ## Documentation
 - Class name: `CR Module Input`

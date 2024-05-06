@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Pipeline
+---
+
 # 🪛 Pipe from any
 ## Documentation
 - Class name: `Pipe from any [Crystools]`

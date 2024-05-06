@@ -1,3 +1,9 @@
+---
+tags:
+- ImpactPack
+- Segmentation
+---
+
 # Edit SEG_ELT
 ## Documentation
 - Class name: `ImpactEdit_SEG_ELT`

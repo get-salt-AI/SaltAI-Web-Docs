@@ -1,3 +1,9 @@
+---
+tags:
+- Blur
+- VisualEffects
+---
+
 # Blur
 ## Documentation
 - Class name: `Blur`

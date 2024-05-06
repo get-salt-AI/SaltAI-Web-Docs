@@ -1,3 +1,10 @@
+---
+tags:
+- CLIP
+- Loader
+- ModelIO
+---
+
 # CLIPSeg Model Loader
 ## Documentation
 - Class name: `CLIPSeg Model Loader`

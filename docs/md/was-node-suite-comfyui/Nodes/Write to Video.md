@@ -1,3 +1,9 @@
+---
+tags:
+- Animation
+- Image
+---
+
 # Write to Video
 ## Documentation
 - Class name: `Write to Video`

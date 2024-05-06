@@ -1,3 +1,9 @@
+---
+tags:
+- ControlNet
+- ControlNetLoader
+---
+
 # Load ControlNet Model (diff)
 ## Documentation
 - Class name: `DiffControlNetLoader`

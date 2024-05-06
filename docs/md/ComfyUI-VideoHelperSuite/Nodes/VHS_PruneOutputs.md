@@ -1,18 +1,24 @@
+---
+tags:
+- Multimedia
+- VideoHelperSuite
+---
+
 # Prune Outputs 🎥🅥🅗🅢
 ## Documentation
 - Class name: `VHS_PruneOutputs`
 - Category: `Video Helper Suite 🎥🅥🅗🅢`
 - Output node: `True`
 
-This node is designed to selectively delete files based on specified criteria, aiming to manage and optimize storage by removing intermediate or unnecessary output files generated during video processing workflows.
+The `VHS_PruneOutputs` node is designed to selectively delete files based on specified criteria, aiming to streamline the output directory by removing intermediate or unnecessary files. This functionality is crucial for managing disk space and organizing project outputs more efficiently.
 ## Input types
 ### Required
 - **`filenames`**
-    - Specifies the filenames to be considered for pruning. The selection of files to delete is based on the provided options and the structure of filenames.
+    - Specifies the filenames to consider for pruning. The selection criteria applied to these filenames determine which files are deleted, impacting the node's execution and the cleanup of the output directory.
     - Comfy dtype: `VHS_FILENAMES`
-    - Python dtype: `Tuple[str, List[str]]`
+    - Python dtype: `Tuple[str, ...]`
 - **`options`**
-    - Determines the criteria for file deletion, allowing for the selection between intermediate files, utility files, or all files.
+    - Defines the criteria for pruning files, such as deleting only intermediate files, both intermediate and utility files, or all specified files. This option directly influences which files are pruned, tailoring the cleanup process to the user's needs.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 ## Output types
@@ -40,6 +46,8 @@ class PruneOutputs:
     FUNCTION = "prune_outputs"
 
     def prune_outputs(self, filenames, options):
+        if len(filenames[1]) == 0:
+            return ()
         assert(len(filenames[1]) <= 3 and len(filenames[1]) >= 2)
         delete_list = []
         if options in ["Intermediate", "Intermediate and Utility", "All"]:

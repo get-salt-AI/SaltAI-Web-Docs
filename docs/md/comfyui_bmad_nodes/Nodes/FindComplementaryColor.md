@@ -1,3 +1,8 @@
+---
+tags:
+- Color
+---
+
 # FindComplementaryColor
 ## Documentation
 - Class name: `FindComplementaryColor`

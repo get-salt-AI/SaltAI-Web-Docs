@@ -1,3 +1,10 @@
+---
+tags:
+- AnimationScheduling
+- Frame
+- Keyframe
+---
+
 # 🔧 Extract Keyframes (experimental)
 ## Documentation
 - Class name: `ExtractKeyframes+`

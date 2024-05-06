@@ -1,3 +1,8 @@
+---
+tags:
+- ImageEnhancement
+---
+
 # PixelKSampleHookCombine
 ## Documentation
 - Class name: `PixelKSampleHookCombine`

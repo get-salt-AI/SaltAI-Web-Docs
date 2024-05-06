@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- ImageBlend
+- ImageComposite
+---
+
 # ImageCompositeMasked
 ## Documentation
 - Class name: `ImageCompositeMasked`
@@ -45,7 +52,7 @@ The ImageCompositeMasked node is designed for compositing images, allowing for t
     - [ImageCompositeMasked](../../Comfy/Nodes/ImageCompositeMasked.md)
     - [ControlNetApplyAdvanced](../../Comfy/Nodes/ControlNetApplyAdvanced.md)
     - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
-    - ColorCorrect
+    - [ColorCorrect](../../comfyui-art-venture/Nodes/ColorCorrect.md)
 
 
 

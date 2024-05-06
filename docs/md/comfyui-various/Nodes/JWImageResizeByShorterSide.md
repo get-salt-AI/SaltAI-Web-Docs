@@ -1,3 +1,11 @@
+---
+tags:
+- ImageResize
+- ImageScaling
+- ImageSize
+- ImageTransformation
+---
+
 # Image Resize by Shorter Side
 ## Documentation
 - Class name: `JWImageResizeByShorterSide`

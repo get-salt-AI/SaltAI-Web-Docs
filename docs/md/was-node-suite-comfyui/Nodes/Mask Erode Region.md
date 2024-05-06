@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskMorphology
+---
+
 # Mask Erode Region
 ## Documentation
 - Class name: `Mask Erode Region`

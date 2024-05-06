@@ -1,36 +1,41 @@
+---
+tags:
+- Color
+---
+
 # 🔧 Image Apply LUT
 ## Documentation
 - Class name: `ImageApplyLUT+`
 - Category: `essentials`
 - Output node: `False`
 
-The ImageApplyLUT+ node applies a Look-Up Table (LUT) to images, optionally adjusting for non-default color domains and applying logarithmic color space transformations. It supports clipping LUT values, scaling image intensity based on the LUT's domain, and blending the transformed image with the original based on a specified strength.
+The ImageApplyLUT+ node applies a Look-Up Table (LUT) to an image or a batch of images to adjust their colors, optionally applying color space transformations and blending the original images with their LUT-applied versions based on a specified strength. This process can enhance or stylize images by altering their color profiles.
 ## Input types
 ### Required
 - **`image`**
-    - The input image(s) to which the LUT will be applied. This can involve color space transformations and intensity scaling.
+    - The image or batch of images to which the LUT will be applied. This input is crucial for defining the visual content that will undergo color transformation.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`lut_file`**
-    - The file name of the Look-Up Table (LUT) to be applied to the input image(s).
+    - The filename of the Look-Up Table (LUT) to be applied. This determines the specific color transformation that will be executed on the input images.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`log_colorspace`**
-    - A flag indicating whether to apply logarithmic color space transformation to the image(s) before and after applying the LUT.
+    - A boolean flag indicating whether to apply a logarithmic color space transformation to the images before and after applying the LUT, enhancing the effect of the LUT under certain conditions.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`clip_values`**
-    - A flag indicating whether to clip the LUT values to their domain, ensuring that the output values do not exceed the specified range.
+    - A boolean flag that specifies whether to clip the color values of the images to fit within the LUT's domain, ensuring that the output colors are valid within the specified color space.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`strength`**
-    - A value between 0 and 1 indicating the blend strength of the LUT-applied image with the original image. A strength of 1 means full application of the LUT, while 0 means no change.
+    - A floating-point value that determines the blend strength between the original images and their LUT-applied versions, allowing for subtle to significant alterations in the image's appearance.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output image(s) after applying the LUT, with optional clipping, color space transformation, and blending based on the specified strength.
+    - The transformed images after applying the LUT, optional color space transformation, and blending based on the specified strength. This output showcases the final stylized or color-corrected images.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -58,7 +63,7 @@ class ImageApplyLUT:
     # TODO: check if we can do without numpy
     def execute(self, image, lut_file, log_colorspace, clip_values, strength):
         from colour.io.luts.iridas_cube import read_LUT_IridasCube
-        
+
         lut = read_LUT_IridasCube(os.path.join(LUTS_DIR, lut_file))
         lut.name = lut_file
 
@@ -94,7 +99,7 @@ class ImageApplyLUT:
             if strength < 1.0:
                 lut_img = strength * lut_img + (1 - strength) * img
             out.append(lut_img)
-        
+
         out = torch.stack(out)
 
         return (out, )

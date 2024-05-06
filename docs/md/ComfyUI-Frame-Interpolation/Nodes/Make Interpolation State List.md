@@ -1,3 +1,10 @@
+---
+tags:
+- AnimationScheduling
+- FrameInterpolation
+- VisualEffects
+---
+
 # Make Interpolation State List
 ## Documentation
 - Class name: `Make Interpolation State List`

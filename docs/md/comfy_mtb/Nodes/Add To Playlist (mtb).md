@@ -4,23 +4,23 @@
 - Category: `mtb/IO`
 - Output node: `True`
 
-The node is designed to add videos to a specified playlist, with options for using relative paths and making the playlist persistent. It dynamically formats the playlist name based on an index and ensures the creation of necessary directories, handling both new and existing playlists.
+This node facilitates the addition of videos to a specified playlist, allowing for the dynamic creation and updating of playlists based on user-defined parameters. It supports both relative and absolute path specifications for videos, and can handle persistent storage of playlists across sessions.
 ## Input types
 ### Required
 - **`relative_paths`**
-    - Determines whether the paths of videos added to the playlist should be relative to the output directory. This affects how the video paths are stored and accessed within the playlist.
+    - Determines whether the paths of videos added to the playlist should be relative to the output directory. This affects how the paths are stored and interpreted, facilitating easier relocation of the playlist and its contents.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`persistant_playlist`**
-    - Indicates if the playlist should be stored in a persistent manner, affecting its storage location and potentially its longevity.
+    - Indicates whether the playlist should be stored persistently across sessions. A persistent playlist is saved in a common directory, while a non-persistent one is saved in a session-specific directory.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`playlist_name`**
-    - The name of the playlist, which can be dynamically formatted using the index. This name is used to identify and manage the playlist file.
+    - The name of the playlist, which can include formatting options such as an index. This allows for dynamic naming based on the playlist's contents or order.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`index`**
-    - An integer used to format the playlist name dynamically, allowing for the creation of sequentially named playlists.
+    - An integer used to format the playlist name, enabling the creation of sequentially named playlists or the organization of playlists by index.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
@@ -32,7 +32,7 @@ The node doesn't have output types
 
 ## Source code
 ```python
-class AddToPlaylist:
+class MTB_AddToPlaylist:
     """Add a video to the playlist"""
 
     @classmethod
@@ -41,7 +41,10 @@ class AddToPlaylist:
             "required": {
                 "relative_paths": ("BOOLEAN", {"default": False}),
                 "persistant_playlist": ("BOOLEAN", {"default": False}),
-                "playlist_name": ("STRING", {"default": "playlist_{index:04d}"}),
+                "playlist_name": (
+                    "STRING",
+                    {"default": "playlist_{index:04d}"},
+                ),
                 "index": ("INT", {"default": 0, "min": 0}),
             }
         }

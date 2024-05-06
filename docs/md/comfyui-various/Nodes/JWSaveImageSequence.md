@@ -1,32 +1,38 @@
+---
+tags:
+- Image
+- ImageSave
+---
+
 # Batch Save Image Sequence
 ## Documentation
 - Class name: `JWSaveImageSequence`
 - Category: `jamesWalker55`
 - Output node: `True`
 
-This node is designed for batch saving a sequence of images to a specified path, with options for formatting the file names, starting index, and handling file overwrites. It facilitates organized output management in image processing workflows.
+The JWSaveImageSequence node is designed for batch saving of image sequences to a specified path, allowing for customization of file naming, indexing, and the option to overwrite existing files. It facilitates the organized output of image data, supporting additional metadata and prompt information for each image saved.
 ## Input types
 ### Required
 - **`images`**
-    - The sequence of images to be saved. This is the primary data that the node operates on, determining the content of the output files.
+    - A tensor of images to be saved. This collection represents the sequence of images that will be saved in the batch operation.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`path_pattern`**
-    - A string pattern that defines the file naming convention and path for saving the images, which can include placeholders for dynamic naming based on indices.
+    - A string pattern that defines the file naming convention and path for saving each image in the sequence. It supports formatting to include indices.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`start_index`**
-    - The starting index for naming the saved image files, allowing for sequential ordering based on this initial value.
+    - The starting index for naming the saved image files, which is used in conjunction with the path pattern to generate file names.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`overwrite`**
-    - A flag indicating whether existing files at the target path should be overwritten. If set to 'false', new non-conflicting paths will be generated.
+    - A string indicating whether existing files at the target save locations should be overwritten. Accepts 'true' or 'false' as values.
     - Comfy dtype: `['false', 'true']`
     - Python dtype: `str`
 ## Output types
 The node doesn't have output types
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 

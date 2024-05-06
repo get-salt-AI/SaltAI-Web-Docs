@@ -1,3 +1,3 @@
 # Derfuu_ComfyUI_ModdedNodes
 - Repo url: `https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git`
-- Commit hash: `2ace4c463d5b2063de35e46ebb9bd3f10e2d34b4`
+- Commit hash: `5c93bd1522e4ad824c4bfdf3a66b4e9771d4b5a4`

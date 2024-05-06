@@ -1,3 +1,8 @@
+---
+tags:
+- Time
+---
+
 # Datetime String
 ## Documentation
 - Class name: `JWDatetimeString`

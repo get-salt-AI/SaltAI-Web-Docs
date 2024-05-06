@@ -1,3 +1,8 @@
+---
+tags:
+- Mask
+---
+
 # Combine Masks
 ## Documentation
 - Class name: `Combine Masks`

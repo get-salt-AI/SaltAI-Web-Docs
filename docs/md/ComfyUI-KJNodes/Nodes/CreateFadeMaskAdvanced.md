@@ -1,40 +1,46 @@
+---
+tags:
+- Mask
+- MaskGeneration
+---
+
 # CreateFadeMaskAdvanced
 ## Documentation
 - Class name: `CreateFadeMaskAdvanced`
 - Category: `KJNodes/masking/generate`
 - Output node: `False`
 
-The CreateFadeMaskAdvanced node is designed for generating complex fade masks with customizable parameters, allowing for advanced control over the fade effect's dynamics and appearance. This node is capable of producing masks that can be used for transitions, animations, or any scenario requiring a gradient-based masking effect.
+This node is designed to generate advanced fade masks with customizable parameters, allowing for intricate control over the fade effect's progression, intensity, and spatial distribution. It enables the creation of dynamic visual transitions in image sequences or animations.
 ## Input types
 ### Required
 - **`points_string`**
-    - Defines a string representation of key points for the fade effect, where each point specifies a frame and its corresponding opacity level. This allows for intricate control over the fade dynamics.
+    - Defines a string of points and their corresponding mask values at specific frames, used to generate the fade effect over the sequence.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`invert`**
-    - Determines whether the mask should be inverted, flipping the fade effect.
+    - A boolean flag to invert the mask values, allowing for the creation of inverse fade effects.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`frames`**
-    - Specifies the total number of frames for the fade mask, defining the length of the transition.
+    - Specifies the total number of frames for the mask sequence, determining the length of the animation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`width`**
-    - Sets the width of the fade mask.
+    - Sets the width of the mask, defining the horizontal dimension of the generated mask.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Sets the height of the fade mask.
+    - Sets the height of the mask, defining the vertical dimension of the generated mask.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`interpolation`**
-    - Chooses the interpolation method for the fade effect, affecting how the transition between key points is calculated.
+    - Chooses the interpolation method for transitioning between mask values across frames, affecting the smoothness and style of the fade effect.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `str`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The generated fade mask.
+    - Outputs a batch of masks generated based on the specified parameters, suitable for creating fade effects in image sequences.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
@@ -48,6 +54,21 @@ class CreateFadeMaskAdvanced:
     RETURN_TYPES = ("MASK",)
     FUNCTION = "createfademask"
     CATEGORY = "KJNodes/masking/generate"
+    DESCRIPTION = """
+Create a batch of masks interpolated between given frames and values. 
+Uses same syntax as Fizz' BatchValueSchedule.
+First value is the frame index (not that this starts from 0, not 1) 
+and the second value inside the brackets is the float value of the mask in range 0.0 - 1.0  
+
+For example the default values:  
+0:(0.0)  
+7:(1.0)  
+15:(0.0)  
+  
+Would create a mask batch fo 16 frames, starting from black, 
+interpolating with the chosen curve to fully white at the 8th frame, 
+and interpolating from that to fully black at the 16th frame.
+"""
 
     @classmethod
     def INPUT_TYPES(s):
@@ -56,8 +77,8 @@ class CreateFadeMaskAdvanced:
                  "points_string": ("STRING", {"default": "0:(0.0),\n7:(1.0),\n15:(0.0)\n", "multiline": True}),
                  "invert": ("BOOLEAN", {"default": False}),
                  "frames": ("INT", {"default": 16,"min": 2, "max": 255, "step": 1}),
-                 "width": ("INT", {"default": 512,"min": 16, "max": 4096, "step": 1}),
-                 "height": ("INT", {"default": 512,"min": 16, "max": 4096, "step": 1}),
+                 "width": ("INT", {"default": 512,"min": 1, "max": 4096, "step": 1}),
+                 "height": ("INT", {"default": 512,"min": 1, "max": 4096, "step": 1}),
                  "interpolation": (["linear", "ease_in", "ease_out", "ease_in_out"],),
         },
     } 

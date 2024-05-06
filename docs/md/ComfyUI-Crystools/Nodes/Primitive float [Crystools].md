@@ -1,3 +1,10 @@
+---
+tags:
+- DataConversion
+- DataTypeConversion
+- NumericConversion
+---
+
 # 🪛 Primitive float
 ## Documentation
 - Class name: `Primitive float [Crystools]`

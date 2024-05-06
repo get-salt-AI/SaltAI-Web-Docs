@@ -1,3 +1,8 @@
+---
+tags:
+- ControlNet
+---
+
 # ControlNetApply (SEGS)
 ## Documentation
 - Class name: `ImpactControlNetApplySEGS`

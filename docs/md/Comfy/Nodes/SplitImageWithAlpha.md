@@ -1,3 +1,9 @@
+---
+tags:
+- AlphaChannel
+- Image
+---
+
 # Split Image with Alpha
 ## Documentation
 - Class name: `SplitImageWithAlpha`

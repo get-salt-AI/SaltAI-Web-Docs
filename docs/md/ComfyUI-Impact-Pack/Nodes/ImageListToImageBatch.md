@@ -1,3 +1,10 @@
+---
+tags:
+- Batch
+- Image
+- ImageBatch
+---
+
 # Image List to Image Batch
 ## Documentation
 - Class name: `ImageListToImageBatch`
@@ -23,7 +30,7 @@ This node transforms a list of images into a single batched image tensor, ensuri
     - [RIFE VFI](../../ComfyUI-Frame-Interpolation/Nodes/RIFE VFI.md)
     - [ImageUpscaleWithModel](../../Comfy/Nodes/ImageUpscaleWithModel.md)
     - Reroute
-    - ImageSelector
+    - [ImageSelector](../../ComfyUI-Image-Selector/Nodes/ImageSelector.md)
 
 
 

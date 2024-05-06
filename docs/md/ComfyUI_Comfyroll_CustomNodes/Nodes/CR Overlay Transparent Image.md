@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageComposite
+---
+
 # 🌁 CR Overlay Transparent Image
 ## Documentation
 - Class name: `CR Overlay Transparent Image`

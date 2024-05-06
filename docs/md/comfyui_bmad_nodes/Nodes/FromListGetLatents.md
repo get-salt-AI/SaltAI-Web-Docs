@@ -1,3 +1,8 @@
+---
+tags:
+- Latent
+---
+
 # FromListGetLatents
 ## Documentation
 - Class name: `FromListGetLatents`

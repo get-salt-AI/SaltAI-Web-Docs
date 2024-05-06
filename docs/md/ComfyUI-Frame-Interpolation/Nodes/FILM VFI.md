@@ -1,41 +1,44 @@
+---
+tags:
+- AnimationScheduling
+- FrameInterpolation
+- VisualEffects
+---
+
 # FILM VFI
 ## Documentation
 - Class name: `FILM VFI`
 - Category: `ComfyUI-Frame-Interpolation/VFI`
 - Output node: `False`
 
-The FILM_VFI node specializes in frame interpolation using the FILM (Feature-wise Linear Modulation) model. It enhances video quality by generating intermediate frames between existing ones, aiming to create smoother motion and improve visual fluidity in videos.
+The FILM_VFI node specializes in frame interpolation, leveraging advanced techniques to synthesize intermediate frames between two given images. It aims to enhance video fluidity and realism by accurately predicting and generating frames that could logically exist in the temporal space between the original frames.
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - Specifies the checkpoint name for the FILM model, determining the specific pre-trained model to be used for frame interpolation.
+    - Specifies the checkpoint name for the model to use, which is crucial for determining the specific interpolation technique and parameters to apply.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`frames`**
-    - The sequence of frames to be interpolated. This input is crucial for generating the intermediate frames that enhance motion smoothness.
+    - Represents the sequence of images to be interpolated. The node uses these frames as a basis for generating new frames that fit seamlessly into the existing sequence.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`clear_cache_after_n_frames`**
-    - Controls how often the cache is cleared to manage memory usage during frame interpolation.
+    - Controls how often the system's cache is cleared during processing, affecting memory management and potentially influencing performance.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`multiplier`**
-    - Determines the number of intermediate frames to be generated between each pair of original frames, directly affecting the smoothness of the output video.
+    - Determines the number of frames to be interpolated between each pair of original frames, directly impacting the smoothness of the output video.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`optional_interpolation_states`**
-    - Provides optional states for interpolation, allowing for more customized frame interpolation processes.
+    - Allows for the specification of custom interpolation states, offering flexibility in handling frame skipping or other advanced interpolation scenarios.
     - Comfy dtype: `INTERPOLATION_STATES`
     - Python dtype: `InterpolationStateList`
-- **`cache_in_fp16`**
-    - Indicates whether to store cached data in fp16 format to reduce memory usage.
-    - Comfy dtype: `BOOLEAN`
-    - Python dtype: `bool`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is a sequence of interpolated frames, enhancing the original video with smoother motion.
+    - Produces an interpolated image sequence, enhancing the fluidity and realism of the original video by filling in missing frames.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -58,8 +61,7 @@ class FILM_VFI:
                 "multiplier": ("INT", {"default": 2, "min": 2, "max": 1000}),
             },
             "optional": {
-                "optional_interpolation_states": ("INTERPOLATION_STATES", ),
-                "cache_in_fp16": ("BOOLEAN", {"default": True})
+                "optional_interpolation_states": ("INTERPOLATION_STATES", )
             }
         }
     
@@ -74,14 +76,14 @@ class FILM_VFI:
         clear_cache_after_n_frames = 10,
         multiplier: typing.SupportsInt = 2,
         optional_interpolation_states: InterpolationStateList = None,
-        cache_in_fp16: bool = True
+        **kwargs
     ):
         interpolation_states = optional_interpolation_states
         model_path = load_file_from_github_release(MODEL_TYPE, ckpt_name)
         model = torch.jit.load(model_path, map_location='cpu')
         model.eval()
         model = model.to(DEVICE)
-        dtype = torch.float16 if cache_in_fp16 else torch.float32
+        dtype = torch.float32
 
         frames = preprocess_frames(frames)
         number_of_frames_processed_since_last_cleared_cuda_cache = 0

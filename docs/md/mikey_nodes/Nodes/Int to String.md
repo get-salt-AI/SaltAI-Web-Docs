@@ -1,3 +1,10 @@
+---
+tags:
+- DataConversion
+- DataTypeConversion
+- NumericConversion
+---
+
 # Int to String (Mikey)
 ## Documentation
 - Class name: `Int to String`

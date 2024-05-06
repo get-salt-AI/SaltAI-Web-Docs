@@ -1,3 +1,9 @@
+---
+tags:
+- Color
+- HSVColorSpace
+---
+
 # InRange (hsv)
 ## Documentation
 - Class name: `InRange (hsv)`

@@ -1,3 +1,9 @@
+---
+tags:
+- Animation
+- Image
+---
+
 # ⌨️ CR Load Flow Frames
 ## Documentation
 - Class name: `CR Load Flow Frames`

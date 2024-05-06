@@ -1,3 +1,8 @@
+---
+tags:
+- Text
+---
+
 # RequestInputs
 ## Documentation
 - Class name: `RequestInputs`

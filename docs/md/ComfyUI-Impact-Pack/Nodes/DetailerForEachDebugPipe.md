@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- Pipeline
+- PipelineTransformation
+---
+
 # DetailerDebug (SEGS/pipe)
 ## Documentation
 - Class name: `DetailerForEachDebugPipe`
@@ -130,7 +137,7 @@ The node 'DetailerForEachDebugPipe' is designed to facilitate debugging within t
 - Common nodes:
     - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
     - Reroute
-    - UltimateSDUpscale
+    - [UltimateSDUpscale](../../ComfyUI_UltimateSDUpscale/Nodes/UltimateSDUpscale.md)
     - [FromBasicPipe](../../ComfyUI-Impact-Pack/Nodes/FromBasicPipe.md)
 
 

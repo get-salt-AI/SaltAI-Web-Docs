@@ -1,3 +1,8 @@
+---
+tags:
+- Image
+---
+
 # Video Dump Frames
 ## Documentation
 - Class name: `Video Dump Frames`

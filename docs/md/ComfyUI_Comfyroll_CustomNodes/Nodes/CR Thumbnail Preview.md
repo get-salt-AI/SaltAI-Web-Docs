@@ -1,3 +1,8 @@
+---
+tags:
+- Image
+---
+
 # 📱 CR Thumbnail Preview
 ## Documentation
 - Class name: `CR Thumbnail Preview`

@@ -1,3 +1,8 @@
+---
+tags:
+- ConditionalSelection
+---
+
 # 🔀 CR Image Input Switch
 ## Documentation
 - Class name: `CR Image Input Switch`
@@ -34,7 +39,7 @@ This node allows for the dynamic selection between two image inputs based on a s
 - Common nodes:
     - [ImageScaleToTotalPixels](../../Comfy/Nodes/ImageScaleToTotalPixels.md)
     - [SVD_img2vid_Conditioning](../../Comfy/Nodes/SVD_img2vid_Conditioning.md)
-    - ReActorFaceSwap
+    - [ReActorFaceSwap](../../comfyui-reactor-node/Nodes/ReActorFaceSwap.md)
     - Reroute
 
 

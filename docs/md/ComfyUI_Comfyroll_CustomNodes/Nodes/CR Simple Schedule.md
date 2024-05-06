@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- Scheduling
+---
+
 # 📋 CR Simple Schedule
 ## Documentation
 - Class name: `CR Simple Schedule`

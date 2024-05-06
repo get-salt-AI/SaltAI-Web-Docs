@@ -1,3 +1,8 @@
+---
+tags:
+- ConditionalSelection
+---
+
 # 🔂 CR Img2Img Process Switch
 ## Documentation
 - Class name: `CR Img2Img Process Switch`

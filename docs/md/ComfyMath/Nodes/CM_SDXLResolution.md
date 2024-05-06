@@ -1,3 +1,9 @@
+---
+tags:
+- ImageResolution
+- ImageTransformation
+---
+
 # SDXLResolution
 ## Documentation
 - Class name: `CM_SDXLResolution`
@@ -23,7 +29,7 @@ This node is designed to convert a string representation of a resolution into it
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
-    - Eff. Loader SDXL
+    - [Eff. Loader SDXL](../../efficiency-nodes-comfyui/Nodes/Eff. Loader SDXL.md)
     - intToFloat _O
 
 

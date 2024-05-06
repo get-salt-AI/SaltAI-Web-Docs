@@ -1,3 +1,8 @@
+---
+tags:
+- Conditioning
+---
+
 # Conditioning Grid (cond)
 ## Documentation
 - Class name: `Conditioning Grid (cond)`

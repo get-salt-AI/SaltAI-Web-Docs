@@ -1,24 +1,31 @@
+---
+tags:
+- Batch
+- Image
+- ImageBatch
+---
+
 # GetImagesFromBatchIndexed
 ## Documentation
 - Class name: `GetImagesFromBatchIndexed`
-- Category: `KJNodes`
+- Category: `KJNodes/image`
 - Output node: `False`
 
-This node is designed to extract specific images from a batch based on provided indices. It parses a string of indices, converts them into a tensor, and selects the corresponding images from the batch.
+This node is designed to selectively retrieve images from a given batch based on specified indices, effectively creating a new batch of images that only includes those at the given positions.
 ## Input types
 ### Required
 - **`images`**
-    - The batch of images from which specific images are to be selected. It plays a crucial role in determining the output by providing the source images.
+    - The batch of images from which to select. The indices determine which images are included in the output batch.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`indexes`**
-    - A string of comma-separated indices indicating which images to extract from the batch. This parameter directly influences which images are selected and returned.
+    - A string specifying the indices of the images to select from the batch. This allows for flexible selection of images.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The selected images from the batch at the specified indices.
+    - The selected images at the specified indices, returned as a new batch.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -31,7 +38,10 @@ class GetImagesFromBatchIndexed:
     
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "indexedimagesfrombatch"
-    CATEGORY = "KJNodes"
+    CATEGORY = "KJNodes/image"
+    DESCRIPTION = """
+Selects and returns the images at the specified indices as an image batch.
+"""
 
     @classmethod
     def INPUT_TYPES(s):

@@ -1,3 +1,11 @@
+---
+tags:
+- DepthMap
+- Image
+- ImagePreprocessing
+- LineExtraction
+---
+
 # Anime Lineart
 ## Documentation
 - Class name: `AnimeLineArtPreprocessor`

@@ -1,3 +1,8 @@
+---
+tags:
+- Latent
+---
+
 # LatentInterpolate
 ## Documentation
 - Class name: `LatentInterpolate`
@@ -27,7 +32,7 @@ The LatentInterpolate node is designed to perform interpolation between two sets
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes:
-    - KSampler (Efficient)
+    - [KSampler (Efficient)](../../efficiency-nodes-comfyui/Nodes/KSampler (Efficient).md)
     - [Latent Noise Injection](../../was-node-suite-comfyui/Nodes/Latent Noise Injection.md)
 
 

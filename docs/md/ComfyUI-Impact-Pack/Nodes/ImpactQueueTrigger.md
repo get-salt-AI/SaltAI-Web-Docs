@@ -1,3 +1,9 @@
+---
+tags:
+- ConditionalSelection
+- ImpactPack
+---
+
 # Queue Trigger
 ## Documentation
 - Class name: `ImpactQueueTrigger`

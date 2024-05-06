@@ -1,3 +1,10 @@
+---
+tags:
+- Batch
+- Image
+- ImageBatch
+---
+
 # Make Image Batch
 ## Documentation
 - Class name: `ImpactMakeImageBatch`

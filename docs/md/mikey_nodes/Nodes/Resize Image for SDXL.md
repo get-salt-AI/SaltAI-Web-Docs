@@ -1,3 +1,10 @@
+---
+tags:
+- Crop
+- Image
+- ImageTransformation
+---
+
 # Resize Image for SDXL (Mikey)
 ## Documentation
 - Class name: `Resize Image for SDXL`

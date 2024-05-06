@@ -1,70 +1,60 @@
+---
+tags:
+- Conditioning
+- Context
+---
+
 # Context Switch (rgthree)
 ## Documentation
 - Class name: `Context Switch (rgthree)`
 - Category: `rgthree`
 - Output node: `False`
 
-The Context Switch node is designed to select and output the first non-empty context from a series of provided contexts. It ensures seamless integration and compatibility with other context nodes, facilitating the dynamic selection of contexts based on their content.
+The Context Switch (rgthree) node is designed to streamline context management by selecting the first non-empty context from a set of provided contexts. This functionality ensures efficient determination of an active context for subsequent operations, facilitating smoother transitions and management within various processing flows.
 ## Input types
 ### Required
 ### Optional
-- **`ctx_01`**
-    - Represents one of the potential contexts to be evaluated and selected if it's the first non-empty context.
-    - Comfy dtype: `RGTHREE_CONTEXT`
-    - Python dtype: `dict`
-- **`ctx_02`**
-    - Represents another potential context to be evaluated and selected if it's the first non-empty context following an empty 'ctx_01'.
-    - Comfy dtype: `RGTHREE_CONTEXT`
-    - Python dtype: `dict`
-- **`ctx_03`**
-    - Serves as a potential context to be selected, evaluated after 'ctx_01' and 'ctx_02' if they are empty.
-    - Comfy dtype: `RGTHREE_CONTEXT`
-    - Python dtype: `dict`
-- **`ctx_04`**
-    - Another context option, evaluated for selection if preceding contexts ('ctx_01', 'ctx_02', 'ctx_03') are empty.
-    - Comfy dtype: `RGTHREE_CONTEXT`
-    - Python dtype: `dict`
-- **`ctx_05`**
-    - The last in the series of potential contexts to be evaluated and possibly selected if all preceding contexts are empty.
+- **`ctx_i`**
+    - Serves as a generic placeholder for any of the contexts provided to the node. The node evaluates each context in sequence until it finds the first non-empty one, which is then selected for output. This approach allows for flexible and dynamic context switching based on the availability of content within the contexts.
     - Comfy dtype: `RGTHREE_CONTEXT`
     - Python dtype: `dict`
 ## Output types
 - **`CONTEXT`**
     - Comfy dtype: `RGTHREE_CONTEXT`
-    - The original context keys selected from the provided options.
-    - Python dtype: `tuple`
+    - The comprehensive context output, encompassing various aspects like model configuration, image processing parameters, and conditioning information, among others, based on the first non-empty context found.
+    - Python dtype: `dict`
 - **`MODEL`**
     - Comfy dtype: `MODEL`
-    - Model information from the selected context.
-    - Python dtype: `tuple`
+    - Outputs model-related context information.
+    - Python dtype: `str`
 - **`CLIP`**
     - Comfy dtype: `CLIP`
-    - Clip information from the selected context.
-    - Python dtype: `tuple`
+    - Outputs CLIP model configuration context.
+    - Python dtype: `str`
 - **`VAE`**
     - Comfy dtype: `VAE`
-    - VAE information from the selected context.
-    - Python dtype: `tuple`
+    - Outputs VAE model configuration context.
+    - Python dtype: `str`
 - **`POSITIVE`**
     - Comfy dtype: `CONDITIONING`
-    - Positive conditioning from the selected context.
-    - Python dtype: `tuple`
+    - Outputs positive conditioning context.
+    - Python dtype: `str`
 - **`NEGATIVE`**
     - Comfy dtype: `CONDITIONING`
-    - Negative conditioning from the selected context.
-    - Python dtype: `tuple`
+    - Outputs negative conditioning context.
+    - Python dtype: `str`
 - **`LATENT`**
     - Comfy dtype: `LATENT`
-    - Latent information from the selected context.
-    - Python dtype: `tuple`
+    - Outputs latent space configuration context.
+    - Python dtype: `str`
 - **`IMAGE`**
     - Comfy dtype: `IMAGE`
-    - Image information from the selected context.
-    - Python dtype: `tuple`
+    - Outputs image processing context.
+    - Python dtype: `str`
 - **`SEED`**
     - Comfy dtype: `INT`
-    - Seed information from the selected context.
-    - Python dtype: `tuple`
+    - Outputs seed value for random number generation context.
+    - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

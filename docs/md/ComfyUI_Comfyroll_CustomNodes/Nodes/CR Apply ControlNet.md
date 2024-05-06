@@ -1,3 +1,8 @@
+---
+tags:
+- ControlNet
+---
+
 # 🕹️ CR Apply ControlNet
 ## Documentation
 - Class name: `CR Apply ControlNet`

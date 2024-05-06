@@ -1,3 +1,9 @@
+---
+tags:
+- LatentNoise
+- Noise
+---
+
 # Set Latent Noise Mask
 ## Documentation
 - Class name: `SetLatentNoiseMask`
@@ -24,7 +30,7 @@ This node is designed to apply a noise mask to a set of latent samples. It modif
 - Infra type: `GPU`
 - Common nodes:
     - [KSampler](../../Comfy/Nodes/KSampler.md)
-    - KSampler (Efficient)
+    - [KSampler (Efficient)](../../efficiency-nodes-comfyui/Nodes/KSampler (Efficient).md)
     - Mute / Bypass Repeater (rgthree)
 
 

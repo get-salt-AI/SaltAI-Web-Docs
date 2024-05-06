@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Segmentation
+---
+
 # BBOX Detector (SEGS)
 ## Documentation
 - Class name: `BboxDetectorSEGS`

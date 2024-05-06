@@ -1,3 +1,10 @@
+---
+tags:
+- Prompt
+- Text
+- Wildcard
+---
+
 # ImpactWildcardEncode
 ## Documentation
 - Class name: `ImpactWildcardEncode`

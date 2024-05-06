@@ -1,3 +1,10 @@
+---
+tags:
+- ImageScaling
+- ImageUpscaling
+- Upscale
+---
+
 # Load Upscale Model
 ## Documentation
 - Class name: `UpscaleModelLoader`
@@ -20,7 +27,7 @@ The UpscaleModelLoader node is designed for loading upscale models from a specif
 - Infra type: `CPU`
 - Common nodes:
     - [ImageUpscaleWithModel](../../Comfy/Nodes/ImageUpscaleWithModel.md)
-    - UltimateSDUpscale
+    - [UltimateSDUpscale](../../ComfyUI_UltimateSDUpscale/Nodes/UltimateSDUpscale.md)
     - Reroute
     - [LatentPixelScale](../../ComfyUI-Impact-Pack/Nodes/LatentPixelScale.md)
     - [Anything Everywhere](../../cg-use-everywhere/Nodes/Anything Everywhere.md)

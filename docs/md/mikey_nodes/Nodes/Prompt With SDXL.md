@@ -1,3 +1,9 @@
+---
+tags:
+- Prompt
+- PromptStyling
+---
+
 # Prompt With SDXL (Mikey)
 ## Documentation
 - Class name: `Prompt With SDXL`

@@ -1,3 +1,8 @@
+---
+tags:
+- Conditioning
+---
+
 # Add CLIP SDXL Params
 ## Documentation
 - Class name: `BNK_AddCLIPSDXLParams`

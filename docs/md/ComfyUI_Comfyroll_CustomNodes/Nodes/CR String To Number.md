@@ -1,3 +1,10 @@
+---
+tags:
+- DataConversion
+- DataTypeConversion
+- NumericConversion
+---
+
 # 🔧 CR String To Number
 ## Documentation
 - Class name: `CR String To Number`

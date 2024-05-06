@@ -1,3 +1,9 @@
+---
+tags:
+- ImpactPack
+- Segmentation
+---
+
 # SEGS Filter (label)
 ## Documentation
 - Class name: `ImpactSEGSLabelFilter`

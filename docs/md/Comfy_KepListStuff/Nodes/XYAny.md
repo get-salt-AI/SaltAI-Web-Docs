@@ -1,3 +1,9 @@
+---
+tags:
+- DataVisualization
+- XYPlotData
+---
+
 # XYAny
 ## Documentation
 - Class name: `XYAny`

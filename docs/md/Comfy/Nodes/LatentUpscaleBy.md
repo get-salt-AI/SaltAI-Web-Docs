@@ -1,3 +1,10 @@
+---
+tags:
+- ImageScaling
+- ImageUpscaling
+- Upscale
+---
+
 # Upscale Latent By
 ## Documentation
 - Class name: `LatentUpscaleBy`
@@ -30,7 +37,7 @@ The LatentUpscaleBy node is designed for upscaling latent representations of ima
     - [KSampler](../../Comfy/Nodes/KSampler.md)
     - Reroute
     - [VAEDecode](../../Comfy/Nodes/VAEDecode.md)
-    - KSampler (Efficient)
+    - [KSampler (Efficient)](../../efficiency-nodes-comfyui/Nodes/KSampler (Efficient).md)
     - [LatentInterpolate](../../Comfy/Nodes/LatentInterpolate.md)
 
 

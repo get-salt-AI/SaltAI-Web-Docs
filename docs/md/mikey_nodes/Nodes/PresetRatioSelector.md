@@ -1,60 +1,67 @@
+---
+tags:
+- AspectRatio
+- ImageSize
+- ImageTransformation
+---
+
 # Preset Ratio Selector (Mikey)
 ## Documentation
 - Class name: `PresetRatioSelector`
 - Category: `Mikey/Utils`
 - Output node: `False`
 
-The PresetRatioSelector node is designed to manage and utilize predefined and user-defined ratio presets for various dimensions. It reads, merges, and deduplicates ratio presets from predefined JSON files and potentially user-provided JSON files, offering a structured way to access and apply these presets for dimension calculations.
+The PresetRatioSelector node is designed to manage and apply predefined and user-defined ratio presets for image dimensions. It dynamically reads, merges, and deduplicates ratio presets from both a default set and user-customized configurations, providing a flexible way to select and apply specific aspect ratios for image generation tasks.
 ## Input types
 ### Required
 - **`select_preset`**
-    - Allows the selection of a specific ratio preset from the available options, providing direct control over the ratio used for dimension calculations.
+    - Specifies the preset to be selected for determining image dimensions. This allows for the direct selection of a predefined or user-defined ratio preset.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`swap_axis`**
-    - Determines whether the dimensions' axis should be swapped, offering flexibility in adjusting the orientation of the output dimensions.
+    - Determines whether the width and height dimensions of selected ratios should be swapped, allowing for easy adjustment of orientation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`use_preset_seed`**
-    - Determines whether a preset seed should be used to randomly select a ratio preset from the available options, enhancing the variability and customization of the output based on the seed value.
+    - Indicates whether to use a preset seed for selecting a ratio preset, enabling deterministic selection of presets based on a seed value.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`seed`**
-    - A numerical value used to randomly select a ratio preset when 'use_preset_seed' is true, ensuring a diverse selection of presets for different executions.
+    - The seed value used for deterministic selection of a ratio preset when 'use_preset_seed' is true. It ensures consistent preset selection across runs.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`latent_w`**
     - Comfy dtype: `INT`
-    - The width dimension calculated based on the selected ratio preset.
+    - The width dimension of the latent space determined by the selected preset.
     - Python dtype: `int`
 - **`latent_h`**
     - Comfy dtype: `INT`
-    - The height dimension calculated based on the selected ratio preset.
+    - The height dimension of the latent space determined by the selected preset.
     - Python dtype: `int`
 - **`cte_w`**
     - Comfy dtype: `INT`
-    - The width dimension for clip text encode, calculated based on the selected ratio preset.
+    - Width dimension for clip text encode, determined by the selected preset.
     - Python dtype: `int`
 - **`cte_h`**
     - Comfy dtype: `INT`
-    - The height dimension for clip text encode, calculated based on the selected ratio preset.
+    - Height dimension for clip text encode, determined by the selected preset.
     - Python dtype: `int`
 - **`target_w`**
     - Comfy dtype: `INT`
-    - The target width dimension calculated based on the selected ratio preset.
+    - The target width dimension for image generation, determined by the selected preset.
     - Python dtype: `int`
 - **`target_h`**
     - Comfy dtype: `INT`
-    - The target height dimension calculated based on the selected ratio preset.
+    - The target height dimension for image generation, determined by the selected preset.
     - Python dtype: `int`
 - **`crop_w`**
     - Comfy dtype: `INT`
-    - The width dimension for cropping, calculated based on the selected ratio preset.
+    - The width dimension for cropping, determined by the selected preset.
     - Python dtype: `int`
 - **`crop_h`**
     - Comfy dtype: `INT`
-    - The height dimension for cropping, calculated based on the selected ratio preset.
+    - The height dimension for cropping, determined by the selected preset.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
@@ -106,14 +113,14 @@ class PresetRatioSelector:
             cte_w, cte_h = cte_h, cte_w
             target_w, target_h = target_h, target_w
             crop_w, crop_h = crop_h, crop_w
-        prompt.get(str(unique_id))['inputs']['output_latent_w'] = str(latent_width)
-        prompt.get(str(unique_id))['inputs']['output_latent_h'] = str(latent_height)
-        prompt.get(str(unique_id))['inputs']['output_cte_w'] = str(cte_w)
-        prompt.get(str(unique_id))['inputs']['output_cte_h'] = str(cte_h)
-        prompt.get(str(unique_id))['inputs']['output_target_w'] = str(target_w)
-        prompt.get(str(unique_id))['inputs']['output_target_h'] = str(target_h)
-        prompt.get(str(unique_id))['inputs']['output_crop_w'] = str(crop_w)
-        prompt.get(str(unique_id))['inputs']['output_crop_h'] = str(crop_h)
+        #prompt.get(str(unique_id))['inputs']['output_latent_w'] = str(latent_width)
+        #prompt.get(str(unique_id))['inputs']['output_latent_h'] = str(latent_height)
+        #prompt.get(str(unique_id))['inputs']['output_cte_w'] = str(cte_w)
+        #prompt.get(str(unique_id))['inputs']['output_cte_h'] = str(cte_h)
+        #prompt.get(str(unique_id))['inputs']['output_target_w'] = str(target_w)
+        #prompt.get(str(unique_id))['inputs']['output_target_h'] = str(target_h)
+        #prompt.get(str(unique_id))['inputs']['output_crop_w'] = str(crop_w)
+        #prompt.get(str(unique_id))['inputs']['output_crop_h'] = str(crop_h)
         return (latent_width, latent_height,
                 cte_w, cte_h,
                 target_w, target_h,

@@ -1,3 +1,8 @@
+---
+tags:
+- Color
+---
+
 # NaiveAutoKMeansColor
 ## Documentation
 - Class name: `NaiveAutoKMeansColor`

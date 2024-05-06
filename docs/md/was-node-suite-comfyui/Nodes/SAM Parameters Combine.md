@@ -1,3 +1,8 @@
+---
+tags:
+- SAM
+---
+
 # SAM Parameters Combine
 ## Documentation
 - Class name: `SAM Parameters Combine`

@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Segmentation
+---
+
 # Simple Detector for AnimateDiff (SEGS)
 ## Documentation
 - Class name: `ImpactSimpleDetectorSEGS_for_AD`

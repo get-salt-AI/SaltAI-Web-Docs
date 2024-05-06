@@ -1,3 +1,10 @@
+---
+tags:
+- Crop
+- Image
+- ImageTransformation
+---
+
 # CropMask
 ## Documentation
 - Class name: `CropMask`

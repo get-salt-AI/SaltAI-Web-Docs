@@ -1,3 +1,8 @@
+---
+tags:
+- Latent
+---
+
 # Empty Latent Ratio Select SDXL (Mikey)
 ## Documentation
 - Class name: `Empty Latent Ratio Select SDXL`

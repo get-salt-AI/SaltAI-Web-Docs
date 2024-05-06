@@ -1,3 +1,8 @@
+---
+tags:
+- LoRA
+---
+
 # 💊 CR Load LoRA
 ## Documentation
 - Class name: `CR Load LoRA`
@@ -51,7 +56,7 @@ This node is designed to dynamically load and apply Learning Rate Annealing (LoR
     - [KSampler](../../Comfy/Nodes/KSampler.md)
     - [ModelSamplingDiscrete](../../Comfy/Nodes/ModelSamplingDiscrete.md)
     - [LoraLoader](../../Comfy/Nodes/LoraLoader.md)
-    - KSampler Adv. (Efficient)
+    - [KSampler Adv. (Efficient)](../../efficiency-nodes-comfyui/Nodes/KSampler Adv. (Efficient).md)
     - [ToDetailerPipe](../../ComfyUI-Impact-Pack/Nodes/ToDetailerPipe.md)
 
 

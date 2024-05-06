@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Pipeline
+---
+
 # 🛩️ CR Image Pipe Out
 ## Documentation
 - Class name: `CR Image Pipe Out`

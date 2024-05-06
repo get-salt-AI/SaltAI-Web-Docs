@@ -1,3 +1,10 @@
+---
+tags:
+- ImageScaling
+- ImageUpscaling
+- Upscale
+---
+
 # Latent Upscale by Factor (WAS)
 ## Documentation
 - Class name: `Latent Upscale by Factor (WAS)`

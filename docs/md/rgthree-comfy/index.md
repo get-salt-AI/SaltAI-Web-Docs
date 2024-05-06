@@ -1,3 +1,3 @@
 # rgthree-comfy
 - Repo url: `https://github.com/rgthree/rgthree-comfy`
-- Commit hash: `9021670e9ff887d40e031334fc9f3e92c599d161`
+- Commit hash: `3b2237cceb0433709ea94a07d6a127a339538682`

@@ -1,3 +1,8 @@
+---
+tags:
+- Mask
+---
+
 # Mask Fill Holes
 ## Documentation
 - Class name: `Mask Fill Holes`

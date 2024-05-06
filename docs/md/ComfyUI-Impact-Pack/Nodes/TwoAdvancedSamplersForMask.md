@@ -1,3 +1,8 @@
+---
+tags:
+- Sampling
+---
+
 # TwoAdvancedSamplersForMask
 ## Documentation
 - Class name: `TwoAdvancedSamplersForMask`

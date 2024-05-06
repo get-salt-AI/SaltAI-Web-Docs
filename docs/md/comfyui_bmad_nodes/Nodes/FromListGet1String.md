@@ -1,3 +1,8 @@
+---
+tags:
+- List
+---
+
 # FromListGet1String
 ## Documentation
 - Class name: `FromListGet1String`

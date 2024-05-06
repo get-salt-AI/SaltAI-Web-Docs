@@ -1,3 +1,12 @@
+---
+tags:
+- DataConversion
+- DataTypeConversion
+- FloatData
+- FloatList
+- NumericConversion
+---
+
 # FromListGet1Float
 ## Documentation
 - Class name: `FromListGet1Float`

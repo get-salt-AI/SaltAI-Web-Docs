@@ -1,3 +1,9 @@
+---
+tags:
+- String
+- Text
+---
+
 # 🪛 Primitive string
 ## Documentation
 - Class name: `Primitive string [Crystools]`

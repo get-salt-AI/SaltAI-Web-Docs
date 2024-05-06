@@ -1,3 +1,9 @@
+---
+tags:
+- Multimedia
+- VideoHelperSuite
+---
+
 # Merge Image Batches 🎥🅥🅗🅢
 ## Documentation
 - Class name: `VHS_MergeImages`

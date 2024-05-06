@@ -1,3 +1,8 @@
+---
+tags:
+- Text
+---
+
 # File Name Prefix Date Dir First (Mikey)
 ## Documentation
 - Class name: `FileNamePrefixDateDirFirst`

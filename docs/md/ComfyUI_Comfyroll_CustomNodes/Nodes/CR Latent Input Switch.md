@@ -1,3 +1,8 @@
+---
+tags:
+- ConditionalSelection
+---
+
 # 🔀 CR Latent Input Switch
 ## Documentation
 - Class name: `CR Latent Input Switch`

@@ -1,3 +1,9 @@
+---
+tags:
+- BooleanLogic
+- ConditionalSelection
+---
+
 # IntToBool
 ## Documentation
 - Class name: `CM_IntToBool`

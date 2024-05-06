@@ -1,3 +1,10 @@
+---
+tags:
+- AspectRatio
+- ImageSize
+- ImageTransformation
+---
+
 # 🔳 CR SDXL Aspect Ratio
 ## Documentation
 - Class name: `CR SDXL Aspect Ratio`

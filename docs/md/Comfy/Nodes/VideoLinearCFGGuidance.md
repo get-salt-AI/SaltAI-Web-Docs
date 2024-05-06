@@ -1,3 +1,8 @@
+---
+tags:
+- ModelGuidance
+---
+
 # VideoLinearCFGGuidance
 ## Documentation
 - Class name: `VideoLinearCFGGuidance`

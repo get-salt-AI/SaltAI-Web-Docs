@@ -1,3 +1,8 @@
+---
+tags:
+- Text
+---
+
 # Load Text File
 ## Documentation
 - Class name: `Load Text File`

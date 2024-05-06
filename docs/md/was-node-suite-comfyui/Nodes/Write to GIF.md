@@ -1,3 +1,9 @@
+---
+tags:
+- Animation
+- Image
+---
+
 # Write to GIF
 ## Documentation
 - Class name: `Write to GIF`

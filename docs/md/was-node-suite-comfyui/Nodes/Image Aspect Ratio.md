@@ -1,25 +1,32 @@
+---
+tags:
+- AspectRatio
+- ImageSize
+- ImageTransformation
+---
+
 # Image Aspect Ratio
 ## Documentation
 - Class name: `Image Aspect Ratio`
 - Category: `WAS Suite/Logic`
 - Output node: `False`
 
-This node calculates the aspect ratio of an image, determining whether it is landscape, portrait, or square based on its width and height. It provides both numerical and common aspect ratio representations, and identifies the image orientation.
+This node calculates the aspect ratio of an image, determining whether it is landscape, portrait, or square based on its width and height. It provides both numerical and common aspect ratio formats, and identifies the image orientation.
 ## Input types
 ### Required
 ### Optional
 - **`image`**
     - The image tensor for which the aspect ratio is to be calculated. If not provided, width and height must be specified.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `Optional[torch.Tensor]`
 - **`width`**
     - The width of the image. Required if the image tensor is not provided.
     - Comfy dtype: `NUMBER`
-    - Python dtype: `int`
+    - Python dtype: `Optional[int]`
 - **`height`**
     - The height of the image. Required if the image tensor is not provided.
     - Comfy dtype: `NUMBER`
-    - Python dtype: `int`
+    - Python dtype: `Optional[int]`
 ## Output types
 - **`aspect_number`**
     - Comfy dtype: `NUMBER`
@@ -35,11 +42,11 @@ This node calculates the aspect ratio of an image, determining whether it is lan
     - Python dtype: `bool`
 - **`aspect_ratio_common`**
     - Comfy dtype: `STRING`
-    - The common aspect ratio representation of the image, e.g., '16:9'.
+    - The aspect ratio in common format (e.g., '16:9').
     - Python dtype: `str`
 - **`aspect_type`**
     - Comfy dtype: `STRING`
-    - A string indicating the type of aspect ratio: landscape, portrait, or square.
+    - A string indicating the type of aspect ratio ('landscape', 'portrait', 'square').
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -71,7 +78,7 @@ class WAS_Image_Aspect_Ratio:
 
     CATEGORY = "WAS Suite/Logic"
 
-    def aspect(self, boolean_number=1, image=None, width=None, height=None):
+    def aspect(self, boolean=True, image=None, width=None, height=None):
 
         if width and height:
             width = width; height = height

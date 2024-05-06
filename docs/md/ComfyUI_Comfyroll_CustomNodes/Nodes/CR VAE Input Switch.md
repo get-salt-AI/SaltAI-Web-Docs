@@ -1,3 +1,8 @@
+---
+tags:
+- VAE
+---
+
 # 🔀 CR VAE Input Switch
 ## Documentation
 - Class name: `CR VAE Input Switch`

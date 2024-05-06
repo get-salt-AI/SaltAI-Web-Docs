@@ -1,61 +1,68 @@
+---
+tags:
+- Crop
+- Image
+- ImageTransformation
+---
+
 # 🔧 Image Crop
 ## Documentation
 - Class name: `ImageCrop+`
 - Category: `essentials`
 - Output node: `False`
 
-The ImageCrop+ node is designed for cropping images to a specified width and height from a given starting point (x, y). This operation allows for the selective focus on certain parts of an image, which can be crucial for tasks that require attention to specific image regions or for aesthetic adjustments.
+The ImageCrop+ node is designed for cropping images to specified dimensions and coordinates, allowing for precise control over the portion of the image to be retained or discarded.
 ## Input types
 ### Required
 - **`image`**
-    - The image to be cropped. This parameter is crucial as it defines the source image that will undergo the cropping process.
+    - The image to be cropped, serving as the primary input for the cropping operation.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`width`**
-    - Specifies the width of the cropped area. It determines how wide the resulting image will be after cropping.
+    - Specifies the width of the cropped image area.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Specifies the height of the cropped area. It determines how tall the resulting image will be after cropping.
+    - Specifies the height of the cropped image area.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`position`**
-    - Specifies the position of the cropping area relative to the original image, which can be adjusted further with offsets.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`x_offset`**
-    - The horizontal offset to be applied to the cropping area, allowing for fine-tuned positioning.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`y_offset`**
-    - The vertical offset to be applied to the cropping area, allowing for fine-tuned positioning.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 ## Output types
 - **`IMAGE`**
     - Comfy dtype: `IMAGE`
-    - The cropped image. This output is the result of the cropping operation, containing only the specified area of the original image.
+    - The cropped portion of the input image.
     - Python dtype: `torch.Tensor`
 - **`x`**
     - Comfy dtype: `INT`
-    - The x-coordinate of the top-left corner of the cropped area in the original image.
+    - The x-coordinate of the top-left corner of the resulting cropped area, reflecting any adjustments made during the cropping process.
     - Python dtype: `int`
 - **`y`**
     - Comfy dtype: `INT`
-    - The y-coordinate of the top-left corner of the cropped area in the original image.
+    - The y-coordinate of the top-left corner of the resulting cropped area, reflecting any adjustments made during the cropping process.
     - Python dtype: `int`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes:
     - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
     - [ImageSharpen](../../Comfy/Nodes/ImageSharpen.md)
     - SetNode
-    - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
+    - IPAdapterApply
     - Reroute
     - [DWPreprocessor](../../comfyui_controlnet_aux/Nodes/DWPreprocessor.md)
     - [LineArtPreprocessor](../../comfyui_controlnet_aux/Nodes/LineArtPreprocessor.md)
     - [MiDaS-DepthMapPreprocessor](../../comfyui_controlnet_aux/Nodes/MiDaS-DepthMapPreprocessor.md)
-    - [IPAdapterApplyFaceID](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApplyFaceID.md)
+    - IPAdapterApplyFaceID
 
 
 
@@ -74,7 +81,7 @@ class ImageCrop:
                 "y_offset": ("INT", { "default": 0, "min": -99999, "step": 1, }),
             }
         }
-    
+
     RETURN_TYPES = ("IMAGE","INT","INT",)
     RETURN_NAMES = ("IMAGE","x","y",)
     FUNCTION = "execute"
@@ -85,7 +92,7 @@ class ImageCrop:
 
         width = min(ow, width)
         height = min(oh, height)
-                
+
         if "center" in position:
             x = round((ow-width) / 2)
             y = round((oh-height) / 2)
@@ -97,10 +104,10 @@ class ImageCrop:
             x = 0
         if "right" in position:
             x = ow-width
-        
+
         x += x_offset
         y += y_offset
-        
+
         x2 = x+width
         y2 = y+height
 

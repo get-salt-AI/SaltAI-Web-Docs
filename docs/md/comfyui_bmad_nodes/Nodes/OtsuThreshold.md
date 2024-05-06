@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageThresholding
+---
+
 # OtsuThreshold
 ## Documentation
 - Class name: `OtsuThreshold`

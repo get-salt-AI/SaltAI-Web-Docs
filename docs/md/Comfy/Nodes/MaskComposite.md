@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- ImageBlend
+- ImageComposite
+---
+
 # MaskComposite
 ## Documentation
 - Class name: `MaskComposite`

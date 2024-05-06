@@ -1,36 +1,41 @@
+---
+tags:
+- ConditionalSelection
+---
+
 # Number Input Switch
 ## Documentation
 - Class name: `Number Input Switch`
 - Category: `WAS Suite/Logic`
 - Output node: `False`
 
-The WAS_Number_Input_Switch node is designed to select between two numerical inputs based on a boolean condition. It provides a flexible mechanism for conditional logic in numerical data processing workflows.
+The Number Input Switch node provides a mechanism to select between two numerical inputs based on a boolean condition. It is designed to facilitate conditional logic within data flows, allowing for dynamic selection of input values.
 ## Input types
 ### Required
 - **`number_a`**
-    - The first numerical input option for the switch. Its selection is determined by the boolean_number input, influencing the node's output based on conditional logic.
+    - Represents the first numerical input option for the switch. Its value is considered if the boolean condition is true.
     - Comfy dtype: `NUMBER`
     - Python dtype: `float | int`
 - **`number_b`**
-    - The second numerical input option for the switch. Its selection is influenced by the boolean_number input, affecting the node's output through conditional logic.
+    - Represents the second numerical input option for the switch. Its value is considered if the boolean condition is false.
     - Comfy dtype: `NUMBER`
     - Python dtype: `float | int`
-- **`boolean_number`**
-    - A numerical value that determines which input (number_a or number_b) to pass through. Typically, a non-zero value selects number_a, while zero selects number_b, directly impacting the node's execution and results.
-    - Comfy dtype: `NUMBER`
-    - Python dtype: `float | int`
+- **`boolean`**
+    - A boolean flag that determines which of the two numerical inputs (number_a or number_b) is selected for output.
+    - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ## Output types
 - **`number`**
     - Comfy dtype: `NUMBER`
-    - Outputs the selected number as is, providing versatility in subsequent processing.
+    - The original number selected based on the boolean condition.
     - Python dtype: `float | int`
 - **`float`**
     - Comfy dtype: `FLOAT`
-    - Outputs the selected number as a float, enabling flexible numerical operations.
+    - The float representation of the selected number.
     - Python dtype: `float`
 - **`int`**
     - Comfy dtype: `INT`
-    - Outputs the selected number as an integer, facilitating operations requiring discrete values.
+    - The integer representation of the selected number.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
@@ -49,7 +54,7 @@ class WAS_Number_Input_Switch:
             "required": {
                 "number_a": ("NUMBER",),
                 "number_b": ("NUMBER",),
-                "boolean_number": ("NUMBER",),
+                "boolean": ("BOOLEAN", {"forceInput": True}),
             }
         }
 
@@ -58,9 +63,9 @@ class WAS_Number_Input_Switch:
 
     CATEGORY = "WAS Suite/Logic"
 
-    def number_input_switch(self, number_a, number_b, boolean_number=1):
+    def number_input_switch(self, number_a, number_b, boolean=True):
 
-        if int(round(boolean_number)) == 1:
+        if boolean:
             return (number_a, float(number_a), int(number_a))
         else:
             return (number_b, float(number_b), int(number_b))

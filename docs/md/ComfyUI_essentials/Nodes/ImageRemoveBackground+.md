@@ -1,3 +1,9 @@
+---
+tags:
+- BackgroundRemoval
+- Image
+---
+
 # 🔧 Image Remove Background
 ## Documentation
 - Class name: `ImageRemoveBackground+`

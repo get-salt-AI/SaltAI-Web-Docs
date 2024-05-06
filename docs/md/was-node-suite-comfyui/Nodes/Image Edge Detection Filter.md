@@ -1,3 +1,9 @@
+---
+tags:
+- ImageFilter
+- VisualEffects
+---
+
 # Image Edge Detection Filter
 ## Documentation
 - Class name: `Image Edge Detection Filter`

@@ -1,3 +1,11 @@
+---
+tags:
+- ImageResize
+- ImageScaling
+- ImageSize
+- ImageTransformation
+---
+
 # Image Resize by Factor
 ## Documentation
 - Class name: `JWImageResizeByFactor`

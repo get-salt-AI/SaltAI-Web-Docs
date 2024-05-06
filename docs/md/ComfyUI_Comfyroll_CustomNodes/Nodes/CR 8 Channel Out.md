@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Pipeline
+---
+
 # 🚌 CR 8 Channel Out
 ## Documentation
 - Class name: `CR 8 Channel Out`

@@ -1,3 +1,9 @@
+---
+tags:
+- MathematicalFunctions
+- Multiplication
+---
+
 # 🔢 CR Index Multiply
 ## Documentation
 - Class name: `CR Index Multiply`

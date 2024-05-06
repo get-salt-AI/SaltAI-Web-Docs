@@ -1,24 +1,29 @@
+---
+tags:
+- MaskMath
+---
+
 # Bitwise(MASK - MASK)
 ## Documentation
 - Class name: `SubtractMask`
 - Category: `ImpactPack/Operation`
 - Output node: `False`
 
-The SubtractMask node is designed to perform a subtraction operation between two given masks. It abstracts the complexity of handling mask data types and operations, providing a straightforward way to obtain the difference between two masks, which can be crucial in image processing tasks where distinguishing between varying elements is necessary.
+The SubtractMask node is designed to perform subtraction operations between two mask inputs, resulting in a single mask output that represents the difference between the two input masks. This operation is useful in scenarios where the removal of certain areas or features from a mask is required, effectively highlighting disparities or changes between the two masks.
 ## Input types
 ### Required
 - **`mask1`**
-    - The first mask to be subtracted from. It plays a crucial role in determining the base of the subtraction operation.
+    - The first mask input for the subtraction operation. It serves as the base mask from which the second mask will be subtracted.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`mask2`**
-    - The second mask to subtract from the first one. This mask's values are subtracted from the first mask's values, influencing the final result of the operation.
+    - The second mask input for the subtraction operation. This mask is subtracted from the first mask, effectively removing its features from the first mask.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The result of the subtraction operation between the two input masks, represented as a mask where each pixel value reflects the difference.
+    - The resulting mask after subtracting the second mask from the first. This output highlights the differences or changes between the two input masks.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
@@ -35,7 +40,7 @@ class SubtractMask:
                         "mask2": ("MASK", ),
                       }
                 }
-    
+
     RETURN_TYPES = ("MASK",)
     FUNCTION = "doit"
 

@@ -1,3 +1,8 @@
+---
+tags:
+- Image
+---
+
 # 🌁 CR Image Border
 ## Documentation
 - Class name: `CR Image Border`

@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageTransformation
+---
+
 # Rotate Latent
 ## Documentation
 - Class name: `LatentRotate`

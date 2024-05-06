@@ -1,33 +1,39 @@
+---
+tags:
+- Batch
+- Image
+---
+
 # Batch Make (mtb)
 ## Documentation
 - Class name: `Batch Make (mtb)`
 - Category: `mtb/batch`
 - Output node: `False`
 
-The Batch Make node is designed to create a batch of identical images from a single input image, effectively duplicating the input image a specified number of times to form a batch. This functionality is crucial for operations that require batch processing of images, allowing for the efficient handling of multiple instances of the same image in parallel.
+The MTB_BatchMake node is designed to create batches from individual data points or smaller batches, facilitating the processing of data in bulk. This node is essential for optimizing data handling and processing efficiency in machine learning workflows, especially when dealing with large datasets or when performing operations that benefit from batch processing.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be duplicated into a batch. It serves as the base image from which the batch is generated, playing a pivotal role in the batch creation process.
+    - This input type is used for specifying images that are to be batched together, playing a crucial role in the batch creation process for visual data.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `List[torch.Tensor]`
 - **`count`**
-    - Specifies the number of times the input image should be duplicated to form the batch. This parameter directly influences the size of the resulting batch, thereby affecting the node's output.
+    - The 'count' input type specifies the number of images or data points to include in each batch, directly affecting the size and composition of the created batches.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is a batch of images, each identical to the input image, created by duplicating the input image a specified number of times.
-    - Python dtype: `Tuple[torch.Tensor]`
+    - This output type represents batches of images, ready for further processing or analysis in downstream tasks.
+    - Python dtype: `List[torch.Tensor]`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
 ## Source code
 ```python
-class BatchMake:
+class MTB_BatchMake:
     """Simply duplicates the input frame as a batch"""
 
     @classmethod

@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- WavePatterns
+---
+
 # AbsSinWave 📅🅕🅝
 ## Documentation
 - Class name: `AbsSinWave`

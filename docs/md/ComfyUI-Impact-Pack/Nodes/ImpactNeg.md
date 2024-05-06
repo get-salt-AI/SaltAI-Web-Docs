@@ -1,3 +1,9 @@
+---
+tags:
+- BooleanLogic
+- ConditionalSelection
+---
+
 # ImpactNeg
 ## Documentation
 - Class name: `ImpactNeg`

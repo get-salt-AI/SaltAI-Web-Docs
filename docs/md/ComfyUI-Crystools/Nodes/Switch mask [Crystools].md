@@ -1,3 +1,8 @@
+---
+tags:
+- ConditionalSelection
+---
+
 # 🪛 Switch mask
 ## Documentation
 - Class name: `Switch mask [Crystools]`

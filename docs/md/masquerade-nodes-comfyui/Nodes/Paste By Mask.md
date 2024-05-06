@@ -1,10 +1,16 @@
+---
+tags:
+- Image
+- ImageComposite
+---
+
 # Paste By Mask
 ## Documentation
 - Class name: `Paste By Mask`
 - Category: `Masquerade Nodes`
 - Output node: `False`
 
-The node is designed to overlay one image onto another based on a specified mask, with options to adjust the resizing behavior of the pasted image to ensure it fits within the mask area appropriately. It supports different resizing strategies to maintain the aspect ratio or match the source image dimensions, providing flexibility in how the image is integrated into the base image.
+The Paste By Mask node enables the pasting of one image onto another using a specified mask to define the paste location. It supports various resizing behaviors to ensure the pasted image fits the mask area appropriately, and optionally allows for mask mapping to control the pasting process more granularly.
 ## Input types
 ### Required
 - **`image_base`**
@@ -12,26 +18,26 @@ The node is designed to overlay one image onto another based on a specified mask
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`image_to_paste`**
-    - The image to be overlaid onto the base image. This image is manipulated according to the mask and resizing behavior to fit appropriately.
+    - The image to be pasted onto the base image. This image is manipulated according to the mask and resize behavior to fit appropriately.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`mask`**
-    - A mask that defines the area on the base image where the second image will be pasted. It plays a crucial role in determining the overlay's boundaries.
+    - A mask that defines where on the base image the pasting should occur. The mask's shape and values determine the pasting area.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`resize_behavior`**
-    - Specifies how the image to be pasted should be resized to fit within the mask area. It affects the final appearance of the pasted image on the base image.
+    - Specifies how the image to paste should be resized to fit the mask area, with options like keeping the ratio, filling the area, or matching the source size.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`mask_mapping_optional`**
-    - An optional mapping to adjust how the mask is applied, allowing for more complex pasting scenarios beyond a straightforward overlay.
+    - Optionally used to control which part of the pasting image goes onto which part of the base image, based on a mask mapping obtained from a separate operation.
     - Comfy dtype: `MASK_MAPPING`
     - Python dtype: `Optional[torch.Tensor]`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The result of the pasting operation, which is the base image with the second image overlaid according to the mask and resizing behavior.
+    - The result of pasting an image onto another with the specified mask, producing a new image that combines elements of both according to the defined parameters.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -44,6 +50,9 @@ The node is designed to overlay one image onto another based on a specified mask
 ## Source code
 ```python
 class PasteByMask:
+    """
+    Pastes `image_to_paste` onto `image_base` using `mask` to determine the location. The `resize_behavior` parameter determines how the image to paste is resized to fit the mask. If `mask_mapping_optional` obtained from a 'Separate Mask Components' node is used, it will control which image gets pasted onto which base image.
+    """
     def __init__(self):
         pass
 

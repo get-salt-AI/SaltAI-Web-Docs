@@ -1,3 +1,9 @@
+---
+tags:
+- Animation
+- Image
+---
+
 # Create Morph Image
 ## Documentation
 - Class name: `Create Morph Image`

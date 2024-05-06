@@ -1,3 +1,9 @@
+---
+tags:
+- BooleanLogic
+- ConditionalSelection
+---
+
 # Logic Comparison XOR
 ## Documentation
 - Class name: `Logic Comparison XOR`

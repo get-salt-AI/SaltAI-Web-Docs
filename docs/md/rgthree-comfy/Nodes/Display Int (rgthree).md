@@ -1,3 +1,11 @@
+---
+tags:
+- DataConversion
+- DataTypeConversion
+- Integer
+- NumericConversion
+---
+
 # Display Int (rgthree)
 ## Documentation
 - Class name: `Display Int (rgthree)`

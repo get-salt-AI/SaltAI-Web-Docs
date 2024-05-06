@@ -1,3 +1,8 @@
+---
+tags:
+- ImageTransformation
+---
+
 # Remap
 ## Documentation
 - Class name: `Remap`

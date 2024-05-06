@@ -1,3 +1,10 @@
+---
+tags:
+- DepthMap
+- DepthMapEstimation
+- Image
+---
+
 # Zoe Depth Map
 ## Documentation
 - Class name: `Zoe-DepthMapPreprocessor`

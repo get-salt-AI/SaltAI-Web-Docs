@@ -1,3 +1,10 @@
+---
+tags:
+- ImageScaling
+- ImageUpscaling
+- Upscale
+---
+
 # PixelKSampleUpscalerProvider
 ## Documentation
 - Class name: `PixelKSampleUpscalerProvider`

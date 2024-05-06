@@ -1,3 +1,9 @@
+---
+tags:
+- MathematicalFunctions
+- Multiplication
+---
+
 # Number Multiple Of
 ## Documentation
 - Class name: `Number Multiple Of`

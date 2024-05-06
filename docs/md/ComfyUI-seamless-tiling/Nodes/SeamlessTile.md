@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Tiled
+---
+
 # Seamless Tile
 ## Documentation
 - Class name: `SeamlessTile`

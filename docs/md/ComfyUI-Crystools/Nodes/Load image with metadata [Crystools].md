@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Metadata
+---
+
 # 🪛 Load image with metadata
 ## Documentation
 - Class name: `Load image with metadata [Crystools]`

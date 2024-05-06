@@ -1,53 +1,59 @@
+---
+tags:
+- Mask
+- MaskGeneration
+---
+
 # Create Rect Mask
 ## Documentation
 - Class name: `Create Rect Mask`
 - Category: `Masquerade Nodes`
 - Output node: `False`
 
-The Create Rect Mask node is designed to generate rectangular masks based on specified dimensions and positions. It supports both absolute and percentage-based dimensions, allowing for flexible mask creation relative to the image size. Additionally, it accommodates different origin points to adjust the mask's position according to the image's coordinate system.
+The Create Rect Mask node is designed to generate rectangular masks based on specified dimensions and origin points. It supports creating masks in either percentage or pixel modes, allowing for flexible mask creation relative to the image size. This node can also adapt the mask size automatically if a reference image is provided, ensuring the mask aligns perfectly with the image dimensions.
 ## Input types
 ### Required
 - **`mode`**
-    - Specifies the mode of dimension specification, either as absolute values or percentages of the image size, influencing how the mask's dimensions are calculated.
+    - Specifies the mode of dimension calculation for the mask, either as a percentage of the image size or in absolute pixels, affecting how the mask's dimensions are interpreted.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `List[str]`
 - **`origin`**
-    - Determines the origin point for the mask's position, affecting how the mask's coordinates are adjusted relative to the image's coordinate system.
+    - Determines the starting point of the mask within the image, which can be any of the four corners, influencing the mask's position.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `List[str]`
 - **`x`**
-    - The x-coordinate of the mask's starting point, which is adjusted based on the specified origin and mode.
+    - The x-coordinate of the mask's origin, which sets the horizontal starting point of the mask.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`y`**
-    - The y-coordinate of the mask's starting point, similar to the x-coordinate, it is adjusted based on the origin and mode.
+    - The y-coordinate of the mask's origin, which sets the vertical starting point of the mask.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`width`**
-    - The width of the mask, which can be specified in absolute values or as a percentage of the image width, depending on the mode.
+    - The width of the mask, which can be defined in pixels or as a percentage of the image width, depending on the mode.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`height`**
-    - The height of the mask, which can be specified in absolute values or as a percentage of the image height, depending on the mode.
+    - The height of the mask, which can be defined in pixels or as a percentage of the image height, depending on the mode.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`image_width`**
-    - The width of the image, used to calculate the mask's dimensions when the mode is set to percentage.
+    - The width of the image to which the mask will be applied. This parameter is ignored if copy_image_size is provided.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`image_height`**
-    - The height of the image, used to calculate the mask's dimensions when the mode is set to percentage.
+    - The height of the image to which the mask will be applied. This parameter is ignored if copy_image_size is provided.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`copy_image_size`**
-    - An optional parameter that, if provided, uses the dimensions of the specified image to override the image_width and image_height parameters.
+    - An optional image parameter. If provided, the mask dimensions will be automatically adjusted to match the size of this reference image, overriding the image_width and image_height parameters.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The generated rectangular mask, represented as a binary tensor with ones indicating the mask area and zeros elsewhere.
+    - Outputs a rectangular mask as a tensor, with dimensions and position based on the input parameters.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -57,6 +63,9 @@ The Create Rect Mask node is designed to generate rectangular masks based on spe
 ## Source code
 ```python
 class CreateRectMask:
+    """
+    Creates a rectangle mask. If copy_image_size is provided, the image_width and image_height parameters are ignored and the size of the given images will be used instead.
+    """
     def __init__(self):
         pass
 

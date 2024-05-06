@@ -1,3 +1,9 @@
+---
+tags:
+- Text
+- TextReplacement
+---
+
 # 🔤 CR Text Replace
 ## Documentation
 - Class name: `CR Text Replace`

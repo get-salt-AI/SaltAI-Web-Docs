@@ -1,3 +1,9 @@
+---
+tags:
+- Animation
+- Image
+---
+
 # SaveAnimatedWEBP
 ## Documentation
 - Class name: `SaveAnimatedWEBP`

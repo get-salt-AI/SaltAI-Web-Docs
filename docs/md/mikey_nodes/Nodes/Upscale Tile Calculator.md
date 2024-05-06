@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Tiled
+---
+
 # Upscale Tile Calculator (Mikey)
 ## Documentation
 - Class name: `Upscale Tile Calculator`

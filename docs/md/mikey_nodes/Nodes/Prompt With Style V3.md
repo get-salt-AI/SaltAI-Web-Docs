@@ -1,102 +1,113 @@
+---
+tags:
+- Prompt
+- PromptStyling
+---
+
 # Prompt With Style (Mikey)
 ## Documentation
 - Class name: `Prompt With Style V3`
 - Category: `Mikey`
 - Output node: `False`
 
-The `PromptWithStyleV3` node is designed to enhance text prompts with predefined or dynamically added styles, processing them through various transformations such as wildcard replacement, syntax stripping, and style application. It aims to generate more expressive and stylistically enriched prompts for downstream tasks, leveraging style configurations and metadata augmentation to achieve nuanced text manipulations.
+The Prompt With Style V3 node is designed to enhance text prompts with predefined styles, allowing for the dynamic integration of style elements into both positive and negative prompts. It processes input prompts by stripping existing style syntax, matching them with available styles, and then reformatting them according to the selected style, including handling of special syntax and wildcards. This node aims to provide a versatile tool for generating styled prompts that can be further customized or used directly in various text-based applications.
 ## Input types
 ### Required
 - **`positive_prompt`**
-    - The positive prompt text to be styled and processed. It undergoes transformations including wildcard replacement, syntax stripping, and style application.
+    - unknown
     - Comfy dtype: `STRING`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`negative_prompt`**
-    - The negative prompt text to be styled and processed similarly to the positive prompt, including transformations like wildcard replacement and syntax stripping.
+    - unknown
     - Comfy dtype: `STRING`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`ratio_selected`**
-    - Selects the aspect ratio for the output, influencing dimensions and scaling of the generated content.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`custom_size`**
-    - Enables custom sizing for the output, allowing for specific dimension adjustments.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `bool`
+    - Python dtype: `unknown`
 - **`fit_custom_size`**
-    - Determines whether the custom size should be strictly adhered to or if slight adjustments are allowed for better aspect ratio preservation.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `bool`
+    - Python dtype: `unknown`
 - **`custom_width`**
-    - Specifies the custom width for the output when custom sizing is enabled.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`custom_height`**
-    - Specifies the custom height for the output when custom sizing is enabled.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`batch_size`**
-    - Defines the number of prompts to process in a single batch, affecting performance and resource utilization.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`seed`**
-    - A seed value used for deterministic operations within prompt processing, such as wildcard replacement and random syntax processing.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`target_mode`**
-    - Determines the mode for target dimension calculation, influencing how the output dimensions are derived from the input.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`base_model`**
-    - The base model used for initial text encoding before any refinements.
+    - unknown
     - Comfy dtype: `MODEL`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`clip_base`**
-    - Specifies the CLIP model used for the base encoding of prompts.
+    - unknown
     - Comfy dtype: `CLIP`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`clip_refiner`**
-    - Specifies the CLIP model used for refining the initial prompt encodings.
+    - unknown
     - Comfy dtype: `CLIP`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 ## Output types
 - **`base_model`**
     - Comfy dtype: `MODEL`
-    - The base model after processing the prompts, ready for further use or analysis.
-    - Python dtype: `str`
+    - unknown
+    - Python dtype: `unknown`
 - **`samples`**
     - Comfy dtype: `LATENT`
-    - Generated samples or outputs after applying the specified styles and transformations to the prompts.
-    - Python dtype: `List[Any]`
+    - unknown
+    - Python dtype: `unknown`
 - **`base_pos_cond`**
     - Comfy dtype: `CONDITIONING`
-    - The conditionings for the positive prompt after processing through the base model.
-    - Python dtype: `Any`
+    - unknown
+    - Python dtype: `unknown`
 - **`base_neg_cond`**
     - Comfy dtype: `CONDITIONING`
-    - The conditionings for the negative prompt after processing through the base model.
-    - Python dtype: `Any`
+    - unknown
+    - Python dtype: `unknown`
 - **`refiner_pos_cond`**
     - Comfy dtype: `CONDITIONING`
-    - The refined conditionings for the positive prompt, further enhancing its characteristics.
-    - Python dtype: `Any`
+    - unknown
+    - Python dtype: `unknown`
 - **`refiner_neg_cond`**
     - Comfy dtype: `CONDITIONING`
-    - The refined conditionings for the negative prompt, further enhancing its characteristics.
-    - Python dtype: `Any`
+    - unknown
+    - Python dtype: `unknown`
 - **`positive_prompt`**
     - Comfy dtype: `STRING`
-    - The processed positive prompt with applied styles and transformations.
-    - Python dtype: `str`
+    - unknown
+    - Python dtype: `unknown`
 - **`negative_prompt`**
     - Comfy dtype: `STRING`
-    - The processed negative prompt with applied styles and transformations.
-    - Python dtype: `str`
-- **`ui`**
-    - The output includes the processed positive and negative prompts with applied styles, alongside metadata such as style names and dimensions for further processing or visualization.
+    - unknown
+    - Python dtype: `unknown`
 ## Usage tips
 - Infra type: `CPU`
-- Common nodes: unknown
+- Common nodes:
+    - [Mikey Sampler Base Only Advanced](../../mikey_nodes/Nodes/Mikey Sampler Base Only Advanced.md)
+    - [Save Image With Prompt Data](../../mikey_nodes/Nodes/Save Image With Prompt Data.md)
+    - [KSampler](../../Comfy/Nodes/KSampler.md)
+    - [FileNamePrefix](../../mikey_nodes/Nodes/FileNamePrefix.md)
+    - [FaceFixerOpenCV](../../mikey_nodes/Nodes/FaceFixerOpenCV.md)
+    - [ConditioningAverage](../../Comfy/Nodes/ConditioningAverage.md)
+
 
 
 ## Source code
@@ -157,14 +168,13 @@ class PromptWithStyleV3:
                 if '.safetensors' not in lora_filename:
                     lora_filename += '.safetensors'
                 # get the lora multiplier
-                lora_multiplier = float(lora_prompt[1]) if lora_prompt[1] != '' else 1.0
-                print('Loading LoRA: ' + lora_filename + ' with multiplier: ' + str(lora_multiplier))
+                try:
+                    lora_multiplier = float(lora_prompt[1]) if lora_prompt[1] != '' else 1.0
+                except:
+                    lora_multiplier = 1.0
                 # apply the lora to the clip using the LoraLoader.load_lora function
-                # def load_lora(self, model, clip, lora_name, strength_model, strength_clip):
-                # ...
-                # return (model_lora, clip_lora)
                 # apply the lora to the clip
-                model, clip_lora = LoraLoader.load_lora(self, model, clip, lora_filename, lora_multiplier, lora_multiplier)
+                model, clip = load_lora(model, clip, lora_filename, lora_multiplier, lora_multiplier)
                 stripped_text = stripped_text.replace(f'<lora:{lora_filename}:{lora_multiplier}>', '')
                 stripped_text = stripped_text.replace(f'<lora:{lora_filename}>', '')
         return model, clip, stripped_text
@@ -324,16 +334,16 @@ class PromptWithStyleV3:
             sdxl_neg_cond = CLIPTextEncodeSDXL.encode(self, clip_base_neg, width, height, 0, 0, target_width, target_height, neg_prompt_, neg_style_)[0]
             refiner_pos_cond = CLIPTextEncodeSDXLRefiner.encode(self, clip_refiner, 6, refiner_width, refiner_height, pos_prompt_)[0]
             refiner_neg_cond = CLIPTextEncodeSDXLRefiner.encode(self, clip_refiner, 2.5, refiner_width, refiner_height, neg_prompt_)[0]
-            prompt.get(str(unique_id))['inputs']['output_positive_prompt'] = pos_prompt_
-            prompt.get(str(unique_id))['inputs']['output_negative_prompt'] = neg_prompt_
-            prompt.get(str(unique_id))['inputs']['output_latent_width'] = width
-            prompt.get(str(unique_id))['inputs']['output_latent_height'] = height
-            prompt.get(str(unique_id))['inputs']['output_target_width'] = target_width
-            prompt.get(str(unique_id))['inputs']['output_target_height'] = target_height
-            prompt.get(str(unique_id))['inputs']['output_refiner_width'] = refiner_width
-            prompt.get(str(unique_id))['inputs']['output_refiner_height'] = refiner_height
-            prompt.get(str(unique_id))['inputs']['output_crop_w'] = 0
-            prompt.get(str(unique_id))['inputs']['output_crop_h'] = 0
+            #prompt.get(str(unique_id))['inputs']['output_positive_prompt'] = pos_prompt_
+            #prompt.get(str(unique_id))['inputs']['output_negative_prompt'] = neg_prompt_
+            #prompt.get(str(unique_id))['inputs']['output_latent_width'] = width
+            #prompt.get(str(unique_id))['inputs']['output_latent_height'] = height
+            #prompt.get(str(unique_id))['inputs']['output_target_width'] = target_width
+            #prompt.get(str(unique_id))['inputs']['output_target_height'] = target_height
+            #prompt.get(str(unique_id))['inputs']['output_refiner_width'] = refiner_width
+            #prompt.get(str(unique_id))['inputs']['output_refiner_height'] = refiner_height
+            #prompt.get(str(unique_id))['inputs']['output_crop_w'] = 0
+            #prompt.get(str(unique_id))['inputs']['output_crop_h'] = 0
             return (base_model, {"samples":latent},
                     sdxl_pos_cond, sdxl_neg_cond,
                     refiner_pos_cond, refiner_neg_cond,
@@ -387,16 +397,16 @@ class PromptWithStyleV3:
             sdxl_neg_cond = CLIPTextEncodeSDXL.encode(self, clip_base_neg, width, height, 0, 0, target_width, target_height, neg_prompt_, neg_style_)[0]
             refiner_pos_cond = CLIPTextEncodeSDXLRefiner.encode(self, clip_refiner, 6, refiner_width, refiner_height, pos_prompt_)[0]
             refiner_neg_cond = CLIPTextEncodeSDXLRefiner.encode(self, clip_refiner, 2.5, refiner_width, refiner_height, neg_prompt_)[0]
-            prompt.get(str(unique_id))['inputs']['output_positive_prompt'] = pos_prompt_
-            prompt.get(str(unique_id))['inputs']['output_negative_prompt'] = neg_prompt_
-            prompt.get(str(unique_id))['inputs']['output_latent_width'] = width
-            prompt.get(str(unique_id))['inputs']['output_latent_height'] = height
-            prompt.get(str(unique_id))['inputs']['output_target_width'] = target_width
-            prompt.get(str(unique_id))['inputs']['output_target_height'] = target_height
-            prompt.get(str(unique_id))['inputs']['output_refiner_width'] = refiner_width
-            prompt.get(str(unique_id))['inputs']['output_refiner_height'] = refiner_height
-            prompt.get(str(unique_id))['inputs']['output_crop_w'] = 0
-            prompt.get(str(unique_id))['inputs']['output_crop_h'] = 0
+            #prompt.get(str(unique_id))['inputs']['output_positive_prompt'] = pos_prompt_
+            #prompt.get(str(unique_id))['inputs']['output_negative_prompt'] = neg_prompt_
+            #prompt.get(str(unique_id))['inputs']['output_latent_width'] = width
+            #prompt.get(str(unique_id))['inputs']['output_latent_height'] = height
+            #prompt.get(str(unique_id))['inputs']['output_target_width'] = target_width
+            #prompt.get(str(unique_id))['inputs']['output_target_height'] = target_height
+            #prompt.get(str(unique_id))['inputs']['output_refiner_width'] = refiner_width
+            #prompt.get(str(unique_id))['inputs']['output_refiner_height'] = refiner_height
+            #prompt.get(str(unique_id))['inputs']['output_crop_w'] = 0
+            #prompt.get(str(unique_id))['inputs']['output_crop_h'] = 0
             return (base_model, {"samples":latent},
                     sdxl_pos_cond, sdxl_neg_cond,
                     refiner_pos_cond, refiner_neg_cond,
@@ -428,16 +438,16 @@ class PromptWithStyleV3:
                 refiner_neg_cond = ConditioningAverage.addWeighted(self, refiner_neg_conds[i], refiner_neg_cond, 1 / weight)[0]
         # return
         extra_pnginfo['PromptWithStyle'] = prompt_with_style
-        prompt.get(str(unique_id))['inputs']['output_positive_prompt'] = pos_prompt_
-        prompt.get(str(unique_id))['inputs']['output_negative_prompt'] = neg_prompt_
-        prompt.get(str(unique_id))['inputs']['output_latent_width'] = width
-        prompt.get(str(unique_id))['inputs']['output_latent_height'] = height
-        prompt.get(str(unique_id))['inputs']['output_target_width'] = target_width
-        prompt.get(str(unique_id))['inputs']['output_target_height'] = target_height
-        prompt.get(str(unique_id))['inputs']['output_refiner_width'] = refiner_width
-        prompt.get(str(unique_id))['inputs']['output_refiner_height'] = refiner_height
-        prompt.get(str(unique_id))['inputs']['output_crop_w'] = 0
-        prompt.get(str(unique_id))['inputs']['output_crop_h'] = 0
+        #prompt.get(str(unique_id))['inputs']['output_positive_prompt'] = pos_prompt_
+        #prompt.get(str(unique_id))['inputs']['output_negative_prompt'] = neg_prompt_
+        #prompt.get(str(unique_id))['inputs']['output_latent_width'] = width
+        #prompt.get(str(unique_id))['inputs']['output_latent_height'] = height
+        #prompt.get(str(unique_id))['inputs']['output_target_width'] = target_width
+        #prompt.get(str(unique_id))['inputs']['output_target_height'] = target_height
+        #prompt.get(str(unique_id))['inputs']['output_refiner_width'] = refiner_width
+        #prompt.get(str(unique_id))['inputs']['output_refiner_height'] = refiner_height
+        #prompt.get(str(unique_id))['inputs']['output_crop_w'] = 0
+        #prompt.get(str(unique_id))['inputs']['output_crop_h'] = 0
         return (base_model, {"samples":latent},
                 sdxl_pos_cond, sdxl_neg_cond,
                 refiner_pos_cond, refiner_neg_cond,

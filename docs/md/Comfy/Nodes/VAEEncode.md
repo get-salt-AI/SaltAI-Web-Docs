@@ -1,3 +1,8 @@
+---
+tags:
+- VAE
+---
+
 # VAE Encode
 ## Documentation
 - Class name: `VAEEncode`
@@ -27,8 +32,8 @@ This node is designed for encoding images into a latent space representation usi
     - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
     - [SetLatentNoiseMask](../../Comfy/Nodes/SetLatentNoiseMask.md)
     - [ImpactKSamplerBasicPipe](../../ComfyUI-Impact-Pack/Nodes/ImpactKSamplerBasicPipe.md)
-    - KSampler (Efficient)
-    - BNK_Unsampler
+    - [KSampler (Efficient)](../../efficiency-nodes-comfyui/Nodes/KSampler (Efficient).md)
+    - [BNK_Unsampler](../../ComfyUI_Noise/Nodes/BNK_Unsampler.md)
     - [LatentUpscale](../../Comfy/Nodes/LatentUpscale.md)
     - KSampler //Inspire
     - DZ_Face_Detailer

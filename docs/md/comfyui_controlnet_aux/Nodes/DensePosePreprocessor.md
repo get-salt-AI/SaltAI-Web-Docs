@@ -1,3 +1,9 @@
+---
+tags:
+- Animation
+- PoseEstimation
+---
+
 # DensePose Estimator
 ## Documentation
 - Class name: `DensePosePreprocessor`

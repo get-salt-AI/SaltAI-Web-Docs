@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- TextOnImage
+---
+
 # 🔤️ CR Draw Text
 ## Documentation
 - Class name: `CR Draw Text`

@@ -1,3 +1,8 @@
+---
+tags:
+- ConditionalSelection
+---
+
 # 🔂 CR Batch Process Switch
 ## Documentation
 - Class name: `CR Batch Process Switch`
@@ -32,7 +37,7 @@ The CR Batch Process Switch node is designed to selectively process images or im
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
-    - IPAdapter
+    - [IPAdapter](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapter.md)
 
 
 

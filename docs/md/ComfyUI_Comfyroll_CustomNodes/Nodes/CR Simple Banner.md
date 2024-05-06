@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- TextOnImage
+---
+
 # 📱 CR Simple Banner
 ## Documentation
 - Class name: `CR Simple Banner`

@@ -1,3 +1,8 @@
+---
+tags:
+- Color
+---
+
 # Cinematic Look (Mikey)
 ## Documentation
 - Class name: `CinematicLook`

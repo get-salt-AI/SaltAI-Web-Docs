@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- ImagePadding
+- ImageTransformation
+---
+
 # Pad Image for Outpainting
 ## Documentation
 - Class name: `ImagePadForOutpaint`

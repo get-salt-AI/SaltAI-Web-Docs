@@ -1,3 +1,10 @@
+---
+tags:
+- Prompt
+- Text
+- Wildcard
+---
+
 # OobaPrompt (Mikey)
 ## Documentation
 - Class name: `OobaPrompt`

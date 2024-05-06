@@ -1,3 +1,11 @@
+---
+tags:
+- CLIP
+- CLIPConditioning
+- CLIPTextEncoding
+- Conditioning
+---
+
 # CLIP Text Encode (Advanced)
 ## Documentation
 - Class name: `BNK_CLIPTextEncodeAdvanced`

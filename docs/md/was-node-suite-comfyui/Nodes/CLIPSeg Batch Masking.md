@@ -1,3 +1,8 @@
+---
+tags:
+- Segmentation
+---
+
 # CLIPSeg Batch Masking
 ## Documentation
 - Class name: `CLIPSeg Batch Masking`

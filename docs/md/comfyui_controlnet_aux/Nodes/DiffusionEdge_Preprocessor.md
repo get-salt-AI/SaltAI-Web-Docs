@@ -1,3 +1,11 @@
+---
+tags:
+- DepthMap
+- Image
+- ImagePreprocessing
+- LineExtraction
+---
+
 # Diffusion Edge (batch size ↑ => speed ↑, VRAM ↑)
 ## Documentation
 - Class name: `DiffusionEdge_Preprocessor`

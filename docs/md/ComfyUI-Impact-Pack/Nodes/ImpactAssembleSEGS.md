@@ -1,3 +1,9 @@
+---
+tags:
+- ImpactPack
+- Segmentation
+---
+
 # Assemble (SEGS)
 ## Documentation
 - Class name: `ImpactAssembleSEGS`

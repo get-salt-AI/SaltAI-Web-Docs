@@ -1,3 +1,9 @@
+---
+tags:
+- ImageFilter
+- VisualEffects
+---
+
 # Image Bloom Filter
 ## Documentation
 - Class name: `Image Bloom Filter`

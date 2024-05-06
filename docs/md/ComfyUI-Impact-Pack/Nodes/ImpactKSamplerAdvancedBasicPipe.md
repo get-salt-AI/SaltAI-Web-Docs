@@ -1,69 +1,74 @@
+---
+tags:
+- Sampling
+---
+
 # KSampler (Advanced/pipe)
 ## Documentation
 - Class name: `ImpactKSamplerAdvancedBasicPipe`
 - Category: `sampling`
 - Output node: `False`
 
-This node provides an advanced sampling mechanism for generating or modifying images based on a given configuration, sampler name, scheduler, and a basic pipeline setup. It encapsulates complex sampling strategies to offer enhanced control over the image generation process, leveraging advanced techniques to achieve specific visual outcomes.
+This node represents an advanced version of the KSampler within a pipeline, designed to facilitate complex sampling processes by integrating additional configurations and options for more nuanced control over the sampling outcome. It aims to enhance the flexibility and precision of sampling tasks in generative models.
 ## Input types
 ### Required
 - **`basic_pipe`**
-    - Represents the basic pipeline setup, providing essential components and context for the sampling operation.
+    - The basic pipeline configuration that the sampler operates on, including model and initial settings.
     - Comfy dtype: `BASIC_PIPE`
     - Python dtype: `tuple`
 - **`add_noise`**
-    - Indicates whether noise should be added to the sampling process, affecting the texture and details of the generated images.
+    - Indicates whether noise should be added to the sampling process, enabling or disabling this feature.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`noise_seed`**
-    - Specifies the seed for noise generation, ensuring reproducibility of the noise patterns in the sampling process.
+    - Specifies the seed for noise generation, ensuring reproducibility in the sampling process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`steps`**
-    - Defines the number of steps in the sampling process, impacting the refinement and detail of the generated images.
+    - Defines the number of steps to be taken in the sampling process, affecting the depth of sampling.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - Specifies the configuration for the sampling process, influencing the behavior and quality of the generated images.
+    - Specifies the configuration setting for the sampling process, impacting the behavior and outcome of the sampler.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sampler_name`**
-    - Determines the specific sampling algorithm to be used, allowing for customization of the sampling process.
+    - Determines the specific sampler algorithm to be used, allowing for customization of the sampling process.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - Defines the scheduling strategy for the sampling process, affecting how samples are generated over time.
+    - Selects the scheduling algorithm to manage the sampling steps, influencing the progression and quality of the sampling.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`latent_image`**
-    - Provides the initial latent image to be modified or enhanced through the sampling process.
+    - The initial latent image to be used in the sampling process, serving as the starting point.
     - Comfy dtype: `LATENT`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `object`
 - **`start_at_step`**
-    - Specifies the starting step for the sampling process, allowing for control over the initial phase of image generation.
+    - Determines the starting step for the sampling process, allowing for mid-process initiation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`end_at_step`**
-    - Determines the ending step for the sampling process, defining the final phase of image refinement.
+    - Specifies the ending step for the sampling process, defining the termination point.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`return_with_leftover_noise`**
-    - Indicates whether the sampling process should return the image with leftover noise, affecting the final image texture.
+    - Controls whether the sampling process should return the result with leftover noise, affecting the final output.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`basic_pipe`**
     - Comfy dtype: `BASIC_PIPE`
-    - The basic pipeline setup, including model, clip, vae, and conditioning components.
+    - The basic pipeline configuration after the sampling process.
     - Python dtype: `tuple`
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - The latent representation of the generated or modified image after the sampling process.
-    - Python dtype: `torch.Tensor`
+    - The resulting latent image after the sampling process.
+    - Python dtype: `object`
 - **`vae`**
     - Comfy dtype: `VAE`
-    - The variational autoencoder component used in the sampling process for image generation or modification.
-    - Python dtype: `torch.nn.Module`
+    - The VAE model used in the sampling process, included in the output for further use or analysis.
+    - Python dtype: `object`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -81,7 +86,7 @@ class KSamplerAdvancedBasicPipe:
                      "steps": ("INT", {"default": 20, "min": 1, "max": 10000}),
                      "cfg": ("FLOAT", {"default": 8.0, "min": 0.0, "max": 100.0}),
                      "sampler_name": (comfy.samplers.KSampler.SAMPLERS, ),
-                     "scheduler": (comfy.samplers.KSampler.SCHEDULERS, ),
+                     "scheduler": (core.SCHEDULERS, ),
                      "latent_image": ("LATENT", ),
                      "start_at_step": ("INT", {"default": 0, "min": 0, "max": 10000}),
                      "end_at_step": ("INT", {"default": 10000, "min": 0, "max": 10000}),
@@ -107,7 +112,7 @@ class KSamplerAdvancedBasicPipe:
         else:
             return_with_leftover_noise = "disable"
 
-        latent = nodes.KSamplerAdvanced().sample(model, add_noise, noise_seed, steps, cfg, sampler_name, scheduler, positive, negative, latent_image, start_at_step, end_at_step, return_with_leftover_noise, denoise)[0]
+        latent = separated_sample(model, add_noise, noise_seed, steps, cfg, sampler_name, scheduler, positive, negative, latent_image, start_at_step, end_at_step, return_with_leftover_noise)
         return basic_pipe, latent, vae
 
 ```

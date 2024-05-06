@@ -1,3 +1,9 @@
+---
+tags:
+- Prompt
+- PromptStyling
+---
+
 # CR SDXL Prompt Mixer (Legacy)
 ## Documentation
 - Class name: `CR SDXL Prompt Mixer`

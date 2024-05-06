@@ -1,3 +1,9 @@
+---
+tags:
+- Noise
+- NoisePatterns
+---
+
 # Image Power Noise
 ## Documentation
 - Class name: `Image Power Noise`

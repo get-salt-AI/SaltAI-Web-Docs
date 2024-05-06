@@ -1,3 +1,9 @@
+---
+tags:
+- ModelGuidance
+- ModelPatch
+---
+
 # TomePatchModel
 ## Documentation
 - Class name: `TomePatchModel`

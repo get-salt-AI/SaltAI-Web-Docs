@@ -1,3 +1,8 @@
+---
+tags:
+- Image
+---
+
 # CopyMakeBorder
 ## Documentation
 - Class name: `CopyMakeBorder`

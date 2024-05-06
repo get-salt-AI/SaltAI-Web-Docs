@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- Scheduling
+---
+
 # 📝 CR Encode Scheduled Prompts
 ## Documentation
 - Class name: `CR Encode Scheduled Prompts`

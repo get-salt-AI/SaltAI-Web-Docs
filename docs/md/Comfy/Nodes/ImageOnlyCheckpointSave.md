@@ -1,3 +1,11 @@
+---
+tags:
+- Checkpoint
+- Loader
+- ModelIO
+- ModelLoader
+---
+
 # ImageOnlyCheckpointSave
 ## Documentation
 - Class name: `ImageOnlyCheckpointSave`

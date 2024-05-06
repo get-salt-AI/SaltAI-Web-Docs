@@ -1,54 +1,60 @@
+---
+tags:
+- SEGSPrep
+- Segmentation
+---
+
 # Make Tile SEGS
 ## Documentation
 - Class name: `ImpactMakeTileSEGS`
 - Category: `ImpactPack/__for_testing`
 - Output node: `False`
 
-The ImpactMakeTileSEGS node is designed to process segmentation data (SEGS) by generating tiled segments based on specified bounding box sizes and overlap criteria. It adjusts for irregularities in mask shapes and ensures that the tiles cover the entire image area efficiently, taking into account optional filters to include or exclude certain segments.
+The ImpactMakeTileSEGS node is designed to process segmentation masks (SEGS) to generate tiled versions of these masks based on specified bounding box sizes and overlap parameters. It applies various filtering and adjustment techniques to ensure the tiles are generated in a manner that respects the original segmentation's integrity and spatial distribution, accommodating for both inclusion and exclusion criteria, as well as handling irregularities in mask shapes.
 ## Input types
 ### Required
 - **`images`**
-    - The 'images' parameter represents the input images over which the segmentation and tiling process will be applied. It is crucial for determining the dimensions and the area to be covered by the generated tiles.
+    - The images to be processed for tiling, serving as the base for segmentation and subsequent tiling operations.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `List[Image]`
 - **`bbox_size`**
-    - Specifies the size of the bounding box for each tile. It is a key factor in determining how the image is divided into tiles, affecting the granularity of the segmentation.
+    - Determines the size of the bounding box for each tile, directly influencing the granularity of the tiling output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`crop_factor`**
-    - Determines the factor by which the bounding box is expanded or contracted during the cropping process. This parameter influences the size of the area around detected segments that is included in the output.
+    - A factor that influences the cropping of images during the tiling process, affecting the size and area of the resulting tiles.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`min_overlap`**
-    - Defines the minimum overlap between adjacent tiles. This parameter ensures that there is sufficient coverage and continuity between tiles, especially in areas of interest.
+    - Specifies the minimum overlap between adjacent tiles, ensuring a seamless transition and coverage across tiles.
     - Comfy dtype: `INT`
-    - Python dtype: `float`
+    - Python dtype: `int`
 - **`filter_segs_dilation`**
-    - Specifies the amount by which the segmentation masks are dilated or eroded. This parameter can adjust the boundaries of segments to include more or less surrounding area.
+    - Specifies the dilation applied to segmentation masks, adjusting the area covered by each segment for inclusion or exclusion in the tiling process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`mask_irregularity`**
-    - Controls the irregularity of the mask shapes within the tiles. A higher value leads to more irregular shapes, which can be useful for certain types of segmentation tasks.
+    - Defines the level of irregularity to be applied to the masks, affecting the shape and edges of the tiles.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`irregular_mask_mode`**
-    - Determines the mode of generating irregular masks, offering options between fast generation with lower quality or slower generation with higher quality.
+    - Specifies the mode of generating irregular masks, influencing the quality and reuse strategy of masks for tiling.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`filter_in_segs_opt`**
-    - An optional filter to include only certain segments in the tiling process. This allows for focusing on specific areas or features within the image.
+    - Defines segmentation masks to be included in the tiling process, allowing for targeted tiling within specified regions of interest.
     - Comfy dtype: `SEGS`
-    - Python dtype: `Optional[torch.Tensor]`
+    - Python dtype: `Optional[List[SEG]]`
 - **`filter_out_segs_opt`**
-    - An optional filter to exclude certain segments from the tiling process. This can be used to remove unwanted areas or features from the final tiled segments.
+    - Specifies segmentation masks to be excluded from the tiling process, enhancing the node's ability to focus on regions of interest by removing undesired segments.
     - Comfy dtype: `SEGS`
-    - Python dtype: `Optional[torch.Tensor]`
+    - Python dtype: `Optional[List[SEG]]`
 ## Output types
 - **`segs`**
     - Comfy dtype: `SEGS`
-    - Returns the segmentation data (SEGS) of the generated tiled segments. This output facilitates further processing or analysis of the tiled segments.
-    - Python dtype: `Tuple[torch.Tensor, List[SEG]]`
+    - The output consists of segmented tiles, each representing a portion of the original image with applied filters and adjustments for tiling.
+    - Python dtype: `List[SEG]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
@@ -85,7 +91,7 @@ class MakeTileSEGS:
 
     def doit(self, images, bbox_size, crop_factor, min_overlap, filter_segs_dilation, mask_irregularity=0, irregular_mask_mode="Reuse fast", filter_in_segs_opt=None, filter_out_segs_opt=None):
         if bbox_size <= 2*min_overlap:
-            new_min_overlap = 2 / bbox_size
+            new_min_overlap = bbox_size / 2
             print(f"[MakeTileSEGS] min_overlap should be greater than bbox_size. (value changed: {min_overlap} => {new_min_overlap})")
             min_overlap = new_min_overlap
 
@@ -105,6 +111,12 @@ class MakeTileSEGS:
             elif irregular_mask_mode == "All random fast":
                 mask_quality = 512
 
+        # compensate overlap/bbox_size for irregular mask
+        if mask_irregularity > 0:
+            compensate = max(6, int(mask_quality * mask_irregularity / 4))
+            min_overlap += compensate
+            bbox_size += compensate*2
+
         # create exclusion mask
         if filter_out_segs_opt is not None:
             exclusion_mask = core.segs_to_combined_mask(filter_out_segs_opt)
@@ -122,7 +134,7 @@ class MakeTileSEGS:
 
             a, b = core.mask_to_segs(and_mask, True, 1.0, False, 0)
             if len(b) == 0:
-                return a, b
+                return ((a, b),)
 
             start_x, start_y, c, d = b[0].crop_region
             w = c - start_x
@@ -139,8 +151,8 @@ class MakeTileSEGS:
             print(f"[MaskTileSEGS] bbox_size is greater than resolution (value changed: {bbox_size} => {new_bbox_size}")
             bbox_size = new_bbox_size
 
-        n_horizontal = int(w / (bbox_size - min_overlap))
-        n_vertical = int(h / (bbox_size - min_overlap))
+        n_horizontal = math.ceil(w / (bbox_size - min_overlap))
+        n_vertical = math.ceil(h / (bbox_size - min_overlap))
 
         w_overlap_sum = (bbox_size * n_horizontal) - w
         if w_overlap_sum < 0:
@@ -157,6 +169,12 @@ class MakeTileSEGS:
         h_overlap_size = 0 if n_vertical == 1 else int(h_overlap_sum/(n_vertical-1))
 
         new_segs = []
+
+        if w_overlap_size == bbox_size:
+            n_horizontal = 1
+
+        if h_overlap_size == bbox_size:
+            n_vertical = 1
 
         y = start_y
         for j in range(0, n_vertical):

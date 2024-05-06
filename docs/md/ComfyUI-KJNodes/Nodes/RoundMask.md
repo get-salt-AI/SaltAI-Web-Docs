@@ -1,20 +1,26 @@
+---
+tags:
+- Mask
+- MaskGeneration
+---
+
 # RoundMask
 ## Documentation
 - Class name: `RoundMask`
 - Category: `KJNodes/masking`
 - Output node: `False`
 
-The RoundMask node is designed to round the values of a given mask to the nearest integers, effectively normalizing its values for further processing or analysis.
+The RoundMask node is designed to convert a mask or a batch of masks into binary masks, effectively rounding the values to the nearest binary values (0 or 1). This operation is crucial for tasks that require clear, distinct mask boundaries without gradations.
 ## Input types
 ### Required
 - **`mask`**
-    - The mask to be rounded. This operation normalizes the mask's values to the nearest integers, which is crucial for ensuring consistency and accuracy in subsequent processing steps.
+    - The input mask or batch of masks to be rounded to binary values. This is essential for achieving clear and distinct mask boundaries in various image processing tasks.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The rounded mask, with all values normalized to the nearest integers. This is essential for maintaining the integrity of the mask's structure for further operations.
+    - The output is a binary mask or a batch of binary masks, where each pixel value is rounded to the nearest binary value (0 or 1), ensuring clear and distinct boundaries.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
@@ -33,6 +39,11 @@ class RoundMask:
     RETURN_TYPES = ("MASK",)
     FUNCTION = "round"
     CATEGORY = "KJNodes/masking"
+    DESCRIPTION = """
+Rounds the mask or batch of masks to a binary mask.  
+<img src="https://github.com/kijai/ComfyUI-KJNodes/assets/40791699/52c85202-f74e-4b96-9dac-c8bda5ddcc40" width="300" height="250" alt="RoundMask example">
+
+"""
 
     def round(self, mask):
         mask = mask.round()

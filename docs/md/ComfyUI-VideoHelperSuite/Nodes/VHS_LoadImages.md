@@ -1,41 +1,47 @@
+---
+tags:
+- Image
+- ImageLoad
+---
+
 # Load Images (Upload) 🎥🅥🅗🅢
 ## Documentation
 - Class name: `VHS_LoadImages`
 - Category: `Video Helper Suite 🎥🅥🅗🅢`
 - Output node: `False`
 
-The VHS_LoadImages node is designed for loading a batch of images from a specified directory. It supports filtering and limiting the number of images loaded, making it a versatile tool for managing and preprocessing image datasets for video processing tasks.
+The node 'VHS_LoadImages' is designed to facilitate the loading of images from a specified directory, supporting operations such as image capping, skipping initial images, and selecting every nth image to efficiently manage and process image batches for video or image-based projects.
 ## Input types
 ### Required
 - **`directory`**
-    - Specifies the directory from which images are to be loaded. It is crucial for identifying the source of the images to be processed.
+    - Specifies the directory from which images are to be loaded, serving as the primary source for the image loading operation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`image_load_cap`**
-    - Limits the number of images to be loaded from the directory. This parameter is useful for controlling the dataset size or for testing purposes.
+    - Limits the number of images to be loaded from the directory, allowing for control over the batch size for processing.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`skip_first_images`**
-    - Skips a specified number of images from the beginning of the directory. This can be used for excluding initial images that are not needed for processing.
+    - Skips a specified number of initial images in the directory, useful for starting the loading process from a certain point.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`select_every_nth`**
-    - Loads every Nth image from the directory, allowing for subsampling of the dataset. This is useful for reducing the dataset size or for selecting a representative subset of images.
+    - Loads every nth image from the directory, enabling selective processing of images at regular intervals.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The loaded images as a batch, ready for further processing or analysis.
+    - The loaded images, processed and ready for further use in the workflow.
     - Python dtype: `torch.Tensor`
 - **`mask`**
     - Comfy dtype: `MASK`
-    - Generated masks for the loaded images, useful for image segmentation or editing tasks.
+    - The masks associated with the loaded images, if available, for use in image processing tasks.
     - Python dtype: `torch.Tensor`
 - **`int`**
     - Comfy dtype: `INT`
-    - The total number of images loaded, providing insight into the dataset size after applying the loading parameters.
+    - The total count of images loaded from the directory, providing insight into the batch size.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
@@ -66,9 +72,9 @@ class LoadImagesFromDirectoryUpload:
                 "directory": (directories,),
             },
             "optional": {
-                "image_load_cap": ("INT", {"default": 0, "min": 0, "step": 1}),
-                "skip_first_images": ("INT", {"default": 0, "min": 0, "step": 1}),
-                "select_every_nth": ("INT", {"default": 1, "min": 1, "step": 1}),
+                "image_load_cap": ("INT", {"default": 0, "min": 0, "max": BIGMAX, "step": 1}),
+                "skip_first_images": ("INT", {"default": 0, "min": 0, "max": BIGMAX, "step": 1}),
+                "select_every_nth": ("INT", {"default": 1, "min": 1, "max": BIGMAX, "step": 1}),
             }
         }
     

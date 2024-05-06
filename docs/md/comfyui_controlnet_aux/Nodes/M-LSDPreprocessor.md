@@ -1,3 +1,11 @@
+---
+tags:
+- DepthMap
+- Image
+- ImagePreprocessing
+- LineExtraction
+---
+
 # M-LSD Lines
 ## Documentation
 - Class name: `M-LSDPreprocessor`

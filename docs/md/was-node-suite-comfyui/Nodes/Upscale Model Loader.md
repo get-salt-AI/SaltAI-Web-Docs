@@ -1,3 +1,10 @@
+---
+tags:
+- ImageScaling
+- ImageUpscaling
+- Upscale
+---
+
 # Upscale Model Loader
 ## Documentation
 - Class name: `Upscale Model Loader`
@@ -23,7 +30,7 @@ This node is designed to load and prepare upscale models for use, ensuring they 
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
-    - UltimateSDUpscale
+    - [UltimateSDUpscale](../../ComfyUI_UltimateSDUpscale/Nodes/UltimateSDUpscale.md)
     - [Anything Everywhere](../../cg-use-everywhere/Nodes/Anything Everywhere.md)
 
 

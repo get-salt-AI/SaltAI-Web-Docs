@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- WavePatterns
+---
+
 # AbsCosWave 📅🅕🅝
 ## Documentation
 - Class name: `AbsCosWave`

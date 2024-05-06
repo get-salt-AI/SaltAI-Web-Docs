@@ -1,3 +1,8 @@
+---
+tags:
+- Color
+---
+
 # ImageQuantize
 ## Documentation
 - Class name: `ImageQuantize`

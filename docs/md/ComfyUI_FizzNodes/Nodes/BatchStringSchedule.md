@@ -1,49 +1,63 @@
+---
+tags:
+- AnimationScheduling
+- Scheduling
+---
+
 # Batch String Schedule 📅🅕🅝
 ## Documentation
 - Class name: `BatchStringSchedule`
 - Category: `FizzNodes 📅🅕🅝/BatchScheduleNodes`
 - Output node: `False`
 
-The BatchStringSchedule node is designed for scheduling and manipulating strings in batch operations. It focuses on processing multiple strings simultaneously, applying transformations, and generating scheduled outputs based on predefined criteria. This node is particularly useful in scenarios where batch processing of string data is required to achieve efficient and scalable text manipulation and generation.
+The BatchStringSchedule node processes animation prompts by splitting them into positive and negative prompts, interpolating these prompts over a series of frames, and returning the current and next prompts for both positive and negative categories. This node is designed to work with batch processing of strings for animation purposes, facilitating dynamic text generation based on frame-specific settings.
 ## Input types
 ### Required
 - **`text`**
-    - The 'text' parameter is a multiline string that serves as the input for batch processing. It is crucial for defining the text data to be manipulated or transformed within the node.
+    - The 'text' parameter represents the animation prompts to be processed, serving as the input for splitting and interpolation.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`max_frames`**
-    - The 'max_frames' parameter specifies the maximum number of frames for the batch scheduling process. It determines the length of the animation or transformation sequence.
+    - Specifies the maximum number of frames for which the animation prompts will be processed and interpolated.
     - Comfy dtype: `INT`
     - Python dtype: `int`
+- **`print_output`**
+    - A flag indicating whether the output should be printed for debugging or logging purposes.
+    - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ### Optional
 - **`pre_text`**
-    - The 'pre_text' parameter allows for the specification of text to be prepended before the main text content in the scheduling process, influencing the overall output.
+    - Text to be prepended to each animation prompt before processing.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`app_text`**
-    - The 'app_text' parameter enables the appending of text after the main content, further customizing the output of the scheduling process.
+    - Text to be appended to each animation prompt after processing.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`pw_a`**
-    - The 'pw_a' parameter influences the weighting of the animation or transformation, contributing to the dynamic adjustment of the scheduled content.
+    - Parameter weight A for adjusting the interpolation of prompts.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pw_b`**
-    - The 'pw_b' parameter, similar to 'pw_a', affects the weighting and dynamic adjustment of the scheduled content in the batch processing.
+    - Parameter weight B for further customization of prompt interpolation.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pw_c`**
-    - The 'pw_c' parameter plays a role in the dynamic weighting and adjustment of the content, similar to 'pw_a' and 'pw_b', but with its unique influence.
+    - Parameter weight C, used in conjunction with A and B for fine-tuning the interpolation process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pw_d`**
-    - The 'pw_d' parameter, like the other weighting parameters, impacts the dynamic adjustment of the scheduled content, offering a distinct level of control.
+    - Parameter weight D, provides additional control over the interpolation of animation prompts.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
-- **`string`**
+- **`POS`**
     - Comfy dtype: `STRING`
-    - This output represents the processed text data after applying the scheduled transformations. It encapsulates the results of batch string scheduling and manipulation, formatted as a string.
+    - The current positive prompt interpolated for the current frame.
+    - Python dtype: `str`
+- **`NEG`**
+    - Comfy dtype: `STRING`
+    - The current negative prompt interpolated for the current frame.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -55,33 +69,51 @@ The BatchStringSchedule node is designed for scheduling and manipulating strings
 class BatchStringSchedule:
     @classmethod
     def INPUT_TYPES(s):
-        return {"required": {"text": ("STRING", {"multiline": True, "default": defaultPrompt}),
-                             "max_frames": ("INT", {"default": 120.0, "min": 1.0, "max": 999999.0, "step": 1.0}),},
-                # "forceInput": True}),},
-                "optional": {"pre_text": ("STRING", {"multiline": True, "default": "PRE", }),  # "forceInput": True}),
-                             "app_text": ("STRING", {"multiline": True, "default": "APP", }),  # "forceInput": True}),
-                             "pw_a": ("FLOAT", {"default": 0.0, "min": -9999.0, "max": 9999.0, "step": 0.1, }),
-                             # "forceInput": True }),
-                             "pw_b": ("FLOAT", {"default": 0.0, "min": -9999.0, "max": 9999.0, "step": 0.1, }),
-                             # "forceInput": True }),
-                             "pw_c": ("FLOAT", {"default": 0.0, "min": -9999.0, "max": 9999.0, "step": 0.1, }),
-                             # "forceInput": True }),
-                             "pw_d": ("FLOAT", {"default": 0.0, "min": -9999.0, "max": 9999.0, "step": 0.1, }),
-                             # "forceInput": True }),
-                             }}
+        return {"required": {
+                    "text": ("STRING", {"multiline": True, "default": defaultPrompt}),
+                    "max_frames": ("INT", {"default": 120.0, "min": 1.0, "max": 999999.0, "step": 1.0}),
+                    "print_output": ("BOOLEAN", {"default": False}),
+            },
+                "optional": {
+                    "pre_text": ("STRING", {"multiline": True, "forceInput": True}),
+                    "app_text": ("STRING", {"multiline": True, "forceInput": True}),
+                    "pw_a": ("FLOAT", {"default": 0.0, "min": -9999.0, "max": 9999.0, "step": 0.1, "forceInput": True }),
+                    "pw_b": ("FLOAT", {"default": 0.0, "min": -9999.0, "max": 9999.0, "step": 0.1, "forceInput": True }),
+                    "pw_c": ("FLOAT", {"default": 0.0, "min": -9999.0, "max": 9999.0, "step": 0.1, "forceInput": True }),
+                    "pw_d": ("FLOAT", {"default": 0.0, "min": -9999.0, "max": 9999.0, "step": 0.1, "forceInput": True }),
+                }
+        }
 
-    RETURN_TYPES = ("STRING",)
+    RETURN_TYPES = ("STRING", "STRING",)
+    RETURN_NAMES = ("POS", "NEG",)
     FUNCTION = "animate"
 
     CATEGORY = "FizzNodes 📅🅕🅝/BatchScheduleNodes"
 
-    def animate(self, text, max_frames, pw_a=0, pw_b=0, pw_c=0, pw_d=0, pre_text='', app_text=''):
-        inputText = str("{" + text + "}")
-        inputText = re.sub(r',\s*}', '}', inputText)
-        start_frame = 0
-        animation_prompts = json.loads(inputText.strip())
-        cur_prompt_series, nxt_prompt_series, weight_series = interpolate_prompt_series(animation_prompts, max_frames, start_frame, pre_text,
-                                                             app_text, pw_a, pw_b, pw_c, pw_d)
-        return (cur_prompt_series,)
+    def animate(self, text, max_frames,  pw_a=0, pw_b=0, pw_c=0, pw_d=0, pre_text='', app_text='',
+                print_output=False):
+        settings = ScheduleSettings(
+            text_g=text,
+            pre_text_G=pre_text,
+            app_text_G=app_text,
+            text_L=None,
+            pre_text_L=None,
+            app_text_L=None,
+            max_frames=max_frames,
+            current_frame=None,
+            print_output=print_output,
+            pw_a=pw_a,
+            pw_b=pw_b,
+            pw_c=pw_c,
+            pw_d=pw_d,
+            start_frame=0,
+            width=None,
+            height=None,
+            crop_w=None,
+            crop_h=None,
+            target_width=None,
+            target_height=None,
+        )
+        return batch_string_schedule(settings)
 
 ```

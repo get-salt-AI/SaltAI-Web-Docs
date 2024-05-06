@@ -1,29 +1,34 @@
+---
+tags:
+- ImageTransformation
+---
+
 # RemapFromInsideParabolas
 ## Documentation
 - Class name: `RemapFromInsideParabolas`
 - Category: `Bmad/CV/Transform`
 - Output node: `False`
 
-This node is designed to perform a remapping operation from the perspective of inside two parabolas. It utilizes a source mask defined by two parabolas to transform the spatial layout of an image, adjusting its dimensions according to specified width and height parameters. The transformation aims to modify the image's appearance by altering its geometry in a way that reflects the curvature and orientation of the parabolas.
+This node is designed to perform a remapping operation from the perspective of inside two parabolas, transforming an image based on specified parabolic contours and dimensions. It utilizes geometric transformations to adjust the image's representation, aligning it with the curvature and orientation defined by the parabolas.
 ## Input types
 ### Required
-- **`src_mask_with_2_parabolas`**
-    - Specifies the source mask that contains two parabolas. This mask is used as a reference for the remapping operation, dictating the transformation's geometric basis.
+- **`src_mask_with_i_parabolas`**
+    - Specifies the source mask that contains two parabolas, which are used to define the transformation geometry. This mask is crucial for determining how the image will be remapped according to the parabolic contours.
     - Comfy dtype: `MASK`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `numpy.ndarray`
 - **`width`**
-    - Determines the width of the output image after the remapping operation. This parameter allows for the adjustment of the image's horizontal dimension.
+    - Defines the width of the output image after remapping. This parameter allows for adjusting the scale of the transformed image.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Sets the height of the output image post-remapping. This parameter enables the modification of the image's vertical dimension.
+    - Specifies the height of the output image after remapping, enabling control over the vertical scale of the transformed image.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`remap`**
     - Comfy dtype: `REMAP`
-    - The result of the remapping operation, which is an image transformed according to the curvature and orientation of the two parabolas defined in the source mask.
-    - Python dtype: `torch.Tensor`
+    - The result of the remapping operation, which is an image transformed to align with the specified parabolic contours and dimensions.
+    - Python dtype: `Tuple[numpy.ndarray, numpy.ndarray, Tuple[int, int, int, int]]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

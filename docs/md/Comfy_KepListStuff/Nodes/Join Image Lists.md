@@ -1,3 +1,8 @@
+---
+tags:
+- ModelMerge
+---
+
 # Join Image Lists
 ## Documentation
 - Class name: `Join Image Lists`

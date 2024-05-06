@@ -1,3 +1,10 @@
+---
+tags:
+- CLIP
+- CLIPConditioning
+- Conditioning
+---
+
 # CLIPTextEncode (NSP)
 ## Documentation
 - Class name: `CLIPTextEncode (NSP)`

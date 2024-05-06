@@ -1,3 +1,8 @@
+---
+tags:
+- VAE
+---
+
 # ⚙️ CR VAE Decode
 ## Documentation
 - Class name: `CR VAE Decode`

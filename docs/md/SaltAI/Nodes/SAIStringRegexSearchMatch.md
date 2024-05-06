@@ -1,3 +1,8 @@
+---
+tags:
+- Text
+---
+
 # Regex Search and Match
 ## Documentation
 - Class name: `SAIStringRegexSearchMatch`

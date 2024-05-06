@@ -1,3 +1,10 @@
+---
+tags:
+- Flip
+- Image
+- ImageTransformation
+---
+
 # Image Flip
 ## Documentation
 - Class name: `Image Flip`

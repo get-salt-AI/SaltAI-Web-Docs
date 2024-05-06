@@ -1,14 +1,20 @@
+---
+tags:
+- SamplerScheduler
+- Sampling
+---
+
 # KSamplerAdvancedProvider
 ## Documentation
 - Class name: `KSamplerAdvancedProvider`
 - Category: `ImpactPack/Sampler`
 - Output node: `False`
 
-This node provides an advanced KSampler configuration, allowing for the customization of sampling behavior through various parameters. It is designed to enhance the flexibility and control over the sampling process, catering to specific needs and preferences.
+This node provides an advanced KSampler configuration, enabling the customization of sampling processes with additional parameters and options for more complex and tailored sampling strategies.
 ## Input types
 ### Required
 - **`cfg`**
-    - Specifies the configuration value for the sampler, influencing its behavior and performance.
+    - Specifies the configuration value for the sampler, influencing its behavior and performance characteristics.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sampler_name`**
@@ -16,17 +22,26 @@ This node provides an advanced KSampler configuration, allowing for the customiz
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - Selects the scheduling algorithm to be used, chosen from a predefined set of schedulers.
+    - Selects the scheduling algorithm to manage the sampling process, affecting the progression and adjustment of sampling parameters.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
+- **`sigma_factor`**
+    - Adjusts the sigma factor, modifying the noise level applied during the sampling process for fine-tuning purposes.
+    - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`basic_pipe`**
-    - Provides the basic pipeline components required for the sampling process.
+    - Provides the basic pipeline components necessary for the sampling operation, including the model and conditioning information.
     - Comfy dtype: `BASIC_PIPE`
     - Python dtype: `tuple`
+### Optional
+- **`sampler_opt`**
+    - Optional sampler configurations, allowing for further customization of the sampling process.
+    - Comfy dtype: `SAMPLER`
+    - Python dtype: `dict`
 ## Output types
 - **`ksampler_advanced`**
     - Comfy dtype: `KSAMPLER_ADVANCED`
-    - Returns an advanced KSampler instance, configured according to the provided parameters.
+    - An advanced KSampler instance configured with the specified parameters for complex sampling tasks.
     - Python dtype: `KSamplerAdvancedWrapper`
 ## Usage tips
 - Infra type: `CPU`
@@ -41,9 +56,13 @@ class KSamplerAdvancedProvider:
         return {"required": {
                                 "cfg": ("FLOAT", {"default": 8.0, "min": 0.0, "max": 100.0}),
                                 "sampler_name": (comfy.samplers.KSampler.SAMPLERS, ),
-                                "scheduler": (comfy.samplers.KSampler.SCHEDULERS, ),
+                                "scheduler": (core.SCHEDULERS, ),
+                                "sigma_factor": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 10.0, "step": 0.01}),
                                 "basic_pipe": ("BASIC_PIPE", )
                              },
+                "optional": {
+                                "sampler_opt": ("SAMPLER", )
+                            }
                 }
 
     RETURN_TYPES = ("KSAMPLER_ADVANCED",)
@@ -51,9 +70,9 @@ class KSamplerAdvancedProvider:
 
     CATEGORY = "ImpactPack/Sampler"
 
-    def doit(self, cfg, sampler_name, scheduler, basic_pipe):
+    def doit(self, cfg, sampler_name, scheduler, basic_pipe, sigma_factor=1.0, sampler_opt=None):
         model, _, _, positive, negative = basic_pipe
-        sampler = KSamplerAdvancedWrapper(model, cfg, sampler_name, scheduler, positive, negative)
+        sampler = KSamplerAdvancedWrapper(model, cfg, sampler_name, scheduler, positive, negative, sampler_opt=sampler_opt, sigma_factor=sigma_factor)
         return (sampler, )
 
 ```

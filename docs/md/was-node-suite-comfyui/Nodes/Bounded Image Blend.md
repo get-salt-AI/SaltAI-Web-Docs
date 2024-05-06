@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- ImageBlend
+- ImageComposite
+---
+
 # Bounded Image Blend
 ## Documentation
 - Class name: `Bounded Image Blend`

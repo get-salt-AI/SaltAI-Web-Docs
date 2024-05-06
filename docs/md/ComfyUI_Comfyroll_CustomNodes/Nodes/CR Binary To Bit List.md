@@ -1,3 +1,8 @@
+---
+tags:
+- ComfyrollNodes
+---
+
 # 📜 CR Binary To Bit List
 ## Documentation
 - Class name: `CR Binary To Bit List`

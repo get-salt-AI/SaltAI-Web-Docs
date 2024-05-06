@@ -1,3 +1,8 @@
+---
+tags:
+- Image
+---
+
 # Image History Loader
 ## Documentation
 - Class name: `Image History Loader`

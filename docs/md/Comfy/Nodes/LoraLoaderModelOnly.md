@@ -1,3 +1,8 @@
+---
+tags:
+- LoRA
+---
+
 # LoraLoaderModelOnly
 ## Documentation
 - Class name: `LoraLoaderModelOnly`
@@ -27,11 +32,11 @@ This node specializes in loading a LoRA model without requiring a CLIP model, fo
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes:
-    - [IPAdapterApplyFaceID](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApplyFaceID.md)
+    - IPAdapterApplyFaceID
     - [LoraLoaderModelOnly](../../Comfy/Nodes/LoraLoaderModelOnly.md)
     - [KSampler](../../Comfy/Nodes/KSampler.md)
     - [FreeU_V2](../../Comfy/Nodes/FreeU_V2.md)
-    - UltimateSDUpscale
+    - [UltimateSDUpscale](../../ComfyUI_UltimateSDUpscale/Nodes/UltimateSDUpscale.md)
 
 
 

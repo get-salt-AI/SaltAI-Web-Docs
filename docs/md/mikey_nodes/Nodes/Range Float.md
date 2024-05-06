@@ -1,3 +1,8 @@
+---
+tags:
+- NumberRangeGeneration
+---
+
 # Range Float (Mikey)
 ## Documentation
 - Class name: `Range Float`

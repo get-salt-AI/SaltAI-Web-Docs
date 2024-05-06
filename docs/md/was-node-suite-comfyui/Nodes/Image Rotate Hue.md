@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageTransformation
+---
+
 # Image Rotate Hue
 ## Documentation
 - Class name: `Image Rotate Hue`

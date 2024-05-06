@@ -1,3 +1,8 @@
+---
+tags:
+- Color
+---
+
 # FromListGet1Color
 ## Documentation
 - Class name: `FromListGet1Color`

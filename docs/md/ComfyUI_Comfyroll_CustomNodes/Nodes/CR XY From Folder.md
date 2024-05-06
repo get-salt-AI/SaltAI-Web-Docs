@@ -1,3 +1,8 @@
+---
+tags:
+- Image
+---
+
 # 📉 CR XY From Folder
 ## Documentation
 - Class name: `CR XY From Folder`

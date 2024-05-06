@@ -1,3 +1,8 @@
+---
+tags:
+- Text
+---
+
 # CR Cycle Text (Legacy)
 ## Documentation
 - Class name: `CR Cycle Text`

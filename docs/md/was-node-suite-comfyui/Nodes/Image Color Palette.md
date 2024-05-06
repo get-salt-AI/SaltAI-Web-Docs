@@ -1,3 +1,8 @@
+---
+tags:
+- Color
+---
+
 # Image Color Palette
 ## Documentation
 - Class name: `Image Color Palette`

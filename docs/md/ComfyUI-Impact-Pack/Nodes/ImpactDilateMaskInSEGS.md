@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskMorphology
+---
+
 # Dilate Mask (SEGS)
 ## Documentation
 - Class name: `ImpactDilateMaskInSEGS`

@@ -1,21 +1,26 @@
+---
+tags:
+- Latent
+---
+
 # DummyLatentOut
 ## Documentation
 - Class name: `DummyLatentOut`
-- Category: `KJNodes`
+- Category: `KJNodes/misc`
 - Output node: `True`
 
-The DummyLatentOut node is designed to pass through the input latent representation without any modification. It serves as a placeholder or a no-operation (noop) node within a pipeline, ensuring the flow of data without altering it.
+Provides a simple pass-through for latent data, facilitating the visualization of workflow outputs in the UI without necessitating data persistence.
 ## Input types
 ### Required
 - **`latent`**
-    - The 'latent' parameter represents the latent representation to be passed through. It is crucial for the node's operation as it directly influences the output, which is an unaltered version of this input.
+    - Acts as a direct pass-through for the latent data, enabling the visualization of outputs without saving them.
     - Comfy dtype: `LATENT`
-    - Python dtype: `Tuple[torch.Tensor]`
+    - Python dtype: `tuple`
 ## Output types
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - The output is the unmodified latent representation received as input, ensuring the data flows through the pipeline without alteration.
-    - Python dtype: `Tuple[torch.Tensor]`
+    - Echoes the input latent data, allowing for seamless integration into workflows that require visualization without data storage.
+    - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -35,11 +40,14 @@ class DummyLatentOut:
 
     RETURN_TYPES = ("LATENT",)
     FUNCTION = "dummy"
-    CATEGORY = "KJNodes"
+    CATEGORY = "KJNodes/misc"
     OUTPUT_NODE = True
+    DESCRIPTION = """
+Does nothing, used to trigger generic workflow output.    
+A way to get previews in the UI without saving anything to disk.
+"""
 
     def dummy(self, latent):
-
         return (latent,)
 
 ```

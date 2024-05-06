@@ -1,3 +1,9 @@
+---
+tags:
+- List
+- Text
+---
+
 # 🛠️ CR Text List To String
 ## Documentation
 - Class name: `CR Text List To String`

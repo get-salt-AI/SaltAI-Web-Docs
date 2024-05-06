@@ -1,3 +1,8 @@
+---
+tags:
+- Image
+---
+
 # ConvertImg
 ## Documentation
 - Class name: `ConvertImg`

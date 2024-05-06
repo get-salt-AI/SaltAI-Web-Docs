@@ -1,3 +1,9 @@
+---
+tags:
+- Animation
+- Image
+---
+
 # ⌨️ CR Load Animation Frames
 ## Documentation
 - Class name: `CR Load Animation Frames`

@@ -1,3 +1,8 @@
+---
+tags:
+- VAE
+---
+
 # VAE Decode Batched 🎥🅥🅗🅢
 ## Documentation
 - Class name: `VHS_VAEDecodeBatched`

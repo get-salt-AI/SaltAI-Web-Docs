@@ -1,41 +1,48 @@
+---
+tags:
+- ImageScaling
+- ImageSize
+- ImageTransformation
+---
+
 # Image Resize Factor (mtb)
 ## Documentation
 - Class name: `Image Resize Factor (mtb)`
 - Category: `mtb/image`
 - Output node: `False`
 
-The Image Resize Factor node is designed for resizing images based on a specified scaling factor. It supports optional supersampling for enhanced quality and allows for the application of a mask to selectively resize portions of the image. This node is versatile in handling different image dimensions and resampling methods, making it suitable for various image processing tasks.
+This node is designed to resize images based on a specified scaling factor, optionally applying supersampling for higher quality resizing. It supports different resampling strategies to accommodate various image processing needs.
 ## Input types
 ### Required
 - **`image`**
-    - The input image tensor to be resized. It is crucial as it determines the content and structure of the output image after resizing.
+    - The input image tensor to be resized. This tensor's dimensions are checked to ensure they meet the expected format for processing.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`factor`**
-    - The scaling factor for resizing the image. It directly influences the dimensions of the output image, making it a key parameter in the resizing process.
+    - The scaling factor to resize the image by. This determines the new dimensions of the output image.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`supersample`**
-    - A boolean flag indicating whether supersampling should be applied. Supersampling can enhance the quality of the resized image by reducing aliasing effects.
+    - A boolean flag indicating whether supersampling should be applied during resizing for enhanced image quality.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`resampling`**
-    - Specifies the method used for resampling during the resize operation. The choice of resampling method can affect the quality and characteristics of the resized image.
+    - The method of resampling to use when resizing the image. This affects the quality and characteristics of the output image.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`mask`**
-    - An optional mask tensor that, if provided, applies the resize operation selectively based on the mask. This allows for more controlled resizing effects.
+    - An optional mask that can be applied during the resizing process. If provided, it is used in conjunction with the image data.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor or None`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The resized image tensor, reflecting the applied scaling factor and resampling method.
+    - The resized image tensor, potentially supersampled for enhanced quality, and resized according to the specified factor and resampling method.
     - Python dtype: `torch.Tensor`
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The mask tensor, if provided, is applied to selectively resize portions of the image.
+    - The mask tensor, if provided, resized to match the dimensions of the output image tensor.
     - Python dtype: `torch.Tensor or None`
 ## Usage tips
 - Infra type: `GPU`
@@ -44,7 +51,7 @@ The Image Resize Factor node is designed for resizing images based on a specifie
 
 ## Source code
 ```python
-class ImageResizeFactor:
+class MTB_ImageResizeFactor:
     """Extracted mostly from WAS Node Suite, with a few edits (most notably multiple image support) and less features."""
 
     @classmethod

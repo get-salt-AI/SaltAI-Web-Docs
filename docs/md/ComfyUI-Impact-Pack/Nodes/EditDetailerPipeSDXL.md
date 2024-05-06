@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- Pipeline
+- PipelineTransformation
+---
+
 # Edit DetailerPipe (SDXL)
 ## Documentation
 - Class name: `EditDetailerPipeSDXL`

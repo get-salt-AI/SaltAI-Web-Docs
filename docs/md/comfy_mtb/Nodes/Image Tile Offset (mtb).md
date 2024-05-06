@@ -1,33 +1,43 @@
+---
+tags:
+- Image
+- ImageTransformation
+---
+
 # Image Tile Offset (mtb)
 ## Documentation
 - Class name: `Image Tile Offset (mtb)`
 - Category: `mtb/generate`
 - Output node: `False`
 
-The Image Tile Offset node is designed to replicate a classic Photoshop technique for creating seamless textures by dividing an image into tiles and rearranging them. This process helps in identifying and correcting any visible seams in textures, making them ideal for repeated use in various digital environments.
+The Image Tile Offset (mtb) node is designed to adjust the positioning of tiles within an image, allowing for the customization of tile offsets. This functionality is crucial for tasks that require precise alignment of image segments, such as in image stitching or texture mapping.
 ## Input types
 ### Required
 - **`image`**
-    - The 'image' parameter represents the input image to be processed. It is crucial for determining the texture that will undergo the tiling and offsetting process to ensure seamless continuity.
+    - The input image to be processed for tile offset adjustment. This parameter is essential for defining the base image on which the tile offset operation will be performed.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
-- **`tiles`**
-    - The 'tiles' parameter specifies the number of divisions along both the height and width of the image, affecting the granularity of the tiling process. A higher number of tiles results in smaller, more numerous pieces, potentially offering a finer check for seamlessness.
+- **`tilesX`**
+    - Specifies the number of horizontal tiles into which the image is divided. This parameter is crucial for determining the horizontal segmentation of the image for tile adjustment.
+    - Comfy dtype: `INT`
+    - Python dtype: `int`
+- **`tilesY`**
+    - Specifies the number of vertical tiles into which the image is divided. This parameter is crucial for determining the vertical segmentation of the image for tile adjustment.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is a modified version of the input image, rearranged into tiles to form a seamless texture. This technique is useful for texture artists and in applications requiring repeated background patterns.
+    - The output image after applying the tile offset adjustments. This image reflects the changes made to the tile positioning, showcasing the alignment modifications.
     - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
 ## Source code
 ```python
-class ImageTileOffset:
+class MTB_ImageTileOffset:
     """Mimics an old photoshop technique to check for seamless textures"""
 
     @classmethod
@@ -35,7 +45,8 @@ class ImageTileOffset:
         return {
             "required": {
                 "image": ("IMAGE",),
-                "tiles": ("INT", {"default": 2}),
+                "tilesX": ("INT", {"default": 2, "min": 1}),
+                "tilesY": ("INT", {"default": 2, "min": 1}),
             }
         }
 
@@ -45,17 +56,19 @@ class ImageTileOffset:
 
     FUNCTION = "tile_image"
 
-    def tile_image(self, image: torch.Tensor, tiles: int = 2):
-        if tiles < 1:
+    def tile_image(
+        self, image: torch.Tensor, tilesX: int = 2, tilesY: int = 2
+    ):
+        if tilesX < 1 or tilesY < 1:
             raise ValueError("The number of tiles must be at least 1.")
 
         batch_size, height, width, channels = image.shape
-        tile_height = height // tiles
-        tile_width = width // tiles
+        tile_height = height // tilesY
+        tile_width = width // tilesX
 
         output_image = torch.zeros_like(image)
 
-        for i, j in itertools.product(range(tiles), range(tiles)):
+        for i, j in itertools.product(range(tilesY), range(tilesX)):
             start_h = i * tile_height
             end_h = start_h + tile_height
             start_w = j * tile_width
@@ -63,8 +76,8 @@ class ImageTileOffset:
 
             tile = image[:, start_h:end_h, start_w:end_w, :]
 
-            output_start_h = (i + 1) % tiles * tile_height
-            output_start_w = (j + 1) % tiles * tile_width
+            output_start_h = (i + 1) % tilesY * tile_height
+            output_start_w = (j + 1) % tilesX * tile_width
             output_end_h = output_start_h + tile_height
             output_end_w = output_start_w + tile_width
 

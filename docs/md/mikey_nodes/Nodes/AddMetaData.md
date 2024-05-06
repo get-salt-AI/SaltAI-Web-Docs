@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Metadata
+---
+
 # AddMetaData (Mikey)
 ## Documentation
 - Class name: `AddMetaData`

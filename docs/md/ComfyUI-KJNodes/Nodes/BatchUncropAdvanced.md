@@ -1,57 +1,64 @@
+---
+tags:
+- Crop
+- Image
+- ImageTransformation
+---
+
 # BatchUncropAdvanced
 ## Documentation
 - Class name: `BatchUncropAdvanced`
 - Category: `KJNodes/masking`
 - Output node: `False`
 
-The BatchUncropAdvanced node is designed for advanced operations of uncropping images in a batch. It integrates additional parameters and functionalities to handle complex uncropping scenarios, including the use of combined masks and bounding boxes, to precisely restore the original dimensions and content of cropped images.
+The `BatchUncropAdvanced` node is designed for the advanced uncropping of images in a batch process. It combines original images with their cropped versions, applying sophisticated techniques such as border blending, rescaling, and optional use of combined or square masks to achieve seamless integration of cropped areas back into the original images.
 ## Input types
 ### Required
 - **`original_images`**
-    - Original images are the base images before any cropping operation was applied. They serve as a reference for the uncropping process to restore the images to their original state.
+    - The collection of original images that were previously cropped. These images serve as the base for the uncropping process, ensuring that the cropped content is accurately integrated back into its original context.
     - Comfy dtype: `IMAGE`
     - Python dtype: `List[torch.Tensor]`
 - **`cropped_images`**
-    - Cropped images are the result of a previous cropping operation. This node aims to reverse that operation and restore these images to their original dimensions and content.
+    - The set of images that have been cropped from the original images. These images are to be uncropped and merged back into the original images, utilizing advanced techniques for seamless integration.
     - Comfy dtype: `IMAGE`
     - Python dtype: `List[torch.Tensor]`
 - **`cropped_masks`**
-    - Cropped masks indicate the areas of the original images that were retained during the cropping process. They are essential for accurately reconstructing the original images.
+    - Masks indicating the regions of the original images that were cropped. These masks are crucial for accurately aligning the cropped images back into their original positions.
     - Comfy dtype: `MASK`
     - Python dtype: `List[torch.Tensor]`
 - **`combined_crop_mask`**
-    - The combined crop mask is a single mask that represents the cumulative area covered by all individual cropped masks. It is used when a unified approach to uncropping is preferred.
+    - A single mask that combines all individual cropped masks. This is used for advanced uncropping scenarios where a unified approach to mask application is beneficial.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`bboxes`**
-    - Bounding boxes define the coordinates of the cropped areas within the original images. They are crucial for positioning the cropped content correctly during the uncropping process.
+    - Bounding boxes that define the cropped areas within the original images. These are essential for precise placement and scaling of the cropped images during the uncropping process.
     - Comfy dtype: `BBOX`
     - Python dtype: `List[Tuple[int, int, int, int]]`
 - **`border_blending`**
-    - Border blending specifies the method used to blend the borders of the uncropped areas with the surrounding content, ensuring a seamless transition.
+    - The degree to which the borders of the cropped images are blended with the original images. This parameter is key to achieving a natural-looking integration of the cropped areas.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`crop_rescale`**
-    - Crop rescale determines whether and how the cropped images should be rescaled before being placed back into their original context.
+    - Indicates whether the cropped images should be rescaled to their original size before being uncropped. This is important for maintaining the original aspect ratio and size of the image content.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `bool`
 - **`use_combined_mask`**
-    - This flag indicates whether the combined crop mask should be used instead of individual cropped masks for the uncropping operation.
+    - Determines whether the combined crop mask is used for the uncropping process. This option allows for more complex uncropping scenarios where a single mask is preferable.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`use_square_mask`**
-    - This flag determines whether a square mask should be applied to the cropped areas, potentially altering the shape of the area to be uncropped.
+    - Specifies if a square mask should be used instead of the actual crop shapes. This can simplify the uncropping process in certain scenarios.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`combined_bounding_box`**
-    - The combined bounding box is an optional parameter that defines a single bounding box encompassing all cropped areas. It is used for operations where a unified bounding box is more effective than individual ones.
+    - An optional parameter that defines a unified bounding box for scenarios where a single, combined area is preferred for uncropping. This allows for more controlled placement and scaling of the uncropped content.
     - Comfy dtype: `BBOX`
     - Python dtype: `Optional[Tuple[int, int, int, int]]`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is a list of images that have been uncropped, with their original dimensions and content restored as closely as possible.
+    - The original images after the cropped images have been uncropped and integrated back into them. This output reflects the successful merging of cropped content back into its original context.
     - Python dtype: `List[torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
@@ -83,8 +90,8 @@ class BatchUncropAdvanced:
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "uncrop"
-
     CATEGORY = "KJNodes/masking"
+
 
     def uncrop(self, original_images, cropped_images, cropped_masks, combined_crop_mask, bboxes, border_blending, crop_rescale, use_combined_mask, use_square_mask, combined_bounding_box = None):
         
@@ -96,8 +103,15 @@ class BatchUncropAdvanced:
             draw.rectangle((0, 0, width - 1, height - 1), outline=border_color, width=border_width)
             return bordered_image
 
-        if len(original_images) != len(cropped_images) or len(original_images) != len(bboxes):
-            raise ValueError("The number of images, crop_images, and bboxes should be the same")
+        if len(original_images) != len(cropped_images):
+            raise ValueError(f"The number of original_images ({len(original_images)}) and cropped_images ({len(cropped_images)}) should be the same")
+
+        # Ensure there are enough bboxes, but drop the excess if there are more bboxes than images
+        if len(bboxes) > len(original_images):
+            print(f"Warning: Dropping excess bounding boxes. Expected {len(original_images)}, but got {len(bboxes)}")
+            bboxes = bboxes[:len(original_images)]
+        elif len(bboxes) < len(original_images):
+            raise ValueError("There should be at least as many bboxes as there are original and cropped images")
 
         crop_imgs = tensor2pil(cropped_images)
         input_images = tensor2pil(original_images)

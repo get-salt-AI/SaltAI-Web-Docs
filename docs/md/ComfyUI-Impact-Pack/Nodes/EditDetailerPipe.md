@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- Pipeline
+- PipelineTransformation
+---
+
 # Edit DetailerPipe
 ## Documentation
 - Class name: `EditDetailerPipe`

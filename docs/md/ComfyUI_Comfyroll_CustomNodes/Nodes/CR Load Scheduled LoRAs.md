@@ -1,3 +1,8 @@
+---
+tags:
+- LoRA
+---
+
 # 📑 CR Load Scheduled LoRAs
 ## Documentation
 - Class name: `CR Load Scheduled LoRAs`

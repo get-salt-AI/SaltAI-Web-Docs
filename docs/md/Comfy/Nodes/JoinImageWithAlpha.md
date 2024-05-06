@@ -1,3 +1,9 @@
+---
+tags:
+- AlphaChannel
+- Image
+---
+
 # Join Image with Alpha
 ## Documentation
 - Class name: `JoinImageWithAlpha`

@@ -1,3 +1,9 @@
+---
+tags:
+- DataTypeConversion
+- MathematicalFunctions
+---
+
 # String to Float
 ## Documentation
 - Class name: `JWStringToFloat`

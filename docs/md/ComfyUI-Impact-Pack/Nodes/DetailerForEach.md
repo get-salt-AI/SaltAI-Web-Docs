@@ -1,14 +1,21 @@
+---
+tags:
+- DetailEnhancement
+- Image
+- Pipeline
+---
+
 # Detailer (SEGS)
 ## Documentation
 - Class name: `DetailerForEach`
 - Category: `ImpactPack/Detailer`
 - Output node: `False`
 
-The DetailerForEach node is designed to iterate over a collection of items, applying a detailed processing or transformation to each item. This node is typically used in scenarios where individual elements within a dataset require specific, detailed attention or modification, enhancing the overall quality or utility of the data.
+The DetailerForEach node is designed to iterate over a collection of items, applying a detailed analysis or transformation to each item individually. This process enhances the granularity of the analysis or transformation, ensuring that each item is processed with a focus on its specific characteristics or requirements.
 ## Input types
 ### Required
 - **`image`**
-    - The 'image' input type represents visual data that the node processes, crucial for operations involving image manipulation or analysis.
+    - The 'image' input type is essential for operations that involve visual data, allowing the node to apply transformations or analyses directly to images.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`segs`**
@@ -16,15 +23,15 @@ The DetailerForEach node is designed to iterate over a collection of items, appl
     - Comfy dtype: `SEGS`
     - Python dtype: `unknown`
 - **`model`**
-    - unknown
+    - The 'model' input type specifies the computational model used for processing, which is crucial for defining the behavior and capabilities of the node.
     - Comfy dtype: `MODEL`
-    - Python dtype: `unknown`
+    - Python dtype: `torch.nn.Module`
 - **`clip`**
-    - unknown
+    - The 'clip' input type is used for operations that involve CLIP models, enabling the node to leverage textual or visual embeddings for analysis or transformation.
     - Comfy dtype: `CLIP`
-    - Python dtype: `unknown`
+    - Python dtype: `torch.nn.Module`
 - **`vae`**
-    - The 'vae' input type refers to a Variational Autoencoder model used by the node for generating or transforming images in a way that captures complex patterns and variations.
+    - The 'vae' input type indicates the use of a Variational Autoencoder, important for tasks involving latent space manipulations or generative processes.
     - Comfy dtype: `VAE`
     - Python dtype: `torch.nn.Module`
 - **`guide_size`**
@@ -60,13 +67,13 @@ The DetailerForEach node is designed to iterate over a collection of items, appl
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `unknown`
 - **`positive`**
-    - unknown
+    - The 'positive' input type represents conditioning information with a positive connotation, influencing the direction of the transformation or analysis.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `unknown`
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`negative`**
-    - unknown
+    - The 'negative' input type signifies conditioning information with a negative connotation, affecting the node's processing to account for undesired aspects.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `unknown`
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`denoise`**
     - unknown
     - Comfy dtype: `FLOAT`
@@ -107,7 +114,7 @@ The DetailerForEach node is designed to iterate over a collection of items, appl
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The 'image' output type represents the result of the node's detailed processing or transformation of each input item, encapsulating the enhanced or modified state of the visual data, ready for further use or analysis.
+    - This output type provides the transformed or analyzed images, reflecting the changes or insights gained through the node's processing.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
@@ -139,7 +146,7 @@ class DetailerForEach:
                     "steps": ("INT", {"default": 20, "min": 1, "max": 10000}),
                     "cfg": ("FLOAT", {"default": 8.0, "min": 0.0, "max": 100.0}),
                     "sampler_name": (comfy.samplers.KSampler.SAMPLERS,),
-                    "scheduler": (comfy.samplers.KSampler.SCHEDULERS,),
+                    "scheduler": (core.SCHEDULERS,),
                     "positive": ("CONDITIONING",),
                     "negative": ("CONDITIONING",),
                     "denoise": ("FLOAT", {"default": 0.5, "min": 0.0001, "max": 1.0, "step": 0.01}),
@@ -153,7 +160,7 @@ class DetailerForEach:
                 "optional": {
                     "detailer_hook": ("DETAILER_HOOK",),
                     "inpaint_model": ("BOOLEAN", {"default": False, "label_on": "enabled", "label_off": "disabled"}),
-                    "noise_mask_feather": ("INT", {"default": 0, "min": 0, "max": 100, "step": 1}),
+                    "noise_mask_feather": ("INT", {"default": 20, "min": 0, "max": 100, "step": 1}),
                    }
                 }
 
@@ -198,8 +205,7 @@ class DetailerForEach:
             ordered_segs = segs[1]
 
         for i, seg in enumerate(ordered_segs):
-            cropped_image = seg.cropped_image if seg.cropped_image is not None \
-                                              else crop_ndarray4(image.numpy(), seg.crop_region)
+            cropped_image = crop_ndarray4(image.numpy(), seg.crop_region)  # Never use seg.cropped_image to handle overlapping area
             cropped_image = to_tensor(cropped_image)
             mask = to_tensor(seg.cropped_mask)
             mask = tensor_gaussian_blur_mask(mask, feather)
@@ -214,16 +220,34 @@ class DetailerForEach:
             else:
                 cropped_mask = None
 
-            if wildcard_chooser is not None:
+            if wildcard_chooser is not None and wmode != "LAB":
                 seg_seed, wildcard_item = wildcard_chooser.get(seg)
+            elif wildcard_chooser is not None and wmode == "LAB":
+                seg_seed, wildcard_item = None, wildcard_chooser.get(seg)
             else:
                 seg_seed, wildcard_item = None, None
 
             seg_seed = seed + i if seg_seed is None else seg_seed
 
+            cropped_positive = [
+                [condition, {
+                    k: core.crop_condition_mask(v, image, seg.crop_region) if k == "mask" else v
+                    for k, v in details.items()
+                }]
+                for condition, details in positive
+            ]
+
+            cropped_negative = [
+                [condition, {
+                    k: core.crop_condition_mask(v, image, seg.crop_region) if k == "mask" else v
+                    for k, v in details.items()
+                }]
+                for condition, details in negative
+            ]
+
             enhanced_image, cnet_pils = core.enhance_detail(cropped_image, model, clip, vae, guide_size, guide_size_for_bbox, max_size,
                                                             seg.bbox, seg_seed, steps, cfg, sampler_name, scheduler,
-                                                            positive, negative, denoise, cropped_mask, force_inpaint,
+                                                            cropped_positive, cropped_negative, denoise, cropped_mask, force_inpaint,
                                                             wildcard_opt=wildcard_item, wildcard_opt_concat_mode=wildcard_concat_mode,
                                                             detailer_hook=detailer_hook,
                                                             refiner_ratio=refiner_ratio, refiner_model=refiner_model,
@@ -242,11 +266,14 @@ class DetailerForEach:
                 tensor_paste(image, enhanced_image, (seg.crop_region[0], seg.crop_region[1]), mask)
                 enhanced_list.append(enhanced_image)
 
+                if detailer_hook is not None:
+                    detailer_hook.post_paste(image)
+
             if not (enhanced_image is None):
                 # Convert enhanced_pil_alpha to RGBA mode
                 enhanced_image_alpha = tensor_convert_rgba(enhanced_image)
                 new_seg_image = enhanced_image.numpy()  # alpha should not be applied to seg_image
-                
+
                 # Apply the mask
                 mask = tensor_resize(mask, *tensor_get_size(enhanced_image))
                 tensor_putalpha(enhanced_image_alpha, mask)

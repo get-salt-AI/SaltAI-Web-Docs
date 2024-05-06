@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- PatternGeneration
+- VisualEffects
+---
+
 # 🟥 CR Simple Binary Pattern
 ## Documentation
 - Class name: `CR Simple Binary Pattern`

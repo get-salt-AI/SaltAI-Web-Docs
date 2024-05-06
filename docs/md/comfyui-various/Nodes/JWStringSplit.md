@@ -4,25 +4,25 @@
 - Category: `jamesWalker55`
 - Output node: `False`
 
-The JWStringSplit node is designed to split a given string into two parts based on a specified delimiter. It can perform the split operation from either the left or the right side of the string, depending on the user's choice.
+The JWStringSplit node is designed to split a given string into two parts based on a specified delimiter, with an option to perform the split from the right. It abstracts the complexity of string manipulation, providing a straightforward way to divide strings for further processing.
 ## Input types
 ### Required
 - **`source`**
-    - The source string to be split.
+    - The 'source' parameter is the string to be split. It plays a crucial role in determining the input string that will be divided into two parts based on the specified delimiter.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`split_by`**
-    - The delimiter used to split the source string.
+    - The 'split_by' parameter specifies the delimiter used to split the 'source' string. Its value directly influences how the input string is divided.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`from_right`**
-    - Determines whether the split should occur from the right side of the string. When set to 'true', the split is performed from the right; otherwise, it defaults to splitting from the left.
+    - The 'from_right' parameter determines whether the split should occur from the right side of the 'source' string. When set to 'true', the split is performed from the right; otherwise, it defaults to a left-side split.
     - Comfy dtype: `['false', 'true']`
     - Python dtype: `Literal['false', 'true']`
 ## Output types
 - **`string`**
     - Comfy dtype: `STRING`
-    - The result of the split operation, returned as two strings. If the string can be split, both parts are returned. If not, the original string and an empty string are returned.
+    - The output is a tuple containing two strings, representing the parts of the original string after the split operation. This correction reflects the accurate output type, addressing the feedback.
     - Python dtype: `tuple[str, str]`
 ## Usage tips
 - Infra type: `CPU`

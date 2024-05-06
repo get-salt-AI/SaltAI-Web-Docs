@@ -1,3 +1,9 @@
+---
+tags:
+- ImpactPack
+- Segmentation
+---
+
 # Decompose (SEGS)
 ## Documentation
 - Class name: `ImpactDecomposeSEGS`

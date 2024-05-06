@@ -1,3 +1,8 @@
+---
+tags:
+- Text
+---
+
 # Text 2 Inputs Or 3rd Option Instead (Mikey)
 ## Documentation
 - Class name: `Text2InputOr3rdOption`

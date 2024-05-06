@@ -1,3 +1,11 @@
+---
+tags:
+- DepthMap
+- Image
+- ImagePreprocessing
+- LineExtraction
+---
+
 # Binary Lines
 ## Documentation
 - Class name: `BinaryPreprocessor`

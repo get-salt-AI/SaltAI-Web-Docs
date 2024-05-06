@@ -1,3 +1,10 @@
+---
+tags:
+- Flip
+- Image
+- ImageTransformation
+---
+
 # Flip Latent
 ## Documentation
 - Class name: `LatentFlip`

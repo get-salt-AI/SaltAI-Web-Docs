@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- VisualEffects
+---
+
 # 🟡 CR Draw Shape
 ## Documentation
 - Class name: `CR Draw Shape`

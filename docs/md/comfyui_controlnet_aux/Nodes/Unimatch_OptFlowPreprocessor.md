@@ -1,32 +1,41 @@
+---
+tags:
+- OpticalFlow
+---
+
 # Unimatch Optical Flow
 ## Documentation
 - Class name: `Unimatch_OptFlowPreprocessor`
 - Category: `ControlNet Preprocessors/Optical Flow`
 - Output node: `False`
 
-This node is designed for preprocessing optical flow data, specifically for enhancing and refining the flow estimations between frames in a video sequence. It employs advanced techniques such as flow propagation with self-attention and bilinear upsampling to achieve high-quality flow predictions, making it an essential component in video analysis and manipulation tasks.
+This node is designed to preprocess optical flow data for further processing or analysis, specifically within the context of Unimatch, a system for estimating and manipulating optical flows in video sequences. It abstracts the complexities involved in preparing optical flow data, ensuring it is in the correct format and resolution for Unimatch's algorithms to operate effectively.
 ## Input types
 ### Required
+- **`image`**
+    - The sequence of images to be processed for optical flow estimation. This input is essential for generating optical flow data between consecutive frames in a video sequence, serving as the foundation for flow analysis or manipulation.
+    - Comfy dtype: `IMAGE`
+    - Python dtype: `torch.Tensor`
 - **`ckpt_name`**
-    - The checkpoint name for loading the pre-trained Unimatch model. This parameter is vital for initializing the model with weights that are optimized for optical flow estimation.
+    - The name of the checkpoint file for the Unimatch model. This parameter allows for the selection of specific pre-trained models, influencing the accuracy and quality of the optical flow estimation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`backward_flow`**
-    - A boolean flag indicating whether to compute the backward flow. This option allows for bidirectional flow estimation, enhancing the motion analysis by considering both forward and backward movements.
+    - A boolean flag indicating whether to estimate the backward optical flow. This option enables bidirectional flow estimation, enhancing the analysis of motion between frames.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`bidirectional_flow`**
-    - A boolean flag indicating whether to predict bidirectional flow. Enabling this option provides a more comprehensive understanding of motion by analyzing it in both directions.
+    - A boolean flag indicating whether to estimate bidirectional flow. This enhances the motion analysis by considering both forward and backward movements between frames.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`OPTICAL_FLOW`**
     - Comfy dtype: `OPTICAL_FLOW`
-    - The estimated optical flow between consecutive frames, represented as a tensor. This output is crucial for understanding the motion dynamics within the video.
+    - The preprocessed optical flow data, ready for further analysis or visualization. This output is optimized for accuracy and efficiency in subsequent processing steps.
     - Python dtype: `torch.Tensor`
 - **`PREVIEW_IMAGE`**
     - Comfy dtype: `IMAGE`
-    - A visualization of the optical flow, useful for inspecting and debugging the flow predictions visually.
+    - A visual representation of the optical flow data, often used for previewing the motion or for debugging purposes. This image can help in understanding the flow's characteristics and in verifying the preprocessing's effectiveness.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -40,6 +49,7 @@ class Unimatch_OptFlowPreprocessor:
     def INPUT_TYPES(s):
         return {
             "required": dict(
+                image=("IMAGE",),
                 ckpt_name=(
                     ["gmflow-scale1-mixdata.pth", "gmflow-scale2-mixdata.pth", "gmflow-scale2-regrefine6-mixdata.pth"],
                     {"default": "gmflow-scale2-regrefine6-mixdata.pth"}

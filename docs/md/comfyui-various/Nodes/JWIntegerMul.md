@@ -1,3 +1,9 @@
+---
+tags:
+- MathematicalFunctions
+- Multiplication
+---
+
 # Integer Multiply
 ## Documentation
 - Class name: `JWIntegerMul`

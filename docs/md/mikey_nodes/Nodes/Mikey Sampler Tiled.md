@@ -1,3 +1,8 @@
+---
+tags:
+- Sampling
+---
+
 # Mikey Sampler Tiled
 ## Documentation
 - Class name: `Mikey Sampler Tiled`

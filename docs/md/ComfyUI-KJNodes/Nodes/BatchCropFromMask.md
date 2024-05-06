@@ -1,51 +1,58 @@
+---
+tags:
+- Crop
+- Image
+- ImageTransformation
+---
+
 # BatchCropFromMask
 ## Documentation
 - Class name: `BatchCropFromMask`
 - Category: `KJNodes/masking`
 - Output node: `False`
 
-The BatchCropFromMask node is designed for processing a batch of images and their corresponding masks to crop them based on the maximum bounding box size calculated across all masks. It dynamically adjusts the crop size to ensure optimal coverage and uniformity across the batch, incorporating smoothing and scaling techniques to refine the bounding box dimensions.
+The BatchCropFromMask node is designed to process a batch of masks and corresponding images, identifying and cropping out the relevant areas defined by the masks. It dynamically calculates the optimal bounding box for each mask to ensure that the cropped images retain the most significant parts of the original images, based on the presence of non-zero pixels in the masks.
 ## Input types
 ### Required
 - **`original_images`**
-    - The original_images parameter consists of the images that correspond to the input masks. These images are subject to cropping based on the calculated bounding boxes derived from the masks.
+    - The 'original_images' parameter is a batch of images that correspond to the masks provided. These images are cropped according to the calculated bounding boxes from the masks, resulting in a set of images focused on the areas of interest.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `List[torch.Tensor]`
+    - Python dtype: `torch.Tensor`
 - **`masks`**
-    - The masks parameter represents the input masks for the images to be cropped. It plays a crucial role in determining the areas of interest within each image, guiding the cropping process.
+    - The 'masks' parameter represents a batch of masks that define areas of interest within the corresponding images. It is crucial for determining the regions to crop, as the node calculates bounding boxes based on these masks.
     - Comfy dtype: `MASK`
-    - Python dtype: `List[torch.Tensor]`
+    - Python dtype: `torch.Tensor`
 - **`crop_size_mult`**
-    - The crop_size_mult parameter is a multiplier that scales the size of the calculated bounding box. It allows for fine-tuning the crop size, accommodating different use cases and preferences.
+    - The 'crop_size_mult' parameter allows for adjusting the size of the crop dynamically. It acts as a multiplier to the calculated bounding box dimensions, enabling fine-tuning of the crop size based on specific requirements.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`bbox_smooth_alpha`**
-    - The bbox_smooth_alpha parameter is used to smooth the changes in bounding box size across the batch of images and masks. This smoothing helps in achieving more consistent crop sizes and shapes.
+    - The 'bbox_smooth_alpha' parameter is used to smooth the changes in bounding box sizes across different masks. This helps in achieving more consistent crop sizes and shapes by applying a smoothing factor to the size calculations.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`original_images`**
     - Comfy dtype: `IMAGE`
-    - The original images that were input for cropping, returned without modification.
-    - Python dtype: `List[torch.Tensor]`
+    - This output includes the original images provided as input, unchanged by the cropping process.
+    - Python dtype: `torch.Tensor`
 - **`cropped_images`**
     - Comfy dtype: `IMAGE`
-    - The images after being cropped according to the calculated bounding boxes.
-    - Python dtype: `List[torch.Tensor]`
+    - This output includes the images cropped according to the calculated bounding boxes from the masks, focusing on the areas of interest.
+    - Python dtype: `torch.Tensor`
 - **`bboxes`**
     - Comfy dtype: `BBOX`
-    - The bounding boxes calculated for each image/mask pair.
-    - Python dtype: `List[Tuple[int, int, int, int]]`
+    - This output provides the bounding boxes calculated for each mask, indicating the areas that were cropped from the original images.
+    - Python dtype: `List[tuple]`
 - **`width`**
     - Comfy dtype: `INT`
-    - The width of the bounding box used for cropping.
+    - This output provides the width of the largest bounding box calculated across all masks, after adjustments and smoothing.
     - Python dtype: `int`
 - **`height`**
     - Comfy dtype: `INT`
-    - The height of the bounding box used for cropping.
+    - This output provides the height of the largest bounding box calculated across all masks, after adjustments and smoothing.
     - Python dtype: `int`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -123,10 +130,6 @@ class BatchCropFromMask:
         self.max_bbox_width = round(self.max_bbox_width * crop_size_mult)
         self.max_bbox_height = round(self.max_bbox_height * crop_size_mult)
         bbox_aspect_ratio = self.max_bbox_width / self.max_bbox_height
-
-        # # Make sure max_bbox_size is divisible by 32, if not, round it upwards so it is
-        # self.max_bbox_width = math.ceil(self.max_bbox_width / 32) * 32
-        # self.max_bbox_height = math.ceil(self.max_bbox_height / 32) * 32
 
         # Then, for each mask and corresponding image...
         for i, (mask, img) in enumerate(zip(masks, original_images)):

@@ -1,3 +1,9 @@
+---
+tags:
+- ImageFilter
+- VisualEffects
+---
+
 # Image Monitor Effects Filter
 ## Documentation
 - Class name: `Image Monitor Effects Filter`

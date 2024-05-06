@@ -1,3 +1,10 @@
+---
+tags:
+- GridLayout
+- Image
+- Tiled
+---
+
 # Create Grid Image from Batch
 ## Documentation
 - Class name: `Create Grid Image from Batch`

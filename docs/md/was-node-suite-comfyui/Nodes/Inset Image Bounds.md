@@ -1,3 +1,10 @@
+---
+tags:
+- Crop
+- Image
+- ImageTransformation
+---
+
 # Inset Image Bounds
 ## Documentation
 - Class name: `Inset Image Bounds`

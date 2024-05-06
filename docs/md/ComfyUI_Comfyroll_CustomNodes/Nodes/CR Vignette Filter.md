@@ -1,3 +1,9 @@
+---
+tags:
+- LensEffects
+- VisualEffects
+---
+
 # 🎨 CR Vignette Filter
 ## Documentation
 - Class name: `CR Vignette Filter`

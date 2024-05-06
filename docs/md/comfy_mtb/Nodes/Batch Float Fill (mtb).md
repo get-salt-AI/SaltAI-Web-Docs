@@ -1,33 +1,39 @@
+---
+tags:
+- Batch
+- FloatData
+---
+
 # Batch Float Fill (mtb)
 ## Documentation
 - Class name: `Batch Float Fill (mtb)`
 - Category: `mtb/batch`
 - Output node: `False`
 
-The BatchFloatFill node is designed to extend a batch of floating-point numbers to a specified length by filling it with a predefined value, either at the beginning or the end of the batch. This functionality is crucial for ensuring uniform batch sizes or for padding purposes in various data processing workflows.
+This node is designed to extend a batch of floating-point numbers to a specified length by filling it with a given value, either at the beginning or the end of the batch, depending on the specified direction.
 ## Input types
 ### Required
 - **`floats`**
-    - The initial batch of floating-point numbers to be filled. This parameter is the starting point for the operation, determining the base that will be extended to reach the target length.
+    - The list of floating-point numbers to be extended. It serves as the base batch that will be filled to reach the target length.
     - Comfy dtype: `FLOATS`
-    - Python dtype: `List[float]`
+    - Python dtype: `list[float]`
 - **`direction`**
-    - Specifies whether the filling should occur at the beginning ('head') or the end ('tail') of the batch. This affects the order in which the batch is extended.
+    - Specifies whether the filling should occur at the beginning ('head') or the end ('tail') of the batch, influencing the order in which the batch is extended.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`value`**
-    - The floating-point number to be used for filling the batch. This value is replicated to reach the desired count.
+    - The floating-point number used to fill the batch, allowing customization of the fill value.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`count`**
-    - The target length for the batch after filling. This determines how many times the value will be added to reach the specified size.
+    - The target length for the batch after filling, determining how many times the fill value will be added.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`floats`**
     - Comfy dtype: `FLOATS`
-    - The resulting batch of floating-point numbers after filling to the target length.
-    - Python dtype: `List[float]`
+    - The resulting batch of floating-point numbers after being filled to the target length.
+    - Python dtype: `list[float]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -35,7 +41,7 @@ The BatchFloatFill node is designed to extend a batch of floating-point numbers 
 
 ## Source code
 ```python
-class BatchFloatFill:
+class MTB_BatchFloatFill:
     """Fills a batch float with a single value until it reaches the target length"""
 
     @classmethod

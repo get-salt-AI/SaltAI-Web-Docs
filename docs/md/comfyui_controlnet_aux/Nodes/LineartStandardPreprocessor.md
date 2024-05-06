@@ -1,3 +1,11 @@
+---
+tags:
+- DepthMap
+- Image
+- ImagePreprocessing
+- LineExtraction
+---
+
 # Standard Lineart
 ## Documentation
 - Class name: `LineartStandardPreprocessor`

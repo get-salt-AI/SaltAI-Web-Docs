@@ -1,59 +1,74 @@
+---
+tags:
+- Multimedia
+- VideoHelperSuite
+---
+
 # Load Video (Upload) 🎥🅥🅗🅢
 ## Documentation
 - Class name: `VHS_LoadVideo`
 - Category: `Video Helper Suite 🎥🅥🅗🅢`
 - Output node: `False`
 
-The VHS_LoadVideo node is designed for uploading and processing video files. It allows users to specify various parameters such as frame rate and size to customize the video processing according to their needs. This node is essential for preparing video data for further analysis or manipulation within the Video Helper Suite.
+The VHS_LoadVideo node is designed to facilitate the uploading and processing of video files within the Video Helper Suite. It handles the intricacies of loading video data from user uploads, ensuring compatibility and readiness for further processing or analysis within the suite.
 ## Input types
 ### Required
 - **`video`**
-    - Specifies the path to the video file to be processed. It is the primary input for the video processing operation.
+    - Specifies the video file to be uploaded and processed. This parameter is crucial as it determines the video content that will undergo subsequent operations within the node.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`force_rate`**
-    - Determines the frame rate at which the video should be processed. This allows for standardization or modification of the video's frame rate.
+    - Defines the frame rate to which the video should be forced, allowing control over playback speed and frame sampling.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`force_size`**
-    - Defines the desired resolution for the video output. This parameter allows users to resize the video according to specific requirements.
+    - Allows for the specification of a target size for the video, enabling resizing operations to adapt the video to certain dimensions or constraints.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`custom_width`**
-    - Sets the custom width for the video output, enabling precise control over the video's dimensions.
+    - Sets a specific width for the video when resizing, providing flexibility in adjusting video dimensions.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`custom_height`**
-    - Sets the custom height for the video output, providing the ability to tailor the video's dimensions to specific needs.
+    - Sets a specific height for the video when resizing, offering control over the vertical dimension of the video.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`frame_load_cap`**
-    - Limits the number of frames to be processed from the video. This is useful for handling large videos or focusing on specific segments.
+    - Limits the number of frames to be loaded from the video, useful for processing or analyzing only a portion of the video.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`skip_first_frames`**
-    - Skips a specified number of frames at the beginning of the video. This can be used to bypass unneeded introductory content.
+    - Skips a specified number of initial frames, useful for starting the processing at a later point in the video.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`select_every_nth`**
-    - Selects every Nth frame from the video for processing, allowing for sampling of the video content at a reduced rate.
+    - Selects every nth frame from the video, enabling downsampling for efficiency or specific analysis needs.
     - Comfy dtype: `INT`
     - Python dtype: `int`
+### Optional
+- **`meta_batch`**
+    - Associates the video processing task with a specific batch manager, facilitating organized and efficient handling of multiple video processing tasks.
+    - Comfy dtype: `VHS_BatchManager`
+    - Python dtype: `VHS_BatchManager`
 ## Output types
 - **`IMAGE`**
     - Comfy dtype: `IMAGE`
-    - Returns the processed video frames as images.
-    - Python dtype: `List[Image]`
+    - Represents the processed video frames, converted and ready for use within the suite's workflow.
+    - Python dtype: `np.ndarray`
 - **`frame_count`**
     - Comfy dtype: `INT`
-    - Provides the total number of frames processed from the video.
+    - Provides the total number of frames in the uploaded video, useful for indexing and processing operations.
     - Python dtype: `int`
 - **`audio`**
     - Comfy dtype: `VHS_AUDIO`
-    - Returns the audio extracted from the video, if any.
+    - Extracts and outputs the audio track from the uploaded video, allowing for separate audio processing or analysis.
     - Python dtype: `VHS_AUDIO`
+- **`video_info`**
+    - Comfy dtype: `VHS_VIDEOINFO`
+    - Gathers and outputs detailed information about the video, such as dimensions and duration, essential for further processing steps.
+    - Python dtype: `VHS_VIDEOINFO`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes:
     - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
     - [VHS_VideoCombine](../../ComfyUI-VideoHelperSuite/Nodes/VHS_VideoCombine.md)
@@ -82,19 +97,27 @@ class LoadVideoUpload:
                     files.append(f)
         return {"required": {
                     "video": (sorted(files),),
-                     "force_rate": ("INT", {"default": 0, "min": 0, "max": 24, "step": 1}),
+                     "force_rate": ("INT", {"default": 0, "min": 0, "max": 60, "step": 1}),
                      "force_size": (["Disabled", "Custom Height", "Custom Width", "Custom", "256x?", "?x256", "256x256", "512x?", "?x512", "512x512"],),
-                     "custom_width": ("INT", {"default": 512, "min": 0, "step": 8}),
-                     "custom_height": ("INT", {"default": 512, "min": 0, "step": 8}),
-                     "frame_load_cap": ("INT", {"default": 0, "min": 0, "step": 1}),
-                     "skip_first_frames": ("INT", {"default": 0, "min": 0, "step": 1}),
-                     "select_every_nth": ("INT", {"default": 1, "min": 1, "step": 1}),
-                     },}
+                     "custom_width": ("INT", {"default": 512, "min": 0, "max": DIMMAX, "step": 8}),
+                     "custom_height": ("INT", {"default": 512, "min": 0, "max": DIMMAX, "step": 8}),
+                     "frame_load_cap": ("INT", {"default": 0, "min": 0, "max": BIGMAX, "step": 1}),
+                     "skip_first_frames": ("INT", {"default": 0, "min": 0, "max": BIGMAX, "step": 1}),
+                     "select_every_nth": ("INT", {"default": 1, "min": 1, "max": BIGMAX, "step": 1}),
+                     },
+                "optional": {
+                    "meta_batch": ("VHS_BatchManager",)
+                },
+                "hidden": {
+                    "unique_id": "UNIQUE_ID"
+                },
+                }
 
     CATEGORY = "Video Helper Suite 🎥🅥🅗🅢"
 
-    RETURN_TYPES = ("IMAGE", "INT", "VHS_AUDIO", )
-    RETURN_NAMES = ("IMAGE", "frame_count", "audio",)
+    RETURN_TYPES = ("IMAGE", "INT", "VHS_AUDIO", "VHS_VIDEOINFO",)
+    RETURN_NAMES = ("IMAGE", "frame_count", "audio", "video_info",)
+
     FUNCTION = "load_video"
 
     def load_video(self, **kwargs):

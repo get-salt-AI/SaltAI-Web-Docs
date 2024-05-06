@@ -1,3 +1,9 @@
+---
+tags:
+- Blur
+- VisualEffects
+---
+
 # Image Median Filter
 ## Documentation
 - Class name: `Image Median Filter`

@@ -1,3 +1,8 @@
+---
+tags:
+- Latent
+---
+
 # SaveLatent
 ## Documentation
 - Class name: `SaveLatent`

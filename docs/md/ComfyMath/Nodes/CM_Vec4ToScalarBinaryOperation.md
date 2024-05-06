@@ -1,3 +1,9 @@
+---
+tags:
+- Math
+- VectorMath
+---
+
 # Vec4ToScalarBinaryOperation
 ## Documentation
 - Class name: `CM_Vec4ToScalarBinaryOperation`

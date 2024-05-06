@@ -1,3 +1,10 @@
+---
+tags:
+- DataConversion
+- DataTypeConversion
+- NumericConversion
+---
+
 # Number to Int
 ## Documentation
 - Class name: `Number to Int`

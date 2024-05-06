@@ -1,31 +1,37 @@
+---
+tags:
+- Mask
+- MaskBatch
+---
+
 # 🔧 Mask From Batch
 ## Documentation
 - Class name: `MaskFromBatch+`
 - Category: `essentials`
 - Output node: `False`
 
-This node is designed to extract a specific segment from a given mask based on a starting point and a specified length. It aims to facilitate operations on subsets of masks, enhancing flexibility in processing and manipulation of mask data.
+The MaskFromBatch node is designed to extract a specific segment from a given mask based on a starting point and a length. This functionality is crucial for operations that require working with subsets of data within larger datasets, enabling precise control over the portion of the mask to be utilized.
 ## Input types
 ### Required
 - **`mask`**
-    - The mask from which a segment will be extracted. This parameter is crucial for defining the subset of the mask to be operated on.
+    - The 'mask' parameter represents the input mask from which a segment will be extracted. It is essential for specifying the data that will be operated on.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`start`**
-    - Specifies the starting index from which the mask segment should be extracted. It determines the initial point of the segment within the mask.
+    - The 'start' parameter specifies the beginning index of the segment to be extracted from the mask, allowing for targeted operations on specific portions of the data.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`length`**
-    - Defines the length of the mask segment to be extracted. If set to a negative value, it indicates that the segment should extend to the end of the mask.
+    - The 'length' parameter determines the size of the segment to be extracted from the mask. A negative value indicates that the entire length from the start index to the end of the mask should be used, providing flexibility in the segment size.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The extracted segment of the mask. This output facilitates further operations or analysis on the specified mask segment.
+    - The output is a segment of the input mask, determined by the 'start' and 'length' parameters. This allows for focused manipulation or analysis of specific parts of the mask.
     - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -41,7 +47,7 @@ class MaskFromBatch:
                 "length": ("INT", { "default": -1, "min": -1, "step": 1, }),
             }
         }
-    
+
     RETURN_TYPES = ("MASK",)
     FUNCTION = "execute"
     CATEGORY = "essentials"

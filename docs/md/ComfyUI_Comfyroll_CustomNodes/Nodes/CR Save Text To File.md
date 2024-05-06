@@ -1,3 +1,8 @@
+---
+tags:
+- Text
+---
+
 # 🔤 CR Save Text To File
 ## Documentation
 - Class name: `CR Save Text To File`

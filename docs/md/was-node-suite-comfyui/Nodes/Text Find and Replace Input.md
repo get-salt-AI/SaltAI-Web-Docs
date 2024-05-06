@@ -1,3 +1,9 @@
+---
+tags:
+- Text
+- TextReplacement
+---
+
 # Text Find and Replace Input
 ## Documentation
 - Class name: `Text Find and Replace Input`

@@ -1,3 +1,8 @@
+---
+tags:
+- MathematicalFunctions
+---
+
 # Float Minimum
 ## Documentation
 - Class name: `JWFloatMin`

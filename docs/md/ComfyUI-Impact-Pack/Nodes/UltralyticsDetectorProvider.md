@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Segmentation
+---
+
 # UltralyticsDetectorProvider
 ## Documentation
 - Class name: `UltralyticsDetectorProvider`

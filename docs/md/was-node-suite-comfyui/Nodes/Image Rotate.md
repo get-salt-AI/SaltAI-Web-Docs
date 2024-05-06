@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageTransformation
+---
+
 # Image Rotate
 ## Documentation
 - Class name: `Image Rotate`

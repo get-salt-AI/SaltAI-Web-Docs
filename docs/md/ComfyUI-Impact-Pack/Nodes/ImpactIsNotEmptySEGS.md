@@ -1,3 +1,9 @@
+---
+tags:
+- ImpactPack
+- Segmentation
+---
+
 # SEGS isn't Empty
 ## Documentation
 - Class name: `ImpactIsNotEmptySEGS`

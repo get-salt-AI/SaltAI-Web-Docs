@@ -1,3 +1,8 @@
+---
+tags:
+- ControlNet
+---
+
 # 🔀 CR ControlNet Input Switch
 ## Documentation
 - Class name: `CR ControlNet Input Switch`

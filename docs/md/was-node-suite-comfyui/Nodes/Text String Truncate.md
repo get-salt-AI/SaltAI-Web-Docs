@@ -1,3 +1,8 @@
+---
+tags:
+- Text
+---
+
 # Text String Truncate
 ## Documentation
 - Class name: `Text String Truncate`

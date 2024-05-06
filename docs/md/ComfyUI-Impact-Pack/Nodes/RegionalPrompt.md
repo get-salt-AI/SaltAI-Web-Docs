@@ -1,3 +1,8 @@
+---
+tags:
+- RegionalPrompt
+---
+
 # RegionalPrompt
 ## Documentation
 - Class name: `RegionalPrompt`

@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- Pipeline
+- PipelineTransformation
+---
+
 # FromBasicPipe_v2
 ## Documentation
 - Class name: `FromBasicPipe_v2`

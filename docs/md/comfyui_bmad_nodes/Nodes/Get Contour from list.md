@@ -1,3 +1,9 @@
+---
+tags:
+- Contour
+- Image
+---
+
 # Get Contour from list
 ## Documentation
 - Class name: `Get Contour from list`

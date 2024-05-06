@@ -1,3 +1,8 @@
+---
+tags:
+- VisualEffects
+---
+
 # Image Dragan Photography Filter
 ## Documentation
 - Class name: `Image Dragan Photography Filter`

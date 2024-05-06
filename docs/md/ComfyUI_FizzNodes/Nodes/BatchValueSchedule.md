@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- Scheduling
+---
+
 # Batch Value Schedule 📅🅕🅝
 ## Documentation
 - Class name: `BatchValueSchedule`

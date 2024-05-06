@@ -1,3 +1,9 @@
+---
+tags:
+- Math
+- VectorMath
+---
+
 # NumberBinaryCondition
 ## Documentation
 - Class name: `CM_NumberBinaryCondition`

@@ -1,31 +1,37 @@
+---
+tags:
+- BooleanLogic
+- ConditionalSelection
+---
+
 # Int To Bool (mtb)
 ## Documentation
 - Class name: `Int To Bool (mtb)`
 - Category: `mtb/number`
 - Output node: `False`
 
-The IntToBool node provides a straightforward conversion from an integer value to a boolean value, emphasizing simplicity and directness in data type transformation.
+This node performs a basic conversion of an integer to a boolean value, abstracting the process of interpreting numerical inputs as binary truth values.
 ## Input types
 ### Required
 - **`int`**
-    - The integer input that will be converted to a boolean value. This parameter is essential for determining the output boolean value, where any non-zero integer will result in True, and zero will result in False.
+    - The integer input that will be converted to a boolean. A non-zero value is considered true, while zero is considered false.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`boolean`**
     - Comfy dtype: `BOOLEAN`
-    - The output is a boolean representation of the input integer, where non-zero values are True, and zero is False.
+    - The boolean result of the conversion, where non-zero integers are true and zero is false.
     - Python dtype: `bool`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
-    - ReActorFaceSwap
+    - [ReActorFaceSwap](../../comfyui-reactor-node/Nodes/ReActorFaceSwap.md)
 
 
 
 ## Source code
 ```python
-class IntToBool:
+class MTB_IntToBool:
     """Basic int to bool conversion"""
 
     @classmethod

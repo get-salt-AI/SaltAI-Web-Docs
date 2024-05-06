@@ -1,3 +1,8 @@
+---
+tags:
+- VAE
+---
+
 # Reencode Latent (pipe)
 ## Documentation
 - Class name: `ReencodeLatentPipe`

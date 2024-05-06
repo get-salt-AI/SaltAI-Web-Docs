@@ -1,3 +1,8 @@
+---
+tags:
+- NumberRangeGeneration
+---
+
 # Range(Step) - Float
 ## Documentation
 - Class name: `Range(Step) - Float`

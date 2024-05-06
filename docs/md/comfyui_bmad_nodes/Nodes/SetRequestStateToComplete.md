@@ -4,13 +4,13 @@
 - Category: `Bmad/api`
 - Output node: `True`
 
-This node is designed to mark the state of a request as 'complete' within the request metadata file, effectively signaling the conclusion of a request's processing.
+This node is designed to mark the state of a request as 'complete' within the request metadata file, effectively signaling the successful completion of a task.
 ## Input types
 ### Required
-- **`resource_0`**
-    - Indicates the completion of a task, triggering the node to update the request's state to 'complete'.
+- **`resource_i`**
+    - unknown
     - Comfy dtype: `TASK_DONE`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 ## Output types
 The node doesn't have output types
 ## Usage tips

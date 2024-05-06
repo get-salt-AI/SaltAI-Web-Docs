@@ -1,3 +1,9 @@
+---
+tags:
+- ConditionalSelection
+- ImpactPack
+---
+
 # Control Bridge
 ## Documentation
 - Class name: `ImpactControlBridge`

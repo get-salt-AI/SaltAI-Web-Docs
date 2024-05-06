@@ -1,3 +1,8 @@
+---
+tags:
+- VAE
+---
+
 # Inpainting VAE Encode (WAS)
 ## Documentation
 - Class name: `VAEEncodeForInpaint (WAS)`

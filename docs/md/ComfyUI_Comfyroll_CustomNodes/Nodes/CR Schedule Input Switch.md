@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- Scheduling
+---
+
 # 📋 CR Schedule Input Switch
 ## Documentation
 - Class name: `CR Schedule Input Switch`

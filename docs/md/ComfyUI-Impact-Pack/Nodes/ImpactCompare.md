@@ -1,3 +1,8 @@
+---
+tags:
+- Comparison
+---
+
 # ImpactCompare
 ## Documentation
 - Class name: `ImpactCompare`

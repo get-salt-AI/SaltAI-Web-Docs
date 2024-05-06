@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- VisualEffects
+---
+
 # Image Generate Gradient
 ## Documentation
 - Class name: `Image Generate Gradient`

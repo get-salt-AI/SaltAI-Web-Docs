@@ -1,3 +1,9 @@
+---
+tags:
+- ConditionalSelection
+- ImpactPack
+---
+
 # ImpactMinMax
 ## Documentation
 - Class name: `ImpactMinMax`

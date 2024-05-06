@@ -1,3 +1,8 @@
+---
+tags:
+- SAM
+---
+
 # SAMDetector (segmented)
 ## Documentation
 - Class name: `SAMDetectorSegmented`

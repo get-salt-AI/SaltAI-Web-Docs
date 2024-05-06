@@ -1,40 +1,40 @@
-# CreateAudioMask
+# CreateAudioMask (Deprecated)
 ## Documentation
 - Class name: `CreateAudioMask`
-- Category: `KJNodes/masking/generate`
+- Category: `KJNodes/deprecated`
 - Output node: `False`
 
-The CreateAudioMask node generates audio-based masks for images by converting audio signals into visual representations. It utilizes spectrogram data from audio files to create circular masks that vary in size based on the audio's amplitude, allowing for dynamic visual effects in image processing.
+The CreateAudioMask node is designed to generate visual masks from audio data. It utilizes the audio's spectrogram to create circular masks based on the amplitude of the audio frames, allowing for dynamic visual representations that correspond to audio intensity.
 ## Input types
 ### Required
 - **`invert`**
-    - A boolean flag that, when set to True, inverts the color of the generated masks, offering an alternative visual effect.
+    - A boolean flag that, when true, inverts the color of the masks, offering a visual contrast option.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`frames`**
-    - Specifies the number of frames (images) to generate masks for, affecting the batch size and the output array dimensions.
+    - Specifies the number of frames to generate masks for, affecting the batch size and the number of output masks.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`scale`**
-    - A scaling factor applied to the radius of the circular masks, allowing for customization of the mask size relative to the audio amplitude.
+    - A scaling factor for the mask's size, allowing for adjustment of the visual representation's intensity.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`audio_path`**
-    - The file path to the audio file used for generating the masks, crucial for extracting the audio's spectrogram data.
+    - The file path to the audio data used for generating masks, central to determining the audio's spectrogram.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`width`**
-    - Determines the width of the generated images, influencing the dimensions of the output masks.
+    - Determines the width of the generated masks, directly influencing the dimensions of the output images.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Sets the height of the generated images, impacting the size and shape of the output masks.
+    - Sets the height of the generated masks, directly influencing the dimensions of the output images.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - Returns the generated image masks as a tensor. If the 'invert' input parameter is set to True, the colors of the masks are inverted, providing an alternative visual effect.
+    - The generated visual masks as tensors, suitable for dynamic visual representations that correspond to audio intensity.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -52,7 +52,7 @@ class CreateAudioMask:
             print("Can not import librosa. Install it with 'pip install librosa'")
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "createaudiomask"
-    CATEGORY = "KJNodes/masking/generate"
+    CATEGORY = "KJNodes/deprecated"
 
     @classmethod
     def INPUT_TYPES(s):
@@ -73,7 +73,7 @@ class CreateAudioMask:
         out = []
         masks = []
         if audio_path == "audio.wav": #I don't know why relative path won't work otherwise...
-            audio_path = os.path.join(script_dir, audio_path)
+            audio_path = os.path.join(script_directory, audio_path)
         audio, sr = self.librosa.load(audio_path)
         spectrogram = np.abs(self.librosa.stft(audio))
         

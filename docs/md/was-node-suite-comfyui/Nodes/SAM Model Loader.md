@@ -1,3 +1,8 @@
+---
+tags:
+- SAM
+---
+
 # SAM Model Loader
 ## Documentation
 - Class name: `SAM Model Loader`

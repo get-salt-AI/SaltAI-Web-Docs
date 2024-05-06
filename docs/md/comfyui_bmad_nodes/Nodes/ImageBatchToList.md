@@ -1,3 +1,10 @@
+---
+tags:
+- Batch
+- Image
+- ImageBatch
+---
+
 # ImageBatchToList
 ## Documentation
 - Class name: `ImageBatchToList`

@@ -1,3 +1,10 @@
+---
+tags:
+- Crop
+- Image
+- ImageTransformation
+---
+
 # Image Bounds
 ## Documentation
 - Class name: `Image Bounds`

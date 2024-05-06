@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- VisualEffects
+---
+
 # 🟩 CR Polygons
 ## Documentation
 - Class name: `CR Polygons`

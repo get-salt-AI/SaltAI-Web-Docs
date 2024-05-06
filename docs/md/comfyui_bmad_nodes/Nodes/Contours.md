@@ -1,3 +1,9 @@
+---
+tags:
+- Contour
+- Image
+---
+
 # Contours
 ## Documentation
 - Class name: `Contours`

@@ -1,3 +1,9 @@
+---
+tags:
+- BooleanLogic
+- ConditionalSelection
+---
+
 # Logic NOT
 ## Documentation
 - Class name: `Logic NOT`

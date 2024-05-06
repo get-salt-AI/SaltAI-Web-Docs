@@ -1,3 +1,8 @@
+---
+tags:
+- Conditioning
+---
+
 # SVD_img2vid_Conditioning
 ## Documentation
 - Class name: `SVD_img2vid_Conditioning`
@@ -62,7 +67,7 @@ This node is designed for generating conditioning data for video generation task
     - [KSampler](../../Comfy/Nodes/KSampler.md)
     - [Prompts Everywhere](../../cg-use-everywhere/Nodes/Prompts Everywhere.md)
     - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
-    - SeargeSDXLSamplerV3
+    - [SeargeSDXLSamplerV3](../../SeargeSDXL/Nodes/SeargeSDXLSamplerV3.md)
 
 
 

@@ -1,25 +1,30 @@
+---
+tags:
+- Conditioning
+---
+
 # Conditioning (Concat)
 ## Documentation
 - Class name: `ConditioningConcat`
 - Category: `conditioning`
 - Output node: `False`
 
-The ConditioningConcat node is designed to concatenate conditioning vectors, specifically merging the 'conditioning_from' vector into the 'conditioning_to' vector. This operation is fundamental in scenarios where the conditioning information from two sources needs to be combined into a single, unified representation.
+The ConditioningConcat node is designed to concatenate conditioning vectors, specifically merging the 'conditioning_from' vector into each vector within the 'conditioning_to' array. This operation is fundamental in scenarios where the conditioning context needs to be expanded or modified by incorporating additional information.
 ## Input types
 ### Required
 - **`conditioning_to`**
-    - Represents the primary set of conditioning vectors to which the 'conditioning_from' vectors will be concatenated. It serves as the base for the concatenation process.
+    - Represents the primary set of conditioning vectors to which the 'conditioning_from' vector will be concatenated. This parameter is crucial for defining the base context that will be enhanced.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[torch.Tensor, Dict]]`
 - **`conditioning_from`**
-    - Consists of conditioning vectors that are to be concatenated to the 'conditioning_to' vectors. This parameter allows for additional conditioning information to be integrated into the existing set.
+    - Specifies the conditioning vector(s) to be concatenated to each vector in 'conditioning_to'. This parameter is essential for introducing new or supplementary conditioning information into the existing context.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[torch.Tensor, Dict]]`
 ## Output types
 - **`conditioning`**
     - Comfy dtype: `CONDITIONING`
-    - The output is a unified set of conditioning vectors, resulting from the concatenation of 'conditioning_from' vectors into the 'conditioning_to' vectors.
-    - Python dtype: `Tuple[List[Tuple[torch.Tensor, Dict]]]`
+    - Outputs a modified list of conditioning vectors, each expanded by the concatenation of 'conditioning_from' to 'conditioning_to'.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes:
@@ -47,7 +52,7 @@ class ConditioningConcat:
         out = []
 
         if len(conditioning_from) > 1:
-            print("Warning: ConditioningConcat conditioning_from contains more than 1 cond, only the first one will actually be applied to conditioning_to.")
+            logging.warning("Warning: ConditioningConcat conditioning_from contains more than 1 cond, only the first one will actually be applied to conditioning_to.")
 
         cond_from = conditioning_from[0][0]
 

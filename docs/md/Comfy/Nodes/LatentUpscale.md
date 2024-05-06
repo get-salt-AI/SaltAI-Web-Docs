@@ -1,3 +1,10 @@
+---
+tags:
+- ImageScaling
+- ImageUpscaling
+- Upscale
+---
+
 # Upscale Latent
 ## Documentation
 - Class name: `LatentUpscale`

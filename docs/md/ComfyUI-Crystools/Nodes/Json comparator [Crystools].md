@@ -1,3 +1,8 @@
+---
+tags:
+- Comparison
+---
+
 # 🪛 Json comparator
 ## Documentation
 - Class name: `Json comparator [Crystools]`

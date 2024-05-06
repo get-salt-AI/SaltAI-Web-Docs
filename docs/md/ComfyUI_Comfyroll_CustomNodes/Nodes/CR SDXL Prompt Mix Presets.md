@@ -1,3 +1,9 @@
+---
+tags:
+- Prompt
+- PromptStyling
+---
+
 # 🌟 CR SDXL Prompt Mix Presets
 ## Documentation
 - Class name: `CR SDXL Prompt Mix Presets`

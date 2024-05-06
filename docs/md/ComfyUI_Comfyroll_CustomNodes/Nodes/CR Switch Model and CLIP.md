@@ -1,3 +1,8 @@
+---
+tags:
+- ConditionalSelection
+---
+
 # 🔀 CR Switch Model and CLIP
 ## Documentation
 - Class name: `CR Switch Model and CLIP`

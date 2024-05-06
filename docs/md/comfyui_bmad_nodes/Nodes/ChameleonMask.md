@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskGeneration
+---
+
 # ChameleonMask
 ## Documentation
 - Class name: `ChameleonMask`

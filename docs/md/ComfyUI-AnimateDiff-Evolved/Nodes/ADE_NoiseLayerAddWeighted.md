@@ -1,10 +1,15 @@
+---
+tags:
+- Noise
+---
+
 # Noise Layer [Add Weighted] 🎭🅐🅓
 ## Documentation
 - Class name: `ADE_NoiseLayerAddWeighted`
 - Category: `Animate Diff 🎭🅐🅓/noise layers`
 - Output node: `False`
 
-This node specializes in adding a weighted noise layer to a given noise structure, utilizing a balance multiplier to fine-tune the influence of new noise versus existing noise. It extends the functionality of a basic noise addition by allowing for more nuanced control over how noise is integrated into the system.
+The ADE_NoiseLayerAddWeighted node specializes in enhancing the noise layering process by applying a weighted addition of noise to an existing noise layer. It leverages a balance multiplier to fine-tune the impact of new noise on the existing noise structure, aiming to achieve a more controlled and nuanced noise integration.
 ## Input types
 ### Required
 - **`batch_offset`**
@@ -16,38 +21,38 @@ This node specializes in adding a weighted noise layer to a given noise structur
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`seed_gen_override`**
-    - Allows for overriding the default seed generation mechanism, enabling custom seed generation strategies.
+    - Allows for overriding the default seed generation mechanism, enabling custom noise generation patterns.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`seed_offset`**
-    - Determines the offset applied to the seed value, providing a way to adjust the randomness of the noise.
+    - Determines the offset applied to the seed value, facilitating varied noise generation outcomes.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`noise_weight`**
-    - Controls the weight of the new noise being added, affecting the overall impact of the noise on the system.
+    - Controls the weight of the new noise being added, allowing for adjustment of the noise's influence on the existing layer.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`balance_multiplier`**
-    - Adjusts the balance between new and existing noise, allowing for fine-tuned control over the noise layer's influence.
+    - Adjusts the balance between the old and new noise, fine-tuning the overall effect of noise addition.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`prev_noise_layers`**
-    - Optional previous noise layers that can be modified or extended with the new weighted noise layer.
+    - Represents the previous state of noise layers, enabling sequential layering of noise for complex effects.
     - Comfy dtype: `NOISE_LAYERS`
     - Python dtype: `NoiseLayerGroup`
 - **`mask_optional`**
-    - An optional mask that can be applied to selectively add noise to certain areas.
+    - An optional mask that can be applied to selectively influence the noise addition process, providing further control over the noise characteristics.
     - Comfy dtype: `MASK`
     - Python dtype: `Tensor`
 - **`seed_override`**
-    - Directly overrides the seed value used for noise generation, offering precise control over the noise's randomness.
+    - Provides an option to override the seed value used for noise generation, offering control over the randomness aspect.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`noise_layers`**
     - Comfy dtype: `NOISE_LAYERS`
-    - Returns the updated noise layer structure, including the newly added weighted noise layer.
+    - Outputs the updated noise layer group after the addition of the weighted noise layer, reflecting the new state of noise layering.
     - Python dtype: `NoiseLayerGroup`
 ## Usage tips
 - Infra type: `CPU`
@@ -74,7 +79,7 @@ class NoiseLayerAddWeightedNode:
                 "seed_override": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff, "forceInput": True}),
             }
         }
-    
+
     RETURN_TYPES = ("NOISE_LAYERS",)
     CATEGORY = "Animate Diff 🎭🅐🅓/noise layers"
     FUNCTION = "create_layers"

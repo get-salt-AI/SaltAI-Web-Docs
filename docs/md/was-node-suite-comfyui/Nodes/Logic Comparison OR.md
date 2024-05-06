@@ -1,3 +1,9 @@
+---
+tags:
+- BooleanLogic
+- ConditionalSelection
+---
+
 # Logic Comparison OR
 ## Documentation
 - Class name: `Logic Comparison OR`

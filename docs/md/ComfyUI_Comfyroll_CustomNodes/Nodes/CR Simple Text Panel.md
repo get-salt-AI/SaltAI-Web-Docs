@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- PanelDesign
+- VisualEffects
+---
+
 # 🌁 CR Simple Text Panel
 ## Documentation
 - Class name: `CR Simple Text Panel`

@@ -1,3 +1,8 @@
+---
+tags:
+- ModelMerge
+---
+
 # ModelMergeSDXLTransformers
 ## Documentation
 - Class name: `ModelMergeSDXLTransformers`

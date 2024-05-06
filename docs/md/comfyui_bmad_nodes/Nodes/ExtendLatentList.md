@@ -1,3 +1,8 @@
+---
+tags:
+- Latent
+---
+
 # ExtendLatentList
 ## Documentation
 - Class name: `ExtendLatentList`

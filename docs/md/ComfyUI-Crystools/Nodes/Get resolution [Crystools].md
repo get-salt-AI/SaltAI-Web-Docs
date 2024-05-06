@@ -1,3 +1,9 @@
+---
+tags:
+- ImageResolution
+- ImageTransformation
+---
+
 # 🪛 Get resolution
 ## Documentation
 - Class name: `Get resolution [Crystools]`

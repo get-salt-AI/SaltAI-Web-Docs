@@ -1,3 +1,8 @@
+---
+tags:
+- ImageEnhancement
+---
+
 # NoiseInjectionHookProvider
 ## Documentation
 - Class name: `NoiseInjectionHookProvider`

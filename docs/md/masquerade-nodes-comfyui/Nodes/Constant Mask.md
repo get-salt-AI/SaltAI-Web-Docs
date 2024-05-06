@@ -1,33 +1,39 @@
+---
+tags:
+- Mask
+- MaskGeneration
+---
+
 # Constant Mask
 ## Documentation
 - Class name: `Constant Mask`
 - Category: `Masquerade Nodes`
 - Output node: `False`
 
-The Constant Mask node generates a mask of a specified size with a uniform value across all its elements. It can either use explicit dimensions or copy the dimensions from an existing image, providing flexibility in mask creation.
+The Constant Mask node is designed to create a uniform mask with a specified constant value across all its elements. It can generate masks of explicit dimensions or replicate the dimensions of a provided image, offering flexibility in mask creation for various image processing tasks.
 ## Input types
 ### Required
 - **`value`**
-    - Specifies the uniform value to fill the mask with, affecting the mask's overall appearance.
+    - Specifies the constant value to fill the mask with, allowing for control over the mask's intensity or transparency.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`explicit_height`**
-    - Defines the explicit height of the mask. If set to 0 and no image size is copied, a default small size is used.
+    - Defines the explicit height of the generated mask, used when not replicating the size of an existing image.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`explicit_width`**
-    - Defines the explicit width of the mask. If set to 0 and no image size is copied, a default small size is used.
+    - Defines the explicit width of the generated mask, used when not replicating the size of an existing image.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`copy_image_size`**
-    - Optional. If provided, the mask dimensions are set to match this image's size, overriding explicit dimensions.
+    - An optional image parameter whose dimensions are used to determine the size of the generated mask, overriding explicit dimensions if provided.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The generated mask as a tensor with the specified uniform value across its dimensions.
+    - The output is a mask filled with the specified constant value, potentially matching the dimensions of an input image if provided.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -37,6 +43,9 @@ The Constant Mask node generates a mask of a specified size with a uniform value
 ## Source code
 ```python
 class ConstantMask:
+    """
+    Creates a mask filled with a constant value. If copy_image_size is provided, the explicit_height and explicit_width parameters are ignored and the size of the given images will be used instead.
+    """
     def __init__(self):
         pass
 

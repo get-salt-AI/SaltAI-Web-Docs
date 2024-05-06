@@ -1,3 +1,8 @@
+---
+tags:
+- Cache
+---
+
 # Load Cache
 ## Documentation
 - Class name: `Load Cache`

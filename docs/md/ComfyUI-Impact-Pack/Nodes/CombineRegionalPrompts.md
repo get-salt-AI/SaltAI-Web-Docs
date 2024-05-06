@@ -1,3 +1,9 @@
+---
+tags:
+- Concatenate
+- PromptComposer
+---
+
 # CombineRegionalPrompts
 ## Documentation
 - Class name: `CombineRegionalPrompts`

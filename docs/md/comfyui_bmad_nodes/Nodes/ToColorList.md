@@ -1,3 +1,8 @@
+---
+tags:
+- Color
+---
+
 # ToColorList
 ## Documentation
 - Class name: `ToColorList`

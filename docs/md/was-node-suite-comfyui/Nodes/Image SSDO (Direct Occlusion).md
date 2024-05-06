@@ -1,3 +1,8 @@
+---
+tags:
+- VisualEffects
+---
+
 # Image SSDO (Direct Occlusion)
 ## Documentation
 - Class name: `Image SSDO (Direct Occlusion)`

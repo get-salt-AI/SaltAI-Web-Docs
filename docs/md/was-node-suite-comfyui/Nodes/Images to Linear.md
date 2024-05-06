@@ -1,3 +1,8 @@
+---
+tags:
+- Image
+---
+
 # Images to Linear
 ## Documentation
 - Class name: `Images to Linear`

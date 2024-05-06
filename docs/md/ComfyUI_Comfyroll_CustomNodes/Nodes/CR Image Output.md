@@ -1,3 +1,8 @@
+---
+tags:
+- Image
+---
+
 # 💾 CR Image Output
 ## Documentation
 - Class name: `CR Image Output`

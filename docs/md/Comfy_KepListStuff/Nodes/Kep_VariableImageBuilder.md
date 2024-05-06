@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageGeneration
+---
+
 # Variable Image Builder
 ## Documentation
 - Class name: `Kep_VariableImageBuilder`

@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageGeneration
+---
+
 # Image Blank
 ## Documentation
 - Class name: `Image Blank`

@@ -1,3 +1,9 @@
+---
+tags:
+- Segmentation
+- SemanticSegmentationPreprocessing
+---
+
 # Anime Face Segmentor
 ## Documentation
 - Class name: `AnimeFace_SemSegPreprocessor`

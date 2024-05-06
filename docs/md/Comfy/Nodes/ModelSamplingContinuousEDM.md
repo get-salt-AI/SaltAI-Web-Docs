@@ -1,32 +1,37 @@
+---
+tags:
+- Sampling
+---
+
 # ModelSamplingContinuousEDM
 ## Documentation
 - Class name: `ModelSamplingContinuousEDM`
 - Category: `advanced/model`
 - Output node: `False`
 
-This node is designed to enhance a model's sampling capabilities by integrating continuous EDM (Energy-based Diffusion Models) sampling techniques. It allows for the dynamic adjustment of the noise levels within the model's sampling process, offering a more refined control over the generation quality and diversity.
+The ModelSamplingContinuousEDM node is designed to configure and apply continuous, evenly distributed model sampling techniques within a deep learning model's architecture. It focuses on adjusting the model's sampling parameters based on provided configurations, enabling precise control over the diffusion process for generating or processing data.
 ## Input types
 ### Required
 - **`model`**
-    - The model to be enhanced with continuous EDM sampling capabilities. It serves as the foundation for applying the advanced sampling techniques.
+    - The model input represents the deep learning model to which the sampling techniques will be applied, serving as the foundation for configuring and adjusting sampling parameters.
     - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`sampling`**
-    - Specifies the type of sampling to be applied, either 'eps' for epsilon sampling or 'v_prediction' for velocity prediction, influencing the model's behavior during the sampling process.
+    - Specifies the type of sampling technique to be applied, influencing the model's behavior and the characteristics of the generated or processed data.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`sigma_max`**
-    - The maximum sigma value for noise level, allowing for upper bound control in the noise injection process during sampling.
+    - Defines the maximum value of sigma for the sampling process, setting an upper limit on the diffusion scale.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sigma_min`**
-    - The minimum sigma value for noise level, setting the lower limit for noise injection, thus affecting the model's sampling precision.
+    - Defines the minimum value of sigma for the sampling process, setting a lower limit on the diffusion scale.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The enhanced model with integrated continuous EDM sampling capabilities, ready for further use in generation tasks.
+    - The modified model with updated sampling parameters, reflecting the applied continuous, evenly distributed model sampling techniques.
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
@@ -41,7 +46,7 @@ class ModelSamplingContinuousEDM:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "model": ("MODEL",),
-                              "sampling": (["v_prediction", "eps"],),
+                              "sampling": (["v_prediction", "edm_playground_v2.5", "eps"],),
                               "sigma_max": ("FLOAT", {"default": 120.0, "min": 0.0, "max": 1000.0, "step":0.001, "round": False}),
                               "sigma_min": ("FLOAT", {"default": 0.002, "min": 0.0, "max": 1000.0, "step":0.001, "round": False}),
                               }}
@@ -54,17 +59,25 @@ class ModelSamplingContinuousEDM:
     def patch(self, model, sampling, sigma_max, sigma_min):
         m = model.clone()
 
+        latent_format = None
+        sigma_data = 1.0
         if sampling == "eps":
             sampling_type = comfy.model_sampling.EPS
         elif sampling == "v_prediction":
             sampling_type = comfy.model_sampling.V_PREDICTION
+        elif sampling == "edm_playground_v2.5":
+            sampling_type = comfy.model_sampling.EDM
+            sigma_data = 0.5
+            latent_format = comfy.latent_formats.SDXL_Playground_2_5()
 
         class ModelSamplingAdvanced(comfy.model_sampling.ModelSamplingContinuousEDM, sampling_type):
             pass
 
         model_sampling = ModelSamplingAdvanced(model.model.model_config)
-        model_sampling.set_sigma_range(sigma_min, sigma_max)
+        model_sampling.set_parameters(sigma_min, sigma_max, sigma_data)
         m.add_object_patch("model_sampling", model_sampling)
+        if latent_format is not None:
+            m.add_object_patch("latent_format", latent_format)
         return (m, )
 
 ```

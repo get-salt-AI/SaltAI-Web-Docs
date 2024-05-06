@@ -1,36 +1,42 @@
+---
+tags:
+- Image
+- ImageSequence
+---
+
 # Batch Load Image Sequence With Stop Index
 ## Documentation
 - Class name: `JWLoadImageSequenceWithStopIndex`
 - Category: `jamesWalker55`
 - Output node: `False`
 
-This node is designed to batch load a sequence of images based on a specified start and stop index, with an option to include or exclude the stop index image. It also provides the capability to ignore missing images, ensuring robustness in handling incomplete image sequences.
+This node is designed to batch load a sequence of images based on a specified start and stop index, with options to include or exclude the stop index and to ignore missing images. It facilitates the dynamic loading of image sequences from a filesystem, allowing for flexible data handling in image processing workflows.
 ## Input types
 ### Required
 - **`path_pattern`**
-    - A string pattern representing the path to the images, where an index placeholder is used to load a sequence of images.
+    - Specifies the pattern or path for locating the images to be loaded, using placeholders for indices.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`start_index`**
-    - The starting index from which to begin loading the image sequence.
+    - Defines the starting index for the sequence of images to be loaded.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`stop_index`**
-    - The index at which to stop loading the image sequence.
+    - Sets the ending index for the image sequence loading, determining the range of images to include.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`inclusive`**
-    - A boolean flag indicating whether the stop index image should be included in the loaded sequence.
+    - Determines whether the stop index is included in the loading sequence, allowing for inclusive or exclusive range selection.
     - Comfy dtype: `['false', 'true']`
-    - Python dtype: `bool`
+    - Python dtype: `str`
 - **`ignore_missing_images`**
-    - A boolean flag that, when set to true, allows the node to ignore missing images and proceed with loading available images.
+    - Controls whether to ignore missing images within the specified range, enabling robust handling of incomplete sequences.
     - Comfy dtype: `['false', 'true']`
-    - Python dtype: `bool`
+    - Python dtype: `str`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The loaded sequence of images as a tensor.
+    - Returns the loaded sequence of images as a tensor, ready for further processing or analysis.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`

@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- PatternGeneration
+- VisualEffects
+---
+
 # 🟧 CR Starburst Lines
 ## Documentation
 - Class name: `CR Starburst Lines`

@@ -1,3 +1,9 @@
+---
+tags:
+- Color
+- ColorChannelManipulation
+---
+
 # Image Mix RGB Channels
 ## Documentation
 - Class name: `Image Mix RGB Channels`

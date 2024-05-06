@@ -1,57 +1,67 @@
+---
+tags:
+- Batch
+- Image
+---
+
 # Batch Shape (mtb)
 ## Documentation
 - Class name: `Batch Shape (mtb)`
 - Category: `mtb/batch`
 - Output node: `False`
 
-The BatchShape node is designed to generate a batch of 2D shapes with optional shading, providing a versatile tool for creating diverse visual datasets. It abstracts the complexity of shape generation and shading, enabling users to easily produce batches of shapes with specified characteristics.
+Generates a batch of 2D shapes with optional shading, offering a creative tool for experimental design and visualization. This node allows for the customization of shape, size, color, and shading within generated images, making it ideal for creating diverse datasets or unique visual content.
 ## Input types
 ### Required
 - **`count`**
-    - Specifies the number of shapes to generate in the batch, directly influencing the batch size.
+    - Specifies the number of shapes to generate in the batch, affecting the overall output volume.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`shape`**
-    - Determines the type of shapes to be generated in the batch, allowing for the creation of boxes, circles, or diamonds.
+    - Determines the type of shape to generate, such as Box, Circle, Diamond, or Tube, providing a variety of geometric forms for creation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 - **`image_width`**
-    - Sets the width of the generated images, defining the canvas size for the shapes.
+    - Sets the width of the generated image, defining the canvas size.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`image_height`**
-    - Sets the height of the generated images, defining the canvas size for the shapes.
+    - Sets the height of the generated image, defining the canvas size.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`shape_size`**
-    - Controls the size of the generated shapes, affecting their scale within the images.
+    - Controls the size of the generated shapes, allowing for customization of the visual scale.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`color`**
-    - Specifies the color of the shapes, enabling customization of their appearance.
+    - Specifies the color of the shapes, offering aesthetic customization.
     - Comfy dtype: `COLOR`
     - Python dtype: `str`
 - **`bg_color`**
-    - Determines the background color of the images, setting the visual context for the shapes.
+    - Determines the background color of the image, enabling contrast and visibility adjustments.
     - Comfy dtype: `COLOR`
     - Python dtype: `str`
 - **`shade_color`**
-    - Defines the color used for shading the shapes, adding depth and visual interest.
+    - Sets the color used for shading, adding depth and dimension to the shapes.
     - Comfy dtype: `COLOR`
     - Python dtype: `str`
+- **`thickness`**
+    - Defines the line thickness of the shapes, impacting visual prominence.
+    - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`shadex`**
-    - Adjusts the horizontal shading offset, influencing the direction and intensity of the shading effect.
+    - Adjusts the horizontal shading offset, influencing the shading direction.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`shadey`**
-    - Adjusts the vertical shading offset, influencing the direction and intensity of the shading effect.
+    - Adjusts the vertical shading offset, influencing the shading direction.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is a list of images, each containing the generated shapes with the specified characteristics and optional shading.
-    - Python dtype: `List[Image]`
+    - Produces an image or a batch of images containing the specified 2D shapes with optional shading effects.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -59,7 +69,7 @@ The BatchShape node is designed to generate a batch of 2D shapes with optional s
 
 ## Source code
 ```python
-class BatchShape:
+class MTB_BatchShape:
     """Generates a batch of 2D shapes with optional shading (experimental)"""
 
     @classmethod
@@ -68,8 +78,8 @@ class BatchShape:
             "required": {
                 "count": ("INT", {"default": 1}),
                 "shape": (
-                    ["Box", "Circle", "Diamond"],
-                    {"default": "Box"},
+                    ["Box", "Circle", "Diamond", "Tube"],
+                    {"default": "Circle"},
                 ),
                 "image_width": ("INT", {"default": 512}),
                 "image_height": ("INT", {"default": 512}),
@@ -77,6 +87,7 @@ class BatchShape:
                 "color": ("COLOR", {"default": "#ffffff"}),
                 "bg_color": ("COLOR", {"default": "#000000"}),
                 "shade_color": ("COLOR", {"default": "#000000"}),
+                "thickness": ("INT", {"default": 5}),
                 "shadex": ("FLOAT", {"default": 0.0}),
                 "shadey": ("FLOAT", {"default": 0.0}),
             },
@@ -96,12 +107,13 @@ class BatchShape:
         color,
         bg_color,
         shade_color,
+        thickness,
         shadex,
         shadey,
     ):
-        print(f"COLOR: {color}")
-        print(f"BG_COLOR: {bg_color}")
-        print(f"SHADE_COLOR: {shade_color}")
+        log.debug(f"COLOR: {color}")
+        log.debug(f"BG_COLOR: {bg_color}")
+        log.debug(f"SHADE_COLOR: {shade_color}")
 
         # Parse color input to BGR tuple for OpenCV
         color = hex_to_rgb(color)
@@ -135,6 +147,18 @@ class BatchShape:
                     ]
                 )
                 cv2.fillPoly(mask, [pts], 255)
+
+            elif shape == "Tube":
+                cv2.ellipse(
+                    mask,
+                    center,
+                    (shape_size // 2, shape_size // 2),
+                    0,
+                    0,
+                    360,
+                    255,
+                    thickness,
+                )
 
             # Color the shape
             canvas[mask == 255] = color

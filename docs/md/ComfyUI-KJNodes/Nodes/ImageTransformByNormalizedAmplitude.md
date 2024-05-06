@@ -1,35 +1,43 @@
 # ImageTransformByNormalizedAmplitude
 ## Documentation
 - Class name: `ImageTransformByNormalizedAmplitude`
-- Category: `KJNodes`
+- Category: `KJNodes/audio`
 - Output node: `False`
 
-This node is designed to transform images based on normalized amplitude values. It adjusts the zoom level of images incrementally or cumulatively, depending on the amplitude, to create a series of transformed images. The transformation process involves cropping and resizing operations to simulate zoom effects, tailored by the amplitude's influence.
+This node applies a transformation to images based on normalized amplitude values, adjusting aspects such as zoom scale dynamically. It's designed to modify images in a batch by scaling their size according to audio-driven amplitude data, enabling creative visual-audio synchronization.
 ## Input types
 ### Required
 - **`normalized_amp`**
-    - An array of normalized amplitude values, each corresponding to an image in the batch. These values dictate the extent of zoom applied to each image, influencing the transformation process.
+    - An array of normalized amplitude values, each corresponding to an image in the batch, used to determine the scale of transformation.
     - Comfy dtype: `NORMALIZED_AMPLITUDE`
     - Python dtype: `numpy.ndarray`
 - **`zoom_scale`**
-    - A scaling factor that determines the intensity of the zoom effect applied to the images. It modulates the transformation based on the amplitude values.
+    - A scaling factor that determines how much the image is zoomed based on the amplitude value.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
+- **`x_offset`**
+    - The horizontal offset applied to the image after scaling, allowing for positional adjustments.
+    - Comfy dtype: `INT`
+    - Python dtype: `int`
+- **`y_offset`**
+    - The vertical offset applied to the image after scaling, allowing for positional adjustments.
+    - Comfy dtype: `INT`
+    - Python dtype: `int`
 - **`cumulative`**
-    - A boolean flag indicating whether the zoom effect should be applied cumulatively across the images. When set to true, it enhances the transformation effect progressively.
+    - A boolean indicating whether the zoom effect should accumulate over the images in the batch.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`image`**
-    - The input image or batch of images to be transformed. It serves as the base for applying zoom transformations based on amplitude values.
+    - The batch of images to be transformed, where each image's transformation is influenced by its corresponding amplitude value.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - A list of images that have been transformed based on the provided amplitude values and zoom scale. Each image in the list represents a zoomed version of the original, adjusted according to its corresponding amplitude.
+    - The transformed images, each adjusted according to its corresponding normalized amplitude value, zoom scale, and positional offsets.
     - Python dtype: `List[torch.Tensor]`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -41,15 +49,22 @@ class ImageTransformByNormalizedAmplitude:
         return {"required": {
             "normalized_amp": ("NORMALIZED_AMPLITUDE",),
             "zoom_scale": ("FLOAT", { "default": 0.0, "min": -1.0, "max": 1.0, "step": 0.001, "display": "number" }),
+            "x_offset": ("INT", { "default": 0, "min": (1 -MAX_RESOLUTION), "max": MAX_RESOLUTION, "step": 1, "display": "number" }),
+            "y_offset": ("INT", { "default": 0, "min": (1 -MAX_RESOLUTION), "max": MAX_RESOLUTION, "step": 1, "display": "number" }),
             "cumulative": ("BOOLEAN", { "default": False }),
             "image": ("IMAGE",),
         }}
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "amptransform"
-    CATEGORY = "KJNodes"
+    CATEGORY = "KJNodes/audio"
+    DESCRIPTION = """
+Works as a bridge to the AudioScheduler -nodes:  
+https://github.com/a1lazydog/ComfyUI-AudioScheduler  
+Transforms image based on the normalized amplitude.
+"""
 
-    def amptransform(self, image, normalized_amp, zoom_scale, cumulative):
+    def amptransform(self, image, normalized_amp, zoom_scale, cumulative, x_offset, y_offset):
         # Ensure normalized_amp is an array and within the range [0, 1]
         normalized_amp = np.clip(normalized_amp, 0.0, 1.0)
         transformed_images = []
@@ -93,6 +108,17 @@ class ImageTransformByNormalizedAmplitude:
             # Convert the tensor back to BxHxWxC format
             tensor_img = tensor_img.permute(1, 2, 0)
             
+            # Offset the image based on the amplitude
+            offset_amp = amp * 10  # Calculate the offset magnitude based on the amplitude
+            shift_x = min(x_offset * offset_amp, img.shape[1] - 1)  # Calculate the shift in x direction
+            shift_y = min(y_offset * offset_amp, img.shape[0] - 1)  # Calculate the shift in y direction
+
+            # Apply the offset to the image tensor
+            if shift_x != 0:
+                tensor_img = torch.roll(tensor_img, shifts=int(shift_x), dims=1)
+            if shift_y != 0:
+                tensor_img = torch.roll(tensor_img, shifts=int(shift_y), dims=0)
+
             # Add to the list
             transformed_images.append(tensor_img)
         

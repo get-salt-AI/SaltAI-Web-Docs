@@ -1,14 +1,14 @@
 # AddLabel
 ## Documentation
 - Class name: `AddLabel`
-- Category: `KJNodes`
+- Category: `KJNodes/text`
 - Output node: `False`
 
-The AddLabel node is designed to overlay text labels onto images, allowing for customization of text position, size, color, and the label's background color. It supports specifying the direction in which the label should be added relative to the image, enabling versatile text annotation capabilities.
+The `AddLabel` node is designed to add textual labels to images, allowing for customization of text position, size, color, and the label's background color. It supports both single and batch processing, with the ability to handle multiple captions for batch images.
 ## Input types
 ### Required
 - **`image`**
-    - The input image or batch of images to which the label will be added. This parameter is crucial as it defines the base upon which the text label will be overlaid.
+    - The input image to which the label will be added. This is the primary canvas for label addition.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`text_x`**
@@ -20,40 +20,45 @@ The AddLabel node is designed to overlay text labels onto images, allowing for c
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - The height of the text label area in pixels. It affects how much vertical space the label will occupy on the image.
+    - The height of the label area to be added to the image. It affects the overall height of the resulting image.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`font_size`**
-    - The size of the font used for the text label. This parameter influences the readability and visual impact of the text.
+    - The size of the font used for the label text. This determines how large the text appears on the label.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`font_color`**
-    - The color of the text in the label. It determines how the text visually contrasts with the label's background.
+    - The color of the font used for the label text. It defines the visual appearance of the text.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`label_color`**
-    - The background color of the text label. This parameter affects the visual distinction between the label and the image.
+    - The background color of the label area. This color will fill the background of the text label.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`font`**
-    - The font used for the text label. This parameter allows for customization of the text's appearance.
-    - Comfy dtype: `STRING`
+    - The font used for the label text. This parameter allows for the selection of different font styles.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`text`**
-    - The text content to be added as a label on the image. This parameter is essential for defining what the label will say.
+    - The text content to be added as a label on the image. This is the actual label text.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`direction`**
-    - The direction in which the label should be added relative to the image, either 'up' or 'down'. This affects the label's placement and can influence the overall layout of the annotated image.
+    - The direction in which the label will be added to the image, either above (up) or below (down).
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
+### Optional
+- **`caption`**
+    - Optional captions for batch processing. When provided, each image in the batch will have its corresponding caption as a label.
+    - Comfy dtype: `STRING`
+    - Python dtype: `List[str]`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is a batch of images with the text labels added in the specified direction. It enables the integration of textual information directly onto visual content.
+    - The output image with the added label. This image includes the original content plus the newly added label area.
     - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -70,7 +75,7 @@ class AddLabel:
             "font_size": ("INT", {"default": 32, "min": 0, "max": 4096, "step": 1}),
             "font_color": ("STRING", {"default": "white"}),
             "label_color": ("STRING", {"default": "black"}),
-            "font": ("STRING", {"default": "TTNorms-Black.otf"}),
+            "font": (folder_paths.get_filename_list("kjnodes_fonts"), ),
             "text": ("STRING", {"default": "Text"}),
             "direction": (
             [   'up',
@@ -78,36 +83,63 @@ class AddLabel:
             ],
             {
             "default": 'up'
-            
              }),
             },
+            "optional":{
+                "caption": ("STRING", {"default": "", "forceInput": True}),
+            }
             }
     
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "addlabel"
-
-    CATEGORY = "KJNodes"
+    CATEGORY = "KJNodes/text"
+    DESCRIPTION = """
+Creates a new with the given text, and concatenates it to  
+either above or below the input image.  
+Note that this changes the input image's height!  
+Fonts are loaded from this folder:  
+ComfyUI/custom_nodes/ComfyUI-KJNodes/fonts
+"""
         
-    def addlabel(self, image, text_x, text_y, text, height, font_size, font_color, label_color, font, direction):
+    def addlabel(self, image, text_x, text_y, text, height, font_size, font_color, label_color, font, direction, caption=""):
         batch_size = image.shape[0]
         width = image.shape[2]
         
         if font == "TTNorms-Black.otf":
-            font_path = os.path.join(script_dir, "fonts", "TTNorms-Black.otf")
+            font_path = os.path.join(script_directory, "fonts", "TTNorms-Black.otf")
         else:
-            font_path = font
-        label_image = Image.new("RGB", (width, height), label_color)
-        draw = ImageDraw.Draw(label_image)
-        font = ImageFont.truetype(font_path, font_size)
-        try:
-            draw.text((text_x, text_y), text, font=font, fill=font_color, features=['-liga'])
-        except:
-            draw.text((text_x, text_y), text, font=font, fill=font_color)
+            font_path = folder_paths.get_full_path("kjnodes_fonts", font)
+        
+        if caption == "":
+            label_image = Image.new("RGB", (width, height), label_color)
+            draw = ImageDraw.Draw(label_image)
+            font = ImageFont.truetype(font_path, font_size)
+            try:
+                draw.text((text_x, text_y), text, font=font, fill=font_color, features=['-liga'])
+            except:
+                draw.text((text_x, text_y), text, font=font, fill=font_color)
 
-        label_image = np.array(label_image).astype(np.float32) / 255.0
-        label_image = torch.from_numpy(label_image)[None, :, :, :]
-        # Duplicate the label image for the entire batch
-        label_batch = label_image.repeat(batch_size, 1, 1, 1)
+            label_image = np.array(label_image).astype(np.float32) / 255.0
+            label_image = torch.from_numpy(label_image)[None, :, :, :]
+            # Duplicate the label image for the entire batch
+            label_batch = label_image.repeat(batch_size, 1, 1, 1)
+        else:
+            label_list = []
+            assert len(caption) == batch_size, "Number of captions does not match number of images"
+            for cap in caption:
+                label_image = Image.new("RGB", (width, height), label_color)
+                draw = ImageDraw.Draw(label_image)
+                font = ImageFont.truetype(font_path, font_size)
+                try:
+                    draw.text((text_x, text_y), cap, font=font, fill=font_color, features=['-liga'])
+                except:
+                    draw.text((text_x, text_y), cap, font=font, fill=font_color)
+
+                label_image = np.array(label_image).astype(np.float32) / 255.0
+                label_image = torch.from_numpy(label_image)
+                label_list.append(label_image)
+            label_batch = torch.stack(label_list)
+            print(label_batch.shape)
 
         if direction == 'down':
             combined_images = torch.cat((image, label_batch), dim=1)

@@ -1,3 +1,10 @@
+---
+tags:
+- Math
+- UnaryOperations
+- VectorMath
+---
+
 # NumberUnaryCondition
 ## Documentation
 - Class name: `CM_NumberUnaryCondition`

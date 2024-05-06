@@ -1,3 +1,9 @@
+---
+tags:
+- Segmentation
+- SemanticSegmentationPreprocessing
+---
+
 # OneFormer COCO Segmentor
 ## Documentation
 - Class name: `OneFormer-COCO-SemSegPreprocessor`

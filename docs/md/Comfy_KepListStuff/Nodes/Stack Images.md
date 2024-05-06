@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageTransformation
+---
+
 # Stack Images(Deprecated)
 ## Documentation
 - Class name: `Stack Images`

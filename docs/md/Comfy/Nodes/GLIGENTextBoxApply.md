@@ -1,51 +1,57 @@
+---
+tags:
+- CLIP
+- Conditioning
+---
+
 # GLIGENTextBoxApply
 ## Documentation
 - Class name: `GLIGENTextBoxApply`
 - Category: `conditioning/gligen`
 - Output node: `False`
 
-The GLIGENTextBoxApply node is designed to integrate text-based conditioning into a generative model's input, specifically by applying text box parameters and encoding them using a CLIP model. This process enriches the conditioning with spatial and textual information, facilitating more precise and context-aware generation.
+The GLIGENTextBoxApply node is designed to append text-based conditioning to a given set of conditioning inputs using a GLIGEN model. It utilizes CLIP to encode the text and integrates the encoded information into the conditioning, allowing for text-driven modifications in generative tasks.
 ## Input types
 ### Required
 - **`conditioning_to`**
-    - Specifies the initial conditioning input to which the text box parameters and encoded text information will be appended. It plays a crucial role in determining the final output by integrating new conditioning data.
+    - The set of conditioning inputs to which the text-based conditioning will be appended. It serves as the foundation for text-driven modifications.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Union[torch.Tensor, List[Any], Dict[str, Any]]]]]`
 - **`clip`**
-    - The CLIP model used for encoding the provided text into a format that can be utilized by the generative model. It's essential for converting textual information into a compatible conditioning format.
+    - The CLIP model used for encoding the input text into a format suitable for conditioning. It plays a crucial role in interpreting the text semantically.
     - Comfy dtype: `CLIP`
     - Python dtype: `CLIP`
 - **`gligen_textbox_model`**
-    - Represents the specific GLIGEN model configuration to be used for generating the text box. It's crucial for ensuring that the text box is generated according to the desired specifications.
+    - The GLIGEN model responsible for applying the text-based conditioning. It defines how the text influences the generative process.
     - Comfy dtype: `GLIGEN`
     - Python dtype: `GLIGEN`
 - **`text`**
-    - The text content to be encoded and integrated into the conditioning. It provides the semantic information that guides the generative model.
+    - The input text to be encoded and applied as conditioning. This text drives the modifications in the generative task.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`width`**
-    - The width of the text box in pixels. It defines the spatial dimension of the text box within the generated image.
+    - The width parameter specifies the dimension to which the text conditioning should be applied, influencing the spatial aspect of the conditioning.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - The height of the text box in pixels. Similar to width, it defines the spatial dimension of the text box within the generated image.
+    - The height parameter specifies the dimension to which the text conditioning should be applied, influencing the spatial aspect of the conditioning.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`x`**
-    - The x-coordinate of the top-left corner of the text box within the generated image. It specifies the text box's position horizontally.
+    - The x-coordinate for the positioning of the text-based conditioning, affecting its spatial placement.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`y`**
-    - The y-coordinate of the top-left corner of the text box within the generated image. It specifies the text box's position vertically.
+    - The y-coordinate for the positioning of the text-based conditioning, affecting its spatial placement.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`conditioning`**
     - Comfy dtype: `CONDITIONING`
-    - The enriched conditioning output, which includes the original conditioning data along with the newly appended text box parameters and encoded text information. It's used to guide the generative model in producing context-aware outputs.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
+    - The modified set of conditioning inputs, now including the text-based conditioning applied through the GLIGEN model.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Union[torch.Tensor, List[Any], Dict[str, Any]]]]]`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes:
     - [KSampler](../../Comfy/Nodes/KSampler.md)
     - [ToDetailerPipe](../../ComfyUI-Impact-Pack/Nodes/ToDetailerPipe.md)
@@ -60,7 +66,7 @@ class GLIGENTextBoxApply:
         return {"required": {"conditioning_to": ("CONDITIONING", ),
                               "clip": ("CLIP", ),
                               "gligen_textbox_model": ("GLIGEN", ),
-                              "text": ("STRING", {"multiline": True}),
+                              "text": ("STRING", {"multiline": True, "dynamicPrompts": True}),
                               "width": ("INT", {"default": 64, "min": 8, "max": MAX_RESOLUTION, "step": 8}),
                               "height": ("INT", {"default": 64, "min": 8, "max": MAX_RESOLUTION, "step": 8}),
                               "x": ("INT", {"default": 0, "min": 0, "max": MAX_RESOLUTION, "step": 8}),

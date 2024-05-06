@@ -1,42 +1,50 @@
+---
+tags:
+- CLIP
+- CLIPConditioning
+- CLIPTextEncoding
+- Conditioning
+---
+
 # CLIPTextEncodeSDXLRefiner
 ## Documentation
 - Class name: `CLIPTextEncodeSDXLRefiner`
 - Category: `advanced/conditioning`
 - Output node: `False`
 
-This node specializes in refining the encoding of text inputs using CLIP models, enhancing the conditioning for generative tasks by incorporating aesthetic scores and dimensions.
+The CLIPTextEncodeSDXLRefiner node specializes in refining text inputs for image generation by encoding them using a CLIP model, incorporating aesthetic scores and dimensions to enhance the conditioning for image synthesis.
 ## Input types
 ### Required
 - **`ascore`**
-    - The aesthetic score parameter influences the conditioning output by providing a measure of aesthetic quality.
+    - The aesthetic score parameter influences the aesthetic quality of the generated image, allowing for fine-tuning based on aesthetic preferences.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`width`**
-    - Specifies the width of the output conditioning, affecting the dimensions of the generated content.
+    - Specifies the desired width of the output image, impacting the aspect ratio and detail level of the generated image.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Determines the height of the output conditioning, influencing the dimensions of the generated content.
+    - Determines the height of the output image, affecting its aspect ratio and the level of detail in the vertical dimension.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`text`**
-    - The text input to be encoded, serving as the primary content descriptor for conditioning.
+    - The text input to be encoded, serving as the primary source of semantic information for image generation.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`clip`**
-    - A CLIP model instance used for text tokenization and encoding, central to generating the conditioning.
+    - A CLIP model instance used for encoding the text input, crucial for interpreting the semantic content.
     - Comfy dtype: `CLIP`
-    - Python dtype: `object`
+    - Python dtype: `torch.nn.Module`
 ## Output types
 - **`conditioning`**
     - Comfy dtype: `CONDITIONING`
-    - The refined conditioning output, enriched with aesthetic scores and dimensions for enhanced content generation.
+    - Provides the encoded text along with aesthetic scores and dimensions, ready for use in further image synthesis processes.
     - Python dtype: `list`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes:
     - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
-    - UltimateSDUpscale
+    - [UltimateSDUpscale](../../ComfyUI_UltimateSDUpscale/Nodes/UltimateSDUpscale.md)
 
 
 
@@ -49,7 +57,7 @@ class CLIPTextEncodeSDXLRefiner:
             "ascore": ("FLOAT", {"default": 6.0, "min": 0.0, "max": 1000.0, "step": 0.01}),
             "width": ("INT", {"default": 1024.0, "min": 0, "max": MAX_RESOLUTION}),
             "height": ("INT", {"default": 1024.0, "min": 0, "max": MAX_RESOLUTION}),
-            "text": ("STRING", {"multiline": True}), "clip": ("CLIP", ),
+            "text": ("STRING", {"multiline": True, "dynamicPrompts": True}), "clip": ("CLIP", ),
             }}
     RETURN_TYPES = ("CONDITIONING",)
     FUNCTION = "encode"

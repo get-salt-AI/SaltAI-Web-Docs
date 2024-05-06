@@ -1,3 +1,10 @@
+---
+tags:
+- ImageScaling
+- ImageUpscaling
+- Upscale
+---
+
 # Upscale Image
 ## Documentation
 - Class name: `ImageScale`
@@ -43,7 +50,7 @@ The ImageScale node is designed for resizing images to specific dimensions, offe
     - [VAEEncodeTiled](../../Comfy/Nodes/VAEEncodeTiled.md)
     - [StableZero123_Conditioning](../../Comfy/Nodes/StableZero123_Conditioning.md)
     - [OpenposePreprocessor](../../comfyui_controlnet_aux/Nodes/OpenposePreprocessor.md)
-    - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
+    - IPAdapterApply
     - [Image Rembg (Remove Background)](../../was-node-suite-comfyui/Nodes/Image Rembg (Remove Background).md)
 
 

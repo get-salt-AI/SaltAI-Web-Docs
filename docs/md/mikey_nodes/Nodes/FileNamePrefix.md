@@ -1,3 +1,8 @@
+---
+tags:
+- Text
+---
+
 # File Name Prefix (Mikey)
 ## Documentation
 - Class name: `FileNamePrefix`

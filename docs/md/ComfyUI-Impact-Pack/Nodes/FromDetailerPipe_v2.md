@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- Pipeline
+- PipelineTransformation
+---
+
 # FromDetailerPipe_v2
 ## Documentation
 - Class name: `FromDetailerPipe_v2`

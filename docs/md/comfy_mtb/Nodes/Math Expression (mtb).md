@@ -1,24 +1,31 @@
+---
+tags:
+- DataTypeConversion
+- Math
+- MathematicalExpressions
+---
+
 # Math Expression (mtb)
 ## Documentation
 - Class name: `Math Expression (mtb)`
 - Category: `mtb/math`
 - Output node: `False`
 
-This node is designed to evaluate simple math expressions provided as strings. It supports basic arithmetic operations and can dynamically replace placeholders within the expression with specified values.
+This node is designed to evaluate simple math expressions provided as strings, incorporating the ability to replace placeholders within the expression with specified values. It aims to offer a straightforward method for dynamically calculating numerical results based on input expressions.
 ## Input types
 ### Required
 - **`expression`**
-    - The math expression to be evaluated. Supports basic arithmetic operations and placeholders for dynamic value substitution.
+    - The math expression string to be evaluated. This string can include placeholders for dynamic substitution and supports basic math operations.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`result (float)`**
     - Comfy dtype: `FLOAT`
-    - The floating-point result of the evaluated math expression.
+    - The evaluated result of the math expression as a floating-point number.
     - Python dtype: `float`
 - **`result (int)`**
     - Comfy dtype: `INT`
-    - The integer result of the evaluated math expression, obtained by converting the float result to an integer.
+    - The evaluated result of the math expression, explicitly cast to an integer.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
@@ -42,10 +49,11 @@ class MTB_MathExpression:
     RETURN_TYPES = ("FLOAT", "INT")
     RETURN_NAMES = ("result (float)", "result (int)")
     CATEGORY = "mtb/math"
-    DESCRIPTION = "evaluate a simple math expression string (!! Fallsback to eval)"
+    DESCRIPTION = (
+        "evaluate a simple math expression string (!! Fallsback to eval)"
+    )
 
     def eval_expression(self, expression, **kwargs):
-        import math
         from ast import literal_eval
 
         for key, value in kwargs.items():

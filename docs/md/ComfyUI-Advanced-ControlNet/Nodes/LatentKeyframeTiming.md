@@ -1,45 +1,52 @@
+---
+tags:
+- AnimationScheduling
+- Frame
+- Keyframe
+---
+
 # Latent Keyframe Interpolation 🛂🅐🅒🅝
 ## Documentation
 - Class name: `LatentKeyframeTiming`
 - Category: `Adv-ControlNet 🛂🅐🅒🅝/keyframes`
 - Output node: `False`
 
-The LatentKeyframeNode is designed for the creation, manipulation, and management of latent keyframes within a generative model's control network. It enables dynamic control over the generation process by adjusting keyframe properties such as timing, strength, and interpolation, facilitating the animation or transformation of generated content.
+This node is responsible for creating and managing latent keyframes within a generative model's control network. It allows for the dynamic adjustment and sequencing of keyframes based on specified timing and strength parameters, facilitating the controlled transformation or animation of generated content.
 ## Input types
 ### Required
 - **`batch_index_from`**
-    - Specifies the starting index for a batch of keyframes to be generated or modified, marking the beginning of the range within the sequence.
+    - Specifies the starting index of the batch for keyframe creation, marking the beginning of the sequence where adjustments are applied.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`batch_index_to_excl`**
-    - Defines the exclusive end index for a batch of keyframes, indicating the end of the range within the sequence. This parameter helps in specifying the scope of keyframes to be affected.
+    - Defines the exclusive end index of the batch for keyframe creation, indicating the point just beyond the last batch index where adjustments cease.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`strength_from`**
-    - Specifies the starting strength value for the keyframes within the specified range, setting the initial intensity or effect level.
+    - Sets the initial strength or intensity level for the starting keyframe, influencing the beginning of the transformation or animation effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`strength_to`**
-    - Defines the ending strength value for the keyframes, marking the final intensity or effect level within the specified range.
+    - Determines the final strength or intensity level for the ending keyframe, shaping the culmination of the transformation or animation effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`interpolation`**
-    - Determines the method of interpolation to be used for calculating the strength values between the start and end of the specified range. This affects the gradual change in keyframe strength across the sequence.
+    - Chooses the method of interpolation between keyframe strengths, affecting the transition smoothness and dynamics between the start and end points.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`prev_latent_kf`**
-    - References the previous group of latent keyframes, allowing for the addition or modification of keyframes within an existing sequence. This input is crucial for maintaining continuity in the animation or transformation process.
+    - An optional parameter for including a previously defined latent keyframe or keyframe group, enabling the extension or modification of existing sequences.
     - Comfy dtype: `LATENT_KEYFRAME`
     - Python dtype: `LatentKeyframeGroup`
 - **`print_keyframes`**
-    - A boolean flag that, when set to true, enables logging of keyframe information for debugging or informational purposes.
+    - A flag to enable or disable the printing of keyframe details, aiding in debugging or visualization of the keyframe sequence.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`LATENT_KF`**
     - Comfy dtype: `LATENT_KEYFRAME`
-    - The modified or newly created group of latent keyframes, reflecting the applied changes. This output is essential for progressing the animation or transformation process with the desired dynamics.
+    - Outputs a modified or newly created latent keyframe group, incorporating the specified adjustments and interpolations to the keyframes.
     - Python dtype: `LatentKeyframeGroup`
 ## Usage tips
 - Infra type: `CPU`
@@ -53,8 +60,8 @@ class LatentKeyframeInterpolationNode:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "batch_index_from": ("INT", {"default": 0, "min": -10000, "max": 10000, "step": 1}),
-                "batch_index_to_excl": ("INT", {"default": 0, "min": -10000, "max": 10000, "step": 1}),
+                "batch_index_from": ("INT", {"default": 0, "min": BIGMIN, "max": BIGMAX, "step": 1}),
+                "batch_index_to_excl": ("INT", {"default": 0, "min": BIGMIN, "max": BIGMAX, "step": 1}),
                 "strength_from": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 10.0, "step": 0.001}, ),
                 "strength_to": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 10.0, "step": 0.001}, ),
                 "interpolation": ([SI.LINEAR, SI.EASE_IN, SI.EASE_OUT, SI.EASE_IN_OUT], ),

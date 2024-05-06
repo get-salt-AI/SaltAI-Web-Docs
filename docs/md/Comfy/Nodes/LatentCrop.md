@@ -1,3 +1,10 @@
+---
+tags:
+- Crop
+- Image
+- ImageTransformation
+---
+
 # Crop Latent
 ## Documentation
 - Class name: `LatentCrop`

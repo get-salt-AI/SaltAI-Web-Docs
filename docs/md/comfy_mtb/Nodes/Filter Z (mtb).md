@@ -1,3 +1,8 @@
+---
+tags:
+- VisualEffects
+---
+
 # Filter Z (mtb)
 ## Documentation
 - Class name: `Filter Z (mtb)`

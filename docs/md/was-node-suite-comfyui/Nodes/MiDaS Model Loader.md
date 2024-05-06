@@ -1,3 +1,10 @@
+---
+tags:
+- DepthMap
+- DepthMapEstimation
+- Image
+---
+
 # MiDaS Model Loader
 ## Documentation
 - Class name: `MiDaS Model Loader`

@@ -1,3 +1,8 @@
+---
+tags:
+- Segmentation
+---
+
 # SEGSPreview (CNET Image)
 ## Documentation
 - Class name: `SEGSPreviewCNet`

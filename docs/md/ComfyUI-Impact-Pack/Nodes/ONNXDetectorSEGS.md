@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Segmentation
+---
+
 # ONNX Detector (SEGS/legacy) - use BBOXDetector
 ## Documentation
 - Class name: `ONNXDetectorSEGS`

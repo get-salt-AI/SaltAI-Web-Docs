@@ -1,3 +1,8 @@
+---
+tags:
+- Text
+---
+
 # Text File History Loader
 ## Documentation
 - Class name: `Text File History Loader`

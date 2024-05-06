@@ -1,40 +1,45 @@
+---
+tags:
+- Image
+---
+
 # MorphologicOperation
 ## Documentation
 - Class name: `MorphologicOperation`
 - Category: `Bmad/CV/Morphology`
 - Output node: `False`
 
-This node provides a generic interface for performing various morphological operations on images, such as erosion, dilation, opening, closing, gradient, top hat, and black hat transformations. It is designed to work with binary (black and white) images and allows for the application of different kernel shapes and sizes to achieve the desired morphological effect.
+The MorphologicOperation node provides a comprehensive suite of morphological operations for image processing, including erosion, dilation, opening, closing, gradient, top hat, and bottom hat transformations. It is designed to apply these operations to images, allowing for various forms of structural modifications and analysis within a binary image context.
 ## Input types
 ### Required
 - **`src`**
-    - The source image on which the morphological operations are to be performed. It serves as the primary input for the node, dictating the initial state of the image before any transformations. The quality and characteristics of the source image directly influence the outcome of the morphological operations.
+    - The source image to be processed through morphological operations, enabling structural modifications based on the specified operation, kernel type, and iterations.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`operation`**
-    - Specifies the type of morphological operation to apply to the source image. This parameter determines how the image's structure will be modified, directly impacting the visual characteristics of the output image by altering its geometry and texture.
+    - Determines the specific morphological operation to be applied, such as erosion or dilation, influencing the structural transformation of the image.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`kernel_type`**
-    - Defines the shape of the structuring element used in the morphological operation. Different shapes can produce varying effects on the image, influencing the connectivity and the boundary smoothness of the structures within the image.
+    - Specifies the shape of the kernel used in the morphological operation, affecting the nature of the transformation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`kernel_size_x`**
-    - The horizontal size of the kernel. It affects the extent of the operation's impact on the image, with larger sizes leading to more pronounced morphological transformations.
+    - The horizontal size of the kernel, influencing the scale and impact of the operation on the image.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`kernel_size_y`**
-    - The vertical size of the kernel. Similar to kernel_size_x, it influences the scope of the morphological operation's effect on the image, where larger sizes result in more significant alterations.
+    - The vertical size of the kernel, affecting the scale and depth of the morphological transformation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`iterations`**
-    - The number of times the morphological operation is applied. Increasing the iterations can intensify the effect of the operation, leading to more dramatic changes in the image's structure.
+    - The number of times the morphological operation is applied, allowing for incremental structural changes.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The transformed image after applying the specified morphological operation. It reflects the structural changes made to the original image, showcasing the effects of the chosen operation, kernel shape, and size.
+    - The output image after the morphological operations, reflecting the structural changes made.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -71,8 +76,8 @@ class MorphologicOperation:
         return {
             "required": {
                 "src": ("IMAGE",),
-                "operation": (s.operations, s.operations),
-                "kernel_type": (s.kernel_types, s.kernel_types),
+                "operation": (s.operations, {"default": s.operations[0]}),
+                "kernel_type": (s.kernel_types, {"default": s.kernel_types[0]}),
                 "kernel_size_x": ("INT", {"default": 4, "min": 2, "step": 2}),
                 "kernel_size_y": ("INT", {"default": 4, "min": 2, "step": 2}),
                 "iterations": ("INT", {"default": 1, "step": 1}),

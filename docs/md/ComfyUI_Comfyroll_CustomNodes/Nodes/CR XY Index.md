@@ -1,3 +1,9 @@
+---
+tags:
+- ComfyrollNodes
+- Index
+---
+
 # 📉 CR XY Index
 ## Documentation
 - Class name: `CR XY Index`

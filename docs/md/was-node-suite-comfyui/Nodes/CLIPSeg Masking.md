@@ -1,3 +1,8 @@
+---
+tags:
+- Segmentation
+---
+
 # CLIPSeg Masking
 ## Documentation
 - Class name: `CLIPSeg Masking`

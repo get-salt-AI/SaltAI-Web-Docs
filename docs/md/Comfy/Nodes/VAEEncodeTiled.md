@@ -1,3 +1,8 @@
+---
+tags:
+- VAE
+---
+
 # VAE Encode (Tiled)
 ## Documentation
 - Class name: `VAEEncodeTiled`
@@ -31,7 +36,7 @@ The VAEEncodeTiled node is designed for encoding images into a latent space repr
     - [CR Interpolate Latents](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Interpolate Latents.md)
     - KSampler //Inspire
     - BNK_TiledKSampler
-    - KSampler (Efficient)
+    - [KSampler (Efficient)](../../efficiency-nodes-comfyui/Nodes/KSampler (Efficient).md)
 
 
 

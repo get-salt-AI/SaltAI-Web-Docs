@@ -1,3 +1,10 @@
+---
+tags:
+- GridLayout
+- Image
+- Tiled
+---
+
 # Repeat Into Grid (latent)
 ## Documentation
 - Class name: `Repeat Into Grid (latent)`

@@ -1,61 +1,68 @@
-# AnimateDiff Loader (Advanced) [DEPRECATED] 🎭🅐🅓
+---
+tags:
+- AnimateDiff
+- AnimateDiffContext
+- Animation
+---
+
+# 🚫AnimateDiff Loader (Advanced) [DEPRECATED] 🎭🅐🅓
 ## Documentation
 - Class name: `ADE_AnimateDiffLoaderV1Advanced`
 - Category: ``
 - Output node: `False`
 
-This node is designed for advanced loading of AnimateDiff models, offering enhanced control and customization options for the loading process. It is marked as deprecated, indicating that it may no longer be the preferred method for loading these models, but it remains available for use in specific scenarios where its advanced capabilities are required.
+This node facilitates the advanced loading of AnimateDiff models, specifically tailored for handling deprecated functionalities and legacy configurations. It abstractly supports the integration and utilization of older AnimateDiff models within current workflows, ensuring compatibility and access to historical model features.
 ## Input types
 ### Required
 - **`model`**
-    - Specifies the model to be loaded, serving as the core component for the AnimateDiff process.
+    - Specifies the AnimateDiff model to be loaded, focusing on deprecated models for specific legacy applications.
     - Comfy dtype: `MODEL`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `str`
 - **`latents`**
-    - Defines the latent space representations to be utilized in conjunction with the model.
+    - Defines the latent configurations to be applied to the AnimateDiff model during loading, allowing for customization of the model's behavior.
     - Comfy dtype: `LATENT`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `str`
 - **`model_name`**
-    - Determines the specific motion model to be loaded, allowing for targeted application of AnimateDiff functionalities.
+    - Identifies the specific name of the AnimateDiff model to be loaded, enabling precise selection of legacy models.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `str`
 - **`unlimited_area_hack`**
-    - A boolean flag that, when enabled, allows for bypassing certain constraints, potentially enhancing the flexibility of the AnimateDiff process.
+    - A boolean flag that enables or disables the unlimited area hack, providing a workaround for specific loading scenarios.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`context_length`**
-    - Specifies the length of the context used in the AnimateDiff process.
+    - Specifies the length of the context to be used during model loading, affecting how the model processes input.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`context_stride`**
-    - Defines the stride of the context, affecting how the context is sampled or processed.
+    - Determines the stride of the context, influencing the model's loading and processing efficiency.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`context_overlap`**
-    - Indicates the overlap between consecutive contexts, which can affect the continuity and smoothness of the AnimateDiff output.
+    - Defines the overlap between context segments during model loading, optimizing the model's understanding of sequential data.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`context_schedule`**
-    - Determines the scheduling of the context, which can influence the temporal dynamics of the AnimateDiff process.
+    - Selects the schedule for context application, allowing for flexible adaptation to various loading requirements.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `str`
 - **`closed_loop`**
-    - A boolean flag indicating whether the AnimateDiff process should operate in a closed-loop manner, potentially affecting the model's behavior.
+    - A boolean parameter that indicates whether the model loading should operate in a closed loop, affecting the model's initialization process.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`beta_schedule`**
-    - Specifies the schedule for the beta parameter, influencing the behavior of the AnimateDiff model over time.
+    - Chooses the beta schedule to be used during model loading, impacting the model's adaptation and performance.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `str`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The loaded AnimateDiff model, ready for application within the specified context.
-    - Python dtype: `torch.nn.Module`
+    - Outputs the loaded AnimateDiff model, ready for further processing or application.
+    - Python dtype: `str`
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - The latent space representations associated with the loaded model, facilitating further manipulation or application.
-    - Python dtype: `torch.Tensor`
+    - Provides the latent configurations applied during the model loading, reflecting the customization of the model's behavior.
+    - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -103,18 +110,20 @@ class AnimateDiffLoaderAdvanced_Deprecated:
                 model_name=model_name,
                 apply_v2_properly=False,
         )
-        # set context settings
-        params.set_context(
+        context_group = ContextOptionsGroup()
+        context_group.add(
             ContextOptions(
                 context_length=context_length,
                 context_stride=context_stride,
                 context_overlap=context_overlap,
                 context_schedule=context_schedule,
                 closed_loop=closed_loop,
+                )
             )
-        )
+        # set context settings
+        params.set_context(context_options=context_group)
         # inject for use in sampling code
-        model = ModelPatcherAndInjector(model)
+        model = ModelPatcherAndInjector.create_from(model, hooks_only=True)
         model.motion_models = MotionModelGroup(motion_model)
         model.motion_injection_params = params
 

@@ -1,3 +1,8 @@
+---
+tags:
+- ControlNet
+---
+
 # 🕹️ CR Multi-ControlNet Stack
 ## Documentation
 - Class name: `CR Multi-ControlNet Stack`
@@ -97,8 +102,8 @@ This node is designed to create a stack of ControlNet configurations, each with 
 - Infra type: `GPU`
 - Common nodes:
     - [CR Apply Multi-ControlNet](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Apply Multi-ControlNet.md)
-    - Efficient Loader
-    - Eff. Loader SDXL
+    - [Efficient Loader](../../efficiency-nodes-comfyui/Nodes/Efficient Loader.md)
+    - [Eff. Loader SDXL](../../efficiency-nodes-comfyui/Nodes/Eff. Loader SDXL.md)
 
 
 

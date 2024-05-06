@@ -1,10 +1,17 @@
+---
+tags:
+- ImageEnhancement
+- ImageTransformation
+- VisualEffects
+---
+
 # 🔧 Image Desaturate
 ## Documentation
 - Class name: `ImageDesaturate+`
 - Category: `essentials`
 - Output node: `False`
 
-The ImageDesaturate node is designed to adjust the saturation level of an image, effectively desaturating it to varying degrees based on a specified factor. This operation can transform the image towards grayscale, allowing for nuanced control over its color intensity.
+The ImageDesaturate+ node is designed to adjust the saturation level of an image, effectively desaturating it to varying degrees based on a specified factor. This operation can transform the image into grayscale or partially reduce its color intensity, offering a range of visual effects from full color to black and white.
 ## Input types
 ### Required
 - **`image`**
@@ -12,13 +19,13 @@ The ImageDesaturate node is designed to adjust the saturation level of an image,
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`factor`**
-    - The 'factor' parameter determines the degree of desaturation applied to the image, with a range from 0 (no change) to 1 (fully desaturated). This allows for flexible control over the image's color intensity.
+    - The 'factor' parameter controls the degree of desaturation applied to the image, with a range from 0 (no change) to 1 (full grayscale). This allows for fine-tuning the intensity of the desaturation effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is a desaturated version of the input image, with its saturation level adjusted according to the specified factor.
+    - The output is the desaturated version of the input image, with its saturation level adjusted according to the specified factor.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -36,7 +43,7 @@ class ImageDesaturate:
                 "factor": ("FLOAT", { "default": 1.00, "min": 0.00, "max": 1.00, "step": 0.05, }),
             }
         }
-    
+
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "execute"
     CATEGORY = "essentials"

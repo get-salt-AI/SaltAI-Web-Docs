@@ -1,3 +1,8 @@
+---
+tags:
+- VAE
+---
+
 # VAE Encode (for Inpainting)
 ## Documentation
 - Class name: `VAEEncodeForInpaint`
@@ -34,9 +39,9 @@ This node is designed for encoding images into a latent representation suitable 
     - [VHS_DuplicateLatents](../../ComfyUI-VideoHelperSuite/Nodes/VHS_DuplicateLatents.md)
     - [KSampler](../../Comfy/Nodes/KSampler.md)
     - Reroute
-    - KSampler Adv. (Efficient)
+    - [KSampler Adv. (Efficient)](../../efficiency-nodes-comfyui/Nodes/KSampler Adv. (Efficient).md)
     - Fast Muter (rgthree)
-    - KSampler (Efficient)
+    - [KSampler (Efficient)](../../efficiency-nodes-comfyui/Nodes/KSampler (Efficient).md)
     - [VAEDecode](../../Comfy/Nodes/VAEDecode.md)
 
 

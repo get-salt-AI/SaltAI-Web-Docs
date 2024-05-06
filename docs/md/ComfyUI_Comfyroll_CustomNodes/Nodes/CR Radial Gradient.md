@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- VisualEffects
+---
+
 # 🟨 CR Radial Gradient
 ## Documentation
 - Class name: `CR Radial Gradient`

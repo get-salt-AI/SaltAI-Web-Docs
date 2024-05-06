@@ -1,3 +1,8 @@
+---
+tags:
+- Sampling
+---
+
 # KSampler
 ## Documentation
 - Class name: `KSampler`

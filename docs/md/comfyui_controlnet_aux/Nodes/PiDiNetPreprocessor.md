@@ -1,3 +1,11 @@
+---
+tags:
+- DepthMap
+- Image
+- ImagePreprocessing
+- LineExtraction
+---
+
 # PiDiNet Soft-Edge Lines
 ## Documentation
 - Class name: `PiDiNetPreprocessor`

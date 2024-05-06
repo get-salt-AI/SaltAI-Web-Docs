@@ -1,3 +1,9 @@
+---
+tags:
+- AnimateDiff
+- Animation
+---
+
 # View Options◆Standard Static 🎭🅐🅓
 ## Documentation
 - Class name: `ADE_StandardStaticViewOptions`

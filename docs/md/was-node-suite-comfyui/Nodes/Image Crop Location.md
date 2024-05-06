@@ -1,3 +1,10 @@
+---
+tags:
+- Crop
+- Image
+- ImageTransformation
+---
+
 # Image Crop Location
 ## Documentation
 - Class name: `Image Crop Location`

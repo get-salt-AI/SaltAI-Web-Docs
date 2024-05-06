@@ -1,3 +1,9 @@
+---
+tags:
+- Latent
+- LatentBatch
+---
+
 # LatentBatch
 ## Documentation
 - Class name: `LatentBatch`

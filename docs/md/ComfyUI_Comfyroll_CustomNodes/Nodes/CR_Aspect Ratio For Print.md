@@ -1,3 +1,10 @@
+---
+tags:
+- AspectRatio
+- ImageSize
+- ImageTransformation
+---
+
 # 🔳 CR_Aspect Ratio For Print
 ## Documentation
 - Class name: `CR_Aspect Ratio For Print`

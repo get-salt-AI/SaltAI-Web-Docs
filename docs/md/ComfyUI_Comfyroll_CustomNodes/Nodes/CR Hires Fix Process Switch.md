@@ -1,3 +1,8 @@
+---
+tags:
+- ConditionalSelection
+---
+
 # 🔂 CR Hires Fix Process Switch
 ## Documentation
 - Class name: `CR Hires Fix Process Switch`

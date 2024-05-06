@@ -1,41 +1,48 @@
-# AnimateDiff Loader [DEPRECATED] 🎭🅐🅓
+---
+tags:
+- AnimateDiff
+- AnimateDiffContext
+- Animation
+---
+
+# 🚫AnimateDiff Loader [DEPRECATED] 🎭🅐🅓
 ## Documentation
 - Class name: `AnimateDiffLoaderV1`
 - Category: ``
 - Output node: `False`
 
-This node is designed for loading AnimateDiff models in a deprecated manner, indicating that it has been superseded by newer methods or technologies for achieving similar outcomes. It focuses on the initial setup or preparation phase of working with AnimateDiff models, specifically tailored for legacy compatibility or specific use cases that require the older loading mechanism.
+This node is designed for the initialization and preparation of the AnimateDiff model, facilitating its readiness for animation generation tasks. It abstracts the complexities involved in loading the model, ensuring it is set up correctly for subsequent use.
 ## Input types
 ### Required
 - **`model`**
-    - This input specifies the AnimateDiff model to be loaded. It is crucial for determining the specific legacy model or settings to be applied, affecting the node's execution and the resulting animation capabilities.
+    - This parameter is used to specify the AnimateDiff model to be loaded, enabling the node to correctly initialize and prepare the model for animation tasks.
     - Comfy dtype: `MODEL`
     - Python dtype: `str`
 - **`latents`**
-    - The latents input represents the latent space vectors to be used with the AnimateDiff model. It is essential for defining the initial state or conditions under which the model operates, directly influencing the animation's characteristics.
+    - This parameter allows for the specification of latent vectors that may be required for initializing the model, providing a way to customize the model's starting state.
     - Comfy dtype: `LATENT`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `str`
 - **`model_name`**
-    - This input specifies the name of the AnimateDiff model to be loaded. It is important for selecting the correct legacy model or settings, affecting the node's functionality and the animations it produces.
+    - Used to select a specific motion model from available options, this parameter ensures the correct version of the AnimateDiff model is loaded based on the provided name.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`unlimited_area_hack`**
-    - A boolean input that enables or disables the unlimited area hack, affecting how the model processes the animation.
+    - A boolean parameter that, when enabled, applies a specific hack to bypass limitations on the area that can be animated, offering more flexibility in animation tasks.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`beta_schedule`**
-    - Specifies the beta schedule to be used by the AnimateDiff model. It influences the model's behavior during the animation process.
+    - Specifies the beta schedule to be used during the model's operation, influencing the behavior and performance of the AnimateDiff model.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The model output represents the loaded AnimateDiff model, ready for further processing or application.
-    - Python dtype: `torch.nn.Module`
+    - This output represents the loaded AnimateDiff model, ready for animation generation tasks.
+    - Python dtype: `str`
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - The latent output encapsulates the latent space vectors associated with the loaded AnimateDiff model, setting the stage for subsequent animation or transformation processes.
-    - Python dtype: `torch.Tensor`
+    - Outputs the latent vectors associated with the loaded model, which can be used for further customization or animation processes.
+    - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -78,7 +85,7 @@ class AnimateDiffLoader_Deprecated:
                 apply_v2_properly=False,
         )
         # inject for use in sampling code
-        model = ModelPatcherAndInjector(model)
+        model = ModelPatcherAndInjector.create_from(model, hooks_only=True)
         model.motion_models = MotionModelGroup(motion_model)
         model.motion_injection_params = params
 

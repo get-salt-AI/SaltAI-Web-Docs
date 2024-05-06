@@ -1,3 +1,10 @@
+---
+tags:
+- DetailEnhancement
+- Image
+- Pipeline
+---
+
 # DetailerDebug (SEGS)
 ## Documentation
 - Class name: `DetailerForEachDebug`

@@ -1,28 +1,34 @@
+---
+tags:
+- Latent
+- LatentBatch
+---
+
 # Select Every Nth Latent 🎥🅥🅗🅢
 ## Documentation
 - Class name: `VHS_SelectEveryNthLatent`
 - Category: `Video Helper Suite 🎥🅥🅗🅢/latent`
 - Output node: `False`
 
-This node is designed to filter a batch of latents by selecting every Nth latent from the batch. It's useful for thinning out dense latent sequences to reduce processing load or to select a subset of latents for specific purposes.
+This node is designed to filter through a batch of latents, selecting every Nth latent according to a specified interval. It's useful for thinning out dense latent batches for more efficient processing or targeted analysis.
 ## Input types
 ### Required
 - **`latents`**
-    - The input latents to be filtered. This parameter is crucial for determining which latents will be considered for selection.
+    - The input latents to be filtered. This parameter is crucial for determining which latents will be processed and ultimately selected based on the interval.
     - Comfy dtype: `LATENT`
     - Python dtype: `dict`
 - **`select_every_nth`**
-    - Determines the interval at which latents are selected from the input batch. A value of 1 means every latent is selected, while higher values thin out the selection.
+    - Specifies the interval at which latents are selected. This parameter directly influences the density of the output latent batch, allowing for customizable thinning of the input.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`LATENT`**
     - Comfy dtype: `LATENT`
-    - The filtered subset of latents after selecting every Nth latent.
+    - The filtered set of latents, containing only every Nth latent based on the specified interval.
     - Python dtype: `dict`
 - **`count`**
     - Comfy dtype: `INT`
-    - The total count of latents selected and returned by the node.
+    - The total count of latents selected after applying the specified interval. This provides a quick reference to the size of the output batch.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
@@ -37,7 +43,7 @@ class SelectEveryNthLatent:
         return {
                 "required": {
                     "latents": ("LATENT",),
-                    "select_every_nth": ("INT", {"default": 1, "min": 1, "step": 1}),
+                    "select_every_nth": ("INT", {"default": 1, "min": 1, "max": BIGMAX, "step": 1}),
                 },
             }
     

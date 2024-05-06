@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageTransformation
+---
+
 # Image Stitch
 ## Documentation
 - Class name: `Image Stitch`

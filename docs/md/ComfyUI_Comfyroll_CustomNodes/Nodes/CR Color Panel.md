@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- PanelDesign
+- VisualEffects
+---
+
 # 🌁 CR Color Panel
 ## Documentation
 - Class name: `CR Color Panel`

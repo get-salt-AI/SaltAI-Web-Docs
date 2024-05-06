@@ -1,3 +1,9 @@
+---
+tags:
+- ImageSize
+- ImageTransformation
+---
+
 # Image Size to Number
 ## Documentation
 - Class name: `Image Size to Number`

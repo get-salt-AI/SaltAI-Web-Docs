@@ -1,3 +1,8 @@
+---
+tags:
+- ConditionalSelection
+---
+
 # 🔀 CR Model Input Switch
 ## Documentation
 - Class name: `CR Model Input Switch`

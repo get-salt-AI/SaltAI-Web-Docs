@@ -1,3 +1,8 @@
+---
+tags:
+- ComfyrollNodes
+---
+
 # ⌨️ CR Font File List
 ## Documentation
 - Class name: `CR Font File List`

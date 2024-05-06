@@ -1,3 +1,8 @@
+---
+tags:
+- LoRA
+---
+
 # 💊 CR Random LoRA Stack
 ## Documentation
 - Class name: `CR Random LoRA Stack`

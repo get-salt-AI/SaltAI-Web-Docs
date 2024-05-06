@@ -1,3 +1,8 @@
+---
+tags:
+- Sampling
+---
+
 # KSampler (WAS)
 ## Documentation
 - Class name: `KSampler (WAS)`

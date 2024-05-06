@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- VisualEffects
+---
+
 # 🎨 CR Color Tint
 ## Documentation
 - Class name: `CR Color Tint`

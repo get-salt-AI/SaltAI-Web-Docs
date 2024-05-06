@@ -1,3 +1,9 @@
+---
+tags:
+- List
+- Text
+---
+
 # 📜 CR Load Text List
 ## Documentation
 - Class name: `CR Load Text List`

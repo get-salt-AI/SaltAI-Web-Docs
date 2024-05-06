@@ -1,22 +1,29 @@
+---
+tags:
+- GridLayout
+- Image
+- Tiled
+---
+
 # Save Image Grid (mtb)
 ## Documentation
 - Class name: `Save Image Grid (mtb)`
 - Category: `mtb/IO`
 - Output node: `True`
 
-The Save Image Grid (mtb) node is designed for assembling a batch of images into a single, cohesive grid layout. This functionality is particularly useful for visualizing collections of images in a structured manner, allowing for easier comparison and analysis.
+The Save Image Grid node is designed to compile a collection of images into a single, cohesive grid layout. This functionality is particularly useful for visualizing multiple images in a structured format, allowing for easier comparison and analysis of visual data.
 ## Input types
 ### Required
 - **`images`**
-    - The 'images' parameter is a collection of images that will be arranged into a grid. It is crucial for creating the visual layout of the grid.
+    - A batch of images to be compiled into a grid. This collection is essential for determining the composition and overall appearance of the final image grid.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `List[PIL.Image.Image]`
+    - Python dtype: `List[PIL.Image]`
 - **`filename_prefix`**
-    - The 'filename_prefix' parameter allows for customization of the saved grid image's filename, providing a means to easily identify and organize generated grids.
+    - A prefix for the filename under which the grid image will be saved. This parameter allows for customizable naming of the output file, aiding in organization and retrieval.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`save_intermediate`**
-    - The 'save_intermediate' parameter controls whether individual images from the batch are saved separately before being compiled into the grid, offering flexibility in managing output.
+    - A boolean flag indicating whether intermediate images should be saved during the grid compilation process. This option provides flexibility in saving individual images before they are combined into the final grid.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
@@ -28,7 +35,7 @@ The node doesn't have output types
 
 ## Source code
 ```python
-class SaveImageGrid_:
+class MTB_SaveImageGrid:
     """Save all the images in the input batch as a grid of images."""
 
     def __init__(self):

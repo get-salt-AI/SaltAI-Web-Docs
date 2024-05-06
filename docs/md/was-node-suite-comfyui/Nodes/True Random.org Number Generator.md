@@ -1,3 +1,9 @@
+---
+tags:
+- RandomGeneration
+- Randomization
+---
+
 # True Random.org Number Generator
 ## Documentation
 - Class name: `True Random.org Number Generator`

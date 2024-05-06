@@ -1,3 +1,11 @@
+---
+tags:
+- ImageResize
+- ImageScaling
+- ImageSize
+- ImageTransformation
+---
+
 # Constrain Image for Video 🐍
 ## Documentation
 - Class name: `ConstrainImageforVideo|pysssss`

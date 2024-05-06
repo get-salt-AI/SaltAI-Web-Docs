@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- WavePatterns
+---
+
 # SquareWave 📅🅕🅝
 ## Documentation
 - Class name: `SquareWave`

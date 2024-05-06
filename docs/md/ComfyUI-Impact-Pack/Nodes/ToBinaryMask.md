@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskGeneration
+---
+
 # ToBinaryMask
 ## Documentation
 - Class name: `ToBinaryMask`

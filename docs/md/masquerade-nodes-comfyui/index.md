@@ -1,3 +1,3 @@
 # masquerade-nodes-comfyui
 - Repo url: `https://github.com/BadCafeCode/masquerade-nodes-comfyui`
-- Commit hash: `240209bc2574bcbe67ff4271100112b61b269b05`
+- Commit hash: `69a944969c29d1c63dfd62eb70a764bceb49473d`

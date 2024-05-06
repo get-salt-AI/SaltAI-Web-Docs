@@ -4,13 +4,20 @@ nav:
   - Platform Resources: resources.md
   - Node Documentation:
       - Home: md/index.md
+      - Tags: md/tags.md
       - Comfy:
           - Home: md/Comfy/index.md
           - Licenses: md/Comfy/licenses.md
           - Nodes:
+              - AddNoise: md/Comfy/Nodes/AddNoise.md
+              - AlignYourStepsScheduler: md/Comfy/Nodes/AlignYourStepsScheduler.md
+              - BasicGuider: md/Comfy/Nodes/BasicGuider.md
               - BasicScheduler: md/Comfy/Nodes/BasicScheduler.md
+              - CFGGuider: md/Comfy/Nodes/CFGGuider.md
               - CLIPLoader: md/Comfy/Nodes/CLIPLoader.md
+              - CLIPMergeAdd: md/Comfy/Nodes/CLIPMergeAdd.md
               - CLIPMergeSimple: md/Comfy/Nodes/CLIPMergeSimple.md
+              - CLIPMergeSubtract: md/Comfy/Nodes/CLIPMergeSubtract.md
               - CLIPSave: md/Comfy/Nodes/CLIPSave.md
               - CLIPSetLastLayer: md/Comfy/Nodes/CLIPSetLastLayer.md
               - CLIPTextEncode: md/Comfy/Nodes/CLIPTextEncode.md
@@ -37,7 +44,10 @@ nav:
               - ControlNetLoader: md/Comfy/Nodes/ControlNetLoader.md
               - CropMask: md/Comfy/Nodes/CropMask.md
               - DiffControlNetLoader: md/Comfy/Nodes/DiffControlNetLoader.md
+              - DifferentialDiffusion: md/Comfy/Nodes/DifferentialDiffusion.md
               - DiffusersLoader: md/Comfy/Nodes/DiffusersLoader.md
+              - DisableNoise: md/Comfy/Nodes/DisableNoise.md
+              - DualCFGGuider: md/Comfy/Nodes/DualCFGGuider.md
               - DualCLIPLoader: md/Comfy/Nodes/DualCLIPLoader.md
               - EmptyImage: md/Comfy/Nodes/EmptyImage.md
               - EmptyLatentImage: md/Comfy/Nodes/EmptyLatentImage.md
@@ -70,6 +80,7 @@ nav:
               - ImageToMask: md/Comfy/Nodes/ImageToMask.md
               - ImageUpscaleWithModel: md/Comfy/Nodes/ImageUpscaleWithModel.md
               - InpaintModelConditioning: md/Comfy/Nodes/InpaintModelConditioning.md
+              - InstructPixToPixConditioning: md/Comfy/Nodes/InstructPixToPixConditioning.md
               - InvertMask: md/Comfy/Nodes/InvertMask.md
               - JoinImageWithAlpha: md/Comfy/Nodes/JoinImageWithAlpha.md
               - KSampler: md/Comfy/Nodes/KSampler.md
@@ -100,18 +111,25 @@ nav:
               - MaskToImage: md/Comfy/Nodes/MaskToImage.md
               - ModelMergeAdd: md/Comfy/Nodes/ModelMergeAdd.md
               - ModelMergeBlocks: md/Comfy/Nodes/ModelMergeBlocks.md
+              - ModelMergeSD1: md/Comfy/Nodes/ModelMergeSD1.md
+              - ModelMergeSD2: md/Comfy/Nodes/ModelMergeSD2.md
+              - ModelMergeSDXL: md/Comfy/Nodes/ModelMergeSDXL.md
               - ModelMergeSimple: md/Comfy/Nodes/ModelMergeSimple.md
               - ModelMergeSubtract: md/Comfy/Nodes/ModelMergeSubtract.md
               - ModelSamplingContinuousEDM: md/Comfy/Nodes/ModelSamplingContinuousEDM.md
               - ModelSamplingDiscrete: md/Comfy/Nodes/ModelSamplingDiscrete.md
               - ModelSamplingStableCascade: md/Comfy/Nodes/ModelSamplingStableCascade.md
+              - Morphology: md/Comfy/Nodes/Morphology.md
               - PatchModelAddDownscale: md/Comfy/Nodes/PatchModelAddDownscale.md
               - PerpNeg: md/Comfy/Nodes/PerpNeg.md
+              - PerpNegGuider: md/Comfy/Nodes/PerpNegGuider.md
+              - PerturbedAttentionGuidance: md/Comfy/Nodes/PerturbedAttentionGuidance.md
               - PhotoMakerEncode: md/Comfy/Nodes/PhotoMakerEncode.md
               - PhotoMakerLoader: md/Comfy/Nodes/PhotoMakerLoader.md
               - PolyexponentialScheduler: md/Comfy/Nodes/PolyexponentialScheduler.md
               - PorterDuffImageComposite: md/Comfy/Nodes/PorterDuffImageComposite.md
               - PreviewImage: md/Comfy/Nodes/PreviewImage.md
+              - RandomNoise: md/Comfy/Nodes/RandomNoise.md
               - RebatchImages: md/Comfy/Nodes/RebatchImages.md
               - RebatchLatents: md/Comfy/Nodes/RebatchLatents.md
               - RepeatImageBatch: md/Comfy/Nodes/RepeatImageBatch.md
@@ -119,10 +137,16 @@ nav:
               - RescaleCFG: md/Comfy/Nodes/RescaleCFG.md
               - SDTurboScheduler: md/Comfy/Nodes/SDTurboScheduler.md
               - SD_4XUpscale_Conditioning: md/Comfy/Nodes/SD_4XUpscale_Conditioning.md
+              - SV3D_Conditioning: md/Comfy/Nodes/SV3D_Conditioning.md
               - SVD_img2vid_Conditioning: md/Comfy/Nodes/SVD_img2vid_Conditioning.md
               - SamplerCustom: md/Comfy/Nodes/SamplerCustom.md
+              - SamplerCustomAdvanced: md/Comfy/Nodes/SamplerCustomAdvanced.md
+              - SamplerDPMAdaptative: md/Comfy/Nodes/SamplerDPMAdaptative.md
               - SamplerDPMPP_2M_SDE: md/Comfy/Nodes/SamplerDPMPP_2M_SDE.md
+              - SamplerDPMPP_3M_SDE: md/Comfy/Nodes/SamplerDPMPP_3M_SDE.md
               - SamplerDPMPP_SDE: md/Comfy/Nodes/SamplerDPMPP_SDE.md
+              - SamplerEulerAncestral: md/Comfy/Nodes/SamplerEulerAncestral.md
+              - SamplerLMS: md/Comfy/Nodes/SamplerLMS.md
               - SaveAnimatedPNG: md/Comfy/Nodes/SaveAnimatedPNG.md
               - SaveAnimatedWEBP: md/Comfy/Nodes/SaveAnimatedWEBP.md
               - SaveImage: md/Comfy/Nodes/SaveImage.md
@@ -135,10 +159,12 @@ nav:
               - StableCascade_EmptyLatentImage: md/Comfy/Nodes/StableCascade_EmptyLatentImage.md
               - StableCascade_StageB_Conditioning: md/Comfy/Nodes/StableCascade_StageB_Conditioning.md
               - StableCascade_StageC_VAEEncode: md/Comfy/Nodes/StableCascade_StageC_VAEEncode.md
+              - StableCascade_SuperResolutionControlnet: md/Comfy/Nodes/StableCascade_SuperResolutionControlnet.md
               - StableZero123_Conditioning: md/Comfy/Nodes/StableZero123_Conditioning.md
               - StableZero123_Conditioning_Batched: md/Comfy/Nodes/StableZero123_Conditioning_Batched.md
               - StyleModelApply: md/Comfy/Nodes/StyleModelApply.md
               - StyleModelLoader: md/Comfy/Nodes/StyleModelLoader.md
+              - ThresholdMask: md/Comfy/Nodes/ThresholdMask.md
               - TomePatchModel: md/Comfy/Nodes/TomePatchModel.md
               - UNETLoader: md/Comfy/Nodes/UNETLoader.md
               - UpscaleModelLoader: md/Comfy/Nodes/UpscaleModelLoader.md
@@ -151,6 +177,7 @@ nav:
               - VAESave: md/Comfy/Nodes/VAESave.md
               - VPScheduler: md/Comfy/Nodes/VPScheduler.md
               - VideoLinearCFGGuidance: md/Comfy/Nodes/VideoLinearCFGGuidance.md
+              - VideoTriangleCFGGuidance: md/Comfy/Nodes/VideoTriangleCFGGuidance.md
               - unCLIPCheckpointLoader: md/Comfy/Nodes/unCLIPCheckpointLoader.md
               - unCLIPConditioning: md/Comfy/Nodes/unCLIPConditioning.md
       - ComfyMath:
@@ -214,6 +241,9 @@ nav:
           - Nodes:
               - ACN_AdvancedControlNetApply: md/ComfyUI-Advanced-ControlNet/Nodes/ACN_AdvancedControlNetApply.md
               - ACN_DefaultUniversalWeights: md/ComfyUI-Advanced-ControlNet/Nodes/ACN_DefaultUniversalWeights.md
+              - ACN_ReferenceControlNet: md/ComfyUI-Advanced-ControlNet/Nodes/ACN_ReferenceControlNet.md
+              - ACN_ReferenceControlNetFinetune: md/ComfyUI-Advanced-ControlNet/Nodes/ACN_ReferenceControlNetFinetune.md
+              - ACN_ReferencePreprocessor: md/ComfyUI-Advanced-ControlNet/Nodes/ACN_ReferencePreprocessor.md
               - ACN_SparseCtrlIndexMethodNode: md/ComfyUI-Advanced-ControlNet/Nodes/ACN_SparseCtrlIndexMethodNode.md
               - ACN_SparseCtrlLoaderAdvanced: md/ComfyUI-Advanced-ControlNet/Nodes/ACN_SparseCtrlLoaderAdvanced.md
               - ACN_SparseCtrlMergedLoaderAdvanced: md/ComfyUI-Advanced-ControlNet/Nodes/ACN_SparseCtrlMergedLoaderAdvanced.md
@@ -233,6 +263,108 @@ nav:
               - SoftControlNetWeights: md/ComfyUI-Advanced-ControlNet/Nodes/SoftControlNetWeights.md
               - SoftT2IAdapterWeights: md/ComfyUI-Advanced-ControlNet/Nodes/SoftT2IAdapterWeights.md
               - TimestepKeyframe: md/ComfyUI-Advanced-ControlNet/Nodes/TimestepKeyframe.md
+      - ComfyUI-Allor:
+          - Home: md/ComfyUI-Allor/index.md
+          - Licenses: md/ComfyUI-Allor/licenses.md
+          - Nodes:
+              - AlphaChanelAdd: md/ComfyUI-Allor/Nodes/AlphaChanelAdd.md
+              - AlphaChanelAddByMask: md/ComfyUI-Allor/Nodes/AlphaChanelAddByMask.md
+              - AlphaChanelAsMask: md/ComfyUI-Allor/Nodes/AlphaChanelAsMask.md
+              - AlphaChanelRemove: md/ComfyUI-Allor/Nodes/AlphaChanelRemove.md
+              - AlphaChanelRestore: md/ComfyUI-Allor/Nodes/AlphaChanelRestore.md
+              - ClipClamp: md/ComfyUI-Allor/Nodes/ClipClamp.md
+              - ClipVisionClamp: md/ComfyUI-Allor/Nodes/ClipVisionClamp.md
+              - ClipVisionOutputClamp: md/ComfyUI-Allor/Nodes/ClipVisionOutputClamp.md
+              - ConditioningClamp: md/ComfyUI-Allor/Nodes/ConditioningClamp.md
+              - ControlNetClamp: md/ComfyUI-Allor/Nodes/ControlNetClamp.md
+              - GligenClamp: md/ComfyUI-Allor/Nodes/GligenClamp.md
+              - ImageBatchCopy: md/ComfyUI-Allor/Nodes/ImageBatchCopy.md
+              - ImageBatchFork: md/ComfyUI-Allor/Nodes/ImageBatchFork.md
+              - ImageBatchGet: md/ComfyUI-Allor/Nodes/ImageBatchGet.md
+              - ImageBatchJoin: md/ComfyUI-Allor/Nodes/ImageBatchJoin.md
+              - ImageBatchPermute: md/ComfyUI-Allor/Nodes/ImageBatchPermute.md
+              - ImageBatchRemove: md/ComfyUI-Allor/Nodes/ImageBatchRemove.md
+              - ImageClamp: md/ComfyUI-Allor/Nodes/ImageClamp.md
+              - ImageCompositeAbsolute: md/ComfyUI-Allor/Nodes/ImageCompositeAbsolute.md
+              - ImageCompositeAbsoluteByContainer: md/ComfyUI-Allor/Nodes/ImageCompositeAbsoluteByContainer.md
+              - ImageCompositeRelative: md/ComfyUI-Allor/Nodes/ImageCompositeRelative.md
+              - ImageCompositeRelativeByContainer: md/ComfyUI-Allor/Nodes/ImageCompositeRelativeByContainer.md
+              - ImageContainer: md/ComfyUI-Allor/Nodes/ImageContainer.md
+              - ImageContainerInheritanceAdd: md/ComfyUI-Allor/Nodes/ImageContainerInheritanceAdd.md
+              - ImageContainerInheritanceMax: md/ComfyUI-Allor/Nodes/ImageContainerInheritanceMax.md
+              - ImageContainerInheritanceScale: md/ComfyUI-Allor/Nodes/ImageContainerInheritanceScale.md
+              - ImageContainerInheritanceSum: md/ComfyUI-Allor/Nodes/ImageContainerInheritanceSum.md
+              - ImageDrawArc: md/ComfyUI-Allor/Nodes/ImageDrawArc.md
+              - ImageDrawArcByContainer: md/ComfyUI-Allor/Nodes/ImageDrawArcByContainer.md
+              - ImageDrawChord: md/ComfyUI-Allor/Nodes/ImageDrawChord.md
+              - ImageDrawChordByContainer: md/ComfyUI-Allor/Nodes/ImageDrawChordByContainer.md
+              - ImageDrawEllipse: md/ComfyUI-Allor/Nodes/ImageDrawEllipse.md
+              - ImageDrawEllipseByContainer: md/ComfyUI-Allor/Nodes/ImageDrawEllipseByContainer.md
+              - ImageDrawLine: md/ComfyUI-Allor/Nodes/ImageDrawLine.md
+              - ImageDrawLineByContainer: md/ComfyUI-Allor/Nodes/ImageDrawLineByContainer.md
+              - ImageDrawPieslice: md/ComfyUI-Allor/Nodes/ImageDrawPieslice.md
+              - ImageDrawPiesliceByContainer: md/ComfyUI-Allor/Nodes/ImageDrawPiesliceByContainer.md
+              - ImageDrawPolygon: md/ComfyUI-Allor/Nodes/ImageDrawPolygon.md
+              - ImageDrawRectangle: md/ComfyUI-Allor/Nodes/ImageDrawRectangle.md
+              - ImageDrawRectangleByContainer: md/ComfyUI-Allor/Nodes/ImageDrawRectangleByContainer.md
+              - ImageDrawRectangleRounded: md/ComfyUI-Allor/Nodes/ImageDrawRectangleRounded.md
+              - ImageDrawRectangleRoundedByContainer: md/ComfyUI-Allor/Nodes/ImageDrawRectangleRoundedByContainer.md
+              - ImageEffectsAdjustment: md/ComfyUI-Allor/Nodes/ImageEffectsAdjustment.md
+              - ImageEffectsGrayscale: md/ComfyUI-Allor/Nodes/ImageEffectsGrayscale.md
+              - ImageEffectsLensBokeh: md/ComfyUI-Allor/Nodes/ImageEffectsLensBokeh.md
+              - ImageEffectsLensChromaticAberration: md/ComfyUI-Allor/Nodes/ImageEffectsLensChromaticAberration.md
+              - ImageEffectsLensOpticAxis: md/ComfyUI-Allor/Nodes/ImageEffectsLensOpticAxis.md
+              - ImageEffectsLensVignette: md/ComfyUI-Allor/Nodes/ImageEffectsLensVignette.md
+              - ImageEffectsLensZoomBurst: md/ComfyUI-Allor/Nodes/ImageEffectsLensZoomBurst.md
+              - ImageEffectsNegative: md/ComfyUI-Allor/Nodes/ImageEffectsNegative.md
+              - ImageEffectsSepia: md/ComfyUI-Allor/Nodes/ImageEffectsSepia.md
+              - ImageFilterBilateralBlur: md/ComfyUI-Allor/Nodes/ImageFilterBilateralBlur.md
+              - ImageFilterBlur: md/ComfyUI-Allor/Nodes/ImageFilterBlur.md
+              - ImageFilterBoxBlur: md/ComfyUI-Allor/Nodes/ImageFilterBoxBlur.md
+              - ImageFilterContour: md/ComfyUI-Allor/Nodes/ImageFilterContour.md
+              - ImageFilterDetail: md/ComfyUI-Allor/Nodes/ImageFilterDetail.md
+              - ImageFilterEdgeEnhance: md/ComfyUI-Allor/Nodes/ImageFilterEdgeEnhance.md
+              - ImageFilterEdgeEnhanceMore: md/ComfyUI-Allor/Nodes/ImageFilterEdgeEnhanceMore.md
+              - ImageFilterEmboss: md/ComfyUI-Allor/Nodes/ImageFilterEmboss.md
+              - ImageFilterFindEdges: md/ComfyUI-Allor/Nodes/ImageFilterFindEdges.md
+              - ImageFilterGaussianBlur: md/ComfyUI-Allor/Nodes/ImageFilterGaussianBlur.md
+              - ImageFilterGaussianBlurAdvanced: md/ComfyUI-Allor/Nodes/ImageFilterGaussianBlurAdvanced.md
+              - ImageFilterMax: md/ComfyUI-Allor/Nodes/ImageFilterMax.md
+              - ImageFilterMedianBlur: md/ComfyUI-Allor/Nodes/ImageFilterMedianBlur.md
+              - ImageFilterMin: md/ComfyUI-Allor/Nodes/ImageFilterMin.md
+              - ImageFilterMode: md/ComfyUI-Allor/Nodes/ImageFilterMode.md
+              - ImageFilterRank: md/ComfyUI-Allor/Nodes/ImageFilterRank.md
+              - ImageFilterSharpen: md/ComfyUI-Allor/Nodes/ImageFilterSharpen.md
+              - ImageFilterSmooth: md/ComfyUI-Allor/Nodes/ImageFilterSmooth.md
+              - ImageFilterSmoothMore: md/ComfyUI-Allor/Nodes/ImageFilterSmoothMore.md
+              - ImageFilterStackBlur: md/ComfyUI-Allor/Nodes/ImageFilterStackBlur.md
+              - ImageNoiseBeta: md/ComfyUI-Allor/Nodes/ImageNoiseBeta.md
+              - ImageNoiseBinomial: md/ComfyUI-Allor/Nodes/ImageNoiseBinomial.md
+              - ImageNoiseBytes: md/ComfyUI-Allor/Nodes/ImageNoiseBytes.md
+              - ImageNoiseGaussian: md/ComfyUI-Allor/Nodes/ImageNoiseGaussian.md
+              - ImageSegmentation: md/ComfyUI-Allor/Nodes/ImageSegmentation.md
+              - ImageSegmentationCustom: md/ComfyUI-Allor/Nodes/ImageSegmentationCustom.md
+              - ImageSegmentationCustomAdvanced: md/ComfyUI-Allor/Nodes/ImageSegmentationCustomAdvanced.md
+              - ImageText: md/ComfyUI-Allor/Nodes/ImageText.md
+              - ImageTextMultiline: md/ComfyUI-Allor/Nodes/ImageTextMultiline.md
+              - ImageTextMultilineOutlined: md/ComfyUI-Allor/Nodes/ImageTextMultilineOutlined.md
+              - ImageTextOutlined: md/ComfyUI-Allor/Nodes/ImageTextOutlined.md
+              - ImageTransformCropAbsolute: md/ComfyUI-Allor/Nodes/ImageTransformCropAbsolute.md
+              - ImageTransformCropCorners: md/ComfyUI-Allor/Nodes/ImageTransformCropCorners.md
+              - ImageTransformCropRelative: md/ComfyUI-Allor/Nodes/ImageTransformCropRelative.md
+              - ImageTransformPaddingAbsolute: md/ComfyUI-Allor/Nodes/ImageTransformPaddingAbsolute.md
+              - ImageTransformPaddingRelative: md/ComfyUI-Allor/Nodes/ImageTransformPaddingRelative.md
+              - ImageTransformResizeAbsolute: md/ComfyUI-Allor/Nodes/ImageTransformResizeAbsolute.md
+              - ImageTransformResizeClip: md/ComfyUI-Allor/Nodes/ImageTransformResizeClip.md
+              - ImageTransformResizeRelative: md/ComfyUI-Allor/Nodes/ImageTransformResizeRelative.md
+              - ImageTransformRotate: md/ComfyUI-Allor/Nodes/ImageTransformRotate.md
+              - ImageTransformTranspose: md/ComfyUI-Allor/Nodes/ImageTransformTranspose.md
+              - LatentClamp: md/ComfyUI-Allor/Nodes/LatentClamp.md
+              - MaskClamp: md/ComfyUI-Allor/Nodes/MaskClamp.md
+              - ModelClamp: md/ComfyUI-Allor/Nodes/ModelClamp.md
+              - StyleModelClamp: md/ComfyUI-Allor/Nodes/StyleModelClamp.md
+              - UpscaleModelClamp: md/ComfyUI-Allor/Nodes/UpscaleModelClamp.md
+              - VaeClamp: md/ComfyUI-Allor/Nodes/VaeClamp.md
       - ComfyUI-AnimateDiff-Evolved:
           - Home: md/ComfyUI-AnimateDiff-Evolved/index.md
           - Licenses: md/ComfyUI-AnimateDiff-Evolved/licenses.md
@@ -240,6 +372,12 @@ nav:
               - ADE_AdjustPEFullStretch: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AdjustPEFullStretch.md
               - ADE_AdjustPEManual: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AdjustPEManual.md
               - ADE_AdjustPESweetspotStretch: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AdjustPESweetspotStretch.md
+              - ADE_AdjustWeightAllAdd: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AdjustWeightAllAdd.md
+              - ADE_AdjustWeightAllMult: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AdjustWeightAllMult.md
+              - ADE_AdjustWeightIndivAdd: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AdjustWeightIndivAdd.md
+              - ADE_AdjustWeightIndivAttnAdd: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AdjustWeightIndivAttnAdd.md
+              - ADE_AdjustWeightIndivAttnMult: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AdjustWeightIndivAttnMult.md
+              - ADE_AdjustWeightIndivMult: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AdjustWeightIndivMult.md
               - ADE_AnimateDiffCombine: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AnimateDiffCombine.md
               - ADE_AnimateDiffKeyframe: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AnimateDiffKeyframe.md
               - ADE_AnimateDiffLoRALoader: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AnimateDiffLoRALoader.md
@@ -256,22 +394,63 @@ nav:
               - ADE_AnimateDiffUnload: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AnimateDiffUnload.md
               - ADE_ApplyAnimateDiffModel: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_ApplyAnimateDiffModel.md
               - ADE_ApplyAnimateDiffModelSimple: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_ApplyAnimateDiffModelSimple.md
+              - ADE_ApplyAnimateDiffModelWithCameraCtrl: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_ApplyAnimateDiffModelWithCameraCtrl.md
+              - ADE_ApplyAnimateLCMI2VModel: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_ApplyAnimateLCMI2VModel.md
+              - ADE_AttachLoraHookToCLIP: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AttachLoraHookToCLIP.md
+              - ADE_AttachLoraHookToConditioning: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AttachLoraHookToConditioning.md
               - ADE_BatchedContextOptions: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_BatchedContextOptions.md
+              - ADE_CameraCtrlAnimateDiffKeyframe: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_CameraCtrlAnimateDiffKeyframe.md
+              - ADE_CameraManualPoseAppend: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_CameraManualPoseAppend.md
+              - ADE_CameraPoseAdvanced: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_CameraPoseAdvanced.md
+              - ADE_CameraPoseBasic: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_CameraPoseBasic.md
+              - ADE_CameraPoseCombo: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_CameraPoseCombo.md
+              - ADE_CombineLoraHooks: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_CombineLoraHooks.md
+              - ADE_CombineLoraHooksEight: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_CombineLoraHooksEight.md
+              - ADE_CombineLoraHooksFour: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_CombineLoraHooksFour.md
+              - ADE_ConditioningSetMask: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_ConditioningSetMask.md
+              - ADE_ConditioningSetMaskAndCombine: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_ConditioningSetMaskAndCombine.md
+              - ADE_ConditioningSetUnmaskedAndCombine: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_ConditioningSetUnmaskedAndCombine.md
+              - ADE_CustomCFG: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_CustomCFG.md
+              - ADE_CustomCFGKeyframe: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_CustomCFGKeyframe.md
               - ADE_EmptyLatentImageLarge: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_EmptyLatentImageLarge.md
+              - ADE_InjectI2VIntoAnimateDiffModel: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_InjectI2VIntoAnimateDiffModel.md
               - ADE_IterationOptsDefault: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_IterationOptsDefault.md
               - ADE_IterationOptsFreeInit: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_IterationOptsFreeInit.md
               - ADE_LoadAnimateDiffModel: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_LoadAnimateDiffModel.md
+              - ADE_LoadAnimateDiffModelWithCameraCtrl: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_LoadAnimateDiffModelWithCameraCtrl.md
+              - ADE_LoadAnimateLCMI2VModel: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_LoadAnimateLCMI2VModel.md
+              - ADE_LoadCameraPoses: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_LoadCameraPoses.md
               - ADE_LoopedUniformContextOptions: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_LoopedUniformContextOptions.md
               - ADE_LoopedUniformViewOptions: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_LoopedUniformViewOptions.md
+              - ADE_LoraHookKeyframe: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_LoraHookKeyframe.md
+              - ADE_LoraHookKeyframeFromStrengthList: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_LoraHookKeyframeFromStrengthList.md
+              - ADE_LoraHookKeyframeInterpolation: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_LoraHookKeyframeInterpolation.md
               - ADE_MultivalDynamic: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_MultivalDynamic.md
               - ADE_MultivalScaledMask: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_MultivalScaledMask.md
               - ADE_NoiseLayerAdd: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_NoiseLayerAdd.md
               - ADE_NoiseLayerAddWeighted: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_NoiseLayerAddWeighted.md
               - ADE_NoiseLayerReplace: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_NoiseLayerReplace.md
+              - ADE_PairedConditioningSetMask: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_PairedConditioningSetMask.md
+              - ADE_PairedConditioningSetMaskAndCombine: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_PairedConditioningSetMaskAndCombine.md
+              - ADE_PairedConditioningSetUnmaskedAndCombine: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_PairedConditioningSetUnmaskedAndCombine.md
+              - ADE_RawSigmaSchedule: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_RawSigmaSchedule.md
+              - ADE_RegisterLoraHook: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_RegisterLoraHook.md
+              - ADE_RegisterLoraHookModelOnly: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_RegisterLoraHookModelOnly.md
+              - ADE_RegisterModelAsLoraHook: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_RegisterModelAsLoraHook.md
+              - ADE_RegisterModelAsLoraHookModelOnly: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_RegisterModelAsLoraHookModelOnly.md
+              - ADE_ReplaceCameraParameters: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_ReplaceCameraParameters.md
+              - ADE_ReplaceOriginalPoseAspectRatio: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_ReplaceOriginalPoseAspectRatio.md
+              - ADE_SetLoraHookKeyframe: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_SetLoraHookKeyframe.md
+              - ADE_SigmaSchedule: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_SigmaSchedule.md
+              - ADE_SigmaScheduleSplitAndCombine: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_SigmaScheduleSplitAndCombine.md
+              - ADE_SigmaScheduleWeightedAverage: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_SigmaScheduleWeightedAverage.md
+              - ADE_SigmaScheduleWeightedAverageInterp: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_SigmaScheduleWeightedAverageInterp.md
               - ADE_StandardStaticContextOptions: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_StandardStaticContextOptions.md
               - ADE_StandardStaticViewOptions: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_StandardStaticViewOptions.md
               - ADE_StandardUniformContextOptions: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_StandardUniformContextOptions.md
               - ADE_StandardUniformViewOptions: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_StandardUniformViewOptions.md
+              - ADE_TimestepsConditioning: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_TimestepsConditioning.md
+              - ADE_UpscaleAndVAEEncode: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_UpscaleAndVAEEncode.md
               - ADE_UseEvolvedSampling: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_UseEvolvedSampling.md
               - ADE_ViewsOnlyContextOptions: md/ComfyUI-AnimateDiff-Evolved/Nodes/ADE_ViewsOnlyContextOptions.md
               - AnimateDiffLoaderV1: md/ComfyUI-AnimateDiff-Evolved/Nodes/AnimateDiffLoaderV1.md
@@ -280,7 +459,23 @@ nav:
           - Home: md/ComfyUI-AutomaticCFG/index.md
           - Licenses: md/ComfyUI-AutomaticCFG/licenses.md
           - Nodes:
+              - Automatic CFG - Advanced: md/ComfyUI-AutomaticCFG/Nodes/Automatic
+                  CFG - Advanced.md
+              - Automatic CFG - Fastest: md/ComfyUI-AutomaticCFG/Nodes/Automatic CFG
+                  - Fastest.md
+              - Automatic CFG - Negative: md/ComfyUI-AutomaticCFG/Nodes/Automatic
+                  CFG - Negative.md
+              - Automatic CFG - Post rescale only: md/ComfyUI-AutomaticCFG/Nodes/Automatic
+                  CFG - Post rescale only.md
               - Automatic CFG: md/ComfyUI-AutomaticCFG/Nodes/Automatic CFG.md
+              - SAG delayed activation: md/ComfyUI-AutomaticCFG/Nodes/SAG delayed
+                  activation.md
+      - ComfyUI-CCSR:
+          - Home: md/ComfyUI-CCSR/index.md
+          - Licenses: md/ComfyUI-CCSR/licenses.md
+          - Nodes:
+              - CCSR_Model_Select: md/ComfyUI-CCSR/Nodes/CCSR_Model_Select.md
+              - CCSR_Upscale: md/ComfyUI-CCSR/Nodes/CCSR_Upscale.md
       - ComfyUI-Crystools:
           - Home: md/ComfyUI-Crystools/index.md
           - Licenses: md/ComfyUI-Crystools/licenses.md
@@ -349,6 +544,172 @@ nav:
               - SaveText|pysssss: md/ComfyUI-Custom-Scripts/Nodes/SaveText|pysssss.md
               - ShowText|pysssss: md/ComfyUI-Custom-Scripts/Nodes/ShowText|pysssss.md
               - StringFunction|pysssss: md/ComfyUI-Custom-Scripts/Nodes/StringFunction|pysssss.md
+      - ComfyUI-Easy-Use:
+          - Home: md/ComfyUI-Easy-Use/index.md
+          - Licenses: md/ComfyUI-Easy-Use/licenses.md
+          - Nodes:
+              - dynamicThresholdingFull: md/ComfyUI-Easy-Use/Nodes/dynamicThresholdingFull.md
+              - easy LLLiteLoader: md/ComfyUI-Easy-Use/Nodes/easy LLLiteLoader.md
+              - 'easy XYInputs: CFG Scale': 'md/ComfyUI-Easy-Use/Nodes/easy XYInputs:
+                  CFG Scale.md'
+              - 'easy XYInputs: Checkpoint': 'md/ComfyUI-Easy-Use/Nodes/easy XYInputs:
+                  Checkpoint.md'
+              - 'easy XYInputs: ControlNet': 'md/ComfyUI-Easy-Use/Nodes/easy XYInputs:
+                  ControlNet.md'
+              - 'easy XYInputs: Denoise': 'md/ComfyUI-Easy-Use/Nodes/easy XYInputs:
+                  Denoise.md'
+              - 'easy XYInputs: Lora': 'md/ComfyUI-Easy-Use/Nodes/easy XYInputs: Lora.md'
+              - 'easy XYInputs: ModelMergeBlocks': 'md/ComfyUI-Easy-Use/Nodes/easy
+                  XYInputs: ModelMergeBlocks.md'
+              - 'easy XYInputs: NegativeCond': 'md/ComfyUI-Easy-Use/Nodes/easy XYInputs:
+                  NegativeCond.md'
+              - 'easy XYInputs: NegativeCondList': 'md/ComfyUI-Easy-Use/Nodes/easy
+                  XYInputs: NegativeCondList.md'
+              - 'easy XYInputs: PositiveCond': 'md/ComfyUI-Easy-Use/Nodes/easy XYInputs:
+                  PositiveCond.md'
+              - 'easy XYInputs: PositiveCondList': 'md/ComfyUI-Easy-Use/Nodes/easy
+                  XYInputs: PositiveCondList.md'
+              - 'easy XYInputs: PromptSR': 'md/ComfyUI-Easy-Use/Nodes/easy XYInputs:
+                  PromptSR.md'
+              - 'easy XYInputs: Sampler_Scheduler': 'md/ComfyUI-Easy-Use/Nodes/easy
+                  XYInputs: Sampler_Scheduler.md'
+              - 'easy XYInputs: Seeds++ Batch': 'md/ComfyUI-Easy-Use/Nodes/easy XYInputs:
+                  Seeds++ Batch.md'
+              - 'easy XYInputs: Steps': 'md/ComfyUI-Easy-Use/Nodes/easy XYInputs:
+                  Steps.md'
+              - easy XYPlot: md/ComfyUI-Easy-Use/Nodes/easy XYPlot.md
+              - easy XYPlotAdvanced: md/ComfyUI-Easy-Use/Nodes/easy XYPlotAdvanced.md
+              - easy a1111Loader: md/ComfyUI-Easy-Use/Nodes/easy a1111Loader.md
+              - easy boolean: md/ComfyUI-Easy-Use/Nodes/easy boolean.md
+              - easy cascadeKSampler: md/ComfyUI-Easy-Use/Nodes/easy cascadeKSampler.md
+              - easy cascadeLoader: md/ComfyUI-Easy-Use/Nodes/easy cascadeLoader.md
+              - easy ckptNames: md/ComfyUI-Easy-Use/Nodes/easy ckptNames.md
+              - easy cleanGpuUsed: md/ComfyUI-Easy-Use/Nodes/easy cleanGpuUsed.md
+              - easy clearCacheAll: md/ComfyUI-Easy-Use/Nodes/easy clearCacheAll.md
+              - easy clearCacheKey: md/ComfyUI-Easy-Use/Nodes/easy clearCacheKey.md
+              - easy comfyLoader: md/ComfyUI-Easy-Use/Nodes/easy comfyLoader.md
+              - easy compare: md/ComfyUI-Easy-Use/Nodes/easy compare.md
+              - easy controlnetLoader: md/ComfyUI-Easy-Use/Nodes/easy controlnetLoader.md
+              - easy controlnetLoaderADV: md/ComfyUI-Easy-Use/Nodes/easy controlnetLoaderADV.md
+              - easy controlnetNames: md/ComfyUI-Easy-Use/Nodes/easy controlnetNames.md
+              - easy convertAnything: md/ComfyUI-Easy-Use/Nodes/easy convertAnything.md
+              - easy detailerFix: md/ComfyUI-Easy-Use/Nodes/easy detailerFix.md
+              - easy dynamiCrafterLoader: md/ComfyUI-Easy-Use/Nodes/easy dynamiCrafterLoader.md
+              - easy float: md/ComfyUI-Easy-Use/Nodes/easy float.md
+              - easy fooocusInpaintLoader: md/ComfyUI-Easy-Use/Nodes/easy fooocusInpaintLoader.md
+              - easy fullCascadeKSampler: md/ComfyUI-Easy-Use/Nodes/easy fullCascadeKSampler.md
+              - easy fullLoader: md/ComfyUI-Easy-Use/Nodes/easy fullLoader.md
+              - easy fullkSampler: md/ComfyUI-Easy-Use/Nodes/easy fullkSampler.md
+              - easy globalSeed: md/ComfyUI-Easy-Use/Nodes/easy globalSeed.md
+              - easy hiresFix: md/ComfyUI-Easy-Use/Nodes/easy hiresFix.md
+              - easy humanSegmentation: md/ComfyUI-Easy-Use/Nodes/easy humanSegmentation.md
+              - easy if: md/ComfyUI-Easy-Use/Nodes/easy if.md
+              - easy imageChooser: md/ComfyUI-Easy-Use/Nodes/easy imageChooser.md
+              - easy imageColorMatch: md/ComfyUI-Easy-Use/Nodes/easy imageColorMatch.md
+              - easy imageCount: md/ComfyUI-Easy-Use/Nodes/easy imageCount.md
+              - easy imageInsetCrop: md/ComfyUI-Easy-Use/Nodes/easy imageInsetCrop.md
+              - easy imageInterrogator: md/ComfyUI-Easy-Use/Nodes/easy imageInterrogator.md
+              - easy imagePixelPerfect: md/ComfyUI-Easy-Use/Nodes/easy imagePixelPerfect.md
+              - easy imageRatio: md/ComfyUI-Easy-Use/Nodes/easy imageRatio.md
+              - easy imageRemBg: md/ComfyUI-Easy-Use/Nodes/easy imageRemBg.md
+              - easy imageSave: md/ComfyUI-Easy-Use/Nodes/easy imageSave.md
+              - easy imageScaleDown: md/ComfyUI-Easy-Use/Nodes/easy imageScaleDown.md
+              - easy imageScaleDownBy: md/ComfyUI-Easy-Use/Nodes/easy imageScaleDownBy.md
+              - easy imageScaleDownToSize: md/ComfyUI-Easy-Use/Nodes/easy imageScaleDownToSize.md
+              - easy imageSize: md/ComfyUI-Easy-Use/Nodes/easy imageSize.md
+              - easy imageSizeByLongerSide: md/ComfyUI-Easy-Use/Nodes/easy imageSizeByLongerSide.md
+              - easy imageSizeBySide: md/ComfyUI-Easy-Use/Nodes/easy imageSizeBySide.md
+              - easy imageSplitList: md/ComfyUI-Easy-Use/Nodes/easy imageSplitList.md
+              - easy imageSwitch: md/ComfyUI-Easy-Use/Nodes/easy imageSwitch.md
+              - easy imageToBase64: md/ComfyUI-Easy-Use/Nodes/easy imageToBase64.md
+              - easy imageToMask: md/ComfyUI-Easy-Use/Nodes/easy imageToMask.md
+              - easy imagesSplitImage: md/ComfyUI-Easy-Use/Nodes/easy imagesSplitImage.md
+              - easy injectNoiseToLatent: md/ComfyUI-Easy-Use/Nodes/easy injectNoiseToLatent.md
+              - easy instantIDApply: md/ComfyUI-Easy-Use/Nodes/easy instantIDApply.md
+              - easy instantIDApplyADV: md/ComfyUI-Easy-Use/Nodes/easy instantIDApplyADV.md
+              - easy int: md/ComfyUI-Easy-Use/Nodes/easy int.md
+              - easy ipadapterApply: md/ComfyUI-Easy-Use/Nodes/easy ipadapterApply.md
+              - easy ipadapterApplyADV: md/ComfyUI-Easy-Use/Nodes/easy ipadapterApplyADV.md
+              - easy ipadapterApplyEmbeds: md/ComfyUI-Easy-Use/Nodes/easy ipadapterApplyEmbeds.md
+              - easy ipadapterApplyEncoder: md/ComfyUI-Easy-Use/Nodes/easy ipadapterApplyEncoder.md
+              - easy ipadapterApplyFromParams: md/ComfyUI-Easy-Use/Nodes/easy ipadapterApplyFromParams.md
+              - easy ipadapterApplyRegional: md/ComfyUI-Easy-Use/Nodes/easy ipadapterApplyRegional.md
+              - easy ipadapterStyleComposition: md/ComfyUI-Easy-Use/Nodes/easy ipadapterStyleComposition.md
+              - easy isSDXL: md/ComfyUI-Easy-Use/Nodes/easy isSDXL.md
+              - easy joinImageBatch: md/ComfyUI-Easy-Use/Nodes/easy joinImageBatch.md
+              - easy kSampler: md/ComfyUI-Easy-Use/Nodes/easy kSampler.md
+              - easy kSamplerDownscaleUnet: md/ComfyUI-Easy-Use/Nodes/easy kSamplerDownscaleUnet.md
+              - easy kSamplerInpainting: md/ComfyUI-Easy-Use/Nodes/easy kSamplerInpainting.md
+              - easy kSamplerLayerDiffusion: md/ComfyUI-Easy-Use/Nodes/easy kSamplerLayerDiffusion.md
+              - easy kSamplerSDTurbo: md/ComfyUI-Easy-Use/Nodes/easy kSamplerSDTurbo.md
+              - easy kSamplerTiled: md/ComfyUI-Easy-Use/Nodes/easy kSamplerTiled.md
+              - easy latentCompositeMaskedWithCond: md/ComfyUI-Easy-Use/Nodes/easy
+                  latentCompositeMaskedWithCond.md
+              - easy latentNoisy: md/ComfyUI-Easy-Use/Nodes/easy latentNoisy.md
+              - easy loadImageBase64: md/ComfyUI-Easy-Use/Nodes/easy loadImageBase64.md
+              - easy loraStack: md/ComfyUI-Easy-Use/Nodes/easy loraStack.md
+              - easy negative: md/ComfyUI-Easy-Use/Nodes/easy negative.md
+              - easy pipeBatchIndex: md/ComfyUI-Easy-Use/Nodes/easy pipeBatchIndex.md
+              - easy pipeEdit: md/ComfyUI-Easy-Use/Nodes/easy pipeEdit.md
+              - easy pipeIn: md/ComfyUI-Easy-Use/Nodes/easy pipeIn.md
+              - easy pipeOut: md/ComfyUI-Easy-Use/Nodes/easy pipeOut.md
+              - easy pipeToBasicPipe: md/ComfyUI-Easy-Use/Nodes/easy pipeToBasicPipe.md
+              - easy portraitMaster: md/ComfyUI-Easy-Use/Nodes/easy portraitMaster.md
+              - easy poseEditor: md/ComfyUI-Easy-Use/Nodes/easy poseEditor.md
+              - easy positive: md/ComfyUI-Easy-Use/Nodes/easy positive.md
+              - easy preDetailerFix: md/ComfyUI-Easy-Use/Nodes/easy preDetailerFix.md
+              - easy preMaskDetailerFix: md/ComfyUI-Easy-Use/Nodes/easy preMaskDetailerFix.md
+              - easy preSampling: md/ComfyUI-Easy-Use/Nodes/easy preSampling.md
+              - easy preSamplingAdvanced: md/ComfyUI-Easy-Use/Nodes/easy preSamplingAdvanced.md
+              - easy preSamplingCascade: md/ComfyUI-Easy-Use/Nodes/easy preSamplingCascade.md
+              - easy preSamplingCustom: md/ComfyUI-Easy-Use/Nodes/easy preSamplingCustom.md
+              - easy preSamplingDynamicCFG: md/ComfyUI-Easy-Use/Nodes/easy preSamplingDynamicCFG.md
+              - easy preSamplingLayerDiffusion: md/ComfyUI-Easy-Use/Nodes/easy preSamplingLayerDiffusion.md
+              - easy preSamplingLayerDiffusionADDTL: md/ComfyUI-Easy-Use/Nodes/easy
+                  preSamplingLayerDiffusionADDTL.md
+              - easy preSamplingNoiseIn: md/ComfyUI-Easy-Use/Nodes/easy preSamplingNoiseIn.md
+              - easy preSamplingSdTurbo: md/ComfyUI-Easy-Use/Nodes/easy preSamplingSdTurbo.md
+              - easy promptConcat: md/ComfyUI-Easy-Use/Nodes/easy promptConcat.md
+              - easy promptLine: md/ComfyUI-Easy-Use/Nodes/easy promptLine.md
+              - easy promptList: md/ComfyUI-Easy-Use/Nodes/easy promptList.md
+              - easy promptReplace: md/ComfyUI-Easy-Use/Nodes/easy promptReplace.md
+              - easy rangeFloat: md/ComfyUI-Easy-Use/Nodes/easy rangeFloat.md
+              - easy rangeInt: md/ComfyUI-Easy-Use/Nodes/easy rangeInt.md
+              - easy samLoaderPipe: md/ComfyUI-Easy-Use/Nodes/easy samLoaderPipe.md
+              - easy seed: md/ComfyUI-Easy-Use/Nodes/easy seed.md
+              - easy showAnything: md/ComfyUI-Easy-Use/Nodes/easy showAnything.md
+              - easy showLoaderSettingsNames: md/ComfyUI-Easy-Use/Nodes/easy showLoaderSettingsNames.md
+              - easy showSpentTime: md/ComfyUI-Easy-Use/Nodes/easy showSpentTime.md
+              - easy showTensorShape: md/ComfyUI-Easy-Use/Nodes/easy showTensorShape.md
+              - easy stableDiffusion3API: md/ComfyUI-Easy-Use/Nodes/easy stableDiffusion3API.md
+              - easy string: md/ComfyUI-Easy-Use/Nodes/easy string.md
+              - easy styleAlignedBatchAlign: md/ComfyUI-Easy-Use/Nodes/easy styleAlignedBatchAlign.md
+              - easy stylesSelector: md/ComfyUI-Easy-Use/Nodes/easy stylesSelector.md
+              - easy sv3dLoader: md/ComfyUI-Easy-Use/Nodes/easy sv3dLoader.md
+              - easy svdLoader: md/ComfyUI-Easy-Use/Nodes/easy svdLoader.md
+              - easy textSwitch: md/ComfyUI-Easy-Use/Nodes/easy textSwitch.md
+              - easy ultralyticsDetectorPipe: md/ComfyUI-Easy-Use/Nodes/easy ultralyticsDetectorPipe.md
+              - easy unSampler: md/ComfyUI-Easy-Use/Nodes/easy unSampler.md
+              - easy wildcards: md/ComfyUI-Easy-Use/Nodes/easy wildcards.md
+              - easy xyAny: md/ComfyUI-Easy-Use/Nodes/easy xyAny.md
+              - easy zero123Loader: md/ComfyUI-Easy-Use/Nodes/easy zero123Loader.md
+      - ComfyUI-Fans:
+          - Home: md/ComfyUI-Fans/index.md
+          - Licenses: md/ComfyUI-Fans/licenses.md
+          - Nodes:
+              - Fans Prompt Styler Negative: md/ComfyUI-Fans/Nodes/Fans Prompt Styler
+                  Negative.md
+              - Fans Prompt Styler Positive: md/ComfyUI-Fans/Nodes/Fans Prompt Styler
+                  Positive.md
+              - Fans Styler: md/ComfyUI-Fans/Nodes/Fans Styler.md
+              - Fans Text Concatenate: md/ComfyUI-Fans/Nodes/Fans Text Concatenate.md
+      - ComfyUI-Flowty-LDSR:
+          - Home: md/ComfyUI-Flowty-LDSR/index.md
+          - Licenses: md/ComfyUI-Flowty-LDSR/licenses.md
+          - Nodes:
+              - LDSRModelLoader: md/ComfyUI-Flowty-LDSR/Nodes/LDSRModelLoader.md
+              - LDSRUpscale: md/ComfyUI-Flowty-LDSR/Nodes/LDSRUpscale.md
+              - LDSRUpscaler: md/ComfyUI-Flowty-LDSR/Nodes/LDSRUpscaler.md
       - ComfyUI-Frame-Interpolation:
           - Home: md/ComfyUI-Frame-Interpolation/index.md
           - Licenses: md/ComfyUI-Frame-Interpolation/licenses.md
@@ -369,6 +730,85 @@ nav:
               - RIFE VFI: md/ComfyUI-Frame-Interpolation/Nodes/RIFE VFI.md
               - STMFNet VFI: md/ComfyUI-Frame-Interpolation/Nodes/STMFNet VFI.md
               - Sepconv VFI: md/ComfyUI-Frame-Interpolation/Nodes/Sepconv VFI.md
+      - ComfyUI-Hangover-Moondream:
+          - Home: md/ComfyUI-Hangover-Moondream/index.md
+          - Licenses: md/ComfyUI-Hangover-Moondream/licenses.md
+          - Nodes:
+              - Moondream Interrogator: md/ComfyUI-Hangover-Moondream/Nodes/Moondream
+                  Interrogator.md
+      - ComfyUI-IF_AI_tools:
+          - Home: md/ComfyUI-IF_AI_tools/index.md
+          - Licenses: md/ComfyUI-IF_AI_tools/licenses.md
+          - Nodes:
+              - IF_ChatPrompt: md/ComfyUI-IF_AI_tools/Nodes/IF_ChatPrompt.md
+              - IF_DisplayText: md/ComfyUI-IF_AI_tools/Nodes/IF_DisplayText.md
+              - IF_ImagePrompt: md/ComfyUI-IF_AI_tools/Nodes/IF_ImagePrompt.md
+              - IF_PromptMkr: md/ComfyUI-IF_AI_tools/Nodes/IF_PromptMkr.md
+              - IF_SaveText: md/ComfyUI-IF_AI_tools/Nodes/IF_SaveText.md
+      - ComfyUI-IG-Nodes:
+          - Home: md/ComfyUI-IG-Nodes/index.md
+          - Licenses: md/ComfyUI-IG-Nodes/licenses.md
+          - Nodes:
+              - IG Analyze SSIM: md/ComfyUI-IG-Nodes/Nodes/IG Analyze SSIM.md
+              - IG Cross Fade Images: md/ComfyUI-IG-Nodes/Nodes/IG Cross Fade Images.md
+              - IG Explorer: md/ComfyUI-IG-Nodes/Nodes/IG Explorer.md
+              - IG Float: md/ComfyUI-IG-Nodes/Nodes/IG Float.md
+              - IG Folder: md/ComfyUI-IG-Nodes/Nodes/IG Folder.md
+              - IG Int: md/ComfyUI-IG-Nodes/Nodes/IG Int.md
+              - IG Load Image: md/ComfyUI-IG-Nodes/Nodes/IG Load Image.md
+              - IG Load Images: md/ComfyUI-IG-Nodes/Nodes/IG Load Images.md
+              - IG Multiply: md/ComfyUI-IG-Nodes/Nodes/IG Multiply.md
+              - IG Path Join: md/ComfyUI-IG-Nodes/Nodes/IG Path Join.md
+              - IG String: md/ComfyUI-IG-Nodes/Nodes/IG String.md
+              - IG ZFill: md/ComfyUI-IG-Nodes/Nodes/IG ZFill.md
+      - ComfyUI-Image-Filters:
+          - Home: md/ComfyUI-Image-Filters/index.md
+          - Licenses: md/ComfyUI-Image-Filters/licenses.md
+          - Nodes:
+              - AdainImage: md/ComfyUI-Image-Filters/Nodes/AdainImage.md
+              - AdainLatent: md/ComfyUI-Image-Filters/Nodes/AdainLatent.md
+              - AlphaClean: md/ComfyUI-Image-Filters/Nodes/AlphaClean.md
+              - AlphaMatte: md/ComfyUI-Image-Filters/Nodes/AlphaMatte.md
+              - BatchAlign: md/ComfyUI-Image-Filters/Nodes/BatchAlign.md
+              - BatchAverageImage: md/ComfyUI-Image-Filters/Nodes/BatchAverageImage.md
+              - BatchAverageUnJittered: md/ComfyUI-Image-Filters/Nodes/BatchAverageUnJittered.md
+              - BatchNormalizeImage: md/ComfyUI-Image-Filters/Nodes/BatchNormalizeImage.md
+              - BatchNormalizeLatent: md/ComfyUI-Image-Filters/Nodes/BatchNormalizeLatent.md
+              - BetterFilmGrain: md/ComfyUI-Image-Filters/Nodes/BetterFilmGrain.md
+              - BlurImageFast: md/ComfyUI-Image-Filters/Nodes/BlurImageFast.md
+              - BlurMaskFast: md/ComfyUI-Image-Filters/Nodes/BlurMaskFast.md
+              - ClampOutliers: md/ComfyUI-Image-Filters/Nodes/ClampOutliers.md
+              - ColorMatchImage: md/ComfyUI-Image-Filters/Nodes/ColorMatchImage.md
+              - ConvertNormals: md/ComfyUI-Image-Filters/Nodes/ConvertNormals.md
+              - DifferenceChecker: md/ComfyUI-Image-Filters/Nodes/DifferenceChecker.md
+              - DilateErodeMask: md/ComfyUI-Image-Filters/Nodes/DilateErodeMask.md
+              - EnhanceDetail: md/ComfyUI-Image-Filters/Nodes/EnhanceDetail.md
+              - ExposureAdjust: md/ComfyUI-Image-Filters/Nodes/ExposureAdjust.md
+              - GuidedFilterAlpha: md/ComfyUI-Image-Filters/Nodes/GuidedFilterAlpha.md
+              - ImageConstant: md/ComfyUI-Image-Filters/Nodes/ImageConstant.md
+              - ImageConstantHSV: md/ComfyUI-Image-Filters/Nodes/ImageConstantHSV.md
+              - InstructPixToPixConditioningAdvanced: md/ComfyUI-Image-Filters/Nodes/InstructPixToPixConditioningAdvanced.md
+              - JitterImage: md/ComfyUI-Image-Filters/Nodes/JitterImage.md
+              - Keyer: md/ComfyUI-Image-Filters/Nodes/Keyer.md
+              - LatentNormalizeShuffle: md/ComfyUI-Image-Filters/Nodes/LatentNormalizeShuffle.md
+              - LatentStats: md/ComfyUI-Image-Filters/Nodes/LatentStats.md
+              - NormalMapSimple: md/ComfyUI-Image-Filters/Nodes/NormalMapSimple.md
+              - OffsetLatentImage: md/ComfyUI-Image-Filters/Nodes/OffsetLatentImage.md
+              - PrintSigmas: md/ComfyUI-Image-Filters/Nodes/PrintSigmas.md
+              - RelightSimple: md/ComfyUI-Image-Filters/Nodes/RelightSimple.md
+              - RemapRange: md/ComfyUI-Image-Filters/Nodes/RemapRange.md
+              - ShuffleChannels: md/ComfyUI-Image-Filters/Nodes/ShuffleChannels.md
+              - Tonemap: md/ComfyUI-Image-Filters/Nodes/Tonemap.md
+              - UnJitterImage: md/ComfyUI-Image-Filters/Nodes/UnJitterImage.md
+              - UnTonemap: md/ComfyUI-Image-Filters/Nodes/UnTonemap.md
+      - ComfyUI-Image-Selector:
+          - Home: md/ComfyUI-Image-Selector/index.md
+          - Licenses: md/ComfyUI-Image-Selector/licenses.md
+          - Nodes:
+              - ImageDuplicator: md/ComfyUI-Image-Selector/Nodes/ImageDuplicator.md
+              - ImageSelector: md/ComfyUI-Image-Selector/Nodes/ImageSelector.md
+              - LatentDuplicator: md/ComfyUI-Image-Selector/Nodes/LatentDuplicator.md
+              - LatentSelector: md/ComfyUI-Image-Selector/Nodes/LatentSelector.md
       - ComfyUI-Impact-Pack:
           - Home: md/ComfyUI-Impact-Pack/index.md
           - Licenses: md/ComfyUI-Impact-Pack/licenses.md
@@ -419,6 +859,7 @@ nav:
               - ImpactControlNetApplyAdvancedSEGS: md/ComfyUI-Impact-Pack/Nodes/ImpactControlNetApplyAdvancedSEGS.md
               - ImpactControlNetApplySEGS: md/ComfyUI-Impact-Pack/Nodes/ImpactControlNetApplySEGS.md
               - ImpactControlNetClearSEGS: md/ComfyUI-Impact-Pack/Nodes/ImpactControlNetClearSEGS.md
+              - ImpactConvertDataType: md/ComfyUI-Impact-Pack/Nodes/ImpactConvertDataType.md
               - ImpactDecomposeSEGS: md/ComfyUI-Impact-Pack/Nodes/ImpactDecomposeSEGS.md
               - ImpactDilateMask: md/ComfyUI-Impact-Pack/Nodes/ImpactDilateMask.md
               - ImpactDilateMaskInSEGS: md/ComfyUI-Impact-Pack/Nodes/ImpactDilateMaskInSEGS.md
@@ -427,9 +868,13 @@ nav:
               - ImpactEdit_SEG_ELT: md/ComfyUI-Impact-Pack/Nodes/ImpactEdit_SEG_ELT.md
               - ImpactFloat: md/ComfyUI-Impact-Pack/Nodes/ImpactFloat.md
               - ImpactFrom_SEG_ELT: md/ComfyUI-Impact-Pack/Nodes/ImpactFrom_SEG_ELT.md
+              - ImpactFrom_SEG_ELT_bbox: md/ComfyUI-Impact-Pack/Nodes/ImpactFrom_SEG_ELT_bbox.md
+              - ImpactFrom_SEG_ELT_crop_region: md/ComfyUI-Impact-Pack/Nodes/ImpactFrom_SEG_ELT_crop_region.md
               - ImpactGaussianBlurMask: md/ComfyUI-Impact-Pack/Nodes/ImpactGaussianBlurMask.md
               - ImpactGaussianBlurMaskInSEGS: md/ComfyUI-Impact-Pack/Nodes/ImpactGaussianBlurMaskInSEGS.md
               - ImpactHFTransformersClassifierProvider: md/ComfyUI-Impact-Pack/Nodes/ImpactHFTransformersClassifierProvider.md
+              - ImpactIPAdapterApplySEGS: md/ComfyUI-Impact-Pack/Nodes/ImpactIPAdapterApplySEGS.md
+              - ImpactIfNone: md/ComfyUI-Impact-Pack/Nodes/ImpactIfNone.md
               - ImpactImageBatchToImageList: md/ComfyUI-Impact-Pack/Nodes/ImpactImageBatchToImageList.md
               - ImpactImageInfo: md/ComfyUI-Impact-Pack/Nodes/ImpactImageInfo.md
               - ImpactInt: md/ComfyUI-Impact-Pack/Nodes/ImpactInt.md
@@ -439,6 +884,7 @@ nav:
               - ImpactKSamplerBasicPipe: md/ComfyUI-Impact-Pack/Nodes/ImpactKSamplerBasicPipe.md
               - ImpactLatentInfo: md/ComfyUI-Impact-Pack/Nodes/ImpactLatentInfo.md
               - ImpactLogger: md/ComfyUI-Impact-Pack/Nodes/ImpactLogger.md
+              - ImpactLogicalOperators: md/ComfyUI-Impact-Pack/Nodes/ImpactLogicalOperators.md
               - ImpactMakeImageBatch: md/ComfyUI-Impact-Pack/Nodes/ImpactMakeImageBatch.md
               - ImpactMakeImageList: md/ComfyUI-Impact-Pack/Nodes/ImpactMakeImageList.md
               - ImpactMakeTileSEGS: md/ComfyUI-Impact-Pack/Nodes/ImpactMakeTileSEGS.md
@@ -451,6 +897,7 @@ nav:
               - ImpactRemoteInt: md/ComfyUI-Impact-Pack/Nodes/ImpactRemoteInt.md
               - ImpactSEGSClassify: md/ComfyUI-Impact-Pack/Nodes/ImpactSEGSClassify.md
               - ImpactSEGSConcat: md/ComfyUI-Impact-Pack/Nodes/ImpactSEGSConcat.md
+              - ImpactSEGSLabelAssign: md/ComfyUI-Impact-Pack/Nodes/ImpactSEGSLabelAssign.md
               - ImpactSEGSLabelFilter: md/ComfyUI-Impact-Pack/Nodes/ImpactSEGSLabelFilter.md
               - ImpactSEGSOrderedFilter: md/ComfyUI-Impact-Pack/Nodes/ImpactSEGSOrderedFilter.md
               - ImpactSEGSPicker: md/ComfyUI-Impact-Pack/Nodes/ImpactSEGSPicker.md
@@ -458,6 +905,7 @@ nav:
               - ImpactSEGSToMaskBatch: md/ComfyUI-Impact-Pack/Nodes/ImpactSEGSToMaskBatch.md
               - ImpactSEGSToMaskList: md/ComfyUI-Impact-Pack/Nodes/ImpactSEGSToMaskList.md
               - ImpactScaleBy_BBOX_SEG_ELT: md/ComfyUI-Impact-Pack/Nodes/ImpactScaleBy_BBOX_SEG_ELT.md
+              - ImpactSchedulerAdapter: md/ComfyUI-Impact-Pack/Nodes/ImpactSchedulerAdapter.md
               - ImpactSegsAndMask: md/ComfyUI-Impact-Pack/Nodes/ImpactSegsAndMask.md
               - ImpactSegsAndMaskForEach: md/ComfyUI-Impact-Pack/Nodes/ImpactSegsAndMaskForEach.md
               - ImpactSetWidgetValue: md/ComfyUI-Impact-Pack/Nodes/ImpactSetWidgetValue.md
@@ -496,6 +944,7 @@ nav:
               - PixelTiledKSampleUpscalerProviderPipe: md/ComfyUI-Impact-Pack/Nodes/PixelTiledKSampleUpscalerProviderPipe.md
               - PreviewBridge: md/ComfyUI-Impact-Pack/Nodes/PreviewBridge.md
               - PreviewBridgeLatent: md/ComfyUI-Impact-Pack/Nodes/PreviewBridgeLatent.md
+              - PreviewDetailerHookProvider: md/ComfyUI-Impact-Pack/Nodes/PreviewDetailerHookProvider.md
               - ReencodeLatent: md/ComfyUI-Impact-Pack/Nodes/ReencodeLatent.md
               - ReencodeLatentPipe: md/ComfyUI-Impact-Pack/Nodes/ReencodeLatentPipe.md
               - RegionalPrompt: md/ComfyUI-Impact-Pack/Nodes/RegionalPrompt.md
@@ -516,10 +965,13 @@ nav:
               - SEGSRangeFilterDetailerHookProvider: md/ComfyUI-Impact-Pack/Nodes/SEGSRangeFilterDetailerHookProvider.md
               - SEGSSwitch: md/ComfyUI-Impact-Pack/Nodes/SEGSSwitch.md
               - SEGSToImageList: md/ComfyUI-Impact-Pack/Nodes/SEGSToImageList.md
+              - SEGSUpscaler: md/ComfyUI-Impact-Pack/Nodes/SEGSUpscaler.md
+              - SEGSUpscalerPipe: md/ComfyUI-Impact-Pack/Nodes/SEGSUpscalerPipe.md
               - SegmDetectorCombined_v2: md/ComfyUI-Impact-Pack/Nodes/SegmDetectorCombined_v2.md
               - SegmDetectorSEGS: md/ComfyUI-Impact-Pack/Nodes/SegmDetectorSEGS.md
               - SegsToCombinedMask: md/ComfyUI-Impact-Pack/Nodes/SegsToCombinedMask.md
               - SetDefaultImageForSEGS: md/ComfyUI-Impact-Pack/Nodes/SetDefaultImageForSEGS.md
+              - StepsScheduleHookProvider: md/ComfyUI-Impact-Pack/Nodes/StepsScheduleHookProvider.md
               - SubtractMask: md/ComfyUI-Impact-Pack/Nodes/SubtractMask.md
               - SubtractMaskForEach: md/ComfyUI-Impact-Pack/Nodes/SubtractMaskForEach.md
               - TiledKSamplerProvider: md/ComfyUI-Impact-Pack/Nodes/TiledKSamplerProvider.md
@@ -534,6 +986,228 @@ nav:
               - UltralyticsDetectorProvider: md/ComfyUI-Impact-Pack/Nodes/UltralyticsDetectorProvider.md
               - UnsamplerDetailerHookProvider: md/ComfyUI-Impact-Pack/Nodes/UnsamplerDetailerHookProvider.md
               - UnsamplerHookProvider: md/ComfyUI-Impact-Pack/Nodes/UnsamplerHookProvider.md
+              - VariationNoiseDetailerHookProvider: md/ComfyUI-Impact-Pack/Nodes/VariationNoiseDetailerHookProvider.md
+      - ComfyUI-Inference-Core-Nodes:
+          - Home: md/ComfyUI-Inference-Core-Nodes/index.md
+          - Licenses: md/ComfyUI-Inference-Core-Nodes/licenses.md
+          - Nodes:
+              - Inference_Core_AIO_Preprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_AIO_Preprocessor.md
+              - Inference_Core_AnimalPosePreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_AnimalPosePreprocessor.md
+              - Inference_Core_AnimeFace_SemSegPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_AnimeFace_SemSegPreprocessor.md
+              - Inference_Core_AnimeLineArtPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_AnimeLineArtPreprocessor.md
+              - Inference_Core_BAE-NormalMapPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_BAE-NormalMapPreprocessor.md
+              - Inference_Core_BinaryPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_BinaryPreprocessor.md
+              - Inference_Core_CannyEdgePreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_CannyEdgePreprocessor.md
+              - Inference_Core_ColorPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_ColorPreprocessor.md
+              - Inference_Core_DWPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_DWPreprocessor.md
+              - Inference_Core_DensePosePreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_DensePosePreprocessor.md
+              - Inference_Core_DepthAnythingPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_DepthAnythingPreprocessor.md
+              - Inference_Core_DiffusionEdge_Preprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_DiffusionEdge_Preprocessor.md
+              - Inference_Core_FacialPartColoringFromPoseKps: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_FacialPartColoringFromPoseKps.md
+              - Inference_Core_FakeScribblePreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_FakeScribblePreprocessor.md
+              - Inference_Core_HEDPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_HEDPreprocessor.md
+              - Inference_Core_HintImageEnchance: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_HintImageEnchance.md
+              - Inference_Core_ImageGenResolutionFromImage: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_ImageGenResolutionFromImage.md
+              - Inference_Core_ImageGenResolutionFromLatent: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_ImageGenResolutionFromLatent.md
+              - Inference_Core_ImageIntensityDetector: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_ImageIntensityDetector.md
+              - Inference_Core_ImageLuminanceDetector: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_ImageLuminanceDetector.md
+              - Inference_Core_InpaintPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_InpaintPreprocessor.md
+              - Inference_Core_LayeredDiffusionApply: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_LayeredDiffusionApply.md
+              - Inference_Core_LayeredDiffusionCondApply: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_LayeredDiffusionCondApply.md
+              - Inference_Core_LayeredDiffusionCondJointApply: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_LayeredDiffusionCondJointApply.md
+              - Inference_Core_LayeredDiffusionDecode: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_LayeredDiffusionDecode.md
+              - Inference_Core_LayeredDiffusionDecodeRGBA: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_LayeredDiffusionDecodeRGBA.md
+              - Inference_Core_LayeredDiffusionDecodeSplit: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_LayeredDiffusionDecodeSplit.md
+              - Inference_Core_LayeredDiffusionDiffApply: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_LayeredDiffusionDiffApply.md
+              - Inference_Core_LayeredDiffusionJointApply: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_LayeredDiffusionJointApply.md
+              - Inference_Core_LeReS-DepthMapPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_LeReS-DepthMapPreprocessor.md
+              - Inference_Core_LineArtPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_LineArtPreprocessor.md
+              - Inference_Core_LineartStandardPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_LineartStandardPreprocessor.md
+              - Inference_Core_M-LSDPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_M-LSDPreprocessor.md
+              - Inference_Core_Manga2Anime_LineArt_Preprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_Manga2Anime_LineArt_Preprocessor.md
+              - Inference_Core_MaskOptFlow: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_MaskOptFlow.md
+              - Inference_Core_MediaPipe-FaceMeshPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_MediaPipe-FaceMeshPreprocessor.md
+              - Inference_Core_MeshGraphormer-DepthMapPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_MeshGraphormer-DepthMapPreprocessor.md
+              - Inference_Core_MiDaS-DepthMapPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_MiDaS-DepthMapPreprocessor.md
+              - Inference_Core_MiDaS-NormalMapPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_MiDaS-NormalMapPreprocessor.md
+              - Inference_Core_ModelMergeBlockNumber: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_ModelMergeBlockNumber.md
+              - Inference_Core_ModelMergeSDXL: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_ModelMergeSDXL.md
+              - Inference_Core_ModelMergeSDXLDetailedTransformers: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_ModelMergeSDXLDetailedTransformers.md
+              - Inference_Core_ModelMergeSDXLTransformers: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_ModelMergeSDXLTransformers.md
+              - Inference_Core_ModelSamplerTonemapNoiseTest: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_ModelSamplerTonemapNoiseTest.md
+              - Inference_Core_OneFormer-ADE20K-SemSegPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_OneFormer-ADE20K-SemSegPreprocessor.md
+              - Inference_Core_OneFormer-COCO-SemSegPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_OneFormer-COCO-SemSegPreprocessor.md
+              - Inference_Core_OpenposePreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_OpenposePreprocessor.md
+              - Inference_Core_PiDiNetPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_PiDiNetPreprocessor.md
+              - Inference_Core_PixelPerfectResolution: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_PixelPerfectResolution.md
+              - Inference_Core_PromptExpansion: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_PromptExpansion.md
+              - Inference_Core_ReferenceOnlySimple: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_ReferenceOnlySimple.md
+              - Inference_Core_RescaleClassifierFreeGuidanceTest: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_RescaleClassifierFreeGuidanceTest.md
+              - Inference_Core_SAMPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_SAMPreprocessor.md
+              - Inference_Core_SavePoseKpsAsJsonFile: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_SavePoseKpsAsJsonFile.md
+              - Inference_Core_ScribblePreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_ScribblePreprocessor.md
+              - Inference_Core_Scribble_XDoG_Preprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_Scribble_XDoG_Preprocessor.md
+              - Inference_Core_SemSegPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_SemSegPreprocessor.md
+              - Inference_Core_ShufflePreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_ShufflePreprocessor.md
+              - Inference_Core_TEEDPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_TEEDPreprocessor.md
+              - Inference_Core_TilePreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_TilePreprocessor.md
+              - Inference_Core_TonemapNoiseWithRescaleCFG: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_TonemapNoiseWithRescaleCFG.md
+              - Inference_Core_UniFormer-SemSegPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_UniFormer-SemSegPreprocessor.md
+              - Inference_Core_Unimatch_OptFlowPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_Unimatch_OptFlowPreprocessor.md
+              - Inference_Core_Zoe-DepthMapPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_Zoe-DepthMapPreprocessor.md
+              - Inference_Core_Zoe_DepthAnythingPreprocessor: md/ComfyUI-Inference-Core-Nodes/Nodes/Inference_Core_Zoe_DepthAnythingPreprocessor.md
+      - ComfyUI-Inspire-Pack:
+          - Home: md/ComfyUI-Inspire-Pack/index.md
+          - Licenses: md/ComfyUI-Inspire-Pack/licenses.md
+          - Nodes:
+              - AnimeLineArt_Preprocessor_Provider_for_SEGS __Inspire: md/ComfyUI-Inspire-Pack/Nodes/AnimeLineArt_Preprocessor_Provider_for_SEGS
+                  __Inspire.md
+              - ApplyRegionalIPAdapters __Inspire: md/ComfyUI-Inspire-Pack/Nodes/ApplyRegionalIPAdapters
+                  __Inspire.md
+              - BindImageListPromptList __Inspire: md/ComfyUI-Inspire-Pack/Nodes/BindImageListPromptList
+                  __Inspire.md
+              - CLIPTextEncodeWithWeight __Inspire: md/ComfyUI-Inspire-Pack/Nodes/CLIPTextEncodeWithWeight
+                  __Inspire.md
+              - CacheBackendData __Inspire: md/ComfyUI-Inspire-Pack/Nodes/CacheBackendData
+                  __Inspire.md
+              - CacheBackendDataList __Inspire: md/ComfyUI-Inspire-Pack/Nodes/CacheBackendDataList
+                  __Inspire.md
+              - CacheBackendDataNumberKey __Inspire: md/ComfyUI-Inspire-Pack/Nodes/CacheBackendDataNumberKey
+                  __Inspire.md
+              - CacheBackendDataNumberKeyList __Inspire: md/ComfyUI-Inspire-Pack/Nodes/CacheBackendDataNumberKeyList
+                  __Inspire.md
+              - Canny_Preprocessor_Provider_for_SEGS __Inspire: md/ComfyUI-Inspire-Pack/Nodes/Canny_Preprocessor_Provider_for_SEGS
+                  __Inspire.md
+              - ChangeImageBatchSize __Inspire: md/ComfyUI-Inspire-Pack/Nodes/ChangeImageBatchSize
+                  __Inspire.md
+              - ChangeLatentBatchSize __Inspire: md/ComfyUI-Inspire-Pack/Nodes/ChangeLatentBatchSize
+                  __Inspire.md
+              - CheckpointLoaderSimpleShared __Inspire: md/ComfyUI-Inspire-Pack/Nodes/CheckpointLoaderSimpleShared
+                  __Inspire.md
+              - Color_Preprocessor_Provider_for_SEGS __Inspire: md/ComfyUI-Inspire-Pack/Nodes/Color_Preprocessor_Provider_for_SEGS
+                  __Inspire.md
+              - ConcatConditioningsWithMultiplier __Inspire: md/ComfyUI-Inspire-Pack/Nodes/ConcatConditioningsWithMultiplier
+                  __Inspire.md
+              - DWPreprocessor_Provider_for_SEGS __Inspire: md/ComfyUI-Inspire-Pack/Nodes/DWPreprocessor_Provider_for_SEGS
+                  __Inspire.md
+              - FakeScribblePreprocessor_Provider_for_SEGS __Inspire: md/ComfyUI-Inspire-Pack/Nodes/FakeScribblePreprocessor_Provider_for_SEGS
+                  __Inspire.md
+              - FloatRange __Inspire: md/ComfyUI-Inspire-Pack/Nodes/FloatRange __Inspire.md
+              - FromIPAdapterPipe __Inspire: md/ComfyUI-Inspire-Pack/Nodes/FromIPAdapterPipe
+                  __Inspire.md
+              - GlobalSampler __Inspire: md/ComfyUI-Inspire-Pack/Nodes/GlobalSampler
+                  __Inspire.md
+              - GlobalSeed __Inspire: md/ComfyUI-Inspire-Pack/Nodes/GlobalSeed __Inspire.md
+              - HEDPreprocessor_Provider_for_SEGS __Inspire: md/ComfyUI-Inspire-Pack/Nodes/HEDPreprocessor_Provider_for_SEGS
+                  __Inspire.md
+              - HyperTile __Inspire: md/ComfyUI-Inspire-Pack/Nodes/HyperTile __Inspire.md
+              - IPAdapterModelHelper __Inspire: md/ComfyUI-Inspire-Pack/Nodes/IPAdapterModelHelper
+                  __Inspire.md
+              - ImageBatchSplitter __Inspire: md/ComfyUI-Inspire-Pack/Nodes/ImageBatchSplitter
+                  __Inspire.md
+              - InpaintPreprocessor_Provider_for_SEGS __Inspire: md/ComfyUI-Inspire-Pack/Nodes/InpaintPreprocessor_Provider_for_SEGS
+                  __Inspire.md
+              - KSampler __Inspire: md/ComfyUI-Inspire-Pack/Nodes/KSampler __Inspire.md
+              - KSamplerAdvanced __Inspire: md/ComfyUI-Inspire-Pack/Nodes/KSamplerAdvanced
+                  __Inspire.md
+              - KSamplerAdvancedPipe __Inspire: md/ComfyUI-Inspire-Pack/Nodes/KSamplerAdvancedPipe
+                  __Inspire.md
+              - KSamplerAdvancedProgress __Inspire: md/ComfyUI-Inspire-Pack/Nodes/KSamplerAdvancedProgress
+                  __Inspire.md
+              - KSamplerPipe __Inspire: md/ComfyUI-Inspire-Pack/Nodes/KSamplerPipe
+                  __Inspire.md
+              - KSamplerProgress __Inspire: md/ComfyUI-Inspire-Pack/Nodes/KSamplerProgress
+                  __Inspire.md
+              - LatentBatchSplitter __Inspire: md/ComfyUI-Inspire-Pack/Nodes/LatentBatchSplitter
+                  __Inspire.md
+              - LeRes_DepthMap_Preprocessor_Provider_for_SEGS __Inspire: md/ComfyUI-Inspire-Pack/Nodes/LeRes_DepthMap_Preprocessor_Provider_for_SEGS
+                  __Inspire.md
+              - LineArt_Preprocessor_Provider_for_SEGS __Inspire: md/ComfyUI-Inspire-Pack/Nodes/LineArt_Preprocessor_Provider_for_SEGS
+                  __Inspire.md
+              - ListCounter __Inspire: md/ComfyUI-Inspire-Pack/Nodes/ListCounter __Inspire.md
+              - LoadImage __Inspire: md/ComfyUI-Inspire-Pack/Nodes/LoadImage __Inspire.md
+              - LoadImageListFromDir __Inspire: md/ComfyUI-Inspire-Pack/Nodes/LoadImageListFromDir
+                  __Inspire.md
+              - LoadImagesFromDir __Inspire: md/ComfyUI-Inspire-Pack/Nodes/LoadImagesFromDir
+                  __Inspire.md
+              - LoadPromptsFromDir __Inspire: md/ComfyUI-Inspire-Pack/Nodes/LoadPromptsFromDir
+                  __Inspire.md
+              - LoadPromptsFromFile __Inspire: md/ComfyUI-Inspire-Pack/Nodes/LoadPromptsFromFile
+                  __Inspire.md
+              - LoadSinglePromptFromFile __Inspire: md/ComfyUI-Inspire-Pack/Nodes/LoadSinglePromptFromFile
+                  __Inspire.md
+              - LoraBlockInfo __Inspire: md/ComfyUI-Inspire-Pack/Nodes/LoraBlockInfo
+                  __Inspire.md
+              - LoraLoaderBlockWeight __Inspire: md/ComfyUI-Inspire-Pack/Nodes/LoraLoaderBlockWeight
+                  __Inspire.md
+              - MakeBasicPipe __Inspire: md/ComfyUI-Inspire-Pack/Nodes/MakeBasicPipe
+                  __Inspire.md
+              - Manga2Anime_LineArt_Preprocessor_Provider_for_SEGS __Inspire: md/ComfyUI-Inspire-Pack/Nodes/Manga2Anime_LineArt_Preprocessor_Provider_for_SEGS
+                  __Inspire.md
+              - MediaPipeFaceMeshDetectorProvider __Inspire: md/ComfyUI-Inspire-Pack/Nodes/MediaPipeFaceMeshDetectorProvider
+                  __Inspire.md
+              - MediaPipe_FaceMesh_Preprocessor_Provider_for_SEGS __Inspire: md/ComfyUI-Inspire-Pack/Nodes/MediaPipe_FaceMesh_Preprocessor_Provider_for_SEGS
+                  __Inspire.md
+              - MeshGraphormerDepthMapPreprocessorProvider_for_SEGS __Inspire: md/ComfyUI-Inspire-Pack/Nodes/MeshGraphormerDepthMapPreprocessorProvider_for_SEGS
+                  __Inspire.md
+              - MiDaS_DepthMap_Preprocessor_Provider_for_SEGS __Inspire: md/ComfyUI-Inspire-Pack/Nodes/MiDaS_DepthMap_Preprocessor_Provider_for_SEGS
+                  __Inspire.md
+              - OpenPose_Preprocessor_Provider_for_SEGS __Inspire: md/ComfyUI-Inspire-Pack/Nodes/OpenPose_Preprocessor_Provider_for_SEGS
+                  __Inspire.md
+              - PromptBuilder __Inspire: md/ComfyUI-Inspire-Pack/Nodes/PromptBuilder
+                  __Inspire.md
+              - PromptExtractor __Inspire: md/ComfyUI-Inspire-Pack/Nodes/PromptExtractor
+                  __Inspire.md
+              - RandomGeneratorForList __Inspire: md/ComfyUI-Inspire-Pack/Nodes/RandomGeneratorForList
+                  __Inspire.md
+              - RegionalConditioningColorMask __Inspire: md/ComfyUI-Inspire-Pack/Nodes/RegionalConditioningColorMask
+                  __Inspire.md
+              - RegionalConditioningSimple __Inspire: md/ComfyUI-Inspire-Pack/Nodes/RegionalConditioningSimple
+                  __Inspire.md
+              - RegionalIPAdapterColorMask __Inspire: md/ComfyUI-Inspire-Pack/Nodes/RegionalIPAdapterColorMask
+                  __Inspire.md
+              - RegionalIPAdapterEncodedColorMask __Inspire: md/ComfyUI-Inspire-Pack/Nodes/RegionalIPAdapterEncodedColorMask
+                  __Inspire.md
+              - RegionalIPAdapterEncodedMask __Inspire: md/ComfyUI-Inspire-Pack/Nodes/RegionalIPAdapterEncodedMask
+                  __Inspire.md
+              - RegionalIPAdapterMask __Inspire: md/ComfyUI-Inspire-Pack/Nodes/RegionalIPAdapterMask
+                  __Inspire.md
+              - RegionalPromptColorMask __Inspire: md/ComfyUI-Inspire-Pack/Nodes/RegionalPromptColorMask
+                  __Inspire.md
+              - RegionalPromptSimple __Inspire: md/ComfyUI-Inspire-Pack/Nodes/RegionalPromptSimple
+                  __Inspire.md
+              - RegionalSeedExplorerColorMask __Inspire: md/ComfyUI-Inspire-Pack/Nodes/RegionalSeedExplorerColorMask
+                  __Inspire.md
+              - RegionalSeedExplorerMask __Inspire: md/ComfyUI-Inspire-Pack/Nodes/RegionalSeedExplorerMask
+                  __Inspire.md
+              - RemoveBackendData __Inspire: md/ComfyUI-Inspire-Pack/Nodes/RemoveBackendData
+                  __Inspire.md
+              - RemoveBackendDataNumberKey __Inspire: md/ComfyUI-Inspire-Pack/Nodes/RemoveBackendDataNumberKey
+                  __Inspire.md
+              - RemoveControlNet __Inspire: md/ComfyUI-Inspire-Pack/Nodes/RemoveControlNet
+                  __Inspire.md
+              - RemoveControlNetFromRegionalPrompts __Inspire: md/ComfyUI-Inspire-Pack/Nodes/RemoveControlNetFromRegionalPrompts
+                  __Inspire.md
+              - RetrieveBackendData __Inspire: md/ComfyUI-Inspire-Pack/Nodes/RetrieveBackendData
+                  __Inspire.md
+              - RetrieveBackendDataNumberKey __Inspire: md/ComfyUI-Inspire-Pack/Nodes/RetrieveBackendDataNumberKey
+                  __Inspire.md
+              - SeedExplorer __Inspire: md/ComfyUI-Inspire-Pack/Nodes/SeedExplorer
+                  __Inspire.md
+              - ShowCachedInfo __Inspire: md/ComfyUI-Inspire-Pack/Nodes/ShowCachedInfo
+                  __Inspire.md
+              - StableCascade_CheckpointLoader __Inspire: md/ComfyUI-Inspire-Pack/Nodes/StableCascade_CheckpointLoader
+                  __Inspire.md
+              - TilePreprocessor_Provider_for_SEGS __Inspire: md/ComfyUI-Inspire-Pack/Nodes/TilePreprocessor_Provider_for_SEGS
+                  __Inspire.md
+              - ToIPAdapterPipe __Inspire: md/ComfyUI-Inspire-Pack/Nodes/ToIPAdapterPipe
+                  __Inspire.md
+              - UnzipPrompt __Inspire: md/ComfyUI-Inspire-Pack/Nodes/UnzipPrompt __Inspire.md
+              - WildcardEncode __Inspire: md/ComfyUI-Inspire-Pack/Nodes/WildcardEncode
+                  __Inspire.md
+              - 'XY Input: Lora Block Weight __Inspire': 'md/ComfyUI-Inspire-Pack/Nodes/XY
+                  Input: Lora Block Weight __Inspire.md'
+              - ZipPrompt __Inspire: md/ComfyUI-Inspire-Pack/Nodes/ZipPrompt __Inspire.md
       - ComfyUI-KJNodes:
           - Home: md/ComfyUI-KJNodes/index.md
           - Licenses: md/ComfyUI-KJNodes/licenses.md
@@ -545,8 +1219,11 @@ nav:
               - BatchUncrop: md/ComfyUI-KJNodes/Nodes/BatchUncrop.md
               - BatchUncropAdvanced: md/ComfyUI-KJNodes/Nodes/BatchUncropAdvanced.md
               - BboxToInt: md/ComfyUI-KJNodes/Nodes/BboxToInt.md
+              - BboxVisualize: md/ComfyUI-KJNodes/Nodes/BboxVisualize.md
+              - CameraPoseVisualizer: md/ComfyUI-KJNodes/Nodes/CameraPoseVisualizer.md
               - ColorMatch: md/ComfyUI-KJNodes/Nodes/ColorMatch.md
               - ColorToMask: md/ComfyUI-KJNodes/Nodes/ColorToMask.md
+              - CondPassThrough: md/ComfyUI-KJNodes/Nodes/CondPassThrough.md
               - ConditioningMultiCombine: md/ComfyUI-KJNodes/Nodes/ConditioningMultiCombine.md
               - ConditioningSetMaskAndCombine: md/ComfyUI-KJNodes/Nodes/ConditioningSetMaskAndCombine.md
               - ConditioningSetMaskAndCombine3: md/ComfyUI-KJNodes/Nodes/ConditioningSetMaskAndCombine3.md
@@ -559,48 +1236,168 @@ nav:
               - CreateGradientMask: md/ComfyUI-KJNodes/Nodes/CreateGradientMask.md
               - CreateMagicMask: md/ComfyUI-KJNodes/Nodes/CreateMagicMask.md
               - CreateShapeMask: md/ComfyUI-KJNodes/Nodes/CreateShapeMask.md
+              - CreateShapeMaskOnPath: md/ComfyUI-KJNodes/Nodes/CreateShapeMaskOnPath.md
               - CreateTextMask: md/ComfyUI-KJNodes/Nodes/CreateTextMask.md
               - CreateVoronoiMask: md/ComfyUI-KJNodes/Nodes/CreateVoronoiMask.md
               - CrossFadeImages: md/ComfyUI-KJNodes/Nodes/CrossFadeImages.md
+              - CustomSigmas: md/ComfyUI-KJNodes/Nodes/CustomSigmas.md
               - DummyLatentOut: md/ComfyUI-KJNodes/Nodes/DummyLatentOut.md
               - EmptyLatentImagePresets: md/ComfyUI-KJNodes/Nodes/EmptyLatentImagePresets.md
               - FilterZeroMasksAndCorrespondingImages: md/ComfyUI-KJNodes/Nodes/FilterZeroMasksAndCorrespondingImages.md
               - FlipSigmasAdjusted: md/ComfyUI-KJNodes/Nodes/FlipSigmasAdjusted.md
               - FloatConstant: md/ComfyUI-KJNodes/Nodes/FloatConstant.md
+              - FloatToMask: md/ComfyUI-KJNodes/Nodes/FloatToMask.md
+              - FloatToSigmas: md/ComfyUI-KJNodes/Nodes/FloatToSigmas.md
+              - GLIGENTextBoxApplyBatch: md/ComfyUI-KJNodes/Nodes/GLIGENTextBoxApplyBatch.md
+              - GLIGENTextBoxApplyBatchCoords: md/ComfyUI-KJNodes/Nodes/GLIGENTextBoxApplyBatchCoords.md
               - GenerateNoise: md/ComfyUI-KJNodes/Nodes/GenerateNoise.md
               - GetImageRangeFromBatch: md/ComfyUI-KJNodes/Nodes/GetImageRangeFromBatch.md
               - GetImagesFromBatchIndexed: md/ComfyUI-KJNodes/Nodes/GetImagesFromBatchIndexed.md
+              - GetLatentsFromBatchIndexed: md/ComfyUI-KJNodes/Nodes/GetLatentsFromBatchIndexed.md
               - GrowMaskWithBlur: md/ComfyUI-KJNodes/Nodes/GrowMaskWithBlur.md
               - INTConstant: md/ComfyUI-KJNodes/Nodes/INTConstant.md
+              - ImageAndMaskPreview: md/ComfyUI-KJNodes/Nodes/ImageAndMaskPreview.md
+              - ImageBatchMulti: md/ComfyUI-KJNodes/Nodes/ImageBatchMulti.md
               - ImageBatchRepeatInterleaving: md/ComfyUI-KJNodes/Nodes/ImageBatchRepeatInterleaving.md
               - ImageBatchTestPattern: md/ComfyUI-KJNodes/Nodes/ImageBatchTestPattern.md
               - ImageConcanate: md/ComfyUI-KJNodes/Nodes/ImageConcanate.md
               - ImageGrabPIL: md/ComfyUI-KJNodes/Nodes/ImageGrabPIL.md
               - ImageGridComposite2x2: md/ComfyUI-KJNodes/Nodes/ImageGridComposite2x2.md
               - ImageGridComposite3x3: md/ComfyUI-KJNodes/Nodes/ImageGridComposite3x3.md
+              - ImageNormalize_Neg1_To_1: md/ComfyUI-KJNodes/Nodes/ImageNormalize_Neg1_To_1.md
+              - ImagePadForOutpaintMasked: md/ComfyUI-KJNodes/Nodes/ImagePadForOutpaintMasked.md
+              - ImagePass: md/ComfyUI-KJNodes/Nodes/ImagePass.md
               - ImageTransformByNormalizedAmplitude: md/ComfyUI-KJNodes/Nodes/ImageTransformByNormalizedAmplitude.md
+              - ImageUpscaleWithModelBatched: md/ComfyUI-KJNodes/Nodes/ImageUpscaleWithModelBatched.md
               - InjectNoiseToLatent: md/ComfyUI-KJNodes/Nodes/InjectNoiseToLatent.md
               - InsertImageBatchByIndexes: md/ComfyUI-KJNodes/Nodes/InsertImageBatchByIndexes.md
-              - NormalizeLatent: md/ComfyUI-KJNodes/Nodes/NormalizeLatent.md
+              - InsertImagesToBatchIndexed: md/ComfyUI-KJNodes/Nodes/InsertImagesToBatchIndexed.md
+              - Intrinsic_lora_sampling: md/ComfyUI-KJNodes/Nodes/Intrinsic_lora_sampling.md
+              - JoinStrings: md/ComfyUI-KJNodes/Nodes/JoinStrings.md
+              - LoadResAdapterNormalization: md/ComfyUI-KJNodes/Nodes/LoadResAdapterNormalization.md
+              - MaskBatchMulti: md/ComfyUI-KJNodes/Nodes/MaskBatchMulti.md
+              - MaskOrImageToWeight: md/ComfyUI-KJNodes/Nodes/MaskOrImageToWeight.md
               - NormalizedAmplitudeToMask: md/ComfyUI-KJNodes/Nodes/NormalizedAmplitudeToMask.md
               - OffsetMask: md/ComfyUI-KJNodes/Nodes/OffsetMask.md
               - OffsetMaskByNormalizedAmplitude: md/ComfyUI-KJNodes/Nodes/OffsetMaskByNormalizedAmplitude.md
-              - ReferenceOnlySimple3: md/ComfyUI-KJNodes/Nodes/ReferenceOnlySimple3.md
+              - RemapImageRange: md/ComfyUI-KJNodes/Nodes/RemapImageRange.md
+              - RemapMaskRange: md/ComfyUI-KJNodes/Nodes/RemapMaskRange.md
               - ReplaceImagesInBatch: md/ComfyUI-KJNodes/Nodes/ReplaceImagesInBatch.md
               - ResizeMask: md/ComfyUI-KJNodes/Nodes/ResizeMask.md
               - ReverseImageBatch: md/ComfyUI-KJNodes/Nodes/ReverseImageBatch.md
               - RoundMask: md/ComfyUI-KJNodes/Nodes/RoundMask.md
+              - SV3D_BatchSchedule: md/ComfyUI-KJNodes/Nodes/SV3D_BatchSchedule.md
               - SaveImageWithAlpha: md/ComfyUI-KJNodes/Nodes/SaveImageWithAlpha.md
+              - ScaleBatchPromptSchedule: md/ComfyUI-KJNodes/Nodes/ScaleBatchPromptSchedule.md
+              - Sleep: md/ComfyUI-KJNodes/Nodes/Sleep.md
               - SomethingToString: md/ComfyUI-KJNodes/Nodes/SomethingToString.md
               - SoundReactive: md/ComfyUI-KJNodes/Nodes/SoundReactive.md
+              - SplineEditor: md/ComfyUI-KJNodes/Nodes/SplineEditor.md
               - SplitBboxes: md/ComfyUI-KJNodes/Nodes/SplitBboxes.md
+              - StabilityAPI_SD3: md/ComfyUI-KJNodes/Nodes/StabilityAPI_SD3.md
               - StableZero123_BatchSchedule: md/ComfyUI-KJNodes/Nodes/StableZero123_BatchSchedule.md
+              - StringConstant: md/ComfyUI-KJNodes/Nodes/StringConstant.md
+              - StringConstantMultiline: md/ComfyUI-KJNodes/Nodes/StringConstantMultiline.md
+              - Superprompt: md/ComfyUI-KJNodes/Nodes/Superprompt.md
               - VRAM_Debug: md/ComfyUI-KJNodes/Nodes/VRAM_Debug.md
+              - WeightScheduleConvert: md/ComfyUI-KJNodes/Nodes/WeightScheduleConvert.md
+              - WeightScheduleExtend: md/ComfyUI-KJNodes/Nodes/WeightScheduleExtend.md
               - WidgetToString: md/ComfyUI-KJNodes/Nodes/WidgetToString.md
+      - ComfyUI-Logic:
+          - Home: md/ComfyUI-Logic/index.md
+          - Licenses: md/ComfyUI-Logic/licenses.md
+          - Nodes:
+              - Bool: md/ComfyUI-Logic/Nodes/Bool.md
+              - Compare: md/ComfyUI-Logic/Nodes/Compare.md
+              - DebugPrint: md/ComfyUI-Logic/Nodes/DebugPrint.md
+              - Float: md/ComfyUI-Logic/Nodes/Float.md
+              - If ANY execute A else B: md/ComfyUI-Logic/Nodes/If ANY execute A else
+                  B.md
+              - Int: md/ComfyUI-Logic/Nodes/Int.md
+              - String: md/ComfyUI-Logic/Nodes/String.md
+      - ComfyUI-Marigold:
+          - Home: md/ComfyUI-Marigold/index.md
+          - Licenses: md/ComfyUI-Marigold/licenses.md
+          - Nodes:
+              - ColorizeDepthmap: md/ComfyUI-Marigold/Nodes/ColorizeDepthmap.md
+              - MarigoldDepthEstimation: md/ComfyUI-Marigold/Nodes/MarigoldDepthEstimation.md
+              - MarigoldDepthEstimationVideo: md/ComfyUI-Marigold/Nodes/MarigoldDepthEstimationVideo.md
+              - RemapDepth: md/ComfyUI-Marigold/Nodes/RemapDepth.md
+              - SaveImageOpenEXR: md/ComfyUI-Marigold/Nodes/SaveImageOpenEXR.md
+      - ComfyUI-MotionDiff:
+          - Home: md/ComfyUI-MotionDiff/index.md
+          - Licenses: md/ComfyUI-MotionDiff/licenses.md
+          - Nodes:
+              - EmptyMotionData: md/ComfyUI-MotionDiff/Nodes/EmptyMotionData.md
+              - ExportSMPLTo3DSoftware: md/ComfyUI-MotionDiff/Nodes/ExportSMPLTo3DSoftware.md
+              - Export_SMPLMultipleSubjects_To_3DSoftware: md/ComfyUI-MotionDiff/Nodes/Export_SMPLMultipleSubjects_To_3DSoftware.md
+              - Human4D_Img2SMPL: md/ComfyUI-MotionDiff/Nodes/Human4D_Img2SMPL.md
+              - Humans4DLoader: md/ComfyUI-MotionDiff/Nodes/Humans4DLoader.md
+              - MotionCLIPTextEncode: md/ComfyUI-MotionDiff/Nodes/MotionCLIPTextEncode.md
+              - MotionDataVisualizer: md/ComfyUI-MotionDiff/Nodes/MotionDataVisualizer.md
+              - MotionDiffLoader: md/ComfyUI-MotionDiff/Nodes/MotionDiffLoader.md
+              - MotionDiffSimpleSampler: md/ComfyUI-MotionDiff/Nodes/MotionDiffSimpleSampler.md
+              - RenderMultipleSubjectsSMPLMesh: md/ComfyUI-MotionDiff/Nodes/RenderMultipleSubjectsSMPLMesh.md
+              - RenderSMPLMesh: md/ComfyUI-MotionDiff/Nodes/RenderSMPLMesh.md
+              - Render_OpenPose_From_SMPL_Mesh_Multiple_Subjects: md/ComfyUI-MotionDiff/Nodes/Render_OpenPose_From_SMPL_Mesh_Multiple_Subjects.md
+              - SMPLLoader: md/ComfyUI-MotionDiff/Nodes/SMPLLoader.md
+              - SMPLShapeParameters: md/ComfyUI-MotionDiff/Nodes/SMPLShapeParameters.md
+              - SaveSMPL: md/ComfyUI-MotionDiff/Nodes/SaveSMPL.md
+              - SmplifyMotionData: md/ComfyUI-MotionDiff/Nodes/SmplifyMotionData.md
+              - SpectreFaceReconLoader: md/ComfyUI-MotionDiff/Nodes/SpectreFaceReconLoader.md
+              - SpectreImg2SMPL: md/ComfyUI-MotionDiff/Nodes/SpectreImg2SMPL.md
+              - mgpt_model_loader: md/ComfyUI-MotionDiff/Nodes/mgpt_model_loader.md
+              - mgpt_t2m: md/ComfyUI-MotionDiff/Nodes/mgpt_t2m.md
+      - ComfyUI-SUPIR:
+          - Home: md/ComfyUI-SUPIR/index.md
+          - Licenses: md/ComfyUI-SUPIR/licenses.md
+          - Nodes:
+              - SUPIR_Upscale: md/ComfyUI-SUPIR/Nodes/SUPIR_Upscale.md
+              - SUPIR_conditioner: md/ComfyUI-SUPIR/Nodes/SUPIR_conditioner.md
+              - SUPIR_decode: md/ComfyUI-SUPIR/Nodes/SUPIR_decode.md
+              - SUPIR_encode: md/ComfyUI-SUPIR/Nodes/SUPIR_encode.md
+              - SUPIR_first_stage: md/ComfyUI-SUPIR/Nodes/SUPIR_first_stage.md
+              - SUPIR_model_loader: md/ComfyUI-SUPIR/Nodes/SUPIR_model_loader.md
+              - SUPIR_model_loader_v2: md/ComfyUI-SUPIR/Nodes/SUPIR_model_loader_v2.md
+              - SUPIR_sample: md/ComfyUI-SUPIR/Nodes/SUPIR_sample.md
+              - SUPIR_tiles: md/ComfyUI-SUPIR/Nodes/SUPIR_tiles.md
+      - ComfyUI-SuperBeasts:
+          - Home: md/ComfyUI-SuperBeasts/index.md
+          - Licenses: md/ComfyUI-SuperBeasts/licenses.md
+          - Nodes:
+              - Cross Fade Image Batches (SuperBeasts.AI): md/ComfyUI-SuperBeasts/Nodes/Cross
+                  Fade Image Batches (SuperBeasts.AI).md
+              - Deflicker (SuperBeasts.AI): md/ComfyUI-SuperBeasts/Nodes/Deflicker
+                  (SuperBeasts.AI).md
+              - HDR Effects (SuperBeasts.AI): md/ComfyUI-SuperBeasts/Nodes/HDR Effects
+                  (SuperBeasts.AI).md
+              - Image Batch Manager (SuperBeasts.AI): md/ComfyUI-SuperBeasts/Nodes/Image
+                  Batch Manager (SuperBeasts.AI).md
+              - Make Resized Mask Batch (SuperBeasts.AI): md/ComfyUI-SuperBeasts/Nodes/Make
+                  Resized Mask Batch (SuperBeasts.AI).md
+              - Mask Batch Manager (SuperBeasts.AI): md/ComfyUI-SuperBeasts/Nodes/Mask
+                  Batch Manager (SuperBeasts.AI).md
+              - Pixel Deflicker (SuperBeasts.AI): md/ComfyUI-SuperBeasts/Nodes/Pixel
+                  Deflicker (SuperBeasts.AI).md
+      - ComfyUI-TiledDiffusion:
+          - Home: md/ComfyUI-TiledDiffusion/index.md
+          - Licenses: md/ComfyUI-TiledDiffusion/licenses.md
+          - Nodes:
+              - TiledDiffusion: md/ComfyUI-TiledDiffusion/Nodes/TiledDiffusion.md
+              - VAEDecodeTiled_TiledDiffusion: md/ComfyUI-TiledDiffusion/Nodes/VAEDecodeTiled_TiledDiffusion.md
+              - VAEEncodeTiled_TiledDiffusion: md/ComfyUI-TiledDiffusion/Nodes/VAEEncodeTiled_TiledDiffusion.md
+      - ComfyUI-Video-Matting:
+          - Home: md/ComfyUI-Video-Matting/index.md
+          - Licenses: md/ComfyUI-Video-Matting/licenses.md
+          - Nodes:
+              - BRIAAI Matting: md/ComfyUI-Video-Matting/Nodes/BRIAAI Matting.md
+              - Robust Video Matting: md/ComfyUI-Video-Matting/Nodes/Robust Video
+                  Matting.md
       - ComfyUI-VideoHelperSuite:
           - Home: md/ComfyUI-VideoHelperSuite/index.md
           - Licenses: md/ComfyUI-VideoHelperSuite/licenses.md
           - Nodes:
+              - VHS_BatchManager: md/ComfyUI-VideoHelperSuite/Nodes/VHS_BatchManager.md
               - VHS_DuplicateImages: md/ComfyUI-VideoHelperSuite/Nodes/VHS_DuplicateImages.md
               - VHS_DuplicateLatents: md/ComfyUI-VideoHelperSuite/Nodes/VHS_DuplicateLatents.md
               - VHS_DuplicateMasks: md/ComfyUI-VideoHelperSuite/Nodes/VHS_DuplicateMasks.md
@@ -608,6 +1405,7 @@ nav:
               - VHS_GetLatentCount: md/ComfyUI-VideoHelperSuite/Nodes/VHS_GetLatentCount.md
               - VHS_GetMaskCount: md/ComfyUI-VideoHelperSuite/Nodes/VHS_GetMaskCount.md
               - VHS_LoadAudio: md/ComfyUI-VideoHelperSuite/Nodes/VHS_LoadAudio.md
+              - VHS_LoadAudioUpload: md/ComfyUI-VideoHelperSuite/Nodes/VHS_LoadAudioUpload.md
               - VHS_LoadImages: md/ComfyUI-VideoHelperSuite/Nodes/VHS_LoadImages.md
               - VHS_LoadImagesPath: md/ComfyUI-VideoHelperSuite/Nodes/VHS_LoadImagesPath.md
               - VHS_LoadVideo: md/ComfyUI-VideoHelperSuite/Nodes/VHS_LoadVideo.md
@@ -625,6 +1423,33 @@ nav:
               - VHS_VAEDecodeBatched: md/ComfyUI-VideoHelperSuite/Nodes/VHS_VAEDecodeBatched.md
               - VHS_VAEEncodeBatched: md/ComfyUI-VideoHelperSuite/Nodes/VHS_VAEEncodeBatched.md
               - VHS_VideoCombine: md/ComfyUI-VideoHelperSuite/Nodes/VHS_VideoCombine.md
+              - VHS_VideoInfo: md/ComfyUI-VideoHelperSuite/Nodes/VHS_VideoInfo.md
+              - VHS_VideoInfoLoaded: md/ComfyUI-VideoHelperSuite/Nodes/VHS_VideoInfoLoaded.md
+              - VHS_VideoInfoSource: md/ComfyUI-VideoHelperSuite/Nodes/VHS_VideoInfoSource.md
+      - ComfyUI-WD14-Tagger:
+          - Home: md/ComfyUI-WD14-Tagger/index.md
+          - Licenses: md/ComfyUI-WD14-Tagger/licenses.md
+          - Nodes:
+              - WD14Tagger|pysssss: md/ComfyUI-WD14-Tagger/Nodes/WD14Tagger|pysssss.md
+      - ComfyUI-layerdiffuse:
+          - Home: md/ComfyUI-layerdiffuse/index.md
+          - Licenses: md/ComfyUI-layerdiffuse/licenses.md
+          - Nodes:
+              - LayeredDiffusionApply: md/ComfyUI-layerdiffuse/Nodes/LayeredDiffusionApply.md
+              - LayeredDiffusionCondApply: md/ComfyUI-layerdiffuse/Nodes/LayeredDiffusionCondApply.md
+              - LayeredDiffusionCondJointApply: md/ComfyUI-layerdiffuse/Nodes/LayeredDiffusionCondJointApply.md
+              - LayeredDiffusionDecode: md/ComfyUI-layerdiffuse/Nodes/LayeredDiffusionDecode.md
+              - LayeredDiffusionDecodeRGBA: md/ComfyUI-layerdiffuse/Nodes/LayeredDiffusionDecodeRGBA.md
+              - LayeredDiffusionDecodeSplit: md/ComfyUI-layerdiffuse/Nodes/LayeredDiffusionDecodeSplit.md
+              - LayeredDiffusionDiffApply: md/ComfyUI-layerdiffuse/Nodes/LayeredDiffusionDiffApply.md
+              - LayeredDiffusionJointApply: md/ComfyUI-layerdiffuse/Nodes/LayeredDiffusionJointApply.md
+      - ComfyUI-sampler-lcm-alternative:
+          - Home: md/ComfyUI-sampler-lcm-alternative/index.md
+          - Licenses: md/ComfyUI-sampler-lcm-alternative/licenses.md
+          - Nodes:
+              - LCMScheduler: md/ComfyUI-sampler-lcm-alternative/Nodes/LCMScheduler.md
+              - SamplerLCMAlternative: md/ComfyUI-sampler-lcm-alternative/Nodes/SamplerLCMAlternative.md
+              - SamplerLCMCycle: md/ComfyUI-sampler-lcm-alternative/Nodes/SamplerLCMCycle.md
       - ComfyUI-seamless-tiling:
           - Home: md/ComfyUI-seamless-tiling/index.md
           - Licenses: md/ComfyUI-seamless-tiling/licenses.md
@@ -994,6 +1819,39 @@ nav:
                   Save Grid Image.md
               - CR_Aspect Ratio For Print: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR_Aspect
                   Ratio For Print.md
+      - ComfyUI_ELLA:
+          - Home: md/ComfyUI_ELLA/index.md
+          - Licenses: md/ComfyUI_ELLA/licenses.md
+          - Nodes:
+              - ELLATextEncode: md/ComfyUI_ELLA/Nodes/ELLATextEncode.md
+              - GetSigma: md/ComfyUI_ELLA/Nodes/GetSigma.md
+              - LoadElla: md/ComfyUI_ELLA/Nodes/LoadElla.md
+      - ComfyUI_FaceAnalysis:
+          - Home: md/ComfyUI_FaceAnalysis/index.md
+          - Licenses: md/ComfyUI_FaceAnalysis/licenses.md
+          - Nodes:
+              - FaceAnalysisModels: md/ComfyUI_FaceAnalysis/Nodes/FaceAnalysisModels.md
+              - FaceBoundingBox: md/ComfyUI_FaceAnalysis/Nodes/FaceBoundingBox.md
+              - FaceEmbedDistance: md/ComfyUI_FaceAnalysis/Nodes/FaceEmbedDistance.md
+      - ComfyUI_Fill-Nodes:
+          - Home: md/ComfyUI_Fill-Nodes/index.md
+          - Licenses: md/ComfyUI_Fill-Nodes/licenses.md
+          - Nodes:
+              - FL_Ascii: md/ComfyUI_Fill-Nodes/Nodes/FL_Ascii.md
+              - FL_AudioConverter: md/ComfyUI_Fill-Nodes/Nodes/FL_AudioConverter.md
+              - FL_AudioFrameCalculator: md/ComfyUI_Fill-Nodes/Nodes/FL_AudioFrameCalculator.md
+              - FL_AudioPreview: md/ComfyUI_Fill-Nodes/Nodes/FL_AudioPreview.md
+              - FL_CodeNode: md/ComfyUI_Fill-Nodes/Nodes/FL_CodeNode.md
+              - FL_DirectoryCrawl: md/ComfyUI_Fill-Nodes/Nodes/FL_DirectoryCrawl.md
+              - FL_Glitch: md/ComfyUI_Fill-Nodes/Nodes/FL_Glitch.md
+              - FL_HexagonalPattern: md/ComfyUI_Fill-Nodes/Nodes/FL_HexagonalPattern.md
+              - FL_ImageCaptionSaver: md/ComfyUI_Fill-Nodes/Nodes/FL_ImageCaptionSaver.md
+              - FL_ImageDimensionDisplay: md/ComfyUI_Fill-Nodes/Nodes/FL_ImageDimensionDisplay.md
+              - FL_ImageDurationSync: md/ComfyUI_Fill-Nodes/Nodes/FL_ImageDurationSync.md
+              - FL_ImagePixelator: md/ComfyUI_Fill-Nodes/Nodes/FL_ImagePixelator.md
+              - FL_ImageRandomizer: md/ComfyUI_Fill-Nodes/Nodes/FL_ImageRandomizer.md
+              - FL_PixelSort: md/ComfyUI_Fill-Nodes/Nodes/FL_PixelSort.md
+              - FL_Ripple: md/ComfyUI_Fill-Nodes/Nodes/FL_Ripple.md
       - ComfyUI_FizzNodes:
           - Home: md/ComfyUI_FizzNodes/index.md
           - Licenses: md/ComfyUI_FizzNodes/licenses.md
@@ -1012,7 +1870,7 @@ nav:
               - CosWave: md/ComfyUI_FizzNodes/Nodes/CosWave.md
               - FizzFrame: md/ComfyUI_FizzNodes/Nodes/FizzFrame.md
               - FizzFrameConcatenate: md/ComfyUI_FizzNodes/Nodes/FizzFrameConcatenate.md
-              - ImageBatchFromValueSchedule: md/ComfyUI_FizzNodes/Nodes/ImageBatchFromValueSchedule.md
+              - ImagesFromBatchSchedule: md/ComfyUI_FizzNodes/Nodes/ImagesFromBatchSchedule.md
               - Init FizzFrame: md/ComfyUI_FizzNodes/Nodes/Init FizzFrame.md
               - InvCosWave: md/ComfyUI_FizzNodes/Nodes/InvCosWave.md
               - InvSinWave: md/ComfyUI_FizzNodes/Nodes/InvSinWave.md
@@ -1033,17 +1891,254 @@ nav:
           - Home: md/ComfyUI_IPAdapter_plus/index.md
           - Licenses: md/ComfyUI_IPAdapter_plus/licenses.md
           - Nodes:
-              - IPAdapterApply: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md
-              - IPAdapterApplyEncoded: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterApplyEncoded.md
-              - IPAdapterApplyFaceID: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterApplyFaceID.md
-              - IPAdapterBatchEmbeds: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterBatchEmbeds.md
+              - IPAAdapterFaceIDBatch: md/ComfyUI_IPAdapter_plus/Nodes/IPAAdapterFaceIDBatch.md
+              - IPAdapter: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapter.md
+              - IPAdapterAdvanced: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterAdvanced.md
+              - IPAdapterBatch: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterBatch.md
+              - IPAdapterCombineEmbeds: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterCombineEmbeds.md
+              - IPAdapterCombineParams: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterCombineParams.md
+              - IPAdapterCombineWeights: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterCombineWeights.md
+              - IPAdapterEmbeds: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterEmbeds.md
               - IPAdapterEncoder: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterEncoder.md
+              - IPAdapterFaceID: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterFaceID.md
+              - IPAdapterFromParams: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterFromParams.md
+              - IPAdapterInsightFaceLoader: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterInsightFaceLoader.md
               - IPAdapterLoadEmbeds: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterLoadEmbeds.md
+              - IPAdapterMS: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterMS.md
               - IPAdapterModelLoader: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterModelLoader.md
+              - IPAdapterNoise: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterNoise.md
+              - IPAdapterPromptScheduleFromWeightsStrategy: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterPromptScheduleFromWeightsStrategy.md
+              - IPAdapterRegionalConditioning: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterRegionalConditioning.md
               - IPAdapterSaveEmbeds: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterSaveEmbeds.md
-              - InsightFaceLoader: md/ComfyUI_IPAdapter_plus/Nodes/InsightFaceLoader.md
+              - IPAdapterStyleComposition: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterStyleComposition.md
+              - IPAdapterStyleCompositionBatch: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterStyleCompositionBatch.md
+              - IPAdapterTiled: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterTiled.md
+              - IPAdapterTiledBatch: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterTiledBatch.md
+              - IPAdapterUnifiedLoader: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterUnifiedLoader.md
+              - IPAdapterUnifiedLoaderCommunity: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterUnifiedLoaderCommunity.md
+              - IPAdapterUnifiedLoaderFaceID: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterUnifiedLoaderFaceID.md
+              - IPAdapterWeights: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterWeights.md
+              - IPAdapterWeightsFromStrategy: md/ComfyUI_IPAdapter_plus/Nodes/IPAdapterWeightsFromStrategy.md
               - PrepImageForClipVision: md/ComfyUI_IPAdapter_plus/Nodes/PrepImageForClipVision.md
-              - PrepImageForInsightFace: md/ComfyUI_IPAdapter_plus/Nodes/PrepImageForInsightFace.md
+      - ComfyUI_InstantID:
+          - Home: md/ComfyUI_InstantID/index.md
+          - Licenses: md/ComfyUI_InstantID/licenses.md
+          - Nodes:
+              - ApplyInstantID: md/ComfyUI_InstantID/Nodes/ApplyInstantID.md
+              - ApplyInstantIDAdvanced: md/ComfyUI_InstantID/Nodes/ApplyInstantIDAdvanced.md
+              - ApplyInstantIDControlNet: md/ComfyUI_InstantID/Nodes/ApplyInstantIDControlNet.md
+              - FaceKeypointsPreprocessor: md/ComfyUI_InstantID/Nodes/FaceKeypointsPreprocessor.md
+              - InstantIDAttentionPatch: md/ComfyUI_InstantID/Nodes/InstantIDAttentionPatch.md
+              - InstantIDFaceAnalysis: md/ComfyUI_InstantID/Nodes/InstantIDFaceAnalysis.md
+              - InstantIDModelLoader: md/ComfyUI_InstantID/Nodes/InstantIDModelLoader.md
+      - ComfyUI_JPS-Nodes:
+          - Home: md/ComfyUI_JPS-Nodes/index.md
+          - Licenses: md/ComfyUI_JPS-Nodes/licenses.md
+          - Nodes:
+              - CLIPTextEncode SDXL Plus (JPS): md/ComfyUI_JPS-Nodes/Nodes/CLIPTextEncode
+                  SDXL Plus (JPS).md
+              - Conditioning Switch (JPS): md/ComfyUI_JPS-Nodes/Nodes/Conditioning
+                  Switch (JPS).md
+              - ControlNet Switch (JPS): md/ComfyUI_JPS-Nodes/Nodes/ControlNet Switch
+                  (JPS).md
+              - Crop Image Pipe (JPS): md/ComfyUI_JPS-Nodes/Nodes/Crop Image Pipe
+                  (JPS).md
+              - Crop Image Settings (JPS): md/ComfyUI_JPS-Nodes/Nodes/Crop Image Settings
+                  (JPS).md
+              - Crop Image Square (JPS): md/ComfyUI_JPS-Nodes/Nodes/Crop Image Square
+                  (JPS).md
+              - Crop Image TargetSize (JPS): md/ComfyUI_JPS-Nodes/Nodes/Crop Image
+                  TargetSize (JPS).md
+              - CtrlNet CannyEdge Pipe (JPS): md/ComfyUI_JPS-Nodes/Nodes/CtrlNet CannyEdge
+                  Pipe (JPS).md
+              - CtrlNet CannyEdge Settings (JPS): md/ComfyUI_JPS-Nodes/Nodes/CtrlNet
+                  CannyEdge Settings (JPS).md
+              - CtrlNet MiDaS Pipe (JPS): md/ComfyUI_JPS-Nodes/Nodes/CtrlNet MiDaS
+                  Pipe (JPS).md
+              - CtrlNet MiDaS Settings (JPS): md/ComfyUI_JPS-Nodes/Nodes/CtrlNet MiDaS
+                  Settings (JPS).md
+              - CtrlNet OpenPose Pipe (JPS): md/ComfyUI_JPS-Nodes/Nodes/CtrlNet OpenPose
+                  Pipe (JPS).md
+              - CtrlNet OpenPose Settings (JPS): md/ComfyUI_JPS-Nodes/Nodes/CtrlNet
+                  OpenPose Settings (JPS).md
+              - CtrlNet ZoeDepth Pipe (JPS): md/ComfyUI_JPS-Nodes/Nodes/CtrlNet ZoeDepth
+                  Pipe (JPS).md
+              - CtrlNet ZoeDepth Settings (JPS): md/ComfyUI_JPS-Nodes/Nodes/CtrlNet
+                  ZoeDepth Settings (JPS).md
+              - Disable Enable Switch (JPS): md/ComfyUI_JPS-Nodes/Nodes/Disable Enable
+                  Switch (JPS).md
+              - Enable Disable Switch (JPS): md/ComfyUI_JPS-Nodes/Nodes/Enable Disable
+                  Switch (JPS).md
+              - Generation TXT IMG Settings (JPS): md/ComfyUI_JPS-Nodes/Nodes/Generation
+                  TXT IMG Settings (JPS).md
+              - Get Date Time String (JPS): md/ComfyUI_JPS-Nodes/Nodes/Get Date Time
+                  String (JPS).md
+              - Get Image Size (JPS): md/ComfyUI_JPS-Nodes/Nodes/Get Image Size (JPS).md
+              - IP Adapter Settings (JPS): md/ComfyUI_JPS-Nodes/Nodes/IP Adapter Settings
+                  (JPS).md
+              - IP Adapter Settings Pipe (JPS): md/ComfyUI_JPS-Nodes/Nodes/IP Adapter
+                  Settings Pipe (JPS).md
+              - IP Adapter Tiled Settings (JPS): md/ComfyUI_JPS-Nodes/Nodes/IP Adapter
+                  Tiled Settings (JPS).md
+              - IP Adapter Tiled Settings Pipe (JPS): md/ComfyUI_JPS-Nodes/Nodes/IP
+                  Adapter Tiled Settings Pipe (JPS).md
+              - IPA Switch (JPS): md/ComfyUI_JPS-Nodes/Nodes/IPA Switch (JPS).md
+              - Image Prepare Pipe (JPS): md/ComfyUI_JPS-Nodes/Nodes/Image Prepare
+                  Pipe (JPS).md
+              - Image Prepare Settings (JPS): md/ComfyUI_JPS-Nodes/Nodes/Image Prepare
+                  Settings (JPS).md
+              - Image Switch (JPS): md/ComfyUI_JPS-Nodes/Nodes/Image Switch (JPS).md
+              - ImageToImage Pipe (JPS): md/ComfyUI_JPS-Nodes/Nodes/ImageToImage Pipe
+                  (JPS).md
+              - ImageToImage Settings (JPS): md/ComfyUI_JPS-Nodes/Nodes/ImageToImage
+                  Settings (JPS).md
+              - Images Masks MultiPipe (JPS): md/ComfyUI_JPS-Nodes/Nodes/Images Masks
+                  MultiPipe (JPS).md
+              - InstantID Mask Prepare Pipe (JPS): md/ComfyUI_JPS-Nodes/Nodes/InstantID
+                  Mask Prepare Pipe (JPS).md
+              - InstantID Mask Prepare Settings (JPS): md/ComfyUI_JPS-Nodes/Nodes/InstantID
+                  Mask Prepare Settings (JPS).md
+              - InstantID Pipe (JPS): md/ComfyUI_JPS-Nodes/Nodes/InstantID Pipe (JPS).md
+              - InstantID Pose Prepare Pipe (JPS): md/ComfyUI_JPS-Nodes/Nodes/InstantID
+                  Pose Prepare Pipe (JPS).md
+              - InstantID Pose Prepare Settings (JPS): md/ComfyUI_JPS-Nodes/Nodes/InstantID
+                  Pose Prepare Settings (JPS).md
+              - InstantID Settings (JPS): md/ComfyUI_JPS-Nodes/Nodes/InstantID Settings
+                  (JPS).md
+              - InstantID Source Prepare Pipe (JPS): md/ComfyUI_JPS-Nodes/Nodes/InstantID
+                  Source Prepare Pipe (JPS).md
+              - InstantID Source Prepare Settings (JPS): md/ComfyUI_JPS-Nodes/Nodes/InstantID
+                  Source Prepare Settings (JPS).md
+              - Integer Switch (JPS): md/ComfyUI_JPS-Nodes/Nodes/Integer Switch (JPS).md
+              - Largest Int (JPS): md/ComfyUI_JPS-Nodes/Nodes/Largest Int (JPS).md
+              - Latent Switch (JPS): md/ComfyUI_JPS-Nodes/Nodes/Latent Switch (JPS).md
+              - Lora Loader (JPS): md/ComfyUI_JPS-Nodes/Nodes/Lora Loader (JPS).md
+              - Mask Switch (JPS): md/ComfyUI_JPS-Nodes/Nodes/Mask Switch (JPS).md
+              - Model Switch (JPS): md/ComfyUI_JPS-Nodes/Nodes/Model Switch (JPS).md
+              - Multiply Float Float (JPS): md/ComfyUI_JPS-Nodes/Nodes/Multiply Float
+                  Float (JPS).md
+              - Multiply Int Float (JPS): md/ComfyUI_JPS-Nodes/Nodes/Multiply Int
+                  Float (JPS).md
+              - Multiply Int Int (JPS): md/ComfyUI_JPS-Nodes/Nodes/Multiply Int Int
+                  (JPS).md
+              - Prepare Image (JPS): md/ComfyUI_JPS-Nodes/Nodes/Prepare Image (JPS).md
+              - Prepare Image Plus (JPS): md/ComfyUI_JPS-Nodes/Nodes/Prepare Image
+                  Plus (JPS).md
+              - Prepare Image Tiled IPA (JPS): md/ComfyUI_JPS-Nodes/Nodes/Prepare
+                  Image Tiled IPA (JPS).md
+              - Resolution Multiply (JPS): md/ComfyUI_JPS-Nodes/Nodes/Resolution Multiply
+                  (JPS).md
+              - Revision Settings (JPS): md/ComfyUI_JPS-Nodes/Nodes/Revision Settings
+                  (JPS).md
+              - Revision Settings Pipe (JPS): md/ComfyUI_JPS-Nodes/Nodes/Revision
+                  Settings Pipe (JPS).md
+              - SDXL Basic Settings (JPS): md/ComfyUI_JPS-Nodes/Nodes/SDXL Basic Settings
+                  (JPS).md
+              - SDXL Basic Settings Pipe (JPS): md/ComfyUI_JPS-Nodes/Nodes/SDXL Basic
+                  Settings Pipe (JPS).md
+              - SDXL Fundamentals MultiPipe (JPS): md/ComfyUI_JPS-Nodes/Nodes/SDXL
+                  Fundamentals MultiPipe (JPS).md
+              - SDXL Prompt Handling (JPS): md/ComfyUI_JPS-Nodes/Nodes/SDXL Prompt
+                  Handling (JPS).md
+              - SDXL Prompt Handling Plus (JPS): md/ComfyUI_JPS-Nodes/Nodes/SDXL Prompt
+                  Handling Plus (JPS).md
+              - SDXL Prompt Styler (JPS): md/ComfyUI_JPS-Nodes/Nodes/SDXL Prompt Styler
+                  (JPS).md
+              - SDXL Recommended Resolution Calc (JPS): md/ComfyUI_JPS-Nodes/Nodes/SDXL
+                  Recommended Resolution Calc (JPS).md
+              - SDXL Resolutions (JPS): md/ComfyUI_JPS-Nodes/Nodes/SDXL Resolutions
+                  (JPS).md
+              - SDXL Settings (JPS): md/ComfyUI_JPS-Nodes/Nodes/SDXL Settings (JPS).md
+              - SDXL Settings Pipe (JPS): md/ComfyUI_JPS-Nodes/Nodes/SDXL Settings
+                  Pipe (JPS).md
+              - Sampler Scheduler Settings (JPS): md/ComfyUI_JPS-Nodes/Nodes/Sampler
+                  Scheduler Settings (JPS).md
+              - Save Images Plus (JPS): md/ComfyUI_JPS-Nodes/Nodes/Save Images Plus
+                  (JPS).md
+              - Substract Int Int (JPS): md/ComfyUI_JPS-Nodes/Nodes/Substract Int
+                  Int (JPS).md
+              - Text Concatenate (JPS): md/ComfyUI_JPS-Nodes/Nodes/Text Concatenate
+                  (JPS).md
+              - Text Prompt (JPS): md/ComfyUI_JPS-Nodes/Nodes/Text Prompt (JPS).md
+              - Text Prompt Combo (JPS): md/ComfyUI_JPS-Nodes/Nodes/Text Prompt Combo
+                  (JPS).md
+              - Time Seed (JPS): md/ComfyUI_JPS-Nodes/Nodes/Time Seed (JPS).md
+              - VAE Switch (JPS): md/ComfyUI_JPS-Nodes/Nodes/VAE Switch (JPS).md
+      - ComfyUI_MileHighStyler:
+          - Home: md/ComfyUI_MileHighStyler/index.md
+          - Licenses: md/ComfyUI_MileHighStyler/licenses.md
+          - Nodes:
+              - AdjectiveStyler: md/ComfyUI_MileHighStyler/Nodes/AdjectiveStyler.md
+              - AdjectiveStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/AdjectiveStylerAdvanced.md
+              - ArtistStyler: md/ComfyUI_MileHighStyler/Nodes/ArtistStyler.md
+              - ArtistStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/ArtistStylerAdvanced.md
+              - AzazealStylesStyler: md/ComfyUI_MileHighStyler/Nodes/AzazealStylesStyler.md
+              - AzazealStylesStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/AzazealStylesStylerAdvanced.md
+              - Banana_StylesStyler: md/ComfyUI_MileHighStyler/Nodes/Banana_StylesStyler.md
+              - Banana_StylesStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/Banana_StylesStylerAdvanced.md
+              - Breast_StateStyler: md/ComfyUI_MileHighStyler/Nodes/Breast_StateStyler.md
+              - Breast_StateStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/Breast_StateStylerAdvanced.md
+              - CameraStyler: md/ComfyUI_MileHighStyler/Nodes/CameraStyler.md
+              - CameraStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/CameraStylerAdvanced.md
+              - Camera_AnglesStyler: md/ComfyUI_MileHighStyler/Nodes/Camera_AnglesStyler.md
+              - Camera_AnglesStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/Camera_AnglesStylerAdvanced.md
+              - Clothing_StateStyler: md/ComfyUI_MileHighStyler/Nodes/Clothing_StateStyler.md
+              - Clothing_StateStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/Clothing_StateStylerAdvanced.md
+              - Clothing_StyleStyler: md/ComfyUI_MileHighStyler/Nodes/Clothing_StyleStyler.md
+              - Clothing_StyleStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/Clothing_StyleStylerAdvanced.md
+              - CompositionStyler: md/ComfyUI_MileHighStyler/Nodes/CompositionStyler.md
+              - CompositionStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/CompositionStylerAdvanced.md
+              - DepthStyler: md/ComfyUI_MileHighStyler/Nodes/DepthStyler.md
+              - DepthStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/DepthStylerAdvanced.md
+              - EnvironmentStyler: md/ComfyUI_MileHighStyler/Nodes/EnvironmentStyler.md
+              - EnvironmentStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/EnvironmentStylerAdvanced.md
+              - FaceStyler: md/ComfyUI_MileHighStyler/Nodes/FaceStyler.md
+              - FaceStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/FaceStylerAdvanced.md
+              - FilterStyler: md/ComfyUI_MileHighStyler/Nodes/FilterStyler.md
+              - FilterStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/FilterStylerAdvanced.md
+              - FocalPointStyler: md/ComfyUI_MileHighStyler/Nodes/FocalPointStyler.md
+              - FocalPointStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/FocalPointStylerAdvanced.md
+              - FocusStyler: md/ComfyUI_MileHighStyler/Nodes/FocusStyler.md
+              - FocusStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/FocusStylerAdvanced.md
+              - LightingStyler: md/ComfyUI_MileHighStyler/Nodes/LightingStyler.md
+              - LightingStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/LightingStylerAdvanced.md
+              - LutsStyler: md/ComfyUI_MileHighStyler/Nodes/LutsStyler.md
+              - LutsStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/LutsStylerAdvanced.md
+              - MaterialsStyler: md/ComfyUI_MileHighStyler/Nodes/MaterialsStyler.md
+              - MaterialsStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/MaterialsStylerAdvanced.md
+              - MilehighStyler: md/ComfyUI_MileHighStyler/Nodes/MilehighStyler.md
+              - MilehighStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/MilehighStylerAdvanced.md
+              - MoodStyler: md/ComfyUI_MileHighStyler/Nodes/MoodStyler.md
+              - MoodStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/MoodStylerAdvanced.md
+              - NounsStyler: md/ComfyUI_MileHighStyler/Nodes/NounsStyler.md
+              - NounsStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/NounsStylerAdvanced.md
+              - PerfectionStyler: md/ComfyUI_MileHighStyler/Nodes/PerfectionStyler.md
+              - PerfectionStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/PerfectionStylerAdvanced.md
+              - PrepositionStyler: md/ComfyUI_MileHighStyler/Nodes/PrepositionStyler.md
+              - PrepositionStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/PrepositionStylerAdvanced.md
+              - SubjectStyler: md/ComfyUI_MileHighStyler/Nodes/SubjectStyler.md
+              - SubjectStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/SubjectStylerAdvanced.md
+              - ThemeStyler: md/ComfyUI_MileHighStyler/Nodes/ThemeStyler.md
+              - ThemeStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/ThemeStylerAdvanced.md
+              - TimeofdayStyler: md/ComfyUI_MileHighStyler/Nodes/TimeofdayStyler.md
+              - TimeofdayStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/TimeofdayStylerAdvanced.md
+              - VerbingStyler: md/ComfyUI_MileHighStyler/Nodes/VerbingStyler.md
+              - VerbingStylerAdvanced: md/ComfyUI_MileHighStyler/Nodes/VerbingStylerAdvanced.md
+      - ComfyUI_Noise:
+          - Home: md/ComfyUI_Noise/index.md
+          - Licenses: md/ComfyUI_Noise/licenses.md
+          - Nodes:
+              - BNK_GetSigma: md/ComfyUI_Noise/Nodes/BNK_GetSigma.md
+              - BNK_InjectNoise: md/ComfyUI_Noise/Nodes/BNK_InjectNoise.md
+              - BNK_NoisyLatentImage: md/ComfyUI_Noise/Nodes/BNK_NoisyLatentImage.md
+              - BNK_SlerpLatent: md/ComfyUI_Noise/Nodes/BNK_SlerpLatent.md
+              - BNK_Unsampler: md/ComfyUI_Noise/Nodes/BNK_Unsampler.md
+      - ComfyUI_UltimateSDUpscale:
+          - Home: md/ComfyUI_UltimateSDUpscale/index.md
+          - Licenses: md/ComfyUI_UltimateSDUpscale/licenses.md
+          - Nodes:
+              - UltimateSDUpscale: md/ComfyUI_UltimateSDUpscale/Nodes/UltimateSDUpscale.md
+              - UltimateSDUpscaleNoUpscale: md/ComfyUI_UltimateSDUpscale/Nodes/UltimateSDUpscaleNoUpscale.md
       - ComfyUI_cspnodes:
           - Home: md/ComfyUI_cspnodes/index.md
           - Licenses: md/ComfyUI_cspnodes/licenses.md
@@ -1051,18 +2146,21 @@ nav:
               - ImageDirIterator: md/ComfyUI_cspnodes/Nodes/ImageDirIterator.md
               - Modelscopet2v: md/ComfyUI_cspnodes/Nodes/Modelscopet2v.md
               - Modelscopev2v: md/ComfyUI_cspnodes/Nodes/Modelscopev2v.md
+              - VidDirIterator: md/ComfyUI_cspnodes/Nodes/VidDirIterator.md
       - ComfyUI_essentials:
           - Home: md/ComfyUI_essentials/index.md
           - Licenses: md/ComfyUI_essentials/licenses.md
           - Nodes:
               - BatchCount+: md/ComfyUI_essentials/Nodes/BatchCount+.md
               - CLIPTextEncodeSDXL+: md/ComfyUI_essentials/Nodes/CLIPTextEncodeSDXL+.md
+              - ConditioningCombineMultiple+: md/ComfyUI_essentials/Nodes/ConditioningCombineMultiple+.md
               - ConsoleDebug+: md/ComfyUI_essentials/Nodes/ConsoleDebug+.md
               - DebugTensorShape+: md/ComfyUI_essentials/Nodes/DebugTensorShape+.md
               - DrawText+: md/ComfyUI_essentials/Nodes/DrawText+.md
               - ExtractKeyframes+: md/ComfyUI_essentials/Nodes/ExtractKeyframes+.md
               - GetImageSize+: md/ComfyUI_essentials/Nodes/GetImageSize+.md
               - ImageApplyLUT+: md/ComfyUI_essentials/Nodes/ImageApplyLUT+.md
+              - ImageBatchMultiple+: md/ComfyUI_essentials/Nodes/ImageBatchMultiple+.md
               - ImageCASharpening+: md/ComfyUI_essentials/Nodes/ImageCASharpening+.md
               - ImageCompositeFromMaskBatch+: md/ComfyUI_essentials/Nodes/ImageCompositeFromMaskBatch+.md
               - ImageCrop+: md/ComfyUI_essentials/Nodes/ImageCrop+.md
@@ -1071,6 +2169,7 @@ nav:
               - ImageExpandBatch+: md/ComfyUI_essentials/Nodes/ImageExpandBatch+.md
               - ImageFlip+: md/ComfyUI_essentials/Nodes/ImageFlip+.md
               - ImageFromBatch+: md/ComfyUI_essentials/Nodes/ImageFromBatch+.md
+              - ImageListToBatch+: md/ComfyUI_essentials/Nodes/ImageListToBatch+.md
               - ImagePosterize+: md/ComfyUI_essentials/Nodes/ImagePosterize+.md
               - ImageRemoveBackground+: md/ComfyUI_essentials/Nodes/ImageRemoveBackground+.md
               - ImageResize+: md/ComfyUI_essentials/Nodes/ImageResize+.md
@@ -1079,12 +2178,18 @@ nav:
               - KSamplerVariationsWithNoise+: md/ComfyUI_essentials/Nodes/KSamplerVariationsWithNoise+.md
               - MaskBatch+: md/ComfyUI_essentials/Nodes/MaskBatch+.md
               - MaskBlur+: md/ComfyUI_essentials/Nodes/MaskBlur+.md
+              - MaskBoundingBox+: md/ComfyUI_essentials/Nodes/MaskBoundingBox+.md
               - MaskExpandBatch+: md/ComfyUI_essentials/Nodes/MaskExpandBatch+.md
               - MaskFlip+: md/ComfyUI_essentials/Nodes/MaskFlip+.md
               - MaskFromBatch+: md/ComfyUI_essentials/Nodes/MaskFromBatch+.md
               - MaskFromColor+: md/ComfyUI_essentials/Nodes/MaskFromColor+.md
+              - MaskFromList+: md/ComfyUI_essentials/Nodes/MaskFromList+.md
+              - MaskFromRGBCMYBW+: md/ComfyUI_essentials/Nodes/MaskFromRGBCMYBW+.md
+              - MaskFromSegmentation+: md/ComfyUI_essentials/Nodes/MaskFromSegmentation+.md
               - MaskPreview+: md/ComfyUI_essentials/Nodes/MaskPreview+.md
+              - MaskSmooth+: md/ComfyUI_essentials/Nodes/MaskSmooth+.md
               - ModelCompile+: md/ComfyUI_essentials/Nodes/ModelCompile+.md
+              - PixelOEPixelize+: md/ComfyUI_essentials/Nodes/PixelOEPixelize+.md
               - RemBGSession+: md/ComfyUI_essentials/Nodes/RemBGSession+.md
               - RemoveLatentMask+: md/ComfyUI_essentials/Nodes/RemoveLatentMask+.md
               - SDXLEmptyLatentSizePicker+: md/ComfyUI_essentials/Nodes/SDXLEmptyLatentSizePicker+.md
@@ -1095,19 +2200,54 @@ nav:
           - Licenses: md/ComfyUI_experiments/licenses.md
           - Nodes:
               - ModelMergeBlockNumber: md/ComfyUI_experiments/Nodes/ModelMergeBlockNumber.md
-              - ModelMergeSDXL: md/ComfyUI_experiments/Nodes/ModelMergeSDXL.md
               - ModelMergeSDXLDetailedTransformers: md/ComfyUI_experiments/Nodes/ModelMergeSDXLDetailedTransformers.md
               - ModelMergeSDXLTransformers: md/ComfyUI_experiments/Nodes/ModelMergeSDXLTransformers.md
               - ModelSamplerTonemapNoiseTest: md/ComfyUI_experiments/Nodes/ModelSamplerTonemapNoiseTest.md
               - ReferenceOnlySimple: md/ComfyUI_experiments/Nodes/ReferenceOnlySimple.md
               - RescaleClassifierFreeGuidanceTest: md/ComfyUI_experiments/Nodes/RescaleClassifierFreeGuidanceTest.md
               - TonemapNoiseWithRescaleCFG: md/ComfyUI_experiments/Nodes/TonemapNoiseWithRescaleCFG.md
+      - ComfyUI_tinyterraNodes:
+          - Home: md/ComfyUI_tinyterraNodes/index.md
+          - Licenses: md/ComfyUI_tinyterraNodes/licenses.md
+          - Nodes:
+              - ttN KSampler_v2: md/ComfyUI_tinyterraNodes/Nodes/ttN KSampler_v2.md
+              - ttN advanced xyPlot: md/ComfyUI_tinyterraNodes/Nodes/ttN advanced
+                  xyPlot.md
+              - ttN concat: md/ComfyUI_tinyterraNodes/Nodes/ttN concat.md
+              - ttN float: md/ComfyUI_tinyterraNodes/Nodes/ttN float.md
+              - ttN hiresfixScale: md/ComfyUI_tinyterraNodes/Nodes/ttN hiresfixScale.md
+              - ttN imageOutput: md/ComfyUI_tinyterraNodes/Nodes/ttN imageOutput.md
+              - ttN imageREMBG: md/ComfyUI_tinyterraNodes/Nodes/ttN imageREMBG.md
+              - ttN int: md/ComfyUI_tinyterraNodes/Nodes/ttN int.md
+              - ttN multiModelMerge: md/ComfyUI_tinyterraNodes/Nodes/ttN multiModelMerge.md
+              - ttN pipe2BASIC: md/ComfyUI_tinyterraNodes/Nodes/ttN pipe2BASIC.md
+              - ttN pipe2DETAILER: md/ComfyUI_tinyterraNodes/Nodes/ttN pipe2DETAILER.md
+              - ttN pipeEDIT: md/ComfyUI_tinyterraNodes/Nodes/ttN pipeEDIT.md
+              - ttN pipeEncodeConcat: md/ComfyUI_tinyterraNodes/Nodes/ttN pipeEncodeConcat.md
+              - ttN pipeIN: md/ComfyUI_tinyterraNodes/Nodes/ttN pipeIN.md
+              - ttN pipeKSampler: md/ComfyUI_tinyterraNodes/Nodes/ttN pipeKSampler.md
+              - ttN pipeKSamplerAdvanced: md/ComfyUI_tinyterraNodes/Nodes/ttN pipeKSamplerAdvanced.md
+              - ttN pipeKSamplerAdvanced_v2: md/ComfyUI_tinyterraNodes/Nodes/ttN pipeKSamplerAdvanced_v2.md
+              - ttN pipeKSamplerSDXL: md/ComfyUI_tinyterraNodes/Nodes/ttN pipeKSamplerSDXL.md
+              - ttN pipeKSamplerSDXL_v2: md/ComfyUI_tinyterraNodes/Nodes/ttN pipeKSamplerSDXL_v2.md
+              - ttN pipeKSampler_v2: md/ComfyUI_tinyterraNodes/Nodes/ttN pipeKSampler_v2.md
+              - ttN pipeLoader: md/ComfyUI_tinyterraNodes/Nodes/ttN pipeLoader.md
+              - ttN pipeLoaderSDXL: md/ComfyUI_tinyterraNodes/Nodes/ttN pipeLoaderSDXL.md
+              - ttN pipeLoaderSDXL_v2: md/ComfyUI_tinyterraNodes/Nodes/ttN pipeLoaderSDXL_v2.md
+              - ttN pipeLoader_v2: md/ComfyUI_tinyterraNodes/Nodes/ttN pipeLoader_v2.md
+              - ttN pipeLoraStack: md/ComfyUI_tinyterraNodes/Nodes/ttN pipeLoraStack.md
+              - ttN pipeOUT: md/ComfyUI_tinyterraNodes/Nodes/ttN pipeOUT.md
+              - ttN seed: md/ComfyUI_tinyterraNodes/Nodes/ttN seed.md
+              - ttN text: md/ComfyUI_tinyterraNodes/Nodes/ttN text.md
+              - ttN text3BOX_3WAYconcat: md/ComfyUI_tinyterraNodes/Nodes/ttN text3BOX_3WAYconcat.md
+              - ttN text7BOX_concat: md/ComfyUI_tinyterraNodes/Nodes/ttN text7BOX_concat.md
+              - ttN textDebug: md/ComfyUI_tinyterraNodes/Nodes/ttN textDebug.md
+              - ttN xyPlot: md/ComfyUI_tinyterraNodes/Nodes/ttN xyPlot.md
       - Comfy_KepListStuff:
           - Home: md/Comfy_KepListStuff/index.md
           - Licenses: md/Comfy_KepListStuff/licenses.md
           - Nodes:
               - Empty Images: md/Comfy_KepListStuff/Nodes/Empty Images.md
-              - Image Overlay: md/Comfy_KepListStuff/Nodes/Image Overlay.md
               - ImageListLoader: md/Comfy_KepListStuff/Nodes/ImageListLoader.md
               - Join Float Lists: md/Comfy_KepListStuff/Nodes/Join Float Lists.md
               - Join Image Lists: md/Comfy_KepListStuff/Nodes/Join Image Lists.md
@@ -1127,113 +2267,340 @@ nav:
               - Stack Images: md/Comfy_KepListStuff/Nodes/Stack Images.md
               - XYAny: md/Comfy_KepListStuff/Nodes/XYAny.md
               - XYImage: md/Comfy_KepListStuff/Nodes/XYImage.md
+      - Comfyui-SAL-VTON:
+          - Home: md/Comfyui-SAL-VTON/index.md
+          - Licenses: md/Comfyui-SAL-VTON/licenses.md
+          - Nodes:
+              - SALVTON_Apply: md/Comfyui-SAL-VTON/Nodes/SALVTON_Apply.md
+              - SV_random: md/Comfyui-SAL-VTON/Nodes/SV_random.md
       - Derfuu_ComfyUI_ModdedNodes:
           - Home: md/Derfuu_ComfyUI_ModdedNodes/index.md
           - Licenses: md/Derfuu_ComfyUI_ModdedNodes/licenses.md
           - Nodes:
-              - Absolute value: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Absolute value.md
-              - Ceil: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Ceil.md
-              - Conditioning area scale by ratio: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Conditioning
-                  area scale by ratio.md
-              - ConditioningSetArea with tuples: md/Derfuu_ComfyUI_ModdedNodes/Nodes/ConditioningSetArea
-                  with tuples.md
-              - Cosines: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Cosines.md
-              - Divide: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Divide.md
-              - Float debug print: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Float debug
-                  print.md
-              - Float: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Float.md
-              - Floor: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Floor.md
-              - Get image size: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Get image size.md
-              - Get latent size: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Get latent size.md
-              - Image scale by ratio: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Image scale
-                  by ratio.md
-              - Image scale to side: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Image scale
-                  to side.md
-              - Int debug print: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Int debug print.md
-              - Int to float: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Int to float.md
-              - Int to tuple: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Int to tuple.md
-              - Integer: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Integer.md
-              - Latent Scale by ratio: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Latent
-                  Scale by ratio.md
-              - Latent Scale to side: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Latent Scale
-                  to side.md
-              - LatentComposite with tuples: md/Derfuu_ComfyUI_ModdedNodes/Nodes/LatentComposite
-                  with tuples.md
-              - Multiply: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Multiply.md
-              - Power: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Power.md
-              - Random: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Random.md
-              - Sinus: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Sinus.md
-              - Square root: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Square root.md
-              - String debug print: md/Derfuu_ComfyUI_ModdedNodes/Nodes/String debug
-                  print.md
-              - Subtract: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Subtract.md
-              - Sum: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Sum.md
-              - Tangent: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Tangent.md
-              - Text box: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Text box.md
-              - Text: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Text.md
-              - Tuple debug print: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Tuple debug
-                  print.md
-              - Tuple multiply: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Tuple multiply.md
-              - Tuple swap: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Tuple swap.md
-              - Tuple to floats: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Tuple to floats.md
-              - Tuple to ints: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Tuple to ints.md
-              - Tuple: md/Derfuu_ComfyUI_ModdedNodes/Nodes/Tuple.md
+              - DF_Absolute_value: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_Absolute_value.md
+              - DF_Ceil: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_Ceil.md
+              - DF_Conditioning_area_scale_by_ratio: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_Conditioning_area_scale_by_ratio.md
+              - DF_Cosines: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_Cosines.md
+              - DF_Divide: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_Divide.md
+              - DF_DynamicPrompts_Text_Box: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_DynamicPrompts_Text_Box.md
+              - DF_Float: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_Float.md
+              - DF_Floor: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_Floor.md
+              - DF_Get_image_size: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_Get_image_size.md
+              - DF_Get_latent_size: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_Get_latent_size.md
+              - DF_Image_scale_by_ratio: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_Image_scale_by_ratio.md
+              - DF_Image_scale_to_side: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_Image_scale_to_side.md
+              - DF_Int_to_Float: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_Int_to_Float.md
+              - DF_Integer: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_Integer.md
+              - DF_Latent_Scale_by_ratio: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_Latent_Scale_by_ratio.md
+              - DF_Latent_Scale_to_side: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_Latent_Scale_to_side.md
+              - DF_Logic_node: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_Logic_node.md
+              - DF_Multiply: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_Multiply.md
+              - DF_Power: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_Power.md
+              - DF_Random: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_Random.md
+              - DF_Sinus: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_Sinus.md
+              - DF_Square_root: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_Square_root.md
+              - DF_String_Concatenate: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_String_Concatenate.md
+              - DF_String_Replace: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_String_Replace.md
+              - DF_Subtract: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_Subtract.md
+              - DF_Sum: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_Sum.md
+              - DF_Tangent: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_Tangent.md
+              - DF_Text: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_Text.md
+              - DF_Text_Box: md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_Text_Box.md
+              - DF_To_text_(Debug): md/Derfuu_ComfyUI_ModdedNodes/Nodes/DF_To_text_(Debug).md
+      - OneButtonPrompt:
+          - Home: md/OneButtonPrompt/index.md
+          - Licenses: md/OneButtonPrompt/licenses.md
+          - Nodes:
+              - AutoNegativePrompt: md/OneButtonPrompt/Nodes/AutoNegativePrompt.md
+              - CreatePromptVariant: md/OneButtonPrompt/Nodes/CreatePromptVariant.md
+              - OneButtonArtify: md/OneButtonPrompt/Nodes/OneButtonArtify.md
+              - OneButtonFlufferize: md/OneButtonPrompt/Nodes/OneButtonFlufferize.md
+              - OneButtonPreset: md/OneButtonPrompt/Nodes/OneButtonPreset.md
+              - OneButtonPrompt: md/OneButtonPrompt/Nodes/OneButtonPrompt.md
+              - OneButtonSuperPrompt: md/OneButtonPrompt/Nodes/OneButtonSuperPrompt.md
+              - SavePromptToFile: md/OneButtonPrompt/Nodes/SavePromptToFile.md
       - SaltAI:
           - Home: md/SaltAI/index.md
           - Licenses: md/SaltAI/licenses.md
           - Nodes:
-              - LLMChat: md/SaltAI/Nodes/LLMChat.md
-              - LLMChatEngine: md/SaltAI/Nodes/LLMChatEngine.md
-              - LLMChatMessageConcat: md/SaltAI/Nodes/LLMChatMessageConcat.md
-              - LLMChatMessages: md/SaltAI/Nodes/LLMChatMessages.md
-              - LLMChatMessagesAdv: md/SaltAI/Nodes/LLMChatMessagesAdv.md
-              - LLMComplete: md/SaltAI/Nodes/LLMComplete.md
-              - LLMDirectoryReader: md/SaltAI/Nodes/LLMDirectoryReader.md
-              - LLMHtmlComposer: md/SaltAI/Nodes/LLMHtmlComposer.md
-              - LLMHtmlRepair: md/SaltAI/Nodes/LLMHtmlRepair.md
-              - LLMJsonComposer: md/SaltAI/Nodes/LLMJsonComposer.md
-              - LLMJsonRepair: md/SaltAI/Nodes/LLMJsonRepair.md
-              - LLMMarkdownComposer: md/SaltAI/Nodes/LLMMarkdownComposer.md
-              - LLMMarkdownRepair: md/SaltAI/Nodes/LLMMarkdownRepair.md
-              - LLMNotionReader: md/SaltAI/Nodes/LLMNotionReader.md
-              - LLMPostProcessDocuments: md/SaltAI/Nodes/LLMPostProcessDocuments.md
-              - LLMQueryEngine: md/SaltAI/Nodes/LLMQueryEngine.md
-              - LLMQueryEngineAdv: md/SaltAI/Nodes/LLMQueryEngineAdv.md
-              - LLMRegexCreator: md/SaltAI/Nodes/LLMRegexCreator.md
-              - LLMRegexRepair: md/SaltAI/Nodes/LLMRegexRepair.md
-              - LLMRssReaderNode: md/SaltAI/Nodes/LLMRssReaderNode.md
-              - LLMSemanticSplitterNodeParser: md/SaltAI/Nodes/LLMSemanticSplitterNodeParser.md
-              - LLMSentenceSplitterNodeCreator: md/SaltAI/Nodes/LLMSentenceSplitterNodeCreator.md
-              - LLMServiceContextAdv: md/SaltAI/Nodes/LLMServiceContextAdv.md
-              - LLMServiceContextDefault: md/SaltAI/Nodes/LLMServiceContextDefault.md
-              - LLMSimpleWebPageReader: md/SaltAI/Nodes/LLMSimpleWebPageReader.md
-              - LLMSummaryIndex: md/SaltAI/Nodes/LLMSummaryIndex.md
-              - LLMTrafilaturaWebReader: md/SaltAI/Nodes/LLMTrafilaturaWebReader.md
-              - LLMTreeIndex: md/SaltAI/Nodes/LLMTreeIndex.md
-              - LLMVectorStoreIndex: md/SaltAI/Nodes/LLMVectorStoreIndex.md
-              - LLMYamlComposer: md/SaltAI/Nodes/LLMYamlComposer.md
-              - LLMYamlRepair: md/SaltAI/Nodes/LLMYamlRepair.md
-              - OPAC: md/SaltAI/Nodes/OPAC.md
-              - OPAC2Floats: md/SaltAI/Nodes/OPAC2Floats.md
-              - OPACList2ExecList: md/SaltAI/Nodes/OPACList2ExecList.md
-              - OPACListVariance: md/SaltAI/Nodes/OPACListVariance.md
-              - OPACPerlinSettings: md/SaltAI/Nodes/OPACPerlinSettings.md
-              - OPCSLayerExtractor: md/SaltAI/Nodes/OPCSLayerExtractor.md
-              - OPCScheduler: md/SaltAI/Nodes/OPCScheduler.md
-              - OpenAIModel: md/SaltAI/Nodes/OpenAIModel.md
-              - ParallaxMotion: md/SaltAI/Nodes/ParallaxMotion.md
+              - SAIColorTransfer: md/SaltAI/Nodes/SAIColorTransfer.md
               - SAIPrimitiveConverter: md/SaltAI/Nodes/SAIPrimitiveConverter.md
               - SAIStringRegexSearchMatch: md/SaltAI/Nodes/SAIStringRegexSearchMatch.md
               - SAIStringRegexSearchReplace: md/SaltAI/Nodes/SAIStringRegexSearchReplace.md
               - SaltAIStableVideoDiffusion: md/SaltAI/Nodes/SaltAIStableVideoDiffusion.md
+              - SaltBatchCropDataExtractor: md/SaltAI/Nodes/SaltBatchCropDataExtractor.md
+              - SaltCLIPSegLoader: md/SaltAI/Nodes/SaltCLIPSegLoader.md
+              - SaltCLIPSegMasking: md/SaltAI/Nodes/SaltCLIPSegMasking.md
+              - SaltCropImageLocation: md/SaltAI/Nodes/SaltCropImageLocation.md
+              - SaltImageBlendingModes: md/SaltAI/Nodes/SaltImageBlendingModes.md
+              - SaltImagePasteCrop: md/SaltAI/Nodes/SaltImagePasteCrop.md
               - SaltInfo: md/SaltAI/Nodes/SaltInfo.md
               - SaltInput: md/SaltAI/Nodes/SaltInput.md
+              - SaltLoadImageZip: md/SaltAI/Nodes/SaltLoadImageZip.md
+              - SaltMaskAdaptiveThresholdingRegion: md/SaltAI/Nodes/SaltMaskAdaptiveThresholdingRegion.md
+              - SaltMaskAdd: md/SaltAI/Nodes/SaltMaskAdd.md
+              - SaltMaskArbitaryRegion: md/SaltAI/Nodes/SaltMaskArbitaryRegion.md
+              - SaltMaskBilateralFilter: md/SaltAI/Nodes/SaltMaskBilateralFilter.md
+              - SaltMaskCeilingRegion: md/SaltAI/Nodes/SaltMaskCeilingRegion.md
+              - SaltMaskClipHardeningFilter: md/SaltAI/Nodes/SaltMaskClipHardeningFilter.md
+              - SaltMaskContourExtraction: md/SaltAI/Nodes/SaltMaskContourExtraction.md
+              - SaltMaskCropRegion: md/SaltAI/Nodes/SaltMaskCropRegion.md
+              - SaltMaskDilateRegion: md/SaltAI/Nodes/SaltMaskDilateRegion.md
+              - SaltMaskDominantRegion: md/SaltAI/Nodes/SaltMaskDominantRegion.md
+              - SaltMaskEdgeDetection: md/SaltAI/Nodes/SaltMaskEdgeDetection.md
+              - SaltMaskErodeRegion: md/SaltAI/Nodes/SaltMaskErodeRegion.md
+              - SaltMaskFillRegion: md/SaltAI/Nodes/SaltMaskFillRegion.md
+              - SaltMaskFloorRegion: md/SaltAI/Nodes/SaltMaskFloorRegion.md
+              - SaltMaskGaussianRegion: md/SaltAI/Nodes/SaltMaskGaussianRegion.md
+              - SaltMaskGradientRegion: md/SaltAI/Nodes/SaltMaskGradientRegion.md
+              - SaltMaskHistogramEqualizationRegion: md/SaltAI/Nodes/SaltMaskHistogramEqualizationRegion.md
+              - SaltMaskInvert: md/SaltAI/Nodes/SaltMaskInvert.md
+              - SaltMaskMinorityRegion: md/SaltAI/Nodes/SaltMaskMinorityRegion.md
+              - SaltMaskNoiseAddition: md/SaltAI/Nodes/SaltMaskNoiseAddition.md
+              - SaltMaskRegionLabeling: md/SaltAI/Nodes/SaltMaskRegionLabeling.md
+              - SaltMaskRegionSplit: md/SaltAI/Nodes/SaltMaskRegionSplit.md
+              - SaltMaskSharpeningFilter: md/SaltAI/Nodes/SaltMaskSharpeningFilter.md
+              - SaltMaskSkeletonization: md/SaltAI/Nodes/SaltMaskSkeletonization.md
+              - SaltMaskSmoothRegion: md/SaltAI/Nodes/SaltMaskSmoothRegion.md
+              - SaltMaskSubtract: md/SaltAI/Nodes/SaltMaskSubtract.md
+              - SaltMaskThresholdRegion: md/SaltAI/Nodes/SaltMaskThresholdRegion.md
+              - SaltMasksToImages: md/SaltAI/Nodes/SaltMasksToImages.md
               - SaltOutput: md/SaltAI/Nodes/SaltOutput.md
-      - SavePNG:
-          - Home: md/SavePNG/index.md
-          - Licenses: md/SavePNG/licenses.md
+              - SaltRGBAFromMask: md/SaltAI/Nodes/SaltRGBAFromMask.md
+      - SaltAI_AudioViz:
+          - Home: md/SaltAI_AudioViz/index.md
+          - Licenses: md/SaltAI_AudioViz/licenses.md
           - Nodes:
-              - PNG_Save: md/SavePNG/Nodes/PNG_Save.md
+              - SaltAdvancedAudioCompressor: md/SaltAI_AudioViz/Nodes/SaltAdvancedAudioCompressor.md
+              - SaltAudio2VHS: md/SaltAI_AudioViz/Nodes/SaltAudio2VHS.md
+              - SaltAudioBandpassFilter: md/SaltAI_AudioViz/Nodes/SaltAudioBandpassFilter.md
+              - SaltAudioBassBoost: md/SaltAI_AudioViz/Nodes/SaltAudioBassBoost.md
+              - SaltAudioCompressor: md/SaltAI_AudioViz/Nodes/SaltAudioCompressor.md
+              - SaltAudioDeesser: md/SaltAI_AudioViz/Nodes/SaltAudioDeesser.md
+              - SaltAudioFade: md/SaltAI_AudioViz/Nodes/SaltAudioFade.md
+              - SaltAudioFramesyncSchedule: md/SaltAI_AudioViz/Nodes/SaltAudioFramesyncSchedule.md
+              - SaltAudioFrequencyBoost: md/SaltAI_AudioViz/Nodes/SaltAudioFrequencyBoost.md
+              - SaltAudioFrequencyCutoff: md/SaltAI_AudioViz/Nodes/SaltAudioFrequencyCutoff.md
+              - SaltAudioInversion: md/SaltAI_AudioViz/Nodes/SaltAudioInversion.md
+              - SaltAudioLDM2LoadModel: md/SaltAI_AudioViz/Nodes/SaltAudioLDM2LoadModel.md
+              - SaltAudioLDM2Sampler: md/SaltAI_AudioViz/Nodes/SaltAudioLDM2Sampler.md
+              - SaltAudioMixer: md/SaltAI_AudioViz/Nodes/SaltAudioMixer.md
+              - SaltAudioNoiseReductionSpectralSubtraction: md/SaltAI_AudioViz/Nodes/SaltAudioNoiseReductionSpectralSubtraction.md
+              - SaltAudioNormalize: md/SaltAI_AudioViz/Nodes/SaltAudioNormalize.md
+              - SaltAudioPitchShift: md/SaltAI_AudioViz/Nodes/SaltAudioPitchShift.md
+              - SaltAudioPitchShiftScheduled: md/SaltAI_AudioViz/Nodes/SaltAudioPitchShiftScheduled.md
+              - SaltAudioPlaybackRate: md/SaltAI_AudioViz/Nodes/SaltAudioPlaybackRate.md
+              - SaltAudioRepeat: md/SaltAI_AudioViz/Nodes/SaltAudioRepeat.md
+              - SaltAudioSimpleEcho: md/SaltAI_AudioViz/Nodes/SaltAudioSimpleEcho.md
+              - SaltAudioSimpleReverb: md/SaltAI_AudioViz/Nodes/SaltAudioSimpleReverb.md
+              - SaltAudioStereoMerge: md/SaltAI_AudioViz/Nodes/SaltAudioStereoMerge.md
+              - SaltAudioStereoSplitter: md/SaltAI_AudioViz/Nodes/SaltAudioStereoSplitter.md
+              - SaltAudioStitcher: md/SaltAI_AudioViz/Nodes/SaltAudioStitcher.md
+              - SaltAudioTrebleBoost: md/SaltAI_AudioViz/Nodes/SaltAudioTrebleBoost.md
+              - SaltAudioTrim: md/SaltAI_AudioViz/Nodes/SaltAudioTrim.md
+              - SaltAudioVisualizer: md/SaltAI_AudioViz/Nodes/SaltAudioVisualizer.md
+              - SaltCLIPTextEncodeSequence: md/SaltAI_AudioViz/Nodes/SaltCLIPTextEncodeSequence.md
+              - SaltChangeAudioVolume: md/SaltAI_AudioViz/Nodes/SaltChangeAudioVolume.md
+              - SaltConditioningSetMaskAndCombine: md/SaltAI_AudioViz/Nodes/SaltConditioningSetMaskAndCombine.md
+              - SaltCyclicalSchedule: md/SaltAI_AudioViz/Nodes/SaltCyclicalSchedule.md
+              - SaltFilmicTransitions: md/SaltAI_AudioViz/Nodes/SaltFilmicTransitions.md
+              - SaltFloatScheduler: md/SaltAI_AudioViz/Nodes/SaltFloatScheduler.md
+              - SaltImageComposite: md/SaltAI_AudioViz/Nodes/SaltImageComposite.md
+              - SaltKSamplerSequence: md/SaltAI_AudioViz/Nodes/SaltKSamplerSequence.md
+              - SaltKeyframeMetrics: md/SaltAI_AudioViz/Nodes/SaltKeyframeMetrics.md
+              - SaltKeyframeScheduler: md/SaltAI_AudioViz/Nodes/SaltKeyframeScheduler.md
+              - SaltKeyframeSchedulerBFN: md/SaltAI_AudioViz/Nodes/SaltKeyframeSchedulerBFN.md
+              - SaltKeyframeVisualizer: md/SaltAI_AudioViz/Nodes/SaltKeyframeVisualizer.md
+              - SaltLayerExtractor: md/SaltAI_AudioViz/Nodes/SaltLayerExtractor.md
+              - SaltLayerScheduler: md/SaltAI_AudioViz/Nodes/SaltLayerScheduler.md
+              - SaltListClamp: md/SaltAI_AudioViz/Nodes/SaltListClamp.md
+              - SaltListLinearInterpolation: md/SaltAI_AudioViz/Nodes/SaltListLinearInterpolation.md
+              - SaltListOperation: md/SaltAI_AudioViz/Nodes/SaltListOperation.md
+              - SaltLoadAudio: md/SaltAI_AudioViz/Nodes/SaltLoadAudio.md
+              - SaltOPAC: md/SaltAI_AudioViz/Nodes/SaltOPAC.md
+              - SaltOPACPerlinSettings: md/SaltAI_AudioViz/Nodes/SaltOPACPerlinSettings.md
+              - SaltParallaxMotion: md/SaltAI_AudioViz/Nodes/SaltParallaxMotion.md
+              - SaltSaveAudio: md/SaltAI_AudioViz/Nodes/SaltSaveAudio.md
+              - SaltSchedule2ExecSchedule: md/SaltAI_AudioViz/Nodes/SaltSchedule2ExecSchedule.md
+              - SaltScheduleConverter: md/SaltAI_AudioViz/Nodes/SaltScheduleConverter.md
+              - SaltScheduleListExponentialFade: md/SaltAI_AudioViz/Nodes/SaltScheduleListExponentialFade.md
+              - SaltScheduleMerge: md/SaltAI_AudioViz/Nodes/SaltScheduleMerge.md
+              - SaltScheduleRandomValues: md/SaltAI_AudioViz/Nodes/SaltScheduleRandomValues.md
+              - SaltScheduleSmoothing: md/SaltAI_AudioViz/Nodes/SaltScheduleSmoothing.md
+              - SaltScheduleSplit: md/SaltAI_AudioViz/Nodes/SaltScheduleSplit.md
+              - SaltScheduleVariance: md/SaltAI_AudioViz/Nodes/SaltScheduleVariance.md
+              - SaltScheduledBinaryComparison: md/SaltAI_AudioViz/Nodes/SaltScheduledBinaryComparison.md
+              - SaltScheduledImageAdjust: md/SaltAI_AudioViz/Nodes/SaltScheduledImageAdjust.md
+              - SaltScheduledImageDisplacement: md/SaltAI_AudioViz/Nodes/SaltScheduledImageDisplacement.md
+              - SaltScheduledPerlinPowerFractalNoise: md/SaltAI_AudioViz/Nodes/SaltScheduledPerlinPowerFractalNoise.md
+              - SaltScheduledShapeTransformation: md/SaltAI_AudioViz/Nodes/SaltScheduledShapeTransformation.md
+              - SaltScheduledVoronoiNoise: md/SaltAI_AudioViz/Nodes/SaltScheduledVoronoiNoise.md
+              - SaltThresholdSchedule: md/SaltAI_AudioViz/Nodes/SaltThresholdSchedule.md
+      - SaltAI_LlamaIndex:
+          - Home: md/SaltAI_LlamaIndex/index.md
+          - Licenses: md/SaltAI_LlamaIndex/licenses.md
+          - Nodes:
+              - AddTool: md/SaltAI_LlamaIndex/Nodes/AddTool.md
+              - ChangeSystemMessage: md/SaltAI_LlamaIndex/Nodes/ChangeSystemMessage.md
+              - ClearMemory: md/SaltAI_LlamaIndex/Nodes/ClearMemory.md
+              - ConversableAgentCreator: md/SaltAI_LlamaIndex/Nodes/ConversableAgentCreator.md
+              - ConversableAgentCreatorAdvanced: md/SaltAI_LlamaIndex/Nodes/ConversableAgentCreatorAdvanced.md
+              - ConvertAgentAsTool: md/SaltAI_LlamaIndex/Nodes/ConvertAgentAsTool.md
+              - ConvertAgentToLlamaindex: md/SaltAI_LlamaIndex/Nodes/ConvertAgentToLlamaindex.md
+              - CreateTavilySearchTool: md/SaltAI_LlamaIndex/Nodes/CreateTavilySearchTool.md
+              - GenerateReply: md/SaltAI_LlamaIndex/Nodes/GenerateReply.md
+              - GroupChat: md/SaltAI_LlamaIndex/Nodes/GroupChat.md
+              - GroupChatAdvanced: md/SaltAI_LlamaIndex/Nodes/GroupChatAdvanced.md
+              - GroupChatManagerCreator: md/SaltAI_LlamaIndex/Nodes/GroupChatManagerCreator.md
+              - LLMCSVReader: md/SaltAI_LlamaIndex/Nodes/LLMCSVReader.md
+              - LLMChat: md/SaltAI_LlamaIndex/Nodes/LLMChat.md
+              - LLMChatBot: md/SaltAI_LlamaIndex/Nodes/LLMChatBot.md
+              - LLMChatEngine: md/SaltAI_LlamaIndex/Nodes/LLMChatEngine.md
+              - LLMChatMessageConcat: md/SaltAI_LlamaIndex/Nodes/LLMChatMessageConcat.md
+              - LLMChatMessages: md/SaltAI_LlamaIndex/Nodes/LLMChatMessages.md
+              - LLMChatMessagesAdv: md/SaltAI_LlamaIndex/Nodes/LLMChatMessagesAdv.md
+              - LLMComplete: md/SaltAI_LlamaIndex/Nodes/LLMComplete.md
+              - LLMDirectoryReader: md/SaltAI_LlamaIndex/Nodes/LLMDirectoryReader.md
+              - LLMDocumentListAppend: md/SaltAI_LlamaIndex/Nodes/LLMDocumentListAppend.md
+              - LLMDocxReader: md/SaltAI_LlamaIndex/Nodes/LLMDocxReader.md
+              - LLMEpubReader: md/SaltAI_LlamaIndex/Nodes/LLMEpubReader.md
+              - LLMFlatReader: md/SaltAI_LlamaIndex/Nodes/LLMFlatReader.md
+              - LLMGroqModel: md/SaltAI_LlamaIndex/Nodes/LLMGroqModel.md
+              - LLMHTMLTagReader: md/SaltAI_LlamaIndex/Nodes/LLMHTMLTagReader.md
+              - LLMHWPReader: md/SaltAI_LlamaIndex/Nodes/LLMHWPReader.md
+              - LLMHtmlComposer: md/SaltAI_LlamaIndex/Nodes/LLMHtmlComposer.md
+              - LLMHtmlRepair: md/SaltAI_LlamaIndex/Nodes/LLMHtmlRepair.md
+              - LLMIPYNBReader: md/SaltAI_LlamaIndex/Nodes/LLMIPYNBReader.md
+              - LLMImageCaptionReader: md/SaltAI_LlamaIndex/Nodes/LLMImageCaptionReader.md
+              - LLMImageTabularChartReader: md/SaltAI_LlamaIndex/Nodes/LLMImageTabularChartReader.md
+              - LLMImageTextReader: md/SaltAI_LlamaIndex/Nodes/LLMImageTextReader.md
+              - LLMImageVisionLLMReader: md/SaltAI_LlamaIndex/Nodes/LLMImageVisionLLMReader.md
+              - LLMInputToDocuments: md/SaltAI_LlamaIndex/Nodes/LLMInputToDocuments.md
+              - LLMJsonComposer: md/SaltAI_LlamaIndex/Nodes/LLMJsonComposer.md
+              - LLMJsonRepair: md/SaltAI_LlamaIndex/Nodes/LLMJsonRepair.md
+              - LLMLlamaCPPModel: md/SaltAI_LlamaIndex/Nodes/LLMLlamaCPPModel.md
+              - LLMMarkdownComposer: md/SaltAI_LlamaIndex/Nodes/LLMMarkdownComposer.md
+              - LLMMarkdownReader: md/SaltAI_LlamaIndex/Nodes/LLMMarkdownReader.md
+              - LLMMarkdownRepair: md/SaltAI_LlamaIndex/Nodes/LLMMarkdownRepair.md
+              - LLMMboxReader: md/SaltAI_LlamaIndex/Nodes/LLMMboxReader.md
+              - LLMOpenAIModel: md/SaltAI_LlamaIndex/Nodes/LLMOpenAIModel.md
+              - LLMOpenAIModelOpts: md/SaltAI_LlamaIndex/Nodes/LLMOpenAIModelOpts.md
+              - LLMPDFReader: md/SaltAI_LlamaIndex/Nodes/LLMPDFReader.md
+              - LLMPagedCSVReader: md/SaltAI_LlamaIndex/Nodes/LLMPagedCSVReader.md
+              - LLMPandasCSVReader: md/SaltAI_LlamaIndex/Nodes/LLMPandasCSVReader.md
+              - LLMPostProcessDocuments: md/SaltAI_LlamaIndex/Nodes/LLMPostProcessDocuments.md
+              - LLMPptxReader: md/SaltAI_LlamaIndex/Nodes/LLMPptxReader.md
+              - LLMPyMuPDFReader: md/SaltAI_LlamaIndex/Nodes/LLMPyMuPDFReader.md
+              - LLMQueryEngine: md/SaltAI_LlamaIndex/Nodes/LLMQueryEngine.md
+              - LLMQueryEngineAdv: md/SaltAI_LlamaIndex/Nodes/LLMQueryEngineAdv.md
+              - LLMQueryEngineAsTool: md/SaltAI_LlamaIndex/Nodes/LLMQueryEngineAsTool.md
+              - LLMRTFReader: md/SaltAI_LlamaIndex/Nodes/LLMRTFReader.md
+              - LLMRegexCreator: md/SaltAI_LlamaIndex/Nodes/LLMRegexCreator.md
+              - LLMRegexRepair: md/SaltAI_LlamaIndex/Nodes/LLMRegexRepair.md
+              - LLMRssReaderNode: md/SaltAI_LlamaIndex/Nodes/LLMRssReaderNode.md
+              - LLMSaltWebCrawler: md/SaltAI_LlamaIndex/Nodes/LLMSaltWebCrawler.md
+              - LLMSemanticSplitterNodeParser: md/SaltAI_LlamaIndex/Nodes/LLMSemanticSplitterNodeParser.md
+              - LLMSentenceSplitterNodeCreator: md/SaltAI_LlamaIndex/Nodes/LLMSentenceSplitterNodeCreator.md
+              - LLMServiceContextAdv: md/SaltAI_LlamaIndex/Nodes/LLMServiceContextAdv.md
+              - LLMServiceContextDefault: md/SaltAI_LlamaIndex/Nodes/LLMServiceContextDefault.md
+              - LLMSimpleWebPageReader: md/SaltAI_LlamaIndex/Nodes/LLMSimpleWebPageReader.md
+              - LLMSimpleWebPageReaderAdv: md/SaltAI_LlamaIndex/Nodes/LLMSimpleWebPageReaderAdv.md
+              - LLMSummaryIndex: md/SaltAI_LlamaIndex/Nodes/LLMSummaryIndex.md
+              - LLMTavilyResearch: md/SaltAI_LlamaIndex/Nodes/LLMTavilyResearch.md
+              - LLMTrafilaturaWebReader: md/SaltAI_LlamaIndex/Nodes/LLMTrafilaturaWebReader.md
+              - LLMTrafilaturaWebReaderAdv: md/SaltAI_LlamaIndex/Nodes/LLMTrafilaturaWebReaderAdv.md
+              - LLMTreeIndex: md/SaltAI_LlamaIndex/Nodes/LLMTreeIndex.md
+              - LLMUnstructuredReader: md/SaltAI_LlamaIndex/Nodes/LLMUnstructuredReader.md
+              - LLMVectorStoreIndex: md/SaltAI_LlamaIndex/Nodes/LLMVectorStoreIndex.md
+              - LLMVideoAudioReader: md/SaltAI_LlamaIndex/Nodes/LLMVideoAudioReader.md
+              - LLMXMLReader: md/SaltAI_LlamaIndex/Nodes/LLMXMLReader.md
+              - LLMYamlComposer: md/SaltAI_LlamaIndex/Nodes/LLMYamlComposer.md
+              - LLMYamlRepair: md/SaltAI_LlamaIndex/Nodes/LLMYamlRepair.md
+              - SendMessage: md/SaltAI_LlamaIndex/Nodes/SendMessage.md
+              - SimpleChat: md/SaltAI_LlamaIndex/Nodes/SimpleChat.md
+      - SaltAI_Whisper_Transcriber:
+          - Home: md/SaltAI_Whisper_Transcriber/index.md
+          - Licenses: md/SaltAI_Whisper_Transcriber/licenses.md
+          - Nodes:
+              - SAIOpenAIAPIWhisper: md/SaltAI_Whisper_Transcriber/Nodes/SAIOpenAIAPIWhisper.md
+              - SAIWhisperLoadModel: md/SaltAI_Whisper_Transcriber/Nodes/SAIWhisperLoadModel.md
+              - SAIWhisperTranscribe: md/SaltAI_Whisper_Transcriber/Nodes/SAIWhisperTranscribe.md
+      - SeargeSDXL:
+          - Home: md/SeargeSDXL/index.md
+          - Licenses: md/SeargeSDXL/licenses.md
+          - Nodes:
+              - SeargeAdvancedParameters: md/SeargeSDXL/Nodes/SeargeAdvancedParameters.md
+              - SeargeCheckpointLoader: md/SeargeSDXL/Nodes/SeargeCheckpointLoader.md
+              - SeargeConditionMixing: md/SeargeSDXL/Nodes/SeargeConditionMixing.md
+              - SeargeConditioningMuxer2: md/SeargeSDXL/Nodes/SeargeConditioningMuxer2.md
+              - SeargeConditioningMuxer5: md/SeargeSDXL/Nodes/SeargeConditioningMuxer5.md
+              - SeargeConditioningParameters: md/SeargeSDXL/Nodes/SeargeConditioningParameters.md
+              - SeargeControlnetAdapterV2: md/SeargeSDXL/Nodes/SeargeControlnetAdapterV2.md
+              - SeargeControlnetModels: md/SeargeSDXL/Nodes/SeargeControlnetModels.md
+              - SeargeCustomAfterUpscaling: md/SeargeSDXL/Nodes/SeargeCustomAfterUpscaling.md
+              - SeargeCustomAfterVaeDecode: md/SeargeSDXL/Nodes/SeargeCustomAfterVaeDecode.md
+              - SeargeCustomPromptMode: md/SeargeSDXL/Nodes/SeargeCustomPromptMode.md
+              - SeargeDebugPrinter: md/SeargeSDXL/Nodes/SeargeDebugPrinter.md
+              - SeargeEnablerInputs: md/SeargeSDXL/Nodes/SeargeEnablerInputs.md
+              - SeargeFloatConstant: md/SeargeSDXL/Nodes/SeargeFloatConstant.md
+              - SeargeFloatMath: md/SeargeSDXL/Nodes/SeargeFloatMath.md
+              - SeargeFloatPair: md/SeargeSDXL/Nodes/SeargeFloatPair.md
+              - SeargeFreeU: md/SeargeSDXL/Nodes/SeargeFreeU.md
+              - SeargeGenerated1: md/SeargeSDXL/Nodes/SeargeGenerated1.md
+              - SeargeGenerationParameters: md/SeargeSDXL/Nodes/SeargeGenerationParameters.md
+              - SeargeHighResolution: md/SeargeSDXL/Nodes/SeargeHighResolution.md
+              - SeargeImage2ImageAndInpainting: md/SeargeSDXL/Nodes/SeargeImage2ImageAndInpainting.md
+              - SeargeImageAdapterV2: md/SeargeSDXL/Nodes/SeargeImageAdapterV2.md
+              - SeargeImageSave: md/SeargeSDXL/Nodes/SeargeImageSave.md
+              - SeargeImageSaving: md/SeargeSDXL/Nodes/SeargeImageSaving.md
+              - SeargeInput1: md/SeargeSDXL/Nodes/SeargeInput1.md
+              - SeargeInput2: md/SeargeSDXL/Nodes/SeargeInput2.md
+              - SeargeInput3: md/SeargeSDXL/Nodes/SeargeInput3.md
+              - SeargeInput4: md/SeargeSDXL/Nodes/SeargeInput4.md
+              - SeargeInput5: md/SeargeSDXL/Nodes/SeargeInput5.md
+              - SeargeInput6: md/SeargeSDXL/Nodes/SeargeInput6.md
+              - SeargeInput7: md/SeargeSDXL/Nodes/SeargeInput7.md
+              - SeargeIntegerConstant: md/SeargeSDXL/Nodes/SeargeIntegerConstant.md
+              - SeargeIntegerMath: md/SeargeSDXL/Nodes/SeargeIntegerMath.md
+              - SeargeIntegerPair: md/SeargeSDXL/Nodes/SeargeIntegerPair.md
+              - SeargeIntegerScaler: md/SeargeSDXL/Nodes/SeargeIntegerScaler.md
+              - SeargeLatentMuxer3: md/SeargeSDXL/Nodes/SeargeLatentMuxer3.md
+              - SeargeLoraLoader: md/SeargeSDXL/Nodes/SeargeLoraLoader.md
+              - SeargeLoras: md/SeargeSDXL/Nodes/SeargeLoras.md
+              - SeargeMagicBox: md/SeargeSDXL/Nodes/SeargeMagicBox.md
+              - SeargeModelSelector: md/SeargeSDXL/Nodes/SeargeModelSelector.md
+              - SeargeOperatingMode: md/SeargeSDXL/Nodes/SeargeOperatingMode.md
+              - SeargeOutput1: md/SeargeSDXL/Nodes/SeargeOutput1.md
+              - SeargeOutput2: md/SeargeSDXL/Nodes/SeargeOutput2.md
+              - SeargeOutput3: md/SeargeSDXL/Nodes/SeargeOutput3.md
+              - SeargeOutput4: md/SeargeSDXL/Nodes/SeargeOutput4.md
+              - SeargeOutput5: md/SeargeSDXL/Nodes/SeargeOutput5.md
+              - SeargeOutput6: md/SeargeSDXL/Nodes/SeargeOutput6.md
+              - SeargeOutput7: md/SeargeSDXL/Nodes/SeargeOutput7.md
+              - SeargeParameterProcessor: md/SeargeSDXL/Nodes/SeargeParameterProcessor.md
+              - SeargePipelineStart: md/SeargeSDXL/Nodes/SeargePipelineStart.md
+              - SeargePipelineTerminator: md/SeargeSDXL/Nodes/SeargePipelineTerminator.md
+              - SeargePreviewImage: md/SeargeSDXL/Nodes/SeargePreviewImage.md
+              - SeargePromptAdapterV2: md/SeargeSDXL/Nodes/SeargePromptAdapterV2.md
+              - SeargePromptCombiner: md/SeargeSDXL/Nodes/SeargePromptCombiner.md
+              - SeargePromptStyles: md/SeargeSDXL/Nodes/SeargePromptStyles.md
+              - SeargePromptText: md/SeargeSDXL/Nodes/SeargePromptText.md
+              - SeargeSDXLBasePromptEncoder: md/SeargeSDXL/Nodes/SeargeSDXLBasePromptEncoder.md
+              - SeargeSDXLImage2ImageSampler: md/SeargeSDXL/Nodes/SeargeSDXLImage2ImageSampler.md
+              - SeargeSDXLImage2ImageSampler2: md/SeargeSDXL/Nodes/SeargeSDXLImage2ImageSampler2.md
+              - SeargeSDXLPromptEncoder: md/SeargeSDXL/Nodes/SeargeSDXLPromptEncoder.md
+              - SeargeSDXLRefinerPromptEncoder: md/SeargeSDXL/Nodes/SeargeSDXLRefinerPromptEncoder.md
+              - SeargeSDXLSampler: md/SeargeSDXL/Nodes/SeargeSDXLSampler.md
+              - SeargeSDXLSampler2: md/SeargeSDXL/Nodes/SeargeSDXLSampler2.md
+              - SeargeSDXLSamplerV3: md/SeargeSDXL/Nodes/SeargeSDXLSamplerV3.md
+              - SeargeSamplerInputs: md/SeargeSDXL/Nodes/SeargeSamplerInputs.md
+              - SeargeSaveFolderInputs: md/SeargeSDXL/Nodes/SeargeSaveFolderInputs.md
+              - SeargeSeparator: md/SeargeSDXL/Nodes/SeargeSeparator.md
+              - SeargeStylePreprocessor: md/SeargeSDXL/Nodes/SeargeStylePreprocessor.md
+              - SeargeTextInputV2: md/SeargeSDXL/Nodes/SeargeTextInputV2.md
+              - SeargeUpscaleModelLoader: md/SeargeSDXL/Nodes/SeargeUpscaleModelLoader.md
+              - SeargeUpscaleModels: md/SeargeSDXL/Nodes/SeargeUpscaleModels.md
+              - SeargeVAELoader: md/SeargeSDXL/Nodes/SeargeVAELoader.md
       - WAS_Extras:
           - Home: md/WAS_Extras/index.md
           - Licenses: md/WAS_Extras/licenses.md
@@ -1248,6 +2615,17 @@ nav:
               - VAEEncodeForInpaint (WAS): md/WAS_Extras/Nodes/VAEEncodeForInpaint
                   (WAS).md
               - VividSharpen: md/WAS_Extras/Nodes/VividSharpen.md
+      - a-person-mask-generator:
+          - Home: md/a-person-mask-generator/index.md
+          - Licenses: md/a-person-mask-generator/licenses.md
+          - Nodes:
+              - APersonMaskGenerator: md/a-person-mask-generator/Nodes/APersonMaskGenerator.md
+      - cg-image-picker:
+          - Home: md/cg-image-picker/index.md
+          - Licenses: md/cg-image-picker/licenses.md
+          - Nodes:
+              - Preview Chooser Fabric: md/cg-image-picker/Nodes/Preview Chooser Fabric.md
+              - Preview Chooser: md/cg-image-picker/Nodes/Preview Chooser.md
       - cg-use-everywhere:
           - Home: md/cg-use-everywhere/index.md
           - Licenses: md/cg-use-everywhere/licenses.md
@@ -1258,6 +2636,19 @@ nav:
               - Prompts Everywhere: md/cg-use-everywhere/Nodes/Prompts Everywhere.md
               - Seed Everywhere: md/cg-use-everywhere/Nodes/Seed Everywhere.md
               - Simple String: md/cg-use-everywhere/Nodes/Simple String.md
+      - comfy-image-saver:
+          - Home: md/comfy-image-saver/index.md
+          - Licenses: md/comfy-image-saver/licenses.md
+          - Nodes:
+              - Cfg Literal: md/comfy-image-saver/Nodes/Cfg Literal.md
+              - Checkpoint Selector: md/comfy-image-saver/Nodes/Checkpoint Selector.md
+              - Int Literal: md/comfy-image-saver/Nodes/Int Literal.md
+              - Sampler Selector: md/comfy-image-saver/Nodes/Sampler Selector.md
+              - Save Image w_Metadata: md/comfy-image-saver/Nodes/Save Image w_Metadata.md
+              - Scheduler Selector: md/comfy-image-saver/Nodes/Scheduler Selector.md
+              - Seed Generator: md/comfy-image-saver/Nodes/Seed Generator.md
+              - String Literal: md/comfy-image-saver/Nodes/String Literal.md
+              - Width_Height Literal: md/comfy-image-saver/Nodes/Width_Height Literal.md
       - comfy_mtb:
           - Home: md/comfy_mtb/index.md
           - Licenses: md/comfy_mtb/licenses.md
@@ -1265,14 +2656,22 @@ nav:
               - Add To Playlist (mtb): md/comfy_mtb/Nodes/Add To Playlist (mtb).md
               - Animation Builder (mtb): md/comfy_mtb/Nodes/Animation Builder (mtb).md
               - Any To String (mtb): md/comfy_mtb/Nodes/Any To String (mtb).md
+              - Apply Text Template (mtb): md/comfy_mtb/Nodes/Apply Text Template
+                  (mtb).md
+              - Auto Pan Equilateral (mtb): md/comfy_mtb/Nodes/Auto Pan Equilateral
+                  (mtb).md
               - Batch Float (mtb): md/comfy_mtb/Nodes/Batch Float (mtb).md
               - Batch Float Assemble (mtb): md/comfy_mtb/Nodes/Batch Float Assemble
                   (mtb).md
               - Batch Float Fill (mtb): md/comfy_mtb/Nodes/Batch Float Fill (mtb).md
+              - Batch Float Fit (mtb): md/comfy_mtb/Nodes/Batch Float Fit (mtb).md
+              - Batch Float Normalize (mtb): md/comfy_mtb/Nodes/Batch Float Normalize
+                  (mtb).md
               - Batch Make (mtb): md/comfy_mtb/Nodes/Batch Make (mtb).md
               - Batch Merge (mtb): md/comfy_mtb/Nodes/Batch Merge (mtb).md
               - Batch Shake (mtb): md/comfy_mtb/Nodes/Batch Shake (mtb).md
               - Batch Shape (mtb): md/comfy_mtb/Nodes/Batch Shape (mtb).md
+              - Batch Time Wrap (mtb): md/comfy_mtb/Nodes/Batch Time Wrap (mtb).md
               - Batch Transform (mtb): md/comfy_mtb/Nodes/Batch Transform (mtb).md
               - Bbox (mtb): md/comfy_mtb/Nodes/Bbox (mtb).md
               - Bbox From Mask (mtb): md/comfy_mtb/Nodes/Bbox From Mask (mtb).md
@@ -1280,15 +2679,18 @@ nav:
               - Color Correct (mtb): md/comfy_mtb/Nodes/Color Correct (mtb).md
               - Colored Image (mtb): md/comfy_mtb/Nodes/Colored Image (mtb).md
               - Concat Images (mtb): md/comfy_mtb/Nodes/Concat Images (mtb).md
+              - Constant (mtb): md/comfy_mtb/Nodes/Constant (mtb).md
               - Crop (mtb): md/comfy_mtb/Nodes/Crop (mtb).md
               - Curve (mtb): md/comfy_mtb/Nodes/Curve (mtb).md
               - Debug (mtb): md/comfy_mtb/Nodes/Debug (mtb).md
               - Deep Bump (mtb): md/comfy_mtb/Nodes/Deep Bump (mtb).md
               - Export With Ffmpeg (mtb): md/comfy_mtb/Nodes/Export With Ffmpeg (mtb).md
               - Face Swap (mtb): md/comfy_mtb/Nodes/Face Swap (mtb).md
+              - Film Interpolation (mtb): md/comfy_mtb/Nodes/Film Interpolation (mtb).md
               - Filter Z (mtb): md/comfy_mtb/Nodes/Filter Z (mtb).md
               - Fit Number (mtb): md/comfy_mtb/Nodes/Fit Number (mtb).md
-              - Float To Number (mtb): md/comfy_mtb/Nodes/Float To Number (mtb).md
+              - Float To Floats (mtb): md/comfy_mtb/Nodes/Float To Floats (mtb).md
+              - Floats To Float (mtb): md/comfy_mtb/Nodes/Floats To Float (mtb).md
               - Get Batch From History (mtb): md/comfy_mtb/Nodes/Get Batch From History
                   (mtb).md
               - Image Compare (mtb): md/comfy_mtb/Nodes/Image Compare (mtb).md
@@ -1299,25 +2701,30 @@ nav:
                   (mtb).md
               - Image Tile Offset (mtb): md/comfy_mtb/Nodes/Image Tile Offset (mtb).md
               - Int To Bool (mtb): md/comfy_mtb/Nodes/Int To Bool (mtb).md
-              - Int To Number (mtb): md/comfy_mtb/Nodes/Int To Number (mtb).md
               - Interpolate Clip Sequential (mtb): md/comfy_mtb/Nodes/Interpolate
                   Clip Sequential (mtb).md
               - Latent Lerp (mtb): md/comfy_mtb/Nodes/Latent Lerp (mtb).md
               - Load Face Analysis Model (mtb): md/comfy_mtb/Nodes/Load Face Analysis
                   Model (mtb).md
+              - Load Face Enhance Model (mtb): md/comfy_mtb/Nodes/Load Face Enhance
+                  Model (mtb).md
               - Load Face Swap Model (mtb): md/comfy_mtb/Nodes/Load Face Swap Model
                   (mtb).md
+              - Load Film Model (mtb): md/comfy_mtb/Nodes/Load Film Model (mtb).md
               - Load Image From Url (mtb): md/comfy_mtb/Nodes/Load Image From Url
                   (mtb).md
               - Load Image Sequence (mtb): md/comfy_mtb/Nodes/Load Image Sequence
                   (mtb).md
               - Mask To Image (mtb): md/comfy_mtb/Nodes/Mask To Image (mtb).md
+              - Match Dimensions (mtb): md/comfy_mtb/Nodes/Match Dimensions (mtb).md
               - Math Expression (mtb): md/comfy_mtb/Nodes/Math Expression (mtb).md
               - Model Patch Seamless (mtb): md/comfy_mtb/Nodes/Model Patch Seamless
                   (mtb).md
               - Pick From Batch (mtb): md/comfy_mtb/Nodes/Pick From Batch (mtb).md
               - Plot Batch Float (mtb): md/comfy_mtb/Nodes/Plot Batch Float (mtb).md
+              - Qr Code (mtb): md/comfy_mtb/Nodes/Qr Code (mtb).md
               - Read Playlist (mtb): md/comfy_mtb/Nodes/Read Playlist (mtb).md
+              - Restore Face (mtb): md/comfy_mtb/Nodes/Restore Face (mtb).md
               - Save Gif (mtb): md/comfy_mtb/Nodes/Save Gif (mtb).md
               - Save Image Grid (mtb): md/comfy_mtb/Nodes/Save Image Grid (mtb).md
               - Save Image Sequence (mtb): md/comfy_mtb/Nodes/Save Image Sequence
@@ -1328,9 +2735,249 @@ nav:
               - Stack Images (mtb): md/comfy_mtb/Nodes/Stack Images (mtb).md
               - String Replace (mtb): md/comfy_mtb/Nodes/String Replace (mtb).md
               - Styles Loader (mtb): md/comfy_mtb/Nodes/Styles Loader (mtb).md
+              - Text To Image (mtb): md/comfy_mtb/Nodes/Text To Image (mtb).md
+              - To Device (mtb): md/comfy_mtb/Nodes/To Device (mtb).md
               - Transform Image (mtb): md/comfy_mtb/Nodes/Transform Image (mtb).md
               - Uncrop (mtb): md/comfy_mtb/Nodes/Uncrop (mtb).md
+              - Unsplash Image (mtb): md/comfy_mtb/Nodes/Unsplash Image (mtb).md
               - Vae Decode (mtb): md/comfy_mtb/Nodes/Vae Decode (mtb).md
+      - comfyui-art-venture:
+          - Home: md/comfyui-art-venture/index.md
+          - Licenses: md/comfyui-art-venture/licenses.md
+          - Nodes:
+              - AV_CheckpointLoader: md/comfyui-art-venture/Nodes/AV_CheckpointLoader.md
+              - AV_CheckpointMerge: md/comfyui-art-venture/Nodes/AV_CheckpointMerge.md
+              - AV_CheckpointModelsToParametersPipe: md/comfyui-art-venture/Nodes/AV_CheckpointModelsToParametersPipe.md
+              - AV_CheckpointSave: md/comfyui-art-venture/Nodes/AV_CheckpointSave.md
+              - AV_ClaudeApi: md/comfyui-art-venture/Nodes/AV_ClaudeApi.md
+              - AV_ControlNetEfficientLoader: md/comfyui-art-venture/Nodes/AV_ControlNetEfficientLoader.md
+              - AV_ControlNetEfficientLoaderAdvanced: md/comfyui-art-venture/Nodes/AV_ControlNetEfficientLoaderAdvanced.md
+              - AV_ControlNetEfficientStacker: md/comfyui-art-venture/Nodes/AV_ControlNetEfficientStacker.md
+              - AV_ControlNetEfficientStackerSimple: md/comfyui-art-venture/Nodes/AV_ControlNetEfficientStackerSimple.md
+              - AV_ControlNetLoader: md/comfyui-art-venture/Nodes/AV_ControlNetLoader.md
+              - AV_ControlNetPreprocessor: md/comfyui-art-venture/Nodes/AV_ControlNetPreprocessor.md
+              - AV_FaceDetailer: md/comfyui-art-venture/Nodes/AV_FaceDetailer.md
+              - AV_FaceDetailerPipe: md/comfyui-art-venture/Nodes/AV_FaceDetailerPipe.md
+              - AV_IPAdapter: md/comfyui-art-venture/Nodes/AV_IPAdapter.md
+              - AV_IPAdapterPipeline: md/comfyui-art-venture/Nodes/AV_IPAdapterPipeline.md
+              - AV_LLMApiConfig: md/comfyui-art-venture/Nodes/AV_LLMApiConfig.md
+              - AV_LLMChat: md/comfyui-art-venture/Nodes/AV_LLMChat.md
+              - AV_LLMMessage: md/comfyui-art-venture/Nodes/AV_LLMMessage.md
+              - AV_LoraListLoader: md/comfyui-art-venture/Nodes/AV_LoraListLoader.md
+              - AV_LoraListStacker: md/comfyui-art-venture/Nodes/AV_LoraListStacker.md
+              - AV_LoraLoader: md/comfyui-art-venture/Nodes/AV_LoraLoader.md
+              - AV_OpenAIApi: md/comfyui-art-venture/Nodes/AV_OpenAIApi.md
+              - AV_ParametersPipeToCheckpointModels: md/comfyui-art-venture/Nodes/AV_ParametersPipeToCheckpointModels.md
+              - AV_ParametersPipeToPrompts: md/comfyui-art-venture/Nodes/AV_ParametersPipeToPrompts.md
+              - AV_PromptsToParametersPipe: md/comfyui-art-venture/Nodes/AV_PromptsToParametersPipe.md
+              - AV_SAMLoader: md/comfyui-art-venture/Nodes/AV_SAMLoader.md
+              - AV_StyleApply: md/comfyui-art-venture/Nodes/AV_StyleApply.md
+              - AV_VAELoader: md/comfyui-art-venture/Nodes/AV_VAELoader.md
+              - AspectRatioSelector: md/comfyui-art-venture/Nodes/AspectRatioSelector.md
+              - BLIPCaption: md/comfyui-art-venture/Nodes/BLIPCaption.md
+              - BLIPLoader: md/comfyui-art-venture/Nodes/BLIPLoader.md
+              - BooleanPrimitive: md/comfyui-art-venture/Nodes/BooleanPrimitive.md
+              - CheckpointNameSelector: md/comfyui-art-venture/Nodes/CheckpointNameSelector.md
+              - ColorCorrect: md/comfyui-art-venture/Nodes/ColorCorrect.md
+              - DeepDanbooruCaption: md/comfyui-art-venture/Nodes/DeepDanbooruCaption.md
+              - DependenciesEdit: md/comfyui-art-venture/Nodes/DependenciesEdit.md
+              - Fooocus_KSampler: md/comfyui-art-venture/Nodes/Fooocus_KSampler.md
+              - Fooocus_KSamplerAdvanced: md/comfyui-art-venture/Nodes/Fooocus_KSamplerAdvanced.md
+              - Fooocus_KSamplerEfficient: md/comfyui-art-venture/Nodes/Fooocus_KSamplerEfficient.md
+              - Fooocus_KSamplerEfficientAdvanced: md/comfyui-art-venture/Nodes/Fooocus_KSamplerEfficientAdvanced.md
+              - GetBoolFromJson: md/comfyui-art-venture/Nodes/GetBoolFromJson.md
+              - GetFloatFromJson: md/comfyui-art-venture/Nodes/GetFloatFromJson.md
+              - GetIntFromJson: md/comfyui-art-venture/Nodes/GetIntFromJson.md
+              - GetObjectFromJson: md/comfyui-art-venture/Nodes/GetObjectFromJson.md
+              - GetSAMEmbedding: md/comfyui-art-venture/Nodes/GetSAMEmbedding.md
+              - GetTextFromJson: md/comfyui-art-venture/Nodes/GetTextFromJson.md
+              - ISNetLoader: md/comfyui-art-venture/Nodes/ISNetLoader.md
+              - ISNetSegment: md/comfyui-art-venture/Nodes/ISNetSegment.md
+              - ImageAlphaComposite: md/comfyui-art-venture/Nodes/ImageAlphaComposite.md
+              - ImageApplyChannel: md/comfyui-art-venture/Nodes/ImageApplyChannel.md
+              - ImageExtractChannel: md/comfyui-art-venture/Nodes/ImageExtractChannel.md
+              - ImageGaussianBlur: md/comfyui-art-venture/Nodes/ImageGaussianBlur.md
+              - ImageMuxer: md/comfyui-art-venture/Nodes/ImageMuxer.md
+              - ImageRepeat: md/comfyui-art-venture/Nodes/ImageRepeat.md
+              - ImageScaleDown: md/comfyui-art-venture/Nodes/ImageScaleDown.md
+              - ImageScaleDownBy: md/comfyui-art-venture/Nodes/ImageScaleDownBy.md
+              - ImageScaleDownToSize: md/comfyui-art-venture/Nodes/ImageScaleDownToSize.md
+              - ImageScaleToMegapixels: md/comfyui-art-venture/Nodes/ImageScaleToMegapixels.md
+              - LaMaInpaint: md/comfyui-art-venture/Nodes/LaMaInpaint.md
+              - LoadImageAsMaskFromUrl: md/comfyui-art-venture/Nodes/LoadImageAsMaskFromUrl.md
+              - LoadImageFromUrl: md/comfyui-art-venture/Nodes/LoadImageFromUrl.md
+              - LoadJsonFromUrl: md/comfyui-art-venture/Nodes/LoadJsonFromUrl.md
+              - LoadVideoFromUrl: md/comfyui-art-venture/Nodes/LoadVideoFromUrl.md
+              - MergeModels: md/comfyui-art-venture/Nodes/MergeModels.md
+              - NumberScaler: md/comfyui-art-venture/Nodes/NumberScaler.md
+              - OverlayInpaintedImage: md/comfyui-art-venture/Nodes/OverlayInpaintedImage.md
+              - OverlayInpaintedLatent: md/comfyui-art-venture/Nodes/OverlayInpaintedLatent.md
+              - PrepareImageAndMaskForInpaint: md/comfyui-art-venture/Nodes/PrepareImageAndMaskForInpaint.md
+              - QRCodeGenerator: md/comfyui-art-venture/Nodes/QRCodeGenerator.md
+              - RandomFloat: md/comfyui-art-venture/Nodes/RandomFloat.md
+              - RandomInt: md/comfyui-art-venture/Nodes/RandomInt.md
+              - SAMEmbeddingToImage: md/comfyui-art-venture/Nodes/SAMEmbeddingToImage.md
+              - SDXLAspectRatioSelector: md/comfyui-art-venture/Nodes/SDXLAspectRatioSelector.md
+              - SDXLPromptStyler: md/comfyui-art-venture/Nodes/SDXLPromptStyler.md
+              - SeedSelector: md/comfyui-art-venture/Nodes/SeedSelector.md
+              - StringToInt: md/comfyui-art-venture/Nodes/StringToInt.md
+              - StringToNumber: md/comfyui-art-venture/Nodes/StringToNumber.md
+      - comfyui-dream-project:
+          - Home: md/comfyui-dream-project/index.md
+          - Licenses: md/comfyui-dream-project/licenses.md
+          - Nodes:
+              - Analyze Palette [Dream]: md/comfyui-dream-project/Nodes/Analyze Palette
+                  [Dream].md
+              - Beat Curve [Dream]: md/comfyui-dream-project/Nodes/Beat Curve [Dream].md
+              - Big Float Switch [Dream]: md/comfyui-dream-project/Nodes/Big Float
+                  Switch [Dream].md
+              - Big Image Switch [Dream]: md/comfyui-dream-project/Nodes/Big Image
+                  Switch [Dream].md
+              - Big Int Switch [Dream]: md/comfyui-dream-project/Nodes/Big Int Switch
+                  [Dream].md
+              - Big Latent Switch [Dream]: md/comfyui-dream-project/Nodes/Big Latent
+                  Switch [Dream].md
+              - Big Palette Switch [Dream]: md/comfyui-dream-project/Nodes/Big Palette
+                  Switch [Dream].md
+              - Big Text Switch [Dream]: md/comfyui-dream-project/Nodes/Big Text Switch
+                  [Dream].md
+              - Boolean To Float [Dream]: md/comfyui-dream-project/Nodes/Boolean To
+                  Float [Dream].md
+              - Boolean To Int [Dream]: md/comfyui-dream-project/Nodes/Boolean To
+                  Int [Dream].md
+              - Build Prompt [Dream]: md/comfyui-dream-project/Nodes/Build Prompt
+                  [Dream].md
+              - CSV Curve [Dream]: md/comfyui-dream-project/Nodes/CSV Curve [Dream].md
+              - CSV Generator [Dream]: md/comfyui-dream-project/Nodes/CSV Generator
+                  [Dream].md
+              - Calculation [Dream]: md/comfyui-dream-project/Nodes/Calculation [Dream].md
+              - Common Frame Dimensions [Dream]: md/comfyui-dream-project/Nodes/Common
+                  Frame Dimensions [Dream].md
+              - Compare Palettes [Dream]: md/comfyui-dream-project/Nodes/Compare Palettes
+                  [Dream].md
+              - FFMPEG Video Encoder [Dream]: md/comfyui-dream-project/Nodes/FFMPEG
+                  Video Encoder [Dream].md
+              - File Count [Dream]: md/comfyui-dream-project/Nodes/File Count [Dream].md
+              - Finalize Prompt [Dream]: md/comfyui-dream-project/Nodes/Finalize Prompt
+                  [Dream].md
+              - Float Input [Dream]: md/comfyui-dream-project/Nodes/Float Input [Dream].md
+              - Float to Log Entry [Dream]: md/comfyui-dream-project/Nodes/Float to
+                  Log Entry [Dream].md
+              - Frame Count Calculator [Dream]: md/comfyui-dream-project/Nodes/Frame
+                  Count Calculator [Dream].md
+              - Frame Counter (Directory) [Dream]: md/comfyui-dream-project/Nodes/Frame
+                  Counter (Directory) [Dream].md
+              - Frame Counter (Simple) [Dream]: md/comfyui-dream-project/Nodes/Frame
+                  Counter (Simple) [Dream].md
+              - Frame Counter Info [Dream]: md/comfyui-dream-project/Nodes/Frame Counter
+                  Info [Dream].md
+              - Frame Counter Offset [Dream]: md/comfyui-dream-project/Nodes/Frame
+                  Counter Offset [Dream].md
+              - Frame Counter Time Offset [Dream]: md/comfyui-dream-project/Nodes/Frame
+                  Counter Time Offset [Dream].md
+              - Image Brightness Adjustment [Dream]: md/comfyui-dream-project/Nodes/Image
+                  Brightness Adjustment [Dream].md
+              - Image Color Shift [Dream]: md/comfyui-dream-project/Nodes/Image Color
+                  Shift [Dream].md
+              - Image Contrast Adjustment [Dream]: md/comfyui-dream-project/Nodes/Image
+                  Contrast Adjustment [Dream].md
+              - Image Motion [Dream]: md/comfyui-dream-project/Nodes/Image Motion
+                  [Dream].md
+              - Image Sequence Blend [Dream]: md/comfyui-dream-project/Nodes/Image
+                  Sequence Blend [Dream].md
+              - Image Sequence Loader [Dream]: md/comfyui-dream-project/Nodes/Image
+                  Sequence Loader [Dream].md
+              - Image Sequence Saver [Dream]: md/comfyui-dream-project/Nodes/Image
+                  Sequence Saver [Dream].md
+              - Image Sequence Tweening [Dream]: md/comfyui-dream-project/Nodes/Image
+                  Sequence Tweening [Dream].md
+              - Int Input [Dream]: md/comfyui-dream-project/Nodes/Int Input [Dream].md
+              - Int to Log Entry [Dream]: md/comfyui-dream-project/Nodes/Int to Log
+                  Entry [Dream].md
+              - Laboratory [Dream]: md/comfyui-dream-project/Nodes/Laboratory [Dream].md
+              - Linear Curve [Dream]: md/comfyui-dream-project/Nodes/Linear Curve
+                  [Dream].md
+              - Log Entry Joiner [Dream]: md/comfyui-dream-project/Nodes/Log Entry
+                  Joiner [Dream].md
+              - Log File [Dream]: md/comfyui-dream-project/Nodes/Log File [Dream].md
+              - Noise from Area Palettes [Dream]: md/comfyui-dream-project/Nodes/Noise
+                  from Area Palettes [Dream].md
+              - Noise from Palette [Dream]: md/comfyui-dream-project/Nodes/Noise from
+                  Palette [Dream].md
+              - Palette Color Align [Dream]: md/comfyui-dream-project/Nodes/Palette
+                  Color Align [Dream].md
+              - Palette Color Shift [Dream]: md/comfyui-dream-project/Nodes/Palette
+                  Color Shift [Dream].md
+              - Sample Image Area as Palette [Dream]: md/comfyui-dream-project/Nodes/Sample
+                  Image Area as Palette [Dream].md
+              - Sample Image as Palette [Dream]: md/comfyui-dream-project/Nodes/Sample
+                  Image as Palette [Dream].md
+              - Saw Curve [Dream]: md/comfyui-dream-project/Nodes/Saw Curve [Dream].md
+              - Sine Curve [Dream]: md/comfyui-dream-project/Nodes/Sine Curve [Dream].md
+              - Smooth Event Curve [Dream]: md/comfyui-dream-project/Nodes/Smooth
+                  Event Curve [Dream].md
+              - String Input [Dream]: md/comfyui-dream-project/Nodes/String Input
+                  [Dream].md
+              - String Tokenizer [Dream]: md/comfyui-dream-project/Nodes/String Tokenizer
+                  [Dream].md
+              - String to Log Entry [Dream]: md/comfyui-dream-project/Nodes/String
+                  to Log Entry [Dream].md
+              - Text Input [Dream]: md/comfyui-dream-project/Nodes/Text Input [Dream].md
+              - Triangle Curve [Dream]: md/comfyui-dream-project/Nodes/Triangle Curve
+                  [Dream].md
+              - Triangle Event Curve [Dream]: md/comfyui-dream-project/Nodes/Triangle
+                  Event Curve [Dream].md
+              - WAV Curve [Dream]: md/comfyui-dream-project/Nodes/WAV Curve [Dream].md
+      - comfyui-inpaint-nodes:
+          - Home: md/comfyui-inpaint-nodes/index.md
+          - Licenses: md/comfyui-inpaint-nodes/licenses.md
+          - Nodes:
+              - INPAINT_ApplyFooocusInpaint: md/comfyui-inpaint-nodes/Nodes/INPAINT_ApplyFooocusInpaint.md
+              - INPAINT_DenoiseToCompositingMask: md/comfyui-inpaint-nodes/Nodes/INPAINT_DenoiseToCompositingMask.md
+              - INPAINT_InpaintWithModel: md/comfyui-inpaint-nodes/Nodes/INPAINT_InpaintWithModel.md
+              - INPAINT_LoadFooocusInpaint: md/comfyui-inpaint-nodes/Nodes/INPAINT_LoadFooocusInpaint.md
+              - INPAINT_LoadInpaintModel: md/comfyui-inpaint-nodes/Nodes/INPAINT_LoadInpaintModel.md
+              - INPAINT_MaskedBlur: md/comfyui-inpaint-nodes/Nodes/INPAINT_MaskedBlur.md
+              - INPAINT_MaskedFill: md/comfyui-inpaint-nodes/Nodes/INPAINT_MaskedFill.md
+              - INPAINT_VAEEncodeInpaintConditioning: md/comfyui-inpaint-nodes/Nodes/INPAINT_VAEEncodeInpaintConditioning.md
+      - comfyui-portrait-master:
+          - Home: md/comfyui-portrait-master/index.md
+          - Licenses: md/comfyui-portrait-master/licenses.md
+          - Nodes:
+              - PortraitMaster: md/comfyui-portrait-master/Nodes/PortraitMaster.md
+      - comfyui-previewlatent:
+          - Home: md/comfyui-previewlatent/index.md
+          - Licenses: md/comfyui-previewlatent/licenses.md
+          - Nodes:
+              - PreviewLatent: md/comfyui-previewlatent/Nodes/PreviewLatent.md
+              - PreviewLatentAdvanced: md/comfyui-previewlatent/Nodes/PreviewLatentAdvanced.md
+              - PreviewLatentXL: md/comfyui-previewlatent/Nodes/PreviewLatentXL.md
+      - comfyui-prompt-composer:
+          - Home: md/comfyui-prompt-composer/index.md
+          - Licenses: md/comfyui-prompt-composer/licenses.md
+          - Nodes:
+              - PromptComposerCustomLists: md/comfyui-prompt-composer/Nodes/PromptComposerCustomLists.md
+              - PromptComposerEffect: md/comfyui-prompt-composer/Nodes/PromptComposerEffect.md
+              - PromptComposerGrouping: md/comfyui-prompt-composer/Nodes/PromptComposerGrouping.md
+              - PromptComposerMerge: md/comfyui-prompt-composer/Nodes/PromptComposerMerge.md
+              - PromptComposerStyler: md/comfyui-prompt-composer/Nodes/PromptComposerStyler.md
+              - PromptComposerTextSingle: md/comfyui-prompt-composer/Nodes/PromptComposerTextSingle.md
+              - promptComposerTextMultiple: md/comfyui-prompt-composer/Nodes/promptComposerTextMultiple.md
+      - comfyui-reactor-node:
+          - Home: md/comfyui-reactor-node/index.md
+          - Licenses: md/comfyui-reactor-node/licenses.md
+          - Nodes:
+              - ImageRGBA2RGB: md/comfyui-reactor-node/Nodes/ImageRGBA2RGB.md
+              - ReActorBuildFaceModel: md/comfyui-reactor-node/Nodes/ReActorBuildFaceModel.md
+              - ReActorFaceSwap: md/comfyui-reactor-node/Nodes/ReActorFaceSwap.md
+              - ReActorFaceSwapOpt: md/comfyui-reactor-node/Nodes/ReActorFaceSwapOpt.md
+              - ReActorImageDublicator: md/comfyui-reactor-node/Nodes/ReActorImageDublicator.md
+              - ReActorLoadFaceModel: md/comfyui-reactor-node/Nodes/ReActorLoadFaceModel.md
+              - ReActorMakeFaceModelBatch: md/comfyui-reactor-node/Nodes/ReActorMakeFaceModelBatch.md
+              - ReActorMaskHelper: md/comfyui-reactor-node/Nodes/ReActorMaskHelper.md
+              - ReActorOptions: md/comfyui-reactor-node/Nodes/ReActorOptions.md
+              - ReActorRestoreFace: md/comfyui-reactor-node/Nodes/ReActorRestoreFace.md
+              - ReActorSaveFaceModel: md/comfyui-reactor-node/Nodes/ReActorSaveFaceModel.md
       - comfyui-various:
           - Home: md/comfyui-various/index.md
           - Licenses: md/comfyui-various/licenses.md
@@ -1422,6 +3069,7 @@ nav:
               - Color (RGB): md/comfyui_bmad_nodes/Nodes/Color (RGB).md
               - Color (hexadecimal): md/comfyui_bmad_nodes/Nodes/Color (hexadecimal).md
               - Color Clip (advanced): md/comfyui_bmad_nodes/Nodes/Color Clip (advanced).md
+              - Color Clip ADE20k: md/comfyui_bmad_nodes/Nodes/Color Clip ADE20k.md
               - Color Clip: md/comfyui_bmad_nodes/Nodes/Color Clip.md
               - ColorDictionary (custom): md/comfyui_bmad_nodes/Nodes/ColorDictionary
                   (custom).md
@@ -1514,10 +3162,12 @@ nav:
               - RemapInsideParabolas: md/comfyui_bmad_nodes/Nodes/RemapInsideParabolas.md
               - RemapInsideParabolasAdvanced: md/comfyui_bmad_nodes/Nodes/RemapInsideParabolasAdvanced.md
               - RemapPinch: md/comfyui_bmad_nodes/Nodes/RemapPinch.md
+              - RemapReverseBarrelDistortion: md/comfyui_bmad_nodes/Nodes/RemapReverseBarrelDistortion.md
               - RemapStretch: md/comfyui_bmad_nodes/Nodes/RemapStretch.md
               - RemapToInnerCylinder: md/comfyui_bmad_nodes/Nodes/RemapToInnerCylinder.md
               - RemapToOuterCylinder: md/comfyui_bmad_nodes/Nodes/RemapToOuterCylinder.md
               - RemapToQuadrilateral: md/comfyui_bmad_nodes/Nodes/RemapToQuadrilateral.md
+              - RemapWarpPolar: md/comfyui_bmad_nodes/Nodes/RemapWarpPolar.md
               - Repeat Into Grid (image): md/comfyui_bmad_nodes/Nodes/Repeat Into
                   Grid (image).md
               - Repeat Into Grid (latent): md/comfyui_bmad_nodes/Nodes/Repeat Into
@@ -1531,7 +3181,6 @@ nav:
               - SetRequestStateToComplete: md/comfyui_bmad_nodes/Nodes/SetRequestStateToComplete.md
               - String to Float: md/comfyui_bmad_nodes/Nodes/String to Float.md
               - String to Integer: md/comfyui_bmad_nodes/Nodes/String to Integer.md
-              - String: md/comfyui_bmad_nodes/Nodes/String.md
               - ToColorList: md/comfyui_bmad_nodes/Nodes/ToColorList.md
               - ToCondList: md/comfyui_bmad_nodes/Nodes/ToCondList.md
               - ToFloatList: md/comfyui_bmad_nodes/Nodes/ToFloatList.md
@@ -1555,6 +3204,8 @@ nav:
               - BinaryPreprocessor: md/comfyui_controlnet_aux/Nodes/BinaryPreprocessor.md
               - CannyEdgePreprocessor: md/comfyui_controlnet_aux/Nodes/CannyEdgePreprocessor.md
               - ColorPreprocessor: md/comfyui_controlnet_aux/Nodes/ColorPreprocessor.md
+              - ControlNetPreprocessorSelector: md/comfyui_controlnet_aux/Nodes/ControlNetPreprocessorSelector.md
+              - DSINE-NormalMapPreprocessor: md/comfyui_controlnet_aux/Nodes/DSINE-NormalMapPreprocessor.md
               - DWPreprocessor: md/comfyui_controlnet_aux/Nodes/DWPreprocessor.md
               - DensePosePreprocessor: md/comfyui_controlnet_aux/Nodes/DensePosePreprocessor.md
               - DepthAnythingPreprocessor: md/comfyui_controlnet_aux/Nodes/DepthAnythingPreprocessor.md
@@ -1565,6 +3216,8 @@ nav:
               - HintImageEnchance: md/comfyui_controlnet_aux/Nodes/HintImageEnchance.md
               - ImageGenResolutionFromImage: md/comfyui_controlnet_aux/Nodes/ImageGenResolutionFromImage.md
               - ImageGenResolutionFromLatent: md/comfyui_controlnet_aux/Nodes/ImageGenResolutionFromLatent.md
+              - ImageIntensityDetector: md/comfyui_controlnet_aux/Nodes/ImageIntensityDetector.md
+              - ImageLuminanceDetector: md/comfyui_controlnet_aux/Nodes/ImageLuminanceDetector.md
               - InpaintPreprocessor: md/comfyui_controlnet_aux/Nodes/InpaintPreprocessor.md
               - LeReS-DepthMapPreprocessor: md/comfyui_controlnet_aux/Nodes/LeReS-DepthMapPreprocessor.md
               - LineArtPreprocessor: md/comfyui_controlnet_aux/Nodes/LineArtPreprocessor.md
@@ -1584,6 +3237,7 @@ nav:
               - SAMPreprocessor: md/comfyui_controlnet_aux/Nodes/SAMPreprocessor.md
               - SavePoseKpsAsJsonFile: md/comfyui_controlnet_aux/Nodes/SavePoseKpsAsJsonFile.md
               - ScribblePreprocessor: md/comfyui_controlnet_aux/Nodes/ScribblePreprocessor.md
+              - Scribble_PiDiNet_Preprocessor: md/comfyui_controlnet_aux/Nodes/Scribble_PiDiNet_Preprocessor.md
               - Scribble_XDoG_Preprocessor: md/comfyui_controlnet_aux/Nodes/Scribble_XDoG_Preprocessor.md
               - SemSegPreprocessor: md/comfyui_controlnet_aux/Nodes/SemSegPreprocessor.md
               - ShufflePreprocessor: md/comfyui_controlnet_aux/Nodes/ShufflePreprocessor.md
@@ -1606,6 +3260,100 @@ nav:
               - IsMaskEmpty: md/comfyui_segment_anything/Nodes/IsMaskEmpty.md
               - SAMModelLoader (segment anything): md/comfyui_segment_anything/Nodes/SAMModelLoader
                   (segment anything).md
+      - efficiency-nodes-comfyui:
+          - Home: md/efficiency-nodes-comfyui/index.md
+          - Licenses: md/efficiency-nodes-comfyui/licenses.md
+          - Nodes:
+              - Apply ControlNet Stack: md/efficiency-nodes-comfyui/Nodes/Apply ControlNet
+                  Stack.md
+              - Control Net Stacker: md/efficiency-nodes-comfyui/Nodes/Control Net
+                  Stacker.md
+              - Eff. Loader SDXL: md/efficiency-nodes-comfyui/Nodes/Eff. Loader SDXL.md
+              - Efficient Loader: md/efficiency-nodes-comfyui/Nodes/Efficient Loader.md
+              - Evaluate Floats: md/efficiency-nodes-comfyui/Nodes/Evaluate Floats.md
+              - Evaluate Integers: md/efficiency-nodes-comfyui/Nodes/Evaluate Integers.md
+              - Evaluate Strings: md/efficiency-nodes-comfyui/Nodes/Evaluate Strings.md
+              - HighRes-Fix Script: md/efficiency-nodes-comfyui/Nodes/HighRes-Fix
+                  Script.md
+              - Image Overlay: md/efficiency-nodes-comfyui/Nodes/Image Overlay.md
+              - Join XY Inputs of Same Type: md/efficiency-nodes-comfyui/Nodes/Join
+                  XY Inputs of Same Type.md
+              - KSampler (Efficient): md/efficiency-nodes-comfyui/Nodes/KSampler (Efficient).md
+              - KSampler Adv. (Efficient): md/efficiency-nodes-comfyui/Nodes/KSampler
+                  Adv. (Efficient).md
+              - KSampler SDXL (Eff.): md/efficiency-nodes-comfyui/Nodes/KSampler SDXL
+                  (Eff.).md
+              - LoRA Stack to String converter: md/efficiency-nodes-comfyui/Nodes/LoRA
+                  Stack to String converter.md
+              - LoRA Stacker: md/efficiency-nodes-comfyui/Nodes/LoRA Stacker.md
+              - Manual XY Entry Info: md/efficiency-nodes-comfyui/Nodes/Manual XY
+                  Entry Info.md
+              - Noise Control Script: md/efficiency-nodes-comfyui/Nodes/Noise Control
+                  Script.md
+              - Pack SDXL Tuple: md/efficiency-nodes-comfyui/Nodes/Pack SDXL Tuple.md
+              - Simple Eval Examples: md/efficiency-nodes-comfyui/Nodes/Simple Eval
+                  Examples.md
+              - Tiled Upscaler Script: md/efficiency-nodes-comfyui/Nodes/Tiled Upscaler
+                  Script.md
+              - Unpack SDXL Tuple: md/efficiency-nodes-comfyui/Nodes/Unpack SDXL Tuple.md
+              - 'XY Input: Add_Return Noise': 'md/efficiency-nodes-comfyui/Nodes/XY
+                  Input: Add_Return Noise.md'
+              - 'XY Input: Aesthetic Score': 'md/efficiency-nodes-comfyui/Nodes/XY
+                  Input: Aesthetic Score.md'
+              - 'XY Input: CFG Scale': 'md/efficiency-nodes-comfyui/Nodes/XY Input:
+                  CFG Scale.md'
+              - 'XY Input: Checkpoint': 'md/efficiency-nodes-comfyui/Nodes/XY Input:
+                  Checkpoint.md'
+              - 'XY Input: Clip Skip': 'md/efficiency-nodes-comfyui/Nodes/XY Input:
+                  Clip Skip.md'
+              - 'XY Input: Control Net Plot': 'md/efficiency-nodes-comfyui/Nodes/XY
+                  Input: Control Net Plot.md'
+              - 'XY Input: Control Net': 'md/efficiency-nodes-comfyui/Nodes/XY Input:
+                  Control Net.md'
+              - 'XY Input: Denoise': 'md/efficiency-nodes-comfyui/Nodes/XY Input:
+                  Denoise.md'
+              - 'XY Input: LoRA Plot': 'md/efficiency-nodes-comfyui/Nodes/XY Input:
+                  LoRA Plot.md'
+              - 'XY Input: LoRA Stacks': 'md/efficiency-nodes-comfyui/Nodes/XY Input:
+                  LoRA Stacks.md'
+              - 'XY Input: LoRA': 'md/efficiency-nodes-comfyui/Nodes/XY Input: LoRA.md'
+              - 'XY Input: Manual XY Entry': 'md/efficiency-nodes-comfyui/Nodes/XY
+                  Input: Manual XY Entry.md'
+              - 'XY Input: Prompt S_R': 'md/efficiency-nodes-comfyui/Nodes/XY Input:
+                  Prompt S_R.md'
+              - 'XY Input: Refiner On_Off': 'md/efficiency-nodes-comfyui/Nodes/XY
+                  Input: Refiner On_Off.md'
+              - 'XY Input: Sampler_Scheduler': 'md/efficiency-nodes-comfyui/Nodes/XY
+                  Input: Sampler_Scheduler.md'
+              - 'XY Input: Seeds++ Batch': 'md/efficiency-nodes-comfyui/Nodes/XY Input:
+                  Seeds++ Batch.md'
+              - 'XY Input: Steps': 'md/efficiency-nodes-comfyui/Nodes/XY Input: Steps.md'
+              - 'XY Input: VAE': 'md/efficiency-nodes-comfyui/Nodes/XY Input: VAE.md'
+              - XY Plot: md/efficiency-nodes-comfyui/Nodes/XY Plot.md
+      - facerestore_cf:
+          - Home: md/facerestore_cf/index.md
+          - Licenses: md/facerestore_cf/licenses.md
+          - Nodes:
+              - CropFace: md/facerestore_cf/Nodes/CropFace.md
+              - FaceRestoreCFWithModel: md/facerestore_cf/Nodes/FaceRestoreCFWithModel.md
+              - FaceRestoreModelLoader: md/facerestore_cf/Nodes/FaceRestoreModelLoader.md
+      - klinter_nodes:
+          - Home: md/klinter_nodes/index.md
+          - Licenses: md/klinter_nodes/licenses.md
+          - Nodes:
+              - Filter: md/klinter_nodes/Nodes/Filter.md
+              - ListStringToFloatNode: md/klinter_nodes/Nodes/ListStringToFloatNode.md
+              - PresentString: md/klinter_nodes/Nodes/PresentString.md
+              - PrintFloats: md/klinter_nodes/Nodes/PrintFloats.md
+              - SingleString: md/klinter_nodes/Nodes/SingleString.md
+              - SizeSelector: md/klinter_nodes/Nodes/SizeSelector.md
+              - concat: md/klinter_nodes/Nodes/concat.md
+      - lora-info:
+          - Home: md/lora-info/index.md
+          - Licenses: md/lora-info/licenses.md
+          - Nodes:
+              - ImageFromURL: md/lora-info/Nodes/ImageFromURL.md
+              - LoraInfo: md/lora-info/Nodes/LoraInfo.md
       - masquerade-nodes-comfyui:
           - Home: md/masquerade-nodes-comfyui/index.md
           - Licenses: md/masquerade-nodes-comfyui/licenses.md
@@ -1650,6 +3398,7 @@ nav:
                   for SDXL.md
               - Checkpoint Loader Simple Mikey: md/mikey_nodes/Nodes/Checkpoint Loader
                   Simple Mikey.md
+              - CheckpointHash: md/mikey_nodes/Nodes/CheckpointHash.md
               - CinematicLook: md/mikey_nodes/Nodes/CinematicLook.md
               - Empty Latent Ratio Custom SDXL: md/mikey_nodes/Nodes/Empty Latent
                   Ratio Custom SDXL.md
@@ -1679,6 +3428,7 @@ nav:
               - Mikey Sampler: md/mikey_nodes/Nodes/Mikey Sampler.md
               - MikeySamplerTiledAdvanced: md/mikey_nodes/Nodes/MikeySamplerTiledAdvanced.md
               - MikeySamplerTiledAdvancedBaseOnly: md/mikey_nodes/Nodes/MikeySamplerTiledAdvancedBaseOnly.md
+              - MosaicExpandImage: md/mikey_nodes/Nodes/MosaicExpandImage.md
               - OobaPrompt: md/mikey_nodes/Nodes/OobaPrompt.md
               - PresetRatioSelector: md/mikey_nodes/Nodes/PresetRatioSelector.md
               - Prompt With SDXL: md/mikey_nodes/Nodes/Prompt With SDXL.md
@@ -1689,6 +3439,9 @@ nav:
               - Range Integer: md/mikey_nodes/Nodes/Range Integer.md
               - Ratio Advanced: md/mikey_nodes/Nodes/Ratio Advanced.md
               - Resize Image for SDXL: md/mikey_nodes/Nodes/Resize Image for SDXL.md
+              - SRFloatPromptInput: md/mikey_nodes/Nodes/SRFloatPromptInput.md
+              - SRIntPromptInput: md/mikey_nodes/Nodes/SRIntPromptInput.md
+              - SRStringPromptInput: md/mikey_nodes/Nodes/SRStringPromptInput.md
               - Save Image If True: md/mikey_nodes/Nodes/Save Image If True.md
               - Save Image With Prompt Data: md/mikey_nodes/Nodes/Save Image With
                   Prompt Data.md
@@ -1709,6 +3462,11 @@ nav:
               - Wildcard Processor: md/mikey_nodes/Nodes/Wildcard Processor.md
               - WildcardAndLoraSyntaxProcessor: md/mikey_nodes/Nodes/WildcardAndLoraSyntaxProcessor.md
               - WildcardOobaPrompt: md/mikey_nodes/Nodes/WildcardOobaPrompt.md
+      - pfg-ComfyUI:
+          - Home: md/pfg-ComfyUI/index.md
+          - Licenses: md/pfg-ComfyUI/licenses.md
+          - Nodes:
+              - PFG: md/pfg-ComfyUI/Nodes/PFG.md
       - rgthree-comfy:
           - Home: md/rgthree-comfy/index.md
           - Licenses: md/rgthree-comfy/licenses.md
@@ -1731,6 +3489,8 @@ nav:
                   (rgthree).md
               - Lora Loader Stack (rgthree): md/rgthree-comfy/Nodes/Lora Loader Stack
                   (rgthree).md
+              - Power Lora Loader (rgthree): md/rgthree-comfy/Nodes/Power Lora Loader
+                  (rgthree).md
               - Power Prompt (rgthree): md/rgthree-comfy/Nodes/Power Prompt (rgthree).md
               - Power Prompt - Simple (rgthree): md/rgthree-comfy/Nodes/Power Prompt
                   - Simple (rgthree).md
@@ -1741,6 +3501,41 @@ nav:
               - SDXL Power Prompt - Simple _ Negative (rgthree): md/rgthree-comfy/Nodes/SDXL
                   Power Prompt - Simple _ Negative (rgthree).md
               - Seed (rgthree): md/rgthree-comfy/Nodes/Seed (rgthree).md
+      - saltai_displayany:
+          - Home: md/saltai_displayany/index.md
+          - Licenses: md/saltai_displayany/licenses.md
+          - Nodes:
+              - SaltDisplayAny: md/saltai_displayany/Nodes/SaltDisplayAny.md
+      - save-image-extended-comfyui:
+          - Home: md/save-image-extended-comfyui/index.md
+          - Licenses: md/save-image-extended-comfyui/licenses.md
+          - Nodes:
+              - SaveImageExtended: md/save-image-extended-comfyui/Nodes/SaveImageExtended.md
+      - sdxl_prompt_styler:
+          - Home: md/sdxl_prompt_styler/index.md
+          - Licenses: md/sdxl_prompt_styler/licenses.md
+          - Nodes:
+              - SDXLPromptStylerAdvanced: md/sdxl_prompt_styler/Nodes/SDXLPromptStylerAdvanced.md
+      - stability-ComfyUI-nodes:
+          - Home: md/stability-ComfyUI-nodes/index.md
+          - Licenses: md/stability-ComfyUI-nodes/licenses.md
+          - Nodes:
+              - ColorBlend: md/stability-ComfyUI-nodes/Nodes/ColorBlend.md
+              - ControlLoraSave: md/stability-ComfyUI-nodes/Nodes/ControlLoraSave.md
+              - GetImageSize: md/stability-ComfyUI-nodes/Nodes/GetImageSize.md
+      - steerable-motion:
+          - Home: md/steerable-motion/index.md
+          - Licenses: md/steerable-motion/licenses.md
+          - Nodes:
+              - BatchCreativeInterpolation: md/steerable-motion/Nodes/BatchCreativeInterpolation.md
+              - IpaConfiguration: md/steerable-motion/Nodes/IpaConfiguration.md
+      - style_aligned_comfy:
+          - Home: md/style_aligned_comfy/index.md
+          - Licenses: md/style_aligned_comfy/licenses.md
+          - Nodes:
+              - StyleAlignedBatchAlign: md/style_aligned_comfy/Nodes/StyleAlignedBatchAlign.md
+              - StyleAlignedReferenceSampler: md/style_aligned_comfy/Nodes/StyleAlignedReferenceSampler.md
+              - StyleAlignedSampleReferenceLatents: md/style_aligned_comfy/Nodes/StyleAlignedSampleReferenceLatents.md
       - tiled_ksampler:
           - Home: md/tiled_ksampler/index.md
           - Licenses: md/tiled_ksampler/licenses.md

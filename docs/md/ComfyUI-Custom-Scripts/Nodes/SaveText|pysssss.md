@@ -1,3 +1,8 @@
+---
+tags:
+- Text
+---
+
 # Save Text 🐍
 ## Documentation
 - Class name: `SaveText|pysssss`

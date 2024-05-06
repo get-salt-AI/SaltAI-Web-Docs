@@ -1,3 +1,8 @@
+---
+tags:
+- Debugging
+---
+
 # Text to Console
 ## Documentation
 - Class name: `Text to Console`

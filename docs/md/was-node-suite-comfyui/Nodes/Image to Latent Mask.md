@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskGeneration
+---
+
 # Image to Latent Mask
 ## Documentation
 - Class name: `Image to Latent Mask`

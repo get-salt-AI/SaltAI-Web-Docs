@@ -1,3 +1,8 @@
+---
+tags:
+- Segmentation
+---
+
 # Framed Mask Grab Cut
 ## Documentation
 - Class name: `Framed Mask Grab Cut`

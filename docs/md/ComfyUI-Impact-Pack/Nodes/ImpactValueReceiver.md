@@ -1,3 +1,9 @@
+---
+tags:
+- DataTypeConversion
+- NumericConversion
+---
+
 # ImpactValueReceiver
 ## Documentation
 - Class name: `ImpactValueReceiver`

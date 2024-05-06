@@ -1,28 +1,34 @@
+---
+tags:
+- ConditionalSelection
+- ImageSwitching
+---
+
 # Image Input Switch
 ## Documentation
 - Class name: `Image Input Switch`
 - Category: `WAS Suite/Logic`
 - Output node: `False`
 
-This node is designed to switch between two input images based on a boolean condition, effectively allowing conditional image selection within a workflow.
+The Image Input Switch node is designed to selectively output one of two input images based on a boolean condition. This functionality allows for dynamic image processing flows where the path of execution can change based on conditional logic.
 ## Input types
 ### Required
 - **`image_a`**
-    - The first image option for the switch. This image will be selected if the boolean condition evaluates to true.
+    - The first image input option for the switch. This image is selected if the boolean condition is true.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`image_b`**
-    - The second image option for the switch. This image will be selected if the boolean condition evaluates to false.
+    - The second image input option for the switch. This image is selected if the boolean condition is false.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
-- **`boolean_number`**
-    - A numeric boolean condition that determines which image (image_a or image_b) is selected. A value of 1 selects image_a, while any other value selects image_b.
-    - Comfy dtype: `NUMBER`
-    - Python dtype: `int`
+- **`boolean`**
+    - A boolean input that determines which of the two images (image_a or image_b) is output by the node.
+    - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output image selected based on the boolean condition.
+    - The output image, which is either image_a or image_b depending on the boolean condition.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
@@ -44,7 +50,7 @@ class WAS_Image_Input_Switch:
             "required": {
                 "image_a": ("IMAGE",),
                 "image_b": ("IMAGE",),
-                "boolean_number": ("NUMBER",),
+                "boolean": ("BOOLEAN", {"forceInput": True}),
             }
         }
 
@@ -53,9 +59,9 @@ class WAS_Image_Input_Switch:
 
     CATEGORY = "WAS Suite/Logic"
 
-    def image_input_switch(self, image_a, image_b, boolean_number=1):
+    def image_input_switch(self, image_a, image_b, boolean=True):
 
-        if int(round(boolean_number)) == 1:
+        if boolean:
             return (image_a, )
         else:
             return (image_b, )

@@ -1,3 +1,8 @@
+---
+tags:
+- Preview
+---
+
 # 🪛 Preview from image
 ## Documentation
 - Class name: `Preview from image [Crystools]`

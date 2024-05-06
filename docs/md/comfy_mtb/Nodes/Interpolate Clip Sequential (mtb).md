@@ -4,29 +4,29 @@
 - Category: `mtb/conditioning`
 - Output node: `False`
 
-This node is designed for the sequential interpolation of text encodings within a given base text, allowing for dynamic text manipulation by replacing specified segments with interpolated encodings. It leverages clip information and interpolation strength to achieve nuanced text transformations.
+This node is designed for sequential interpolation of text encodings within a given base text, using specified replacements and an interpolation strength parameter. It aims to modify the base text by interpolating new text encodings, thereby achieving a seamless transition between the original and the new text content.
 ## Input types
 ### Required
 - **`base_text`**
-    - The original text from which specific segments will be replaced with interpolated encodings. It serves as the foundational content for the interpolation process.
+    - The original text content that serves as the starting point for interpolation.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`text_to_replace`**
-    - The segment of the base text that is targeted for replacement through interpolation. This parameter identifies the specific portion of text to be dynamically altered.
+    - The specific portion of the base text that is targeted for replacement through interpolation.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`clip`**
-    - A clip encoding that guides the interpolation process, ensuring that the text replacement aligns with the desired semantic direction or theme.
+    - A parameter that influences the degree to which the original text is modified, controlling the blend between the original and new text encodings.
     - Comfy dtype: `CLIP`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `float`
 - **`interpolation_strength`**
-    - Determines the degree to which the replacement text is blended with the original, allowing for fine-tuned control over the interpolation effect.
+    - Defines the intensity of the interpolation effect, adjusting how prominently the new text encodings are integrated into the base text.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`conditioning`**
     - Comfy dtype: `CONDITIONING`
-    - The output is a conditioning format that includes interpolated text encodings, suitable for further processing or application in text-to-image or other generative models.
+    - The result of the interpolation process, represented as a conditioning object that encapsulates the blended text encodings.
     - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
 ## Usage tips
 - Infra type: `CPU`
@@ -35,7 +35,7 @@ This node is designed for the sequential interpolation of text encodings within 
 
 ## Source code
 ```python
-class InterpolateClipSequential:
+class MTB_InterpolateClipSequential:
     @classmethod
     def INPUT_TYPES(cls):
         return {
@@ -56,7 +56,12 @@ class InterpolateClipSequential:
     CATEGORY = "mtb/conditioning"
 
     def interpolate_encodings_sequential(
-        self, base_text, text_to_replace, clip, interpolation_strength, **replacements
+        self,
+        base_text,
+        text_to_replace,
+        clip,
+        interpolation_strength,
+        **replacements,
     ):
         log.debug(f"Received interpolation_strength: {interpolation_strength}")
 
@@ -91,20 +96,30 @@ class InterpolateClipSequential:
             log.debug("Using the base text a the base blend")
             # -  Start with the base_text condition
             tokens = clip.tokenize(base_text)
-            cond_from, pooled_from = clip.encode_from_tokens(tokens, return_pooled=True)
+            cond_from, pooled_from = clip.encode_from_tokens(
+                tokens, return_pooled=True
+            )
         else:
             base_replace = list(replacements.values())[segment_index - 1]
             log.debug(f"Using {base_replace} a the base blend")
 
             # - Start with the base_text condition replaced by the closest replacement
-            tokens = clip.tokenize(base_text.replace(text_to_replace, base_replace))
-            cond_from, pooled_from = clip.encode_from_tokens(tokens, return_pooled=True)
+            tokens = clip.tokenize(
+                base_text.replace(text_to_replace, base_replace)
+            )
+            cond_from, pooled_from = clip.encode_from_tokens(
+                tokens, return_pooled=True
+            )
 
             replacement_text = list(replacements.values())[segment_index]
 
-        interpolated_text = base_text.replace(text_to_replace, replacement_text)
+        interpolated_text = base_text.replace(
+            text_to_replace, replacement_text
+        )
         tokens = clip.tokenize(interpolated_text)
-        cond_to, pooled_to = clip.encode_from_tokens(tokens, return_pooled=True)
+        cond_to, pooled_to = clip.encode_from_tokens(
+            tokens, return_pooled=True
+        )
 
         # - Linearly interpolate between the two conditions
         interpolated_condition = (
@@ -114,6 +129,8 @@ class InterpolateClipSequential:
             1.0 - local_strength
         ) * pooled_from + local_strength * pooled_to
 
-        return ([[interpolated_condition, {"pooled_output": interpolated_pooled}]],)
+        return (
+            [[interpolated_condition, {"pooled_output": interpolated_pooled}]],
+        )
 
 ```

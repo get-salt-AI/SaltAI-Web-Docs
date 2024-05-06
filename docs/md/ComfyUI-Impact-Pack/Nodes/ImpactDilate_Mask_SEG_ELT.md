@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskMorphology
+---
+
 # Dilate Mask (SEG_ELT)
 ## Documentation
 - Class name: `ImpactDilate_Mask_SEG_ELT`

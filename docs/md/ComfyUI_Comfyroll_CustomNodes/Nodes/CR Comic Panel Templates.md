@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- PanelDesign
+- VisualEffects
+---
+
 # 📱 CR Comic Panel Templates
 ## Documentation
 - Class name: `CR Comic Panel Templates`

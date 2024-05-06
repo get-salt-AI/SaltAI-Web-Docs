@@ -1,69 +1,59 @@
+---
+tags:
+- Conditioning
+- Context
+---
+
 # Context Merge (rgthree)
 ## Documentation
 - Class name: `Context Merge (rgthree)`
 - Category: `rgthree`
 - Output node: `False`
 
-The Context Merge node is designed to integrate multiple context objects into a single, unified context. By accepting up to five optional context inputs, it allows for the dynamic combination and overriding of context properties, facilitating flexible and efficient context management across different operations.
+The Context Merge node is designed to integrate multiple context inputs into a single, unified context output. It systematically merges the provided contexts, with later contexts having the ability to override the values of earlier ones, facilitating dynamic context management and updates.
 ## Input types
 ### Required
 ### Optional
-- **`ctx_01`**
-    - Represents the first context object to be merged. If provided, its properties may be overridden by subsequent context objects.
+- **`ctx_i`**
+    - unknown
     - Comfy dtype: `RGTHREE_CONTEXT`
-    - Python dtype: `dict`
-- **`ctx_02`**
-    - Represents the second context object to be merged, potentially overriding properties from the first context.
-    - Comfy dtype: `RGTHREE_CONTEXT`
-    - Python dtype: `dict`
-- **`ctx_03`**
-    - The third context object in the merging sequence, which can override properties from the first and second contexts.
-    - Comfy dtype: `RGTHREE_CONTEXT`
-    - Python dtype: `dict`
-- **`ctx_04`**
-    - This is the fourth context object considered for merging, capable of overriding properties from earlier contexts.
-    - Comfy dtype: `RGTHREE_CONTEXT`
-    - Python dtype: `dict`
-- **`ctx_05`**
-    - The final context object in the merge sequence, having the highest priority in overriding properties from all previous contexts.
-    - Comfy dtype: `RGTHREE_CONTEXT`
-    - Python dtype: `dict`
+    - Python dtype: `unknown`
 ## Output types
 - **`CONTEXT`**
     - Comfy dtype: `RGTHREE_CONTEXT`
-    - The unified context resulting from the merge, incorporating elements from all provided contexts.
+    - The unified context output, merging inputs with later contexts potentially overriding earlier ones.
     - Python dtype: `dict`
 - **`MODEL`**
     - Comfy dtype: `MODEL`
-    - The merged model settings from the provided contexts.
+    - Model information included in the merged context.
     - Python dtype: `dict`
 - **`CLIP`**
     - Comfy dtype: `CLIP`
-    - The merged CLIP settings from the provided contexts.
+    - CLIP model settings included in the merged context.
     - Python dtype: `dict`
 - **`VAE`**
     - Comfy dtype: `VAE`
-    - The merged VAE settings from the provided contexts.
+    - VAE model settings included in the merged context.
     - Python dtype: `dict`
 - **`POSITIVE`**
     - Comfy dtype: `CONDITIONING`
-    - The merged positive conditioning from the provided contexts.
+    - Positive conditioning information included in the merged context.
     - Python dtype: `dict`
 - **`NEGATIVE`**
     - Comfy dtype: `CONDITIONING`
-    - The merged negative conditioning from the provided contexts.
+    - Negative conditioning information included in the merged context.
     - Python dtype: `dict`
 - **`LATENT`**
     - Comfy dtype: `LATENT`
-    - The merged latent settings from the provided contexts.
+    - Latent space information included in the merged context.
     - Python dtype: `dict`
 - **`IMAGE`**
     - Comfy dtype: `IMAGE`
-    - The merged image settings from the provided contexts.
+    - Image data included in the merged context.
     - Python dtype: `dict`
 - **`SEED`**
     - Comfy dtype: `INT`
-    - The merged seed settings from the provided contexts.
+    - Seed for random number generation included in the merged context.
     - Python dtype: `dict`
 ## Usage tips
 - Infra type: `CPU`

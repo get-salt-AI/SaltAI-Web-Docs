@@ -1,3 +1,9 @@
+---
+tags:
+- Animation
+- PoseEstimation
+---
+
 # AnimalPose Estimator (AP10K)
 ## Documentation
 - Class name: `AnimalPosePreprocessor`

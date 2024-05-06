@@ -1,3 +1,8 @@
+---
+tags:
+- VAE
+---
+
 # Make Circular VAE
 ## Documentation
 - Class name: `MakeCircularVAE`

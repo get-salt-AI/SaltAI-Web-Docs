@@ -1,3 +1,8 @@
+---
+tags:
+- ModelMerge
+---
+
 # ModelMergeBlocks
 ## Documentation
 - Class name: `ModelMergeBlocks`

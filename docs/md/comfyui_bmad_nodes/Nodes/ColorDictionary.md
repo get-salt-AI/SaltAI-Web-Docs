@@ -1,3 +1,8 @@
+---
+tags:
+- Color
+---
+
 # ColorDictionary
 ## Documentation
 - Class name: `ColorDictionary`

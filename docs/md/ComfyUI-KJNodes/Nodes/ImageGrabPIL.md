@@ -1,41 +1,47 @@
+---
+tags:
+- ImageTransformation
+- VisualEffects
+---
+
 # ImageGrabPIL
 ## Documentation
 - Class name: `ImageGrabPIL`
 - Category: `KJNodes/experimental`
 - Output node: `False`
 
-The ImageGrabPIL node is designed for capturing and processing images directly from the screen using the PIL library. It focuses on grabbing specific regions of the screen, allowing for the extraction of images without the need for pre-existing image files. This node is particularly useful for applications requiring real-time image capture and processing.
+The ImageGrabPIL node is designed to capture and process images from the screen using the PIL library. It focuses on grabbing screen content, possibly for further manipulation or analysis within a larger image processing or computer vision workflow.
 ## Input types
 ### Required
 - **`x`**
-    - Specifies the starting x-coordinate of the screen region to capture.
+    - Specifies the starting x-coordinate for the screen capture area, affecting the horizontal position of the capture region.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`y`**
-    - Specifies the starting y-coordinate of the screen region to capture.
+    - Specifies the starting y-coordinate for the screen capture area, influencing the vertical position of the capture region.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`width`**
-    - Defines the width of the screen region to be captured.
+    - Defines the width of the screen capture area, determining how wide the captured image will be.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Defines the height of the screen region to be captured.
+    - Defines the height of the screen capture area, determining the height of the captured image.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`num_frames`**
-    - Determines the number of frames to capture in a sequence, allowing for the creation of image sequences or simple animations.
+    - Indicates the number of frames to capture, useful for creating a sequence of images over time.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`delay`**
-    - Sets the delay between captures when multiple frames are being captured, controlling the speed of the sequence.
+    - Sets the delay between captures when multiple frames are being captured, controlling the timing of captures.
     - Comfy dtype: `FLOAT`
     - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is a single image or a sequence of images captured from the specified screen region, ready for further processing or analysis.
-    - Python dtype: `PIL.Image or List[PIL.Image]`
+    - The captured image or sequence of images from the specified screen area.
+    - Python dtype: `PIL.Image.Image`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
@@ -58,6 +64,10 @@ class ImageGrabPIL:
     RETURN_NAMES = ("image",)
     FUNCTION = "screencap"
     CATEGORY = "KJNodes/experimental"
+    DESCRIPTION = """
+Captures an area specified by screen coordinates.  
+Can be used for realtime diffusion with autoqueue.
+"""
 
     @classmethod
     def INPUT_TYPES(s):

@@ -1,3 +1,8 @@
+---
+tags:
+- ImageTransformation
+---
+
 # ⚙️ CR Select Resize Method
 ## Documentation
 - Class name: `CR Select Resize Method`

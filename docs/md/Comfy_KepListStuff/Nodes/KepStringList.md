@@ -1,3 +1,9 @@
+---
+tags:
+- List
+- Text
+---
+
 # String List
 ## Documentation
 - Class name: `KepStringList`

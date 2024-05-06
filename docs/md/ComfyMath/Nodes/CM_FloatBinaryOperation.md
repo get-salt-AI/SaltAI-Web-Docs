@@ -1,3 +1,9 @@
+---
+tags:
+- Math
+- VectorMath
+---
+
 # FloatBinaryOperation
 ## Documentation
 - Class name: `CM_FloatBinaryOperation`

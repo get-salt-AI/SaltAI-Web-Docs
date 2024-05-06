@@ -1,22 +1,29 @@
+---
+tags:
+- ImageScaling
+- ImageUpscaling
+- Upscale
+---
+
 # Iterative Upscale (Latent/on Pixel Space)
 ## Documentation
 - Class name: `IterativeLatentUpscale`
 - Category: `ImpactPack/Upscale`
 - Output node: `False`
 
-This node is designed to iteratively upscale latent representations of images over a specified number of steps, allowing for gradual and controlled image enlargement. It leverages an upscaling method to progressively increase the resolution of the latent space representation, enhancing the detail and quality of the generated images with each iteration.
+The IterativeLatentUpscale node is designed to progressively upscale latent images through a series of steps, either geometrically or linearly, to achieve a desired magnification factor. This node leverages various upscaling methods and models to refine the quality of the upscaled images at each iteration, ensuring enhanced detail and resolution.
 ## Input types
 ### Required
 - **`samples`**
-    - The initial latent representation of the image to be upscaled. It serves as the starting point for the iterative upscaling process.
+    - The initial latent samples to be upscaled. This input is crucial as it serves as the starting point for the iterative upscaling process.
     - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 - **`upscale_factor`**
-    - The total factor by which the image's dimensions are to be increased by the end of the iterative process.
+    - The target magnification factor by which the latent samples are to be upscaled. This factor determines the final size of the upscaled images.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`steps`**
-    - The number of iterations to divide the upscaling process into, allowing for gradual enlargement and refinement.
+    - The number of iterative steps to perform during the upscaling process. This parameter controls the granularity of the upscaling, affecting the intermediate sizes and quality.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`temp_prefix`**
@@ -24,18 +31,22 @@ This node is designed to iteratively upscale latent representations of images ov
     - Comfy dtype: `STRING`
     - Python dtype: `Optional[str]`
 - **`upscaler`**
-    - The specific upscaling method or model to be used for each upscaling step.
+    - The upscaling model or method used to enhance the resolution and detail of the latent images during each iterative step.
     - Comfy dtype: `UPSCALER`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `Any`
+- **`step_mode`**
+    - Determines whether the upscaling factor is applied geometrically or linearly across the steps, influencing the progression of image sizes.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
 ## Output types
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - The upscaled latent representation after the iterative upscaling process.
+    - The final upscaled latent representation after completing all iterative steps.
     - Python dtype: `Dict[str, torch.Tensor]`
 - **`vae`**
     - Comfy dtype: `VAE`
-    - The variational autoencoder used during the upscaling process.
-    - Python dtype: `torch.nn.Module`
+    - The VAE model used for encoding and decoding during the upscaling process, integral to the transformation of latent representations.
+    - Python dtype: `Any`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes:
@@ -53,10 +64,11 @@ class IterativeLatentUpscale:
                      "upscale_factor": ("FLOAT", {"default": 1.5, "min": 1, "max": 10000, "step": 0.1}),
                      "steps": ("INT", {"default": 3, "min": 1, "max": 10000, "step": 1}),
                      "temp_prefix": ("STRING", {"default": ""}),
-                     "upscaler": ("UPSCALER",)
-                },
+                     "upscaler": ("UPSCALER",),
+                     "step_mode": (["simple", "geometric"], {"default": "simple"})
+                    },
                 "hidden": {"unique_id": "UNIQUE_ID"},
-        }
+                }
 
     RETURN_TYPES = ("LATENT", "VAE")
     RETURN_NAMES = ("latent", "vae")
@@ -64,19 +76,27 @@ class IterativeLatentUpscale:
 
     CATEGORY = "ImpactPack/Upscale"
 
-    def doit(self, samples, upscale_factor, steps, temp_prefix, upscaler, unique_id):
+    def doit(self, samples, upscale_factor, steps, temp_prefix, upscaler, step_mode="simple", unique_id=None):
         w = samples['samples'].shape[3]*8  # image width
         h = samples['samples'].shape[2]*8  # image height
 
         if temp_prefix == "":
             temp_prefix = None
 
-        upscale_factor_unit = max(0, (upscale_factor-1.0)/steps)
+        if step_mode == "geometric":
+            upscale_factor_unit = pow(upscale_factor, 1.0/steps)
+        else:  # simple
+            upscale_factor_unit = max(0, (upscale_factor - 1.0) / steps)
+
         current_latent = samples
         scale = 1
 
         for i in range(steps-1):
-            scale += upscale_factor_unit
+            if step_mode == "geometric":
+                scale *= upscale_factor_unit
+            else:  # simple
+                scale += upscale_factor_unit
+
             new_w = w*scale
             new_h = h*scale
             core.update_node_status(unique_id, f"{i+1}/{steps} steps | x{scale:.2f}", (i+1)/steps)
@@ -89,7 +109,7 @@ class IterativeLatentUpscale:
             new_h = h*upscale_factor
             core.update_node_status(unique_id, f"Final step | x{upscale_factor:.2f}", 1.0)
             print(f"IterativeLatentUpscale[Final]: {new_w:.1f}x{new_h:.1f} (scale:{upscale_factor:.2f}) ")
-            step_info = steps, steps
+            step_info = steps-1, steps
             current_latent = upscaler.upscale_shape(step_info, current_latent, new_w, new_h, temp_prefix)
 
         core.update_node_status(unique_id, "", None)

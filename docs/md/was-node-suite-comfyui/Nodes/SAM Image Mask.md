@@ -1,3 +1,8 @@
+---
+tags:
+- SAM
+---
+
 # SAM Image Mask
 ## Documentation
 - Class name: `SAM Image Mask`

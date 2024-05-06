@@ -1,3 +1,10 @@
+---
+tags:
+- DepthMap
+- DepthMapEstimation
+- Image
+---
+
 # MiDaS Mask Image
 ## Documentation
 - Class name: `MiDaS Mask Image`

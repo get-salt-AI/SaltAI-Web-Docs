@@ -1,3 +1,8 @@
+---
+tags:
+- ModelMerge
+---
+
 # CLIPMergeSimple
 ## Documentation
 - Class name: `CLIPMergeSimple`

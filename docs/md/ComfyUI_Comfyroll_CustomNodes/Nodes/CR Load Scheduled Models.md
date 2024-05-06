@@ -1,3 +1,12 @@
+---
+tags:
+- Loader
+- Model
+- ModelIO
+- ModelLoader
+- ModelSwitching
+---
+
 # 📑 CR Load Scheduled Models
 ## Documentation
 - Class name: `CR Load Scheduled Models`

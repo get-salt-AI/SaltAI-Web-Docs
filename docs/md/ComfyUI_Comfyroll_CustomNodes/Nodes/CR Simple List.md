@@ -1,3 +1,9 @@
+---
+tags:
+- List
+- Text
+---
+
 # 📜 CR Simple List
 ## Documentation
 - Class name: `CR Simple List`

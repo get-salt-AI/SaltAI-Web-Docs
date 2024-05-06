@@ -1,3 +1,8 @@
+---
+tags:
+- VAE
+---
+
 # VAEEncode (Bundle Latent)
 ## Documentation
 - Class name: `BLVAEEncode`

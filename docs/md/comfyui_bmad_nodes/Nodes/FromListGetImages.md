@@ -1,3 +1,8 @@
+---
+tags:
+- List
+---
+
 # FromListGetImages
 ## Documentation
 - Class name: `FromListGetImages`

@@ -1,3 +1,12 @@
+---
+tags:
+- Checkpoint
+- CheckpointLoader
+- Loader
+- ModelIO
+- ModelLoader
+---
+
 # Load Checkpoint
 ## Documentation
 - Class name: `CheckpointLoaderSimple`
@@ -35,7 +44,7 @@ The CheckpointLoaderSimple node is designed for loading model checkpoints withou
     - [CR Apply LoRA Stack](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Apply LoRA Stack.md)
     - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
     - [KSampler](../../Comfy/Nodes/KSampler.md)
-    - UltimateSDUpscale
+    - [UltimateSDUpscale](../../ComfyUI_UltimateSDUpscale/Nodes/UltimateSDUpscale.md)
 
 
 

@@ -1,27 +1,32 @@
+---
+tags:
+- Image
+- ImageSave
+---
+
 # Save Image Sequence (mtb)
 ## Documentation
 - Class name: `Save Image Sequence (mtb)`
 - Category: `mtb/IO`
 - Output node: `True`
 
-The Save Image Sequence node is designed to save a sequence of images to a specified directory, allowing for the inclusion of additional metadata and customization of the file naming convention. It facilitates the organization and storage of generated image sequences, making it easier to manage and retrieve specific frames or sequences.
+The Save Image Sequence node is designed to save a sequence of images to a specified directory, allowing for the inclusion of additional metadata such as prompts and custom PNG information. It facilitates the organization and storage of generated image sequences, making it easier to retrieve and utilize them for further processing or presentation.
 ## Input types
 ### Required
 - **`images`**
-    - A list of images to be saved. This parameter is crucial as it directly influences the node's primary function of saving image sequences.
+    - The sequence of images to be saved. This parameter is crucial as it directly influences the node's primary function of storing these images in a specified format and location.
     - Comfy dtype: `IMAGE`
     - Python dtype: `List[torch.Tensor]`
 - **`filename_prefix`**
-    - A prefix for the filename, used to customize the naming convention of the saved images. It helps in categorizing and identifying images within a sequence.
+    - A prefix for the filename under which the images will be saved. This allows for easy identification and organization of saved images within the output directory.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`current_frame`**
-    - The index of the current frame in the sequence. It is used to determine the naming of the saved image file, facilitating the organization of the image sequence.
+    - Indicates the starting point or current frame number for the sequence of images being saved. This helps in organizing the sequence and maintaining continuity if the sequence is being updated over time.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
-- **`ui`**
-    - A UI component displaying the saved images, including filenames, subfolder names, and the type of output. It provides a visual representation and quick access to the saved images.
+The node doesn't have output types
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -29,7 +34,7 @@ The Save Image Sequence node is designed to save a sequence of images to a speci
 
 ## Source code
 ```python
-class SaveImageSequence:
+class MTB_SaveImageSequence:
     """Save an image sequence to a folder. The current frame is used to determine which image to save.
 
     This is merely a wrapper around the `save_images` function with formatting for the output folder and filename.

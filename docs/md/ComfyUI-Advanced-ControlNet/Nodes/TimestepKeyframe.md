@@ -1,3 +1,10 @@
+---
+tags:
+- AnimationScheduling
+- Frame
+- Keyframe
+---
+
 # Timestep Keyframe 🛂🅐🅒🅝
 ## Documentation
 - Class name: `TimestepKeyframe`

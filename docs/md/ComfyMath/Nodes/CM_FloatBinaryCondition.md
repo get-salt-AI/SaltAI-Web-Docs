@@ -1,3 +1,9 @@
+---
+tags:
+- Math
+- VectorMath
+---
+
 # FloatBinaryCondition
 ## Documentation
 - Class name: `CM_FloatBinaryCondition`

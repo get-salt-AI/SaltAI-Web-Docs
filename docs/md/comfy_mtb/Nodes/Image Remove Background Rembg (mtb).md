@@ -1,53 +1,59 @@
+---
+tags:
+- BackgroundRemoval
+- Image
+---
+
 # Image Remove Background Rembg (mtb)
 ## Documentation
 - Class name: `Image Remove Background Rembg (mtb)`
 - Category: `mtb/image`
 - Output node: `False`
 
-This node leverages the Rembg library to remove the background from images, optionally applying alpha matting for improved edge handling and allowing for post-processing of the mask. It supports customization of the background color for the resultant image.
+This node specializes in removing the background from images using the Rembg tool, enhancing the focus on the primary subject by isolating it from its surroundings.
 ## Input types
 ### Required
 - **`image`**
-    - The input image from which the background is to be removed. It plays a crucial role in determining the effectiveness of the background removal process.
+    - The input image from which the background is to be removed. It is the primary data on which the background removal process is executed.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `PIL.Image`
+    - Python dtype: `IMAGE`
 - **`alpha_matting`**
-    - A boolean flag indicating whether alpha matting should be applied to improve the quality of the edges in the output image.
+    - A boolean flag indicating whether alpha matting is to be applied for finer edge handling in the background removal process.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`alpha_matting_foreground_threshold`**
-    - The threshold value for determining the foreground in the context of alpha matting, affecting the sharpness and clarity of the foreground edges.
+    - Defines the threshold for foreground selection in the alpha matting process, affecting the precision of the subject's edges.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`alpha_matting_background_threshold`**
-    - The threshold value for determining the background in the context of alpha matting, influencing the separation between the foreground and the background.
+    - Sets the threshold for background selection in the alpha matting process, influencing the accuracy of background removal.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`alpha_matting_erode_size`**
-    - The size of the erosion applied in the alpha matting process, which can help in refining the edges of the foreground object.
+    - Determines the erode size in the alpha matting process, impacting the smoothness of the subject's edges.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`post_process_mask`**
-    - A boolean flag indicating whether the mask generated during the background removal process should undergo post-processing for potentially improved quality.
+    - A boolean flag that enables post-processing of the mask to refine the background removal results.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`bgcolor`**
-    - The color to be used for the background of the output image, allowing for customization of the resultant image's appearance.
+    - Specifies the background color to be applied post-removal, allowing for customization of the resulting image's backdrop.
     - Comfy dtype: `COLOR`
-    - Python dtype: `Tuple[int, int, int, int]`
+    - Python dtype: `COLOR`
 ## Output types
 - **`Image (rgba)`**
     - Comfy dtype: `IMAGE`
-    - The image with the background removed, presented in RGBA format.
-    - Python dtype: `torch.Tensor`
+    - The resulting image with the background removed, presented in RGBA format to include transparency information.
+    - Python dtype: `IMAGE`
 - **`Mask`**
     - Comfy dtype: `MASK`
-    - The mask used for background removal.
-    - Python dtype: `torch.Tensor`
+    - The mask generated during the background removal process, indicating areas of foreground and background.
+    - Python dtype: `MASK`
 - **`Image`**
     - Comfy dtype: `IMAGE`
-    - The image with a new background color applied, presented in RGB format.
-    - Python dtype: `torch.Tensor`
+    - The final image after background removal, without the alpha channel, suitable for use in contexts where transparency is not required.
+    - Python dtype: `IMAGE`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -55,7 +61,7 @@ This node leverages the Rembg library to remove the background from images, opti
 
 ## Source code
 ```python
-class ImageRemoveBackgroundRembg:
+class MTB_ImageRemoveBackgroundRembg:
     """Removes the background from the input using Rembg."""
 
     @classmethod
@@ -150,6 +156,10 @@ class ImageRemoveBackgroundRembg:
 
             pbar.update(1)
 
-        return (pil2tensor(out_img), pil2tensor(out_mask), pil2tensor(out_img_on_bg))
+        return (
+            pil2tensor(out_img),
+            pil2tensor(out_mask),
+            pil2tensor(out_img_on_bg),
+        )
 
 ```

@@ -1,3 +1,9 @@
+---
+tags:
+- ImpactPack
+- Segmentation
+---
+
 # SEGS Filter (ordered)
 ## Documentation
 - Class name: `ImpactSEGSOrderedFilter`

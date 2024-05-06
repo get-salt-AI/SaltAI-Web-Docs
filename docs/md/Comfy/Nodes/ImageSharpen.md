@@ -1,41 +1,47 @@
+---
+tags:
+- ImageEnhancement
+- VisualEffects
+---
+
 # ImageSharpen
 ## Documentation
 - Class name: `ImageSharpen`
 - Category: `image/postprocessing`
 - Output node: `False`
 
-The ImageSharpen node enhances the clarity of an image by accentuating its edges and details. It applies a sharpening filter to the image, which can be adjusted in intensity and radius, thereby making the image appear more defined and crisp.
+The ImageSharpen node enhances the clarity of an image by applying a sharpening filter. This process accentuates the edges and details within the image, making it appear more defined and crisp.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be sharpened. This parameter is crucial as it determines the base image on which the sharpening effect will be applied.
+    - The input image to be sharpened. This tensor represents the image data that will undergo the sharpening process.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`sharpen_radius`**
-    - Defines the radius of the sharpening effect. A larger radius means that more pixels around the edge will be affected, leading to a more pronounced sharpening effect.
+    - Defines the radius of the sharpening effect. A larger radius increases the area of influence around edges, enhancing the sharpening effect.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`sigma`**
-    - Controls the spread of the sharpening effect. A higher sigma value results in a smoother transition at the edges, while a lower sigma makes the sharpening more localized.
+    - Determines the spread of the Gaussian kernel used in the sharpening process. A higher sigma value results in a smoother, less localized sharpening effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`alpha`**
-    - Adjusts the intensity of the sharpening effect. Higher alpha values result in a stronger sharpening effect.
+    - Controls the intensity of the sharpening. Higher alpha values result in a more pronounced sharpening effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The sharpened image, with enhanced edges and details, ready for further processing or display.
+    - The sharpened image. This output is the result of applying the sharpening filter to the input image, enhancing its edges and details.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes:
     - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
-    - [IPAdapterApplyFaceID](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApplyFaceID.md)
-    - [IPAdapterApply](../../ComfyUI_IPAdapter_plus/Nodes/IPAdapterApply.md)
+    - IPAdapterApplyFaceID
+    - IPAdapterApply
     - [ImageUpscaleWithModel](../../Comfy/Nodes/ImageUpscaleWithModel.md)
-    - UltimateSDUpscale
+    - [UltimateSDUpscale](../../ComfyUI_UltimateSDUpscale/Nodes/UltimateSDUpscale.md)
     - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
 
 
@@ -61,13 +67,13 @@ class Sharpen:
                     "default": 1.0,
                     "min": 0.1,
                     "max": 10.0,
-                    "step": 0.1
+                    "step": 0.01
                 }),
                 "alpha": ("FLOAT", {
                     "default": 1.0,
                     "min": 0.0,
                     "max": 5.0,
-                    "step": 0.1
+                    "step": 0.01
                 }),
             },
         }
@@ -82,6 +88,7 @@ class Sharpen:
             return (image,)
 
         batch_size, height, width, channels = image.shape
+        image = image.to(comfy.model_management.get_torch_device())
 
         kernel_size = sharpen_radius * 2 + 1
         kernel = gaussian_kernel(kernel_size, sigma, device=image.device) * -(alpha*10)
@@ -96,6 +103,6 @@ class Sharpen:
 
         result = torch.clamp(sharpened, 0, 1)
 
-        return (result,)
+        return (result.to(comfy.model_management.intermediate_device()),)
 
 ```

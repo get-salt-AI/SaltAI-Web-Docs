@@ -1,3 +1,10 @@
+---
+tags:
+- List
+- MultilineText
+- Text
+---
+
 # String (Multiline)
 ## Documentation
 - Class name: `JWStringMultiline`

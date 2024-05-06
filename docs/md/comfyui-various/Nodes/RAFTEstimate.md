@@ -1,3 +1,8 @@
+---
+tags:
+- OpticalFlow
+---
+
 # RAFT Estimate
 ## Documentation
 - Class name: `RAFTEstimate`

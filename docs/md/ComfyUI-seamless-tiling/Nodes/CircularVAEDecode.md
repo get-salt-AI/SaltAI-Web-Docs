@@ -1,3 +1,8 @@
+---
+tags:
+- VAE
+---
+
 # Circular VAE Decode (tile)
 ## Documentation
 - Class name: `CircularVAEDecode`

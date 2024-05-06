@@ -1,44 +1,50 @@
+---
+tags:
+- Prompt
+- Text
+---
+
 # Wildcard And Lora Syntax Processor (Mikey)
 ## Documentation
 - Class name: `WildcardAndLoraSyntaxProcessor`
 - Category: `Mikey/Lora`
 - Output node: `False`
 
-The WildcardAndLoraSyntaxProcessor node is designed to process text inputs by identifying and handling both wildcard and LoRA (Low-Rank Adaptation) syntaxes. It aims to enhance the flexibility and expressiveness of text inputs by allowing users to incorporate dynamic content through wildcards and to modify model behavior with LoRA specifications.
+The WildcardAndLoraSyntaxProcessor node is designed to process text inputs by identifying and handling both wildcard and Lora syntax patterns. This dual functionality allows for the dynamic modification of text based on predefined patterns and the integration of Lora model adjustments directly within text inputs, facilitating a more flexible and powerful text manipulation and model interaction capability.
 ## Input types
 ### Required
 - **`model`**
-    - The 'model' parameter represents the model that will be potentially modified by the LoRA specifications contained within the text input.
+    - The 'model' parameter represents the model that may be adjusted based on Lora syntax within the input text, allowing for dynamic model manipulation.
     - Comfy dtype: `MODEL`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `object`
 - **`clip`**
-    - The 'clip' parameter is used alongside the model and may be modified based on LoRA specifications found in the text input.
+    - The 'clip' parameter represents the clip model that may be adjusted alongside the main model in response to Lora syntax within the input text, facilitating coordinated model adjustments.
     - Comfy dtype: `CLIP`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `object`
 - **`text`**
-    - The 'text' parameter is the primary text input that may contain wildcard and LoRA syntaxes. It serves as the basis for dynamic content generation and model behavior modification.
+    - The 'text' parameter is the primary input text that the node processes. It is crucial for the operation as it contains the wildcard and Lora syntax patterns that need to be identified and handled. The processing of this text enables the dynamic modification and model interaction based on the specified patterns.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`seed`**
-    - The 'seed' parameter is used to ensure reproducibility in the generation of dynamic content from wildcards. It influences the randomness of content generated from wildcard expressions.
+    - The 'seed' parameter is used to introduce a deterministic element in the processing of wildcard patterns, ensuring reproducibility of results across different runs with the same input.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The modified model after processing LoRA specifications.
-    - Python dtype: `torch.nn.Module`
+    - The 'model' output is the potentially modified model after processing Lora syntax adjustments specified in the input text.
+    - Python dtype: `object`
 - **`clip`**
     - Comfy dtype: `CLIP`
-    - The potentially modified clip after processing LoRA specifications.
-    - Python dtype: `torch.nn.Module`
+    - The 'clip' output is the potentially modified clip model after processing Lora syntax adjustments specified in the input text.
+    - Python dtype: `object`
 - **`text`**
     - Comfy dtype: `STRING`
-    - The processed text where wildcard and LoRA syntaxes have been resolved, resulting in dynamic content generation.
+    - The output 'text' is the modified version of the input text after the wildcard and Lora syntax patterns have been processed. This includes the application of dynamic modifications and model adjustments specified within the input text.
     - Python dtype: `str`
 - **`unprocessed_text`**
     - Comfy dtype: `STRING`
-    - The original text input before processing, which may contain unresolved wildcard and LoRA syntaxes.
+    - The 'unprocessed_text' output provides the original input text before any processing of wildcard or Lora syntax patterns, preserving the initial state for reference or further use.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -88,14 +94,12 @@ class WildcardAndLoraSyntaxProcessor:
                 if '.safetensors' not in lora_filename:
                     lora_filename += '.safetensors'
                 # get the lora multiplier
-                lora_multiplier = float(lora_prompt[1]) if lora_prompt[1] != '' else 1.0
-                print('Loading LoRA: ' + lora_filename + ' with multiplier: ' + str(lora_multiplier))
+                try:
+                    lora_multiplier = float(lora_prompt[1]) if lora_prompt[1] != '' else 1.0
+                except:
+                    lora_multiplier = 1.0
                 # apply the lora to the clip using the LoraLoader.load_lora function
-                # def load_lora(self, model, clip, lora_name, strength_model, strength_clip):
-                # ...
-                # return (model_lora, clip_lora)
-                # apply the lora to the clip
-                model, clip_lora = LoraLoader.load_lora(self, model, clip, lora_filename, lora_multiplier, lora_multiplier)
+                model, clip = load_lora(model, clip, lora_filename, lora_multiplier, lora_multiplier)
         # strip lora syntax from text
         stripped_text = re.sub(lora_re, '', stripped_text)
         return model, clip, stripped_text
@@ -110,7 +114,7 @@ class WildcardAndLoraSyntaxProcessor:
         if len(text_) != len(text):
             seed = random.randint(0, 1000000)
         else:
-            seed = 0
+            seed = 1
         # extract and load loras
         model, clip, stripped_text = self.extract_and_load_loras(text_, model, clip)
         # process wildcards again

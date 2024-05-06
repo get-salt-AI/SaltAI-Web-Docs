@@ -1,3 +1,10 @@
+---
+tags:
+- Crop
+- Image
+- ImageTransformation
+---
+
 # Batch Resize Image for SDXL (Mikey)
 ## Documentation
 - Class name: `Batch Resize Image for SDXL`

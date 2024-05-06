@@ -1,3 +1,9 @@
+---
+tags:
+- BooleanLogic
+- ConditionalSelection
+---
+
 # 🪛 Primitive boolean
 ## Documentation
 - Class name: `Primitive boolean [Crystools]`

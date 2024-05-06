@@ -1,3 +1,9 @@
+---
+tags:
+- Color
+- HSVColorSpace
+---
+
 # RGB to HSV
 ## Documentation
 - Class name: `RGB to HSV`

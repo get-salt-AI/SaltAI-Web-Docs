@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- ImageBlend
+- ImageComposite
+---
+
 # Porter-Duff Image Composite
 ## Documentation
 - Class name: `PorterDuffImageComposite`

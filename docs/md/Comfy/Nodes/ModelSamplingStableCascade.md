@@ -1,3 +1,8 @@
+---
+tags:
+- Sampling
+---
+
 # ModelSamplingStableCascade
 ## Documentation
 - Class name: `ModelSamplingStableCascade`

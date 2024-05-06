@@ -1,28 +1,35 @@
+---
+tags:
+- Blur
+- MaskBlur
+- VisualEffects
+---
+
 # Gaussian Blur Mask
 ## Documentation
 - Class name: `ImpactGaussianBlurMask`
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The ImpactGaussianBlurMask node applies a Gaussian blur to a given mask, utilizing specified kernel size and sigma values. This process smooths the edges of the mask, effectively blending it more seamlessly with its surroundings.
+The ImpactGaussianBlurMask node is designed to apply a Gaussian blur to a given mask, normalizing it to a 3-dimensional format if necessary. This process enhances the mask's smoothness and can be adjusted through kernel size and sigma parameters, making it suitable for applications requiring softened edges or gradients in mask representations.
 ## Input types
 ### Required
 - **`mask`**
-    - The 'mask' parameter represents the input mask to which the Gaussian blur will be applied. This is crucial for achieving a smoother, more integrated appearance of the mask within its context.
+    - The mask input represents the target mask for the Gaussian blur operation. It is crucial for defining the area to be smoothed.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`kernel_size`**
-    - The 'kernel_size' parameter determines the size of the Gaussian kernel used for blurring. A larger kernel size results in a more pronounced blurring effect.
+    - Specifies the size of the Gaussian kernel used for blurring. Larger values increase the blur effect.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`sigma`**
-    - The 'sigma' parameter controls the spread of the Gaussian blur. A higher sigma value increases the blurring effect, making the mask edges softer and more diffused.
+    - Determines the spread of the blur effect. Higher sigma values result in a more pronounced blur.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The output is a modified version of the input mask, now smoothed by the Gaussian blur. This processed mask blends more naturally with its surroundings.
+    - The output is a blurred version of the input mask, processed to enhance smoothness and visual quality.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -47,6 +54,8 @@ class GaussianBlurMask:
     CATEGORY = "ImpactPack/Util"
 
     def doit(self, mask, kernel_size, sigma):
+        # Some custom nodes use abnormal 4-dimensional masks in the format of b, c, h, w. In the impact pack, internal 4-dimensional masks are required in the format of b, h, w, c. Therefore, normalization is performed using the normal mask format, which is 3-dimensional, before proceeding with the operation.
+        mask = make_3d_mask(mask)
         mask = torch.unsqueeze(mask, dim=-1)
         mask = utils.tensor_gaussian_blur_mask(mask, kernel_size, sigma)
         mask = torch.squeeze(mask, dim=-1)

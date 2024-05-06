@@ -1,3 +1,9 @@
+---
+tags:
+- ImageFilter
+- VisualEffects
+---
+
 # Image Style Filter
 ## Documentation
 - Class name: `Image Style Filter`

@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskRegion
+---
+
 # Mask Ceiling Region
 ## Documentation
 - Class name: `Mask Ceiling Region`

@@ -1,24 +1,31 @@
+---
+tags:
+- Flip
+- Image
+- ImageTransformation
+---
+
 # Image Flip
 ## Documentation
 - Class name: `JWImageFlip`
 - Category: `jamesWalker55`
 - Output node: `False`
 
-The JWImageFlip node is designed for flipping images either horizontally or vertically based on the specified direction. This operation can be essential for data augmentation or correcting image orientation.
+The JWImageFlip node is designed to flip images either horizontally or vertically based on the specified direction. This operation is fundamental in image processing tasks where orientation adjustments are necessary.
 ## Input types
 ### Required
 - **`image`**
-    - The image tensor to be flipped. This is the primary input for the flipping operation.
+    - The image tensor to be flipped. This parameter is crucial as it directly influences the output by determining which image is subjected to the flipping operation.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`direction`**
-    - Specifies the direction of the flip, either 'horizontal' or 'vertical'. This determines how the image will be manipulated.
+    - Specifies the direction of the flip, either 'horizontal' or 'vertical'. This parameter dictates how the image will be manipulated, affecting the final orientation of the output image.
     - Comfy dtype: `['horizontal', 'vertical']`
     - Python dtype: `str`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The flipped image tensor, altered according to the specified direction.
+    - The flipped image tensor. This output is the direct result of applying the specified flip operation on the input image.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`

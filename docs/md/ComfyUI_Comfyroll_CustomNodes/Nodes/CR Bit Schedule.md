@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- Scheduling
+---
+
 # 📋 CR Bit Schedule
 ## Documentation
 - Class name: `CR Bit Schedule`

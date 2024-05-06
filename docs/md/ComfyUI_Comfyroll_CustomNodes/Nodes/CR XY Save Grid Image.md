@@ -1,3 +1,8 @@
+---
+tags:
+- Image
+---
+
 # 📉 CR XY Save Grid Image
 ## Documentation
 - Class name: `CR XY Save Grid Image`

@@ -1,3 +1,10 @@
+---
+tags:
+- DepthMap
+- DepthMapEstimation
+- Image
+---
+
 # MiDaS Depth Map
 ## Documentation
 - Class name: `MiDaS-DepthMapPreprocessor`
@@ -36,7 +43,7 @@ This node preprocesses images to generate depth maps using the MiDaS model, enha
     - [CR Multi-ControlNet Stack](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Multi-ControlNet Stack.md)
     - [ControlNetApplyAdvanced](../../Comfy/Nodes/ControlNetApplyAdvanced.md)
     - Reroute
-    - Control Net Stacker
+    - [Control Net Stacker](../../efficiency-nodes-comfyui/Nodes/Control Net Stacker.md)
 
 
 

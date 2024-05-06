@@ -1,3 +1,9 @@
+---
+tags:
+- LatentNoise
+- Noise
+---
+
 # Remove Noise Mask
 ## Documentation
 - Class name: `RemoveNoiseMask`

@@ -1,3 +1,12 @@
+---
+tags:
+- Loader
+- Model
+- ModelIO
+- ModelLoader
+- ModelSwitching
+---
+
 # CR Model List (Legacy)
 ## Documentation
 - Class name: `CR Model List`

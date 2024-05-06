@@ -1,3 +1,8 @@
+---
+tags:
+- Image
+---
+
 # Image Load RGB
 ## Documentation
 - Class name: `JWImageLoadRGB`

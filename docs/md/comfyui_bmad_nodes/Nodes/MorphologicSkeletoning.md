@@ -1,3 +1,8 @@
+---
+tags:
+- Image
+---
+
 # MorphologicSkeletoning
 ## Documentation
 - Class name: `MorphologicSkeletoning`

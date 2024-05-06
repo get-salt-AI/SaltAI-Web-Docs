@@ -1,3 +1,11 @@
+---
+tags:
+- DataConversion
+- DataTypeConversion
+- Integer
+- NumericConversion
+---
+
 # ImpactInt
 ## Documentation
 - Class name: `ImpactInt`

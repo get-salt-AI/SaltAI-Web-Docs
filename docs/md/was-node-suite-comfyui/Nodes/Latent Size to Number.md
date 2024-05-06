@@ -1,3 +1,9 @@
+---
+tags:
+- ImageSize
+- ImageTransformation
+---
+
 # Latent Size to Number
 ## Documentation
 - Class name: `Latent Size to Number`

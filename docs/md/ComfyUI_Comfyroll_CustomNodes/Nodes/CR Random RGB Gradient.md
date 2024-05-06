@@ -1,3 +1,9 @@
+---
+tags:
+- RandomGeneration
+- Randomization
+---
+
 # 🎲 CR Random RGB Gradient
 ## Documentation
 - Class name: `CR Random RGB Gradient`

@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- ImageBlend
+- ImageComposite
+---
+
 # SeamlessClone
 ## Documentation
 - Class name: `SeamlessClone`

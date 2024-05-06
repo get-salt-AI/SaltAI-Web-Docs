@@ -1,3 +1,8 @@
+---
+tags:
+- Conditioning
+---
+
 # Conditioning Grid (string) Advanced
 ## Documentation
 - Class name: `Conditioning Grid (string) Advanced`

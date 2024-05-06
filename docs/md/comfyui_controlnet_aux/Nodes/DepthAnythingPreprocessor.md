@@ -1,3 +1,10 @@
+---
+tags:
+- DepthMap
+- DepthMapEstimation
+- Image
+---
+
 # Depth Anything
 ## Documentation
 - Class name: `DepthAnythingPreprocessor`

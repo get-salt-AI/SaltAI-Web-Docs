@@ -1,3 +1,9 @@
+---
+tags:
+- Color
+- HSVColorSpace
+---
+
 # Convert Color Space
 ## Documentation
 - Class name: `Convert Color Space`

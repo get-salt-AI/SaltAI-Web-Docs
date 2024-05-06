@@ -1,30 +1,36 @@
+---
+tags:
+- ImpactPack
+- Segmentation
+---
+
 # Picker (SEGS)
 ## Documentation
 - Class name: `ImpactSEGSPicker`
 - Category: `ImpactPack/Util`
 - Output node: `True`
 
-The ImpactSEGSPicker node is designed to select specific segments from a collection based on user-defined criteria, and optionally adjust their appearance using fallback images or masks. It facilitates the customization and refinement of segment collections for further processing or visualization.
+The ImpactSEGSPicker node is designed to select and refine segmentation elements based on user-defined criteria, enhancing the precision of image segmentation outputs. It allows for the customization of segmentation results by applying selection logic to identify and retain only the relevant segments, potentially incorporating fallback options for image processing.
 ## Input types
 ### Required
 - **`picks`**
-    - Specifies the indices of the segments to be selected from the collection. It directly influences which segments are retained for further operations.
+    - Specifies the indices of the segmentation elements to be selected, allowing for the customization of the output by retaining only the desired segments.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`segs`**
-    - The collection of segments from which selections are made. It serves as the primary input for the node's selection process.
+    - The input segmentation elements to be processed and refined based on the selection criteria.
     - Comfy dtype: `SEGS`
-    - Python dtype: `List[SEG]`
+    - Python dtype: `tuple`
 ### Optional
 - **`fallback_image_opt`**
-    - An optional image used to modify the appearance of segments when their original images are not available.
+    - An optional fallback image to be used for segment processing in cases where the original segment data is insufficient.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `Optional[PIL.Image]`
+    - Python dtype: `PIL.Image.Image`
 ## Output types
 - **`segs`**
     - Comfy dtype: `SEGS`
-    - Returns a tuple containing the original collection identifier and the new collection of selected and optionally modified segments.
-    - Python dtype: `Tuple[Any, List[SEG]]`
+    - The refined set of segmentation elements after applying the selection and processing logic.
+    - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -68,7 +74,7 @@ class SEGSPicker:
             else:
                 cropped_image = empty_pil_tensor()
 
-            mask_array = seg.cropped_mask
+            mask_array = seg.cropped_mask.copy()
             mask_array[mask_array < 0.3] = 0.3
             mask_array = mask_array[None, ..., None]
             cropped_image = cropped_image * mask_array

@@ -1,3 +1,9 @@
+---
+tags:
+- List
+- ListExtension
+---
+
 # ExtendStringList
 ## Documentation
 - Class name: `ExtendStringList`

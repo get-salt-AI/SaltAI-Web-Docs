@@ -1,28 +1,36 @@
+---
+tags:
+- CLIP
+- CLIPConditioning
+- CLIPTextEncoding
+- Conditioning
+---
+
 # CLIPTextEncodeControlnet
 ## Documentation
 - Class name: `CLIPTextEncodeControlnet`
 - Category: `_for_testing/conditioning`
 - Output node: `False`
 
-This node is designed for encoding text inputs using the CLIP model to produce conditioning data tailored for control networks. It enhances the conditioning data with specific control signals derived from the encoded text, facilitating more precise and controlled generation processes.
+The CLIPTextEncodeControlnet node is designed for encoding text inputs using a CLIP model, specifically tailored for generating conditioning data that integrates with control networks. This node processes text to produce embeddings and pooled outputs, which are then augmented with existing conditioning data to enhance control over generative processes.
 ## Input types
 ### Required
 - **`clip`**
-    - The CLIP model used for text tokenization and encoding. It plays a crucial role in converting text inputs into a format suitable for further processing and conditioning.
+    - The CLIP model used for text tokenization and encoding. It plays a crucial role in transforming the input text into a format suitable for further processing and embedding generation.
     - Comfy dtype: `CLIP`
     - Python dtype: `torch.nn.Module`
 - **`conditioning`**
-    - A list of conditioning data to be enhanced with control signals derived from the encoded text. It serves as the basis for applying text-based modifications to the generation process.
+    - A collection of conditioning data to be augmented with the encoded text outputs. This data is essential for tailoring the generative process to specific requirements or contexts.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
 - **`text`**
-    - The text input to be encoded. This text is tokenized and encoded using the CLIP model to generate control signals for the conditioning data.
+    - The input text to be encoded. This text is tokenized and encoded to produce embeddings and pooled outputs, serving as a basis for the conditioning augmentation.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`conditioning`**
     - Comfy dtype: `CONDITIONING`
-    - Enhanced conditioning data, augmented with control signals derived from the encoded text, ready for use in controlled generation processes.
+    - Enhanced conditioning data, incorporating the encoded text's embeddings and pooled outputs. This output is crucial for controlling and guiding generative models.
     - Python dtype: `List[Tuple[Any, Dict[str, Any]]]`
 ## Usage tips
 - Infra type: `GPU`
@@ -34,7 +42,7 @@ This node is designed for encoding text inputs using the CLIP model to produce c
 class CLIPTextEncodeControlnet:
     @classmethod
     def INPUT_TYPES(s):
-        return {"required": {"clip": ("CLIP", ), "conditioning": ("CONDITIONING", ), "text": ("STRING", {"multiline": True})}}
+        return {"required": {"clip": ("CLIP", ), "conditioning": ("CONDITIONING", ), "text": ("STRING", {"multiline": True, "dynamicPrompts": True})}}
     RETURN_TYPES = ("CONDITIONING",)
     FUNCTION = "encode"
 

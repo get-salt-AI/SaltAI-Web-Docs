@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageSave
+---
+
 # Save Image (api)
 ## Documentation
 - Class name: `Save Image (api)`

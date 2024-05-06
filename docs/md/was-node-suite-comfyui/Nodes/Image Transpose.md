@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageComposite
+---
+
 # Image Transpose
 ## Documentation
 - Class name: `Image Transpose`

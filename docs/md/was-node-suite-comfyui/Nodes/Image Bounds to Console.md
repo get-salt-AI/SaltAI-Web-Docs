@@ -1,3 +1,10 @@
+---
+tags:
+- Crop
+- Image
+- ImageTransformation
+---
+
 # Image Bounds to Console
 ## Documentation
 - Class name: `Image Bounds to Console`

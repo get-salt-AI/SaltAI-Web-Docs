@@ -1,105 +1,46 @@
+---
+tags:
+- Conditioning
+---
+
 # ConditioningSetMaskAndCombine5
 ## Documentation
 - Class name: `ConditioningSetMaskAndCombine5`
 - Category: `KJNodes/masking/conditioning`
 - Output node: `False`
 
-This node is designed to apply masks to conditioning data, modify the conditioning based on the masks, and then combine the modified conditioning data. It supports multiple sets of conditioning and masks, allowing for complex conditioning scenarios. The node emphasizes the ability to adjust the influence of each mask through strength parameters and to specify whether the conditioning should be set based on the mask bounds.
+This node is designed to apply masks to conditioning data, combining multiple sets of conditioning and masks with varying strengths. It allows for the selective enhancement or suppression of features within the conditioning data based on the masks applied, facilitating complex conditioning scenarios for generative models.
 ## Input types
 ### Required
-- **`positive_1`**
-    - Represents the first set of conditioning data to be modified and combined. It affects the node's execution by providing the initial data that will be masked and adjusted.
+- **`positive_i`**
+    - Specifies a set of positive conditioning data to be masked and combined. The strength of the mask applied affects how prominently these features will be represented.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
-- **`negative_1`**
-    - Represents the first set of conditioning data to be negatively modified and combined. It affects the node's execution by providing additional data that will be masked and adjusted in a manner opposite to the positive sets.
+    - Python dtype: `List[torch.Tensor]`
+- **`negative_i`**
+    - Specifies a set of negative conditioning data to be masked and combined. The strength of the mask applied affects how these features will be suppressed.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
-- **`positive_2`**
-    - Represents the second set of conditioning data to be modified and combined. It provides additional data for masking and adjustment, contributing to the complexity of the conditioning scenario.
-    - Comfy dtype: `CONDITIONING`
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
-- **`negative_2`**
-    - Represents the second set of conditioning data to be negatively modified and combined. It provides additional data for negative masking and adjustment, enhancing the diversity of the conditioning scenario.
-    - Comfy dtype: `CONDITIONING`
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
-- **`positive_3`**
-    - Represents the third set of conditioning data to be modified and combined. It adds further complexity to the conditioning scenario by introducing more data for masking and adjustment.
-    - Comfy dtype: `CONDITIONING`
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
-- **`negative_3`**
-    - Represents the third set of conditioning data to be negatively modified and combined. It further diversifies the conditioning scenario by adding more data for negative masking and adjustment.
-    - Comfy dtype: `CONDITIONING`
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
-- **`positive_4`**
-    - Represents the fourth set of conditioning data to be modified and combined. It introduces additional complexity to the conditioning scenario.
-    - Comfy dtype: `CONDITIONING`
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
-- **`negative_4`**
-    - Represents the fourth set of conditioning data to be negatively modified and combined. It adds more diversity to the conditioning scenario by providing another layer of data for negative masking and adjustment.
-    - Comfy dtype: `CONDITIONING`
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
-- **`positive_5`**
-    - Represents the fifth set of conditioning data to be modified and combined. It extends the complexity of the conditioning scenario by adding more data for masking and adjustment.
-    - Comfy dtype: `CONDITIONING`
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
-- **`negative_5`**
-    - Represents the fifth set of conditioning data to be negatively modified and combined. It further diversifies the conditioning scenario by introducing additional data for negative masking and adjustment.
-    - Comfy dtype: `CONDITIONING`
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
-- **`mask_1`**
-    - The first mask to be applied to the conditioning data. It plays a crucial role in defining the areas of the conditioning data that will be modified.
+    - Python dtype: `List[torch.Tensor]`
+- **`mask_i`**
+    - The mask to be applied to the set of conditioning data, determining the areas of influence.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
-- **`mask_2`**
-    - The second mask to be applied to the conditioning data. It allows for additional areas of the conditioning data to be modified, contributing to the node's flexibility.
-    - Comfy dtype: `MASK`
-    - Python dtype: `torch.Tensor`
-- **`mask_3`**
-    - The third mask to be applied to the conditioning data. It enables further modification of the conditioning data, increasing the node's adaptability to complex scenarios.
-    - Comfy dtype: `MASK`
-    - Python dtype: `torch.Tensor`
-- **`mask_4`**
-    - The fourth mask to be applied to the conditioning data. It allows for further areas of the conditioning data to be modified, enhancing the node's adaptability.
-    - Comfy dtype: `MASK`
-    - Python dtype: `torch.Tensor`
-- **`mask_5`**
-    - The fifth mask to be applied to the conditioning data. It enables additional modification of the conditioning data, increasing the node's flexibility in handling complex scenarios.
-    - Comfy dtype: `MASK`
-    - Python dtype: `torch.Tensor`
-- **`mask_1_strength`**
-    - Adjusts the influence of the first mask on the conditioning data. It allows for fine-tuning the impact of the mask, enabling precise control over the conditioning modification.
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
-- **`mask_2_strength`**
-    - Adjusts the influence of the second mask on the conditioning data. It provides additional control over how the conditioning is modified, allowing for nuanced adjustments.
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
-- **`mask_3_strength`**
-    - Adjusts the influence of the third mask on the conditioning data. It offers further customization of the conditioning modification, facilitating detailed control.
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
-- **`mask_4_strength`**
-    - Adjusts the influence of the fourth mask on the conditioning data. It provides further control over the conditioning modification, allowing for detailed adjustments.
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
-- **`mask_5_strength`**
-    - Adjusts the influence of the fifth mask on the conditioning data. It offers additional customization of the conditioning modification, facilitating precise control.
+- **`mask_i_strength`**
+    - Defines the strength of the mask applied to the set of conditioning data, influencing the degree of feature enhancement or suppression.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`set_cond_area`**
-    - Determines whether the conditioning should be set based on the mask bounds. This parameter influences how the masks are applied and the extent of their effect on the conditioning data.
+    - Determines whether to set the conditioning area to the bounds defined by the mask, allowing for more precise control over the conditioning effects.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`combined_positive`**
     - Comfy dtype: `CONDITIONING`
-    - The combined and modified positive conditioning data after applying the masks and adjustments.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
+    - The combined set of positive conditioning data after mask application, ready for use in further generative processes.
+    - Python dtype: `List[torch.Tensor]`
 - **`combined_negative`**
     - Comfy dtype: `CONDITIONING`
-    - The combined and modified negative conditioning data after applying the masks and adjustments.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
+    - The combined set of negative conditioning data after mask application, indicating suppressed features for generative models.
+    - Python dtype: `List[torch.Tensor]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -140,6 +81,9 @@ class ConditioningSetMaskAndCombine5:
     RETURN_NAMES = ("combined_positive", "combined_negative",)
     FUNCTION = "append"
     CATEGORY = "KJNodes/masking/conditioning"
+    DESCRIPTION = """
+Bundles multiple conditioning mask and combine nodes into one,functionality is identical to ComfyUI native nodes
+"""
 
     def append(self, positive_1, negative_1, positive_2, positive_3, positive_4, positive_5, negative_2, negative_3, negative_4, negative_5, mask_1, mask_2, mask_3, mask_4, mask_5, set_cond_area, mask_1_strength, mask_2_strength, mask_3_strength, mask_4_strength, mask_5_strength):
         c = []

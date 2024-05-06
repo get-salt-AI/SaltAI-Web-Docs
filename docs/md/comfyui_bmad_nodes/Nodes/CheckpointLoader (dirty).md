@@ -1,3 +1,12 @@
+---
+tags:
+- Checkpoint
+- CheckpointLoader
+- Loader
+- ModelIO
+- ModelLoader
+---
+
 # CheckpointLoader (dirty)
 ## Documentation
 - Class name: `CheckpointLoader (dirty)`

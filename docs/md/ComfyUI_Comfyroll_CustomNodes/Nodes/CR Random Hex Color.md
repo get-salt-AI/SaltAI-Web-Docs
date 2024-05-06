@@ -1,3 +1,9 @@
+---
+tags:
+- RandomGeneration
+- Randomization
+---
+
 # 🎲 CR Random Hex Color
 ## Documentation
 - Class name: `CR Random Hex Color`

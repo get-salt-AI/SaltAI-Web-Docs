@@ -1,3 +1,10 @@
+---
+tags:
+- Prompt
+- Text
+- Wildcard
+---
+
 # ImpactWildcardProcessor
 ## Documentation
 - Class name: `ImpactWildcardProcessor`

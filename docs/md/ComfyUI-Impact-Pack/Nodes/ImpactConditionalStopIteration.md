@@ -1,3 +1,9 @@
+---
+tags:
+- BooleanLogic
+- ConditionalSelection
+---
+
 # ImpactConditionalStopIteration
 ## Documentation
 - Class name: `ImpactConditionalStopIteration`

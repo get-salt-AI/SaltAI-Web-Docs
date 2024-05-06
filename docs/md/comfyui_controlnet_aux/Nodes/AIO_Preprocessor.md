@@ -1,30 +1,37 @@
+---
+tags:
+- DepthMap
+- Image
+- ImagePreprocessing
+---
+
 # AIO Aux Preprocessor
 ## Documentation
 - Class name: `AIO_Preprocessor`
 - Category: `ControlNet Preprocessors`
 - Output node: `False`
 
-The AIO_Preprocessor node serves as a dynamic image preprocessing unit within the ControlNet Preprocessors category, capable of selecting and executing a variety of auxiliary preprocessing functions based on the specified preprocessor type. This flexibility allows for tailored image preprocessing to enhance control net performance.
+The AIO_Preprocessor node is designed to dynamically select and apply a specified auxiliary preprocessing operation on an image, based on the preprocessor type chosen. It supports a variety of preprocessing options, automatically configuring and executing the appropriate auxiliary preprocessor to modify the image according to the selected preprocessor's requirements.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be preprocessed. It serves as the primary data upon which the selected preprocessing operation is applied, directly influencing the output and effectiveness of the preprocessing step.
+    - The input image to be preprocessed. This image is directly passed to the selected auxiliary preprocessor for modification.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `PIL.Image.Image`
+    - Python dtype: `Image`
 ### Optional
 - **`preprocessor`**
-    - Specifies the auxiliary preprocessing function to be used for image preprocessing. This selection determines the specific preprocessing operation applied to the input image, thereby influencing the preprocessing outcome and directly affecting the control net's ability to interpret and process the image effectively.
+    - Specifies the type of preprocessing to apply to the image. This selection determines which auxiliary preprocessor's logic will be executed, impacting the final preprocessing outcome on the image.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`resolution`**
-    - Defines the resolution at which the image should be processed. This parameter can significantly impact the preprocessing outcome by affecting the level of detail preserved or altered during the operation.
+    - The resolution for the preprocessing operation, which may be used by certain preprocessors to adjust the processing detail level or output resolution.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The processed image output, which has undergone the specified auxiliary preprocessing operation to potentially enhance its suitability for control net applications.
-    - Python dtype: `PIL.Image.Image`
+    - The preprocessed image, as modified by the selected auxiliary preprocessor.
+    - Python dtype: `Image`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
@@ -40,13 +47,7 @@ The AIO_Preprocessor node serves as a dynamic image preprocessing unit within th
 class AIO_Preprocessor:
     @classmethod
     def INPUT_TYPES(s):
-        auxs = list(AUX_NODE_MAPPINGS.keys())
-        for name in AIO_NOT_SUPPORTED:
-            if name in auxs: auxs.remove(name)
-        
-        return create_node_input_types(
-            preprocessor=(auxs, {"default": "CannyEdgePreprocessor"})
-        )
+        return create_node_input_types(preprocessor=(PREPROCESSOR_OPTIONS, {"default": "none"}))
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "execute"
@@ -54,30 +55,33 @@ class AIO_Preprocessor:
     CATEGORY = "ControlNet Preprocessors"
 
     def execute(self, preprocessor, image, resolution=512):
-        aux_class = AUX_NODE_MAPPINGS[preprocessor]
-        input_types = aux_class.INPUT_TYPES()
-        input_types = {
-            **input_types["required"], 
-            **(input_types["optional"] if "optional" in input_types else {})
-        }
-        params = {}
-        for name, input_type in input_types.items():
-            if name == "image":
-                params[name] = image
-                continue
-            
-            if name == "resolution":
-                params[name] = resolution
-                continue
-            
-            if len(input_type) == 2 and ("default" in input_type[1]):
-                params[name] = input_type[1]["default"]
-                continue
+        if preprocessor == "none":
+            return (image, )
+        else:
+            aux_class = AUX_NODE_MAPPINGS[preprocessor]
+            input_types = aux_class.INPUT_TYPES()
+            input_types = {
+                **input_types["required"],
+                **(input_types["optional"] if "optional" in input_types else {})
+            }
+            params = {}
+            for name, input_type in input_types.items():
+                if name == "image":
+                    params[name] = image
+                    continue
 
-            default_values = { "INT": 0, "FLOAT": 0.0 }
-            if input_type[0] in default_values:
-                params[name] = default_values[input_type[0]]
+                if name == "resolution":
+                    params[name] = resolution
+                    continue
 
-        return getattr(aux_class(), aux_class.FUNCTION)(**params)
+                if len(input_type) == 2 and ("default" in input_type[1]):
+                    params[name] = input_type[1]["default"]
+                    continue
+
+                default_values = { "INT": 0, "FLOAT": 0.0 }
+                if input_type[0] in default_values:
+                    params[name] = default_values[input_type[0]]
+
+            return getattr(aux_class(), aux_class.FUNCTION)(**params)
 
 ```

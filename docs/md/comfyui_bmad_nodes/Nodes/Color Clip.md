@@ -1,3 +1,8 @@
+---
+tags:
+- Color
+---
+
 # Color Clip
 ## Documentation
 - Class name: `Color Clip`

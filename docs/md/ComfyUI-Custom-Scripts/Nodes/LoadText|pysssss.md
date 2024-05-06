@@ -1,3 +1,8 @@
+---
+tags:
+- Text
+---
+
 # Load Text 🐍
 ## Documentation
 - Class name: `LoadText|pysssss`

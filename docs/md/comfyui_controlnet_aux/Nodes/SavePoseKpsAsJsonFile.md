@@ -1,3 +1,9 @@
+---
+tags:
+- Animation
+- PoseEstimation
+---
+
 # Save Pose Keypoints
 ## Documentation
 - Class name: `SavePoseKpsAsJsonFile`

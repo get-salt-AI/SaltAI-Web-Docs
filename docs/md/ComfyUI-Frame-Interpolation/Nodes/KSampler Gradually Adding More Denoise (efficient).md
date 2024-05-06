@@ -1,3 +1,8 @@
+---
+tags:
+- Sampling
+---
+
 # KSampler Gradually Adding More Denoise (efficient)
 ## Documentation
 - Class name: `KSampler Gradually Adding More Denoise (efficient)`

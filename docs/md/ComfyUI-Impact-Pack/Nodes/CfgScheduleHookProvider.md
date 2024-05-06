@@ -1,3 +1,9 @@
+---
+tags:
+- ImageEnhancement
+- Scheduling
+---
+
 # CfgScheduleHookProvider
 ## Documentation
 - Class name: `CfgScheduleHookProvider`

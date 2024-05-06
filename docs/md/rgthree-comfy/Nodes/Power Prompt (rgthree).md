@@ -1,3 +1,9 @@
+---
+tags:
+- Prompt
+- PromptStyling
+---
+
 # Power Prompt (rgthree)
 ## Documentation
 - Class name: `Power Prompt (rgthree)`

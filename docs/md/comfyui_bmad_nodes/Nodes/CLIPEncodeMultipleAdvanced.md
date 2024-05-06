@@ -1,3 +1,10 @@
+---
+tags:
+- CLIP
+- CLIPConditioning
+- Conditioning
+---
+
 # CLIPEncodeMultipleAdvanced
 ## Documentation
 - Class name: `CLIPEncodeMultipleAdvanced`

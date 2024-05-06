@@ -1,37 +1,26 @@
+---
+tags:
+- ConditionalSelection
+---
+
 # Any Switch (rgthree)
 ## Documentation
 - Class name: `Any Switch (rgthree)`
 - Category: `rgthree`
 - Output node: `False`
 
-The Any Switch node is designed to select and output the first non-empty item from a set of inputs. It abstracts the process of checking multiple inputs for validity and provides a streamlined way to retrieve the first valid value, enhancing flexibility and efficiency in data processing.
+The Any Switch node is designed to select and output the first non-empty item from a set of optional inputs. It abstracts the complexity of handling various types of inputs by evaluating them to find the first one that is not considered 'empty' or 'none', making it versatile for different data types and scenarios.
 ## Input types
 ### Required
 ### Optional
-- **`any_01`**
-    - Represents the first optional input that can be of any type. The node checks this input first for non-emptiness and outputs it if valid.
-    - Comfy dtype: `*`
-    - Python dtype: `Any`
-- **`any_02`**
-    - Represents the second optional input of any type. It is checked for non-emptiness and outputted if the previous input is empty and this is valid.
-    - Comfy dtype: `*`
-    - Python dtype: `Any`
-- **`any_03`**
-    - The third optional input of any type. It is considered for output if all previous inputs are empty and this input is valid.
-    - Comfy dtype: `*`
-    - Python dtype: `Any`
-- **`any_04`**
-    - This is the fourth optional input, which can be of any type. It is selected for output if all preceding inputs are empty and this is valid.
-    - Comfy dtype: `*`
-    - Python dtype: `Any`
-- **`any_05`**
-    - The fifth and last optional input of any type. It is chosen for output if all other inputs are empty and this input is valid.
+- **`any_i`**
+    - Represents an optional input that can be of any type. The node sequentially evaluates these inputs, starting from the first, and selects the first non-empty one, directly affecting the output. This naming convention applies to all inputs from 'any_01' to 'any_05', indicating their order in the selection process.
     - Comfy dtype: `*`
     - Python dtype: `Any`
 ## Output types
 - **`*`**
     - Comfy dtype: `*`
-    - Outputs the first non-empty item from the provided inputs. This allows for dynamic selection based on input validity.
+    - Outputs the first non-empty input encountered among the optional inputs. This output is versatile, accommodating any data type provided to the node.
     - Python dtype: `Any`
 ## Usage tips
 - Infra type: `CPU`

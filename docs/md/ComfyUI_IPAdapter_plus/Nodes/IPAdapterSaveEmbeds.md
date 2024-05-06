@@ -1,18 +1,23 @@
-# Save IPAdapter Embeds
+---
+tags:
+- IPAdapter
+---
+
+# IPAdapter Save Embeds
 ## Documentation
 - Class name: `IPAdapterSaveEmbeds`
-- Category: `ipadapter`
+- Category: `ipadapter/embeds`
 - Output node: `True`
 
-The IPAdapterSaveEmbeds node is designed for persisting IPAdapter embeddings to disk. It facilitates the storage of embeddings with a customizable filename prefix, ensuring that the embeddings can be easily organized and retrieved for future use.
+The IPAdapterSaveEmbeds node is designed for saving embedding data to a file, facilitating the persistence of computed embeddings for later use or analysis. It abstracts the process of file handling and serialization of embeddings, ensuring data is efficiently stored in a structured manner.
 ## Input types
 ### Required
 - **`embeds`**
-    - The 'embeds' parameter represents the embeddings to be saved. It is crucial for specifying the data that will be persisted to disk, affecting the node's execution by determining the content of the output file.
+    - The 'embeds' parameter represents the embedding data to be saved. It is crucial for the operation as it contains the actual data that needs to be persisted.
     - Comfy dtype: `EMBEDS`
     - Python dtype: `torch.Tensor`
 - **`filename_prefix`**
-    - The 'filename_prefix' parameter allows for customization of the saved file's name, providing a means to organize and easily identify the embeddings on disk. It influences the naming convention of the output file, aiding in the retrieval of specific embeddings.
+    - The 'filename_prefix' parameter allows for customization of the saved file's name, providing flexibility in organizing and identifying embedding files.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
@@ -32,18 +37,18 @@ class IPAdapterSaveEmbeds:
     def INPUT_TYPES(s):
         return {"required": {
             "embeds": ("EMBEDS",),
-            "filename_prefix": ("STRING", {"default": "embeds/IPAdapter"})
+            "filename_prefix": ("STRING", {"default": "IP_embeds"})
             },
         }
 
     RETURN_TYPES = ()
     FUNCTION = "save"
     OUTPUT_NODE = True
-    CATEGORY = "ipadapter"
+    CATEGORY = "ipadapter/embeds"
 
     def save(self, embeds, filename_prefix):
         full_output_folder, filename, counter, subfolder, filename_prefix = folder_paths.get_save_image_path(filename_prefix, self.output_dir)
-        file = f"{filename}_{counter:05}_.ipadpt"
+        file = f"{filename}_{counter:05}.ipadpt"
         file = os.path.join(full_output_folder, file)
 
         torch.save(embeds, file)

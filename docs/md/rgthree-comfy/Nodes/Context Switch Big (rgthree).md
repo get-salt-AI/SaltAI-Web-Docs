@@ -1,126 +1,118 @@
+---
+tags:
+- Conditioning
+- Context
+---
+
 # Context Switch Big (rgthree)
 ## Documentation
 - Class name: `Context Switch Big (rgthree)`
 - Category: `rgthree`
 - Output node: `False`
 
-The Context Switch Big node is designed to manage multiple context inputs, selecting the first non-empty context among them for output. This functionality allows for dynamic context switching based on the availability of data, facilitating flexible and efficient context management in complex workflows.
+The Context Switch Big node is designed to manage multiple context inputs, selecting the first non-empty context to output. This functionality allows for dynamic context switching within workflows, ensuring that a valid context is always passed forward.
 ## Input types
 ### Required
 ### Optional
-- **`ctx_01`**
-    - Represents an optional context input. If non-empty, it can be selected as the output context, depending on its order and the emptiness of preceding contexts.
+- **`ctx_i`**
+    - unknown
     - Comfy dtype: `RGTHREE_CONTEXT`
-    - Python dtype: `dict`
-- **`ctx_02`**
-    - Represents an optional context input. If non-empty, it can be selected as the output context, depending on its order and the emptiness of preceding contexts.
-    - Comfy dtype: `RGTHREE_CONTEXT`
-    - Python dtype: `dict`
-- **`ctx_03`**
-    - Represents an optional context input. If non-empty, it can be selected as the output context, depending on its order and the emptiness of preceding contexts.
-    - Comfy dtype: `RGTHREE_CONTEXT`
-    - Python dtype: `dict`
-- **`ctx_04`**
-    - Represents an optional context input. If non-empty, it can be selected as the output context, depending on its order and the emptiness of preceding contexts.
-    - Comfy dtype: `RGTHREE_CONTEXT`
-    - Python dtype: `dict`
-- **`ctx_05`**
-    - Represents an optional context input. If non-empty, it can be selected as the output context, depending on its order and the emptiness of preceding contexts.
-    - Comfy dtype: `RGTHREE_CONTEXT`
-    - Python dtype: `dict`
+    - Python dtype: `unknown`
 ## Output types
 - **`CONTEXT`**
     - Comfy dtype: `RGTHREE_CONTEXT`
-    - Outputs the selected non-empty context among the inputs, facilitating dynamic context management.
-    - Python dtype: `dict`
+    - unknown
+    - Python dtype: `unknown`
 - **`MODEL`**
     - Comfy dtype: `MODEL`
-    - Outputs the model information from the selected context, if available.
-    - Python dtype: `dict`
+    - unknown
+    - Python dtype: `unknown`
 - **`CLIP`**
     - Comfy dtype: `CLIP`
-    - Outputs the clip information from the selected context, if available.
-    - Python dtype: `dict`
+    - unknown
+    - Python dtype: `unknown`
 - **`VAE`**
     - Comfy dtype: `VAE`
-    - Outputs the VAE information from the selected context, if available.
-    - Python dtype: `dict`
+    - unknown
+    - Python dtype: `unknown`
 - **`POSITIVE`**
     - Comfy dtype: `CONDITIONING`
-    - Outputs the positive conditioning from the selected context, if available.
-    - Python dtype: `dict`
+    - unknown
+    - Python dtype: `unknown`
 - **`NEGATIVE`**
     - Comfy dtype: `CONDITIONING`
-    - Outputs the negative conditioning from the selected context, if available.
-    - Python dtype: `dict`
+    - unknown
+    - Python dtype: `unknown`
 - **`LATENT`**
     - Comfy dtype: `LATENT`
-    - Outputs the latent information from the selected context, if available.
-    - Python dtype: `dict`
+    - unknown
+    - Python dtype: `unknown`
 - **`IMAGE`**
     - Comfy dtype: `IMAGE`
-    - Outputs the images from the selected context, if available.
-    - Python dtype: `dict`
+    - unknown
+    - Python dtype: `unknown`
 - **`SEED`**
     - Comfy dtype: `INT`
-    - Outputs the seed value from the selected context, if available.
-    - Python dtype: `dict`
+    - unknown
+    - Python dtype: `unknown`
 - **`STEPS`**
     - Comfy dtype: `INT`
-    - Outputs the steps value from the selected context, if available.
-    - Python dtype: `dict`
+    - unknown
+    - Python dtype: `unknown`
 - **`STEP_REFINER`**
     - Comfy dtype: `INT`
-    - Outputs the step refiner value from the selected context, if available.
-    - Python dtype: `dict`
+    - unknown
+    - Python dtype: `unknown`
 - **`CFG`**
     - Comfy dtype: `FLOAT`
-    - Outputs the CFG value from the selected context, if available.
-    - Python dtype: `dict`
+    - unknown
+    - Python dtype: `unknown`
 - **`CKPT_NAME`**
     - Comfy dtype: `COMBO[STRING]`
-    - Outputs the checkpoint name from the selected context, if available.
-    - Python dtype: `dict`
+    - unknown
+    - Python dtype: `unknown`
 - **`SAMPLER`**
     - Comfy dtype: `COMBO[STRING]`
-    - Outputs the sampler information from the selected context, if available.
-    - Python dtype: `dict`
+    - unknown
+    - Python dtype: `unknown`
 - **`SCHEDULER`**
     - Comfy dtype: `COMBO[STRING]`
-    - Outputs the scheduler information from the selected context, if available.
-    - Python dtype: `dict`
+    - unknown
+    - Python dtype: `unknown`
 - **`CLIP_WIDTH`**
     - Comfy dtype: `INT`
-    - Outputs the clip width from the selected context, if available.
-    - Python dtype: `dict`
+    - unknown
+    - Python dtype: `unknown`
 - **`CLIP_HEIGHT`**
     - Comfy dtype: `INT`
-    - Outputs the clip height from the selected context, if available.
-    - Python dtype: `dict`
+    - unknown
+    - Python dtype: `unknown`
 - **`TEXT_POS_G`**
     - Comfy dtype: `STRING`
-    - Outputs the global positive text from the selected context, if available.
-    - Python dtype: `dict`
+    - unknown
+    - Python dtype: `unknown`
 - **`TEXT_POS_L`**
     - Comfy dtype: `STRING`
-    - Outputs the local positive text from the selected context, if available.
-    - Python dtype: `dict`
+    - unknown
+    - Python dtype: `unknown`
 - **`TEXT_NEG_G`**
     - Comfy dtype: `STRING`
-    - Outputs the global negative text from the selected context, if available.
-    - Python dtype: `dict`
+    - unknown
+    - Python dtype: `unknown`
 - **`TEXT_NEG_L`**
     - Comfy dtype: `STRING`
-    - Outputs the local negative text from the selected context, if available.
-    - Python dtype: `dict`
+    - unknown
+    - Python dtype: `unknown`
 - **`MASK`**
     - Comfy dtype: `MASK`
-    - Outputs the mask information from the selected context, if available.
-    - Python dtype: `dict`
+    - unknown
+    - Python dtype: `unknown`
 - **`CONTROL_NET`**
     - Comfy dtype: `CONTROL_NET`
-    - Outputs the control net information from the selected context, if available.
-    - Python dtype: `dict`
+    - unknown
+    - Python dtype: `unknown`
+- **`ui`**
+    - The output of the node, which is a selected non-empty context from the given inputs. This output is crucial for passing a valid context to subsequent nodes in a workflow.
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

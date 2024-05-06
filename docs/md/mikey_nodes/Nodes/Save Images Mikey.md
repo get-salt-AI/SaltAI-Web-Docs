@@ -1,72 +1,62 @@
+---
+tags:
+- Image
+- ImageSave
+---
+
 # Save Images Mikey (Mikey)
 ## Documentation
 - Class name: `Save Images Mikey`
 - Category: `Mikey/Image`
 - Output node: `True`
 
-This node is designed to save images with optional metadata, supporting customization through various filename components, timestamping, and counter mechanisms. It allows for detailed organization and storage of generated images, accommodating enhanced manageability and retrieval. The node also supports conditional saving based on positive or negative prompts, further refining the storage process.
+This node is designed to facilitate the saving of images to disk, incorporating additional functionalities such as prefixing filenames and appending extra information to PNG files. It abstracts the complexities involved in file handling and metadata management, aiming to streamline the process of persisting images with contextual data.
 ## Input types
 ### Required
 - **`images`**
-    - The collection of images to be saved. This parameter is central to the node's operation, as it directly influences the output by determining which images are stored.
+    - The collection of images to be saved. This parameter is central to the node's operation, determining the primary content that will be persisted to disk.
     - Comfy dtype: `IMAGE`
     - Python dtype: `List[Image]`
 - **`sub_directory`**
-    - Specifies the sub-directory under the main output folder where the images will be saved, aiding in organized storage.
+    - Specifies the sub-directory within the output folder where the images will be saved, aiding in the organization of saved files.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
-- **`filename_text_1`**
-    - The first part of the filename, allowing for further customization and identification of saved images.
-    - Comfy dtype: `STRING`
-    - Python dtype: `str`
-- **`filename_text_2`**
-    - The second part of the filename, providing additional customization and identification options for saved images.
-    - Comfy dtype: `STRING`
-    - Python dtype: `str`
-- **`filename_text_3`**
-    - The third part of the filename, offering further customization and identification capabilities for saved images.
+- **`filename_text_i`**
+    - The part of the dynamic filename construction, contributing to a customizable naming scheme. This parameter allows for multiple filename texts to be specified, enhancing the flexibility in naming saved images.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`filename_separator`**
-    - The separator character or string used between different parts of the filename, ensuring clarity and readability.
+    - A separator character or string used between different parts of the filename to ensure readability and structure.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`timestamp`**
-    - Indicates whether a timestamp should be included in the filename, aiding in version control and organization.
+    - Indicates whether a timestamp should be included in the filename, providing a time-based identifier for the saved image.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`counter_type`**
-    - Specifies the type of counter to be used in the filename, facilitating unique identification of each saved image.
+    - Defines the type of counter to be used in the filename, aiding in the creation of unique filenames for each saved image.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-- **`filename_text_1_pos`**
-    - The position of the first filename text within the overall filename structure, allowing for flexible arrangement.
+- **`filename_text_i_pos`**
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
-- **`filename_text_2_pos`**
-    - The position of the second filename text within the overall filename structure, enabling customizable filename formats.
-    - Comfy dtype: `INT`
-    - Python dtype: `int`
-- **`filename_text_3_pos`**
-    - The position of the third filename text within the overall filename structure, providing options for filename customization.
-    - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`timestamp_pos`**
-    - The position of the timestamp within the filename, allowing for consistent organization and retrieval.
+    - The position in the filename where the timestamp should be inserted, if applicable, to incorporate time-based identifiers.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`timestamp_type`**
-    - The format of the timestamp to be included in the filename, ensuring consistency and readability.
+    - Specifies the format of the timestamp to be included in the filename, ensuring consistency in time-based identifiers.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`counter_pos`**
-    - The position of the counter within the filename, aiding in the unique identification of each saved image.
+    - The position in the filename where the counter should be inserted, facilitating the generation of unique filenames.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`extra_metadata`**
-    - Additional metadata to be included with the saved images, offering extended information or annotations.
+    - Additional metadata that can be included with the image, enhancing the documentation and traceability of the saved file.
     - Comfy dtype: `STRING`
-    - Python dtype: `str`
+    - Python dtype: `Optional[Dict[str, str]]`
 ## Output types
 The node doesn't have output types
 ## Usage tips

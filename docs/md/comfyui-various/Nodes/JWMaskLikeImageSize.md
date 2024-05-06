@@ -1,3 +1,9 @@
+---
+tags:
+- Mask
+- MaskGeneration
+---
+
 # Mask Like Image Size
 ## Documentation
 - Class name: `JWMaskLikeImageSize`

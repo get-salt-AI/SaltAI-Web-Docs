@@ -1,3 +1,9 @@
+---
+tags:
+- RandomGeneration
+- Seed
+---
+
 # Seed String (Mikey)
 ## Documentation
 - Class name: `Seed String`

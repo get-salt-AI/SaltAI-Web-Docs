@@ -1,3 +1,9 @@
+---
+tags:
+- Math
+- VectorMath
+---
+
 # Vec2UnaryOperation
 ## Documentation
 - Class name: `CM_Vec2UnaryOperation`

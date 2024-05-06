@@ -1,3 +1,8 @@
+---
+tags:
+- ConditionalSelection
+---
+
 # 🔀 CR Image Input Switch (4 way)
 ## Documentation
 - Class name: `CR Image Input Switch (4 way)`

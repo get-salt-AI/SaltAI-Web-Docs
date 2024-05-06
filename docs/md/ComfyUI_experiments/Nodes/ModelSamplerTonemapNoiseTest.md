@@ -1,3 +1,8 @@
+---
+tags:
+- ImageEnhancement
+---
+
 # ModelSamplerTonemapNoiseTest
 ## Documentation
 - Class name: `ModelSamplerTonemapNoiseTest`

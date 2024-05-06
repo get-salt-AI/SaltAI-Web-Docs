@@ -1,14 +1,19 @@
+---
+tags:
+- ConditionalSelection
+---
+
 # Switch (latent/legacy)
 ## Documentation
 - Class name: `LatentSwitch`
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The LatentSwitch node is designed to dynamically select between multiple latent inputs based on a specified index. It facilitates conditional processing of latent data within a pipeline, allowing for flexible manipulation and routing of latent information.
+The LatentSwitch node is designed to dynamically select between multiple latent representations based on a given index. It facilitates the manipulation of latent spaces by allowing the selection of specific latent inputs for further processing or output.
 ## Input types
 ### Required
 - **`select`**
-    - Specifies the index of the latent input to be selected for output. This allows for dynamic selection between multiple latent inputs, enhancing the node's flexibility in processing.
+    - Specifies the index of the latent representation to be selected. This index determines which latent input ('latent1', etc.) is used for the node's operation. The range of this index starts from 1, allowing for dynamic selection among potentially numerous latent inputs.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`sel_mode`**
@@ -17,21 +22,21 @@ The LatentSwitch node is designed to dynamically select between multiple latent 
     - Python dtype: `unknown`
 ### Optional
 - **`input1`**
-    - Represents the first latent input option. This input is selected by default if the specified index is invalid, ensuring a fallback latent data is always available.
+    - The primary latent representation input. This input is crucial for the node's operation as it represents the default or initial latent space to be considered in the absence of additional specified latent inputs.
     - Comfy dtype: `*`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`selected_value`**
     - Comfy dtype: `*`
-    - Outputs the selected latent input based on the specified index. This enables dynamic routing and manipulation of latent data within a pipeline.
+    - The selected latent representation based on the 'select' index. If the index is invalid, 'input1' is returned as the default.
     - Python dtype: `torch.Tensor`
 - **`selected_label`**
     - Comfy dtype: `STRING`
-    - Provides the label of the selected latent input, facilitating identification and tracking within a pipeline.
+    - The label of the selected latent representation, indicating which latent input was chosen based on the 'select' index.
     - Python dtype: `str`
 - **`selected_index`**
     - Comfy dtype: `INT`
-    - Indicates the index of the selected latent input, offering insight into the selection process.
+    - The index of the selected latent representation, reflecting the 'select' input value.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
@@ -65,16 +70,20 @@ class GeneralSwitch:
 
         selected_label = input_name
         node_id = kwargs['unique_id']
-        nodelist = kwargs['extra_pnginfo']['workflow']['nodes']
-        for node in nodelist:
-            if str(node['id']) == node_id:
-                inputs = node['inputs']
 
-                for slot in inputs:
-                    if slot['name'] == input_name and 'label' in slot:
-                        selected_label = slot['label']
+        if 'extra_pnginfo' in kwargs and kwargs['extra_pnginfo'] is not None:
+            nodelist = kwargs['extra_pnginfo']['workflow']['nodes']
+            for node in nodelist:
+                if str(node['id']) == node_id:
+                    inputs = node['inputs']
 
-                break
+                    for slot in inputs:
+                        if slot['name'] == input_name and 'label' in slot:
+                            selected_label = slot['label']
+
+                    break
+        else:
+            print(f"[Impact-Pack] The switch node does not guarantee proper functioning in API mode.")
 
         if input_name in kwargs:
             return (kwargs[input_name], selected_label, selected_index)

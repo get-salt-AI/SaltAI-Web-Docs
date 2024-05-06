@@ -1,28 +1,34 @@
+---
+tags:
+- Image
+- Multimedia
+---
+
 # Select Every Nth Image 🎥🅥🅗🅢
 ## Documentation
 - Class name: `VHS_SelectEveryNthImage`
 - Category: `Video Helper Suite 🎥🅥🅗🅢/image`
 - Output node: `False`
 
-This node is designed to filter a batch of images by selecting every Nth image from the batch. It's useful for thinning out image sequences or datasets to reduce processing load or to create a subset of images for specific purposes.
+This node is designed to filter through a batch of images, selecting every nth image according to a specified interval. It's useful for thinning out image datasets or preparing sequences of images for processing that requires reduced density.
 ## Input types
 ### Required
 - **`images`**
-    - The batch of images to be filtered. This parameter is crucial for determining which images will be included in the output based on the selection criteria.
+    - The collection of images to be filtered. This parameter determines the set of images from which every nth image will be selected, based on the interval defined by 'select_every_nth'.
     - Comfy dtype: `IMAGE`
     - Python dtype: `Tensor`
 - **`select_every_nth`**
-    - Determines the interval at which images are selected from the batch. For example, a value of 2 would mean every second image is selected. This parameter directly influences the size of the output batch.
+    - The interval at which images are selected from the input batch. An interval of 'n' means every nth image is kept, with the rest discarded, effectively thinning the batch.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`IMAGE`**
     - Comfy dtype: `IMAGE`
-    - The filtered batch of images, containing only every Nth image based on the selection criteria.
+    - The filtered subset of images, where only every nth image from the original batch is included.
     - Python dtype: `Tensor`
 - **`count`**
     - Comfy dtype: `INT`
-    - The total number of images selected and included in the output batch.
+    - The total number of images selected and returned by the node.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
@@ -37,7 +43,7 @@ class SelectEveryNthImage:
         return {
                 "required": {
                     "images": ("IMAGE",),
-                    "select_every_nth": ("INT", {"default": 1, "min": 1, "step": 1}),
+                    "select_every_nth": ("INT", {"default": 1, "min": 1, "max": BIGMAX, "step": 1}),
                 },
             }
     

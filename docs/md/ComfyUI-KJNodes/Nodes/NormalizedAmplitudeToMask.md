@@ -1,53 +1,53 @@
 # NormalizedAmplitudeToMask
 ## Documentation
 - Class name: `NormalizedAmplitudeToMask`
-- Category: `AudioScheduler/Amplitude`
+- Category: `KJNodes/audio`
 - Output node: `False`
 
-This node is designed to transform amplitude values into masks, applying normalization to ensure the amplitude values fall within a specific range. It focuses on manipulating amplitude data to create or adjust masks, which can be used in various image processing or machine learning tasks.
+This node is designed to convert normalized amplitude values from audio signals into masks, applying a transformation that maps the amplitude range to a corresponding visual representation. It emphasizes the integration of audio data with visual elements, enabling dynamic adjustments to visual content based on audio input.
 ## Input types
 ### Required
 - **`normalized_amp`**
-    - The normalized amplitude values, expected to be within the range [0, 1]. These values are used to generate or modify masks based on the amplitude information.
+    - The normalized amplitude values, expected to be in the range [0, 1], serve as the basis for generating masks. These values dictate the intensity and characteristics of the resulting visual masks, directly influencing the visual output.
     - Comfy dtype: `NORMALIZED_AMPLITUDE`
     - Python dtype: `numpy.ndarray`
 - **`width`**
-    - The desired width of the output mask.
+    - Specifies the width of the output mask, allowing for customization of the mask's dimensions based on the requirements of the visual representation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - The desired height of the output mask.
+    - Determines the height of the output mask, enabling adjustment of the mask's size to fit specific visual contexts.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`frame_offset`**
-    - An integer value used to offset the amplitude values by rolling the array. This offset can be used to shift the mask generation process in a specific direction or manner.
+    - An integer value used to offset the amplitude values, providing a means to shift the visual representation of the mask in relation to the audio input.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`location_x`**
-    - The x-coordinate location where the mask generation should start.
+    - The x-coordinate location where the mask will be applied, allowing for precise positioning of the visual effect within the larger image or scene.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`location_y`**
-    - The y-coordinate location where the mask generation should start.
+    - The y-coordinate location for the mask application, facilitating accurate placement of the audio-induced visual effect.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`size`**
-    - The size of the mask to be generated.
+    - Defines the size of the mask, offering control over the scale of the visual effect generated from the audio amplitude.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`shape`**
-    - The shape of the mask to be generated.
+    - Allows selection of the mask's shape, providing options such as 'none', 'circle', 'square', and 'triangle' to customize the visual outcome.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`color`**
-    - The color to be used in the mask generation process.
+    - Chooses the color scheme of the mask, with options like 'white' and 'amplitude' to influence the visual appearance based on the audio input.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `int`
+    - Python dtype: `str`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The generated mask based on the input amplitude values and additional parameters.
-    - Python dtype: `numpy.ndarray`
+    - The output mask generated from the normalized amplitude values, where the amplitude information is visually encoded into the mask's structure.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -86,10 +86,14 @@ class NormalizedAmplitudeToMask:
                         }),
                      },}
 
-    CATEGORY = "AudioScheduler/Amplitude"
-
+    CATEGORY = "KJNodes/audio"
     RETURN_TYPES = ("MASK",)
     FUNCTION = "convert"
+    DESCRIPTION = """
+Works as a bridge to the AudioScheduler -nodes:  
+https://github.com/a1lazydog/ComfyUI-AudioScheduler  
+Creates masks based on the normalized amplitude.
+"""
 
     def convert(self, normalized_amp, width, height, frame_offset, shape, location_x, location_y, size, color):
         # Ensure normalized_amp is an array and within the range [0, 1]

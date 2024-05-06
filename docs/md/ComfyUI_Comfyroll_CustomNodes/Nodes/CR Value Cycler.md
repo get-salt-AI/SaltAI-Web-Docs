@@ -1,3 +1,8 @@
+---
+tags:
+- ComfyrollNodes
+---
+
 # 📜 CR Value Cycler
 ## Documentation
 - Class name: `CR Value Cycler`

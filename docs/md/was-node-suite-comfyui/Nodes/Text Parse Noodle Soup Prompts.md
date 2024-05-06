@@ -1,3 +1,10 @@
+---
+tags:
+- Prompt
+- Text
+- Wildcard
+---
+
 # Text Parse Noodle Soup Prompts
 ## Documentation
 - Class name: `Text Parse Noodle Soup Prompts`

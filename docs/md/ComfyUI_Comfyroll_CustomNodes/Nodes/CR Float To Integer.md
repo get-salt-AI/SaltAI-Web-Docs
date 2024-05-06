@@ -1,3 +1,10 @@
+---
+tags:
+- DataConversion
+- DataTypeConversion
+- NumericConversion
+---
+
 # 🔧 CR Float To Integer
 ## Documentation
 - Class name: `CR Float To Integer`

@@ -1,3 +1,8 @@
+---
+tags:
+- Cache
+---
+
 # Cache Node
 ## Documentation
 - Class name: `Cache Node`

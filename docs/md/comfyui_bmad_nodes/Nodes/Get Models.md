@@ -1,3 +1,9 @@
+---
+tags:
+- Model
+- ModelList
+---
+
 # Get Models
 ## Documentation
 - Class name: `Get Models`

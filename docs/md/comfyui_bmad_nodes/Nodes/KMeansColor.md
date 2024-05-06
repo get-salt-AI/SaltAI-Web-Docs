@@ -1,3 +1,8 @@
+---
+tags:
+- Color
+---
+
 # KMeansColor
 ## Documentation
 - Class name: `KMeansColor`

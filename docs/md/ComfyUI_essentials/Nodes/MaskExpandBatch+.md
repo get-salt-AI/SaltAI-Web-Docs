@@ -1,31 +1,37 @@
+---
+tags:
+- Mask
+- MaskBatch
+---
+
 # 🔧 Mask Expand Batch
 ## Documentation
 - Class name: `MaskExpandBatch+`
 - Category: `essentials`
 - Output node: `False`
 
-The node is designed to manipulate the size of masks in a batch by either expanding or contracting them, optionally with tapered corners for a smoother transition. This functionality is crucial for adjusting mask dimensions to fit specific requirements or to achieve desired effects in image processing tasks.
+The MaskExpandBatch node is designed to process a batch of masks, applying expansion or contraction operations to each mask in the batch. This node enables the modification of mask boundaries, either dilating (expanding) or eroding (contracting) them, based on specified parameters. It is particularly useful in image processing tasks where precise control over mask dimensions is required.
 ## Input types
 ### Required
 - **`mask`**
-    - The mask input represents the mask or masks to be manipulated. It is central to the node's operation as it determines the base data on which size adjustments are performed.
+    - The 'mask' parameter represents the input batch of masks to be processed. It is crucial for defining the masks on which the expansion or contraction operations will be applied, directly influencing the node's output.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`size`**
-    - The size parameter specifies the target size of the mask batch after processing. It allows for the adjustment of the batch size to meet specific requirements.
+    - The 'size' parameter specifies the magnitude of the expansion or contraction. Positive values indicate expansion, while negative values indicate contraction, directly affecting the size of the masks.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`method`**
-    - The method parameter determines the approach used to adjust the size of the mask batch, including options like 'expand', 'all', 'first', and 'last', each offering different ways of resizing.
+    - The 'method' parameter determines the technique used for expanding or contracting the masks, offering a choice between different algorithms for mask manipulation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The output is a mask or a batch of masks that have been resized according to the specified parameters, maintaining the original content while adjusting dimensions.
+    - The output is a batch of masks that have been either expanded or contracted based on the provided parameters, suitable for further image processing applications.
     - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -41,7 +47,7 @@ class MaskExpandBatch:
                 "method": (["expand", "repeat all", "repeat first", "repeat last"],)
             }
         }
-    
+
     RETURN_TYPES = ("MASK",)
     FUNCTION = "execute"
     CATEGORY = "essentials"

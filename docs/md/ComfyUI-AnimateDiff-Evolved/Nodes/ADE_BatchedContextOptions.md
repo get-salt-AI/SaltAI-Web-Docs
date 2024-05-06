@@ -1,3 +1,9 @@
+---
+tags:
+- AnimateDiff
+- Animation
+---
+
 # Context Options◆Batched [Non-AD] 🎭🅐🅓
 ## Documentation
 - Class name: `ADE_BatchedContextOptions`

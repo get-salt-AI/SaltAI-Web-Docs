@@ -1,3 +1,8 @@
+---
+tags:
+- Style
+---
+
 # Apply Style Model
 ## Documentation
 - Class name: `StyleModelApply`

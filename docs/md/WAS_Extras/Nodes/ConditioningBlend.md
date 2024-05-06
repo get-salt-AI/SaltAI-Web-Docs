@@ -1,3 +1,8 @@
+---
+tags:
+- Conditioning
+---
+
 # Conditioning (Blend)
 ## Documentation
 - Class name: `ConditioningBlend`

@@ -4,42 +4,42 @@
 - Category: `mtb/math`
 - Output node: `False`
 
-The Fit Number node is designed to adapt numerical values to a specified range or format, ensuring they fit within certain constraints or match a desired pattern. This node is essential for preprocessing numerical data, making it suitable for further analysis or modeling by adjusting its scale or format.
+The Fit Number node is designed to adjust numerical values to fit within a specified range, optionally applying an easing function to smooth the transition between values. It can automatically compute the source range based on input values if required, making it versatile for dynamic data scaling scenarios.
 ## Input types
 ### Required
 - **`value`**
-    - Specifies the numerical value to be adapted. It's crucial for determining the starting point of the adaptation process.
+    - The numerical value to be adjusted. This parameter is the primary data that the node operates on, transforming the value to fit within the target range.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`clamp`**
-    - Determines whether the output value should be clamped within the target range, ensuring it does not exceed the specified limits.
+    - A boolean indicating whether to clamp the transformed value to the target range, preventing the value from exceeding the specified minimum and maximum.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`source_min`**
-    - Defines the minimum value of the source range, serving as a reference point for scaling the input value.
+    - The minimum value of the source range. This is used as the lower bound when scaling the input value, unless auto-compute is enabled.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`source_max`**
-    - Sets the maximum value of the source range, used alongside source_min to scale the input value appropriately.
+    - The maximum value of the source range. This sets the upper bound for scaling the input value, overridden if auto-compute is active.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`target_min`**
-    - Specifies the minimum value of the target range, indicating the lower bound to which the input value is scaled.
+    - The minimum value of the target range to which the input value is scaled.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`target_max`**
-    - Defines the maximum value of the target range, establishing the upper limit for the scaled input value.
+    - The maximum value of the target range to which the input value is adjusted.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`easing`**
-    - Selects the easing function to apply during the adaptation process, affecting how the input value transitions between the source and target ranges.
+    - A string specifying the easing function to apply during the scaling process, affecting how the value transitions across the range.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`float`**
     - Comfy dtype: `FLOAT`
-    - The adapted numerical value after being processed through the specified source and target ranges, including any applied easing functions.
-    - Python dtype: `float`
+    - The input value adjusted to fit within the specified target range, potentially smoothed by an easing function.
+    - Python dtype: `list[float]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -47,7 +47,7 @@ The Fit Number node is designed to adapt numerical values to a specified range o
 
 ## Source code
 ```python
-class FitNumber:
+class MTB_FitNumber:
     """Fit the input float using a source and target range"""
 
     @classmethod
@@ -61,30 +61,7 @@ class FitNumber:
                 "target_min": ("FLOAT", {"default": 0.0, "step": 0.01}),
                 "target_max": ("FLOAT", {"default": 1.0, "step": 0.01}),
                 "easing": (
-                    [
-                        "Linear",
-                        "Sine In",
-                        "Sine Out",
-                        "Sine In/Out",
-                        "Quart In",
-                        "Quart Out",
-                        "Quart In/Out",
-                        "Cubic In",
-                        "Cubic Out",
-                        "Cubic In/Out",
-                        "Circ In",
-                        "Circ Out",
-                        "Circ In/Out",
-                        "Back In",
-                        "Back Out",
-                        "Back In/Out",
-                        "Elastic In",
-                        "Elastic Out",
-                        "Elastic In/Out",
-                        "Bounce In",
-                        "Bounce Out",
-                        "Bounce In/Out",
-                    ],
+                    EASINGS,
                     {"default": "Linear"},
                 ),
             }

@@ -1,3 +1,8 @@
+---
+tags:
+- Style
+---
+
 # Load Style Model
 ## Documentation
 - Class name: `StyleModelLoader`

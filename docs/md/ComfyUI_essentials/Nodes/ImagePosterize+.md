@@ -1,24 +1,30 @@
+---
+tags:
+- ImageTransformation
+- VisualEffects
+---
+
 # 🔧 Image Posterize
 ## Documentation
 - Class name: `ImagePosterize+`
 - Category: `essentials`
 - Output node: `False`
 
-This node applies a posterization effect to an image, reducing its color depth according to a specified threshold. It simplifies the image's color palette, creating a stylized, graphic effect.
+The ImagePosterize node applies a posterization effect to images, reducing the color depth of the image to a specified threshold. This process simplifies the image's color palette, creating a graphic effect by limiting the number of colors displayed.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be posterized. This parameter is crucial as it determines the base image that will undergo the posterization process.
+    - The input image to be posterized. This parameter is crucial as it directly influences the visual outcome of the posterization effect.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`threshold`**
-    - Defines the threshold for the posterization effect. A lower threshold results in fewer colors and a more pronounced posterization effect.
+    - Defines the threshold for the posterization effect, controlling the extent to which the image's color depth is reduced. It plays a key role in determining the final appearance of the posterized image.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output image after applying the posterization effect. It features reduced color depth, creating a stylized appearance.
+    - The output image after applying the posterization effect, featuring reduced color depth as per the specified threshold.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -36,7 +42,7 @@ class ImagePosterize:
                 "threshold": ("FLOAT", { "default": 0.50, "min": 0.00, "max": 1.00, "step": 0.05, }),
             }
         }
-    
+
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "execute"
     CATEGORY = "essentials"

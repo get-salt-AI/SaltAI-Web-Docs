@@ -1,29 +1,34 @@
+---
+tags:
+- ConditionalSelection
+---
+
 # Model Input Switch
 ## Documentation
 - Class name: `Model Input Switch`
 - Category: `WAS Suite/Logic`
 - Output node: `False`
 
-The Model Input Switch node is designed to select between two model inputs based on a boolean condition. It facilitates conditional logic in model processing pipelines, allowing for dynamic selection of models.
+The WAS_Model_Input_Switch node is designed to dynamically select between two model inputs based on a boolean condition. This functionality allows for flexible control flow within a pipeline, enabling the conditional execution of model-based operations.
 ## Input types
 ### Required
 - **`model_a`**
-    - The first model input option. This model is selected if the boolean condition evaluates to true.
+    - Represents the first model input option. This parameter plays a crucial role in determining the output based on the boolean condition.
     - Comfy dtype: `MODEL`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `MODEL`
 - **`model_b`**
-    - The second model input option. This model is selected if the boolean condition evaluates to false.
+    - Represents the second model input option. It serves as an alternative to the first model input, with its selection dependent on the boolean condition.
     - Comfy dtype: `MODEL`
-    - Python dtype: `torch.nn.Module`
-- **`boolean_number`**
-    - A numeric boolean condition that determines which model input to select. A value of 1 selects `model_a`, while any other value selects `model_b`.
-    - Comfy dtype: `NUMBER`
-    - Python dtype: `int`
+    - Python dtype: `MODEL`
+- **`boolean`**
+    - A boolean flag that determines which model input (model_a or model_b) to pass through as the output. This parameter is essential for controlling the switch behavior.
+    - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The selected model input based on the boolean condition.
-    - Python dtype: `torch.nn.Module`
+    - The selected model input based on the boolean condition. This output facilitates conditional model selection within a workflow.
+    - Python dtype: `MODEL`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -41,7 +46,7 @@ class WAS_Model_Input_Switch:
             "required": {
                 "model_a": ("MODEL",),
                 "model_b": ("MODEL",),
-                "boolean_number": ("NUMBER",),
+                "boolean": ("BOOLEAN", {"forceInput": True}),
             }
         }
 
@@ -50,9 +55,9 @@ class WAS_Model_Input_Switch:
 
     CATEGORY = "WAS Suite/Logic"
 
-    def model_switch(self, model_a, model_b, boolean_number=1):
+    def model_switch(self, model_a, model_b, boolean=True):
 
-        if int(round(boolean_number)) == 1:
+        if boolean:
             return (model_a, )
         else:
             return (model_b, )

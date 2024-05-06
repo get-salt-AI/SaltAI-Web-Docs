@@ -1,3 +1,9 @@
+---
+tags:
+- AnimationScheduling
+- Scheduling
+---
+
 # 📋 CR Output Schedule To File
 ## Documentation
 - Class name: `CR Output Schedule To File`

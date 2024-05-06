@@ -1,3 +1,9 @@
+---
+tags:
+- DataTypeConversion
+- MathematicalFunctions
+---
+
 # Integer Add
 ## Documentation
 - Class name: `JWIntegerAdd`

@@ -1,3 +1,9 @@
+---
+tags:
+- ConditionalSelection
+- ImageSwitching
+---
+
 # 🪛 Switch image
 ## Documentation
 - Class name: `Switch image [Crystools]`

@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageSave
+---
+
 # Image Receiver
 ## Documentation
 - Class name: `ImageReceiver`

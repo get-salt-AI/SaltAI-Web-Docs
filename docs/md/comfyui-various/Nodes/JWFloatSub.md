@@ -1,3 +1,9 @@
+---
+tags:
+- Arithmetic
+- MathematicalFunctions
+---
+
 # Float Subtract
 ## Documentation
 - Class name: `JWFloatSub`

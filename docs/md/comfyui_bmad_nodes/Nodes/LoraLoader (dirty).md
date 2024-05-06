@@ -1,3 +1,8 @@
+---
+tags:
+- LoRA
+---
+
 # LoraLoader (dirty)
 ## Documentation
 - Class name: `LoraLoader (dirty)`

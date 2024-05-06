@@ -1,3 +1,11 @@
+---
+tags:
+- AnimationScheduling
+- FrameInterpolation
+- Interpolation
+- VisualEffects
+---
+
 # 🔢 CR Increment Float
 ## Documentation
 - Class name: `CR Increment Float`

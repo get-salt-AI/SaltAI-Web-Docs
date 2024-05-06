@@ -1,3 +1,10 @@
+---
+tags:
+- Batch
+- Image
+- ImageBatch
+---
+
 # Image Extract From Batch
 ## Documentation
 - Class name: `JWImageExtractFromBatch`

@@ -1,3 +1,10 @@
+---
+tags:
+- DataConversion
+- DataTypeConversion
+- NumericConversion
+---
+
 # Float to String
 ## Documentation
 - Class name: `JWFloatToString`

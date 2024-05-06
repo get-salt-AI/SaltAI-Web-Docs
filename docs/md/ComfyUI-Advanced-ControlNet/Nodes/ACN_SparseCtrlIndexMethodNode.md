@@ -1,3 +1,8 @@
+---
+tags:
+- ControlNet
+---
+
 # SparseCtrl Index Method 🛂🅐🅒🅝
 ## Documentation
 - Class name: `ACN_SparseCtrlIndexMethodNode`

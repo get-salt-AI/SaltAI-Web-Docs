@@ -1,3 +1,9 @@
+---
+tags:
+- List
+- Text
+---
+
 # CR Text List Simple (Legacy)
 ## Documentation
 - Class name: `CR Text List Simple`

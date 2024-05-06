@@ -1,3 +1,8 @@
+---
+tags:
+- NumberRangeGeneration
+---
+
 # Range Integer (Mikey)
 ## Documentation
 - Class name: `Range Integer`

@@ -1,37 +1,42 @@
+---
+tags:
+- Color
+---
+
 # Colored Image (mtb)
 ## Documentation
 - Class name: `Colored Image (mtb)`
 - Category: `mtb/generate`
 - Output node: `False`
 
-The Colored Image node is designed to generate constant color images of specified sizes. It allows for the creation of simple, uniform color backgrounds that can be optionally overlaid with a foreground image and mask, providing a straightforward way to produce images with a solid color base.
+The Colored Image node is designed to apply color transformations to images, enabling the enhancement or alteration of their visual appearance through various color adjustment techniques.
 ## Input types
 ### Required
 - **`color`**
-    - Specifies the color of the generated image. This parameter is crucial for defining the visual appearance of the output.
+    - The 'color' parameter defines the primary color to be applied to the image, influencing its overall hue and tone.
     - Comfy dtype: `COLOR`
     - Python dtype: `str`
 - **`width`**
-    - Determines the width of the generated image. This parameter allows for customization of the image size to fit specific requirements.
+    - The 'width' parameter specifies the desired width of the output image, allowing for size customization.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Sets the height of the generated image, enabling the user to specify the desired dimensions of the output.
+    - The 'height' parameter sets the desired height of the output image, enabling size adjustments to fit specific requirements.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`foreground_image`**
-    - An optional parameter that allows for the overlay of a foreground image onto the solid color background, adding complexity to the generated image.
+    - The 'foreground_image' parameter allows for the overlay of an image atop the colored background, adding complexity to the visual output.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`foreground_mask`**
-    - When a foreground image is provided, this optional parameter can be used to specify a mask that determines how the foreground image blends with the background color.
+    - The 'foreground_mask' parameter specifies an alpha mask for the foreground image, determining transparency and blending with the background.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - Produces an image with the specified solid color, dimensions, and optional foreground overlay.
+    - The output is an image that has been transformed by applying the specified color and background to the given mask.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
@@ -40,7 +45,7 @@ The Colored Image node is designed to generate constant color images of specifie
 
 ## Source code
 ```python
-class ColoredImage:
+class MTB_ColoredImage:
     """Constant color image of given size."""
 
     def __init__(self) -> None:
@@ -76,7 +81,7 @@ class ColoredImage:
 
         # Resize the image based on calculated scale
         new_size = (int(img.width * scale), int(img.height * scale))
-        img = img.resize(new_size, Image.ANTIALIAS)
+        img = img.resize(new_size, Image.LANCZOS)
 
         # Calculate cropping coordinates
         left = (img.width - target_size[0]) / 2
@@ -88,7 +93,7 @@ class ColoredImage:
         return img.crop((left, top, right, bottom))
 
     def resize_and_crop_thumbnails(self, img, target_size):
-        img.thumbnail(target_size, Image.ANTIALIAS)
+        img.thumbnail(target_size, Image.LANCZOS)
         left = (img.width - target_size[0]) / 2
         top = (img.height - target_size[1]) / 2
         right = (img.width + target_size[0]) / 2
@@ -100,23 +105,30 @@ class ColoredImage:
         color,
         width,
         height,
-        foreground_image: Optional[torch.Tensor] = None,
-        foreground_mask: Optional[torch.Tensor] = None,
+        foreground_image: torch.Tensor | None = None,
+        foreground_mask: torch.Tensor | None = None,
     ):
         image = Image.new("RGBA", (width, height), color=color)
         output = []
         if foreground_image is not None:
-            fg_images = tensor2pil(foreground_image)
-            fg_masks = [None] * len(
-                fg_images
-            )  # Default to None for each foreground image
+            fg_masks = [None] * foreground_image.size()[0]
 
             if foreground_mask is not None:
+                fg_size = foreground_image.size()[0]
+                mask_size = foreground_mask.size()[0]
+
+                if fg_size == 1 and mask_size > fg_size:
+                    foreground_image = foreground_image.repeat(
+                        mask_size, 1, 1, 1
+                    )
+
                 if foreground_image.size()[0] != foreground_mask.size()[0]:
                     raise ValueError(
                         "Foreground image and mask must have same batch size"
                     )
-                fg_masks = tensor2pil(foreground_mask)
+                fg_masks = tensor2pil(foreground_mask.unsqueeze(-1))
+
+            fg_images = tensor2pil(foreground_image)
 
             for fg_image, fg_mask in zip(fg_images, fg_masks):
                 # Resize and crop if dimensions mismatch
@@ -136,14 +148,17 @@ class ColoredImage:
                 else:
                     if fg_image.mode != "RGBA":
                         raise ValueError(
-                            "Foreground image must be in 'RGBA' mode when no mask is provided, got {fg_image.mode}"
+                            "Foreground image must be in 'RGBA' mode "
+                            f"when no mask is provided, got {fg_image.mode}"
                         )
                     output.append(
                         Image.alpha_composite(image, fg_image).convert("RGB")
                     )
 
-        elif foreground_mask is not None:
-            log.warn("Mask ignored because no foreground image is given")
+        else:
+            if foreground_mask is not None:
+                log.warn("Mask ignored because no foreground image is given")
+            output.append(image.convert("RGB"))
 
         output = pil2tensor(output)
 

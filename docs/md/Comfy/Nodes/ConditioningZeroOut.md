@@ -1,3 +1,8 @@
+---
+tags:
+- Conditioning
+---
+
 # ConditioningZeroOut
 ## Documentation
 - Class name: `ConditioningZeroOut`
@@ -19,7 +24,7 @@ This node zeroes out specific elements within the conditioning data structure, e
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes:
-    - UltimateSDUpscale
+    - [UltimateSDUpscale](../../ComfyUI_UltimateSDUpscale/Nodes/UltimateSDUpscale.md)
 
 
 

@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- PatternGeneration
+- VisualEffects
+---
+
 # 🟧 CR Starburst Colors
 ## Documentation
 - Class name: `CR Starburst Colors`

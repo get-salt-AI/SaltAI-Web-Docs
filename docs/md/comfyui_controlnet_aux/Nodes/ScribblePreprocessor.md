@@ -1,3 +1,11 @@
+---
+tags:
+- DepthMap
+- Image
+- ImagePreprocessing
+- LineExtraction
+---
+
 # Scribble Lines
 ## Documentation
 - Class name: `ScribblePreprocessor`

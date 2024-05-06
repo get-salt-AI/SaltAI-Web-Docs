@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- ImageSave
+---
+
 # Save Image If True (Mikey)
 ## Documentation
 - Class name: `Save Image If True`

@@ -1,3 +1,10 @@
+---
+tags:
+- DataConversion
+- DataTypeConversion
+- NumericConversion
+---
+
 # String to Float
 ## Documentation
 - Class name: `String to Float`

@@ -1,3 +1,9 @@
+---
+tags:
+- Prompt
+- PromptStyling
+---
+
 # Prompt Multiple Styles Selector
 ## Documentation
 - Class name: `Prompt Multiple Styles Selector`

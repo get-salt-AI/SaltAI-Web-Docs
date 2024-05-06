@@ -1,3 +1,10 @@
+---
+tags:
+- Image
+- Pipeline
+- PipelineTransformation
+---
+
 # FromDetailer (SDXL/pipe)
 ## Documentation
 - Class name: `FromDetailerPipeSDXL`

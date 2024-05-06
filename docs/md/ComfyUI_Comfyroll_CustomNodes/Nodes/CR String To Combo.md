@@ -1,3 +1,8 @@
+---
+tags:
+- ComfyrollNodes
+---
+
 # 🔧 CR String To Combo
 ## Documentation
 - Class name: `CR String To Combo`

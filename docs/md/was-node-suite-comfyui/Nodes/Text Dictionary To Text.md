@@ -1,3 +1,8 @@
+---
+tags:
+- Dictionary
+---
+
 # Text Dictionary To Text
 ## Documentation
 - Class name: `Text Dictionary To Text`

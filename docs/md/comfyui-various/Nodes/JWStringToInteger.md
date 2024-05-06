@@ -1,3 +1,10 @@
+---
+tags:
+- DataConversion
+- DataTypeConversion
+- NumericConversion
+---
+
 # String to Integer
 ## Documentation
 - Class name: `JWStringToInteger`

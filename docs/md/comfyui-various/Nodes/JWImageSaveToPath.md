@@ -1,24 +1,30 @@
+---
+tags:
+- Image
+- ImageSave
+---
+
 # Image Save To Path
 ## Documentation
 - Class name: `JWImageSaveToPath`
 - Category: `jamesWalker55`
 - Output node: `True`
 
-This node is designed to save an image to a specified file path, allowing for the inclusion of additional metadata such as prompts and other PNG-specific information.
+This node is designed to save a single image to a specified path, optionally embedding additional metadata such as a prompt or other PNG-specific information within the image file.
 ## Input types
 ### Required
 - **`path`**
-    - The file path where the image will be saved. This path determines the location and filename of the output image.
+    - Specifies the file system path where the image will be saved. This path determines the location and filename of the output image.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`image`**
-    - The image tensor to be saved. It must be a 3-channel image tensor.
+    - The image data to be saved. This tensor represents the image in a format that can be processed and saved to the specified path.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`overwrite`**
-    - A boolean flag indicating whether an existing file at the specified path should be overwritten.
+    - A flag indicating whether an existing file at the specified path should be overwritten. If set to 'true', the existing file will be replaced with the new image.
     - Comfy dtype: `['false', 'true']`
-    - Python dtype: `bool`
+    - Python dtype: `str`
 ## Output types
 The node doesn't have output types
 ## Usage tips

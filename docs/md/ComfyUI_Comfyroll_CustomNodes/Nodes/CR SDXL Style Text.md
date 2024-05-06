@@ -1,3 +1,9 @@
+---
+tags:
+- Prompt
+- PromptStyling
+---
+
 # 🌟 CR SDXL Style Text
 ## Documentation
 - Class name: `CR SDXL Style Text`

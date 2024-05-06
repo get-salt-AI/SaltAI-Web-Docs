@@ -1,3 +1,9 @@
+---
+tags:
+- Latent
+- LatentBlend
+---
+
 # LatentCompositeMasked
 ## Documentation
 - Class name: `LatentCompositeMasked`

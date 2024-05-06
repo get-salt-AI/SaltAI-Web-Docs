@@ -1,29 +1,35 @@
-# [DEPR] Motion Model Settings 🎭🅐🅓①
+---
+tags:
+- AnimateDiff
+- Animation
+---
+
+# 🚫[DEPR] Motion Model Settings 🎭🅐🅓①
 ## Documentation
 - Class name: `ADE_AnimateDiffModelSettings_Release`
 - Category: ``
 - Output node: `False`
 
-This node is designed for configuring motion model settings within the AnimateDiff framework, specifically targeting the release version. It allows for the adjustment of parameters related to the motion and appearance of animations, facilitating the creation of dynamic and visually appealing content.
+This node is designed to configure motion model settings for the AnimateDiff process, focusing on advanced attention strengths adjustments. It aims to provide users with the ability to fine-tune the animation effects applied through the AnimateDiff framework.
 ## Input types
 ### Required
 - **`min_motion_scale`**
-    - Sets the minimum scaling factor for motion, ensuring a baseline level of motion intensity.
+    - Specifies the minimum scale for motion, influencing the subtlety or intensity of the animation effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`max_motion_scale`**
-    - Defines the maximum scaling factor for motion, capping the intensity of movements.
+    - Defines the maximum scale for motion, affecting the range of motion intensity that can be applied to the animation.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`mask_motion_scale`**
-    - Applies a scaling factor to the motion mask, enabling finer control over the motion's intensity and distribution.
+    - A mask tensor that allows for fine-tuned control over motion scaling across different regions of the input.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`ad_settings`**
     - Comfy dtype: `AD_SETTINGS`
-    - Returns the configured motion model settings, encapsulating adjustments to various parameters for fine-tuning the animation's motion and appearance.
+    - The output is a configuration set for the AnimateDiff model, encapsulating adjustments to motion scales and potentially other parameters.
     - Python dtype: `AnimateDiffSettings`
 ## Usage tips
 - Infra type: `CPU`

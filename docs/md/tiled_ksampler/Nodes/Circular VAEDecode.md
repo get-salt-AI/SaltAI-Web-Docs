@@ -1,3 +1,8 @@
+---
+tags:
+- VAE
+---
+
 # Circular VAEDecode
 ## Documentation
 - Class name: `Circular VAEDecode`

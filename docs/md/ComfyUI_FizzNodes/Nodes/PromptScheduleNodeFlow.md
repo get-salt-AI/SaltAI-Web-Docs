@@ -1,37 +1,43 @@
+---
+tags:
+- AnimationScheduling
+- Scheduling
+---
+
 # Prompt Schedule NodeFlow 📅🅕🅝
 ## Documentation
 - Class name: `PromptScheduleNodeFlow`
 - Category: `FizzNodes 📅🅕🅝/ScheduleNodes`
 - Output node: `False`
 
-This node is designed to schedule and sequence text inputs for generating or manipulating strings in a structured format. It dynamically constructs JSON objects based on the input text, number of frames, and optional parameters, facilitating the creation of scheduled text sequences for various applications.
+This node is designed to dynamically construct and manipulate JSON strings based on input text and numerical parameters, facilitating the scheduling of content in a structured format. It primarily serves to augment input text with additional context or parameters, thereby enabling more complex or conditional content generation workflows.
 ## Input types
 ### Required
 - **`text`**
-    - The primary text input that will be included in the generated JSON object. It serves as the base content for the scheduling operation. The content of this text directly influences the content of the output JSON, acting as the main subject of the scheduling.
+    - The primary text input that will be included in the constructed JSON string, serving as the main content or subject of the scheduling operation.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`num_frames`**
-    - Specifies the number of frames to be added to the maximum frames, influencing the final value in the generated JSON object. This parameter directly affects the calculation of the new maximum frame count, which is critical for determining the duration or extent of the scheduling.
+    - A numerical parameter that specifies the starting point for the scheduling operation, affecting the key under which the new content will be placed in the JSON structure.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`in_text`**
-    - An optional initial text input that can be prepended to the generated JSON object, allowing for the extension or modification of existing sequences. This input modifies the starting point of the JSON object, effectively altering the initial state of the scheduled sequence.
+    - An optional initial JSON string to which the new content will be appended, allowing for incremental construction of complex JSON structures.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`max_frames`**
-    - Defines the maximum number of frames to be considered in the scheduling operation, affecting the construction of the JSON object. This parameter sets the upper limit for the frame count, impacting how the final scheduled sequence is structured.
+    - A numerical parameter that, when combined with 'num_frames', determines the key for the new content in the JSON structure, influencing the scheduling sequence.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`int`**
     - Comfy dtype: `INT`
-    - The new maximum frame count after adding num_frames to max_frames. This output is crucial for understanding the new scope of the scheduling operation.
+    - The new maximum frame count, derived from the input 'num_frames' and 'max_frames', indicating the next available key in the JSON structure.
     - Python dtype: `int`
 - **`string`**
     - Comfy dtype: `STRING`
-    - The constructed JSON object as a string, representing the scheduled text sequence. This output encapsulates the result of the scheduling, providing a structured representation of the scheduled content.
+    - The newly constructed JSON string, containing the scheduled content with keys based on the input parameters.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -46,7 +52,7 @@ class PromptScheduleNodeFlow:
         return {"required": {"text": ("STRING", {"multiline": True}),                           
                             "num_frames": ("INT", {"default": 24.0, "min": 0.0, "max": 9999.0, "step": 1.0}),},
                "optional":  {"in_text": ("STRING", {"multiline": False, }), # "forceInput": True}),
-                             "max_frames": ("INT", {"default": 0.0, "min": 0.0, "max": 999999.0, "step": 1.0,})}} # "forceInput": True}),}}
+                             "max_frames": ("INT", {"default": 0.0, "min": 0.0, "max": 999999.0, "step": 1.0,})}}
     
     RETURN_TYPES = ("INT","STRING",)
     FUNCTION = "addString"

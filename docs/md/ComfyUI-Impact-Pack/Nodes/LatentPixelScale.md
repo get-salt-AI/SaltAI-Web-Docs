@@ -1,3 +1,10 @@
+---
+tags:
+- ImageScaling
+- ImageUpscaling
+- Upscale
+---
+
 # Latent Scale (on Pixel Space)
 ## Documentation
 - Class name: `LatentPixelScale`

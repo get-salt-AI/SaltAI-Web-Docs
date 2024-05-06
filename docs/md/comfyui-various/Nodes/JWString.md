@@ -1,3 +1,9 @@
+---
+tags:
+- String
+- Text
+---
+
 # String
 ## Documentation
 - Class name: `JWString`

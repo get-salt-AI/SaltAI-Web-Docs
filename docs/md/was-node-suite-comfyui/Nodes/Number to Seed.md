@@ -1,3 +1,9 @@
+---
+tags:
+- RandomGeneration
+- Seed
+---
+
 # Number to Seed
 ## Documentation
 - Class name: `Number to Seed`

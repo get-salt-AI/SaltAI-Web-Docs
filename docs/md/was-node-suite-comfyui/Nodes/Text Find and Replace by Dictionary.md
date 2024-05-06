@@ -1,3 +1,9 @@
+---
+tags:
+- Text
+- TextReplacement
+---
+
 # Text Find and Replace by Dictionary
 ## Documentation
 - Class name: `Text Find and Replace by Dictionary`

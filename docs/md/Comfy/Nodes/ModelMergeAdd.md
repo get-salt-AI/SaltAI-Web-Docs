@@ -1,3 +1,8 @@
+---
+tags:
+- ModelMerge
+---
+
 # ModelMergeAdd
 ## Documentation
 - Class name: `ModelMergeAdd`

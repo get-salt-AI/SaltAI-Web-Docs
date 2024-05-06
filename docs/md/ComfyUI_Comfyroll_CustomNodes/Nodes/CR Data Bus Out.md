@@ -1,3 +1,9 @@
+---
+tags:
+- Image
+- Pipeline
+---
+
 # 🚌 CR Data Bus Out
 ## Documentation
 - Class name: `CR Data Bus Out`

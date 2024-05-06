@@ -1,3 +1,8 @@
+---
+tags:
+- Image
+---
+
 # Load 64 Encoded Image
 ## Documentation
 - Class name: `Load 64 Encoded Image`

@@ -1,3 +1,8 @@
+---
+tags:
+- Latent
+---
+
 # LatentMultiply
 ## Documentation
 - Class name: `LatentMultiply`

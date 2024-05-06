@@ -1,3 +1,8 @@
+---
+tags:
+- VectorMath
+---
+
 # ComposeVec4
 ## Documentation
 - Class name: `CM_ComposeVec4`
