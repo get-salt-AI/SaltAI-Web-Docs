@@ -2125,3 +2125,7 @@ extra:
           name: This page could be improved
           data: 0
           note: Thanks for your feedback!
+plugins:
+  - search
+  - tags:
+      tags_file: md/tags.md
