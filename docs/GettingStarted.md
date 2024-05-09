@@ -8,6 +8,7 @@ Once you’re logged in, you’ll be directed to the Workflows page.
 
 Click “New Workflow” to start exploring the Workflow Editor.
 
-[https://lh7-us.googleusercontent.com/zK__2sK6CkSnDfsd2s1TevyOYqsxhfzY-sIHa73eCUJKKGHUx97NrTmTdzg4w4U3UJFctavshat7YEcZuNtxuDHXjj0AacsvTYdvbJkn_gWQobDl1z0mcKfptIphWymlKoeqz0ghy3_bvjEfH4yX4II](https://lh7-us.googleusercontent.com/zK__2sK6CkSnDfsd2s1TevyOYqsxhfzY-sIHa73eCUJKKGHUx97NrTmTdzg4w4U3UJFctavshat7YEcZuNtxuDHXjj0AacsvTYdvbJkn_gWQobDl1z0mcKfptIphWymlKoeqz0ghy3_bvjEfH4yX4II)
+![getting_started](images/getting_started.png)
+
 
 Want to learn more about Workflows on Salt? Visit our Workflows help page.
