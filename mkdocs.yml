@@ -1,7 +1,9 @@
 site_name: Salt Documentation
 nav:
-  - Getting Started: index.md
-  - Platform Resources: resources.md
+  - Getting Started: GettingStarted.md
+  - Workflows: Workflows.md
+  - Deployments: Deployments.md
+  - Using Salt in Discord: UsingSaltinDiscord.md
   - Node Documentation:
       - Home: md/index.md
       - Tags: md/tags.md
