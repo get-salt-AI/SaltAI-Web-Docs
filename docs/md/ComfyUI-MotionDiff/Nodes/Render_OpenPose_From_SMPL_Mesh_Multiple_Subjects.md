@@ -10,17 +10,17 @@ tags:
 - Category: `MotionDiff/smpl`
 - Output node: `False`
 
-This node is designed to render OpenPose visualizations from SMPL mesh data for multiple subjects. It focuses on converting the skeletal structure of multiple human figures, as represented by SMPL models, into OpenPose format, which is a widely used framework for human body pose estimation.
+This node is designed to render OpenPose keypoints from multiple SMPL mesh subjects, facilitating the visualization of human poses and movements in a standardized format. It emphasizes the conversion of 3D mesh data into 2D pose representations, enabling a more intuitive understanding of complex human interactions captured by the SMPL model.
 ## Input types
 ### Required
 - **`smpl_multi_subjects`**
-    - The SMPL model data for multiple subjects, which is essential for generating OpenPose visualizations of each subject's pose.
+    - Represents multiple SMPL model subjects, serving as the input for generating OpenPose visualizations. This parameter is crucial for processing and rendering the poses of multiple individuals simultaneously.
     - Comfy dtype: `SMPL_MULTIPLE_SUBJECTS`
     - Python dtype: `List[Dict[str, Any]]`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The rendered OpenPose visualization as an image, showcasing the pose estimations of multiple subjects.
+    - The output is an image representation of OpenPose keypoints, providing a visual summary of human poses derived from the input SMPL meshes.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -41,7 +41,7 @@ class Render_OpenPose_From_SMPL_Mesh_Multiple_Subjects:
     CATEGORY = "MotionDiff/smpl"
     FUNCTION = "render"
     def render(self, smpl_multi_subjects):
-        render_openpose = smpl_multi_subjects[2].get("render_openpose", None)
+        render_openpose = smpl_multi_subjects[1].get("render_openpose", None)
         if render_openpose is None:
             raise NotImplementedError("render_openpose")
         return (render_openpose().float() / 255., )

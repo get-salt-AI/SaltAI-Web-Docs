@@ -4,11 +4,11 @@
 - Category: `mtb/generate`
 - Output node: `False`
 
-The MTB_QrCode node is designed to generate QR codes based on provided parameters such as URL, dimensions, error correction level, box size, border size, and color inversion. It emphasizes customization of the QR code's appearance and error resilience.
+The MTB_QrCode node generates QR codes based on provided URLs, allowing customization of size, error correction level, and color inversion. It serves as a basic QR code generator with deprecation warnings, suggesting alternatives for more advanced needs.
 ## Input types
 ### Required
 - **`url`**
-    - The URL to be encoded into the QR code, serving as the primary content of the QR code.
+    - The URL to be encoded into the QR code, serving as the primary data for the QR code generation.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`width`**
@@ -20,9 +20,9 @@ The MTB_QrCode node is designed to generate QR codes based on provided parameter
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`error_correct`**
-    - Determines the error correction level used for the QR code, affecting its resilience to damage.
+    - Determines the error correction level used in the QR code, affecting its resilience to damage.
     - Comfy dtype: `['L', 'M', 'Q', 'H']`
-    - Python dtype: `str`
+    - Python dtype: `qrcode.constants.ErrorCorrectLevel`
 - **`box_size`**
     - The size of each box (or 'pixel') in the QR code grid.
     - Comfy dtype: `INT`
@@ -32,13 +32,13 @@ The MTB_QrCode node is designed to generate QR codes based on provided parameter
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`invert`**
-    - Whether to invert the QR code's color scheme, swapping the foreground and background colors.
+    - Whether the QR code's colors are inverted, swapping the foreground and background colors.
     - Comfy dtype: `['BOOLEAN']`
     - Python dtype: `bool`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The generated QR code as an image.
+    - The generated QR code as an image tensor, ready for further processing or display.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`

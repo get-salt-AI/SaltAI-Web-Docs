@@ -1210,6 +1210,16 @@ nav:
               - 'XY Input: Lora Block Weight __Inspire': 'md/ComfyUI-Inspire-Pack/Nodes/XY
                   Input: Lora Block Weight __Inspire.md'
               - ZipPrompt __Inspire: md/ComfyUI-Inspire-Pack/Nodes/ZipPrompt __Inspire.md
+      - ComfyUI-InstanceDiffusion:
+          - Home: md/ComfyUI-InstanceDiffusion/index.md
+          - Licenses: md/ComfyUI-InstanceDiffusion/licenses.md
+          - Nodes:
+              - ApplyScaleUModelNode: md/ComfyUI-InstanceDiffusion/Nodes/ApplyScaleUModelNode.md
+              - DownloadInstanceDiffusionModels: md/ComfyUI-InstanceDiffusion/Nodes/DownloadInstanceDiffusionModels.md
+              - InstanceDiffusionTrackingPrompt: md/ComfyUI-InstanceDiffusion/Nodes/InstanceDiffusionTrackingPrompt.md
+              - LoadInstanceFusersNode: md/ComfyUI-InstanceDiffusion/Nodes/LoadInstanceFusersNode.md
+              - LoadInstancePositionNetModel: md/ComfyUI-InstanceDiffusion/Nodes/LoadInstancePositionNetModel.md
+              - LoadInstanceScaleUNode: md/ComfyUI-InstanceDiffusion/Nodes/LoadInstanceScaleUNode.md
       - ComfyUI-KJNodes:
           - Home: md/ComfyUI-KJNodes/index.md
           - Licenses: md/ComfyUI-KJNodes/licenses.md
@@ -1821,6 +1831,19 @@ nav:
                   Save Grid Image.md
               - CR_Aspect Ratio For Print: md/ComfyUI_Comfyroll_CustomNodes/Nodes/CR_Aspect
                   Ratio For Print.md
+      - ComfyUI_Custom_Nodes_AlekPet:
+          - Home: md/ComfyUI_Custom_Nodes_AlekPet/index.md
+          - Licenses: md/ComfyUI_Custom_Nodes_AlekPet/licenses.md
+          - Nodes:
+              - ArgosTranslateCLIPTextEncodeNode: md/ComfyUI_Custom_Nodes_AlekPet/Nodes/ArgosTranslateCLIPTextEncodeNode.md
+              - ArgosTranslateTextNode: md/ComfyUI_Custom_Nodes_AlekPet/Nodes/ArgosTranslateTextNode.md
+              - DeepTranslatorCLIPTextEncodeNode: md/ComfyUI_Custom_Nodes_AlekPet/Nodes/DeepTranslatorCLIPTextEncodeNode.md
+              - DeepTranslatorTextNode: md/ComfyUI_Custom_Nodes_AlekPet/Nodes/DeepTranslatorTextNode.md
+              - GoogleTranslateCLIPTextEncodeNode: md/ComfyUI_Custom_Nodes_AlekPet/Nodes/GoogleTranslateCLIPTextEncodeNode.md
+              - GoogleTranslateTextNode: md/ComfyUI_Custom_Nodes_AlekPet/Nodes/GoogleTranslateTextNode.md
+              - PainterNode: md/ComfyUI_Custom_Nodes_AlekPet/Nodes/PainterNode.md
+              - PoseNode: md/ComfyUI_Custom_Nodes_AlekPet/Nodes/PoseNode.md
+              - PreviewTextNode: md/ComfyUI_Custom_Nodes_AlekPet/Nodes/PreviewTextNode.md
       - ComfyUI_ELLA:
           - Home: md/ComfyUI_ELLA/index.md
           - Licenses: md/ComfyUI_ELLA/licenses.md
@@ -2438,88 +2461,95 @@ nav:
               - SaltScheduledShapeTransformation: md/SaltAI_AudioViz/Nodes/SaltScheduledShapeTransformation.md
               - SaltScheduledVoronoiNoise: md/SaltAI_AudioViz/Nodes/SaltScheduledVoronoiNoise.md
               - SaltThresholdSchedule: md/SaltAI_AudioViz/Nodes/SaltThresholdSchedule.md
-      - SaltAI_LlamaIndex:
-          - Home: md/SaltAI_LlamaIndex/index.md
-          - Licenses: md/SaltAI_LlamaIndex/licenses.md
+      - SaltAI_Language_Toolkit:
+          - Home: md/SaltAI_Language_Toolkit/index.md
+          - Licenses: md/SaltAI_Language_Toolkit/licenses.md
           - Nodes:
-              - AddTool: md/SaltAI_LlamaIndex/Nodes/AddTool.md
-              - ChangeSystemMessage: md/SaltAI_LlamaIndex/Nodes/ChangeSystemMessage.md
-              - ClearMemory: md/SaltAI_LlamaIndex/Nodes/ClearMemory.md
-              - ConversableAgentCreator: md/SaltAI_LlamaIndex/Nodes/ConversableAgentCreator.md
-              - ConversableAgentCreatorAdvanced: md/SaltAI_LlamaIndex/Nodes/ConversableAgentCreatorAdvanced.md
-              - ConvertAgentAsTool: md/SaltAI_LlamaIndex/Nodes/ConvertAgentAsTool.md
-              - ConvertAgentToLlamaindex: md/SaltAI_LlamaIndex/Nodes/ConvertAgentToLlamaindex.md
-              - CreateTavilySearchTool: md/SaltAI_LlamaIndex/Nodes/CreateTavilySearchTool.md
-              - GenerateReply: md/SaltAI_LlamaIndex/Nodes/GenerateReply.md
-              - GroupChat: md/SaltAI_LlamaIndex/Nodes/GroupChat.md
-              - GroupChatAdvanced: md/SaltAI_LlamaIndex/Nodes/GroupChatAdvanced.md
-              - GroupChatManagerCreator: md/SaltAI_LlamaIndex/Nodes/GroupChatManagerCreator.md
-              - LLMCSVReader: md/SaltAI_LlamaIndex/Nodes/LLMCSVReader.md
-              - LLMChat: md/SaltAI_LlamaIndex/Nodes/LLMChat.md
-              - LLMChatBot: md/SaltAI_LlamaIndex/Nodes/LLMChatBot.md
-              - LLMChatEngine: md/SaltAI_LlamaIndex/Nodes/LLMChatEngine.md
-              - LLMChatMessageConcat: md/SaltAI_LlamaIndex/Nodes/LLMChatMessageConcat.md
-              - LLMChatMessages: md/SaltAI_LlamaIndex/Nodes/LLMChatMessages.md
-              - LLMChatMessagesAdv: md/SaltAI_LlamaIndex/Nodes/LLMChatMessagesAdv.md
-              - LLMComplete: md/SaltAI_LlamaIndex/Nodes/LLMComplete.md
-              - LLMDirectoryReader: md/SaltAI_LlamaIndex/Nodes/LLMDirectoryReader.md
-              - LLMDocumentListAppend: md/SaltAI_LlamaIndex/Nodes/LLMDocumentListAppend.md
-              - LLMDocxReader: md/SaltAI_LlamaIndex/Nodes/LLMDocxReader.md
-              - LLMEpubReader: md/SaltAI_LlamaIndex/Nodes/LLMEpubReader.md
-              - LLMFlatReader: md/SaltAI_LlamaIndex/Nodes/LLMFlatReader.md
-              - LLMGroqModel: md/SaltAI_LlamaIndex/Nodes/LLMGroqModel.md
-              - LLMHTMLTagReader: md/SaltAI_LlamaIndex/Nodes/LLMHTMLTagReader.md
-              - LLMHWPReader: md/SaltAI_LlamaIndex/Nodes/LLMHWPReader.md
-              - LLMHtmlComposer: md/SaltAI_LlamaIndex/Nodes/LLMHtmlComposer.md
-              - LLMHtmlRepair: md/SaltAI_LlamaIndex/Nodes/LLMHtmlRepair.md
-              - LLMIPYNBReader: md/SaltAI_LlamaIndex/Nodes/LLMIPYNBReader.md
-              - LLMImageCaptionReader: md/SaltAI_LlamaIndex/Nodes/LLMImageCaptionReader.md
-              - LLMImageTabularChartReader: md/SaltAI_LlamaIndex/Nodes/LLMImageTabularChartReader.md
-              - LLMImageTextReader: md/SaltAI_LlamaIndex/Nodes/LLMImageTextReader.md
-              - LLMImageVisionLLMReader: md/SaltAI_LlamaIndex/Nodes/LLMImageVisionLLMReader.md
-              - LLMInputToDocuments: md/SaltAI_LlamaIndex/Nodes/LLMInputToDocuments.md
-              - LLMJsonComposer: md/SaltAI_LlamaIndex/Nodes/LLMJsonComposer.md
-              - LLMJsonRepair: md/SaltAI_LlamaIndex/Nodes/LLMJsonRepair.md
-              - LLMLlamaCPPModel: md/SaltAI_LlamaIndex/Nodes/LLMLlamaCPPModel.md
-              - LLMMarkdownComposer: md/SaltAI_LlamaIndex/Nodes/LLMMarkdownComposer.md
-              - LLMMarkdownReader: md/SaltAI_LlamaIndex/Nodes/LLMMarkdownReader.md
-              - LLMMarkdownRepair: md/SaltAI_LlamaIndex/Nodes/LLMMarkdownRepair.md
-              - LLMMboxReader: md/SaltAI_LlamaIndex/Nodes/LLMMboxReader.md
-              - LLMOpenAIModel: md/SaltAI_LlamaIndex/Nodes/LLMOpenAIModel.md
-              - LLMOpenAIModelOpts: md/SaltAI_LlamaIndex/Nodes/LLMOpenAIModelOpts.md
-              - LLMPDFReader: md/SaltAI_LlamaIndex/Nodes/LLMPDFReader.md
-              - LLMPagedCSVReader: md/SaltAI_LlamaIndex/Nodes/LLMPagedCSVReader.md
-              - LLMPandasCSVReader: md/SaltAI_LlamaIndex/Nodes/LLMPandasCSVReader.md
-              - LLMPostProcessDocuments: md/SaltAI_LlamaIndex/Nodes/LLMPostProcessDocuments.md
-              - LLMPptxReader: md/SaltAI_LlamaIndex/Nodes/LLMPptxReader.md
-              - LLMPyMuPDFReader: md/SaltAI_LlamaIndex/Nodes/LLMPyMuPDFReader.md
-              - LLMQueryEngine: md/SaltAI_LlamaIndex/Nodes/LLMQueryEngine.md
-              - LLMQueryEngineAdv: md/SaltAI_LlamaIndex/Nodes/LLMQueryEngineAdv.md
-              - LLMQueryEngineAsTool: md/SaltAI_LlamaIndex/Nodes/LLMQueryEngineAsTool.md
-              - LLMRTFReader: md/SaltAI_LlamaIndex/Nodes/LLMRTFReader.md
-              - LLMRegexCreator: md/SaltAI_LlamaIndex/Nodes/LLMRegexCreator.md
-              - LLMRegexRepair: md/SaltAI_LlamaIndex/Nodes/LLMRegexRepair.md
-              - LLMRssReaderNode: md/SaltAI_LlamaIndex/Nodes/LLMRssReaderNode.md
-              - LLMSaltWebCrawler: md/SaltAI_LlamaIndex/Nodes/LLMSaltWebCrawler.md
-              - LLMSemanticSplitterNodeParser: md/SaltAI_LlamaIndex/Nodes/LLMSemanticSplitterNodeParser.md
-              - LLMSentenceSplitterNodeCreator: md/SaltAI_LlamaIndex/Nodes/LLMSentenceSplitterNodeCreator.md
-              - LLMServiceContextAdv: md/SaltAI_LlamaIndex/Nodes/LLMServiceContextAdv.md
-              - LLMServiceContextDefault: md/SaltAI_LlamaIndex/Nodes/LLMServiceContextDefault.md
-              - LLMSimpleWebPageReader: md/SaltAI_LlamaIndex/Nodes/LLMSimpleWebPageReader.md
-              - LLMSimpleWebPageReaderAdv: md/SaltAI_LlamaIndex/Nodes/LLMSimpleWebPageReaderAdv.md
-              - LLMSummaryIndex: md/SaltAI_LlamaIndex/Nodes/LLMSummaryIndex.md
-              - LLMTavilyResearch: md/SaltAI_LlamaIndex/Nodes/LLMTavilyResearch.md
-              - LLMTrafilaturaWebReader: md/SaltAI_LlamaIndex/Nodes/LLMTrafilaturaWebReader.md
-              - LLMTrafilaturaWebReaderAdv: md/SaltAI_LlamaIndex/Nodes/LLMTrafilaturaWebReaderAdv.md
-              - LLMTreeIndex: md/SaltAI_LlamaIndex/Nodes/LLMTreeIndex.md
-              - LLMUnstructuredReader: md/SaltAI_LlamaIndex/Nodes/LLMUnstructuredReader.md
-              - LLMVectorStoreIndex: md/SaltAI_LlamaIndex/Nodes/LLMVectorStoreIndex.md
-              - LLMVideoAudioReader: md/SaltAI_LlamaIndex/Nodes/LLMVideoAudioReader.md
-              - LLMXMLReader: md/SaltAI_LlamaIndex/Nodes/LLMXMLReader.md
-              - LLMYamlComposer: md/SaltAI_LlamaIndex/Nodes/LLMYamlComposer.md
-              - LLMYamlRepair: md/SaltAI_LlamaIndex/Nodes/LLMYamlRepair.md
-              - SendMessage: md/SaltAI_LlamaIndex/Nodes/SendMessage.md
-              - SimpleChat: md/SaltAI_LlamaIndex/Nodes/SimpleChat.md
+              - AddTool: md/SaltAI_Language_Toolkit/Nodes/AddTool.md
+              - ChangeSystemMessage: md/SaltAI_Language_Toolkit/Nodes/ChangeSystemMessage.md
+              - ClearMemory: md/SaltAI_Language_Toolkit/Nodes/ClearMemory.md
+              - ConversableAgentCreator: md/SaltAI_Language_Toolkit/Nodes/ConversableAgentCreator.md
+              - ConversableAgentCreatorAdvanced: md/SaltAI_Language_Toolkit/Nodes/ConversableAgentCreatorAdvanced.md
+              - ConvertAgentAsTool: md/SaltAI_Language_Toolkit/Nodes/ConvertAgentAsTool.md
+              - ConvertAgentToLlamaindex: md/SaltAI_Language_Toolkit/Nodes/ConvertAgentToLlamaindex.md
+              - CreateTavilySearchTool: md/SaltAI_Language_Toolkit/Nodes/CreateTavilySearchTool.md
+              - GenerateReply: md/SaltAI_Language_Toolkit/Nodes/GenerateReply.md
+              - GroupChat: md/SaltAI_Language_Toolkit/Nodes/GroupChat.md
+              - GroupChatAdvanced: md/SaltAI_Language_Toolkit/Nodes/GroupChatAdvanced.md
+              - GroupChatManagerCreator: md/SaltAI_Language_Toolkit/Nodes/GroupChatManagerCreator.md
+              - LLMCSVReader: md/SaltAI_Language_Toolkit/Nodes/LLMCSVReader.md
+              - LLMChat: md/SaltAI_Language_Toolkit/Nodes/LLMChat.md
+              - LLMChatBot: md/SaltAI_Language_Toolkit/Nodes/LLMChatBot.md
+              - LLMChatEngine: md/SaltAI_Language_Toolkit/Nodes/LLMChatEngine.md
+              - LLMChatMessageConcat: md/SaltAI_Language_Toolkit/Nodes/LLMChatMessageConcat.md
+              - LLMChatMessages: md/SaltAI_Language_Toolkit/Nodes/LLMChatMessages.md
+              - LLMChatMessagesAdv: md/SaltAI_Language_Toolkit/Nodes/LLMChatMessagesAdv.md
+              - LLMComplete: md/SaltAI_Language_Toolkit/Nodes/LLMComplete.md
+              - LLMDirectoryReader: md/SaltAI_Language_Toolkit/Nodes/LLMDirectoryReader.md
+              - LLMDocumentListAppend: md/SaltAI_Language_Toolkit/Nodes/LLMDocumentListAppend.md
+              - LLMDocxReader: md/SaltAI_Language_Toolkit/Nodes/LLMDocxReader.md
+              - LLMEpubReader: md/SaltAI_Language_Toolkit/Nodes/LLMEpubReader.md
+              - LLMFlatReader: md/SaltAI_Language_Toolkit/Nodes/LLMFlatReader.md
+              - LLMGeminiModel: md/SaltAI_Language_Toolkit/Nodes/LLMGeminiModel.md
+              - LLMGroqModel: md/SaltAI_Language_Toolkit/Nodes/LLMGroqModel.md
+              - LLMHTMLTagReader: md/SaltAI_Language_Toolkit/Nodes/LLMHTMLTagReader.md
+              - LLMHWPReader: md/SaltAI_Language_Toolkit/Nodes/LLMHWPReader.md
+              - LLMHtmlComposer: md/SaltAI_Language_Toolkit/Nodes/LLMHtmlComposer.md
+              - LLMHtmlRepair: md/SaltAI_Language_Toolkit/Nodes/LLMHtmlRepair.md
+              - LLMIPYNBReader: md/SaltAI_Language_Toolkit/Nodes/LLMIPYNBReader.md
+              - LLMImageCaptionReader: md/SaltAI_Language_Toolkit/Nodes/LLMImageCaptionReader.md
+              - LLMImageTabularChartReader: md/SaltAI_Language_Toolkit/Nodes/LLMImageTabularChartReader.md
+              - LLMImageTextReader: md/SaltAI_Language_Toolkit/Nodes/LLMImageTextReader.md
+              - LLMImageVisionLLMReader: md/SaltAI_Language_Toolkit/Nodes/LLMImageVisionLLMReader.md
+              - LLMInputToDocuments: md/SaltAI_Language_Toolkit/Nodes/LLMInputToDocuments.md
+              - LLMJsonComposer: md/SaltAI_Language_Toolkit/Nodes/LLMJsonComposer.md
+              - LLMJsonRepair: md/SaltAI_Language_Toolkit/Nodes/LLMJsonRepair.md
+              - LLMLLaVANextImageEvaluator: md/SaltAI_Language_Toolkit/Nodes/LLMLLaVANextImageEvaluator.md
+              - LLMLLaVANextModelLoader: md/SaltAI_Language_Toolkit/Nodes/LLMLLaVANextModelLoader.md
+              - LLMLlamaCPPModel: md/SaltAI_Language_Toolkit/Nodes/LLMLlamaCPPModel.md
+              - LLMMarkdownComposer: md/SaltAI_Language_Toolkit/Nodes/LLMMarkdownComposer.md
+              - LLMMarkdownReader: md/SaltAI_Language_Toolkit/Nodes/LLMMarkdownReader.md
+              - LLMMarkdownRepair: md/SaltAI_Language_Toolkit/Nodes/LLMMarkdownRepair.md
+              - LLMMboxReader: md/SaltAI_Language_Toolkit/Nodes/LLMMboxReader.md
+              - LLMMistralAI: md/SaltAI_Language_Toolkit/Nodes/LLMMistralAI.md
+              - LLMOpenAIModel: md/SaltAI_Language_Toolkit/Nodes/LLMOpenAIModel.md
+              - LLMOpenAIModelOpts: md/SaltAI_Language_Toolkit/Nodes/LLMOpenAIModelOpts.md
+              - LLMPDFReader: md/SaltAI_Language_Toolkit/Nodes/LLMPDFReader.md
+              - LLMPagedCSVReader: md/SaltAI_Language_Toolkit/Nodes/LLMPagedCSVReader.md
+              - LLMPandasCSVReader: md/SaltAI_Language_Toolkit/Nodes/LLMPandasCSVReader.md
+              - LLMParquetDatasetSearcher: md/SaltAI_Language_Toolkit/Nodes/LLMParquetDatasetSearcher.md
+              - LLMPostProcessDocuments: md/SaltAI_Language_Toolkit/Nodes/LLMPostProcessDocuments.md
+              - LLMPptxReader: md/SaltAI_Language_Toolkit/Nodes/LLMPptxReader.md
+              - LLMPyMuPDFReader: md/SaltAI_Language_Toolkit/Nodes/LLMPyMuPDFReader.md
+              - LLMQueryEngine: md/SaltAI_Language_Toolkit/Nodes/LLMQueryEngine.md
+              - LLMQueryEngineAdv: md/SaltAI_Language_Toolkit/Nodes/LLMQueryEngineAdv.md
+              - LLMQueryEngineAsTool: md/SaltAI_Language_Toolkit/Nodes/LLMQueryEngineAsTool.md
+              - LLMRTFReader: md/SaltAI_Language_Toolkit/Nodes/LLMRTFReader.md
+              - LLMRegexCreator: md/SaltAI_Language_Toolkit/Nodes/LLMRegexCreator.md
+              - LLMRegexRepair: md/SaltAI_Language_Toolkit/Nodes/LLMRegexRepair.md
+              - LLMRssReaderNode: md/SaltAI_Language_Toolkit/Nodes/LLMRssReaderNode.md
+              - LLMSaltWebCrawler: md/SaltAI_Language_Toolkit/Nodes/LLMSaltWebCrawler.md
+              - LLMScaleSERPSearch: md/SaltAI_Language_Toolkit/Nodes/LLMScaleSERPSearch.md
+              - LLMSemanticSplitterNodeParser: md/SaltAI_Language_Toolkit/Nodes/LLMSemanticSplitterNodeParser.md
+              - LLMSentenceSplitterNodeCreator: md/SaltAI_Language_Toolkit/Nodes/LLMSentenceSplitterNodeCreator.md
+              - LLMServiceContextAdv: md/SaltAI_Language_Toolkit/Nodes/LLMServiceContextAdv.md
+              - LLMServiceContextDefault: md/SaltAI_Language_Toolkit/Nodes/LLMServiceContextDefault.md
+              - LLMSimpleWebPageReader: md/SaltAI_Language_Toolkit/Nodes/LLMSimpleWebPageReader.md
+              - LLMSimpleWebPageReaderAdv: md/SaltAI_Language_Toolkit/Nodes/LLMSimpleWebPageReaderAdv.md
+              - LLMSummaryIndex: md/SaltAI_Language_Toolkit/Nodes/LLMSummaryIndex.md
+              - LLMTavilyResearch: md/SaltAI_Language_Toolkit/Nodes/LLMTavilyResearch.md
+              - LLMTrafilaturaWebReader: md/SaltAI_Language_Toolkit/Nodes/LLMTrafilaturaWebReader.md
+              - LLMTrafilaturaWebReaderAdv: md/SaltAI_Language_Toolkit/Nodes/LLMTrafilaturaWebReaderAdv.md
+              - LLMTreeIndex: md/SaltAI_Language_Toolkit/Nodes/LLMTreeIndex.md
+              - LLMUnstructuredReader: md/SaltAI_Language_Toolkit/Nodes/LLMUnstructuredReader.md
+              - LLMVectorStoreIndex: md/SaltAI_Language_Toolkit/Nodes/LLMVectorStoreIndex.md
+              - LLMVectorStoreIndexAdv: md/SaltAI_Language_Toolkit/Nodes/LLMVectorStoreIndexAdv.md
+              - LLMVideoAudioReader: md/SaltAI_Language_Toolkit/Nodes/LLMVideoAudioReader.md
+              - LLMXMLReader: md/SaltAI_Language_Toolkit/Nodes/LLMXMLReader.md
+              - LLMYamlComposer: md/SaltAI_Language_Toolkit/Nodes/LLMYamlComposer.md
+              - LLMYamlRepair: md/SaltAI_Language_Toolkit/Nodes/LLMYamlRepair.md
+              - SendMessage: md/SaltAI_Language_Toolkit/Nodes/SendMessage.md
+              - SimpleChat: md/SaltAI_Language_Toolkit/Nodes/SimpleChat.md
       - SaltAI_Whisper_Transcriber:
           - Home: md/SaltAI_Whisper_Transcriber/index.md
           - Licenses: md/SaltAI_Whisper_Transcriber/licenses.md

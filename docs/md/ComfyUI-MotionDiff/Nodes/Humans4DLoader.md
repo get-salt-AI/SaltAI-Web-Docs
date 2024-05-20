@@ -9,21 +9,21 @@ tags:
 - Category: `MotionDiff`
 - Output node: `False`
 
-The Humans4DLoader node is designed to load and prepare 4D human models for further processing or analysis. It supports selecting specific detectors for human detection and optionally utilizes half-precision floating-point for model operations to enhance performance.
+The Humans4DLoader node is designed to load and prepare 4D human models for further processing or analysis. It handles the downloading of necessary models and configurations, setting up the models for execution, and ensuring they are ready for use in tasks such as motion analysis or 3D reconstruction.
 ## Input types
 ### Required
 - **`detector`**
-    - Specifies the detector model to use for human detection, with options including various YOLO versions tailored for person segmentation. This choice influences the accuracy and speed of the detection process.
+    - Specifies the detector model to be used for identifying humans in images. The choice of detector can influence the accuracy and performance of human detection.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`fp16`**
-    - Indicates whether to use half-precision floating-point (FP16) for the model, potentially reducing memory usage and speeding up computations on compatible hardware.
+    - Indicates whether to use half-precision floating-point format (FP16) for the model, potentially improving performance on compatible hardware.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`human4d_model`**
     - Comfy dtype: `HUMAN4D_MODEL`
-    - The output is a structured representation of the 4D human model, including the model configuration, the chosen detector, and the FP16 setting, ready for further processing.
+    - The output is a structured object containing the loaded 4D human model, its configuration, and the detector, ready for further processing.
     - Python dtype: `SimpleNamespace`
 ## Usage tips
 - Infra type: `GPU`
@@ -50,7 +50,11 @@ class Humans4DLoader:
         url_prefix = "https://github.com/ultralytics/assets/releases/latest/download/"
         if "person" in detector:
             url_prefix = "https://huggingface.co/Bingsu/adetailer/resolve/main/" 
-        download_models({detector: url_prefix+detector})
+        download_models({
+            detector: url_prefix+detector, 
+            "model_config.yaml": "https://huggingface.co/spaces/brjathu/HMR2.0/raw/main/logs/train/multiruns/hmr2/0/model_config.yaml",
+            "epoch=35-step=1000000.ckpt": "https://huggingface.co/spaces/brjathu/HMR2.0/resolve/main/logs/train/multiruns/hmr2/0/checkpoints/epoch%3D35-step%3D1000000.ckpt",
+        })
         model, model_cfg = load_hmr2(DEFAULT_CHECKPOINT)
         device = get_torch_device()
         model = model.to(device)
