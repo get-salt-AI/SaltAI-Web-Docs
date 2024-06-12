@@ -1,10 +1,8 @@
 # Workflows
 
-# Workflows
-
 ## Creating workflows
 
-To create a new workflow, select “New Workflow” in the center of the default Workflows page, give your workflow a name, and select “Next”. A default sample workflow will automatically load. 
+To create a new workflow, select “New Workflow” in the center of the default Workflows page, give your workflow a name, and select “Next”. A default sample workflow will automatically load.
 
 You can quickly delete nodes by holding down CTRL CMD A to select all, then delete to clear the canvas. Double click anywhere on the canvas or right click and select “Add Node” to add nodes to your workflow.
 
@@ -18,7 +16,7 @@ Salt requires the use of special input and output nodes in every workflow. The *
 
 More on working with SaltInput and SaltOutput nodes in the video below.
 
-[https://drive.google.com/file/d/1CXSp4sypP9J0rbMztFE84VSg6Z8gq_-E/view?usp=drive_link](https://drive.google.com/file/d/1CXSp4sypP9J0rbMztFE84VSg6Z8gq_-E/view?usp=drive_link)
+[https://drive.google.com/file/d/1CXSp4sypP9J0rbMztFE84VSg6Z8gq\_-E/view?usp=drive_link](https://drive.google.com/file/d/1CXSp4sypP9J0rbMztFE84VSg6Z8gq_-E/view?usp=drive_link)
 
 ## Importing an existing workflow
 
@@ -26,7 +24,7 @@ To import an existing workflow to Salt, drag and drop it onto the page or press 
 
 ## Running your workflow
 
-Once you’re ready to run your workflow, click “Run” in the top right corner. Your workflow will be added to the queue. 
+Once you’re ready to run your workflow, click “Run” in the top right corner. Your workflow will be added to the queue.
 
 ![workflows3](images/workflows3.png)
 

@@ -1,10 +1,10 @@
 site_name: Salt Documentation
 nav:
   - Getting Started: index.md
-  - Workflows: Workflows.md
-  - Deployments: Deployments.md
-  - Deploy to API: deploy-to-api.md
-  - Deploy to Discord: UsingSaltinDiscord.md
+  - Workflows: workflows.md
+  - Deployments:
+    - Deploy to API: deploy-to-api.md
+    - Deploy to Discord: deploy-to-discord.md
   - Node Documentation:
       - Home: md/index.md
       - Tags: md/tags.md
