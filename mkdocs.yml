@@ -3,7 +3,8 @@ nav:
   - Getting Started: index.md
   - Workflows: Workflows.md
   - Deployments: Deployments.md
-  - Using Salt in Discord: UsingSaltinDiscord.md
+  - Deploy to API: deploy-to-api.md
+  - Deploy to Discord: UsingSaltinDiscord.md
   - Node Documentation:
       - Home: md/index.md
       - Tags: md/tags.md
