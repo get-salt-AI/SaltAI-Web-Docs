@@ -26,9 +26,9 @@ You can easily add the Salt AI bot to any server or to your own account (accessi
 
 ## Running workflows in Discord
 
-Once your workflow has been deployed to Discord, it is ready to be used by you and other users. Occasionally it can take several minutes to be discoverable in the Salt AI bot.
+Once your workflow has been deployed to Discord, it is ready to be used by you and other users.
 
-In any server with the Salt AI bot added, use the /workflows command to open the directory. You can enter the name of your workflow directly, copy and paste it, or simply type the /workflows command with your workflow’s name (example: `/workflow sample-workflow`) in the chat field to get started.
+In any server with the Salt AI bot added, use the `/workflows` command to open the directory. You can enter the name of your workflow directly, copy and paste it, or simply type the `/workflows` command with your workflow’s name (example: `/workflow sample-workflow`) in the chat field to get started.
 
 ![discord3](images/discord3.png)
 
