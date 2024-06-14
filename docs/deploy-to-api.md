@@ -2,7 +2,7 @@
 
 ## Overview
 
-Deploy to API enables you to transform your workflows into production-ready APIs, allowing you to seamlessly integrated advanced AI capabilities into your app quickly.
+`Deploy to API` enables you to transform your workflows into production-ready APIs, allowing you to seamlessly integrated advanced AI capabilities into your app quickly.
 
 - **Scalability:** Your deployment will be able to handle increasing loads without compromising performance.
 - **Accessibility:** Simplify the arduous process of deploying an AI workflow, and enable production-ready use with the click of a button.
@@ -10,8 +10,8 @@ Deploy to API enables you to transform your workflows into production-ready APIs
 
 ## Deploying to API
 
-1. Once your workflow is ready for production use, navigate to the deploy button in the workflow editor.
-2. Select the "Deploy to API" option.
+1. Once your workflow is ready for production use, navigate to the `Deploy` button in the workflow editor.
+2. Select the `Deploy to API` option.
 3. You will receive a unique endpoint that you can execute via CURL.
 
 ![deployments1](images/deployments1.png)
@@ -52,7 +52,7 @@ When the CURL command and the respective object are executed, you will receive t
 
 ## SaltInput node
 
-The SaltInput node is an official node developed by the Salt team. Each one present in the workflow allows you to expose input parameters for the end user to interact with.
+The `SaltInput` node is an official node developed by the Salt team. Each one present in the workflow allows you to expose input parameters for the end user to interact with.
 
 <aside>
 ℹ️ It is recommended to give each SaltInput node a unique name for easier reference when constructing your request body. If a node is unnamed, it will be named by its node id number, e.g. "14".
@@ -60,13 +60,13 @@ The SaltInput node is an official node developed by the Salt team. Each one pres
 
 ### Supported value types
 
-- RAW Types: Strings, Integers, Float, Boolean
-- Reference Types: URLs
-- Asset: Base64 Image / Video Data
+- `RAW`: Strings, Integers, Float, Boolean
+- `Reference`: URLs
+- `Asset`: Base64 Image / Video Data
 
 ## Receiving a response via webhook
 
-As workflow run time can vary from seconds to minutes, the output will not be available immediately. To retrieve the final result, please provide a callback URL webhook for us to call when the results are ready.
+As workflow run time can vary from seconds to minutes, the output will not be available immediately. To retrieve the final result, make sure to provide a `<CALLBACK URL>` webhook in the request body for us to call when the results are ready.
 
 ### Example response
 

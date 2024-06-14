@@ -46,7 +46,7 @@ Then, head to the **[#flow-catalog](https://discord.gg/FcbmPDf3E7)** channel and
 ## Troubleshooting errors
 
 Sometimes, executions can fail based on errors in the workflow, such as invalid API keys. To fix this, you may have to make adjustments to the workflow, or get in touch with our support team for help.
-Connection errors may also result in failed generation, or results that don't return even if the workflow is valid. In this case, you can right-click (or tap-hold on mobile) > `Apps` and select `Retry`. The execution will be run again, and could return a successful result if the issue was related to connection.
+Connection errors may also result in failed generation, or results that won't return even if the workflow is valid. In this case, you can `right-click` (or tap-hold on mobile) > `Apps` and select `Retry`. The execution will be run again, and could return a successful result if the issue was related to connection.
 
 ## Need help?
 
