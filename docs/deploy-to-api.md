@@ -89,7 +89,3 @@ As workflow run time can vary from seconds to minutes, the output will not be av
   "error": "Invalid input structure"
 }
 ```
-
----
-
-[API-draft1](https://www.notion.so/API-draft1-8e7e8ca522264238962c4d7e8285119c?pvs=21)
