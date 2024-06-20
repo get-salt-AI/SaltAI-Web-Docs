@@ -21,13 +21,8 @@
 ### Example cURL request
 
 ```
-<<<<<<< Updated upstream
-curl -X POST --location "<https://salt-api-dev.getsalt.ai/api/v1/deployments/7824a62e-8222-454d-9ef4-bf1c7746fed4/executions/>" \\
--H "Content-Type: application/json" \\
-=======
 curl -X POST --location "<https://salt-api-dev.getsalt.ai/api/v1/deployments/7824a62e-8222-454d-9ef4-bf1c7746fed4/executions/>"
 -H "Content-Type: application/json"
->>>>>>> Stashed changes
 -d '{ "callback": "<CALLBACK URL>" }'
 ```
 
@@ -57,11 +52,7 @@ When the CURL command and the respective object are executed, you will receive t
 
 ## SaltInput node
 
-<<<<<<< Updated upstream
-The `SaltInput` node is an official node developed by the Salt team. Each one present in the workflow allows you to expose input parameters for the end user to interact with.
-=======
 The `SaltInput` node allows you to expose input parameters for end-user interaction within your workflow. Each one represents an input property in the `workflow_input` object of your API call's request body.
->>>>>>> Stashed changes
 
 <aside>
 ℹ️ It is recommended to give each SaltInput node a unique name for easier reference when constructing your request body. If a node is unnamed, it will be named by its node id number, e.g. "14".
@@ -75,11 +66,7 @@ The `SaltInput` node allows you to expose input parameters for end-user interact
 
 ## Receiving a response via webhook
 
-<<<<<<< Updated upstream
-As workflow run time can vary from seconds to minutes, the output will not be available immediately. To retrieve the final result, make sure to provide a `<CALLBACK URL>` webhook in the request body for us to call when the results are ready.
-=======
 Workflow run times can vary from seconds to minutes. To manage this, Salt delivers results asynchronously via a webhook. Provide a callback URL to receive the final results once they are ready.
->>>>>>> Stashed changes
 
 ### Example response
 

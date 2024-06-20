@@ -32,11 +32,7 @@ In any server with the Salt AI bot added, use the `/workflows` command to open t
 
 ![discord3](images/discord3.png)
 
-<<<<<<< Updated upstream
-Once your workflow is selected, click `Run workflow` to execute it. You can then fill in the workflow's input values, one for each SaltInput node in your workflow. Enter your string & integer values and click `Submit`. If the workflow has image or file attachments, you will be prompted to upload them in your direct messages.
-=======
 Once your workflow is selected, click `Run workflow` to execute it. You can then fill in the workflow's input values, one for each `SaltInput` node in your workflow. Enter your string & integer values and click `Submit`. If the workflow has image or file attachments, you will be prompted to upload them in your direct messages.
->>>>>>> Stashed changes
 Once the required inputs are filled in, your workflow will execute, and the outputs will appear in the thread or channel where you posted your message when they are finished generating.
 
 ![discord4](images/discord4.png)
@@ -49,11 +45,7 @@ Then, head to the **[#flow-catalog](https://discord.gg/FcbmPDf3E7)** channel and
 
 ## Troubleshooting errors
 
-<<<<<<< Updated upstream
-Sometimes, executions can fail based on errors in the workflow, such as invalid API keys. To fix this, you may have to make adjustments to the workflow, or get in touch with our support team for help.
-=======
 Sometimes, executions can fail based on errors in the workflow, such as invalid API keys. To fix this, you may have to make adjustments to the workflow, or [get in touch with our support team](https://discord.com/channels/1151592612525002822/1212167911771217961) for help.
->>>>>>> Stashed changes
 Connection errors may also result in failed generation, or results that won't return even if the workflow is valid. In this case, you can `right-click` (or tap-hold on mobile) > `Apps` and select `Retry`. The execution will be run again, and could return a successful result if the issue was related to connection.
 
 ## Need help?
