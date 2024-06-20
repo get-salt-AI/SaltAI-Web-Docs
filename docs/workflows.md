@@ -14,7 +14,7 @@ You can quickly delete nodes by holding down CTRL CMD A to select all, then dele
 
 Salt requires the use of special input and output nodes in every workflow. The **[SaltInput node](https://docs.getsalt.ai/md/SaltAI/Nodes/SaltInput/)** is required for passing an input into a workflow. The **[SaltOutput node](https://docs.getsalt.ai/md/SaltAI/Nodes/SaltOutput/)** is required in order to render an output (i.e. for all workflows).
 
-More on working with SaltInput and SaltOutput nodes in the video below.
+More on working with `SaltInput` and `SaltOutput` nodes in the video below.
 
 [https://drive.google.com/file/d/1CXSp4sypP9J0rbMztFE84VSg6Z8gq\_-E/view?usp=drive_link](https://drive.google.com/file/d/1CXSp4sypP9J0rbMztFE84VSg6Z8gq_-E/view?usp=drive_link)
 
@@ -46,11 +46,11 @@ Workflows automatically save as you go. You can find, open, and edit all of your
 
 ## Preparing your workflow for deployment
 
-You can see a workflow’s inputs and outputs at the bottom of the screen. These count the number of SaltInput & SaltOutput nodes, which are the parameters exposed to the user when they run your deployed workflow through our API (currently the Salt Discord integration).
+You can see a workflow’s inputs and outputs at the bottom of the screen. These count the number of `SaltInput` & `SaltOutput` nodes, which are the parameters exposed to the user when they run your deployed workflow through our API (currently the Salt Discord integration).
 
 ![workflows7](images/workflows7.png)
 
-Use a SaltInput node for every parameter you want to expose to users who will be able to run your workflow, such as text inputs, seed number inputs, or an uploaded image or file.
+Use a `SaltInput` node for every parameter you want to expose to users who will be able to run your workflow, such as text inputs, seed number inputs, or an uploaded image or file.
 
 You can use these in place of LoadImage nodes, or text boxes.
 
@@ -61,11 +61,11 @@ You can use these in place of LoadImage nodes, or text boxes.
 
 </aside>
 
-You can plug a SaltInput node in place of a text box or node parameter by right-clicking the node and converting it to an input.
+You can plug a `SaltInput` node in place of a text box or node parameter by right-clicking the node and converting it to an input.
 
 ![workflows9](images/workflows9.png)
 
-Your outputs can be configured using SaltOutput nodes, which is where you are able to specify your file types & frame rate. Each node can handle batch outputs, and you can have multiple nodes with different file types. It can help to name your outputs to differentiate them.
+Your outputs can be configured using `SaltOutput` nodes, which is where you are able to specify your file types & frame rate. Each node can handle batch outputs, and you can have multiple nodes with different file types. It can help to name your outputs to differentiate them.
 
 ![workflows10](images/workflows10.png)
 
