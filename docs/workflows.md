@@ -58,7 +58,6 @@ You can use these in place of LoadImage nodes, or text boxes.
 
 <aside>
 💡 It’s a good idea to give your SaltInput nodes a unique name and description to help guide users of your workflow to know what that particular node should be used for (i.e. text prompt, uploaded image, etc.)
-
 </aside>
 
 You can plug a `SaltInput` node in place of a text box or node parameter by right-clicking the node and converting it to an input.
