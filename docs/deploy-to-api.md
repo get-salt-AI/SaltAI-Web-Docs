@@ -17,7 +17,7 @@
 ![deployments1](images/deployments1.png)
 
 <aside>
-ℹ️ The workflow will be deployed in the state of its last successful run, and needs to have at least 1 successful run to be deployed.
+ℹ️ The most recent job execution must be successful in order to proceed with deployment.
 </aside>
 
 ## Sending inputs
