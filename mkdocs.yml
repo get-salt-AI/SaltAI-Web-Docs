@@ -2,6 +2,7 @@ site_name: Salt Documentation
 nav:
   - Getting Started: index.md
   - Workflows: workflows.md
+  - Importing Models: model-import.md
   - Deployments:
     - Deploy to API: deploy-to-api.md
     - Deploy to Discord: deploy-to-discord.md
