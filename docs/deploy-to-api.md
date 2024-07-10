@@ -42,7 +42,7 @@ curl -X POST --location "<https://salt-api-dev.getsalt.ai/api/v1/deployments/782
     },
     "input_name2": {
       "value": {
-        "url": "<https://imageurl.com/image.png>"
+        "url": "https://imageurl.com/my-image.png"
       },
       "value_type": "REFERENCE"
     },
