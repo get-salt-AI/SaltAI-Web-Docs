@@ -10,11 +10,15 @@
 
 ## Deploying to API
 
-1. Once your workflow is ready for production use, navigate to the `Deploy` button in the workflow editor.
+1. Once your workflow is [ready for production use](https://docs.getsalt.ai/workflows/#preparing-your-workflow-for-deployment), navigate to the `Deploy` button in the workflow editor.
 2. Select the `Deploy to API` option.
 3. You will receive a unique endpoint that you can execute via CURL.
 
 ![deployments1](images/deployments1.png)
+
+<aside>
+ℹ️ The most recent job execution must be successful in order to proceed with deployment.
+</aside>
 
 ## Sending inputs
 
@@ -32,12 +36,16 @@ curl -X POST --location "<https://salt-api-dev.getsalt.ai/api/v1/deployments/782
 {
   "callback": "<CALLBACK URL>",
   "workflow_input": {
-    "14": {
+    "input_name": {
+      "value": "My text input",
+      "value_type": "RAW"
+    },
+    "input_name2": {
       "value": {
-        "url": "<https://imageurl.com/image.png>"
+        "url": "https://imageurl.com/my-image.png"
       },
       "value_type": "REFERENCE"
-    }
+    },
   }
 }
 ```
@@ -72,7 +80,7 @@ Workflow run times can vary from seconds to minutes. To manage this, Salt delive
 
 ```json
 {
-  "result": ["<https://storage.googleapis.com/>....."],
+  "output_name": ["<https://storage.googleapis.com/>....."],
   "execution_id": "d919a4b6-01cc-4e1a-ad7a-c59a066576b8"
 }
 ```
@@ -90,7 +98,3 @@ Workflow run times can vary from seconds to minutes. To manage this, Salt delive
   "error": "Invalid input structure"
 }
 ```
-
----
-
-[API-draft1](https://www.notion.so/API-draft1-8e7e8ca522264238962c4d7e8285119c?pvs=21)
