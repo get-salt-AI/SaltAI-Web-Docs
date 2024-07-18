@@ -1,14 +1,14 @@
-site_name: Documentation
+site_name: Salt AI Docs
+site_url: https://docs.getsalt.ai
 nav:
   - Getting Started: index.md
   - Core Concepts: concepts.md
   - Creating Workflows: workflows.md
   - Using Nodes: nodes.md
   - Managing Deployments:
-    - Deployments: deployments.md
-    - Deploy to API: deploy-to-api.md
-    - Deploy to Discord: deploy-to-discord.md
-    
+      - Deployments: deployments.md
+      - Deploy to API: deploy-to-api.md
+      - Deploy to Discord: deploy-to-discord.md
   - Advanced Topics:
     - Importing Models: model-import.md    
     - Node Docs:
@@ -3903,10 +3903,8 @@ theme:
       
 theme:
   name: material
-  font:
-    text: Inter
-    code: 'Roboto Mono'
   logo: images/salt-word@2x.png
+  icon: images/salt-logo-square.svg
   favicon: images/favicon-light.png
   features:
     - navigation.instant
@@ -3921,6 +3919,9 @@ theme:
     - content.code.copy
 markdown_extensions:
   - tables
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.highlight:
       anchor_linenums: true
       pygments_lang_class: true
@@ -3939,7 +3940,6 @@ markdown_extensions:
 extra_css:
   - stylesheets/theme.css
 extra:
-  theme_dir: 'material'
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/get-salt-AI
@@ -3952,3 +3952,5 @@ extra:
     property: G-MHLEW2T4PQ
 plugins:
   - search
+  - tags
+  - social
