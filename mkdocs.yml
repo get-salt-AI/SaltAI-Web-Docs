@@ -2,7 +2,7 @@ site_name: Salt AI Docs
 site_url: https://docs.getsalt.ai
 theme:
   name: material
-  logo: images/salt-mark.png
+  logo: images/salt-word@2x.png
   favicon: images/favicon-light.png
   features:
     - navigation.instant
