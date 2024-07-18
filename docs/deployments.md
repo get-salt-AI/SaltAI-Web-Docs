@@ -2,7 +2,7 @@
 description: Vew, manage, and monitor your deployed workflows.
 ---
 
-# Managing Deployments in Salt AI
+# Managing Deployments
 
 ## Overview
 
