@@ -52,8 +52,8 @@ plugins:
   - search
   - tags
   - social:
+      cache: false
       cards_layout_options:
-          logo: images/salt-mark.png
           font_family: Inter
           background_color: "#C0BED3"
           color: "black"
