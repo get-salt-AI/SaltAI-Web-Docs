@@ -20,7 +20,7 @@ body {
 }
 
 ol {
-  list-style: number;
+  /* list-style: number; */
 }
 
 [dir="ltr"]
@@ -83,7 +83,6 @@ aside {
   --md-primary-bg-color: var(--color-surface-12);
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(20px);
-  /* border-bottom: 1px solid var(--color-border-base); */
 }
 
 .md-header .md-header__topic {
@@ -125,8 +124,8 @@ aside {
 
 @media screen and (min-width: 76.25em) {
   .md-nav--primary .md-nav__title {
-    background: none;
-    box-shadow: none;
+    background: var(--color-surface-1);
+    box-shadow: 0px 0px 5px 0 var(--color-surface-1)
     margin-bottom: 1rem;
     text-transform: uppercase;
     font-size: 12px;
