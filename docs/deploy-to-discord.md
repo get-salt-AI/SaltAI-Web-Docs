@@ -1,3 +1,7 @@
+---
+description: Salt AI offers a unique feature that allows you to deploy and run your workflows through the `Salt AI` Discord bot.
+---
+
 # Deploying and Running Workflows on Discord
 
 Salt AI offers a unique feature that allows you to deploy and run your workflows through the `Salt AI` Discord bot. This guide will walk you through the process of deploying your workflows to Discord and using them within the Discord platform.

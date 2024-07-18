@@ -1,3 +1,7 @@
+---
+description: Seamlessly upload models directly from Huggingface or CivitAI, streamlining your development process.
+---
+
 # Importing Models
 
 Self service model importing is here! You can now seamlessly upload models directly from Huggingface or CivitAI, streamlining your development process.

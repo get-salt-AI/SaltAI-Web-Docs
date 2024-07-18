@@ -1,3 +1,7 @@
+---
+description: Your go-to platform for building powerful AI-driven applications without writing a single line of code.
+---
+
 # Getting Started with Salt AI
 
 Welcome to [Salt AI](https://getsalt.ai), your go-to platform for building powerful AI-driven applications without writing a single line of code. Salt AI offers an intuitive, node-based environment for creating sophisticated AI workflows.

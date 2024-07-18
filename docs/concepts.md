@@ -1,3 +1,7 @@
+---
+description: This guide introduces you to the fundamental concepts and terminology you'll encounter while using our platform.
+---
+
 # Salt AI: Core Concepts
 
 Welcome to Salt AI! This guide introduces you to the fundamental concepts and terminology you'll encounter while using our platform. Understanding these core concepts will help you navigate Salt AI more effectively and build powerful AI-driven applications.

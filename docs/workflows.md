@@ -1,3 +1,7 @@
+---
+description: Create powerful AI-driven applications through a visual, node-based interface.
+---
+
 # Understanding Workflows in Salt AI
 
 Workflows are the heart of Salt AI, allowing you to create powerful AI-driven applications through a visual, node-based interface. This guide will help you understand what workflows are, how they function, and how to create effective workflows in Salt AI.
