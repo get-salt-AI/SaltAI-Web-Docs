@@ -2,8 +2,7 @@ site_name: Salt AI Docs
 site_url: https://docs.getsalt.ai
 theme:
   name: material
-  logo: images/salt-word@2x.png
-  icon: images/salt-logo-square.svg
+  logo: images/salt-mark.png
   favicon: images/favicon-light.png
   features:
     - navigation.instant
@@ -52,8 +51,12 @@ extra:
 plugins:
   - search
   - tags
-  - social
-  - awesome-pages
+  - social:
+      cards_layout_options:
+          logo: images/salt-mark.png
+          font_family: Inter
+          background_color: "#C0BED3"
+          color: "black"
 nav:
   - Getting Started: index.md
   - Core Concepts: concepts.md
