@@ -1,11 +1,19 @@
-site_name: Salt Documentation
+site_name: Documentation
 nav:
   - Getting Started: index.md
-  - Workflows: workflows.md
-  - Importing Models: model-import.md
-  - Deployments:
+  - Core Concepts: concepts.md
+  - Creating Workflows: workflows.md
+  - Using Nodes: nodes.md
+  - Managing Deployments:
+    - Deployments: deployments.md
     - Deploy to API: deploy-to-api.md
     - Deploy to Discord: deploy-to-discord.md
+    
+  - Advanced Topics:
+    - Importing Models: model-import.md    
+    - Node Docs:
+      - Home: md/index.md
+      - Tags: md/tags.md
   - Node Documentation:
       - Home: md/index.md
       - Tags: md/tags.md
@@ -3892,18 +3900,14 @@ nav:
               - unCLIP Checkpoint Loader: md/was-node-suite-comfyui/Nodes/unCLIP Checkpoint
                   Loader.md
 theme:
+      
+theme:
   name: material
-  palette:
-    - media: '(prefers-color-scheme: light)'
-      scheme: default
-      toggle:
-        icon: material/weather-night
-        name: Switch to dark mode
-    - media: '(prefers-color-scheme: dark)'
-      scheme: slate
-      toggle:
-        icon: material/white-balance-sunny
-        name: Switch to light mode
+  font:
+    text: Inter
+    code: 'Roboto Mono'
+  logo: images/salt-word@2x.png
+  favicon: images/favicon-light.png
   features:
     - navigation.instant
     - navigation.tracking
@@ -3932,7 +3936,10 @@ markdown_extensions:
   - pymdownx.keys
   - attr_list
   - md_in_html
+extra_css:
+  - stylesheets/theme.css
 extra:
+  theme_dir: 'material'
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/get-salt-AI
@@ -3943,18 +3950,5 @@ extra:
   analytics:
     provider: google
     property: G-MHLEW2T4PQ
-    feedback:
-      title: Was this page helpful?
-      ratings:
-        - icon: material/thumb-up-outline
-          name: This page was helpful
-          data: 1
-          note: Thanks for your feedback!
-        - icon: material/thumb-down-outline
-          name: This page could be improved
-          data: 0
-          note: Thanks for your feedback!
 plugins:
   - search
-  - tags:
-      tags_file: md/tags.md
