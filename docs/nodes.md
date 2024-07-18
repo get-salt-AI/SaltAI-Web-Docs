@@ -1,3 +1,7 @@
+---
+description: Nodes are the fundamental building blocks of workflows in Salt AI.
+---
+
 # Understanding Nodes in Salt AI
 
 Nodes are the fundamental building blocks of workflows in Salt AI. Each node represents a specific function or operation, allowing you to create complex AI applications through visual programming. This guide will help you understand what nodes are, how to use them, and how to leverage Salt AI's unique node features.
