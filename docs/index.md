@@ -16,6 +16,8 @@ Welcome to [Salt AI](https://getsalt.ai), your go-to platform for building power
 
 ## Building Your First Workflow
 
+[Workflows Guide](/workflows)
+
 1. **Access the Canvas:** Log in to Salt AI and navigate to the workflow builder. You'll see the default workflow on the canvas.
 
 2. **Understand the Default Setup:** Take a moment to examine the pre-configured nodes and their connections. This will give you an idea of how workflows are structured in Salt AI.
@@ -42,7 +44,7 @@ Welcome to [Salt AI](https://getsalt.ai), your go-to platform for building power
 
 - Collaborate: Share your workflows with team members for feedback and collaborative improvement.
 
-## Next Steps
+## Need Help?
 
-- Explore our comprehensive [Node Library](https://docs.getsalt.ai/md/) to discover all available functionalities.
-- Join our [discord Community](https://discord.gg/saltai) to connect with other developers and get support.
+- Join our [Discord](https://discord.gg/saltai) Community to connect with other developers and get support.
+- Explore our comprehensive [Node Documentation](https://docs.getsalt.ai/md/) to discover all of the nodes available on the platform.
