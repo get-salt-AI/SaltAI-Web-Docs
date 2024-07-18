@@ -25,7 +25,8 @@ jobs:
       - run: pip install \
           mkdocs-material \
           mkdocs-material[imaging] \
-          Pillow cairosvg \
+          Pillow \
+          cairosvg \
           mkdocs-awesome-pages-plugin \
       - run: mkdocs gh-deploy --force
 
