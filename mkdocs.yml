@@ -1,20 +1,72 @@
 site_name: Salt AI Docs
 site_url: https://docs.getsalt.ai
+theme:
+  name: material
+  logo: images/salt-word@2x.png
+  icon: images/salt-logo-square.svg
+  favicon: images/favicon-light.png
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+markdown_extensions:
+  - tables
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      pygments_lang_class: true
+      line_spans: __span
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - def_list
+  - toc:
+      permalink: true
+  - pymdownx.keys
+  - attr_list
+  - md_in_html
+extra_css:
+  - stylesheets/theme.css
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/get-salt-AI
+      name: Salt Github
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/saltai
+      name: Salt Discord
+  analytics:
+    provider: google
+    property: G-MHLEW2T4PQ
+plugins:
+  - search
+  - tags
+  - social
+  - awesome-pages
 nav:
   - Getting Started: index.md
   - Core Concepts: concepts.md
-  - Creating Workflows: workflows.md
-  - Using Nodes: nodes.md
-  - Managing Deployments:
+  - Workflow Builder:
+    - Creating Workflows: workflows.md
+    - Using Nodes: nodes.md
+    - Importing Models: model-import.md  
+  - Deployments:
       - Deployments: deployments.md
       - Deploy to API: deploy-to-api.md
       - Deploy to Discord: deploy-to-discord.md
-  - Advanced Topics:
-    - Importing Models: model-import.md    
-    - Node Docs:
-      - Home: md/index.md
-      - Tags: md/tags.md
-  - Node Documentation:
+  
+  - Node Documentation: 
       - Home: md/index.md
       - Tags: md/tags.md
       - Comfy:
@@ -3899,58 +3951,3 @@ nav:
               - Write to Video: md/was-node-suite-comfyui/Nodes/Write to Video.md
               - unCLIP Checkpoint Loader: md/was-node-suite-comfyui/Nodes/unCLIP Checkpoint
                   Loader.md
-theme:
-      
-theme:
-  name: material
-  logo: images/salt-word@2x.png
-  icon: images/salt-logo-square.svg
-  favicon: images/favicon-light.png
-  features:
-    - navigation.instant
-    - navigation.tracking
-    - navigation.indexes
-    - navigation.top
-    - navigation.footer
-    - toc.integrate
-    - search.suggest
-    - search.highlight
-    - search.share
-    - content.code.copy
-markdown_extensions:
-  - tables
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
-  - pymdownx.highlight:
-      anchor_linenums: true
-      pygments_lang_class: true
-      line_spans: __span
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
-  - admonition
-  - pymdownx.details
-  - pymdownx.superfences
-  - def_list
-  - toc:
-      permalink: true
-  - pymdownx.keys
-  - attr_list
-  - md_in_html
-extra_css:
-  - stylesheets/theme.css
-extra:
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/get-salt-AI
-      name: Salt Github
-    - icon: fontawesome/brands/discord
-      link: https://discord.gg/saltai
-      name: Salt Discord
-  analytics:
-    provider: google
-    property: G-MHLEW2T4PQ
-plugins:
-  - search
-  - tags
-  - social
