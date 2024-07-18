@@ -1,53 +1,55 @@
-# Deploying and running workflows on Discord
+# Deploying and Running Workflows on Discord
+
+Salt AI offers a unique feature that allows you to deploy and run your workflows through the `Salt AI` Discord bot. This guide will walk you through the process of deploying your workflows to Discord and using them within the Discord platform.
 
 ## Deploying to Discord
 
-With Salt, you can deploy and run your workflows through the `Salt AI` Discord bot.
+When you're ready to deploy your workflow to Discord:
 
-When you’re ready to deploy, select the `Deploy` button in the top right corner. You will be prompted to give your workflow a name. Choose a unique, descriptive slug – your workflow will be discoverable by any Discord user using the Salt AI bot – then click `Deploy`.
+1. Click the `Deploy` button in the top right corner of the workflow editor.
+2. You'll be prompted to give your workflow a name. Choose a unique, descriptive slug – this will be how users discover your workflow through the Salt AI bot.
+3. Click `Deploy` to finalize the process.
 
-![deployments1](images/deployments1.png)
+After successful deployment, you'll see a confirmation screen. You can copy the workflow command to your clipboard from this screen.
 
-You will see a confirmation screen when your deployment is complete. You can click to copy the workflow command to your clipboard.
+You can manage and deactivate your deployments at any time in the Deployments tab of your dashboard.
 
-You can manage and turn off your deployments at any time in the Deployments tab of your dashboard.
+## Installing the Salt AI Discord Bot
 
-![deployments2](images/deployments2.png)
+To use Salt AI workflows in Discord:
 
-Salt’s Discord integration lets you easily put your workflows in the hands of real users as lightweight applications with no front-end development required. Keep reading to learn how.
+1. Go to the [Salt AI bot authorization page](https://discord.com/oauth2/authorize?client_id=1113909066587185274).
+2. Click the `Add to Server` button.
+3. Select the server where you want to add the bot, or choose to add it to your direct messages.
 
-## Installing the Salt AI Discord bot
+## Running Workflows in Discord
 
-You can easily add the Salt AI bot to any server or to your own account (accessible by DM) by selecting the `Add to Server` button [here](https://discord.com/oauth2/authorize?client_id=1113909066587185274) or on the deployment confirmation screen.
+Once your workflow is deployed and the Salt AI bot is added to your server:
 
-![discord1](images/discord1.png)
+1. Use the `/workflows` command in any channel where the bot is present.
+2. You can directly enter your workflow's name or use the command format `/workflow your-workflow-name`.
 
-![discord2](images/discord2.png)
+3. Click `Run workflow` to execute it.
+4. Fill in the required input values (one for each `SaltInput` node in your workflow).
+5. For image or file attachments, you'll be prompted to upload them in your direct messages.
+6. After submitting all inputs, your workflow will execute, and the outputs will appear in the original thread or channel.
 
-## Running workflows in Discord
+## Showcasing Your Workflows
 
-Once your workflow has been deployed to Discord, it is ready to be used by you and other users.
+To share your workflows with the Salt AI community:
 
-In any server with the Salt AI bot added, use the `/workflows` command to open the directory. You can enter the name of your workflow directly, copy and paste it, or simply type the `/workflows` command with your workflow’s name (example: `/workflow sample-workflow`) in the chat field to get started.
+1. Join the [Salt Discord](https://discord.gg/saltai) and complete onboarding.
+2. Go to the [#flow-catalog](https://discord.gg/FcbmPDf3E7) channel.
+3. Follow the example template to share your workflow.
+4. Run your workflow using the Salt AI bot in a comment and pin the comment for easy access.
 
-![discord3](images/discord3.png)
+## Troubleshooting
 
-Once your workflow is selected, click `Run workflow` to execute it. You can then fill in the workflow's input values, one for each `SaltInput` node in your workflow. Enter your string & integer values and click `Submit`. If the workflow has image or file attachments, you will be prompted to upload them in your direct messages.
-Once the required inputs are filled in, your workflow will execute, and the outputs will appear in the thread or channel where you posted your message when they are finished generating.
+- If executions fail due to workflow errors (e.g., invalid API keys), you may need to adjust your workflow or contact our support team.
+- For connection errors, you can retry the execution by right-clicking (or tap-holding on mobile) > `Apps` > `Retry`.
 
-![discord4](images/discord4.png)
+## Need Help?
 
-## Showcasing your workflows in the Salt catalog
+If you encounter any issues or have questions about the Discord deployment feature, please reach out to our team via the [#support](https://discord.com/channels/1151592612525002822/1212167911771217961) channel in our Discord.
 
-To share your workflows with the others in the community, first **[join the Salt Discord](https://discord.gg/saltai)** and complete onboarding.
-
-Then, head to the **[#flow-catalog](https://discord.gg/FcbmPDf3E7)** channel and follow the example template to share your workflow. Be sure to run it using the Salt AI bot in a comment below and pin the comment, so others can easily find it and run it themselves.
-
-## Troubleshooting errors
-
-Sometimes, executions can fail based on errors in the workflow, such as invalid API keys. To fix this, you may have to make adjustments to the workflow, or [get in touch with our support team](https://discord.com/channels/1151592612525002822/1212167911771217961) for help.
-Connection errors may also result in failed generation, or results that won't return even if the workflow is valid. In this case, you can `right-click` (or tap-hold on mobile) > `Apps` and select `Retry`. The execution will be run again, and could return a successful result if the issue was related to connection.
-
-## Need help?
-
-This guide is based on the beta version of Salt. Should you run into any issues or have questions, get in touch with our team via the [#support](https://discord.com/channels/1151592612525002822/1212167911771217961) channel in our Discord.
+Salt's Discord integration allows you to easily share your workflows with real users as lightweight applications, without the need for front-end development. This feature bridges the gap between AI development and user interaction, making your AI applications more accessible and interactive.

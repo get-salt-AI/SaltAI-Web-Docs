@@ -1,73 +1,145 @@
-# Workflows
+# Understanding Workflows in Salt AI
 
-## Creating workflows
+Workflows are the heart of Salt AI, allowing you to create powerful AI-driven applications through a visual, node-based interface. This guide will help you understand what workflows are, how they function, and how to create effective workflows in Salt AI.
 
-To create a new workflow, select “New Workflow” in the center of the default Workflows page, give your workflow a name, and select “Next”. A default sample workflow will automatically load.
+## What is a Workflow?
 
-You can quickly delete nodes by holding down CTRL CMD A to select all, then delete to clear the canvas. Double click anywhere on the canvas or right click and select “Add Node” to add nodes to your workflow.
+A workflow in Salt AI is a visual representation of a series of operations that process data, interact with AI models, and produce outputs. Each workflow is composed of interconnected nodes, where each node represents a specific function or operation.
 
-![workflows1](images/workflows1.png)
+Key characteristics of Salt AI workflows:
 
-![workflows2](images/workflows2.png)
+- **Visual Programming:** Create complex AI applications without writing code.
+- **Modular Design:** Easily add, remove, or rearrange nodes to modify functionality.
+- **Data Flow:** Information flows from one node to the next, transforming at each step.
+- **AI Integration:** Seamlessly incorporate various AI models into your application logic.
+- **Scalability:** Design workflows that can process varying amounts of data efficiently.
 
-## Working with Salt’s input and output nodes
+## Anatomy of a Workflow
 
-Salt requires the use of special input and output nodes in every workflow. The **[SaltInput node](https://docs.getsalt.ai/md/SaltAI/Nodes/SaltInput/)** is required for passing an input into a workflow. The **[SaltOutput node](https://docs.getsalt.ai/md/SaltAI/Nodes/SaltOutput/)** is required in order to render an output (i.e. for all workflows).
+A typical workflow in Salt AI consists of several key components:
 
-More on working with `SaltInput` and `SaltOutput` nodes in the video below.
+1. **Salt Input Node:** The entry point for data into your workflow. This node defines the inputs your workflow will accept.
 
-[https://drive.google.com/file/d/1CXSp4sypP9J0rbMztFE84VSg6Z8gq\_-E/view?usp=drive_link](https://drive.google.com/file/d/1CXSp4sypP9J0rbMztFE84VSg6Z8gq_-E/view?usp=drive_link)
+2. **Processing Nodes:** These perform various operations on your data. Salt AI provides a wide range of processing capabilities across different domains.
 
-## Importing an existing workflow
+3. **AI Model Nodes:** Nodes that load and utilize AI models, such as the CheckpointLoaderSimple node for image generation models.
 
-To import an existing workflow to Salt, drag and drop it onto the page or press Command + V with the JSON copied to your clipboard.
+4. **Salt Output Node:** The final node that defines how results are presented or exported.
 
-## Running your workflow
+5. **Connections:** The links between nodes that define the flow of data through your workflow.
 
-Once you’re ready to run your workflow, click “Run” in the top right corner. Your workflow will be added to the queue.
+## Creating Effective Workflows
 
-![workflows3](images/workflows3.png)
+To create effective workflows in Salt AI, consider the following best practices:
 
-You can track the status of your run in the status bar that appears in the top left corner, or by expanding the Jobs tab (seen below with a “1” badge).
+1. **Start with a Clear Goal:** Define what you want your workflow to accomplish before you start building.
 
-![workflows4](images/workflows4.png)
+2. **Explore the Node Library:** Familiarize yourself with the available nodes. You might discover functionalities you didn't know were possible.
 
-To see your output, select the gallery icon to expand the Outputs tab. You can choose to download the JSON file for your output, download the output itself, open the image full screen in your browser and share a link, or delete it.
+3. **Use the Default Workflow:** Leverage the default workflow as a starting point, especially for image generation tasks.
 
-![workflows5](images/workflows5.png)
+4. **Modular Design:** Break down complex tasks into smaller, manageable nodes. This makes your workflow easier to understand and modify.
 
-Identify any errors in your workflow by opening the Error logs, which appear at the bottom of your screen when expanded.
+5. **Optimize Data Flow:** Ensure that data flows logically from one node to the next. Avoid unnecessary data transformations.
 
-![workflows6](images/workflows6.png)
+6. **Leverage AI Models Appropriately:** Choose the right AI models for your tasks, considering factors like accuracy, speed, and resource usage.
 
-## Saving your workflow
+7. **Test Incrementally:** Test your workflow frequently as you build it, rather than waiting until the end to run it for the first time.
 
-Workflows automatically save as you go. You can find, open, and edit all of your workflows in the main Workflows page.
+8. **Document Your Workflow:** Keep notes on your node configurations and the purpose of each section in your workflow.
 
-## Preparing your workflow for deployment
+9. **Use Templates:** Explore and utilize pre-built templates to jumpstart your development or learn best practices.
 
-You can see a workflow’s inputs and outputs at the bottom of the screen. These count the number of `SaltInput` & `SaltOutput` nodes, which are the parameters exposed to the user when they run your deployed workflow through our API (currently the Salt Discord integration).
+## Viewing Workflow Outputs
 
-![workflows7](images/workflows7.png)
+Salt AI provides a convenient way to view the results of your workflow executions directly in the workflow editor through the outputs panel.
 
-Use a `SaltInput` node for every parameter you want to expose to users who will be able to run your workflow, such as text inputs, seed number inputs, or an uploaded image or file.
+### Outputs Panel
 
-You can use these in place of LoadImage nodes, or text boxes.
+Located on the right side of the workflow editor interface, the outputs panel displays the results generated by Salt Output nodes in your workflow. This panel offers the following features:
 
-![workflows8](images/workflows8.png)
+1. **Real-time Updates:** As your workflow runs, the outputs panel updates in real-time, showing new results as they are generated.
 
-<aside>
-💡 It’s a good idea to give your SaltInput nodes a unique name and description to help guide users of your workflow to know what that particular node should be used for (i.e. text prompt, uploaded image, etc.)
-</aside>
+2. **Multiple Output Types:** The panel can display various types of outputs, including:
 
-You can plug a `SaltInput` node in place of a text box or node parameter by right-clicking the node and converting it to an input.
+   - Images
+   - Text
+   - Videos
 
-![workflows9](images/workflows9.png)
+3. **Chronological Order:** Outputs are displayed in the order they were created, with the most recent outputs appearing at the top of the panel.
 
-Your outputs can be configured using `SaltOutput` nodes, which is where you are able to specify your file types & frame rate. Each node can handle batch outputs, and you can have multiple nodes with different file types. It can help to name your outputs to differentiate them.
+4. **Time Stamps:** Each output is accompanied by a time stamp indicating when it was generated (e.g., "4min ago").
 
-![workflows10](images/workflows10.png)
+5. **Scalable View:** The panel includes zoom controls, allowing you to adjust the size of the displayed outputs for easier viewing.
 
-## **Need help?**
+6. **Output Navigation:** For workflows that generate multiple outputs, you can scroll through the results within the panel.
 
-This guide is based on the beta version of Salt. Should you run into any issues or have questions, get in touch with our team via the [#support](https://discord.com/channels/1151592612525002822/1212167911771217961) channel in our Discord.
+### Interacting with Outputs
+
+Each output in the panel comes with a context menu that provides additional options for interacting with the results. To access this menu, right-click on any output. The context menu offers the following options:
+
+1. **Open:** View the output in full size or in a dedicated viewer, depending on the output type.
+
+2. **Copy JSON:** Copy the JSON representation of the entire workflow that generated this output to your clipboard. This is a powerful feature for workflow sharing and version control.
+
+3. **Download:** Save the output file to your local machine. For image outputs, this includes embedded metadata containing the workflow JSON.
+
+4. **Delete:** Remove the selected output from the panel. This can help declutter your view if you have many outputs.
+
+These options provide you with powerful tools for managing and sharing your workflows:
+
+- Use "Open" to get a closer look at complex visualizations or to read lengthy text outputs more easily.
+- "Copy JSON" allows you to quickly copy the entire workflow configuration. This is invaluable for:
+  - Sharing workflows with team members
+  - Keeping backups of important workflow versions
+  - Quickly duplicating or modifying existing workflows
+- The "Download" option saves your output with embedded workflow data, creating a self-contained file that includes both the result and the process that created it.
+- "Delete" helps you manage your workspace by removing outputs you no longer need to reference.
+
+#### Pro-Tip: Drag and Drop Workflow Recreation
+
+A powerful feature of Salt AI is the ability to recreate workflows from output images:
+
+1. Download an image output from a previous workflow run.
+2. Drag and drop this image directly into the workflow editor.
+3. The embedded JSON metadata in the image will automatically recreate the entire workflow that generated that output.
+
+This feature allows you to:
+
+- Quickly restore previous workflow states
+- Share entire workflows by simply sharing an output image
+- Iterate on successful workflows without needing to manually recreate them
+
+By leveraging these context menu options and the drag-and-drop functionality, you can efficiently manage, share, and iterate on your Salt AI workflows, enhancing your productivity and collaboration capabilities.
+
+## Advanced Workflow Techniques
+
+As you become more comfortable with Salt AI, consider these advanced techniques:
+
+1. **Conditional Branching:** Use conditional nodes to create different paths in your workflow based on certain criteria.
+
+2. **Looping:** Implement loops to process batches of data or perform iterative operations.
+
+3. **Error Handling:** Add nodes to handle potential errors gracefully and provide meaningful feedback.
+
+4. **Optimization:** Refine your workflow to minimize resource usage and maximize efficiency.
+
+5. **Integration:** Connect your Salt AI workflow with external services or databases for more complex applications.
+
+## Troubleshooting Workflows
+
+If you encounter issues with your workflow:
+
+1. **Check Node Connections:** Ensure all nodes are properly connected and data types match between inputs and outputs.
+
+2. **Review Node Configurations:** Verify that each node is correctly configured with appropriate parameters.
+
+3. **Examine Logs:** Use the logging feature to understand how data is flowing through your workflow and identify where issues occur.
+
+4. **Isolate Problems:** Test problematic sections of your workflow in isolation to pinpoint issues.
+
+5. **Consult Documentation:** Refer to the Salt AI documentation for detailed information on specific nodes and their usage.
+
+6. **Community Support:** Reach out to the Salt AI community forum for help with complex issues or unique use cases.
+
+By mastering workflows in Salt AI, you'll be able to create sophisticated AI applications efficiently and effectively. Remember, the key to success is practice and experimentation. Happy building!
