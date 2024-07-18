@@ -1,8 +1,4 @@
 ---
-icon: material/rocket-launch-outline
-social:
-  logo: docs/assets/images/salt-logo-square.svg
-
 description: The Deploy to API feature in Salt AI allows you to transform your workflows into production-ready APIs.
 ---
 

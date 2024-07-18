@@ -59,19 +59,6 @@ To explore and add nodes to your workflow:
 3. Click on a category to see the available nodes within it.
 4. Select a node to add it to your canvas.
 
-## Auto-Generated Node Documentation
-
-Salt AI has revolutionized node usage by auto-generating comprehensive documentation for thousands of nodes. This feature addresses one of the biggest challenges in node-based AI development: understanding what nodes are available and how to use them effectively.
-
-Key features of the auto-generated documentation:
-
-1. **Easily Accessible:** Click the `?` icon on any node to instantly view its documentation.
-2. **Comprehensive Coverage:** Includes documentation for 200+ default ComfyUI nodes and over 1,400 custom nodes.
-3. **AI-Powered Descriptions:** Clear explanations of each node's functionality and usage, generated using advanced AI.
-4. **Continual Improvement:** The documentation is continuously refined based on user feedback and new developments.
-
-This feature not only helps experienced users quickly experiment with new nodes but also significantly lowers the barrier to entry for newcomers to AI development.
-
 ## Best Practices for Using Nodes
 
 1. **Understand Node Inputs and Outputs:** Carefully review what each node expects as input and what it produces as output to ensure proper connections.
