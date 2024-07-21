@@ -11,7 +11,7 @@ Welcome to [Salt AI](https://getsalt.ai), your go-to platform for building power
 ## Key Features
 
 - **Node-Based Development:** Drag, drop, and connect nodes to build complex AI workflows.
-- **Cutting edge AI models:** Access a variety of AI models, from standard to advanced, to power your
+- **Cutting edge AI models:** Access a variety of AI models, from standard to advanced, to power your workflows.
 - **Scalable Infrastructure:** Run your workflows at scale without worrying about the underlying technical complexities.
 
 ## Building Your First Workflow
