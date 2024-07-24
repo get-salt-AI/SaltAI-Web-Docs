@@ -117,6 +117,10 @@ aside {
 .md-content h1 {
   font-size: 2rem;
 }
+.md-search-result mark {
+  background-color: var(--md-typeset-mark-color);
+  color: black;
+}
 
 .md-content h2 {
   font-size: 1.3rem;
