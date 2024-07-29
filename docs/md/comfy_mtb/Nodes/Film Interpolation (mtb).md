@@ -1,8 +1,9 @@
 ---
 tags:
-- AnimationScheduling
+- Curve
 - FrameInterpolation
-- VisualEffects
+- Interpolation
+- WavePatterns
 ---
 
 # Film Interpolation (mtb)

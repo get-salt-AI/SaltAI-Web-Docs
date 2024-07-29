@@ -1,6 +1,7 @@
 ---
 tags:
 - LLM
+- LoRA
 ---
 
 # ∞ Setence Splitter Node Creator

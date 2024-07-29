@@ -1,54 +1,59 @@
+---
+tags:
+- BackendCache
+---
+
 # ∞ Scale SERP Search
 ## Documentation
 - Class name: `LLMScaleSERPSearch`
 - Category: `SALT/Language Toolkit/Tools`
 - Output node: `False`
 
-This node is designed to leverage the ScaleSERP API for conducting searches across various types of web content, parsing the results into structured documents. It abstracts the complexities of interacting with the ScaleSERP API, offering a simplified interface for retrieving and organizing search data effectively.
+This node is designed to leverage the capabilities of the ScaleSERP module to perform search operations, parsing the results into a structured format suitable for further analysis or integration into larger workflows. It abstracts the complexities of interacting with the ScaleSERP API, providing a streamlined interface for executing searches and handling the results.
 ## Input types
 ### Required
 - **`api_key`**
-    - The API key required for authenticating requests to the ScaleSERP API, enabling access to its search functionalities.
+    - The api_key is a required string input that represents the API key for accessing the ScaleSERP service. It is essential for authenticating and authorizing the search operation on the platform.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`query`**
-    - The search query input by the user, which is used to retrieve relevant search results from the ScaleSERP API.
+    - The query is a required string input that specifies the search terms or phrases. It is the primary determinant of the search operation's scope and relevance, directly influencing the results retrieved from the platform.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ### Optional
 - **`search_type`**
-    - Specifies the type of search to perform, such as web, images, or news, allowing for more targeted search results.
+    - The search_type input allows users to specify the type of search to perform, such as 'news', 'scholar', 'places', or 'shopping', affecting the scope and nature of the search results.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`location`**
-    - Optional parameter to specify the geographical location for the search, influencing the relevance of search results.
+    - The location input enables specifying the geographical location for the search, influencing the relevance of the search results to the specified area.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`device`**
-    - Optional parameter to specify the device type for the search, such as desktop or mobile, to simulate searches from different devices.
+    - The device input specifies the type of device context for the search, such as 'desktop', 'mobile', or 'tablet', affecting the format and relevance of the search results.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`mobile_type`**
-    - Optional parameter for specifying the type of mobile device when the search is conducted on a mobile platform.
+    - The mobile_type input is relevant when the device is set to 'mobile', allowing further specification of the mobile device type for tailored search results.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`tablet_type`**
-    - Optional parameter for specifying the type of tablet device when the search is conducted on a tablet platform.
+    - The tablet_type input is relevant when the device is set to 'tablet', allowing further specification of the tablet device type for tailored search results.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`documents`**
     - Comfy dtype: `DOCUMENT`
-    - Structured documents parsed from the search results, providing organized information for easy access and analysis.
-    - Python dtype: `list`
+    - The documents output contains the structured search results, including relevant information parsed from the ScaleSERP platform, suitable for further analysis or integration.
+    - Python dtype: `list[dict]`
 - **`results_dict`**
     - Comfy dtype: `DICT`
-    - A dictionary containing the parsed search results, offering a structured overview of the data retrieved from the ScaleSERP API.
+    - The results_dict output contains the raw JSON response from the ScaleSERP API, offering comprehensive access to all data retrieved during the search operation.
     - Python dtype: `dict`
 - **`links_list`**
     - Comfy dtype: `LIST`
-    - A list of links extracted from the search results, providing direct access to the sources of information.
-    - Python dtype: `list`
+    - The links_list output includes the URLs of the search results, providing direct links to the sources of information retrieved during the search operation.
+    - Python dtype: `list[str]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -101,8 +106,7 @@ class LLMScaleSERPSearch:
 
         documents = client.results_to_documents()
         for doc in documents:
-            print(doc.text, doc.extra_info)
-            print("\n==================\n")
+            logger.info(f"Text:\n{doc.text}, Metadata:\n{doc.extra_info}\n==================\n")
         links = client.results_to_link_dict()
 
         return (documents, results, list(links.values()))

@@ -1,7 +1,8 @@
 ---
 tags:
-- Image
-- Tiled
+- GridLayout
+- ImageDuplication
+- ImageTransformation
 ---
 
 # Seamless Tile

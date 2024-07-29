@@ -1,5 +1,6 @@
 ---
 tags:
+- CLIPConditioning
 - Conditioning
 ---
 
@@ -9,18 +10,18 @@ tags:
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The node is designed to merge two or more conditioning inputs into a single conditioning output. It focuses on combining the specified conditioning elements to create a unified conditioning that can be used in subsequent operations or models.
+The ImpactCombineConditionings node is designed to merge multiple conditioning inputs into a single, unified conditioning output. This process facilitates the combination of various conditioning elements, enhancing the flexibility and capability of conditioning-based operations within the ImpactPack suite.
 ## Input types
 ### Required
 - **`conditioning1`**
-    - The primary conditioning input that serves as the base for combination. It plays a crucial role in the merging process, acting as the initial conditioning to which others are added.
+    - The primary conditioning input to be combined. It serves as the foundational element for the combination process, allowing for the integration of additional conditioning inputs to enrich the overall context.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `List[Tuple[torch.Tensor, Any]]`
+    - Python dtype: `tuple`
 ## Output types
 - **`conditioning`**
     - Comfy dtype: `CONDITIONING`
-    - The combined conditioning output, which is a result of merging the input conditionings. This unified conditioning is ready for use in further processing or model applications.
-    - Python dtype: `Tuple[List[Tuple[torch.Tensor, Any]], ...]`
+    - The result of combining the input conditionings. This unified conditioning encapsulates the merged context and attributes of the inputs, ready for further processing.
+    - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
@@ -38,12 +39,20 @@ class CombineConditionings:
                      },
                 }
 
+    TOOLTIPS = {
+        "input": {
+            "conditioning1": "input conditionings. (Connecting to the input slot increases the number of additional slots.)",
+        },
+        "output": ("Combined conditioning", )
+    }
+
     RETURN_TYPES = ("CONDITIONING", )
     FUNCTION = "doit"
 
     CATEGORY = "ImpactPack/Util"
 
-    def doit(self, **kwargs):
+    @staticmethod
+    def doit(**kwargs):
         res = []
         for k, v in kwargs.items():
             res += v

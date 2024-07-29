@@ -1,6 +1,7 @@
 ---
 tags:
 - IPAdapter
+- RegionalImageProcessing
 ---
 
 # FromIPAdapterPipe (Inspire)

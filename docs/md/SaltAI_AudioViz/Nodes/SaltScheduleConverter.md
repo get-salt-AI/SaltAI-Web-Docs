@@ -1,33 +1,36 @@
 ---
 tags:
+- AnimationScheduling
 - Scheduling
+- SigmaScheduling
+- VisualEffects
 ---
 
 # Convert Schedule List
 ## Documentation
 - Class name: `SaltScheduleConverter`
-- Category: `SALT/Scheduling`
+- Category: `SALT/AudioViz/Scheduling`
 - Output node: `False`
 
-The SaltScheduleConverter node is designed to transform schedule lists into formats compatible with various modules by converting list inputs into floats, ensuring interoperability with modules that require specific numeric types.
+The SaltScheduleConverter node is designed to transform schedule lists into formats compatible with various modules by converting list elements into floats or integers. This ensures interoperability with modules that require specific numeric types, facilitating seamless integration and data manipulation within scheduling contexts.
 ## Input types
 ### Required
 - **`schedule_list`**
-    - The schedule_list parameter is a list of values intended to be converted. It plays a crucial role in determining the output format and type, affecting the compatibility with other modules.
+    - The 'schedule_list' parameter is a list of numeric values representing a schedule. It is essential for the conversion process, as it undergoes transformation into floats or integers, depending on the context, to ensure compatibility with other modules.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 ## Output types
 - **`floats`**
     - Comfy dtype: `FLOATS`
-    - A list of original float values from the input schedule list, maintaining the original numeric format.
+    - A list of floats, representing the original schedule list without modification.
     - Python dtype: `List[float]`
 - **`float`**
     - Comfy dtype: `FLOAT`
-    - A duplicate of the original float list, serving as an alternative format for compatibility.
+    - A duplicate of the 'floats' list, serving as a redundant output for compatibility purposes.
     - Python dtype: `List[float]`
 - **`int`**
     - Comfy dtype: `INT`
-    - A list of integers derived from rounding the original schedule list values, tailored for modules requiring integer inputs.
+    - A list of integers, derived from rounding the values of the original schedule list, to accommodate modules requiring integer inputs.
     - Python dtype: `List[int]`
 ## Usage tips
 - Infra type: `CPU`
@@ -52,7 +55,7 @@ class SaltScheduleConverter:
     RETURN_TYPES = ("FLOATS", "FLOAT", "INT")
     RETURN_NAMES = ("floats", "float", "int")
     FUNCTION = "convert"
-    CATEGORY = "SALT/Scheduling"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling"
 
     def convert(self, schedule_list):
         int_schedule = [int(round(val)) for val in schedule_list]

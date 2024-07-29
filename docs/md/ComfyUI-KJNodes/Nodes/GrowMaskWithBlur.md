@@ -4,63 +4,63 @@ tags:
 - MaskMorphology
 ---
 
-# GrowMaskWithBlur
+# Grow Mask With Blur
 ## Documentation
 - Class name: `GrowMaskWithBlur`
 - Category: `KJNodes/masking`
 - Output node: `False`
 
-The GrowMaskWithBlur node is designed to manipulate masks or batches of masks by expanding or contracting them, optionally applying blur, and performing various other transformations such as flipping, filling holes, and interpolating between frames. This node is versatile in mask processing, allowing for dynamic adjustments and enhancements to mask data.
+The GrowMaskWithBlur node is designed to manipulate masks by expanding or contracting them, optionally applying a blur effect, and performing various other transformations such as flipping, filling holes, and interpolating between frames. It provides a comprehensive set of operations for dynamic mask manipulation in image processing tasks, making it versatile for applications requiring precise control over mask geometry and appearance.
 ## Input types
 ### Required
 - **`mask`**
-    - The input mask or batch of masks to be processed. It serves as the primary data upon which all transformations are applied.
+    - The input mask or batch of masks to be processed. It serves as the primary data upon which all transformations are applied, determining the base geometry for expansion, contraction, and other modifications.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`expand`**
-    - Determines the amount by which the mask(s) will be expanded or contracted. Positive values expand the mask, while negative values contract it.
+    - Specifies the amount by which the mask should be expanded or contracted. Positive values cause expansion, while negative values result in contraction, affecting the overall size and shape of the mask.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`incremental_expandrate`**
-    - Specifies the rate at which the expand parameter is adjusted per frame, allowing for dynamic resizing over a sequence of masks.
+    - The rate at which the expand parameter is adjusted incrementally per frame, allowing for dynamic changes in mask size over a sequence of frames.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`tapered_corners`**
-    - When enabled, applies tapered corners to the mask(s) during expansion or contraction, affecting the shape of the processed mask.
+    - A boolean flag that indicates whether to use tapered corners during mask manipulation, which can affect the smoothness and contour of the expanded or contracted mask.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`flip_input`**
-    - If set to true, flips the input mask(s) horizontally before any other processing is done.
+    - A boolean flag that determines whether the input mask should be flipped (inverted) before any other processing is done. This inversion can be useful for certain types of mask transformations.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`blur_radius`**
-    - Applies a blur effect to the mask(s) with the specified radius. A value greater than 0 activates this effect.
+    - The radius of the Gaussian blur to be applied to the mask. A value greater than 0 activates the blur effect, softening the edges and overall appearance of the mask.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`lerp_alpha`**
-    - The alpha value used for linear interpolation between frames, enabling smooth transitions in animated mask sequences.
+    - The alpha value for linear interpolation between frames, enabling smooth transitions and blending of mask states across a sequence.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`decay_factor`**
-    - A decay factor applied to the mask(s) over frames, allowing for gradual fading or intensification of features.
+    - A factor that controls the decay of mask values over time, contributing to the fading or persistence of mask features in animated sequences.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`fill_holes`**
-    - When enabled, fills any holes in the mask(s), which can be particularly useful for creating more solid or coherent mask shapes.
+    - A boolean flag that, when enabled, causes holes within the mask to be filled. This operation can enhance mask solidity but may be computationally intensive.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The primary output mask after applying the specified transformations.
+    - The modified mask after applying expansion, contraction, blur, and other transformations, ready for further processing or visualization.
     - Python dtype: `torch.Tensor`
 - **`mask_inverted`**
     - Comfy dtype: `MASK`
-    - The inverted version of the primary output mask, providing an alternative visualization or application.
+    - An inverted version of the modified mask, providing an alternative representation that can be useful in certain processing contexts.
     - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -120,7 +120,7 @@ class GrowMaskWithBlur:
         previous_output = None
         current_expand = expand
         for m in growmask:
-            output = m.numpy()
+            output = m.numpy().astype(np.float32)
             for _ in range(abs(round(current_expand))):
                 if current_expand < 0:
                     output = scipy.ndimage.grey_erosion(output, footprint=kernel)

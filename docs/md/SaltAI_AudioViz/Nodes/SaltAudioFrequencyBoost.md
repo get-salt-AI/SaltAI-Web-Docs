@@ -1,37 +1,38 @@
 ---
 tags:
 - Audio
+- List
 ---
 
 # Audio Frequency Boost
 ## Documentation
 - Class name: `SaltAudioFrequencyBoost`
-- Category: `SALT/Audio/Effect`
+- Category: `SALT/AudioViz/Audio/Effect`
 - Output node: `False`
 
-This node is designed to enhance the audio experience by selectively boosting the frequency of an audio signal. It allows for precise adjustments to the audio's frequency spectrum, enhancing specific frequency bands to achieve desired audio characteristics.
+This node applies a frequency-specific boost to an audio file using an equalization filter. It enhances or attenuates a specified frequency range of the audio signal, allowing for precise audio frequency manipulation.
 ## Input types
 ### Required
 - **`audio`**
-    - The raw audio data to be processed. This input is crucial for defining the audio content that will undergo frequency enhancement.
+    - The raw audio data to be processed. This input is crucial for applying the frequency boost effect to the audio content.
     - Comfy dtype: `AUDIO`
     - Python dtype: `bytes`
 - **`frequency`**
-    - Specifies the center frequency to boost, allowing for targeted enhancement within the audio spectrum.
+    - The center frequency to boost, around which the equalization filter is applied. This parameter determines the specific frequency range that will be enhanced or attenuated.
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `float`
 - **`bandwidth`**
-    - Defines the width of the frequency band around the center frequency that will be boosted, determining the range of frequencies affected.
+    - Defines the width of the frequency range around the center frequency that will be affected by the boost. It allows for control over how broad or narrow the boosted frequency range is.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`gain_dB`**
-    - The amount of gain to apply to the specified frequency band, measured in decibels (dB), which controls the intensity of the boost.
+    - The amount of gain (in decibels) to apply to the specified frequency range. This determines the intensity of the boost effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`audio`**
     - Comfy dtype: `AUDIO`
-    - The audio data after the frequency boost has been applied, reflecting the enhancements made to the specified frequency band.
+    - The modified audio data after the frequency boost has been applied. It reflects the changes made to the audio's frequency spectrum.
     - Python dtype: `bytes`
 ## Usage tips
 - Infra type: `CPU`
@@ -55,7 +56,7 @@ class SaltAudioFrequencyBoost:
     RETURN_TYPES = ("AUDIO",)
     RETURN_NAMES = ("audio",)
     FUNCTION = "boost_frequency"
-    CATEGORY = "SALT/Audio/Effect"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Audio/Effect"
 
     def boost_frequency(self, audio, frequency, bandwidth, gain_dB):
         TEMP = folder_paths.get_temp_directory()
@@ -80,7 +81,7 @@ class SaltAudioFrequencyBoost:
                 
             return (modified_audio_data,)
         except subprocess.CalledProcessError as e:
-            print(f"Failed to apply frequency boost with FFmpeg: {e}")
+            logger.error(f"Failed to apply frequency boost with FFmpeg: {e}")
             if os.path.exists(temp_input_path):
                 os.unlink(temp_input_path)
             if os.path.exists(temp_output_path):

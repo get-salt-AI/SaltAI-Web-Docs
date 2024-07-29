@@ -3,47 +3,47 @@ tags:
 - Audio
 ---
 
-# SoundReactive
+# Sound Reactive
 ## Documentation
 - Class name: `SoundReactive`
 - Category: `KJNodes/audio`
 - Output node: `False`
 
-The SoundReactive node is designed to process audio input, adjusting its behavior based on the sound level. It dynamically reacts to variations in sound intensity within a specified frequency range, offering customization through parameters like sound level, frequency range, and normalization. This node is particularly useful for creating audio-reactive visualizations or effects in real-time applications.
+The SoundReactive node dynamically adjusts its output based on the sound level input, allowing for real-time audio-reactive applications. It is designed to work with browser-based sound input and supports real-time diffusion processes with autoqueue functionality.
 ## Input types
 ### Required
 - **`sound_level`**
-    - Specifies the current sound level to be processed. It influences the node's output by scaling according to the multiplier and normalization settings, directly affecting the dynamic response to audio input.
+    - Specifies the sound level to react to. It is a key factor in determining the node's output, adjusting the response based on the input sound level.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`start_range_hz`**
-    - Defines the lower bound of the frequency range of interest. This parameter helps in focusing the node's sensitivity to a specific part of the audio spectrum.
+    - Defines the starting frequency range in Hertz for processing. It sets the lower bound of the frequency range of interest.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`end_range_hz`**
-    - Sets the upper limit of the frequency range to be considered. It complements the start_range_hz to fine-tune the node's reactivity to the desired frequency band.
+    - Sets the ending frequency range in Hertz for processing. It determines the upper limit of the frequency spectrum to be considered.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`multiplier`**
-    - Applies a scaling factor to the sound level, allowing for enhanced control over the node's responsiveness to audio input.
+    - A multiplier applied to the sound level, allowing for amplification or attenuation of the input signal.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`smoothing_factor`**
-    - Determines the degree of smoothing applied to the sound level, aiding in the creation of smoother transitions and effects.
+    - Controls the smoothing of the sound level input, providing a way to reduce abrupt changes and fluctuations.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`normalize`**
-    - Enables or disables normalization of the sound level, which can standardize the input range for consistent processing across different audio sources.
+    - A boolean flag indicating whether the sound level should be normalized, affecting the scale of the output.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`sound_level`**
     - Comfy dtype: `FLOAT`
-    - The processed sound level, adjusted according to the node's parameters. It reflects the dynamic changes in audio intensity after scaling and optional normalization.
+    - The adjusted sound level after applying the node's processing, reflecting changes based on the input and node settings.
     - Python dtype: `float`
 - **`sound_level_int`**
     - Comfy dtype: `INT`
-    - An integer representation of the processed sound level, providing a simplified or quantized output for scenarios where discrete levels are preferred.
+    - An integer representation of the adjusted sound level, offering a discrete version of the output for certain applications.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`

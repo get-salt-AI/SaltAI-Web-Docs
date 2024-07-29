@@ -1,7 +1,8 @@
 ---
 tags:
-- Loader
-- ModelIO
+- Checkpoint
+- CheckpointLoader
+- ModelLoader
 ---
 
 # BLIP Caption
@@ -54,7 +55,7 @@ The `BLIPCaption` node is designed to generate textual captions for images using
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes:
-    - [ShowText|pysssss](../../ComfyUI-Custom-Scripts/Nodes/ShowText|pysssss.md)
+    - ShowText|pysssss
 
 
 

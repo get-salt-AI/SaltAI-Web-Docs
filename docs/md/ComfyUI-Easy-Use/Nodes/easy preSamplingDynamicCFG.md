@@ -1,5 +1,6 @@
 ---
 tags:
+- SamplerScheduler
 - Sampling
 ---
 
@@ -9,59 +10,59 @@ tags:
 - Category: `EasyUse/PreSampling`
 - Output node: `True`
 
-The 'easy preSamplingDynamicCFG' node is designed to apply dynamic control flow graph (CFG) based pre-sampling techniques to adjust the sampling process dynamically based on specified conditions. This node aims to enhance the quality and relevance of generated samples by adjusting the sampling parameters in real-time, leveraging advanced CFG techniques to optimize the sampling process.
+The node 'easy preSamplingDynamicCFG' is designed to configure and apply dynamic control flow guidance (CFG) settings for pre-sampling processes in generative models. It allows for the customization of CFG parameters to influence the generation process, aiming to enhance the quality and relevance of the generated content by dynamically adjusting the guidance based on specified conditions.
 ## Input types
 ### Required
 - **`pipe`**
-    - Represents the pipeline through which the sampling process is executed, serving as the conduit for applying dynamic CFG adjustments.
+    - Specifies the pipeline configuration to which the dynamic CFG settings will be applied. It is essential for integrating the dynamic CFG adjustments into the pre-sampling process.
     - Comfy dtype: `PIPE_LINE`
-    - Python dtype: `PipeLine`
+    - Python dtype: `Dict[str, Any]`
 - **`steps`**
-    - Specifies the number of steps in the sampling process, directly influencing the granularity of the dynamic CFG adjustments.
+    - Determines the number of steps for the pre-sampling process, affecting the granularity and detail of the generation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - Defines the configuration for the dynamic CFG adjustments, setting the intensity and scope of the sampling modifications.
+    - Sets the base CFG scale, influencing the strength of the conditioning on the generation process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`cfg_mode`**
-    - Determines the mode of CFG adjustments, influencing the overall strategy for dynamic sampling.
+    - Defines the mode of CFG application, allowing for different strategies in guiding the generative model.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `DynThresh.Modes`
 - **`cfg_scale_min`**
-    - Establishes the minimum scale for CFG adjustments, setting a lower bound for the dynamic sampling process.
+    - Specifies the minimum CFG scale, setting a lower bound on the guidance strength.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sampler_name`**
-    - Identifies the specific sampler to be used, dictating the method of sampling within the dynamic CFG framework.
+    - Identifies the sampler to be used in conjunction with the dynamic CFG settings, impacting the method of generation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - Specifies the scheduler for the sampling process, coordinating the timing and sequence of dynamic CFG adjustments.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`denoise`**
-    - Sets the level of denoising to be applied, affecting the clarity and quality of the sampled output.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 - **`seed`**
-    - Provides a seed value for the sampling process, ensuring reproducibility and consistency in the dynamic CFG adjustments.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 ### Optional
 - **`image_to_latent`**
-    - Optional input that specifies an image to be converted into a latent representation for sampling.
+    - unknown
     - Comfy dtype: `IMAGE`
-    - Python dtype: `Image`
+    - Python dtype: `unknown`
 - **`latent`**
-    - Optional input that provides a latent representation to be used directly in the sampling process.
+    - unknown
     - Comfy dtype: `LATENT`
-    - Python dtype: `Latent`
+    - Python dtype: `unknown`
 ## Output types
 - **`pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - Outputs the modified pipeline after applying dynamic CFG-based pre-sampling, reflecting the adjusted sampling parameters.
-    - Python dtype: `PipeLine`
+    - Returns the updated pipeline configuration, now including the dynamic CFG settings for pre-sampling.
+    - Python dtype: `Dict[str, Any]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -82,7 +83,7 @@ class dynamicCFGSettings:
                      "cfg_mode": (DynThresh.Modes,),
                      "cfg_scale_min": ("FLOAT", {"default": 3.5, "min": 0.0, "max": 100.0, "step": 0.5}),
                      "sampler_name": (comfy.samplers.KSampler.SAMPLERS,),
-                     "scheduler": (comfy.samplers.KSampler.SCHEDULERS,),
+                     "scheduler": (comfy.samplers.KSampler.SCHEDULERS+new_schedulers,),
                      "denoise": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01}),
                      "seed": ("INT", {"default": 0, "min": 0, "max": MAX_SEED_NUM}),
                      },

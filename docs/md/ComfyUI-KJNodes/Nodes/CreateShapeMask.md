@@ -1,63 +1,66 @@
 ---
 tags:
+- BoundingBox
+- ImageTransformation
 - Mask
-- MaskGeneration
+- MaskList
+- MaskMorphology
 ---
 
-# CreateShapeMask
+# Create Shape Mask
 ## Documentation
 - Class name: `CreateShapeMask`
 - Category: `KJNodes/masking/generate`
 - Output node: `False`
 
-The CreateShapeMask node is designed for generating masks or batches of masks with specific shapes. It allows for dynamic creation of animated masks by adjusting the growth of the shape across frames, providing a versatile tool for mask generation in various dimensions and shapes.
+This node is designed to generate a series of masks or a single mask with a specified shape, allowing for dynamic creation of animated masks by adjusting the shape's size over a sequence of frames. It supports customization of the mask's dimensions, shape, and growth per frame, making it versatile for various masking applications.
 ## Input types
 ### Required
 - **`shape`**
-    - Specifies the geometric shape of the mask to be created. This choice influences the visual appearance and boundary of the generated mask.
+    - Specifies the geometric shape of the mask to be created. It determines the visual form of the mask, affecting its appearance and utility in masking operations.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`frames`**
-    - Determines the number of frames for the animated mask, allowing for the creation of a sequence of masks with progressive growth.
+    - Defines the number of frames (or masks) to generate. This allows for the creation of animated masks by specifying more than one frame.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`location_x`**
-    - The x-coordinate for the center location of the shape, defining where the shape will be positioned horizontally within the frame.
+    - The x-coordinate of the shape's center location within the mask. It determines where the shape will be positioned horizontally.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`location_y`**
-    - The y-coordinate for the center location of the shape, defining where the shape will be positioned vertically within the frame.
+    - The y-coordinate of the shape's center location within the mask. It determines where the shape will be positioned vertically.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`grow`**
-    - Controls the amount by which the shape grows on each frame, enabling the animation of the mask.
+    - Specifies the amount by which the shape's size should increase or decrease across frames, enabling dynamic resizing for animated effects.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`frame_width`**
-    - The width of the frame in which the shape is placed, setting the horizontal boundary for the mask.
+    - The width of the mask frame, defining the horizontal dimension of the mask.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`frame_height`**
-    - The height of the frame in which the shape is placed, setting the vertical boundary for the mask.
+    - The height of the mask frame, defining the vertical dimension of the mask.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`shape_width`**
-    - Specifies the initial width of the shape, determining its size before any growth is applied.
+    - The initial width of the shape within the mask, determining its size.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`shape_height`**
-    - Specifies the initial height of the shape, determining its size before any growth is applied.
+    - The initial height of the shape within the mask, determining its size.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
     - The generated mask with the specified shape and dimensions.
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `numpy.ndarray`
 - **`mask_inverted`**
     - Comfy dtype: `MASK`
-    - An inverted version of the generated mask, where the shape's area is transparent and the rest is opaque.
-    - Python dtype: `torch.Tensor`
+    - An inverted version of the generated mask, where the shape is transparent and the rest of the mask is opaque.
+    - Python dtype: `numpy.ndarray`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:

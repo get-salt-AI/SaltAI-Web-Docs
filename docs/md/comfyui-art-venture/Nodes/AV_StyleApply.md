@@ -1,6 +1,6 @@
 ---
 tags:
-- Style
+- Prompt
 ---
 
 # AV Style Apply

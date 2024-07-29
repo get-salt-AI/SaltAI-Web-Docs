@@ -1,6 +1,7 @@
 ---
 tags:
-- Image
+- Color
+- Crop
 ---
 
 # ImageMorphology

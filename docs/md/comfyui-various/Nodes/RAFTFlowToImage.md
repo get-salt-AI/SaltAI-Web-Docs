@@ -1,6 +1,6 @@
 ---
 tags:
-- OpticalFlow
+- Segmentation
 ---
 
 # RAFT Flow to Image

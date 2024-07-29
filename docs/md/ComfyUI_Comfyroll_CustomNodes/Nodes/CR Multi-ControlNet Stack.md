@@ -1,6 +1,9 @@
 ---
 tags:
+- CLIP
+- Conditioning
 - ControlNet
+- ControlNetLoader
 ---
 
 # 🕹️ CR Multi-ControlNet Stack

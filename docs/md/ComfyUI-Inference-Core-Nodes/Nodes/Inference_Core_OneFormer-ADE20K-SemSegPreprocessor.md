@@ -1,7 +1,9 @@
 ---
 tags:
+- ImageTransformation
+- ImpactPack
+- SEGSPrep
 - Segmentation
-- SemanticSegmentationPreprocessing
 ---
 
 # [Inference.Core] OneFormer ADE20K Segmentor

@@ -1,6 +1,8 @@
 ---
 tags:
 - Latent
+- LatentBlend
+- VAE
 ---
 
 # LatentInterpolate

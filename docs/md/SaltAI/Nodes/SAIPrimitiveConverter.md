@@ -1,7 +1,8 @@
 ---
 tags:
 - DataTypeConversion
-- NumericConversion
+- Float
+- FloatList
 ---
 
 # Primitive Value Converter
@@ -10,30 +11,30 @@ tags:
 - Category: `SALT/Utility/Conversion`
 - Output node: `False`
 
-The SAIPrimitiveConverter node is designed to facilitate the conversion of input data between different primitive data types, handling various formats such as strings, lists, and dictionaries. It aims to provide a flexible solution for data type conversion, supporting custom sub-data types and enabling specific indexing or key-based access within complex data structures.
+The SAIPrimitiveConverter node is designed to facilitate the conversion of input values between different primitive data types, such as strings, lists, and dictionaries. It dynamically processes input based on specified output types and conditions, offering flexibility in handling various data structures and formats.
 ## Input types
 ### Required
 - **`input_value`**
-    - The raw input value to be converted. Its role is pivotal in determining the final output, as it undergoes transformation based on the specified output and sub-data types.
+    - The raw input value to be converted. Its role is pivotal in determining the final output, as the conversion process adapts based on this value's type and content.
     - Comfy dtype: `*`
-    - Python dtype: `Union[str, list, dict, Any]`
+    - Python dtype: `Union[str, list, dict]`
 - **`output_type`**
-    - Specifies the desired output data type, guiding the conversion process and determining the structure of the result.
+    - Specifies the desired type of the conversion output, such as 'LIST', 'DICT', or 'STRING', guiding the conversion process and determining the structure of the result.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`sub_data_type`**
-    - An optional parameter that defines the sub-type for the conversion, further refining the transformation process.
+    - An optional parameter that further specifies the type of the elements within the input value, enhancing the conversion accuracy for complex data structures.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`index_or_key`**
-    - An optional parameter that allows for indexing into lists or accessing values by key in dictionaries, enabling precise data extraction.
+    - An optional parameter used to extract a specific element from the input value when converting to a 'STRING' type, based on either an index in a list or a key in a dictionary.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`output`**
     - Comfy dtype: `*`
-    - The converted data, presented in the specified output type, reflecting the transformation applied to the input value.
+    - The result of the conversion process, which can vary in type (e.g., list, dictionary, string) based on the specified output type and conditions of the input.
     - Python dtype: `Union[list, dict, str]`
 ## Usage tips
 - Infra type: `CPU`
@@ -79,7 +80,7 @@ class SAIPrimitiveConverter:
                 else:
                     return value
             except Exception as e:
-                print(f"[WARNING] {e}")
+                logger.warning(f"{e}")
                 return value
 
         default_values = {
@@ -142,7 +143,8 @@ class SAIPrimitiveConverter:
                         input_value = input_value[index_or_key]
                     return (cast_value(input_value, sub_data_type),)
                 except (ValueError, IndexError, KeyError, TypeError) as e:
-                    print(f"Error: Invalid index or key '{index_or_key}'. Exception: {e}")
+                    errmsg = f"Error: Invalid index or key '{index_or_key}'. Exception: {e}"
+                    logger.warning(errmsg)
                     return (default_values["STRING"],)
             elif index_or_key == "" and output_type == "STRING":
                 return (json.dumps(input_value, indent=4),)
@@ -155,10 +157,12 @@ class SAIPrimitiveConverter:
                 print(processed_input)
                 output = processed_input if isinstance(processed_input, str) else processed_input
             else:
-                print(f"Error: Unsupported type '{output_type}' for conversion. Defaulting to LIST.")
+                errmsg = f"Error: Unsupported type '{output_type}' for conversion. Defaulting to LIST."
+                logger.warning(errmsg)
                 output = processed_input if isinstance(processed_input, list) else list(processed_input.values())
         except (ValueError, TypeError):
-            print(f"Error: Conversion failed. Defaulting to base value for {output_type}.")
+            errmsg = f"Error: Conversion failed. Defaulting to base value for {output_type}."
+            logger.warning(errmsg)
             output = default_values.get(output_type, [])
 
         return (output,)

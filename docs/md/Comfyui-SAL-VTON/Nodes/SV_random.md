@@ -1,7 +1,7 @@
 ---
 tags:
 - Image
-- Multimedia
+- VideoHelperSuite
 ---
 
 # Random Image From Directory

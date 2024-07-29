@@ -1,8 +1,8 @@
 ---
 tags:
 - GridLayout
-- Image
-- Tiled
+- ImageDuplication
+- ImageTransformation
 ---
 
 # Repeat Into Grid (latent)
@@ -11,26 +11,26 @@ tags:
 - Category: `Bmad/latent`
 - Output node: `False`
 
-This node tiles the input latent samples into a grid of configurable dimensions, effectively repeating the samples across a specified number of rows and columns to create a larger, grid-like structure.
+This node is designed to replicate and arrange input latent samples into a grid format based on specified dimensions. It enables the creation of a structured layout of latent representations, facilitating operations that require uniform spatial arrangements, such as visualization or further processing in grid-based models.
 ## Input types
 ### Required
 - **`samples`**
-    - The latent samples to be tiled into a grid. This input is crucial for determining the pattern and content of the resulting grid.
+    - The latent samples to be tiled into a grid. This input is crucial for determining the content that will be replicated across the grid.
     - Comfy dtype: `LATENT`
-    - Python dtype: `Dict[str, torch.Tensor]`
+    - Python dtype: `torch.Tensor`
 - **`columns`**
-    - Specifies the number of columns in the grid. This affects the horizontal repetition of the samples.
+    - Specifies the number of columns in the grid. This parameter directly influences the grid's width and the arrangement of the replicated samples.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`rows`**
-    - Specifies the number of rows in the grid. This affects the vertical repetition of the samples.
+    - Determines the number of rows in the grid. It affects the grid's height and how the samples are distributed vertically.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - The resulting latent samples arranged in a grid, with the original samples repeated according to the specified rows and columns.
-    - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
+    - The output is a modified version of the input latent samples, now arranged into a grid as specified by the input dimensions.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -43,11 +43,8 @@ class RepeatIntoGridLatent:
     Tiles the input samples into a grid of configurable dimensions.
     """
 
-    def __init__(self):
-        pass
-
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {"samples": ("LATENT",),
                              "columns": grid_len_INPUT,
                              "rows": grid_len_INPUT,
@@ -55,7 +52,7 @@ class RepeatIntoGridLatent:
 
     RETURN_TYPES = ("LATENT",)
     FUNCTION = "repeat_into_grid"
-    CATEGORY = "Bmad/latent"
+    CATEGORY = latent_category_path
 
     def repeat_into_grid(self, samples, columns, rows):
         s = samples.copy()

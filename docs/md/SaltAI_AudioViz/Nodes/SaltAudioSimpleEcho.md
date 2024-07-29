@@ -6,18 +6,18 @@ tags:
 # Audio Simple Echo
 ## Documentation
 - Class name: `SaltAudioSimpleEcho`
-- Category: `SALT/Audio/Effect`
+- Category: `SALT/AudioViz/Audio/Effect`
 - Output node: `False`
 
-The SaltAudioSimpleEcho node applies an echo effect to an audio input, allowing for customization of the number of echoes, the delay between them, and the decay factor of each subsequent echo. This node enhances audio tracks by adding depth and spatial effects through controlled repetition.
+The SaltAudioSimpleEcho node applies an echo effect to audio inputs, allowing for the creation of layered audio experiences by repeating the audio signal multiple times with a specified delay and decay factor.
 ## Input types
 ### Required
 - **`audio`**
-    - The primary audio input to which the echo effect will be applied. It serves as the base for generating echoes.
+    - The raw audio data to which the echo effect will be applied. This is the primary input for the echo processing.
     - Comfy dtype: `AUDIO`
     - Python dtype: `bytes`
 - **`times`**
-    - Specifies the number of times the echo effect is applied, influencing the richness and complexity of the resulting audio.
+    - Specifies the number of times the audio will be echoed, affecting the density of the echo effect.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`delay_ms`**
@@ -25,13 +25,13 @@ The SaltAudioSimpleEcho node applies an echo effect to an audio input, allowing 
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`decay_factor`**
-    - Controls the reduction in volume of each subsequent echo, affecting the fade-out effect over time.
+    - The factor by which the volume of each successive echo decreases, controlling the fade-out effect of the echoes.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`audio`**
     - Comfy dtype: `AUDIO`
-    - The modified audio output with the applied echo effect, showcasing the depth and spatial enhancements.
+    - The processed audio data with the echo effect applied.
     - Python dtype: `bytes`
 ## Usage tips
 - Infra type: `CPU`
@@ -55,7 +55,7 @@ class SaltAudioSimpleEcho:
     RETURN_TYPES = ("AUDIO",)
     RETURN_NAMES = ("audio",)
     FUNCTION = "apply_echo"
-    CATEGORY = "SALT/Audio/Effect"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Audio/Effect"
 
     def apply_echo(self, audio, times, delay_ms, decay_factor):
         original = AudioSegment.from_file(io.BytesIO(audio), format="wav")

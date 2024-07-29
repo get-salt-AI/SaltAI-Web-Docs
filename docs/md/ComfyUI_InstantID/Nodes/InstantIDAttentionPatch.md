@@ -1,7 +1,6 @@
 ---
 tags:
 - ModelGuidance
-- ModelPatch
 ---
 
 # InstantID Patch Attention
@@ -10,54 +9,54 @@ tags:
 - Category: `InstantID`
 - Output node: `False`
 
-The InstantIDAttentionPatch node is designed to modify the attention mechanisms within a given model to enhance its capability to focus on specific features or areas of interest. This patching process aims to improve the model's performance by adjusting its attention layers according to custom specifications.
+The InstantIDAttentionPatch node is designed to enhance the attention mechanism within a model by applying specialized patches. These patches adjust the model's attention based on various factors such as image embeddings, noise levels, and specific conditions, aiming to improve the model's focus and performance on tasks related to image and face recognition.
 ## Input types
 ### Required
 - **`instantid`**
-    - The model instance to which the attention patch will be applied, enhancing its focus capabilities.
+    - The instantid parameter represents the core configuration or model that the attention patching will be applied to, serving as the foundation for the modifications.
     - Comfy dtype: `INSTANTID`
-    - Python dtype: `object`
+    - Python dtype: `dict`
 - **`insightface`**
-    - A pre-trained model used for face detection and feature extraction, providing critical input for the attention patching process.
+    - The insightface parameter is used for face analysis and feature extraction, providing critical data that influences how the attention patches are applied.
     - Comfy dtype: `FACEANALYSIS`
-    - Python dtype: `object`
+    - Python dtype: `module`
 - **`image`**
-    - The input image on which face detection and feature extraction are performed, serving as a basis for attention modification.
+    - The image parameter is the input image on which face analysis and feature extraction are performed, directly impacting the attention patching process.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`model`**
-    - The specific model within which the attention mechanisms are to be patched, targeting its layers for enhancement.
+    - The model parameter refers to the neural network model that will be modified by the attention patches, affecting its attention mechanism.
     - Comfy dtype: `MODEL`
-    - Python dtype: `object`
+    - Python dtype: `torch.nn.Module`
 - **`weight`**
-    - The weight parameter influences the degree of attention modification, allowing for fine-tuning of the patch's impact.
+    - The weight parameter controls the influence of the attention patches on the model, allowing for fine-tuning of the patching effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`start_at`**
-    - Specifies the starting point within the model's layers for applying the attention patch, dictating the scope of modification.
+    - The start_at parameter specifies the beginning point in the model's processing where the attention patches start to take effect, marking the initial phase of modification.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `int`
+    - Python dtype: `float`
 - **`end_at`**
-    - Defines the endpoint within the model's layers for the attention patch application, marking the boundary of the patching process.
+    - The end_at parameter defines the endpoint in the model's processing where the attention patches conclude their effect, delineating the final phase of modification.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `int`
+    - Python dtype: `float`
 - **`noise`**
-    - An optional parameter that introduces randomness into the patching process, potentially enhancing model robustness.
+    - The noise parameter introduces randomness into the attention patching process, potentially enhancing the model's robustness and ability to generalize.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`mask`**
-    - An optional mask that can be applied during the patching process to focus the attention modification on specific areas.
+    - The mask parameter allows for selective application of the attention patches, targeting specific areas or features within the image for focused modification.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The modified model with enhanced attention mechanisms, reflecting the applied patches.
-    - Python dtype: `object`
+    - This output type represents the modified model after the application of attention patches, reflecting the adjustments made to its attention mechanism.
+    - Python dtype: `torch.nn.Module`
 - **`face_embeds`**
     - Comfy dtype: `FACE_EMBEDS`
-    - The extracted facial embeddings from the input image, used as part of the attention patching process.
+    - This output type represents the face embeddings generated or utilized during the patching process, which are critical for the targeted modifications.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -144,7 +143,6 @@ class InstantIDAttentionPatch:
             mask = mask.to(self.device)
 
         patch_kwargs = {
-            "number": 0,
             "weight": weight,
             "ipadapter": self.instantid,
             "cond": image_prompt_embeds,
@@ -154,28 +152,23 @@ class InstantIDAttentionPatch:
             "sigma_end": sigma_end,
         }
 
-        if not is_sdxl:
-            for id in [1,2,4,5,7,8]: # id of input_blocks that have cross attention
-                _set_model_patch_replace(work_model, patch_kwargs, ("input", id))
-                patch_kwargs["number"] += 1
-            for id in [3,4,5,6,7,8,9,10,11]: # id of output_blocks that have cross attention
-                _set_model_patch_replace(work_model, patch_kwargs, ("output", id))
-                patch_kwargs["number"] += 1
-            _set_model_patch_replace(work_model, patch_kwargs, ("middle", 0))
-        else:
-            for id in [4,5,7,8]: # id of input_blocks that have cross attention
-                block_indices = range(2) if id in [4, 5] else range(10) # transformer_depth
-                for index in block_indices:
-                    _set_model_patch_replace(work_model, patch_kwargs, ("input", id, index))
-                    patch_kwargs["number"] += 1
-            for id in range(6): # id of output_blocks that have cross attention
-                block_indices = range(2) if id in [3, 4, 5] else range(10) # transformer_depth
-                for index in block_indices:
-                    _set_model_patch_replace(work_model, patch_kwargs, ("output", id, index))
-                    patch_kwargs["number"] += 1
-            for index in range(10):
-                _set_model_patch_replace(work_model, patch_kwargs, ("middle", 0, index))
-                patch_kwargs["number"] += 1
+        number = 0
+        for id in [4,5,7,8]: # id of input_blocks that have cross attention
+            block_indices = range(2) if id in [4, 5] else range(10) # transformer_depth
+            for index in block_indices:
+                patch_kwargs["module_key"] = str(number*2+1)
+                _set_model_patch_replace(work_model, patch_kwargs, ("input", id, index))
+                number += 1
+        for id in range(6): # id of output_blocks that have cross attention
+            block_indices = range(2) if id in [3, 4, 5] else range(10) # transformer_depth
+            for index in block_indices:
+                patch_kwargs["module_key"] = str(number*2+1)
+                _set_model_patch_replace(work_model, patch_kwargs, ("output", id, index))
+                number += 1
+        for index in range(10):
+            patch_kwargs["module_key"] = str(number*2+1)
+            _set_model_patch_replace(work_model, patch_kwargs, ("middle", 0, index))
+            number += 1
 
         return(work_model, { "cond": image_prompt_embeds, "uncond": uncond_image_prompt_embeds }, )
 

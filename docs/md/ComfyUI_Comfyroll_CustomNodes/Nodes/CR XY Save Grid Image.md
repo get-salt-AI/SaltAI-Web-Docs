@@ -1,6 +1,6 @@
 ---
 tags:
-- Image
+- Animation
 ---
 
 # 📉 CR XY Save Grid Image

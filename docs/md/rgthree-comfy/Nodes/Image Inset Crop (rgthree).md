@@ -2,7 +2,6 @@
 tags:
 - Crop
 - Image
-- ImageTransformation
 ---
 
 # Image Inset Crop (rgthree)

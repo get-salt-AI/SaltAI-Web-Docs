@@ -1,6 +1,7 @@
 ---
 tags:
-- Multimedia
+- OpticalFlow
+- Segmentation
 - VideoHelperSuite
 ---
 
@@ -10,58 +11,62 @@ tags:
 - Category: `Art Venture/Loaders`
 - Output node: `False`
 
-The LoadVideoFromUrl node is designed to facilitate the loading of video content from URLs into a format suitable for further processing or analysis. It supports handling various URL formats, including direct links to video files, and converting them into a standardized video format for use within the system.
+The LoadVideoFromUrl node is designed to facilitate the loading of video content from URLs into a usable format for further processing or analysis. It supports handling various URL schemes, including direct links to video files, local file paths, and specialized URLs with parameters for video retrieval. This node also includes functionality to manage video files by downloading or relocating them as needed, ensuring compatibility with the system's file structure.
 ## Input types
 ### Required
 - **`video`**
-    - The 'video' parameter is a string representing the URL of the video to be loaded. It plays a crucial role in determining the source from which the video will be fetched and processed.
+    - The 'video' parameter is the URL or path of the video to be loaded. It plays a crucial role in determining the source from which the video will be fetched or loaded, directly influencing the node's processing logic and output.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`force_rate`**
-    - Specifies the desired frame rate for the loaded video, allowing control over the playback speed or frame rate normalization.
+    - This parameter allows for the specification of a forced frame rate for the loaded video, affecting the temporal resolution and playback speed.
     - Comfy dtype: `INT`
     - Python dtype: `Optional[float]`
 - **`force_size`**
-    - Defines the target resolution for the loaded video, enabling resizing or aspect ratio adjustments.
+    - Allows setting a forced resolution for the loaded video, which can alter the spatial dimensions of the output frames.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `Optional[str]`
 - **`custom_width`**
-    - Sets a custom width for the loaded video, overriding the default or specified 'force_size' width.
+    - Specifies a custom width for the output video frames, overriding the default or source video's width.
     - Comfy dtype: `INT`
     - Python dtype: `Optional[int]`
 - **`custom_height`**
-    - Sets a custom height for the loaded video, overriding the default or specified 'force_size' height.
+    - Specifies a custom height for the output video frames, overriding the default or source video's height.
     - Comfy dtype: `INT`
     - Python dtype: `Optional[int]`
 - **`frame_load_cap`**
-    - Limits the number of frames to be loaded from the video, useful for processing long videos or sampling.
+    - Limits the number of frames to be loaded from the video, useful for reducing memory usage or focusing on specific segments.
     - Comfy dtype: `INT`
     - Python dtype: `Optional[int]`
 - **`skip_first_frames`**
-    - Skips a specified number of frames at the beginning of the video, useful for bypassing unneeded content or intros.
+    - Skips a specified number of frames from the beginning of the video, useful for bypassing unneeded content or intros.
     - Comfy dtype: `INT`
     - Python dtype: `Optional[int]`
 - **`select_every_nth`**
-    - Loads every nth frame from the video, allowing for frame rate reduction or selective frame analysis.
+    - Loads every nth frame from the video, allowing for temporal downsampling and reduced dataset size.
     - Comfy dtype: `INT`
     - Python dtype: `Optional[int]`
 ### Optional
 - **`meta_batch`**
-    - Enables batch processing of metadata for the loaded videos, optimizing for scenarios where video metadata is crucial.
+    - A parameter for batch processing metadata, potentially used for optimizing load operations or handling multiple videos.
     - Comfy dtype: `VHS_BatchManager`
-    - Python dtype: `Optional[bool]`
+    - Python dtype: `Optional[dict]`
+- **`vae`**
+    - An optional VAE model parameter for potential preprocessing or encoding of video frames.
+    - Comfy dtype: `VAE`
+    - Python dtype: `Optional[torch.nn.Module]`
 ## Output types
 - **`frames`**
     - Comfy dtype: `IMAGE`
-    - A list of tensors representing the loaded videos.
+    - A list of loaded videos, each represented as a tensor. This output is crucial for subsequent video processing tasks.
     - Python dtype: `List[torch.Tensor]`
 - **`frame_count`**
     - Comfy dtype: `INT`
-    - A list containing the number of frames for each video loaded.
+    - A list containing the number of frames for each video loaded. This information is essential for frame-based video analysis and processing.
     - Python dtype: `List[int]`
 - **`has_video`**
     - Comfy dtype: `BOOLEAN`
-    - A boolean indicating whether any video was successfully loaded.
+    - A boolean indicating whether any video was successfully loaded. This flag can be used to trigger further processing or handle errors.
     - Python dtype: `bool`
 ## Usage tips
 - Infra type: `CPU`

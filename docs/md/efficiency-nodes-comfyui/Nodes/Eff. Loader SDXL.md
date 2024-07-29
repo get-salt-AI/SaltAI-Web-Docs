@@ -1,9 +1,11 @@
 ---
 tags:
+- Checkpoint
+- CheckpointLoader
 - Loader
-- Model
-- ModelIO
 - ModelLoader
+- ModelMerge
+- ModelSwitching
 ---
 
 # Eff. Loader SDXL

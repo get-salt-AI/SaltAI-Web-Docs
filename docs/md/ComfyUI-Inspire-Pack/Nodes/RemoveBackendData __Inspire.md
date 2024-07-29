@@ -1,7 +1,9 @@
 ---
 tags:
+- Agents
 - BackendCache
-- Cache
+- LLMImage
+- LlamaIndex
 ---
 
 # Remove Backend Data (Inspire)

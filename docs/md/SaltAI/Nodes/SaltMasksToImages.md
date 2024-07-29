@@ -2,6 +2,8 @@
 tags:
 - Mask
 - MaskRegion
+- SEGSPrep
+- Segmentation
 ---
 
 # Masks to Tensors

@@ -1,60 +1,59 @@
 ---
 tags:
+- AspectRatio
 - ImageResize
-- ImageScaling
 - ImageSize
-- ImageTransformation
 ---
 
 # 🔧 Image Resize
 ## Documentation
 - Class name: `ImageResize+`
-- Category: `essentials`
+- Category: `essentials/image manipulation`
 - Output node: `False`
 
-The ImageResize+ node is designed to adjust the size of an image to specified dimensions, offering a fundamental operation in image processing that can be crucial for both preprocessing before further analysis or modification, and for adapting images to fit specific display or storage requirements.
+This node is designed for resizing images to a specified width and height, offering a straightforward way to adjust image dimensions for various applications. It abstracts the complexities of image processing, providing an easy-to-use interface for resizing operations.
 ## Input types
 ### Required
 - **`image`**
-    - The 'image' parameter represents the image data to be resized. It is central to the node's operation, determining the source image that will undergo resizing.
+    - The input image to be resized. This parameter is crucial as it determines the source image that will undergo the resizing process.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`width`**
-    - The 'width' parameter specifies the target width for the resizing operation. It directly influences the horizontal dimension of the output image.
+    - Specifies the desired width of the resized image. This parameter directly influences the output image's dimensions.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - The 'height' parameter specifies the target height for the resizing operation. It directly influences the vertical dimension of the output image.
+    - Specifies the desired height of the resized image. This parameter directly influences the output image's dimensions.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`interpolation`**
-    - The 'interpolation' parameter defines the method used for resizing, affecting the quality and characteristics of the output image.
+    - Defines the method used for interpolating pixels in the resizing process, affecting the quality and appearance of the resized image.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-- **`keep_proportion`**
-    - The 'keep_proportion' parameter determines whether the original aspect ratio of the image should be preserved during resizing.
-    - Comfy dtype: `BOOLEAN`
-    - Python dtype: `bool`
+- **`method`**
+    - Determines how the image is resized, influencing whether and how the aspect ratio is preserved or altered.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
 - **`condition`**
-    - The 'condition' parameter allows for conditional execution of the resizing based on specific criteria.
+    - Specifies under what conditions the resizing should occur, allowing for conditional resizing based on the original and target dimensions.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`multiple_of`**
-    - The 'multiple_of' parameter ensures the dimensions of the resized image are multiples of a specified value, useful for certain processing or model input requirements.
+    - Ensures the dimensions of the resized image are multiples of this value, useful for certain processing or model input requirements.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`IMAGE`**
     - Comfy dtype: `IMAGE`
-    - unknown
-    - Python dtype: `unknown`
+    - The resized image. This output reflects the changes in dimensions specified by the width and height parameters.
+    - Python dtype: `torch.Tensor`
 - **`width`**
     - Comfy dtype: `INT`
-    - The output 'width' represents the actual width of the resized image.
+    - The actual width of the resized image, which may differ from the requested width due to constraints like maintaining aspect ratio or alignment to a multiple.
     - Python dtype: `int`
 - **`height`**
     - Comfy dtype: `INT`
-    - The output 'height' represents the actual height of the resized image.
+    - The actual height of the resized image, which may differ from the requested height due to constraints like maintaining aspect ratio or alignment to a multiple.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `GPU`
@@ -76,8 +75,8 @@ class ImageResize:
                 "width": ("INT", { "default": 512, "min": 0, "max": MAX_RESOLUTION, "step": 8, }),
                 "height": ("INT", { "default": 512, "min": 0, "max": MAX_RESOLUTION, "step": 8, }),
                 "interpolation": (["nearest", "bilinear", "bicubic", "area", "nearest-exact", "lanczos"],),
-                "keep_proportion": ("BOOLEAN", { "default": False }),
-                "condition": (["always", "downscale if bigger", "upscale if smaller"],),
+                "method": (["stretch", "keep proportion", "fill / crop", "pad"],),
+                "condition": (["always", "downscale if bigger", "upscale if smaller", "if bigger area", "if smaller area"],),
                 "multiple_of": ("INT", { "default": 0, "min": 0, "max": 512, "step": 1, }),
             }
         }
@@ -85,12 +84,21 @@ class ImageResize:
     RETURN_TYPES = ("IMAGE", "INT", "INT",)
     RETURN_NAMES = ("IMAGE", "width", "height",)
     FUNCTION = "execute"
-    CATEGORY = "essentials"
+    CATEGORY = "essentials/image manipulation"
 
-    def execute(self, image, width, height, keep_proportion, interpolation="nearest", condition="always", multiple_of=0):
+    def execute(self, image, width, height, method="stretch", interpolation="nearest", condition="always", multiple_of=0, keep_proportion=False):
         _, oh, ow, _ = image.shape
+        x = y = x2 = y2 = 0
+        pad_left = pad_right = pad_top = pad_bottom = 0
 
-        if keep_proportion is True:
+        if keep_proportion:
+            method = "keep proportion"
+
+        if multiple_of > 1:
+            width = width - (width % multiple_of)
+            height = height - (height % multiple_of)
+
+        if method == 'keep proportion' or method == 'pad':
             if width == 0 and oh < height:
                 width = MAX_RESOLUTION
             elif width == 0 and oh >= height:
@@ -101,30 +109,76 @@ class ImageResize:
             elif height == 0 and ow >= width:
                 height = ow
 
-            #width = ow if width == 0 else width
-            #height = oh if height == 0 else height
             ratio = min(width / ow, height / oh)
-            width = round(ow*ratio)
-            height = round(oh*ratio)
+            new_width = round(ow*ratio)
+            new_height = round(oh*ratio)
+
+            if method == 'pad':
+                pad_left = (width - new_width) // 2
+                pad_right = width - new_width - pad_left
+                pad_top = (height - new_height) // 2
+                pad_bottom = height - new_height - pad_top
+
+            width = new_width
+            height = new_height
+        elif method.startswith('fill'):
+            width = width if width > 0 else ow
+            height = height if height > 0 else oh
+
+            ratio = max(width / ow, height / oh)
+            new_width = round(ow*ratio)
+            new_height = round(oh*ratio)
+            x = (new_width - width) // 2
+            y = (new_height - height) // 2
+            x2 = x + width
+            y2 = y + height
+            if x2 > new_width:
+                x -= (x2 - new_width)
+            if x < 0:
+                x = 0
+            if y2 > new_height:
+                y -= (y2 - new_height)
+            if y < 0:
+                y = 0
+            width = new_width
+            height = new_height
         else:
-            if width == 0:
-                width = ow
-            if height == 0:
-                height = oh
+            width = width if width > 0 else ow
+            height = height if height > 0 else oh
 
-        if multiple_of > 1:
-            width = width - (width % multiple_of)
-            height = height - (height % multiple_of)
+        if "always" in condition \
+            or ("downscale if bigger" == condition and (oh > height or ow > width)) or ("upscale if smaller" == condition and (oh < height or ow < width)) \
+            or ("bigger area" in condition and (oh * ow > height * width)) or ("smaller area" in condition and (oh * ow < height * width)):
 
-        outputs = p(image)
+            outputs = image.permute(0,3,1,2)
 
-        if "always" in condition or ("bigger" in condition and (oh > height or ow > width)) or ("smaller" in condition and (oh < height or ow < width)):
             if interpolation == "lanczos":
                 outputs = comfy.utils.lanczos(outputs, width, height)
             else:
                 outputs = F.interpolate(outputs, size=(height, width), mode=interpolation)
 
-        outputs = pb(outputs)
+            if method == 'pad':
+                if pad_left > 0 or pad_right > 0 or pad_top > 0 or pad_bottom > 0:
+                    outputs = F.pad(outputs, (pad_left, pad_right, pad_top, pad_bottom), value=0)
+
+            outputs = outputs.permute(0,2,3,1)
+
+            if method.startswith('fill'):
+                if x > 0 or y > 0 or x2 > 0 or y2 > 0:
+                    outputs = outputs[:, y:y2, x:x2, :]
+        else:
+            outputs = image
+
+        if multiple_of > 1 and (outputs.shape[2] % multiple_of != 0 or outputs.shape[1] % multiple_of != 0):
+            width = outputs.shape[2]
+            height = outputs.shape[1]
+            x = (width % multiple_of) // 2
+            y = (height % multiple_of) // 2
+            x2 = width - ((width % multiple_of) - x)
+            y2 = height - ((height % multiple_of) - y)
+            outputs = outputs[:, y:y2, x:x2, :]
+        
+        outputs = torch.clamp(outputs, 0, 1)
 
         return(outputs, outputs.shape[2], outputs.shape[1],)
 

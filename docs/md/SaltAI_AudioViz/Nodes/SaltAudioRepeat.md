@@ -6,24 +6,24 @@ tags:
 # Audio Repeat
 ## Documentation
 - Class name: `SaltAudioRepeat`
-- Category: `SALT/Audio/Process`
+- Category: `SALT/AudioViz/Audio/Process`
 - Output node: `False`
 
-The SaltAudioRepeat node is designed to repeat an audio clip a specified number of times. This functionality is useful for extending the duration of an audio segment without altering its original content.
+The SaltAudioRepeat node is designed for repeating an audio segment a specified number of times. It enables the creation of looped audio effects by duplicating the input audio according to the user-defined repetition count.
 ## Input types
 ### Required
 - **`audio`**
-    - The 'audio' parameter is the raw audio data to be processed. It serves as the base audio clip that will be repeated according to the 'repeat_times' parameter.
+    - The 'audio' parameter is the raw audio data to be looped. It is essential for determining the base audio content that will be repeated.
     - Comfy dtype: `AUDIO`
     - Python dtype: `bytes`
 - **`repeat_times`**
-    - The 'repeat_times' parameter specifies how many times the audio clip should be repeated. This directly influences the length of the resulting audio output.
+    - The 'repeat_times' parameter specifies how many times the audio should be looped. It directly influences the length and content of the output audio.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`audio`**
     - Comfy dtype: `AUDIO`
-    - The output is the audio data after being repeated the specified number of times, effectively extending its duration.
+    - The output is the looped audio, which is the result of repeating the input audio segment for the specified number of times.
     - Python dtype: `bytes`
 ## Usage tips
 - Infra type: `CPU`
@@ -45,7 +45,7 @@ class SaltAudioRepeat:
     RETURN_TYPES = ("AUDIO",)
     RETURN_NAMES = ("audio",)
     FUNCTION = "loop_audio"
-    CATEGORY = "SALT/Audio/Process"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Audio/Process"
 
     def loop_audio(cls, audio, repeat_times):
         audio_segment = AudioSegment.from_file(io.BytesIO(audio), format="wav")

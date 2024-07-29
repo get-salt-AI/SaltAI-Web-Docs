@@ -1,7 +1,6 @@
 ---
 tags:
 - Blur
-- VisualEffects
 ---
 
 # ImageFilterMedianBlur

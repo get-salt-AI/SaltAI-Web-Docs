@@ -1,6 +1,8 @@
 ---
 tags:
-- Animation
+- AnimateDiff
+- CameraControl
+- MotionData
 - PoseEstimation
 ---
 

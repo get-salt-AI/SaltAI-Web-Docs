@@ -1,6 +1,8 @@
 ---
 tags:
 - DataVisualization
+- LayeredDiffusion
+- LayeredDiffusionDecode
 - XYPlot
 - XYPlotData
 ---
@@ -8,41 +10,41 @@ tags:
 # advanced xyPlot
 ## Documentation
 - Class name: `ttN advanced xyPlot`
-- Category: `ttN/pipe`
+- Category: `🌏 tinyterra/xyPlot`
 - Output node: `False`
 
-The ttN advanced xyPlot node is designed for advanced plotting capabilities, enabling the generation and manipulation of XY plots with enhanced features such as grid spacing, latent index consideration, and individual output control. It provides a framework for visualizing complex data relationships and patterns in a customizable manner.
+The `ttN advanced xyPlot` node is designed for advanced plotting capabilities, focusing on generating and manipulating XY plots. It enables the creation of plots based on X, Y, and optionally Z coordinates, with features such as flipping the X and Y axes, adjusting grid spacing, and saving individual plots. This node is tailored for visualizing complex data relationships through customizable 2D and 3D plots.
 ## Input types
 ### Required
 - **`grid_spacing`**
-    - Specifies the spacing between points on the grid, affecting the density and separation of plotted points, thereby influencing the plot's granularity and overall appearance.
+    - Specifies the spacing between grid lines in the plot, affecting the plot's resolution and visual density.
     - Comfy dtype: `INT`
     - Python dtype: `int`
-- **`latent_index`**
-    - Identifies a specific latent dimension or index to be visualized, allowing for targeted exploration and analysis of high-dimensional data spaces.
-    - Comfy dtype: `INT`
-    - Python dtype: `int`
-- **`output_individuals`**
-    - Controls whether individual data points are outputted separately, enabling detailed examination and analysis of each point within the plot.
-    - Comfy dtype: `COMBO[STRING]`
+- **`save_individuals`**
+    - Determines whether to save each plotted point as an individual file, enabling detailed analysis of specific data points.
+    - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`flip_xy`**
-    - Determines whether the x and y axes should be swapped, allowing for alternative perspectives and orientations of the plotted data.
-    - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Controls whether the X and Y axes should be swapped, allowing for alternative data perspective visualization.
+    - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`x_plot`**
-    - Provides the data points for the x-axis, forming one dimension of the plot's data representation.
+    - The X coordinates for plotting, defining the horizontal positioning of data points.
     - Comfy dtype: `STRING`
-    - Python dtype: `str`
+    - Python dtype: `Optional[str]`
 - **`y_plot`**
-    - Provides the data points for the y-axis, forming the other dimension of the plot's data representation.
+    - The Y coordinates for plotting, defining the vertical positioning of data points.
     - Comfy dtype: `STRING`
-    - Python dtype: `str`
+    - Python dtype: `Optional[str]`
+- **`z_plot`**
+    - The Z coordinates for plotting, adding a third dimension to the visualization when applicable.
+    - Comfy dtype: `STRING`
+    - Python dtype: `Optional[str]`
 ## Output types
 - **`adv_xyPlot`**
     - Comfy dtype: `ADV_XYPLOT`
-    - Outputs a dictionary containing the plot data, including x and y coordinates, grid spacing, latent index, and output control information, encapsulating the plot's comprehensive configuration.
-    - Python dtype: `dict`
+    - The generated XY plot data, including coordinates and configuration settings for visualization.
+    - Python dtype: `Dict[str, Any]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -51,10 +53,10 @@ The ttN advanced xyPlot node is designed for advanced plotting capabilities, ena
 ## Source code
 ```python
 class ttN_advanced_XYPlot:
-    version = '1.0.0'
+    version = '1.2.0'
     plotPlaceholder = "_PLOT\nExample:\n\n<axis number:label1>\n[node_ID:widget_Name='value']\n\n<axis number2:label2>\n[node_ID:widget_Name='value2']\n[node_ID:widget2_Name='value']\n[node_ID2:widget_Name='value']\n\netc..."
 
-    def get_plot_points(plot_data, unique_id):
+    def get_plot_points(plot_data, unique_id, plot_Line):
         if plot_data is None or plot_data.strip() == '':
             return None
         else:
@@ -78,15 +80,17 @@ class ttN_advanced_XYPlot:
                         line = line.split('>', 1)
                         num, label = line[0].split(':', 1)
                         axis_dict[num] = {"label": label}
-                        for point in line[1].split('['):
-                            if point.strip() != '':
-                                node_id = point.split(':', 1)[0]
-                                axis_dict[num][node_id] = {}
-                                input_name = point.split(':', 1)[1].split('=')[0]
-                                value = point.split("'")[1].split("'")[0]
-                                values_label.append((value, input_name, node_id))
-                                
-                                axis_dict[num][node_id][input_name] = value
+                        for point in line[1].split("']"):
+                            if point.strip() == '':
+                                continue
+                            
+                            node_id = point.split(':', 1)[0].split('[')[1]
+                            axis_dict[num].setdefault(node_id, {})
+                            input_name = point.split(':', 1)[1].split('=', 1)[0]
+                            value = point.split("'", 1 )[1]
+                            values_label.append((value, input_name, node_id))
+                            
+                            axis_dict[num][node_id][input_name] = value
                                 
                         if label in ['v_label', 'tv_label', 'idtv_label']:
                             new_label = []
@@ -100,7 +104,7 @@ class ttN_advanced_XYPlot:
                             axis_dict[num]['label'] = ', '.join(new_label)
                         
             except ValueError:
-                ttNl('Invalid Plot - defaulting to None...').t(f'advanced_XYPlot[{unique_id}]').warn().p()
+                ttNl('Invalid Plot - defaulting to None...').t(f'advanced_XYPlot[{unique_id}] {plot_Line} Axis').warn().p()
                 return None
             return axis_dict
 
@@ -112,17 +116,16 @@ class ttN_advanced_XYPlot:
         return {
             "required": {
                 "grid_spacing": ("INT",{"min": 0, "max": 500, "step": 5, "default": 0,}),
-                "latent_index": ("INT",{"min": 0, "max": 100, "step": 1, "default": 0, }),
-                "output_individuals": (["False", "True"],{"default": "False"}),
-                "flip_xy": (["False", "True"],{"default": "False"}),
+                "save_individuals": ("BOOLEAN", {"default": False}),
+                "flip_xy": ("BOOLEAN", {"default": False}),
+                
                 "x_plot": ("STRING",{"default": '', "multiline": True, "placeholder": 'X' + ttN_advanced_XYPlot.plotPlaceholder, "pysssss.autocomplete": False}),
                 "y_plot": ("STRING",{"default": '', "multiline": True, "placeholder": 'Y' + ttN_advanced_XYPlot.plotPlaceholder, "pysssss.autocomplete": False}),
+                "z_plot": ("STRING",{"default": '', "multiline": True, "placeholder": 'Z' + ttN_advanced_XYPlot.plotPlaceholder, "pysssss.autocomplete": False}),
             },
             "hidden": {
-                "prompt": ("PROMPT",),
-                "extra_pnginfo": ("EXTRA_PNGINFO",),
-                "my_unique_id": ("MY_UNIQUE_ID",),
-                "ttNnodeVersion": ttN_XYPlot.version,
+                "my_unique_id": "UNIQUE_ID",
+                "ttNnodeVersion": ttN_advanced_XYPlot.version,
             },
         }
 
@@ -130,25 +133,26 @@ class ttN_advanced_XYPlot:
     RETURN_NAMES = ("adv_xyPlot", )
     FUNCTION = "plot"
 
-    CATEGORY = "ttN/pipe"
+    CATEGORY = "🌏 tinyterra/xyPlot"
     
-    def plot(self, grid_spacing, latent_index, output_individuals, flip_xy, x_plot, y_plot, prompt=None, extra_pnginfo=None, my_unique_id=None):
-        x_plot = ttN_advanced_XYPlot.get_plot_points(x_plot, my_unique_id)
-        y_plot = ttN_advanced_XYPlot.get_plot_points(y_plot, my_unique_id)
+    def plot(self, grid_spacing, save_individuals, flip_xy, x_plot=None, y_plot=None, z_plot=None, my_unique_id=None):
+        x_plot = ttN_advanced_XYPlot.get_plot_points(x_plot, my_unique_id, 'X')
+        y_plot = ttN_advanced_XYPlot.get_plot_points(y_plot, my_unique_id, 'Y')
+        z_plot = ttN_advanced_XYPlot.get_plot_points(z_plot, my_unique_id, 'Z')
 
         if x_plot == {}:
             x_plot = None
         if y_plot == {}:
             y_plot = None
 
-        if flip_xy == "True":
+        if flip_xy == True:
             x_plot, y_plot = y_plot, x_plot
 
         xy_plot = {"x_plot": x_plot,
                    "y_plot": y_plot,
+                   "z_plot": z_plot,
                    "grid_spacing": grid_spacing,
-                   "latent_index": latent_index,
-                   "output_individuals": output_individuals,}
+                   "save_individuals": save_individuals,}
         
         return (xy_plot, )
 

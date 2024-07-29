@@ -9,29 +9,29 @@ tags:
 - Category: `inpaint`
 - Output node: `False`
 
-The `MaskedFill` node is designed to fill masked areas of an image with specified fill methods, including a neutral color fill or advanced inpainting techniques. It leverages image processing and conditional operations to seamlessly blend filled areas with the surrounding image pixels, offering a versatile solution for image inpainting tasks.
+The 'Fill Masked Area' node is designed to fill areas of an image that are masked, using either a neutral color fill or advanced inpainting techniques. It provides options for different fill methods, including a simple neutral fill or more complex methods leveraging OpenCV's inpainting algorithms, to seamlessly blend the filled area with the surrounding image content.
 ## Input types
 ### Required
 - **`image`**
-    - The input image tensor to be processed, where masked areas are identified and filled according to the specified method.
+    - The image tensor to be processed, where masked areas are to be filled. It serves as the primary input for the inpainting operation.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`mask`**
-    - A tensor indicating the areas of the image to be filled. The mask guides the filling process, ensuring that only specified regions are altered.
+    - A tensor representing the mask, indicating areas of the image to be filled. It plays a crucial role in determining which parts of the image are subject to inpainting.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`fill`**
-    - Specifies the filling method to be used. Options include 'neutral' for a simple color fill and advanced methods like 'telea' and 'inpaint_ns' for more sophisticated inpainting.
+    - Specifies the method of filling: 'neutral' for a simple color fill, or 'telea'/'ns' for using OpenCV's inpainting algorithms. This choice affects the visual outcome of the filled areas.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`falloff`**
-    - Determines the transition smoothness between filled areas and the original image, affecting the blending quality.
+    - An integer defining the falloff effect around the edges of the mask, enhancing the blending of filled areas with the rest of the image.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output image tensor after the masked areas have been filled, showcasing the inpainting results.
+    - The image tensor after the masked areas have been filled, showcasing the result of the inpainting operation.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -58,7 +58,9 @@ class MaskedFill:
 
     def fill(self, image: Tensor, mask: Tensor, fill: str, falloff: int):
         image = image.detach().clone()
-        alpha = mask.expand(1, *mask.shape[-2:]).floor()
+        alpha = mask_unsqueeze(mask_floor(mask))
+        assert alpha.shape[0] == image.shape[0], "Image and mask batch size does not match"
+
         falloff = make_odd(falloff)
         if falloff > 0:
             erosion = binary_erosion(alpha, falloff)
@@ -74,9 +76,9 @@ class MaskedFill:
             import cv2
 
             method = cv2.INPAINT_TELEA if fill == "telea" else cv2.INPAINT_NS
-            alpha_np = alpha.squeeze(0).cpu().numpy()
-            alpha_bc = alpha_np.reshape(*alpha_np.shape, 1)
-            for slice in image:
+            for slice, alpha_slice in zip(image, alpha):
+                alpha_np = alpha_slice.squeeze().cpu().numpy()
+                alpha_bc = alpha_np.reshape(*alpha_np.shape, 1)
                 image_np = slice.cpu().numpy()
                 filled_np = cv2.inpaint(
                     (255.0 * image_np).astype(np.uint8),

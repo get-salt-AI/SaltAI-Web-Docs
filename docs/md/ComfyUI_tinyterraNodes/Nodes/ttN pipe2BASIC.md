@@ -1,31 +1,33 @@
 ---
 tags:
+- DetailEnhancement
 - Image
 - Pipeline
 - PipelineTransformation
+- SDXLSettings
 ---
 
 # pipe > basic_pipe
 ## Documentation
 - Class name: `ttN pipe2BASIC`
-- Category: `ttN/pipe`
+- Category: `🌏 tinyterra/pipe`
 - Output node: `False`
 
-The ttN pipe2BASIC node is designed to simplify the structure of a given pipeline by extracting and repackaging its core components into a basic pipeline format. This process facilitates easier manipulation and understanding of the pipeline's fundamental elements.
+The ttN pipe2BASIC node is designed to simplify and streamline the processing pipeline by converting a complex input pipeline into a basic form. This node extracts essential components from the input pipeline, focusing on core elements such as model, clip, vae, and conditioning parameters, to facilitate further processing or analysis.
 ## Input types
 ### Required
 - **`pipe`**
-    - The 'pipe' input is the pipeline to be simplified, containing various components such as models, clips, and VAEs. It serves as the primary data structure for transformation into a basic pipeline format.
+    - The 'pipe' parameter represents the complex input pipeline that is to be simplified. It is essential for the operation as it contains all the data and settings that will be streamlined into a basic form.
     - Comfy dtype: `PIPE_LINE`
     - Python dtype: `Dict[str, Any]`
 ## Output types
 - **`basic_pipe`**
     - Comfy dtype: `BASIC_PIPE`
-    - The 'basic_pipe' output is a simplified version of the input pipeline, containing only its essential components such as model, clip, VAE, and positive and negative conditioning.
-    - Python dtype: `Tuple[Any, ...]`
+    - The 'basic_pipe' output contains the simplified version of the input pipeline, focusing on essential components for further processing.
+    - Python dtype: `Tuple[Any]`
 - **`pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - The 'pipe' output returns the original pipeline as received in the input, allowing for further manipulation or inspection.
+    - Returns the original input pipeline, allowing for reference or further modifications.
     - Python dtype: `Dict[str, Any]`
 ## Usage tips
 - Infra type: `CPU`
@@ -52,7 +54,7 @@ class ttN_pipe_2BASIC:
     RETURN_NAMES = ("basic_pipe", "pipe",)
     FUNCTION = "flush"
 
-    CATEGORY = "ttN/pipe"
+    CATEGORY = "🌏 tinyterra/pipe"
     
     def flush(self, pipe):
         basic_pipe = (pipe.get('model'), pipe.get('clip'), pipe.get('vae'), pipe.get('positive'), pipe.get('negative'))

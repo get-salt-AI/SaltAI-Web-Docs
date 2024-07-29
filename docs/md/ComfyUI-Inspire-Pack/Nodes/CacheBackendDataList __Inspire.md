@@ -1,7 +1,10 @@
 ---
 tags:
+- Agents
 - BackendCache
-- Cache
+- LLMDataConversion
+- LLMImage
+- LlamaIndex
 ---
 
 # Cache Backend Data List (Inspire)

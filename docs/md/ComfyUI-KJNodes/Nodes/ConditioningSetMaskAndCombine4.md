@@ -1,6 +1,8 @@
 ---
 tags:
+- CLIPConditioning
 - Conditioning
+- Context
 ---
 
 # ConditioningSetMaskAndCombine4

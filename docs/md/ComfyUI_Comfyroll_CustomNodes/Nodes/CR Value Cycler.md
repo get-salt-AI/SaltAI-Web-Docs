@@ -1,6 +1,7 @@
 ---
 tags:
-- ComfyrollNodes
+- Debugging
+- Dictionary
 ---
 
 # 📜 CR Value Cycler

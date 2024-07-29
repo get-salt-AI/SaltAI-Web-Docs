@@ -1,9 +1,7 @@
 ---
 tags:
-- DepthMap
 - DepthMapEstimation
-- Image
-- NormalMap
+- Inpaint
 ---
 
 # [Inference.Core] BAE Normal Map

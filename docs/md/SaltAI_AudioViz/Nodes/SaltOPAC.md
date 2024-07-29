@@ -1,95 +1,96 @@
 ---
 tags:
+- AnimationScheduling
 - Scheduling
-- VisualEffects
+- SigmaScheduling
 ---
 
 # Perlin Tremor Scheduler
 ## Documentation
 - Class name: `SaltOPAC`
-- Category: `SALT/Scheduling`
+- Category: `SALT/AudioViz/Scheduling`
 - Output node: `False`
 
-The SaltOPAC node is designed for orchestrating Perlin noise sampling configurations within an audio-visual content generation framework, specifically targeting the optimization and application of Perlin noise settings to enhance the dynamic visual effects in synchronization with audio or other triggers.
+The SaltOPAC node is designed for orchestrating complex scheduling tasks within audio-visual projects, specifically focusing on applying Perlin noise configurations to enhance the dynamic visual effects. It integrates various scheduling parameters such as zoom, angle, and translations along different axes, to create intricate motion and transformation effects in synchronization with audio or other triggers.
 ## Input types
 ### Required
 - **`use_wiggle`**
-    - unknown
+    - Determines whether wiggle effects, based on Perlin noise, are applied to the visual elements, adding a dynamic, naturalistic motion.
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `unknown`
+    - Python dtype: `bool`
 - **`frame_count`**
-    - unknown
+    - Specifies the number of frames for which the scheduling and effects are calculated, defining the duration of the visual sequence.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`zoom_range`**
-    - unknown
+    - Defines the range of zoom values to be applied across frames, influencing the scale of visual elements over time.
     - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
+    - Python dtype: `tuple(float, float)`
 - **`zoom_tremor_scale`**
-    - unknown
+    - Adjusts the intensity of the zoom tremor effect, allowing for finer control over the zoom dynamics.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`angle_range`**
-    - unknown
+    - Sets the range of angles for rotational effects, adding to the complexity of motion.
     - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
+    - Python dtype: `tuple(float, float)`
 - **`angle_tremor_scale`**
-    - unknown
+    - Controls the scale of angle tremors, affecting the subtlety or intensity of rotational movements.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`trx_range`**
-    - unknown
+    - Determines the horizontal translation range, enabling lateral movement across frames.
     - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
+    - Python dtype: `tuple(float, float)`
 - **`trx_tremor_scale`**
-    - unknown
+    - Modifies the scale of horizontal translation tremors, impacting the smoothness or jitteriness of movement.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`try_range`**
-    - unknown
+    - Specifies the vertical translation range, allowing for vertical movement adjustments.
     - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
+    - Python dtype: `tuple(float, float)`
 - **`try_tremor_scale`**
-    - unknown
+    - Adjusts the intensity of vertical translation tremors, affecting the vertical motion dynamics.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`trz_range`**
-    - unknown
+    - Defines the depth translation range, influencing the perception of depth in the visual sequence.
     - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
+    - Python dtype: `tuple(float, float)`
 - **`trz_tremor_scale`**
-    - unknown
+    - Controls the scale of depth translation tremors, enhancing the depth dynamics.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`rotx_range`**
-    - unknown
+    - Sets the range for rotation around the x-axis, contributing to the 3D rotation effects.
     - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
+    - Python dtype: `tuple(float, float)`
 - **`rotx_tremor_scale`**
-    - unknown
+    - Adjusts the intensity of x-axis rotation tremors, affecting the complexity of 3D rotational movements.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`roty_range`**
-    - unknown
+    - Determines the range for rotation around the y-axis, adding another layer of 3D rotation.
     - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
+    - Python dtype: `tuple(float, float)`
 - **`roty_tremor_scale`**
-    - unknown
+    - Modifies the scale of y-axis rotation tremors, impacting the 3D rotational dynamics.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`rotz_range`**
-    - unknown
+    - Specifies the range for rotation around the z-axis, completing the set of 3D rotational dynamics.
     - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
+    - Python dtype: `tuple(float, float)`
 - **`rotz_tremor_scale`**
-    - unknown
+    - Controls the intensity of z-axis rotation tremors, enhancing the 3D rotation effects.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 ### Optional
 - **`opac_perlin_settings`**
-    - unknown
+    - This parameter allows for the customization of Perlin noise settings, which are crucial for generating naturalistic variations in the visual effects. By adjusting these settings, users can significantly influence the visual dynamics of the project.
     - Comfy dtype: `DICT`
-    - Python dtype: `unknown`
+    - Python dtype: `dict`
 ## Output types
 - **`zoom_schdule_list`**
     - Comfy dtype: `LIST`
@@ -170,7 +171,7 @@ class SaltOPAC:
     RETURN_TYPES = ("LIST", "LIST", "LIST", "LIST", "LIST", "LIST", "LIST", "LIST")
     RETURN_NAMES = ("zoom_schdule_list", "angle_schdule_list", "translation_x_schdule_list", "translation_y_schdule_list", "translation_z_schdule_list", "rotation_3d_x_schdule_list", "rotation_3d_y_schdule_list", "rotation_3d_z_schdule_list")
     FUNCTION = "execute"
-    CATEGORY = "SALT/Scheduling"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling"
 
     def process_kwargs(self, **kwargs):
         self.use_wiggle = kwargs.get('use_wiggle', True)
@@ -255,7 +256,7 @@ class SaltOPAC:
         if kwargs.__contains__("opac_perlin_settings"):
             perlin_settings = kwargs.pop("opac_perlin_settings")
             kwargs.update(perlin_settings)
-            print("\033[1m\033[94mOPAC Perlin Settings applied!:\033[0m")
+            logger.info("\033[1m\033[94mOPAC Perlin Settings applied!:\033[0m")
 
         # Process the input values
         self.process_kwargs(**kwargs)
@@ -278,7 +279,7 @@ class SaltOPAC:
             ]
         )
             
-        print("\033[1m\033[94mOPAC Schedule Curves:\033[0m")
+        logger.info("\033[1m\033[94mOPAC Schedule Curves:\033[0m")
 
         log_curve("zoom", zoom)
         log_curve("angle", angle)
@@ -289,7 +290,7 @@ class SaltOPAC:
         log_curve("rotation_3d_y", rotation_3d_y)
         log_curve("rotation_3d_z", rotation_3d_z)
 
-        print("")
+        logger.info("")
 
         return zoom, angle, translation_x, translation_y, translation_z, rotation_3d_x, rotation_3d_y, rotation_3d_z
 

@@ -1,6 +1,6 @@
 ---
 tags:
-- Prompt
+- PromptStyling
 ---
 
 # IF Prompt to Prompt💬
@@ -9,78 +9,78 @@ tags:
 - Category: `ImpactFrames💥🎞️`
 - Output node: `False`
 
-The IF_PromptMkr node is designed to transform input prompts into more detailed or stylistically altered prompts, leveraging various AI engines and customization options. It enriches the original prompt with embellishments, styles, or negations based on user-defined parameters, aiming to generate more impactful and contextually rich prompts for creative or analytical applications.
+The IF_PromptMkr node is designed to transform an initial text prompt into a more detailed or stylistically altered prompt, leveraging various AI models and customizations. It enriches the input prompt with embellishments, styles, or negations based on user-selected options, aiming to generate more impactful or contextually appropriate prompts for further processing or creative generation.
 ## Input types
 ### Required
 - **`input_prompt`**
-    - The initial prompt provided by the user, serving as the base for further embellishment or modification. It's crucial for defining the thematic direction of the generated output.
+    - The primary text prompt to be transformed. It serves as the base content for generating enriched or stylistically altered prompts.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`base_ip`**
-    - Specifies the base IP address for the AI engine's API, determining where the request for prompt transformation is sent.
+    - The IP address of the server where the AI model is hosted, used for sending requests to generate the enriched prompt.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`port`**
-    - The port number used in conjunction with the base IP to access the AI engine's API.
+    - The port number on the server for accessing the AI model, used in conjunction with the base IP address.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`engine`**
-    - The choice of AI engine (e.g., ollama, openai, anthropic) to use for processing the input prompt, affecting the style and capabilities of the generated output.
+    - Specifies the AI model engine to use for prompt generation, allowing selection from options like 'ollama', 'openai', or 'anthropic'.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `list[str]`
 - **`selected_model`**
-    - The specific model selected for generating the output, dependent on the chosen engine and available models.
+    - The specific AI model selected for generating the prompt, determined dynamically based on the engine, base IP, and port.
     - Comfy dtype: `[]`
-    - Python dtype: `tuple`
+    - Python dtype: `tuple()`
 - **`profile`**
-    - A predefined set of parameters or 'profile' that influences the generation process, such as tone or complexity.
+    - The profile setting that influences the generation style or approach, selected from a predefined list of profiles.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `list[str]`
 - **`embellish_prompt`**
-    - An optional parameter to add additional descriptive elements to the input prompt, enhancing its detail or thematic depth.
+    - A selection of embellishments to apply to the input prompt, enhancing its detail or thematic elements.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `list[str]`
 - **`style_prompt`**
-    - An optional parameter to apply a specific style or tone to the input prompt, altering its presentation or narrative voice.
+    - A selection of styles to apply to the input prompt, altering its presentation or tone.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `list[str]`
 - **`neg_prompt`**
-    - An optional parameter to introduce negations or constraints to the input prompt, guiding the generation away from certain themes or concepts.
+    - A selection of negations to apply to the input prompt, introducing contrast or oppositional elements.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `list[str]`
 - **`temperature`**
-    - Controls the creativity or randomness of the generated output, with higher values allowing for more varied responses.
+    - Controls the creativity or randomness of the generated prompt, with a range from 0.0 (less random) to 1.0 (more random).
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`max_tokens`**
-    - The maximum number of tokens (words or characters) that the generated output can contain, setting a limit on its length.
+    - The maximum number of tokens to generate for the enriched prompt, setting an upper limit on its length.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`seed`**
-    - A seed value for the random number generator, ensuring reproducibility of the generated output when set.
+    - A seed value for the random number generator, ensuring reproducibility of the generated prompt when set.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`random`**
-    - A boolean parameter that, when true, uses a random seed for generation, otherwise it uses a fixed temperature setting.
+    - A boolean flag that, when true, uses the seed value for generating the prompt, otherwise uses the temperature setting.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`keep_alive`**
-    - Determines whether the AI model remains loaded after generation, affecting response time and resource usage.
+    - A boolean flag that, when true, keeps the AI model loaded between requests, potentially improving performance.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`Question`**
     - Comfy dtype: `STRING`
-    - The original input prompt, returned unchanged as part of the output.
+    - The original input prompt, returned unchanged.
     - Python dtype: `str`
 - **`Response`**
     - Comfy dtype: `STRING`
-    - The enriched or stylistically altered prompt, generated based on the input prompt and customization options.
+    - The enriched or stylistically altered prompt generated based on the input and selected options.
     - Python dtype: `str`
 - **`Negative`**
     - Comfy dtype: `STRING`
-    - A prompt generated with negations or constraints, based on the neg_prompt parameter.
+    - The negated version of the input prompt, incorporating contrast or oppositional elements.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`

@@ -1,9 +1,11 @@
 ---
 tags:
+- Checkpoint
+- CheckpointLoader
 - Loader
-- Model
-- ModelIO
 - ModelLoader
+- ModelMerge
+- ModelSwitching
 ---
 
 # EasyLoader (SV3D)
@@ -12,58 +14,58 @@ tags:
 - Category: `EasyUse/Loaders`
 - Output node: `False`
 
-The `easy sv3dLoader` node is designed to facilitate the loading of 3D models specifically formatted for Stable Diffusion 3D (SV3D) applications. It streamlines the process of identifying and preparing SV3D model files for use within the ComfyUI framework, ensuring compatibility and ease of integration.
+The `sv3DLoader` node is designed for loading and managing 3D model files specifically formatted for Stable Diffusion, facilitating the integration of 3D assets into generative AI workflows. It emphasizes ease of use and compatibility with a specific subset of 3D model files, aiming to streamline the process of incorporating 3D models into creative projects.
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - Specifies the checkpoint name for the 3D model to be loaded. This parameter is crucial for identifying the correct model file among potentially many, based on naming conventions that include 'sv3d' to denote compatibility with Stable Diffusion 3D applications.
+    - Specifies the checkpoint name for loading the model, serving as a key identifier for selecting the appropriate 3D model files.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`vae_name`**
-    - Specifies the VAE model name to be used in conjunction with the 3D model, ensuring the correct visual autoencoder is applied for image generation.
+    - Defines the VAE model name to be used in conjunction with the 3D models, ensuring compatibility and optimal performance within the generative workflow.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`init_image`**
-    - Defines the initial image to start the generation process, serving as a base or reference for the 3D model loading and manipulation.
+    - An initial image to start the generation process, providing a visual context or basis for further 3D model integration.
     - Comfy dtype: `IMAGE`
     - Python dtype: `str`
 - **`empty_latent_width`**
-    - Sets the width of the empty latent space to accommodate the 3D model, adjusting the spatial dimensions for generation.
+    - Sets the width for the latent space representation, defining the dimensions for the generated or manipulated 3D model output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`empty_latent_height`**
-    - Sets the height of the empty latent space to accommodate the 3D model, adjusting the spatial dimensions for generation.
+    - Sets the height for the latent space representation, similar to 'empty_latent_width', it defines the vertical dimension for the 3D model output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`batch_size`**
-    - Determines the number of instances to process in parallel, optimizing the loading and manipulation of 3D models for efficiency.
+    - Determines the number of instances to process in a single batch, affecting the efficiency and speed of the 3D model loading operation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`interp_easing`**
-    - Specifies the easing function to apply during the interpolation of frames, affecting the smoothness and dynamics of the 3D model's animation.
+    - Specifies the interpolation easing type to apply during the 3D model loading process, affecting the transition smoothness between models.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`easing_mode`**
-    - Defines the mode of easing to be applied, such as azimuth or elevation, directing the interpolation's focus during 3D model manipulation.
+    - Defines the mode of easing to be applied, such as azimuth or elevation, providing control over the specific aspect of 3D model manipulation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`scheduler`**
-    - Optional scheduler settings for advanced control over the loading and processing sequence of the 3D model, allowing for customized generation workflows.
+    - An optional scheduler for managing the loading and processing tasks, offering advanced control over the execution flow.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - The pipeline configuration for processing the 3D model, encapsulating the sequence of operations and transformations applied.
-    - Python dtype: `Dict[str, Any]`
+    - The pipeline configuration resulting from the loaded 3D models, ready for further processing or generation tasks.
+    - Python dtype: `object`
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The loaded 3D model ready for manipulation and integration within the ComfyUI framework, presented in a compatible format.
-    - Python dtype: `Any`
+    - The specific 3D model loaded and prepared for integration into the generative workflow, encapsulated within the pipeline.
+    - Python dtype: `object`
 - **`interp_log`**
     - Comfy dtype: `STRING`
-    - A log of the interpolation and easing operations applied to the 3D model, providing insights into the manipulation process.
+    - A log of the interpolation and easing operations applied during the model loading process, providing insights into the manipulation effects.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -213,18 +215,12 @@ class sv3DLoader(EasingBase):
                                     "vae_name": vae_name,
 
                                     "positive": positive,
-                                    "positive_l": None,
-                                    "positive_g": None,
-                                    "positive_balance": None,
                                     "negative": negative,
-                                    "negative_l": None,
-                                    "negative_g": None,
-                                    "negative_balance": None,
                                     "empty_latent_width": empty_latent_width,
                                     "empty_latent_height": empty_latent_height,
                                     "batch_size": batch_size,
                                     "seed": 0,
-                                    "empty_samples": samples, }
+                                    }
                 }
 
         return (pipe, model, log)

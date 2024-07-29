@@ -1,6 +1,7 @@
 ---
 tags:
-- Image
+- Color
+- Crop
 ---
 
 # MorphologicSkeletoning
@@ -9,17 +10,17 @@ tags:
 - Category: `Bmad/CV/Morphology`
 - Output node: `False`
 
-The MorphologicSkeletoning node is designed for computing the morphological skeleton of an image. It transforms the input image into a minimal, yet fully representative, skeletal form that retains the structure and connectivity of the original shape.
+The MorphologicSkeletoning node is designed to perform skeletonization on binary images. It transforms the input image into its skeletal representation, reducing all objects to lines without changing the fundamental structure.
 ## Input types
 ### Required
 - **`src`**
-    - The 'src' parameter represents the source image to be processed. It is essential for determining the structure and connectivity of the original shape in the skeletal transformation.
+    - The source image to be skeletonized. It is crucial for the operation as it directly influences the skeletonization process.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is a skeletal representation of the input image, preserving the structure and connectivity of the original shape in a minimal form.
+    - The skeletal representation of the input image, highlighting its essential structure with minimal thickness.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -30,7 +31,7 @@ The MorphologicSkeletoning node is designed for computing the morphological skel
 ```python
 class MorphologicSkeletoning:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "src": ("IMAGE",)
@@ -39,7 +40,7 @@ class MorphologicSkeletoning:
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "compute"
-    CATEGORY = "Bmad/CV/Morphology"
+    CATEGORY = f"{cv_category_path}/Morphology"
 
     def compute(self, src):
         from skimage.morphology import skeletonize

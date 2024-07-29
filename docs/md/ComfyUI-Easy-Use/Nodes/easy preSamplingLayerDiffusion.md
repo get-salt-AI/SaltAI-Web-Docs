@@ -1,5 +1,6 @@
 ---
 tags:
+- DepthMap
 - LayeredDiffusion
 ---
 
@@ -9,63 +10,65 @@ tags:
 - Category: `EasyUse/PreSampling`
 - Output node: `True`
 
-This node is designed to apply a layer diffusion process to images before sampling, enhancing the generation of images by blending different layers based on specified methods. It allows for the customization of the diffusion process through various parameters, including method selection, weight adjustment, and step configuration, to achieve desired visual effects.
+This node is designed to apply a layer diffusion process to images or latent spaces before sampling in a generative model pipeline. It adjusts the blending and diffusion of foreground and background elements based on specified methods and weights, enhancing the control over the generation process. This node is part of the EasyUse/PreSampling category, focusing on preprocessing steps that modify the input data to achieve desired visual effects or characteristics in the final output.
 ## Input types
 ### Required
 - **`pipe`**
-    - Represents the pipeline configuration for image generation, serving as the foundation for the layer diffusion process.
+    - Represents the pipeline configuration, including settings and states that affect the overall sampling and generation process.
     - Comfy dtype: `PIPE_LINE`
-    - Python dtype: `Dict[str, Any]`
+    - Python dtype: `dict`
 - **`method`**
-    - Specifies the layer diffusion method to be applied, influencing how layers are blended and the overall visual outcome.
+    - Specifies the method used for layer diffusion, determining how foreground and background elements are blended or diffused.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `Enum[LayerMethod]`
+    - Python dtype: `LayerMethod`
 - **`weight`**
-    - Determines the influence of the diffusion method on the image, allowing for fine-tuning of the blending effect.
+    - Controls the intensity of the diffusion effect, allowing for fine-tuning of the blend between elements.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`steps`**
-    - Defines the number of steps to execute in the layer diffusion process, affecting the depth of the diffusion effect.
+    - Defines the number of steps to execute in the diffusion process, affecting the depth of the effect.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - Configuration setting that influences the generative model's behavior during the diffusion process.
+    - Configuration settings that influence the sampling behavior, such as noise levels and model parameters.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `dict`
 - **`sampler_name`**
-    - Specifies the sampling algorithm used in the generative process, affecting the quality and characteristics of the generated image.
+    - The name of the sampler to be used, influencing the pattern and quality of the generated output.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - Determines the scheduling algorithm for the diffusion steps, impacting the progression and outcome of the image generation.
+    - Determines the scheduling algorithm for the sampling process, affecting the progression of the generation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`denoise`**
-    - Adjusts the level of denoising applied during the diffusion process, influencing the clarity and detail of the generated image.
+    - Adjusts the level of denoising applied during the diffusion process, impacting the clarity and detail of the output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`seed`**
-    - Sets the random seed for the generative process, ensuring reproducibility of the generated images.
+    - A seed value for random number generation, ensuring reproducibility of the results.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`image`**
-    - Optional input image that can be used as a base or reference in the diffusion process.
+    - An optional image input for the diffusion process, allowing for direct manipulation of existing images.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `Optional[Image]`
+    - Python dtype: `Image`
 - **`blended_image`**
-    - Optional input image to be blended with the base image during the diffusion process.
+    - An optional input for providing a pre-blended image, used in conjunction with specific diffusion methods.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `Optional[Image]`
+    - Python dtype: `Image`
 - **`mask`**
-    - Optional mask to specify areas of the image to be affected or protected during the diffusion process.
+    - An optional mask input, used to define areas of the image that should be treated differently during the diffusion process.
     - Comfy dtype: `MASK`
-    - Python dtype: `Optional[Mask]`
+    - Python dtype: `Mask`
 ## Output types
 - **`pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - Outputs the modified pipeline configuration after applying the layer diffusion process.
-    - Python dtype: `Dict[str, Any]`
+    - The modified pipeline configuration after applying the layer diffusion process, ready for further processing or generation steps.
+    - Python dtype: `dict`
+- **`ui`**
+    - Provides a user interface component, typically displaying the seed value used in the generation process.
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -88,7 +91,7 @@ class layerDiffusionSettings:
              "steps": ("INT", {"default": 20, "min": 1, "max": 10000}),
              "cfg": ("FLOAT", {"default": 8.0, "min": 0.0, "max": 100.0}),
              "sampler_name": (comfy.samplers.KSampler.SAMPLERS, {"default": "euler"}),
-             "scheduler": (comfy.samplers.KSampler.SCHEDULERS+ ['align_your_steps'], {"default": "normal"}),
+             "scheduler": (comfy.samplers.KSampler.SCHEDULERS+ new_schedulers, {"default": "normal"}),
              "denoise": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01}),
              "seed": ("INT", {"default": 0, "min": 0, "max": MAX_SEED_NUM}),
              },

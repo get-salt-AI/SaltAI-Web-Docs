@@ -3,7 +3,7 @@ tags:
 - Checkpoint
 - CheckpointLoader
 - Loader
-- ModelIO
+- Model
 - ModelLoader
 ---
 
@@ -13,17 +13,17 @@ tags:
 - Category: `loaders`
 - Output node: `False`
 
-The CheckpointLoaderSimple node is designed for loading model checkpoints without the need for specifying a configuration. It simplifies the process of checkpoint loading by requiring only the checkpoint name, making it more accessible for users who may not be familiar with the configuration details.
+The CheckpointLoaderSimple node is designed for loading model checkpoints without requiring a configuration name. It simplifies the checkpoint loading process by automatically guessing the appropriate configuration based on the checkpoint name, making it easier to use for quick model setups or testing.
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - Specifies the name of the checkpoint to be loaded. This parameter is crucial as it determines which checkpoint file the node will attempt to load, directly affecting the node's execution and the model that is loaded.
+    - Specifies the name of the checkpoint to load. This parameter is crucial for identifying which checkpoint file to retrieve and use for model initialization.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - Returns the loaded model, allowing it to be used for further processing or inference.
+    - Returns the main model loaded from the specified checkpoint.
     - Python dtype: `torch.nn.Module`
 - **`clip`**
     - Comfy dtype: `CLIP`
@@ -60,7 +60,7 @@ class CheckpointLoaderSimple:
 
     CATEGORY = "loaders"
 
-    def load_checkpoint(self, ckpt_name, output_vae=True, output_clip=True):
+    def load_checkpoint(self, ckpt_name):
         ckpt_path = folder_paths.get_full_path("checkpoints", ckpt_name)
         out = comfy.sd.load_checkpoint_guess_config(ckpt_path, output_vae=True, output_clip=True, embedding_directory=folder_paths.get_folder_paths("embeddings"))
         return out[:3]

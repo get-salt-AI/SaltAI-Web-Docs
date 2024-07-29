@@ -1,6 +1,6 @@
 ---
 tags:
-- Face
+- FaceRestoration
 ---
 
 # Face Keypoints Preprocessor

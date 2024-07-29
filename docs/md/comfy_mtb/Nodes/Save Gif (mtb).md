@@ -1,7 +1,7 @@
 ---
 tags:
 - Animation
-- Image
+- ImageSave
 ---
 
 # Save Gif (mtb)

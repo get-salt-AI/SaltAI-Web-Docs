@@ -1,12 +1,12 @@
 # ComfyUI-Impact-Pack
-ComfyUI-Impact-Pack is a custom node pack for ComfyUI designed to enhance images conveniently using a variety of tools such as Detector, Detailer, Upscaler, Pipe, and more. It aims to provide users with an easy way to improve image quality and detail through its comprehensive suite of image processing nodes.
+ComfyUI-Impact-Pack is a custom node pack designed to enhance images conveniently through a variety of tools including Detector, Detailer, Upscaler, Pipe, and more, specifically tailored for use with ComfyUI. This pack aims to provide users with advanced image processing capabilities, leveraging technologies such as SAM (Segment Anything Model) for precise image segmentation and enhancement.
 
 ## Tags
-Batch * Blur * BooleanLogic * Comparison * Concatenate * ConditionalSelection * Conditioning * ControlNet * DataConversion * DataTypeConversion * DetailEnhancement * Float * FloatData * IPAdapter * Image * ImageBatch * ImageComposite * ImageEnhancement * ImageSave * ImageScaling * ImageSwitching * ImageUpscaling * ImpactPack * Integer * Latent * LatentNoise * List * Mask * MaskBlur * MaskGeneration * MaskList * MaskMath * MaskMorphology * MediaPipeFaceMesh * Noise * NumericConversion * Pipeline * PipelineTransformation * Preview * Prompt * PromptComposer * RegionalPrompt * SAM * SEGSPrep * SamplerScheduler * Sampling * Scheduling * Segmentation * String * Text * Time * Upscale * VAE * VisualEffects * Wildcard
+Animation * Batch * Blur * BooleanLogic * CLIPConditioning * Comparison * Concatenate * ConditionalSelection * Conditioning * ControlNet * ControlNetLoader * DataConversion * DataTypeAgnostic * DataTypeConversion * Debugging * DetailEnhancement * Float * FloatList * IPAdapter * IdentityImage * Image * ImageBatch * ImageBlend * ImageDuplication * ImageEnhancement * ImageListLoader * ImageMaskConversion * ImageNoise * ImageResolution * ImageSave * ImageTransformation * ImageUpscaling * ImpactPack * Integer * Latent * LatentBatch * LatentBlend * Mask * MaskBatch * MaskGeneration * MaskList * MaskMorphology * MaskRegion * MediaPipeFaceMesh * Model * ModelList * Noise * Normalization * Pipeline * PipelineTransformation * Preview * Prompt * PromptComposer * RegionalImageProcessing * SDXLSettings * SEGSPrep * SamplerScheduler * Sampling * Scheduling * Searge * Seed * Segmentation * SigmaScheduling * String * Style * Text * Tiled * VAE * VectorMath * VisualEffects * XYPlotData
 
 ## Repo info
 - Repo url: `https://github.com/ltdrdata/ComfyUI-Impact-Pack.git`
-- Commit hash: `23d8b8394438e944af2b1449101ec9c417fd55d6`
+- Commit hash: `caa1abbe7b6a5d7b2ad778fbbbcdddca58ad06c8`
 
 ## Licenses
 - **GPL-3.0-only**: `LICENSE.txt`

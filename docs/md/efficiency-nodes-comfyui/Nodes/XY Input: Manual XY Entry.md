@@ -1,6 +1,9 @@
 ---
 tags:
 - DataVisualization
+- LayeredDiffusion
+- LayeredDiffusionDecode
+- XYPlot
 - XYPlotData
 ---
 
@@ -10,21 +13,21 @@ tags:
 - Category: `Efficiency Nodes/XY Inputs`
 - Output node: `False`
 
-This node facilitates the manual entry of X and Y values for plotting purposes, allowing users to define and manipulate XY data points directly. It is designed to support a variety of input formats and types, enabling the customization of data for visualization in XY plots.
+This node facilitates the manual entry of X and Y values for plotting, allowing users to directly input or modify the data points that will be visualized. It serves as a foundational tool for customizing and generating specific XY plots within a user interface, emphasizing user control and flexibility in data presentation.
 ## Input types
 ### Required
 - **`plot_type`**
-    - Specifies the type of plot to be generated, influencing the interpretation and visualization of the XY data.
+    - Specifies the type of plot to be generated, guiding the selection of data and the configuration of the plot. This parameter is crucial for determining the overall structure and appearance of the plot.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`plot_value`**
-    - Determines the specific values to be used for plotting, directly affecting the plot's appearance and the data's representation.
+    - Defines the specific values to be used in the plot, directly influencing the visual representation of the data. This parameter allows for precise control over the data points displayed in the plot.
     - Comfy dtype: `STRING`
-    - Python dtype: `str`
+    - Python dtype: `list`
 ## Output types
 - **`X or Y`**
     - Comfy dtype: `XY`
-    - Outputs either X or Y values, depending on the node's processing, suitable for further use in visualization or analysis.
+    - Outputs either X or Y values based on the input configuration, providing the data necessary for constructing the plot.
     - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `CPU`
@@ -52,7 +55,7 @@ class TSC_XYplot_Manual_XY_Entry:
     def xy_value(self, plot_type, plot_value):
 
         # Store X values as arrays
-        if plot_type not in {"Positive Prompt S/R", "Negative Prompt S/R", "VAE", "Checkpoint", "LoRA"}:
+        if plot_type not in {"Positive Prompt S/R", "Negative Prompt S/R", "VAE", "Checkpoint", "LoRA", "Scheduler"}:
             plot_value = plot_value.replace(" ", "")  # Remove spaces
         plot_value = plot_value.replace("\n", "")  # Remove newline characters
         plot_value = plot_value.rstrip(";")  # Remove trailing semicolon
@@ -66,7 +69,7 @@ class TSC_XYplot_Manual_XY_Entry:
             "EndStep": {"min": 0, "max": 10000},
             "CFG Scale": {"min": 0, "max": 100},
             "Sampler": {"options": comfy.samplers.KSampler.SAMPLERS},
-            "Scheduler": {"options": comfy.samplers.KSampler.SCHEDULERS},
+            "Scheduler": {"options": SCHEDULERS},
             "Denoise": {"min": 0, "max": 1},
             "VAE": {"options": folder_paths.get_filename_list("vae")},
             "Checkpoint": {"options": folder_paths.get_filename_list("checkpoints")},

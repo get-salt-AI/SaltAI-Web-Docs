@@ -1,6 +1,7 @@
 ---
 tags:
 - ModelGuidance
+- Seed
 ---
 
 # Perp-Neg (DEPRECATED by PerpNegGuider)

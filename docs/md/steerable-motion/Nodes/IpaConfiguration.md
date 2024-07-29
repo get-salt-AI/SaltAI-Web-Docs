@@ -1,3 +1,8 @@
+---
+tags:
+- IPAdapter
+---
+
 # IPA Configuration  🎞️🅢🅜
 ## Documentation
 - Class name: `IpaConfiguration`

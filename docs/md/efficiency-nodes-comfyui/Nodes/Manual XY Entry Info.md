@@ -1,6 +1,9 @@
 ---
 tags:
 - DataVisualization
+- LayeredDiffusion
+- LayeredDiffusionDecode
+- XYPlot
 - XYPlotData
 ---
 
@@ -10,11 +13,11 @@ tags:
 - Category: `Efficiency Nodes/XY Inputs`
 - Output node: `False`
 
-This node is designed to provide detailed information about manual entries for XY plots within a specific context, facilitating the understanding and manipulation of XY data for customized plotting and analysis.
+This node is designed to provide detailed information about manual entries for XY plots within a specific system. It focuses on extracting and presenting key details that are crucial for understanding and utilizing manual XY entries effectively.
 ## Input types
 ### Required
 - **`notes`**
-    - The 'notes' input allows users to provide additional context or information related to the manual XY entries, enhancing the customization and specificity of the plotting process.
+    - Captures detailed notes or annotations related to manual XY entries, facilitating a deeper understanding and more effective use of XY plot data.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
@@ -53,7 +56,7 @@ class TSC_XYplot_Manual_XY_Entry_Info:
     @classmethod
     def INPUT_TYPES(cls):
         samplers = ";\n".join(comfy.samplers.KSampler.SAMPLERS)
-        schedulers = ";\n".join(comfy.samplers.KSampler.SCHEDULERS)
+        schedulers = ";\n".join(SCHEDULERS)
         vaes = ";\n".join(folder_paths.get_filename_list("vae"))
         ckpts = ";\n".join(folder_paths.get_filename_list("checkpoints"))
         loras = ";\n".join(folder_paths.get_filename_list("loras"))

@@ -1,6 +1,8 @@
 ---
 tags:
-- Text
+- DataTypeAgnostic
+- Debugging
+- String
 ---
 
 # 🔤 CR Text Length

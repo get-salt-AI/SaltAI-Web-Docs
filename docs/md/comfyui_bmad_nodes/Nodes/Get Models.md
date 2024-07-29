@@ -1,5 +1,7 @@
 ---
 tags:
+- ConditionalSelection
+- ImpactPack
 - Model
 - ModelList
 ---
@@ -10,11 +12,11 @@ tags:
 - Category: `Bmad/dump`
 - Output node: `True`
 
-The 'Get Models' node is designed to facilitate the retrieval and organization of various model-related files within a specified directory. It supports a range of model types and configurations, allowing users to dump a comprehensive list or specific categories of models into a JSON file for easy access and management.
+The Get Models node is designed to facilitate the retrieval and organization of various model-related files within a specified output directory. It supports a flexible selection mechanism, allowing users to specify which types of model files (e.g., checkpoints, configurations, embeddings) they wish to dump, either individually or collectively, into a structured JSON file. This functionality aids in managing and cataloging model assets for easier access and reference.
 ## Input types
 ### Required
 - **`dump`**
-    - Specifies the category of models to retrieve. It can be a specific model type like 'clip' or 'vae', or 'all models' to retrieve every available model. This selection dictates the scope of the dump operation, tailoring the output to the user's needs.
+    - Specifies the type of model-related files to retrieve. It allows for a broad selection, including options like 'all models' for a comprehensive dump or specific categories such as 'checkpoints' or 'embeddings', tailoring the output to user needs.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
@@ -48,15 +50,15 @@ class GetModels:
         self.type = "output"
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {
-            "dump": (s.dump_option, {"default": "all models"})
+            "dump": (cls.dump_option, {"default": "all models"})
         }
         }
 
     RETURN_TYPES = ()
     FUNCTION = "dump_it"
-    CATEGORY = "Bmad/dump"
+    CATEGORY = f"{base_category_path}/dump"
     OUTPUT_NODE = True
 
     def dump_it(self, dump):

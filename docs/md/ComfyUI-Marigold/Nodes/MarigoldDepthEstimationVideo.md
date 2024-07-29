@@ -1,8 +1,7 @@
 ---
 tags:
-- DepthMap
 - DepthMapEstimation
-- Image
+- Inpaint
 ---
 
 # MarigoldDepthEstimationVideo
@@ -11,75 +10,75 @@ tags:
 - Category: `Marigold`
 - Output node: `False`
 
-The MarigoldDepthEstimationVideo node is designed for diffusion-based monocular depth estimation in video sequences, incorporating optical flow for enhanced frame-to-frame consistency. It leverages experimental techniques to ensemble multiple iterations into a single depth map, optimizing for accuracy and processing efficiency. This node is particularly useful for applications requiring depth perception in dynamic scenes, offering a blend of precision and temporal stability.
+The MarigoldDepthEstimationVideo node is designed for depth estimation in videos using a diffusion-based approach. It incorporates optical flow for enhanced frame consistency, aiming to produce more accurate and coherent depth maps across video sequences. This node is an experimental version that extends the capabilities of monocular depth estimation to video content, leveraging advanced techniques for improved depth perception and visual quality.
 ## Input types
 ### Required
 - **`image`**
-    - The input image for which the depth estimation is to be performed. This image serves as the basis for generating depth maps, playing a crucial role in the node's operation by providing the visual data necessary for depth analysis.
+    - A single image from a video sequence to be processed for depth estimation. The node uses this image along with optical flow to generate a depth map, ensuring consistency between frames.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `Image`
 - **`seed`**
-    - A seed value to ensure reproducibility of results across runs. It influences the initialization of random elements within the depth estimation process.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`first_frame_denoise_steps`**
-    - Specifies the number of denoising steps for the first frame in a video sequence, balancing between accuracy and processing time.
+    - The number of denoising steps to apply specifically for the first frame in a video sequence, affecting the initial depth map's accuracy and processing time.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`first_frame_n_repeat`**
-    - The number of iterations to be ensembled for the first frame's depth map, affecting the final depth estimation's accuracy and detail.
+    - Specifies the number of iterations to ensemble for the first frame's depth map, aiming to enhance the depth estimation accuracy for the video's starting point.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`n_repeat_batch_size`**
-    - Determines how many of the n_repeat iterations are processed together as a batch, influencing processing speed and VRAM usage.
+    - Determines how many of the n_repeats are processed as a batch, allowing for adjustments based on available VRAM for potentially faster processing.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`invert`**
-    - A boolean flag to invert the depth map's color scheme, where typically black represents the front and white the back.
+    - A boolean flag indicating whether to invert the depth map's color scheme, where the default setting has black representing the foreground.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`keep_model_loaded`**
-    - Indicates whether to keep the depth estimation model loaded in memory between invocations, affecting initialization time and memory usage.
+    - Indicates whether the Marigold model should remain loaded between frames to optimize processing time for video sequences.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`scheduler`**
-    - The scheduler type to use for controlling the denoising process, affecting the characteristics of the depth map generated.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`normalize`**
-    - Whether to normalize the depth map values, ensuring they fall within a specific range for consistency.
+    - A boolean flag that specifies whether the output depth maps should be normalized, affecting the visual representation of depth.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`denoise_steps`**
-    - The number of denoising steps for each depth map, a key factor in balancing between accuracy and processing time.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`flow_warping`**
-    - Enables or disables the use of optical flow for warping depth maps between frames, crucial for maintaining temporal consistency in videos.
+    - Enables the use of optical flow for warping depth maps between frames, enhancing the consistency and accuracy of depth estimation across the video.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`flow_depth_mix`**
-    - The mixing ratio between the current and previous depth maps, influenced by optical flow, to achieve temporal stability.
+    - Determines the blending ratio between the depth map generated from the current frame and the warped depth map from the previous frame, affecting the smoothness and consistency of the video output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`noise_ratio`**
-    - The ratio of noise to signal in the initial depth map, affecting the starting point for depth estimation.
+    - Specifies the ratio of noise to signal in the depth estimation process, influencing the model's behavior and the quality of the depth maps.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`dtype`**
-    - The data type for processing (e.g., fp16, fp32), affecting memory usage and potentially the quality of results.
+    - Defines the data type used during processing, such as fp16 or fp32, impacting VRAM usage and potentially the quality of the depth estimation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`model`**
-    - Specifies the model variant to use for depth estimation, such as the standard Marigold or its LCM version, affecting the depth map's characteristics.
+    - Specifies the Marigold model to be used for depth estimation, allowing selection between the standard and LCM versions of Marigold. This choice influences the depth estimation process and the quality of the output depth maps.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`ensembled_image`**
     - Comfy dtype: `IMAGE`
-    - The output ensembled depth map image, representing the estimated depth of the scene. This image is the result of processing and ensembling multiple depth estimations for enhanced accuracy and visual quality.
-    - Python dtype: `torch.Tensor`
+    - The output ensembled depth map image, representing the combined result of depth estimation across multiple frames for enhanced accuracy and consistency.
+    - Python dtype: `Image`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -164,7 +163,7 @@ for the ensembling process, generally do not touch.
 
         precision = convert_dtype(dtype)
        
-        device = comfy.model_management.get_torch_device()
+        device = model_management.get_torch_device()
         torch.manual_seed(seed)
 
         image = image.permute(0, 3, 1, 2).to(device).to(dtype=precision)
@@ -217,6 +216,7 @@ for the ensembling process, generally do not touch.
                         snapshot_download(repo_id="prs-eth/marigold-lcm-v1-0", ignore_patterns=to_ignore, local_dir=checkpoint_path, local_dir_use_symlinks=False)  
                     except:
                         raise FileNotFoundError(f"No checkpoint directory found at {checkpoint_path}")
+            
             self.marigold_pipeline = MarigoldPipeline.from_pretrained(checkpoint_path, enable_xformers=False, empty_text_embed=empty_text_embed, noise_scheduler_type=scheduler)
             self.marigold_pipeline = self.marigold_pipeline.to(precision).to(device)
             self.marigold_pipeline.unet.eval()
@@ -297,7 +297,7 @@ for the ensembling process, generally do not touch.
             outstack = torch.stack(out, dim=0).cpu().to(torch.float32)
         if not keep_model_loaded:
             self.marigold_pipeline = None
-            comfy.model_management.soft_empty_cache()
+            model_management.soft_empty_cache()
         return (outstack,)
 
 ```

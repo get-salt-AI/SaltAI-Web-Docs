@@ -1,45 +1,44 @@
 ---
 tags:
-- Preview
+- Image
+- ImageListLoader
 ---
 
-# Image & Mask Preview
+# ImageAndMaskPreview
 ## Documentation
 - Class name: `ImageAndMaskPreview`
 - Category: `KJNodes`
 - Output node: `True`
 
-The ImageAndMaskPreview node is designed to generate previews of images with optional masks applied. It can adjust the opacity and color of the mask before overlaying it on the image, or simply return the image or mask alone if the other is not provided. This functionality is useful for visually inspecting the effect of masks on images within a workflow.
+This node is designed to generate a preview of an image with an optional mask applied. It supports adjusting the mask's opacity and color, and can handle cases where either the image, the mask, or both are provided. The node also offers functionality to pass through the generated preview without saving, or to save the preview with a specified filename prefix, incorporating additional PNG metadata if provided.
 ## Input types
 ### Required
 - **`mask_opacity`**
-    - Specifies the opacity level of the mask when it is applied to the image, affecting the visibility of the mask overlay.
+    - Specifies the opacity level of the mask when both an image and a mask are provided, affecting the visibility of the mask overlay on the image.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`mask_color`**
-    - Defines the color of the mask in 'R, G, B' format, which is used when both mask and image are provided, to colorize the mask before applying it to the image.
+    - Defines the color of the mask in either RGB or hexadecimal format, which is applied when both an image and a mask are present, influencing the appearance of the mask overlay.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`pass_through`**
-    - Determines whether the processed preview should be returned directly or saved to a file. When true, the preview is returned; otherwise, it is saved.
+    - A boolean flag that determines whether the generated preview is directly returned without being saved, allowing for immediate use or further processing.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`image`**
-    - The image to which the mask may be applied. If only the image is provided, it is returned as the preview.
+    - The image to be previewed, which can be optionally accompanied by a mask to create a composite preview.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`mask`**
-    - The mask to be applied to the image. If only the mask is provided, it is transformed into a preview format.
+    - The mask to be applied over the image, which can be adjusted in terms of opacity and color, or used alone to generate a mask-only preview.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`composite`**
     - Comfy dtype: `IMAGE`
-    - The node returns a composite image when both an image and a mask are provided, applying the mask with specified opacity and color adjustments to the image.
+    - The generated preview of the image with the optional mask applied, which can be either passed through directly or saved to a file.
     - Python dtype: `torch.Tensor`
-- **`ui`**
-    - Provides a UI element displaying the results, including images processed or saved by the node, based on the inputs provided.
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -90,11 +89,14 @@ nodes for example.
             mask_adjusted = mask * mask_opacity
             mask_image = mask.reshape((-1, 1, mask.shape[-2], mask.shape[-1])).movedim(1, -1).expand(-1, -1, -1, 3).clone()
 
-            color_list = list(map(int, mask_color.split(', ')))
-            print(color_list[0])
-            mask_image[:, :, :, 0] = color_list[0] // 255 # Red channel
-            mask_image[:, :, :, 1] = color_list[1] // 255 # Green channel
-            mask_image[:, :, :, 2] = color_list[2] // 255 # Blue channel
+            if ',' in mask_color:
+                color_list = np.clip([int(channel) for channel in mask_color.split(',')], 0, 255) # RGB format
+            else:
+                mask_color = mask_color.lstrip('#')
+                color_list = [int(mask_color[i:i+2], 16) for i in (0, 2, 4)] # Hex format
+            mask_image[:, :, :, 0] = color_list[0] / 255 # Red channel
+            mask_image[:, :, :, 1] = color_list[1] / 255 # Green channel
+            mask_image[:, :, :, 2] = color_list[2] / 255 # Blue channel
             
             preview, = ImageCompositeMasked.composite(self, image, mask_image, 0, 0, True, mask_adjusted)
         if pass_through:

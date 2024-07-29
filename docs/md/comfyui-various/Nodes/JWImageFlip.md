@@ -1,7 +1,8 @@
 ---
 tags:
-- Flip
-- Image
+- DataClamp
+- GridLayout
+- ImageDuplication
 - ImageTransformation
 ---
 

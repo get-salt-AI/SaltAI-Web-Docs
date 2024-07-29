@@ -1,7 +1,8 @@
 ---
 tags:
 - Prompt
-- PromptComposer
+- PromptStyling
+- Text
 ---
 
 # One Button Prompt
@@ -10,89 +11,85 @@ tags:
 - Category: `OneButtonPrompt`
 - Output node: `False`
 
-The OneButtonPrompt node is designed to automate and enrich the process of prompt generation for creative content, leveraging a comprehensive set of parameters to tailor prompts to specific themes, styles, and preferences. It facilitates the generation of diverse and dynamic text prompts, incorporating elements such as subject matter, artistic influence, and image type to produce customized and varied outputs.
+The OneButtonPrompt node streamlines the creation and customization of prompts for image generation, offering a suite of options to tailor the prompt's subject, style, and complexity. It leverages a dynamic prompt building mechanism to generate prompts that can vary widely in theme and detail, accommodating a broad range of creative needs.
 ## Input types
 ### Required
 - **`insanitylevel`**
-    - Determines the level of creativity and randomness in the generated prompts, affecting their complexity and uniqueness.
+    - Determines the level of creativity and randomness in the generated prompt, influencing its complexity and uniqueness.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`artist`**
-    - Specifies the artist or style to influence the prompt, allowing for thematic alignment with certain artistic expressions.
+    - Selects artists to influence the style and aesthetic of the generated image, contributing to the prompt's thematic depth.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`imagetype`**
-    - Defines the type of image to be generated, guiding the visual theme of the prompt.
+    - Defines the type of image to be generated, such as digital art, painting, or concept art, guiding the visual style of the output.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`imagemodechance`**
-    - Controls the likelihood of selecting a special image generation mode, adding variety to the prompt outcomes.
+    - Controls the likelihood of selecting a special image mode for the prompt, adding an element of randomness to the image style.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`subject`**
-    - Sets the main subject for the prompt, directing the focus of the generated content.
+    - Specifies the main subject for the prompt, offering a base around which the prompt is constructed.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`custom_subject`**
-    - Allows for a specific subject override, providing direct control over the prompt's main theme.
+    - Allows for the specification of a custom subject around which the prompt will be built, providing a focused thematic direction.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`custom_outfit`**
-    - Enables specifying an outfit for the subject, adding detail to character or humanoid prompts.
+    - Specifies an outfit to be included in the prompt, adding detail to the character description.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
-- **`subject_subtype_objects`**
-    - Selects a subtype for object-focused prompts, refining the object category.
-    - Comfy dtype: `COMBO[STRING]`
+- **`prompt_prefix`**
+    - Specifies a prefix to be added to the beginning of the prompt, allowing for further customization.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
-- **`subject_subtypes_humanoids`**
-    - Chooses a subtype for humanoid subjects, detailing the nature of the character.
-    - Comfy dtype: `COMBO[STRING]`
+- **`prompt_suffix`**
+    - Specifies a suffix to be added to the end of the prompt, enabling additional tailoring of the prompt's theme.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`humanoids_gender`**
-    - Determines the gender of humanoid subjects, further customizing the prompt.
-    - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
-- **`subject_subtypes_concepts`**
-    - Specifies a subtype for conceptual prompts, focusing the abstract theme.
+    - Determines the gender of humanoid subjects in the prompt, allowing for more specific character depiction.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`emojis`**
-    - Enables or disables the inclusion of emojis in the prompt, affecting its tone and style.
+    - Enables or disables the inclusion of emojis in the prompt, affecting its tone and readability.
     - Comfy dtype: `COMBO[BOOLEAN]`
     - Python dtype: `bool`
 - **`base_model`**
-    - Selects the base model for prompt generation, influencing the style and complexity of the output.
+    - Chooses the base model for prompt generation, affecting the style and language of the prompt.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`prompt_enhancer`**
-    - Applies additional enhancements to the prompt, refining its quality and detail.
+    - Selects a prompt enhancer to modify the prompt's style or theme, offering more nuanced control over the generated output.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`seed`**
-    - Sets a seed for random number generation to ensure consistency and reproducibility in prompt generation.
+    - Sets a seed for the random number generator, ensuring reproducibility of prompts when the same inputs are provided.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`prompt`**
     - Comfy dtype: `STRING`
-    - The primary generated prompt, crafted based on the input parameters and enhancements applied.
+    - The primary generated prompt, ready for use in creative applications.
     - Python dtype: `str`
 - **`prompt_g`**
     - Comfy dtype: `STRING`
-    - A variant of the generated prompt, possibly incorporating additional generative elements or modifications.
+    - A variant of the generated prompt, offering an alternative perspective or theme.
     - Python dtype: `str`
 - **`prompt_l`**
     - Comfy dtype: `STRING`
-    - Another variant of the generated prompt, offering an alternative perspective or thematic focus.
+    - Another variant of the generated prompt, providing additional creative options.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
     - [CLIPTextEncode (BlenderNeko Advanced + NSP)](../../was-node-suite-comfyui/Nodes/CLIPTextEncode (BlenderNeko Advanced + NSP).md)
     - [CLIPTextEncodeSDXL](../../Comfy/Nodes/CLIPTextEncodeSDXL.md)
-    - [ShowText|pysssss](../../ComfyUI-Custom-Scripts/Nodes/ShowText|pysssss.md)
+    - ShowText|pysssss
     - [BNK_CLIPTextEncodeAdvanced](../../ComfyUI_ADV_CLIP_emb/Nodes/BNK_CLIPTextEncodeAdvanced.md)
     - DPMagicPrompt
     - [CLIPTextEncode](../../Comfy/Nodes/CLIPTextEncode.md)
@@ -128,7 +125,7 @@ class OneButtonPrompt:
                     "max": 100, #Maximum value
                     "step": 1 #Slider's step
                 }),
-                "subject": (subjects, {"default": "all"}),
+                "subject": (subjects, {"default": "------ all"}),
                 "custom_subject": ("STRING", {
                     "multiline": False, #True if you want the field to look like the one on the ClipTextEncode node
                     "default": ""
@@ -137,10 +134,15 @@ class OneButtonPrompt:
                     "multiline": False, # This is the overwrite for an outfit, super nice
                     "default": ""
                 }),
-                "subject_subtype_objects": (subjectsubtypesobject, {"default": "all"}),
-                "subject_subtypes_humanoids": (subjectsubtypeshumanoid, {"default": "all"}),
+                "prompt_prefix": ("STRING", {
+                    "multiline": False, # prefix the prompt
+                    "default": ""
+                }),
+                "prompt_suffix": ("STRING", {
+                    "multiline": False, # Suffix of the prompt
+                    "default": ""
+                }),
                 "humanoids_gender": (genders, {"default": "all"}),
-                "subject_subtypes_concepts": (subjectsubtypesconcept, {"default": "all"}),
                 "emojis":(emojis, {"default": False}),
                 "base_model":(models, {"default": "SDXL"}),
                 "prompt_enhancer":(prompt_enhancers, {"default": "none"}),
@@ -158,8 +160,8 @@ class OneButtonPrompt:
 
     CATEGORY = "OneButtonPrompt"
     
-    def Comfy_OBP(self, insanitylevel, custom_subject, seed, artist, imagetype, subject, imagemodechance, humanoids_gender, subject_subtype_objects, subject_subtypes_humanoids, subject_subtypes_concepts, emojis, custom_outfit, base_model, prompt_enhancer):
-        generatedpromptlist = build_dynamic_prompt(insanitylevel,subject,artist,imagetype,False,"","","",1,"",custom_subject,True,"",imagemodechance, humanoids_gender, subject_subtype_objects, subject_subtypes_humanoids, subject_subtypes_concepts, False, emojis, seed, custom_outfit, True, base_model, "", prompt_enhancer)
+    def Comfy_OBP(self, insanitylevel, custom_subject, seed, artist, imagetype, subject, imagemodechance, humanoids_gender, emojis, custom_outfit, base_model, prompt_enhancer, prompt_prefix, prompt_suffix):
+        generatedpromptlist = build_dynamic_prompt(insanitylevel,subject,artist,imagetype,False,"",prompt_prefix,prompt_suffix,1,"",custom_subject,True,"",imagemodechance, humanoids_gender,"all", "all", "all", False, emojis, seed, custom_outfit, True, base_model, "", prompt_enhancer)
         #print(generatedprompt)
         generatedprompt = generatedpromptlist[0]
         prompt_g = generatedpromptlist[1]

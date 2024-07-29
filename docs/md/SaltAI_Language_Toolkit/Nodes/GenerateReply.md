@@ -1,10 +1,10 @@
 # ∞ Generate Reply
 ## Documentation
 - Class name: `GenerateReply`
-- Category: `SALT/Language Toolkit/Agents`
+- Category: `SALT/Language Toolkit/Agents/Chat`
 - Output node: `False`
 
-The GenerateReply node is designed to facilitate conversation between agents by generating replies based on the input message and the context of the conversation. It abstracts the complexities of conversational agent interactions, enabling the creation of dynamic and responsive dialogues.
+This node facilitates the generation of replies in a chat context by processing messages sent to and from agents. It leverages conversational agents to simulate interactive dialogues, dynamically generating responses based on the input message and the context of the conversation.
 ## Input types
 ### Required
 - **`recipient`**
@@ -12,18 +12,18 @@ The GenerateReply node is designed to facilitate conversation between agents by 
     - Comfy dtype: `AGENT`
     - Python dtype: `ConversableAgent`
 - **`message`**
-    - The input message to which the recipient agent is expected to respond. This message sets the context for the reply generation.
+    - The message content sent to the recipient, which is used as the basis for generating a reply. Its content directly influences the reply's relevance and coherence.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ### Optional
 - **`sender`**
-    - Optional parameter identifying the sender of the message, used to tailor the reply more accurately within the conversation's context.
+    - Identifies the sender of the message, providing additional context for the reply generation process. It's optional and defaults to None if not provided.
     - Comfy dtype: `AGENT`
-    - Python dtype: `ConversableAgent or None`
+    - Python dtype: `ConversableAgent`
 ## Output types
 - **`reply`**
     - Comfy dtype: `STRING`
-    - The generated reply from the recipient agent to the input message, encapsulating the agent's response within the ongoing conversation.
+    - The generated reply from the recipient agent, based on the input message and the conversation context.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -49,7 +49,7 @@ class GenerateReply:
     RETURN_NAMES = ("reply",)
 
     FUNCTION = "start_chat"
-    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Agents"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Agents/Chat"
 
     def start_chat(self, recipient, message, sender=None):
         recipient = clone_conversable_agent(recipient)

@@ -1,8 +1,9 @@
 ---
 tags:
-- AnimationScheduling
-- Frame
-- Keyframe
+- Counting
+- Curve
+- Interpolation
+- WavePatterns
 ---
 
 # Latent Keyframe 🛂🅐🅒🅝

@@ -2,6 +2,7 @@
 tags:
 - AnimationScheduling
 - Scheduling
+- SigmaScheduling
 ---
 
 # Prompt Schedule NodeFlow End 📅🅕🅝
@@ -10,63 +11,63 @@ tags:
 - Category: `FizzNodes 📅🅕🅝/ScheduleNodes`
 - Output node: `False`
 
-This node represents the final step in a scheduling flow for processing and evaluating JSON data produced by preceding nodes. It focuses on finalizing the scheduling process by applying specific settings and adjustments to the input data, ensuring the output is ready for subsequent use or display.
+This node represents the final step in a scheduling node flow, designed to evaluate and finalize the JSON structure produced by preceding nodes. It focuses on ensuring the integrity of the JSON output, making adjustments as necessary to fit the expected format for downstream processing.
 ## Input types
 ### Required
 - **`text`**
-    - The main text input that has been formatted and processed through the scheduling flow. It serves as the base content for final adjustments and evaluations in this node.
+    - The JSON text to be evaluated and potentially modified for format correctness. It plays a crucial role in the node's operation by serving as the primary data that will be adjusted to meet the expected output structure.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`clip`**
-    - A clip input that may influence the scheduling process by providing context or constraints related to media content.
+    - A clip parameter that influences the animation and scheduling process, affecting the final output based on the clip's characteristics.
     - Comfy dtype: `CLIP`
     - Python dtype: `Clip`
 - **`max_frames`**
-    - Specifies the maximum number of frames to be considered in the scheduling process, affecting how the input text is evaluated and processed.
+    - Specifies the maximum number of frames to be considered in the scheduling process. It affects how the JSON text is evaluated, particularly in terms of frame-related adjustments.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`print_output`**
-    - A flag indicating whether the output should be printed, affecting the node's behavior in terms of displaying the processed results.
+    - A boolean flag indicating whether the output should be printed, affecting the node's execution by potentially adding a debugging or logging step.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`current_frame`**
-    - Indicates the current frame being processed, which is crucial for determining the specific adjustments and evaluations to be applied based on the scheduling settings.
+    - Indicates the current frame being processed. This parameter is crucial for determining the specific adjustments needed for the JSON text based on the frame's context.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`pre_text`**
-    - Optional pre-text that can be used to prepend to the main text input for additional context or instructions.
+    - Optional pre-text that can be prepended to the input text, affecting the context or framing of the animation.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`app_text`**
-    - Optional appended text that can be added to the main text input for further details or instructions.
+    - Optional appended text that can be added to the input text, modifying the final animation's context or narrative.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`pw_a`**
-    - A parameter weight that can influence the scheduling process by adjusting the importance or effect of certain inputs or settings.
+    - A weight parameter influencing the animation's dynamics or characteristics in a specific manner.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pw_b`**
-    - A parameter weight similar to pw_a, providing an additional level of control over the scheduling adjustments.
+    - A weight parameter influencing the animation's dynamics or characteristics in a specific manner.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pw_c`**
-    - Another parameter weight offering further customization of the scheduling process through its influence on input handling or output generation.
+    - A weight parameter influencing the animation's dynamics or characteristics in a specific manner.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pw_d`**
-    - The final parameter weight, allowing for comprehensive customization of the scheduling process by affecting various aspects of input processing and output generation.
+    - A weight parameter influencing the animation's dynamics or characteristics in a specific manner.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`POS`**
     - Comfy dtype: `CONDITIONING`
-    - Represents a positive conditioning output, indicating a successful scheduling or processing outcome.
-    - Python dtype: `str`
+    - Represents the positive conditioning output, which is part of the final evaluated and adjusted JSON structure, contributing to the animation's positive aspects.
+    - Python dtype: `Conditioning`
 - **`NEG`**
     - Comfy dtype: `CONDITIONING`
-    - Denotes a negative conditioning output, signifying an unsuccessful scheduling or processing outcome that may require further adjustment.
-    - Python dtype: `str`
+    - Represents the negative conditioning output, which is part of the final evaluated and adjusted JSON structure, contributing to the animation's negative aspects.
+    - Python dtype: `Conditioning`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -115,6 +116,7 @@ class PromptScheduleNodeFlowEnd:
             pw_c=pw_c,
             pw_d=pw_d,
             start_frame=0,
+            end_frame=0,
             width=None,
             height=None,
             crop_w=None,

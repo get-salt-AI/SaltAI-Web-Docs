@@ -1,19 +1,20 @@
 ---
 tags:
-- Preview
+- Image
+- ImageListLoader
 ---
 
 # 🔧 Mask Preview
 ## Documentation
 - Class name: `MaskPreview+`
-- Category: `essentials`
+- Category: `essentials/mask`
 - Output node: `True`
 
-The MaskPreview node is designed for generating a preview of masks by reshaping and expanding the input mask tensor, and then saving these images to a temporary directory with optional compression. It facilitates the visualization of mask data by converting it into a more interpretable form.
+The MaskPreview node is designed for generating a preview image from a given mask. It reshapes and expands the mask to fit the image format, then saves the resulting image with a specified prefix, optionally incorporating additional PNG metadata and a prompt.
 ## Input types
 ### Required
 - **`mask`**
-    - The mask input is the primary data that this node processes, transforming it into a visual format for preview purposes.
+    - The mask input is the primary data used for generating the preview image. It dictates the shape and content of the output image.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ## Output types
@@ -40,7 +41,7 @@ class MaskPreview(SaveImage):
         }
 
     FUNCTION = "execute"
-    CATEGORY = "essentials"
+    CATEGORY = "essentials/mask"
 
     def execute(self, mask, filename_prefix="ComfyUI", prompt=None, extra_pnginfo=None):
         preview = mask.reshape((-1, 1, mask.shape[-2], mask.shape[-1])).movedim(1, -1).expand(-1, -1, -1, 3)

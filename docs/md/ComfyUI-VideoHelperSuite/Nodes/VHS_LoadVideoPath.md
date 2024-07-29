@@ -1,6 +1,7 @@
 ---
 tags:
-- Multimedia
+- OpticalFlow
+- Segmentation
 - VideoHelperSuite
 ---
 
@@ -10,65 +11,73 @@ tags:
 - Category: `Video Helper Suite 🎥🅥🅗🅢`
 - Output node: `False`
 
-The VHS_LoadVideoPath node facilitates the loading of video files from specified paths for integration into a video processing workflow. It ensures the video file is accessible, validates the path, and prepares the video for subsequent processing or analysis tasks within the Video Helper Suite.
+This node is designed to load video files from a specified path, applying various preprocessing steps such as resizing, frame rate adjustment, and optional VAE encoding. It facilitates the extraction and manipulation of video data for further processing or analysis within the Video Helper Suite.
 ## Input types
 ### Required
 - **`video`**
-    - Specifies the path to the video file to be loaded, enabling the node to access and process the video.
+    - The path to the video file to be loaded. It is crucial for locating and accessing the video data for processing.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`force_rate`**
-    - Determines the frame rate to be enforced on the loaded video, allowing for consistent frame rate processing across videos.
+    - Specifies the target frame rate to which the video should be adjusted. This parameter is essential for standardizing the frame rate across different videos.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`force_size`**
-    - Allows specifying a desired resolution for the video, facilitating the standardization of video sizes for processing.
+    - Defines the target resolution for the video. This parameter is key in resizing the video to a specific dimension.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `list of str`
 - **`custom_width`**
-    - Sets a custom width for the video, enabling precise control over the video's dimensions.
+    - The custom width to which the video should be resized. This allows for precise control over the video's width dimension.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`custom_height`**
-    - Sets a custom height for the video, enabling precise control over the video's dimensions.
+    - The custom height to which the video should be resized. This allows for precise control over the video's height dimension.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`frame_load_cap`**
-    - Limits the number of frames to be loaded from the video, useful for processing videos within memory constraints.
+    - Limits the number of frames to be loaded from the video. This parameter helps in managing memory usage by restricting the frame count.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`skip_first_frames`**
-    - Skips a specified number of initial frames in the video, useful for starting processing at a later point in the video.
+    - The number of initial frames to skip. This is useful for bypassing unneeded content at the beginning of the video.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`select_every_nth`**
-    - Selects every nth frame from the video for loading, allowing for sparse sampling of video frames.
+    - Determines the interval at which frames are selected. By choosing every nth frame, it reduces the total number of frames processed and can help in focusing on specific segments of the video.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`meta_batch`**
-    - Associates the loaded video with a specific batch for processing, facilitating batch operations within the Video Helper Suite.
+    - unknown
     - Comfy dtype: `VHS_BatchManager`
-    - Python dtype: `VHS_BatchManager`
+    - Python dtype: `unknown`
+- **`vae`**
+    - unknown
+    - Comfy dtype: `VAE`
+    - Python dtype: `unknown`
 ## Output types
 - **`IMAGE`**
     - Comfy dtype: `IMAGE`
-    - The loaded video frames as images, ready for further processing.
-    - Python dtype: `List[Image]`
+    - The processed frames of the video, potentially resized and adjusted according to the specified frame rate and dimensions.
+    - Python dtype: `List[torch.Tensor]`
 - **`frame_count`**
     - Comfy dtype: `INT`
-    - The total number of frames loaded from the video.
+    - The total number of frames loaded and processed from the video.
     - Python dtype: `int`
 - **`audio`**
     - Comfy dtype: `VHS_AUDIO`
-    - The audio track extracted from the video, if any.
-    - Python dtype: `VHS_AUDIO`
+    - The extracted audio track from the video, adjusted according to the specified frame selection parameters.
+    - Python dtype: `torch.Tensor`
 - **`video_info`**
     - Comfy dtype: `VHS_VIDEOINFO`
-    - Metadata and information about the loaded video.
-    - Python dtype: `VHS_VIDEOINFO`
+    - Metadata about the video, including both source and loaded properties such as frame rate, duration, and dimensions.
+    - Python dtype: `Dict[str, Any]`
+- **`LATENT`**
+    - Comfy dtype: `LATENT`
+    - The optional VAE-encoded representation of the video frames, if a VAE model is applied.
+    - Python dtype: `Optional[Dict[str, List[torch.Tensor]]]`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -89,7 +98,8 @@ class LoadVideoPath:
                 "select_every_nth": ("INT", {"default": 1, "min": 1, "max": BIGMAX, "step": 1}),
             },
             "optional": {
-                "meta_batch": ("VHS_BatchManager",)
+                "meta_batch": ("VHS_BatchManager",),
+                "vae": ("VAE",),
             },
             "hidden": {
                 "unique_id": "UNIQUE_ID"
@@ -98,8 +108,8 @@ class LoadVideoPath:
 
     CATEGORY = "Video Helper Suite 🎥🅥🅗🅢"
 
-    RETURN_TYPES = ("IMAGE", "INT", "VHS_AUDIO", "VHS_VIDEOINFO",)
-    RETURN_NAMES = ("IMAGE", "frame_count", "audio", "video_info",)
+    RETURN_TYPES = ("IMAGE", "INT", "VHS_AUDIO", "VHS_VIDEOINFO", "LATENT")
+    RETURN_NAMES = ("IMAGE", "frame_count", "audio", "video_info", "LATENT")
 
     FUNCTION = "load_video"
 

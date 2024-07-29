@@ -1,15 +1,16 @@
 ---
 tags:
+- CLIPConditioning
 - Conditioning
 ---
 
-# 🔧 Conditionings Combine Multiple 
+# 🔧 Cond Combine Multiple
 ## Documentation
 - Class name: `ConditioningCombineMultiple+`
-- Category: `essentials`
+- Category: `essentials/conditioning`
 - Output node: `False`
 
-This node is designed to merge multiple conditioning inputs into a single conditioning output. It supports combining up to five conditioning inputs, allowing for the flexible integration of various conditioning elements into a unified representation.
+This node is designed to combine multiple conditioning inputs into a single conditioning output. It allows for the flexible integration of up to five separate conditioning inputs, making it ideal for scenarios where multiple conditioning factors need to be merged to guide the generation process effectively.
 ## Input types
 ### Required
 - **`conditioning_i`**
@@ -20,7 +21,7 @@ This node is designed to merge multiple conditioning inputs into a single condit
 ## Output types
 - **`conditioning`**
     - Comfy dtype: `CONDITIONING`
-    - The combined conditioning output, integrating up to five separate conditioning inputs into a unified representation.
+    - The resulting combined conditioning output, integrating up to five separate conditioning inputs into a single, cohesive conditioning factor.
     - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `CPU`
@@ -44,7 +45,7 @@ class ConditioningCombineMultiple:
         }
     RETURN_TYPES = ("CONDITIONING",)
     FUNCTION = "execute"
-    CATEGORY = "essentials"
+    CATEGORY = "essentials/conditioning"
 
     def execute(self, conditioning_1, conditioning_2, conditioning_3=None, conditioning_4=None, conditioning_5=None):
         c = conditioning_1 + conditioning_2
@@ -55,7 +56,7 @@ class ConditioningCombineMultiple:
             c += conditioning_4
         if conditioning_5 is not None:
             c += conditioning_5
-        
+
         return (c,)
 
 ```

@@ -1,6 +1,7 @@
 ---
 tags:
 - LoRA
+- LoRAVisualization
 ---
 
 # Set CLIP LoRA Hook 🎭🅐🅓

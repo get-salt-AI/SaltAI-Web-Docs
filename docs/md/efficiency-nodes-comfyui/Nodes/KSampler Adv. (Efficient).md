@@ -1,5 +1,8 @@
 ---
 tags:
+- Image
+- Pipeline
+- SamplerScheduler
 - Sampling
 ---
 
@@ -9,102 +12,102 @@ tags:
 - Category: `Efficiency Nodes/Sampling`
 - Output node: `True`
 
-This node specializes in advanced sampling techniques for generating or refining images in a computationally efficient manner. It leverages enhanced algorithms to optimize the sampling process, ensuring high-quality outputs with reduced computational demands.
+This node specializes in advanced sampling techniques for generating or refining images based on given inputs. It leverages a more sophisticated approach compared to regular samplers, allowing for enhanced control over the sampling process, including noise addition and stepwise refinement, to produce high-quality outputs.
 ## Input types
 ### Required
 - **`model`**
-    - Specifies the model to be used for sampling, central to determining the characteristics and quality of the generated images.
+    - The model parameter specifies the generative model to be used for sampling. It is crucial for determining the behavior and quality of the generated images.
     - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`add_noise`**
-    - Determines whether noise should be added to the sampling process, affecting the texture and realism of the generated images.
+    - Determines whether noise should be added to the sampling process, allowing for more variability and realism in the generated images.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `bool`
 - **`noise_seed`**
-    - Sets the seed for noise generation, ensuring reproducibility in the randomness introduced to the sampling process.
+    - Seed for the noise generation, ensuring control over the randomness in the added noise for reproducibility.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`steps`**
-    - Defines the number of steps to execute in the sampling process, impacting the detail and quality of the output.
+    - Specifies the number of steps to perform in the sampling process, affecting the detail and quality of the output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - Specifies the configuration for the sampling process, influencing the generation's creativity and coherence.
+    - The CFG scale used to balance between fidelity to the prompt and the randomness of the generation, influencing the output's creativity.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sampler_name`**
-    - Identifies the specific sampler algorithm to use, affecting the efficiency and quality of the sampling process.
+    - The name of the sampler to use, defining the specific sampling algorithm and its characteristics.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - Selects the scheduler for controlling the sampling steps, crucial for optimizing the generation process.
+    - Specifies the scheduler for controlling the sampling process, affecting how the steps are executed over time.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`positive`**
-    - Provides positive conditioning to guide the sampling towards desired attributes or themes.
+    - Positive conditioning to guide the generation towards desired attributes or features.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `str`
 - **`negative`**
-    - Applies negative conditioning to avoid undesired attributes or themes in the sampling process.
+    - Negative conditioning to steer the generation away from certain attributes or features.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `str`
 - **`latent_image`**
-    - Inputs a latent image for refinement or further processing, serving as a starting point for the sampling.
+    - The initial latent image to start the sampling process from, setting the basis for generation or refinement.
     - Comfy dtype: `LATENT`
     - Python dtype: `torch.Tensor`
 - **`start_at_step`**
-    - Defines the starting step of the sampling process, allowing for customization of the generation or refinement phase.
+    - The step number to start the sampling process, allowing for mid-process interventions or adjustments.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`end_at_step`**
-    - Specifies the ending step of the sampling process, enabling control over the duration and depth of sampling.
+    - The final step number in the sampling process, defining the endpoint for generation or refinement.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`return_with_leftover_noise`**
-    - Determines whether to return the sampled image with leftover noise, affecting the final image's appearance.
+    - Indicates whether to return the sampled image with leftover noise, offering a choice between a cleaner or more raw output.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `bool`
 - **`preview_method`**
-    - Specifies the method used for previewing the sampling process, aiding in visualizing the generation progress.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`vae_decode`**
-    - Indicates whether to use VAE decoding on the sampled latent image, impacting the final image's quality and style.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 ### Optional
 - **`optional_vae`**
-    - Provides an optional VAE model for decoding, offering flexibility in the post-sampling processing.
+    - unknown
     - Comfy dtype: `VAE`
-    - Python dtype: `tuple`
+    - Python dtype: `unknown`
 - **`script`**
-    - Allows for the execution of a custom script during the sampling process, enabling advanced customization.
+    - unknown
     - Comfy dtype: `SCRIPT`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 ## Output types
 - **`MODEL`**
     - Comfy dtype: `MODEL`
-    - Outputs the model used in the sampling process.
+    - The output includes the model used in the sampling process, potentially modified or updated.
     - Python dtype: `torch.nn.Module`
 - **`CONDITIONING+`**
     - Comfy dtype: `CONDITIONING`
-    - Provides the positive conditioning applied during sampling, guiding the generation towards desired attributes.
+    - Output conditioning that positively influences the generation towards desired characteristics.
     - Python dtype: `str`
 - **`CONDITIONING-`**
     - Comfy dtype: `CONDITIONING`
-    - Delivers the negative conditioning used to steer the sampling away from undesired attributes.
+    - Output conditioning that negatively influences the generation, steering it away from undesired characteristics.
     - Python dtype: `str`
 - **`LATENT`**
     - Comfy dtype: `LATENT`
-    - Outputs a latent representation of the sampled image, ready for further processing or conversion to an image.
+    - The latent representation of the image after the sampling process, ready for further processing or conversion to image form.
     - Python dtype: `torch.Tensor`
 - **`VAE`**
     - Comfy dtype: `VAE`
-    - Returns the VAE model used, if any, during the sampling process.
+    - The VAE model used or affected during the sampling process, if applicable.
     - Python dtype: `torch.nn.Module`
 - **`IMAGE`**
     - Comfy dtype: `IMAGE`
-    - Generates the final image as a result of the sampling and optional post-processing steps.
+    - The final image output after the sampling process, reflecting the combined effects of conditioning, noise, and model parameters.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -135,7 +138,7 @@ class TSC_KSamplerAdvanced(TSC_KSampler):
                      "steps": ("INT", {"default": 20, "min": 1, "max": 10000}),
                      "cfg": ("FLOAT", {"default": 7.0, "min": 0.0, "max": 100.0}),
                      "sampler_name": (comfy.samplers.KSampler.SAMPLERS,),
-                     "scheduler": (comfy.samplers.KSampler.SCHEDULERS,),
+                     "scheduler": (SCHEDULERS,),
                      "positive": ("CONDITIONING",),
                      "negative": ("CONDITIONING",),
                      "latent_image": ("LATENT",),

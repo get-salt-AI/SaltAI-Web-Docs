@@ -1,7 +1,8 @@
 ---
 tags:
-- Batch
 - Image
+- ImageDuplication
+- ImageSplitting
 ---
 
 # Change Image Batch Size (Inspire)

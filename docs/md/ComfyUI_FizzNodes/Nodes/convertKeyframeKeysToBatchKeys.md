@@ -1,8 +1,9 @@
 ---
 tags:
-- AnimationScheduling
-- Frame
-- Keyframe
+- Counting
+- Curve
+- Interpolation
+- WavePatterns
 ---
 
 # Keyframe Keys To Batch Keys 📅🅕🅝

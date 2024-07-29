@@ -1,15 +1,16 @@
 ---
 tags:
+- SamplerScheduler
 - Sampling
 ---
 
 # pipeKSamplerAdvanced v1 (Legacy)
 ## Documentation
 - Class name: `ttN pipeKSamplerAdvanced`
-- Category: `ttN/legacy`
+- Category: `🌏 tinyterra/legacy`
 - Output node: `True`
 
-The `ttN pipeKSamplerAdvanced` node is designed to enhance the sampling process within a pipeline by incorporating advanced techniques and parameters. It aims to provide more control and flexibility over the generation process, allowing for customized sampling strategies that can adapt to various requirements and scenarios.
+This node is designed for advanced sampling in generative models, incorporating various techniques such as LoRA adjustments, noise control, and optional model components to refine and generate high-quality samples. It supports complex workflows including image upscaling, embedding workflows, and handling of optional inputs for enhanced flexibility and customization in sample generation.
 ## Input types
 ### Required
 - **`pipe`**
@@ -17,143 +18,145 @@ The `ttN pipeKSamplerAdvanced` node is designed to enhance the sampling process 
     - Comfy dtype: `PIPE_LINE`
     - Python dtype: `unknown`
 - **`lora_name`**
-    - Defines the LoRA (Low-Rank Adaptation) model name to be used, enhancing the sampling process by applying specific model adaptations.
+    - Specifies the name of the LoRA model to be used for adjustments, enhancing the control over the sampling process.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`lora_model_strength`**
-    - Specifies the strength of the model adjustments made by the LoRA adaptation.
+    - Determines the strength of the LoRA model adjustments, allowing for fine-tuning of the model's behavior during sampling.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`lora_clip_strength`**
-    - Determines the intensity of the clip adjustments applied through LoRA adaptation.
+    - Specifies the strength of the LoRA clip adjustments, impacting the final visual quality of the samples.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`upscale_method`**
-    - Indicates the method used for upscaling images in the sampling process, affecting image quality and resolution.
+    - Specifies the method used for upscaling the generated samples, affecting the resolution and clarity.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`factor`**
-    - Defines the factor by which images are upscaled, directly influencing the output image size.
+    - The factor by which the image is upscaled, directly influencing the output image size.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`crop`**
-    - Specifies whether and how the output images are cropped, affecting the final image composition.
+    - Determines if and how the output images are cropped, affecting the final composition and aspect ratio.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`sampler_state`**
-    - unknown
+    - Represents the state of the sampler, including configurations and parameters for the sampling process.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`add_noise`**
-    - Indicates whether noise is added to the sampling process, affecting the texture and detail of generated images.
+    - Controls whether noise is added to the sampling process, with options to enable or disable noise, affecting the texture and details of the generated samples.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`steps`**
-    - unknown
+    - Defines the number of steps to perform in the sampling process, directly impacting the quality and characteristics of the generated samples.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`cfg`**
-    - unknown
+    - Configuration setting for the sampling process, providing a means to customize various aspects of sample generation.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`sampler_name`**
-    - unknown
+    - Identifies the specific sampler to be used, allowing for selection among multiple sampling strategies.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`scheduler`**
-    - unknown
+    - Specifies the scheduler for controlling the sampling process, aiding in the management of sampling steps and their execution.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`start_at_step`**
-    - Defines the starting step of the sampling process, allowing for control over the generation's initial state.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`end_at_step`**
-    - Sets the ending step of the sampling process, determining when the generation concludes.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`return_with_leftover_noise`**
-    - Specifies whether the output includes leftover noise, affecting the final image's texture and detail.
+    - Controls whether the final output includes leftover noise, affecting the visual texture of the samples.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`image_output`**
-    - Indicates the format or destination for the generated images, affecting how and where outputs are saved.
+    - Determines how the output images are handled, including options for hiding or saving the generated samples.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`save_prefix`**
-    - Defines a prefix for saved file names, organizing outputs in a consistent manner.
+    - Prefix for saving the generated samples, facilitating organization and retrieval of output files.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ### Optional
 - **`noise_seed`**
-    - Sets a seed for noise generation, ensuring reproducibility in the sampling process.
+    - The seed used for generating noise, ensuring reproducibility and consistency in the noise added to the samples.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`optional_model`**
-    - Allows for the specification of an alternative model for sampling, providing flexibility in model usage.
+    - Specifies an optional model to be used in the sampling process, allowing for customization and experimentation.
     - Comfy dtype: `MODEL`
     - Python dtype: `str`
 - **`optional_positive`**
-    - Enables the inclusion of additional positive conditioning, refining the generation towards desired attributes.
+    - Optional positive conditioning to guide the sampling towards desired attributes.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `str`
 - **`optional_negative`**
-    - Permits the addition of negative conditioning to steer the generation away from certain attributes.
+    - Optional negative conditioning to steer the sampling away from undesired attributes.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `str`
 - **`optional_latent`**
-    - Provides an option to include a specific latent space configuration, influencing the starting point of generation.
+    - Specifies an optional latent input for the sampling process, providing a starting point or influence.
     - Comfy dtype: `LATENT`
     - Python dtype: `str`
 - **`optional_vae`**
-    - Allows for the use of an alternative VAE model, affecting the encoding and decoding processes.
+    - Specifies an optional VAE model to be used, affecting the encoding and decoding of samples.
     - Comfy dtype: `VAE`
     - Python dtype: `str`
 - **`optional_clip`**
-    - Enables the specification of an alternative CLIP model, impacting the alignment between text and image features.
+    - Specifies an optional CLIP model for additional guidance or conditioning in the sampling process.
     - Comfy dtype: `CLIP`
     - Python dtype: `str`
 - **`xyPlot`**
-    - Specifies the configuration for plotting XY data, potentially used for visualizing aspects of the sampling process.
+    - Optional XY plot data for visualization or analysis purposes during the sampling process.
     - Comfy dtype: `XYPLOT`
     - Python dtype: `str`
 ## Output types
 - **`pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - The modified pipeline configuration after applying advanced sampling techniques.
-    - Python dtype: `object`
+    - The pipeline configuration used for the sampling process.
+    - Python dtype: `str`
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The model used or modified during the advanced sampling process.
+    - The model used in the sampling process.
     - Python dtype: `str`
 - **`positive`**
     - Comfy dtype: `CONDITIONING`
-    - Positive conditioning factors applied or generated during sampling.
+    - Positive conditioning data used to guide the sampling process.
     - Python dtype: `str`
 - **`negative`**
     - Comfy dtype: `CONDITIONING`
-    - Negative conditioning factors applied or generated during sampling.
+    - Negative conditioning data used to steer the sampling away from undesired attributes.
     - Python dtype: `str`
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - The latent space configuration resulting from the sampling process.
+    - The latent representation of the sample.
     - Python dtype: `str`
 - **`vae`**
     - Comfy dtype: `VAE`
-    - The VAE model used or modified during the sampling process.
+    - The VAE model used in the sampling process, if applicable.
     - Python dtype: `str`
 - **`clip`**
     - Comfy dtype: `CLIP`
-    - The CLIP model used or modified during the sampling process.
+    - The CLIP model used for additional guidance or conditioning, if applicable.
     - Python dtype: `str`
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The final image output generated by the advanced sampling process.
+    - The final image output from the sampling process.
     - Python dtype: `str`
 - **`seed`**
     - Comfy dtype: `INT`
-    - The seed used during the sampling process, affecting reproducibility.
+    - The seed value used for reproducibility in the sampling process.
     - Python dtype: `int`
+- **`ui`**
+    - Provides a user interface component for visualizing the generated samples, enhancing the interaction and presentation of results.
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -217,7 +220,7 @@ class ttN_pipeKSamplerAdvanced:
     RETURN_NAMES = ("pipe", "model", "positive", "negative", "latent","vae", "clip", "image", "seed", )
     OUTPUT_NODE = True
     FUNCTION = "sample"
-    CATEGORY = "ttN/legacy"
+    CATEGORY = "🌏 tinyterra/legacy"
 
     def sample(self, pipe,
                lora_name, lora_model_strength, lora_clip_strength,

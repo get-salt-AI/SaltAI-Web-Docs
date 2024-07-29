@@ -1,9 +1,11 @@
 ---
 tags:
+- Checkpoint
+- CheckpointLoader
 - Loader
-- Model
-- ModelIO
 - ModelLoader
+- ModelMerge
+- ModelSwitching
 ---
 
 # EasyLoader (DynamiCrafter)
@@ -12,74 +14,74 @@ tags:
 - Category: `EasyUse/Loaders`
 - Output node: `False`
 
-The `DynamiCrafterLoader` node is designed to facilitate the loading and initialization of models specific to the DynamiCrafter framework. It abstracts the complexities involved in setting up the necessary components for model operation, including loading pre-trained weights, configuring model parameters, and ensuring compatibility with various input and output formats. This node serves as a bridge between the DynamiCrafter's dynamic crafting capabilities and the user's requirements, streamlining the process of leveraging advanced generative models for creative and analytical purposes.
+This node is designed to load and initialize the DynamiCrafter model, a specialized model for crafting dynamic content. It encapsulates the complexities of loading model configurations, initializing the model with the appropriate device settings, and preparing it for inference tasks.
 ## Input types
 ### Required
 - **`model_name`**
-    - Specifies the name of the model to be loaded. This parameter is crucial as it determines which specific model configuration and weights are to be initialized, directly affecting the node's execution and the results produced.
+    - Specifies the name of the DynamiCrafter model to be loaded. This is crucial for identifying the correct model configuration and ensuring the model is loaded with the appropriate parameters.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`clip_skip`**
-    - Indicates whether to skip the CLIP model loading, affecting how the input images are processed and interpreted by the system.
+    - Determines the number of clipping operations to skip during the model's inference process. This parameter can affect the speed and quality of the generated content.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`init_image`**
-    - The initial image to be used by the model, serving as a starting point for generation or manipulation tasks.
+    - The initial image to be used by the model, serving as a starting point for content generation.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `Image`
+    - Python dtype: `torch.Tensor`
 - **`resolution`**
-    - Specifies the resolution for the output images, directly influencing the detail and quality of the generated content.
+    - Defines the resolution for the output content, impacting the detail and quality of the generated images.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `Tuple[int, int]`
 - **`empty_latent_width`**
-    - Defines the width of the empty latent space to be used for generation, impacting the dimensions of the generated content.
+    - Specifies the width of the empty latent space to be used by the model, affecting the dimensions of the generated content.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`empty_latent_height`**
-    - Defines the height of the empty latent space to be used for generation, impacting the dimensions of the generated content.
+    - Specifies the height of the empty latent space to be used by the model, affecting the dimensions of the generated content.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`positive`**
-    - A string input that specifies positive prompts or attributes to guide the model's generation process.
+    - A string of positive prompts or keywords that guide the content generation towards desired attributes or themes.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`negative`**
-    - A string input that specifies negative prompts or attributes to influence the model's avoidance in the generation process.
+    - A string of negative prompts or keywords that guide the content generation away from certain attributes or themes.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`use_interpolate`**
-    - Indicates whether interpolation between frames should be used in video or animation generation, affecting the smoothness of transitions.
+    - Indicates whether interpolation should be used in the content generation process, affecting the smoothness and continuity of dynamic content.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`fps`**
-    - Specifies the frames per second for video generation, directly affecting the playback speed and duration.
+    - Specifies the frames per second for the generated content, impacting the smoothness and playback speed of dynamic videos.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`frames`**
-    - Determines the total number of frames to be generated for video or animation tasks, defining the content's length.
+    - Determines the total number of frames to be generated, defining the length of the dynamic content.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`scale_latents`**
-    - Controls the scaling of latent dimensions, influencing the variation and detail in generated content.
+    - Indicates whether the latent space should be scaled, affecting the variation and diversity of the generated content.
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `float`
+    - Python dtype: `bool`
 ### Optional
 - **`optional_vae`**
-    - Optionally specifies a VAE model to be used in conjunction with the primary model for enhanced generative capabilities.
+    - An optional parameter to specify a VAE model to be used in conjunction with the DynamiCrafter model for enhanced content generation.
     - Comfy dtype: `VAE`
-    - Python dtype: `str`
+    - Python dtype: `VAE`
 ## Output types
 - **`pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - Returns the pipeline configuration, including model and processing settings, ready for execution.
-    - Python dtype: `dict`
+    - Provides the main pipeline object for content generation.
+    - Python dtype: `Pipeline`
 - **`model`**
     - Comfy dtype: `MODEL`
-    - Provides the loaded model object, ready for use in generation or manipulation tasks.
-    - Python dtype: `ModelPatcher`
+    - Returns the initialized DynamiCrafter model ready for generating dynamic content.
+    - Python dtype: `Model`
 - **`vae`**
     - Comfy dtype: `VAE`
-    - Returns the VAE model used in conjunction with the primary model for various generative tasks.
+    - Returns the VAE model associated with the DynamiCrafter, used for variational autoencoder tasks.
     - Python dtype: `VAE`
 ## Usage tips
 - Infra type: `GPU`
@@ -95,7 +97,6 @@ class dynamiCrafterLoader(DynamiCrafter):
 
     @classmethod
     def INPUT_TYPES(cls):
-        resolution_strings = [f"{width} x {height}" for width, height in BASE_RESOLUTIONS]
 
         return {"required": {
                 "model_name": (list(DYNAMICRAFTER_MODELS.keys()),),
@@ -217,8 +218,12 @@ class dynamiCrafterLoader(DynamiCrafter):
             clipped.clip_layer(clip_skip)
 
         if positive is not None and positive != '':
+            if has_chinese(positive):
+                positive = zh_to_en([positive])[0]
             positive_embeddings_final, = CLIPTextEncode().encode(clipped, positive)
         if negative is not None and negative != '':
+            if has_chinese(negative):
+                negative = zh_to_en([negative])[0]
             negative_embeddings_final, = CLIPTextEncode().encode(clipped, negative)
 
         image = easySampler.pil2tensor(Image.new('RGB', (1, 1), (0, 0, 0)))
@@ -238,18 +243,13 @@ class dynamiCrafterLoader(DynamiCrafter):
                                     "vae_name": vae_name,
 
                                     "positive": positive,
-                                    "positive_l": None,
-                                    "positive_g": None,
-                                    "positive_balance": None,
                                     "negative": negative,
-                                    "negative_l": None,
-                                    "negative_g": None,
-                                    "negative_balance": None,
+                                    "resolution": resolution,
                                     "empty_latent_width": empty_latent_width,
                                     "empty_latent_height": empty_latent_height,
                                     "batch_size": 1,
                                     "seed": 0,
-                                    "empty_samples": empty_latent, }
+                                     }
                 }
 
         return (pipe, model, vae)

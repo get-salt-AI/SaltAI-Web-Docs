@@ -1,61 +1,67 @@
 ---
 tags:
+- SamplerScheduler
 - Sampling
 ---
 
 # KSampler (pipe)
 ## Documentation
 - Class name: `ImpactKSamplerBasicPipe`
-- Category: `sampling`
+- Category: `ImpactPack/sampling`
 - Output node: `False`
 
-The ImpactKSamplerBasicPipe node is designed for sampling operations within a basic pipeline, utilizing a variety of samplers and schedulers to process and transform latent images. It encapsulates the complexity of sampling algorithms, providing a streamlined interface for generating or modifying latent representations based on specified configurations and inputs.
+The ImpactKSamplerBasicPipe node is designed for advanced sampling techniques within the ComfyUI Impact Pack. It leverages a basic sampling pipeline to generate or modify latent images based on specified parameters, such as noise addition and classifier guidance, to achieve desired visual effects or enhancements.
 ## Input types
 ### Required
 - **`basic_pipe`**
-    - Represents the core components required for the sampling process, including models and configurations essential for the operation.
+    - Represents the core components required for sampling, including models and configurations necessary for the operation.
     - Comfy dtype: `BASIC_PIPE`
     - Python dtype: `tuple`
 - **`seed`**
-    - Determines the randomness seed for sampling, affecting the reproducibility and variation of the output.
+    - Used to initialize the random number generator for reproducible noise generation during sampling.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`steps`**
-    - Specifies the number of steps to perform in the sampling process, impacting the detail and quality of the generated latent image.
+    - Defines the total number of steps to perform during the sampling process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - Controls the configuration for the sampling algorithm, influencing the behavior and outcomes of the sampling process.
+    - Specifies the classifier free guidance value, influencing the direction and strength of the generated modifications.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sampler_name`**
-    - Selects the specific sampler to use, allowing for customization of the sampling technique.
+    - Identifies the specific sampler to use, allowing for different sampling strategies.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - Chooses the scheduler for controlling the sampling process, affecting the progression and adaptation of sampling steps.
+    - Determines the noise schedule to be applied throughout the sampling steps.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`latent_image`**
-    - The initial latent image to be processed or transformed by the sampling operation.
+    - The input latent image to be processed or modified through sampling.
     - Comfy dtype: `LATENT`
     - Python dtype: `torch.Tensor`
 - **`denoise`**
-    - Adjusts the level of denoising applied to the latent image, fine-tuning the clarity and quality of the output.
+    - Controls the amount of noise reduction, affecting the final output's clarity and detail.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
+### Optional
+- **`scheduler_func_opt`**
+    - Optional parameter for providing a custom noise schedule function, offering more control over the sampling process.
+    - Comfy dtype: `SCHEDULER_FUNC`
+    - Python dtype: `function`
 ## Output types
 - **`basic_pipe`**
     - Comfy dtype: `BASIC_PIPE`
-    - Returns the basic pipeline components, including the model and configurations used in the sampling process.
+    - Passes through the input basic_pipe, including all its components, unchanged.
     - Python dtype: `tuple`
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - The processed or transformed latent image resulting from the sampling operation.
+    - The resulting latent image after applying the sampling process, reflecting the specified modifications.
     - Python dtype: `torch.Tensor`
 - **`vae`**
     - Comfy dtype: `VAE`
-    - The variational autoencoder used in the process, essential for encoding and decoding latent images.
+    - The VAE component from the input basic_pipe, included in the output for potential further processing.
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
@@ -81,17 +87,37 @@ class KSamplerBasicPipe:
                      "scheduler": (core.SCHEDULERS, ),
                      "latent_image": ("LATENT", ),
                      "denoise": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01}),
-                     }
+                     },
+                "optional":
+                    {
+                        "scheduler_func_opt": ("SCHEDULER_FUNC", ),
+                    }
                 }
+
+    TOOLTIPS = {
+        "input": {
+            "basic_pipe": "basic_pipe input for sampling",
+            "seed": "Random seed to use for generating CPU noise for sampling.",
+            "steps": "total sampling steps",
+            "cfg": "classifier free guidance value",
+            "sampler_name": "sampler",
+            "scheduler": "noise schedule",
+            "latent_image": "input latent image",
+            "denoise": "The amount of noise to remove. This amount is the noise added at the start, and the higher it is, the more the input latent will be modified before being returned.",
+            "scheduler_func_opt": "[OPTIONAL] Noise schedule generation function. If this is set, the scheduler widget will be ignored.",
+        },
+        "output": ("passthrough input basic_pipe", "result latent", "VAE in basic_pipe")
+    }
 
     RETURN_TYPES = ("BASIC_PIPE", "LATENT", "VAE")
     FUNCTION = "sample"
 
-    CATEGORY = "sampling"
+    CATEGORY = "ImpactPack/sampling"
 
-    def sample(self, basic_pipe, seed, steps, cfg, sampler_name, scheduler, latent_image, denoise=1.0):
+    @staticmethod
+    def sample(basic_pipe, seed, steps, cfg, sampler_name, scheduler, latent_image, denoise=1.0, scheduler_func_opt=None):
         model, clip, vae, positive, negative = basic_pipe
-        latent = impact_sample(model, seed, steps, cfg, sampler_name, scheduler, positive, negative, latent_image, denoise)
+        latent = impact_sample(model, seed, steps, cfg, sampler_name, scheduler, positive, negative, latent_image, denoise, scheduler_func=scheduler_func_opt)
         return basic_pipe, latent, vae
 
 ```

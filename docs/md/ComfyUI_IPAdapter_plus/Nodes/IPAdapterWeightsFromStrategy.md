@@ -1,7 +1,6 @@
 ---
 tags:
 - ControlNet
-- Weight
 ---
 
 # IPAdapter Weights From Strategy

@@ -725,3 +725,9 @@ under the Apache license 2.0
 ```
 Mozilla Public License 2.0 |
 ```
+File name: `pyproject.toml`
+
+**GPL-3.0-only**
+```
+license = "GPL-3.0"
+```

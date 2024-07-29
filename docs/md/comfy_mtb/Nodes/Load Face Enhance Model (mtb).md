@@ -1,7 +1,8 @@
 ---
 tags:
-- Face
 - FaceRestoration
+- SMPL
+- SMPLModel
 ---
 
 # Load Face Enhance Model (mtb)
@@ -10,26 +11,26 @@ tags:
 - Category: `mtb/facetools`
 - Output node: `False`
 
-This node is responsible for loading a face enhancement model, specifically GFPGAN or RestoreFormer, to improve the quality of facial images. It supports model selection and optional background upsampling for comprehensive face restoration.
+This node is designed to load and prepare a face enhancement model, specifically targeting GFPGan or RestoreFormer models, to enhance the quality of facial images. It facilitates the selection of the model and optionally integrates background upsampling for improved image results.
 ## Input types
 ### Required
 - **`model_name`**
-    - Specifies the name of the face enhancement model to load. The choice of model affects the enhancement technique applied to the facial images.
+    - Specifies the name of the face enhancement model to load, influencing the enhancement technique and the quality of the output.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`upscale`**
-    - Determines the upscale factor for the face enhancement process, directly influencing the resolution improvement of the output images.
+    - Sets the upscale factor for the face enhancement process, aiming to improve the resolution of the enhanced image.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`bg_upsampler`**
-    - An optional background upsampler model to enhance the background of the facial images alongside the face enhancement model.
+    - An optional parameter for a background upsampler model to further refine the background in the enhanced images.
     - Comfy dtype: `UPSCALE_MODEL`
     - Python dtype: `Optional[BGUpscaleWrapper]`
 ## Output types
 - **`model`**
     - Comfy dtype: `FACEENHANCE_MODEL`
-    - The loaded face enhancement model, ready for use in enhancing facial images.
+    - The loaded face enhancement model, ready to be utilized for improving facial image quality.
     - Python dtype: `GFPGANer`
 ## Usage tips
 - Infra type: `GPU`
@@ -59,7 +60,9 @@ class MTB_LoadFaceEnhanceModel:
         fr_models_path, um_models_path = cls.get_models_root()
 
         if fr_models_path is None and um_models_path is None:
-            log.warning("Face restoration models not found.")
+            if not hasattr(cls, "_warned"):
+                log.warning("Face restoration models not found.")
+                cls._warned = True
             return []
         if not fr_models_path.exists():
             # log.warning(

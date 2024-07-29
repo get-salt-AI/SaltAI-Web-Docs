@@ -1,5 +1,9 @@
 ---
 tags:
+- DataTypeAgnostic
+- Debugging
+- List
+- MultilineText
 - String
 - Text
 ---
@@ -25,7 +29,7 @@ This node is designed to process or manipulate simple string data. It focuses on
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
-    - [StringFunction|pysssss](../../ComfyUI-Custom-Scripts/Nodes/StringFunction|pysssss.md)
+    - StringFunction|pysssss
 
 
 

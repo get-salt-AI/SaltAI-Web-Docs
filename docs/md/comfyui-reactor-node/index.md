@@ -1,12 +1,12 @@
 # comfyui-reactor-node
-comfyui-reactor-node is a fast and simple face swap extension node for ComfyUI, leveraging the capabilities of the ReActor SD-WebUI Face Swap Extension. It allows users to perform face swaps in images without a NSFW filter, offering uncensored functionality with the responsibility of use resting on the user.
+comfyui-reactor-node is a fast and simple face swap extension for ComfyUI, leveraging the ReActor SD-WebUI Face Swap Extension to enhance user experience in face swapping tasks. It operates without a NSFW filter, placing the responsibility of use on the user.
 
 ## Tags
-Batch * Face * FaceRestoration * Image * ImageDuplication * Mask * MaskGeneration * ReActorFace
+AlphaChannel * Batch * FaceRestoration * Image * ImageDuplication * ImageMask * Mask * MaskBatch * MaskGeneration * MaskList * MaskMorphology * SMPL * SMPLModel
 
 ## Repo info
 - Repo url: `https://github.com/Gourieff/comfyui-reactor-node`
-- Commit hash: `4635da25347102df8e2641cd126fcfebdba085d6`
+- Commit hash: `bcfd45c91eb9ff4f60c78edf0a48d631e42b46dc`
 
 ## Licenses
 - **GPL-3.0-only**: `LICENSE`

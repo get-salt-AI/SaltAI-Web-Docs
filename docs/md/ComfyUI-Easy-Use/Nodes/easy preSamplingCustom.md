@@ -1,5 +1,6 @@
 ---
 tags:
+- SamplerScheduler
 - Sampling
 ---
 
@@ -9,71 +10,75 @@ tags:
 - Category: `EasyUse/PreSampling`
 - Output node: `True`
 
-The `easy preSamplingCustom` node is designed for custom pre-sampling configurations within a generative pipeline, allowing for tailored manipulation of latent spaces and sampling parameters to achieve specific image generation outcomes.
+This node is designed for custom pre-sampling settings in image generation pipelines, allowing users to fine-tune the sampling process by specifying various parameters such as guidance, configuration scale, and noise levels. It provides a flexible interface for adjusting the pre-sampling behavior to achieve desired image qualities or effects.
 ## Input types
 ### Required
 - **`pipe`**
-    - Specifies the pipeline configuration, including model, positive and negative prompts, and other settings, serving as the foundation for the pre-sampling process.
+    - Represents the pipeline configuration, including model, positive and negative prompts, and other settings, serving as the foundation for the pre-sampling process.
     - Comfy dtype: `PIPE_LINE`
     - Python dtype: `dict`
 - **`guider`**
-    - Determines the guiding strategy for the sampling process, offering options like CFG, DualCFG, and others, with a default of 'Basic'.
+    - Specifies the guidance mode to be used during sampling, offering options like CFG, DualCFG, and others to influence the direction of the generated content.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`cfg`**
-    - Controls the conditioning factor, influencing the strength of the condition applied during sampling, with a default value and range provided.
+    - Defines the configuration scale, a floating-point value that adjusts the influence of the conditioning on the generated image, allowing for finer control over the sampling process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`cfg_negative`**
-    - Specifies the negative conditioning factor, adjusting the influence of negative conditions during sampling.
+    - Sets the negative configuration scale, a floating-point value that inversely influences the conditioning, providing a means to suppress undesired aspects in the generated content.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sampler_name`**
-    - Selects the specific sampler to be used during the pre-sampling process.
+    - Identifies the specific sampler to be used in the pre-sampling process, affecting the method of image generation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - Chooses the scheduler for controlling the sampling steps, affecting the progression of the sampling process.
+    - Determines the scheduling algorithm for the sampling process, influencing the progression of steps in image generation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
+- **`coeff`**
+    - A parameter influencing the balance between different aspects of the sampling process, such as detail and coherence.
+    - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`steps`**
-    - Defines the number of steps to be taken during the sampling process.
+    - Specifies the number of steps to be taken in the sampling process, directly impacting the detail and quality of the generated image.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`sigma_max`**
-    - Sets the maximum value of sigma for noise adjustment in the sampling process.
+    - The maximum value of sigma for noise application, affecting the initial stages of the sampling process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sigma_min`**
-    - Determines the minimum value of sigma, setting the lower bound for noise adjustment.
+    - The minimum value of sigma for noise application, affecting the final stages of the sampling process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`rho`**
-    - Adjusts the rho parameter, influencing the sampling dynamics.
+    - A parameter related to the noise schedule, influencing the distribution and impact of noise throughout the sampling process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`beta_d`**
-    - Controls the beta_d parameter, affecting the diffusion process during sampling.
+    - Determines the rate of diffusion in the sampling process, impacting the smoothness and blending of generated features.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`beta_min`**
-    - Sets the minimum value of beta, influencing the lower bound of the diffusion process.
+    - The minimum value of beta for diffusion, affecting the detail and sharpness of the generated image.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`eps_s`**
-    - Specifies the eps_s parameter, adjusting the step size in the sampling process.
+    - A parameter controlling the epsilon scaling in the sampling process, influencing the variance of generated features.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`flip_sigmas`**
-    - Enables or disables the flipping of sigma values, altering the noise pattern during sampling.
+    - A boolean indicating whether to invert the sigma values, affecting the order and impact of noise application.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`denoise`**
-    - Adjusts the denoising factor, affecting the clarity and quality of the generated images.
+    - Specifies the level of denoising to be applied, affecting the clarity and noise level of the generated image.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`add_noise`**
-    - Enables or disables the addition of noise, influencing the texture and details of the generated images.
+    - A boolean indicating whether additional noise should be added during the sampling process, affecting the texture and detail of the generated image.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `bool`
 - **`seed`**
@@ -82,26 +87,26 @@ The `easy preSamplingCustom` node is designed for custom pre-sampling configurat
     - Python dtype: `int`
 ### Optional
 - **`image_to_latent`**
-    - Converts an input image to a latent representation, integrating it into the pre-sampling process.
+    - An optional parameter allowing for the conversion of an image to a latent representation, influencing the starting point of the sampling process.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `object`
+    - Python dtype: `str`
 - **`latent`**
-    - Provides a latent representation to be used directly in the pre-sampling process.
+    - Specifies a latent image to be used as the starting point for the sampling process, affecting the initial state and direction of generation.
     - Comfy dtype: `LATENT`
-    - Python dtype: `object`
+    - Python dtype: `str`
 - **`optional_sampler`**
-    - Optionally specifies an alternative sampler for the pre-sampling process.
+    - Allows for the selection of an alternative sampler, providing flexibility in the choice of sampling methods.
     - Comfy dtype: `SAMPLER`
     - Python dtype: `str`
 - **`optional_sigmas`**
-    - Optionally provides a custom set of sigma values for noise adjustment.
+    - Enables the specification of custom sigma values, offering control over the noise schedule and its impact on the sampling process.
     - Comfy dtype: `SIGMAS`
-    - Python dtype: `list`
+    - Python dtype: `str`
 ## Output types
 - **`pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - Returns the modified pipeline configuration, now including custom pre-sampling settings, ready for further processing or image generation.
-    - Python dtype: `tuple`
+    - Outputs the modified pipeline configuration, reflecting the adjustments made during the pre-sampling process.
+    - Python dtype: `dict`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -116,13 +121,14 @@ class samplerCustomSettings:
 
     @classmethod
     def INPUT_TYPES(cls):
-        return {"required":
-                    {"pipe": ("PIPE_LINE",),
+        return {"required": {
+                     "pipe": ("PIPE_LINE",),
                      "guider": (['CFG','DualCFG','IP2P+DualCFG','Basic'],{"default":"Basic"}),
                      "cfg": ("FLOAT", {"default": 8.0, "min": 0.0, "max": 100.0}),
                      "cfg_negative": ("FLOAT", {"default": 8.0, "min": 0.0, "max": 100.0}),
                      "sampler_name": (comfy.samplers.KSampler.SAMPLERS + ['inversed_euler'],),
-                     "scheduler": (comfy.samplers.KSampler.SCHEDULERS + ['karrasADV','exponentialADV','polyExponential', 'sdturbo', 'vp', 'alignYourSteps'],),
+                     "scheduler": (comfy.samplers.KSampler.SCHEDULERS + ['karrasADV','exponentialADV','polyExponential', 'sdturbo', 'vp', 'alignYourSteps', 'gits'],),
+                     "coeff": ("FLOAT", {"default": 1.20, "min": 0.80, "max": 1.50, "step": 0.05}),
                      "steps": ("INT", {"default": 20, "min": 1, "max": 10000}),
                      "sigma_max": ("FLOAT", {"default": 14.614642, "min": 0.0, "max": 1000.0, "step": 0.01, "round": False}),
                      "sigma_min": ("FLOAT", {"default": 0.0291675, "min": 0.0, "max": 1000.0, "step": 0.01, "round": False}),
@@ -134,7 +140,7 @@ class samplerCustomSettings:
                      "denoise": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01}),
                      "add_noise": (["enable", "disable"], {"default": "enable"}),
                      "seed": ("INT", {"default": 0, "min": 0, "max": MAX_SEED_NUM}),
-                     },
+                 },
                 "optional": {
                     "image_to_latent": ("IMAGE",),
                     "latent": ("LATENT",),
@@ -219,7 +225,15 @@ class samplerCustomSettings:
         except:
             raise Exception(f"Custom sampler {sampler_name} not found, Please updated your ComfyUI")
 
-    def settings(self, pipe, guider, cfg, cfg_negative, sampler_name, scheduler, steps, sigma_max, sigma_min, rho, beta_d, beta_min, eps_s, flip_sigmas, denoise, add_noise, seed, image_to_latent=None, latent=None, optional_sampler=None, optional_sigmas=None, prompt=None, extra_pnginfo=None, my_unique_id=None):
+    def add_model_patch_option(self, model):
+        if 'transformer_options' not in model.model_options:
+            model.model_options['transformer_options'] = {}
+        to = model.model_options['transformer_options']
+        if "model_patch" not in to:
+            to["model_patch"] = {}
+        return to
+
+    def settings(self, pipe, guider, cfg, cfg_negative, sampler_name, scheduler, coeff, steps, sigma_max, sigma_min, rho, beta_d, beta_min, eps_s, flip_sigmas, denoise, add_noise, seed, image_to_latent=None, latent=None, optional_sampler=None, optional_sigmas=None, prompt=None, extra_pnginfo=None, my_unique_id=None):
 
         # 图生图转换
         vae = pipe["vae"]
@@ -228,14 +242,73 @@ class samplerCustomSettings:
         negative = pipe['negative']
         batch_size = pipe["loader_settings"]["batch_size"] if "batch_size" in pipe["loader_settings"] else 1
         _guider, sigmas = None, None
-        if image_to_latent is not None:
-            if guider == "IP2P+DualCFG":
-                positive, negative, latent = self.ip2p(pipe['positive'], pipe['negative'], vae, image_to_latent)
-                samples = latent
+
+        # sigmas
+        if optional_sigmas is not None:
+            sigmas = optional_sigmas
+        else:
+            match scheduler:
+                case 'vp':
+                    sigmas, = self.get_custom_cls('VPScheduler').get_sigmas(steps, beta_d, beta_min, eps_s)
+                case 'karrasADV':
+                    sigmas, = self.get_custom_cls('KarrasScheduler').get_sigmas(steps, sigma_max, sigma_min, rho)
+                case 'exponentialADV':
+                    sigmas, = self.get_custom_cls('ExponentialScheduler').get_sigmas(steps, sigma_max, sigma_min)
+                case 'polyExponential':
+                    sigmas, = self.get_custom_cls('PolyexponentialScheduler').get_sigmas(steps, sigma_max, sigma_min,
+                                                                                         rho)
+                case 'sdturbo':
+                    sigmas, = self.get_custom_cls('SDTurboScheduler').get_sigmas(model, steps, denoise)
+                case 'alignYourSteps':
+                    model_type = get_sd_version(model)
+                    if model_type == 'unknown':
+                        model_type = 'sdxl'
+                        # raise Exception("This Model not supported")
+                    sigmas, = alignYourStepsScheduler().get_sigmas(model_type.upper(), steps, denoise)
+                case 'gits':
+                    sigmas, = gitsScheduler().get_sigmas(coeff, steps, denoise)
+                case _:
+                    sigmas, = self.get_custom_cls('BasicScheduler').get_sigmas(model, scheduler, steps, denoise)
+
+            # filp_sigmas
+            if flip_sigmas:
+                sigmas, = self.get_custom_cls('FlipSigmas').get_sigmas(sigmas)
+
+        #######################################################################################
+        # brushnet
+        to = None
+        transformer_options = model.model_options['transformer_options'] if "transformer_options" in model.model_options else {}
+        if 'model_patch' in transformer_options and 'brushnet' in transformer_options['model_patch']:
+            to = self.add_model_patch_option(model)
+            mp = to['model_patch']
+            if isinstance(model.model.model_config, comfy.supported_models.SD15):
+                mp['SDXL'] = False
+            elif isinstance(model.model.model_config, comfy.supported_models.SDXL):
+                mp['SDXL'] = True
             else:
-                samples = {"samples": vae.encode(image_to_latent[:, :, :, :3])}
-                samples = RepeatLatentBatch().repeat(samples, batch_size)[0]
-            images = image_to_latent
+                print('Base model type: ', type(model.model.model_config))
+                raise Exception("Unsupported model type: ", type(model.model.model_config))
+
+            mp['all_sigmas'] = sigmas
+            mp['unet'] = model.model.diffusion_model
+            mp['step'] = 0
+            mp['total_steps'] = 1
+        #
+        #######################################################################################
+
+        if image_to_latent is not None:
+            _, height, width, _ = image_to_latent.shape
+            if height == 1 and width == 1:
+                samples = pipe["samples"]
+                images = pipe["images"]
+            else:
+                if guider == "IP2P+DualCFG":
+                    positive, negative, latent = self.ip2p(pipe['positive'], pipe['negative'], vae, image_to_latent)
+                    samples = latent
+                else:
+                    samples = {"samples": vae.encode(image_to_latent[:, :, :, :3])}
+                    samples = RepeatLatentBatch().repeat(samples, batch_size)[0]
+                images = image_to_latent
         elif latent is not None:
             if guider == "IP2P+DualCFG":
                 positive, negative, latent = self.ip2p(pipe['positive'], pipe['negative'], latent=latent)
@@ -264,35 +337,6 @@ class samplerCustomSettings:
             else:
                 sampler, = self.get_custom_cls('KSamplerSelect').get_sampler(sampler_name)
 
-        # sigmas
-        if optional_sigmas is not None:
-            sigmas = optional_sigmas
-        else:
-            match scheduler:
-                case 'vp':
-                    sigmas, = self.get_custom_cls('VPScheduler').get_sigmas(steps, beta_d, beta_min, eps_s)
-                case 'karrasADV':
-                    sigmas, = self.get_custom_cls('KarrasScheduler').get_sigmas(steps, sigma_max, sigma_min, rho)
-                case 'exponentialADV':
-                    sigmas, = self.get_custom_cls('ExponentialScheduler').get_sigmas(steps, sigma_max, sigma_min)
-                case 'polyExponential':
-                    sigmas, = self.get_custom_cls('PolyexponentialScheduler').get_sigmas(steps, sigma_max, sigma_min, rho)
-                case 'sdturbo':
-                    sigmas, = self.get_custom_cls('SDTurboScheduler').get_sigmas(model, steps, denoise)
-                case 'alignYourSteps':
-                    try:
-                        model_type = get_sd_version(model)
-                        if model_type == 'unknown':
-                            raise Exception("This Model not supported")
-                        sigmas, = alignYourStepsScheduler().get_sigmas(model_type.upper(), steps, denoise)
-                    except:
-                        raise Exception("Please update your ComfyUI")
-                case _:
-                    sigmas, = self.get_custom_cls('BasicScheduler').get_sigmas(model, scheduler, steps, denoise)
-
-            # filp_sigmas
-            if flip_sigmas:
-                sigmas, = self.get_custom_cls('FlipSigmas').get_sigmas(sigmas)
         # noise
         if add_noise == 'disable':
             noise, = self.get_custom_cls('DisableNoise').get_noise()

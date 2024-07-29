@@ -1,6 +1,8 @@
 ---
 tags:
+- Blur
 - ImageEnhancement
+- ImageFilter
 - VisualEffects
 ---
 
@@ -27,7 +29,7 @@ The ImageFilterSharpen node applies a sharpen filter to images, enhancing their 
 - Common nodes:
     - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
     - [SaveImageExtended](../../save-image-extended-comfyui/Nodes/SaveImageExtended.md)
-    - [PlaySound|pysssss](../../ComfyUI-Custom-Scripts/Nodes/PlaySound|pysssss.md)
+    - PlaySound|pysssss
 
 
 

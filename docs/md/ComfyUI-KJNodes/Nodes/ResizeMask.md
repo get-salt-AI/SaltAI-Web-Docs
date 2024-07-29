@@ -1,46 +1,48 @@
 ---
 tags:
+- ImageTransformation
 - Mask
-- MaskGeneration
+- MaskList
+- MaskMorphology
 ---
 
-# ResizeMask
+# Resize Mask
 ## Documentation
 - Class name: `ResizeMask`
 - Category: `KJNodes/masking`
 - Output node: `False`
 
-The ResizeMask node is designed to adjust the size of a given mask or a batch of masks to specified dimensions, optionally maintaining the original proportions. It is a key component in image processing workflows where mask dimensions need to be standardized or adjusted for further processing.
+The ResizeMask node is designed to adjust the dimensions of a given mask or a batch of masks to a specified width and height, optionally maintaining the original proportions. This functionality is crucial for tasks that require masks to match the dimensions of corresponding images or other layers within a graphical or machine learning pipeline.
 ## Input types
 ### Required
 - **`mask`**
-    - The input mask or batch of masks to be resized. This parameter is central to the node's operation, as it directly influences the output size and proportions of the mask.
+    - The mask parameter represents the input mask or batch of masks that will be resized. It is central to the node's operation, determining the base data that will be transformed.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`width`**
-    - The target width for the resizing operation. It defines the horizontal dimension of the output mask.
+    - Specifies the target width for the resized mask. If keep_proportions is True and width is set to 0, the original width is maintained, adjusting only the height based on the aspect ratio.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - The target height for the resizing operation. It defines the vertical dimension of the output mask.
+    - Specifies the target height for the resized mask. Similar to width, if keep_proportions is True and height is set to 0, the original height is preserved, adjusting the width to maintain the aspect ratio.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`keep_proportions`**
-    - A boolean flag indicating whether to maintain the original proportions of the mask during resizing.
+    - A boolean flag indicating whether to maintain the original aspect ratio of the mask during resizing. When True, the mask is resized to fit within the specified dimensions without altering its aspect ratio.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The resized mask or batch of masks.
+    - The resized mask or batch of masks, adjusted to the specified dimensions.
     - Python dtype: `torch.Tensor`
 - **`width`**
     - Comfy dtype: `INT`
-    - The actual width of the resized mask, which may differ from the input target width if proportions are kept.
+    - The actual width of the resized mask, which may differ from the input width if keep_proportions is True.
     - Python dtype: `int`
 - **`height`**
     - Comfy dtype: `INT`
-    - The actual height of the resized mask, which may differ from the input target height if proportions are kept.
+    - The actual height of the resized mask, which may differ from the input height if keep_proportions is True.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `GPU`
@@ -71,16 +73,15 @@ Resizes the mask or batch of masks to the specified width and height.
 
     def resize(self, mask, width, height, keep_proportions):
         if keep_proportions:
-            _, oh, ow, _ = mask.shape
+            _, oh, ow = mask.shape
             width = ow if width == 0 else width
             height = oh if height == 0 else height
             ratio = min(width / ow, height / oh)
             width = round(ow*ratio)
             height = round(oh*ratio)
-    
-        outputs = mask.unsqueeze(0)  # Add an extra dimension for batch size
+        outputs = mask.unsqueeze(1)
         outputs = F.interpolate(outputs, size=(height, width), mode="nearest")
-        outputs = outputs.squeeze(0)  # Remove the extra dimension after interpolation
+        outputs = outputs.squeeze(1)
 
         return(outputs, outputs.shape[2], outputs.shape[1],)
 

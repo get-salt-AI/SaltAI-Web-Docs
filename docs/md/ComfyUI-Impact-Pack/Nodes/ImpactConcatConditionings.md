@@ -1,5 +1,6 @@
 ---
 tags:
+- CLIPConditioning
 - Conditioning
 ---
 
@@ -9,17 +10,17 @@ tags:
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The ImpactConcatConditionings node is designed to concatenate multiple conditioning inputs into a single conditioning output. This process involves merging the features of the given conditionings, facilitating the combination of different conditioning elements for enhanced model input preparation.
+The ImpactConcatConditionings node is designed to concatenate multiple conditioning inputs into a single conditioning output. This process is essential for combining various conditioning elements to enhance or specify the generation process further.
 ## Input types
 ### Required
 - **`conditioning1`**
-    - The primary conditioning input to which additional conditionings will be concatenated. It serves as the base for the concatenation process.
+    - The primary conditioning input. This input serves as the base to which additional conditionings are concatenated, influencing the overall output by combining multiple conditioning aspects.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[Tuple[torch.Tensor, Any]]`
 ## Output types
 - **`conditioning`**
     - Comfy dtype: `CONDITIONING`
-    - The result of concatenating the given conditionings into a single, unified conditioning output.
+    - The concatenated conditioning output, which combines the input conditionings into a unified form, enhancing the generation process.
     - Python dtype: `List[Tuple[torch.Tensor, Any]]`
 ## Usage tips
 - Infra type: `GPU`
@@ -36,12 +37,20 @@ class ConcatConditionings:
                      },
                 }
 
+    TOOLTIPS = {
+        "input": {
+            "conditioning1": "input conditionings. (Connecting to the input slot increases the number of additional slots.)",
+        },
+        "output": ("Concatenated conditioning", )
+    }
+
     RETURN_TYPES = ("CONDITIONING", )
     FUNCTION = "doit"
 
     CATEGORY = "ImpactPack/Util"
 
-    def doit(self, **kwargs):
+    @staticmethod
+    def doit(**kwargs):
         conditioning_to = list(kwargs.values())[0]
 
         for k, conditioning_from in list(kwargs.items())[1:]:

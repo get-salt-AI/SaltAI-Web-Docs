@@ -1,6 +1,11 @@
 ---
 tags:
 - Latent
+- LatentBatch
+- LatentBlend
+- Normalization
+- Preview
+- VAE
 ---
 
 # Preview Bridge (Latent)
@@ -9,39 +14,37 @@ tags:
 - Category: `ImpactPack/Util`
 - Output node: `True`
 
-The PreviewBridgeLatent node is designed to facilitate the previewing of latent representations by decoding them into visual formats. It leverages various decoding strategies and optional VAE configurations to convert latent tensors into images, supporting different preview methods tailored to specific latent formats.
+This node is designed to bridge the gap between various latent representations and their visual previews, adapting to different preview methods and ensuring compatibility with specific latent formats. It plays a crucial role in visualizing latent spaces by converting them into interpretable images, accommodating various generative models and preview techniques.
 ## Input types
 ### Required
 - **`latent`**
-    - The latent representation to be decoded into an image. This input is crucial as it contains the encoded information of the image in a compressed form, which is then transformed into a visual format based on the specified preview method and optional VAE configuration.
+    - The latent representation to be visualized. It is crucial for determining the visual output and ensuring it aligns with the selected preview method.
     - Comfy dtype: `LATENT`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`image`**
-    - unknown
+    - The image data that may be used or modified in the visualization process, depending on the preview method and the presence of a mask.
     - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
+    - Python dtype: `Optional[torch.Tensor]`
 - **`preview_method`**
-    - Determines the decoding strategy and the format of the resulting image. This input is essential for selecting the appropriate method to decode the latent representation into its visual counterpart.
+    - Specifies the method used for visualizing the latent representation. It affects the conversion process and the compatibility with the latent format.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`vae_opt`**
-    - An optional parameter that allows for the customization of the decoding process with specific VAE models and settings. Providing a VAE configuration can significantly influence the decoding outcome by utilizing tailored models.
+    - An optional parameter that allows for the specification of a variational autoencoder option, further customizing the visualization process.
     - Comfy dtype: `VAE`
-    - Python dtype: `Optional[Dict]`
+    - Python dtype: `Optional[str]`
 ## Output types
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - unknown
-    - Python dtype: `unknown`
+    - The processed latent representation, potentially modified or enhanced through the visualization process.
+    - Python dtype: `torch.Tensor`
 - **`mask`**
     - Comfy dtype: `MASK`
-    - An optional output that represents a mask applied to the decoded image, used for further processing or visualization purposes.
+    - An optional mask applied to the latent visualization, indicating areas of interest or modification.
     - Python dtype: `Optional[torch.Tensor]`
-- **`ui`**
-    - A UI parameter that encapsulates additional information or metadata about the decoding process, potentially including paths to saved images or other relevant details.
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -53,7 +56,10 @@ class PreviewBridgeLatent:
         return {"required": {
                     "latent": ("LATENT",),
                     "image": ("STRING", {"default": ""}),
-                    "preview_method": (["Latent2RGB-SDXL", "Latent2RGB-SD15", "TAESDXL", "TAESD15"],),
+                    "preview_method": (["Latent2RGB-SD3", "Latent2RGB-SDXL", "Latent2RGB-SD15",
+                                        "Latent2RGB-SD-X4", "Latent2RGB-Playground-2.5",
+                                        "Latent2RGB-SC-Prior", "Latent2RGB-SC-B",
+                                        "TAESD3", "TAESDXL", "TAESD15"],),
                     },
                 "optional": {
                     "vae_opt": ("VAE", )
@@ -111,6 +117,13 @@ class PreviewBridgeLatent:
         return image, mask, ui_item
 
     def doit(self, latent, image, preview_method, vae_opt=None, unique_id=None):
+        latent_channels = latent['samples'].shape[1]
+        preview_method_channels = 16 if 'SD3' in preview_method or 'SC-Prior' in preview_method else 4
+
+        if vae_opt is None and latent_channels != preview_method_channels:
+            print(f"[PreviewBridgeLatent] The version of latent is not compatible with preview_method.\nSD3, SD1/SD2, SDXL, SC-Prior, and SC-B are not compatible with each other.")
+            raise Exception("The version of latent is not compatible with preview_method.<BR>SD3, SD1/SD2, SDXL, SC-Prior, and SC-B are not compatible with each other.")
+
         need_refresh = False
 
         if unique_id not in core.preview_bridge_cache:
@@ -141,7 +154,7 @@ class PreviewBridgeLatent:
             decoded_image = decode_latent(latent, preview_method, vae_opt)
 
             if 'noise_mask' in latent:
-                mask = latent['noise_mask']
+                mask = latent['noise_mask'].squeeze(0)  # 4D mask -> 3D mask
 
                 decoded_pil = to_pil(decoded_image)
 

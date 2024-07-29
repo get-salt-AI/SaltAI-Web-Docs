@@ -9,74 +9,74 @@ tags:
 - Category: `InspirePack/LoraBlockWeight`
 - Output node: `False`
 
-The LoraLoaderBlockWeight node is designed to dynamically load and apply LoRA (Low-Rank Adaptation) adjustments to models and clips based on specified parameters. It enhances or modifies the behavior of models and clips by applying LoRA adjustments, which are determined by the strength and other parameters provided, to achieve desired effects or performance improvements.
+The LoraLoaderBlockWeight node is designed to dynamically load and apply LoRA (Low-Rank Adaptation) adjustments to models based on specified parameters. It enhances model performance or alters model behavior by adjusting weights in a targeted manner, leveraging LoRA's capability to fine-tune models efficiently without extensive retraining.
 ## Input types
 ### Required
 - **`model`**
-    - The model parameter represents the base model to which LoRA adjustments will be applied. It is crucial for defining the starting point of the adaptation process.
+    - The model parameter represents the base model to which LoRA adjustments will be applied. It is crucial for defining the starting point for any modifications.
     - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`clip`**
-    - The clip parameter signifies the clip model that will undergo LoRA adjustments alongside the base model, allowing for synchronized modifications across both models.
+    - The clip parameter signifies the CLIP model that will be adjusted alongside the base model, ensuring that modifications are applied consistently across both models.
     - Comfy dtype: `CLIP`
     - Python dtype: `torch.nn.Module`
 - **`category_filter`**
-    - Optional parameter that allows filtering the LoRA adjustments based on specified categories, enabling more targeted adaptations.
+    - An optional filter that narrows down the application of LoRA adjustments to specific categories within the models, enhancing targeted modification.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `Optional[str]`
+    - Python dtype: `str`
 - **`lora_name`**
-    - This parameter specifies the name of the LoRA file to be loaded and applied, serving as a key identifier for selecting the appropriate LoRA adjustments.
+    - This parameter specifies the name of the LoRA file to be loaded and applied to the models, serving as a key identifier for the adjustments to be made.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`strength_model`**
-    - Defines the intensity of the LoRA adjustment to be applied to the model, allowing for fine-tuned control over the adaptation's impact.
+    - Determines the intensity of the LoRA adjustments applied to the base model, allowing for fine-grained control over the modification strength.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`strength_clip`**
-    - Determines the strength of the LoRA adjustment for the clip model, enabling precise modulation of the adaptation effect.
+    - Controls the intensity of the LoRA adjustments applied to the CLIP model, enabling precise tuning of the modifications.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`inverse`**
-    - A boolean flag that, when set, inverses the LoRA adjustment effect, offering an alternative mode of adaptation.
+    - A flag indicating whether the LoRA adjustments should be applied in an inverse manner, offering an alternative approach to model modification.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`seed`**
-    - The seed parameter is used to ensure reproducibility in the LoRA adjustment process by initializing random elements in a consistent manner.
+    - The seed parameter is used to ensure reproducibility in the adjustments made by LoRA, facilitating consistent outcomes across runs.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`A`**
-    - Parameter A is part of the LoRA adjustment calculation, contributing to the customization of the adaptation effect.
+    - Parameter A is part of the LoRA adjustment calculation, contributing to the customization of the weight modifications.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`B`**
-    - Parameter B works alongside A in the LoRA adjustment formula, further tailoring the adaptation's outcome.
+    - Parameter B works alongside A in the LoRA adjustment process, further refining the weight modifications applied to the models.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`preset`**
-    - A preset configuration for the LoRA adjustment process, potentially simplifying the setup for common use cases or desired outcomes.
+    - Specifies a preset configuration for LoRA adjustments, streamlining the setup process for common modification scenarios.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`block_vector`**
-    - This parameter represents a vector used in the LoRA adjustment process, potentially influencing the direction and magnitude of the adaptation.
+    - Defines a vector of block weights to be specifically targeted by the LoRA adjustments, allowing for precise control over which parts of the model are modified.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`bypass`**
-    - When set to true, bypasses the LoRA adjustment process entirely, allowing the original models to pass through unchanged.
+    - A boolean flag that, when true, bypasses the LoRA adjustment process entirely, effectively leaving the models unmodified.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The adapted model with LoRA adjustments applied, reflecting the specified strength and other parameters.
+    - The modified base model with LoRA adjustments applied, reflecting the targeted enhancements or alterations.
     - Python dtype: `torch.nn.Module`
 - **`clip`**
     - Comfy dtype: `CLIP`
-    - The clip model after undergoing LoRA adjustments, showcasing the effects of the specified adaptation parameters.
+    - The modified CLIP model with LoRA adjustments applied, ensuring consistent modifications across both models.
     - Python dtype: `torch.nn.Module`
 - **`populated_vector`**
     - Comfy dtype: `STRING`
-    - A vector populated during the LoRA adjustment process, potentially containing information relevant to the adaptation's specifics.
-    - Python dtype: `torch.Tensor`
+    - A vector indicating the specific blocks within the models that were targeted and modified by the LoRA adjustments.
+    - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -275,6 +275,8 @@ class LoraLoaderBlockWeight:
 
         if inverse:
             populated_ratio = 1 - ratio
+        else:
+            populated_ratio = 1
 
         populated_vector_list.insert(0, LoraLoaderBlockWeight.norm_value(populated_ratio))
 

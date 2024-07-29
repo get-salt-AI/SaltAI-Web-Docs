@@ -1,30 +1,31 @@
 ---
 tags:
+- Mask
 - Segmentation
 ---
 
-# Bitwise(SEGS & MASK)
+# Pixelwise(SEGS & MASK)
 ## Documentation
 - Class name: `ImpactSegsAndMask`
 - Category: `ImpactPack/Operation`
 - Output node: `False`
 
-This node applies a bitwise AND operation between the masks of segmented objects (SEGS) and a given mask (MASK), effectively filtering the segmented objects based on the mask. It's designed to refine segmentation results by combining them with an additional mask layer, enhancing the precision of the segmentation.
+The node applies a bitwise AND operation between segmentation masks and a given mask, modifying the segmentation data based on the overlap with the mask. This operation is useful for refining segmentation results by incorporating additional mask information, enhancing the accuracy and relevance of the segmented output.
 ## Input types
 ### Required
 - **`segs`**
-    - The segmented objects (SEGS) to be refined. It represents the primary input for the operation, determining the base segmentation to be filtered.
+    - The segmentation data to be refined. It plays a crucial role in determining the final output by providing the initial set of segments to be modified.
     - Comfy dtype: `SEGS`
-    - Python dtype: `Tuple[torch.Size, List[SEG]]`
+    - Python dtype: `Tuple[torch.Tensor, List[SEG]]`
 - **`mask`**
-    - The mask (MASK) to be applied to the segmented objects. It acts as a filter, refining the segmentation by retaining only the parts of the segmented objects that overlap with the mask.
+    - The mask to apply to the segmentation data. It affects the operation by defining which parts of the segments will be retained or discarded based on the bitwise AND operation.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`segs`**
     - Comfy dtype: `SEGS`
-    - The refined segmented objects (SEGS) after applying the mask. It represents the output of the bitwise AND operation, containing only the parts of the original segmentation that overlap with the given mask.
-    - Python dtype: `Tuple[torch.Size, List[SEG]]`
+    - The modified segmentation data after applying the bitwise AND operation with the given mask. It represents the refined set of segments that have been altered based on the mask's criteria.
+    - Python dtype: `Tuple[torch.Tensor, List[SEG]]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:

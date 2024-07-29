@@ -1,7 +1,7 @@
 ---
 tags:
-- Image
-- ImageThresholding
+- Color
+- Crop
 ---
 
 # FindThreshold
@@ -10,37 +10,37 @@ tags:
 - Category: `Bmad/CV/Thresholding`
 - Output node: `False`
 
-The FindThreshold node is designed to identify the optimal threshold value for image segmentation or binarization based on specific criteria. It dynamically adjusts the thresholding parameters to meet the desired conditions, enhancing the adaptability and precision of image processing tasks.
+The FindThreshold node is designed to dynamically determine an optimal threshold value for image processing tasks. It systematically searches through a specified range of threshold values, applying each to the source image and evaluating the result based on a user-defined condition. This approach allows for adaptive thresholding, enabling the selection of a threshold that best meets the criteria for a given image or set of images.
 ## Input types
 ### Required
 - **`src`**
-    - The source image on which thresholding needs to be applied. It's crucial for determining the optimal threshold value for segmentation or binarization.
+    - The source image on which thresholding operations are to be performed. It serves as the primary input for the threshold search process.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`start_at`**
-    - The starting point of the threshold value range to be considered. It defines the lower bound of the search space for finding the optimal threshold.
+    - Specifies the starting point of the threshold value range to be considered in the search process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`end_at`**
-    - The ending point of the threshold value range to be considered. It sets the upper limit of the search space for the optimal threshold determination.
+    - Defines the end point of the threshold value range for the search, allowing the node to limit its evaluation to a specific range.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`thresh_type`**
-    - Specifies the type of thresholding to be applied. It influences how the thresholding operation is performed on the image.
+    - Determines the type of thresholding to be applied during the search process, influencing how the threshold values are evaluated against the source image.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`downscale_factor`**
-    - A factor by which the image is downscaled. This can help in reducing the computational load during the threshold search process.
+    - A factor by which the source image is downscaled before thresholding, optimizing the search process by reducing computational load.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`condition`**
-    - A condition that must be met by the thresholded image. It's used to evaluate and select the optimal threshold value.
+    - A user-defined condition (expressed as a string of Python code) that evaluates the effectiveness of each threshold value applied, guiding the selection of the optimal threshold.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The image after applying the optimal threshold value found. It represents the segmented or binarized version of the source image.
+    - The output image after applying the optimal threshold found through the search process.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -59,7 +59,7 @@ class FindThreshold:
     """
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "src": ("IMAGE",),
@@ -74,7 +74,7 @@ class FindThreshold:
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "search"
-    CATEGORY = "Bmad/CV/Thresholding"
+    CATEGORY = f"{cv_category_path}/Thresholding"
 
     def search(self, src, start_at, end_at, thresh_type, downscale_factor, condition):
         import cv2

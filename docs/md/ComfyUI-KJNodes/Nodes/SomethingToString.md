@@ -1,35 +1,37 @@
 ---
 tags:
+- DataTypeAgnostic
+- Debugging
 - String
 - Text
 ---
 
-# SomethingToString
+# Something To String
 ## Documentation
 - Class name: `SomethingToString`
 - Category: `KJNodes/text`
 - Output node: `False`
 
-Provides a flexible way to convert various input types into a string format, optionally allowing for the addition of prefixes or suffixes to customize the output.
+This node is designed to convert various data types into a string format, optionally allowing for the addition of a prefix or suffix to the resulting string. It abstracts the complexity of data type conversion and string manipulation, providing a straightforward way to generate string representations of diverse inputs.
 ## Input types
 ### Required
 - **`input`**
-    - The primary input for conversion to string. This parameter is central to the node's operation, as it determines the base content that will be transformed into a string format.
+    - The primary data that will be converted to a string. This input can be of any type, and its conversion is central to the node's functionality.
     - Comfy dtype: `*`
-    - Python dtype: `Union[int, float, bool]`
+    - Python dtype: `Union[int, float, bool, list, None]`
 ### Optional
 - **`prefix`**
-    - An optional prefix to prepend to the stringified input. This allows for additional context or formatting to be applied to the beginning of the output.
+    - An optional string to prepend to the converted input, allowing for customization of the resulting string's format.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`suffix`**
-    - An optional suffix to append to the stringified input. This enables further customization or formatting at the end of the output.
+    - An optional string to append to the converted input, enhancing the flexibility in formatting the resulting string.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`string`**
     - Comfy dtype: `STRING`
-    - The result of the conversion process, potentially including any specified prefixes or suffixes, formatted as a string.
+    - The output is the string representation of the input, potentially modified by the specified prefix and/or suffix.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -59,14 +61,17 @@ Converts any type to a string.
 """
 
     def stringify(self, input, prefix="", suffix=""):
-        if isinstance(input, (int, float, bool)):   
+        if isinstance(input, (int, float, bool)):
             stringified = str(input)
-            if prefix:  # Check if prefix is not empty
-                stringified = prefix + stringified  # Add the prefix
-            if suffix:  # Check if suffix is not empty
-                stringified = stringified + suffix  # Add the suffix
+        elif isinstance(input, list):
+            stringified = ', '.join(str(item) for item in input)
         else:
             return
+        if prefix: # Check if prefix is not empty
+            stringified = prefix + stringified # Add the prefix
+        if suffix: # Check if suffix is not empty
+            stringified = stringified + suffix # Add the suffix
+
         return (stringified,)
 
 ```

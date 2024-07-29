@@ -1,32 +1,32 @@
 # ∞ Send Message
 ## Documentation
 - Class name: `SendMessage`
-- Category: `SALT/Language Toolkit/Agents`
+- Category: `SALT/Language Toolkit/Agents/Chat`
 - Output node: `False`
 
-The SendMessage node facilitates communication between agents by allowing one agent to send a message to another. This node clones the recipient and sender agents to ensure that the message delivery process does not alter the original agent instances, maintaining the integrity of the agents involved in the communication.
+The SendMessage node facilitates communication between agents by allowing one agent to send a message to another. It abstracts the complexities of agent interaction, ensuring messages are delivered and processed correctly.
 ## Input types
 ### Required
 - **`recipient`**
-    - The recipient agent who will receive the message. Cloning this agent ensures that the original agent's state is preserved post-message delivery.
+    - Specifies the agent receiving the message. It plays a crucial role in determining the message's destination.
     - Comfy dtype: `AGENT`
     - Python dtype: `AGENT`
 - **`sender`**
-    - The sender agent who initiates the message. This agent is also cloned to preserve its original state after sending the message.
+    - Identifies the agent sending the message. It is essential for tracking the source of the message and for potential reply mechanisms.
     - Comfy dtype: `AGENT`
     - Python dtype: `AGENT`
 - **`message`**
-    - The message content to be sent from the sender to the recipient. Supports multiline input, allowing for more complex and detailed messages.
+    - Contains the text of the message being sent. This parameter is vital for the communication process, allowing agents to exchange information.
     - Comfy dtype: `STRING`
-    - Python dtype: `STRING`
+    - Python dtype: `str`
 ## Output types
 - **`recipient`**
     - Comfy dtype: `AGENT`
-    - The cloned recipient agent, post-message reception, showcasing the state of the agent after receiving the message.
+    - The recipient agent, potentially modified after receiving the message.
     - Python dtype: `AGENT`
 - **`sender`**
     - Comfy dtype: `AGENT`
-    - The cloned sender agent, post-message sending, reflecting the agent's state after the communication process.
+    - The sender agent, potentially modified after sending the message.
     - Python dtype: `AGENT`
 ## Usage tips
 - Infra type: `CPU`
@@ -53,7 +53,7 @@ class SendMessage:
     RETURN_NAMES = ("recipient", "sender")
 
     FUNCTION = "add_info"
-    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Agents"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Agents/Chat"
 
     def add_info(self, recipient, sender, message):
         recipient = clone_conversable_agent(recipient)

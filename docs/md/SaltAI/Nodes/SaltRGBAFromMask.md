@@ -1,5 +1,6 @@
 ---
 tags:
+- AlphaChannel
 - Image
 ---
 

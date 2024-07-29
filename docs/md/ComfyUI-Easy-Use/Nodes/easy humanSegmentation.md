@@ -1,5 +1,7 @@
 ---
 tags:
+- Mask
+- MaskMorphology
 - Segmentation
 ---
 
@@ -9,34 +11,42 @@ tags:
 - Category: `EasyUse/Segmentation`
 - Output node: `False`
 
-The `easy humanSegmentation` node is designed to segment human figures from images, utilizing advanced machine learning models to accurately identify and isolate human subjects from their backgrounds. This node is essential for applications requiring precise human outlines, such as in photo editing, augmented reality, and various forms of digital content creation.
+This node is designed for segmenting human figures from images, utilizing a choice of pre-defined segmentation methods. It abstracts the complexity of human segmentation processes, offering an easy-to-use interface for extracting human figures with various levels of detail and precision.
 ## Input types
 ### Required
 - **`image`**
-    - The `image` parameter is the input image that the node will process to segment human figures. It plays a crucial role in determining the accuracy and quality of the segmentation output.
+    - The input image to be segmented. This parameter is crucial as it provides the raw data for the segmentation process.
     - Comfy dtype: `IMAGE`
     - Python dtype: `Image.Image`
 - **`method`**
-    - The `method` parameter specifies the segmentation technique or model to be used. This choice affects the segmentation accuracy, performance, and suitability for different types of images or requirements.
+    - Specifies the segmentation method to be used. This choice affects the segmentation's accuracy and detail, allowing for customization based on the user's needs.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`confidence`**
-    - The `confidence` parameter allows setting a threshold for the segmentation confidence level, filtering out less certain segments to ensure higher accuracy in the results.
+    - Determines the confidence threshold for the segmentation process, influencing the precision of the human figure extraction.
+    - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
+- **`crop_multi`**
+    - Adjusts the cropping multiplier to control the extent of the area around the segmented human figure that is included in the output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The `image` output provides the segmented image with human figures isolated from the background, ready for further processing or visualization.
+    - The segmented image with the human figure.
     - Python dtype: `Image.Image`
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The `mask` output offers a binary mask indicating the areas of the image corresponding to human figures, useful for various image editing and processing tasks.
-    - Python dtype: `torch.Tensor`
+    - A binary mask of the segmented human figure.
+    - Python dtype: `Image.Image`
+- **`bbox`**
+    - Comfy dtype: `BBOX`
+    - Bounding box coordinates of the segmented human figure.
+    - Python dtype: `Tuple[int, int, int, int]`
 - **`ui`**
-    - The `ui` parameter represents the user interface component that displays the segmentation results, providing a visual representation of the human figures isolated from the background.
+    - Provides a user interface component displaying the segmentation results.
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -52,6 +62,7 @@ class humanSegmentation:
             "image": ("IMAGE",),
             "method": (["selfie_multiclass_256x256", "human_parsing_lip"],),
             "confidence": ("FLOAT", {"default": 0.4, "min": 0.05, "max": 0.95, "step": 0.01},),
+            "crop_multi": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 10.0, "step": 0.001},),
           },
           "hidden": {
               "prompt": "PROMPT",
@@ -59,8 +70,8 @@ class humanSegmentation:
           }
         }
 
-    RETURN_TYPES = ("IMAGE", "MASK",)
-    RETURN_NAMES = ("image", "mask",)
+    RETURN_TYPES = ("IMAGE", "MASK", "BBOX")
+    RETURN_NAMES = ("image", "mask", "bbox")
     FUNCTION = "parsing"
     CATEGORY = "EasyUse/Segmentation"
 
@@ -77,7 +88,7 @@ class humanSegmentation:
         numpy_image = cv2.cvtColor(numpy_image, cv2.COLOR_BGR2RGB)
       return mp.Image(image_format=image_format, data=numpy_image)
 
-    def parsing(self, image, confidence, method, prompt=None, my_unique_id=None):
+    def parsing(self, image, confidence, method, crop_multi, prompt=None, my_unique_id=None):
       mask_components = []
       if my_unique_id in prompt:
         if prompt[my_unique_id]["inputs"]['mask_components']:
@@ -177,6 +188,11 @@ class humanSegmentation:
 
         output_image, = JoinImageWithAlpha().join_image_with_alpha(image, alpha)
 
-      return (output_image, mask)
+      # use crop
+      bbox = [[0, 0, 0, 0]]
+      if crop_multi > 0.0:
+        output_image, mask, bbox = imageCropFromMask().crop(output_image, mask, crop_multi, crop_multi, 1.0)
+
+      return (output_image, mask, bbox)
 
 ```

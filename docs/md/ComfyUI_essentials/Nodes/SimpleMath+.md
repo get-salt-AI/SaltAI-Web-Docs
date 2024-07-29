@@ -1,40 +1,41 @@
 ---
 tags:
-- DataTypeConversion
+- DataConversion
+- Float
+- FloatData
 - Math
-- MathematicalExpressions
 ---
 
 # 🔧 Simple Math
 ## Documentation
 - Class name: `SimpleMath+`
-- Category: `essentials`
+- Category: `essentials/utilities`
 - Output node: `False`
 
-SimpleMath is a node designed to evaluate mathematical expressions dynamically. It supports basic arithmetic operations, conditional logic, and custom functions, allowing for flexible mathematical computations.
+SimpleMath is a node designed to evaluate mathematical expressions dynamically. It interprets and computes expressions from abstract syntax trees (AST), supporting basic arithmetic operations, variable resolution, custom function calls, and array indexing.
 ## Input types
 ### Required
 - **`value`**
-    - The mathematical expression to be evaluated. Supports basic arithmetic, variables, and custom functions.
+    - The mathematical expression to be evaluated, represented as a string. It is parsed into an abstract syntax tree (AST) for evaluation, supporting operations like addition, subtraction, multiplication, division, and more complex expressions involving variables and functions.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ### Optional
 - **`a`**
-    - A variable that can be used within the mathematical expression.
+    - An optional variable 'a' that can be used within the mathematical expression. Its value affects the computation if 'a' is referenced in the expression.
     - Comfy dtype: `INT,FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `Union[int, float]`
 - **`b`**
-    - Another variable that can be used within the mathematical expression.
+    - An optional variable 'b' that can be used within the mathematical expression. Its value affects the computation if 'b' is referenced in the expression.
     - Comfy dtype: `INT,FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `Union[int, float]`
 ## Output types
 - **`int`**
     - Comfy dtype: `INT`
-    - The rounded result of the evaluated mathematical expression.
+    - The rounded integer result of the evaluated mathematical expression.
     - Python dtype: `int`
 - **`float`**
     - Comfy dtype: `FLOAT`
-    - The exact result of the evaluated mathematical expression, before rounding.
+    - The exact floating-point result of the evaluated mathematical expression.
     - Python dtype: `float`
 ## Usage tips
 - Infra type: `CPU`
@@ -44,9 +45,6 @@ SimpleMath is a node designed to evaluate mathematical expressions dynamically. 
 ## Source code
 ```python
 class SimpleMath:
-    def __init__(self):
-        pass
-
     @classmethod
     def INPUT_TYPES(s):
         return {
@@ -61,9 +59,32 @@ class SimpleMath:
 
     RETURN_TYPES = ("INT", "FLOAT", )
     FUNCTION = "execute"
-    CATEGORY = "essentials"
+    CATEGORY = "essentials/utilities"
 
     def execute(self, value, a = 0.0, b = 0.0):
+        import ast
+        import operator as op
+
+        operators = {
+            ast.Add: op.add,
+            ast.Sub: op.sub,
+            ast.Mult: op.mul,
+            ast.Div: op.truediv,
+            ast.FloorDiv: op.floordiv,
+            ast.Pow: op.pow,
+            ast.BitXor: op.xor,
+            ast.USub: op.neg,
+            ast.Mod: op.mod,
+        }
+
+        op_functions = {
+            'min': min,
+            'max': max,
+            'round': round,
+            'sum': sum,
+            'len': len,
+        }
+
         def eval_(node):
             if isinstance(node, ast.Num): # number
                 return node.n
@@ -80,6 +101,12 @@ class SimpleMath:
                 if node.func.id in op_functions:
                     args =[eval_(arg) for arg in node.args]
                     return op_functions[node.func.id](*args)
+            elif isinstance(node, ast.Subscript): # indexing or slicing
+                value = eval_(node.value)
+                if isinstance(node.slice, ast.Constant):
+                    return value[node.slice.value]
+                else:
+                    return 0
             else:
                 return 0
 
@@ -87,7 +114,7 @@ class SimpleMath:
 
         if math.isnan(result):
             result = 0.0
-
+        
         return (round(result), result, )
 
 ```

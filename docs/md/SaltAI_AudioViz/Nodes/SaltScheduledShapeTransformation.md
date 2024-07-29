@@ -1,83 +1,85 @@
 ---
 tags:
+- AnimationScheduling
 - Scheduling
+- SigmaScheduling
 ---
 
 # Scheduled Shape Transform
 ## Documentation
 - Class name: `SaltScheduledShapeTransformation`
-- Category: `SALT/Scheduling/Image`
+- Category: `SALT/AudioViz/Scheduling/Image`
 - Output node: `False`
 
-This node is designed for performing scheduled shape transformations on images. It allows for the dynamic adjustment of image shapes over a sequence of frames, based on predefined schedules for various parameters such as size, position, and rotation.
+This node is designed for applying scheduled transformations to shapes over a sequence of frames. It enables dynamic adjustments of shape properties such as size, position, and rotation according to predefined schedules, facilitating complex animations and visual effects.
 ## Input types
 ### Required
 - **`max_frames`**
-    - Specifies the maximum number of frames for the shape transformation sequence.
+    - Specifies the total number of frames for the shape transformation sequence, dictating the duration of the animation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`image_width`**
-    - The width of the output image.
+    - Defines the width of the output image frame.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`image_height`**
-    - The height of the output image.
+    - Defines the height of the output image frame.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`initial_width`**
-    - The initial width of the shape before transformation begins.
+    - Sets the initial width of the shape before transformation begins.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`initial_height`**
-    - The initial height of the shape before transformation begins.
+    - Sets the initial height of the shape before transformation begins.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`initial_x_coord`**
-    - The initial x-coordinate of the shape's position.
+    - Determines the initial x-coordinate position of the shape.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`initial_y_coord`**
-    - The initial y-coordinate of the shape's position.
+    - Determines the initial y-coordinate position of the shape.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`initial_rotation`**
-    - The initial rotation angle of the shape, in degrees.
+    - Sets the initial rotation angle of the shape, in degrees.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`shape_mode`**
-    - Defines the mode or type of shape to be transformed, allowing for various geometric shapes.
+    - Specifies the mode of the shape to be transformed, affecting how the shape is interpreted and manipulated.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`shape`**
-    - Optional. The specific shape to be transformed, if applicable.
+    - Optional. Provides the shape object to be transformed if not using a predefined shape mode.
     - Comfy dtype: `MASK`
-    - Python dtype: `str`
+    - Python dtype: `object`
 - **`width_schedule`**
-    - A schedule list defining the width transformation over time.
+    - A schedule list defining the width transformation of the shape across the specified frames.
     - Comfy dtype: `LIST`
-    - Python dtype: `List[float]`
+    - Python dtype: `list[float]`
 - **`height_schedule`**
-    - A schedule list defining the height transformation over time.
+    - A schedule list defining the height transformation of the shape across the specified frames.
     - Comfy dtype: `LIST`
-    - Python dtype: `List[float]`
+    - Python dtype: `list[float]`
 - **`x_schedule`**
-    - A schedule list defining the x-coordinate transformation over time.
+    - A schedule list defining the x-coordinate position transformation of the shape across the specified frames.
     - Comfy dtype: `LIST`
-    - Python dtype: `List[float]`
+    - Python dtype: `list[float]`
 - **`y_schedule`**
-    - A schedule list defining the y-coordinate transformation over time.
+    - A schedule list defining the y-coordinate position transformation of the shape across the specified frames.
     - Comfy dtype: `LIST`
-    - Python dtype: `List[float]`
+    - Python dtype: `list[float]`
 - **`rotation_schedule`**
-    - A schedule list defining the rotation angle transformation over time.
+    - A schedule list defining the rotation angle transformation of the shape across the specified frames.
     - Comfy dtype: `LIST`
-    - Python dtype: `List[float]`
+    - Python dtype: `list[float]`
 ## Output types
 - **`images`**
     - Comfy dtype: `IMAGE`
-    - The transformed images as a result of the scheduled shape transformations.
-    - Python dtype: `List[Image]`
+    - The output images resulting from the applied scheduled shape transformations, showcasing the dynamic changes in shape properties over the sequence of frames.
+    - Python dtype: `list[Image]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -113,7 +115,7 @@ class SaltScheduledShapeTransformation:
     RETURN_TYPES = ("IMAGE", )
     RETURN_NAMES = ("images", )
     FUNCTION = "transform_shape"
-    CATEGORY = "SALT/Scheduling/Image"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling/Image"
 
     def apply_multiply_operation(self, initial_value, schedule, frame_idx):
         factor = schedule[min(frame_idx, len(schedule) - 1)]

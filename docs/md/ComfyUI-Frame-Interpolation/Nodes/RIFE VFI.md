@@ -1,8 +1,11 @@
 ---
 tags:
-- AnimationScheduling
+- Curve
+- Frame
 - FrameInterpolation
-- VisualEffects
+- Interpolation
+- Keyframe
+- WavePatterns
 ---
 
 # RIFE VFI (recommend rife47 and rife49)
@@ -11,47 +14,47 @@ tags:
 - Category: `ComfyUI-Frame-Interpolation/VFI`
 - Output node: `False`
 
-The RIFE_VFI node is designed for video frame interpolation, leveraging deep learning models to predict and generate intermediate frames between existing ones in a video sequence. This process enhances video fluidity and can be used for slow-motion effects, video restoration, or improving frame rates.
+The RIFE_VFI node is designed for video frame interpolation, leveraging deep learning techniques to predict and generate intermediate frames between existing frames in a video sequence. This process enhances video fluidity and can be used for various applications such as slow-motion video generation, video restoration, and improving video frame rates.
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - Specifies the checkpoint name of the model to be used for frame interpolation, affecting the quality and style of the generated frames.
+    - Specifies the checkpoint name for the model to use, which determines the pre-trained weights and potentially the model architecture for frame interpolation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`frames`**
-    - The input video frames to be interpolated, provided as a tensor. This is the core data on which frame interpolation is performed.
+    - A sequence of images or frames that the node will process to generate interpolated frames. This is the core input that drives the interpolation process.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `List[torch.Tensor]`
 - **`clear_cache_after_n_frames`**
-    - Indicates after how many frames the cache should be cleared to prevent memory overflow, optimizing resource usage during processing.
+    - Indicates after how many frames the node should clear its cache to manage memory usage efficiently during the interpolation process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`multiplier`**
-    - Defines the number of intermediate frames to be generated between each pair of original frames, directly influencing the smoothness of the output video.
+    - Defines the number of intermediate frames to be generated between each pair of input frames, directly affecting the smoothness of the output video.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`fast_mode`**
-    - A boolean flag that, when enabled, allows the interpolation process to run in a faster mode at the possible expense of some quality.
+    - Enables a faster but potentially less accurate mode of frame interpolation, optimizing for speed over precision.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`ensemble`**
-    - A boolean parameter that, when true, enables the use of ensemble methods for improved frame interpolation quality.
+    - Activates ensemble mode, which may use multiple models or techniques in tandem to improve the quality of the interpolated frames.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`scale_factor`**
-    - Determines the scale factor for resizing frames during the interpolation process, affecting the resolution of the output frames.
+    - Adjusts the scale of the input frames before processing, which can influence the interpolation quality and performance.
     - Comfy dtype: `COMBO[FLOAT]`
     - Python dtype: `float`
 ### Optional
 - **`optional_interpolation_states`**
-    - Provides optional states for controlling the interpolation process, allowing for advanced customization of frame generation.
+    - Optional states that can control the interpolation process, allowing for advanced customization or optimization based on specific requirements.
     - Comfy dtype: `INTERPOLATION_STATES`
     - Python dtype: `InterpolationStateList`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output of the interpolation process, consisting of the original and newly generated intermediate frames, enhancing the fluidity of the video sequence.
-    - Python dtype: `torch.Tensor`
+    - The output consists of a sequence of interpolated frames, enhancing the fluidity and frame rate of the input video sequence.
+    - Python dtype: `List[torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes:
@@ -137,7 +140,7 @@ class RIFE_VFI:
         
         args = [interpolation_model, scale_list, fast_mode, ensemble]
         out = postprocess_frames(
-            generic_frame_loop(frames, clear_cache_after_n_frames, multiplier, return_middle_frame, *args, 
+            generic_frame_loop(type(self).__name__, frames, clear_cache_after_n_frames, multiplier, return_middle_frame, *args, 
                                interpolation_states=optional_interpolation_states, dtype=torch.float32)
         )
         return (out,)

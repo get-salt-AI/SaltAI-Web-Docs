@@ -1,37 +1,41 @@
 ---
 tags:
+- AnimationScheduling
 - Scheduling
+- SigmaScheduling
+- VisualEffects
+- WavePatterns
 ---
 
 # Schedule Value Threshold
 ## Documentation
 - Class name: `SaltThresholdSchedule`
-- Category: `SALT/Scheduling`
+- Category: `SALT/AudioViz/Scheduling`
 - Output node: `False`
 
-The SaltThresholdSchedule node is designed to apply a fading effect to a schedule list based on specified parameters, such as fade type and strength. This node enables dynamic adjustment of schedule values to create smooth transitions or emphasize certain parts of the schedule through fading in, fading out, or both.
+This node applies a threshold to a schedule list, modifying each value based on a specified fade type and strength, starting from an optional index. It's designed to create dynamic adjustments in scheduling sequences, allowing for the implementation of fade-in, fade-out, or both effects to enhance the temporal dynamics of a schedule.
 ## Input types
 ### Required
 - **`float_schedule`**
-    - The list of schedule values to be modified with a fading effect. This parameter is crucial for determining the base values that the fading effect will be applied to.
+    - The list of schedule values to be modified. It serves as the base for applying the threshold adjustments, determining the sequence of values that will undergo fading effects.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 - **`max_frames`**
-    - Specifies the maximum number of frames for the schedule. This parameter limits the length of the output schedule list.
+    - Specifies the maximum number of frames for the schedule, defining the temporal limit for the application of the threshold.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`output_mode`**
-    - Defines the format of the output schedule list, such as 'prompt_schedule', 'float_list', 'int_list', or 'raw'. This parameter determines how the modified schedule values are presented.
+    - Determines the format of the output schedule list, allowing for different representations such as 'prompt_schedule', 'float_list', 'int_list', or 'raw'.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`schedule_values`**
-    - A string detailing specific schedule values and their corresponding descriptions or settings. This parameter allows for the customization of schedule values based on textual descriptions.
+    - A string representing scheduled values in a JSON format, which are used to generate the sequence with applied thresholds.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`value_schedule_list`**
     - Comfy dtype: `*`
-    - The modified schedule list after applying the specified fading effect, showcasing the dynamic transitions between values.
+    - The modified schedule list after applying the specified threshold, showcasing the dynamic adjustments made to the original sequence.
     - Python dtype: `List[float]`
 ## Usage tips
 - Infra type: `CPU`
@@ -58,7 +62,7 @@ class SaltThresholdSchedule:
     RETURN_NAMES = ("value_schedule_list",)
 
     FUNCTION = "generate_sequence"
-    CATEGORY = "SALT/Scheduling"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling"
 
     def generate_sequence(self, float_schedule, schedule_values, max_frames, output_mode):
         try:

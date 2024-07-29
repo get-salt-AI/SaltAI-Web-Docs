@@ -1,6 +1,9 @@
 ---
 tags:
+- BooleanLogic
 - ConditionalSelection
+- ImageSwitching
+- ImpactPack
 ---
 
 # ⭆ Big Int Switch

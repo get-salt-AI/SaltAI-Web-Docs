@@ -1,8 +1,6 @@
 ---
 tags:
-- Prompt
-- Text
-- Wildcard
+- Searge
 ---
 
 # Wildcard Processor (Mikey)
@@ -11,21 +9,21 @@ tags:
 - Category: `Mikey/Text`
 - Output node: `False`
 
-The Wildcard Processor node is designed to process text inputs by searching for and replacing wildcard patterns with specified content. It utilizes a seed value to ensure reproducibility in the selection of replacements, making it suitable for generating varied yet consistent outputs based on the input prompt.
+The Wildcard Processor node is designed to enhance text inputs by dynamically substituting placeholders with specified or random values. It leverages wildcard and random syntax processing to generate varied outputs based on the given seed, making it ideal for applications requiring text variation and customization.
 ## Input types
 ### Required
 - **`prompt`**
-    - The 'prompt' parameter is the text input that contains wildcard patterns to be processed. It plays a crucial role in determining the output of the node by providing the base content that will undergo transformation.
+    - The primary text input containing placeholders for dynamic substitution. It serves as the base for wildcard and random syntax processing, directly influencing the generated output.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`seed`**
-    - The 'seed' parameter is used to initialize the random number generator, ensuring that the selection of replacements for wildcard patterns in the prompt is reproducible and consistent across runs.
+    - A numerical value used to initialize the random number generator, ensuring the reproducibility of text variations. It plays a crucial role in the deterministic transformation of the input text.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`string`**
     - Comfy dtype: `STRING`
-    - The output is a modified version of the input prompt, where wildcard patterns have been replaced with specified content, based on the provided seed value.
+    - The processed text with wildcards and optional elements dynamically replaced, ready for further use or display.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -54,7 +52,19 @@ class WildcardProcessor:
         if extra_pnginfo is None:
             extra_pnginfo = {}
         prompt = search_and_replace(prompt, extra_pnginfo, prompt_)
-        prompt = find_and_replace_wildcards(prompt, seed)
-        return (prompt, )
+        prompt = process_wildcard_syntax(prompt, seed)
+        prompt = process_random_syntax(prompt, seed)
+        new_prompt = find_and_replace_wildcards(prompt, seed)
+        # loop to pick up wildcards that are in wildcard files
+        if new_prompt != prompt:
+            for i in range(10):
+                prompt = new_prompt
+                prompt = search_and_replace(prompt, extra_pnginfo, prompt_)
+                prompt = process_wildcard_syntax(prompt, seed)
+                prompt = process_random_syntax(prompt, seed)
+                new_prompt = find_and_replace_wildcards(prompt, seed)
+                if new_prompt == prompt:
+                    break
+        return (new_prompt, )
 
 ```

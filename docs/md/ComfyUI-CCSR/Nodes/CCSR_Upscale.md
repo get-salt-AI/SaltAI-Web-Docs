@@ -1,8 +1,8 @@
 ---
 tags:
-- ImageScaling
+- ImageResolution
+- ImageTransformation
 - ImageUpscaling
-- Upscale
 ---
 
 # CCSR_Upscale
@@ -11,73 +11,73 @@ tags:
 - Category: `CCSR`
 - Output node: `False`
 
-The node `CCSR_Upscale` is designed to enhance the resolution of images or latent representations through advanced upscaling techniques. It leverages custom algorithms and models to upscale images with improved quality and detail, aiming to achieve higher fidelity outputs compared to traditional upscaling methods.
+The node is designed to upscale images or latent representations, leveraging custom scaling methods to enhance the resolution or detail of the input data. It focuses on applying advanced upscaling techniques to improve image quality or adjust the size of latent representations for further processing or visualization.
 ## Input types
 ### Required
 - **`ccsr_model`**
-    - Specifies the model used for the upscaling process, central to determining the upscaling technique and its effectiveness.
+    - Specifies the CCSR model to be used for upscaling, which determines the algorithm and approach for enhancing the image or latent representation.
     - Comfy dtype: `CCSRMODEL`
-    - Python dtype: `str`
+    - Python dtype: `CCSRModel`
 - **`image`**
-    - The image to be upscaled, serving as the primary input for the upscaling process.
+    - Represents the input image to be upscaled. The quality and characteristics of the input image directly influence the outcome of the upscaling process.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`resize_method`**
-    - Defines the method used to resize the image, impacting the upscaling quality and characteristics.
+    - Determines the method to be used for resizing during the upscaling process, offering a variety of algorithms such as lanczos among others.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scale_by`**
-    - Determines the scaling factor for the upscaling process, affecting the final size of the output.
+    - Defines the factor by which the image or latent representation is to be scaled. This value allows for precise control over the enlargement of the input data.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`steps`**
-    - Specifies the number of steps to perform in the upscaling process, influencing the detail and quality of the upscaled image.
+    - Specifies the number of steps to be used in the upscaling process, affecting the detail and quality of the upscaled output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`t_max`**
-    - The maximum temperature for sampling, affecting the randomness and detail in the upscaled image.
+    - The maximum threshold for the upscaling process, influencing the extent of detail enhancement.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`t_min`**
-    - The minimum temperature for sampling, setting the lower bound for randomness and detail in the upscaled image.
+    - The minimum threshold for the upscaling process, affecting the base level of detail to be enhanced.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sampling_method`**
-    - Determines the sampling strategy used during upscaling, affecting the texture and quality of the output.
+    - Specifies the sampling method to be used in the upscaling process, affecting the algorithm's approach to enhancing detail and resolution.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`tile_size`**
-    - The size of tiles used in the upscaling process, impacting the processing efficiency and detail capture.
+    - Defines the size of tiles to be used in the upscaling process, allowing for efficient processing of large images by breaking them into manageable pieces.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`tile_stride`**
-    - The stride of tiles during upscaling, affecting overlap and detail continuity between tiles.
+    - Determines the stride of tiling during the upscaling process, affecting the overlap and integration of upscaled tiles.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`vae_tile_size_encode`**
-    - Tile size for the VAE encoding step, influencing the detail preservation during encoding.
+    - Specifies the tile size for the encoding phase in the upscaling process, affecting the resolution and detail of the encoded representation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`vae_tile_size_decode`**
-    - Tile size for the VAE decoding step, affecting the detail reconstruction during decoding.
+    - Specifies the tile size for the decoding phase in the upscaling process, affecting the resolution and detail of the decoded output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`color_fix_type`**
-    - Specifies the method used for color correction, crucial for maintaining color accuracy in the upscaled image.
+    - Determines the method for color correction during the upscaling process, offering options like 'adain' and 'wavelet' for enhanced visual fidelity.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`keep_model_loaded`**
-    - Indicates whether the upscaling model should remain loaded between invocations, affecting processing speed and resource usage.
+    - Indicates whether the CCSR model should remain loaded in memory after the upscaling process, affecting resource utilization and performance.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`seed`**
-    - The random seed for the upscaling process, ensuring reproducibility of the results.
+    - Specifies the seed value for random number generation during the upscaling process, ensuring reproducibility of results.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`upscaled_image`**
     - Comfy dtype: `IMAGE`
-    - The output of the upscaling process, providing enhanced resolution images with improved quality and detail.
+    - The result of the upscaling process, which is an enhanced-resolution version of the input samples. This output reflects the applied upscaling method and target dimensions.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -132,29 +132,24 @@ class CCSR_Upscale:
     CATEGORY = "CCSR"
 
     @torch.no_grad()
-    def process(self, ccsr_model, image, resize_method, scale_by, steps, t_max, t_min, tile_size, tile_stride, color_fix_type, keep_model_loaded, vae_tile_size_encode, vae_tile_size_decode, sampling_method, seed):
+    def process(self, ccsr_model, image, resize_method, scale_by, steps, t_max, t_min, tile_size, tile_stride, 
+                color_fix_type, keep_model_loaded, vae_tile_size_encode, vae_tile_size_decode, sampling_method, seed):
         torch.manual_seed(seed)
         torch.cuda.manual_seed_all(seed)
-        comfy.model_management.unload_all_models()
-        device = comfy.model_management.get_torch_device()
-        config_path = os.path.join(script_directory, "configs/model/ccsr_stage2.yaml")
-        empty_text_embed = torch.load(os.path.join(script_directory, "empty_text_embed.pt"), map_location=device)
-        dtype = torch.float16 if comfy.model_management.should_use_fp16() and not comfy.model_management.is_device_mps(device) else torch.float32
-        if not hasattr(self, "model") or self.model is None:
-            config = OmegaConf.load(config_path)
-            self.model = instantiate_from_config(config)
-            
-            load_state_dict(self.model, torch.load(ccsr_model, map_location="cpu"), strict=True)
-            # reload preprocess model if specified
+        mm.unload_all_models()
+        device = mm.get_torch_device()
+        offload_device = mm.unet_offload_device()
+        dtype = ccsr_model['dtype']
+        model = ccsr_model['model']
+        
+        #empty_text_embed = torch.load(os.path.join(script_directory, "empty_text_embed.pt"), map_location=device)
+        empty_text_embed_sd = comfy.utils.load_torch_file(os.path.join(script_directory, "empty_text_embed.safetensors"))
+        empty_text_embed = empty_text_embed_sd['empty_text_embed'].to(dtype).to(device)
 
-            self.model.freeze()
-            self.model.to(device, dtype=dtype)
-        sampler = SpacedSampler(self.model, var_type="fixed_small")
+        sampler = SpacedSampler(model, var_type="fixed_small")
 
-        batch_size = image.shape[0]
         image, = ImageScaleBy.upscale(self, image, resize_method, scale_by)
         
-        # Assuming 'image' is a PyTorch tensor with shape [B, H, W, C] and you want to resize it.
         B, H, W, C = image.shape
 
         # Calculate the new height and width, rounding down to the nearest multiple of 64.
@@ -163,28 +158,26 @@ class CCSR_Upscale:
 
         # Reorder to [B, C, H, W] before using interpolate.
         image = image.permute(0, 3, 1, 2).contiguous()
-
-        # Resize the image tensor.
-        resized_image = F.interpolate(image, size=(new_height, new_width), mode='bicubic', align_corners=False)
-        
-        # Move the tensor to the GPU.
-        #resized_image = resized_image.to(device)
+        resized_image = F.interpolate(image, size=(new_height, new_width), mode='bilinear', align_corners=False)
+ 
         strength = 1.0
-        self.model.control_scales = [strength] * 13
+        model.control_scales = [strength] * 13
         
+        model.to(device, dtype=dtype).eval()
+
         height, width = resized_image.size(-2), resized_image.size(-1)
         shape = (1, 4, height // 8, width // 8)
-        x_T = torch.randn(shape, device=self.model.device, dtype=torch.float32)
-        autocast_condition = dtype == torch.float16 and not comfy.model_management.is_device_mps(device)
-        out = []    
+        x_T = torch.randn(shape, device=model.device, dtype=torch.float32)
 
-        pbar = comfy.utils.ProgressBar(batch_size)
-
-        with torch.autocast(comfy.model_management.get_autocast_device(device), dtype=dtype) if autocast_condition else nullcontext():
-            for i in range(batch_size):
+        out = []
+        if B > 1:
+            pbar = comfy.utils.ProgressBar(B)
+        autocast_condition = dtype == torch.float16 and not mm.is_device_mps(device)
+        with torch.autocast(mm.get_autocast_device(device), dtype=dtype) if autocast_condition else nullcontext():
+            for i in range(B):
                 img = resized_image[i].unsqueeze(0).to(device)
                 if sampling_method == 'ccsr_tiled_mixdiff':
-                    self.model.reset_encoder_decoder()
+                    model.reset_encoder_decoder()
                     print("Using tiled mixdiff")
                     samples = sampler.sample_with_mixdiff_ccsr(
                         empty_text_embed, tile_size=tile_size, tile_stride=tile_stride,
@@ -194,7 +187,7 @@ class CCSR_Upscale:
                         color_fix_type=color_fix_type
                     )
                 elif sampling_method == 'ccsr_tiled_vae_gaussian_weights':
-                    self.model._init_tiled_vae(encoder_tile_size=vae_tile_size_encode // 8, decoder_tile_size=vae_tile_size_decode // 8)
+                    model._init_tiled_vae(encoder_tile_size=vae_tile_size_encode // 8, decoder_tile_size=vae_tile_size_decode // 8)
                     print("Using gaussian weights")
                     samples = sampler.sample_with_tile_ccsr(
                         empty_text_embed, tile_size=tile_size, tile_stride=tile_stride,
@@ -204,7 +197,7 @@ class CCSR_Upscale:
                         color_fix_type=color_fix_type
                     )
                 else:
-                    self.model.reset_encoder_decoder()
+                    model.reset_encoder_decoder()
                     print("no tiling")
                     samples = sampler.sample_ccsr(
                         empty_text_embed, steps=steps, t_max=t_max, t_min=t_min, shape=shape, cond_img=img,
@@ -213,9 +206,10 @@ class CCSR_Upscale:
                         color_fix_type=color_fix_type
                     )
                 out.append(samples.squeeze(0).cpu())
-                comfy.model_management.throw_exception_if_processing_interrupted()
-                pbar.update(1)
-                print("Sampled image ", i, " out of ", batch_size)
+                mm.throw_exception_if_processing_interrupted()
+                if B > 1:
+                    pbar.update(1)
+                    print("Sampled image ", i, " out of ", B)
        
         original_height, original_width = H, W  
         processed_height = samples.size(2)
@@ -224,8 +218,8 @@ class CCSR_Upscale:
         resized_back_image, = ImageScale.upscale(self, out_stacked, "lanczos", target_width, processed_height, crop="disabled")
         
         if not keep_model_loaded:
-            self.model = None            
-            comfy.model_management.soft_empty_cache()
+            model.to(offload_device)           
+            mm.soft_empty_cache()
         return(resized_back_image,)
 
 ```

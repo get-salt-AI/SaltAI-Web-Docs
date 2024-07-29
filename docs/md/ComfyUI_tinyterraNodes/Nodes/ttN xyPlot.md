@@ -1,6 +1,8 @@
 ---
 tags:
 - DataVisualization
+- LayeredDiffusion
+- LayeredDiffusionDecode
 - XYPlot
 - XYPlotData
 ---
@@ -8,48 +10,48 @@ tags:
 # xyPlot
 ## Documentation
 - Class name: `ttN xyPlot`
-- Category: `ttN/legacy`
+- Category: `🌏 tinyterra/legacy`
 - Output node: `False`
 
-The `ttN xyPlot` node is designed for generating and processing XY plots within a specific visualization framework. It focuses on validating plot types, managing plot variables, and orchestrating the generation of images based on XY coordinates. This node integrates various functionalities to ensure the creation of visual representations is both efficient and adaptable to different types of data inputs.
+The ttN xyPlot node is designed for generating and manipulating XY plots, including the ability to flip axes, manage plot points for X, Y, and optionally Z dimensions, and configure plot appearance and behavior. It supports advanced plotting features such as grid spacing and saving individual plot elements, catering to customized visualization needs.
 ## Input types
 ### Required
 - **`grid_spacing`**
-    - Determines the spacing between grid points in the plot, affecting the plot's resolution and visual density.
+    - Specifies the spacing between grid lines in the plot, affecting the plot's granularity and visual density.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`latent_id`**
-    - Identifies a specific latent variable to be used in the plot, influencing the data representation and visualization.
+    - Identifies a specific latent variable or feature within the dataset, used for generating plots based on latent dimensions.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`output_individuals`**
-    - Controls whether individual data points are outputted, impacting the level of detail in the plot visualization.
+    - Determines whether individual plot elements should be outputted, enabling detailed analysis and customization of plot components.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `bool`
 - **`flip_xy`**
-    - Specifies whether the X and Y axes should be flipped, altering the plot's orientation.
+    - Controls whether the X and Y axes should be swapped, allowing for flexible orientation of the plot based on data or preference.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `bool`
 - **`x_axis`**
-    - Defines the data type or category for the X-axis, shaping how data is interpreted and plotted.
+    - Specifies the data or dimension to be used for the X-axis in the plot, defining the horizontal aspect of the visualization.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`x_values`**
-    - A list of values to be plotted on the X-axis, determining the specific points and their arrangement in the plot.
+    - Provides the specific values or range of values for the X-axis, used to plot data points horizontally.
     - Comfy dtype: `STRING`
-    - Python dtype: `List[str]`
+    - Python dtype: `str`
 - **`y_axis`**
-    - Specifies the data type or category for the Y-axis, influencing the plot's data interpretation and visualization.
+    - Specifies the data or dimension to be used for the Y-axis in the plot, defining the vertical aspect of the visualization.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`y_values`**
-    - A collection of values for plotting on the Y-axis, which dictates the plot points and their organization.
+    - Provides the specific values or range of values for the Y-axis, used to plot data points vertically.
     - Comfy dtype: `STRING`
-    - Python dtype: `List[str]`
+    - Python dtype: `str`
 ## Output types
 - **`xyPlot`**
     - Comfy dtype: `XYPLOT`
-    - The generated XY plot data, encapsulating the visual representation of the plotted points.
+    - The generated XY plot data, including coordinates for X, Y, and optionally Z axes, grid spacing, and individual element saving options.
     - Python dtype: `Dict[str, Any]`
 ## Usage tips
 - Infra type: `CPU`
@@ -141,7 +143,7 @@ class ttN_XYPlot:
     RETURN_NAMES = ("xyPlot", )
     FUNCTION = "plot"
 
-    CATEGORY = "ttN/legacy"
+    CATEGORY = "🌏 tinyterra/legacy"
     
     def plot(self, grid_spacing, latent_id, output_individuals, flip_xy, x_axis, x_values, y_axis, y_values):
         def clean_values(values):

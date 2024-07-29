@@ -1,6 +1,7 @@
 ---
 tags:
-- Image
+- Prompt
+- PromptComposer
 ---
 
 # Stable Diffusion 3 (API)

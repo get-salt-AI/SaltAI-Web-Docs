@@ -1,6 +1,6 @@
 ---
 tags:
-- Checkpoint
+- BackendCache
 ---
 
 # Checkpoint Hash (Mikey)
@@ -9,17 +9,17 @@ tags:
 - Category: `Mikey/Loaders`
 - Output node: `False`
 
-The CheckpointHash node is designed to generate a hash value for a given checkpoint file. This functionality is crucial for verifying the integrity of checkpoint files and ensuring that they have not been altered or corrupted. It plays a key role in maintaining the reliability and consistency of model loading processes by providing a means to track and validate checkpoint files.
+The CheckpointHash node is designed to generate a hash value for a given checkpoint file. It identifies the file within a specified directory, computes its hash, and updates a prompt dictionary with the hash and checkpoint name. This functionality is crucial for ensuring the integrity and uniqueness of checkpoint files in machine learning workflows.
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - The 'ckpt_name' parameter specifies the name of the checkpoint file for which the hash is to be generated. It is essential for identifying the correct file within a collection of checkpoints and is a key factor in the hash generation process.
+    - The name of the checkpoint file for which the hash is to be generated. This parameter is essential for locating the file within the directory and computing its hash.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`ckpt_hash`**
     - Comfy dtype: `STRING`
-    - The 'ckpt_hash' output is the generated hash value of the specified checkpoint file, serving as a unique identifier and integrity verifier for the file.
+    - The computed hash value of the checkpoint file, ensuring its integrity and uniqueness.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -33,7 +33,7 @@ class CheckpointHash:
     def INPUT_TYPES(s):
         return {"required": { "ckpt_name": ("STRING", {"forceInput": True}),},
                 "hidden": {"unique_id": "UNIQUE_ID", "extra_pnginfo": "EXTRA_PNGINFO", "prompt": "PROMPT"}}
-    
+
     RETURN_TYPES = ("STRING",)
     RETURN_NAMES = ("ckpt_hash",)
     FUNCTION = "get_hash"

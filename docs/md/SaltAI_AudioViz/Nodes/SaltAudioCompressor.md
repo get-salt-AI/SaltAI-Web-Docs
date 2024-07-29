@@ -1,41 +1,43 @@
 ---
 tags:
 - Audio
+- List
+- ListExtension
 ---
 
 # Audio Compressor
 ## Documentation
 - Class name: `SaltAudioCompressor`
-- Category: `SALT/Audio/Process`
+- Category: `SALT/AudioViz/Audio/Process`
 - Output node: `False`
 
-The SaltAudioCompressor node is designed to dynamically reduce the dynamic range of audio signals. It applies compression to make louder sounds quieter and quieter sounds louder, achieving a more consistent overall level.
+The SaltAudioCompressor node is designed to compress audio signals, reducing the dynamic range of the audio to ensure a more consistent volume level across the track. It utilizes parameters such as threshold, ratio, attack, and release times to control the compression effect, making it suitable for audio post-production and enhancement tasks.
 ## Input types
 ### Required
 - **`audio`**
-    - The raw audio data to be compressed. This input is crucial for the compression process, affecting the final output by adjusting the dynamic range of the audio.
+    - The raw audio data to be compressed. This input is crucial as it represents the audio signal that will undergo compression, directly influencing the output quality and characteristics.
     - Comfy dtype: `AUDIO`
     - Python dtype: `bytes`
 - **`threshold_dB`**
-    - The threshold level in decibels. Sounds above this level will be compressed. It determines the point at which compression starts, impacting the loudness of the audio.
+    - The threshold level in decibels (dB) above which compression is applied. This parameter determines the loudness level at which the compressor starts to reduce the gain, playing a key role in the dynamics control of the audio.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`ratio`**
-    - The compression ratio, indicating how much the audio that exceeds the threshold will be compressed. It affects the intensity of the compression applied to the audio.
+    - The compression ratio, indicating how much the audio signal is reduced once it crosses the threshold. It's essential for defining the intensity of the compression effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`attack_ms`**
-    - The attack time in milliseconds. It specifies how quickly the compressor starts to work after the audio exceeds the threshold, affecting the responsiveness of the compression.
+    - The attack time in milliseconds, specifying how quickly the compressor reacts to audio exceeding the threshold. It affects the compressor's responsiveness to sudden loudness changes.
     - Comfy dtype: `INT`
     - Python dtype: `float`
 - **`release_ms`**
-    - The release time in milliseconds. It defines how quickly the compressor stops affecting the audio after it falls below the threshold, influencing the smoothness of the audio output.
+    - The release time in milliseconds, defining how quickly the compressor stops affecting the audio after it falls below the threshold. This parameter influences the smoothness of the volume level transitions.
     - Comfy dtype: `INT`
     - Python dtype: `float`
 ## Output types
 - **`audio`**
     - Comfy dtype: `AUDIO`
-    - The compressed audio data, with reduced dynamic range. This output is the direct result of the compression process applied to the input audio.
+    - The compressed audio data, resulting from the application of dynamic range compression to the input audio. This output showcases the effect of the compression settings on the original audio signal.
     - Python dtype: `bytes`
 ## Usage tips
 - Infra type: `CPU`
@@ -60,7 +62,7 @@ class SaltAudioCompressor:
     RETURN_TYPES = ("AUDIO",)
     RETURN_NAMES = ("audio",)
     FUNCTION = "compress_audio"
-    CATEGORY = "SALT/Audio/Process"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Audio/Process"
 
     def compress_audio(self, audio, threshold_dB, ratio, attack_ms, release_ms):
         TEMP = folder_paths.get_temp_directory()

@@ -1,6 +1,10 @@
 ---
 tags:
 - Prompt
+- PromptStyling
+- Searge
+- Text
+- Wildcard
 ---
 
 # PromptList
@@ -9,27 +13,27 @@ tags:
 - Category: `EasyUse/Prompt`
 - Output node: `False`
 
-The `promptList` node is designed to generate a list of strings based on a given multiline prompt, starting from a specified index and up to a maximum number of rows. It aims to facilitate the extraction and manipulation of text data by breaking down larger text inputs into manageable, indexed segments.
+This node is designed to facilitate the generation of string lists from multiline prompts, with enhanced capabilities for processing prompts containing Chinese characters by converting them to English. It uniquely caters to workflows requiring specific starting points and row limitations in the output list, while also accommodating unique identifiers.
 ## Input types
 ### Required
 - **`prompt_i`**
-    - unknown
+    - Represents a main text input from which the list of strings will be generated. Supports multiline input and is capable of handling multiple prompts sequentially numbered (e.g., prompt_1, prompt_2, etc.).
     - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 ### Optional
 - **`optional_prompt_list`**
-    - An optional parameter that accepts a list of prompts, providing flexibility in the input by allowing multiple prompts to be combined or processed separately.
+    - An optional list parameter that allows for additional prompts to be included in the generation process.
     - Comfy dtype: `LIST`
     - Python dtype: `List[str]`
 ## Output types
 - **`prompt_list`**
     - Comfy dtype: `LIST`
-    - Outputs a list of prompts, aggregating inputs from various sources into a unified list.
+    - The generated list of strings derived from the input prompts.
     - Python dtype: `List[str]`
 - **`prompt_strings`**
     - Comfy dtype: `STRING`
-    - Outputs the same list of prompts as `prompt_list`, effectively duplicating the output for potential different uses or processing steps.
-    - Python dtype: `List[str]`
+    - A concatenated string of all input prompts, separated by a specified delimiter.
+    - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -71,6 +75,8 @@ class promptList:
 
             # Only process string input ports.
             if isinstance(v, str) and v != '':
+                if has_chinese(v):
+                    v = zh_to_en([v])[0]
                 prompts.append(v)
 
         return (prompts, prompts)

@@ -1,6 +1,5 @@
 ---
 tags:
-- SamplerScheduler
 - Sampling
 ---
 
@@ -10,34 +9,32 @@ tags:
 - Category: `EasyUse/XY Inputs`
 - Output node: `False`
 
-This node is designed to facilitate the visualization and comparison of different sampler and scheduler combinations within a given computational framework. It abstracts the complexity of selecting and configuring samplers and schedulers, presenting the user with a simplified interface for generating and visualizing the effects of these choices on the model's performance or output.
+This node is designed to integrate and manage the interaction between a sampler and a scheduler within a sampling process. It facilitates the configuration and execution of sampling strategies by allowing users to specify a sampler and a scheduler, along with their respective parameters, to generate or modify sample outputs effectively.
 ## Input types
 ### Required
 - **`target_parameter`**
-    - Determines whether the focus is on samplers or schedulers for visualization and comparison. This choice directs the node's processing and output generation, highlighting the impact of either samplers or schedulers on model performance.
+    - This parameter is crucial for defining the specific target or goal that the sampling process aims to achieve, directly influencing the outcome and effectiveness of the sampling strategy.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`input_count`**
-    - Specifies the number of samplers or schedulers to be considered in the visualization. This allows for a comprehensive comparison across a range of configurations, facilitating a deeper understanding of their effects.
+    - Determines the number of inputs to be processed, affecting the node's execution by scaling the sampling operation according to the provided input volume.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`sampler_i`**
-    - Defines a specific sampler to be included in the comparison. The index 'i' varies, allowing for multiple samplers to be specified and compared simultaneously.
+    - Specifies the index of the sampler to be used, selecting from a predefined list of available samplers. This choice impacts the sampling method and its characteristics.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `int`
 - **`scheduler_i`**
-    - Specifies a particular scheduler to be included in the comparison. Similar to 'sampler_i', the index 'i' allows for the inclusion of multiple schedulers, enabling a detailed comparative analysis.
+    - Indicates the index of the scheduler, chosen from a set of available scheduling algorithms. This selection influences the timing and adjustment of sampling parameters throughout the process.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `int`
 ## Output types
 - **`X or Y`**
     - Comfy dtype: `X_Y`
-    - Outputs the result of the comparison between the selected samplers or schedulers, depending on the 'target_parameter'. This facilitates an understanding of how each choice affects the model's performance.
-    - Python dtype: `str`
-- **`ui`**
-    - Provides a user interface component that visualizes the effects of different sampler and scheduler combinations, aiding in the intuitive comparison and selection of the most suitable configuration.
+    - Outputs a result that is contingent upon the configuration and interaction of the sampler and scheduler. The exact nature of the output (X or Y) depends on the specific parameters and algorithms employed.
+    - Python dtype: `torch.FloatTensor`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -85,7 +82,7 @@ class XYplot_Sampler_Scheduler:
             for sampler, scheduler in zip(samplers, schedulers):
                 sampler = sampler if sampler else 'None'
                 scheduler = scheduler if scheduler else 'None'
-                values.append(sampler +', '+ scheduler)
+                values.append(sampler +','+ scheduler)
         values = "; ".join(values)
         return ({"axis": axis, "values": values},) if values else (None,)
 

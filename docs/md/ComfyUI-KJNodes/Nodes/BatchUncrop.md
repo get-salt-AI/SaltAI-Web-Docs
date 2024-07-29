@@ -5,55 +5,55 @@ tags:
 - ImageTransformation
 ---
 
-# BatchUncrop
+# Batch Uncrop
 ## Documentation
 - Class name: `BatchUncrop`
 - Category: `KJNodes/masking`
 - Output node: `False`
 
-The BatchUncrop node is designed to reverse the cropping process on a batch of images. It takes original images and their cropped versions along with cropping metadata to reconstruct the original images with the cropped areas seamlessly integrated, adjusting for borders and scaling as necessary.
+The BatchUncrop node is designed to reverse the cropping process on a batch of images. It takes previously cropped images along with their corresponding original images and other parameters to accurately restore them to their original context, adjusting for any specified borders and blending as needed. This node is essential for operations where the spatial integrity of images needs to be maintained after processing steps that involve cropping.
 ## Input types
 ### Required
 - **`original_images`**
-    - Original images before cropping, used as a base for the uncropping process.
+    - Original images before cropping, used as a reference for the uncropping process to restore the images to their original state.
     - Comfy dtype: `IMAGE`
     - Python dtype: `List[torch.Tensor]`
 - **`cropped_images`**
-    - Cropped images that need to be integrated back into the original images.
+    - Cropped images that need to be uncropped and restored to their original context.
     - Comfy dtype: `IMAGE`
     - Python dtype: `List[torch.Tensor]`
 - **`bboxes`**
-    - Bounding boxes specifying the cropped areas in the original images.
+    - Bounding boxes specifying the cropped areas within the original images, used to accurately place the cropped images back into their original context.
     - Comfy dtype: `BBOX`
     - Python dtype: `List[Tuple[int, int, int, int]]`
 - **`border_blending`**
-    - Controls the blending of the borders during the uncropping process to ensure a seamless integration.
+    - Controls the blending of the borders during the uncropping process to ensure a seamless transition between the cropped and original areas.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`crop_rescale`**
-    - Indicates whether the cropped images should be rescaled to their original size before uncropping.
+    - Factor to rescale the cropped images before placing them back into the original images, allowing for adjustments in size if necessary.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`border_top`**
-    - Specifies whether to apply a top border during the uncropping process.
+    - Indicates whether a top border should be added during the uncropping process.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`border_bottom`**
-    - Specifies whether to apply a bottom border during the uncropping process.
+    - Indicates whether a bottom border should be added during the uncropping process.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`border_left`**
-    - Specifies whether to apply a left border during the uncropping process.
+    - Indicates whether a left border should be added during the uncropping process.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`border_right`**
-    - Specifies whether to apply a right border during the uncropping process.
+    - Indicates whether a right border should be added during the uncropping process.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The original images with the cropped areas seamlessly integrated.
+    - The result of the uncropping process, where cropped images are integrated back into their original context, adjusted for borders and blending as specified.
     - Python dtype: `List[torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`

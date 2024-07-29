@@ -1,5 +1,7 @@
 ---
 tags:
+- AnimationScheduling
+- Scheduling
 - SigmaScheduling
 ---
 
@@ -9,22 +11,26 @@ tags:
 - Category: `sampling/custom_sampling/sigmas`
 - Output node: `False`
 
-The SplitSigmas node is designed for dividing a sequence of sigma values into two parts based on a specified step. This functionality is crucial for operations that require different handling or processing of the initial and subsequent parts of the sigma sequence, enabling more flexible and targeted manipulation of these values.
+The `SplitSigmas` node is designed to partition a sequence of sigma values into two subsets based on a specified step index. This functionality is crucial for custom sampling strategies in generative models, where manipulating the noise levels can significantly impact the model's output quality and diversity.
 ## Input types
 ### Required
 - **`sigmas`**
-    - The 'sigmas' parameter represents the sequence of sigma values to be split. It is essential for determining the division point and the resulting two sequences of sigma values, impacting the node's execution and results.
+    - The sequence of sigma values to be split. This parameter is central to the node's operation as it determines the basis for the partitioning process.
     - Comfy dtype: `SIGMAS`
     - Python dtype: `torch.Tensor`
 - **`step`**
-    - The 'step' parameter specifies the index at which the sigma sequence should be split. It plays a critical role in defining the boundary between the two resulting sigma sequences, influencing the node's functionality and the characteristics of the output.
+    - The index at which the sigma sequence is split into two subsets. This parameter directly influences the composition of the resulting sigma subsets, affecting the sampling process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
-- **`sigmas`**
+- **`high_sigmas`**
     - Comfy dtype: `SIGMAS`
-    - The node outputs two sequences of sigma values, each representing a part of the original sequence divided at the specified step. These outputs are crucial for subsequent operations that require differentiated handling of sigma values.
-    - Python dtype: `Tuple[torch.Tensor, torch.Tensor]`
+    - The subset of sigma values before the specified step index, representing higher noise levels.
+    - Python dtype: `torch.Tensor`
+- **`low_sigmas`**
+    - Comfy dtype: `SIGMAS`
+    - The subset of sigma values from the specified step index onwards, representing lower noise levels.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
@@ -43,6 +49,7 @@ class SplitSigmas:
                      }
                 }
     RETURN_TYPES = ("SIGMAS","SIGMAS")
+    RETURN_NAMES = ("high_sigmas", "low_sigmas")
     CATEGORY = "sampling/custom_sampling/sigmas"
 
     FUNCTION = "get_sigmas"

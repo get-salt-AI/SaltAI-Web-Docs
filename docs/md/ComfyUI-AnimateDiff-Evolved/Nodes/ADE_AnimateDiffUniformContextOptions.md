@@ -1,8 +1,9 @@
 ---
 tags:
 - AnimateDiff
-- AnimateDiffContext
 - Animation
+- MotionData
+- PoseEstimation
 ---
 
 # Context Options◆Looped Uniform 🎭🅐🅓
@@ -11,58 +12,62 @@ tags:
 - Category: ``
 - Output node: `False`
 
-This node is designed to generate context options for the AnimateDiff process, focusing on creating a looped uniform context. It allows for the customization of context parameters such as length, stride, and overlap, and supports the configuration of looped animations with options for closed loops and fusion methods. It's aimed at enhancing the flexibility and control over the animation generation process in AnimateDiff.
+This node is designed to provide uniform context options for the AnimateDiff process, facilitating the generation of animations with consistent context across frames. It is marked as legacy, indicating that it may have been superseded by newer methods or nodes for managing context in animation generation.
 ## Input types
 ### Required
 - **`context_length`**
-    - Specifies the length of the context to be generated. It's crucial for defining the scope of the animation sequence and affects the overall animation process.
+    - Defines the length of the context used in the animation process, influencing the amount of information considered for generating each frame.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`context_stride`**
-    - Defines the stride between each context in the sequence, affecting the smoothness and speed of the animation.
+    - Determines the stride between contexts in the animation, affecting the transition and flow between frames.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`context_overlap`**
-    - Sets the amount of overlap between contexts, influencing the continuity and fluidity of the animation.
+    - Specifies the degree of overlap between contexts of consecutive frames, affecting the smoothness and continuity of the animation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`context_schedule`**
-    - Determines the scheduling method for the context, impacting the structure and timing of the animation.
+    - Specifies the scheduling method for context application, influencing the timing and sequence of animation frames.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `ContextSchedules`
 - **`closed_loop`**
-    - Indicates whether the animation should loop back to the beginning, creating a seamless loop effect.
+    - Indicates whether the animation should loop back to the beginning after completing, creating a continuous loop effect.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`fuse_method`**
-    - Specifies the method for fusing contexts, affecting the blending and transition between animation frames.
+    - Determines the method used to fuse multiple contexts together, impacting the overall coherence and flow of the generated animation.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `ContextFuseMethod`
 - **`use_on_equal_length`**
-    - Determines whether to use the context options when the length of all contexts is equal, optimizing for specific animation scenarios.
+    - A boolean flag indicating whether the context options should be applied uniformly across frames of equal length, ensuring consistent animation characteristics.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`start_percent`**
-    - Determines the starting point of the animation as a percentage of the total length. This parameter allows for fine-tuning the initial phase of the animation.
+    - Indicates the starting point of the animation as a percentage, allowing for precise control over the animation's initiation within the context.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`guarantee_steps`**
-    - Ensures a minimum number of steps in the animation, providing a baseline for the animation's complexity and duration.
+    - Guarantees a minimum number of steps in the animation, ensuring that the animation reaches a certain length regardless of other parameters.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`prev_context`**
-    - Allows for the inclusion of previously defined context options, enabling the chaining and layering of animation contexts for more complex animations.
+    - The previous context options group, which can be used as a basis for generating the new context options, facilitating continuity across animations.
     - Comfy dtype: `CONTEXT_OPTIONS`
     - Python dtype: `ContextOptionsGroup`
 - **`view_opts`**
-    - Allows for the specification of view options, further customizing the visual aspects of the animation.
+    - View options that specify additional parameters for rendering the animation, further customizing the output.
     - Comfy dtype: `VIEW_OPTS`
     - Python dtype: `ContextOptions`
+- **`deprecation_warning`**
+    - A notice that this node is considered legacy and may be replaced by newer methods or nodes in future updates.
+    - Comfy dtype: `ADEWARN`
+    - Python dtype: `str`
 ## Output types
 - **`CONTEXT_OPTS`**
     - Comfy dtype: `CONTEXT_OPTIONS`
-    - Generates a set of context options tailored for looped uniform animations in AnimateDiff, enhancing the control and customization of the animation process.
+    - The generated context options, ready to be utilized in the AnimateDiff process for creating uniform animations.
     - Python dtype: `ContextOptionsGroup`
 ## Usage tips
 - Infra type: `CPU`
@@ -92,6 +97,7 @@ class LegacyLoopedUniformContextOptionsNode:
                 "guarantee_steps": ("INT", {"default": 1, "min": 0, "max": BIGMAX}),
                 "prev_context": ("CONTEXT_OPTIONS",),
                 "view_opts": ("VIEW_OPTS",),
+                "deprecation_warning": ("ADEWARN", {"text": ""}),
             }
         }
     

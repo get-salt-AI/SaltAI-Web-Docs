@@ -1,6 +1,6 @@
 ---
 tags:
-- Image
+- DetailEnhancement
 - Pipeline
 - PipelineTransformation
 ---
@@ -11,7 +11,7 @@ tags:
 - Category: `ImpactPack/Detailer`
 - Output node: `False`
 
-This node is designed to iterate over a collection of data, applying a detailed analysis or transformation to each element. It focuses on enhancing or extracting specific details from each item in the collection, tailored to the requirements of the Impact Pack framework.
+This node is designed to provide detailed analysis or modifications for each element within a pipeline, enhancing the overall impact and effectiveness of the pipeline's operations. It abstracts the complexity of iterating over and applying specific transformations or analyses to each component, streamlining the process of refining or assessing the pipeline's components.
 ## Input types
 ### Required
 - **`image`**
@@ -75,9 +75,9 @@ This node is designed to iterate over a collection of data, applying a detailed 
     - Comfy dtype: `BASIC_PIPE`
     - Python dtype: `unknown`
 - **`wildcard`**
-    - Provides additional, dynamic context or parameters that can be used to customize the processing of each item in the collection. This flexibility allows for more tailored and nuanced detail extraction or enhancement.
+    - unknown
     - Comfy dtype: `STRING`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`refiner_ratio`**
     - unknown
     - Comfy dtype: `FLOAT`
@@ -102,6 +102,10 @@ This node is designed to iterate over a collection of data, applying a detailed 
 - **`noise_mask_feather`**
     - unknown
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
+- **`scheduler_func_opt`**
+    - unknown
+    - Comfy dtype: `SCHEDULER_FUNC`
     - Python dtype: `unknown`
 ## Output types
 - **`image`**
@@ -133,7 +137,7 @@ class DetailerForEachPipe:
         return {"required": {
                       "image": ("IMAGE", ),
                       "segs": ("SEGS", ),
-                      "guide_size": ("FLOAT", {"default": 384, "min": 64, "max": nodes.MAX_RESOLUTION, "step": 8}),
+                      "guide_size": ("FLOAT", {"default": 512, "min": 64, "max": nodes.MAX_RESOLUTION, "step": 8}),
                       "guide_size_for": ("BOOLEAN", {"default": True, "label_on": "bbox", "label_off": "crop_region"}),
                       "max_size": ("FLOAT", {"default": 1024, "min": 64, "max": nodes.MAX_RESOLUTION, "step": 8}),
                       "seed": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff}),
@@ -152,11 +156,12 @@ class DetailerForEachPipe:
                       "cycle": ("INT", {"default": 1, "min": 1, "max": 10, "step": 1}),
                      },
                 "optional": {
-                     "detailer_hook": ("DETAILER_HOOK",),
-                     "refiner_basic_pipe_opt": ("BASIC_PIPE",),
-                     "inpaint_model": ("BOOLEAN", {"default": False, "label_on": "enabled", "label_off": "disabled"}),
-                     "noise_mask_feather": ("INT", {"default": 20, "min": 0, "max": 100, "step": 1}),
-                    }
+                      "detailer_hook": ("DETAILER_HOOK",),
+                      "refiner_basic_pipe_opt": ("BASIC_PIPE",),
+                      "inpaint_model": ("BOOLEAN", {"default": False, "label_on": "enabled", "label_off": "disabled"}),
+                      "noise_mask_feather": ("INT", {"default": 20, "min": 0, "max": 100, "step": 1}),
+                      "scheduler_func_opt": ("SCHEDULER_FUNC",),
+                     }
                 }
 
     RETURN_TYPES = ("IMAGE", "SEGS", "BASIC_PIPE", "IMAGE")
@@ -169,7 +174,7 @@ class DetailerForEachPipe:
     def doit(self, image, segs, guide_size, guide_size_for, max_size, seed, steps, cfg, sampler_name, scheduler,
              denoise, feather, noise_mask, force_inpaint, basic_pipe, wildcard,
              refiner_ratio=None, detailer_hook=None, refiner_basic_pipe_opt=None,
-             cycle=1, inpaint_model=False, noise_mask_feather=0):
+             cycle=1, inpaint_model=False, noise_mask_feather=0, scheduler_func_opt=None):
 
         if len(image) > 1:
             raise Exception('[Impact Pack] ERROR: DetailerForEach does not allow image batches.\nPlease refer to https://github.com/ltdrdata/ComfyUI-extension-tutorials/blob/Main/ComfyUI-Impact-Pack/tutorial/batching-detailer.md for more information.')
@@ -187,12 +192,12 @@ class DetailerForEachPipe:
                                       force_inpaint, wildcard, detailer_hook,
                                       refiner_ratio=refiner_ratio, refiner_model=refiner_model,
                                       refiner_clip=refiner_clip, refiner_positive=refiner_positive, refiner_negative=refiner_negative,
-                                      cycle=cycle, inpaint_model=inpaint_model, noise_mask_feather=noise_mask_feather)
+                                      cycle=cycle, inpaint_model=inpaint_model, noise_mask_feather=noise_mask_feather, scheduler_func_opt=scheduler_func_opt)
 
         # set fallback image
         if len(cnet_pil_list) == 0:
             cnet_pil_list = [empty_pil_tensor()]
 
-        return (enhanced_img, new_segs, basic_pipe, cnet_pil_list)
+        return enhanced_img, new_segs, basic_pipe, cnet_pil_list
 
 ```

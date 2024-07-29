@@ -1,38 +1,42 @@
 ---
 tags:
+- AnimationScheduling
 - Scheduling
+- SigmaScheduling
+- VisualEffects
+- WavePatterns
 ---
 
 # Schedule Exponential Fade
 ## Documentation
 - Class name: `SaltScheduleListExponentialFade`
-- Category: `SALT/Scheduling/Filter`
+- Category: `SALT/AudioViz/Scheduling/Filter`
 - Output node: `False`
 
-This node applies an exponential fade effect to a schedule list based on the specified fade type and strength, enhancing or diminishing the values in the list to create dynamic transitions.
+This node applies an exponential fade effect to a schedule list based on the specified fade type and strength, optionally starting from a given index. It's designed to modify the intensity or presence of elements in a schedule over time, creating smooth transitions either into, out of, or both into and out of a sequence of values.
 ## Input types
 ### Required
 - **`schedule_list`**
-    - The list of values to apply the exponential fade effect to, serving as the base for dynamic transitions.
+    - The list of values to apply the exponential fade effect to. It represents the sequence of elements whose intensity will be modified over time.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 - **`fade_type`**
-    - Specifies the type of fade effect to apply: 'in' for a gradual increase, 'out' for a gradual decrease, or 'in-and-out' for a combination of both.
+    - Specifies the type of fade to apply: 'in' for a gradual increase, 'out' for a gradual decrease, or 'in-and-out' for an increase followed by a decrease.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`strength`**
-    - Determines the intensity of the fade effect, with higher values resulting in more pronounced fades.
+    - Determines the curve's steepness of the fade effect. Higher values result in a steeper curve.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`start_index`**
-    - The index in the schedule list from which to start applying the fade effect, allowing for partial fades within the list.
+    - The index in the schedule list from which to start applying the fade effect. Allows for partial application of the fade.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`schedule_list`**
     - Comfy dtype: `LIST`
-    - The modified schedule list after applying the exponential fade effect, showcasing the dynamic transitions.
+    - The modified schedule list after applying the exponential fade effect, with values adjusted according to the specified fade type and strength.
     - Python dtype: `List[float]`
 ## Usage tips
 - Infra type: `CPU`
@@ -58,7 +62,7 @@ class SaltScheduleListExponentialFade:
     RETURN_TYPES = ("LIST",)
     RETURN_NAMES = ("schedule_list", )
     FUNCTION = "exponential_fade"
-    CATEGORY = "SALT/Scheduling/Filter"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling/Filter"
 
     def exponential_fade(self, schedule_list, fade_type, strength, start_index=0):
         length = len(schedule_list)

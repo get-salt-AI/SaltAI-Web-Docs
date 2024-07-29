@@ -1,5 +1,6 @@
 ---
 tags:
+- SamplerScheduler
 - Sampling
 ---
 
@@ -9,118 +10,118 @@ tags:
 - Category: `EasyUse/Sampler`
 - Output node: `True`
 
-The `easy fullkSampler` node is designed to facilitate the sampling process in generative models, offering a simplified interface for generating new samples. It abstracts the complexities involved in selecting samplers, schedulers, and configuring various parameters, making it easier for users to generate high-quality images or other types of media with minimal setup.
+The `easy fullkSampler` node is designed to facilitate the sampling process in generative models by providing a simplified interface for users. It abstracts the complexities involved in sampling configurations, allowing for easy experimentation with different models, seeds, steps, conditioning, and denoising parameters. This node aims to make the process of generating new samples more accessible and user-friendly, especially for those not deeply familiar with the underlying algorithms.
 ## Input types
 ### Required
 - **`pipe`**
-    - Represents the pipeline through which the data flows, affecting the overall execution and output of the sampling process.
+    - The pipeline configuration for the sampling process, integrating various nodes and operations for a comprehensive workflow.
     - Comfy dtype: `PIPE_LINE`
-    - Python dtype: `Dict`
+    - Python dtype: `str`
 - **`steps`**
-    - Specifies the number of steps to perform during the sampling process, directly influencing the detail and quality of the generated output.
+    - Defines the number of steps to be used in the sampling process. This parameter affects the detail and quality of the generated samples, with a higher number of steps potentially leading to more refined outputs.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - Controls the conditioning free guidance scale, adjusting the influence of the conditioning on the generation process.
+    - Controls the conditioning factor, which influences the adherence of the generated samples to the specified conditions. This parameter allows for fine-tuning the balance between randomness and conditioning in the sampling output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sampler_name`**
-    - Selects the specific sampling algorithm to use, influencing the characteristics and quality of the generated samples.
+    - Selects the specific sampling algorithm to be used. This choice impacts the sampling behavior and the characteristics of the generated images, offering flexibility in exploring different sampling strategies.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - Determines the scheduling algorithm used during sampling, affecting the progression and quality of the generated samples.
+    - Chooses the scheduler for the sampling process, which determines how the sampling parameters are adjusted over time. This affects the progression and quality of the sampling process.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`denoise`**
-    - Specifies the denoising factor to apply during the sampling process, impacting the clarity and sharpness of the generated images.
+    - Sets the denoising strength used in the sampling process. Adjusting this parameter can help in controlling the level of detail and clarity in the generated samples.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`image_output`**
-    - Specifies the desired output format for the generated images, influencing the visual quality and format of the results.
+    - Determines the output format for images, including options for file types and quality settings.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`link_id`**
-    - A unique identifier for the sampling task, used for tracking and referencing the process.
+    - A unique identifier for linking the output with other processes or storage locations.
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `str`
 - **`save_prefix`**
-    - A prefix added to the filenames of saved images, aiding in the organization and retrieval of generated content.
+    - A prefix added to the filenames of saved images, allowing for organized storage and retrieval.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ### Optional
 - **`seed`**
-    - Optional parameter to specify a seed for the random number generator, ensuring reproducibility of the sampling process.
+    - Sets the initial seed for the random number generator used in the sampling process. This ensures reproducibility of results, allowing users to generate the same output given the same set of parameters.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`model`**
-    - Optional parameter to specify a custom model configuration, allowing for further customization of the sampling process.
+    - Specifies the generative model to be used for sampling. This parameter is crucial as it determines the base model from which samples will be generated, affecting the overall quality and characteristics of the output.
     - Comfy dtype: `MODEL`
     - Python dtype: `str`
 - **`positive`**
-    - Optional conditioning to guide the generation towards desired attributes or themes.
+    - Specifies positive conditioning to guide the sampling towards desired attributes or features in the generated output. This parameter helps in directing the model to produce samples that match certain criteria.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `str`
 - **`negative`**
-    - Optional conditioning to steer the generation away from certain attributes or themes.
+    - Specifies negative conditioning to avoid certain attributes or features in the generated output. This parameter is useful for steering the sampling away from undesired characteristics.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `str`
 - **`latent`**
-    - Optional latent representation to be used as a starting point for the generation process.
+    - Provides an initial latent image to start the sampling from. This can be used for tasks like image editing or continuation, where the starting point is a pre-existing latent representation.
     - Comfy dtype: `LATENT`
     - Python dtype: `str`
 - **`vae`**
-    - Optional parameter to specify a VAE model, enhancing the generation process.
+    - Specifies the VAE model to be used in conjunction with the sampling process for tasks like encoding or decoding.
     - Comfy dtype: `VAE`
     - Python dtype: `str`
 - **`clip`**
-    - Optional parameter to specify a CLIP model, influencing the direction of the generation process.
+    - Specifies the CLIP model for text or image conditioning, enhancing the relevance of the generated samples to given prompts or images.
     - Comfy dtype: `CLIP`
     - Python dtype: `str`
 - **`xyPlot`**
-    - Optional parameter for plotting purposes, providing additional insights into the generation process.
+    - An optional parameter for plotting or visualizing data related to the sampling process.
     - Comfy dtype: `XYPLOT`
     - Python dtype: `str`
 - **`image`**
-    - Optional parameter to specify an initial image, influencing the starting point of the generation process.
+    - An optional input image for tasks such as image editing or style transfer.
     - Comfy dtype: `IMAGE`
     - Python dtype: `str`
 ## Output types
 - **`pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - The updated pipeline after the sampling process, encapsulating the flow and transformations applied.
-    - Python dtype: `Dict`
+    - The output pipeline configuration, encapsulating the entire sampling process and its results.
+    - Python dtype: `str`
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The generated image as a result of the sampling process.
+    - The generated image or images as a result of the sampling process.
     - Python dtype: `str`
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The model used during the sampling process, potentially updated or altered.
+    - The model used in the sampling process, potentially modified or updated through the operation.
     - Python dtype: `str`
 - **`positive`**
     - Comfy dtype: `CONDITIONING`
-    - The positive conditioning applied during the sampling process, influencing the attributes of the generated image.
+    - The positive conditioning applied during the sampling, influencing the characteristics of the generated output.
     - Python dtype: `str`
 - **`negative`**
     - Comfy dtype: `CONDITIONING`
-    - The negative conditioning applied during the sampling process, steering the generation away from certain attributes.
+    - The negative conditioning applied to steer the sampling away from certain features or attributes.
     - Python dtype: `str`
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - The latent representation resulting from the sampling process, serving as a potential starting point for further generations.
+    - The output latent representation of the generated sample. This can be used for further processing or conversion into an image, representing the final result of the sampling process.
     - Python dtype: `str`
 - **`vae`**
     - Comfy dtype: `VAE`
-    - The VAE model utilized during the sampling process, if any, influencing the generation.
+    - The VAE model involved in the sampling process, if applicable, including any encoding or decoding operations.
     - Python dtype: `str`
 - **`clip`**
     - Comfy dtype: `CLIP`
-    - The CLIP model applied during the sampling process, guiding the thematic direction of the generation.
+    - The CLIP model used for conditioning, reflecting its role in shaping the output based on textual or visual prompts.
     - Python dtype: `str`
 - **`seed`**
     - Comfy dtype: `INT`
-    - The seed used for the random number generator during the sampling process, ensuring reproducibility.
+    - The seed value used in the sampling process, indicating the role of randomness and reproducibility in generating the output.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `GPU`
@@ -129,10 +130,7 @@ The `easy fullkSampler` node is designed to facilitate the sampling process in g
 
 ## Source code
 ```python
-class samplerFull(LayerDiffuse):
-
-    def __init__(self):
-        super().__init__()
+class samplerFull:
 
     @classmethod
     def INPUT_TYPES(cls):
@@ -141,7 +139,7 @@ class samplerFull(LayerDiffuse):
                  "steps": ("INT", {"default": 20, "min": 1, "max": 10000}),
                  "cfg": ("FLOAT", {"default": 8.0, "min": 0.0, "max": 100.0}),
                  "sampler_name": (comfy.samplers.KSampler.SAMPLERS,),
-                 "scheduler": (comfy.samplers.KSampler.SCHEDULERS+['align_your_steps'],),
+                 "scheduler": (comfy.samplers.KSampler.SCHEDULERS+new_schedulers,),
                  "denoise": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01}),
                  "image_output": (["Hide", "Preview", "Preview&Choose", "Save", "Hide&Save", "Sender", "Sender&Save"],),
                  "link_id": ("INT", {"default": 0, "min": 0, "max": sys.maxsize, "step": 1}),
@@ -170,10 +168,7 @@ class samplerFull(LayerDiffuse):
     FUNCTION = "run"
     CATEGORY = "EasyUse/Sampler"
 
-    def run(self, pipe, steps, cfg, sampler_name, scheduler, denoise, image_output, link_id, save_prefix, seed=None, model=None, positive=None, negative=None, latent=None, vae=None, clip=None, xyPlot=None, tile_size=None, prompt=None, extra_pnginfo=None, my_unique_id=None, force_full_denoise=False, disable_noise=False, downscale_options=None):
-
-        # Clean loaded_objects
-        easyCache.update_loaded_objects(prompt)
+    def run(self, pipe, steps, cfg, sampler_name, scheduler, denoise, image_output, link_id, save_prefix, seed=None, model=None, positive=None, negative=None, latent=None, vae=None, clip=None, xyPlot=None, tile_size=None, prompt=None, extra_pnginfo=None, my_unique_id=None, force_full_denoise=False, disable_noise=False, downscale_options=None, image=None):
 
         samp_model = model if model is not None else pipe["model"]
         samp_positive = positive if positive is not None else pipe["positive"]
@@ -196,15 +191,16 @@ class samplerFull(LayerDiffuse):
         add_noise = pipe['loader_settings']['add_noise'] if 'add_noise' in pipe['loader_settings'] else 'enabled'
         force_full_denoise = pipe['loader_settings']['force_full_denoise'] if 'force_full_denoise' in pipe['loader_settings'] else True
 
+        if image is not None and latent is None:
+            samp_samples = {"samples": samp_vae.encode(image[:, :, :, :3])}
+
         disable_noise = False
         if add_noise == "disable":
             disable_noise = True
 
         def downscale_model_unet(samp_model):
-            if downscale_options is None:
-                return  samp_model
             # 获取Unet参数
-            elif "PatchModelAddDownscale" in ALL_NODE_CLASS_MAPPINGS:
+            if "PatchModelAddDownscale" in ALL_NODE_CLASS_MAPPINGS:
                 cls = ALL_NODE_CLASS_MAPPINGS['PatchModelAddDownscale']
                 # 自动收缩Unet
                 if downscale_options['downscale_factor'] is None:
@@ -241,42 +237,56 @@ class samplerFull(LayerDiffuse):
                                  preview_latent, force_full_denoise=force_full_denoise, disable_noise=disable_noise, samp_custom=None):
 
             # LayerDiffusion
-            if "layer_diffusion_method" in pipe['loader_settings']:
+            layerDiffuse = None
+            samp_blend_samples = None
+            layer_diffusion_method = pipe['loader_settings']['layer_diffusion_method'] if 'layer_diffusion_method' in pipe['loader_settings'] else None
+            if layer_diffusion_method is not None:
+                layerDiffuse = LayerDiffuse()
                 samp_blend_samples = pipe["blend_samples"] if "blend_samples" in pipe else None
                 additional_cond = pipe["loader_settings"]['layer_diffusion_cond'] if "layer_diffusion_cond" in pipe[
                     'loader_settings'] else (None, None, None)
-                method = self.get_layer_diffusion_method(pipe['loader_settings']['layer_diffusion_method'],
+                method = layerDiffuse.get_layer_diffusion_method(pipe['loader_settings']['layer_diffusion_method'],
                                                          samp_blend_samples is not None)
-                images = pipe["images"].movedim(-1, 1) if "images" in pipe else None
+
+                images = pipe["images"] if "images" in pipe else None
                 weight = pipe['loader_settings']['layer_diffusion_weight'] if 'layer_diffusion_weight' in pipe[
                     'loader_settings'] else 1.0
-                samp_model, samp_positive, samp_negative = self.apply_layer_diffusion(samp_model, method, weight,
+                samp_model, samp_positive, samp_negative = layerDiffuse.apply_layer_diffusion(samp_model, method, weight,
                                                                                       samp_samples, samp_blend_samples,
                                                                                       samp_positive, samp_negative,
                                                                                       images, additional_cond)
+                resolution = pipe['loader_settings']['resolution'] if 'resolution' in pipe['loader_settings'] else "自定义 X 自定义"
+                empty_latent_width = pipe['loader_settings']['empty_latent_width'] if 'empty_latent_width' in pipe['loader_settings'] else 512
+                empty_latent_height = pipe['loader_settings']['empty_latent_height'] if 'empty_latent_height' in pipe['loader_settings'] else 512
+                batch_size = pipe["loader_settings"]["batch_size"] if "batch_size" in pipe["loader_settings"] else 1
+                samp_samples = sampler.emptyLatent(resolution, empty_latent_width, empty_latent_height, batch_size)
 
-            blend_samples = pipe['blend_samples'] if "blend_samples" in pipe else None
-            layer_diffusion_method = pipe['loader_settings']['layer_diffusion_method'] if 'layer_diffusion_method' in pipe['loader_settings'] else None
-            empty_samples = pipe["loader_settings"]["empty_samples"] if "empty_samples" in pipe["loader_settings"] else None
-            samples = empty_samples if layer_diffusion_method is not None and empty_samples is not None else samp_samples
             # Downscale Model Unet
-            if samp_model is not None:
+            if samp_model is not None and downscale_options is not None:
                 samp_model = downscale_model_unet(samp_model)
             # 推理初始时间
             start_time = int(time.time() * 1000)
             # 开始推理
-            if scheduler == 'align_your_steps' and samp_custom is None:
-                try:
-                    model_type = get_sd_version(samp_model)
-                    if model_type == 'unknown':
-                        raise Exception("This Model not supported")
-                    sigmas, = alignYourStepsScheduler().get_sigmas(model_type.upper(), steps, denoise)
-                except:
-                    raise Exception("Please update your ComfyUI")
+            if samp_custom is not None:
+                guider = samp_custom['guider'] if 'guider' in samp_custom else None
+                _sampler = samp_custom['sampler'] if 'sampler' in samp_custom else None
+                sigmas = samp_custom['sigmas'] if 'sigmas' in samp_custom else None
+                noise = samp_custom['noise'] if 'noise' in samp_custom else None
+                samp_samples, _ = sampler.custom_advanced_ksampler(noise, guider, _sampler, sigmas, samp_samples)
+            elif scheduler == 'align_your_steps':
+                model_type = get_sd_version(samp_model)
+                if model_type == 'unknown':
+                    model_type = 'sdxl'
+                    # raise Exception("This Model not supported")
+                sigmas, = alignYourStepsScheduler().get_sigmas(model_type.upper(), steps, denoise)
                 _sampler = comfy.samplers.sampler_object(sampler_name)
-                samp_samples = sampler.custom_ksampler(samp_model, samp_seed, steps, cfg, _sampler, sigmas, samp_positive, samp_negative, samples, disable_noise=disable_noise, preview_latent=preview_latent)
+                samp_samples = sampler.custom_ksampler(samp_model, samp_seed, steps, cfg, _sampler, sigmas, samp_positive, samp_negative, samp_samples, disable_noise=disable_noise, preview_latent=preview_latent)
+            elif scheduler == 'gits':
+                sigmas, = gitsScheduler().get_sigmas(coeff=1.2, steps=steps, denoise=denoise)
+                _sampler = comfy.samplers.sampler_object(sampler_name)
+                samp_samples = sampler.custom_ksampler(samp_model, samp_seed, steps, cfg, _sampler, sigmas, samp_positive, samp_negative, samp_samples, disable_noise=disable_noise, preview_latent=preview_latent)
             else:
-                samp_samples = sampler.common_ksampler(samp_model, samp_seed, steps, cfg, sampler_name, scheduler, samp_positive, samp_negative, samples, denoise=denoise, preview_latent=preview_latent, start_step=start_step, last_step=last_step, force_full_denoise=force_full_denoise, disable_noise=disable_noise, custom=samp_custom)
+                samp_samples = sampler.common_ksampler(samp_model, samp_seed, steps, cfg, sampler_name, scheduler, samp_positive, samp_negative, samp_samples, denoise=denoise, preview_latent=preview_latent, start_step=start_step, last_step=last_step, force_full_denoise=force_full_denoise, disable_noise=disable_noise)
             # 推理结束时间
             end_time = int(time.time() * 1000)
             latent = samp_samples["samples"]
@@ -288,27 +298,27 @@ class samplerFull(LayerDiffuse):
                 samp_images = samp_vae.decode(latent).cpu()
 
             # LayerDiffusion Decode
-            new_images, samp_images, alpha = self.layer_diffusion_decode(layer_diffusion_method, latent, blend_samples, samp_images, samp_model)
+            if layerDiffuse is not None:
+                new_images, samp_images, alpha = layerDiffuse.layer_diffusion_decode(layer_diffusion_method, latent, samp_blend_samples, samp_images, samp_model)
+            else:
+                new_images = samp_images
+                alpha = None
 
             # 推理总耗时（包含解码）
             end_decode_time = int(time.time() * 1000)
             spent_time = 'Diffusion:' + str((end_time-start_time)/1000)+'″, VAEDecode:' + str((end_decode_time-end_time)/1000)+'″ '
 
             results = easySave(new_images, save_prefix, image_output, prompt, extra_pnginfo)
-            sampler.update_value_by_id("results", my_unique_id, results)
-
-            # Clean loaded_objects
-            easyCache.update_loaded_objects(prompt)
 
             new_pipe = {
-                "model": samp_model,
+                **pipe,
                 "positive": samp_positive,
                 "negative": samp_negative,
                 "vae": samp_vae,
                 "clip": samp_clip,
 
                 "samples": samp_samples,
-                "blend_samples": blend_samples,
+                "blend_samples": samp_blend_samples,
                 "images": new_images,
                 "samp_images": samp_images,
                 "alpha": alpha,
@@ -319,8 +329,6 @@ class samplerFull(LayerDiffuse):
                     "spent_time": spent_time
                 }
             }
-
-            sampler.update_value_by_id("pipe_line", my_unique_id, new_pipe)
 
             del pipe
 
@@ -359,7 +367,9 @@ class samplerFull(LayerDiffuse):
             if image_output in ("Sender", "Sender&Save"):
                 PromptServer.instance.send_sync("img-send", {"link_id": link_id, "images": results})
 
-            ModelPatcher.calculate_weight = default_calculate_weight
+            if hasattr(ModelPatcher, "original_calculate_weight"):
+                ModelPatcher.calculate_weight = ModelPatcher.original_calculate_weight
+
             return {"ui": {"images": results},
                     "result": sampler.get_output(new_pipe,)}
 
@@ -376,10 +386,9 @@ class samplerFull(LayerDiffuse):
                                             extra_pnginfo, my_unique_id, preview_latent, samp_custom=samp_custom)
 
             # Downscale Model Unet
-            if samp_model is not None:
+            if samp_model is not None and downscale_options is not None:
                 samp_model = downscale_model_unet(samp_model)
 
-            alpha = None
             blend_samples = pipe['blend_samples'] if "blend_samples" in pipe else None
             layer_diffusion_method = pipe['loader_settings']['layer_diffusion_method'] if 'layer_diffusion_method' in pipe['loader_settings'] else None
 
@@ -443,17 +452,19 @@ class samplerFull(LayerDiffuse):
             # Generate output_images
             output_images = torch.stack([tensor.squeeze() for tensor in image_list])
 
-            new_images, samp_images, alpha = self.layer_diffusion_decode(layer_diffusion_method, latents_plot, blend_samples,
-                                                                         output_images, samp_model)
+            if layer_diffusion_method is not None:
+                layerDiffuse = LayerDiffuse()
+                new_images, samp_images, alpha = layerDiffuse.layer_diffusion_decode(layer_diffusion_method, latents_plot, blend_samples,
+                                                                             output_images, samp_model)
+            else:
+                new_images = output_images
+                samp_images = output_images
+                alpha = None
 
             results = easySave(images, save_prefix, image_output, prompt, extra_pnginfo)
-            sampler.update_value_by_id("results", my_unique_id, results)
-
-            # Clean loaded_objects
-            easyCache.update_loaded_objects(prompt)
 
             new_pipe = {
-                "model": samp_model,
+                **pipe,
                 "positive": samp_positive,
                 "negative": samp_negative,
                 "vae": samp_vae,
@@ -469,14 +480,14 @@ class samplerFull(LayerDiffuse):
                 "loader_settings": pipe["loader_settings"],
             }
 
-            sampler.update_value_by_id("pipe_line", my_unique_id, new_pipe)
-
             del pipe
+
+            if hasattr(ModelPatcher, "original_calculate_weight"):
+                ModelPatcher.calculate_weight = ModelPatcher.original_calculate_weight
 
             if image_output in ("Hide", "Hide&Save"):
                 return sampler.get_output(new_pipe)
 
-            ModelPatcher.calculate_weight = default_calculate_weight
             return {"ui": {"images": results}, "result": (sampler.get_output(new_pipe))}
 
         preview_latent = True

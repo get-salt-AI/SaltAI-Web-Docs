@@ -2,54 +2,55 @@
 tags:
 - Crop
 - Image
+- ImageThresholding
 - ImageTransformation
 ---
 
 # 🔧 Image Crop
 ## Documentation
 - Class name: `ImageCrop+`
-- Category: `essentials`
+- Category: `essentials/image manipulation`
 - Output node: `False`
 
-The ImageCrop+ node is designed for cropping images to specified dimensions and coordinates, allowing for precise control over the portion of the image to be retained or discarded.
+The ImageCrop+ node is designed for cropping images to a specified width and height starting from a given x and y coordinate. It allows for precise control over the portion of the image to be extracted, making it a fundamental tool for image manipulation and preprocessing tasks.
 ## Input types
 ### Required
 - **`image`**
-    - The image to be cropped, serving as the primary input for the cropping operation.
+    - The input image to be cropped. This parameter is crucial as it defines the source image from which a specific region will be extracted.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`width`**
-    - Specifies the width of the cropped image area.
+    - Specifies the width of the cropped image. It determines how wide the resulting image will be after cropping.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Specifies the height of the cropped image area.
+    - Specifies the height of the cropped image. It determines the vertical size of the resulting image after cropping.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`position`**
-    - unknown
+    - Defines the starting position for the crop operation, offering predefined options for alignment.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`x_offset`**
-    - unknown
+    - The horizontal offset from the specified position for additional control over the cropping area.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`y_offset`**
-    - unknown
+    - The vertical offset from the specified position for additional control over the cropping area.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 ## Output types
 - **`IMAGE`**
     - Comfy dtype: `IMAGE`
-    - The cropped portion of the input image.
+    - The cropped portion of the input image. This output is the direct result of the cropping operation, representing the specified region of the original image.
     - Python dtype: `torch.Tensor`
 - **`x`**
     - Comfy dtype: `INT`
-    - The x-coordinate of the top-left corner of the resulting cropped area, reflecting any adjustments made during the cropping process.
+    - The x-coordinate of the top-left corner of the cropped image.
     - Python dtype: `int`
 - **`y`**
     - Comfy dtype: `INT`
-    - The y-coordinate of the top-left corner of the resulting cropped area, reflecting any adjustments made during the cropping process.
+    - The y-coordinate of the top-left corner of the cropped image.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
@@ -85,7 +86,7 @@ class ImageCrop:
     RETURN_TYPES = ("IMAGE","INT","INT",)
     RETURN_NAMES = ("IMAGE","x","y",)
     FUNCTION = "execute"
-    CATEGORY = "essentials"
+    CATEGORY = "essentials/image manipulation"
 
     def execute(self, image, width, height, position, x_offset, y_offset):
         _, oh, ow, _ = image.shape

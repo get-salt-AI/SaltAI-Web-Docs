@@ -10,26 +10,26 @@ tags:
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The SetDefaultImageForSEGS node is designed to integrate a default image into the SEGS (Segmentation Elements) data structure. This operation is crucial for scenarios where specific segments within SEGS lack associated images, ensuring that all segments have a visual representation, either original or default, to maintain consistency and facilitate further processing or visualization.
+This node is designed to set a default image for SEGS (segmentation structures) in scenarios where the original image might be missing or not applicable. It ensures that each segment within the SEGS structure has a consistent and predefined visual representation, facilitating further processing or visualization steps without dependency on the original image data.
 ## Input types
 ### Required
 - **`segs`**
-    - The 'segs' parameter represents the SEGS (Segmentation Elements) data structure that is to be processed. It is essential for specifying the segments that may require the integration of a default image, based on their current image association status.
+    - The 'segs' input represents the segmentation structures for which a default image is to be set. This input is crucial for identifying the segments that require a default image assignment.
     - Comfy dtype: `SEGS`
-    - Python dtype: `Tuple[torch.Tensor, List[SEG]]`
+    - Python dtype: `List[SEG]`
 - **`image`**
-    - The 'image' parameter serves as the default image to be integrated into segments within SEGS that lack an associated image. This ensures that all segments have a visual representation, enhancing consistency across the data structure.
+    - The 'image' input specifies the default image to be applied across all segments within the SEGS structure. It plays a key role in ensuring visual consistency across segments.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `Image`
 - **`override`**
-    - The 'override' parameter determines whether the default image should replace existing images for all segments within SEGS, ensuring uniformity or preserving original images where they exist.
+    - The 'override' input indicates whether the default image should replace existing images within the SEGS structure, allowing for flexible control over image assignment.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`segs`**
     - Comfy dtype: `SEGS`
-    - This output consists of the SEGS data structure after the integration of the default image into segments lacking an associated image, ensuring that each segment has a visual representation.
-    - Python dtype: `Tuple[torch.Tensor, List[SEG]]`
+    - The output 'segs' consists of the updated segmentation structures with the default image applied, ready for further processing or visualization.
+    - Python dtype: `List[SEG]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -51,7 +51,8 @@ class DefaultImageForSEGS:
 
     CATEGORY = "ImpactPack/Util"
 
-    def doit(self, segs, image, override):
+    @staticmethod
+    def doit(segs, image, override):
         results = []
 
         segs = core.segs_scale_match(segs, image.shape)

@@ -1,6 +1,6 @@
 ---
 tags:
-- Comparison
+- ImpactPack
 ---
 
 # 📱 CR Simple Image Compare

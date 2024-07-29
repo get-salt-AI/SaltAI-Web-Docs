@@ -1,92 +1,95 @@
 ---
 tags:
-- Image
+- DetailEnhancement
 - Pipeline
+- PipelineTransformation
 ---
 
 # pipeEDIT
 ## Documentation
 - Class name: `ttN pipeEDIT`
-- Category: `ttN/pipe`
+- Category: `🌏 tinyterra/pipe`
 - Output node: `False`
 
-The node is designed to edit and refine the outputs of a pipeline, allowing for adjustments and enhancements to be made to the data processed through the pipeline. It focuses on modifying existing pipeline data to meet specific requirements or to improve the quality of the output.
+The ttN pipeEDIT node is designed for editing and refining the parameters and settings of a pipeline, allowing for the customization and optimization of the pipeline's behavior and output. It focuses on enhancing the flexibility and control over the pipeline's execution by enabling adjustments to its components and configurations.
 ## Input types
 ### Required
 ### Optional
 - **`pipe`**
-    - Represents the pipeline data to be edited or refined. This parameter is crucial for determining the scope and nature of the edits to be applied.
+    - Represents the pipeline to be edited or refined, serving as the core structure for modification. It is crucial for determining the base configuration and elements that will undergo adjustments.
     - Comfy dtype: `PIPE_LINE`
     - Python dtype: `dict`
 - **`model`**
-    - Specifies the model component of the pipeline to be edited or refined.
+    - Specifies the model component of the pipeline, allowing for its selection or modification.
     - Comfy dtype: `MODEL`
     - Python dtype: `str`
 - **`pos`**
-    - Specifies the positive conditioning component of the pipeline to be edited or refined.
+    - Defines the positive conditioning aspect of the pipeline, enabling its specification or alteration.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `str`
 - **`neg`**
-    - Specifies the negative conditioning component of the pipeline to be edited or refined.
+    - Specifies the negative conditioning component, allowing for adjustments to how the pipeline handles negative inputs.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `str`
 - **`latent`**
-    - Specifies the latent component of the pipeline to be edited or refined.
+    - Represents the latent space configuration of the pipeline, permitting adjustments to its handling of latent variables.
     - Comfy dtype: `LATENT`
-    - Python dtype: `int`
+    - Python dtype: `str`
 - **`vae`**
-    - Specifies the VAE component of the pipeline to be edited or refined.
+    - Specifies the VAE (Variational Autoencoder) component, enabling its selection or modification within the pipeline.
     - Comfy dtype: `VAE`
     - Python dtype: `str`
 - **`clip`**
-    - Specifies the CLIP component of the pipeline to be edited or refined.
+    - Defines the CLIP model component of the pipeline, allowing for its specification or alteration.
     - Comfy dtype: `CLIP`
     - Python dtype: `str`
 - **`image`**
-    - Specifies the image component of the pipeline to be edited or refined.
+    - Specifies the image component of the pipeline, enabling adjustments to how images are handled.
     - Comfy dtype: `IMAGE`
     - Python dtype: `str`
 - **`seed`**
-    - Specifies the seed component of the pipeline to be edited or refined.
+    - Represents the seed value for random number generation within the pipeline, allowing for its specification to ensure reproducibility.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - The edited pipeline data, reflecting the applied modifications.
+    - Returns the modified pipeline, reflecting the applied edits and refinements.
     - Python dtype: `dict`
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The edited model component of the pipeline.
+    - Outputs the selected or modified model component of the pipeline.
     - Python dtype: `str`
 - **`pos`**
     - Comfy dtype: `CONDITIONING`
-    - The edited positive conditioning component of the pipeline.
+    - Outputs the specified or altered positive conditioning component of the pipeline.
     - Python dtype: `str`
 - **`neg`**
     - Comfy dtype: `CONDITIONING`
-    - The edited negative conditioning component of the pipeline.
+    - Outputs the adjusted negative conditioning component of the pipeline.
     - Python dtype: `str`
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - The edited latent component of the pipeline.
-    - Python dtype: `int`
+    - Returns the adjusted latent space configuration of the pipeline.
+    - Python dtype: `str`
 - **`vae`**
     - Comfy dtype: `VAE`
-    - The edited VAE component of the pipeline.
+    - Outputs the selected or modified VAE component of the pipeline.
     - Python dtype: `str`
 - **`clip`**
     - Comfy dtype: `CLIP`
-    - The edited CLIP component of the pipeline.
+    - Outputs the specified or altered CLIP model component of the pipeline.
     - Python dtype: `str`
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The edited image component of the pipeline.
+    - Outputs the adjusted image component of the pipeline.
     - Python dtype: `str`
 - **`seed`**
     - Comfy dtype: `INT`
-    - The edited seed component of the pipeline.
+    - Returns the specified seed value for random number generation within the pipeline.
     - Python dtype: `int`
+- **`ui`**
+    - Provides a user interface component, typically for displaying information or results derived from the node's processing.
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -120,7 +123,7 @@ class ttN_pipe_EDIT:
     RETURN_NAMES = ("pipe", "model", "pos", "neg", "latent", "vae", "clip", "image", "seed")
     FUNCTION = "flush"
 
-    CATEGORY = "ttN/pipe"
+    CATEGORY = "🌏 tinyterra/pipe"
 
     def flush(self, pipe=None, model=None, pos=None, neg=None, latent=None, vae=None, clip=None, image=None, seed=None, my_unique_id=None):
 
@@ -164,6 +167,6 @@ class ttN_pipe_EDIT:
         }
         del pipe
 
-        return (new_pipe, )
+        return (new_pipe, model, pos, neg, latent, vae, clip, image, seed)
 
 ```

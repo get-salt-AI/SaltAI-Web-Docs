@@ -1,9 +1,8 @@
 ---
 tags:
-- DepthMap
-- Image
-- ImageFilter
-- ImagePreprocessing
+- DepthMapEstimation
+- Inpaint
+- LineExtraction
 ---
 
 # [Inference.Core] Canny Edge

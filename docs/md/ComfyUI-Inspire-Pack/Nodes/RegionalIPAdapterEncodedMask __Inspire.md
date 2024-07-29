@@ -10,47 +10,47 @@ tags:
 - Category: `InspirePack/Regional`
 - Output node: `False`
 
-This node specializes in applying encoded mask-based image processing adjustments within the InspirePack framework, leveraging regional IP adapter techniques to conditionally modify image embeddings based on specified masks and weights.
+This node specializes in applying encoded mask-based image processing adaptations to enhance or modify images, leveraging regional IP adapter techniques. It allows for precise control over the image adaptation process through the use of masks, embedding weights, and various parameters, enabling customized image outputs tailored to specific regions of interest.
 ## Input types
 ### Required
 - **`mask`**
-    - The mask input specifies areas of the image to be targeted for conditional embedding adjustments, playing a crucial role in the node's operation by defining regions for focused processing.
+    - The mask parameter specifies the area of the image to be adapted, serving as a crucial element in defining the scope of the image processing operation.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`embeds`**
-    - Embeddings that represent the desired adjustments or features to be applied to the specified regions of the image, influencing the final output based on the mask.
+    - Embeds represent the encoded information or features to be applied to the specified image regions, playing a pivotal role in the adaptation process.
     - Comfy dtype: `EMBEDS`
     - Python dtype: `torch.Tensor`
 - **`weight`**
-    - A float value that determines the intensity of the embedding adjustments applied to the image, allowing for fine-tuning of the effect strength.
+    - Weight determines the intensity or influence of the applied adaptations, allowing for fine-tuning of the image processing effects.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`weight_type`**
-    - Specifies the method of applying weights to the embeddings, offering options like original, linear, or channel penalty for diverse adjustment effects.
+    - Weight type specifies the method of applying weights, offering options like original, linear, or channel penalty to customize the adaptation effect.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`start_at`**
-    - Defines the starting point of the effect application in terms of image processing, enabling phased adjustments.
+    - Start at indicates the initial point in the adaptation process, enabling phased or gradual application of changes.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end_at`**
-    - Sets the endpoint for the effect application, allowing for precise control over the extent of the adjustments.
+    - End at defines the conclusion point for the adaptations, allowing for precise control over the extent of image processing.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`unfold_batch`**
-    - A boolean flag that, when true, processes each item in a batch individually, enhancing flexibility in handling batched inputs.
+    - Unfold batch toggles the processing of images in batches, potentially optimizing performance for bulk adaptations.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`neg_embeds`**
-    - Optional negative embeddings that can be used to specify features or adjustments to be avoided in the specified regions, adding an inverse effect capability.
+    - Neg embeds allow for the application of inverse or contrasting features to the specified regions, enhancing the adaptability of the process.
     - Comfy dtype: `EMBEDS`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`regional_ipadapter`**
     - Comfy dtype: `REGIONAL_IPADAPTER`
-    - Produces a conditioned version of the input based on the encoded mask and specified parameters, reflecting the targeted adjustments.
-    - Python dtype: `IPAdapterConditioning`
+    - Outputs a customized image with applied regional adaptations, reflecting the encoded mask and parameter specifications.
+    - Python dtype: `CustomType`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -82,7 +82,8 @@ class RegionalIPAdapterEncodedMask:
 
     CATEGORY = "InspirePack/Regional"
 
-    def doit(self, mask, embeds, weight, weight_type, start_at=0.0, end_at=1.0, unfold_batch=False, neg_embeds=None):
+    @staticmethod
+    def doit(mask, embeds, weight, weight_type, start_at=0.0, end_at=1.0, unfold_batch=False, neg_embeds=None):
         cond = IPAdapterConditioning(mask, weight, weight_type, embeds=embeds, start_at=start_at, end_at=end_at, unfold_batch=unfold_batch, neg_embeds=neg_embeds)
         return (cond, )
 

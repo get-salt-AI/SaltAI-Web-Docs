@@ -1,8 +1,10 @@
 ---
 tags:
-- DepthMap
+- ControlNet
+- DepthMapEstimation
 - Image
-- ImagePreprocessing
+- ImageEnhancement
+- Inpaint
 - LineExtraction
 ---
 

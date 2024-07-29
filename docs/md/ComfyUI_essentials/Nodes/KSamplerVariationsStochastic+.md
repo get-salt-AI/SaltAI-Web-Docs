@@ -1,70 +1,73 @@
 ---
 tags:
+- Image
+- Pipeline
+- SamplerScheduler
 - Sampling
 ---
 
 # 🔧 KSampler Stochastic Variations
 ## Documentation
 - Class name: `KSamplerVariationsStochastic+`
-- Category: `essentials`
+- Category: `essentials/sampling`
 - Output node: `False`
 
-This node is designed to introduce stochastic variations into the sampling process, leveraging randomness to enhance the diversity and quality of generated samples. It focuses on applying stochastic methods to modify or influence the sampling behavior, aiming to produce varied outcomes that might not be achievable through deterministic approaches alone.
+This node specializes in generating stochastic variations of latent images using a specific sampling technique. It leverages randomness and a defined stochastic process to introduce variations, aiming to enhance the diversity of generated images while maintaining their core characteristics.
 ## Input types
 ### Required
 - **`model`**
-    - Specifies the model to be used for the sampling process, playing a crucial role in determining the characteristics and quality of the generated samples.
+    - The model parameter specifies the generative model used for sampling. It plays a crucial role in determining the quality and characteristics of the generated variations.
     - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`latent_image`**
-    - Introduces a latent image as the starting point for the sampling process, serving as a foundation for the stochastic variations to build upon.
+    - The latent_image parameter represents the initial latent representation of an image. It serves as the starting point for generating variations, influencing the final outcome.
     - Comfy dtype: `LATENT`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`noise_seed`**
-    - Sets the seed for random number generation, ensuring reproducibility of the stochastic variations introduced during the sampling process.
+    - The noise_seed parameter controls the randomness of the variation noise. It ensures reproducibility of the variations by initializing the random noise generator.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`steps`**
-    - Defines the number of steps to be taken in the sampling process, affecting the depth and detail of the exploration within the sample space.
+    - The steps parameter defines the number of sampling steps. It affects the degree of variation and the quality of the generated images.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - Controls the conditioning free guidance scale, influencing the direction and intensity of the sampling process towards desired outcomes.
+    - The cfg parameter adjusts the conditioning factor, influencing the strength of the applied variations.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sampler`**
-    - Determines the specific stochastic sampling method to be applied, directly impacting the nature of variations introduced.
+    - The sampler parameter selects the specific sampling algorithm used for generating variations.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - Selects the scheduling strategy for the sampling process, which can affect the progression and adaptation of sampling parameters over time.
+    - The scheduler parameter determines the scheduling algorithm for the sampling process, affecting the progression of variations.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`positive`**
-    - Provides positive conditioning to guide the sampling process towards favorable outcomes, enhancing the relevance and quality of generated samples.
+    - The positive parameter provides positive conditioning to guide the variation generation towards desired attributes.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `str`
 - **`negative`**
-    - Supplies negative conditioning to steer the sampling away from undesirable outcomes, refining the focus and quality of the samples produced.
+    - The negative parameter provides negative conditioning to steer the variation generation away from undesired attributes.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `str`
 - **`variation_seed`**
-    - Introduces an additional seed to control the variation in the sampling process, offering another layer of stochastic influence.
+    - The variation_seed parameter specifically controls the randomness of the variation process, distinct from the initial noise seed.
     - Comfy dtype: `INT:seed`
     - Python dtype: `int`
 - **`variation_strength`**
-    - Determines the strength of the variations introduced, affecting the degree of change and diversity in the sampling outcomes.
+    - The variation_strength parameter adjusts the intensity of the applied variations, affecting the distinctiveness of the generated images.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`cfg_scale`**
-    - Adjusts the scale of the conditioning free guidance, further influencing the sampling process and its alignment with desired outcomes.
+    - The cfg_scale parameter scales the conditioning factor for the variation process, modifying the impact of conditioning on the variations.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - Produces a modified latent representation, enriched with stochastic variations through the sampling process.
-    - Python dtype: `torch.Tensor`
+    - This output represents the latent image after applying stochastic variations, reflecting the enhanced diversity and creativity of the sampling process.
+    - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -93,7 +96,7 @@ class KSamplerVariationsStochastic:
 
     RETURN_TYPES = ("LATENT", )
     FUNCTION = "execute"
-    CATEGORY = "essentials"
+    CATEGORY = "essentials/sampling"
 
     def execute(self, model, latent_image, noise_seed, steps, cfg, sampler, scheduler, positive, negative, variation_seed, variation_strength, cfg_scale, variation_sampler="dpmpp_2m_sde"):
         # Stage 1: composition sampler

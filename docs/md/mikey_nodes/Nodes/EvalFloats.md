@@ -1,7 +1,7 @@
 ---
 tags:
-- DataTypeConversion
-- Math
+- DataConversion
+- FloatData
 ---
 
 # Eval Floats (Mikey)

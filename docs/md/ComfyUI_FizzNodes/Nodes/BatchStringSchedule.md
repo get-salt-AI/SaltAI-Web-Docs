@@ -1,7 +1,7 @@
 ---
 tags:
 - AnimationScheduling
-- Scheduling
+- SigmaScheduling
 ---
 
 # Batch String Schedule 📅🅕🅝
@@ -10,54 +10,54 @@ tags:
 - Category: `FizzNodes 📅🅕🅝/BatchScheduleNodes`
 - Output node: `False`
 
-The BatchStringSchedule node processes animation prompts by splitting them into positive and negative prompts, interpolating these prompts over a series of frames, and returning the current and next prompts for both positive and negative categories. This node is designed to work with batch processing of strings for animation purposes, facilitating dynamic text generation based on frame-specific settings.
+The `BatchStringSchedule` node processes animation prompts by splitting them into positive and negative prompts, interpolating these prompts over a series of frames, and returning them as a batch of strings. This node is designed to handle the temporal dynamics of animation prompts, facilitating the generation of text sequences that vary over time.
 ## Input types
 ### Required
 - **`text`**
-    - The 'text' parameter represents the animation prompts to be processed, serving as the input for splitting and interpolation.
+    - The text input represents the base animation prompt that will be split into positive and negative prompts, serving as the foundation for the temporal interpolation process.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`max_frames`**
-    - Specifies the maximum number of frames for which the animation prompts will be processed and interpolated.
+    - Specifies the maximum number of frames for which the prompts will be interpolated, defining the temporal extent of the animation sequence.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`print_output`**
-    - A flag indicating whether the output should be printed for debugging or logging purposes.
+    - A flag indicating whether the output should be printed, affecting the node's output behavior.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`pre_text`**
-    - Text to be prepended to each animation prompt before processing.
+    - Text to be prepended to each animation prompt, modifying the initial content of the prompts before they are split and interpolated.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`app_text`**
-    - Text to be appended to each animation prompt after processing.
+    - Text to be appended to each animation prompt, modifying the final content of the prompts before they are split and interpolated.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`pw_a`**
-    - Parameter weight A for adjusting the interpolation of prompts.
+    - Weight parameter A for interpolation, influencing how the positive and negative prompts are blended over time.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pw_b`**
-    - Parameter weight B for further customization of prompt interpolation.
+    - Weight parameter B for interpolation, further influencing the blending of prompts over the animation sequence.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pw_c`**
-    - Parameter weight C, used in conjunction with A and B for fine-tuning the interpolation process.
+    - Weight parameter C for interpolation, adjusting the influence of certain aspects of the prompt interpolation.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pw_d`**
-    - Parameter weight D, provides additional control over the interpolation of animation prompts.
+    - Weight parameter D for interpolation, adjusting the influence of certain aspects of the prompt interpolation.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`POS`**
     - Comfy dtype: `STRING`
-    - The current positive prompt interpolated for the current frame.
+    - The interpolated positive prompt for the current frame, as part of the batch of strings.
     - Python dtype: `str`
 - **`NEG`**
     - Comfy dtype: `STRING`
-    - The current negative prompt interpolated for the current frame.
+    - The interpolated negative prompt for the current frame, as part of the batch of strings.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -107,6 +107,7 @@ class BatchStringSchedule:
             pw_c=pw_c,
             pw_d=pw_d,
             start_frame=0,
+            end_frame=0,
             width=None,
             height=None,
             crop_w=None,

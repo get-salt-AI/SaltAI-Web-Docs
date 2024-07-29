@@ -1,8 +1,10 @@
 ---
 tags:
 - DataConversion
-- DataTypeConversion
+- Float
+- FloatList
 - NumericConversion
+- RegionalPrompt
 ---
 
 # String to Integer
@@ -11,17 +13,17 @@ tags:
 - Category: `Bmad/api/parseInput`
 - Output node: `False`
 
-The String to Integer node is designed to convert string representations of integers into their integer form. It is particularly useful in scenarios where integer values are received as strings, such as from JSON inputs, and need to be processed or calculated as numerical values.
+This node is designed to convert string representations of numbers into their integer equivalents. It ensures compatibility with both string and integer inputs, facilitating seamless data processing and integration within a pipeline that may receive inputs from various sources.
 ## Input types
 ### Required
 - **`inStr`**
-    - The 'inStr' parameter accepts a string representation of an integer. It plays a crucial role in the conversion process by serving as the input that is transformed into an integer value.
+    - The input string to be converted into an integer. This parameter allows the node to accept both numerical strings and integer values, ensuring flexibility in handling different types of input.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`int`**
     - Comfy dtype: `INT`
-    - The output is the integer representation of the input string. This conversion facilitates numerical operations and processing on the originally string-typed data.
+    - The integer representation of the input string or integer value.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
@@ -37,12 +39,12 @@ class String2Int:
     """
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {"inStr": ("STRING", {"default": ""})}, }
 
     RETURN_TYPES = ("INT",)
     FUNCTION = "convert"
-    CATEGORY = "Bmad/api/parseInput"
+    CATEGORY = f"{api_category_path}/parseInput"
 
     def convert(self, inStr):
         return (int(inStr),)

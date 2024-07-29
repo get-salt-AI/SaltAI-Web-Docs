@@ -1,43 +1,45 @@
 ---
 tags:
+- Animation
 - Image
+- ImageDrawing
 - ImageLoad
 ---
 
 # 🚫Load Images [DEPRECATED] 🛂🅐🅒🅝
 ## Documentation
 - Class name: `LoadImagesFromDirectory`
-- Category: `Adv-ControlNet 🛂🅐🅒🅝/deprecated`
+- Category: ``
 - Output node: `False`
 
-This node is designed to load images from a specified directory, handling various image formats and optionally applying transformations such as EXIF orientation correction and conversion to a consistent color space. It supports loading a capped number of images, and can also generate masks for images with transparency, making it suitable for tasks that require both image and mask inputs.
+This node is designed for loading and processing a batch of images from a specified directory, including their associated masks if available. It supports filtering and limiting the number of images loaded based on provided criteria, and prepares the images and masks for further processing or analysis.
 ## Input types
 ### Required
 - **`directory`**
-    - The path to the directory from which images are to be loaded. This parameter is crucial as it determines the source of the images for processing.
+    - Specifies the directory path from which images are to be loaded. It is crucial for locating and accessing the image files for processing.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ### Optional
 - **`image_load_cap`**
-    - Limits the number of images to load from the directory, enabling control over the volume of data processed.
+    - Determines the maximum number of images to load from the directory. If set to 0, there is no limit on the number of images to load.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`start_index`**
-    - Specifies the index of the first image to load from the sorted list of files in the directory, allowing for selective loading of images.
+    - Specifies the index from which to start loading images within the directory, allowing for partial loading of images.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - A batch of loaded images, preprocessed and converted into tensors.
+    - A tensor containing the loaded images, concatenated along the first dimension.
     - Python dtype: `torch.Tensor`
 - **`mask`**
     - Comfy dtype: `MASK`
-    - A batch of masks corresponding to the loaded images, useful for segmentation tasks.
+    - A tensor containing the masks associated with the loaded images, stacked along the first dimension.
     - Python dtype: `torch.Tensor`
 - **`int`**
     - Comfy dtype: `INT`
-    - The total number of images successfully loaded from the directory.
+    - The total number of images successfully loaded and processed.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `GPU`
@@ -62,7 +64,7 @@ class LoadImagesFromDirectory:
     RETURN_TYPES = ("IMAGE", "MASK", "INT")
     FUNCTION = "load_images"
 
-    CATEGORY = "Adv-ControlNet 🛂🅐🅒🅝/deprecated"
+    CATEGORY = ""
 
     def load_images(self, directory: str, image_load_cap: int = 0, start_index: int = 0):
         if not os.path.isdir(directory):

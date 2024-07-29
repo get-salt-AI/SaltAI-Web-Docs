@@ -1,6 +1,6 @@
 ---
 tags:
-- ComfyrollNodes
+- Dictionary
 ---
 
 # 🔤️ CR Select Font

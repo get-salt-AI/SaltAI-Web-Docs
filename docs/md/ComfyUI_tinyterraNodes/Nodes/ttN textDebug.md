@@ -1,37 +1,39 @@
 ---
 tags:
+- DataTypeAgnostic
 - Debugging
+- Text
 ---
 
 # textDebug
 ## Documentation
 - Class name: `ttN textDebug`
-- Category: `ttN/text`
+- Category: `🌏 tinyterra/text`
 - Output node: `True`
 
-The `ttN textDebug` node is designed for debugging purposes, allowing developers to inspect and display text-based input data within the development environment. It serves as a tool for verifying the content and structure of text inputs, facilitating the identification and resolution of issues in text processing workflows.
+The ttN textDebug node is designed for debugging purposes within the tinyterra text processing framework. It allows for the inspection and manipulation of text data, providing a means to evaluate and refine text processing workflows.
 ## Input types
 ### Required
 - **`print_to_console`**
-    - Determines whether the text should be printed to the console, enabling a direct way to view the text output for debugging purposes.
+    - Determines whether the debugged text data should be printed to the console, facilitating real-time inspection.
     - Comfy dtype: `COMBO[BOOLEAN]`
     - Python dtype: `bool`
 - **`console_title`**
-    - Specifies the title to be displayed in the console during debugging, serving as an identifier for the debug session.
+    - Specifies a title for the console output when 'print_to_console' is true, allowing for easier identification of the debugged text.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`execute`**
-    - Controls when the debug action should be executed, allowing for conditional debugging based on changes or constant monitoring.
+    - Controls when the node executes, with options like 'Always' or 'On Change', to optimize debugging efficiency.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `list`
 - **`text`**
-    - The text content to be debugged, providing the actual data that will be inspected and potentially displayed.
+    - The 'text' input is essential for providing the text data to be debugged. It supports multiline input and dynamic prompts, enabling flexible and interactive debugging sessions.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`text`**
     - Comfy dtype: `STRING`
-    - The text that was input for debugging, potentially modified or annotated based on the debug process.
+    - The output 'text' is the processed or inspected text data, allowing for direct observation of the debugging results.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -62,7 +64,7 @@ class ttN_textDebug:
     FUNCTION = "write"
     OUTPUT_NODE = True
 
-    CATEGORY = "ttN/text"
+    CATEGORY = "🌏 tinyterra/text"
 
     def write(self, print_to_console, console_title, execute, text, prompt, extra_pnginfo, my_unique_id):
         if execute == "Always":

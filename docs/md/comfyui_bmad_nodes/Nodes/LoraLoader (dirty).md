@@ -1,5 +1,6 @@
 ---
 tags:
+- Audio
 - LoRA
 ---
 
@@ -9,59 +10,48 @@ tags:
 - Category: `Bmad/api/dirty loaders`
 - Output node: `False`
 
-The LoraLoader node is designed to dynamically load and apply LoRA (Low-Rank Adaptation) adjustments to models and CLIP instances based on specified parameters. It facilitates the customization of model behavior and performance by integrating LoRA modifications, which can enhance or alter the model's capabilities without requiring retraining.
+The LoraLoader (dirty) node is designed to dynamically load LoRA (Low-Rank Adaptation) parameters into models and CLIP instances, allowing for the customization and fine-tuning of these components based on specified LoRA files and strength parameters. It serves as a bridge between static model states and adaptable, performance-enhanced versions tailored to specific tasks or datasets.
 ## Input types
 ### Required
 - **`model`**
-    - The model to which LoRA adjustments will be applied. It is central to the node's operation as it determines the base model that will be modified.
+    - The model parameter represents the pre-trained model into which LoRA parameters will be loaded. It is crucial for defining the base architecture that will be enhanced with LoRA adaptations.
     - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`clip`**
-    - The CLIP instance to which LoRA adjustments will be applied. This parameter allows for the customization of CLIP models alongside the primary model.
+    - The clip parameter signifies the CLIP model instance that will be adjusted using LoRA parameters. It plays a key role in adapting the CLIP model for enhanced performance in specific tasks.
     - Comfy dtype: `CLIP`
     - Python dtype: `torch.nn.Module`
 - **`lora_name`**
-    - The name of the LoRA file containing the adjustments to be applied. This parameter specifies which LoRA modifications will be integrated into the model and CLIP instance.
+    - The lora_name parameter specifies the filename of the LoRA parameters to be loaded. It determines which specific LoRA adaptations will be applied to the model and CLIP instances.
     - Comfy dtype: `STRING`
-    - Python dtype: `List[str]`
+    - Python dtype: `str`
 - **`strength_model`**
-    - The strength of the LoRA adjustments applied to the model. This parameter controls the intensity of the modifications, affecting the model's behavior.
+    - This parameter controls the intensity of the LoRA adaptation applied to the model. It allows for fine-tuning the impact of LoRA parameters on the model's performance.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`strength_clip`**
-    - The strength of the LoRA adjustments applied to the CLIP instance. This parameter controls the intensity of the modifications, affecting the CLIP's behavior.
+    - Similar to strength_model, this parameter adjusts the intensity of the LoRA adaptation on the CLIP model, enabling precise control over its influence.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The modified model with LoRA adjustments applied. This output reflects the integration of LoRA modifications into the original model, enhancing or altering its capabilities.
+    - The modified model with LoRA parameters applied, reflecting the adaptations made for enhanced performance or customization.
     - Python dtype: `torch.nn.Module`
 - **`clip`**
     - Comfy dtype: `CLIP`
-    - The modified CLIP instance with LoRA adjustments applied. This output reflects the integration of LoRA modifications into the original CLIP, enhancing or altering its capabilities.
+    - The adjusted CLIP model with LoRA parameters incorporated, showcasing the enhancements made for improved task-specific performance.
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
-- Common nodes:
-    - [LoraLoader](../../Comfy/Nodes/LoraLoader.md)
-    - [CLIPTextEncode](../../Comfy/Nodes/CLIPTextEncode.md)
-    - Reroute
-    - [VideoLinearCFGGuidance](../../Comfy/Nodes/VideoLinearCFGGuidance.md)
-    - [KSampler](../../Comfy/Nodes/KSampler.md)
-    - [FaceDetailer](../../ComfyUI-Impact-Pack/Nodes/FaceDetailer.md)
-    - [ModelSamplingDiscrete](../../Comfy/Nodes/ModelSamplingDiscrete.md)
-    - [ADE_AnimateDiffLoaderWithContext](../../ComfyUI-AnimateDiff-Evolved/Nodes/ADE_AnimateDiffLoaderWithContext.md)
-    - KSampler //Inspire
-    - [ToBasicPipe](../../ComfyUI-Impact-Pack/Nodes/ToBasicPipe.md)
-
+- Common nodes: unknown
 
 
 ## Source code
 ```python
 class DirtyLoraLoader:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {"model": ("MODEL",),
                              "clip": ("CLIP",),
                              "lora_name": ("STRING", {"default": ""}),
@@ -72,7 +62,7 @@ class DirtyLoraLoader:
     RETURN_TYPES = ("MODEL", "CLIP")
     FUNCTION = "load_lora"
 
-    CATEGORY = "Bmad/api/dirty loaders"
+    CATEGORY = f"{api_category_path}/dirty loaders"
 
     def load_lora(self, model, clip, lora_name, strength_model, strength_clip):
         lora_name = DirtyLoaderUtils.find_matching_filename(

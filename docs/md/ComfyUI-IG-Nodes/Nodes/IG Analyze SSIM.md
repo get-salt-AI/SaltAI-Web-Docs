@@ -1,3 +1,8 @@
+---
+tags:
+- RegionalPrompt
+---
+
 # 📉 Analyze SSIM
 ## Documentation
 - Class name: `IG Analyze SSIM`

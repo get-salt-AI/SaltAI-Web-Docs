@@ -1,6 +1,7 @@
 ---
 tags:
 - Color
+- ColorChannelManipulation
 ---
 
 # FromListGetColors

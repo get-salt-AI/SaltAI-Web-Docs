@@ -1,50 +1,50 @@
 # ∞ Tavily Search Tool
 ## Documentation
 - Class name: `CreateTavilySearchTool`
-- Category: `SALT/Language Toolkit/Agents`
+- Category: `SALT/Language Toolkit/Agents/Tools`
 - Output node: `False`
 
-This node encapsulates the functionality to create a customizable search tool using the Tavily API, allowing for detailed searches across the web with various filters such as search depth, domain inclusion/exclusion, and content type preferences. It's designed to facilitate the retrieval of comprehensive, accurate, and trusted search results tailored to specific queries.
+This node encapsulates the functionality to create a customizable search tool powered by the Tavily search engine. It allows for the dynamic creation of search tools with specific configurations, such as search depth, maximum results, and domain inclusions or exclusions, tailored to enhance search accuracy and relevance for various applications.
 ## Input types
 ### Required
 - **`api_key`**
-    - The API key required to authenticate requests with the Tavily API, enabling access to its search capabilities.
+    - The API key required to authenticate requests with the Tavily search engine, enabling access to its search capabilities.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`function_name`**
-    - The name assigned to the created search tool, identifying it within the system.
+    - The name assigned to the created search tool, which identifies it within the system for future reference and usage.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`search_depth`**
-    - Specifies the depth of the search, affecting how extensively the search engine explores web content.
+    - Determines the depth of the search performed by the Tavily search engine, affecting how extensively the engine searches through content to find relevant results.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`max_results`**
-    - The maximum number of search results to return, controlling the breadth of the search output.
+    - The maximum number of search results to return, controlling the breadth of information retrieved from a search query.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`include_answer`**
-    - Determines whether to include a direct answer to the query in the search results, enhancing result relevance.
+    - A flag indicating whether to include a direct answer to the search query in the results, providing a concise response alongside traditional search results.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`include_raw_content`**
-    - Controls whether to include the raw content of search results, offering detailed insights into the source material.
+    - A flag indicating whether to include the raw content of search results, offering detailed insights into the content matched by the search query.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`include_domains`**
-    - A list of domains to specifically include in the search results, focusing the search on preferred sources.
+    - A list of domains to specifically include in the search results, focusing the search on preferred sources of information.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`exclude_domains`**
-    - A list of domains to exclude from the search results, filtering out unwanted content sources.
+    - A list of domains to exclude from the search results, filtering out unwanted or irrelevant sources.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`tool`**
     - Comfy dtype: `TOOL`
-    - Returns a configured search tool object ready for use, encapsulating the specified search parameters and functionality.
-    - Python dtype: `tuple`
+    - The search tool created, encapsulating the configured search functionality and parameters for use in search operations.
+    - Python dtype: `dict`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -82,7 +82,7 @@ class CreateTavilySearchTool:
     RETURN_NAMES = ("tool",)
 
     FUNCTION = "create_tool"
-    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Agents"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Agents/Tools"
 
     def create_tool(
         self,

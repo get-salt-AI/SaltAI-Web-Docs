@@ -1,6 +1,8 @@
 ---
 tags:
+- Animation
 - Image
+- ImageLoad
 ---
 
 # Load 64 Encoded Image
@@ -9,17 +11,17 @@ tags:
 - Category: `Bmad/api`
 - Output node: `False`
 
-The LoadImage64 node is designed to decode and load images from base64-encoded strings, converting them into a tensor format suitable for further image processing tasks. This functionality facilitates the handling of images transmitted over networks where binary data needs to be encoded into a string format.
+This node is designed to decode and process a base64-encoded image, converting it into a tensor representation suitable for further image processing tasks. It emphasizes the transformation of encoded image data into a standardized format that can be seamlessly integrated into image analysis and manipulation workflows.
 ## Input types
 ### Required
 - **`image_code`**
-    - The 'image_code' parameter is a base64-encoded string representing an image. It is crucial for decoding the image back into a tensor format for processing. This parameter enables the node to handle images transmitted in a text-based format, making it versatile for various network-based image handling scenarios.
+    - The base64-encoded string of the image to be loaded. This parameter is crucial for decoding the image and converting it into a tensor format for subsequent operations.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is a tensor representation of the decoded image, ready for further processing in image-related tasks. This tensor encapsulates the image data in a format that is compatible with deep learning models and other image processing operations.
+    - The decoded and processed image, represented as a tensor. This output is ready for use in various image processing and analysis tasks.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -30,7 +32,7 @@ The LoadImage64 node is designed to decode and load images from base64-encoded s
 ```python
 class LoadImage64:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required":
             {
                 "image_code": ("STRING", {"default": "insert encoded image here"})
@@ -39,7 +41,7 @@ class LoadImage64:
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "get_image"
-    CATEGORY = "Bmad/api"
+    CATEGORY = api_category_path
 
     def get_image(self, image_code):
         image = Image.open(BytesIO(base64.b64decode(image_code)))

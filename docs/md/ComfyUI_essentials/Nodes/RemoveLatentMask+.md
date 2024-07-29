@@ -1,29 +1,32 @@
 ---
 tags:
-- LatentNoise
+- ImageEnhancement
+- ImageNoise
 - Noise
+- Scheduling
+- Seed
 ---
 
 # 🔧 Remove Latent Mask
 ## Documentation
 - Class name: `RemoveLatentMask+`
-- Category: `essentials`
+- Category: `essentials/utilities`
 - Output node: `False`
 
-This node is designed to process latent representations by removing any existing noise mask from the samples. It ensures that the latent samples are clean and devoid of any artificially added noise, making them suitable for further processing or generation tasks.
+This node is designed to remove the noise mask from a given set of latent samples. It ensures that the latent samples are cleaned of any previously applied noise masks, maintaining the integrity of the original latent representation.
 ## Input types
 ### Required
 - **`samples`**
-    - The latent representation of an image or a batch of images. This input is crucial as it contains the data from which the noise mask, if present, will be removed.
+    - The latent samples from which the noise mask is to be removed. This operation is crucial for processes that require the original, unaltered state of the latent samples.
     - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 ## Output types
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - The cleaned latent representation after the removal of the noise mask. This output is ready for further processing or generation tasks without the interference of previously added noise.
-    - Python dtype: `Dict[str, torch.Tensor]`
+    - The cleaned latent samples, with the noise mask removed, ready for further processing or generation tasks.
+    - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -36,7 +39,7 @@ class RemoveLatentMask:
     RETURN_TYPES = ("LATENT",)
     FUNCTION = "execute"
 
-    CATEGORY = "essentials"
+    CATEGORY = "essentials/utilities"
 
     def execute(self, samples):
         s = samples.copy()

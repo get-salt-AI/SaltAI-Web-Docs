@@ -9,38 +9,38 @@ tags:
 - Category: `Art Venture/Segmentation`
 - Output node: `False`
 
-ISNetSegment is designed for image segmentation using the ISNet model, capable of processing images to separate foreground from background based on a specified threshold. It supports dynamic model loading, device selection, and optional operation enabling for flexible integration into image processing pipelines.
+ISNetSegment is designed for image segmentation using the ISNet model, providing functionality to process images through the model to generate segmented images and their corresponding masks. It supports conditional execution based on the model's availability and the option to specify device mode for computation.
 ## Input types
 ### Required
 - **`images`**
-    - Images to be segmented; the core data for segmentation operations.
+    - The input images to be segmented. This is the primary data upon which segmentation is performed, determining the visual content to be analyzed and processed.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`threshold`**
-    - The threshold value for segmentation; determines the sensitivity of the segmentation process.
+    - A threshold value for segmentation, influencing the sensitivity of the segmentation process. It determines the cut-off point for what is considered part of the segment versus the background.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`device_mode`**
-    - Specifies the computation device preference ('AUTO', 'Prefer GPU', 'CPU') for the segmentation task, allowing for optimized performance.
+    - Specifies the computational device preference ('AUTO', 'Prefer GPU', 'CPU') for running the segmentation, affecting performance and resource utilization.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`enabled`**
-    - A flag to enable or disable the segmentation process, providing control over the execution flow.
+    - A boolean flag to enable or disable the segmentation process, allowing for conditional execution based on external criteria.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`isnet_model`**
-    - An optional ISNet model parameter for segmentation; allows for custom model usage if provided.
+    - An optional ISNet model instance to be used for segmentation. If not provided, the system will attempt to load a default model.
     - Comfy dtype: `ISNET_MODEL`
-    - Python dtype: `ISNetBase | ISNetDIS`
+    - Python dtype: `ISNetBase`
 ## Output types
 - **`segmented`**
     - Comfy dtype: `IMAGE`
-    - The segmented images, where the foreground is separated from the background.
+    - The segmented images resulting from the application of the ISNet model on the input images.
     - Python dtype: `torch.Tensor`
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The binary masks indicating the segmented areas in the images.
+    - The masks corresponding to the segmented images, indicating the segmented areas.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -92,16 +92,12 @@ class ISNetSegment:
             segments = []
             masks = []
             for image in images:
-                im, im_orig_size = im_preprocess(image, cache_size)
-                mask = predict(isnet_model, im, im_orig_size, device)
-                mask = mask / 255.0
-                mask = np.clip(mask > threshold, 0, 1).astype(np.float32)
-                mask = torch.from_numpy(mask).float()
-                masks.append(mask)
+                mask = predict(isnet_model, image, device)
+                mask_im = tensor2pil(mask.permute(1, 2, 0))
+                cropped = Image.new("RGBA", mask_im.size, (0,0,0,0))
+                cropped.paste(tensor2pil(image), mask=mask_im)
 
-                mask = tensor2pil(mask, "L")
-                cropped = tensor2pil(image, "RGB")
-                cropped.putalpha(mask)
+                masks.append(mask)
                 segments.append(pil2tensor(cropped))
 
             return (torch.cat(segments, dim=0), torch.stack(masks))

@@ -1,6 +1,8 @@
 ---
 tags:
+- BooleanLogic
 - ConditionalSelection
+- ImpactPack
 ---
 
 # 🔀 CR Model Input Switch

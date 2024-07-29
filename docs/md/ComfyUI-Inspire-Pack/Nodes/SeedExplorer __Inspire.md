@@ -1,6 +1,7 @@
 ---
 tags:
 - RandomGeneration
+- Randomization
 - Seed
 ---
 
@@ -10,41 +11,50 @@ tags:
 - Category: `InspirePack/Prompt`
 - Output node: `False`
 
-The SeedExplorer __Inspire node is designed to facilitate exploration and manipulation of seed values within a generative workflow. It enables dynamic adjustment and application of seeds to influence the generation process, providing a means to explore variations and ensure consistency across generated outputs.
+The SeedExplorer node is designed to explore and manipulate seed values within the Inspire Pack ecosystem. It provides functionality to adjust, set, or randomize seeds used in various generative processes, facilitating controlled variability and reproducibility in generated content.
 ## Input types
 ### Required
 - **`latent`**
-    - Represents the initial latent space or image data that the node will manipulate using the provided seed values. It serves as the starting point for the seed exploration process.
+    - Specifies the latent space vector to be used or modified in the seed exploration process, serving as a foundation for generative variations.
     - Comfy dtype: `LATENT`
     - Python dtype: `torch.Tensor`
 - **`seed_prompt`**
-    - A string input containing seed values and possibly other directives for generating variations. It's used to guide the generation process by specifying seed values and their intended effects.
+    - A string input that can be used to influence the seed exploration process, potentially guiding the generation towards specific themes or directions.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`enable_additional`**
-    - A boolean flag that enables or disables the application of additional seed and strength parameters for further manipulation of the generation process.
+    - A boolean flag that enables or disables the use of additional seed manipulation features, offering more granular control over the generation process.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`additional_seed`**
-    - An integer representing an additional seed value to be applied alongside the main seed prompt for enhanced control over the generation outcomes.
+    - An integer representing an additional seed value to be used in conjunction with the primary seed, allowing for further customization of the generation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`additional_strength`**
-    - A floating-point value specifying the strength of the effect of the additional seed on the generation process. It allows for fine-tuning the impact of the additional seed.
+    - A float indicating the strength of the influence of the additional seed on the generation process, providing a means to adjust the impact of seed variations.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`noise_mode`**
-    - Specifies whether the noise generation should occur on the GPU or CPU, affecting the performance and efficiency of the generation process.
+    - Specifies the computational backend (GPU or CPU) for noise generation, affecting the performance and possibly the outcomes of the seed exploration.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`initial_batch_seed_mode`**
-    - Determines the mode of seed application for the initial batch, influencing how seeds are applied and varied across multiple generations.
+    - Determines the method for initializing seeds in batch processes, influencing the diversity and consistency of generated batches.
     - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
+### Optional
+- **`variation_method`**
+    - Defines the method for applying variations to the seed or latent space, such as linear interpolation or spherical linear interpolation (slerp), affecting the nature of generative changes.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
+- **`model`**
+    - Identifies the model to be used in conjunction with the seed exploration, linking the seed manipulation to specific generative models.
+    - Comfy dtype: `model`
     - Python dtype: `str`
 ## Output types
 - **`noise`**
     - Comfy dtype: `NOISE`
-    - The manipulated noise tensor resulting from the application of seed values and additional parameters. It represents the direct output of the seed exploration process.
+    - The modified or newly generated noise vector resulting from the seed exploration process, ready for further generative applications.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
@@ -65,7 +75,12 @@ class SeedExplorer:
                 "additional_strength": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 1.0, "step": 0.01}),
                 "noise_mode": (["GPU(=A1111)", "CPU"],),
                 "initial_batch_seed_mode": (["incremental", "comfy"],),
-            }
+            },
+            "optional":
+                {
+                    "variation_method": (["linear", "slerp"],),
+                    "model": ("model",),
+                }
         }
 
     RETURN_TYPES = ("NOISE",)
@@ -74,7 +89,7 @@ class SeedExplorer:
     CATEGORY = "InspirePack/Prompt"
 
     @staticmethod
-    def apply_variation(start_noise, seed_items, noise_device, mask=None):
+    def apply_variation(start_noise, seed_items, noise_device, mask=None, variation_method='linear'):
         noise = start_noise
         for x in seed_items:
             if isinstance(x, str):
@@ -87,15 +102,20 @@ class SeedExplorer:
                     variation_seed = int(item[0])
                     variation_strength = float(item[1])
 
-                    noise = utils.apply_variation_noise(noise, noise_device, variation_seed, variation_strength, mask=mask)
+                    noise = utils.apply_variation_noise(noise, noise_device, variation_seed, variation_strength, mask=mask, variation_method=variation_method)
                 except Exception:
                     print(f"[ERROR] IGNORED: SeedExplorer failed to processing '{x}'")
                     traceback.print_exc()
         return noise
 
-    def doit(self, latent, seed_prompt, enable_additional, additional_seed, additional_strength, noise_mode,
-             initial_batch_seed_mode):
+    @staticmethod
+    def doit(latent, seed_prompt, enable_additional, additional_seed, additional_strength, noise_mode,
+             initial_batch_seed_mode, variation_method='linear', model=None):
         latent_image = latent["samples"]
+
+        if hasattr(comfy.sample, 'fix_empty_latent_channels') and model is not None:
+            latent_image = comfy.sample.fix_empty_latent_channels(model, latent_image)
+
         device = comfy.model_management.get_torch_device()
         noise_device = "cpu" if noise_mode == "CPU" else device
 
@@ -119,7 +139,7 @@ class SeedExplorer:
 
             noise = utils.prepare_noise(latent_image, hd_seed, None, noise_device, initial_batch_seed_mode)
             noise = noise.to(device)
-            noise = SeedExplorer.apply_variation(noise, tl, noise_device)
+            noise = SeedExplorer.apply_variation(noise, tl, noise_device, variation_method=variation_method)
             noise = noise.cpu()
 
             return (noise,)

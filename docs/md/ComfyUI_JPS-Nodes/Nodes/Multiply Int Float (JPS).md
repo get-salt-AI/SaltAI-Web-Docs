@@ -1,7 +1,6 @@
 ---
 tags:
-- MathematicalFunctions
-- Multiplication
+- DataTypeConversion
 ---
 
 # Multiply Int Float (JPS)

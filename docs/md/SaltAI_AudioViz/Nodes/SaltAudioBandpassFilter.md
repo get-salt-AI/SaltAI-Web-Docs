@@ -1,12 +1,13 @@
 ---
 tags:
 - Audio
+- List
 ---
 
 # Audio Bandpass Filter
 ## Documentation
 - Class name: `SaltAudioBandpassFilter`
-- Category: `SALT/Audio/Effect`
+- Category: `SALT/AudioViz/Audio/Effect`
 - Output node: `False`
 
 The SaltAudioBandpassFilter node applies a bandpass filter to an audio input, allowing frequencies within a specified range to pass through while attenuating frequencies outside this range. This process is useful for isolating specific frequency bands or reducing noise.
@@ -17,11 +18,11 @@ The SaltAudioBandpassFilter node applies a bandpass filter to an audio input, al
     - Comfy dtype: `AUDIO`
     - Python dtype: `bytes`
 - **`low_cutoff_frequency`**
-    - The lower frequency threshold of the bandpass filter. Frequencies below this value will be attenuated, helping to isolate the desired frequency band.
+    - The lower frequency limit of the bandpass filter. Frequencies below this threshold will be attenuated, helping to isolate the desired frequency band.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`high_cutoff_frequency`**
-    - The upper frequency threshold of the bandpass filter. Frequencies above this value will be attenuated, further refining the isolation of the desired frequency band.
+    - The upper frequency limit of the bandpass filter. Frequencies above this threshold will be attenuated, further refining the isolation of the desired frequency band.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
@@ -50,7 +51,7 @@ class SaltAudioBandpassFilter:
     RETURN_TYPES = ("AUDIO",)
     RETURN_NAMES = ("audio",)
     FUNCTION = "apply_bandpass_filter"
-    CATEGORY = "SALT/Audio/Effect"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Audio/Effect"
 
     def apply_bandpass_filter(self, audio, low_cutoff_frequency, high_cutoff_frequency):
         audio_segment = AudioSegment.from_file(io.BytesIO(audio), format="wav")

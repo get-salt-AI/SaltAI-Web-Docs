@@ -1,84 +1,84 @@
 ---
 tags:
-- ImageScaling
+- ImageResolution
+- ImageTransformation
 - ImageUpscaling
-- Upscale
 ---
 
 # hiresfixScale
 ## Documentation
 - Class name: `ttN hiresfixScale`
-- Category: `ttN/image`
+- Category: `🌏 tinyterra/image`
 - Output node: `True`
 
-The ttN hiresfixScale node specializes in upscaling images through a specific model, enhancing their resolution while optionally adjusting their scale based on various criteria such as percentage increase, maintaining aspect ratio, or targeting a longer side dimension. It integrates advanced rescaling techniques and can output either the upscaled images or their latent representations, depending on the configuration.
+The ttN hiresfixScale node specializes in enhancing image resolution through various upscale methods, including model-based and algorithmic approaches. It provides options for rescaling images after model application, adjusting the scale by percentage or to specific dimensions while maintaining aspect ratios, and optionally outputting the result in latent space. This node is designed to improve image quality and detail, catering to both standard and custom upscale needs.
 ## Input types
 ### Required
 - **`model_name`**
-    - Specifies the model used for upscaling the images, determining the method and quality of the upscale.
+    - Specifies the name of the upscale model to be used for enhancing the image resolution. It's essential for selecting the appropriate model-based upscale method.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
+- **`vae`**
+    - The variational autoencoder used for decoding or encoding images when required, playing a crucial role in the upscale process.
+    - Comfy dtype: `VAE`
+    - Python dtype: `torch.nn.Module`
 - **`image`**
-    - The input images to be upscaled, serving as the base for the enhancement process.
+    - The input image to be upscaled. This parameter is the starting point of the upscale process and determines the initial quality and resolution.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `numpy.ndarray`
 - **`rescale_after_model`**
-    - Indicates if the images should be rescaled after being processed by the model.
+    - Indicates whether the image should be rescaled after being processed by the upscale model, affecting the final image size and resolution.
     - Comfy dtype: `COMBO[BOOLEAN]`
     - Python dtype: `bool`
 - **`rescale_method`**
-    - Defines the method used for rescaling the images after upscaling, such as by percentage or to a specific dimension while maintaining aspect ratio.
+    - Defines the method used for rescaling the image after model upscaling, influencing the final appearance and dimensions of the image.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`rescale`**
-    - Specifies the rescaling approach, either by a fixed percentage or to a specific longer side dimension while preserving aspect ratio.
+    - Specifies how the image should be rescaled, offering options like by percentage, to specific width/height, or to maintain aspect ratio by adjusting the longer side.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`percent`**
-    - The percentage to scale the image by when 'rescale' is set to 'by percentage'.
+    - The percentage by which the image should be rescaled, relevant when the 'rescale' parameter is set to 'by percentage'. It directly impacts the final image size.
     - Comfy dtype: `INT`
-    - Python dtype: `float`
+    - Python dtype: `int`
 - **`width`**
-    - The target width for the image after rescaling, applicable when 'rescale' is set to specific dimensions.
+    - The target width for the image after rescaling, applicable when the 'rescale' parameter is set to 'to Width/Height'. It determines the final width of the image.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - The target height for the image after rescaling, applicable when 'rescale' is set to specific dimensions.
+    - The target height for the image after rescaling, applicable when the 'rescale' parameter is set to 'to Width/Height'. It determines the final height of the image.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`longer_side`**
-    - Specifies the length of the longer side of the image after rescaling, used when 'rescale' is set to 'to longer side - maintain aspect'.
+    - The target size for the longer side of the image when maintaining aspect ratio, affecting the final dimensions while preserving the image's original proportions.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`crop`**
-    - Determines if and how the image should be cropped after rescaling.
+    - Determines if and how the upscaled image should be cropped, offering options like disabled or center cropping. This affects the final composition of the image.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`image_output`**
-    - Defines the format of the output, whether as an upscaled image or its latent representation.
+    - Controls how the upscaled image is outputted, with options for hiding, previewing, saving, or a combination of hiding and saving. This affects how users interact with and access the final image.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`save_prefix`**
-    - A prefix for saving the processed images, indicating how the output files are named.
+    - The prefix added to the filename when saving the upscaled image, allowing for easy identification and organization of output files.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`output_latent`**
-    - Indicates whether the output should be in the form of latent representations of the upscaled images.
+    - Indicates whether the result should also include the upscaled image in latent space, enabling further manipulation or analysis in this format.
     - Comfy dtype: `COMBO[BOOLEAN]`
     - Python dtype: `bool`
-- **`vae`**
-    - The variational autoencoder used for generating latent representations, if 'output_latent' is true.
-    - Comfy dtype: `VAE`
-    - Python dtype: `object`
 ## Output types
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - The latent representation of the upscaled image, if the configuration is set to output in latent format.
-    - Python dtype: `Dict[str, torch.Tensor]`
+    - The upscaled image in latent space, available when output_latent is set to True, allowing for further manipulation or analysis.
+    - Python dtype: `Dict[str, Any]`
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The upscaled and optionally rescaled image, following the specified method and criteria.
-    - Python dtype: `torch.Tensor`
+    - The final upscaled image, showcasing the improved resolution and detail achieved through the upscale process.
+    - Python dtype: `Dict[str, Any]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -87,13 +87,14 @@ The ttN hiresfixScale node specializes in upscaling images through a specific mo
 ## Source code
 ```python
 class ttN_modelScale:
-    version = '1.0.3'
+    version = '1.1.0'
     upscale_methods = ["nearest-exact", "bilinear", "area", "bicubic", "lanczos", "bislerp"]
     crop_methods = ["disabled", "center"]
 
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "model_name": (folder_paths.get_filename_list("upscale_models"),),
+                              "vae": ("VAE",),
                               "image": ("IMAGE",),
                               "rescale_after_model": ([False, True],{"default": True}),
                               "rescale_method": (s.upscale_methods,),
@@ -105,8 +106,7 @@ class ttN_modelScale:
                               "crop": (s.crop_methods,),
                               "image_output": (["Hide", "Preview", "Save", "Hide/Save"],),
                               "save_prefix": ("STRING", {"default": "ComfyUI"}),
-                              "output_latent": ([False, True],{"default": True}),
-                              "vae": ("VAE",),},
+                              "output_latent": ([False, True],{"default": True}),},
                 "hidden": {   "prompt": "PROMPT", "extra_pnginfo": "EXTRA_PNGINFO", "my_unique_id": "UNIQUE_ID",
                                "ttNnodeVersion": ttN_modelScale.version},
         }
@@ -115,7 +115,7 @@ class ttN_modelScale:
     RETURN_NAMES = ("latent", 'image',)
 
     FUNCTION = "upscale"
-    CATEGORY = "ttN/image"
+    CATEGORY = "🌏 tinyterra/image"
     OUTPUT_NODE = True
 
     def vae_encode_crop_pixels(self, pixels):
@@ -127,24 +127,12 @@ class ttN_modelScale:
             pixels = pixels[:, x_offset:x + x_offset, y_offset:y + y_offset, :]
         return pixels
 
-    def upscale(self, model_name, image, rescale_after_model, rescale_method, rescale, percent, width, height, longer_side, crop, image_output, save_prefix, output_latent, vae, prompt=None, extra_pnginfo=None, my_unique_id=None):
+    def upscale(self, model_name, vae, image, rescale_after_model, rescale_method, rescale, percent, width, height, longer_side, crop, image_output, save_prefix, output_latent, prompt=None, extra_pnginfo=None, my_unique_id=None):
         # Load Model
-        model_path = folder_paths.get_full_path("upscale_models", model_name)
-        sd = comfy.utils.load_torch_file(model_path, safe_load=True)
-        upscale_model = model_loading.load_state_dict(sd).eval()
+        upscale_model = comfy_extras.nodes_upscale_model.UpscaleModelLoader().load_model(model_name)[0]
 
         # Model upscale
-        device = comfy.model_management.get_torch_device()
-        upscale_model.to(device)
-        in_img = image.movedim(-1,-3).to(device)
-
-        tile = 128 + 64
-        overlap = 8
-        steps = in_img.shape[0] * comfy.utils.get_tiled_scale_steps(in_img.shape[3], in_img.shape[2], tile_x=tile, tile_y=tile, overlap=overlap)
-        pbar = comfy.utils.ProgressBar(steps)
-        s = comfy.utils.tiled_scale(in_img, lambda a: upscale_model(a), tile_x=tile, tile_y=tile, overlap=overlap, upscale_amount=upscale_model.scale, pbar=pbar)
-        upscale_model.cpu()
-        s = torch.clamp(s.movedim(-3,-1), min=0, max=1.0)
+        s = comfy_extras.nodes_upscale_model.ImageUpscaleWithModel().upscale(upscale_model, image)[0]
 
         # Post Model Rescale
         if rescale_after_model == True:

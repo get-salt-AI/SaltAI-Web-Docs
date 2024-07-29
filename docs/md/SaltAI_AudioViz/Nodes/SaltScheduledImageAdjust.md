@@ -1,55 +1,57 @@
 ---
 tags:
+- AnimationScheduling
 - Scheduling
+- SigmaScheduling
 ---
 
 # Batch Image Scheduled Adjustments
 ## Documentation
 - Class name: `SaltScheduledImageAdjust`
-- Category: `SALT/Scheduling/Image`
+- Category: `SALT/AudioViz/Scheduling/Image`
 - Output node: `False`
 
-This node is designed to apply scheduled adjustments to a batch of images, allowing for dynamic changes in brightness, contrast, saturation, sharpness, gaussian blur, and edge enhancement over time. It enables the creation of sequences where image properties evolve according to predefined schedules, enhancing visual storytelling or data visualization.
+This node is designed for batch processing of images, allowing for scheduled adjustments to various image attributes such as brightness, contrast, saturation, sharpness, gaussian blur, and edge enhancement. It enables the dynamic modification of these attributes over a sequence of images, facilitating complex visual effects and enhancements in an automated manner.
 ## Input types
 ### Required
 - **`images`**
-    - The collection of images to be adjusted. This parameter is central to the node's operation, as it defines the set of images that will undergo the scheduled transformations.
+    - The collection of images to be adjusted. This parameter is central to the node's operation, as it determines the base content that will be modified according to the specified schedules.
     - Comfy dtype: `IMAGE`
     - Python dtype: `List[Image]`
 ### Optional
 - **`masks`**
-    - Optional masks to apply the adjustments selectively on the images. This allows for more precise control over which areas of the images are affected by the adjustments.
+    - Optional masks that can be applied to the images for selective adjustment. This allows for more precise control over which areas of the images are affected by the scheduled adjustments.
     - Comfy dtype: `MASK`
     - Python dtype: `List[Image]`
 - **`brightness_schedule`**
-    - A schedule defining how the brightness of the images should change over time. This enables dynamic visual effects by altering the lightness of the images according to a predefined sequence.
+    - A schedule dictating the brightness adjustments over time. This enables dynamic changes to the brightness of the images, enhancing visual storytelling or compensating for lighting variations.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 - **`contrast_schedule`**
-    - A schedule that dictates the contrast adjustments over time, allowing for the enhancement or reduction of the difference between the darkest and lightest parts of the images.
+    - A schedule for adjusting the contrast of the images. This can be used to emphasize texture and depth, or to create a specific mood by altering the visual intensity of the images.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 - **`saturation_schedule`**
-    - Defines how the color intensity of the images changes over time, enabling the creation of vibrant or muted color sequences.
+    - Defines how the color saturation of the images will change over time. This is useful for creating vivid or muted color effects in a sequence of images.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 - **`sharpness_schedule`**
-    - A schedule for adjusting the clarity or blur of the images' details over time, facilitating the focus on specific elements or the creation of dreamy sequences.
+    - A schedule for modifying the sharpness of the images, allowing for the enhancement or softening of details within the images.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 - **`gaussian_blur_schedule`**
-    - Determines the degree of Gaussian blur applied to the images over time, allowing for the creation of soft-focus effects or transitions.
+    - Determines the intensity of gaussian blur applied to the images over time, useful for creating depth of field effects or focusing attention on specific elements.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 - **`edge_enhance_schedule`**
-    - A schedule for enhancing the edges within the images over time, which can be used to highlight details or create a more graphic look.
+    - A schedule for the application of edge enhancement, which can be used to accentuate edges and details within the images.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The adjusted images after the application of the scheduled adjustments, showcasing the dynamic changes over time.
-    - Python dtype: `List[Image]`
+    - unknown
+    - Python dtype: `unknown`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -78,7 +80,7 @@ class SaltScheduledImageAdjust:
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "images_adjust"
 
-    CATEGORY = "SALT/Scheduling/Image"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling/Image"
 
     def float_value(self, adj_list, idx):
         if isinstance(adj_list, list) and adj_list:

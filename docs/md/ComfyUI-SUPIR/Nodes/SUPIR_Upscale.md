@@ -1,8 +1,8 @@
 ---
 tags:
-- ImageScaling
+- ImageResolution
+- ImageTransformation
 - ImageUpscaling
-- Upscale
 ---
 
 # SUPIR Upscale (Legacy)

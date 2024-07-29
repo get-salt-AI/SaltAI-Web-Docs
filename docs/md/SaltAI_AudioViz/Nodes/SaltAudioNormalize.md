@@ -1,25 +1,27 @@
 ---
 tags:
 - Audio
+- List
+- ListExtension
 ---
 
 # Audio Normalize
 ## Documentation
 - Class name: `SaltAudioNormalize`
-- Category: `SALT/Audio/Process`
+- Category: `SALT/AudioViz/Audio/Process`
 - Output node: `False`
 
-The SaltAudioNormalize node is designed to adjust the audio level of a given audio file to a standard level, ensuring consistent volume across different audio tracks.
+The SaltAudioNormalize node is designed to normalize audio files, adjusting their volume levels to a consistent amplitude. This process enhances the audio quality by ensuring that the sound is neither too loud nor too soft, making it ideal for preparing audio for further processing or playback.
 ## Input types
 ### Required
 - **`audio`**
-    - The 'audio' parameter is the raw audio data that needs normalization. It is crucial for determining the audio's current volume level and adjusting it to the target normalization level.
+    - The 'audio' input is the raw audio data that needs normalization. It is crucial for the node's operation as it directly influences the outcome of the normalization process.
     - Comfy dtype: `AUDIO`
     - Python dtype: `bytes`
 ## Output types
 - **`audio`**
     - Comfy dtype: `AUDIO`
-    - The normalized audio data, with adjusted volume levels for consistency across different tracks.
+    - The 'audio' output is the normalized version of the input audio. It represents the result of the normalization process, with adjusted volume levels for consistent amplitude.
     - Python dtype: `bytes`
 ## Usage tips
 - Infra type: `CPU`
@@ -40,7 +42,7 @@ class SaltAudioNormalize:
     RETURN_TYPES = ("AUDIO",)
     RETURN_NAMES = ("audio",)
     FUNCTION = "normalize_audio"
-    CATEGORY = "SALT/Audio/Process"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Audio/Process"
 
     def normalize_audio(self, audio):
         audio_segment = AudioSegment.from_file(io.BytesIO(audio), format="wav")

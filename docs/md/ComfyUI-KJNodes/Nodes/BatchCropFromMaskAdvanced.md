@@ -5,67 +5,67 @@ tags:
 - ImageTransformation
 ---
 
-# BatchCropFromMaskAdvanced
+# Batch Crop From Mask Advanced
 ## Documentation
 - Class name: `BatchCropFromMaskAdvanced`
 - Category: `KJNodes/masking`
 - Output node: `False`
 
-This node is designed for advanced cropping operations on batches of images based on their associated masks. It calculates the optimal bounding box for each mask, applies smoothing to the bounding box sizes, and adjusts the crop size dynamically to ensure consistency and precision across the batch.
+This node is designed for advanced cropping operations on batches of images based on their associated masks. It calculates the optimal bounding box for each mask, applies smoothing to the bounding box sizes, and adjusts the crop size dynamically to ensure consistency across the batch. This process is aimed at enhancing the focus on relevant image areas while maintaining important aspects of the image composition.
 ## Input types
 ### Required
 - **`original_images`**
-    - The batch of original images that will be cropped according to the calculated bounding boxes derived from the masks.
+    - The batch of original images that will be cropped according to the calculated bounding boxes derived from their corresponding masks.
     - Comfy dtype: `IMAGE`
     - Python dtype: `List[torch.Tensor]`
 - **`masks`**
-    - A batch of masks used to determine the areas of interest for cropping the corresponding images. The masks guide the cropping process by identifying non-zero regions that signify relevant content.
+    - A batch of masks used to determine the areas of interest within the corresponding images. These masks guide the cropping process by identifying non-zero regions that signify important content.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`crop_size_mult`**
-    - A multiplier that adjusts the size of the crop dynamically, allowing for flexibility in the final crop dimensions.
+    - A multiplier applied to the size of the bounding boxes to adjust the final crop size, allowing for flexibility in the cropping process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`bbox_smooth_alpha`**
-    - A parameter used to smooth the changes in bounding box sizes across the batch, ensuring a more consistent crop size.
+    - A smoothing factor applied to the bounding box sizes to mitigate abrupt changes and ensure a smoother transition between crop sizes.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`original_images`**
     - Comfy dtype: `IMAGE`
-    - The original batch of images provided as input, returned without modifications.
-    - Python dtype: `List[torch.Tensor]`
+    - The original images provided as input, returned without modification.
+    - Python dtype: `torch.Tensor`
 - **`cropped_images`**
     - Comfy dtype: `IMAGE`
-    - The resulting batch of images after cropping, tailored to the areas of interest defined by the masks.
-    - Python dtype: `List[torch.Tensor]`
+    - The images after being cropped according to the calculated bounding boxes and applied adjustments.
+    - Python dtype: `torch.Tensor`
 - **`cropped_masks`**
     - Comfy dtype: `MASK`
-    - The corresponding batch of masks after cropping, aligned with the cropped images.
-    - Python dtype: `List[torch.Tensor]`
+    - The masks after being cropped to match the dimensions of the cropped images.
+    - Python dtype: `torch.Tensor`
 - **`combined_crop_image`**
     - Comfy dtype: `IMAGE`
-    - A single image created by combining the cropped areas from the original images, based on the combined bounding box.
+    - A single image created by combining the cropped images, optimized for certain use cases.
     - Python dtype: `torch.Tensor`
 - **`combined_crop_masks`**
     - Comfy dtype: `MASK`
-    - A single mask created by combining the cropped areas from the original masks, based on the combined bounding box.
+    - A single mask created by combining the cropped masks, corresponding to the combined cropped image.
     - Python dtype: `torch.Tensor`
 - **`bboxes`**
     - Comfy dtype: `BBOX`
-    - The list of bounding boxes calculated for each mask, used for cropping the images.
-    - Python dtype: `List[Tuple[int, int, int, int]]`
+    - The bounding boxes calculated for each mask, used to determine the crop areas.
+    - Python dtype: `List[tuple]`
 - **`combined_bounding_box`**
     - Comfy dtype: `BBOX`
     - The combined bounding box calculated from all masks, used for creating the combined cropped image and mask.
-    - Python dtype: `Tuple[int, int, int, int]`
+    - Python dtype: `tuple`
 - **`bbox_width`**
     - Comfy dtype: `INT`
-    - The width of the largest bounding box calculated across all masks, adjusted for consistency and precision.
+    - The width of the largest bounding box calculated across all masks, adjusted for crop size and smoothing.
     - Python dtype: `int`
 - **`bbox_height`**
     - Comfy dtype: `INT`
-    - The height of the largest bounding box calculated across all masks, adjusted for consistency and precision.
+    - The height of the largest bounding box calculated across all masks, adjusted for crop size and smoothing.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `GPU`

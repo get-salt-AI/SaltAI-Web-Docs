@@ -1,6 +1,8 @@
 ---
 tags:
+- Conditioning
 - ControlNet
+- ControlNetLoader
 ---
 
 # ControlNetHadamard
@@ -9,32 +11,32 @@ tags:
 - Category: `Bmad/conditioning`
 - Output node: `False`
 
-This node applies a control network to a set of images and conditions, adjusting the conditions based on the control network's output and a specified strength. It's designed for dynamic image conditioning, allowing for the modification of image attributes or styles according to the control network's logic.
+This node applies a control network to a set of images and conditions, modulating the latter based on the control network's output and a specified strength. It's designed to integrate control network effects into image conditioning, allowing for dynamic adjustments to the conditioning process.
 ## Input types
 ### Required
 - **`conds`**
-    - The conditions to be applied to each image, which are modified by the control network to achieve the desired effect.
+    - The conditions to be modulated by the control network, representing the contextual or semantic guidance for image generation.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
+    - Python dtype: `List[Dict[str, Any]]`
 - **`control_net`**
-    - The control network used to modify the conditions based on the images and the specified strength.
+    - The control network to be applied, determining the nature and extent of modulation on the conditions.
     - Comfy dtype: `CONTROL_NET`
     - Python dtype: `torch.nn.Module`
 - **`image`**
-    - The images to which the conditions are applied, serving as the basis for the control network's modifications.
+    - The images to which the control network adjustments are applied, serving as the basis for condition modulation.
     - Comfy dtype: `IMAGE`
     - Python dtype: `List[torch.Tensor]`
 - **`strength`**
-    - Determines the intensity of the control network's effect on the conditions, allowing for fine-tuned adjustments.
+    - A scalar value determining the intensity of the control network's effect on the conditions, allowing for fine-tuned control over the modulation.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`conditioning`**
     - Comfy dtype: `CONDITIONING`
-    - The modified conditions after being processed by the control network, reflecting the applied changes.
-    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, Any]]]`
+    - The modulated conditions, adjusted by the control network to reflect the desired changes.
+    - Python dtype: `List[Dict[str, Any]]`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -42,7 +44,7 @@ This node applies a control network to a set of images and conditions, adjusting
 ```python
 class ControlNetHadamard(nodes.ControlNetApply):
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {"conds": ("CONDITIONING",),
                              "control_net": ("CONTROL_NET",),
                              "image": ("IMAGE",),
@@ -51,7 +53,7 @@ class ControlNetHadamard(nodes.ControlNetApply):
 
     RETURN_TYPES = ("CONDITIONING",)
     FUNCTION = "apply"
-    CATEGORY = "Bmad/conditioning"
+    CATEGORY = conditioning_category_path
     INPUT_IS_LIST = True
     OUTPUT_IS_LIST = (True,)
 
@@ -59,8 +61,7 @@ class ControlNetHadamard(nodes.ControlNetApply):
         control_net = control_net[0]
         strength = strength[0]
 
-        if len(images) != len(conds):
-            raise "lists sizes do not match"  # maybe relax check and allow for fewer conds than images?
+        assert len(images) == len(conds), "lists sizes do not match"
 
         print(len(images))
         print(len(images[0]))

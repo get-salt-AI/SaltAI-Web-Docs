@@ -1,7 +1,7 @@
 ---
 tags:
-- ControlNet
 - Image
+- Pipeline
 ---
 
 # CtrlNet OpenPose Pipe (JPS)

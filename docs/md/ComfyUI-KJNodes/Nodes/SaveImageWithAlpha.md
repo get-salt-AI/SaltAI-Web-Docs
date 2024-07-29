@@ -1,35 +1,37 @@
 ---
 tags:
+- Animation
 - Image
+- ImageGeneration
 - ImageSave
 ---
 
-# SaveImageWithAlpha
+# Save Image With Alpha
 ## Documentation
 - Class name: `SaveImageWithAlpha`
 - Category: `KJNodes/image`
 - Output node: `True`
 
-The SaveImageWithAlpha node is designed to save images with an alpha channel, allowing for transparency effects. It supports adding metadata to the saved image files, including prompts and additional PNG information, and manages file naming and storage with a focus on preserving image quality and transparency.
+This node is designed for saving images with an alpha channel, allowing for transparency effects. It processes a batch of images and their corresponding masks, applies the masks as alpha channels to the images, optionally adds metadata (such as prompts or additional PNG information), and saves the resulting images with transparency to a specified location.
 ## Input types
 ### Required
 - **`images`**
-    - The images to be saved, expected to have an alpha channel for transparency.
+    - A batch of images to be processed and saved with alpha transparency. This input is crucial for defining the visual content of the output files.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`mask`**
-    - The mask to apply to the images, defining the transparency level of each pixel.
+    - A batch of masks corresponding to the images, used to create the alpha channel for transparency effects. This input is essential for determining which parts of each image should be transparent.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`filename_prefix`**
-    - A prefix for the filename, used to identify and organize the saved images.
+    - A prefix for the filenames of the saved images, allowing for organized storage and easy identification.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`ui`**
-    - The UI parameter returns a dictionary containing the paths to the saved images, facilitating user interaction and file retrieval.
+    - The output includes a UI component that displays the saved images, providing a visual confirmation of the operation's success.
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -59,7 +61,6 @@ Saves an image and mask as .PNG with the mask as the alpha channel.
 """
 
     def save_images_alpha(self, images, mask, filename_prefix="ComfyUI_image_with_alpha", prompt=None, extra_pnginfo=None):
-        from comfy.cli_args import args
         from PIL.PngImagePlugin import PngInfo
         filename_prefix += self.prefix_append
         full_output_folder, filename, counter, subfolder, filename_prefix = folder_paths.get_save_image_path(filename_prefix, self.output_dir, images[0].shape[1], images[0].shape[0])

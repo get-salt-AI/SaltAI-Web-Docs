@@ -1,54 +1,56 @@
 ---
 tags:
 - Audio
+- List
+- ListExtension
 ---
 
 # Load Audio
 ## Documentation
 - Class name: `SaltLoadAudio`
-- Category: `SALT/Audio`
+- Category: `SALT/AudioViz/Audio`
 - Output node: `False`
 
-This node is designed to load audio files into the system, preparing them for further processing or analysis. It serves as the initial step in the audio handling pipeline, enabling subsequent nodes to manipulate or analyze the loaded audio data.
+This node is designed to load audio files from a specified path, making them ready for further processing or analysis within the audio processing pipeline. It serves as the initial step in handling audio data, ensuring that audio files are properly loaded and available for subsequent operations such as editing, analysis, or conversion.
 ## Input types
 ### Required
 - **`file_path`**
-    - Specifies the path to the audio file to be loaded. It is essential for locating and accessing the audio data for processing.
+    - Specifies the path to the audio file that needs to be loaded. This is crucial for locating and accessing the audio data for processing.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`start_seconds`**
-    - Defines the starting point in seconds from which the audio will be loaded. This allows for partial loading of audio files, facilitating focused analysis or manipulation.
+    - Defines the starting point of the audio file in seconds from which the audio should be loaded. This allows for partial loading of audio files, facilitating operations that require only a segment of the audio.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`manual_bpm`**
-    - Allows for the manual specification of beats per minute (BPM), which can be used to override automatic BPM detection. This is useful for audio processing that relies on precise tempo information.
+    - Allows for the manual specification of beats per minute (BPM) if known, which can be used for further processing or analysis. This is optional and used primarily when automatic BPM detection is not desired or needs to be overridden.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`frame_rate`**
-    - Sets the frame rate for the audio processing. This parameter influences the temporal resolution of the audio analysis and manipulation.
+    - Sets the frame rate for the audio processing, affecting the temporal resolution of the loaded audio. This is crucial for ensuring compatibility with subsequent processing steps that may require a specific frame rate.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`duration_seconds`**
-    - Determines the duration in seconds for which the audio will be loaded from the start point. This enables selective processing of audio segments.
+    - Specifies the duration in seconds for which the audio should be loaded from the start_seconds point. This allows for loading only a specific portion of the audio file, useful in scenarios where the entire file is not needed.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`audio`**
     - Comfy dtype: `AUDIO`
-    - The loaded audio data, ready for further processing or analysis.
+    - The loaded audio data, ready for further processing or analysis. This output is essential for any subsequent audio manipulation or analysis tasks.
     - Python dtype: `bytes`
 - **`bpm`**
     - Comfy dtype: `FLOAT`
-    - The detected or manually specified beats per minute (BPM) of the loaded audio.
+    - The beats per minute (BPM) of the loaded audio, either detected automatically or set manually. This information is crucial for rhythm-based processing and analysis.
     - Python dtype: `float`
 - **`frame_rate`**
     - Comfy dtype: `INT`
-    - The frame rate used during the audio loading process.
+    - The frame rate at which the audio was processed. This information is important for ensuring that subsequent processing steps operate on data with consistent temporal resolution.
     - Python dtype: `int`
 - **`frame_count`**
     - Comfy dtype: `INT`
-    - The total number of frames in the loaded audio segment, calculated based on the duration and frame rate.
+    - The total number of frames in the loaded audio segment. This count is essential for operations that involve direct manipulation of audio frames.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
@@ -75,7 +77,7 @@ class SaltLoadAudio:
     RETURN_TYPES = ("AUDIO", "FLOAT", "INT", "INT")
     RETURN_NAMES = ("audio", "bpm", "frame_rate", "frame_count")
     FUNCTION = "load_audio"
-    CATEGORY = "SALT/Audio"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Audio"
 
     def load_audio(self, file_path, start_seconds, duration_seconds=0.0, manual_bpm=0.0, frame_rate=24.0):
         INPUT = folder_paths.get_input_directory()
@@ -125,7 +127,10 @@ class SaltLoadAudio:
 
         if manual_bpm <= 0:
             tempo, _ = librosa.beat.beat_track(y=y, sr=sr)
-            bpm = tempo
+            if isinstance(tempo, np.ndarray):
+                bpm = float(tempo[0]) if tempo.size > 0 else 0.0
+            else:
+                bpm = tempo
         else:
             bpm = manual_bpm
 
@@ -139,7 +144,7 @@ class SaltLoadAudio:
             h.update(str(os.path.getmtime(filename)).encode())
             return h.hexdigest()
         except Exception as e:
-            print(e)
+            logger.error(e)
             return float("NaN")
 
     @classmethod

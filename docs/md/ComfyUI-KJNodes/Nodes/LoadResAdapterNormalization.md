@@ -1,7 +1,8 @@
 ---
 tags:
-- Latent
-- Normalization
+- LatentBlend
+- ModelGuidance
+- VAE
 ---
 
 # LoadResAdapterNormalization
@@ -10,24 +11,24 @@ tags:
 - Category: `KJNodes/experimental`
 - Output node: `False`
 
-This node is designed to load and apply ResAdapter normalization weights to a given model. It ensures that the model is compatible with specific normalization standards by patching it with ResAdapter weights, enhancing its performance or compatibility with certain datasets or tasks.
+This node is designed to enhance the adaptability and performance of a given model by loading and applying normalization weights from a ResAdapter. It aims to improve model accuracy and efficiency by integrating external normalization parameters, thereby optimizing the model's response to various inputs.
 ## Input types
 ### Required
 - **`model`**
-    - The model to which ResAdapter normalization weights will be applied. This parameter is crucial as it determines the base model that will be enhanced with normalization patches.
+    - The model to which the ResAdapter normalization weights will be applied. It is crucial for enhancing the model's adaptability and performance by integrating external normalization parameters.
     - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`resadapter_path`**
-    - The file path to the ResAdapter normalization weights. This parameter is essential for locating and loading the specific normalization weights to be applied to the model.
+    - The file path to the ResAdapter normalization weights. This path is used to locate and load the normalization parameters that are essential for optimizing the model's performance.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The cloned model with applied ResAdapter normalization patches. This output is significant as it represents the enhanced version of the original model, ready for further use or evaluation.
+    - A clone of the original model with the ResAdapter normalization weights applied. This enhanced model is expected to exhibit improved accuracy and efficiency.
     - Python dtype: `torch.nn.Module`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -54,9 +55,10 @@ class LoadResAdapterNormalization:
             raise Exception("Invalid model path")
         else:
             print("ResAdapter: Loading ResAdapter normalization weights")
+            from comfy.utils import load_torch_file
             prefix_to_remove = 'diffusion_model.'
             model_clone = model.clone()
-            norm_state_dict = comfy.utils.load_torch_file(resadapter_full_path)
+            norm_state_dict = load_torch_file(resadapter_full_path)
             new_values = {key[len(prefix_to_remove):]: value for key, value in norm_state_dict.items() if key.startswith(prefix_to_remove)}
             print("ResAdapter: Attempting to add patches with ResAdapter weights")
             try:

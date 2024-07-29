@@ -1,6 +1,7 @@
 ---
 tags:
-- Face
+- FaceRestoration
+- SMPLModel
 ---
 
 # Face Swap (mtb)
@@ -9,34 +10,38 @@ tags:
 - Category: `mtb/facetools`
 - Output node: `False`
 
-The Face Swap node enables the swapping of faces between two images using deep learning models. It leverages face analysis to identify faces in the source and target images and applies a face swap model to replace the target image's face with that of the source image, supporting single or multiple faces swapping.
+Performs face swapping between a source and a target image using deep learning models, specifically designed to handle complex scenarios involving multiple faces and preserving facial features accurately.
 ## Input types
 ### Required
 - **`image`**
-    - The image tensor where the face(s) will be swapped into. It serves as the target image for the face swap operation.
+    - The image tensor where the face(s) will be swapped onto. It serves as the canvas for the operation, determining the final output's visual context.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`reference`**
-    - The reference image tensor providing the face(s) to be swapped into the target image. It acts as the source of the face(s) for the swapping process.
+    - The reference image tensor providing the face(s) to be swapped into the target image. It acts as the source of facial features for the swap.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`faces_index`**
-    - A string specifying the indices of the faces in the target image to be swapped. It allows selective swapping of faces when multiple are present.
+    - A string specifying the indices of faces in the target image to be swapped. It allows selective swapping, enhancing control over the output.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`faceanalysis_model`**
-    - The model used for analyzing faces within the images. It's crucial for detecting and preparing faces for the swapping process.
+    - The model used for analyzing faces within images, crucial for identifying and extracting facial features accurately.
     - Comfy dtype: `FACE_ANALYSIS_MODEL`
-    - Python dtype: `insightface.app.FaceAnalysis`
+    - Python dtype: `object`
 - **`faceswap_model`**
-    - The model responsible for the actual face swapping. It performs the core operation of replacing the target face with the source face.
+    - The model responsible for the actual face swapping process, leveraging deep learning to ensure realistic and seamless swaps.
     - Comfy dtype: `FACESWAP_MODEL`
-    - Python dtype: `insightface.model_zoo.inswapper.INSwapper`
+    - Python dtype: `object`
 ### Optional
+- **`preserve_alpha`**
+    - A boolean indicating whether to preserve the alpha channel of the image, allowing for transparency handling in images with RGBA format.
+    - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The resulting image tensor after the face swap has been performed, with the target face(s) replaced by the source face(s).
+    - The resulting image after the face swap has been performed, showcasing the swapped faces within the original image's context.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -67,7 +72,9 @@ class MTB_FaceSwap:
                 ),
                 "faceswap_model": ("FACESWAP_MODEL", {"default": "None"}),
             },
-            "optional": {},
+            "optional": {
+                "preserve_alpha": ("BOOLEAN", {"default": True}),
+            },
         }
 
     RETURN_TYPES = ("IMAGE",)
@@ -81,11 +88,18 @@ class MTB_FaceSwap:
         faces_index: str,
         faceanalysis_model,
         faceswap_model,
+        preserve_alpha=False,
     ):
         def do_swap(img):
             model_management.throw_exception_if_processing_interrupted()
             img = tensor2pil(img)[0]
             ref = tensor2pil(reference)[0]
+
+            alpha_channel = None
+            if preserve_alpha and img.mode == "RGBA":
+                alpha_channel = img.getchannel("A")
+                img = img.convert("RGB")
+
             face_ids = {
                 int(x)
                 for x in faces_index.strip(",").split(",")
@@ -96,6 +110,8 @@ class MTB_FaceSwap:
                 faceanalysis_model, ref, img, faceswap_model, face_ids
             )
             sys.stdout = sys.__stdout__
+            if alpha_channel:
+                swapped.putalpha(alpha_channel)
             return pil2tensor(swapped)
 
         batch_count = image.size(0)

@@ -1,7 +1,7 @@
 ---
 tags:
-- Contour
-- Image
+- Color
+- Crop
 ---
 
 # Get Contour from list
@@ -14,18 +14,18 @@ This node is designed to retrieve a specific contour from a list of contours bas
 ## Input types
 ### Required
 - **`contours`**
-    - Represents the list of contours from which a specific contour is to be retrieved. It is crucial for selecting the desired contour for further operations.
+    - The list of contours from which a specific contour is to be retrieved. It is essential for selecting the desired contour for further operations.
     - Comfy dtype: `CV_CONTOURS`
-    - Python dtype: `List[Tuple[int, int]]`
+    - Python dtype: `List[CV_CONTOUR]`
 - **`index`**
-    - Specifies the position of the contour to be retrieved from the list. It determines which contour is selected for output, allowing for targeted extraction based on order.
+    - The index of the contour to be retrieved from the list. It determines which contour is selected for extraction, with a default value of 0.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`cv_contour`**
     - Comfy dtype: `CV_CONTOUR`
-    - The output is a single contour selected from the input list based on the specified index. It enables focused analysis or manipulation of a specific contour.
-    - Python dtype: `Tuple[int, int]`
+    - unknown
+    - Python dtype: `unknown`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -35,7 +35,7 @@ This node is designed to retrieve a specific contour from a list of contours bas
 ```python
 class GetContourFromList:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "contours": ("CV_CONTOURS",),
@@ -45,7 +45,7 @@ class GetContourFromList:
 
     RETURN_TYPES = ("CV_CONTOUR",)
     FUNCTION = "get_contour"
-    CATEGORY = "Bmad/CV/Contour"
+    CATEGORY = f"{cv_category_path}/Contour"
 
     def get_contour(self, contours, index):
         if index >= len(contours):

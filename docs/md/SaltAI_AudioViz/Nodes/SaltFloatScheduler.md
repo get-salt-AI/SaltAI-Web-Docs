@@ -1,62 +1,66 @@
 ---
 tags:
+- AnimationScheduling
 - Scheduling
+- SigmaScheduling
+- VisualEffects
+- WavePatterns
 ---
 
 # Float Schedule
 ## Documentation
 - Class name: `SaltFloatScheduler`
-- Category: `SALT/Scheduling`
+- Category: `SALT/AudioViz/Scheduling`
 - Output node: `False`
 
-The SaltFloatScheduler node is designed for creating and managing float schedules, which are sequences of floating-point values that can be used to control various parameters over time. This node allows for the precise scheduling of float values, enabling dynamic adjustments and temporal control of parameters in audio-visual projects.
+The SaltFloatScheduler node is designed for creating and managing float schedules, which are sequences of floating-point numbers that can be used to control various parameters over time. This node likely offers functionality to define, adjust, and iterate over these float schedules, providing a flexible tool for temporal parameter manipulation in audio-visual projects.
 ## Input types
 ### Required
 - **`repeat_sequence_times`**
-    - Specifies the number of times the sequence should be repeated, extending the length of the schedule.
+    - Specifies the number of times the sequence should be repeated, affecting the overall length and repetition pattern of the float schedule.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`curves_mode`**
-    - Determines the mode of curve application for the schedule, affecting the shape and progression of values.
+    - Determines the mode of curve application for the float schedule, influencing how the values interpolate or transition between points in the schedule.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`use_perlin_tremors`**
-    - Indicates whether to apply Perlin noise to the schedule for generating natural, smooth variations in the float values.
+    - Indicates whether Perlin noise-based tremors should be applied to the float schedule, adding a layer of complexity and variability to the schedule's progression.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`tremor_scale`**
-    - Sets the scale of the Perlin tremors, controlling the frequency of the noise applied.
+    - Sets the scale of the Perlin tremors, affecting the granularity and frequency of the noise applied to the float schedule.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`tremor_octaves`**
-    - Specifies the number of octaves for the Perlin noise, affecting the detail level of the tremors.
+    - Defines the number of octaves for the Perlin tremors, influencing the detail and layering of the noise effect on the float schedule.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`tremor_persistence`**
-    - Determines the persistence of the Perlin noise, influencing the amplitude of each octave.
+    - Controls the persistence of the Perlin tremors, determining the amplitude's decay rate across octaves in the float schedule.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`tremor_lacunarity`**
-    - Controls the lacunarity of the Perlin noise, which affects the frequency growth per octave.
+    - Specifies the lacunarity of the Perlin tremors, affecting the frequency growth per octave in the float schedule.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sequence`**
-    - The initial sequence of float values to be scheduled and potentially modified by the node's operations.
+    - The sequence of values to be scheduled, serving as the base for the float schedule before any modifications or enhancements.
     - Comfy dtype: `STRING`
     - Python dtype: `List[float]`
 ### Optional
 - **`max_sequence_length`**
-    - The maximum allowed length of the sequence, ensuring the schedule stays within predefined bounds.
+    - Limits the maximum length of the float schedule, ensuring that the sequence does not exceed a specified number of elements.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`schedule_list`**
     - Comfy dtype: `LIST`
-    - The resulting list of floating-point values after scheduling operations, representing the modified or generated schedule.
+    - The resulting float schedule after applying the specified parameters and modifications, ready for use in controlling parameters over time.
     - Python dtype: `List[float]`
 - **`schedule_length`**
     - Comfy dtype: `INT`
-    - The length of the generated or modified schedule list, indicating the total number of scheduled values.
+    - The length of the generated float schedule, providing information on the total number of elements in the schedule.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
@@ -89,13 +93,13 @@ class SaltFloatScheduler:
     RETURN_TYPES = ("LIST", "INT")
     RETURN_NAMES = ("schedule_list", "schedule_length")
     FUNCTION = "generate_sequence"
-    CATEGORY = "SALT/Scheduling"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling"
 
     def apply_curve(self, sequence, mode):
         if mode in easing_functions.keys():
             sequence = [easing_functions[mode](t) for t in sequence]
         else:
-            print(f"The easing mode `{mode}` does not exist in the valid easing functions: {', '.join(easing_functions.keys())}")
+            logger.error(f"The easing mode `{mode}` does not exist in the valid easing functions: {', '.join(easing_functions.keys())}")
         return sequence
 
     def apply_perlin_noise(self, sequence, scale, octaves, persistence, lacunarity):

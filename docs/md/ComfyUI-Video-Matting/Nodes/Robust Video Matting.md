@@ -1,7 +1,6 @@
 ---
 tags:
-- BackgroundRemoval
-- Image
+- AlphaChannel
 ---
 
 # Robust Video Matting

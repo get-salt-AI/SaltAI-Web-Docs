@@ -1,7 +1,9 @@
 ---
 tags:
 - ImageNoise
+- LatentNoise
 - Noise
+- Seed
 ---
 
 # ImageNoiseBytes

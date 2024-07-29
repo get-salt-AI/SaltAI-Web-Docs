@@ -2,53 +2,54 @@
 tags:
 - AnimationScheduling
 - Scheduling
+- SigmaScheduling
 ---
 
 # Schedule Visualizer
 ## Documentation
 - Class name: `SaltKeyframeVisualizer`
-- Category: `SALT/Scheduling/Util`
+- Category: `SALT/AudioViz/Scheduling/Util`
 - Output node: `True`
 
-The SaltKeyframeVisualizer node is designed for visualizing keyframe data over time, providing insights into the dynamics of scheduled animations or effects. It generates visual representations of keyframe values across frames, aiding in the evaluation and adjustment of timing and intensity for animations within audiovisual projects.
+The SaltKeyframeVisualizer node is designed to visualize the keyframe scheduling process, providing a graphical representation of keyframe values across frames. It calculates various metrics for the keyframes within a specified frame range and generates a visualization image that highlights these metrics, aiding in the analysis and adjustment of keyframe-based animations.
 ## Input types
 ### Required
 - **`schedule_list`**
-    - The list of keyframe values to be visualized, representing the scheduled changes over time. It is crucial for understanding the animation or effect's progression.
+    - A list of keyframe values to be visualized. It is crucial for understanding the distribution and variation of keyframe values across the specified frame range, impacting the visualization's accuracy and detail.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 ### Optional
 - **`start_frame`**
-    - Specifies the starting frame for the visualization, allowing for focused analysis on a specific segment of the animation.
+    - The starting frame number for the visualization. It defines the initial point of the frame range to be visualized, affecting the scope of the keyframe analysis.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`end_frame`**
-    - Defines the ending frame for the visualization, enabling customization of the visualization's scope.
+    - The ending frame number for the visualization. It marks the boundary of the frame range to be analyzed and visualized, determining the extent of the keyframe metrics calculation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`simulate_stereo`**
-    - Indicates whether to simulate stereo visual effects by mirroring keyframe values, enhancing the visualization's depth.
+    - Indicates whether to simulate stereo visualization for the keyframes, adding a dimensional aspect to the analysis by mirroring keyframe values.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`frame_rate`**
-    - The frame rate at which the animation or effect is intended to be played, impacting the timing and smoothness of the visualization.
+    - The frame rate used to calculate the duration of the keyframe sequence. It influences the time-based metrics and the overall temporal context of the visualization.
     - Comfy dtype: `INT`
     - Python dtype: `float`
 - **`schedule_list_a`**
-    - An optional list of keyframe values for additional visualization, allowing for comparison or layering of multiple animations.
+    - An alternative list of keyframe values, providing additional context or variations for visualization.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 - **`schedule_list_b`**
-    - Another optional list of keyframe values for visualization, enabling more complex comparisons or layered animations.
+    - Another variation of keyframe values list, offering further insights or comparative analysis in the visualization.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 - **`schedule_list_c`**
-    - A third optional list of keyframe values for visualization, further expanding the capability for complex animation analysis.
+    - A third variation of keyframe values list, allowing for a broader range of comparative visualization and analysis.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 ## Output types
 - **`ui`**
-    - Generates a visual representation of the keyframe data, including metrics and a plot, to facilitate analysis and refinement of animations.
+    - A UI component that displays the generated keyframe visualization image. It provides a visual summary of the keyframe metrics and their distribution across the specified frame range, facilitating easier interpretation and analysis.
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -79,7 +80,7 @@ class SaltKeyframeVisualizer:
     RETURN_NAMES = ()
     OUTPUT_NODE = True
     FUNCTION = "visualize_keyframes"
-    CATEGORY = "SALT/Scheduling/Util"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling/Util"
 
     def visualize_keyframes(self, schedule_list, start_frame=0, end_frame=-1, simulate_stereo=False, frame_rate=24.0, schedule_list_a=None, schedule_list_b=None, schedule_list_c=None):
         TEMP = folder_paths.get_temp_directory()

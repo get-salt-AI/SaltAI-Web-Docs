@@ -1,59 +1,60 @@
 ---
 tags:
+- CLIPConditioning
 - Conditioning
 ---
 
 # Conditioning Schedule Mask and Combine
 ## Documentation
 - Class name: `SaltConditioningSetMaskAndCombine`
-- Category: `SALT/Scheduling/Conditioning`
+- Category: `SALT/AudioViz/Scheduling/Conditioning`
 - Output node: `False`
 
-The SaltConditioningSetMaskAndCombine node is designed for advanced conditioning manipulation in audio-visual scheduling tasks. It combines and applies masks to multiple conditioning schedules, allowing for precise control over the conditioning process with the option to adjust mask strengths and set conditioning areas based on mask bounds. This node is essential for tasks requiring detailed and dynamic conditioning adjustments in multimedia content generation.
+The SaltConditioningSetMaskAndCombine node is designed for advanced conditioning manipulation in audio-visual scheduling tasks. It combines conditioning schedules with masks, allowing for precise control over the application of conditions based on spatial or temporal criteria. This node facilitates the integration and coordination of multiple conditioning layers, enhancing the flexibility and specificity of audio-visual content generation.
 ## Input types
 ### Required
 - **`positive_schedule_a`**
-    - Represents the first set of positive conditioning schedules to be combined and masked.
+    - Represents the first set of positive conditionings to be scheduled and combined with a mask.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `list`
+    - Python dtype: `List[CONDITIONING]`
 - **`negative_schedule_a`**
-    - Represents the first set of negative conditioning schedules to be combined and masked.
+    - Represents the first set of negative conditionings to be scheduled and combined with a mask.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `list`
+    - Python dtype: `List[CONDITIONING]`
 - **`positive_schedule_b`**
-    - Represents the second set of positive conditioning schedules to be combined and masked.
+    - Represents the second set of positive conditionings to be scheduled and combined with a mask.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `list`
+    - Python dtype: `List[CONDITIONING]`
 - **`negative_schedule_b`**
-    - Represents the second set of negative conditioning schedules to be combined and masked.
+    - Represents the second set of negative conditionings to be scheduled and combined with a mask.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `list`
+    - Python dtype: `List[CONDITIONING]`
 - **`mask_a`**
-    - The mask to be applied to the first set of conditioning schedules.
+    - The mask to be applied to the first set of conditionings.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`mask_b`**
-    - The mask to be applied to the second set of conditioning schedules.
+    - The mask to be applied to the second set of conditionings.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ### Optional
 - **`mask_strengths_a`**
-    - A list of strengths for each mask applied to the first set of conditioning schedules, allowing for variable influence.
+    - A list of strengths for each mask applied to the first set of conditionings, allowing for variable influence.
     - Comfy dtype: `LIST`
-    - Python dtype: `list`
+    - Python dtype: `List[float]`
 - **`mask_strengths_b`**
-    - A list of strengths for each mask applied to the second set of conditioning schedules, allowing for variable influence.
+    - A list of strengths for each mask applied to the second set of conditionings, allowing for variable influence.
     - Comfy dtype: `LIST`
-    - Python dtype: `list`
+    - Python dtype: `List[float]`
 - **`set_cond_area`**
-    - Determines whether the conditioning area is set to default or adjusted to mask bounds, affecting how masks are applied.
+    - Determines whether the conditioning area is set to default or bounded by the mask.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`conditioning`**
     - Comfy dtype: `CONDITIONING`
-    - unknown
-    - Python dtype: `unknown`
+    - The combined and conditioned output for both sets of schedules, reflecting the applied masks and strengths.
+    - Python dtype: `List[CONDITIONING]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -86,7 +87,7 @@ class SaltConditioningSetMaskAndCombine:
 
     RETURN_TYPES = ("CONDITIONING", "CONDITIONING")
     FUNCTION = "process"
-    CATEGORY = "SALT/Scheduling/Conditioning"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling/Conditioning"
 
     def process(self, positive_schedule_a, negative_schedule_a, positive_schedule_b, negative_schedule_b, mask_a, mask_b, mask_strengths_a=[1], mask_strengths_b=[1], set_cond_area="default"):
         set_area_to_bounds = set_cond_area != "default"

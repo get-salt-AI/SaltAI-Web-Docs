@@ -2,6 +2,8 @@
 tags:
 - BooleanLogic
 - ConditionalSelection
+- ImpactPack
+- VectorMath
 ---
 
 # ImpactIfNone
@@ -10,26 +12,26 @@ tags:
 - Category: `ImpactPack/Logic`
 - Output node: `False`
 
-The ImpactIfNone node is designed to evaluate if a given input is None and conditionally execute logic based on that evaluation. It serves as a decision-making node within a workflow, allowing for the branching of logic depending on whether an input value is present or absent.
+The ImpactIfNone node is designed to evaluate whether a given input is None and conditionally execute logic based on that evaluation. It abstracts the process of null-checking, allowing for streamlined decision-making in data flows where the presence or absence of data dictates subsequent actions.
 ## Input types
 ### Required
 ### Optional
 - **`signal`**
-    - The 'signal' parameter is the value to be checked for None. Its presence or absence determines the flow of execution within the node, influencing subsequent operations.
+    - The 'signal' parameter is an optional input that the node can process alongside 'any_input' to determine the flow of logic based on the presence of data.
     - Comfy dtype: `*`
     - Python dtype: `Any`
 - **`any_input`**
-    - The 'any_input' parameter is required to accommodate any type of input, ensuring flexibility in the node's application across different scenarios.
+    - The 'any_input' parameter is evaluated to check if it is None. Its presence or absence influences the node's decision-making process and the output generated.
     - Comfy dtype: `*`
     - Python dtype: `Any`
 ## Output types
 - **`signal_opt`**
     - Comfy dtype: `*`
-    - The 'signal_opt' parameter either passes through the 'signal' value if it is not None, or it returns a fallback value, effectively allowing the node to conditionally substitute a value.
+    - The 'signal_opt' output returns the 'signal' input if 'any_input' is not None, facilitating conditional logic flows.
     - Python dtype: `Any`
 - **`bool`**
     - Comfy dtype: `BOOLEAN`
-    - The 'bool' output indicates the result of the None check, providing a boolean value that represents whether the 'signal' was None or not.
+    - The 'bool' output indicates whether 'any_input' was None (False) or not (True), providing a boolean flag for further decision-making.
     - Python dtype: `bool`
 ## Usage tips
 - Infra type: `CPU`
@@ -49,7 +51,7 @@ class ImpactIfNone:
             "optional": {"signal": (any_typ,), "any_input": (any_typ,), }
         }
 
-    RETURN_TYPES = (any_typ, "BOOLEAN", )
+    RETURN_TYPES = (any_typ, "BOOLEAN")
     RETURN_NAMES = ("signal_opt", "bool")
     FUNCTION = "doit"
 

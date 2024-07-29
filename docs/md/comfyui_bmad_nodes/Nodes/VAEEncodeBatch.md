@@ -1,5 +1,6 @@
 ---
 tags:
+- Latent
 - VAE
 ---
 
@@ -9,21 +10,21 @@ tags:
 - Category: `Bmad`
 - Output node: `False`
 
-The VAEEncodeBatch node is designed for batch processing of images to encode them into a latent space representation using a specified VAE model. It allows for the encoding of multiple images at once, optimizing the process for efficiency and scalability.
+The VAEEncodeBatch node is designed to encode a batch of images into their latent representations using a Variational Autoencoder (VAE). It processes multiple images sequentially, leveraging a VAE model to transform each image into a latent space vector, and then concatenates these vectors to form a batch of latent representations.
 ## Input types
 ### Required
 - **`inputs_len`**
-    - Specifies the number of images to be encoded in the batch. This parameter controls the iteration over the images and their subsequent encoding, affecting the node's execution and the size of the output latent representation.
+    - Specifies the number of images to encode into their latent representations. It determines the size of the batch that will be processed by the node.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`vae`**
-    - The VAE model used for encoding the images. This parameter is crucial for determining how the images are transformed into their latent space representations.
+    - The Variational Autoencoder (VAE) model used for encoding images into their latent representations. It is a crucial component that defines the encoding mechanism.
     - Comfy dtype: `VAE`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `object`
 ## Output types
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - The encoded latent space representation of the batch of images. This output encapsulates the transformation of the input images into a format suitable for further processing or analysis.
+    - The latent representation of the encoded images. It is a batch of vectors in the latent space, representing the input images.
     - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
@@ -33,11 +34,9 @@ The VAEEncodeBatch node is designed for batch processing of images to encode the
 ## Source code
 ```python
 class VAEEncodeBatch:
-    def __init__(self):
-        pass
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {
             "inputs_len": ("INT", {"default": 3, "min": 2, "max": 32, "step": 1}),
             "vae": ("VAE",)
@@ -45,7 +44,7 @@ class VAEEncodeBatch:
 
     RETURN_TYPES = ("LATENT",)
     FUNCTION = "encode"
-    CATEGORY = "Bmad"
+    CATEGORY = base_category_path
 
     def encode(self, inputs_len, vae, **kwargs):
         vae_encoder = nodes.VAEEncode()

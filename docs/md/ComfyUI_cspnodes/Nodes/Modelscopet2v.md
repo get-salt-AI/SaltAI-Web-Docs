@@ -1,3 +1,9 @@
+---
+tags:
+- Prompt
+- PromptComposer
+---
+
 # Modelscope t2v
 ## Documentation
 - Class name: `Modelscopet2v`

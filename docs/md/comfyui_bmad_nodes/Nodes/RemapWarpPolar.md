@@ -1,6 +1,7 @@
 ---
 tags:
-- ImageTransformation
+- MaskInversion
+- MaskMath
 ---
 
 # RemapWarpPolar
@@ -9,42 +10,42 @@ tags:
 - Category: `Bmad/CV/Transform`
 - Output node: `False`
 
-The RemapWarpPolar node is designed to transform images by applying a warp polar effect, which can include adjustments for radius, center, and whether to apply the transformation in a logarithmic or linear fashion. It supports inverse transformations and optional cropping to the transformed area.
+The RemapWarpPolar node is designed to transform images by applying a warp polar transformation. This process involves converting images from a rectangular to a polar coordinate system, optionally applying logarithmic scaling, and performing inverse transformations. It supports adjustments to the transformation center, radius, and cropping of the result, making it versatile for various image processing tasks.
 ## Input types
 ### Required
 - **`max_radius`**
-    - Specifies the maximum radius for the warp polar transformation, affecting how far from the center the effect extends.
+    - Specifies the maximum radius for the warp polar transformation, affecting the extent of the transformation applied to the image.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `int`
 - **`radius_adjust`**
-    - Adjusts the effective radius of the transformation, scaling the maximum radius to fine-tune the effect's reach.
+    - Adjusts the effective radius of the transformation, allowing for fine-tuning of the warp effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`center_x_adjust`**
-    - Adjusts the center point of the transformation along the x-axis, allowing for horizontal shifting of the effect's origin.
+    - Adjusts the x-coordinate of the transformation center, enabling horizontal shifting of the warp effect's focal point.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`center_y_adjust`**
-    - Adjusts the center point of the transformation along the y-axis, enabling vertical shifting of the effect's origin.
+    - Adjusts the y-coordinate of the transformation center, enabling vertical shifting of the warp effect's focal point.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`log`**
-    - Determines whether the transformation should apply a logarithmic mapping, altering the visual effect of the warp.
+    - Determines whether logarithmic scaling is applied, changing the nature of the warp from linear to logarithmic.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`inverse`**
-    - When enabled, applies the inverse of the warp polar transformation, potentially reversing the effect.
+    - Controls whether the inverse warp polar transformation is applied, allowing for the reversal of the warp effect.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`crop`**
-    - Enables cropping of the transformed image to the area affected by the warp, removing any excess.
+    - Enables cropping of the transformed image to remove areas outside the specified radius, focusing on the central area.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`remap`**
     - Comfy dtype: `REMAP`
-    - The node returns a transformed image and an optional mask, both potentially cropped, as a result of the warp polar effect.
-    - Python dtype: `Tuple[numpy.ndarray, numpy.ndarray, NoneType]`
+    - The result of the warp polar transformation, including any adjustments and cropping applied to the original image.
+    - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -62,9 +63,9 @@ class RemapWarpPolar(RemapBase):
     MAX_RADIUS_KEYS = list(MAX_RADIUS.keys())
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {
-            "max_radius": (s.MAX_RADIUS_KEYS, {"default": s.MAX_RADIUS_KEYS[0]}),
+            "max_radius": (cls.MAX_RADIUS_KEYS, {"default": cls.MAX_RADIUS_KEYS[0]}),
             "radius_adjust": ("FLOAT", {"default": 1, "min": .1, "max": 2048, "step": 0.01}),
             "center_x_adjust": ("FLOAT", {"default": 0, "min": -3, "max": 3, "step": 0.01}),
             "center_y_adjust": ("FLOAT", {"default": 0, "min": -3, "max": 3, "step": 0.01}),

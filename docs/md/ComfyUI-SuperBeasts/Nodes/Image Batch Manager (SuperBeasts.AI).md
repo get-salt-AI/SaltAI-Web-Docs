@@ -3,6 +3,7 @@ tags:
 - Batch
 - Image
 - ImageBatch
+- ImageDuplication
 ---
 
 # Image Batch Manager (SuperBeasts.AI)
@@ -11,79 +12,39 @@ tags:
 - Category: `SuperBeastsAI/Image`
 - Output node: `False`
 
-The Image Batch Manager node is designed to reorder and process a batch of images based on specified dimensions and an optional new order. It enables the dynamic resizing and cropping of images to fit desired dimensions, and optionally reorders them according to a custom sequence, facilitating versatile image batch manipulation for various applications.
+The Image Batch Manager node is designed to streamline the process of managing and processing batches of images within a workflow. It focuses on optimizing the handling, transformation, and preparation of large sets of images for further processing or analysis, ensuring efficient batch operations and enhancing overall workflow productivity.
 ## Input types
 ### Required
 - **`width`**
-    - Specifies the desired width for the output images, affecting the resizing and cropping operation to ensure images meet this width requirement.
+    - The 'width' parameter specifies the desired width for the output images after processing. It is essential for ensuring that all images in the batch conform to a uniform size, facilitating consistent analysis or further processing.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Specifies the desired height for the output images, affecting the resizing and cropping operation to ensure images meet this height requirement.
+    - The 'height' parameter defines the desired height for the output images after processing. Similar to 'width', it ensures uniformity in the size of images, which is critical for batch processing and subsequent analyses.
     - Comfy dtype: `INT`
     - Python dtype: `int`
-- **`ordering_enabled`**
-    - Determines whether the reordering functionality is enabled, allowing images to be rearranged according to the 'new_order' parameter if specified. This parameter enables or disables the ability to customize the sequence of the image batch.
-    - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+- **`max_images`**
+    - The 'max_images' parameter limits the number of images to be processed in the batch. This is crucial for controlling the batch size and ensuring efficient processing.
+    - Comfy dtype: `INT`
+    - Python dtype: `int`
+- **`random_order`**
+    - The 'random_order' parameter determines whether the images should be reordered randomly. This can be used to introduce variability in the processing sequence.
+    - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ### Optional
-- **`new_order`**
-    - Defines a custom sequence for reordering the images when 'ordering_enabled' is set to 'enabled', influencing the final arrangement of the image batch. This parameter should be a comma-separated list of indices representing the new order of images.
+- **`new_manual_order`**
+    - The 'new_manual_order' parameter allows for the specification of a new order for the processed images. It enables custom sequencing of the input images, affecting the final arrangement and composition of the output.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
-- **`image1`**
-    - Represents one of up to twelve possible images to be included in the batch processing, contributing to the dynamic resizing, cropping, and optional reordering.
-    - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
-- **`image2`**
-    - Represents one of up to twelve possible images to be included in the batch processing, contributing to the dynamic resizing, cropping, and optional reordering.
-    - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
-- **`image3`**
-    - Represents one of up to twelve possible images to be included in the batch processing, contributing to the dynamic resizing, cropping, and optional reordering.
-    - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
-- **`image4`**
-    - Represents one of up to twelve possible images to be included in the batch processing, contributing to the dynamic resizing, cropping, and optional reordering.
-    - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
-- **`image5`**
-    - Represents one of up to twelve possible images to be included in the batch processing, contributing to the dynamic resizing, cropping, and optional reordering.
-    - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
-- **`image6`**
-    - Represents one of up to twelve possible images to be included in the batch processing, contributing to the dynamic resizing, cropping, and optional reordering.
-    - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
-- **`image7`**
-    - Represents one of up to twelve possible images to be included in the batch processing, contributing to the dynamic resizing, cropping, and optional reordering.
-    - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
-- **`image8`**
-    - Represents one of up to twelve possible images to be included in the batch processing, contributing to the dynamic resizing, cropping, and optional reordering.
-    - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
-- **`image9`**
-    - Represents one of up to twelve possible images to be included in the batch processing, contributing to the dynamic resizing, cropping, and optional reordering.
-    - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
-- **`image10`**
-    - Represents one of up to twelve possible images to be included in the batch processing, contributing to the dynamic resizing, cropping, and optional reordering.
-    - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
-- **`image11`**
-    - Represents one of up to twelve possible images to be included in the batch processing, contributing to the dynamic resizing, cropping, and optional reordering.
-    - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
-- **`image12`**
-    - Represents one of up to twelve possible images to be included in the batch processing, contributing to the dynamic resizing, cropping, and optional reordering.
-    - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The processed batch of images, resized, cropped, and optionally reordered according to the specified parameters.
+    - This output represents the processed batch of images, ready for further analysis or transformation. It encapsulates the results of the batch management operations, providing a streamlined dataset for subsequent processing stages.
     - Python dtype: `torch.Tensor`
+- **`string`**
+    - Comfy dtype: `STRING`
+    - This output is a string representing the new order of the processed images, providing insight into the arrangement of the batch post-processing.
+    - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -99,27 +60,39 @@ class ImageBatchManagement:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "width": ("INT", {"default": 512}),
+                "width": ("INT", {"default": 512, "order": 1}),
                 "height": ("INT", {"default": 768}),
-                "ordering_enabled": (["disabled", "enabled"], {"default": "disabled"})
+                "max_images": ("INT", {"default": 10}),  # New INT input for maximum number of images
+                "random_order": ("BOOLEAN", {"default": False})
             },
             "optional": {
-                "new_order": ("STRING", {"default": ""}),
-                **{f"image{i}": ("IMAGE",) for i in range(1, 13)}
+                "new_manual_order": ("STRING", {"default": ""}),
             },
         }
 
-    RETURN_TYPES = ("IMAGE",)
+    RETURN_TYPES = ("IMAGE", "STRING")
     FUNCTION = "reorder"
     CATEGORY = "SuperBeastsAI/Image"
 
-    def reorder(self, width, height, ordering_enabled, new_order, **kwargs):
-        image_keys = [f'image{i}' for i in range(1, 13)]
-        images = [kwargs.get(key) for key in image_keys if kwargs.get(key) is not None]
+    def reorder(self, width, height, random_order, max_images, **kwargs):
+        images = [kwargs["image1"]]  # Start with the required image1 input
 
-        if ordering_enabled == "enabled" and new_order:
-            order_indices = [int(idx) - 1 for idx in new_order.split(',') if idx.strip()]
+        i = 2
+        while f"image{i}" in kwargs:
+            images.append(kwargs[f"image{i}"])
+            i += 1
+
+        if max_images is not None:
+            images = images[:max_images]
+
+        # Default order_output if new_manual_order isn't provided or is empty
+        order_output = ",".join(str(idx + 1) for idx in range(len(images)))
+
+        # Retrieve and apply new_manual_order if it exists
+        if 'new_manual_order' in kwargs and kwargs['new_manual_order']:
+            order_indices = [int(idx) - 1 for idx in kwargs['new_manual_order'].split(',') if idx.strip()]
             images = [images[idx] for idx in order_indices if idx < len(images)]
+            order_output = kwargs['new_manual_order']
 
         processed_images = []
         for img in images:
@@ -129,6 +102,6 @@ class ImageBatchManagement:
             processed_images.append(img_tensor)
 
         result = torch.cat(processed_images, dim=0) if processed_images else torch.empty(0, 3, height, width)
-        return (result,)
+        return (result, order_output)
 
 ```

@@ -1,7 +1,7 @@
 ---
 tags:
-- Contour
-- Image
+- Color
+- Crop
 ---
 
 # Filter Contour
@@ -10,39 +10,39 @@ tags:
 - Category: `Bmad/CV/Contour`
 - Output node: `False`
 
-The Filter Contour node is designed to process and filter contours based on a given fitness function and selection criteria. It allows for the dynamic evaluation and selection of contours from an image, utilizing custom logic to determine the most suitable contours for further processing or analysis.
+The Filter Contour node is designed to process and filter contours based on a custom fitness function. It evaluates each contour in the context of an image and an auxiliary contour, allowing for dynamic selection and manipulation of contours according to specific criteria.
 ## Input types
 ### Required
 - **`contours`**
-    - A collection of contours to be filtered. This parameter is central to the node's operation, as it provides the raw data that will be processed according to the fitness function and selection criteria.
+    - A list of contours to be filtered. The fitness function evaluates each contour to determine its suitability.
     - Comfy dtype: `CV_CONTOURS`
-    - Python dtype: `List[ndarray]`
+    - Python dtype: `List[np.ndarray]`
 - **`fitness`**
-    - A custom fitness function used to evaluate each contour. This function plays a crucial role in determining which contours are selected for output, based on their fitness scores.
+    - A custom lambda function that defines the criteria for filtering contours. It is applied to each contour to compute a fitness score.
     - Comfy dtype: `STRING`
-    - Python dtype: `Callable`
+    - Python dtype: `Callable[[np.ndarray, Optional[np.ndarray], Optional[np.ndarray]], float]`
 - **`select`**
-    - The selection criteria used to choose contours after they have been evaluated by the fitness function. This parameter dictates how the filtered contours are selected for output.
+    - A selection mode that determines how the filtered contours are returned. It influences the output based on the fitness scores of the contours.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`image`**
-    - An optional image parameter that can be used within the fitness function for contour evaluation.
+    - The image in which the contours are found. It provides context for evaluating the fitness of each contour.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `ndarray | None`
+    - Python dtype: `Optional[np.ndarray]`
 - **`aux_contour`**
-    - An optional auxiliary contour that can be used within the fitness function for comparative analysis.
+    - An auxiliary contour that can be used as additional context in the fitness function for filtering contours.
     - Comfy dtype: `CV_CONTOUR`
-    - Python dtype: `ndarray | None`
+    - Python dtype: `Optional[np.ndarray]`
 ## Output types
 - **`cv_contour`**
     - Comfy dtype: `CV_CONTOUR`
-    - The primary output consists of a single selected contour, filtered based on the provided fitness function and selection criteria.
-    - Python dtype: `ndarray | None`
+    - The primary contour selected based on the fitness function.
+    - Python dtype: `np.ndarray`
 - **`cv_contours`**
     - Comfy dtype: `CV_CONTOURS`
-    - The secondary output consists of all contours that were evaluated and potentially filtered based on the fitness function and selection criteria, including the primary selected contour.
-    - Python dtype: `List[ndarray]`
+    - The filtered contours selected based on the fitness function.
+    - Python dtype: `List[np.ndarray]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -65,13 +65,13 @@ class FilterContour:
     return_modes = list(return_modes_map.keys())
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "contours": ("CV_CONTOURS",),
                 "fitness": ("STRING", {"multiline": True, "default":
                     "# Contour Fitness Function\n"}),
-                "select": (s.return_modes, {"default": s.return_modes[0]})
+                "select": (cls.return_modes, {"default": cls.return_modes[0]})
             },
             "optional": {
                 "image": ("IMAGE",),
@@ -81,7 +81,7 @@ class FilterContour:
 
     RETURN_TYPES = ("CV_CONTOUR", "CV_CONTOURS")
     FUNCTION = "filter"
-    CATEGORY = "Bmad/CV/Contour"
+    CATEGORY = f"{cv_category_path}/Contour"
 
     def filter(self, contours, fitness, select, image=None, aux_contour=None):
         import math
@@ -133,13 +133,13 @@ class FilterContour:
         # useful properties; adapted from multiple sources, including cv documentation
         @cache_with_ids(single=True)
         def aspect_ratio(cnt):
-            x, y, w, h = boundingRect(cnt)
+            _, _, w, h = boundingRect(cnt)
             return float(w) / h
 
         @cache_with_ids(single=True)
         def extent(cnt):
             area = contourArea(cnt)
-            x, y, w, h = boundingRect(cnt)
+            _, _, w, h = boundingRect(cnt)
             rect_area = w * h
             return float(area) / rect_area
 
@@ -157,15 +157,15 @@ class FilterContour:
 
         @cache_with_ids(single=True)
         def center(cnt):
-            M = cv.moments(cnt)
-            cX = int(M["m10"] / M["m00"])
-            cY = int(M["m01"] / M["m00"])
-            return cX, cY
+            m = cv.moments(cnt)
+            c_x = int(m["m10"] / m["m00"])
+            c_y = int(m["m01"] / m["m00"])
+            return c_x, c_y
 
         @cache_with_ids(single=False)
         def contour_mask(cnt, img):
             if len(img.shape) > 2:
-                height, width, channels = img.shape
+                height, width, _ = img.shape
             else:
                 height, width = img.shape
 
@@ -192,8 +192,8 @@ class FilterContour:
 
         def intercepts_mask(cnt, img):  # where img should be a binary mask
             gray = cv.cvtColor(img, cv.COLOR_RGB2GRAY)
-            intersection = cv2.bitwise_and(gray,
-                                           cv2.drawContours(np.zeros_like(gray), [cnt], 0, 255, thickness=cv2.FILLED))
+            intersection = cv2.bitwise_and(
+                gray, cv2.drawContours(np.zeros_like(gray), [cnt], 0, 255, thickness=cv2.FILLED))
             return cv2.countNonZero(intersection) > 0
 
         # endregion

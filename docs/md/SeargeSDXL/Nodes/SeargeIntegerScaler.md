@@ -1,3 +1,9 @@
+---
+tags:
+- Math
+- MathematicalFunctions
+---
+
 # Integer Scaler
 ## Documentation
 - Class name: `SeargeIntegerScaler`

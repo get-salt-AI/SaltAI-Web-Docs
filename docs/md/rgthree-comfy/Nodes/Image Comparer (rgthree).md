@@ -1,6 +1,6 @@
 ---
 tags:
-- Comparison
+- ImpactPack
 ---
 
 # Image Comparer (rgthree)

@@ -1,7 +1,10 @@
 ---
 tags:
+- BoundingBox
+- ImageTransformation
 - Mask
-- MaskGeneration
+- MaskList
+- MaskMorphology
 ---
 
 # Create Shape Mask On Path
@@ -10,48 +13,49 @@ tags:
 - Category: `KJNodes/masking/generate`
 - Output node: `False`
 
-This node is designed to generate shape-based masks along a specified path, enabling the creation of dynamic and animated masking effects. It leverages shape parameters and path coordinates to craft masks that can evolve over time, providing a versatile tool for visual effects and image manipulation.
+This node is designed to generate shape-based masks along a specified path, enabling the creation of dynamic and complex mask patterns that can be applied to images or animations. It leverages shape parameters and path coordinates to craft masks that follow a designated trajectory, offering a versatile tool for creative and technical image manipulation tasks.
 ## Input types
 ### Required
 - **`shape`**
-    - Specifies the geometric shape of the mask to be created. This choice influences the mask's appearance and can be a circle, square, or triangle, offering a variety of visual styles for the mask.
+    - Defines the type of shape to be used for the mask, such as circle, square, or triangle. This choice dictates the geometric form of the mask, contributing to its visual style.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`coordinates`**
-    - Defines the center locations for the mask creation along a path. These coordinates dictate where the mask will be positioned, allowing for precise control over the mask's placement in the frame.
+    - Specifies the center locations for the shape masks along the path. This parameter is crucial for determining the trajectory of the mask creation, impacting the overall design and flow of the generated masks.
     - Comfy dtype: `STRING`
-    - Python dtype: `str`
-- **`grow`**
-    - Determines the amount by which the shape grows on each frame, enabling the creation of animated masks that change size over time.
-    - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `list[str]`
 - **`frame_width`**
-    - Sets the width of the frame within which the mask is created, defining the spatial boundaries for mask generation.
+    - Defines the width of the frame for the mask. This parameter sets the boundary within which the mask is created, influencing the scale and visibility of the shape within the frame.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`frame_height`**
-    - Sets the height of the frame within which the mask is created, defining the spatial boundaries for mask generation.
+    - Sets the height of the frame for the mask, establishing the vertical boundary and scale of the shape within the generated mask.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`shape_width`**
-    - Specifies the initial width of the shape used to create the mask, affecting the mask's size and coverage area.
+    - Determines the width of the shape used in the mask. This parameter affects the size of the shape, allowing for customization of the mask's appearance.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`shape_height`**
-    - Specifies the initial height of the shape used to create the mask, affecting the mask's size and coverage area.
+    - Specifies the height of the shape used in the mask, influencing the vertical dimension of the shape and thus the mask's overall appearance.
     - Comfy dtype: `INT`
     - Python dtype: `int`
+### Optional
+- **`size_multiplier`**
+    - A multiplier that adjusts the size of the shape, offering additional control over the mask's scale beyond the basic shape dimensions.
+    - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The primary output mask created based on the specified shape and path coordinates.
-    - Python dtype: `Tensor`
+    - The primary output, a mask or a batch of masks, created based on the specified shape and path parameters.
+    - Python dtype: `torch.Tensor`
 - **`mask_inverted`**
     - Comfy dtype: `MASK`
-    - An inverted version of the primary mask, offering an alternative masking option where the shape's area is transparent and the surrounding area is opaque.
-    - Python dtype: `Tensor`
+    - An inverted version of the primary mask, providing an alternative masking option where the shape's area is transparent and the surrounding area is opaque.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -66,7 +70,6 @@ class CreateShapeMaskOnPath:
     DESCRIPTION = """
 Creates a mask or batch of masks with the specified shape.  
 Locations are center locations.  
-Grow value is the amount to grow the shape on each frame, creating animated masks.
 """
 
     @classmethod
@@ -82,15 +85,17 @@ Grow value is the amount to grow the shape on each frame, creating animated mask
             "default": 'circle'
              }),
                 "coordinates": ("STRING", {"forceInput": True}),
-                "grow": ("INT", {"default": 0, "min": -512, "max": 512, "step": 1}),
                 "frame_width": ("INT", {"default": 512,"min": 16, "max": 4096, "step": 1}),
                 "frame_height": ("INT", {"default": 512,"min": 16, "max": 4096, "step": 1}),
                 "shape_width": ("INT", {"default": 128,"min": 8, "max": 4096, "step": 1}),
                 "shape_height": ("INT", {"default": 128,"min": 8, "max": 4096, "step": 1}),
         },
+        "optional": {
+            "size_multiplier": ("FLOAT", {"default": [1.0], "forceInput": True}),
+        }
     } 
 
-    def createshapemask(self, coordinates, frame_width, frame_height, shape_width, shape_height, grow, shape):
+    def createshapemask(self, coordinates, frame_width, frame_height, shape_width, shape_height, shape, size_multiplier=[1.0]):
         # Define the number of images in the batch
         coordinates = coordinates.replace("'", '"')
         coordinates = json.loads(coordinates)
@@ -98,14 +103,15 @@ Grow value is the amount to grow the shape on each frame, creating animated mask
         batch_size = len(coordinates)
         out = []
         color = "white"
-        
+        if len(size_multiplier) != batch_size:
+            size_multiplier = size_multiplier * (batch_size // len(size_multiplier)) + size_multiplier[:batch_size % len(size_multiplier)]
         for i, coord in enumerate(coordinates):
             image = Image.new("RGB", (frame_width, frame_height), "black")
             draw = ImageDraw.Draw(image)
 
             # Calculate the size for this frame and ensure it's not less than 0
-            current_width = max(0, shape_width + i*grow)
-            current_height = max(0, shape_height + i*grow)
+            current_width = max(0, shape_width + i * size_multiplier[i])
+            current_height = max(0, shape_height + i * size_multiplier[i])
 
             location_x = coord['x']
             location_y = coord['y']

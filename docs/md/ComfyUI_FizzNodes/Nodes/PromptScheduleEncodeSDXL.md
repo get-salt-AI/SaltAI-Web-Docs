@@ -1,8 +1,8 @@
 ---
 tags:
 - AnimationScheduling
-- PromptScheduling
 - Scheduling
+- SigmaScheduling
 ---
 
 # Prompt Schedule SDXL 📅🅕🅝
@@ -11,99 +11,99 @@ tags:
 - Category: `FizzNodes 📅🅕🅝/ScheduleNodes`
 - Output node: `False`
 
-This node is designed to schedule and encode prompts specifically for the SDXL model, allowing for separate scheduling of G and L clips before tokenization. It processes these clips through an add_weighted mechanism to return the current, next, or averaged conditioning, facilitating dynamic and flexible text input manipulation for generative tasks.
+This node is designed to schedule and encode prompts specifically for the SDXL model, handling the process of tokenization, applying weighted combinations of prompts, and returning the conditioned output for either the current, next, or an averaged state. It focuses on enhancing the flexibility and precision of prompt conditioning in generative models.
 ## Input types
 ### Required
 - **`width`**
-    - Specifies the width of the image or canvas in pixels, setting the spatial dimension for the generation process.
+    - Specifies the width of the image for which the prompt is being scheduled, affecting the spatial dimensions of the generated output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Specifies the height of the image or canvas in pixels, setting the spatial dimension for the generation process.
+    - Specifies the height of the image for which the prompt is being scheduled, affecting the spatial dimensions of the generated output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`crop_w`**
-    - Defines the width of the crop area in pixels, allowing for focused generation within a specified region of the image.
+    - Defines the width of the crop area, which is used to refine the focus of the generated output within the specified width.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`crop_h`**
-    - Defines the height of the crop area in pixels, allowing for focused generation within a specified region of the image.
+    - Defines the height of the crop area, which is used to refine the focus of the generated output within the specified height.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`target_width`**
-    - Sets the target width for the output image, enabling resizing of the generated image to fit specific dimensions.
+    - The target width after processing, which may involve resizing or cropping to fit specific output requirements.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`target_height`**
-    - Sets the target height for the output image, enabling resizing of the generated image to fit specific dimensions.
+    - The target height after processing, which may involve resizing or cropping to fit specific output requirements.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`text_g`**
-    - Represents the global text prompt that guides the overall theme or subject of the generation.
+    - Represents the global textual content to be scheduled and encoded, serving as a foundational element for generating prompts within the SDXL model.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`clip`**
-    - Specifies the CLIP model to be used for encoding the text prompts, influencing the direction of the generation.
+    - Specifies the clip model to be used in conjunction with the prompt for generating or refining outputs, integrating visual context or constraints into the prompt scheduling process.
     - Comfy dtype: `CLIP`
-    - Python dtype: `object`
-- **`text_l`**
-    - Represents the local text prompt that provides detailed guidance for specific areas or aspects of the generation.
-    - Comfy dtype: `STRING`
     - Python dtype: `str`
+- **`text_l`**
+    - unknown
+    - Comfy dtype: `STRING`
+    - Python dtype: `unknown`
 - **`max_frames`**
-    - Defines the maximum number of frames for animation or video generation, setting the temporal boundary for the project.
+    - The maximum number of frames to be considered for scheduling, defining the temporal boundary of the animation or video output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`current_frame`**
-    - Specifies the current frame number in the context of an animation or video generation, dictating the specific moment being processed.
+    - The current frame number in the sequence, used to determine the specific state of prompt conditioning at any given time.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`print_output`**
-    - Enables or disables the printing of output for debugging or tracking purposes, offering insights into the generation process.
+    - unknown
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `bool`
+    - Python dtype: `unknown`
 ### Optional
 - **`pre_text_G`**
-    - Specifies the text to be prepended to the global prompt, modifying the initial conditions of the generation.
+    - Pre-text for global prompts, used to prepend additional context or instructions to the global text, enhancing the specificity of the generated output.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`app_text_G`**
-    - Specifies the text to be appended to the global prompt, modifying the final conditions of the generation.
+    - Append text for global prompts, used to add concluding remarks or instructions to the global text, further refining the output.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`pre_text_L`**
-    - Specifies the text to be prepended to the local prompt, modifying the initial conditions of the generation.
+    - Pre-text for local prompts, similar to global pre-text but applied to local or specific areas of interest within the generated output.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`app_text_L`**
-    - Specifies the text to be appended to the local prompt, modifying the final conditions of the generation.
+    - Append text for local prompts, similar to global append text but focused on enhancing local or specific areas within the output.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`pw_a`**
-    - Parameter weight A, part of a set of weights used to adjust the influence of different components in the generation process.
+    - Weight parameter A, part of a set of parameters used to adjust the influence of different prompts or aspects of the prompt on the final output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pw_b`**
-    - Parameter weight B, part of a set of weights used to adjust the influence of different components in the generation process.
+    - Weight parameter B, works in conjunction with other weight parameters to fine-tune the balance between various elements of the prompt.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pw_c`**
-    - Parameter weight C, part of a set of weights used to adjust the influence of different components in the generation process.
+    - Weight parameter C, another factor in the complex equation of prompt weighting, contributing to the nuanced control over the generated output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pw_d`**
-    - Parameter weight D, part of a set of weights used to adjust the influence of different components in the generation process.
+    - Weight parameter D, completes the set of weight parameters, ensuring a comprehensive approach to prompt conditioning.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`POS`**
     - Comfy dtype: `CONDITIONING`
-    - The encoded positive conditioning, ready for use in generative tasks, reflecting the emphasized aspects of the input prompt.
-    - Python dtype: `object`
+    - The enhanced positive prompt, conditioned and ready for use in generating desired outputs with the SDXL model.
+    - Python dtype: `str`
 - **`NEG`**
     - Comfy dtype: `CONDITIONING`
-    - The encoded negative conditioning, ready for use in generative tasks, reflecting the de-emphasized aspects of the input prompt.
-    - Python dtype: `object`
+    - The adjusted negative prompt, conditioned to minimize its influence on the generated outputs.
+    - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -125,7 +125,7 @@ class PromptScheduleEncodeSDXL:
                 "text_l": ("STRING", {"multiline": True, }), "clip": ("CLIP", ),
                 "max_frames": ("INT", {"default": 120.0, "min": 1.0, "max": 999999.0, "step": 1.0}),
                 "current_frame": ("INT", {"default": 0.0, "min": 0.0, "max": 999999.0, "step": 1.0}),
-                "print_output":("BOOLEAN", {"default": False})
+                "print_output":("BOOLEAN", {"default": False}),
         },
             "optional": {
                 "pre_text_G": ("STRING", {"multiline": True, "forceInput": True}),
@@ -144,7 +144,7 @@ class PromptScheduleEncodeSDXL:
 
     CATEGORY = "FizzNodes 📅🅕🅝/ScheduleNodes"
 
-    def animate(self, clip, width, height, crop_w, crop_h, target_width, target_height, text_g, text_l, app_text_G, app_text_L, pre_text_G, pre_text_L, max_frames, current_frame, print_output, pw_a, pw_b, pw_c, pw_d):
+    def animate(self, clip, text_g, text_l, width, height, crop_w, crop_h, target_width, target_height, max_frames, current_frame, print_output, app_text_G = '', app_text_L = '', pre_text_G = '', pre_text_L = '', pw_a=0, pw_b=0, pw_c=0, pw_d=0):
         settings = ScheduleSettings(
             text_g=text_g,
             pre_text_G=pre_text_G,
@@ -160,6 +160,7 @@ class PromptScheduleEncodeSDXL:
             pw_c=pw_c,
             pw_d=pw_d,
             start_frame=0,
+            end_frame=0,
             width=width,
             height=height,
             crop_w=crop_w,

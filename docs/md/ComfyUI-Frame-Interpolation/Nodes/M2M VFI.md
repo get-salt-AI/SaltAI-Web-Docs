@@ -1,8 +1,11 @@
 ---
 tags:
-- AnimationScheduling
+- Curve
+- Frame
 - FrameInterpolation
-- VisualEffects
+- Interpolation
+- Keyframe
+- WavePatterns
 ---
 
 # M2M VFI
@@ -11,34 +14,34 @@ tags:
 - Category: `ComfyUI-Frame-Interpolation/VFI`
 - Output node: `False`
 
-The M2M VFI node specializes in video frame interpolation, leveraging deep learning models to predict and generate intermediate frames between existing frames in a video sequence. This process enhances video fluidity and can be used to increase the frame rate of videos.
+The M2M VFI node is designed for video frame interpolation, utilizing deep learning models to predict intermediate frames between two consecutive frames in a video sequence. This process enhances video fluidity and can be used to increase the frame rate of videos.
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - The checkpoint name for the model, determining which pretrained model weights to load for frame interpolation.
+    - A checkpoint name specifying the model to be used for frame interpolation. It determines the specific pre-trained model weights to load, directly influencing the interpolation quality and performance.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`frames`**
-    - The input video frames to be interpolated. These frames provide the visual context for generating intermediate frames.
+    - A tensor containing the sequence of frames for which intermediate frames are to be generated. It is the primary input from which the model predicts the missing frames, affecting the overall video smoothness.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`clear_cache_after_n_frames`**
-    - Specifies after how many frames the cache should be cleared to prevent memory overflow, affecting performance and resource management.
+    - Indicates after how many frames the cache should be cleared to prevent memory overflow. This parameter helps manage GPU memory usage efficiently during the interpolation process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`multiplier`**
-    - A factor that determines how many intermediate frames are to be generated between each pair of input frames, directly influencing the output video's frame rate.
+    - Defines the number of intermediate frames to be generated between each pair of original frames, directly affecting the output video's frame rate.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`optional_interpolation_states`**
-    - Optional states that can influence frame skipping and interpolation behavior, allowing for more control over the interpolation process.
+    - An optional parameter that allows for the control of frame skipping and other interpolation behaviors, providing flexibility in the frame generation process.
     - Comfy dtype: `INTERPOLATION_STATES`
     - Python dtype: `InterpolationStateList`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output interpolated frames, enhancing the video's smoothness and frame rate.
+    - The output tensor containing the interpolated frames, which increases the frame rate and enhances the smoothness of the input video sequence.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -90,7 +93,7 @@ class M2M_VFI:
         
         args = [interpolation_model]
         out = postprocess_frames(
-            generic_frame_loop(frames, clear_cache_after_n_frames, multiplier, return_middle_frame, *args, 
+            generic_frame_loop(type(self).__name__, frames, clear_cache_after_n_frames, multiplier, return_middle_frame, *args, 
                                interpolation_states=optional_interpolation_states, dtype=torch.float32)
         )
         return (out,)

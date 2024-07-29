@@ -1,6 +1,8 @@
 ---
 tags:
-- Animation
+- AnimateDiff
+- CameraControl
+- MotionData
 - PoseEstimation
 ---
 
@@ -10,17 +12,17 @@ tags:
 - Category: `AlekPet Nodes/image`
 - Output node: `False`
 
-The PoseNode is designed to process images to generate their pose representations. It leverages image processing techniques to convert images into a format suitable for pose analysis, abstracting the complexity of image manipulation and conversion for pose detection tasks.
+The PoseNode is designed to process images by converting them into a tensor format suitable for pose estimation tasks. It emphasizes the preparation of image data for further analysis or model inference, focusing on the transformation of images from their original format into a normalized tensor representation.
 ## Input types
 ### Required
 - **`image`**
-    - The 'image' parameter specifies the image file to be processed for pose detection. It plays a crucial role in the node's operation by serving as the primary input from which pose information is derived.
+    - The 'image' parameter represents the name of the image file to be processed. It is crucial for locating and loading the image from a temporary directory, where it undergoes conversion and normalization for pose analysis.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is a tensor representation of the processed image, suitable for further analysis or visualization in pose detection tasks.
+    - The output is a tensor representation of the input image, prepared for pose estimation tasks. This tensor is normalized and ready for further processing or model inference.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -29,5 +31,44 @@ The PoseNode is designed to process images to generate their pose representation
 
 ## Source code
 ```python
-# Built-in or C extension class, unable to automatically detect source code
+class PoseNode(object):
+    @classmethod
+    def INPUT_TYPES(self):
+        temp_dir = folder_paths.get_temp_directory()
+
+        if not os.path.isdir(temp_dir):
+            os.makedirs(temp_dir)
+
+        temp_dir = folder_paths.get_temp_directory()
+
+        return {
+            "required": {"image": (sorted(os.listdir(temp_dir)),)},
+        }
+
+    RETURN_TYPES = ("IMAGE",)
+    FUNCTION = "output_pose"
+
+    CATEGORY = "AlekPet Nodes/image"
+
+    def output_pose(self, image):
+        image_path = os.path.join(folder_paths.get_temp_directory(), image)
+        # print(f"Create: {image_path}")
+
+        i = Image.open(image_path)
+        image = i.convert("RGB")
+        image = np.array(image).astype(np.float32) / 255.0
+        image = torch.from_numpy(image)[None,]
+
+        return (image,)
+
+    @classmethod
+    def IS_CHANGED(self, image):
+        image_path = os.path.join(folder_paths.get_temp_directory(), image)
+        # print(f'Change: {image_path}')
+
+        m = hashlib.sha256()
+        with open(image_path, "rb") as f:
+            m.update(f.read())
+        return m.digest().hex()
+
 ```

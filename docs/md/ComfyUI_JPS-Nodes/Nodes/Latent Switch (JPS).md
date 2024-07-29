@@ -1,6 +1,7 @@
 ---
 tags:
 - ConditionalSelection
+- ImpactPack
 ---
 
 # Latent Switch (JPS)

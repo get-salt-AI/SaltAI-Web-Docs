@@ -1,7 +1,9 @@
 ---
 tags:
-- AnimateDiff
 - Animation
+- Cache
+- MotionData
+- PoseEstimation
 ---
 
 # Multival Dynamic 🎭🅐🅓
@@ -10,23 +12,23 @@ tags:
 - Category: `Animate Diff 🎭🅐🅓/multival`
 - Output node: `False`
 
-The ADE_MultivalDynamic node dynamically adjusts values within a specified range, applying these adjustments based on a mask and a scaling method. It is designed to modify parameters or attributes in a flexible manner, allowing for precise control over the variation of these values across different areas or aspects of a process.
+The ADE_MultivalDynamic node is designed to dynamically handle multiple values within the AnimateDiff framework, enabling the flexible manipulation and application of various parameters across different aspects of the animation and diffusion process.
 ## Input types
 ### Required
 - **`float_val`**
-    - Specifies the value or range of values for dynamic adjustment. This parameter can accept both single float values and lists of floats, allowing for varied adjustments across different parts of the mask.
+    - This parameter accepts a single float or a list of floats, representing the dynamic values to be manipulated within the AnimateDiff framework. It is crucial for defining the intensity or magnitude of effects applied in the animation process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `Union[float, list[float]]`
 ### Optional
 - **`mask_optional`**
-    - An optional tensor representing the mask that guides where and how the dynamic adjustments are applied. When provided, it determines the distribution and intensity of the adjustments across the target.
+    - An optional mask input that allows for targeted application of effects, enabling precise control over which areas of the animation are affected by the specified dynamic values.
     - Comfy dtype: `MASK`
     - Python dtype: `Tensor`
 ## Output types
 - **`multival`**
     - Comfy dtype: `MULTIVAL`
-    - The result of dynamic adjustments applied to the input values, potentially across multiple values or areas, depending on the mask and scaling method used.
-    - Python dtype: `Tensor`
+    - This output is a dynamic representation of multiple values, tailored to influence various aspects of the animation and diffusion process within the AnimateDiff framework.
+    - Python dtype: `Multival`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
@@ -63,7 +65,7 @@ class MultivalDynamicNode:
             if mask_optional is not None:
                 if len(float_val) < mask_optional.shape[0]:
                     # copies last entry enough times to match mask shape
-                    float_val = float_val + float_val[-1]*(mask_optional.shape[0]-len(float_val))
+                    float_val = extend_list_to_batch_size(float_val, mask_optional.shape[0])
                 if mask_optional.shape[0] < len(float_val):
                     mask_optional = extend_to_batch_size(mask_optional, len(float_val))
                 float_val = float_val[:mask_optional.shape[0]]

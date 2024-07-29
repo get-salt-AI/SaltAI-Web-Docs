@@ -1,6 +1,8 @@
 ---
 tags:
-- Image
+- ImageDrawing
+- TextOnImage
+- VisualEffects
 ---
 
 # 🌁 CR Image Border

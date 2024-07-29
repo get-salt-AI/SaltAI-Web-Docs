@@ -1,35 +1,35 @@
 ---
 tags:
 - DataConversion
-- DataTypeConversion
-- NumericConversion
+- Float
+- FloatList
 ---
 
 # int
 ## Documentation
 - Class name: `ttN int`
-- Category: `ttN/util`
+- Category: `🌏 tinyterra/util`
 - Output node: `False`
 
-The node is designed to handle integer values, providing functionality to convert an integer input into multiple formats, including its original integer form, a floating-point representation, and a string representation. This conversion process facilitates the use of integer values across different contexts where specific data types are required.
+The `ttN int` node is designed for integer manipulation within the tinyterra utility category, offering functionality to convert an integer input into multiple formats.
 ## Input types
 ### Required
 - **`int`**
-    - Accepts an integer value as input, which is then converted into multiple formats. This parameter is central to the node's operation, enabling the conversion of numeric data to suit various application needs.
+    - Specifies the integer value to be converted. This parameter is central to the node's operation, as it determines the base value that will be transformed into different formats.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`int`**
     - Comfy dtype: `INT`
-    - Returns the original integer input, preserving its value in the integer format.
+    - Returns the original integer input without modification.
     - Python dtype: `int`
 - **`float`**
     - Comfy dtype: `FLOAT`
-    - Provides a floating-point representation of the input integer, allowing for applications that require floating-point numbers.
+    - Converts and returns the input integer as a float.
     - Python dtype: `float`
 - **`text`**
     - Comfy dtype: `STRING`
-    - Converts the input integer into a string representation, facilitating its use in contexts that require textual data.
+    - Converts and returns the input integer as a string.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -57,7 +57,7 @@ class ttN_INT:
     RETURN_NAMES = ("int", "float", "text",)
     FUNCTION = "convert"
 
-    CATEGORY = "ttN/util"
+    CATEGORY = "🌏 tinyterra/util"
 
     @staticmethod
     def convert(int):

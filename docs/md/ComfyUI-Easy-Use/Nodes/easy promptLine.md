@@ -1,6 +1,10 @@
 ---
 tags:
 - Prompt
+- PromptStyling
+- Searge
+- Text
+- Wildcard
 ---
 
 # PromptLine
@@ -9,30 +13,30 @@ tags:
 - Category: `EasyUse/Prompt`
 - Output node: `False`
 
-The `promptLine` node is designed for the manipulation and generation of text lines based on conditioning inputs, facilitating the creation of new text content or the modification of existing ones. It leverages specific inputs to tailor text outputs for various applications, emphasizing the dynamic generation and transformation of text.
+The `easy promptLine` node is designed to facilitate the manipulation and conditioning of textual prompts for generative models. It enables the dynamic integration and adjustment of negative conditioning phrases, ensuring that the generated content aligns with specified constraints and preferences. This node plays a crucial role in refining the input prompts to achieve desired outcomes in generative tasks, such as text generation or image synthesis, by allowing for precise control over the conditioning process.
 ## Input types
 ### Required
 - **`prompt`**
-    - Serves as the foundational text input for manipulation or generation, where its content is crucial in determining the node's text output.
+    - Represents the primary textual content that the user inputs for processing. It serves as the base for any manipulations, additions, or exclusions applied by the node.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`start_index`**
-    - Determines the starting point within the input text from which processing begins, allowing for targeted manipulation or generation.
+    - Specifies the starting index from which the node begins to process the input prompt, allowing for segmented or partial processing of the text.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`max_rows`**
-    - Specifies the maximum number of text lines to be generated or processed, setting a limit on the output's extent.
+    - Defines the maximum number of rows or lines to be processed or generated from the input prompt, setting a limit on the output's extent.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`STRING`**
     - Comfy dtype: `STRING`
-    - The output text after processing, reflecting the applied manipulations or generations based on the input conditions.
-    - Python dtype: `List[str]`
+    - The processed text output, which may include modifications, additions, or exclusions based on the node's functionality.
+    - Python dtype: `str`
 - **`COMBO`**
     - Comfy dtype: `*`
-    - An additional output that may represent an alternative or complementary processing result to the 'STRING' output, typically involving a combination of text and other elements.
-    - Python dtype: `List[str]`
+    - A combination of processed text outputs, potentially including multiple variations or manipulations of the input prompt.
+    - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -62,13 +66,13 @@ class promptLine:
 
     def generate_strings(self, prompt, start_index, max_rows, workflow_prompt=None, my_unique_id=None):
         lines = prompt.split('\n')
+        lines = [zh_to_en([v])[0] if has_chinese(v) else v for v in lines if v]
 
         start_index = max(0, min(start_index, len(lines) - 1))
 
         end_index = min(start_index + max_rows, len(lines))
 
         rows = lines[start_index:end_index]
-
 
         return (rows, rows)
 

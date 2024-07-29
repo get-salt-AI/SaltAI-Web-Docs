@@ -1,7 +1,6 @@
 ---
 tags:
 - ModelGuidance
-- ModelPatch
 ---
 
 # Inference_Core_RescaleClassifierFreeGuidanceTest

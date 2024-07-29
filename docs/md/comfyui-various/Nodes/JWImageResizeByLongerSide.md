@@ -1,9 +1,8 @@
 ---
 tags:
+- AspectRatio
 - ImageResize
-- ImageScaling
 - ImageSize
-- ImageTransformation
 ---
 
 # Image Resize by Longer Side

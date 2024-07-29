@@ -1,15 +1,19 @@
 ---
 tags:
+- AnimationScheduling
 - Scheduling
+- SigmaScheduling
+- VisualEffects
+- WavePatterns
 ---
 
 # Schedule Linear Interpolation
 ## Documentation
 - Class name: `SaltListLinearInterpolation`
-- Category: `SALT/Scheduling/Filter`
+- Category: `SALT/AudioViz/Scheduling/Filter`
 - Output node: `False`
 
-The SaltListLinearInterpolation node is designed to perform linear interpolation between two lists of schedule values based on a specified interpolation factor. This node is essential for creating smooth transitions between different states or values in a schedule, allowing for the generation of intermediate states that blend the characteristics of the input schedules.
+The SaltListLinearInterpolation node is designed to perform linear interpolation between two lists of schedule values based on a specified interpolation factor. This node is essential for creating smooth transitions between different states or values in a schedule, allowing for the generation of intermediate states that blend elements from both input lists according to the interpolation factor.
 ## Input types
 ### Required
 - **`schedule_list_a`**
@@ -21,13 +25,13 @@ The SaltListLinearInterpolation node is designed to perform linear interpolation
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 - **`interpolation_factor`**
-    - A floating-point value between 0.0 and 1.0 that determines the weight of each input list in the interpolated output. A factor of 0.0 yields the first list, while 1.0 yields the second list.
+    - A floating-point value between 0.0 and 1.0 that determines the weight of the interpolation, influencing how much of each input list is reflected in the output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`schedule_list`**
     - Comfy dtype: `LIST`
-    - The resulting list of interpolated schedule values, blending the input lists according to the interpolation factor.
+    - The resulting list of interpolated schedule values, blending elements from both input lists according to the specified interpolation factor.
     - Python dtype: `List[float]`
 ## Usage tips
 - Infra type: `CPU`
@@ -50,7 +54,7 @@ class SaltListLinearInterpolation:
     RETURN_TYPES = ("LIST",)
     RETURN_NAMES = ("schedule_list",)
     FUNCTION = "lerp"
-    CATEGORY = "SALT/Scheduling/Filter"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling/Filter"
 
     def lerp(self, schedule_list_a, schedule_list_b, interpolation_factor):
         if len(schedule_list_a) != len(schedule_list_b):

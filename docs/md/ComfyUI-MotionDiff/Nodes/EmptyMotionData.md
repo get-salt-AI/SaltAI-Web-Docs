@@ -1,6 +1,8 @@
 ---
 tags:
+- Animation
 - MotionData
+- PoseEstimation
 ---
 
 # Empty Motion Data

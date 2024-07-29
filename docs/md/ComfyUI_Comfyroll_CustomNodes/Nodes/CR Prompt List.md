@@ -1,6 +1,10 @@
 ---
 tags:
 - Prompt
+- PromptStyling
+- Searge
+- Text
+- Wildcard
 ---
 
 # 📜 CR Prompt List

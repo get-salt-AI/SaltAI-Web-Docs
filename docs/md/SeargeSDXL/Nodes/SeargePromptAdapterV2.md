@@ -1,5 +1,7 @@
 ---
 tags:
+- Concatenate
+- PromptComposer
 - Searge
 ---
 

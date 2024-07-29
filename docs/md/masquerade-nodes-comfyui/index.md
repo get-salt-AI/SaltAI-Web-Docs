@@ -1,12 +1,12 @@
 # masquerade-nodes-comfyui
-Masquerade Nodes is a node pack for ComfyUI designed to enhance image manipulation capabilities, particularly focusing on the creation and manipulation of masks through text prompts. It enables fine control over image composition, inpainting, and filtering by leveraging nodes that can dynamically create masks, modify mask morphology, combine or separate masks, and perform operations on images based on these masks. The core functionality revolves around the innovative use of ClipSeg to generate masks from images using text prompts, facilitating complex image editing workflows like automatic photobashing, high-resolution face inpainting, and selective inpainting or filtering based on specific criteria.
+Masquerade Nodes ComfyUI is a node pack designed for ComfyUI, focusing on creating and manipulating masks for images with functionalities such as automatic photobashing, high-resolution face inpainting, and filtering images based on specific objects or concepts. It leverages the Mask by Text node, utilizing ClipSeg to dynamically generate masks from images using text prompts, and includes additional nodes for mask morphology, combining masks, and operations on images and masks to facilitate complex image editing and manipulation workflows without dependencies.
 
 ## Tags
-Batch * Blur * Color * Counting * HSVColorSpace * Image * ImageBatch * ImageBlend * ImageComposite * ImageMask * ImageMaskConversion * ImageSize * ImageTransformation * Mask * MaskGeneration * MaskMorphology * VisualEffects
+Batch * Blur * BoundingBox * Color * Image * ImageBatch * ImageBlend * ImageComposite * ImageDrawing * ImageDuplication * ImageMask * ImageMaskConversion * ImageResize * ImageScaling * ImageSize * ImageTransformation * Mask * MaskBatch * MaskBlur * MaskGeneration * MaskList * MaskMorphology * MaskRegion * Math * Tiled * VideoHelperSuite * VisualEffects
 
 ## Repo info
 - Repo url: `https://github.com/BadCafeCode/masquerade-nodes-comfyui`
-- Commit hash: `69a944969c29d1c63dfd62eb70a764bceb49473d`
+- Commit hash: `432cb4d146a391b387a0cd25ace824328b5b61cf`
 
 ## Licenses
 - **MIT**: `LICENSE`

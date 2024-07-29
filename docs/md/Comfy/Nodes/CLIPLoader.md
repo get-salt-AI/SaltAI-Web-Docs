@@ -1,8 +1,8 @@
 ---
 tags:
-- CLIP
-- Loader
-- ModelIO
+- Checkpoint
+- CheckpointLoader
+- ModelLoader
 ---
 
 # Load CLIP
@@ -11,7 +11,7 @@ tags:
 - Category: `advanced/loaders`
 - Output node: `False`
 
-The CLIPLoader node is designed for loading CLIP models, supporting different types such as stable diffusion and stable cascade. It abstracts the complexities of loading and configuring CLIP models for use in various applications, providing a streamlined way to access these models with specific configurations.
+The CLIPLoader node is designed for loading CLIP models, supporting various types including stable diffusion, stable cascade, SD3, and stable audio. It abstracts the complexities of loading and configuring CLIP models based on the specified type, facilitating their use in downstream tasks.
 ## Input types
 ### Required
 - **`clip_name`**
@@ -19,16 +19,16 @@ The CLIPLoader node is designed for loading CLIP models, supporting different ty
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`type`**
-    - Determines the type of CLIP model to load, offering options between 'stable_diffusion' and 'stable_cascade'. This affects how the model is initialized and configured.
+    - Determines the specific type of CLIP model to load, such as stable diffusion, stable cascade, SD3, or stable audio. This affects how the model is initialized and configured.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`clip`**
     - Comfy dtype: `CLIP`
-    - The loaded CLIP model, ready for use in downstream tasks or further processing.
-    - Python dtype: `torch.nn.Module`
+    - The loaded CLIP model, ready for use in various applications such as image generation or text-to-image tasks.
+    - Python dtype: `comfy.sd.CLIPModel`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -38,7 +38,7 @@ class CLIPLoader:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "clip_name": (folder_paths.get_filename_list("clip"), ),
-                              "type": (["stable_diffusion", "stable_cascade"], ),
+                              "type": (["stable_diffusion", "stable_cascade", "sd3", "stable_audio"], ),
                              }}
     RETURN_TYPES = ("CLIP",)
     FUNCTION = "load_clip"
@@ -46,9 +46,14 @@ class CLIPLoader:
     CATEGORY = "advanced/loaders"
 
     def load_clip(self, clip_name, type="stable_diffusion"):
-        clip_type = comfy.sd.CLIPType.STABLE_DIFFUSION
         if type == "stable_cascade":
             clip_type = comfy.sd.CLIPType.STABLE_CASCADE
+        elif type == "sd3":
+            clip_type = comfy.sd.CLIPType.SD3
+        elif type == "stable_audio":
+            clip_type = comfy.sd.CLIPType.STABLE_AUDIO
+        else:
+            clip_type = comfy.sd.CLIPType.STABLE_DIFFUSION
 
         clip_path = folder_paths.get_full_path("clip", clip_name)
         clip = comfy.sd.load_clip(ckpt_paths=[clip_path], embedding_directory=folder_paths.get_folder_paths("embeddings"), clip_type=clip_type)

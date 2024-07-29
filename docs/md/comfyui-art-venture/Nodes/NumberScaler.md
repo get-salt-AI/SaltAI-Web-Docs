@@ -1,3 +1,9 @@
+---
+tags:
+- Math
+- MathematicalFunctions
+---
+
 # Number Scaler
 ## Documentation
 - Class name: `NumberScaler`

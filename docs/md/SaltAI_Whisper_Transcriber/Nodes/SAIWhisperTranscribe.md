@@ -1,65 +1,70 @@
+---
+tags:
+- Audio
+---
+
 # Whisper Transcribe
 ## Documentation
 - Class name: `SAIWhisperTranscribe`
 - Category: `SALT/Whisper`
 - Output node: `False`
 
-The SAIWhisperTranscribe node is designed to transcribe audio and video files using a Whisper model. It processes media files to extract audio, applies the Whisper model for transcription, and returns detailed transcription data including raw text, structured transcription frames, and additional metadata such as frame rates and counts.
+This node is designed to transcribe audio and video files using the Whisper model. It processes media files to extract audio, then transcribes the audio into text, providing detailed transcription data including timestamps and potentially images, depending on the media type and transcription settings.
 ## Input types
 ### Required
 - **`whisper_model`**
-    - The Whisper model, processor, and device configuration used for transcription. This parameter is crucial for determining how the audio will be processed and transcribed, affecting the accuracy and quality of the transcription output.
+    - The Whisper model, processor, and device configuration used for transcription. This affects the accuracy and quality of the transcription.
     - Comfy dtype: `WHISPER_MODEL`
     - Python dtype: `Tuple[torch.nn.Module, Any, torch.device]`
 - **`file_path`**
-    - The path to the media file to be transcribed. This parameter is essential for locating the file and determining its media type, which influences the transcription process.
+    - The path to the media file to be transcribed. Supports both audio and video files, validating against supported formats.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ### Optional
 - **`frame_rate`**
-    - Specifies the frame rate to be used during audio extraction from video files. It affects the granularity of the transcription timestamps and frames.
+    - Optional. Specifies the frame rate for audio extraction from video files, affecting the temporal resolution of the transcription.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`chunk_type`**
-    - Determines the segmentation type of the transcription, either by sentence or word, influencing the structure of the transcription output.
+    - Specifies whether the transcription should be segmented by sentences or words, affecting the granularity of the output timestamps.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`max_new_tokens`**
-    - The maximum number of new tokens to generate for the transcription. This parameter controls the length and detail level of the transcription output.
+    - Optional. Limits the number of new tokens generated during transcription, impacting the length and detail of the output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`transcription_text`**
     - Comfy dtype: `STRING`
-    - The raw text of the transcription.
+    - The complete transcription text without timestamps or segmentation.
     - Python dtype: `str`
 - **`transcription_timestamp_dict`**
     - Comfy dtype: `DICT`
-    - A dictionary mapping timestamps to transcribed text, providing a structured view of the transcription.
-    - Python dtype: `Dict[int, str]`
+    - A structured representation of the transcription with detailed information, including timestamps.
+    - Python dtype: `Dict[str, Any]`
 - **`transcription_frame_dict`**
     - Comfy dtype: `DICT`
-    - A dictionary mapping frame numbers to transcribed text, useful for syncing transcription with video frames.
+    - Timestamped frames of the transcription, providing temporal context to the text.
     - Python dtype: `Dict[int, str]`
 - **`prompt_schedule`**
     - Comfy dtype: `STRING`
-    - A structured representation of transcription text mapped to specific frame numbers, formatted as a schedule.
+    - A schedule of prompts used during transcription, if applicable.
     - Python dtype: `str`
 - **`images`**
     - Comfy dtype: `IMAGE`
-    - A tensor of images extracted or generated during the transcription process, corresponding to video frames or placeholders for audio files.
-    - Python dtype: `torch.Tensor`
+    - A collection of images extracted from the video, if the media type is video.
+    - Python dtype: `List[torch.Tensor]`
 - **`transcription_count`**
     - Comfy dtype: `INT`
     - The total number of transcription segments produced.
     - Python dtype: `int`
 - **`frame_rate`**
     - Comfy dtype: `INT`
-    - The frame rate used for audio extraction from video files, affecting the timing of transcription frames.
+    - The frame rate derived from the audio extraction process.
     - Python dtype: `float`
 - **`frame_count`**
     - Comfy dtype: `INT`
-    - The total number of frames in the video file, relevant for video file transcriptions.
+    - The total number of frames in the video, if the media type is video.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `GPU`
@@ -79,8 +84,8 @@ class SAIWhisperTranscribe:
         ]
         self.audio_extensions = [
             ".mp3", ".wav", ".aac", ".flac", ".ogg", ".m4a", ".wma"
-        ]   
-                    
+        ]
+
     @classmethod
     def INPUT_TYPES(cls):
         return {
@@ -108,17 +113,17 @@ class SAIWhisperTranscribe:
         if not media_type:
             supported_formats = ', '.join(self.video_extensions + self.audio_extensions)
             raise ValueError(f"Unsupported media file format. Please provide a valid video or audio file: {supported_formats}")
-        
+
         path = os.path.join(INPUT, file_path)
         audio_path, derived_fps, frame_count, duration = self.extract_audio(path, kwargs.get('frame_rate', 8))
 
         raw_text, transcription, transcription_frame, prompt_schedule, images = self.transcribe_audio(
-            audio_path, 
-            path, 
+            audio_path,
+            path,
             derived_fps,
             duration,
-            model, 
-            processor, 
+            model,
+            processor,
             kwargs.get("max_new_tokens", 128),
             media_type,
             kwargs.get("chunk_type", "sentence")
@@ -128,13 +133,34 @@ class SAIWhisperTranscribe:
 
         return raw_text, transcription, transcription_frame, prompt_schedule, images, transcription_count, derived_fps, frame_count
 
+    def extract_audio(self, file_path, fps):
+        os.makedirs(TEMP, exist_ok=True)
+        with tempfile.NamedTemporaryFile(delete=False, suffix='.mp3', dir=TEMP) as tmp_file:
+            tmp_file_name = tmp_file.name
+
+        cmd = [
+            'ffmpeg',
+            '-y',  # Overwrite output
+            '-i', file_path,
+            '-vn',  # No video
+            '-acodec', 'mp3',
+            '-ar', '16000',  # Sample rate for whisper
+            '-ac', '1',  # Mono channel for whisper 
+            tmp_file_name
+        ]
+        subprocess.run(cmd, check=True)
+        audio = AudioSegment.from_file(tmp_file_name)
+        duration = audio.duration_seconds
+        frame_count = int(duration * fps)
+        return tmp_file_name, fps, frame_count, duration
+
     def transcribe_audio(self, audio_path, file_path, fps, duration, model, processor, max_new_tokens, media_type="audio", chunk_type="sentence"):
         audio = AudioSegment.from_file(audio_path).set_frame_rate(16000).set_channels(1)
         samples = np.array(audio.get_array_of_samples())
         if audio.sample_width == 2:
-            samples = samples.astype(np.float32) / 2**15
+            samples = samples.astype(np.float32) / 2 ** 15
         elif audio.sample_width == 4:
-            samples = samples.astype(np.float32) / 2**31
+            samples = samples.astype(np.float32) / 2 ** 31
 
         pipe = pipeline(
             "automatic-speech-recognition",
@@ -145,7 +171,7 @@ class SAIWhisperTranscribe:
             max_new_tokens=max_new_tokens,
         )
         result = pipe(samples)
-        
+
         raw_text = result['text'].strip()
         transcription = {}
         transcription_frame = {}
@@ -168,7 +194,7 @@ class SAIWhisperTranscribe:
             transcription[round(adjusted_start_time, ndigits=2)] = text.strip()
             transcription_frame[frame_number] = text.strip()
             prompt_schedule += f'"{frame_number}": "{text.strip()}"' + (",\n" if chunk != result['chunks'][-1] else "\n")
-            
+
             if media_type == "video":
                 img = self.extract_frame(file_path, adjusted_start_time, duration)
                 images.append(pil2tensor(img))
@@ -181,17 +207,6 @@ class SAIWhisperTranscribe:
         images = torch.cat(images, dim=0)
 
         return raw_text, transcription, transcription_frame, prompt_schedule, images
-
-    def extract_audio(self, file_path, fps):
-        os.makedirs(TEMP, exist_ok=True)
-        clip = VideoFileClip(file_path)
-        fps = fps or clip.fps
-        duration = clip.duration
-        frame_count = int(duration * fps)
-        tmp_file = tempfile.NamedTemporaryFile(delete=False, suffix='.mp3', dir=TEMP)
-        clip.audio.write_audiofile(tmp_file.name)
-        clip.close()
-        return tmp_file.name, fps, frame_count, duration
 
     def extract_frame(self, file_path, timestamp, video_duration):
         if timestamp > video_duration:

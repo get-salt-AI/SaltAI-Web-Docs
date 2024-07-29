@@ -1,8 +1,8 @@
 ---
 tags:
-- DepthMap
-- Image
-- ImagePreprocessing
+- DepthMapEstimation
+- Inpaint
+- LineExtraction
 ---
 
 # [Inference.Core] Enchance And Resize Hint Images

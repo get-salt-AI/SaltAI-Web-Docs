@@ -2,6 +2,7 @@
 tags:
 - Latent
 - LatentBlend
+- VAE
 ---
 
 # Latent Blend
@@ -33,7 +34,7 @@ The LatentBlend node is designed to blend two sets of latent samples together, b
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes:
-    - NNLatentUpscale
+    - [NNLatentUpscale](../../ComfyUi_NNLatentUpscale/Nodes/NNLatentUpscale.md)
     - [SamplerCustom](../../Comfy/Nodes/SamplerCustom.md)
     - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
     - Mute / Bypass Repeater (rgthree)

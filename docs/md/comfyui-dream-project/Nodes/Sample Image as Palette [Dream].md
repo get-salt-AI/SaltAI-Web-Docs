@@ -1,6 +1,7 @@
 ---
 tags:
 - Color
+- HSVColorSpace
 ---
 
 # 🎨 Sample Image as Palette

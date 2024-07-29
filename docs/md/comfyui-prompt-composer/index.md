@@ -2,7 +2,7 @@
 ComfyUI Prompt Composer is a suite of tools designed for prompt management, enabling users to sequence and logically group strings for prompts through a combination of customizable nodes. It offers features like custom lists, single and multiple text nodes, grouping, and merging functionalities to facilitate the creation and manipulation of text prompts for various applications.
 
 ## Tags
-Concatenate * Prompt * PromptComposer * PromptStyling
+Concatenate * PromptStyling * Text
 
 ## Repo info
 - Repo url: `https://github.com/florestefano1975/comfyui-prompt-composer`

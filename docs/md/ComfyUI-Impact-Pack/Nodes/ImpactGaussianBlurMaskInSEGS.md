@@ -1,7 +1,7 @@
 ---
 tags:
 - Blur
-- VisualEffects
+- ImageTransformation
 ---
 
 # Gaussian Blur Mask (SEGS)

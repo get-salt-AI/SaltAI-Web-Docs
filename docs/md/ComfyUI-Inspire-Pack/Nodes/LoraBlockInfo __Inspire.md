@@ -9,23 +9,23 @@ tags:
 - Category: `InspirePack/LoraBlockWeight`
 - Output node: `True`
 
-The LoraBlockInfo node is designed to extract and communicate detailed information about specific LoRA (Low-Rank Adaptation) blocks within a model. It leverages the LoRA technique to adjust model parameters for enhanced performance on specific tasks, providing insights into the modifications and their impacts.
+The LoraBlockInfo node is designed to extract and communicate detailed information about specific LoRA (Low-Rank Adaptation) blocks within a model. It loads a LoRA model, extracts relevant block information, and sends this information to a specified widget for display or further processing.
 ## Input types
 ### Required
 - **`model`**
-    - The model parameter represents the deep learning model to which LoRA adaptations are applied. It is crucial for identifying the specific blocks within the model that have been modified using LoRA techniques.
+    - The model parameter represents the deep learning model from which LoRA block information will be extracted. It is crucial for identifying the specific blocks within the model that are subject to LoRA's low-rank adaptations.
     - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`clip`**
-    - The clip parameter is associated with the CLIP model used alongside the main model, providing a context for the LoRA adaptations in terms of text and image understanding.
+    - The clip parameter is used to specify the CLIP model associated with the LoRA model, enabling the extraction of information that is relevant to both the model and its CLIP components.
     - Comfy dtype: `CLIP`
-    - Python dtype: `openai.CLIP`
+    - Python dtype: `torch.nn.Module`
 - **`lora_name`**
-    - This parameter specifies the name of the LoRA file containing the adaptations to be loaded and analyzed. It is essential for locating and applying the correct LoRA modifications to the model.
+    - This parameter specifies the name of the LoRA model to be loaded and analyzed. It is essential for locating and loading the correct LoRA model file.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`block_info`**
-    - A string containing detailed information about the specific blocks within the model that have been modified using LoRA. This parameter is key to extracting and presenting the relevant LoRA adaptations.
+    - The block_info parameter provides additional textual information or specifications about the LoRA blocks to be analyzed, aiding in the extraction of detailed and relevant information.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
@@ -121,8 +121,8 @@ class LoraBlockInfo:
                 else:
                     output_blocks_map[k_unet_int] = [k_unet]
 
-            elif k_unet.startswith("_model.encoder.layers."):
-                k_unet_num = k_unet[len("_model.encoder.layers."):len("_model.encoder.layers.")+2]
+            elif k_unet.startswith("er.text_model.encoder.layers."):
+                k_unet_num = k_unet[len("er.text_model.encoder.layers."):len("er.text_model.encoder.layers.")+2]
                 k_unet_int = parse_unet_num(k_unet_num)
 
                 text_block_count.add(k_unet_int)
@@ -157,12 +157,11 @@ class LoraBlockInfo:
         for x in output_keys:
             text += f" OUT{x}: {len(output_blocks_map[x])}\n"
 
-        text += f"\n-------[Text blocks] ({len(text_block_count)}, Subs={len(text_blocks)})-------\n"
+        text += f"\n-------[Base blocks] ({len(text_block_count) + len(others)}, Subs={len(text_blocks) + len(others)})-------\n"
         text_keys = sorted(text_blocks_map.keys())
         for x in text_keys:
-            text += f" CLIP{x}: {len(text_blocks_map[x])}\n"
+            text += f" TXT_ENC{x}: {len(text_blocks_map[x])}\n"
 
-        text += f"\n-------[Base blocks] ({len(others)})-------\n"
         for x in others:
             text += f" {x}\n"
 

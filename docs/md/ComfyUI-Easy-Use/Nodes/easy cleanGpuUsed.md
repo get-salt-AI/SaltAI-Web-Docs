@@ -1,6 +1,7 @@
 ---
 tags:
-- Cache
+- Agents
+- BackendCache
 ---
 
 # Clean GPU Used
@@ -9,11 +10,11 @@ tags:
 - Category: `EasyUse/Logic`
 - Output node: `True`
 
-The `easy cleanGpuUsed` node is designed to free up GPU resources by clearing the GPU cache and unloading all models currently loaded in memory. This operation is crucial for managing memory usage and ensuring efficient GPU utilization, especially in environments where multiple models or heavy computations are run sequentially.
+The `cleanGpuUsed` node is designed to facilitate the release of GPU resources by clearing the GPU memory cache and unloading all models from memory. This operation is crucial for managing GPU memory efficiently, especially in environments where multiple models are loaded and unloaded dynamically.
 ## Input types
 ### Required
 - **`anything`**
-    - This parameter acts as a placeholder, allowing the node to be called without specific input requirements. It does not affect the execution of the node.
+    - This parameter acts as a placeholder to allow the node to be called without specific input requirements, emphasizing its utility function rather than processing specific data.
     - Comfy dtype: `*`
     - Python dtype: `Any`
 ### Optional
@@ -41,6 +42,7 @@ class cleanGPUUsed:
 
     def empty_cache(self, anything, unique_id=None, extra_pnginfo=None):
         cleanGPUUsedForce()
+        remove_cache('*')
         return ()
 
 ```

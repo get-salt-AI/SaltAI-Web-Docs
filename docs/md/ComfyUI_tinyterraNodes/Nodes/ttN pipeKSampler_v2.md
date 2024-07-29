@@ -1,171 +1,180 @@
 ---
 tags:
+- SamplerScheduler
 - Sampling
 ---
 
 # pipeKSampler
 ## Documentation
 - Class name: `ttN pipeKSampler_v2`
-- Category: `ttN/pipe`
+- Category: `🌏 tinyterra/pipe`
 - Output node: `True`
 
-This node specializes in advanced image sampling, leveraging a variety of inputs such as model configurations, LoRA adjustments, and optional parameters to generate or modify images. It integrates complex functionalities like noise management, denoising control, and optional model enhancements to tailor the image generation process, aiming to provide a flexible and customizable output based on the given inputs.
+The `ttN_pipeKSampler_v2` node is designed for advanced image sampling and processing within a pipeline. It integrates various functionalities such as LoRA adjustments, noise management, step configuration, and optional model enhancements to facilitate customized image generation and manipulation. This node emphasizes flexibility in image output options and the ability to refine results through denoising and upscale methods, catering to diverse requirements in image synthesis workflows.
 ## Input types
 ### Required
 - **`pipe`**
-    - unknown
+    - Represents the pipeline configuration and state, serving as the foundation for the sampling process.
     - Comfy dtype: `PIPE_LINE`
-    - Python dtype: `unknown`
+    - Python dtype: `dict`
 - **`lora_name`**
-    - Specifies the name of the LoRA (Low-Rank Adaptation) to be applied, influencing the model's behavior and output by adjusting its parameters.
+    - Specifies the LoRA model to be applied for adjustments, enhancing the control over model behavior and output quality.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`lora_strength`**
-    - Determines the strength of the applied LoRA, affecting the intensity of the model's adjustments and the resultant image characteristics.
+    - Determines the intensity of the LoRA adjustments, allowing for fine-tuning of the model's influence on the generated images.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`upscale_method`**
-    - unknown
+    - Defines the method used for upscaling images, offering options to enhance image resolution.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`upscale_model_name`**
-    - unknown
+    - Specifies the model used for upscaling, enabling high-quality image enlargement.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`factor`**
-    - unknown
+    - Sets the scaling factor for upscaling, determining the increase in image size.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`rescale`**
-    - unknown
+    - Controls how images are rescaled, providing various options for adjusting image dimensions.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`percent`**
-    - unknown
+    - Determines the percentage for image rescaling, allowing for flexible size adjustment.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`width`**
-    - unknown
+    - Specifies the target width for image resizing, enabling precise dimension control.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`height`**
-    - unknown
+    - Sets the target height for image resizing, facilitating specific size requirements.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`longer_side`**
-    - unknown
+    - Defines the target size for the longer side of the image, ensuring aspect ratio maintenance during resizing.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`crop`**
-    - unknown
-    - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
-- **`sampler_state`**
-    - Represents the current state of the sampler, guiding the sampling process and affecting the generation outcome.
+    - Determines the cropping method, offering strategies for image composition adjustment.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`steps`**
-    - Defines the number of steps to be taken in the sampling process, directly influencing the detail and quality of the output images.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`cfg`**
-    - Configuration setting that adjusts the sampling process, allowing for fine-tuning of the generation parameters.
+    - unknown
+    - Comfy dtype: `FLOAT`
+    - Python dtype: `unknown`
+- **`sampler_name`**
+    - unknown
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `unknown`
+- **`scheduler`**
+    - unknown
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `unknown`
+- **`denoise`**
+    - Controls the denoising level applied to images, affecting clarity and detail preservation.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
-- **`sampler_name`**
-    - Identifies the specific sampler to be used, determining the method and approach for image generation.
-    - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
-- **`scheduler`**
-    - Specifies the scheduler for the sampling process, orchestrating the sequence and timing of operations.
-    - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
-- **`denoise`**
-    - unknown
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
 - **`image_output`**
-    - Indicates the desired output format or destination for the generated images, directing the saving or displaying of results.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`save_prefix`**
-    - Provides a prefix for naming saved images, aiding in the organization and retrieval of generated outputs.
+    - unknown
     - Comfy dtype: `STRING`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
+- **`file_type`**
+    - unknown
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `unknown`
+- **`embed_workflow`**
+    - unknown
+    - Comfy dtype: `BOOLEAN`
+    - Python dtype: `unknown`
 ### Optional
 - **`seed`**
-    - unknown
+    - Sets the seed for random number generation, ensuring reproducibility in the sampling process.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`optional_model`**
-    - unknown
+    - Allows for the specification of an alternative model for sampling, providing customization options.
     - Comfy dtype: `MODEL`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`optional_positive`**
-    - unknown
+    - Specifies optional positive conditioning to influence the image generation towards desired attributes.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`optional_negative`**
-    - unknown
+    - Specifies optional negative conditioning to steer the image generation away from certain attributes.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`optional_latent`**
-    - unknown
+    - Allows for the input of a latent image representation, offering advanced customization in the generation process.
     - Comfy dtype: `LATENT`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`optional_vae`**
-    - unknown
+    - Specifies an optional VAE model for use in the image generation process, enabling further customization.
     - Comfy dtype: `VAE`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`optional_clip`**
-    - unknown
+    - Allows for the specification of an optional CLIP model, providing additional control over image relevance to text descriptions.
     - Comfy dtype: `CLIP`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`input_image_override`**
-    - unknown
+    - Enables the overriding of the input image, allowing for direct manipulation of the image generation process.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`adv_xyPlot`**
-    - unknown
+    - Specifies an advanced XY plot for visualization or analysis, integrating additional data dimensions into the process.
     - Comfy dtype: `ADV_XYPLOT`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 ## Output types
 - **`pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - unknown
-    - Python dtype: `unknown`
+    - Outputs the updated pipeline configuration after processing, reflecting changes made during sampling.
+    - Python dtype: `dict`
 - **`model`**
     - Comfy dtype: `MODEL`
-    - unknown
-    - Python dtype: `unknown`
+    - Returns the model used in the sampling process, including any adjustments or selections made.
+    - Python dtype: `str`
 - **`positive`**
     - Comfy dtype: `CONDITIONING`
-    - unknown
-    - Python dtype: `unknown`
+    - Outputs the positive conditioning applied, influencing the generation towards desired outcomes.
+    - Python dtype: `str`
 - **`negative`**
     - Comfy dtype: `CONDITIONING`
-    - unknown
-    - Python dtype: `unknown`
+    - Outputs the negative conditioning applied, steering the generation away from certain attributes.
+    - Python dtype: `str`
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - unknown
-    - Python dtype: `unknown`
+    - Returns the latent representation of the generated image, providing a basis for further manipulation or analysis.
+    - Python dtype: `str`
 - **`vae`**
     - Comfy dtype: `VAE`
-    - unknown
-    - Python dtype: `unknown`
+    - Outputs the VAE model used in the process, if any, highlighting its role in image reconstruction.
+    - Python dtype: `str`
 - **`clip`**
     - Comfy dtype: `CLIP`
-    - unknown
-    - Python dtype: `unknown`
-- **`image`**
+    - Returns the CLIP model applied, if any, underscoring its influence on aligning images with textual descriptions.
+    - Python dtype: `str`
+- **`images`**
     - Comfy dtype: `IMAGE`
-    - unknown
-    - Python dtype: `unknown`
+    - Outputs the final generated images, showcasing the results of the sampling and processing.
+    - Python dtype: `str`
 - **`seed`**
     - Comfy dtype: `INT`
-    - unknown
-    - Python dtype: `unknown`
+    - Returns the seed value used in the process, ensuring traceability of the generation.
+    - Python dtype: `int`
+- **`plot_image`**
+    - Comfy dtype: `IMAGE`
+    - Provides a visual representation or plot related to the sampling process, offering insights into the generation.
+    - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -174,12 +183,7 @@ This node specializes in advanced image sampling, leveraging a variety of inputs
 ## Source code
 ```python
 class ttN_pipeKSampler_v2:
-    version = '2.1.0'
-    upscale_methods = ["None",
-                       "[latent] nearest-exact", "[latent] bilinear", "[latent] area", "[latent] bicubic", "[latent] lanczos", "[latent] bislerp",
-                       "[hiresFix] nearest-exact", "[hiresFix] bilinear", "[hiresFix] area", "[hiresFix] bicubic", "[hiresFix] lanczos", "[hiresFix] bislerp"]
-    crop_methods = ["disabled", "center"]
-
+    version = '2.3.1'
     def __init__(self):
         pass
 
@@ -191,24 +195,25 @@ class ttN_pipeKSampler_v2:
                 "lora_name": (["None"] + folder_paths.get_filename_list("loras"),),
                 "lora_strength": ("FLOAT", {"default": 1.0, "min": -10.0, "max": 10.0, "step": 0.01}),
 
-                "upscale_method": (cls.upscale_methods, {"default": "None"}),
-                "upscale_model_name": (folder_paths.get_filename_list("upscale_models"),),
+                "upscale_method": (UPSCALE_METHODS, {"default": "None"}),
+                "upscale_model_name": (UPSCALE_MODELS,),
                 "factor": ("FLOAT", {"default": 2, "min": 0.0, "max": 10.0, "step": 0.25}),
                 "rescale": (["by percentage", "to Width/Height", 'to longer side - maintain aspect', 'None'],),
                 "percent": ("INT", {"default": 50, "min": 0, "max": 1000, "step": 1}),
                 "width": ("INT", {"default": 1024, "min": 64, "max": MAX_RESOLUTION, "step": 8}),
                 "height": ("INT", {"default": 1024, "min": 64, "max": MAX_RESOLUTION, "step": 8}),
                 "longer_side": ("INT", {"default": 1024, "min": 64, "max": MAX_RESOLUTION, "step": 8}),
-                "crop": (cls.crop_methods,),
+                "crop": (CROP_METHODS,),
 
-                "sampler_state": (["Sample", "Hold"], ),
                 "steps": ("INT", {"default": 20, "min": 1, "max": 10000}),
                 "cfg": ("FLOAT", {"default": 8.0, "min": 0.0, "max": 100.0}),
                 "sampler_name": (comfy.samplers.KSampler.SAMPLERS,),
-                "scheduler": (comfy.samplers.KSampler.SCHEDULERS,),
+                "scheduler": (comfy.samplers.KSampler.SCHEDULERS + CUSTOM_SCHEDULERS,),
                 "denoise": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01}),
                 "image_output": (["Hide", "Preview", "Save", "Hide/Save", "Disabled"],),
-                "save_prefix": ("STRING", {"default": "ComfyUI"})
+                "save_prefix": ("STRING", {"default": "ComfyUI"}),
+                "file_type": (OUTPUT_FILETYPES,{"default": "png"}),
+                "embed_workflow": ("BOOLEAN", {"default": True}),
                 },
                 "optional": 
                 {"seed": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff}),
@@ -223,26 +228,21 @@ class ttN_pipeKSampler_v2:
                 },
                 "hidden":
                 {"prompt": "PROMPT", "extra_pnginfo": "EXTRA_PNGINFO", "my_unique_id": "UNIQUE_ID",
-                 "embeddingsList": (folder_paths.get_filename_list("embeddings"),),
-                 "lorasList": (folder_paths.get_filename_list("loras"),),
                  "ttNnodeVersion": ttN_pipeKSampler_v2.version},
         }
 
-    RETURN_TYPES = ("PIPE_LINE", "MODEL", "CONDITIONING", "CONDITIONING", "LATENT", "VAE", "CLIP", "IMAGE", "INT",)
-    RETURN_NAMES = ("pipe", "model", "positive", "negative", "latent","vae", "clip", "image", "seed", )
+    RETURN_TYPES = ("PIPE_LINE", "MODEL", "CONDITIONING", "CONDITIONING", "LATENT", "VAE", "CLIP", "IMAGE", "INT", "IMAGE")
+    RETURN_NAMES = ("pipe", "model", "positive", "negative", "latent","vae", "clip", "images", "seed", "plot_image")
     OUTPUT_NODE = True
     FUNCTION = "sample"
-    CATEGORY = "ttN/pipe"
+    CATEGORY = "🌏 tinyterra/pipe"
 
     def sample(self, pipe,
                lora_name, lora_strength,
-               sampler_state, steps, cfg, sampler_name, scheduler, image_output, save_prefix, denoise=1.0, 
+               steps, cfg, sampler_name, scheduler, image_output, save_prefix, file_type, embed_workflow, denoise=1.0, 
                optional_model=None, optional_positive=None, optional_negative=None, optional_latent=None, optional_vae=None, optional_clip=None, input_image_override=None,
                seed=None, adv_xyPlot=None, upscale_model_name=None, upscale_method=None, factor=None, rescale=None, percent=None, width=None, height=None, longer_side=None, crop=None,
                prompt=None, extra_pnginfo=None, my_unique_id=None, start_step=None, last_step=None, force_full_denoise=False, disable_noise=False):
-
-        # Clean Loader Models from Global
-        loader.update_loaded_objects(prompt)
 
         my_unique_id = int(my_unique_id)
 
@@ -260,26 +260,20 @@ class ttN_pipeKSampler_v2:
             samp_seed = pipe["seed"]
         else:
             samp_seed = seed
-
-        def process_sample_state(pipe, samp_model, samp_images, samp_clip, samp_samples, samp_vae, samp_seed, samp_positive, samp_negative, lora_name, lora_model_strength, lora_clip_strength,
+            
+        del pipe
+        
+        def process_sample_state(samp_model, samp_images, samp_clip, samp_samples, samp_vae, samp_seed, samp_positive, samp_negative, lora_name, lora_model_strength, lora_clip_strength,
                                  upscale_model_name, upscale_method, factor, rescale, percent, width, height, longer_side, crop,
                                  steps, cfg, sampler_name, scheduler, denoise,
-                                 image_output, save_prefix, prompt, extra_pnginfo, my_unique_id, preview_latent, start_step=start_step, last_step=last_step, force_full_denoise=force_full_denoise, disable_noise=disable_noise):
+                                 image_output, save_prefix, file_type, embed_workflow, prompt, extra_pnginfo, my_unique_id, preview_latent, start_step=start_step, last_step=last_step, force_full_denoise=force_full_denoise, disable_noise=disable_noise):
             # Load Lora
             if lora_name not in (None, "None"):
                 samp_model, samp_clip = loader.load_lora(lora_name, samp_model, samp_clip, lora_model_strength, lora_clip_strength)
 
-            upscale_method = upscale_method.split(' ', 1)
-
             # Upscale samples if enabled
-            if upscale_method[0] == "[latent]":
-                samp_samples = sampler.handle_upscale(samp_samples, upscale_method[1], factor, crop)
-            
-            if upscale_method[0] == "[hiresFix]": 
-                if (samp_images is None):
-                    samp_images = samp_vae.decode(samp_samples["samples"])
-                hiresfix = ttN_modelScale()
-                samp_samples = hiresfix.upscale(upscale_model_name, samp_images, True if rescale != 'None' else False, upscale_method[1], rescale, percent, width, height, longer_side, crop, "return latent", None, True, samp_vae)
+            if upscale_method != "None":
+                samp_samples = sampler.handle_upscale(samp_samples, upscale_method, factor, crop, upscale_model_name, samp_vae, samp_images, rescale, percent, width, height, longer_side)
 
             samp_samples = sampler.common_ksampler(samp_model, samp_seed, steps, cfg, sampler_name, scheduler, samp_positive, samp_negative, samp_samples, denoise=denoise, preview_latent=preview_latent, start_step=start_step, last_step=last_step, force_full_denoise=force_full_denoise, disable_noise=disable_noise)
       
@@ -289,12 +283,7 @@ class ttN_pipeKSampler_v2:
                 latent = samp_samples["samples"]
                 samp_images = samp_vae.decode(latent)
 
-                results = ttN_save.images(samp_images, save_prefix, image_output)
-
-            sampler.update_value_by_id("results", my_unique_id, results)
-
-            # Clean loaded_objects
-            loader.update_loaded_objects(prompt)
+                results = ttN_save.images(samp_images, save_prefix, image_output, embed_workflow, file_type)
 
             new_pipe = {
                 "model": samp_model,
@@ -307,41 +296,36 @@ class ttN_pipeKSampler_v2:
                 "images": samp_images,
                 "seed": samp_seed,
 
-                "loader_settings": pipe["loader_settings"],
+                "loader_settings": None,
             }
-            
-            sampler.update_value_by_id("pipe_line", my_unique_id, new_pipe)
 
-            del pipe
-            
             if image_output in ("Hide", "Hide/Save", "Disabled"):
-                return sampler.get_output(new_pipe)
+                return (*sampler.get_output(new_pipe), None)
 
             return {"ui": {"images": results},
-                    "result": sampler.get_output(new_pipe)}
+                    "result": (*sampler.get_output(new_pipe), None)}
 
-        def process_xyPlot(pipe, samp_model, samp_clip, samp_samples, samp_vae, samp_seed, samp_positive, samp_negative, lora_name, lora_model_strength, lora_clip_strength,
+        def process_xyPlot(samp_model, samp_clip, samp_samples, samp_vae, samp_seed, samp_positive, samp_negative, lora_name, lora_model_strength, lora_clip_strength,
                            steps, cfg, sampler_name, scheduler, denoise,
-                           image_output, save_prefix, prompt, extra_pnginfo, my_unique_id, preview_latent, adv_xyPlot):
+                           image_output, save_prefix, file_type, embed_workflow, prompt, extra_pnginfo, my_unique_id, preview_latent, adv_xyPlot):
 
             random.seed(seed)
 
-            plotter = ttNadv_xyPlot(adv_xyPlot, my_unique_id, prompt, extra_pnginfo, save_prefix, image_output)
-            samples, images = plotter.xy_plot_process()
+            executor = xyExecutor()
+            plotter = ttNadv_xyPlot(adv_xyPlot, my_unique_id, prompt, extra_pnginfo, save_prefix, image_output, executor)
+            plot_image, images, samples = plotter.xy_plot_process()
+            plotter.reset()
+            del executor, plotter
 
             if samples is None and images is None:
-                return process_sample_state(pipe, samp_model, samp_images, samp_clip, samp_samples, samp_vae, samp_seed, samp_positive, samp_negative, lora_name, lora_model_strength, lora_clip_strength,
+                return process_sample_state(samp_model, samp_images, samp_clip, samp_samples, samp_vae, samp_seed, samp_positive, samp_negative, lora_name, lora_model_strength, lora_clip_strength,
                                  upscale_model_name, upscale_method, factor, rescale, percent, width, height, longer_side, crop,
                                  steps, cfg, sampler_name, scheduler, denoise,
-                                 image_output, save_prefix, prompt, extra_pnginfo, my_unique_id, preview_latent, start_step=start_step, last_step=last_step, force_full_denoise=force_full_denoise, disable_noise=disable_noise)
+                                 image_output, save_prefix, file_type, embed_workflow, prompt, extra_pnginfo, my_unique_id, preview_latent, start_step=start_step, last_step=last_step, force_full_denoise=force_full_denoise, disable_noise=disable_noise)
 
 
-            results = ttN_save.images(images[0], save_prefix, image_output)
-
-            sampler.update_value_by_id("results", my_unique_id, results)
-
-            # Clean loaded_objects
-            loader.update_loaded_objects(prompt)
+            plot_result = ttN_save.images(plot_image, save_prefix, image_output, embed_workflow, file_type)
+            #plot_result.extend(ui_results)
 
             new_pipe = {
                 "model": samp_model,
@@ -351,34 +335,27 @@ class ttN_pipeKSampler_v2:
                 "clip": samp_clip,
 
                 "samples": samples,
-                "images": images[1],
+                "images": images,
                 "seed": samp_seed,
 
-                "loader_settings": pipe["loader_settings"],
+                "loader_settings": None,
             }
 
-            sampler.update_value_by_id("pipe_line", my_unique_id, new_pipe)
-
-            del pipe
-
             if image_output in ("Hide", "Hide/Save"):
-                return sampler.get_output(new_pipe)
+                return (*sampler.get_output(new_pipe), plot_image)
 
-            return {"ui": {"images": results}, "result": sampler.get_output(new_pipe)}
+            return {"ui": {"images": plot_result}, "result": (*sampler.get_output(new_pipe), plot_image)}
 
         preview_latent = True
         if image_output in ("Hide", "Hide/Save", "Disabled"):
             preview_latent = False
 
-        if sampler_state == "Sample" and adv_xyPlot is None:
-            return process_sample_state(pipe, samp_model, samp_images, samp_clip, samp_samples, samp_vae, samp_seed, samp_positive, samp_negative, lora_name, lora_strength, lora_strength,
+        if adv_xyPlot is None:
+            return process_sample_state(samp_model, samp_images, samp_clip, samp_samples, samp_vae, samp_seed, samp_positive, samp_negative, lora_name, lora_strength, lora_strength,
                                         upscale_model_name, upscale_method, factor, rescale, percent, width, height, longer_side, crop,
-                                        steps, cfg, sampler_name, scheduler, denoise, image_output, save_prefix, prompt, extra_pnginfo, my_unique_id, preview_latent)
-
-        elif sampler_state == "Sample" and adv_xyPlot is not None:
-            return process_xyPlot(pipe, samp_model, samp_clip, samp_samples, samp_vae, samp_seed, samp_positive, samp_negative, lora_name, lora_strength, lora_strength, steps, cfg, sampler_name, scheduler, denoise, image_output, save_prefix, prompt, extra_pnginfo, my_unique_id, preview_latent, adv_xyPlot)
-
-        elif sampler_state == "Hold":
-            return sampler.process_hold_state(pipe, image_output, my_unique_id)
+                                        steps, cfg, sampler_name, scheduler, denoise, image_output, save_prefix, file_type, embed_workflow, prompt, extra_pnginfo, my_unique_id, preview_latent)
+        else:
+            return process_xyPlot(samp_model, samp_clip, samp_samples, samp_vae, samp_seed, samp_positive, samp_negative, lora_name, lora_strength, lora_strength, steps, cfg, sampler_name, 
+                                  scheduler, denoise, image_output, save_prefix, file_type, embed_workflow, prompt, extra_pnginfo, my_unique_id, preview_latent, adv_xyPlot)
 
 ```

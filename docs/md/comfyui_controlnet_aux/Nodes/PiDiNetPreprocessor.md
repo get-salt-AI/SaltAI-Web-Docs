@@ -1,9 +1,11 @@
 ---
 tags:
-- DepthMap
+- DepthMapEstimation
 - Image
-- ImagePreprocessing
+- ImageEnhancement
+- Inpaint
 - LineExtraction
+- Weight
 ---
 
 # PiDiNet Soft-Edge Lines

@@ -1,6 +1,7 @@
 ---
 tags:
 - Color
+- Image
 ---
 
 # Color Correct (mtb)
@@ -9,49 +10,49 @@ tags:
 - Category: `mtb/image processing`
 - Output node: `False`
 
-Provides a suite of color correction functionalities for images, including adjustments for gamma, contrast, exposure, hue, saturation, and value. It aims to enhance or modify the visual appearance of images according to specified parameters.
+Provides a suite of color correction capabilities for images, allowing adjustments to gamma, contrast, exposure, offset, hue, saturation, and value to enhance or modify the image's appearance.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be color corrected. This is the primary data upon which all color correction operations are performed.
+    - The input image to be color corrected. This is the primary data upon which all color correction operations are applied.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`clamp`**
-    - A boolean parameter that determines whether the color values should be clamped. Clamping ensures that the color values do not exceed the allowable range.
+    - A boolean flag indicating whether the color values should be clamped. Clamping ensures that the color values do not exceed the allowable range, maintaining image integrity.
     - Comfy dtype: `COMBO[BOOLEAN]`
     - Python dtype: `bool`
 - **`gamma`**
-    - Adjusts the gamma value of the image, affecting the luminance of the image. A higher gamma value brightens the image, while a lower value darkens it.
+    - Adjusts the gamma value of the image, affecting the luminance to either darken or lighten the image.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`contrast`**
-    - Modifies the contrast of the image. Higher values increase contrast, making darks darker and lights lighter.
+    - Modifies the contrast level of the image, enhancing the difference between the light and dark areas.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`exposure`**
-    - Adjusts the exposure level of the image, simulating the effect of changing the amount of light captured in a photograph.
+    - Alters the exposure level, simulating the effect of changing the amount of light the image is exposed to.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`offset`**
-    - Applies an offset to the color values of the image, shifting all colors by a fixed amount.
+    - Applies an offset to the color values, shifting all colors by a fixed amount.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`hue`**
-    - Alters the hue of the image, changing the overall color tone without affecting brightness or saturation.
+    - Changes the hue of the image, adjusting the overall color tone.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`saturation`**
-    - Adjusts the saturation of the image, affecting the intensity of the colors. Higher values make colors more vivid, while lower values result in a more muted color palette.
+    - Adjusts the saturation level, affecting the intensity of the colors in the image.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`value`**
-    - Modifies the value (brightness) of the image, allowing for adjustments in how light or dark the image appears.
+    - Modifies the value (brightness) of the image, making it brighter or darker.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The color-corrected image, after applying the specified adjustments.
+    - The color-corrected image, with adjustments applied as per the input parameters.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -111,7 +112,14 @@ class MTB_ColorCorrect:
 
     @staticmethod
     def contrast_adjustment_tensor(image, contrast):
-        contrasted = (image - 0.5) * contrast + 0.5
+        r, g, b = image.unbind(-1)
+        
+        # Using Adobe RGB luminance weights.
+        luminance_image = 0.33 * r + 0.71 * g + 0.06 * b
+        luminance_mean = torch.mean(luminance_image.unsqueeze(-1))
+
+        # Blend original with mean luminance using contrast factor as blend ratio.
+        contrasted = image * contrast + (1.0 - contrast) * luminance_mean        
         return torch.clamp(contrasted, 0.0, 1.0)
 
     @staticmethod

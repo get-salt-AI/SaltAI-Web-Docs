@@ -1,6 +1,7 @@
 ---
 tags:
 - Color
+- ColorChannelManipulation
 ---
 
 # ColorDictionary (custom)
@@ -9,21 +10,21 @@ tags:
 - Category: `Bmad/CV/Color A.`
 - Output node: `False`
 
-This node allows for the creation of a custom color dictionary by mapping user-defined color names to their corresponding color values. It ensures that the number of color names matches the number of color values provided, adjusting the lists to match in length if necessary.
+This node allows for the creation of a custom color dictionary by mapping user-defined color names to their corresponding color values. It ensures that the number of color names matches the number of color values, adjusting the lists to match in length if necessary, before returning a dictionary that associates each color name with its color value.
 ## Input types
 ### Required
 - **`color_names`**
-    - A list of user-defined names for colors. These names will be used as keys in the resulting color dictionary.
+    - A list of user-defined names for colors. These names are used as keys in the resulting color dictionary, allowing for easy identification and retrieval of color values.
     - Comfy dtype: `STRING`
     - Python dtype: `List[str]`
 - **`colors`**
-    - A list of color values corresponding to the color names provided. These values will be used as values in the resulting color dictionary.
+    - A list of color values (typically RGB tuples) that correspond to the user-defined color names. These values are used as the dictionary values in the resulting color dictionary, mapping each name to its respective color.
     - Comfy dtype: `COLOR`
     - Python dtype: `List[Tuple[int, int, int]]`
 ## Output types
 - **`color_dict`**
     - Comfy dtype: `COLOR_DICT`
-    - The resulting custom color dictionary mapping the provided color names to their corresponding color values.
+    - The resulting custom color dictionary, mapping each user-defined color name to its corresponding color value.
     - Python dtype: `Dict[str, Tuple[int, int, int]]`
 ## Usage tips
 - Infra type: `CPU`
@@ -34,7 +35,7 @@ This node allows for the creation of a custom color dictionary by mapping user-d
 ```python
 class ColorCustomDictionary:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {
             "color_names": ("STRING", {"default": ""}),
             "colors": ("COLOR", {"default": ""})
@@ -43,7 +44,7 @@ class ColorCustomDictionary:
 
     RETURN_TYPES = ("COLOR_DICT",)
     FUNCTION = "ret"
-    CATEGORY = "Bmad/CV/Color A."
+    CATEGORY = f"{cv_category_path}/Color A."
     INPUT_IS_LIST = True
 
     def ret(self, color_names, colors):

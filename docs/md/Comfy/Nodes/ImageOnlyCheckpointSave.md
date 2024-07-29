@@ -1,8 +1,7 @@
 ---
 tags:
 - Checkpoint
-- Loader
-- ModelIO
+- CheckpointLoader
 - ModelLoader
 ---
 

@@ -1,6 +1,7 @@
 ---
 tags:
-- Conditioning
+- CLIPConditioning
+- SAM
 ---
 
 # Inference_Core_ReferenceOnlySimple

@@ -1,38 +1,42 @@
 ---
 tags:
+- BoundingBox
+- ImagePadding
+- ImageTransformation
 - Mask
-- MaskGeneration
+- MaskList
+- MaskMorphology
 ---
 
-# CreateGradientMask
+# Create Gradient Mask
 ## Documentation
 - Class name: `CreateGradientMask`
 - Category: `KJNodes/masking/generate`
 - Output node: `False`
 
-The CreateGradientMask node is designed to generate a sequence of gradient masks based on specified dimensions and frame count. It allows for the creation of dynamic, time-varying masks that transition from black to white, with an option to invert the gradient.
+This node is designed to generate a series of gradient masks based on specified dimensions and frame count. It allows for the creation of dynamic, time-offset gradients that can be inverted, offering flexibility in mask generation for various visual effects.
 ## Input types
 ### Required
 - **`invert`**
-    - Determines whether the generated gradient mask should be inverted. An inverted mask transitions from white to black instead of the default black to white.
+    - Determines whether the generated gradient mask should be inverted. Inverting the mask swaps the gradient direction, enabling more creative control over the visual output.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`frames`**
-    - Specifies the number of frames or images in the batch for which gradient masks are to be generated. This affects the dynamic aspect of the mask, creating a time-varying effect.
+    - Specifies the number of frames (or images) to generate, each with a slightly offset gradient to create a dynamic, time-evolving effect.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`width`**
-    - Sets the width of the gradient mask. This dimension directly influences the horizontal resolution of the generated mask.
+    - Sets the width of the gradient mask, defining the horizontal dimension of the generated images.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Sets the height of the gradient mask. This dimension directly influences the vertical resolution of the generated mask.
+    - Sets the height of the gradient mask, defining the vertical dimension of the generated images.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The output is a tensor representing the generated gradient mask(s). If the invert option is enabled, the gradient is reversed.
+    - Outputs a tensor representing the generated gradient mask(s), which can be used directly in image processing or visual effects pipelines.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`

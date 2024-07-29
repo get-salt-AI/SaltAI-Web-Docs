@@ -1,6 +1,8 @@
 ---
 tags:
-- List
+- Comparison
+- Model
+- ModelList
 ---
 
 # FromListGet1Image

@@ -1,5 +1,8 @@
 ---
 tags:
+- Image
+- Pipeline
+- SamplerScheduler
 - Sampling
 ---
 
@@ -9,72 +12,81 @@ tags:
 - Category: `InspirePack/a1111_compat`
 - Output node: `False`
 
-The KSampler __Inspire node is designed to facilitate the generation of creative content by sampling from a model in a manner that is inspired by specific inputs. It abstracts the complexity of sampling algorithms, providing an interface for generating novel outputs based on positive and negative prompts, style guidance, and other parameters.
+The KSampler __Inspire node is designed to perform sampling operations within the Inspire framework, leveraging advanced sampling techniques to generate or modify data based on specified conditions. It abstracts complex sampling algorithms, providing a user-friendly interface for diverse sampling tasks.
 ## Input types
 ### Required
 - **`model`**
-    - Specifies the model from which to sample, serving as the foundation for generating outputs.
+    - Specifies the model to be used for sampling, central to determining the output's characteristics.
     - Comfy dtype: `MODEL`
-    - Python dtype: `str`
+    - Python dtype: `object`
 - **`seed`**
-    - Sets the initial seed for random number generation, ensuring reproducibility of the sampling process.
+    - Determines the randomness seed, ensuring reproducibility of results.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`steps`**
-    - Determines the number of steps to perform in the sampling process, affecting the detail and quality of the generated output.
+    - Defines the number of steps to perform in the sampling process, affecting the detail and quality of the output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - Configures the conditioning-free guidance scale, influencing the strength of the conditioning on the generation.
+    - Controls the conditioning factor, influencing the direction and strength of the sampling process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sampler_name`**
-    - Selects the specific sampling algorithm to use, tailoring the generation process to the desired characteristics.
+    - Selects the specific sampler algorithm to use, impacting the sampling behavior and results.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - Chooses the scheduler for controlling the sampling process, further customizing the output.
+    - Chooses the scheduler for controlling the sampling process, further refining the output.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`positive`**
-    - Specifies the positive conditioning to guide the generation towards desired attributes or themes.
+    - Sets positive conditioning to guide the sampling towards desired attributes.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `str`
 - **`negative`**
-    - Defines the negative conditioning that the generation should avoid, steering the output away from undesired attributes or themes.
+    - Applies negative conditioning to steer the sampling away from certain attributes.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `str`
 - **`latent_image`**
-    - Provides an initial latent image to be modified or enhanced through the sampling process.
+    - Provides an initial latent image to be modified or enhanced through sampling.
     - Comfy dtype: `LATENT`
-    - Python dtype: `str`
+    - Python dtype: `object`
 - **`denoise`**
-    - Adjusts the level of denoising applied during the generation, affecting the clarity and coherence of the output.
+    - Adjusts the level of denoising applied during sampling, affecting the clarity and sharpness of the output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`noise_mode`**
-    - Selects the mode of noise application, influencing the texture and details of the generated output.
+    - Specifies the mode of noise application, influencing the texture and details of the sampled output.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`batch_seed_mode`**
-    - Determines the mode for seed generation and application throughout the batch processing, affecting the variability of the output.
+    - Determines the mode for generating seeds in batch operations, affecting the diversity of the output.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`variation_seed`**
-    - Specifies a seed for introducing variations, adding an additional layer of randomness to the generation process.
+    - Sets the seed for introducing variations, allowing for controlled randomness in the output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`variation_strength`**
-    - Controls the strength of the variations introduced by the variation seed, influencing the diversity of the output.
+    - Controls the strength of variations applied, impacting the degree of change from the original.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
+### Optional
+- **`variation_method`**
+    - Defines the method used for applying variations, influencing the nature of the modifications.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
+- **`scheduler_func_opt`**
+    - Optionally selects a specific scheduling function, offering further customization of the sampling process.
+    - Comfy dtype: `SCHEDULER_FUNC`
+    - Python dtype: `str`
 ## Output types
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - Produces a latent representation of the generated content, encapsulating the desired attributes influenced by the input conditioning.
-    - Python dtype: `str`
+    - The result of the sampling process, typically a modified or newly generated latent image.
+    - Python dtype: `object`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -98,15 +110,24 @@ class KSampler_inspire:
                      "batch_seed_mode": (["incremental", "comfy", "variation str inc:0.01", "variation str inc:0.05"],),
                      "variation_seed": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff}),
                      "variation_strength": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 1.0, "step": 0.01}),
-                     }
+                     },
+                "optional":
+                    {
+                        "variation_method": (["linear", "slerp"],),
+                        "scheduler_func_opt": ("SCHEDULER_FUNC",),
+                    }
                 }
 
     RETURN_TYPES = ("LATENT",)
-    FUNCTION = "sample"
+    FUNCTION = "doit"
 
     CATEGORY = "InspirePack/a1111_compat"
 
-    def sample(self, model, seed, steps, cfg, sampler_name, scheduler, positive, negative, latent_image, denoise, noise_mode, batch_seed_mode="comfy", variation_seed=None, variation_strength=None):
-        return common_ksampler(model, seed, steps, cfg, sampler_name, scheduler, positive, negative, latent_image, denoise, noise_mode, incremental_seed_mode=batch_seed_mode, variation_seed=variation_seed, variation_strength=variation_strength)
+    @staticmethod
+    def doit(model, seed, steps, cfg, sampler_name, scheduler, positive, negative, latent_image, denoise, noise_mode,
+             batch_seed_mode="comfy", variation_seed=None, variation_strength=None, variation_method="linear", scheduler_func_opt=None):
+        return (inspire_ksampler(model, seed, steps, cfg, sampler_name, scheduler, positive, negative, latent_image, denoise, noise_mode,
+                                 incremental_seed_mode=batch_seed_mode, variation_seed=variation_seed, variation_strength=variation_strength, variation_method=variation_method,
+                                 scheduler_func=scheduler_func_opt)[0], )
 
 ```

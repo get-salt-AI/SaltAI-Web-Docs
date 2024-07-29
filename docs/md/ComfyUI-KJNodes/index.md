@@ -2,11 +2,11 @@
 ComfyUI-KJNodes is a collection of various quality of life and masking related nodes and scripts designed to enhance the functionality of ComfyUI by combining features of existing nodes. It includes nodes for tasks such as setting and getting constants to reduce unnecessary lines, converting RGB color values to masks, combining conditions, and more, with some nodes providing visual aids and options for easier management.
 
 ## Tags
-Animation * AnimationScheduling * Audio * Batch * BoundingBox * CLIP * Cache * CameraControl * Color * Concatenate * Conditioning * Constant * Crop * DataTypeConversion * GridLayout * Image * ImageBatch * ImageDuplication * ImageMask * ImagePadding * ImageSave * ImageScaling * ImageTransformation * ImageUpscaling * Latent * LatentBatch * LatentNoise * List * LoRA * Mask * MaskBatch * MaskGeneration * MaskMorphology * MultilineText * Noise * Normalization * NumericConversion * Preview * Prompt * Scheduling * Segmentation * SigmaScheduling * String * Text * Tiled * Time * Upscale * VisualEffects * XYPlotData
+Agents * AnimateDiff * Animation * AnimationScheduling * AspectRatio * Audio * BackendCache * Batch * Blur * BoundingBox * CLIPConditioning * CameraControl * Color * ComfyrollNodes * Conditioning * Context * Crop * Curve * DataTypeAgnostic * DataVisualization * Debugging * Float * FloatList * FrameInterpolation * GridLayout * Image * ImageBatch * ImageBlend * ImageDrawing * ImageDuplication * ImageEnhancement * ImageGeneration * ImageListLoader * ImageMask * ImageMaskConversion * ImageNoise * ImagePadding * ImageResize * ImageSave * ImageSize * ImageTransformation * ImageUpscaling * Interpolation * Latent * LatentBatch * LatentBlend * LensEffects * List * LoRA * Mask * MaskBatch * MaskGeneration * MaskList * MaskMorphology * ModelGuidance * ModelPatch * MotionData * Noise * Normalization * NumberRangeGeneration * PoseEstimation * Prompt * PromptComposer * PromptStyling * Scheduling * Seed * Segmentation * SigmaScheduling * String * Text * Tiled * VAE * VideoHelperSuite * VisualEffects * WavePatterns * XYPlotData
 
 ## Repo info
 - Repo url: `https://github.com/kijai/ComfyUI-KJNodes.git`
-- Commit hash: `4685bfe3f3b5c5fc5dddb07dc01e0b0582156ba5`
+- Commit hash: `2ead4fae1dddfe65d951248d98a1ff11dd50ab7a`
 
 ## Licenses
 - **GPL-3.0-only**: `LICENSE`
@@ -14,5 +14,6 @@ Animation * AnimationScheduling * Audio * Batch * BoundingBox * CLIP * Cache * C
 - GPL-1.0-or-later: `fonts/FreeMonoBoldOblique.otf`
 - MIT: `kjweb_async/marked.min.js`
 - Apache-2.0, MPL-2.0: `kjweb_async/purify.min.js`
+- GPL-3.0-only: `pyproject.toml`
 
 Visit [licenses page](licenses.md) for the details

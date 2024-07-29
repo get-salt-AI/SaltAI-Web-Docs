@@ -1,7 +1,7 @@
 ---
 tags:
-- Face
-- ReActorFace
+- FaceRestoration
+- SMPLModel
 ---
 
 # ReActor 🌌 Fast Face Swap [OPTIONS]
@@ -10,59 +10,63 @@ tags:
 - Category: `🌌 ReActor`
 - Output node: `False`
 
-This node specializes in offering optimized face swapping capabilities within the ReActor framework, providing users with advanced options for fine-tuning the face swap process. It extends the basic functionality of face swapping by incorporating additional parameters and optimizations to enhance the quality and flexibility of the output.
+The ReActorFaceSwapOpt node offers an enhanced face swapping functionality with additional options for customization. It leverages advanced techniques to swap faces in images, providing users with the ability to fine-tune the process for improved results.
 ## Input types
 ### Required
 - **`enabled`**
-    - Determines whether the face swap operation is enabled or not, allowing users to toggle the functionality on demand.
+    - Indicates if the face swapping functionality is currently enabled, controlling whether the operation should proceed.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`input_image`**
-    - The primary image input for the face swap operation, serving as the target for face replacement.
+    - The image that will undergo the face swapping process, serving as the canvas for the operation.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `Image`
+    - Python dtype: `Image.Image`
 - **`swap_model`**
-    - Specifies the model used for swapping faces, allowing selection from a predefined list of available models.
+    - Specifies the model used for the face swapping process, affecting the accuracy and quality of the swap.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `list[str]`
+    - Python dtype: `str`
 - **`facedetection`**
-    - Defines the face detection algorithm to be used, offering multiple options to best suit different image conditions.
+    - Defines the method or model used for detecting faces within the images, crucial for identifying target faces for swapping.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `list[str]`
+    - Python dtype: `str`
 - **`face_restore_model`**
-    - Selects the model for restoring face details post-swap, enhancing the overall quality of the swapped faces.
+    - The model used for restoring or enhancing the quality of faces post-swap, contributing to more realistic outcomes.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `list[str]`
+    - Python dtype: `str`
 - **`face_restore_visibility`**
-    - Adjusts the visibility level of the restored face details, providing control over the blend between the original and restored face features.
+    - Controls the visibility level of the restored faces, allowing for fine-tuning of the final appearance.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `int`
 - **`codeformer_weight`**
-    - Controls the influence of the CodeFormer model in the face restoration process, balancing between detail enhancement and naturalness.
+    - Determines the weight of the CodeFormer model in the face restoration process, influencing the balance between original and enhanced features.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`source_image`**
-    - An optional secondary image input for the face swap, acting as the source of faces to be swapped into the primary image.
+    - The source image providing the face to be swapped into the target image, key to the face swapping operation.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `Image`
+    - Python dtype: `Image.Image`
 - **`face_model`**
-    - Optionally specifies a face model to be used in the swap, offering further customization of the swapping process.
+    - Specifies the face model used for the swapping process, impacting the swap's accuracy and compatibility with different face types.
     - Comfy dtype: `FACE_MODEL`
-    - Python dtype: `FACE_MODEL`
+    - Python dtype: `str`
 - **`options`**
-    - Provides additional configuration options for the face swap operation, allowing for more detailed customization.
+    - A collection of additional options that can be configured to customize the face swapping process.
     - Comfy dtype: `OPTIONS`
-    - Python dtype: `OPTIONS`
+    - Python dtype: `Dict[str, Any]`
+- **`face_boost`**
+    - Indicates whether an additional face enhancement feature is enabled, aiming to improve the quality of the swapped face.
+    - Comfy dtype: `FACE_BOOST`
+    - Python dtype: `bool`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output image after the face swap operation, featuring the swapped faces integrated into the original image.
-    - Python dtype: `Image`
+    - The final image after the face swapping operation, showcasing the swapped and potentially enhanced face.
+    - Python dtype: `Image.Image`
 - **`face_model`**
     - Comfy dtype: `FACE_MODEL`
-    - Outputs the face model used in the swapping process, which can be utilized for further operations or analysis.
-    - Python dtype: `FACE_MODEL`
+    - The face model used during the swapping process, potentially including modifications or enhancements applied.
+    - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

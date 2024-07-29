@@ -1,7 +1,10 @@
 ---
 tags:
 - AnimationScheduling
+- PromptScheduling
 - Scheduling
+- SigmaScheduling
+- VisualEffects
 ---
 
 # 📋 CR Central Schedule

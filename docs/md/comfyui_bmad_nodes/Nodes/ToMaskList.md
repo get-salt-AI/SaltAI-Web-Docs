@@ -1,7 +1,10 @@
 ---
 tags:
 - Mask
+- MaskBatch
+- MaskGeneration
 - MaskList
+- MaskMorphology
 ---
 
 # ToMaskList

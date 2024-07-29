@@ -2,46 +2,47 @@
 tags:
 - AnimationScheduling
 - Scheduling
+- SigmaScheduling
 ---
 
 # Keyframe Scheduler
 ## Documentation
 - Class name: `SaltKeyframeScheduler`
-- Category: `SALT/Scheduling`
+- Category: `SALT/AudioViz/Scheduling`
 - Output node: `False`
 
-The SaltKeyframeScheduler node is designed for generating and manipulating keyframe schedules based on specified easing functions and custom parameters. It allows for the dynamic creation of animation or effect timelines by applying easing modes to keyframe sequences, enabling precise control over the timing and progression of visual or auditory effects.
+The SaltKeyframeScheduler node is designed for generating a schedule based on keyframes, applying easing functions to interpolate between these keyframes over time. It allows for the customization of the schedule through various parameters, including the selection of easing modes and the adjustment of frame rates, to create dynamic and smooth transitions in animations or visualizations.
 ## Input types
 ### Required
 - **`keyframe_schedule`**
-    - Defines the sequence of keyframes to be scheduled. This sequence forms the basis of the animation or effect timeline, dictating the key points of transition or change.
+    - Defines the sequence of keyframes to be scheduled. Each keyframe represents a significant point in the animation or visualization that the schedule aims to reach, serving as the foundation for the generated schedule.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`easing_mode`**
-    - Specifies the easing function to apply to the keyframe schedule, influencing the interpolation and transition between keyframes.
+    - Specifies the easing function to be applied between keyframes, determining the interpolation method and thus affecting the smoothness and dynamics of the transition.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `str`
 ### Optional
 - **`end_frame`**
-    - Determines the last frame of the schedule to consider for processing, allowing for partial scheduling within a larger sequence.
+    - The last frame to be considered in the schedule, allowing for the specification of a custom range within the keyframe sequence.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`ndigits`**
-    - Sets the precision of the computed schedule values, defining how many decimal places to include.
+    - Determines the precision of the computed values in the schedule, affecting the granularity of the interpolation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`a`**
-    - Custom parameter 'a' for additional flexibility in defining the scheduling logic or easing function behavior.
+    - Custom variable 'a' that can be used for additional control over the scheduling, providing flexibility in the scheduling logic.
     - Comfy dtype: `*`
     - Python dtype: `Union[int, float, bool, list]`
 - **`b`**
-    - Custom parameter 'b', similar to 'a', for further customization of the scheduling or easing function.
+    - Custom variable 'b', similar to 'a', offers further customization options for the scheduling process, enhancing the node's versatility.
     - Comfy dtype: `*`
     - Python dtype: `Union[int, float, bool, list]`
 ## Output types
 - **`schedule_list`**
     - Comfy dtype: `LIST`
-    - The resulting list of scheduled keyframe values after applying the specified easing mode and custom parameters.
+    - The resulting list of scheduled values, interpolated according to the specified easing mode and other parameters, ready for use in animations or visualizations.
     - Python dtype: `List[float]`
 ## Usage tips
 - Infra type: `CPU`
@@ -72,7 +73,7 @@ class SaltKeyframeScheduler:
     RETURN_NAMES = ("schedule_list", )
 
     FUNCTION = "keyframe_schedule"
-    CATEGORY = "SALT/Scheduling"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling"
 
     def keyframe_schedule(self, keyframe_schedule, easing_mode, end_frame=0, ndigits=2, a=None, b=None):
         if a and not isinstance(a, (int, float, bool, list)):

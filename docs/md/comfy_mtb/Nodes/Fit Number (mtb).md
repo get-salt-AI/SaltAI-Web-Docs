@@ -1,45 +1,51 @@
+---
+tags:
+- Math
+- MathematicalFunctions
+---
+
 # Fit Number (mtb)
 ## Documentation
 - Class name: `Fit Number (mtb)`
 - Category: `mtb/math`
 - Output node: `False`
 
-The Fit Number node is designed to adjust numerical values to fit within a specified range, optionally applying an easing function to smooth the transition between values. It can automatically compute the source range based on input values if required, making it versatile for dynamic data scaling scenarios.
+The Fit Number node is designed to adjust a single numerical value to fit within a specified target range. It supports clamping to ensure the value stays within the target range and allows for the application of easing functions to modify the distribution of the transformed value.
 ## Input types
 ### Required
 - **`value`**
-    - The numerical value to be adjusted. This parameter is the primary data that the node operates on, transforming the value to fit within the target range.
+    - A single numerical value to be transformed. The node adjusts this value to fit within the specified target range, potentially altering its distribution based on the easing function applied.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`clamp`**
-    - A boolean indicating whether to clamp the transformed value to the target range, preventing the value from exceeding the specified minimum and maximum.
+    - A boolean indicating whether to clamp the transformed value to the target range, ensuring it does not fall outside the specified limits.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`source_min`**
-    - The minimum value of the source range. This is used as the lower bound when scaling the input value, unless auto-compute is enabled.
+    - The minimum value of the source range. It is used as the lower bound when transforming the value.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`source_max`**
-    - The maximum value of the source range. This sets the upper bound for scaling the input value, overridden if auto-compute is active.
+    - The maximum value of the source range. It serves as the upper bound for the transformation of the value.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`target_min`**
-    - The minimum value of the target range to which the input value is scaled.
+    - The minimum value of the target range. This is the lower limit to which the input value is scaled.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`target_max`**
-    - The maximum value of the target range to which the input value is adjusted.
+    - The maximum value of the target range. This defines the upper limit to which the input value is adjusted.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`easing`**
-    - A string specifying the easing function to apply during the scaling process, affecting how the value transitions across the range.
+    - A string representing the easing function applied to the distribution of the transformed value, affecting how it is scaled between the source and target ranges.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`float`**
     - Comfy dtype: `FLOAT`
-    - The input value adjusted to fit within the specified target range, potentially smoothed by an easing function.
-    - Python dtype: `list[float]`
+    - The input value transformed to fit within the specified target range, potentially altered in distribution by the easing function.
+    - Python dtype: `float`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -56,10 +62,22 @@ class MTB_FitNumber:
             "required": {
                 "value": ("FLOAT", {"default": 0, "forceInput": True}),
                 "clamp": ("BOOLEAN", {"default": False}),
-                "source_min": ("FLOAT", {"default": 0.0, "step": 0.01}),
-                "source_max": ("FLOAT", {"default": 1.0, "step": 0.01}),
-                "target_min": ("FLOAT", {"default": 0.0, "step": 0.01}),
-                "target_max": ("FLOAT", {"default": 1.0, "step": 0.01}),
+                "source_min": (
+                    "FLOAT",
+                    {"default": 0.0, "step": 0.01, "min": -1e5},
+                ),
+                "source_max": (
+                    "FLOAT",
+                    {"default": 1.0, "step": 0.01, "min": -1e5},
+                ),
+                "target_min": (
+                    "FLOAT",
+                    {"default": 0.0, "step": 0.01, "min": -1e5},
+                ),
+                "target_max": (
+                    "FLOAT",
+                    {"default": 1.0, "step": 0.01, "min": -1e5},
+                ),
                 "easing": (
                     EASINGS,
                     {"default": "Linear"},

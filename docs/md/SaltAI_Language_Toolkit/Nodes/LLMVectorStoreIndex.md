@@ -4,27 +4,27 @@
 - Category: `SALT/Language Toolkit/Indexing`
 - Output node: `False`
 
-The LLMVectorStoreIndex node is designed to create an index from a collection of documents using a language model to generate embeddings. This process involves tokenizing the documents, optionally applying metadata, and leveraging the language model's embedding capabilities to facilitate efficient retrieval and similarity searches among the documents.
+This node is designed to create and manage a vector store index for language models, facilitating efficient storage, retrieval, and manipulation of vectorized representations of text data. It abstracts the complexities involved in handling large-scale vector data, optimizing for performance and scalability.
 ## Input types
 ### Required
 - **`llm_model`**
-    - Specifies the language model to be used for generating embeddings, playing a crucial role in the indexing process by determining the semantic representation of the documents.
+    - Specifies the language model to be used for generating vector representations. It is crucial for determining the embedding model that will vectorize the text data.
     - Comfy dtype: `LLM_MODEL`
-    - Python dtype: `Dict[str, Any]`
+    - Python dtype: `dict`
 - **`document`**
-    - The collection of documents to be indexed. Each document is processed to extract text and optional metadata for embedding.
+    - The text document or a collection of documents to be indexed. This input is essential for generating the vector representations that will be stored in the index.
     - Comfy dtype: `DOCUMENT`
-    - Python dtype: `Sequence[Document]`
+    - Python dtype: `str or list of str`
 ### Optional
 - **`optional_llm_context`**
-    - An optional context provided to the language model, allowing for customization of the embedding process based on specific requirements or contexts.
+    - An optional context parameter that can be used to provide additional information or settings to the language model during the indexing process.
     - Comfy dtype: `LLM_CONTEXT`
-    - Python dtype: `Optional[Dict[str, Any]]`
+    - Python dtype: `dict`
 ## Output types
 - **`llm_index`**
     - Comfy dtype: `LLM_INDEX`
-    - The output is an index created from the documents, structured for efficient retrieval and similarity searches.
-    - Python dtype: `Tuple[VectorStoreIndex]`
+    - The generated vector store index, which can be used for subsequent retrieval and manipulation of the vectorized text data.
+    - Python dtype: `VectorStoreIndex`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -62,20 +62,22 @@ class LLMVectorStoreIndex:
         splitter = SentenceSplitter(chunk_size=1024, chunk_overlap=0)
         tokenizer = MockTokenizer(max_tokens=1024, char_per_token=1)
 
-        documents = []
-        for doc in document:
-            print(doc)
-            metadata = {}
-            text = doc.text
-            if doc.metadata:
-                metadata = doc.metadata
-                token_count = tokenizer.count(metadata)
-                if token_count > 1024:
-                    metadata = tokenizer.truncate(metadata)
-            documents.append(Document(text=text, extra_info=metadata))
+        #documents = []
+        #for doc in document:
+        #    logger.info("Document:")
+        #    logger.data(doc)
+        #    logger.info("\n==================\n")
+        #    metadata = {}
+        #    text = doc.text
+        #    if doc.metadata:
+        #        metadata = doc.metadata
+        #        token_count = tokenizer.count(metadata)
+        #        if token_count > 1024:
+        #            metadata = tokenizer.truncate(metadata)
+        #    documents.append(Document(text=text, extra_info=metadata))
         
         index = VectorStoreIndex.from_documents(
-            documents, 
+            document, 
             embed_model=embed_model,
             service_context=optional_llm_context,
             transformations=[splitter]

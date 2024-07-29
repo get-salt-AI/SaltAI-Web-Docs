@@ -2,6 +2,8 @@
 tags:
 - AlphaChannel
 - Image
+- ImageBlend
+- ImageComposite
 ---
 
 # AlphaChanelAsMask

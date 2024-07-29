@@ -1,7 +1,9 @@
 ---
 tags:
+- ImpactPack
 - SEGSPrep
 - Segmentation
+- SemanticSegmentationPreprocessing
 ---
 
 # AnimeLineArt Preprocessor Provider (SEGS)

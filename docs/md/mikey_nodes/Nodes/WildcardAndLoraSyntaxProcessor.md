@@ -1,7 +1,6 @@
 ---
 tags:
-- Prompt
-- Text
+- Searge
 ---
 
 # Wildcard And Lora Syntax Processor (Mikey)

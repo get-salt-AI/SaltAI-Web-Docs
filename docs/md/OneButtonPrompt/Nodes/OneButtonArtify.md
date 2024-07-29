@@ -1,6 +1,6 @@
 ---
 tags:
-- Prompt
+- PromptStyling
 ---
 
 # One Button Artify

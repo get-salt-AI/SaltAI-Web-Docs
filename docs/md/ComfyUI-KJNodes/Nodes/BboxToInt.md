@@ -1,25 +1,23 @@
 ---
 tags:
-- BoundingBox
-- Image
-- ImageTransformation
+- Crop
 ---
 
-# BboxToInt
+# Bbox To Int
 ## Documentation
 - Class name: `BboxToInt`
 - Category: `KJNodes/masking`
 - Output node: `False`
 
-The BboxToInt node is designed to convert bounding box coordinates from a list into integer values, including the calculation of the center points of the bounding boxes. This node facilitates the manipulation and analysis of bounding box data by providing precise integer coordinates.
+The BboxToInt node is designed to convert bounding box coordinates from a list format to individual integer values, including the calculation of the center points. This functionality is essential for applications requiring precise spatial locations and dimensions of objects within images.
 ## Input types
 ### Required
 - **`bboxes`**
-    - The 'bboxes' parameter represents the list of bounding boxes to be processed. Each bounding box is expected to be a tuple or list of coordinates. This parameter is crucial for determining which bounding boxes will be converted into integer values.
+    - The 'bboxes' parameter represents the list of bounding boxes to be processed. Each bounding box is expected to be a tuple or list containing the coordinates and dimensions of a rectangular area within an image.
     - Comfy dtype: `BBOX`
     - Python dtype: `List[Tuple[int, int, int, int]]`
 - **`index`**
-    - The 'index' parameter specifies the position of the bounding box in the 'bboxes' list that should be processed. It allows for selective conversion of bounding boxes, enhancing flexibility in handling bounding box data.
+    - The 'index' parameter specifies the position of the bounding box in the 'bboxes' list that should be converted to integer values. This allows for selective processing of bounding boxes.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types

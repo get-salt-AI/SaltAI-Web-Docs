@@ -2,6 +2,7 @@
 tags:
 - BooleanLogic
 - ConditionalSelection
+- ImpactPack
 ---
 
 # ImpactLogicalOperators

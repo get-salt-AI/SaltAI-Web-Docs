@@ -1,25 +1,25 @@
 ---
 tags:
-- Constant
+- NumberRangeGeneration
 ---
 
-# StringConstant
+# String Constant
 ## Documentation
 - Class name: `StringConstant`
 - Category: `KJNodes/constants`
 - Output node: `False`
 
-The StringConstant node provides a mechanism to define a constant string value within a node-based programming environment. It allows for the specification of a default string, which can be utilized as a constant input across various parts of a workflow, facilitating consistency and reusability of string values.
+The StringConstant node is designed to pass through a string input without modification, serving as a constant string value within a flow.
 ## Input types
 ### Required
 - **`string`**
-    - Defines the constant string value to be used throughout the node's operation. This parameter allows for the specification of a default string, ensuring consistency across different executions of the node.
+    - Represents the string input to be passed through. This parameter allows for the input of a single-line string, with a default value of an empty string if none is provided.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`string`**
     - Comfy dtype: `STRING`
-    - Outputs the constant string value defined by the input parameter. This facilitates the use of consistent string values across different parts of a workflow.
+    - Outputs the same string that was input, effectively acting as a pass-through for the string value.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`

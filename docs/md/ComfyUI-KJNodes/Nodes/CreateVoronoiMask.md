@@ -1,53 +1,56 @@
 ---
 tags:
+- BoundingBox
+- ImageTransformation
 - Mask
-- MaskGeneration
+- MaskList
+- MaskMorphology
 ---
 
-# CreateVoronoiMask
+# Create Voronoi Mask
 ## Documentation
 - Class name: `CreateVoronoiMask`
 - Category: `KJNodes/masking/generate`
 - Output node: `False`
 
-The CreateVoronoiMask node is designed to generate dynamic Voronoi diagram-based masks. It utilizes parameters such as the number of points, line width, and animation speed to create visually distinct and animated masks suitable for various creative and graphical applications.
+The CreateVoronoiMask node is designed to generate dynamic Voronoi diagram-based masks. It utilizes parameters such as the number of points, line width, and speed to create evolving masks over a series of frames, allowing for the creation of complex and visually interesting patterns that can be used in various graphical applications.
 ## Input types
 ### Required
 - **`frames`**
-    - Specifies the number of frames for the animated mask, allowing for the creation of dynamic, time-varying masks.
+    - Specifies the number of frames over which the Voronoi mask will evolve, creating a dynamic sequence of masks.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`num_points`**
-    - Determines the number of points used to generate the Voronoi diagram, affecting the complexity and appearance of the resulting mask.
+    - Determines the number of points used to generate the Voronoi diagram, directly affecting the complexity and appearance of the resulting mask.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`line_width`**
-    - Sets the width of the lines in the Voronoi diagram, influencing the visual thickness of the mask's edges.
+    - Controls the thickness of the lines in the Voronoi diagram, influencing the visual style of the mask.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`speed`**
-    - Controls the animation speed of the mask, enabling the adjustment of how quickly the mask evolves over time.
+    - Adjusts the rate at which the points in the Voronoi diagram move, affecting the dynamic evolution of the mask over the frames.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`frame_width`**
-    - Defines the width of the frame for the mask, setting the horizontal dimension of the generated mask.
+    - Sets the width of the frame for the mask, defining the horizontal dimension of the output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`frame_height`**
-    - Specifies the height of the frame for the mask, establishing the vertical dimension of the generated mask.
+    - Sets the height of the frame for the mask, defining the vertical dimension of the output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The generated Voronoi diagram-based mask.
+    - The output is a tensor representing the generated Voronoi mask, suitable for use in graphical applications.
     - Python dtype: `torch.Tensor`
 - **`mask_inverted`**
     - Comfy dtype: `MASK`
-    - The inverted version of the generated Voronoi diagram-based mask, offering an alternative visual representation.
+    - The output is a tensor representing the inverted Voronoi mask, providing an alternative visual pattern for use in graphical applications.
     - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 

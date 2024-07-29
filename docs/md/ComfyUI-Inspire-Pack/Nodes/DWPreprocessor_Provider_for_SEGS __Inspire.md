@@ -1,7 +1,10 @@
 ---
 tags:
+- ImageTransformation
+- ImpactPack
 - SEGSPrep
 - Segmentation
+- SemanticSegmentationPreprocessing
 ---
 
 # DWPreprocessor Provider (SEGS)

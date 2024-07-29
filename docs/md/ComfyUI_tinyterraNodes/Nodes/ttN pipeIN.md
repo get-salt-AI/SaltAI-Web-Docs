@@ -1,5 +1,6 @@
 ---
 tags:
+- DetailEnhancement
 - Image
 - Pipeline
 - PipelineTransformation
@@ -8,49 +9,49 @@ tags:
 # pipeIN (Legacy)
 ## Documentation
 - Class name: `ttN pipeIN`
-- Category: `ttN/legacy`
+- Category: `🌏 tinyterra/legacy`
 - Output node: `False`
 
-The ttN pipeIN node serves as a foundational element in the ttN/legacy category, designed to initialize and configure pipelines for generative tasks. It encapsulates the process of setting up various components such as models, conditioning elements, and latent spaces, facilitating the creation of a structured pipeline ready for further processing or generation.
+The ttN pipeIN node is designed for initializing and configuring pipelines within the tinyterra ecosystem, specifically tailored for legacy applications. It focuses on setting up the initial parameters required for a pipeline, including models, conditioning, latent space, VAE, CLIP, and seed values, along with optional image inputs.
 ## Input types
 ### Required
 - **`model`**
-    - Specifies the generative model to be used in the pipeline, serving as the core component around which other elements are configured.
+    - Specifies the model to be used in the pipeline, serving as the foundational component for subsequent operations.
     - Comfy dtype: `MODEL`
     - Python dtype: `str`
 - **`pos`**
-    - Defines positive conditioning information to guide the generative model towards desired outputs.
+    - Defines positive conditioning inputs to guide the model's generation towards desired attributes or features.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `str`
 - **`neg`**
-    - Specifies negative conditioning information, used to steer the generative model away from undesired outputs.
+    - Specifies negative conditioning inputs to steer the model's generation away from certain attributes or features.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `str`
 - **`latent`**
-    - Represents the latent space configuration, providing a basis for the generative process.
+    - Determines the latent space dimensions to be explored during generation, affecting the diversity and novelty of outputs.
     - Comfy dtype: `LATENT`
     - Python dtype: `str`
 - **`vae`**
-    - Specifies the VAE (Variational Autoencoder) component, used for encoding and decoding in the generative process.
+    - Specifies the VAE (Variational Autoencoder) to be used for generating or refining outputs, contributing to the quality and variability of the results.
     - Comfy dtype: `VAE`
     - Python dtype: `str`
 - **`clip`**
-    - Defines the CLIP model used for semantic understanding and alignment between text and images.
+    - Defines the CLIP model to be used for semantic understanding and alignment of generated content with textual descriptions.
     - Comfy dtype: `CLIP`
     - Python dtype: `str`
 - **`seed`**
-    - Sets the random seed for reproducibility of the generative process.
+    - Sets the seed value for random number generation, ensuring reproducibility of results.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`image`**
-    - Optional parameter for specifying an initial image to be used in the pipeline.
+    - Optional parameter for including an image input to be used in conjunction with other inputs for generation or refinement.
     - Comfy dtype: `IMAGE`
     - Python dtype: `str`
 ## Output types
 - **`pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - Outputs a configured pipeline object, encapsulating the specified models, conditioning, and configurations for further processing.
+    - Outputs a configured pipeline object ready for further processing or generation within the tinyterra ecosystem.
     - Python dtype: `dict`
 ## Usage tips
 - Infra type: `CPU`
@@ -85,7 +86,7 @@ class ttN_pipe_IN:
     RETURN_NAMES = ("pipe", )
     FUNCTION = "flush"
 
-    CATEGORY = "ttN/legacy"
+    CATEGORY = "🌏 tinyterra/legacy"
 
     def flush(self, model, pos=0, neg=0, latent=0, vae=0, clip=0, image=0, seed=0):
         pipe = {"model": model,

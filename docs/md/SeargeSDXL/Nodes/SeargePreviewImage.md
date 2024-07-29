@@ -1,6 +1,7 @@
 ---
 tags:
-- Preview
+- Image
+- ImageListLoader
 ---
 
 # SeargePreviewImage

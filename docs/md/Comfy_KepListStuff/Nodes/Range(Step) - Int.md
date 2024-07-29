@@ -1,6 +1,8 @@
 ---
 tags:
-- NumberRangeGeneration
+- Math
+- MathematicalFunctions
+- Multiplication
 ---
 
 # Range(Step) - Int

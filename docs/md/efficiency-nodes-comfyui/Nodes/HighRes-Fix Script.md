@@ -1,8 +1,6 @@
 ---
 tags:
-- ImageScaling
 - ImageUpscaling
-- Upscale
 ---
 
 # HighRes-Fix Script

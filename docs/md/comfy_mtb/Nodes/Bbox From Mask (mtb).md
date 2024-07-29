@@ -1,8 +1,6 @@
 ---
 tags:
-- BoundingBox
-- Image
-- ImageTransformation
+- Crop
 ---
 
 # Bbox From Mask (mtb)

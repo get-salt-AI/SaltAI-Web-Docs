@@ -2,11 +2,11 @@
 ComfyUI_Noise introduces six nodes designed to enhance noise control and flexibility within the ComfyUI framework, catering to various workflows such as generating small variations in generations or identifying the specific noise associated with an input image and prompt. These nodes include functionalities for generating noise, duplicating batch indices, mixing latents, calculating noise expectations for samplers, injecting noise into latents, and reversing the sampling process to deduce the noise that would recreate a given image.
 
 ## Tags
-Latent * LatentNoise * Noise * Sampling * SigmaScheduling
+AnimationScheduling * DataVisualization * ImageEnhancement * ImageNoise * Latent * LatentBlend * Noise * SamplerScheduler * Sampling * Scheduling * Seed * SigmaScheduling * VAE * XYPlotData
 
 ## Repo info
 - Repo url: `https://github.com/BlenderNeko/ComfyUI_Noise`
-- Commit hash: `afb14757216257b12268c91845eac248727a55e2`
+- Commit hash: `0c9ec19b16dc72334cb8ce82c3774aed183048e4`
 
 ## Licenses
 - **GPL-3.0-only**: `LICENSE`

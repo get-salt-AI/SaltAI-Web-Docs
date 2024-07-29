@@ -1,3 +1,8 @@
+---
+tags:
+- Mask
+---
+
 # Unary Image Op
 ## Documentation
 - Class name: `Unary Image Op`

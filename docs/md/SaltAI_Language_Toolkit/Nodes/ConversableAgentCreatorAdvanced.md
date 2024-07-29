@@ -8,37 +8,37 @@ tags:
 # ∞ Conversable Agent (Adv)
 ## Documentation
 - Class name: `ConversableAgentCreatorAdvanced`
-- Category: `SALT/Shakers/Agents`
+- Category: `SALT/Language Toolkit/Agents`
 - Output node: `False`
 
-This node specializes in creating advanced conversable agents with customizable capabilities, including the integration of large language models (LLMs) and personalized system messages. It allows for the creation of AI agents that can handle complex interactions and provide tailored responses based on specific configurations.
+This node facilitates the advanced creation of conversable agents, allowing for the customization of agent attributes such as name, system message, and optional parameters like LLM model, default auto-reply, and a description. It's designed to enable the creation of sophisticated conversational AI agents that can interact with users, process document QA tasks, and provide automated responses.
 ## Input types
 ### Required
 - **`name`**
-    - The name parameter specifies the identity of the conversable agent being created, serving as a unique identifier and a label for interaction.
+    - The name of the conversable agent being created. It serves as a unique identifier and a way to reference the agent in interactions.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`system_message`**
-    - The system_message parameter defines the initial message or instruction set that the agent uses to guide its interactions, setting the tone and context for its operation.
+    - A system message that defines the agent's initial instructions or guidelines, setting the context for its operation.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ### Optional
 - **`llm_model`**
-    - The llm_model parameter allows for the specification of a large language model to empower the agent with advanced understanding and response generation capabilities.
+    - An optional parameter specifying the language learning model to be used by the agent, enhancing its conversational capabilities.
     - Comfy dtype: `LLM_MODEL`
     - Python dtype: `dict`
 - **`default_auto_reply`**
-    - Specifies a default response for the agent to use when it cannot generate a specific reply, ensuring a fallback communication.
+    - The default message the agent will use when it cannot generate a response based on the LLM model or code execution.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`description`**
-    - A brief description of the agent's purpose or capabilities, used for identification or reference by other agents.
+    - A brief description of the agent, which can be used for identification or informational purposes by other agents.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`agent`**
     - Comfy dtype: `AGENT`
-    - The output is a conversable agent configured with the provided parameters, ready for interaction and capable of complex task handling.
+    - The conversable agent created by this node, ready for interaction and capable of processing document QA tasks.
     - Python dtype: `ConversableAgent`
 ## Usage tips
 - Infra type: `CPU`
@@ -71,7 +71,7 @@ class ConversableAgentCreatorAdvanced:
 	RETURN_NAMES = ("agent",)
 
 	FUNCTION = "create_agent"
-	CATEGORY = f"{MENU_NAME}/Shakers/Agents"
+	CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Agents"
 
 	def create_agent(self, name, system_message, llm_model=None, default_auto_reply="", description=None):
 		agent = ConversableAgent(

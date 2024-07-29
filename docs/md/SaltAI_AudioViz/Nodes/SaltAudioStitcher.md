@@ -6,29 +6,29 @@ tags:
 # Audio Stitcher
 ## Documentation
 - Class name: `SaltAudioStitcher`
-- Category: `SALT/Audio/Process`
+- Category: `SALT/AudioViz/Audio/Process`
 - Output node: `False`
 
-The SaltAudioStitcher node is designed for stitching together two audio files with an optional silent transition between them. It enables the creation of a seamless audio experience by combining multiple audio segments.
+The SaltAudioStitcher node is designed to seamlessly combine two audio files into a single audio track. It allows for the insertion of a silent transition between the two audio segments, providing flexibility in creating continuous audio experiences from separate sources.
 ## Input types
 ### Required
 - **`audio_a`**
-    - The first audio file to be stitched. It serves as the starting point of the stitched audio output.
+    - The first audio file to be stitched. It serves as the starting point of the combined audio track.
     - Comfy dtype: `AUDIO`
     - Python dtype: `bytes`
 - **`audio_b`**
-    - The second audio file to be stitched. It follows the first audio file in the stitched audio output.
+    - The second audio file to be stitched. It follows the first audio file in the combined audio track.
     - Comfy dtype: `AUDIO`
     - Python dtype: `bytes`
 ### Optional
 - **`silent_transition_seconds`**
-    - The duration of silence in seconds to insert between the two audio files. This allows for a smooth transition or pause between the audio segments.
+    - The duration of silence to insert between the two audio files, allowing for a customizable pause or transition in the combined audio track.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`stitched_audio`**
     - Comfy dtype: `AUDIO`
-    - The resulting audio file after stitching the input audio files together, potentially with a silent transition in between.
+    - The resulting audio file after stitching the two input audio files, optionally separated by a silent transition.
     - Python dtype: `bytes`
 ## Usage tips
 - Infra type: `CPU`
@@ -53,7 +53,7 @@ class SaltAudioStitcher:
     RETURN_TYPES = ("AUDIO",)
     RETURN_NAMES = ("stitched_audio",)
     FUNCTION = "stitch_audios"
-    CATEGORY = "SALT/Audio/Process"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Audio/Process"
 
     def stitch_audios(self, audio_a, audio_b, silent_transition_seconds=0.0):
         audio_segment_1 = AudioSegment.from_file(io.BytesIO(audio_a), format="wav")

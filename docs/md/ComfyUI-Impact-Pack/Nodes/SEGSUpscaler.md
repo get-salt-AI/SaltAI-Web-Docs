@@ -1,8 +1,8 @@
 ---
 tags:
-- ImageScaling
+- ImageResolution
+- ImageTransformation
 - ImageUpscaling
-- Upscale
 ---
 
 # Upscaler (SEGS)
@@ -11,102 +11,106 @@ tags:
 - Category: `ImpactPack/Upscale`
 - Output node: `False`
 
-The SEGSUpscaler node is designed to upscale images by segmenting them into smaller sections, enhancing each segment individually, and then reassembling them into a single, enhanced image. This process allows for more detailed and controlled upscaling, leveraging various models and techniques to improve image quality segment by segment.
+The SEGSUpscaler node is designed to upscale images by segmenting them into smaller sections, enhancing each segment individually using a combination of models and techniques, and then reassembling the enhanced segments back into a single, upscaled image. This process allows for more detailed and controlled upscaling, leveraging the power of segmentation to address specific areas of an image for improvement.
 ## Input types
 ### Required
 - **`image`**
-    - The original image to be upscaled. It serves as the base for segmentation and subsequent enhancement of each segment.
+    - The original image to be upscaled. It serves as the base for segmentation and subsequent upscaling processes.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`segs`**
-    - A collection of image segments, each with its own characteristics and metadata, used for targeted upscaling and enhancement.
+    - A collection of image segments, each representing a portion of the original image to be individually upscaled and enhanced.
     - Comfy dtype: `SEGS`
-    - Python dtype: `List[Dict]`
+    - Python dtype: `List[SEG]`
 - **`model`**
-    - The main model used in the upscaling process, central to the enhancement of each image segment.
+    - The primary model used for processing and enhancing the image segments.
     - Comfy dtype: `MODEL`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `Model`
 - **`clip`**
-    - The CLIP model used for guiding the upscaling process with textual descriptions, enhancing relevance and detail.
+    - The CLIP model used for guiding the enhancement process based on textual descriptions.
     - Comfy dtype: `CLIP`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `CLIP`
 - **`vae`**
-    - The VAE model used for encoding and decoding images, crucial for the transformation and enhancement of segments.
+    - The VAE model used for encoding and decoding image segments during the upscaling process.
     - Comfy dtype: `VAE`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `VAE`
 - **`rescale_factor`**
-    - A multiplier for scaling the image's dimensions during the upscaling process, affecting the final size of the output image.
+    - The factor by which the image will be rescaled as part of the upscaling process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`resampling_method`**
-    - The method used for resampling the image during the upscaling process, influencing the texture and quality of the upscaled image.
+    - The method used for resampling the image during the upscaling process, affecting the quality and characteristics of the upscaled image.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`supersample`**
-    - Indicates whether supersampling is applied to enhance the image quality by reducing aliasing effects.
+    - Indicates whether supersampling is applied to the image for enhanced upscaling quality.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `bool`
 - **`rounding_modulus`**
-    - A value used to adjust the dimensions of the upscaled image, ensuring they are multiples of this modulus.
+    - A value used to adjust the dimensions of the upscaled image, ensuring they are multiples of a specific number.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`seed`**
-    - A seed value for random number generation, ensuring reproducibility of the upscaling process.
+    - A seed value for random number generation, ensuring reproducibility of the upscaling process across segments.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`steps`**
-    - The number of steps to perform during the image enhancement process, affecting the detail and quality of the output.
+    - The number of steps to perform in the image enhancement process for each segment.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - Configuration settings for the enhancement process, guiding the behavior of the models used.
+    - Configuration settings for the image enhancement process, guiding the behavior of the models used.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sampler_name`**
-    - The name of the sampling method used during image enhancement, influencing the texture and details of the output.
+    - The name of the sampling method used in the image enhancement process, affecting the generation of enhanced segments.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - The scheduler used to adjust the learning rate during the enhancement process, affecting the convergence and quality of the output.
+    - The scheduler used to control the progression of steps in the image enhancement process.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `Scheduler`
 - **`positive`**
-    - Textual descriptions that guide the upscaling process towards desired outcomes, enhancing positive aspects of the image.
+    - Positive text prompts used to guide the image enhancement process.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `str`
 - **`negative`**
-    - Textual descriptions that guide the upscaling process away from undesired outcomes, mitigating negative aspects of the image.
+    - Negative text prompts used to counterbalance the positive prompts, refining the enhancement process.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `str`
 - **`denoise`**
-    - A boolean indicating whether denoising is applied during the enhancement process, potentially improving the clarity of the output image.
+    - A parameter controlling the level of denoising applied to each image segment during enhancement.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `bool`
+    - Python dtype: `float`
 - **`feather`**
-    - The feathering value applied to the edges of segments, smoothing transitions between enhanced segments and the rest of the image.
+    - The feathering value applied to the edges of image segments, smoothing transitions between enhanced segments and the rest of the image.
     - Comfy dtype: `INT`
     - Python dtype: `float`
 - **`inpaint_model`**
-    - The model used for inpainting, filling in missing or removed parts of the image during the enhancement process.
+    - The model used for inpainting, filling in areas of the image that may be missing or require correction after segmentation.
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `str`
+    - Python dtype: `InpaintModel`
 - **`noise_mask_feather`**
-    - The feathering value applied to the noise mask, smoothing the application of noise reduction across the image.
+    - The feathering value applied to the noise mask, smoothing the application of noise adjustments across image segments.
     - Comfy dtype: `INT`
     - Python dtype: `float`
 ### Optional
 - **`upscale_model_opt`**
-    - Optional configuration for the upscaling model, allowing for customization of the upscaling process.
+    - An optional model specifically designed for upscaling, providing an alternative or supplementary method to the main upscaling process.
     - Comfy dtype: `UPSCALE_MODEL`
-    - Python dtype: `Dict`
+    - Python dtype: `Optional[UpscaleModel]`
 - **`upscaler_hook_opt`**
-    - Optional hooks for custom operations post-upscaling, allowing for additional processing or adjustments to the upscaled image.
+    - An optional hook allowing for custom post-processing steps after each segment is upscaled and reassembled into the final image.
     - Comfy dtype: `UPSCALER_HOOK`
-    - Python dtype: `Dict`
+    - Python dtype: `Optional[PostProcessHook]`
+- **`scheduler_func_opt`**
+    - An optional scheduler function providing additional control over the scheduling of enhancement steps for each segment.
+    - Comfy dtype: `SCHEDULER_FUNC`
+    - Python dtype: `Optional[SchedulerFunction]`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The final, enhanced and upscaled image, combining all processed segments into a single, high-quality output.
+    - The final, upscaled image, composed of individually enhanced and reassembled image segments.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -134,7 +138,7 @@ class SEGSUpscaler:
                     "steps": ("INT", {"default": 20, "min": 1, "max": 10000}),
                     "cfg": ("FLOAT", {"default": 8.0, "min": 0.0, "max": 100.0}),
                     "sampler_name": (comfy.samplers.KSampler.SAMPLERS,),
-                    "scheduler": (comfy.samplers.KSampler.SCHEDULERS,),
+                    "scheduler": (core.SCHEDULERS,),
                     "positive": ("CONDITIONING",),
                     "negative": ("CONDITIONING",),
                     "denoise": ("FLOAT", {"default": 0.5, "min": 0.0001, "max": 1.0, "step": 0.01}),
@@ -145,6 +149,7 @@ class SEGSUpscaler:
                 "optional": {
                     "upscale_model_opt": ("UPSCALE_MODEL",),
                     "upscaler_hook_opt": ("UPSCALER_HOOK",),
+                    "scheduler_func_opt": ("SCHEDULER_FUNC",),
                     }
                 }
 
@@ -156,7 +161,7 @@ class SEGSUpscaler:
     @staticmethod
     def doit(image, segs, model, clip, vae, rescale_factor, resampling_method, supersample, rounding_modulus,
              seed, steps, cfg, sampler_name, scheduler, positive, negative, denoise, feather, inpaint_model, noise_mask_feather,
-             upscale_model_opt=None, upscaler_hook_opt=None):
+             upscale_model_opt=None, upscaler_hook_opt=None, scheduler_func_opt=None):
 
         new_image = segs_upscaler.upscaler(image, upscale_model_opt, rescale_factor, resampling_method, supersample, rounding_modulus)
 
@@ -182,7 +187,7 @@ class SEGSUpscaler:
             enhanced_image = segs_upscaler.img2img_segs(cropped_image, model, clip, vae, seg_seed, steps, cfg, sampler_name, scheduler,
                                                         positive, negative, denoise,
                                                         noise_mask=cropped_mask, control_net_wrapper=seg.control_net_wrapper,
-                                                        inpaint_model=inpaint_model, noise_mask_feather=noise_mask_feather)
+                                                        inpaint_model=inpaint_model, noise_mask_feather=noise_mask_feather, scheduler_func_opt=scheduler_func_opt)
             if not (enhanced_image is None):
                 new_image = new_image.cpu()
                 enhanced_image = enhanced_image.cpu()
@@ -191,7 +196,7 @@ class SEGSUpscaler:
                 tensor_paste(new_image, enhanced_image, (left, top), mask)
 
                 if upscaler_hook_opt is not None:
-                    upscaler_hook_opt.post_paste(new_image)
+                    new_image = upscaler_hook_opt.post_paste(new_image)
 
         enhanced_img = tensor_convert_rgb(new_image)
 

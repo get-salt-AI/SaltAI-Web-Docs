@@ -1,6 +1,8 @@
 ---
 tags:
+- Animation
 - Image
+- ImageLoad
 ---
 
 # Load Image (Base64)

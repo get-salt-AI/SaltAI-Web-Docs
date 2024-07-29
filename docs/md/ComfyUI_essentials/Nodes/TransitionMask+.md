@@ -1,50 +1,54 @@
 ---
 tags:
+- BoundingBox
+- ImagePadding
+- ImageTransformation
 - Mask
-- MaskGeneration
+- MaskList
+- MaskMorphology
 ---
 
 # 🔧 Transition Mask
 ## Documentation
 - Class name: `TransitionMask+`
-- Category: `essentials`
+- Category: `essentials/mask`
 - Output node: `False`
 
-The TransitionMask node is designed to facilitate transitions between different mask states or values within a digital image processing or generation context. Its primary function is to apply transformations to masks, enabling dynamic changes in mask properties or the blending of multiple masks. This node likely plays a crucial role in operations where mask manipulation is essential for achieving desired visual effects or for preparing masks for further processing steps.
+The TransitionMask+ node specializes in generating dynamic transition effects within masks, offering a range of transition styles and timing functions to create complex visual transitions between frames or states. This node simplifies the creation of animated or static transition effects, making it easier for users to apply sophisticated mask transitions in their projects.
 ## Input types
 ### Required
 - **`width`**
-    - The 'width' parameter specifies the width of the mask, affecting the spatial dimensions of the transition effect.
+    - Defines the width of the mask to be generated, setting the horizontal dimension of the transition effect.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - The 'height' parameter specifies the height of the mask, impacting the spatial dimensions of the transition effect.
+    - Sets the height of the mask, determining the vertical dimension of the transition effect.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`frames`**
-    - The 'frames' parameter determines the number of frames to be generated for the transition, defining the length of the transition animation.
+    - Specifies the total number of frames in the transition animation, controlling the length of the transition effect.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`start_frame`**
-    - The 'start_frame' parameter indicates the starting frame of the transition, setting the initial state of the animation.
+    - Indicates the starting frame number for the transition effect, allowing for control over the animation's beginning.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`end_frame`**
-    - The 'end_frame' parameter specifies the ending frame of the transition, determining the final state of the animation.
+    - Determines the ending frame number for the transition, enabling customization of the animation's duration.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`transition_type`**
-    - The 'transition_type' parameter defines the type of transition effect to be applied, such as fading or morphing, influencing the visual style of the transition.
+    - Selects the type of transition effect to be applied, such as slides, bars, boxes, or fades, offering a variety of visual styles.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`timing_function`**
-    - The 'timing_function' parameter controls the pacing of the transition, affecting how the transition progresses over time.
+    - Chooses the timing function for the transition effect, such as linear or ease-in-out, affecting the pacing of the transition.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The output is a transformed mask that has undergone the specified transition, reflecting changes in mask properties or values.
+    - Produces a mask that represents the transition effect, which can be used to apply or visualize the transition within an image or a series of images.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
@@ -70,19 +74,29 @@ class TransitionMask:
 
     RETURN_TYPES = ("MASK",)
     FUNCTION = "execute"
-    CATEGORY = "essentials"
+    CATEGORY = "essentials/mask"
+
+    def linear(self, i, t):
+        return i/t
+    def ease_in(self, i, t):
+        return pow(i/t, 2)
+    def ease_out(self, i, t):
+        return 1 - pow(1 - i/t, 2)
+    def ease_in_out(self, i, t):
+        if i < t/2:
+            return pow(i/(t/2), 2) / 2
+        else:
+            return 1 - pow(1 - (i - t/2)/(t/2), 2) / 2
 
     def execute(self, width, height, frames, start_frame, end_frame, transition_type, timing_function):
         if timing_function == 'in':
-            tf = [0.0, 0.0, 0.5, 1.0]
+            timing_function = self.ease_in
         elif timing_function == 'out':
-            tf = [0.0, 0.5, 1.0, 1.0]
+            timing_function = self.ease_out
         elif timing_function == 'in-out':
-            tf = [0, 1, 0, 1]
-        #elif timing_function == 'back':
-        #    tf = [0, 1.334, 1.334, 0]
+            timing_function = self.ease_in_out
         else:
-            tf = [0, 0, 1, 1]
+            timing_function = self.linear
 
         out = []
 
@@ -94,10 +108,7 @@ class TransitionMask:
 
         for i in range(transition):
             frame = torch.full((height, width), 0.0, dtype=torch.float32, device="cpu")
-            progress = i/(transition-1)
-
-            if timing_function != 'linear':
-                progress = cubic_bezier(progress, tf)
+            progress = timing_function(i, transition-1)
 
             if "horizontal slide" in transition_type:
                 pos = round(width*progress)

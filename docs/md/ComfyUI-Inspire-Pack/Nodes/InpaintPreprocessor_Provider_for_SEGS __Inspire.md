@@ -1,7 +1,10 @@
 ---
 tags:
+- ImageTransformation
+- ImpactPack
 - SEGSPrep
 - Segmentation
+- SemanticSegmentationPreprocessing
 ---
 
 # Inpaint Preprocessor Provider (SEGS)

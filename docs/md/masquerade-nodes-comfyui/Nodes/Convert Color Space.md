@@ -1,7 +1,6 @@
 ---
 tags:
 - Color
-- HSVColorSpace
 ---
 
 # Convert Color Space

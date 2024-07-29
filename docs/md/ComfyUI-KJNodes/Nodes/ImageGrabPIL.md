@@ -1,47 +1,48 @@
 ---
 tags:
-- ImageTransformation
+- Blur
+- LensEffects
 - VisualEffects
 ---
 
-# ImageGrabPIL
+# Image Grab PIL
 ## Documentation
 - Class name: `ImageGrabPIL`
 - Category: `KJNodes/experimental`
 - Output node: `False`
 
-The ImageGrabPIL node is designed to capture and process images from the screen using the PIL library. It focuses on grabbing screen content, possibly for further manipulation or analysis within a larger image processing or computer vision workflow.
+The ImageGrabPIL node is designed for processing and transforming images into a standardized format suitable for further analysis or processing. It focuses on converting images to a consistent size, color mode, and numerical representation, ensuring they are ready for tasks such as machine learning model input or image manipulation operations.
 ## Input types
 ### Required
 - **`x`**
-    - Specifies the starting x-coordinate for the screen capture area, affecting the horizontal position of the capture region.
+    - The 'x' input specifies the starting x-coordinate for the region of the image to be captured. It is essential for defining the area of interest within the larger image context.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`y`**
-    - Specifies the starting y-coordinate for the screen capture area, influencing the vertical position of the capture region.
+    - The 'y' input specifies the starting y-coordinate for the region of the image to be captured. It plays a critical role in pinpointing the area of interest on the vertical axis within the image.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`width`**
-    - Defines the width of the screen capture area, determining how wide the captured image will be.
+    - The 'width' parameter determines the width of the region to be captured from the source image. It is crucial for specifying the size of the area of interest horizontally.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Defines the height of the screen capture area, determining the height of the captured image.
+    - The 'height' parameter determines the height of the region to be captured from the source image. It is vital for defining the vertical size of the area of interest.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`num_frames`**
-    - Indicates the number of frames to capture, useful for creating a sequence of images over time.
+    - The 'num_frames' parameter indicates the number of frames to capture in a sequence. It is essential for tasks requiring multiple, consecutive captures from the source image, such as creating animations or analyzing changes over time.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`delay`**
-    - Sets the delay between captures when multiple frames are being captured, controlling the timing of captures.
+    - The 'delay' parameter specifies the time delay between capturing consecutive frames. It is crucial for controlling the timing in sequences where multiple frames are captured, allowing for precise timing adjustments.
     - Comfy dtype: `FLOAT`
     - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The captured image or sequence of images from the specified screen area.
-    - Python dtype: `PIL.Image.Image`
+    - The 'image' output is the captured or processed portion of the input image, ready for further processing or analysis.
+    - Python dtype: `PIL.Image or similar`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:

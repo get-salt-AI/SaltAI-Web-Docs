@@ -1,8 +1,10 @@
 ---
 tags:
+- IPAdapter
 - Image
 - ImagePreprocessing
 - ImageTransformation
+- Pipeline
 ---
 
 # InstantID Mask Prepare Settings (JPS)

@@ -9,36 +9,36 @@ tags:
 - Category: `model_patches`
 - Output node: `False`
 
-The FreeU node is designed to enhance and modify the output of generative models by applying a Fourier filter to adjust the frequency components of the generated images. This process aims to improve image quality or introduce specific effects based on the scale and threshold parameters.
+The FreeU node is designed to enhance the functionality of neural network models by applying a dynamic scaling technique to the model's hidden layers. This process involves adjusting the scaling of specific layers based on predefined criteria, potentially improving the model's performance or efficiency. Additionally, the node incorporates a mechanism to handle operations on devices that do not support certain functions, gracefully degrading to CPU processing when necessary.
 ## Input types
 ### Required
 - **`model`**
-    - The generative model to be enhanced or modified. This parameter is crucial as it determines the base model whose output will be adjusted by the FreeU node.
+    - The model to be enhanced with the FreeU node's dynamic scaling technique. It affects the node's execution by determining which layers are scaled and how, ultimately influencing the model's performance.
     - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`b1`**
-    - A scale factor applied to the higher frequency components of the image, influencing the intensity of the adjustment.
+    - A scaling factor for the model's hidden layers, contributing to the dynamic adjustment of the model's architecture for improved performance.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`b2`**
-    - A scale factor applied to the lower frequency components of the image, influencing the intensity of the adjustment.
+    - Another scaling factor for the model's hidden layers, working alongside b1 to fine-tune the model's scaling for optimal performance.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`s1`**
-    - A threshold parameter for the higher frequency components, determining the range of frequencies to be adjusted.
+    - A parameter influencing the scaling process within the FreeU node, affecting the model's efficiency and output quality.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`s2`**
-    - A threshold parameter for the lower frequency components, determining the range of frequencies to be adjusted.
+    - Complements s1 as part of the FreeU node's scaling mechanism, further refining the model's performance through dynamic layer adjustment.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The modified generative model with an output block patched to apply the Fourier filter, enhancing or altering the generated images.
+    - The enhanced model, after applying the FreeU node's dynamic scaling technique. This output reflects the adjustments made to the model's architecture for improved performance or efficiency.
     - Python dtype: `torch.nn.Module`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes:
     - [KSampler](../../Comfy/Nodes/KSampler.md)
     - [KSamplerAdvanced](../../Comfy/Nodes/KSamplerAdvanced.md)
@@ -71,7 +71,7 @@ class FreeU:
         on_cpu_devices = {}
 
         def output_block_patch(h, hsp, transformer_options):
-            scale = scale_dict.get(h.shape[1], None)
+            scale = scale_dict.get(int(h.shape[1]), None)
             if scale is not None:
                 h[:,:h.shape[1] // 2] = h[:,:h.shape[1] // 2] * scale[0]
                 if hsp.device not in on_cpu_devices:

@@ -1,12 +1,12 @@
 # ComfyUI-CCSR
-ComfyUI-CCSR is a simple wrapper node designed to work with the CCSR upscaler, providing a means to upscale images. It is not a fully optimized implementation of ComfyUI, potentially leading to inefficiency and memory issues, but has been tested to work well with a 4090 graphics card for 4x upscale tiling.
+ComfyUI-CCSR is a wrapper node for the CCSR upscaler, designed to integrate with ComfyUI but not as a native implementation, which may affect efficiency and memory usage. It supports model updates from a specified source, with models now available in safetensors format and an autodownload feature for new nodes, aiming to improve model loading speed and reduce memory consumption. The project maintains backward compatibility with older nodes by selecting models from a checkpoints folder.
 
 ## Tags
-Checkpoint * ImageScaling * ImageUpscaling * Upscale
+BackendCache * ImageResolution * ImageTransformation * ImageUpscaling
 
 ## Repo info
 - Repo url: `https://github.com/kijai/ComfyUI-CCSR`
-- Commit hash: `2ed9df039911306d528b58c82075f40f9a764207`
+- Commit hash: `5fb3cecf3a685e1b1274a4fb6b4dedce8343c74c`
 
 ## Licenses
 - CC-BY-NC-SA-4.0: `utils/tilevae.py`

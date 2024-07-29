@@ -1,7 +1,6 @@
 ---
 tags:
 - DetailEnhancement
-- Image
 - Pipeline
 ---
 
@@ -11,47 +10,47 @@ tags:
 - Category: `EasyUse/Fix`
 - Output node: `True`
 
-The `easy detailerFix` node is designed to enhance and refine the details of generated images, focusing on improving visual quality and coherence. It applies a series of adjustments and fixes to the image, aiming to correct any imperfections and enhance overall detail, making it an essential step for achieving high-quality, polished outputs.
+The 'easy detailerFix' node is designed for enhancing and refining images through a detailed fixing process. It operates by applying a series of adjustments and enhancements to the input image, aiming to improve its overall quality and appearance.
 ## Input types
 ### Required
 - **`pipe`**
-    - Specifies the pipeline configuration to be used for the detailer fix process, which includes model and processing settings.
+    - Specifies the pipeline configuration for the image enhancement process, indicating the sequence of operations to be applied.
     - Comfy dtype: `PIPE_LINE`
-    - Python dtype: `Tuple`
+    - Python dtype: `tuple`
 - **`image_output`**
-    - Determines the output format for the images, affecting how results are displayed or saved.
+    - Determines how the output image is handled, offering options such as hiding, previewing, saving, or sending the enhanced image.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `list[str]`
 - **`link_id`**
-    - Identifies the link for sending images, used when the output is configured to be sent to a specific destination.
+    - An identifier for linking the output with other processes or nodes, facilitating integration and further processing.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`save_prefix`**
-    - Sets the prefix for saved images, organizing output files according to user-defined naming conventions.
+    - A prefix added to the filename of the saved image, allowing for organized storage and easy retrieval.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ### Optional
 - **`model`**
-    - Optionally specifies a model to be used for the detailer fix process, allowing for customization of enhancements.
+    - The model used for the image enhancement, providing the capability to customize the fixing process based on different models.
     - Comfy dtype: `MODEL`
-    - Python dtype: `Optional[str]`
+    - Python dtype: `str`
 ## Output types
 - **`pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - Outputs the updated pipeline configuration after applying detail fixes.
-    - Python dtype: `Tuple`
+    - The updated pipeline configuration after the image enhancement process.
+    - Python dtype: `tuple`
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The enhanced image after detail fixes have been applied.
-    - Python dtype: `ndarray`
+    - The enhanced image resulting from the detailed fixing process.
+    - Python dtype: `str`
 - **`cropped_refined`**
     - Comfy dtype: `IMAGE`
-    - The refined cropped version of the enhanced image.
-    - Python dtype: `ndarray`
+    - A refined version of the cropped area from the original image, highlighting the improvements made.
+    - Python dtype: `list[str]`
 - **`cropped_enhanced_alpha`**
     - Comfy dtype: `IMAGE`
-    - The cropped image with enhanced details and alpha transparency.
-    - Python dtype: `ndarray`
+    - An enhanced version of the cropped area with alpha transparency, offering a detailed view of the adjustments.
+    - Python dtype: `list[str]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -207,8 +206,7 @@ class detailerFix:
         del pipe
 
         if image_output in ("Hide", "Hide&Save"):
-            return {"ui": {},
-                    "result": (new_pipe, result_img, result_cropped_enhanced, result_cropped_enhanced_alpha, result_mask, result_cnet_images )}
+            return (new_pipe, result_img, result_cropped_enhanced, result_cropped_enhanced_alpha, result_mask, result_cnet_images)
 
         if image_output in ("Sender", "Sender&Save"):
             PromptServer.instance.send_sync("img-send", {"link_id": link_id, "images": results})

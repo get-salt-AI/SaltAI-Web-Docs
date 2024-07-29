@@ -6,25 +6,25 @@ tags:
 # AudioLDM2 Model Loader
 ## Documentation
 - Class name: `SaltAudioLDM2LoadModel`
-- Category: `SALT/Audio/AudioLDM2`
+- Category: `SALT/AudioViz/Audio/AudioLDM2`
 - Output node: `False`
 
-This node is designed to load a specific audio model from a predefined set of models tailored for audio processing tasks. It facilitates the initialization of audio models with optimized settings for audio latent diffusion tasks, ensuring that the model is ready for further audio processing or generation tasks.
+This node is designed to load a specific audio latent diffusion model (AudioLDM2) into memory, making it ready for audio processing tasks. It supports loading different versions of the model and allows specifying the computational device (CPU or GPU) for the model's operations.
 ## Input types
 ### Required
 - **`model`**
-    - Specifies the model to be loaded, chosen from a predefined list of audio latent diffusion models. This selection determines the specific audio processing capabilities and characteristics of the loaded model.
+    - Specifies the version of the AudioLDM2 model to load. The choice of model can significantly impact the quality and characteristics of the generated audio.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `List[str]`
 ### Optional
 - **`device`**
-    - Determines the computing device ('cuda' or 'cpu') on which the model will be loaded, affecting performance and efficiency.
+    - Determines the computational device ('cuda' for GPU or 'cpu' for CPU) on which the model will be loaded and executed, affecting performance and efficiency.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`audioldm2_model`**
     - Comfy dtype: `AUDIOLDM_MODEL`
-    - The loaded audio latent diffusion model, ready for use in audio processing or generation tasks.
+    - The loaded AudioLDM2 model, ready for audio processing tasks.
     - Python dtype: `AudioLDM2Pipeline`
 ## Usage tips
 - Infra type: `GPU`
@@ -49,7 +49,7 @@ class SaltAudioLDM2LoadModel:
     RETURN_NAMES = ("audioldm2_model", )
 
     FUNCTION = "load_model"
-    CATEGORY = "SALT/Audio/AudioLDM2"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Audio/AudioLDM2"
 
     def load_model(self, model, device="cuda"):
         models = folder_paths.models_dir

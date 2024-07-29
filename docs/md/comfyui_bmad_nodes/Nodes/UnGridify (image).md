@@ -1,8 +1,8 @@
 ---
 tags:
 - GridLayout
-- Image
-- Tiled
+- ImageDuplication
+- ImageTransformation
 ---
 
 # UnGridify (image)
@@ -11,25 +11,25 @@ tags:
 - Category: `Bmad/image`
 - Output node: `False`
 
-The UnGridify (image) node is designed to deconstruct a gridded image into its constituent tiles or sub-images. It effectively reverses the process of assembling multiple smaller images into a single, larger grid image, allowing for the individual manipulation or analysis of each tile.
+The UnGridify (image) node is designed to deconstruct a grid of images into its individual tiles. It takes an image composed of a grid layout and separates it into distinct image tiles based on specified row and column parameters, facilitating the manipulation or analysis of each tile independently.
 ## Input types
 ### Required
 - **`image`**
-    - The gridded image to be deconstructed into its constituent tiles. This image is expected to have been previously constructed by arranging multiple smaller images into a grid format.
+    - The composite image arranged in a grid format. This input is crucial for determining the structure from which individual tiles will be extracted.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`columns`**
-    - The number of columns in the grid. This determines how the image is split horizontally.
+    - Specifies the number of columns in the grid. This parameter is essential for accurately dividing the image into the correct number of horizontal segments.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`rows`**
-    - The number of rows in the grid. This determines how the image is split vertically.
+    - Indicates the number of rows in the grid. It is vital for splitting the image into the appropriate number of vertical segments.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - A list of tiles extracted from the gridded image, where each tile is a smaller image that was part of the original grid.
+    - A list of images, where each image represents a tile extracted from the original grid. This output allows for further individual processing or analysis of each tile.
     - Python dtype: `List[torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
@@ -40,7 +40,7 @@ The UnGridify (image) node is designed to deconstruct a gridded image into its c
 ```python
 class UnGridImage:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {"image": ("IMAGE",),
                              "columns": grid_len_INPUT,
                              "rows": grid_len_INPUT,
@@ -48,7 +48,7 @@ class UnGridImage:
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "ungridify"
-    CATEGORY = "Bmad/image"
+    CATEGORY = images_category_path
     OUTPUT_IS_LIST = (True,)
 
     def ungridify(self, image, columns, rows):

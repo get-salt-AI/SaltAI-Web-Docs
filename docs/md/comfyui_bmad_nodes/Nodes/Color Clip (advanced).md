@@ -1,6 +1,7 @@
 ---
 tags:
 - Color
+- Image
 ---
 
 # Color Clip (advanced)
@@ -9,41 +10,41 @@ tags:
 - Category: `Bmad/image`
 - Output node: `False`
 
-This node specializes in adjusting the colors within an image based on a set of advanced criteria, including the ability to target specific colors for transformation or to apply complementary color adjustments. It extends basic color clipping functionalities by allowing for more nuanced control over color manipulation, enabling the creation of highly customized visual effects.
+The Color Clip (advanced) node is designed for advanced color manipulation within images, allowing for precise color clipping and replacement based on a set of advanced parameters. It extends basic color clipping capabilities by offering additional control over the color adjustment process, enabling users to specify alternative colors and adjust the leeway for color matching.
 ## Input types
 ### Required
 - **`image`**
-    - The image to be processed for color clipping. It serves as the primary input on which color transformations are applied, determining the visual outcome of the operation.
+    - The input image to be processed for color clipping and manipulation.
     - Comfy dtype: `IMAGE`
     - Python dtype: `numpy.ndarray`
 - **`target`**
-    - Specifies the desired color transformation for the targeted areas of the image. It defines how the reference color areas should be altered.
+    - Specifies the target operation for the primary color within the image, such as converting to black, white, or doing nothing.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`complement`**
-    - Determines the color transformation for areas of the image not matching the reference color. It allows for differential treatment of image regions based on color matching.
+    - Defines the operation for colors in the image that do not match the primary color, including converting them or leaving them unchanged.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`color`**
-    - The reference color that guides the clipping operation. It is used to identify which parts of the image should be targeted for color transformation.
+    - The primary color to be clipped or replaced in the image.
     - Comfy dtype: `COLOR`
     - Python dtype: `List[int]`
 ### Optional
 - **`color_a`**
-    - An optional color parameter that provides an additional color option for transformation. It offers further customization for the clipping operation.
+    - An optional color parameter that provides an alternative color option for the clipping process.
     - Comfy dtype: `COLOR`
     - Python dtype: `List[int]`
 - **`color_b`**
-    - Another optional color parameter that provides an alternative color option for transformation, enhancing the flexibility of the color clipping process.
+    - A second optional color parameter that offers another alternative color choice for the clipping process.
     - Comfy dtype: `COLOR`
     - Python dtype: `List[int]`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The resulting image after the color clipping operation. It reflects the applied color transformations, showcasing the visual effects achieved through the process.
-    - Python dtype: `numpy.ndarray`
+    - The image after applying the advanced color clipping and manipulation operations.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -51,7 +52,7 @@ This node specializes in adjusting the colors within an image based on a set of 
 ```python
 class ColorClipAdvanced(ColorClip):
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return super().get_types(advanced=True)
 
     def color_clip(self, image, color, target, complement, color_a=None, color_b=None):

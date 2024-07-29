@@ -1,7 +1,7 @@
 ---
 tags:
-- Latent
-- Normalization
+- LatentBlend
+- VAE
 ---
 
 # Batch Align (RAFT)

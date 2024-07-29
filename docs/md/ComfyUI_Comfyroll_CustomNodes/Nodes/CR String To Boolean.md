@@ -1,7 +1,10 @@
 ---
 tags:
+- Batch
 - BooleanLogic
 - ConditionalSelection
+- FloatData
+- ImpactPack
 ---
 
 # 🔧 CR String To Boolean

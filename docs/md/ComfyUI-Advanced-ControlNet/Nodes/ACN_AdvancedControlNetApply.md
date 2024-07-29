@@ -1,6 +1,8 @@
 ---
 tags:
+- Conditioning
 - ControlNet
+- ControlNetLoader
 ---
 
 # Apply Advanced ControlNet 🛂🅐🅒🅝
@@ -9,73 +11,77 @@ tags:
 - Category: `Adv-ControlNet 🛂🅐🅒🅝`
 - Output node: `False`
 
-This node applies advanced control networks to modify the conditioning of an image based on specified control nets, images, and strength parameters. It enables the dynamic adjustment of image attributes through control networks, enhancing the flexibility and precision of image conditioning.
+The ACN_AdvancedControlNetApply node is designed to apply advanced control mechanisms to images, utilizing a control network to modify or enhance image features based on conditioning inputs. It extends the capabilities of standard control networks by incorporating additional parameters and techniques for more nuanced and precise image manipulation.
 ## Input types
 ### Required
 - **`positive`**
-    - Specifies the positive conditioning data that the control net will modify, contributing to the enhancement of desired image attributes.
+    - Specifies the positive conditioning to guide the control network towards desired image attributes, playing a crucial role in the image manipulation process.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `list`
+    - Python dtype: `tuple`
 - **`negative`**
-    - Specifies the negative conditioning data that the control net will adjust, aiming to suppress undesired image attributes.
+    - Defines the negative conditioning to steer the control network away from undesired image attributes, contributing to the refinement of the manipulation outcome.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `list`
+    - Python dtype: `tuple`
 - **`control_net`**
-    - The control net to be applied. It defines the specific modifications and adjustments to be made to the conditioning, directly influencing the outcome.
+    - The control network model used for applying the conditioning to the image, central to the node's functionality.
     - Comfy dtype: `CONTROL_NET`
     - Python dtype: `ControlNet`
 - **`image`**
-    - The image to which the control net adjustments will be applied. It serves as the visual content that will be modified according to the control net's specifications.
+    - The input image to be manipulated by the control network.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `Image`
+    - Python dtype: `torch.Tensor`
 - **`strength`**
-    - Determines the intensity of the control net's effect on the image conditioning. A higher value results in more pronounced modifications.
+    - Controls the intensity of the control network's effect on the image, allowing for subtle to strong modifications.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`start_percent`**
-    - Defines the starting percentage of the effect applied by the control net, allowing for gradual application of the control net's effect over the image.
+    - Determines the starting point of the control effect in terms of the image's generation process, enabling targeted manipulation.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end_percent`**
-    - Defines the ending percentage of the effect applied by the control net, enabling precise control over how the effect tapers off.
+    - Specifies the endpoint of the control effect, allowing for precise control over the extent of manipulation.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`mask_optional`**
-    - An optional mask that can be applied to target specific areas of the image for conditioning adjustments.
+    - An optional mask to specify areas of the image to be affected by the control network, enhancing the precision of manipulation.
     - Comfy dtype: `MASK`
-    - Python dtype: `MASK`
+    - Python dtype: `torch.Tensor`
 - **`timestep_kf`**
-    - Optional keyframe for specifying the timestep at which the control net's effect should be applied, allowing for temporal control.
+    - Optional keyframe for controlling the application of the control network over time, adding temporal dynamics to the manipulation.
     - Comfy dtype: `TIMESTEP_KEYFRAME`
-    - Python dtype: `TIMESTEP_KEYFRAME`
+    - Python dtype: `dict`
 - **`latent_kf_override`**
-    - Allows for overriding the latent keyframes, providing flexibility in how the control net's effects are applied over time.
+    - Optional override for latent keyframes, allowing for advanced manipulation of the control network's behavior over time.
     - Comfy dtype: `LATENT_KEYFRAME`
-    - Python dtype: `LATENT_KEYFRAME`
+    - Python dtype: `dict`
 - **`weights_override`**
-    - Optional parameter to override the default weights of the control net, offering customization of the control net's influence.
+    - Optional parameter to override the default weights of the control network, enabling customized control effects.
     - Comfy dtype: `CONTROL_NET_WEIGHTS`
-    - Python dtype: `CONTROL_NET_WEIGHTS`
+    - Python dtype: `dict`
 - **`model_optional`**
-    - An optional model parameter that, if provided, will be used instead of the default control net model, allowing for further customization.
+    - An optional model parameter that can be used in conjunction with the control network for enhanced manipulation capabilities.
     - Comfy dtype: `MODEL`
-    - Python dtype: `MODEL`
+    - Python dtype: `Model`
+- **`vae_optional`**
+    - An optional variational autoencoder model used in conjunction with the control network to enhance the manipulation process.
+    - Comfy dtype: `VAE`
+    - Python dtype: `VAE`
 ## Output types
 - **`positive`**
     - Comfy dtype: `CONDITIONING`
-    - The modified positive conditioning data after applying the control net, reflecting the enhancements made.
-    - Python dtype: `list`
+    - The modified positive conditioning after applying the control network, reflecting the changes made to the image.
+    - Python dtype: `tuple`
 - **`negative`**
     - Comfy dtype: `CONDITIONING`
-    - The modified negative conditioning data after applying the control net, reflecting the suppression of undesired attributes.
-    - Python dtype: `list`
+    - The modified negative conditioning after applying the control network, reflecting the changes made to the image.
+    - Python dtype: `tuple`
 - **`model_opt`**
     - Comfy dtype: `MODEL`
-    - An optional output model that may be modified by the node's processing, available for further use.
-    - Python dtype: `MODEL`
+    - An optional model output, potentially modified by the control network application.
+    - Python dtype: `Model`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes:
     - [KSampler](../../Comfy/Nodes/KSampler.md)
     - [SamplerCustom](../../Comfy/Nodes/SamplerCustom.md)
@@ -107,6 +113,7 @@ class AdvancedControlNetApply:
                 "latent_kf_override": ("LATENT_KEYFRAME", ),
                 "weights_override": ("CONTROL_NET_WEIGHTS", ),
                 "model_optional": ("MODEL",),
+                "vae_optional": ("VAE",),
             }
         }
 
@@ -117,7 +124,7 @@ class AdvancedControlNetApply:
     CATEGORY = "Adv-ControlNet 🛂🅐🅒🅝"
 
     def apply_controlnet(self, positive, negative, control_net, image, strength, start_percent, end_percent,
-                         mask_optional: Tensor=None, model_optional: ModelPatcher=None,
+                         mask_optional: Tensor=None, model_optional: ModelPatcher=None, vae_optional=None,
                          timestep_kf: TimestepKeyframeGroup=None, latent_kf_override: LatentKeyframeGroup=None,
                          weights_override: ControlWeights=None):
         if strength == 0:
@@ -139,7 +146,7 @@ class AdvancedControlNetApply:
                     c_net = cnets[prev_cnet]
                 else:
                     # copy, convert to advanced if needed, and set cond
-                    c_net = convert_to_advanced(control_net.copy()).set_cond_hint(control_hint, strength, (start_percent, end_percent))
+                    c_net = convert_to_advanced(control_net.copy()).set_cond_hint(control_hint, strength, (start_percent, end_percent), vae_optional)
                     if is_advanced_controlnet(c_net):
                         # disarm node check
                         c_net.disarm()
@@ -148,6 +155,17 @@ class AdvancedControlNetApply:
                             if not model_optional:
                                 raise Exception(f"Type '{type(c_net).__name__}' requires model_optional input, but got None.")
                             c_net.patch_model(model=model_optional)
+                        # if vae required, verify vae is passed in
+                        if c_net.require_vae:
+                            # if controlnet can accept preprocced condhint latents and is the case, ignore vae requirement
+                            if c_net.allow_condhint_latents and isinstance(control_hint, AbstractPreprocWrapper):
+                                pass
+                            elif not vae_optional:
+                                # make sure SD3 ControlNet will get a special message instead of generic type mention
+                                if is_sd3_advanced_controlnet:
+                                    raise Exception(f"SD3 ControlNet requires vae_optional input, but got None.")
+                                else:
+                                    raise Exception(f"Type '{type(c_net).__name__}' requires vae_optional input, but got None.")
                         # apply optional parameters and overrides, if provided
                         if timestep_kf is not None:
                             c_net.set_timestep_keyframes(timestep_kf)

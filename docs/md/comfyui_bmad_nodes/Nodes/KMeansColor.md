@@ -9,29 +9,29 @@ tags:
 - Category: `Bmad/CV/Color A.`
 - Output node: `False`
 
-The KMeansColor node is designed to apply the K-means clustering algorithm to an image to simplify its color palette to a specified number of colors. This process can be useful for color quantization, reducing the number of colors in an image while preserving its essential visual characteristics.
+This node applies the K-means clustering algorithm to an image to identify and extract a specified number of dominant colors. It leverages OpenCV's implementation of K-means for efficient color quantization, allowing for the simplification of the image's color palette.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be processed. It serves as the basis for color quantization, determining the final simplified color palette.
+    - The input image to be processed for color quantization. It serves as the basis for identifying dominant colors through clustering.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`number_of_colors`**
-    - Specifies the desired number of colors in the simplified palette. It directly influences the outcome of the color quantization process.
+    - Specifies the number of dominant colors to identify in the image. It determines the granularity of the color quantization.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`max_iterations`**
-    - The maximum number of iterations allowed for the K-means algorithm to converge to a solution. It affects the algorithm's runtime and precision.
+    - The maximum number of iterations for the K-means algorithm to run, ensuring the process terminates.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`eps`**
-    - The epsilon value for convergence criteria. A smaller value makes the algorithm more precise but may increase computation time.
+    - The epsilon value for convergence criteria in K-means, dictating the algorithm's precision and stopping condition.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The processed image with its color palette simplified to the specified number of colors.
+    - The processed image with its colors quantized to the specified dominant colors.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -42,7 +42,7 @@ The KMeansColor node is designed to apply the K-means clustering algorithm to an
 ```python
 class KMeansColor:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {
             "image": ("IMAGE",),
             "number_of_colors": ("INT", {"default": 2, "min": 1}),
@@ -52,7 +52,7 @@ class KMeansColor:
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "get_colors"
-    CATEGORY = "Bmad/CV/Color A."
+    CATEGORY = f"{cv_category_path}/Color A."
 
     def get_colors(self, image, number_of_colors, max_iterations, eps):
         image = tensor2opencv(image, 3)

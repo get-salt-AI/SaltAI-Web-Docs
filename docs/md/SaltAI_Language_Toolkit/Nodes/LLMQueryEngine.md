@@ -4,33 +4,33 @@
 - Category: `SALT/Language Toolkit/Querying`
 - Output node: `False`
 
-The LLMQueryEngine node is designed to process and execute queries using a language model, integrating vector indexing and similarity postprocessing to retrieve relevant responses. It leverages language models to understand and respond to user queries, applying advanced retrieval techniques to ensure the responses are both relevant and contextually appropriate.
+The LLMQueryEngine node is designed to facilitate querying large language models (LLMs) by assembling and sending structured queries based on user input and predefined message components. It abstracts the complexity of interacting with LLMs, enabling users to obtain responses to queries efficiently.
 ## Input types
 ### Required
 - **`llm_model`**
-    - Represents the language model and optional embedding model used for processing queries. It's crucial for executing the query as it determines the understanding and generation capabilities of the engine.
+    - Specifies the large language model to be used for the query, including any necessary model configurations.
     - Comfy dtype: `LLM_MODEL`
     - Python dtype: `Dict[str, Any]`
 - **`llm_index`**
-    - The index used for retrieving vector embeddings, essential for identifying relevant documents or entries based on the query.
+    - Represents the index or interface through which the query will be executed, potentially encapsulating specific querying mechanisms or optimizations.
     - Comfy dtype: `LLM_INDEX`
-    - Python dtype: `VectorIndexRetriever`
+    - Python dtype: `SpecificTypeRepresentingLLMIndex`
 ### Optional
 - **`query`**
-    - The user's query input, which is processed by the engine to find relevant information or answers.
+    - The user's query input, which will be included in the final assembled query sent to the LLM.
     - Comfy dtype: `STRING`
-    - Python dtype: `str`
+    - Python dtype: `Optional[str]`
 - **`llm_message`**
-    - Optional list of messages that can be included in the query context, enhancing the engine's understanding of the user's intent.
+    - A list of pre-defined messages or prompts that can be included in the query to guide the LLM's response generation.
     - Comfy dtype: `LIST`
-    - Python dtype: `List[Message]`
+    - Python dtype: `Optional[List[str]]`
 ## Output types
 - **`results`**
     - Comfy dtype: `STRING`
-    - The processed query response, encapsulating the relevance and context of the information retrieved by the engine.
-    - Python dtype: `Tuple[str]`
+    - The output from the LLM in response to the assembled query.
+    - Python dtype: `str`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -71,13 +71,10 @@ class LLMQueryEngine:
                 query_components.append("user: " + query)
         query_components.append("assistant:")
 
-        pprint(query_components, indent=4)
-
         query_join = "\n".join(query_components)
 
         query_engine = llm_index.as_query_engine(llm=llm_model.get("llm", None), embed_model=llm_model.get("embed_model", None))
         response = query_engine.query(query_join)
-        pprint(response, indent=4)
         return (response.response,)
 
 ```

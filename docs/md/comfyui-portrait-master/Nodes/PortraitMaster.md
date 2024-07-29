@@ -1,6 +1,6 @@
 ---
 tags:
-- Prompt
+- PromptStyling
 ---
 
 # Portrait Master v.2.9
@@ -9,7 +9,7 @@ tags:
 - Category: `AI WizArt`
 - Output node: `False`
 
-The PortraitMaster node is designed to enhance portrait photography with AI, offering features like photorealism improvement, customizable facial features, and style adjustments. It allows users to fine-tune various aspects of portrait images, such as facial expressions, skin texture, and overall photo quality, through a series of input parameters that influence the generation of enhanced portrait prompts.
+The PortraitMaster node is designed to dynamically generate detailed and customizable prompts for portrait creation, utilizing a wide range of parameters to fine-tune both the desired and undesired aspects of the final portrait. It allows for the manipulation of facial features, hair styles, expressions, and photorealism settings to craft comprehensive positive and negative prompts that guide the AI in generating more precise and realistic portraits.
 ## Input types
 ### Required
 - **`shot`**
@@ -77,61 +77,61 @@ The PortraitMaster node is designed to enhance portrait photography with AI, off
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `unknown`
 - **`facial_expression_weight`**
-    - Determines the weight of the facial expression in the portrait, affecting the intensity and prominence of the chosen expression.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 - **`face_shape`**
-    - Selects the face shape for the portrait from a predefined list, allowing for customization of the subject's facial structure.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `list`
+    - Python dtype: `unknown`
 - **`face_shape_weight`**
-    - Sets the weight of the face shape in the portrait, influencing how pronounced the selected face shape appears.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 - **`facial_asymmetry`**
-    - Adjusts the level of facial asymmetry, enabling the portrayal of more natural and varied facial structures.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 - **`hair_style`**
-    - Chooses the hair style for the portrait from a predefined list, offering a variety of options to customize the subject's appearance.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `list`
+    - Python dtype: `unknown`
 - **`hair_color`**
-    - Selects the hair color from a predefined list, allowing for detailed customization of the subject's hair appearance.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `list`
+    - Python dtype: `unknown`
 - **`hair_length`**
-    - Chooses the length of the hair from a predefined list, enabling control over the portrayal of the subject's hair length.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `list`
+    - Python dtype: `unknown`
 - **`disheveled`**
-    - Adjusts the level of disheveled appearance in the portrait, allowing for fine control over the portrayal of hair and overall tidiness.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 - **`makeup`**
-    - Selects the type of makeup to apply to the portrait, offering a range of styles from a predefined list to enhance the subject's appearance.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `list`
+    - Python dtype: `unknown`
 - **`beard`**
-    - Chooses the style of beard for the portrait subject from a predefined list, enabling customization of facial hair appearance.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `list`
+    - Python dtype: `unknown`
 - **`natural_skin`**
-    - Controls the naturalness of the skin texture in the portrait, allowing for adjustments to achieve a more realistic skin appearance.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 - **`bare_face`**
-    - Adjusts the visibility of facial features without makeup, emphasizing the natural beauty of the subject's bare face.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 - **`washed_face`**
-    - Modifies the appearance of the face to look freshly washed, affecting the skin's freshness and cleanliness.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 - **`dried_face`**
-    - Alters the appearance to simulate a dried face after washing, impacting the skin's texture and moisture.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 - **`skin_details`**
     - unknown
     - Comfy dtype: `FLOAT`
@@ -197,9 +197,9 @@ The PortraitMaster node is designed to enhance portrait photography with AI, off
     - Comfy dtype: `FLOAT`
     - Python dtype: `unknown`
 - **`photorealism_improvement`**
-    - Enables or disables the enhancement of photorealism in the portrait, adding professional photo qualities and balanced exposure to the generated prompt.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`prompt_start`**
     - unknown
     - Comfy dtype: `STRING`
@@ -209,13 +209,13 @@ The PortraitMaster node is designed to enhance portrait photography with AI, off
     - Comfy dtype: `STRING`
     - Python dtype: `unknown`
 - **`prompt_end`**
-    - unknown
+    - Specifies the final part of the prompt, allowing for additional customization and refinement of the generated portrait's description.
     - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`negative_prompt`**
-    - unknown
+    - Defines attributes or elements to be excluded from the portrait, refining the output by eliminating specific undesired characteristics.
     - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`style_i`**
     - unknown
     - Comfy dtype: `COMBO[STRING]`
@@ -276,6 +276,10 @@ The PortraitMaster node is designed to enhance portrait photography with AI, off
     - unknown
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `unknown`
+- **`random_face_shape`**
+    - unknown
+    - Comfy dtype: `BOOLEAN`
+    - Python dtype: `unknown`
 - **`random_hairstyle`**
     - unknown
     - Comfy dtype: `BOOLEAN`
@@ -324,16 +328,16 @@ The PortraitMaster node is designed to enhance portrait photography with AI, off
 ## Output types
 - **`positive`**
     - Comfy dtype: `STRING`
-    - Generates a positive prompt text for portrait enhancement, incorporating user-defined adjustments and improvements.
+    - The generated positive prompt, detailing desired characteristics and enhancements for the portrait.
     - Python dtype: `str`
 - **`negative`**
     - Comfy dtype: `STRING`
-    - Generates a negative prompt text to avoid certain undesired effects in the portrait, such as excessive shininess or reflections on the skin.
+    - The generated negative prompt, specifying undesired characteristics and elements to be excluded from the portrait.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
-    - [ShowText|pysssss](../../ComfyUI-Custom-Scripts/Nodes/ShowText|pysssss.md)
+    - ShowText|pysssss
     - [CLIPTextEncode](../../Comfy/Nodes/CLIPTextEncode.md)
     - [Text Concatenate](../../was-node-suite-comfyui/Nodes/Text Concatenate.md)
 
@@ -654,6 +658,7 @@ class PortraitMaster:
                 "random_lips_color": ("BOOLEAN", {"default": False}),
                 "random_lips_shape": ("BOOLEAN", {"default": False}),
                 "random_facial_expression": ("BOOLEAN", {"default": False}),
+                "random_face_shape": ("BOOLEAN", {"default": False}),
                 "random_hairstyle": ("BOOLEAN", {"default": False}),
                 "random_hair_color": ("BOOLEAN", {"default": False}),
                 "random_hair_length": ("BOOLEAN", {"default": False}),
@@ -675,7 +680,7 @@ class PortraitMaster:
 
     CATEGORY = "AI WizArt"
 
-    def pm(self, shot="-", shot_weight=1, gender="-", body_type="-", body_type_weight=0, eyes_color="-", facial_expression="-", facial_expression_weight=0, face_shape="-", face_shape_weight=0, nationality_1="-", nationality_2="-", nationality_mix=0.5, age=30, hair_style="-", hair_color="-", disheveled=0, dimples=0, freckles=0, skin_pores=0, skin_details=0, moles=0, skin_imperfections=0, wrinkles=0, tanned_skin=0, eyes_details=1, iris_details=1, circular_iris=1, circular_pupil=1, facial_asymmetry=0, prompt_additional="", prompt_start="", prompt_end="", light_type="-", light_direction="-", light_weight=0, negative_prompt="", photorealism_improvement="disable", beard="-", model_pose="-", skin_acne=0, style_1="-", style_1_weight=0, style_2="-", style_2_weight=0, androgynous=0, natural_skin=0, bare_face=0, washed_face=0, dried_face=0, random_gender=False, random_age=False, random_nationality=False, random_hairstyle=False, random_eyes_color=False, random_hair_color=False, random_disheveled=False, random_freckles=False, random_moles=False, random_beard=False, random_shot=False, random_androgynous=False, random_facial_expression=False, random_skin_imperfections=False, random_style_1=False, random_style_2=False, random_body_type=False, random_model_pose=False, hair_length="-", random_hair_length=False, eyes_shape="-", random_eyes_shape=False, lisp_shape="-", lips_color="-", random_lips_color=False, lips_shape="-", random_lips_shape=False, makeup="-", random_makeup=False, clothes="-", random_clothes=False, seed=0):
+    def pm(self, shot="-", shot_weight=1, gender="-", body_type="-", body_type_weight=0, eyes_color="-", facial_expression="-", facial_expression_weight=0, face_shape="-", face_shape_weight=0, nationality_1="-", nationality_2="-", nationality_mix=0.5, age=30, hair_style="-", hair_color="-", disheveled=0, dimples=0, freckles=0, skin_pores=0, skin_details=0, moles=0, skin_imperfections=0, wrinkles=0, tanned_skin=0, eyes_details=1, iris_details=1, circular_iris=1, circular_pupil=1, facial_asymmetry=0, prompt_additional="", prompt_start="", prompt_end="", light_type="-", light_direction="-", light_weight=0, negative_prompt="", photorealism_improvement="disable", beard="-", model_pose="-", skin_acne=0, style_1="-", style_1_weight=0, style_2="-", style_2_weight=0, androgynous=0, natural_skin=0, bare_face=0, washed_face=0, dried_face=0, random_gender=False, random_age=False, random_nationality=False, random_hairstyle=False, random_eyes_color=False, random_hair_color=False, random_disheveled=False, random_freckles=False, random_moles=False, random_beard=False, random_shot=False, random_androgynous=False, random_facial_expression=False, random_skin_imperfections=False, random_style_1=False, random_style_2=False, random_body_type=False, random_model_pose=False, hair_length="-", random_hair_length=False, eyes_shape="-", random_eyes_shape=False, lisp_shape="-", lips_color="-", random_lips_color=False, lips_shape="-", random_lips_shape=False, makeup="-", random_makeup=False, clothes="-", random_clothes=False, random_face_shape=False, seed=0):
 
         prompt = []
 
@@ -722,6 +727,10 @@ class PortraitMaster:
         if random_facial_expression:
             facial_expression = random.choice(facial_expressions_list)
             facial_expression_weight = random.uniform(0.5,1.25)
+
+        if random_face_shape:
+            face_shape = random.choice(face_shape_list)
+            face_shape_weight = random.uniform(0.5,1.25)
 
         if random_body_type:
             body_type = random.choice(body_type_list)

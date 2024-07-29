@@ -1,6 +1,7 @@
 ---
 tags:
 - Audio
+- SaltNodes
 ---
 
 # Salt Workflow Info
@@ -9,25 +10,25 @@ tags:
 - Category: `SALT/IO`
 - Output node: `True`
 
-The SaltInfo node is designed to capture and display basic information about a workflow, including its title and description. It serves as a means to log and return these details for further processing or user reference.
+The SaltInfo node is designed to log and return basic information about a workflow, including its title and description. It serves as a means to encapsulate and convey workflow metadata, facilitating easier identification and understanding of the workflow's purpose.
 ## Input types
 ### Required
 - **`workflow_title`**
-    - The title of the workflow. It is a required input that identifies the workflow and is used for logging and display purposes.
+    - The title of the workflow, serving as a concise identifier and summary of the workflow's objective.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`workflow_description`**
-    - The description of the workflow. It is a required input that provides additional details about the workflow's purpose and is used for logging and display purposes.
+    - A detailed description of the workflow, outlining its purpose, functionality, and any other relevant information.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`title`**
     - Comfy dtype: `STRING`
-    - The title of the workflow as provided in the input.
+    - The title of the workflow, as provided in the input.
     - Python dtype: `str`
 - **`description`**
     - Comfy dtype: `STRING`
-    - The description of the workflow as provided in the input.
+    - The detailed description of the workflow, as provided in the input.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -57,9 +58,9 @@ class SaltInfo:
 
     def info(self, workflow_title, workflow_description, unique_id=0):
 
-        print(f"[SaltInfo_{unique_id}] Workflow Info:")
-        print(f"Title: {workflow_title}")
-        print(f"Description: {workflow_description}")
+        logger.info(f"[SaltInfo_{unique_id}] Workflow Info:")
+        logger.info(f"Title: {workflow_title}")
+        logger.info(f"Description: {workflow_description}")
 
         return (workflow_title, workflow_description)
 

@@ -1,6 +1,8 @@
 ---
 tags:
-- Image
+- ImageDrawing
+- TextOnImage
+- VisualEffects
 ---
 
 # CopyMakeBorder
@@ -9,25 +11,25 @@ tags:
 - Category: `Bmad/CV/Misc`
 - Output node: `False`
 
-The CopyMakeBorder node is designed to add a border around an image. It allows for the customization of the border's size and type, providing flexibility in adjusting the image's appearance.
+The CopyMakeBorder node is designed to add a border around an image. It allows for the customization of the border size and type, excluding transparent borders, to enhance or modify the visual appearance of the image.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to which the border will be added. This parameter is crucial as it defines the base image that will be modified.
+    - The input image to which the border will be added. This is the primary data upon which the border operation is performed.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`border_size`**
-    - Specifies the size of the border to be added around the image. It influences the thickness of the border, thereby affecting the overall dimensions of the output image.
+    - Specifies the size of the border to be added around the image. It affects the thickness of the border applied.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`border_type`**
-    - Determines the type of border to be applied. This parameter allows for various border styles, influencing the visual appearance of the border.
+    - Determines the type of border to be applied to the image, excluding transparent types. This choice influences the visual style of the border.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output image with the added border. This image will have increased dimensions due to the border addition.
+    - The output image with the added border. This is the result of applying the specified border size and type to the input image.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -38,7 +40,7 @@ The CopyMakeBorder node is designed to add a border around an image. It allows f
 ```python
 class CopyMakeBorderSimple:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "image": ("IMAGE",),
@@ -48,7 +50,7 @@ class CopyMakeBorderSimple:
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "make_border"
-    CATEGORY = "Bmad/CV/Misc"
+    CATEGORY = f"{cv_category_path}/Misc"
 
     def make_border(self, image, border_size, border_type):
         image = tensor2opencv(image, 0)

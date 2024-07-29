@@ -1,5 +1,6 @@
 ---
 tags:
+- SamplerScheduler
 - Sampling
 ---
 
@@ -9,83 +10,87 @@ tags:
 - Category: `InspirePack/a1111_compat`
 - Output node: `False`
 
-The KSamplerAdvancedInspire node is designed to enhance the inspiration process by providing advanced sampling capabilities within a pipeline. It leverages sophisticated algorithms to generate or process data, aiming to inspire creativity and innovation through its output.
+This node is designed for advanced sampling in generative models, focusing on creating or modifying latent images through a comprehensive set of parameters. It integrates various components such as noise addition, seed manipulation, and conditioning adjustments to refine the generation process, aiming to produce high-quality, customizable results.
 ## Input types
 ### Required
 - **`basic_pipe`**
-    - The 'basic_pipe' input is essential for providing the foundational components of the model, clip, vae, and conditioning elements, setting the stage for advanced sampling operations.
+    - A tuple containing the model, clip, VAE, and positive and negative conditioning components, serving as the foundational setup for the sampling process.
     - Comfy dtype: `BASIC_PIPE`
     - Python dtype: `tuple`
 - **`add_noise`**
-    - The 'add_noise' input determines whether noise should be added to the sampling process, influencing the variability and uniqueness of the generated outputs.
+    - A boolean flag indicating whether noise should be added to the generation process, affecting the diversity and quality of the output.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`noise_seed`**
-    - The 'noise_seed' input specifies the seed for noise generation, ensuring reproducibility and consistency in the sampling process.
+    - An integer seed specifically for noise generation, contributing to the variability and uniqueness of the generated images.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`steps`**
-    - The 'steps' input defines the number of steps to be taken in the sampling process, affecting the depth and detail of the generation.
+    - The number of steps to perform in the sampling process, affecting the detail and quality of the generated images.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - The 'cfg' input sets the configuration for the sampling process, adjusting the control and guidance of the generation.
+    - A configuration parameter that influences the sampling behavior, potentially affecting the style and characteristics of the output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sampler_name`**
-    - The 'sampler_name' input selects the specific sampler algorithm to be used, tailoring the sampling process to specific requirements.
+    - The name of the sampler to use, determining the specific sampling algorithm applied.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - The 'scheduler' input specifies the scheduling algorithm for the sampling process, impacting the progression and variation of the generation.
+    - Specifies the scheduler for controlling the sampling process, affecting the progression of image generation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`latent_image`**
-    - The 'latent_image' input provides an initial latent image to be used as a starting point for the sampling process, influencing the direction of the generation.
+    - The initial latent image to be modified or enhanced through the sampling process.
     - Comfy dtype: `LATENT`
-    - Python dtype: `object`
+    - Python dtype: `torch.Tensor`
 - **`start_at_step`**
-    - The 'start_at_step' input determines the starting step of the sampling process, allowing for customization of the generation's progression.
+    - The step at which to start the sampling process, allowing for control over the generation's initiation point.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`end_at_step`**
-    - The 'end_at_step' input defines the ending step of the sampling process, setting the bounds for the generation.
+    - The final step of the sampling process, defining the endpoint of image generation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`noise_mode`**
-    - The 'noise_mode' input selects the computational mode (GPU or CPU) for noise generation, affecting the performance and efficiency of the sampling process.
+    - Determines the mode of noise application, influencing the texture and quality of the output.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`return_with_leftover_noise`**
-    - The 'return_with_leftover_noise' input indicates whether leftover noise should be returned, offering additional control over the output's variability.
+    - A flag indicating whether to return the image with any residual noise, affecting the final image's appearance.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`batch_seed_mode`**
-    - The 'batch_seed_mode' input specifies the mode for seed generation in batch operations, influencing the diversity and consistency of the outputs.
+    - Specifies the mode for seed generation in batch processing, impacting the diversity of generated images.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`variation_seed`**
-    - The 'variation_seed' input provides a seed for generating variations, enabling nuanced adjustments to the sampling process.
+    - An optional seed for introducing variations, allowing for controlled randomness in the output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`variation_strength`**
-    - The 'variation_strength' input controls the strength of variations applied, allowing for fine-tuning of the generation's diversity.
+    - Determines the strength of the applied variations, affecting the degree of change from the original image.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`noise_opt`**
-    - The 'noise_opt' input, if provided, specifies custom noise options for the sampling process, offering further customization.
+    - Optional noise parameters for further customization of the noise application process.
     - Comfy dtype: `NOISE`
-    - Python dtype: `object`
+    - Python dtype: `dict`
+- **`scheduler_func_opt`**
+    - An optional scheduler function for advanced control over the sampling schedule.
+    - Comfy dtype: `SCHEDULER_FUNC`
+    - Python dtype: `function`
 ## Output types
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - This output represents the generated latent image, serving as a foundational element for further processing or visualization.
-    - Python dtype: `object`
+    - Represents the generated or modified latent image, showcasing the effectiveness of the sampling process.
+    - Python dtype: `torch.Tensor`
 - **`vae`**
     - Comfy dtype: `VAE`
-    - This output provides the variational autoencoder used in the process, facilitating additional manipulations or analyses of the generated data.
-    - Python dtype: `object`
+    - The VAE component used in the sampling process, potentially modified or utilized as part of the generation.
+    - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -116,6 +121,7 @@ class KSamplerAdvanced_inspire_pipe:
                 "optional":
                     {
                         "noise_opt": ("NOISE",),
+                        "scheduler_func_opt": ("SCHEDULER_FUNC",),
                     }
                 }
 
@@ -124,7 +130,8 @@ class KSamplerAdvanced_inspire_pipe:
 
     CATEGORY = "InspirePack/a1111_compat"
 
-    def sample(self, basic_pipe, add_noise, noise_seed, steps, cfg, sampler_name, scheduler, latent_image, start_at_step, end_at_step, noise_mode, return_with_leftover_noise, denoise=1.0, batch_seed_mode="comfy", variation_seed=None, variation_strength=None, noise_opt=None):
+    def sample(self, basic_pipe, add_noise, noise_seed, steps, cfg, sampler_name, scheduler, latent_image, start_at_step, end_at_step, noise_mode, return_with_leftover_noise,
+               denoise=1.0, batch_seed_mode="comfy", variation_seed=None, variation_strength=None, noise_opt=None, scheduler_func_opt=None):
         model, clip, vae, positive, negative = basic_pipe
         latent = KSamplerAdvanced_inspire().sample(model=model, add_noise=add_noise, noise_seed=noise_seed,
                                                    steps=steps, cfg=cfg, sampler_name=sampler_name, scheduler=scheduler,
@@ -132,7 +139,7 @@ class KSamplerAdvanced_inspire_pipe:
                                                    start_at_step=start_at_step, end_at_step=end_at_step,
                                                    noise_mode=noise_mode, return_with_leftover_noise=return_with_leftover_noise,
                                                    denoise=denoise, batch_seed_mode=batch_seed_mode, variation_seed=variation_seed,
-                                                   variation_strength=variation_strength, noise_opt=noise_opt)[0]
-        return (latent, vae)
+                                                   variation_strength=variation_strength, noise_opt=noise_opt, scheduler_func_opt=scheduler_func_opt)[0]
+        return latent, vae
 
 ```

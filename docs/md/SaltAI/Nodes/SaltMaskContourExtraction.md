@@ -1,8 +1,9 @@
 ---
 tags:
 - Mask
-- MaskEnhancement
 - MaskRegion
+- SEGSPrep
+- Segmentation
 ---
 
 # Countour Mask Regions Extraction

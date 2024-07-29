@@ -1,7 +1,7 @@
 ---
 tags:
-- Contour
-- Image
+- Color
+- Crop
 ---
 
 # Contours
@@ -10,36 +10,36 @@ tags:
 - Category: `Bmad/CV/Contour`
 - Output node: `False`
 
-The `Contours` node is designed to identify and extract contours from an image based on specified retrieval and approximation modes. It transforms the input image into a grayscale version, applies thresholding if necessary, and utilizes OpenCV's contour finding capabilities to return the identified contours along with their hierarchy.
+The Contours node is designed to identify and extract contours from an image based on specified retrieval and approximation modes. It converts the input image to grayscale, applies thresholding if necessary, and utilizes OpenCV's findContours method to detect contours, providing a foundational step for further image analysis or manipulation.
 ## Input types
 ### Required
 - **`image`**
-    - The input image from which contours are to be extracted. This image is crucial as it serves as the basis for contour detection, directly influencing the contours that are identified and their characteristics.
+    - The input image tensor that contours will be extracted from. It's crucial as the source for contour detection.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`retrieval_mode`**
-    - Specifies the contour retrieval mode, which determines how the contours are organized or retrieved. This choice impacts the structure of the output contours, affecting how they are hierarchically related or grouped.
+    - Specifies the contour retrieval mode, affecting how contours are organized and retrieved. It plays a key role in defining the hierarchy of the contours.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`approximation_mode`**
-    - Defines the method used to approximate the contours. Different modes can simplify the contour shapes in various ways, affecting the level of detail and the overall shape of the extracted contours.
+    - Determines the method used to approximate the contours. This affects the level of detail of the extracted contours.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`cv_contours`**
     - Comfy dtype: `CV_CONTOURS`
-    - A list of detected contours in the image, representing the primary output of contour detection.
-    - Python dtype: `List[torch.Tensor]`
+    - The detected contours as a list of points.
+    - Python dtype: `List[List[torch.Tensor]]`
 - **`cv_contour`**
     - Comfy dtype: `CV_CONTOUR`
-    - A single contour selected from the list of detected contours, based on specific criteria or processing steps.
-    - Python dtype: `torch.Tensor`
+    - A single contour selected from the detected contours, if applicable.
+    - Python dtype: `List[torch.Tensor]`
 - **`cv_contours_hierarchy`**
     - Comfy dtype: `CV_CONTOURS_HIERARCHY`
-    - The hierarchical representation of contours, indicating the relationship between contour levels. This hierarchy provides insight into the nesting and organization of contours within the image.
+    - The hierarchical information of the contours, providing details on the contour structure and relationships.
     - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -70,18 +70,18 @@ class Contours:
     retrieval_modes = list(retrieval_modes_map.keys())
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "image": ("IMAGE",),
-                "retrieval_mode": (s.retrieval_modes, {"default": "RETR_LIST"}),
-                "approximation_mode": (s.approximation_modes, {"default": "CHAIN_APPROX_SIMPLE"}),
+                "retrieval_mode": (cls.retrieval_modes, {"default": "RETR_LIST"}),
+                "approximation_mode": (cls.approximation_modes, {"default": "CHAIN_APPROX_SIMPLE"}),
             },
         }
 
     RETURN_TYPES = ("CV_CONTOURS", "CV_CONTOUR", "CV_CONTOURS_HIERARCHY")
     FUNCTION = "find_contours"
-    CATEGORY = "Bmad/CV/Contour"
+    CATEGORY = f"{cv_category_path}/Contour"
     OUTPUT_IS_LIST = (False, True, False)
 
     def find_contours(self, image, retrieval_mode, approximation_mode):

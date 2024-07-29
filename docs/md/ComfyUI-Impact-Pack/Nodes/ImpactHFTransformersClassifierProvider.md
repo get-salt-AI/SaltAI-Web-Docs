@@ -1,28 +1,34 @@
+---
+tags:
+- Prompt
+- PromptComposer
+---
+
 # HF Transformers Classifier Provider
 ## Documentation
 - Class name: `ImpactHFTransformersClassifierProvider`
 - Category: `ImpactPack/HuggingFace`
 - Output node: `False`
 
-This node provides a mechanism to classify text or images using a selection of pre-trained Hugging Face transformer models or a manually specified model. It supports dynamic selection of the model repository based on user input and can operate in different device modes to optimize performance.
+Provides a classification pipeline for images using pre-trained models from Hugging Face Transformers. It allows selecting a model from a predefined list or specifying a custom model repository ID, and supports device mode configuration for performance optimization.
 ## Input types
 ### Required
 - **`preset_repo_id`**
-    - Specifies the pre-trained Hugging Face transformer model to use for classification. It can be selected from a predefined list or set to 'Manual repo id' to use a custom model specified by the 'manual_repo_id' parameter.
+    - Specifies the pre-trained model to use for classification. It can be selected from a predefined list of model URLs or set to 'Manual repo id' for custom models, enabling flexibility in model choice.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `Union[List[str], str]`
 - **`manual_repo_id`**
-    - Allows for the specification of a custom Hugging Face transformer model repository ID when 'preset_repo_id' is set to 'Manual repo id'. This enables the use of models not included in the predefined list.
+    - The repository ID of a custom model to be used for classification when 'Manual repo id' is selected. This allows for the use of models outside the predefined list.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`device_mode`**
-    - Determines the device (CPU or GPU) on which the classification model will run, optimizing for performance or resource availability.
+    - Determines the device (CPU or GPU) on which the classification pipeline will run, optimizing for performance or resource availability.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 ## Output types
 - **`transformers_classifier`**
     - Comfy dtype: `TRANSFORMERS_CLASSIFIER`
-    - The output is a Hugging Face transformer classifier pipeline, ready for performing classifications.
+    - The classification pipeline configured with the selected model, ready for image classification tasks.
     - Python dtype: `transformers.Pipeline`
 ## Usage tips
 - Infra type: `GPU`
@@ -60,7 +66,7 @@ class HF_TransformersClassifierProvider:
         else:
             device = "cpu"
 
-        classifier = pipeline(model=url, device=device)
+        classifier = pipeline('image-classification', model=url, device=device)
 
         return (classifier,)
 

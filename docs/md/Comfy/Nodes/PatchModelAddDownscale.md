@@ -1,6 +1,6 @@
 ---
 tags:
-- ImageScaling
+- ImageUpscaling
 ---
 
 # PatchModelAddDownscale (Kohya Deep Shrink)
@@ -9,45 +9,45 @@ tags:
 - Category: `_for_testing`
 - Output node: `False`
 
-The PatchModelAddDownscale node is designed to modify a given model by introducing downscaling and upscaling operations at specified points within the model's architecture. This process aims to adjust the model's internal representations by altering the resolution of feature maps, potentially enhancing the model's efficiency or performance on certain tasks.
+The `PatchModelAddDownscale` node is designed to modify a given model by integrating downscaling and upscaling processes within its computation flow. This node specifically targets the manipulation of model's internal blocks based on specified parameters, enabling the adjustment of the model's behavior to incorporate downscaling at designated stages of processing. It aims to enhance model efficiency or alter its output characteristics by dynamically adjusting the resolution of intermediate representations.
 ## Input types
 ### Required
 - **`model`**
-    - The model to be patched with downscaling and upscaling operations. This parameter is crucial as it defines the base model that will undergo modifications.
+    - The model to be patched with downscaling and upscaling functionalities. It serves as the base for modifications applied by the node.
     - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`block_number`**
-    - Specifies the block number within the model where the downscaling operation should be applied. This parameter allows for targeted modification of the model's architecture.
+    - Specifies the block number within the model where the downscaling should be applied, targeting specific stages of the model's processing flow.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`downscale_factor`**
-    - The factor by which the feature map's resolution is reduced during the downscaling operation. A higher downscale factor leads to a more significant reduction in resolution.
+    - The factor by which the model's intermediate representations are downscaled, affecting the resolution and potentially the computational efficiency.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`start_percent`**
-    - Defines the starting point of the sigma range for applying the downscaling operation, based on the model's internal noise levels.
+    - Defines the starting percentage of the sigma range for applying downscaling, determining the initial point within the model's processing where downscaling begins.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end_percent`**
-    - Defines the ending point of the sigma range for applying the downscaling operation, allowing for precise control over when the operation is performed.
+    - Specifies the ending percentage of the sigma range for downscaling, marking the point within the model's processing where downscaling ceases.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`downscale_after_skip`**
-    - A boolean flag indicating whether the downscaling operation should be applied after skip connections within the model. This choice can affect the flow of information through the model.
+    - A boolean flag indicating whether the downscaling should occur after skip connections within the model, affecting the placement and impact of downscaling operations.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`downscale_method`**
-    - Specifies the method used for downscaling the feature maps. Different methods can affect the quality and characteristics of the downscaled representations.
+    - The method used for downscaling the model's intermediate representations, influencing the quality and characteristics of the downscaling process.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`upscale_method`**
-    - Specifies the method used for upscaling the feature maps back to their original resolution. This parameter complements the downscale_method by restoring the feature map size.
+    - The method used for upscaling the model's intermediate representations back to their original resolution, affecting the quality and characteristics of the upscaling process.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The modified model with downscaling and upscaling operations applied at specified points. This output reflects the adjustments made to the model's architecture.
+    - The modified model with integrated downscaling and upscaling functionalities, reflecting the adjustments made to its internal processing flow.
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
@@ -81,8 +81,9 @@ class PatchModelAddDownscale:
     CATEGORY = "_for_testing"
 
     def patch(self, model, block_number, downscale_factor, start_percent, end_percent, downscale_after_skip, downscale_method, upscale_method):
-        sigma_start = model.model.model_sampling.percent_to_sigma(start_percent)
-        sigma_end = model.model.model_sampling.percent_to_sigma(end_percent)
+        model_sampling = model.get_model_object("model_sampling")
+        sigma_start = model_sampling.percent_to_sigma(start_percent)
+        sigma_end = model_sampling.percent_to_sigma(end_percent)
 
         def input_block_patch(h, transformer_options):
             if transformer_options["block"][1] == block_number:

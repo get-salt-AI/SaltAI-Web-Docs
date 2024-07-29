@@ -1,6 +1,9 @@
 ---
 tags:
+- CLIPConditioning
 - Conditioning
+- Context
+- SAM
 ---
 
 # Conditioning Grid (cond)
@@ -9,40 +12,40 @@ tags:
 - Category: `Bmad/conditioning`
 - Output node: `False`
 
-This node is designed to apply conditioning to a grid structure, enabling the customization of content generation based on specific grid coordinates. It facilitates the creation of complex, grid-based conditioning scenarios, allowing for detailed control over the generation process.
+This node is designed to apply conditioning to a grid layout, where each cell within the grid can be individually conditioned based on text inputs. It automates the process of encoding text inputs using a CLIP model and then applying these encoded conditionings to specific areas within a grid, facilitating the generation of complex, grid-based visual layouts with varied content.
 ## Input types
 ### Required
 - **`columns`**
-    - Specifies the number of columns in the grid, determining the grid's horizontal dimension.
+    - Specifies the number of columns in the grid, determining the grid's horizontal layout and how many cells it contains.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`rows`**
-    - Defines the number of rows in the grid, setting the grid's vertical dimension.
+    - Specifies the number of rows in the grid, determining the grid's vertical layout and how many cells it contains.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`width`**
-    - The width of each grid cell, influencing the spatial resolution of the conditioning applied.
+    - The width of each cell in the grid, in pixels. This affects the resolution and aspect ratio of the content within each cell.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - The height of each grid cell, affecting the spatial resolution of the conditioning applied.
+    - The height of each cell in the grid, in pixels. This affects the resolution and aspect ratio of the content within each cell.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`strength`**
-    - Determines the intensity of the conditioning effect, allowing for fine-tuning of the generated content's characteristics.
+    - Controls the intensity of the applied conditioning, allowing for fine-tuning of how prominently the text inputs influence the generated content.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`base`**
-    - The base conditioning that serves as the starting point for further modifications. It's crucial for establishing the initial context or theme of the generated content.
+    - The base text input for the grid's overall theme or background. This input sets the foundational conditioning layer upon which additional cell-specific conditionings are applied.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `str`
+    - Python dtype: `Conditioning`
 ## Output types
 - **`conditioning`**
     - Comfy dtype: `CONDITIONING`
-    - The conditioned output, representing the modified grid structure with applied conditioning.
-    - Python dtype: `str`
+    - The resulting conditioning for the grid, ready to be used for generating content within each cell based on the provided text inputs.
+    - Python dtype: `Conditioning`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -73,11 +76,8 @@ class ConditioningGridCond:
         maximum size but only a selected number of columns or rows given via input are used.
     """
 
-    def __init__(self):
-        pass
-
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {
             "columns": grid_len_INPUT,
             "rows": grid_len_INPUT,
@@ -89,7 +89,7 @@ class ConditioningGridCond:
 
     RETURN_TYPES = ("CONDITIONING",)
     FUNCTION = "set_conditioning"
-    CATEGORY = "Bmad/conditioning"
+    CATEGORY = conditioning_category_path
 
     def set_conditioning(self, base, columns, rows, width, height, strength, **kwargs):
         cond = base

@@ -1,6 +1,8 @@
 ---
 tags:
-- RegionalPrompt
+- Image
+- Prompt
+- Style
 ---
 
 # Regional Seed Explorer By Mask (Inspire)
@@ -9,41 +11,46 @@ tags:
 - Category: `InspirePack/Regional`
 - Output node: `False`
 
-The RegionalSeedExplorerMask node is designed to apply variations to noise patterns based on seed prompts and masks, enabling the exploration of diverse visual outcomes within specified regions. It leverages masks to focus changes, allowing for targeted modifications and enhancements in image generation processes.
+The RegionalSeedExplorerMask node is designed to explore and apply variations to noise patterns based on seed prompts and masks. It enables the customization of generative processes in specific regions of an image, enhancing creativity and control in image synthesis.
 ## Input types
 ### Required
 - **`mask`**
-    - The mask parameter specifies the region within the noise pattern where the seed prompt variations will be applied, enabling targeted modifications.
+    - The mask parameter specifies the region of the image where the noise variations will be applied, allowing for targeted modifications.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`noise`**
-    - The noise parameter represents the initial noise pattern to which the seed prompt variations will be applied, serving as the base for generating diverse visual outcomes.
+    - The noise parameter represents the initial noise pattern that will be modified according to the seed prompts and mask.
     - Comfy dtype: `NOISE`
     - Python dtype: `torch.Tensor`
 - **`seed_prompt`**
-    - The seed_prompt parameter contains the seed prompts that define the variations to be applied to the noise pattern, guiding the generation of specific visual outcomes.
+    - The seed_prompt parameter allows users to input specific seed prompts that guide the variation of the noise pattern in the masked region.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`enable_additional`**
-    - This parameter controls whether additional seed prompts and their corresponding strengths are included in the variation process, allowing for more complex modifications.
+    - This boolean parameter enables the inclusion of an additional seed and its strength in the variation process, offering further customization.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`additional_seed`**
-    - When additional modifications are enabled, this parameter specifies the additional seed prompt to be applied.
+    - When additional variations are enabled, this parameter specifies the additional seed to be used.
     - Comfy dtype: `INT`
-    - Python dtype: `str`
+    - Python dtype: `int`
 - **`additional_strength`**
-    - This parameter determines the strength of the additional seed prompt's effect on the noise pattern, allowing for fine-tuned adjustments.
+    - This parameter sets the strength of the additional seed's influence on the noise variation.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`noise_mode`**
-    - The noise_mode parameter specifies whether the processing should be performed on the CPU or GPU, affecting performance and resource utilization.
+    - Specifies whether the noise processing should be performed on the CPU or GPU, affecting performance.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
+### Optional
+- **`variation_method`**
+    - Determines the method of applying variations to the noise, such as linear, allowing for different types of noise modifications.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`noise`**
     - Comfy dtype: `NOISE`
-    - The modified noise pattern, reflecting the applied seed prompt variations within the specified mask region.
+    - The modified noise pattern after applying the seed prompts and variations according to the mask.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -66,6 +73,8 @@ class RegionalSeedExplorerMask:
                 "additional_strength": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 1.0, "step": 0.01}),
                 "noise_mode": (["GPU(=A1111)", "CPU"],),
             },
+            "optional":
+                {"variation_method": (["linear", "slerp"],), }
         }
 
     RETURN_TYPES = ("NOISE",)
@@ -73,7 +82,8 @@ class RegionalSeedExplorerMask:
 
     CATEGORY = "InspirePack/Regional"
 
-    def doit(self, mask, noise, seed_prompt, enable_additional, additional_seed, additional_strength, noise_mode):
+    @staticmethod
+    def doit(mask, noise, seed_prompt, enable_additional, additional_seed, additional_strength, noise_mode, variation_method='linear'):
         device = comfy.model_management.get_torch_device()
         noise_device = "cpu" if noise_mode == "CPU" else device
 
@@ -95,7 +105,7 @@ class RegionalSeedExplorerMask:
             if enable_additional:
                 items.append((additional_seed, additional_strength))
 
-            noise = prompt_support.SeedExplorer.apply_variation(noise, items, noise_device, mask)
+            noise = prompt_support.SeedExplorer.apply_variation(noise, items, noise_device, mask, variation_method=variation_method)
         except Exception:
             print(f"[ERROR] IGNORED: RegionalSeedExplorerColorMask is failed.")
             traceback.print_exc()

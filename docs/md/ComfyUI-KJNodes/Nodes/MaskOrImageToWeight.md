@@ -1,35 +1,41 @@
 ---
 tags:
 - Mask
+- MaskList
+- MaskMorphology
 ---
 
 # Mask Or Image To Weight
 ## Documentation
 - Class name: `MaskOrImageToWeight`
-- Category: `KJNodes`
+- Category: `KJNodes/weights`
 - Output node: `False`
 
-This node is designed to calculate the mean value of either masks or images provided as input, but not both simultaneously. It supports converting the calculated mean values into different output types, including a list, pandas series, or a tensor, based on the specified output type.
+The MaskOrImageToWeight node is designed to calculate the mean value of either masks or images provided as input, but not both simultaneously. It supports converting these mean values into different output types, including lists, pandas series, or tensors, based on the specified output type. This functionality allows for flexible data handling and integration into broader data processing or machine learning workflows.
 ## Input types
 ### Required
 - **`output_type`**
-    - Specifies the format of the output, which can be a list, pandas series, or tensor, dictating how the mean values calculated from the input masks or images are returned.
+    - Specifies the desired format for the output data, which can be a list, pandas series, or tensor. This choice determines how the mean values calculated from the input masks or images are structured for subsequent use.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`images`**
-    - An optional list of images to calculate mean values from. If provided, masks should not be used.
+    - An optional input consisting of images from which mean values are calculated if masks are not provided. This parameter allows the node to work with either image or mask data, but not both simultaneously.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `List[torch.Tensor]`
+    - Python dtype: `Optional[List[torch.Tensor]]`
 - **`masks`**
-    - An optional list of masks to calculate mean values from. If provided, images should not be used.
+    - An optional input consisting of masks from which mean values are calculated if images are not provided. This parameter enables the node to process either mask or image inputs, ensuring flexibility in data handling.
     - Comfy dtype: `MASK`
-    - Python dtype: `List[torch.Tensor]`
+    - Python dtype: `Optional[List[torch.Tensor]]`
 ## Output types
 - **`float`**
     - Comfy dtype: `FLOAT`
-    - The calculated mean values of the input masks or images, returned in the format specified by the output_type parameter.
+    - The processed mean values of the input masks or images, formatted according to the specified output type. This output facilitates further data manipulation or analysis in subsequent steps of a pipeline.
     - Python dtype: `Union[List[float], pandas.Series, torch.Tensor]`
+- **`string`**
+    - Comfy dtype: `STRING`
+    - A list of the mean values calculated from the input, represented as strings. This provides an alternative view of the data for logging or display purposes.
+    - Python dtype: `List[str]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -48,6 +54,7 @@ class MaskOrImageToWeight:
                     'list',
                     'pandas series',
                     'tensor',
+                    'string'
                 ],
                 {
                 "default": 'list'
@@ -59,9 +66,9 @@ class MaskOrImageToWeight:
             },
 
         }
-    RETURN_TYPES = ("FLOAT",)
+    RETURN_TYPES = ("FLOAT", "STRING",)
     FUNCTION = "execute"
-    CATEGORY = "KJNodes"
+    CATEGORY = "KJNodes/weights"
     DESCRIPTION = """
 Gets the mean values from mask or image batch  
 and returns that as the selected output type.   
@@ -80,16 +87,15 @@ and returns that as the selected output type.
                   
         # Convert mean_values to the specified output_type
         if output_type == 'list':
-            return mean_values,
+            out = mean_values,
         elif output_type == 'pandas series':
             try:
                 import pandas as pd
             except:
                 raise Exception("MaskOrImageToWeight: pandas is not installed. Please install pandas to use this output_type")
-            return pd.Series(mean_values),
+            out = pd.Series(mean_values),
         elif output_type == 'tensor':
-            return torch.tensor(mean_values, dtype=torch.float32),
-        else:
-            raise ValueError(f"Unsupported output_type: {output_type}")
+            out = torch.tensor(mean_values, dtype=torch.float32),
+        return (out, [str(value) for value in mean_values],)
 
 ```

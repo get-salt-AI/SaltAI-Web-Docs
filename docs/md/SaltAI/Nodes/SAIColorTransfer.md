@@ -1,6 +1,7 @@
 ---
 tags:
 - Color
+- Image
 ---
 
 # Color Transfer
@@ -9,28 +10,28 @@ tags:
 - Category: `SALT/Image/Process`
 - Output node: `False`
 
-The SAIColorTransfer node is designed for applying color transfer techniques between images, enabling the modification of the color palette of a target image to match that of a source image. This process is useful for harmonizing the colors between different images or achieving specific aesthetic effects.
+The SAIColorTransfer node is designed for applying color transfer techniques between images. It enables the modification of the color scheme of target images to match the color characteristics of source images, supporting various modes of color transfer.
 ## Input types
 ### Required
 - **`target_images`**
-    - Specifies the images whose color palettes are to be modified. This input is crucial for determining the final appearance of the output images.
+    - Target images are the images whose color schemes are to be modified. They serve as the canvas for the color transfer process.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `List[Image]`
+    - Python dtype: `torch.Tensor`
 - **`source_images`**
-    - Defines the images that provide the color palette to be transferred to the target images. The choice of source images directly influences the color transformation applied.
+    - Source images provide the color scheme to be transferred to the target images. They act as the reference for the desired color characteristics.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `List[Image]`
+    - Python dtype: `torch.Tensor`
 - **`mode`**
-    - Determines the method of color transfer to be applied, such as PDF regraining, mean transfer, or LAB color space transfer, affecting the visual outcome of the color adaptation.
+    - Specifies the color transfer mode to be used, such as 'pdf_regrain', 'mean_transfer', or 'lab_transfer', each offering a different approach to color adaptation.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `str`
 ## Output types
 - **`images`**
     - Comfy dtype: `IMAGE`
-    - The resulting images after the color transfer process, showcasing the adapted color palettes.
-    - Python dtype: `List[Image]`
+    - The modified images with the color scheme of the source images applied to the target images.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -76,7 +77,8 @@ class SAIColorTransfer:
             elif mode == "lab_transfer":
                 res = pil2tensor(cv2pil(self.ct.lab_transfer(img_arr_in=pil2cv(target_pil), img_arr_ref=pil2cv(source_pil))))
             else:
-                print(f"Invalid mode `{mode}` selected for {self.__class__.__name__}")
+                errmsg = f"Invalid mode `{mode}` selected for {self.__class__.__name__}"
+                logger.warning(errmsg)
                 res = target_image
 
             results.append(res)

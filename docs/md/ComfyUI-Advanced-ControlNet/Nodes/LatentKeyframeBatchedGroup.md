@@ -1,36 +1,37 @@
 ---
 tags:
-- AnimationScheduling
-- Frame
-- Keyframe
+- Counting
+- Curve
+- Interpolation
+- WavePatterns
 ---
 
-# Latent Keyframe Batched Group 🛂🅐🅒🅝
+# Latent Keyframe From List 🛂🅐🅒🅝
 ## Documentation
 - Class name: `LatentKeyframeBatchedGroup`
 - Category: `Adv-ControlNet 🛂🅐🅒🅝/keyframes`
 - Output node: `False`
 
-The LatentKeyframeBatchedGroup node is designed for the manipulation and generation of batched latent keyframes within a neural network's control mechanism. It enables the creation, interpolation, and management of keyframes based on specified strengths and batch indices, facilitating dynamic control over the generation process.
+The LatentKeyframeBatchedGroup node is designed for managing and manipulating groups of latent keyframes within a batch processing context. It facilitates the addition, replacement, and organization of keyframes based on their batch indices, supporting operations like cloning existing groups for modification or creating new groups from iterable strength values. This node plays a crucial role in the dynamic adjustment of keyframe strengths across batches, enabling complex animation and transformation effects in generative models.
 ## Input types
 ### Required
 - **`float_strengths`**
-    - Specifies the strengths for each keyframe in the batch. This parameter can be a single float value or an iterable of float values, determining the intensity or effect of each keyframe.
+    - Represents the strengths of keyframes to be added or modified in the batch. It can be a single float value or an iterable of float values, dictating the strength of each keyframe in the batch, thereby influencing the animation or transformation effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `Union[float, Iterable[float]]`
 ### Optional
 - **`prev_latent_kf`**
-    - An optional parameter that allows for the inclusion of previously generated latent keyframes. These keyframes can be merged with the newly generated or manipulated batch.
+    - An optional parameter that allows for the continuation or modification of an existing group of latent keyframes. If provided, the current operation will build upon or modify this existing group, enabling sequential or layered adjustments to keyframe strengths.
     - Comfy dtype: `LATENT_KEYFRAME`
     - Python dtype: `LatentKeyframeGroup`
 - **`print_keyframes`**
-    - A flag that, when set to True, enables logging information about each keyframe in the batch, including its batch index and strength.
+    - A boolean flag that, when set to True, triggers logging of the keyframe details. This is useful for debugging or for detailed insight into the keyframe adjustments being made.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`LATENT_KF`**
     - Comfy dtype: `LATENT_KEYFRAME`
-    - Returns a LatentKeyframeGroup object containing the batch of generated or manipulated latent keyframes.
+    - The resulting group of latent keyframes after processing. This includes any new keyframes added or modifications made to existing keyframes, organized and ready for further use in animation or transformation processes.
     - Python dtype: `LatentKeyframeGroup`
 ## Usage tips
 - Infra type: `CPU`
@@ -81,7 +82,7 @@ class LatentKeyframeBatchedGroupNode:
 
         if print_keyframes:
             for keyframe in curr_latent_keyframe.keyframes:
-                logger.info(f"keyframe {keyframe.batch_index}:{keyframe.strength}")
+                logger.info(f"LatentKeyframe {keyframe.batch_index}={keyframe.strength}")
 
         # replace values with prev_latent_keyframes
         for latent_keyframe in prev_latent_keyframe.keyframes:

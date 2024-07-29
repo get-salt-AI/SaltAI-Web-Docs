@@ -1,5 +1,8 @@
 ---
 tags:
+- Image
+- Pipeline
+- SamplerScheduler
 - Sampling
 ---
 
@@ -9,87 +12,91 @@ tags:
 - Category: `InspirePack/analysis`
 - Output node: `False`
 
-This node is designed to progressively sample images using an advanced KSampler algorithm, tailored for the Inspire pack. It iteratively refines the image generation process, allowing for detailed adjustments and enhancements at each step, based on a set of input parameters and conditions.
+This node represents an advanced version of the KSampler for progressive sampling in the Inspire pack. It extends the functionality of the standard KSampler by incorporating advanced features for more nuanced control over the sampling process, including progress tracking and optional callbacks for intermediate steps. This allows for a more detailed and customizable generation of samples, catering to specific needs and enhancing the overall sampling experience.
 ## Input types
 ### Required
 - **`model`**
-    - The model parameter specifies the generative model to be used for sampling, playing a crucial role in determining the quality and style of the generated images.
+    - The model parameter represents the generative model to be used for sampling. It is crucial for defining the behavior and output of the sampling process.
     - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`add_noise`**
-    - Determines whether noise should be added at the start of the sampling process, affecting the initial state and potentially the diversity of the generated images.
+    - Indicates whether noise should be added to the sampling process, affecting the diversity and quality of the generated samples.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`noise_seed`**
-    - Provides a seed for the noise generation, ensuring reproducibility and consistency in the images generated with added noise.
+    - The seed for noise generation, ensuring reproducibility and control over the randomness introduced in the sampling process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`steps`**
-    - Specifies the number of steps to perform in the sampling process, directly influencing the refinement and detail of the generated images.
+    - Defines the number of steps to be taken in the sampling process, directly impacting the detail and quality of the generated samples.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - Configuration settings for the sampling process, allowing for customization of the generation according to specific requirements.
+    - Configuration settings for the sampling process, allowing for customization of various aspects such as temperature and noise levels.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `dict`
+    - Python dtype: `float`
 - **`sampler_name`**
-    - Identifies the specific sampler algorithm to be used, enabling the selection of different sampling strategies within the advanced KSampler framework.
+    - Specifies the particular sampler to be used, enabling the selection of different sampling strategies based on the task at hand.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - Defines the scheduling algorithm for controlling the sampling process, impacting the progression and quality of image generation.
+    - The scheduler parameter controls the progression of sampling steps, allowing for fine-tuned adjustments to the sampling dynamics.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `object`
 - **`positive`**
-    - Positive prompts or conditions to guide the image generation towards desired attributes or themes.
+    - A list of positive prompts guiding the sampling towards desired attributes or themes in the generated samples.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `str`
+    - Python dtype: `list[str]`
 - **`negative`**
-    - Negative prompts or conditions to steer the image generation away from certain attributes or themes, refining the output.
+    - A list of negative prompts used to steer the sampling away from undesired attributes or themes, enhancing the relevance of the output.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `str`
+    - Python dtype: `list[str]`
 - **`latent_image`**
-    - The initial latent image to start the sampling from, setting the baseline for the progressive refinement process.
+    - The initial latent image to start the sampling from, setting the baseline for the generation process.
     - Comfy dtype: `LATENT`
     - Python dtype: `dict`
 - **`start_at_step`**
-    - The step at which to begin the sampling process, allowing for starting the refinement from a specific point in the generation.
+    - Specifies the starting step for the sampling process, allowing for resumed or phased sampling operations.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`end_at_step`**
-    - The final step at which the sampling process concludes, defining the extent of the progressive refinement.
+    - Defines the end step of the sampling process, marking the completion of the generation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`noise_mode`**
-    - Specifies the mode of noise application during the sampling process, affecting the texture and details of the generated images.
+    - Determines the mode of noise application during the sampling, influencing the texture and variability of the output.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`return_with_leftover_noise`**
-    - Indicates whether to include leftover noise in the returned samples, potentially adding to the diversity and realism of the images.
+    - Indicates whether the final output should include residual noise, offering an option for post-processing or further manipulation.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`interval`**
-    - The interval at which to capture and return intermediate samples, allowing for observation of the progression throughout the sampling process.
+    - The interval at which progress callbacks are triggered, enabling periodic updates and adjustments during the sampling.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`omit_start_latent`**
-    - If set to true, the initial latent image is omitted from the results, focusing the output on the progression made during the sampling.
+    - A flag to exclude the starting latent image from the results, useful for focusing on the changes introduced during the sampling.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`prev_progress_latent_opt`**
-    - Optional previous progress latent to be concatenated with the current sampling results, enabling continuous progression across multiple sampling sessions.
+    - unknown
     - Comfy dtype: `LATENT`
-    - Python dtype: `dict`
+    - Python dtype: `unknown`
+- **`scheduler_func_opt`**
+    - An optional scheduler function for additional control over the sampling steps, enhancing the flexibility of the process.
+    - Comfy dtype: `SCHEDULER_FUNC`
+    - Python dtype: `function`
 ## Output types
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - The final latent image after the completion of the sampling process, representing the culmination of the progressive refinement.
-    - Python dtype: `dict`
+    - unknown
+    - Python dtype: `unknown`
 - **`progress_latent`**
     - Comfy dtype: `LATENT`
-    - A collection of latent images captured at specified intervals during the sampling process, showcasing the progression and evolution of the image generation.
-    - Python dtype: `dict`
+    - The final generated samples or progress states, encapsulating the outcomes of the advanced sampling process.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -100,48 +107,56 @@ This node is designed to progressively sample images using an advanced KSampler 
 class KSamplerAdvanced_progress(a1111_compat.KSamplerAdvanced_inspire):
     @classmethod
     def INPUT_TYPES(s):
-        return {"required":
-                    {"model": ("MODEL",),
-                     "add_noise": ("BOOLEAN", {"default": True, "label_on": "enable", "label_off": "disable"}),
-                     "noise_seed": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff}),
-                     "steps": ("INT", {"default": 20, "min": 1, "max": 10000}),
-                     "cfg": ("FLOAT", {"default": 8.0, "min": 0.0, "max": 100.0, "step":0.5, "round": 0.01}),
-                     "sampler_name": (comfy.samplers.KSampler.SAMPLERS, ),
-                     "scheduler": (common.SCHEDULERS, ),
-                     "positive": ("CONDITIONING", ),
-                     "negative": ("CONDITIONING", ),
-                     "latent_image": ("LATENT", ),
-                     "start_at_step": ("INT", {"default": 0, "min": 0, "max": 10000}),
-                     "end_at_step": ("INT", {"default": 10000, "min": 0, "max": 10000}),
-                     "noise_mode": (["GPU(=A1111)", "CPU"],),
-                     "return_with_leftover_noise": ("BOOLEAN", {"default": False, "label_on": "enable", "label_off": "disable"}),
-                     "interval": ("INT", {"default": 1, "min": 1, "max": 10000}),
-                     "omit_start_latent": ("BOOLEAN", {"default": False, "label_on": "True", "label_off": "False"}),
-                     },
-                "optional": {"prev_progress_latent_opt": ("LATENT",), }
+        return {"required": {
+                    "model": ("MODEL",),
+                    "add_noise": ("BOOLEAN", {"default": True, "label_on": "enable", "label_off": "disable"}),
+                    "noise_seed": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff}),
+                    "steps": ("INT", {"default": 20, "min": 1, "max": 10000}),
+                    "cfg": ("FLOAT", {"default": 8.0, "min": 0.0, "max": 100.0, "step":0.5, "round": 0.01}),
+                    "sampler_name": (comfy.samplers.KSampler.SAMPLERS, ),
+                    "scheduler": (common.SCHEDULERS, ),
+                    "positive": ("CONDITIONING", ),
+                    "negative": ("CONDITIONING", ),
+                    "latent_image": ("LATENT", ),
+                    "start_at_step": ("INT", {"default": 0, "min": 0, "max": 10000}),
+                    "end_at_step": ("INT", {"default": 10000, "min": 0, "max": 10000}),
+                    "noise_mode": (["GPU(=A1111)", "CPU"],),
+                    "return_with_leftover_noise": ("BOOLEAN", {"default": False, "label_on": "enable", "label_off": "disable"}),
+                    "interval": ("INT", {"default": 1, "min": 1, "max": 10000}),
+                    "omit_start_latent": ("BOOLEAN", {"default": False, "label_on": "True", "label_off": "False"}),
+                    },
+                "optional": {
+                    "prev_progress_latent_opt": ("LATENT",),
+                    "scheduler_func_opt": ("SCHEDULER_FUNC",),
+                    }
                 }
 
-    FUNCTION = "sample"
+    FUNCTION = "doit"
 
     CATEGORY = "InspirePack/analysis"
 
     RETURN_TYPES = ("LATENT", "LATENT")
     RETURN_NAMES = ("latent", "progress_latent")
 
-    def sample(self, model, add_noise, noise_seed, steps, cfg, sampler_name, scheduler, positive, negative, latent_image, start_at_step, end_at_step, noise_mode, return_with_leftover_noise, interval, omit_start_latent, prev_progress_latent_opt=None):
-        sampler = a1111_compat.KSamplerAdvanced_inspire()
-
+    def doit(self, model, add_noise, noise_seed, steps, cfg, sampler_name, scheduler, positive, negative, latent_image, start_at_step, end_at_step,
+             noise_mode, return_with_leftover_noise, interval, omit_start_latent, prev_progress_latent_opt=None, scheduler_func_opt=None):
         if omit_start_latent:
             result = []
         else:
             result = [latent_image['samples']]
 
-        for i in range(start_at_step, min(end_at_step+1, steps+1)):
-            cur_add_noise = i == start_at_step and add_noise
-            cur_return_with_leftover_noise = i != steps or return_with_leftover_noise
-            latent_image = sampler.sample(model, cur_add_noise, noise_seed, steps, cfg, sampler_name, scheduler, positive, negative, latent_image, i, i+1, noise_mode, cur_return_with_leftover_noise)[0]
-            if i % interval == 0 or i == steps:
-                result.append(latent_image['samples'])
+        result = []
+
+        def progress_callback(step, x0, x, total_steps):
+            if (total_steps-1) != step and step % interval != 0:
+                return
+
+            x = model.model.process_latent_out(x)
+            x = x.to(model_management.intermediate_device())
+            result.append(x)
+
+        latent_image, noise = a1111_compat.KSamplerAdvanced_inspire.sample(model, add_noise, noise_seed, steps, cfg, sampler_name, scheduler, positive, negative, latent_image, start_at_step, end_at_step,
+                                                                           noise_mode, False, callback=progress_callback, scheduler_func_opt=scheduler_func_opt)
 
         if len(result) > 0:
             result = torch.cat(result)
@@ -152,6 +167,6 @@ class KSamplerAdvanced_progress(a1111_compat.KSamplerAdvanced_inspire):
         if prev_progress_latent_opt is not None:
             result['samples'] = torch.cat((prev_progress_latent_opt['samples'], result['samples']), dim=0)
 
-        return (latent_image, result)
+        return latent_image, result
 
 ```

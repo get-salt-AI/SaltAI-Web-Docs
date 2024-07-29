@@ -1,7 +1,6 @@
 ---
 tags:
-- Image
-- ImageListLoader
+- Animation
 ---
 
 # CR Image List (Legacy)

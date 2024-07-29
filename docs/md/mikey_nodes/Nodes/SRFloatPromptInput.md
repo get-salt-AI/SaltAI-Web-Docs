@@ -4,18 +4,18 @@
 - Category: `Mikey/Meta`
 - Output node: `False`
 
-The SRFloatPromptInput node is designed to process floating-point inputs for specific prompts, integrating them into a larger data structure based on unique identifiers. It primarily serves to update or modify prompt-related information with floating-point values, facilitating dynamic content generation or modification within a system.
+The SRFloatPromptInput node is designed for integrating floating-point values into a structured prompt system. It specifically handles the addition of floating-point input values to a prompt's metadata, facilitating dynamic content generation based on numerical input.
 ## Input types
 ### Required
 - **`input_float`**
-    - Represents the floating-point value to be integrated into the prompt's data structure, playing a crucial role in the dynamic modification or generation of content.
+    - The primary floating-point value to be added to the prompt's metadata. It plays a crucial role in customizing the prompt content based on numerical input.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`float`**
     - Comfy dtype: `FLOAT`
-    - unknown
-    - Python dtype: `unknown`
+    - The same floating-point value that was input, indicating successful integration into the prompt.
+    - Python dtype: `float`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -28,7 +28,7 @@ class SRFloatPromptInput:
     def INPUT_TYPES(s):
         return {'required': {'input_float': ('FLOAT', {'forceInput': True}),},
                 "hidden": {"unique_id": "UNIQUE_ID", "prompt": "PROMPT"}}
-    
+
     RETURN_TYPES = ("FLOAT",)
     FUNCTION = "add"
     CATEGORY = "Mikey/Meta"

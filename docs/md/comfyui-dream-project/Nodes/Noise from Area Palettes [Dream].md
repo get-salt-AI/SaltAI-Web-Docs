@@ -1,6 +1,7 @@
 ---
 tags:
 - Color
+- HSVColorSpace
 ---
 
 # 🌫 Noise from Area Palettes

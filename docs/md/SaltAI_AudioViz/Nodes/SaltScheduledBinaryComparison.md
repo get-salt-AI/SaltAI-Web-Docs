@@ -1,38 +1,40 @@
 ---
 tags:
+- AnimationScheduling
 - Scheduling
+- SigmaScheduling
 ---
 
 # Scheduled Binary Comparison
 ## Documentation
 - Class name: `SaltScheduledBinaryComparison`
-- Category: `SALT/Scheduling/Image`
+- Category: `SALT/AudioViz/Scheduling/Image`
 - Output node: `False`
 
-This node performs scheduled binary comparisons on a batch of images, applying a thresholding operation that can optionally consider a margin of error (epsilon). It dynamically adjusts the comparison threshold for each image in the batch based on a provided schedule, allowing for flexible image processing operations that can vary over time or across different images.
+This node performs scheduled binary comparisons on a batch of images, applying a dynamic thresholding technique that can optionally incorporate a margin of error (epsilon) to determine the binary outcome. It is designed to process images in batches, adjusting the comparison threshold per image based on a provided schedule, thereby enabling complex, time-varying binary image transformations.
 ## Input types
 ### Required
 - **`images`**
-    - The batch of images to be processed. This parameter is crucial for defining the set of images on which the binary thresholding operation will be applied, affecting the node's execution and results.
+    - The batch of images to be processed. This parameter is crucial for defining the input data on which the binary comparison and thresholding operations will be performed.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`comparison_schedule`**
-    - A schedule of comparison values to apply as thresholds for the binary comparison across the batch of images. This schedule directly influences the thresholding operation, enabling dynamic adjustments per image.
+    - A schedule of comparison threshold values to be applied to each image in the batch. This parameter allows for dynamic adjustment of the thresholding criteria over the batch.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 ### Optional
 - **`epsilon_schedule`**
-    - An optional schedule of epsilon values to allow for a margin of error in the comparison, enabling near-threshold values to be considered as matches. This parameter adds flexibility to the thresholding operation by accommodating slight variations.
+    - An optional schedule of epsilon values providing a margin of error for the comparison, enabling a more flexible thresholding operation.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 - **`use_epsilon`**
-    - A flag to determine whether the epsilon margin of error should be used in the comparison. This affects whether near-threshold values are considered as matches, adding a layer of flexibility to the binary comparison.
+    - A flag to determine whether the epsilon margin of error should be used in the comparison, offering a toggle between strict and flexible thresholding.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`images`**
     - Comfy dtype: `IMAGE`
-    - The result of the binary thresholding operation, where each pixel in the batch of images is set to either 1 or 0 based on the comparison outcome.
+    - The resulting batch of images after applying the scheduled binary comparison and thresholding operations, represented as binary outcomes.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -59,7 +61,7 @@ class SaltScheduledBinaryComparison:
     RETURN_NAMES = ("images",)
 
     FUNCTION = "binary_threshold"
-    CATEGORY = "SALT/Scheduling/Image"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling/Image"
 
     def binary_threshold(self, images, comparison_schedule, epsilon_schedule=[0.1], use_epsilon=True):
         batch_size = images.shape[0]

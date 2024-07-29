@@ -1,12 +1,12 @@
 # ComfyUI-Custom-Scripts
-ComfyUI-Custom-Scripts enhances the functionality of ComfyUI by adding a variety of custom scripts and nodes aimed at improving user experience and workflow efficiency. It includes features such as autocomplete for embedding and custom words, auto-arrangement of graphs, image and text display enhancements, and tools for better workflow management. The project aims to streamline operations and provide additional utility for users working with ComfyUI.
+ComfyUI-Custom-Scripts enhances the functionality of ComfyUI by adding a variety of custom scripts and nodes aimed at improving user experience and workflow efficiency. Features include autocomplete for embedding and custom words, auto-arrangement of graphs, image and text display enhancements, sound notifications, and tools for managing and manipulating nodes and groups. The project focuses on providing a more intuitive and feature-rich interface for users working with ComfyUI.
 
 ## Tags
-Audio * Checkpoint * CheckpointLoader * DataTypeAgnostic * DataTypeConversion * Debugging * ImageResize * ImageScaling * ImageSize * ImageTransformation * LoRA * Loader * Math * MathematicalExpressions * ModelIO * ModelLoader * String * Text
+AspectRatio * Audio * BackendCache * ConditionalSelection * DataConversion * DataTypeAgnostic * Debugging * Float * FloatData * ImageResize * ImageSize * ImpactPack * LoRA * Math * SigmaScheduling * String * Text
 
 ## Repo info
 - Repo url: `https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git`
-- Commit hash: `3f2c021e50be2fed3c9d1552ee8dcaae06ad1fe5`
+- Commit hash: `b0f21a3c13bac21068d1dcceb7c2d466167054b3`
 
 ## Licenses
 - **MIT**: `LICENSE`

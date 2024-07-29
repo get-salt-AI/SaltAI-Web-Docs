@@ -6,24 +6,24 @@ tags:
 # Audio Stereo Splitter
 ## Documentation
 - Class name: `SaltAudioStereoSplitter`
-- Category: `SALT/Audio/Process`
+- Category: `SALT/AudioViz/Audio/Process`
 - Output node: `False`
 
-The SaltAudioStereoSplitter node is designed to process stereo audio files by splitting them into their left and right channels as separate mono audio files. This functionality is essential for audio editing and processing tasks that require individual manipulation of each stereo channel.
+This node is designed to split a stereo audio file into two separate mono audio files, one for each channel. It ensures that audio input is in stereo format and divides it into left and right channels, providing a straightforward way to work with audio channels individually.
 ## Input types
 ### Required
 - **`audio`**
-    - The 'audio' parameter takes a stereo audio file as input, which is essential for the splitting process. The node expects this audio to be in a two-channel stereo format to successfully separate it into mono channels.
+    - The stereo audio input that will be split into two mono channels. It is essential for processing and must be in stereo format to ensure proper splitting.
     - Comfy dtype: `AUDIO`
     - Python dtype: `bytes`
 ## Output types
 - **`left_channel_mono`**
     - Comfy dtype: `AUDIO`
-    - The output representing the left channel of the original stereo audio file, processed and returned as a mono audio file.
+    - The left channel of the input stereo audio, processed and returned as a mono audio file.
     - Python dtype: `bytes`
 - **`right_channel_mono`**
     - Comfy dtype: `AUDIO`
-    - The output representing the right channel of the original stereo audio file, processed and returned as a mono audio file.
+    - The right channel of the input stereo audio, processed and returned as a mono audio file.
     - Python dtype: `bytes`
 ## Usage tips
 - Infra type: `CPU`
@@ -44,7 +44,7 @@ class SaltAudioStereoSplitter:
     RETURN_TYPES = ("AUDIO", "AUDIO")
     RETURN_NAMES = ("left_channel_mono", "right_channel_mono")
     FUNCTION = "split_stereo_to_mono"
-    CATEGORY = "SALT/Audio/Process"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Audio/Process"
 
     def split_stereo_to_mono(self, audio):
         stereo_audio_segment = AudioSegment.from_file(io.BytesIO(audio), format="wav")

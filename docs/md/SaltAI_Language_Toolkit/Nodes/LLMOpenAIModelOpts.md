@@ -3,84 +3,84 @@ tags:
 - LoRA
 ---
 
-# ∞ OpenAI Model Options
+# ∞ Model Options
 ## Documentation
 - Class name: `LLMOpenAIModelOpts`
 - Category: `SALT/Language Toolkit/Loaders/Options`
 - Output node: `False`
 
-This node provides a comprehensive interface for configuring options for various language models, including OpenAI's models. It allows users to fine-tune model parameters such as temperature, token limits, and API retry limits, as well as embedding model settings like batch size and dimensions. The node aims to offer a flexible setup for language model utilization, catering to specific needs for text generation and embedding tasks.
+The LLMOpenAIModelOpts node is designed to configure and customize the options for language models and their embedding counterparts. It allows for the adjustment of various parameters such as temperature, retries, and embedding dimensions, enabling fine-tuning of the model's behavior and performance.
 ## Input types
 ### Required
 - **`llm_model`**
-    - unknown
+    - The 'llm_model' parameter is a dictionary containing the language model and embedding model to be configured. It is crucial for specifying the models whose options are to be set, affecting the overall execution and results of the node.
     - Comfy dtype: `LLM_MODEL`
-    - Python dtype: `unknown`
+    - Python dtype: `Dict[str, Any]`
 ### Optional
 - **`model_temperature`**
-    - Specifies the temperature for the language model, affecting the randomness of the output. Lower values result in more deterministic outputs, while higher values increase creativity.
+    - Specifies the temperature setting for the language model, influencing its creativity and randomness.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`model_max_tokens`**
-    - Defines the maximum number of tokens the language model can generate in a single response, setting a limit on the output length.
+    - Defines the maximum number of tokens the language model can generate, affecting the length of the output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`model_api_max_retries`**
-    - Determines the maximum number of times to retry the API call in case of failure, ensuring robustness in network conditions.
+    - Determines the number of times the API will retry a request in case of failure, ensuring reliability.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`model_api_timeout`**
-    - Sets the timeout duration for the API call, ensuring the process does not hang indefinitely.
+    - Sets the timeout duration for API requests, impacting the response time.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`model_reuse_anyscale_client`**
-    - Indicates whether to reuse the Anyscale client across multiple requests, optimizing resource utilization.
+    - Indicates whether to reuse the Anyscale client across requests, optimizing resource usage.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`multimodal_max_new_tokens`**
-    - Specifies the maximum number of new tokens for multimodal inputs, applicable when the model supports multimodal data.
+    - Specifies the maximum number of new tokens for multimodal inputs, affecting the output length.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`multimodal_image_detail`**
-    - Determines the level of detail for images in multimodal inputs, with possible values being 'low', 'high', or 'auto', affecting the model's processing of visual data.
+    - Determines the level of detail for images in multimodal inputs, influencing the model's focus.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`embed_batch_size`**
-    - Sets the batch size for processing embeddings, impacting performance and resource usage.
+    - Sets the batch size for embedding model operations, affecting performance and resource utilization.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`embed_dimensions`**
-    - Specifies the dimensionality of the embeddings, affecting the vector representation's granularity.
+    - Specifies the dimensionality of the embeddings, influencing the detail level of the generated embeddings.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`embed_api_max_retries`**
-    - Determines the maximum number of retries for embedding API calls, ensuring reliability in network conditions.
+    - Determines the number of times the embedding API will retry in case of failure, ensuring reliability.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`embed_api_timeout`**
-    - Sets the timeout duration for embedding API calls, preventing indefinite hanging.
+    - Sets the timeout duration for embedding API requests, impacting the response time.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`embed_reuse_anyscale_client`**
-    - Indicates whether to reuse the Anyscale client for embedding operations, optimizing for resource efficiency.
+    - Indicates whether to reuse the Anyscale client for embedding operations, optimizing resource usage.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`model_additional_kwargs`**
-    - Allows for additional keyword arguments to be passed to the model, offering extended customization.
-    - Comfy dtype: `STRING`
-    - Python dtype: `Dict[str, Any]`
-- **`embed_additional_kwargs`**
-    - Enables additional keyword arguments for embedding operations, providing further customization options.
-    - Comfy dtype: `STRING`
-    - Python dtype: `Dict[str, Any]`
-- **`model_system_prompt`**
-    - Defines a system-level prompt that can be used to guide the model's generation process, offering a way to influence the context or direction of the output.
+    - Allows for the specification of additional keyword arguments for the model, enabling further customization.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
+- **`embed_additional_kwargs`**
+    - Allows for the specification of additional keyword arguments for the embedding model, enabling further customization.
+    - Comfy dtype: `STRING`
+    - Python dtype: `str`
+- **`model_system_prompt`**
+    - unknown
+    - Comfy dtype: `STRING`
+    - Python dtype: `unknown`
 ## Output types
 - **`model`**
     - Comfy dtype: `LLM_MODEL`
-    - A dictionary containing the updated language model and embedding model objects, reflecting the applied configuration options.
+    - The 'model' output is a dictionary reflecting the updated configurations of the language model and embedding model. It encapsulates the adjustments made to the models' options, influencing their operational characteristics and output.
     - Python dtype: `Dict[str, Any]`
 ## Usage tips
 - Infra type: `CPU`

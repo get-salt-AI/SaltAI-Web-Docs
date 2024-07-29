@@ -1,5 +1,8 @@
 ---
 tags:
+- Image
+- Pipeline
+- SamplerScheduler
 - Sampling
 ---
 
@@ -9,90 +12,90 @@ tags:
 - Category: `Efficiency Nodes/Sampling`
 - Output node: `True`
 
-The KSampler (Efficient) node is designed to efficiently sample latent images using a variety of sampling techniques, tailored to work with specific model configurations and conditioning parameters. It leverages the Comfy KSampler nodes to generate or refine latent images based on provided seeds, steps, and other relevant parameters, optimizing the process for performance without compromising on the quality of the generated images.
+The KSampler (Efficient) node is designed to efficiently sample latent images using a variety of sampling strategies, including regular and advanced methods. It leverages the Comfy KSampler nodes to generate or refine latent images based on specified conditions, aiming to optimize the sampling process for speed and resource usage.
 ## Input types
 ### Required
 - **`model`**
-    - Specifies the model to be used for sampling, playing a crucial role in determining the characteristics and quality of the generated latent images.
+    - Specifies the model to be used for sampling. It is crucial for determining the sampling behavior and the quality of the generated images.
     - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`seed`**
-    - A seed value to ensure reproducibility of the sampling process, affecting the randomness and variation in the generated images.
+    - Determines the random seed for sampling, ensuring reproducibility of results. It affects the randomness of the generated latent images.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`steps`**
-    - Defines the number of steps to be taken in the sampling process, impacting the detail and quality of the output images.
+    - Defines the number of steps to perform during sampling. It influences the detail and quality of the generated images.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - A configuration parameter that adjusts the sampling process, influencing the generation's creativity and fidelity.
+    - Controls the conditioning-free guidance (CFG) scale, affecting the adherence to the specified conditions.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sampler_name`**
-    - Identifies the specific sampling algorithm to be used, affecting the approach and technique for generating latent images.
+    - Identifies the specific sampler algorithm to use, impacting the sampling method and results.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - Specifies the scheduler for the sampling process, controlling the progression of steps and their impact on image quality.
+    - Specifies the scheduler for controlling the sampling process, affecting the progression of image generation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`positive`**
-    - Positive conditioning text to guide the image generation towards desired attributes or themes.
+    - The positive conditioning text to guide the image generation towards desired attributes.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `str`
 - **`negative`**
-    - Negative conditioning text to steer the image generation away from certain attributes or themes.
+    - The negative conditioning text to steer the image generation away from undesired attributes.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `str`
 - **`latent_image`**
-    - An initial latent image to be refined or modified through the sampling process, serving as a starting point for generation.
+    - The initial latent image to refine or generate from, if provided. It influences the starting point of the sampling process.
     - Comfy dtype: `LATENT`
     - Python dtype: `torch.Tensor`
 - **`denoise`**
-    - A parameter to control the denoising level in the sampling process, affecting the clarity and sharpness of the generated images.
+    - Adjusts the level of denoising applied during sampling, affecting the clarity and quality of the generated images.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`preview_method`**
-    - Specifies the method used for previewing the sampling process, influencing how intermediate or final results are visualized.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`vae_decode`**
-    - Indicates whether to decode the latent image using a VAE model, affecting the final image representation.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `bool`
+    - Python dtype: `unknown`
 ### Optional
 - **`optional_vae`**
-    - An optional VAE model that can be used for decoding, providing flexibility in the image generation process.
+    - unknown
     - Comfy dtype: `VAE`
-    - Python dtype: `torch.nn.Module or None`
+    - Python dtype: `unknown`
 - **`script`**
-    - An optional script to customize or extend the sampling process, allowing for advanced manipulation of the generation.
+    - unknown
     - Comfy dtype: `SCRIPT`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 ## Output types
 - **`MODEL`**
     - Comfy dtype: `MODEL`
-    - The model used in the sampling process, potentially modified or updated.
-    - Python dtype: `torch.nn.Module`
+    - unknown
+    - Python dtype: `unknown`
 - **`CONDITIONING+`**
     - Comfy dtype: `CONDITIONING`
-    - The positive conditioning information used or generated during the sampling process.
+    - Positive conditioning information that has been applied or generated during the sampling process.
     - Python dtype: `str`
 - **`CONDITIONING-`**
     - Comfy dtype: `CONDITIONING`
-    - The negative conditioning information used or generated during the sampling process.
+    - Negative conditioning information that has been applied or generated during the sampling process.
     - Python dtype: `str`
 - **`LATENT`**
     - Comfy dtype: `LATENT`
-    - The output latent image(s) generated or refined by the sampling process, ready for further processing or conversion into visible images.
+    - The sampled or refined latent image, representing the result of the sampling process.
     - Python dtype: `torch.Tensor`
 - **`VAE`**
     - Comfy dtype: `VAE`
-    - The VAE model used or referenced in the sampling process, if applicable.
-    - Python dtype: `torch.nn.Module`
+    - VAE-related output, potentially including encoded or decoded information as part of the sampling process.
+    - Python dtype: `torch.Tensor`
 - **`IMAGE`**
     - Comfy dtype: `IMAGE`
-    - The final or intermediate images generated during the sampling process, as determined by the preview method and other parameters.
+    - The final image output, representing the visual result of the sampling and conditioning process.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -103,7 +106,7 @@ The KSampler (Efficient) node is designed to efficiently sample latent images us
     - [VAEDecode](../../Comfy/Nodes/VAEDecode.md)
     - [UltimateSDUpscale](../../ComfyUI_UltimateSDUpscale/Nodes/UltimateSDUpscale.md)
     - [CR Simple Meme Template](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Simple Meme Template.md)
-    - NNLatentUpscale
+    - [NNLatentUpscale](../../ComfyUi_NNLatentUpscale/Nodes/NNLatentUpscale.md)
     - [LatentUpscaleBy](../../Comfy/Nodes/LatentUpscaleBy.md)
     - [ReActorFaceSwap](../../comfyui-reactor-node/Nodes/ReActorFaceSwap.md)
     - [VHS_VideoCombine](../../ComfyUI-VideoHelperSuite/Nodes/VHS_VideoCombine.md)
@@ -113,7 +116,6 @@ The KSampler (Efficient) node is designed to efficiently sample latent images us
 ## Source code
 ```python
 class TSC_KSampler:
-    
     empty_image = pil2tensor(Image.new('RGBA', (1, 1), (0, 0, 0, 0)))
 
     @classmethod
@@ -124,7 +126,7 @@ class TSC_KSampler:
                      "steps": ("INT", {"default": 20, "min": 1, "max": 10000}),
                      "cfg": ("FLOAT", {"default": 7.0, "min": 0.0, "max": 100.0}),
                      "sampler_name": (comfy.samplers.KSampler.SAMPLERS,),
-                     "scheduler": (comfy.samplers.KSampler.SCHEDULERS,),
+                     "scheduler": (SCHEDULERS,),
                      "positive": ("CONDITIONING",),
                      "negative": ("CONDITIONING",),
                      "latent_image": ("LATENT",),
@@ -147,7 +149,7 @@ class TSC_KSampler:
                preview_method, vae_decode, denoise=1.0, prompt=None, extra_pnginfo=None, my_unique_id=None,
                optional_vae=(None,), script=None, add_noise=None, start_at_step=None, end_at_step=None,
                return_with_leftover_noise=None, sampler_type="regular"):
-
+        
         # Rename the vae variable
         vae = optional_vae
 
@@ -181,10 +183,21 @@ class TSC_KSampler:
                                 refiner_model, refiner_positive, refiner_negative, vae, vae_decode, preview_method):
 
             # Store originals
+            original_calculation = comfy.samplers.calculate_sigmas
+            original_KSampler_SCHEDULERS = comfy.samplers.KSampler.SCHEDULERS
             previous_preview_method = global_preview_method()
             original_prepare_noise = comfy.sample.prepare_noise
             original_KSampler = comfy.samplers.KSampler
             original_model_str = str(model)
+
+            # monkey patch the sample function
+            def calculate_sigmas(model_sampling, scheduler_name: str, steps):
+                if scheduler_name.startswith("AYS"):
+                    return AlignYourStepsScheduler().get_sigmas(scheduler_name.split(" ")[1], steps, denoise=1.0)[0]
+                return original_calculation(model_sampling, scheduler_name, steps)
+
+            comfy.samplers.KSampler.SCHEDULERS = SCHEDULERS
+            comfy.samplers.calculate_sigmas = calculate_sigmas
 
             # Initialize output variables
             samples = images = gifs = preview = cnet_imgs = None
@@ -417,6 +430,8 @@ class TSC_KSampler:
                 set_preview_method(previous_preview_method)
                 comfy.samplers.KSampler = original_KSampler
                 comfy.sample.prepare_noise = original_prepare_noise
+                comfy.samplers.calculate_sigmas = original_calculation
+                comfy.samplers.KSampler.SCHEDULERS = original_KSampler_SCHEDULERS
 
             return samples, images, gifs, preview
 
@@ -1082,7 +1097,7 @@ class TSC_KSampler:
                     encode = True
 
                 # Load LoRA if required
-                elif (X_type == "LoRA" and index == 0):
+                elif (X_type == "LoRA"):
                     # Don't cache Checkpoints
                     model, clip = load_lora(lora_stack, ckpt_name, xyplot_id, cache=cache[2])
                     encode = True
@@ -1102,13 +1117,13 @@ class TSC_KSampler:
 
                 # Encode base prompt if required
                 encode_types = ["Positive Prompt S/R", "Negative Prompt S/R", "Clip Skip", "ControlNetStrength",
-                                "ControlNetStart%",  "ControlNetEnd%"]
+                                "ControlNetStart%",  "ControlNetEnd%", "XY_Capsule"]
                 if (X_type in encode_types and index == 0) or Y_type in encode_types:
                     encode = True
 
                 # Encode refiner prompt if required
                 encode_refiner_types = ["Positive Prompt S/R", "Negative Prompt S/R", "AScore+", "AScore-",
-                                        "Clip Skip (Refiner)"]
+                                        "Clip Skip (Refiner)", "XY_Capsule"]
                 if (X_type in encode_refiner_types and index == 0) or Y_type in encode_refiner_types:
                     encode_refiner = True
 

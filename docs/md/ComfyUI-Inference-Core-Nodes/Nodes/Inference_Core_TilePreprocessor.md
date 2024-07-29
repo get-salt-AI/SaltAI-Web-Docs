@@ -1,6 +1,9 @@
 ---
 tags:
-- Image
+- Flip
+- GridLayout
+- ImageDuplication
+- ImageTransformation
 - Tiled
 ---
 

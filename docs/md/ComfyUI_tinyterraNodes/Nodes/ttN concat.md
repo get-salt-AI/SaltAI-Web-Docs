@@ -1,38 +1,39 @@
 ---
 tags:
-- Concatenate
+- ComfyrollNodes
+- Index
 - Text
 ---
 
 # textConcat
 ## Documentation
 - Class name: `ttN concat`
-- Category: `ttN/text`
+- Category: `🌏 tinyterra/text`
 - Output node: `False`
 
-The ttN_concat node is designed to concatenate three input strings using a specified delimiter, allowing for flexible string manipulation and combination within a text processing workflow.
+The ttN concat node is designed for concatenating text strings, providing a simple yet flexible way to merge multiple text inputs into a single string. This functionality is essential in text processing workflows where combining pieces of text in various configurations is required.
 ## Input types
 ### Required
 - **`text1`**
-    - The first text string to be concatenated. It supports multiline input and dynamic prompts, enabling complex text inputs.
+    - The first text string to be concatenated. It serves as the initial part of the final concatenated text.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`text2`**
-    - The second text string to be concatenated, also supporting multiline input and dynamic prompts.
+    - The second text string to be concatenated. It follows the first text in the final concatenated output.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`text3`**
-    - The third text string to be concatenated, further extending the node's capability to handle complex text combinations.
+    - The third text string to be concatenated. It is added after the first and second texts in the final output.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`delimiter`**
-    - A string used to separate the concatenated texts. It can be a single character or a sequence of characters, excluding newline by default.
+    - A string used to separate the concatenated texts. It defines how the texts are joined together in the final output.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`concat`**
     - Comfy dtype: `STRING`
-    - The result of concatenating text1, text2, and text3 using the specified delimiter.
+    - The result of concatenating the input texts separated by the specified delimiter.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -63,7 +64,7 @@ class ttN_concat:
     RETURN_NAMES = ("concat",)
     FUNCTION = "conmeow"
 
-    CATEGORY = "ttN/text"
+    CATEGORY = "🌏 tinyterra/text"
 
     def conmeow(self, text1='', text2='', text3='', delimiter=''):
         text1 = '' if text1 == 'undefined' else text1

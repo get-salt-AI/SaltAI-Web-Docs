@@ -6,32 +6,32 @@ tags:
 # Audio De-esser
 ## Documentation
 - Class name: `SaltAudioDeesser`
-- Category: `SALT/Audio/Effect`
+- Category: `SALT/AudioViz/Audio/Effect`
 - Output node: `False`
 
-The SaltAudioDeesser node is designed to reduce sibilance in audio recordings through a de-essing process. It applies a specific audio filter to attenuate the intensity of sibilant consonants, typically found in vocal tracks, based on user-defined parameters such as intensity, amount, and frequency to keep.
+The SaltAudioDeesser node is designed to process audio files by applying a de-esser effect, which reduces or eliminates sibilance (harsh 's' or 'sh' sounds) from the audio. This is achieved through the use of command-line tools to dynamically adjust the intensity, amount, and frequency of the de-essing effect based on user inputs.
 ## Input types
 ### Required
 - **`audio`**
-    - The raw audio data to be processed. This input is crucial for the de-essing operation, as it is the target for sibilance reduction.
+    - The raw audio data to be processed. This input is crucial as it is the target for the de-esser effect, aiming to reduce sibilance without affecting the overall quality of the audio.
     - Comfy dtype: `AUDIO`
     - Python dtype: `bytes`
 - **`intensity`**
-    - Defines the threshold level for the de-essing effect, controlling how aggressively the sibilance is reduced.
+    - Defines the intensity of the de-esser effect. Higher values result in more aggressive sibilance reduction.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`amount`**
-    - Specifies the amount of sibilance reduction applied to the audio, affecting the intensity of the de-essing effect.
+    - Specifies the amount of sibilance reduction to apply. This controls how much of the detected sibilance is reduced.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`frequency_keep`**
-    - Determines the frequency range to be preserved from the de-essing process, ensuring important audio characteristics are maintained.
+    - The frequency above which sibilance is reduced. This helps in preserving the desired frequencies while reducing unwanted sibilance.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`audio`**
     - Comfy dtype: `AUDIO`
-    - The processed audio data with reduced sibilance, resulting from the de-essing operation.
+    - The audio data after the de-esser effect has been applied, with reduced sibilance.
     - Python dtype: `bytes`
 ## Usage tips
 - Infra type: `CPU`
@@ -55,7 +55,7 @@ class SaltAudioDeesser:
     RETURN_TYPES = ("AUDIO",)
     RETURN_NAMES = ("audio",)
     FUNCTION = "apply_deesser"
-    CATEGORY = "SALT/Audio/Effect"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Audio/Effect"
 
     def apply_deesser(cls, audio, intensity, amount, frequency_keep):
         TEMP = folder_paths.get_temp_directory()

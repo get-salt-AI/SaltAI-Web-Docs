@@ -1,7 +1,6 @@
 ---
 tags:
-- Text
-- TextReplacement
+- SigmaScheduling
 ---
 
 # 🔤 CR Text Replace

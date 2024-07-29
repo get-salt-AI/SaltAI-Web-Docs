@@ -1,6 +1,9 @@
 ---
 tags:
+- Animation
 - Image
+- ImageDrawing
+- ImageLoad
 ---
 
 # Load Image List From Dir (Inspire)

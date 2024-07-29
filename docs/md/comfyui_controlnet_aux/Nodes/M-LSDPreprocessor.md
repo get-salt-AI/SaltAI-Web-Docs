@@ -1,8 +1,7 @@
 ---
 tags:
-- DepthMap
-- Image
-- ImagePreprocessing
+- DepthMapEstimation
+- Inpaint
 - LineExtraction
 ---
 

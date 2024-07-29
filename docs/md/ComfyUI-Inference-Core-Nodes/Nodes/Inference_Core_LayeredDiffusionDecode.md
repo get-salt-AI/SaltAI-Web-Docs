@@ -1,7 +1,7 @@
 ---
 tags:
+- Image
 - LayeredDiffusion
-- LayeredDiffusionDecode
 ---
 
 # [Inference.Core] Layer Diffuse Decode

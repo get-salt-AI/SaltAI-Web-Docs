@@ -1,7 +1,6 @@
 ---
 tags:
 - DetailEnhancement
-- Image
 - Pipeline
 ---
 
@@ -11,74 +10,82 @@ tags:
 - Category: `ImpactPack/Detailer`
 - Output node: `False`
 
-The SEGSDetailerForAnimateDiff node is designed to enhance the segmentation details of animated differences in images, utilizing various parameters such as guide size, seed, and configuration settings to refine the output. It aims to improve the visual quality of animations by adjusting segmentation details for more precise and visually appealing results.
+This node specializes in enhancing the detail and quality of segmentation maps specifically for animated differences, utilizing a detailed processing pipeline to refine and adjust segmentation outputs for improved animation effects. It operates by taking in image frames and segmentation maps, applying a series of refinements, and outputting enhanced segmentation maps along with corresponding control net images.
 ## Input types
 ### Required
 - **`image_frames`**
-    - Specifies the sequence of image frames to be detailed. It plays a crucial role in determining the animation's visual flow and quality.
+    - The sequence of image frames to be processed. It plays a crucial role in guiding the detail enhancement process by providing the visual context necessary for refining the segmentation maps.
     - Comfy dtype: `IMAGE`
     - Python dtype: `List[torch.Tensor]`
 - **`segs`**
-    - Represents the segmentation information for the input images, which is essential for identifying and enhancing specific areas within the animation.
+    - The initial segmentation maps that are to be enhanced. These maps are crucial for the node's operation as they serve as the base upon which refinements are applied to improve the animation effect.
     - Comfy dtype: `SEGS`
     - Python dtype: `List[torch.Tensor]`
 - **`guide_size`**
-    - Determines the guiding size for the detailing process, affecting the level of detail and refinement applied to the segmentation.
+    - Specifies the target size for guiding the detail enhancement process. It affects the scaling of the input segmentation maps and image frames, impacting the precision and quality of the output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `int`
 - **`guide_size_for`**
-    - Specifies the target for the guide size, influencing how the detailing adjustments are applied across different segments.
+    - Indicates the specific purpose or target for the guide size, affecting how the detail enhancement process is tailored to different animation requirements.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `str`
 - **`max_size`**
-    - Sets the maximum size limit for the detailing process, ensuring that the enhancements remain within a manageable scale.
+    - The maximum allowable size for the processed outputs, ensuring that the enhanced segmentation maps and control net images do not exceed this limit, which helps in managing resource utilization.
     - Comfy dtype: `FLOAT`
     - Python dtype: `int`
 - **`seed`**
-    - Provides a seed value for random number generation, contributing to the consistency and reproducibility of the detailing effects.
+    - A seed value for ensuring reproducibility in the detail enhancement process. It influences the randomness in the process, allowing for consistent results across runs.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`steps`**
-    - Defines the number of steps to be taken in the detailing process, directly impacting the depth of detail and refinement.
+    - The number of steps to execute in the detail enhancement process, affecting the depth of refinement applied to the segmentation maps and the overall quality of the output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - Configuration settings that dictate the overall behavior and parameters of the detailing process.
+    - Configuration settings for the detail enhancement process, providing flexibility in adjusting the parameters and algorithms used for refining the segmentation maps.
     - Comfy dtype: `FLOAT`
     - Python dtype: `Dict[str, Any]`
 - **`sampler_name`**
-    - Specifies the sampler to be used, influencing the method of detail enhancement based on the segmentation.
+    - Specifies the sampling method to be used in the detail enhancement process, influencing the approach to refining the segmentation maps and control net images.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - Determines the scheduling strategy for the detailing process, affecting the timing and sequence of operations.
+    - The scheduler to be used in the detail enhancement process, coordinating the execution of steps and the application of refinements to the segmentation maps.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`denoise`**
-    - Indicates whether denoising should be applied, which can help in reducing noise and improving the clarity of the detailed segments.
+    - A flag indicating whether denoising should be applied during the detail enhancement process, which can help in improving the clarity and quality of the output segmentation maps.
     - Comfy dtype: `FLOAT`
     - Python dtype: `bool`
 - **`basic_pipe`**
-    - Refers to the basic processing pipeline to be used, setting the foundation for the detailing operations.
+    - Specifies the basic processing pipeline to be used for the initial stages of the detail enhancement process, setting the foundation for further refinements.
     - Comfy dtype: `BASIC_PIPE`
     - Python dtype: `str`
 - **`refiner_ratio`**
-    - Optional parameter that specifies the ratio of refinement to be applied, allowing for fine-tuning of the detailing intensity.
+    - The ratio of refinement to be applied, determining the extent of detail enhancement in relation to the initial processing. It allows for fine-tuning the balance between refinement and original detail.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`refiner_basic_pipe_opt`**
-    - Optional parameter that provides additional options for the basic refinement pipeline, offering further customization.
+    - Optional configurations for the basic processing pipeline during the refinement stage, offering additional customization for the detail enhancement process.
     - Comfy dtype: `BASIC_PIPE`
+    - Python dtype: `Dict[str, Any]`
+- **`noise_mask_feather`**
+    - The feathering value for noise masks, affecting the smoothness of transitions and blending in the enhanced segmentation maps.
+    - Comfy dtype: `INT`
+    - Python dtype: `int`
+- **`scheduler_func_opt`**
+    - Optional configurations for the scheduler function, providing further customization for the coordination and execution of the detail enhancement process.
+    - Comfy dtype: `SCHEDULER_FUNC`
     - Python dtype: `Dict[str, Any]`
 ## Output types
 - **`segs`**
     - Comfy dtype: `SEGS`
-    - Outputs the enhanced segmentation details, reflecting the improvements made during the detailing process.
+    - The enhanced segmentation maps, which have been refined and adjusted for improved animation effects, showcasing the effectiveness of the detail enhancement process.
     - Python dtype: `List[torch.Tensor]`
 - **`cnet_images`**
     - Comfy dtype: `IMAGE`
-    - Provides a list of images with applied content network enhancements, showcasing the detailed animation frames.
+    - The control net images corresponding to the enhanced segmentation maps, which are used to guide further processing and refinement for animation purposes.
     - Python dtype: `List[torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
@@ -95,22 +102,22 @@ class SEGSDetailerForAnimateDiff:
         return {"required": {
                      "image_frames": ("IMAGE", ),
                      "segs": ("SEGS", ),
-                     "guide_size": ("FLOAT", {"default": 256, "min": 64, "max": MAX_RESOLUTION, "step": 8}),
+                     "guide_size": ("FLOAT", {"default": 512, "min": 64, "max": MAX_RESOLUTION, "step": 8}),
                      "guide_size_for": ("BOOLEAN", {"default": True, "label_on": "bbox", "label_off": "crop_region"}),
                      "max_size": ("FLOAT", {"default": 768, "min": 64, "max": MAX_RESOLUTION, "step": 8}),
                      "seed": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff}),
                      "steps": ("INT", {"default": 20, "min": 1, "max": 10000}),
                      "cfg": ("FLOAT", {"default": 8.0, "min": 0.0, "max": 100.0}),
                      "sampler_name": (comfy.samplers.KSampler.SAMPLERS,),
-                     "scheduler": (comfy.samplers.KSampler.SCHEDULERS,),
+                     "scheduler": (core.SCHEDULERS,),
                      "denoise": ("FLOAT", {"default": 0.5, "min": 0.0001, "max": 1.0, "step": 0.01}),
                      "basic_pipe": ("BASIC_PIPE",),
-                     "refiner_ratio": ("FLOAT", {"default": 0.2, "min": 0.0, "max": 1.0})
+                     "refiner_ratio": ("FLOAT", {"default": 0.2, "min": 0.0, "max": 1.0}),
                      },
                 "optional": {
                      "refiner_basic_pipe_opt": ("BASIC_PIPE",),
-                     # TODO: "inpaint_model": ("BOOLEAN", {"default": False, "label_on": "enabled", "label_off": "disabled"}),
-                     # TODO: "noise_mask_feather": ("INT", {"default": 20, "min": 0, "max": 100, "step": 1}),
+                     "noise_mask_feather": ("INT", {"default": 20, "min": 0, "max": 100, "step": 1}),
+                     "scheduler_func_opt": ("SCHEDULER_FUNC",),
                      }
                 }
 
@@ -124,7 +131,7 @@ class SEGSDetailerForAnimateDiff:
 
     @staticmethod
     def do_detail(image_frames, segs, guide_size, guide_size_for, max_size, seed, steps, cfg, sampler_name, scheduler,
-                  denoise, basic_pipe, refiner_ratio=None, refiner_basic_pipe_opt=None, inpaint_model=False, noise_mask_feather=0):
+                  denoise, basic_pipe, refiner_ratio=None, refiner_basic_pipe_opt=None, noise_mask_feather=0, scheduler_func_opt=None):
 
         model, clip, vae, positive, negative = basic_pipe
         if refiner_basic_pipe_opt is None:
@@ -174,7 +181,7 @@ class SEGSDetailerForAnimateDiff:
                                                                                      refiner_ratio=refiner_ratio, refiner_model=refiner_model,
                                                                                      refiner_clip=refiner_clip, refiner_positive=refiner_positive,
                                                                                      refiner_negative=refiner_negative, control_net_wrapper=seg.control_net_wrapper,
-                                                                                     inpaint_model=inpaint_model, noise_mask_feather=noise_mask_feather)
+                                                                                     noise_mask_feather=noise_mask_feather, scheduler_func=scheduler_func_opt)
             if cnet_images is not None:
                 cnet_image_list.extend(cnet_images)
 
@@ -189,11 +196,11 @@ class SEGSDetailerForAnimateDiff:
         return (segs[0], new_segs), cnet_image_list
 
     def doit(self, image_frames, segs, guide_size, guide_size_for, max_size, seed, steps, cfg, sampler_name, scheduler,
-             denoise, basic_pipe, refiner_ratio=None, refiner_basic_pipe_opt=None, inpaint_model=False, noise_mask_feather=0):
+             denoise, basic_pipe, refiner_ratio=None, refiner_basic_pipe_opt=None, inpaint_model=False, noise_mask_feather=0, scheduler_func_opt=None):
 
         segs, cnet_images = SEGSDetailerForAnimateDiff.do_detail(image_frames, segs, guide_size, guide_size_for, max_size, seed, steps, cfg, sampler_name,
                                                                  scheduler, denoise, basic_pipe, refiner_ratio, refiner_basic_pipe_opt,
-                                                                 inpaint_model=inpaint_model, noise_mask_feather=noise_mask_feather)
+                                                                 noise_mask_feather=noise_mask_feather, scheduler_func_opt=scheduler_func_opt)
 
         if len(cnet_images) == 0:
             cnet_images = [empty_pil_tensor()]

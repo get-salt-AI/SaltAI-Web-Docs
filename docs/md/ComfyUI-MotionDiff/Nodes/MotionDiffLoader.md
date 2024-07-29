@@ -1,6 +1,8 @@
 ---
 tags:
+- Animation
 - MotionData
+- PoseEstimation
 ---
 
 # MotionDiff Loader

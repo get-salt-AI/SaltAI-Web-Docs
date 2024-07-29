@@ -1,7 +1,6 @@
 ---
 tags:
-- ImageResolution
-- ImageTransformation
+- ImageSize
 ---
 
 # SDXL Recommended Resolution Calc (JPS)

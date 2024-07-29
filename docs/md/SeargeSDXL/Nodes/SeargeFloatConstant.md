@@ -1,6 +1,6 @@
 ---
 tags:
-- Constant
+- NumberRangeGeneration
 ---
 
 # Float Constant

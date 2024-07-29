@@ -1,7 +1,8 @@
 ---
 tags:
-- Image
-- VisualEffects
+- ImageDrawing
+- PatternGeneration
+- TextOnImage
 ---
 
 # 📱 CR Seamless Checker

@@ -1,6 +1,6 @@
 ---
 tags:
-- ImageScaling
+- ImageUpscaling
 ---
 
 # EasyKsampler (Downscale Unet)
@@ -9,70 +9,70 @@ tags:
 - Category: `EasyUse/Sampler`
 - Output node: `True`
 
-This node specializes in dynamically adjusting the Unet model within a sampling pipeline, specifically targeting the downscaling of the model's dimensions to optimize performance and efficiency. It employs a methodical approach to modify the Unet configuration based on specific downscale factors, ensuring the model's output remains high-quality while potentially reducing computational load.
+This node specializes in simplifying the process of image sampling by integrating Unet downscaling capabilities. It aims to enhance efficiency and performance in image generation tasks by applying a downscaling factor to the Unet model, which is particularly useful for handling high-resolution images or complex sampling scenarios. The node facilitates a streamlined workflow for image sampling with an emphasis on reducing computational load without compromising the quality of the generated images.
 ## Input types
 ### Required
 - **`pipe`**
-    - The pipeline through which the sampling process is executed, serving as the backbone for model operations and transformations.
+    - The pipeline through which the image data flows, serving as the primary conduit for processing and transforming images within the node.
     - Comfy dtype: `PIPE_LINE`
-    - Python dtype: `CustomPipelineType`
+    - Python dtype: `Dict[str, Any]`
 - **`downscale_mode`**
-    - Determines the mode of downscaling to be applied to the Unet model, allowing for automatic or manual adjustment of downscale parameters.
+    - Determines the mode of downscaling to be applied to the Unet model, affecting how the model's resolution is reduced.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`block_number`**
-    - Specifies the block number within the Unet model to which the downscaling adjustments are applied, targeting specific layers for optimization.
+    - Specifies the block number within the Unet model to which the downscaling is applied, targeting specific layers for resolution reduction.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`downscale_factor`**
-    - The factor by which the Unet model's dimensions are reduced, directly influencing the model's performance and output quality.
+    - The factor by which the Unet model's resolution is reduced, directly influencing the detail and size of the output images.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`start_percent`**
-    - Defines the starting percentage of the model's operation range to begin downscaling, affecting the initial phase of model processing.
+    - Defines the starting percentage of the model's depth at which downscaling begins, allowing for selective downscaling depth.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end_percent`**
-    - Sets the ending percentage of the model's operation range for downscaling, impacting the final phase of model processing.
+    - Sets the ending percentage of the model's depth where downscaling concludes, further refining the downscaling process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`downscale_after_skip`**
-    - A boolean flag indicating whether downscaling should occur after skip connections within the Unet model, affecting the model's internal architecture.
+    - A boolean parameter that determines whether downscaling occurs after skip connections in the Unet model, affecting the model's internal processing flow.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`downscale_method`**
-    - Specifies the method used for downscaling the Unet model, such as bicubic or nearest neighbor, influencing the quality of the downscaled output.
+    - Specifies the method used for reducing the resolution of the Unet model, impacting the quality and characteristics of the downscaled output.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`upscale_method`**
-    - Determines the method used for upscaling within the Unet model, complementing the downscaling process to maintain output quality.
+    - The method used to upscale the model back to its original or a specified resolution, complementing the downscaling process.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`image_output`**
-    - Controls the output format of the image, including options for preview, save, or hide, affecting the visibility and storage of the generated images.
+    - Controls the output format of the images, including options for previewing, saving, or hiding the generated images.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`link_id`**
-    - An identifier for linking the current operation with other processes or outputs, facilitating the tracking and management of generated images.
+    - An identifier used for linking the node's output with other processes or outputs, facilitating integration within larger workflows.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`save_prefix`**
-    - A prefix added to the filenames of saved images, allowing for organized storage and easy retrieval of generated content.
+    - A prefix applied to filenames when saving output images, aiding in the organization and retrieval of generated content.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ### Optional
 - **`model`**
-    - The model to be downscaled, typically a pre-loaded Unet model, which is the target of the downscaling adjustments.
+    - The model to be downscaled, typically a Unet model, which is central to the node's operation and directly affects the output quality.
     - Comfy dtype: `MODEL`
     - Python dtype: `Optional[torch.nn.Module]`
 ## Output types
 - **`pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - The updated pipeline after applying the downscaling adjustments, including any modifications to the model and processing parameters.
-    - Python dtype: `CustomPipelineType`
+    - The modified pipeline after processing, which includes the downscaled Unet model and potentially other transformations applied to the image data.
+    - Python dtype: `Dict[str, Any]`
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The final image generated after the downscaling process, showcasing the effects of the applied adjustments on image quality and detail.
+    - The final image output after downscaling, reflecting the applied adjustments and ready for further use or analysis.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -81,10 +81,7 @@ This node specializes in dynamically adjusting the Unet model within a sampling 
 
 ## Source code
 ```python
-class samplerSimpleDownscaleUnet:
-
-    def __init__(self):
-        pass
+class samplerSimpleDownscaleUnet(samplerFull):
 
     upscale_methods = ["bicubic", "nearest-exact", "bilinear", "area", "bislerp"]
 
@@ -117,10 +114,10 @@ class samplerSimpleDownscaleUnet:
     RETURN_TYPES = ("PIPE_LINE", "IMAGE",)
     RETURN_NAMES = ("pipe", "image",)
     OUTPUT_NODE = True
-    FUNCTION = "run"
+    FUNCTION = "downscale_unet"
     CATEGORY = "EasyUse/Sampler"
 
-    def run(self, pipe, downscale_mode, block_number, downscale_factor, start_percent, end_percent, downscale_after_skip, downscale_method, upscale_method, image_output, link_id, save_prefix, model=None, tile_size=None, prompt=None, extra_pnginfo=None, my_unique_id=None, force_full_denoise=False, disable_noise=False):
+    def downscale_unet(self, pipe, downscale_mode, block_number, downscale_factor, start_percent, end_percent, downscale_after_skip, downscale_method, upscale_method, image_output, link_id, save_prefix, model=None, tile_size=None, prompt=None, extra_pnginfo=None, my_unique_id=None, force_full_denoise=False, disable_noise=False):
         downscale_options = None
         if downscale_mode == 'Auto':
             downscale_options = {
@@ -143,7 +140,7 @@ class samplerSimpleDownscaleUnet:
                 "upscale_method": upscale_method
             }
 
-        return samplerFull().run(pipe, None, None,None,None,None, image_output, link_id, save_prefix,
+        return super().run(pipe, None, None,None,None,None, image_output, link_id, save_prefix,
                                None, model, None, None, None, None, None, None,
                                tile_size, prompt, extra_pnginfo, my_unique_id, force_full_denoise, disable_noise, downscale_options)
 

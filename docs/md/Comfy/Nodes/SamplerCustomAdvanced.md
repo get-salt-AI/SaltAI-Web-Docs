@@ -1,5 +1,8 @@
 ---
 tags:
+- Image
+- Pipeline
+- SamplerScheduler
 - Sampling
 ---
 
@@ -9,38 +12,38 @@ tags:
 - Category: `sampling/custom_sampling`
 - Output node: `False`
 
-The SamplerCustomAdvanced node is designed to provide advanced custom sampling functionalities within a generative modeling framework. It enables the creation and utilization of custom samplers, offering a flexible approach to sampling strategies that can be tailored to specific needs or experimental setups.
+The SamplerCustomAdvanced node is designed to provide advanced customization options for sampling processes within a generative model framework. It allows for the implementation of sophisticated sampling strategies that can be tailored to specific requirements or experimental setups, enhancing the flexibility and effectiveness of generative modeling tasks.
 ## Input types
 ### Required
 - **`noise`**
-    - Specifies the type of noise to be added to the latent image, affecting the variability and characteristics of the generated samples.
+    - This input represents the noise data used to perturb the sampling process, providing a means to introduce variability and explore the generative model's space more thoroughly.
     - Comfy dtype: `NOISE`
-    - Python dtype: `Noise`
+    - Python dtype: `custom.NoiseType`
 - **`guider`**
-    - Defines the guiding mechanism for the sampling process, influencing the direction and quality of the generated outputs based on specified conditions.
+    - The guider input specifies the guiding mechanism for the sampling process, such as directing the generation towards desired outcomes or away from undesired ones.
     - Comfy dtype: `GUIDER`
-    - Python dtype: `Guider`
+    - Python dtype: `custom.GuiderType`
 - **`sampler`**
-    - Determines the sampling strategy to be used, impacting the exploration of the latent space and the diversity of the generated samples.
+    - This input defines the specific sampling algorithm or strategy to be used, allowing for customization of the sampling process.
     - Comfy dtype: `SAMPLER`
-    - Python dtype: `Sampler`
+    - Python dtype: `custom.SamplerType`
 - **`sigmas`**
-    - Sets the scale of noise to be applied, playing a crucial role in the denoising process and the final quality of the generated images.
+    - Sigmas represent the noise levels applied at different steps of the sampling process, enabling fine-tuned control over the introduction of variability.
     - Comfy dtype: `SIGMAS`
-    - Python dtype: `List[float]`
+    - Python dtype: `torch.Tensor`
 - **`latent_image`**
-    - The initial latent representation to be transformed, serving as the starting point for the sampling process.
+    - The latent image input provides the initial state or context for the sampling process, serving as the basis for generation.
     - Comfy dtype: `LATENT`
-    - Python dtype: `Latent`
+    - Python dtype: `custom.LatentType`
 ## Output types
 - **`output`**
     - Comfy dtype: `LATENT`
-    - The modified latent representation after the sampling process.
-    - Python dtype: `Latent`
+    - This output type provides the result of the sampling process, reflecting the generated data after applying the specified sampling strategy.
+    - Python dtype: `custom.LatentType`
 - **`denoised_output`**
     - Comfy dtype: `LATENT`
-    - The denoised version of the latent representation, offering a cleaner version of the sampled output.
-    - Python dtype: `Latent`
+    - The denoised output delivers the generated data with reduced noise, showcasing the effectiveness of the sampling strategy in achieving clearer, more refined results.
+    - Python dtype: `custom.LatentType`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -70,6 +73,9 @@ class SamplerCustomAdvanced:
     def sample(self, noise, guider, sampler, sigmas, latent_image):
         latent = latent_image
         latent_image = latent["samples"]
+        latent = latent.copy()
+        latent_image = comfy.sample.fix_empty_latent_channels(guider.model_patcher, latent_image)
+        latent["samples"] = latent_image
 
         noise_mask = None
         if "noise_mask" in latent:

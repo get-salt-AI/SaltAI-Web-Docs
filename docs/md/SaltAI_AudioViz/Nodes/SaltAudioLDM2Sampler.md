@@ -6,49 +6,49 @@ tags:
 # AudioLDM2 Sampler
 ## Documentation
 - Class name: `SaltAudioLDM2Sampler`
-- Category: `SALT/Audio/AudioLDM2`
+- Category: `SALT/AudioViz/Audio/AudioLDM2`
 - Output node: `False`
 
-The SaltAudioLDM2Sampler node utilizes the AudioLDM2 model for generating audio waveforms based on given prompts, offering control over the generation process through parameters like seed, steps, and guidance scale. It's tailored for creating audio content with specific characteristics defined by positive and negative prompts.
+This node is designed for sampling audio using the LDM2 model, providing a specialized approach to generating or processing audio data with advanced machine learning techniques. It focuses on leveraging the capabilities of the LDM2 architecture to offer high-quality audio sampling functionalities.
 ## Input types
 ### Required
 - **`audioldm2_model`**
-    - Specifies the AudioLDM2 model to be used for audio generation, affecting the quality and style of the output audio.
+    - Specifies the LDM2 model to be used for audio sampling, influencing the quality and characteristics of the generated audio.
     - Comfy dtype: `AUDIOLDM_MODEL`
-    - Python dtype: `str`
+    - Python dtype: `AudioLDM2Pipeline`
 - **`seed`**
-    - Determines the randomness seed for audio generation, enabling reproducible outputs.
+    - Determines the random seed for generating audio, ensuring reproducibility of results.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`steps`**
-    - Defines the number of steps to be taken in the audio generation process, impacting the detail and quality of the output.
+    - Defines the number of steps to be used in the sampling process, affecting the detail and quality of the output audio.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`guidance_scale`**
-    - Controls the influence of the prompts on the generated audio, with higher values leading to more prompt-conforming outputs.
+    - Controls the strength of the conditioning on the input prompts, influencing the adherence to the specified prompts.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`audio_length_seconds`**
-    - Sets the length of the generated audio in seconds, allowing for customization of the output duration.
+    - Sets the length of the generated audio in seconds.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`num_waveforms`**
-    - Determines the number of audio waveforms to generate, enabling multiple outputs from a single prompt.
+    - Determines the number of audio waveforms to generate.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`positive_prompt`**
-    - The positive prompt guides the audio generation towards desired characteristics or themes.
+    - The text prompt that encourages certain elements or themes in the generated audio.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`negative_prompt`**
-    - The negative prompt steers the audio generation away from certain characteristics or themes, refining the output.
+    - The text prompt that discourages certain elements or themes in the generated audio.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ### Optional
 ## Output types
 - **`audio`**
     - Comfy dtype: `AUDIO`
-    - The generated audio waveform as a result of the sampling process, based on the provided prompts and parameters.
+    - The sampled audio output, generated based on the specified inputs and model.
     - Python dtype: `bytes`
 ## Usage tips
 - Infra type: `GPU`
@@ -80,7 +80,7 @@ class SaltAudioLDM2Sampler:
     RETURN_NAMES = ("audio", )
 
     FUNCTION = "sample"
-    CATEGORY = "SALT/Audio/AudioLDM2"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Audio/AudioLDM2"
 
     def sample(self, audioldm2_model, **kwargs):
         generator = torch.Generator("cuda").manual_seed(kwargs.get("seed", 0))

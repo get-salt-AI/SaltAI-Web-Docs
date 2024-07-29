@@ -3,6 +3,7 @@ tags:
 - Batch
 - Image
 - ImageBatch
+- ImageDuplication
 ---
 
 # 🛠️ CR Batch Images From List

@@ -1,6 +1,6 @@
 ---
 tags:
-- LogEntry
+- RegionalPrompt
 ---
 
 # 🗎 Int to Log Entry

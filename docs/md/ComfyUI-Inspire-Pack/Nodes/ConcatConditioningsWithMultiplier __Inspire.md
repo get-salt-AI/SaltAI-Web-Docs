@@ -1,5 +1,6 @@
 ---
 tags:
+- CLIPConditioning
 - Conditioning
 ---
 
@@ -9,25 +10,25 @@ tags:
 - Category: `InspirePack/__for_testing`
 - Output node: `False`
 
-This node is designed to concatenate multiple conditioning vectors, each potentially modified by a corresponding multiplier, to enhance or adjust their influence in a generative model's output. It allows for dynamic adjustment of conditioning strengths before combining them, facilitating fine-tuned control over the conditioning process.
+This node is designed to concatenate multiple conditioning inputs, each potentially modified by a corresponding multiplier, into a single conditioning output. It primarily serves to enhance or modify the conditioning context for generative models by adjusting the strength of individual conditionings before combining them.
 ## Input types
 ### Required
 - **`conditioning1`**
-    - The primary conditioning vector to which additional conditionings will be concatenated. It serves as the base for further conditioning modifications.
+    - The primary conditioning input to which additional conditionings will be concatenated. This conditioning serves as the base for subsequent modifications and concatenations.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `List[Tuple[torch.Tensor, Any]]`
+    - Python dtype: `list of tuples`
 ### Optional
 - **`multiplier1`**
-    - A multiplier for the primary conditioning vector's strength, allowing for its influence to be adjusted before concatenation with other conditionings.
+    - A multiplier to adjust the strength of the primary conditioning input. This allows for fine-tuning the influence of the primary conditioning on the overall output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`conditioning`**
     - Comfy dtype: `CONDITIONING`
-    - The concatenated conditioning vector, with each component's strength adjusted by its corresponding multiplier, ready for use in model conditioning.
-    - Python dtype: `List[Tuple[torch.Tensor, Any]]`
+    - The resulting conditioning after concatenating and adjusting the strength of multiple conditionings. It represents a modified or enhanced context for generative models.
+    - Python dtype: `list of tuples`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -47,9 +48,9 @@ class ConcatConditioningsWithMultiplier:
             flex_inputs["multiplier1"] = ("FLOAT", {"default": 1.0, "min": 0.0, "max": 10.0, "step": 0.01})
 
         return {
-                "required": {"conditioning1": ("CONDITIONING",), },
-                "optional": flex_inputs
-                }
+            "required": {"conditioning1": ("CONDITIONING",), },
+            "optional": flex_inputs
+        }
 
     RETURN_TYPES = ("CONDITIONING",)
     FUNCTION = "doit"
@@ -76,7 +77,7 @@ class ConcatConditioningsWithMultiplier:
             if len(conditioning_from) > 1:
                 print(f"Warning: ConcatConditioningsWithMultiplier {k} contains more than 1 cond, only the first one will actually be applied to conditioning1.")
 
-            mkey = 'multiplier'+k[12:]
+            mkey = 'multiplier' + k[12:]
             multiplier = float(kwargs[mkey])
             conditioning_from = obj.multiply_conditioning_strength(conditioning=conditioning_from, multiplier=multiplier)[0]
             cond_from = conditioning_from[0][0]
@@ -90,7 +91,7 @@ class ConcatConditioningsWithMultiplier:
             conditioning_to = out
 
         if out is None:
-            return (kwargs['conditioning1'], )
+            return (kwargs['conditioning1'],)
         else:
             return (out,)
 

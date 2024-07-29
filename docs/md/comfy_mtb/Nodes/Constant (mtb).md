@@ -1,6 +1,6 @@
 ---
 tags:
-- Constant
+- NumberRangeGeneration
 ---
 
 # Constant (mtb)

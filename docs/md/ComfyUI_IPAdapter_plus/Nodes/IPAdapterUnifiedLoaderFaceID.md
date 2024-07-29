@@ -1,7 +1,7 @@
 ---
 tags:
 - IPAdapter
-- IPAdapterLoader
+- RegionalImageProcessing
 ---
 
 # IPAdapter Unified Loader FaceID

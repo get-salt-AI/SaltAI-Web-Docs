@@ -1,6 +1,7 @@
 ---
 tags:
-- RegionalPrompt
+- Image
+- Style
 ---
 
 # Regional Conditioning By Color Mask (Inspire)
@@ -9,44 +10,44 @@ tags:
 - Category: `InspirePack/Regional`
 - Output node: `False`
 
-The RegionalConditioningColorMask node in the Inspire Pack focuses on applying regional conditioning to an input CLIP representation based on a specified color mask. It allows for the targeted manipulation of image features by overlaying a color mask, adjusting its strength, and specifying the area of conditioning, thereby enabling more precise control over the generation process.
+This node specializes in applying regional conditioning to an image based on a specified color mask. It combines textual prompts with visual cues from a color mask to generate conditioning that is spatially aware, enhancing the relevance and specificity of the generated content within designated areas.
 ## Input types
 ### Required
 - **`clip`**
-    - The CLIP representation to which the regional conditioning is applied, serving as the basis for the targeted manipulation.
+    - A CLIP model identifier used for encoding the textual prompt into a format suitable for conditioning. It plays a crucial role in aligning the text with the visual content.
     - Comfy dtype: `CLIP`
     - Python dtype: `str`
 - **`color_mask`**
-    - An image mask that specifies the region to be conditioned, based on the provided color.
+    - An image serving as a mask, where a specific color defines the region of interest for conditioning. This mask guides where the conditioning should be applied.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `Image`
+    - Python dtype: `torch.Tensor`
 - **`mask_color`**
-    - The color value used to generate the mask from the color_mask image, defining the specific region for conditioning.
+    - The color value used to identify the region of interest within the color mask. It determines which parts of the image are affected by the conditioning.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`strength`**
-    - Determines the intensity of the conditioning applied to the specified region, allowing for fine-tuning of the effect.
+    - A scalar value that adjusts the intensity of the conditioning effect within the specified region. It influences how strongly the conditioning is applied.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`set_cond_area`**
-    - Specifies the area of the image to be conditioned, either the default area or the bounds of the mask, providing flexibility in targeting.
+    - Defines the area of conditioning, allowing for either default application or focusing on the bounds of the mask. This choice affects how the conditioning is spatially distributed.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `list`
 - **`prompt`**
-    - The text prompt that guides the conditioning process, influencing the characteristics of the generated content within the masked region.
+    - The textual prompt that is encoded and integrated with the visual conditioning. It provides the thematic direction for the content generation.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`conditioning`**
     - Comfy dtype: `CONDITIONING`
-    - The conditioned CLIP representation, modified according to the specified parameters and mask.
-    - Python dtype: `tuple`
+    - The resulting conditioning data, tailored to the specified region and prompt, ready for further processing in content generation.
+    - Python dtype: `torch.Tensor`
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The generated mask based on the specified color, used for conditioning.
-    - Python dtype: `Image`
+    - The processed mask that delineates the region of interest for the applied conditioning.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -71,11 +72,12 @@ class RegionalConditioningColorMask:
 
     CATEGORY = "InspirePack/Regional"
 
-    def doit(self, clip, color_mask, mask_color, strength, set_cond_area, prompt):
+    @staticmethod
+    def doit(clip, color_mask, mask_color, strength, set_cond_area, prompt):
         mask = color_to_mask(color_mask, mask_color)
 
         conditioning = nodes.CLIPTextEncode().encode(clip, prompt)[0]
         conditioning = nodes.ConditioningSetMask().append(conditioning, mask, set_cond_area, strength)[0]
-        return (conditioning, mask)
+        return conditioning, mask
 
 ```

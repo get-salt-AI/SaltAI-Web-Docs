@@ -1,6 +1,7 @@
 ---
 tags:
 - IPAdapter
+- RegionalImageProcessing
 ---
 
 # Easy Apply IPAdapter (Encoder)
@@ -9,91 +10,111 @@ tags:
 - Category: `EasyUse/Adapter`
 - Output node: `False`
 
-The node 'easy ipadapterApplyEncoder' is designed to encode images using an IPAdapter, producing both positive and negative embeddings. It allows for the customization of embedding generation through various parameters, enabling a tailored approach to image encoding within a given model's context.
+The `easy ipadapterApplyEncoder` node is designed to encode images into positive and negative embeddings using an IPAdapter model. It processes multiple images, applying weights and masks to each, and combines the resulting embeddings according to a specified method. This node facilitates the integration of image features into models by generating embeddings that can be used to enhance or suppress certain aspects of the image in downstream tasks.
 ## Input types
 ### Required
 - **`model`**
-    - Specifies the model to which the IPAdapter encoding process will be applied, serving as the foundation for embedding generation.
+    - The model parameter represents the base model to which the IPAdapter encoding process will be applied. It is crucial for ensuring that the encoding is compatible with the model's architecture and processing capabilities.
     - Comfy dtype: `MODEL`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `str`
+- **`clip_vision`**
+    - The clip_vision parameter is essential for providing vision-related features or models that the IPAdapter might utilize during the encoding process. It enhances the encoding by incorporating visual context.
+    - Comfy dtype: `CLIP_VISION`
+    - Python dtype: `str`
 - **`image1`**
-    - The primary image input for encoding, which is essential for generating the corresponding embeddings.
+    - The first image to be encoded by the IPAdapter, contributing to the generation of positive and negative embeddings.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `str`
 - **`preset`**
-    - Defines the preset configuration to be used during the encoding process, influencing the characteristics of the generated embeddings.
+    - Specifies the preset configuration for the IPAdapter encoding process, affecting how images are processed and encoded.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`num_embeds`**
-    - Determines the number of embeddings to be generated, affecting the depth of the encoding process.
+    - The number of embeddings to generate, dictating how many images will be processed by the IPAdapter.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`image2`**
-    - The second image input for encoding, optional based on 'num_embeds', contributing to the diversity of generated embeddings.
+    - The second image to be encoded, if applicable, based on the num_embeds parameter.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `str`
 - **`image3`**
-    - The third image input for encoding, optional based on 'num_embeds', further diversifying the embedding output.
+    - The third image to be encoded, used when num_embeds is greater than two.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `str`
+- **`image4`**
+    - The fourth image to be encoded, used when num_embeds is four.
+    - Comfy dtype: `IMAGE`
+    - Python dtype: `str`
 - **`mask1`**
-    - Optional mask for the first image, guiding the focus of the encoding process.
+    - An optional mask for the first image, used to focus or exclude specific areas during encoding.
     - Comfy dtype: `MASK`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `str`
 - **`weight1`**
-    - Weight for the first image's influence on the embedding, allowing for customized emphasis.
+    - The weight applied to the first image's encoding, influencing the prominence of its features in the generated embeddings.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`mask2`**
-    - Optional mask for the second image, if provided, to refine the encoding focus.
+    - An optional mask for the second image, similar in purpose to mask1.
     - Comfy dtype: `MASK`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `str`
 - **`weight2`**
-    - Weight for the second image's embedding, customizable for balanced or biased emphasis.
+    - The weight applied to the second image's encoding.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`mask3`**
-    - Optional mask for the third image, if provided, for further encoding refinement.
+    - An optional mask for the third image, following the same concept as the previous masks.
     - Comfy dtype: `MASK`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `str`
 - **`weight3`**
-    - Weight for the third image's embedding, enabling emphasis customization.
+    - The weight applied to the third image's encoding.
+    - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
+- **`mask4`**
+    - An optional mask for the fourth image, used if num_embeds is four.
+    - Comfy dtype: `MASK`
+    - Python dtype: `str`
+- **`weight4`**
+    - The weight applied to the fourth image's encoding.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`combine_method`**
-    - Method to combine multiple embeddings, influencing the final embedding outcome.
+    - The method used to combine the generated embeddings, affecting the final output.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`optional_ipadapter`**
-    - An optional IPAdapter to be used, offering flexibility in the encoding process.
+    - An optional IPAdapter parameter that can be used to modify the encoding process.
     - Comfy dtype: `IPADAPTER`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `str`
 - **`pos_embeds`**
-    - Accumulated positive embeddings from the encoding process, reflecting the positive aspects of the images.
+    - Collects the positive embeddings generated by the IPAdapter for each image. These embeddings highlight features or aspects of the images that should be emphasized.
     - Comfy dtype: `EMBEDS`
-    - Python dtype: `List[torch.Tensor]`
+    - Python dtype: `list`
 - **`neg_embeds`**
-    - Accumulated negative embeddings from the encoding process, reflecting the negative aspects of the images.
+    - Collects the negative embeddings generated by the IPAdapter for each image. These embeddings represent features or aspects of the images that should be suppressed.
     - Comfy dtype: `EMBEDS`
-    - Python dtype: `List[torch.Tensor]`
+    - Python dtype: `list`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
     - Returns the model after applying the IPAdapter encoding process, potentially modified with new embeddings.
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `str`
+- **`clip_vision`**
+    - Comfy dtype: `CLIP_VISION`
+    - Returns the clip_vision parameter, potentially modified or utilized during the encoding process.
+    - Python dtype: `str`
 - **`ipadapter`**
     - Comfy dtype: `IPADAPTER`
-    - Provides the IPAdapter used in the encoding process, reflecting any adjustments made during embedding generation.
-    - Python dtype: `torch.nn.Module`
+    - Returns the IPAdapter instance used for encoding, reflecting any changes or adjustments made during the process.
+    - Python dtype: `str`
 - **`pos_embed`**
     - Comfy dtype: `EMBEDS`
-    - The combined positive embeddings resulting from the encoding process, ready for further application.
-    - Python dtype: `torch.Tensor`
+    - unknown
+    - Python dtype: `unknown`
 - **`neg_embed`**
     - Comfy dtype: `EMBEDS`
-    - The combined negative embeddings resulting from the encoding process, ready for further application.
-    - Python dtype: `torch.Tensor`
+    - unknown
+    - Python dtype: `unknown`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -110,10 +131,11 @@ class ipadapterApplyEncoder(ipadapter):
     def INPUT_TYPES(cls):
         ipa_cls = cls()
         normal_presets = ipa_cls.normal_presets
-        max_embeds_num = 3
+        max_embeds_num = 4
         inputs = {
             "required": {
                 "model": ("MODEL",),
+                "clip_vision": ("CLIP_VISION",),
                 "image1": ("IMAGE",),
                 "preset": (normal_presets,),
                 "num_embeds":  ("INT", {"default": 2, "min": 1, "max": max_embeds_num}),
@@ -133,8 +155,8 @@ class ipadapterApplyEncoder(ipadapter):
         inputs["optional"]["neg_embeds"] = ("EMBEDS",)
         return inputs
 
-    RETURN_TYPES = ("MODEL", "IPADAPTER", "EMBEDS", "EMBEDS", )
-    RETURN_NAMES = ("model", "ipadapter", "pos_embed", "neg_embed", )
+    RETURN_TYPES = ("MODEL", "CLIP_VISION","IPADAPTER", "EMBEDS", "EMBEDS", )
+    RETURN_NAMES = ("model", "clip_vision","ipadapter", "pos_embed", "neg_embed",)
     CATEGORY = "EasyUse/Adapter"
     FUNCTION = "apply"
 
@@ -164,16 +186,16 @@ class ipadapterApplyEncoder(ipadapter):
 
     def apply(self, **kwargs):
         model = kwargs['model']
+        clip_vision = kwargs['clip_vision']
         preset = kwargs['preset']
         if 'optional_ipadapter' in kwargs:
             ipadapter = kwargs['optional_ipadapter']
         else:
-            model, ipadapter = self.load_model(model, preset, 0, 'CPU', clip_vision=None, optional_ipadapter=None, cache_mode='none')
+            model, ipadapter = self.load_model(model, preset, 0, 'CPU', clip_vision=clip_vision, optional_ipadapter=None, cache_mode='none')
 
         if "IPAdapterEncoder" not in ALL_NODE_CLASS_MAPPINGS:
             self.error()
         encoder_cls = ALL_NODE_CLASS_MAPPINGS["IPAdapterEncoder"]
-
         pos_embeds = kwargs["pos_embeds"] if "pos_embeds" in kwargs else []
         neg_embeds = kwargs["neg_embeds"] if "neg_embeds" in kwargs else []
         for i in range(1, kwargs['num_embeds'] + 1):
@@ -182,13 +204,13 @@ class ipadapterApplyEncoder(ipadapter):
             kwargs[f"mask{i}"] = kwargs[f"mask{i}"] if f"mask{i}" in kwargs else None
             kwargs[f"weight{i}"] = kwargs[f"weight{i}"] if f"weight{i}" in kwargs else 1.0
 
-            pos, neg = encoder_cls().encode(ipadapter, kwargs[f"image{i}"], kwargs[f"weight{i}"], kwargs[f"mask{i}"], clip_vision=None)
+            pos, neg = encoder_cls().encode(ipadapter, kwargs[f"image{i}"], kwargs[f"weight{i}"], kwargs[f"mask{i}"], clip_vision=clip_vision)
             pos_embeds.append(pos)
             neg_embeds.append(neg)
 
         pos_embeds = self.batch(pos_embeds, kwargs['combine_method'])
         neg_embeds = self.batch(neg_embeds, kwargs['combine_method'])
 
-        return (model, ipadapter, pos_embeds, neg_embeds)
+        return (model,clip_vision, ipadapter, pos_embeds, neg_embeds)
 
 ```

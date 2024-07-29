@@ -6,28 +6,28 @@ tags:
 # Audio Trim
 ## Documentation
 - Class name: `SaltAudioTrim`
-- Category: `SALT/Audio/Process`
+- Category: `SALT/AudioViz/Audio/Process`
 - Output node: `False`
 
 The SaltAudioTrim node is designed for trimming audio files to a specified start and end time, allowing for precise control over the segment of the audio that is of interest.
 ## Input types
 ### Required
 - **`audio`**
-    - The raw audio data to be trimmed. This is the primary input for the operation, determining the audio segment to be processed.
+    - The 'audio' parameter is the raw audio data that will be trimmed. It is essential for determining the segment of the audio file to be processed.
     - Comfy dtype: `AUDIO`
     - Python dtype: `bytes`
 - **`start_time_seconds`**
-    - The start time in seconds from which the audio should begin. This parameter sets the initial point of the audio segment to be retained.
+    - The 'start_time_seconds' parameter specifies the starting point of the audio segment to trim, measured in seconds from the beginning of the audio file. It plays a crucial role in defining the portion of the audio to retain.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end_time_seconds`**
-    - The end time in seconds at which the audio should stop. This parameter defines the final point of the audio segment to be retained, effectively trimming the audio.
+    - The 'end_time_seconds' parameter defines the ending point of the audio segment to trim, measured in seconds. It is critical for delineating the end of the segment to be kept.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`audio`**
     - Comfy dtype: `AUDIO`
-    - The trimmed audio data, returned as a byte stream. This output represents the audio segment between the specified start and end times.
+    - The output 'audio' is the trimmed segment of the original audio file, processed according to the specified start and end times.
     - Python dtype: `bytes`
 ## Usage tips
 - Infra type: `CPU`
@@ -50,7 +50,7 @@ class SaltAudioTrim:
     RETURN_TYPES = ("AUDIO",)
     RETURN_NAMES = ("audio",)
     FUNCTION = "trim_audio"
-    CATEGORY = "SALT/Audio/Process"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Audio/Process"
 
     def trim_audio(cls, audio, start_time_seconds, end_time_seconds):
         audio_segment = AudioSegment.from_file(io.BytesIO(audio), format="wav")

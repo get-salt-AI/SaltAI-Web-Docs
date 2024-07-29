@@ -1,6 +1,7 @@
 ---
 tags:
-- NumberRangeGeneration
+- Math
+- MathematicalFunctions
 ---
 
 # 📜 CR Integer Range List

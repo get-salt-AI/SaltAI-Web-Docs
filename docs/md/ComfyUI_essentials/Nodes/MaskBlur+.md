@@ -1,31 +1,35 @@
 ---
 tags:
 - Blur
-- MaskBlur
+- ImageTransformation
 - VisualEffects
 ---
 
 # 🔧 Mask Blur
 ## Documentation
 - Class name: `MaskBlur+`
-- Category: `essentials`
+- Category: `essentials/mask`
 - Output node: `False`
 
-The MaskBlur node applies a Gaussian blur to a given mask, allowing for the softening of edges and the creation of a smoother mask. This operation is particularly useful in graphics and image processing tasks where the harshness of a binary mask needs to be mitigated.
+The `MaskBlur+` node applies a Gaussian blur to a given mask, optionally adjusting the intensity of the blur and accommodating different computational devices. It's designed to smooth out the edges or details of a mask, which can be useful in various image processing tasks where softer transitions or less pronounced features are desired.
 ## Input types
 ### Required
 - **`mask`**
-    - The mask to be blurred. This input is crucial for defining the area within the image where the blur effect will be applied.
+    - The mask to be blurred. This is the primary input on which the Gaussian blur operation is performed.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`amount`**
-    - Specifies the intensity of the blur effect. A higher value results in a more pronounced blur, affecting the mask's smoothness and the transition between masked and unmasked areas.
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Specifies the intensity of the blur. A higher value results in a more pronounced blurring effect.
+    - Comfy dtype: `INT`
+    - Python dtype: `int`
+- **`device`**
+    - Determines the computational device ('auto', 'cpu', or 'gpu') on which the blurring operation is executed, allowing for flexibility in resource utilization.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The output is a blurred version of the input mask, with softened edges and transitions, suitable for further image processing or visualization tasks.
+    - The blurred version of the input mask, with potentially softened features or transitions.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -44,26 +48,35 @@ class MaskBlur:
         return {
             "required": {
                 "mask": ("MASK",),
-                "amount": ("FLOAT", { "default": 6.0, "min": 0, "step": 0.5, }),
+                "amount": ("INT", { "default": 6, "min": 0, "max": 256, "step": 1, }),
+                "device": (["auto", "cpu", "gpu"],),
             }
         }
 
     RETURN_TYPES = ("MASK",)
     FUNCTION = "execute"
-    CATEGORY = "essentials"
+    CATEGORY = "essentials/mask"
 
-    def execute(self, mask, amount):
-        size = int(6 * amount +1)
-        if size % 2 == 0:
-            size+= 1
-        
+    def execute(self, mask, amount, device):
+        if amount == 0:
+            return (mask,)
+
+        if "gpu" == device:
+            mask = mask.to(comfy.model_management.get_torch_device())
+        elif "cpu" == device:
+            mask = mask.to('cpu')
+
+        if amount % 2 == 0:
+            amount+= 1
+
         if mask.dim() == 2:
             mask = mask.unsqueeze(0)
 
-        blurred = mask.unsqueeze(1)
-        blurred = T.GaussianBlur(size, amount)(blurred)
-        blurred = blurred.squeeze(1)
+        mask = T.functional.gaussian_blur(mask.unsqueeze(1), amount).squeeze(1)
 
-        return(blurred,)
+        if "gpu" == device or "cpu" == device:
+            mask = mask.to(comfy.model_management.intermediate_device())
+
+        return(mask,)
 
 ```

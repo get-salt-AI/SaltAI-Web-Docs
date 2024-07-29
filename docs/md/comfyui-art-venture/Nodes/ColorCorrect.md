@@ -1,6 +1,7 @@
 ---
 tags:
 - Color
+- Image
 ---
 
 # Color Correct

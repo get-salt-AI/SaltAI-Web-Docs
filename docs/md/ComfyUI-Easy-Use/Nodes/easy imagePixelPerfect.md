@@ -1,7 +1,6 @@
 ---
 tags:
-- ImageResolution
-- ImageTransformation
+- ImageSize
 ---
 
 # ImagePixelPerfect

@@ -2,8 +2,9 @@
 tags:
 - DataConversion
 - DataTypeConversion
-- FloatData
+- Float
 - FloatList
+- Integer
 - NumericConversion
 ---
 
@@ -13,18 +14,18 @@ tags:
 - Category: `mtb/utils`
 - Output node: `False`
 
-Provides a conversion utility to transform a single float value into a list of floats, facilitating compatibility with other extensions that use a list format for float representation.
+This node serves as a conversion utility designed to transform a single floating-point number into a tuple of floating-point numbers, facilitating compatibility with other extensions that use a list format to represent multiple float values.
 ## Input types
 ### Required
 - **`float`**
-    - A single float value to be converted into a list of floats. This input is essential for ensuring compatibility with other extensions that expect float values in list format.
+    - The single floating-point number to be converted into a tuple. This input is essential for the node's operation, enabling the conversion from a singular float value to a list format.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`floats`**
     - Comfy dtype: `FLOATS`
-    - A list of floats derived from the single input float value, enabling compatibility with other extensions.
-    - Python dtype: `list[float]`
+    - The tuple of floating-point numbers resulting from the conversion of the input single float. This output facilitates compatibility with other extensions requiring a list format.
+    - Python dtype: `Tuple[float]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -48,7 +49,7 @@ class MTB_FloatToFloats:
     CATEGORY = "mtb/utils"
     FUNCTION = "convert"
 
-    def convert(self, float):
+    def convert(self, float: float):
         return (float,)
 
 ```

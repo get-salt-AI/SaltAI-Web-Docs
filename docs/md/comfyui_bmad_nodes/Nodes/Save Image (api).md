@@ -1,7 +1,10 @@
 ---
 tags:
+- Animation
 - Image
+- ImageGeneration
 - ImageSave
+- ImageSequence
 ---
 
 # Save Image (api)
@@ -10,22 +13,22 @@ tags:
 - Category: `Bmad/api`
 - Output node: `False`
 
-The SaveImage node is designed to save images to a specified output directory without storing any metadata, using a unique hexdigest as the filename. It is primarily used in workflows that require the output images to be stored temporarily before being sent to another process for further handling.
+The Save Image node is designed to persist images to disk without including any metadata, using a unique hexdigest-based filename. It is typically used in workflows where the final output needs to be stored efficiently and metadata preservation is not required. The output from this node is often used to signal the completion of a request or task.
 ## Input types
 ### Required
 - **`images`**
-    - The 'images' parameter represents the collection of images to be saved. It plays a crucial role in determining the content that will be stored in the output directory.
+    - The primary input for the node, representing the images to be saved. This parameter is crucial for the node's operation as it directly influences the output by determining which images are stored.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `Tuple[torch.Tensor]`
 - **`resource_name`**
-    - The 'resource_name' parameter specifies the prefix for the saved image filenames, allowing for easy identification and categorization of the output files.
+    - An optional parameter that specifies the base name for the saved images. It allows for a customizable naming convention that can be useful in organizing and retrieving saved images.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`task_done`**
     - Comfy dtype: `TASK_DONE`
-    - Indicates the completion of the image saving process, signaling that the images have been successfully stored in the output directory.
-    - Python dtype: `tuple`
+    - Indicates that the image saving task has been completed successfully.
+    - Python dtype: `Tuple[str]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -44,7 +47,7 @@ class SaveImage2:
         self.type = "output"
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required":
                     {"images": ("IMAGE",),
                      "resource_name": ("STRING", {"default": "image"})},
@@ -54,7 +57,7 @@ class SaveImage2:
     RETURN_TYPES = ("TASK_DONE",)
     FUNCTION = "save_images"
 
-    CATEGORY = "Bmad/api"
+    CATEGORY = api_category_path
 
     def save_images(self, images, resource_name="image", prompt=None, extra_pnginfo=None):
         def build_hashcode(data):

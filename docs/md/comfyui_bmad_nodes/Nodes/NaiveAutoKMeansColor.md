@@ -9,37 +9,37 @@ tags:
 - Category: `Bmad/CV/Color A.`
 - Output node: `False`
 
-This node is designed to automatically determine the optimal number of colors for K-means clustering on an image, without requiring the user to specify the number of colors. It iteratively applies K-means clustering with increasing numbers of clusters until a certain criteria is met, simplifying the process of color quantization for images.
+This node is designed to automatically determine the optimal number of colors for K-means clustering on an image, and then apply the K-means algorithm to segment the image into these colors. It simplifies the process of color quantization by abstracting away the need for manual specification of the number of clusters, making it easier to use for tasks such as image simplification or color analysis.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be processed for color quantization. The node applies K-means clustering to this image to find the optimal number of colors.
+    - The input image on which K-means clustering will be performed. This is the primary data the node operates on to determine the optimal number of colors.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`max_k`**
-    - The maximum number of clusters to consider for K-means clustering. This parameter sets an upper limit on the number of colors the algorithm will attempt to quantify.
+    - The maximum number of colors (clusters) to consider for determining the optimal number through the algorithm. It sets an upper limit on the number of clusters to evaluate.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`rc_threshold`**
-    - A threshold for the relative compactness of clusters, used to decide if the current number of clusters is optimal. It helps in identifying the 'elbow' in the compactness graph, which signifies the most efficient number of clusters, balancing detail preservation and computational efficiency.
+    - A threshold for the relative compactness of clusters, used to help determine the optimal number of clusters by comparing the compactness of a cluster to the first computed compactness.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`max_iterations`**
-    - The maximum number of iterations to perform for each K-means clustering attempt. This parameter helps to control the computational complexity of the algorithm.
+    - The maximum number of iterations the K-means algorithm will execute, providing a stopping criterion for convergence.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`eps`**
-    - The epsilon value for convergence. If the change in centroids is less than this value, the algorithm will stop, indicating convergence. This parameter is crucial for determining when the algorithm has sufficiently minimized within-cluster variance, thus affecting the precision of the color quantization.
+    - The epsilon value for convergence criteria, specifying the minimum amount of change required for an iteration to be considered as making progress.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The processed image reflecting the optimal number of colors determined by the K-means clustering algorithm.
+    - The output image after applying K-means clustering with the determined optimal number of colors, segmented into these colors.
     - Python dtype: `torch.Tensor`
 - **`int`**
     - Comfy dtype: `INT`
-    - The optimal number of colors determined by the algorithm.
+    - The optimal number of colors (clusters) determined by the algorithm for the input image.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `GPU`
@@ -50,7 +50,7 @@ This node is designed to automatically determine the optimal number of colors fo
 ```python
 class NaiveAutoKMeansColor:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {
             "image": ("IMAGE",),
             "max_k": ("INT", {"default": 8, "min": 3, "max": 16}),
@@ -65,7 +65,7 @@ class NaiveAutoKMeansColor:
 
     RETURN_TYPES = ("IMAGE", "INT")
     FUNCTION = "get_colors"
-    CATEGORY = "Bmad/CV/Color A."
+    CATEGORY = f"{cv_category_path}/Color A."
 
     def get_colors(self, image, max_k, rc_threshold, max_iterations, eps):
         image = tensor2opencv(image, 3)

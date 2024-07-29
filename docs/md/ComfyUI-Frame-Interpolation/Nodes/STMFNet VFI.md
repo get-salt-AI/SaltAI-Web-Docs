@@ -1,8 +1,11 @@
 ---
 tags:
-- AnimationScheduling
+- Curve
+- Frame
 - FrameInterpolation
-- VisualEffects
+- Interpolation
+- Keyframe
+- WavePatterns
 ---
 
 # STMFNet VFI
@@ -11,38 +14,38 @@ tags:
 - Category: `ComfyUI-Frame-Interpolation/VFI`
 - Output node: `False`
 
-STMFNet_VFI specializes in enhancing video sequences through frame interpolation, utilizing advanced neural network models to accurately predict and insert intermediate frames. This process aims to increase the frame rate of videos, resulting in smoother playback and improved visual quality.
+The STMFNet VFI node is designed for video frame interpolation, leveraging deep learning models to predict and generate intermediate frames between existing frames in a video sequence. It utilizes a combination of extraction, decoding, and refining processes to enhance the temporal resolution of videos by filling in missing frames with high accuracy and visual quality.
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - Specifies the checkpoint name for the model, determining the specific pre-trained weights to be used for frame interpolation.
+    - Specifies the checkpoint name for the STMFNet model to be loaded, crucial for initializing the model with pre-trained weights.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 - **`frames`**
-    - Represents the sequence of video frames to be interpolated. This input is crucial for determining the starting and ending points of interpolation.
+    - The sequence of frames to be interpolated, serving as the input video data for frame interpolation.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`clear_cache_after_n_frames`**
-    - Controls the frequency of cache clearing to manage memory usage during the interpolation process.
+    - Determines after how many frames the CUDA cache should be cleared to manage memory usage effectively.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`multiplier`**
-    - Defines the factor by which the frame rate is to be increased, directly influencing the number of frames to be interpolated.
+    - Defines the factor by which the frame rate is increased, currently fixed to 2x interpolation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`duplicate_first_last_frames`**
-    - A boolean flag indicating whether to duplicate the first and last frames, affecting the output video's length and smoothness.
+    - A boolean flag to indicate whether the first and last frames should be duplicated, affecting the output frame sequence.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`optional_interpolation_states`**
-    - Allows for the specification of custom interpolation states, offering flexibility in handling frame skipping and other advanced interpolation scenarios.
+    - Optional states to manage frame skipping during interpolation, providing flexibility in handling specific frames.
     - Comfy dtype: `INTERPOLATION_STATES`
     - Python dtype: `InterpolationStateList`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output consists of the interpolated video frames, enhancing the original sequence with additional frames to achieve smoother motion.
+    - The output of the node, consisting of the interpolated video frames, enhancing the video's temporal resolution.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -127,19 +130,19 @@ class STMFNet_VFI:
 
             # Try to avoid a memory overflow by clearing cuda cache regularly
             if number_of_frames_processed_since_last_cleared_cuda_cache >= clear_cache_after_n_frames:
-                print("Comfy-VFI: Clearing cache...")
+                print("Comfy-VFI: Clearing cache...", end = ' ')
                 soft_empty_cache()
                 number_of_frames_processed_since_last_cleared_cuda_cache = 0
-                print("Comfy-VFI: Done cache clearing")
+                print("Done cache clearing")
             gc.collect()
         
         dtype = torch.float32
         output_frames = [frame.cpu().to(dtype=dtype) for frame in output_frames] #Ensure all frames are in cpu
         out = torch.cat(output_frames, dim=0)
         # clear cache for courtesy
-        print("Comfy-VFI: Final clearing cache...")
+        print("Comfy-VFI: Final clearing cache...", end = ' ')
         soft_empty_cache()
-        print("Comfy-VFI: Done cache clearing")
+        print("Done cache clearing")
         return (postprocess_frames(out), )
 
 ```

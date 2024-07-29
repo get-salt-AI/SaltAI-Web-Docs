@@ -1,8 +1,8 @@
 ---
 tags:
 - AnimationScheduling
-- PromptScheduling
 - Scheduling
+- SigmaScheduling
 ---
 
 # Batch Prompt Schedule 📅🅕🅝
@@ -11,63 +11,67 @@ tags:
 - Category: `FizzNodes 📅🅕🅝/BatchScheduleNodes`
 - Output node: `False`
 
-The `BatchPromptSchedule` node processes user-formatted prompts to sequence and evaluate expressions within these prompts, ultimately generating a batch of conditionings based on a specified schedule. This node is designed to handle the intricacies of animation prompt scheduling, including the management of current and next prompts as well as the conditioning strength across a series of frames.
+The BatchPromptSchedule node is designed to process animation prompts by cleaning up input text, splitting it into positive and negative prompts based on predefined weights, and then applying a series of transformations to interpolate and condition these prompts for animation sequences. This node facilitates the generation of dynamic, frame-specific animation content by leveraging prompt scheduling techniques to adjust the influence of various prompts over the course of an animation.
 ## Input types
 ### Required
 - **`text`**
-    - This input represents the user's formatted prompt, serving as the foundational content for animation sequence generation. It is crucial for defining the thematic direction and elements to be emphasized or minimized in the animation.
+    - The text parameter includes the input text for animation prompts, which is processed to remove whitespace and newlines before being split into positive and negative prompts.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`clip`**
-    - Refers to the clip information or settings that are essential for processing the animation. This input is critical for aligning the animation with specific visual or thematic constraints.
+    - The clip parameter represents the animation clip to which the prompt scheduling and conditioning will be applied. It is essential for aligning the generated prompts with the specific frames and dynamics of the animation.
     - Comfy dtype: `CLIP`
-    - Python dtype: `CLIP`
+    - Python dtype: `torch.Tensor`
 - **`max_frames`**
-    - Specifies the maximum number of frames for the animation, playing a key role in defining the length and scope of the animated sequence.
+    - This parameter specifies the maximum number of frames for the animation, used to determine the scheduling and interpolation of prompts across the animation sequence.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`print_output`**
-    - A boolean flag indicating whether to print output information for debugging or informational purposes during the animation processing.
+    - A boolean parameter indicating whether to print the output of the prompt processing for debugging or informational purposes.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`pre_text`**
-    - Pre-text to be added before the main prompt content, influencing the initial context or setting for the animation.
+    - Pre-text to be added before each prompt, used to modify or enhance the original prompt text before processing.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`app_text`**
-    - Appended text to be added after the main prompt content, affecting the concluding context or elements in the animation.
+    - Appended text to be added after each prompt, serving to further customize or refine the prompt text.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`start_frame`**
-    - The starting frame number for the animation, determining the initial point of the sequence.
+    - Specifies the starting frame number for the animation, used in conjunction with end_frame to define the range of frames affected by the prompt scheduling.
+    - Comfy dtype: `INT`
+    - Python dtype: `int`
+- **`end_frame`**
+    - Defines the ending frame number for the animation, setting the boundary for prompt processing and application.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`pw_a`**
-    - A parameter weight influencing the animation's visual or thematic aspects, part of a set of weights used for fine-tuning the output.
+    - Parameter weight A, part of a set of weights used to adjust the influence of various prompts or conditions within the animation.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pw_b`**
-    - Another parameter weight for adjusting the animation's characteristics, contributing to the customization of the final output.
+    - Parameter weight B, another weight in the set for fine-tuning the prompt conditioning and scheduling.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pw_c`**
-    - A weight parameter for further customization of the animation, allowing for specific adjustments to the visual or thematic output.
+    - Parameter weight C, used alongside other weights to customize the prompt's impact on the animation.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pw_d`**
-    - The last of the parameter weights for detailed control over the animation's appearance or theme, enabling precise modifications.
+    - Parameter weight D, the last of the set of weights for adjusting prompt influence, contributing to the dynamic generation of animation content.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`POS`**
     - Comfy dtype: `CONDITIONING`
-    - This output represents the positive conditioning generated from the animation prompt, ready for further processing or utilization in the animation sequence.
-    - Python dtype: `CONDITIONING`
+    - The output 'POS' represents the conditioned positive prompts, ready for use in generating or influencing animation frames.
+    - Python dtype: `torch.Tensor`
 - **`NEG`**
     - Comfy dtype: `CONDITIONING`
-    - Signifies the negative conditioning derived from the animation prompt, complementing the positive conditioning to provide a balanced and nuanced animation output.
-    - Python dtype: `CONDITIONING`
+    - The output 'NEG' represents the conditioned negative prompts, similarly prepared for influencing animation frames in contrast to the positive prompts.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
@@ -93,7 +97,8 @@ class BatchPromptSchedule:
                 "optional": {
                     "pre_text": ("STRING", {"multiline": True, "forceInput": True}),
                     "app_text": ("STRING", {"multiline": True, "forceInput": True}),
-                    "start_frame": ("INT", {"default": 0, "min": 0, "max": 9999, "step": 1, }),
+                    "start_frame": ("INT", {"default": 0, "min": 0, "max": 9999, "step": 1, "display": "start_frame(print_only)", }),
+                    "end_frame": ("INT", {"default": 0, "min": 0, "max": 9999, "step": 1, "display": "end_frame(print_only)",}),
                     "pw_a": ("FLOAT", {"default": 0.0, "min": -9999.0, "max": 9999.0, "step": 0.1, "forceInput": True}),
                     "pw_b": ("FLOAT", {"default": 0.0, "min": -9999.0, "max": 9999.0, "step": 0.1, "forceInput": True}),
                     "pw_c": ("FLOAT", {"default": 0.0, "min": -9999.0, "max": 9999.0, "step": 0.1, "forceInput": True}),
@@ -107,7 +112,7 @@ class BatchPromptSchedule:
 
     CATEGORY = "FizzNodes 📅🅕🅝/BatchScheduleNodes"
 
-    def animate(self, text, max_frames, print_output, clip, start_frame, pw_a=0, pw_b=0, pw_c=0, pw_d=0, pre_text='', app_text=''
+    def animate(self, text, max_frames, print_output, clip, start_frame, end_frame, pw_a=0, pw_b=0, pw_c=0, pw_d=0, pre_text='', app_text=''
     ):
         settings = ScheduleSettings(
             text_g=text,
@@ -124,6 +129,7 @@ class BatchPromptSchedule:
             pw_c=pw_c,
             pw_d=pw_d,
             start_frame=start_frame,
+            end_frame=end_frame,
             width=None,
             height=None,
             crop_w=None,

@@ -8,26 +8,26 @@ tags:
 # ∞ Convert Agent To Llamaindex
 ## Documentation
 - Class name: `ConvertAgentToLlamaindex`
-- Category: `SALT/Shakers/Agents`
+- Category: `SALT/Language Toolkit/Agents`
 - Output node: `False`
 
-This node is designed to transform an agent into a format compatible with Llama, potentially incorporating an optional embedding model to enhance the agent's capabilities.
+This node is designed to transform an existing agent into a format compatible with LlamaIndex, enabling its integration and utilization within the LlamaIndex ecosystem. It allows for the extension of an agent's capabilities by optionally incorporating a pre-defined embedding model.
 ## Input types
 ### Required
 - **`agent`**
-    - The primary agent to be converted into a Llama-compatible format, serving as the core element for transformation.
+    - The agent to be converted. This is the primary input that specifies the agent whose functionalities are to be made compatible with the LlamaIndex format.
     - Comfy dtype: `AGENT`
-    - Python dtype: `Dict[str, Any]`
+    - Python dtype: `Custom object representing an agent, specific to the system's architecture`
 ### Optional
 - **`optional_embed_model`**
-    - An optional embedding model that can be included to augment the agent's conversion process, providing additional capabilities or optimizations.
+    - An optional embedding model that can be included to enhance the agent's capabilities within the LlamaIndex ecosystem.
     - Comfy dtype: `LLM_EMBED_MODEL`
-    - Python dtype: `Dict[str, Any]`
+    - Python dtype: `Custom object representing a LlamaIndex embedding model, specific to the system's architecture`
 ## Output types
 - **`model`**
     - Comfy dtype: `LLM_MODEL`
-    - The transformed agent, now in a format compatible with Llama, optionally enhanced by an embedding model.
-    - Python dtype: `Dict[str, Any]`
+    - The transformed agent, now in a format that is compatible with LlamaIndex, ready for integration and utilization.
+    - Python dtype: `Custom object representing a LlamaIndex model, specific to the system's architecture`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -51,7 +51,7 @@ class ConvertAgentToLlamaindex:
 	RETURN_NAMES = ("model",)
 
 	FUNCTION = "convert_agent"
-	CATEGORY = f"{MENU_NAME}/Shakers/Agents"
+	CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Agents"
 
 	def convert_agent(self, agent, optional_embed_model=None):
 		llm = {"llm": BaseModel(agent)}

@@ -4,17 +4,17 @@
 - Category: `EasyUse/Prompt`
 - Output node: `False`
 
-The 'easy positive' node is designed to process and enhance positive textual inputs for generative tasks, utilizing advanced techniques such as token normalization and weight interpretation to optimize the input's effectiveness. It integrates with language models and image processing tools to conditionally generate or modify content based on the positive input, aiming to achieve a desired outcome or effect.
+The 'easy positive' node is designed to process and enhance positive textual inputs for generative tasks, utilizing advanced encoding techniques and conditional embeddings to optimize the generation process. It integrates seamlessly with language models and image processing pipelines, emphasizing the positive aspects of inputs to influence the output generation towards more favorable outcomes.
 ## Input types
 ### Required
 - **`positive`**
-    - Represents the positive textual input that the node processes. This input is crucial for guiding the generative process towards generating or modifying content in a positive manner.
+    - Represents the positive textual input that the node processes. It is crucial for defining the desired positive attributes or themes that should be emphasized in the output generation, directly influencing the nature and direction of the generative task.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`positive`**
     - Comfy dtype: `STRING`
-    - The generated or enhanced positive prompt text, ready for further processing or direct use in generative tasks. This output reflects the node's processing and optimization of the positive input.
+    - The enhanced version of the input text, optimized for positive influence on the generative process. This output is the result of advanced encoding and processing, ready to be used in further generative tasks.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -42,6 +42,8 @@ class positivePrompt:
 
     @staticmethod
     def main(positive):
+        if has_chinese(positive):
+            return zh_to_en([positive])
         return positive,
 
 ```

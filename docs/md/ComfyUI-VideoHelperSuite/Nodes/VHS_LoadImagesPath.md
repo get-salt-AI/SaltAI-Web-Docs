@@ -1,6 +1,8 @@
 ---
 tags:
+- Animation
 - Image
+- ImageDrawing
 - ImageLoad
 ---
 
@@ -10,11 +12,11 @@ tags:
 - Category: `Video Helper Suite 🎥🅥🅗🅢`
 - Output node: `False`
 
-The VHS_LoadImagesPath node is designed for loading images from a specified directory path into a video editing or processing workflow. It supports filtering and selection options to customize the set of images loaded, facilitating efficient management and manipulation of image batches within the Video Helper Suite.
+This node is designed for loading a batch of images from a specified directory path. It streamlines the process of importing multiple images into the workflow, facilitating batch processing and manipulation of image data within the video helper suite.
 ## Input types
 ### Required
 - **`directory`**
-    - Specifies the directory from which images are to be loaded. This parameter is crucial for determining the source of the images to be processed.
+    - The directory path from which images are to be loaded. This parameter is crucial for specifying the source of the images, thereby enabling the node to retrieve and process the image files located at the given path.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ### Optional
@@ -23,25 +25,29 @@ The VHS_LoadImagesPath node is designed for loading images from a specified dire
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`skip_first_images`**
-    - Skips a specified number of images at the beginning of the directory, enabling selective loading of images based on order.
+    - Skips a specified number of images from the beginning of the directory, useful for starting the loading process from a certain point.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`select_every_nth`**
-    - Loads every nth image from the directory, providing a method to thin out the image set for processing.
+    - Loads every nth image from the directory, providing a means to sample the images at a specified interval.
     - Comfy dtype: `INT`
     - Python dtype: `int`
+- **`meta_batch`**
+    - A reference to a batch manager object that handles meta information about the batch processing, such as tracking the progress and managing resources.
+    - Comfy dtype: `VHS_BatchManager`
+    - Python dtype: `BatchManager`
 ## Output types
-- **`image`**
+- **`IMAGE`**
     - Comfy dtype: `IMAGE`
-    - The loaded images, ready for further processing or manipulation within the workflow.
+    - A batch of images loaded from the specified directory path. This output is essential for subsequent image processing or analysis tasks, providing a collection of images ready for manipulation or examination.
     - Python dtype: `torch.Tensor`
-- **`mask`**
+- **`MASK`**
     - Comfy dtype: `MASK`
-    - Generated masks for the loaded images, useful for image editing tasks that require segmentation or selective editing.
+    - A batch of masks corresponding to the loaded images, used for image segmentation or editing tasks.
     - Python dtype: `torch.Tensor`
-- **`int`**
+- **`frame_count`**
     - Comfy dtype: `INT`
-    - The total count of images loaded, offering insight into the batch size after applying loading parameters.
+    - The total number of frames (images) loaded from the directory, indicating the size of the batch processed.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
@@ -66,15 +72,21 @@ class LoadImagesFromDirectoryPath:
                 "image_load_cap": ("INT", {"default": 0, "min": 0, "max": BIGMAX, "step": 1}),
                 "skip_first_images": ("INT", {"default": 0, "min": 0, "max": BIGMAX, "step": 1}),
                 "select_every_nth": ("INT", {"default": 1, "min": 1, "max": BIGMAX, "step": 1}),
-            }
+                "meta_batch": ("VHS_BatchManager",),
+            },
+            "hidden": {
+                "unique_id": "UNIQUE_ID"
+            },
         }
     
     RETURN_TYPES = ("IMAGE", "MASK", "INT")
+    RETURN_NAMES = ("IMAGE", "MASK", "frame_count")
     FUNCTION = "load_images"
 
     CATEGORY = "Video Helper Suite 🎥🅥🅗🅢"
 
     def load_images(self, directory: str, **kwargs):
+        directory = strip_path(directory)
         if directory is None or validate_load_images(directory) != True:
             raise Exception("directory is not valid: " + directory)
 
@@ -90,6 +102,6 @@ class LoadImagesFromDirectoryPath:
     def VALIDATE_INPUTS(s, directory: str, **kwargs):
         if directory is None:
             return True
-        return validate_load_images(directory)
+        return validate_load_images(strip_path(directory))
 
 ```

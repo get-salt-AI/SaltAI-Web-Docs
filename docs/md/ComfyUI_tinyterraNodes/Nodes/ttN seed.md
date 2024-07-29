@@ -1,26 +1,27 @@
 ---
 tags:
 - RandomGeneration
+- Randomization
 - Seed
 ---
 
 # seed
 ## Documentation
 - Class name: `ttN seed`
-- Category: `ttN/util`
+- Category: `🌏 tinyterra/util`
 - Output node: `True`
 
-The `ttN_SEED` node is designed to manage and utilize seed values for operations, ensuring consistent and reproducible results across different runs. It serves as a foundational element in processes that require deterministic outcomes.
+The ttN seed node is designed to manage and apply seed values for generating or manipulating data within the TinyTerra ecosystem. It integrates with various components such as models, conditioning parameters, and latent spaces to ensure consistent and controlled outcomes. This node plays a crucial role in the procedural generation or transformation of content, allowing for reproducibility and customization through seed manipulation.
 ## Input types
 ### Required
 - **`seed`**
-    - The `seed` parameter is used to set a specific starting point for number generation, enabling deterministic behavior in operations. It plays a crucial role in ensuring reproducibility of results.
+    - The seed parameter is used to initialize the random number generator, ensuring that the generation or manipulation of data can be reproducible. It is crucial for achieving consistent results across different runs.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`seed`**
     - Comfy dtype: `INT`
-    - This output represents the seed value used in the operation, allowing for traceability and reproducibility of the process.
+    - The seed value used in the process, ensuring reproducibility and consistency of the results.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
@@ -53,7 +54,7 @@ class ttN_SEED:
     FUNCTION = "plant"
     OUTPUT_NODE = True
 
-    CATEGORY = "ttN/util"
+    CATEGORY = "🌏 tinyterra/util"
 
     @staticmethod
     def plant(seed):

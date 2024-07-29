@@ -1,6 +1,8 @@
 ---
 tags:
-- ImageEnhancement
+- ImageNoise
+- NoisePatterns
+- Seed
 ---
 
 # TonemapNoiseWithRescaleCFG

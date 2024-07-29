@@ -1,7 +1,6 @@
 ---
 tags:
 - DetailEnhancement
-- Image
 - Pipeline
 ---
 
@@ -11,91 +10,91 @@ tags:
 - Category: `EasyUse/Fix`
 - Output node: `False`
 
-The 'easy preDetailerFix' node is designed to enhance and refine the details of images before further processing or final output. It operates within a pipeline to adjust and optimize image characteristics, such as resolution and detail sharpness, based on predefined or custom settings.
+The `easy preDetailerFix` node is designed to prepare images for detailed refinement, adjusting various aspects of the image before it undergoes a more intensive detail enhancement process. This preparation step is crucial for achieving optimal results in subsequent detail enhancement stages, ensuring that images are properly conditioned for the application of advanced detailing techniques.
 ## Input types
 ### Required
 - **`pipe`**
-    - Specifies the pipeline configuration for image processing, affecting how images are detailed and enhanced.
+    - Represents the current state of the image processing pipeline, including models, settings, and intermediate results. It is essential for maintaining continuity and context throughout the detailing process.
     - Comfy dtype: `PIPE_LINE`
-    - Python dtype: `tuple`
+    - Python dtype: `Dict`
 - **`guide_size`**
-    - Determines the target size for guiding the detail enhancement process, influencing the granularity of details.
+    - Specifies the size of the guide image used in the detailing process, affecting the level of detail that can be achieved.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `int`
 - **`guide_size_for`**
-    - A boolean flag indicating whether the guide size is applied to bounding boxes or the crop region, affecting the focus area of detail enhancement.
+    - Indicates whether the guide size is for bounding box or crop region, providing flexibility in the detailing approach.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`max_size`**
-    - Sets the maximum size limit for the images being processed, ensuring they do not exceed a specified resolution.
+    - Sets the maximum size limit for the images being processed, ensuring that the detailing operations are performed within resource constraints.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `int`
 - **`seed`**
-    - Provides a seed value for random number generation, ensuring reproducibility of the detailing process.
+    - Provides a seed value for any random operations within the detailing process, ensuring reproducibility of results.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`steps`**
-    - Specifies the number of steps to be taken in the detailing process, affecting the depth of detail enhancement.
+    - Defines the number of steps to be taken in the detailing process, directly impacting the intensity and duration of the detailing.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - Controls the configuration setting for the detailing process, influencing the intensity of detail enhancement.
+    - Configures the detailing process parameters, allowing for customization of the enhancement techniques applied.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sampler_name`**
-    - Selects the sampler to be used in the detailing process, affecting the method of detail generation.
+    - Specifies the sampling method to be used in the detailing process, affecting the quality and characteristics of the detail enhancement.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - Chooses the scheduler for the detailing process, determining the sequence and timing of operations.
+    - Selects the scheduling algorithm for the detailing process, optimizing the sequence and timing of operations for efficiency.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`denoise`**
-    - Adjusts the level of denoising applied to the images, balancing between detail preservation and noise reduction.
+    - Enables or disables denoising in the detailing process, affecting the clarity and quality of the final image.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`feather`**
-    - Sets the feathering amount applied to the edges of the images, smoothing transitions for a more natural look.
+    - Adjusts the feathering of edges in the detailing process, smoothing transitions for a more natural appearance.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`noise_mask`**
-    - Specifies the noise mask settings, affecting the application of noise in the detailing process.
+    - Specifies whether a noise mask is applied, adding texture and realism to the enhanced details.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `str`
 - **`force_inpaint`**
-    - Indicates whether inpainting is forcefully applied, affecting the handling of missing or damaged areas in images.
+    - Forces the use of inpainting in areas where detail enhancement is difficult, ensuring consistent quality across the image.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`drop_size`**
-    - Determines the size of drops used in the process, influencing the detailing effect on the image.
+    - Determines the size of drops to be used in the detailing process, affecting the texture and detail of the output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`wildcard`**
-    - Provides a wildcard input for custom settings or parameters, offering flexibility in the detailing process.
+    - Allows for the inclusion of wildcard patterns for advanced detailing customization.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`cycle`**
-    - Specifies the number of cycles the detailing process is repeated, affecting the thoroughness of enhancement.
+    - Specifies the number of cycles the detailing process will run, affecting the depth of detail enhancement.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`bbox_segm_pipe`**
-    - Defines the pipeline settings for bounding box and segmentation, influencing the detail enhancement based on object detection.
+    - Provides the bounding box and segmentation pipeline settings for detail enhancement.
     - Comfy dtype: `PIPE_LINE`
-    - Python dtype: `tuple`
+    - Python dtype: `Dict`
 - **`sam_pipe`**
-    - Specifies the SAM pipeline configuration, affecting the selective attention model used in detailing.
+    - Specifies the settings for the SAM pipeline used in detail enhancement.
     - Comfy dtype: `PIPE_LINE`
-    - Python dtype: `tuple`
+    - Python dtype: `Dict`
 - **`optional_image`**
-    - Allows for an optional image input, providing additional context or reference for the detailing process.
+    - Allows for the inclusion of an optional image to be used in the detailing process.
     - Comfy dtype: `IMAGE`
     - Python dtype: `str`
 ## Output types
 - **`pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - Outputs the modified pipeline configuration after the detailing process, reflecting the applied enhancements and adjustments.
-    - Python dtype: `tuple`
+    - Outputs the updated image processing pipeline, including any modifications or enhancements made during the detailing process.
+    - Python dtype: `Dict`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -115,7 +114,7 @@ class preDetailerFix:
              "steps": ("INT", {"default": 20, "min": 1, "max": 10000}),
              "cfg": ("FLOAT", {"default": 8.0, "min": 0.0, "max": 100.0}),
              "sampler_name": (comfy.samplers.KSampler.SAMPLERS,),
-             "scheduler": (comfy.samplers.KSampler.SCHEDULERS,),
+             "scheduler": (comfy.samplers.KSampler.SCHEDULERS + ['align_your_steps'],),
              "denoise": ("FLOAT", {"default": 0.5, "min": 0.0001, "max": 1.0, "step": 0.01}),
              "feather": ("INT", {"default": 5, "min": 0, "max": 100, "step": 1}),
              "noise_mask": ("BOOLEAN", {"default": True, "label_on": "enabled", "label_off": "disabled"}),
@@ -169,6 +168,15 @@ class preDetailerFix:
             raise Exception(f"[ERROR] sam_pipe or pipe['sam_pipe'] is missing")
 
         loader_settings = pipe["loader_settings"] if "loader_settings" in pipe else {}
+
+        if(scheduler == 'align_your_steps'):
+            model_version = get_sd_version(model)
+            if model_version == 'sdxl':
+                scheduler = 'AYS SDXL'
+            elif model_version == 'svd':
+                scheduler = 'AYS SVD'
+            else:
+                scheduler = 'AYS SD1'
 
         new_pipe = {
             "images": images,

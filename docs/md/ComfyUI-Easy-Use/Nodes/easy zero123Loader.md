@@ -1,9 +1,11 @@
 ---
 tags:
+- Checkpoint
+- CheckpointLoader
 - Loader
-- Model
-- ModelIO
 - ModelLoader
+- ModelMerge
+- ModelSwitching
 ---
 
 # EasyLoader (Zero123)
@@ -12,58 +14,56 @@ tags:
 - Category: `EasyUse/Loaders`
 - Output node: `False`
 
-The `easy zero123Loader` node is designed to simplify the process of loading and configuring 3D models for generation tasks. It abstracts away the complexities involved in setting up 3D model parameters, making it easier for users to generate 3D content with specific attributes and configurations.
+The easy zero123Loader node is designed to simplify the process of loading and configuring 3D models for use within the ComfyUI framework. It abstracts away the complexities involved in setting up 3D model parameters, making it easier for users to integrate 3D content into their applications.
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - Specifies the checkpoint name for the model to be loaded, serving as a key identifier for retrieving the correct model configuration.
+    - Identifies the checkpoint name for the model to be loaded, serving as a key identifier for selecting the specific 3D model configuration.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`vae_name`**
-    - Identifies the VAE model to be used in conjunction with the main model, facilitating specific generative tasks.
+    - Specifies the name of the VAE model to be used in conjunction with the 3D model, facilitating the generation or manipulation of 3D content.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`init_image`**
-    - Defines the initial image to be used as a basis for generation, setting a starting point for the model's output.
+    - Provides an initial image to guide the generation or manipulation process, acting as a starting point for the 3D model's output.
     - Comfy dtype: `IMAGE`
     - Python dtype: `str`
 - **`empty_latent_width`**
-    - Defines the width of the latent space for the 3D model, affecting the resolution and detail of the generated 3D content.
+    - Defines the width of the latent space to be used for generating or manipulating 3D content, impacting the resolution and detail of the output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`empty_latent_height`**
-    - Defines the height of the latent space for the 3D model, affecting the resolution and detail of the generated 3D content.
+    - Specifies the height of the latent space, influencing the vertical resolution and detail of the 3D model's output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`batch_size`**
-    - Determines the number of 3D content pieces to generate in a single batch, allowing for efficient bulk generation.
+    - Determines the number of instances to be processed in a single batch, affecting the efficiency and speed of the loading operation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`elevation`**
-    - Specifies the elevation angle for the 3D model generation, influencing the vertical orientation of the generated content.
+    - Sets the elevation angle for the 3D model's viewpoint, altering the vertical perspective of the rendered content.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`azimuth`**
-    - Specifies the azimuth angle for the 3D model generation, influencing the horizontal orientation of the generated content.
+    - Defines the azimuth angle, adjusting the horizontal orientation and perspective of the 3D model's output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - Returns the pipeline configuration used for generating the 3D content, encapsulating the sequence of operations performed.
-    - Python dtype: `str`
+    - The pipeline object configured with the specified 3D model and settings, ready for use in generating or manipulating 3D content.
+    - Python dtype: `Pipeline`
 - **`model`**
     - Comfy dtype: `MODEL`
-    - Provides the loaded model after applying the specified configurations, ready for generating 3D content.
-    - Python dtype: `str`
+    - The loaded 3D model object, prepared for integration and use within the ComfyUI framework.
+    - Python dtype: `Model`
 - **`vae`**
     - Comfy dtype: `VAE`
-    - Returns the VAE model used in the generation process, highlighting its role in shaping the final output.
-    - Python dtype: `str`
-- **`ui`**
-    - Provides a user interface component for inputting positive and negative prompts, facilitating an interactive and user-friendly way to configure the 3D model generation process.
+    - The VAE model associated with the 3D model, enabling advanced content generation and manipulation capabilities.
+    - Python dtype: `VAE`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -138,18 +138,12 @@ class zero123Loader:
                                     "vae_name": vae_name,
 
                                     "positive": positive,
-                                    "positive_l": None,
-                                    "positive_g": None,
-                                    "positive_balance": None,
                                     "negative": negative,
-                                    "negative_l": None,
-                                    "negative_g": None,
-                                    "negative_balance": None,
                                     "empty_latent_width": empty_latent_width,
                                     "empty_latent_height": empty_latent_height,
                                     "batch_size": batch_size,
                                     "seed": 0,
-                                    "empty_samples": samples, }
+                                    }
                 }
 
         return (pipe, model, vae)

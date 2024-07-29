@@ -1,5 +1,7 @@
 ---
 tags:
+- AnimationScheduling
+- Scheduling
 - SigmaScheduling
 ---
 
@@ -9,24 +11,24 @@ tags:
 - Category: `KJNodes/noise`
 - Output node: `False`
 
-The CustomSigmas node is designed to transform a list of float values into a tensor of sigmas, facilitating the manipulation and application of these values in noise-related operations within neural network models.
+The CustomSigmas node is designed to transform a list of float values into a tensor of sigmas, facilitating the manipulation and application of noise levels in generative models. It abstracts the process of converting numerical lists into a structured format that models can interpret for noise injection or adjustment.
 ## Input types
 ### Required
 - **`sigmas_string`**
-    - This parameter represents a string of comma-separated sigma values intended to be converted into a tensor of sigmas. It is crucial for defining the specific sigma values to be used in subsequent operations, directly influencing the behavior and outcome of the noise application.
+    - A string of comma-separated values representing sigma levels, which are converted into a tensor. This input is essential for defining the noise characteristics to be applied in generative processes.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`interpolate_to_steps`**
-    - Specifies the number of steps to which the sigma values should be interpolated. This parameter is essential for adjusting the length of the sigma tensor to match the desired number of steps in the model's processing.
+    - An integer specifying the number of steps to which the sigma values should be interpolated. This parameter adjusts the length of the sigma tensor to match the desired number of steps in the generative process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`SIGMAS`**
     - Comfy dtype: `SIGMAS`
-    - The output is a tensor of sigmas derived from the input list of float values. This tensor is essential for noise manipulation and application processes in neural network models.
+    - A tensor of sigma values derived from the input list of floats, ready for use in noise application or adjustment within generative models.
     - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -59,10 +61,11 @@ SVD:
     def customsigmas(self, sigmas_string, interpolate_to_steps):
         sigmas_list = sigmas_string.split(', ')
         sigmas_float_list = [float(sigma) for sigma in sigmas_list]
-        sigmas_tensor = torch.tensor(sigmas_float_list)
-        if len(sigmas_tensor) != interpolate_to_steps:
-            sigmas_tensor = self.loglinear_interp(sigmas_tensor, interpolate_to_steps)
-        return (sigmas_tensor,)
+        sigmas_tensor = torch.FloatTensor(sigmas_float_list)
+        if len(sigmas_tensor) != interpolate_to_steps + 1:
+            sigmas_tensor = self.loglinear_interp(sigmas_tensor, interpolate_to_steps + 1)
+        sigmas_tensor[-1] = 0
+        return (sigmas_tensor.float(),)
      
     def loglinear_interp(self, t_steps, num_steps):
         """

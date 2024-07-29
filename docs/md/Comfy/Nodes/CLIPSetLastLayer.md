@@ -1,7 +1,6 @@
 ---
 tags:
-- CLIP
-- Conditioning
+- CLIPConditioning
 ---
 
 # CLIP Set Last Layer

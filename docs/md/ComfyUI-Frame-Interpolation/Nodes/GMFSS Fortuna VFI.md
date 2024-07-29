@@ -1,8 +1,10 @@
 ---
 tags:
-- AnimationScheduling
+- Curve
+- Frame
 - FrameInterpolation
-- VisualEffects
+- Interpolation
+- WavePatterns
 ---
 
 # GMFSS Fortuna VFI
@@ -11,34 +13,34 @@ tags:
 - Category: `ComfyUI-Frame-Interpolation/VFI`
 - Output node: `False`
 
-GMFSS Fortuna VFI is a frame interpolation node designed to generate intermediate frames between two given images using a deep learning model. It leverages the GMFSS Fortuna architecture to predict and synthesize high-quality intermediate frames, enhancing video fluidity and realism.
+The GMFSS Fortuna VFI node is designed for frame interpolation in video processing, leveraging deep learning models to predict intermediate frames between two given frames. It utilizes a specialized architecture to enhance the quality and accuracy of the interpolation, aiming to produce smooth and visually coherent transitions.
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - The checkpoint name for the model used in frame interpolation. It specifies the pre-trained model to be loaded for generating intermediate frames.
+    - The checkpoint name for the model, specifying which pretrained model to use for frame interpolation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`frames`**
-    - A tensor containing the sequence of frames for which intermediate frames are to be generated. It serves as the input sequence for the interpolation process.
+    - A tensor containing the sequence of frames for interpolation. It is the primary input from which intermediate frames are generated.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`clear_cache_after_n_frames`**
-    - An integer specifying how often to clear the CUDA cache to prevent memory overflow during processing.
+    - Specifies after how many frames the CUDA cache should be cleared to prevent memory overflow.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`multiplier`**
-    - An integer indicating the number of intermediate frames to generate between each pair of input frames, effectively controlling the frame rate increase.
+    - Determines the number of intermediate frames to be generated between each pair of input frames.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`optional_interpolation_states`**
-    - An optional parameter providing state information for selective frame interpolation, allowing for more control over which frames are interpolated.
+    - An optional parameter that allows for the skipping of frames based on certain conditions, potentially optimizing the interpolation process.
     - Comfy dtype: `INTERPOLATION_STATES`
     - Python dtype: `InterpolationStateList`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output tensor containing the interpolated frames, enhancing the fluidity and realism of the input video sequence.
+    - The output of the interpolation process, consisting of the original frames along with the newly interpolated frames.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -110,7 +112,7 @@ class GMFSS_Fortuna_VFI:
         
         args = [interpolation_model, scale]
         out = postprocess_frames(
-            generic_frame_loop(frames, clear_cache_after_n_frames, multiplier, return_middle_frame, *args, 
+            generic_frame_loop(type(self).__name__, frames, clear_cache_after_n_frames, multiplier, return_middle_frame, *args, 
                                interpolation_states=optional_interpolation_states, dtype=torch.float32)
         )
         return (out,)

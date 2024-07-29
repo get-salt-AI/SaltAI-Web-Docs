@@ -1,14 +1,19 @@
+---
+tags:
+- BackendCache
+---
+
 # CreateRequestMetadata
 ## Documentation
 - Class name: `CreateRequestMetadata`
 - Category: `Bmad/api`
 - Output node: `True`
 
-This node is responsible for creating and managing a JSON file that contains metadata about a request. It provides functionalities to update request data, add resources to the request, and manage the request's state, ensuring that there is only one instance of this node per prompt to avoid conflicts.
+The CreateRequestMetadata node is designed for managing metadata related to request processing within a system. It facilitates the creation, update, and retrieval of request metadata, including the addition of resources to a request's metadata file. This node plays a crucial role in tracking the state and outputs of requests, ensuring that each request's information is accurately recorded and maintained throughout its lifecycle.
 ## Input types
 ### Required
 - **`request_id`**
-    - The unique identifier for the request. It is crucial for tracking and managing the request throughout its lifecycle.
+    - The unique identifier for a request. It is crucial for distinguishing between different requests and for tracking the specific metadata associated with each request.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
@@ -34,7 +39,7 @@ class CreateRequestMetadata:
         self.type = "output"
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {
             "request_id": ("STRING", {"default": "insert_id"})
         },
@@ -42,16 +47,16 @@ class CreateRequestMetadata:
 
     RETURN_TYPES = ()
     FUNCTION = "update_outdata"
-    CATEGORY = "Bmad/api"
+    CATEGORY = api_category_path
     OUTPUT_NODE = True
 
     @staticmethod
     def get_and_validate_requestID():
-        if CreateRequestMetadata.request_id == None:
-            raise ("Request ID was not set. CreateRequestMetadata node might be missing.")
+        if CreateRequestMetadata.request_id is None:
+            raise TypeError("Request ID was not set. CreateRequestMetadata node might be missing.")
         if CreateRequestMetadata.request_id == "":
-            raise (
-                "Request ID was set to empty. Check if it is being properly set to avoid conflicts with subsequent requests.")
+            raise ValueError("Request ID was set to empty."
+                             " Check if it is being properly set to avoid conflicts with subsequent requests.")
         return CreateRequestMetadata.request_id
 
     @staticmethod
@@ -153,12 +158,13 @@ class CreateRequestMetadata:
 
     def update_outdata(self, request_id):
         if request_id == "insert_id":
-            raise (
-                "Request ID in CreateRequestMetadata node with value: 'insert_id'. You might not be setting it properly or might have more than one CreateRequestMetadata node in your workflow/node.")
+            raise ValueError("Request ID in CreateRequestMetadata node with value: "
+                             "'insert_id'. You might not be setting it properly or "
+                             "might have more than one CreateRequestMetadata node in your workflow/node.")
 
-        if CreateRequestMetadata.request_id == request_id:
-            raise (
-                "Request ID is equal to previously set ID. You may have more than one CreateRequestMetadata node in your workflow/prompt.")
+        assert CreateRequestMetadata.request_id != request_id, (
+            "Request ID is equal to previously set ID. "
+            "You may have more than one CreateRequestMetadata node in your workflow/prompt.")
 
         # no problems found, set the request id
         CreateRequestMetadata.request_id = request_id

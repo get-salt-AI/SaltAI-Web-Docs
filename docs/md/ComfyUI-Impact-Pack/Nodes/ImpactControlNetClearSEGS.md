@@ -1,6 +1,7 @@
 ---
 tags:
 - ImpactPack
+- SEGSPrep
 - Segmentation
 ---
 
@@ -10,18 +11,18 @@ tags:
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-This node is designed to clear the control network information from a given set of segmentation elements (SEGS), effectively resetting their control network-related attributes to a default state. It's part of the ImpactPack/Util category, focusing on utility operations within the SEGS data structure.
+This node is designed to clear control networks from segmentation data, effectively resetting any modifications or enhancements previously applied. It operates by iterating over each segment in the provided segmentation data, creating a new segment with the original properties but without the control network information.
 ## Input types
 ### Required
 - **`segs`**
-    - The segmentation elements (SEGS) to be processed. This input is essential for determining which SEGS will have their control network information cleared.
+    - The segmentation data to be processed. This input is essential for the node's operation as it defines the segments whose control networks will be cleared.
     - Comfy dtype: `SEGS`
-    - Python dtype: `Tuple[Size, List[SEG]]`
+    - Python dtype: `Tuple[Tuple[int, int], List[SEG]]`
 ## Output types
 - **`segs`**
     - Comfy dtype: `SEGS`
-    - The processed segmentation elements (SEGS) with their control network information cleared, ready for further processing or analysis.
-    - Python dtype: `Tuple[Size, List[SEG]]`
+    - The modified segmentation data with control networks cleared from each segment. This output is crucial for subsequent processing steps that require segmentation data without control network modifications.
+    - Python dtype: `Tuple[Tuple[int, int], List[SEG]]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -39,7 +40,8 @@ class ControlNetClearSEGS:
 
     CATEGORY = "ImpactPack/Util"
 
-    def doit(self, segs):
+    @staticmethod
+    def doit(segs):
         new_segs = []
 
         for seg in segs[1]:

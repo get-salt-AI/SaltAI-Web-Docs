@@ -1,6 +1,7 @@
 ---
 tags:
 - Audio
+- SaltNodes
 ---
 
 # Load Images from ZIP
@@ -9,21 +10,21 @@ tags:
 - Category: `SALT/Image/Loaders`
 - Output node: `False`
 
-The SaltLoadImageZip node is designed to load and optionally resize images from a ZIP file. It supports a variety of image formats and can concatenate the loaded images into a single tensor, facilitating their use in image processing workflows.
+This node is designed to load images from a ZIP file, optionally resizing them to match the dimensions of the first image encountered. It supports a variety of image formats and is capable of handling multiple images within a single ZIP archive, making it suitable for batch processing of images for further analysis or manipulation.
 ## Input types
 ### Required
 - **`path`**
-    - Specifies the file path to the ZIP archive containing images. It is crucial for locating and accessing the desired images for processing.
+    - Specifies the file path to the ZIP archive containing the images to be loaded. It is crucial for locating and accessing the desired ZIP file.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`resize_images_to_first`**
-    - Determines whether all loaded images should be resized to match the dimensions of the first image found. This ensures uniformity in image sizes, which is often necessary for batch processing or when images are used in neural networks.
+    - Determines whether all loaded images should be resized to match the dimensions of the first image found in the ZIP file. This is useful for ensuring uniformity in image sizes for batch processing.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`images`**
     - Comfy dtype: `IMAGE`
-    - The output is a tensor containing the loaded (and possibly resized) images, ready for further processing or analysis.
+    - Returns a tensor containing the loaded (and possibly resized) images from the ZIP file, ready for further processing or analysis.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -64,7 +65,9 @@ class SaltLoadImageZip:
                             images.append(image if image.size == first_image_size else self.resize_right(image, first_image_size))
 
         if not images:
-            raise ValueError(f"The input zip `{path}` does not contain any valid images!")
+            errmsg = f"The input zip `{path}` does not contain any valid images!"
+            logger.error(errmsg)
+            raise ValueError(errmsg)
 
         images = [pil2tensor(img) for img in images]
         images = torch.cat(images, dim=0)

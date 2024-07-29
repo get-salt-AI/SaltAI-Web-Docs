@@ -1,8 +1,8 @@
 ---
 tags:
 - AnimationScheduling
-- PromptScheduling
 - Scheduling
+- SigmaScheduling
 ---
 
 # Batch Prompt Schedule (Latent Input) 📅🅕🅝
@@ -11,67 +11,71 @@ tags:
 - Category: `FizzNodes 📅🅕🅝/BatchScheduleNodes`
 - Output node: `False`
 
-This node is designed to process animation prompts for batch scheduling with latent inputs. It sequences the user's formatted prompt into current and next prompts along with conditioning strength, evaluates expressions within these prompts, and applies a scheduling algorithm to generate a batch of conditionings tailored to the input latent values. The node's functionality emphasizes the dynamic adaptation of text-based animation prompts to the temporal dimension of animations, facilitating the creation of nuanced and temporally coherent animated sequences.
+This node is designed to process animation prompts for generating scheduled latent inputs. It sequences the user's formatted prompt into current and next prompts along with their conditioning strengths, evaluates expressions within the prompts, and applies a scheduling algorithm to produce a batch of conditionings tailored to the input latent. The node's functionality facilitates the creation of dynamic, time-sequenced visual content by manipulating latent space representations in accordance with the specified prompt schedule.
 ## Input types
 ### Required
 - **`text`**
-    - This parameter represents the primary text prompt for the animation, serving as the foundational content from which positive and negative prompts are derived.
+    - The user's input prompt intended for animation, which is processed to generate positive and negative prompts for content generation. This input is crucial for defining the thematic and narrative direction of the generated content.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`clip`**
-    - This parameter is essential for the animation process, providing the clip information required for generating the animation.
+    - A representation of the clip model used for conditioning the input prompt, playing a key role in the generation process by influencing the visual characteristics of the output.
     - Comfy dtype: `CLIP`
-    - Python dtype: `Any`
+    - Python dtype: `str`
 - **`num_latents`**
-    - Represents the number of latent inputs that influence the animation generation process, providing a basis for dynamic adaptation.
+    - Specifies the number of latent vectors to be used in the generation process, directly impacting the diversity and variation of the generated content.
     - Comfy dtype: `LATENT`
-    - Python dtype: `Dict[str, torch.Tensor]`
+    - Python dtype: `int`
 - **`print_output`**
-    - A boolean parameter that controls whether the output of the animation process is printed, aiding in debugging and process visualization.
+    - A boolean flag that, when set, enables the printing of output for debugging purposes, aiding in the analysis and refinement of the generation process.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`pre_text`**
-    - Pre-text is added before the main text prompt to modify or guide the animation's thematic direction.
+    - Pre-text added to the animation prompts before processing, influencing the initial context and direction of the generated content.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`app_text`**
-    - Appended text that follows the main text prompt, further tailoring the animation's narrative or aesthetic.
+    - Appended text to the animation prompts, modifying the final output by adding specific details or themes to the generated content.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`start_frame`**
-    - Specifies the starting frame for the animation, setting the initial point for prompt scheduling and animation generation.
+    - Defines the starting frame for the animation, setting the initial point for the prompt scheduling process.
+    - Comfy dtype: `INT`
+    - Python dtype: `int`
+- **`end_frame`**
+    - Specifies the ending frame for the animation, marking the conclusion of the prompt scheduling.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`pw_a`**
-    - A floating-point parameter that influences the weighting of animation prompts, contributing to the scheduling algorithm's complexity.
+    - A parameter weight influencing the conditioning strength of the animation, affecting the intensity of the generated content's attributes.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pw_b`**
-    - Similar to pw_a, this floating-point parameter further adjusts the prompt weighting, allowing for nuanced control over the animation's development.
+    - A parameter weight that adjusts the balance between different attributes in the generated content, impacting the overall visual outcome.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pw_c`**
-    - This parameter works alongside pw_a and pw_b to refine the weighting and scheduling of animation prompts, enhancing the final output's dynamic range.
+    - A parameter weight used to fine-tune the conditioning process, allowing for precise control over the generated content's characteristics.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pw_d`**
-    - Completes the set of weight parameters (pw_a, pw_b, pw_c), pw_d offers additional fine-tuning of the prompt scheduling process for the animation.
+    - A parameter weight that affects the temporal dynamics of the animation, influencing how attributes evolve over time.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`POS`**
     - Comfy dtype: `CONDITIONING`
-    - This output represents the positive conditioning generated for the animation, based on the scheduled prompts.
-    - Python dtype: `torch.Tensor`
+    - The processed and scheduled positive conditioning, ready for use in generating content that emphasizes desired attributes.
+    - Python dtype: `str`
 - **`NEG`**
     - Comfy dtype: `CONDITIONING`
-    - This output denotes the negative conditioning generated for the animation, contrasting with the positive to add depth and complexity.
-    - Python dtype: `torch.Tensor`
+    - The processed and scheduled negative conditioning, aimed at minimizing or avoiding certain attributes in the generated content.
+    - Python dtype: `str`
 - **`INPUT_LATENTS`**
     - Comfy dtype: `LATENT`
-    - This output returns the input latents, potentially modified or directly passed through the scheduling process.
-    - Python dtype: `Dict[str, torch.Tensor]`
+    - The original input latents passed through the node, potentially modified or unchanged, depending on the node's internal logic.
+    - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
@@ -90,11 +94,12 @@ class BatchPromptScheduleLatentInput:
                     "text": ("STRING", {"multiline": True, "default": defaultPrompt}),
                     "clip": ("CLIP",),
                     "num_latents": ("LATENT", ),
-                    "print_output":("BOOLEAN", {"default": False, "forceInput": True}),
+                    "print_output":("BOOLEAN", {"default": False}),
                 },
                 "optional": {"pre_text": ("STRING", {"multiline": True, "forceInput": True}),
                     "app_text": ("STRING", {"multiline": True, "forceInput": True}),
-                    "start_frame": ("INT", {"default": 0.0, "min": 0, "max": 9999, "step": 1, }),
+                    "start_frame": ("INT", {"default": 0.0, "min": 0, "max": 9999, "step": 1, "display": "start_frame(print_only)", }),
+                    "end_frame": ("INT", {"default": 0, "min": 0, "max": 9999, "step": 1, "display": "end_frame(print_only)", }),
                     "pw_a": ("FLOAT", {"default": 0.0, "min": -9999.0, "max": 9999.0, "step": 0.1, "forceInput": True }),
                     "pw_b": ("FLOAT", {"default": 0.0, "min": -9999.0, "max": 9999.0, "step": 0.1, "forceInput": True }),
                     "pw_c": ("FLOAT", {"default": 0.0, "min": -9999.0, "max": 9999.0, "step": 0.1, "forceInput": True }),
@@ -108,7 +113,7 @@ class BatchPromptScheduleLatentInput:
 
     CATEGORY = "FizzNodes 📅🅕🅝/BatchScheduleNodes"
 
-    def animate(self, text, num_latents, print_output, clip, start_frame, pw_a=0, pw_b=0, pw_c=0, pw_d=0, pre_text='', app_text=''
+    def animate(self, text, num_latents, print_output, clip, start_frame, end_frame, pw_a=0, pw_b=0, pw_c=0, pw_d=0, pre_text='', app_text=''
     ):
         settings = ScheduleSettings(
             text_g=text,
@@ -125,6 +130,7 @@ class BatchPromptScheduleLatentInput:
             pw_c=pw_c,
             pw_d=pw_d,
             start_frame=start_frame,
+            end_frame=end_frame,
             width=None,
             height=None,
             crop_w=None,

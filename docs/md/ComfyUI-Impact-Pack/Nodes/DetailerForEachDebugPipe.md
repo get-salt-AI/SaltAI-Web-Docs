@@ -1,6 +1,6 @@
 ---
 tags:
-- Image
+- DetailEnhancement
 - Pipeline
 - PipelineTransformation
 ---
@@ -11,7 +11,7 @@ tags:
 - Category: `ImpactPack/Detailer`
 - Output node: `False`
 
-The node 'DetailerForEachDebugPipe' is designed to facilitate debugging within the context of detailer pipes, providing insights and diagnostics that help in understanding and improving the flow of data and operations. It aims to enhance the development and troubleshooting process by offering a detailed view into the workings of detailer pipes.
+The DetailerForEachDebugPipe node is designed for debugging purposes within the SEGS/pipe framework. It provides detailed insights and diagnostics for each processing step, facilitating the identification and resolution of issues in the pipeline.
 ## Input types
 ### Required
 - **`image`**
@@ -75,9 +75,9 @@ The node 'DetailerForEachDebugPipe' is designed to facilitate debugging within t
     - Comfy dtype: `BASIC_PIPE`
     - Python dtype: `unknown`
 - **`wildcard`**
-    - A string input that allows for dynamic prompts or additional debugging information to be passed into the pipe, enhancing the flexibility and depth of debugging.
+    - unknown
     - Comfy dtype: `STRING`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`refiner_ratio`**
     - unknown
     - Comfy dtype: `FLOAT`
@@ -102,6 +102,10 @@ The node 'DetailerForEachDebugPipe' is designed to facilitate debugging within t
 - **`noise_mask_feather`**
     - unknown
     - Comfy dtype: `INT`
+    - Python dtype: `unknown`
+- **`scheduler_func_opt`**
+    - unknown
+    - Comfy dtype: `SCHEDULER_FUNC`
     - Python dtype: `unknown`
 ## Output types
 - **`image`**
@@ -155,7 +159,7 @@ class DetailerForEachTestPipe(DetailerForEachPipe):
 
     def doit(self, image, segs, guide_size, guide_size_for, max_size, seed, steps, cfg, sampler_name, scheduler,
              denoise, feather, noise_mask, force_inpaint, basic_pipe, wildcard, cycle=1,
-             refiner_ratio=None, detailer_hook=None, refiner_basic_pipe_opt=None, inpaint_model=False, noise_mask_feather=0):
+             refiner_ratio=None, detailer_hook=None, refiner_basic_pipe_opt=None, inpaint_model=False, noise_mask_feather=0, scheduler_func_opt=None):
 
         if len(image) > 1:
             raise Exception('[Impact Pack] ERROR: DetailerForEach does not allow image batches.\nPlease refer to https://github.com/ltdrdata/ComfyUI-extension-tutorials/blob/Main/ComfyUI-Impact-Pack/tutorial/batching-detailer.md for more information.')
@@ -174,7 +178,7 @@ class DetailerForEachTestPipe(DetailerForEachPipe):
                                       refiner_ratio=refiner_ratio, refiner_model=refiner_model,
                                       refiner_clip=refiner_clip, refiner_positive=refiner_positive,
                                       refiner_negative=refiner_negative,
-                                      cycle=cycle, inpaint_model=inpaint_model, noise_mask_feather=noise_mask_feather)
+                                      cycle=cycle, inpaint_model=inpaint_model, noise_mask_feather=noise_mask_feather, scheduler_func_opt=scheduler_func_opt)
 
         # set fallback image
         if len(cropped) == 0:

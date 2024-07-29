@@ -1,5 +1,7 @@
 ---
 tags:
+- Mask
+- MaskMorphology
 - Segmentation
 ---
 

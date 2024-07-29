@@ -6,18 +6,18 @@ tags:
 # Audio Noise Reduction (Spectral Subtraction)
 ## Documentation
 - Class name: `SaltAudioNoiseReductionSpectralSubtraction`
-- Category: `SALT/Audio/Effect`
+- Category: `SALT/AudioViz/Audio/Effect`
 - Output node: `False`
 
-This node applies spectral subtraction-based noise reduction to audio inputs, effectively reducing background noise and enhancing audio clarity.
+This node is designed to reduce noise in audio files using spectral subtraction. It aims to enhance audio clarity by removing unwanted noise, making it suitable for improving the quality of recordings or audio tracks.
 ## Input types
 ### Required
 - **`audio`**
-    - The raw audio data to be processed for noise reduction.
+    - The raw audio data to be processed. It serves as the primary input for noise reduction.
     - Comfy dtype: `AUDIO`
     - Python dtype: `bytes`
 - **`noise_floor`**
-    - A parameter controlling the threshold for noise reduction, influencing the extent to which noise is removed from the audio.
+    - A parameter to adjust the intensity of noise reduction. Lower values mean less noise reduction, while higher values increase the noise reduction effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
@@ -45,7 +45,7 @@ class SaltAudioNoiseReductionSpectralSubtraction:
     RETURN_TYPES = ("AUDIO",)
     RETURN_NAMES = ("audio",)
     FUNCTION = "reduce_noise_spectral"
-    CATEGORY = "SALT/Audio/Effect"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Audio/Effect"
 
     def reduce_noise_spectral(cls, audio, noise_floor):
         TEMP = folder_paths.get_temp_directory()

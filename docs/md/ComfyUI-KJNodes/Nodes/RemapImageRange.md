@@ -1,37 +1,32 @@
----
-tags:
-- ImageTransformation
----
-
-# RemapImageRange
+# Remap Image Range
 ## Documentation
 - Class name: `RemapImageRange`
 - Category: `KJNodes/image`
 - Output node: `False`
 
-The RemapImageRange node is designed to adjust the pixel value range of an image to a specified new range, optionally clamping the resulting values to ensure they remain within a certain limit. This functionality is crucial for image preprocessing, normalization, and ensuring compatibility with various image processing pipelines.
+The RemapImageRange node is designed to adjust the pixel value range of an input image to a specified new range. It supports optional clamping to ensure that the remapped image values stay within a desired interval, enhancing flexibility in image preprocessing for various applications.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be remapped. This parameter is crucial as it provides the source image whose pixel values are to be adjusted.
+    - The input image to be remapped. This parameter is crucial for defining the source image whose pixel values are to be adjusted.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`min`**
-    - The minimum value of the new range for the image pixel values. It affects the lower bound of the remapping process.
+    - Specifies the minimum value of the new range for the image pixel values. It plays a key role in defining the lower bound of the target range.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`max`**
-    - The maximum value of the new range for the image pixel values. It sets the upper limit of the remapping scale.
+    - Defines the maximum value of the new range for the image pixel values, setting the upper limit of the target range.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`clamp`**
-    - A boolean flag indicating whether to clamp the remapped image values to a [0.0, 1.0] range, ensuring they stay within standard image value limits.
+    - A boolean flag that determines whether the remapped image values should be clamped to the [0.0, 1.0] range, ensuring that pixel values remain valid.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is the image with its pixel values remapped to the specified new range, potentially clamped to fit within a [0.0, 1.0] range.
+    - The output image with its pixel values remapped to the specified new range. This parameter signifies the transformed image ready for further processing or analysis.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`

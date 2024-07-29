@@ -1,6 +1,7 @@
 ---
 tags:
 - Color
+- Image
 ---
 
 # Color Clip ADE20k
@@ -9,29 +10,29 @@ tags:
 - Category: `Bmad/image`
 - Output node: `False`
 
-This node specializes in adjusting the color of images based on the ADE20K dataset, allowing for specific class-based color clipping. It modifies the color of an image to match predefined colors associated with ADE20K class names, enhancing image aesthetics or utility for visualization and analysis.
+The Color Clip ADE20k node is designed to modify the color palette of an image based on the ADE20K dataset, allowing for the clipping of image colors to a specific class color from the dataset. It extends the functionality of a base color clipping operation by incorporating ADE20K-specific color mappings, enabling targeted color transformations for image processing tasks.
 ## Input types
 ### Required
 - **`image`**
-    - The image to be color clipped. It serves as the base for color modification, where the clipping operation will be applied.
+    - The input image to be processed. This image will undergo color clipping based on the specified class name and target color operations.
     - Comfy dtype: `IMAGE`
     - Python dtype: `numpy.ndarray`
 - **`target`**
-    - Defines the target operation for the color clipping, such as converting to black, white, or maintaining the original color.
+    - Specifies the target operation for the color clipping, such as converting to black, white, or maintaining the color.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`complement`**
-    - Specifies the complementary operation to the target, offering additional control over the color clipping process.
+    - Defines the complementary operation for the color clipping, providing additional control over the color transformation process.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`class_name`**
-    - Specifies the ADE20K class name whose associated color will be used for clipping. This determines the target color for the clipping operation, aligning the image's aesthetic with the class's typical color.
+    - The name of the class from the ADE20K dataset whose color will be used for clipping. This determines the specific color to which the image's colors will be clipped.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The resulting image after the color clipping operation, showcasing the applied color adjustments.
+    - The processed image with colors clipped according to the specified class color from the ADE20K dataset.
     - Python dtype: `numpy.ndarray`
 ## Usage tips
 - Infra type: `CPU`
@@ -42,15 +43,16 @@ This node specializes in adjusting the color of images based on the ADE20K datas
 ```python
 class ColorClipADE20K(ColorClip):
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         types = super().get_types(advanced=False)
         types["required"].pop("color")
-        types["required"]["class_name"] = (ade20k_class_names, {"default": 'animal, animate being, beast, brute, creature, fauna'})
+        types["required"]["class_name"] = (ade20k_class_names, {"default": default_class_name})
         return types
 
     def color_clip(self, image, class_name, target, complement):
-        clip_color = list((ADE20K_dic[class_name]*255).astype(np.uint8))
-        image = self.clip(image, clip_color, target, complement)
+        clip_color = list((ADE20K_dic[class_name] * 255).astype(uint8))
+        # note: max eucl. dist. between 2 colors in the dictionary is 7.xxx ... w/ a diff of (4, 5, 3)
+        image = self.clip(image, clip_color, target, complement, leeway=2)
         return (image,)
 
 ```

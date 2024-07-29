@@ -1,5 +1,6 @@
 ---
 tags:
+- Animation
 - Image
 - ImageSave
 ---

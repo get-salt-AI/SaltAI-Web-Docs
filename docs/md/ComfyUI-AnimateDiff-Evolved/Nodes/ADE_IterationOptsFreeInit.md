@@ -2,6 +2,8 @@
 tags:
 - AnimateDiff
 - Animation
+- MotionData
+- PoseEstimation
 ---
 
 # FreeInit Iteration Options 🎭🅐🅓

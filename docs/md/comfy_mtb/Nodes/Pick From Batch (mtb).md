@@ -2,6 +2,8 @@
 tags:
 - Batch
 - Image
+- ImageBatch
+- ImageDuplication
 ---
 
 # Pick From Batch (mtb)

@@ -1,7 +1,6 @@
 ---
 tags:
 - ControlNet
-- Weight
 ---
 
 # IPAdapter Combine Weights

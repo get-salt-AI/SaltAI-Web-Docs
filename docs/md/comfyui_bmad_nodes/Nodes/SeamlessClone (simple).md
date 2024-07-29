@@ -1,6 +1,5 @@
 ---
 tags:
-- Image
 - ImageBlend
 - ImageComposite
 ---
@@ -11,7 +10,7 @@ tags:
 - Category: `Bmad/CV/C.Photography`
 - Output node: `False`
 
-The SeamlessClone node provides a comprehensive interface for performing seamless cloning operations on images. It supports various cloning modes and allows for precise control over the cloning process, including the ability to specify the center of the source mask for cloning. This node is designed to facilitate complex image blending tasks by seamlessly integrating a source image into a destination image.
+This node provides a simplified interface for performing seamless cloning operations on images, automatically determining the center of the source mask for the cloning process. It leverages the capabilities of a more complex seamless cloning node to offer an easier-to-use option for integrating one image into another with visually coherent results.
 ## Input types
 ### Required
 - **`dst`**
@@ -23,17 +22,17 @@ The SeamlessClone node provides a comprehensive interface for performing seamles
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`src_mask`**
-    - The mask image indicating the region of the source image to be cloned.
+    - A mask image indicating the region of the source image to be cloned.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`flag`**
-    - Specifies the cloning mode to be used, chosen from a predefined set of modes.
+    - Specifies the cloning mode to be used, which can affect the blending behavior.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The resulting image after the seamless cloning operation.
+    - The result of the seamless cloning operation, with the source image integrated into the destination image.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -44,7 +43,7 @@ The SeamlessClone node provides a comprehensive interface for performing seamles
 ```python
 class SeamlessCloneSimpler:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "dst": ("IMAGE",),
@@ -56,7 +55,7 @@ class SeamlessCloneSimpler:
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "paste"
-    CATEGORY = "Bmad/CV/C.Photography"
+    CATEGORY = f"{cv_category_path}/C.Photography"
 
     @staticmethod
     def get_center(cv_mask):

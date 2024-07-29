@@ -1,6 +1,6 @@
 ---
 tags:
-- Conditioning
+- CLIPConditioning
 ---
 
 # FromListGet1Cond

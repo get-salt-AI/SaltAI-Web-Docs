@@ -1,42 +1,45 @@
 ---
 tags:
-- Image
+- Flip
+- GridLayout
+- ImageDuplication
+- ImageTransformation
 - Tiled
 ---
 
-# SUPIR Tiles
+# SUPIR Tiles Preview
 ## Documentation
 - Class name: `SUPIR_tiles`
 - Category: `SUPIR`
 - Output node: `False`
 
-The SUPIR_tiles node is designed for tiling images, a process that divides a large image into smaller, manageable pieces or tiles. This functionality is essential for handling large images efficiently within the SUPIR framework, enabling detailed processing and analysis of each tile separately before reassembling them into the original image format. It supports operations such as previewing the tiling effect and potentially generating captions for each tile, facilitating a more granular approach to image analysis and manipulation.
+This node is designed for generating a preview of image tiles, facilitating the visualization of how an image is segmented into smaller, manageable pieces for processing or analysis. It primarily serves in the context of image processing pipelines where handling images in tiles is advantageous for performance or algorithmic reasons.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be tiled. This parameter is crucial as it determines the source image that will be divided into smaller tiles for processing, directly impacting the tiling operation's outcome.
+    - The input image to be tiled. This parameter is crucial for determining how the image will be segmented into tiles, affecting the visualization output.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`tile_size`**
-    - Defines the size of each tile. The tile size is a key factor in determining how the image is segmented into tiles, affecting both the number of tiles generated and the resolution of each tile, thereby influencing the granularity of processing and analysis.
+    - Specifies the dimensions of each tile. This parameter directly influences the granularity of the tiling process, impacting both the number of tiles generated and their respective sizes.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`tile_stride`**
-    - Specifies the stride for tiling. The tile stride affects how tiles are overlapped or spaced apart, playing a significant role in the coverage and redundancy of the tiling process, which can impact the comprehensiveness of the image analysis.
+    - Defines the stride for tiling the image. This parameter determines the overlap between tiles, affecting the total number of tiles generated and their arrangement.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image_tiles`**
     - Comfy dtype: `IMAGE`
-    - The resulting set of image tiles. This output is a collection of smaller, segmented pieces of the original image, each processed individually.
-    - Python dtype: `List[torch.Tensor]`
+    - A collection of image tiles derived from the input image. This output is significant for visualizing the segmentation and for further processing or analysis of individual tiles.
+    - Python dtype: `torch.Tensor`
 - **`tile_size`**
     - Comfy dtype: `INT`
-    - The size of the tiles used in the tiling process. This output confirms the dimensions that were applied to segment the image into tiles, providing insight into the granularity of the analysis.
+    - The dimension of each tile, as specified in the input. This output is crucial for understanding the scale at which the image was segmented.
     - Python dtype: `int`
 - **`tile_stride`**
     - Comfy dtype: `INT`
-    - The stride used for the tiling process. This output indicates the spacing or overlap between tiles, offering details on the tiling pattern and coverage.
+    - The stride used for tiling the image, as specified in the input. This output provides insight into the overlap and arrangement of the generated tiles.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`

@@ -1,50 +1,54 @@
 ---
 tags:
+- AnimationScheduling
 - Scheduling
+- SigmaScheduling
+- VisualEffects
+- WavePatterns
 ---
 
 # Apply Easing to Schedule
 ## Documentation
 - Class name: `SaltScheduleVariance`
-- Category: `SALT/Scheduling`
+- Category: `SALT/AudioViz/Scheduling`
 - Output node: `False`
 
-The SaltScheduleVariance node applies a combination of noise-based tremors and easing functions to a schedule list to create a varied output. This process enhances the dynamic range and visual interest of scheduled events or animations by introducing controlled randomness and smooth transitions.
+This node applies a combination of noise-based tremors and easing functions to a schedule list to create varied animation frames. It allows for the dynamic adjustment of animation parameters over time, enhancing visual effects with perlin noise and optional curve adjustments.
 ## Input types
 ### Required
 - **`schedule_list`**
-    - The primary list of scheduled values to be varied. It serves as the base for applying noise adjustments and easing functions, directly influencing the variance and dynamics of the output.
+    - The list of values representing the schedule to be varied. It serves as the base for applying noise and curve adjustments, directly influencing the visual dynamics of the animation.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 ### Optional
 - **`curves_mode`**
-    - Specifies the type of easing function to apply, enhancing the schedule list with smooth transitions. This parameter allows for the customization of the variance effect, tailoring the output to specific aesthetic or functional requirements.
+    - Specifies the type of easing function to apply to the schedule list, offering a method to smoothly transition between values.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`use_perlin_tremors`**
-    - A boolean flag that determines whether noise-based tremors are applied to the schedule list, introducing a layer of controlled randomness to the variance process.
+    - A flag to enable or disable the application of perlin noise-based tremors to the schedule list, adding a layer of dynamic variation.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`tremor_scale`**
-    - Adjusts the intensity of the noise-based tremors applied to the schedule list, allowing for fine-tuning of the variance effect's impact.
+    - Determines the intensity of the noise-based tremors applied to the schedule list, affecting the degree of variation.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`octaves`**
-    - Defines the number of layers of noise to combine for creating tremors, affecting the complexity and texture of the variance.
+    - Controls the number of layers of noise to combine for generating tremors, impacting the complexity of the resulting variation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`persistence`**
-    - Controls the amplitude's decrease across noise octaves, influencing the smoothness and subtlety of the tremors.
+    - Affects the amplitude of each octave in the noise function, influencing the smoothness of the tremors.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`lacunarity`**
-    - Determines the frequency increase across noise octaves, affecting the detail and scale of the tremors.
+    - Determines the frequency of each octave in the noise function, affecting the detail of the tremors.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`schedule_list`**
     - Comfy dtype: `LIST`
-    - The resulting list after applying noise-based tremors and easing functions to the input schedule list, showcasing the enhanced variance and dynamics.
+    - The modified schedule list after applying noise-based tremors and optional curve adjustments, ready for use in animating visual elements.
     - Python dtype: `List[float]`
 ## Usage tips
 - Infra type: `CPU`
@@ -83,7 +87,7 @@ class SaltScheduleVariance:
     RETURN_TYPES = ("LIST",)
     RETURN_NAMES = ("schedule_list",)
     FUNCTION = "opac_variance"
-    CATEGORY = "SALT/Scheduling"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling"
 
     def sample_perlin(self, frame_index, value, tremor_scale, octaves, persistence, lacunarity):
         noise = self.perlin_noise.sample(self.noise_base + frame_index * 0.1, scale=1.0, octaves=octaves, persistence=persistence, lacunarity=lacunarity)

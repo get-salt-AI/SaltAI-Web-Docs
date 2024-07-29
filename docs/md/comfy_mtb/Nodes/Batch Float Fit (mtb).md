@@ -1,7 +1,6 @@
 ---
 tags:
-- Batch
-- FloatData
+- VectorMath
 ---
 
 # Batch Float Fit (mtb)

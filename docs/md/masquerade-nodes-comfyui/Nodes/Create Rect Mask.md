@@ -1,7 +1,10 @@
 ---
 tags:
+- BoundingBox
+- ImageTransformation
 - Mask
-- MaskGeneration
+- MaskList
+- MaskMorphology
 ---
 
 # Create Rect Mask

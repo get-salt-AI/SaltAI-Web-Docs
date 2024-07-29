@@ -4,35 +4,35 @@
 - Category: `SALT/Language Toolkit/Loaders`
 - Output node: `False`
 
-The LLMGroqModel node is designed to interface with the Groq platform for loading and managing language models. It encapsulates the functionality for initializing language models and their corresponding embedding models, providing a streamlined process for integrating Groq's AI capabilities into various applications.
+The LLMGroqModel node integrates Groq's large language models (LLMs) with embedding models, such as those provided by OpenAI, to facilitate advanced text processing and analysis tasks. It enables the loading of specific LLMs and embedding models, configuring them for use in various applications that require understanding, generating, or transforming text.
 ## Input types
 ### Required
 - **`model`**
-    - Specifies the name of the language model to be loaded. This parameter is crucial for determining which specific model from the Groq platform will be utilized during the operation.
+    - Specifies the Groq model to be loaded for text processing tasks, indicating the specific LLM to be utilized.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`groq_api_key`**
-    - The API key required for authenticating with the Groq platform. This key enables secure access to Groq's services and is essential for the operation of the node.
+    - The API key required to authenticate and access Groq's large language models, ensuring secure and authorized use.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`embedding_model`**
-    - Defines the name of the embedding model to be used in conjunction with the language model. This parameter is important for tasks that require semantic understanding of text, such as similarity searches or text classification.
+    - Defines the embedding model to be used in conjunction with the Groq LLM, typically for tasks involving text embedding or similarity analysis.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`openai_api_key`**
-    - An optional API key for OpenAI services, used when the embedding model is based on OpenAI's technology.
+    - Optional API key for accessing OpenAI's embedding models, providing flexibility in choosing the embedding model based on availability or preference.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`llm_model`**
     - Comfy dtype: `LLM_MODEL`
-    - Returns the initialized language model, including its configuration and state, ready for use in various applications.
-    - Python dtype: `Dict[str, Any]`
+    - The loaded Groq large language model, ready for text processing tasks.
+    - Python dtype: `dict`
 - **`embed_model_only`**
     - Comfy dtype: `LLM_EMBED_MODEL`
-    - Provides the initialized embedding model separately, including its name, for tasks requiring semantic analysis of text.
-    - Python dtype: `Dict[str, Any]`
+    - The embedding model loaded alongside the Groq LLM, used for text embedding or similarity analysis.
+    - Python dtype: `dict`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -51,8 +51,7 @@ class LLMGroq:
                 "model": (["llama3-8b-8192", "llama3-70b-8192", "mixtral-8x7b-32768", "gemma-7b-it"],),
                 "groq_api_key": ("STRING", {
                     "multiline": False,
-                    "dynamicPrompts": False,
-                    "default": os.environ.get("GROQ_API_KEY", "")
+                    "default": os.environ.get("GROQ_API_KEY", "SALTAI_GROQ_KEY")
                 }),
                 "embedding_model": (
                     sorted([x.value for x in OpenAIEmbeddingModelType]),
@@ -63,7 +62,7 @@ class LLMGroq:
                 "openai_api_key": ("STRING", {
                     "multiline": False,
                     "dynamicPrompts": False,
-                    "default": os.environ.get("OPENAI_API_KEY", "")
+                    "default": os.environ.get("OPENAI_API_KEY", "SALTAI_OPENAI_KEY")
                 }),
             }
         }
@@ -75,6 +74,8 @@ class LLMGroq:
     CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Loaders"
 
     def load_model(self, model: str, groq_api_key: str, embedding_model:str, openai_api_key:str = None) -> Dict[str, Any]:
+        if LAST_TOKENIZER:
+            Settings.tokenizer = LAST_TOKENIZER
         llm = Groq(model=model, api_key=groq_api_key)
         embed_model = OpenAIEmbedding(model_name=embedding_model, api_key=openai_api_key,)
         return ({"llm": llm, "llm_name": model, "embed_model": embed_model, "embed_name": embedding_model}, {"embed_model": embed_model, "embed_name": embedding_model})

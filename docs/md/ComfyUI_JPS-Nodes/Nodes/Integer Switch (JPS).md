@@ -1,6 +1,9 @@
 ---
 tags:
+- BooleanLogic
 - ConditionalSelection
+- ImageSwitching
+- ImpactPack
 ---
 
 # Integer Switch (JPS)

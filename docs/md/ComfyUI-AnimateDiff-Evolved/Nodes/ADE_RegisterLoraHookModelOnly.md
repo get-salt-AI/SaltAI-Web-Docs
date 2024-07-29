@@ -1,6 +1,7 @@
 ---
 tags:
 - LoRA
+- LoRAVisualization
 ---
 
 # Register LoRA Hook (Model Only) 🎭🅐🅓

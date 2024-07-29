@@ -1,7 +1,11 @@
 ---
 tags:
-- AnimationScheduling
-- Frame
+- Counting
+- Curve
+- Interpolation
+- Multimedia
+- VideoHelperSuite
+- WavePatterns
 ---
 
 # Calculate Frame Offset 📅🅕🅝

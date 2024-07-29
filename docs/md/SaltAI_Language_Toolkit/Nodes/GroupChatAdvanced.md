@@ -1,73 +1,73 @@
 # ∞ Group Chat (Adv)
 ## Documentation
 - Class name: `GroupChatAdvanced`
-- Category: `SALT/Language Toolkit/Agents`
+- Category: `SALT/Language Toolkit/Agents/Chat`
 - Output node: `False`
 
-Facilitates advanced group chat sessions among multiple agents, incorporating features like message filtering, speaker selection, and customizable chat introductions to enhance interaction dynamics.
+The GroupChatAdvanced node facilitates advanced group chat simulations among multiple agents, incorporating features like message filtering, speaker selection, and customizable chat introductions. It enables the creation and management of dynamic, multi-agent conversations for various simulation and interaction scenarios.
 ## Input types
 ### Required
 - **`group_manager`**
-    - Specifies the manager responsible for overseeing the group chat, ensuring structured and moderated interaction.
+    - Specifies the manager of the group chat, orchestrating the flow and rules of the conversation.
     - Comfy dtype: `GROUP_MANAGER`
-    - Python dtype: `GroupManager`
+    - Python dtype: `Dict`
 - **`init_message`**
-    - The initial message to kick off the chat session, setting the tone for the conversation.
+    - The initial message to start the chat, setting the context for the conversation.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`select_speaker_message_template`**
-    - Customizes the message for selecting the next speaker, providing context and instructions within the chat.
+    - Template for customizing the message that introduces the speaker selection process, guiding the narrative flow.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`select_speaker_prompt_template`**
-    - Customizes the prompt for selecting the next speaker, guiding the LLM in choosing the next agent to take the role.
+    - Customizes the select speaker prompt, guiding the LLM in selecting the next agent to speak.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`summary_method`**
-    - Determines the method for generating a chat summary, allowing for tailored reflection on the conversation.
+    - Determines the method for generating a chat summary, affecting the analysis and insights derived from the conversation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`max_turns`**
-    - Specifies the maximum number of turns in the chat, controlling the length of the conversation.
+    - Specifies the maximum number of message exchanges allowed in the chat, controlling the conversation's length.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`func_call_filter`**
-    - When enabled, filters the next speaker based on function call suggestions, adding a layer of interaction based on agent capabilities.
+    - Determines if the next speaker is chosen based on function call suggestions, influencing the flow of conversation.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`speaker_selection_method`**
-    - Defines the strategy for selecting the next speaker, facilitating organized and dynamic conversation flow.
+    - Specifies the method used to select the next speaker, affecting the dynamics of the conversation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`allow_repeat_speaker`**
-    - Allows the same speaker to take consecutive turns, adding flexibility to the conversation flow.
+    - Allows or disallows the same speaker to be chosen consecutively, impacting the variety of conversation.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`send_introductions`**
-    - Option to send introductory messages at the beginning of the chat, setting the stage for the conversation.
+    - Controls whether introductory messages are sent at the beginning of the chat, setting the stage for the conversation.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`role_for_select_speaker_messages`**
-    - Specifies the role for messages related to selecting the next speaker, enhancing the context for speaker selection.
+    - Defines the role used in select speaker messages, guiding the context for speaker selection.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`clear_history`**
-    - Option to clear the chat history before starting a new session, ensuring a fresh start.
+    - Indicates whether the chat history should be cleared before starting a new session, impacting the continuity of conversations.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
-- **`agent_i`**
-    - Represents one of potentially multiple agents in the chat, contributing to the interactive dialogue.
-    - Comfy dtype: `AGENT`
-    - Python dtype: `Agent`
+- **`agents`**
+    - A list of agents participating in the chat. It's crucial for simulating the group chat dynamics and interactions among different entities.
+    - Comfy dtype: `AGENTS`
+    - Python dtype: `List[Agent]`
 ## Output types
 - **`chat_history`**
     - Comfy dtype: `STRING`
-    - The compiled history of messages exchanged during the chat session.
+    - The compiled history of messages exchanged during the chat, providing a complete record of the conversation.
     - Python dtype: `str`
 - **`summary`**
     - Comfy dtype: `STRING`
-    - A summary of the chat session, capturing the essence and key points of the conversation.
+    - A summary of the chat, offering insights or an overview of the conversation's content and outcomes.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -128,14 +128,7 @@ class GroupChatAdvanced:
                 "clear_history": ("BOOLEAN", {"default": True},),
             },
             "optional": {
-                "agent_1": ("AGENT",),
-                "agent_2": ("AGENT",),
-                "agent_3": ("AGENT",),
-                "agent_4": ("AGENT",),
-                "agent_5": ("AGENT",),
-                "agent_6": ("AGENT",),
-                "agent_7": ("AGENT",),
-                "agent_8": ("AGENT",),
+                "agents": ("AGENTS",),
             },
         }
 
@@ -143,7 +136,7 @@ class GroupChatAdvanced:
     RETURN_NAMES = ("chat_history", "summary", )
 
     FUNCTION = "start_chat"
-    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Agents"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Agents/Chat"
 
     def start_chat(
         self,
@@ -159,9 +152,8 @@ class GroupChatAdvanced:
         summary_method,
         max_turns,
         clear_history,
-        **kwargs,
+        agents,
     ):
-        agents = [kwargs[i] for i in kwargs if "agent_" in i]
         assert len(agents) != 1, "At least 1 agent is needed to start a group chat session"
         # create chat
         group_chat = AutogenGroupChat(

@@ -1,6 +1,6 @@
 ---
 tags:
-- SEGSPrep
+- Mask
 - Segmentation
 ---
 
@@ -10,40 +10,40 @@ tags:
 - Category: `ImpactPack/Operation`
 - Output node: `False`
 
-The MaskToSEGS_for_AnimateDiff node is designed to convert a mask into a segmented representation (SEGS) specifically tailored for animations with differences. It enhances the mask-to-SEGS conversion process by incorporating additional steps to handle the nuances of animated content, ensuring that the segmented output is optimized for subsequent processing in animation-focused workflows.
+This node is designed to convert masks into SEGS format specifically tailored for animations with differential impact, accommodating both 2D and 3D masks. It leverages contour filling options and advanced mask processing techniques to ensure the generated SEGS are optimized for animation sequences, handling batch masks with specialized transformations when necessary.
 ## Input types
 ### Required
 - **`mask`**
-    - The 'mask' parameter represents the input mask that is to be converted into segmented form. It plays a crucial role in defining the areas of interest within the animation frame.
+    - The input mask to be converted into SEGS. This mask can be either 2D or 3D, and it is the primary input for generating SEGS tailored for animations.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`combined`**
-    - The 'combined' parameter indicates whether the mask should be combined with other masks during the conversion process. This affects how the mask is processed and integrated into the segmented output.
+    - A boolean flag indicating whether the mask and the resulting SEGS should be combined, affecting the processing logic of the node.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`crop_factor`**
-    - The 'crop_factor' parameter determines the extent to which the input mask is cropped before conversion. This affects the granularity of the segmented output, allowing for finer control over the segmentation process.
+    - A factor determining the extent of cropping applied to the mask before conversion, influencing the size and detail of the resulting SEGS.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`bbox_fill`**
-    - The 'bbox_fill' parameter specifies whether bounding boxes should be filled during the segmentation process. This can influence the visual representation of the segmented output.
+    - A boolean flag that determines whether bounding boxes should be filled, impacting the visual representation of the resulting SEGS.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`drop_size`**
-    - The 'drop_size' parameter sets the minimum size of segments to be included in the output. Smaller segments below this threshold are dropped, allowing for a cleaner, more focused segmented representation.
+    - Specifies the minimum size of features to retain in the SEGS, filtering out smaller elements based on this threshold.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`contour_fill`**
-    - The 'contour_fill' parameter indicates whether contours within the mask should be filled during the segmentation process. This can enhance the visual clarity of the segmented output, especially in animations with distinct boundaries.
+    - A boolean flag indicating whether contours within the mask should be filled, enhancing the detail and completeness of the resulting SEGS.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`segs`**
     - Comfy dtype: `SEGS`
-    - The output is a segmented representation (SEGS) of the input mask, optimized for animations with differences. It provides a detailed and structured format that is suitable for further processing in animation-focused workflows.
-    - Python dtype: `Tuple[torch.Tensor, List[SEG]]`
+    - The output SEGS generated from the input mask, optimized for animations with differential impact. These SEGS are suitable for further processing or visualization in animation workflows.
+    - Python dtype: `Tuple[torch.Tensor]`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -67,11 +67,17 @@ class MaskToSEGS_for_AnimateDiff:
 
     CATEGORY = "ImpactPack/Operation"
 
-    def doit(self, mask, combined, crop_factor, bbox_fill, drop_size, contour_fill=False):
+    @staticmethod
+    def doit(mask, combined, crop_factor, bbox_fill, drop_size, contour_fill=False):
+        if (len(mask.shape) == 4 and mask.shape[1] > 1) or (len(mask.shape) == 3 and mask.shape[0] > 1):
+            mask = make_3d_mask(mask)
+            if contour_fill:
+                print(f"[Impact Pack] MaskToSEGS_for_AnimateDiff: 'contour_fill' is ignored because batch mask 'contour_fill' is not supported.")
+            result = core.batch_mask_to_segs(mask, combined, crop_factor, bbox_fill, drop_size)
+            return (result, )
+
         mask = make_2d_mask(mask)
-
         segs = core.mask_to_segs(mask, combined, crop_factor, bbox_fill, drop_size, is_contour=contour_fill)
-
         all_masks = SEGSToMaskList().doit(segs)[0]
 
         result_mask = (all_masks[0] * 255).to(torch.uint8)
@@ -81,6 +87,6 @@ class MaskToSEGS_for_AnimateDiff:
         result_mask = (result_mask/255.0).to(torch.float32)
         result_mask = utils.to_binary_mask(result_mask, 0.1)[0]
 
-        return MaskToSEGS().doit(result_mask, False, crop_factor, False, drop_size, contour_fill)
+        return MaskToSEGS.doit(result_mask, False, crop_factor, False, drop_size, contour_fill)
 
 ```

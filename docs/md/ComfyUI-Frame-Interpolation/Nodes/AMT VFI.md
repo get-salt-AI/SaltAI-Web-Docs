@@ -1,8 +1,11 @@
 ---
 tags:
-- AnimationScheduling
+- Curve
+- Frame
 - FrameInterpolation
-- VisualEffects
+- Interpolation
+- Keyframe
+- WavePatterns
 ---
 
 # AMT VFI
@@ -11,34 +14,34 @@ tags:
 - Category: `ComfyUI-Frame-Interpolation/VFI`
 - Output node: `False`
 
-The AMT_VFI node specializes in video frame interpolation, utilizing deep learning techniques to generate intermediate frames that enhance the smoothness and frame rate of video sequences. It employs advanced models to predict and insert frames between existing ones, improving video playback quality.
+The AMT_VFI node is designed for advanced motion transfer and frame interpolation in video processing. It leverages deep learning models to analyze and synthesize frames, achieving high-quality video frame interpolation by understanding and replicating the motion between consecutive frames.
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - Specifies the checkpoint name for the model to be used in the interpolation process, determining the specific pre-trained model configuration.
+    - The checkpoint name for the model, selecting the specific pre-trained model for frame interpolation.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `List[str]`
 - **`frames`**
-    - The input video frames to be interpolated, provided as a tensor. This parameter is crucial for defining the sequence of frames the model will process.
+    - The sequence of frames to be interpolated, serving as the input for the frame interpolation process.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`clear_cache_after_n_frames`**
-    - Controls the frequency of cache clearing to manage memory usage during the interpolation process, affecting performance and resource utilization.
+    - Controls how often the cache is cleared during the frame interpolation process, optimizing memory usage.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`multiplier`**
-    - Determines the number of intermediate frames to be generated between each pair of original frames, directly influencing the output video's frame rate.
+    - The factor by which the frame rate is increased, determining the number of frames generated between each pair of input frames.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`optional_interpolation_states`**
-    - An optional parameter that allows for the customization of interpolation states, offering flexibility in handling specific frames or conditions.
+    - Optional states for interpolation, allowing for customization of the interpolation process.
     - Comfy dtype: `INTERPOLATION_STATES`
     - Python dtype: `InterpolationStateList`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output video frames after interpolation, showcasing the enhanced fluidity and increased frame rate achieved through the process.
+    - The output interpolated frames, showcasing the node's capability in enhancing video fluidity and detail.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -96,7 +99,7 @@ class AMT_VFI:
             )["imgt_pred"]
         
         args = [interpolation_model]
-        out = generic_frame_loop(frames, clear_cache_after_n_frames, multiplier, return_middle_frame, *args, 
+        out = generic_frame_loop(type(self).__name__, frames, clear_cache_after_n_frames, multiplier, return_middle_frame, *args, 
                                interpolation_states=optional_interpolation_states, dtype=torch.float32)
         out = padder.unpad(out)
         out = postprocess_frames(out)

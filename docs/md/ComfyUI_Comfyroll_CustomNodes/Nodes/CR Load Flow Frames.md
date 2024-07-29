@@ -2,6 +2,8 @@
 tags:
 - Animation
 - Image
+- ImageSave
+- Metadata
 ---
 
 # ⌨️ CR Load Flow Frames

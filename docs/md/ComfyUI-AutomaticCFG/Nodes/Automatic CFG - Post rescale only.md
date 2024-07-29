@@ -1,57 +1,58 @@
 ---
 tags:
 - ModelGuidance
+- RandomGeneration
 ---
 
 # Automatic CFG - Post rescale only
 ## Documentation
 - Class name: `Automatic CFG - Post rescale only`
-- Category: `model_patches/automatic_cfg/presets`
+- Category: `model_patches/Automatic_CFG/utils`
 - Output node: `False`
 
-This node is designed to apply a post-processing rescaling operation to the output of a generative model, specifically targeting the adjustment of the model's output based on a rescaling factor. It aims to refine the model's predictions by adjusting the scale of the output, enhancing the balance between conditioned and unconditioned components of the generation.
+This node applies a post-conditional generative feedback (CFG) rescaling operation to adjust the balance between the original and degraded image features based on a scaling factor derived from the difference between the original and a secondary image (sag). It dynamically adjusts the scaling of the added CFG effect, aiming to enhance image restoration or modification tasks by recalibrating the intensity of changes applied to the original image, ensuring a more controlled and precise enhancement.
 ## Input types
 ### Required
 - **`model`**
-    - The generative model to which the post-rescaling operation will be applied. This parameter is crucial as it determines the base model whose output will be adjusted.
+    - The model to which the post-CFG rescaling operation will be applied, serving as the base for further adjustments.
     - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`subtract_latent_mean`**
-    - A boolean flag indicating whether the latent mean should be subtracted from the model's output, affecting the final generation's characteristics.
+    - A boolean flag indicating whether to subtract the mean of the latent space representation.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`subtract_latent_mean_sigma_start`**
-    - Defines the starting sigma value for subtracting the latent mean, influencing when this operation is applied during the generation process.
+    - The starting value of sigma for which subtracting the latent mean is applicable.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`subtract_latent_mean_sigma_end`**
-    - Defines the ending sigma value for subtracting the latent mean, marking the end of the range within which this operation is applied.
+    - The ending value of sigma for which subtracting the latent mean is applicable.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`latent_intensity_rescale`**
-    - A boolean flag indicating whether the intensity of the latent space should be rescaled, impacting the visual quality and characteristics of the generated output.
+    - A boolean flag indicating whether to apply intensity rescaling to the latent space representation.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`latent_intensity_rescale_method`**
-    - Specifies the method used for rescaling the intensity of the latent space, affecting how the rescaling operation is performed.
+    - The method used for rescaling the intensity of the latent space representation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`latent_intensity_rescale_cfg`**
-    - The configuration value for the latent intensity rescale operation, determining the intensity of rescaling applied.
+    - The configuration parameters for the latent intensity rescale operation.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`latent_intensity_rescale_sigma_start`**
-    - Defines the starting sigma value for the latent intensity rescale operation, influencing when this adjustment is applied in the generation process.
+    - The starting value of sigma for which the latent intensity rescale is applicable.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`latent_intensity_rescale_sigma_end`**
-    - Defines the ending sigma value for the latent intensity rescale operation, marking the end of the range within which this adjustment is applied.
+    - The ending value of sigma for which the latent intensity rescale is applicable.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The modified generative model with the post-rescaling operation applied. This output reflects the adjustments made to the model's output scaling, aimed at enhancing generation quality.
+    - The model after applying the dynamic rescaling of the CFG effect, reflecting a balanced enhancement.
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
@@ -66,18 +67,18 @@ class postCFGrescaleOnly:
         return {"required": {
                                 "model": ("MODEL",),
                                 "subtract_latent_mean" : ("BOOLEAN", {"default": True}),
-                                "subtract_latent_mean_sigma_start": ("FLOAT", {"default": 15,  "min": 0.0, "max": 10000.0, "step": 0.1, "round": 0.1}),
+                                "subtract_latent_mean_sigma_start": ("FLOAT", {"default": 1000,  "min": 0.0, "max": 10000.0, "step": 0.1, "round": 0.1}),
                                 "subtract_latent_mean_sigma_end":   ("FLOAT", {"default": 7.5, "min": 0.0, "max": 10000.0, "step": 0.1, "round": 0.1}),
                                 "latent_intensity_rescale"     : ("BOOLEAN", {"default": True}),
                                 "latent_intensity_rescale_method" : (["soft","hard","range"], {"default": "hard"},),
-                                "latent_intensity_rescale_cfg" : ("FLOAT", {"default": 7.6,  "min": 0.0, "max": 100.0, "step": 0.1, "round": 0.1}),
-                                "latent_intensity_rescale_sigma_start": ("FLOAT", {"default": 15,  "min": 0.0, "max": 10000.0, "step": 0.1, "round": 0.1}),
-                                "latent_intensity_rescale_sigma_end":   ("FLOAT", {"default": 7.5, "min": 0.0, "max": 10000.0, "step": 0.1, "round": 0.1}),
+                                "latent_intensity_rescale_cfg" : ("FLOAT", {"default": 8,  "min": 0.0, "max": 100.0, "step": 0.1, "round": 0.1}),
+                                "latent_intensity_rescale_sigma_start": ("FLOAT", {"default": 1000,  "min": 0.0, "max": 10000.0, "step": 0.1, "round": 0.1}),
+                                "latent_intensity_rescale_sigma_end":   ("FLOAT", {"default": 5, "min": 0.0, "max": 10000.0, "step": 0.1, "round": 0.1}),
                               }}
     RETURN_TYPES = ("MODEL",)
     FUNCTION = "patch"
 
-    CATEGORY = "model_patches/automatic_cfg/presets"
+    CATEGORY = "model_patches/Automatic_CFG/utils"
 
     def patch(self, model,
               subtract_latent_mean, subtract_latent_mean_sigma_start, subtract_latent_mean_sigma_end,

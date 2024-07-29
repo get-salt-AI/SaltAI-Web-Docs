@@ -1,6 +1,5 @@
 ---
 tags:
-- Image
 - ImageBlend
 - ImageComposite
 ---
@@ -8,38 +7,38 @@ tags:
 # Scheduled Image Composite
 ## Documentation
 - Class name: `SaltImageComposite`
-- Category: `SALT/Scheduling/Image`
+- Category: `SALT/AudioViz/Scheduling/Image`
 - Output node: `False`
 
-The SaltImageComposite node is designed for creating complex image compositions by blending or layering multiple images according to specified schedules. This node enables the dynamic combination of images, facilitating the creation of visually rich and varied outputs.
+This node is designed for creating complex image compositions by blending multiple images together according to specified parameters and schedules. It enables the dynamic assembly of visual elements, allowing for the creation of rich, layered imagery that can be adjusted over time or in response to specific triggers.
 ## Input types
 ### Required
 - **`images_a`**
-    - The first set of images to be used in the compositing process. These images serve as one of the primary layers for the composition.
+    - Specifies the first set of images to be blended. It plays a crucial role in determining the base layer of the composition.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `List[Image]`
+    - Python dtype: `List[torch.Tensor]`
 - **`images_b`**
-    - The second set of images to be used in the compositing process. These images act as the other primary layer for the composition, which will be blended with the first set based on the specified mode.
+    - Specifies the second set of images to be blended with the first set. This layer is combined with the base layer according to the blending mode and other parameters.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `List[Image]`
+    - Python dtype: `List[torch.Tensor]`
 - **`mode`**
-    - Defines the method of blending the two image sets. The mode determines how images_a and images_b are combined, influencing the visual outcome of the composite.
+    - Defines the blending mode to be used for combining the images. The choice of mode affects the visual outcome of the blend, offering various stylistic effects.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`masks`**
-    - Optional masks that can be applied to the images during the compositing process. Masks allow for more controlled blending by specifying areas of the images to be affected or protected.
+    - Optional masks that can be applied to the images for selective blending, allowing for more controlled and intricate compositions.
     - Comfy dtype: `MASK`
-    - Python dtype: `List[Mask]`
+    - Python dtype: `List[torch.Tensor]`
 - **`blend_schedule`**
-    - An optional schedule that dictates the blending intensity or method over time, allowing for dynamic changes in the compositing process.
+    - An optional schedule that defines how the blend ratio changes over time, enabling dynamic transitions between images.
     - Comfy dtype: `LIST`
-    - Python dtype: `List[Any]`
+    - Python dtype: `List[float]`
 ## Output types
 - **`images`**
     - Comfy dtype: `IMAGE`
-    - The resulting images after applying the compositing operations. This output showcases the final composites, blending all input images according to the defined modes and schedules.
-    - Python dtype: `List[Image]`
+    - The resulting images after blending, showcasing the combined visual elements from the input images.
+    - Python dtype: `List[torch.Tensor]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -80,7 +79,7 @@ class SaltImageComposite:
     RETURN_TYPES = ("IMAGE",)
     RETURN_NAMES = ("images",)
     FUNCTION = "blend"
-    CATEGORY = f"SALT/Scheduling/Image"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling/Image"
 
     def blend(self, images_a, images_b, mode, blend_schedule=[1.0], masks=None):
         blended_images = []

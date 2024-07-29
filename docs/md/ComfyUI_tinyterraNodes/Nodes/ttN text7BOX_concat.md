@@ -1,82 +1,83 @@
 ---
 tags:
-- Concatenate
+- ComfyrollNodes
+- Index
 - Text
 ---
 
 # 7x TXT Loader Concat
 ## Documentation
 - Class name: `ttN text7BOX_concat`
-- Category: `ttN/text`
+- Category: `🌏 tinyterra/text`
 - Output node: `False`
 
-The node is designed to concatenate up to seven text inputs into a single string, using a specified delimiter to separate each text input. This functionality allows for flexible text manipulation and aggregation, catering to scenarios where multiple pieces of text need to be combined in a structured manner.
+This node is designed to concatenate up to seven text strings, allowing for flexible text manipulation and combination. It supports custom delimiters, including new lines, to format the concatenated result according to specific requirements.
 ## Input types
 ### Required
 - **`text1`**
-    - The first text input to be concatenated. It plays a foundational role in the concatenation process, serving as the starting point for the combined output.
+    - The first text string to be concatenated. It plays a foundational role in the concatenation process, starting the combined text output.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`text2`**
-    - The second text input to be concatenated. It adds to the sequence of texts being merged, following the first input.
+    - The second text string to be concatenated, adding to the sequence initiated by text1.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`text3`**
-    - The third text input to be concatenated. It continues the sequence of texts being merged, adding further content after the second input.
+    - The third text string to be concatenated, further extending the combined text output.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`text4`**
-    - The fourth text input to be concatenated. It extends the sequence of texts, adding additional content to the combined output.
+    - The fourth text string to be concatenated, contributing to the growing list of combined texts.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`text5`**
-    - The fifth text input to be concatenated. It further extends the sequence of texts, enriching the combined output with more content.
+    - The fifth text string to be concatenated, adding more content to the concatenation.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`text6`**
-    - The sixth text input to be concatenated. It adds depth to the combined output, contributing additional content to the sequence.
+    - The sixth text string to be concatenated, continuing to build upon the concatenated text.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`text7`**
-    - The seventh and final text input to be concatenated. It completes the sequence of texts, finalizing the content of the combined output.
+    - The seventh and final text string to be concatenated, completing the concatenation process.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`delimiter`**
-    - Specifies the character or sequence of characters used to separate each text input in the concatenated output. This parameter allows for customization of the output format.
+    - The delimiter used to separate each text string in the concatenation. It can significantly affect the formatting of the output.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`text1`**
     - Comfy dtype: `STRING`
-    - unknown
-    - Python dtype: `unknown`
+    - Returns the first input text string, unchanged.
+    - Python dtype: `str`
 - **`text2`**
     - Comfy dtype: `STRING`
-    - unknown
-    - Python dtype: `unknown`
+    - Returns the second input text string, unchanged.
+    - Python dtype: `str`
 - **`text3`**
     - Comfy dtype: `STRING`
-    - unknown
-    - Python dtype: `unknown`
+    - Returns the third input text string, unchanged.
+    - Python dtype: `str`
 - **`text4`**
     - Comfy dtype: `STRING`
-    - unknown
-    - Python dtype: `unknown`
+    - Returns the fourth input text string, unchanged.
+    - Python dtype: `str`
 - **`text5`**
     - Comfy dtype: `STRING`
-    - unknown
-    - Python dtype: `unknown`
+    - Returns the fifth input text string, unchanged.
+    - Python dtype: `str`
 - **`text6`**
     - Comfy dtype: `STRING`
-    - unknown
-    - Python dtype: `unknown`
+    - Returns the sixth input text string, unchanged.
+    - Python dtype: `str`
 - **`text7`**
     - Comfy dtype: `STRING`
-    - unknown
-    - Python dtype: `unknown`
+    - Returns the seventh input text string, unchanged.
+    - Python dtype: `str`
 - **`concat`**
     - Comfy dtype: `STRING`
-    - The final concatenated string, composed of up to seven text inputs separated by the specified delimiter. This output represents the culmination of the concatenation process.
+    - Returns the concatenated result of all seven input text strings, separated by the specified delimiter.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -111,7 +112,7 @@ class ttN_text7BOX_concat:
     RETURN_NAMES = ("text1", "text2", "text3", "text4", "text5", "text6", "text7", "concat",)
     FUNCTION = "conmeow"
 
-    CATEGORY = "ttN/text"
+    CATEGORY = "🌏 tinyterra/text"
 
     def conmeow(self, text1, text2, text3, text4, text5, text6, text7, delimiter):
         text1 = '' if text1 == 'undefined' else text1

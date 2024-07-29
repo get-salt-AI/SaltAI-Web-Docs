@@ -1,6 +1,8 @@
 ---
 tags:
 - IPAdapter
+- IdentityImage
+- RegionalImageProcessing
 ---
 
 # Easy Apply IPAdapter (StyleComposition)
@@ -9,82 +11,82 @@ tags:
 - Category: `EasyUse/Adapter`
 - Output node: `False`
 
-The `easy ipadapterStyleComposition` node facilitates the application of style and composition adjustments to images using an IPAdapter. It abstracts complex processes into an easier interface, enabling users to modify image aesthetics and composition through predefined or custom settings.
+This node facilitates the application of style and composition adjustments to images using an IPAdapter. It abstracts the complexity of applying various style and composition weights and parameters, enabling users to easily enhance or modify the visual attributes of images.
 ## Input types
 ### Required
 - **`model`**
-    - The model to which the IPAdapter style and composition adjustments will be applied, serving as the foundation for the modifications.
+    - Specifies the model to which the IPAdapter adjustments will be applied, serving as the foundation for style and composition enhancements.
     - Comfy dtype: `MODEL`
     - Python dtype: `str`
 - **`image_style`**
-    - Specifies the style image used for style transfer or composition adjustments, providing a visual reference for the desired aesthetic.
+    - The image that provides the style reference, guiding the stylistic adjustments to be applied to the target image.
     - Comfy dtype: `IMAGE`
     - Python dtype: `str`
 - **`preset`**
-    - A predefined configuration that sets the baseline for style and composition adjustments, simplifying the selection process for users.
+    - Defines the preset configuration for the IPAdapter, setting a baseline for style and composition adjustments.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`weight_style`**
-    - Determines the intensity of the style adjustment applied to the image, allowing for nuanced control over the aesthetic outcome.
+    - Specifies the weight for style adjustments, influencing the intensity of style application.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`weight_composition`**
-    - Controls the degree of composition adjustment, enabling users to fine-tune how elements are blended or arranged.
+    - Specifies the weight for composition adjustments, influencing the intensity of composition application.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`expand_style`**
-    - A boolean flag that indicates whether to apply the style adjustments more broadly or restrictively across the image.
+    - Indicates whether to expand the style adjustments beyond the initial parameters, allowing for more extensive stylistic modifications.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`combine_embeds`**
-    - Defines the method for combining multiple embeddings or adjustments, such as concatenation or averaging, to achieve the desired effect.
+    - Determines how style and composition embeddings are combined, affecting the final visual outcome.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`start_at`**
-    - Specifies the starting point for applying adjustments, allowing for targeted modifications within the image.
+    - Specifies the starting point for applying style and composition adjustments, allowing for phased application.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end_at`**
-    - Defines the endpoint for adjustment application, enabling precise control over the area of effect.
+    - Specifies the ending point for applying style and composition adjustments, defining the scope of application.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`embeds_scaling`**
-    - Adjusts the scaling of embeddings to influence the strength and impact of style and composition adjustments.
+    - Controls the scaling of embeddings, affecting the intensity and focus of style and composition adjustments.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`cache_mode`**
-    - Sets the caching strategy for the node, optimizing performance and resource usage based on the selected mode.
+    - Determines the caching strategy for the IPAdapter, optimizing performance and resource usage.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`image_composition`**
-    - Optional. The image used for composition adjustments, providing an additional layer for blending or arrangement.
+    - The image that serves as a composition reference, guiding the compositional adjustments to be applied to the target image.
     - Comfy dtype: `IMAGE`
     - Python dtype: `str`
 - **`image_negative`**
-    - Optional. An image that represents undesired aesthetic elements, guiding the adjustment process away from these characteristics.
+    - An optional image that provides a negative style reference, used to guide adjustments by indicating undesired stylistic attributes.
     - Comfy dtype: `IMAGE`
     - Python dtype: `str`
 - **`attn_mask`**
-    - Optional. A mask that highlights specific areas of the image for focused adjustments, enhancing the precision of the application.
+    - An optional attention mask, used to focus or exclude specific areas from style and composition adjustments.
     - Comfy dtype: `MASK`
     - Python dtype: `str`
 - **`clip_vision`**
-    - Optional. Incorporates vision embeddings from CLIP models to guide the style and composition adjustments, enriching the contextual understanding.
+    - Indicates whether to use CLIP's vision capabilities for guiding the style and composition adjustments, enhancing the alignment between the image's content and the desired stylistic attributes.
     - Comfy dtype: `CLIP_VISION`
-    - Python dtype: `str`
+    - Python dtype: `bool`
 - **`optional_ipadapter`**
-    - Optional. Specifies an IPAdapter for advanced customization and control over the adjustment process, offering extended capabilities beyond presets.
+    - An optional IPAdapter instance, allowing for the use of a pre-configured adapter for style and composition adjustments.
     - Comfy dtype: `IPADAPTER`
     - Python dtype: `str`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The modified model with applied style and composition adjustments, reflecting the desired aesthetic changes.
+    - The model with applied style and composition adjustments, ready for further processing or generation tasks.
     - Python dtype: `str`
 - **`ipadapter`**
     - Comfy dtype: `IPADAPTER`
-    - The IPAdapter instance used for the adjustments, encapsulating the specific configurations and modifications made.
+    - The IPAdapter instance configured with the specified style and composition adjustments, encapsulating the transformation logic.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -116,7 +118,7 @@ class ipadapterStyleComposition(ipadapter):
                 "end_at": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 1.0, "step": 0.001}),
                 "embeds_scaling": (['V only', 'K+V', 'K+V w/ C penalty', 'K+mean(V) w/ C penalty'],),
                 "cache_mode": (["insightface only", "clip_vision only", "ipadapter only", "all", "none"],
-                               {"default": "insightface only"},),
+                               {"default": "all"},),
             },
             "optional": {
                 "image_composition": ("IMAGE",),

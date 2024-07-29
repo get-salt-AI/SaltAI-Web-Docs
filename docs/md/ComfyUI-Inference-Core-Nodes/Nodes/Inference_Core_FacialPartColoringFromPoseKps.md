@@ -1,6 +1,8 @@
 ---
 tags:
-- Animation
+- CameraControl
+- MotionData
+- PoseEstimation
 ---
 
 # [Inference.Core] Colorize Facial Parts from PoseKPS

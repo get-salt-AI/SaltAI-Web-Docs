@@ -1,6 +1,7 @@
 ---
 tags:
 - ControlNet
+- ControlNetLoader
 ---
 
 # Controlnet Models Selector v2

@@ -1,8 +1,10 @@
 ---
 tags:
 - DataConversion
-- DataTypeConversion
+- Float
+- FloatList
 - NumericConversion
+- RegionalPrompt
 ---
 
 # 🔧 CR Float To Integer

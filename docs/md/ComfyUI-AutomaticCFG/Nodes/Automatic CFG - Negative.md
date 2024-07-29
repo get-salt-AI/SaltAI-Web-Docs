@@ -1,34 +1,35 @@
 ---
 tags:
 - ModelGuidance
+- RandomGeneration
 ---
 
 # Automatic CFG - Negative
 ## Documentation
 - Class name: `Automatic CFG - Negative`
-- Category: `model_patches/automatic_cfg/presets`
+- Category: `model_patches/Automatic_CFG/presets`
 - Output node: `False`
 
-This node specializes in applying a dynamic configuration to models for generating content, with a focus on enhancing the generation process by adjusting the model's behavior based on negative prompts. It leverages an advanced configuration technique to fine-tune the model's output, aiming to mitigate the influence of negative aspects specified by the user.
+This node is designed to modify the behavior of generative models by applying conditional fine-grained control, specifically targeting the enhancement or suppression of certain features or themes within the generated content. It leverages advanced dynamic configuration techniques to adjust the model's output based on specified negative conditions, aiming to refine the generation process and output quality.
 ## Input types
 ### Required
 - **`model`**
-    - The model parameter is the core component that the node modifies, applying a dynamic configuration to adjust its behavior for content generation.
+    - The generative model to be modified. This parameter is crucial as it determines the base model on which the conditional fine-grained control will be applied, affecting the overall generation process and output.
     - Comfy dtype: `MODEL`
-    - Python dtype: `MODEL`
+    - Python dtype: `torch.nn.Module`
 - **`boost`**
-    - The boost parameter determines whether to skip unconditional generation steps, effectively altering the model's generation process to focus more on the specified conditions.
+    - A boolean flag indicating whether to skip unconditional generation steps, thereby focusing the model's generation capabilities more directly on the specified conditions. This can lead to more pronounced effects of the negative conditions on the generated content.
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `BOOLEAN`
+    - Python dtype: `bool`
 - **`negative_strength`**
-    - This parameter controls the strength of the negative conditioning, allowing for fine-tuning how strongly the model should mitigate or ignore the specified negative aspects during generation.
+    - A floating-point value specifying the strength of the negative conditioning. This affects how strongly the specified negative conditions influence the model's output, allowing for fine-tuned control over the suppression of undesired features or themes.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `FLOAT`
+    - Python dtype: `float`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The modified model with applied dynamic configuration, tailored to enhance content generation by considering negative prompts.
-    - Python dtype: `MODEL`
+    - The modified generative model, now capable of applying conditional fine-grained control based on the specified negative conditions. This model is expected to produce content that aligns more closely with the desired output characteristics by suppressing undesired features or themes.
+    - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -47,7 +48,7 @@ class simpleDynamicCFGlerpUncond:
     RETURN_TYPES = ("MODEL",)
     FUNCTION = "patch"
 
-    CATEGORY = "model_patches/automatic_cfg/presets"
+    CATEGORY = "model_patches/Automatic_CFG/presets"
 
     def patch(self, model, boost, negative_strength):
         advcfg = advancedDynamicCFG()

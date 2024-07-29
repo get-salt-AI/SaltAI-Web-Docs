@@ -1,8 +1,9 @@
 ---
 tags:
-- DepthMap
+- DepthMapEstimation
 - Image
 - Inpaint
+- NormalMap
 ---
 
 # Inpaint (using Model)
@@ -11,35 +12,35 @@ tags:
 - Category: `inpaint`
 - Output node: `False`
 
-This node is designed to perform inpainting on images using a specified inpainting model. It takes an image and a mask as inputs, along with the inpainting model, and applies the model to the regions specified by the mask to fill in or correct missing or undesired parts of the image. Optionally, it can also upscale the inpainted image using an additional model for higher resolution output.
+This node is designed to perform inpainting on images using a specified inpainting model. It takes an image and a mask as inputs, along with the inpainting model, and applies the model to the specified areas of the image to fill in or correct missing or undesired parts. The node supports optional upscaling of the inpainted image for enhanced detail and resolution.
 ## Input types
 ### Required
 - **`inpaint_model`**
-    - The inpainting model to be used for the inpainting process. This model dictates the technique and quality of the inpainting.
+    - The inpainting model to be used for the inpainting process. This model dictates the inpainting technique and its underlying architecture, affecting the quality and style of the inpainting results.
     - Comfy dtype: `INPAINT_MODEL`
-    - Python dtype: `PyTorchModel`
+    - Python dtype: `mat.MAT | Any`
 - **`image`**
-    - The image to be inpainted. This is the target image where missing or undesired areas are to be filled in.
+    - The image to be inpainted, provided as a tensor. This is the target image where the inpainting will be applied.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `Tensor`
+    - Python dtype: `torch.Tensor`
 - **`mask`**
-    - A mask indicating the areas of the image to be inpainted. Areas marked in the mask are the ones the inpainting model will focus on.
+    - A tensor representing the mask that indicates the areas of the image to be inpainted. The mask guides the inpainting process by specifying which parts of the image need correction or filling.
     - Comfy dtype: `MASK`
-    - Python dtype: `Tensor`
+    - Python dtype: `torch.Tensor`
 - **`seed`**
-    - A seed value for random number generation, ensuring reproducibility of the inpainting process.
+    - An integer seed for random number generation, ensuring reproducibility of the inpainting results.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`optional_upscale_model`**
-    - An optional model for upscaling the inpainted image, allowing for higher resolution outputs if desired.
+    - An optional model for upscaling the inpainted image. This allows for enhancing the resolution and detail of the inpainted areas, improving the overall quality of the output.
     - Comfy dtype: `UPSCALE_MODEL`
-    - Python dtype: `Optional[PyTorchModel]`
+    - Python dtype: `Any`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The result of the inpainting process, which is the original image with the specified areas inpainted. Optionally, this image may also be upscaled if an upscale model was provided.
-    - Python dtype: `Tensor`
+    - The inpainted image, returned as a tensor. This output represents the final result of the inpainting process, with the specified areas corrected or filled in.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -68,18 +69,18 @@ class InpaintWithModel:
 
     def inpaint(
         self,
-        inpaint_model: PyTorchModel,
+        inpaint_model: mat.MAT | Any,
         image: Tensor,
         mask: Tensor,
         seed: int,
         optional_upscale_model=None,
     ):
-        if inpaint_model.model_arch == "MAT":
+        if isinstance(inpaint_model, mat.MAT):
             required_size = 512
-        elif inpaint_model.model_arch == "LaMa":
+        elif inpaint_model.architecture.id == "LaMa":
             required_size = 256
         else:
-            raise ValueError(f"Unknown model_arch {inpaint_model.model_arch}")
+            raise ValueError(f"Unknown model_arch {type(inpaint_model)}")
 
         if optional_upscale_model != None:
             from comfy_extras.nodes_upscale_model import ImageUpscaleWithModel
@@ -102,21 +103,19 @@ class InpaintWithModel:
             work_image, work_mask, original_size = resize_square(
                 work_image, work_mask, required_size
             )
-            work_mask = work_mask.floor()
+            work_mask = mask_floor(work_mask)
 
             torch.manual_seed(seed)
             work_image = inpaint_model(work_image.to(device), work_mask.to(device))
 
             if optional_upscale_model != None:
                 work_image = work_image.movedim(1, -1)
-                work_image = upscaler.upscale(
-                    upscaler, optional_upscale_model, work_image
-                )
+                work_image = upscaler.upscale(upscaler, optional_upscale_model, work_image)
                 work_image = work_image[0].movedim(-1, 1)
 
             work_image.to(image_device)
             work_image = undo_resize_square(work_image.to(image_device), original_size)
-            work_image = image[i] + (work_image - image[i]) * mask[i].floor()
+            work_image = image[i] + (work_image - image[i]) * mask_floor(mask[i])
 
             batch_image.append(work_image)
             pbar.update(1)

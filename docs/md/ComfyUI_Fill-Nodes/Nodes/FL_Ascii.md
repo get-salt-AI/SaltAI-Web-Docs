@@ -1,7 +1,7 @@
 ---
 tags:
-- AnimationScheduling
-- VisualEffects
+- Curve
+- WavePatterns
 ---
 
 # FL Ascii
@@ -10,36 +10,36 @@ tags:
 - Category: `🏵️Fill Nodes`
 - Output node: `False`
 
-The FL_Ascii node transforms images into ASCII art by resizing the input image based on specified spacing and then mapping pixel brightness values to characters. This artistic effect leverages a chosen font and character set to recreate the original image with a unique, text-based aesthetic.
+The FL_Ascii node transforms images into ASCII art by resizing the input image based on specified spacing and then mapping pixel brightness values to characters. This process creates a text-based visual representation of the image, utilizing a specified font size, font name, and character set.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be transformed into ASCII art. It serves as the canvas for the ASCII conversion process.
+    - The input image to be transformed into ASCII art. It serves as the canvas for the ASCII art effect.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`spacing`**
-    - Determines the spacing between characters in the ASCII art, affecting the resolution and detail of the output.
+    - Determines the spacing between characters in the ASCII art, effectively controlling the resolution of the output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`font_size`**
-    - Specifies the size of the font used in generating ASCII art, influencing the clarity and readability of the text.
+    - Specifies the font size used for the characters in the ASCII art, impacting the detail and readability of the output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`font_name`**
-    - The name of the font used to render characters in the ASCII art, impacting the style and appearance of the output.
+    - The name of the font used to render characters in the ASCII art, influencing the style and appearance of the output.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`characters`**
-    - A string of characters used as the palette for creating the ASCII art, where each character's placement is based on pixel brightness.
+    - A string of characters used to represent different brightness levels in the ASCII art, where each character's position in the string corresponds to a specific range of brightness.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The resulting ASCII art as an image, showcasing the original image reinterpreted with characters.
+    - The resulting ASCII art as an image, where the original image is represented by a matrix of characters.
     - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -103,9 +103,7 @@ class FL_Ascii:
         for b in range(batch_size):
             img_b = image[b] * 255.0
             img_b = Image.fromarray(img_b.numpy().astype("uint8"), "RGB")
-            result_b = ascii_art_effect(
-                img_b, spacing, font_size, font_name, characters
-            )
+            result_b = ascii_art_effect(img_b, spacing, font_size, font_name, characters)
             result_b = torch.tensor(np.array(result_b)) / 255.0
             result[b] = result_b
 

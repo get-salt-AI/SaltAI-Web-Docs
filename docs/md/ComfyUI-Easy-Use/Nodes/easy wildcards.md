@@ -1,8 +1,6 @@
 ---
 tags:
-- Prompt
-- Text
-- Wildcard
+- Searge
 ---
 
 # Wildcards
@@ -11,37 +9,37 @@ tags:
 - Category: `EasyUse/Prompt`
 - Output node: `True`
 
-The 'easy wildcards' node is designed to facilitate the dynamic substitution of placeholders within text strings with actual values. It leverages a dictionary of predefined wildcards, allowing for the customization and variation of text outputs based on specific keywords. This node supports complex patterns, including conditional selections and range-based selections, enhancing text generation processes with flexibility and adaptability.
+The 'easy wildcards' node is designed to manage and process wildcards within strings, offering functionalities to define, normalize, read, and replace wildcards. It supports dynamic content generation by allowing the insertion of predefined or random elements into strings based on wildcard patterns. This node facilitates the customization and variability of text outputs, making it a versatile tool for generating dynamic content in applications.
 ## Input types
 ### Required
 - **`text`**
-    - The text string containing wildcards to be replaced. It serves as the input for dynamic text generation, where placeholders are substituted with corresponding values from the wildcard dictionary.
+    - A string input that supports Lora Block Weight and wildcard functionality, allowing for dynamic content generation through the use of placeholders and predefined text patterns.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`Select to add LoRA`**
-    - Allows the selection of a LoRA (Low-Rank Adaptation) configuration to be added to the text, enhancing the model's adaptability and performance with specific adjustments.
+    - Allows the selection of a LoRA to be added to the text, enhancing the input with additional, customizable layers of text transformation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 - **`Select to add Wildcard`**
-    - Enables the selection of predefined wildcards to be inserted into the text, facilitating dynamic text customization through the use of placeholders.
+    - Enables the selection of a wildcard to be incorporated into the text, facilitating dynamic substitutions and content variability.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 - **`seed`**
-    - An optional seed value for random number generation, ensuring consistency in wildcard replacements across different executions.
+    - An integer value used to seed random number generators for consistent wildcard replacements across different executions.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`multiline_mode`**
-    - A boolean flag indicating whether the input text should be processed in multiline mode, affecting how wildcards and LoRAs are applied within the text.
+    - A boolean flag indicating whether the input text should be processed in multiline mode, affecting how wildcards and LoRAs are applied.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`text`**
     - Comfy dtype: `STRING`
-    - The original text input before any processing.
+    - The original input text with wildcards and LoRAs processed and applied, reflecting the dynamic content generation.
     - Python dtype: `str`
 - **`populated_text`**
     - Comfy dtype: `STRING`
-    - The text after all applicable wildcards and LoRA tags have been processed and replaced with their corresponding values, reflecting dynamic text customization.
+    - The text after processing, showing the result of wildcard and LoRA substitutions, providing a version of the text enriched with dynamic elements.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -76,8 +74,13 @@ class wildcardsPrompt:
 
     CATEGORY = "EasyUse/Prompt"
 
-    @staticmethod
-    def main(*args, **kwargs):
+    def translate(self, text):
+        if has_chinese(text):
+            return zh_to_en([text])[0]
+        else:
+            return text
+
+    def main(self, *args, **kwargs):
         prompt = kwargs["prompt"] if "prompt" in kwargs else None
         seed = kwargs["seed"]
 
@@ -88,10 +91,15 @@ class wildcardsPrompt:
         text = kwargs['text']
         if "multiline_mode" in kwargs and kwargs["multiline_mode"]:
             populated_text = []
+            _text = []
             text = text.split("\n")
             for t in text:
+                t = self.translate(t)
+                _text.append(t)
                 populated_text.append(process(t, seed))
+            text = _text
         else:
+            text = self.translate(text)
             populated_text = [process(text, seed)]
             text = [text]
         return {"ui": {"value": [seed]}, "result": (text, populated_text)}

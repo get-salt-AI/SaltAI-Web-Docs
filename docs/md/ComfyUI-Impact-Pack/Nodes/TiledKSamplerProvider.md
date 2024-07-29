@@ -10,56 +10,56 @@ tags:
 - Category: `ImpactPack/Sampler`
 - Output node: `False`
 
-The TiledKSamplerProvider node is designed to facilitate the generation of samples using a tiled K-sampling approach. It configures and utilizes a specialized sampler that operates on tiles of an image, allowing for efficient and scalable image generation with customizable sampling strategies.
+The TiledKSamplerProvider node is designed to facilitate the use of tiled sampling techniques within the ComfyUI framework. It dynamically integrates with the 'TiledKSampler' custom node, ensuring compatibility and extending functionality for advanced image generation tasks. This node acts as a bridge, enabling users to leverage tiled sampling strategies for improved performance and quality in image synthesis.
 ## Input types
 ### Required
 - **`seed`**
-    - Specifies the initial seed for random number generation, ensuring reproducibility of the sampling process.
+    - Determines the random seed used for generating CPU noise for sampling, ensuring reproducibility and consistency in the sampling process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`steps`**
-    - Determines the number of steps to be taken in the sampling process, affecting the detail and quality of the generated image.
+    - Specifies the total number of sampling steps to be executed, directly influencing the depth and detail of the sampling process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - Controls the configuration setting for the sampling process, influencing the behavior and characteristics of the generated samples.
+    - Sets the classifier free guidance value, adjusting the influence of conditioning on the sampling process for targeted image generation.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sampler_name`**
-    - Selects the specific K-sampler to be used, allowing for flexibility in choosing the sampling algorithm.
+    - Selects the specific sampler algorithm to be used, affecting the sampling behavior and output characteristics.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - Chooses the scheduler for controlling the sampling process, enabling fine-tuning of the sampling dynamics.
+    - Specifies the scheduler for controlling the sampling process, impacting the progression and quality of image generation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`denoise`**
-    - Adjusts the denoising factor applied during sampling, impacting the clarity and noise level of the output.
+    - Adjusts the level of denoising applied during the sampling process, affecting the clarity and sharpness of the generated images.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`tile_width`**
-    - Sets the width of the tiles used in the sampling process, defining the granularity of the tiled approach.
+    - Sets the width of the tiles used in the sampling process, influencing the granularity and detail of the output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`tile_height`**
-    - Sets the height of the tiles used in the sampling process, defining the granularity of the tiled approach.
+    - Sets the height of the tiles used in the sampling process, influencing the granularity and detail of the output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`tiling_strategy`**
-    - Determines the strategy for tiling the image during sampling, affecting the overall sampling pattern and efficiency.
+    - Determines the strategy for tiling during the sampling process, affecting the overall composition and coherence of the generated images.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`basic_pipe`**
-    - Provides the basic pipeline components required for the sampling process, including the model and positive/negative conditioning.
+    - A crucial input comprising the model and conditioning texts, which are essential for the sampling process. It determines the characteristics of the generated images by providing the necessary context and parameters for targeted image synthesis.
     - Comfy dtype: `BASIC_PIPE`
     - Python dtype: `tuple`
 ## Output types
 - **`ksampler`**
     - Comfy dtype: `KSAMPLER`
-    - Returns a configured KSampler instance ready for sampling operations.
+    - Outputs a sampler wrapper, which can be utilized for generating regional prompts in advanced image generation tasks.
     - Python dtype: `KSamplerWrapper`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -81,12 +81,29 @@ class TiledKSamplerProvider:
                     "basic_pipe": ("BASIC_PIPE", )
                     }}
 
+    TOOLTIPS = {
+        "input": {
+            "seed": "Random seed to use for generating CPU noise for sampling.",
+            "steps": "total sampling steps",
+            "cfg": "classifier free guidance value",
+            "sampler_name": "sampler",
+            "scheduler": "noise schedule",
+            "denoise": "The amount of noise to remove. This amount is the noise added at the start, and the higher it is, the more the input latent will be modified before being returned.",
+            "tile_width": "Sets the width of the tile to be used in TiledKSampler.",
+            "tile_height": "Sets the height of the tile to be used in TiledKSampler.",
+            "tiling_strategy": "Sets the tiling strategy for TiledKSampler.",
+            "basic_pipe": "basic_pipe input for sampling",
+        },
+        "output": ("sampler wrapper. (Can be used when generating a regional_prompt.)", )
+    }
+
     RETURN_TYPES = ("KSAMPLER",)
     FUNCTION = "doit"
 
     CATEGORY = "ImpactPack/Sampler"
 
-    def doit(self, seed, steps, cfg, sampler_name, scheduler, denoise,
+    @staticmethod
+    def doit(seed, steps, cfg, sampler_name, scheduler, denoise,
              tile_width, tile_height, tiling_strategy, basic_pipe):
         model, _, _, positive, negative = basic_pipe
         sampler = core.TiledKSamplerWrapper(model, seed, steps, cfg, sampler_name, scheduler, positive, negative, denoise,

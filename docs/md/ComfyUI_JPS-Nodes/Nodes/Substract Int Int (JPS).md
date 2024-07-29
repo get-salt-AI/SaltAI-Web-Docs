@@ -1,7 +1,6 @@
 ---
 tags:
-- Arithmetic
-- MathematicalFunctions
+- Math
 ---
 
 # Substract Int Int (JPS)

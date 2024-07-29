@@ -1,7 +1,10 @@
 ---
 tags:
 - AnimateDiff
+- AnimateDiffContext
 - Animation
+- MotionData
+- PoseEstimation
 ---
 
 # 🚫[DEPR] Motion Model Settings 🎭🅐🅓①
@@ -10,26 +13,26 @@ tags:
 - Category: ``
 - Output node: `False`
 
-This node is designed to configure motion model settings for the AnimateDiff process, focusing on advanced attention strengths adjustments. It aims to provide users with the ability to fine-tune the animation effects applied through the AnimateDiff framework.
+This node is designed to configure motion model settings for the AnimateDiff process, allowing users to adjust motion scale parameters to fine-tune the animation effects.
 ## Input types
 ### Required
 - **`min_motion_scale`**
-    - Specifies the minimum scale for motion, influencing the subtlety or intensity of the animation effect.
+    - Specifies the minimum scale for motion in the animation, serving as a baseline for how subtle or pronounced the motion effects should be.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`max_motion_scale`**
-    - Defines the maximum scale for motion, affecting the range of motion intensity that can be applied to the animation.
+    - Defines the maximum scale for motion, setting an upper limit on the intensity of the animation effects.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`mask_motion_scale`**
-    - A mask tensor that allows for fine-tuned control over motion scaling across different regions of the input.
+    - An optional mask tensor to apply scale adjustments selectively across different parts of the image, enhancing the control over motion effects.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`ad_settings`**
     - Comfy dtype: `AD_SETTINGS`
-    - The output is a configuration set for the AnimateDiff model, encapsulating adjustments to motion scales and potentially other parameters.
+    - Returns the configured motion model settings, encapsulating the adjustments made to motion scales.
     - Python dtype: `AnimateDiffSettings`
 ## Usage tips
 - Infra type: `CPU`
@@ -48,6 +51,7 @@ class AnimateDiffModelSettings:
             },
             "optional": {
                 "mask_motion_scale": ("MASK",),
+                "optional": {"deprecation_warning": ("ADEWARN", {"text": "Deprecated"})},
             }
         }
     

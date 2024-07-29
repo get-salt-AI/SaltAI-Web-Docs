@@ -1,7 +1,8 @@
 ---
 tags:
 - Prompt
-- PromptComposer
+- PromptStyling
+- Text
 ---
 
 # One Button Preset
@@ -10,30 +11,38 @@ tags:
 - Category: `OneButtonPrompt`
 - Output node: `False`
 
-The OneButtonPreset node is designed to streamline the process of applying preset configurations to a prompt generation task. It allows for the selection and application of predefined or custom settings that adjust various aspects of the prompt generation, such as theme, complexity, and style, enhancing the user's ability to produce tailored content with minimal effort.
+The OneButtonPreset node is designed to streamline the process of applying predefined settings to generate prompts, incorporating elements like insanity level, subject, artist, and various subject subtypes. It simplifies the customization and generation of prompts by utilizing a set of predefined or user-defined presets.
 ## Input types
 ### Required
 - **`OneButtonPreset`**
-    - Specifies the preset configuration to be applied. This can be a predefined preset or a custom configuration, influencing the generation process by setting themes, styles, and complexity levels.
+    - Specifies the selected preset to apply. This can be a predefined preset or a custom one defined by the user, influencing the overall theme and parameters of the generated prompt.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`base_model`**
-    - Defines the underlying model to be used for prompt generation, affecting the style and quality of the generated content.
+    - Defines the base model to be used for prompt generation, affecting the style and structure of the output.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`prompt_enhancer`**
-    - An optional component that modifies the generated prompt to meet specific criteria or add creative elements, further customizing the output.
+    - An optional modifier that applies additional transformations or enhancements to the prompt, further customizing the output.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
+- **`preset_prefix`**
+    - A prefix added to the prompt, allowing for further customization and refinement of the generated content.
+    - Comfy dtype: `STRING`
+    - Python dtype: `str`
+- **`preset_suffix`**
+    - A suffix added to the prompt, used to append additional information or styling to the generated content.
+    - Comfy dtype: `STRING`
+    - Python dtype: `str`
 - **`seed`**
-    - Determines the random seed used for generating prompts, ensuring reproducibility or variability in the output.
+    - Determines the randomness seed for generating prompts, ensuring reproducibility of results when the same seed is used.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`prompt`**
     - Comfy dtype: `STRING`
-    - The generated prompt based on the selected preset configuration, incorporating any specified enhancements or adjustments.
+    - The generated prompt based on the applied preset, incorporating any specified customizations such as prefix, suffix, and enhancer.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -56,7 +65,15 @@ class OneButtonPreset:
             },
             "optional": {
                 "base_model":(models, {"default": "SDXL"}),
-                "prompt_enhancer":(prompt_enhancers, {"default": "none"}),   
+                "prompt_enhancer":(prompt_enhancers, {"default": "none"}),
+                "preset_prefix": ("STRING", {
+                    "multiline": False, # prefix the preset
+                    "default": ""
+                }),
+                "preset_suffix": ("STRING", {
+                    "multiline": False, # Suffix of the preset
+                    "default": ""
+                }),   
                 "seed": ("INT", {"default": 0, "min": 0, "max": 0xFFFFFFFFFFFFFFFF}),
             },
         }
@@ -71,7 +88,7 @@ class OneButtonPreset:
 
     CATEGORY = "OneButtonPrompt"
     
-    def Comfy_OBP_OneButtonPreset(self, OneButtonPreset, seed, base_model, prompt_enhancer):
+    def Comfy_OBP_OneButtonPreset(self, OneButtonPreset, seed, base_model, prompt_enhancer, preset_prefix, preset_suffix):
         # load the stuff
         if(OneButtonPreset == OBPresets.RANDOM_PRESET_OBP):
             selected_opb_preset = OBPresets.get_obp_preset("Standard")
@@ -117,6 +134,8 @@ class OneButtonPreset:
                                                base_model=base_model,
                                                OBP_preset=OneButtonPreset,
                                                prompt_enhancer=prompt_enhancer,
+                                               preset_prefix=preset_prefix,
+                                               preset_suffix=preset_suffix,
                                                )
         
         

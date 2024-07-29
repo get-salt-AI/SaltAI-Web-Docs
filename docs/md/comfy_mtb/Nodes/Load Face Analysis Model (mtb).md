@@ -1,6 +1,7 @@
 ---
 tags:
-- Face
+- FaceRestoration
+- SMPLModel
 ---
 
 # Load Face Analysis Model (mtb)

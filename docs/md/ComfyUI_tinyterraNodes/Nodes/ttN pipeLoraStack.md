@@ -6,66 +6,66 @@ tags:
 # pipeLoraStack
 ## Documentation
 - Class name: `ttN pipeLoraStack`
-- Category: `ttN/pipe`
+- Category: `🌏 tinyterra/pipe`
 - Output node: `False`
 
-The `ttN pipeLoraStack` node is designed to dynamically enhance and modify the capabilities of models and clips by stacking LoRA adjustments based on specified configurations. It allows for the customization of model and clip behavior through the application of learned affine transformations, enabling users to fine-tune their generative processes with precision.
+The node is designed to integrate and manage LoRA (Low-Rank Adaptation) models within a processing pipeline, enabling the dynamic adjustment of model and clip strengths based on specified LoRA configurations. It facilitates the customization of AI model behavior for specific tasks or datasets by applying LoRA modifications to the underlying models.
 ## Input types
 ### Required
 - **`toggle`**
-    - Determines whether the LoRA stack should be applied or not, acting as a switch to enable or disable the stacking process.
+    - A boolean toggle to enable or disable the application of LoRA models within the pipeline.
     - Comfy dtype: `COMBO[BOOLEAN]`
     - Python dtype: `bool`
 - **`mode`**
-    - Specifies the mode of operation for LoRA adjustments, distinguishing between simple and advanced configurations for applying model and clip strength modifications.
+    - Specifies the operation mode, either 'simple' or 'advanced', determining the complexity of LoRA model adjustments.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`num_loras`**
-    - Indicates the number of LoRA adjustments to be applied, allowing for multiple layers of modifications to be stacked.
+    - The number of LoRA models to be applied, allowing for multiple adaptations.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`optional_pipe`**
-    - An optional pipeline configuration that can be enhanced with LoRA adjustments if provided; otherwise, a new configuration is generated.
+    - An optional pipeline configuration that can be modified by the LoRA adjustments.
     - Comfy dtype: `PIPE_LINE`
-    - Python dtype: `dict or None`
+    - Python dtype: `dict`
 - **`model_override`**
-    - Allows for the overriding of the model component within the optional pipeline, facilitating custom model adjustments.
+    - Allows for overriding the default model with a specified one for further customization.
     - Comfy dtype: `MODEL`
-    - Python dtype: `object or None`
+    - Python dtype: `object`
 - **`clip_override`**
-    - Allows for the overriding of the clip component within the optional pipeline, facilitating custom clip adjustments.
+    - Enables the override of the default clip model, facilitating custom clip adaptations.
     - Comfy dtype: `CLIP`
-    - Python dtype: `object or None`
+    - Python dtype: `object`
 - **`optional_lora_stack`**
-    - A pre-defined list of LoRA adjustments that can be optionally included for stacking, offering a way to import existing configurations or add to them.
+    - A stack of LoRA models that can be optionally applied for layered adaptations.
     - Comfy dtype: `LORA_STACK`
-    - Python dtype: `list of tuples or None`
+    - Python dtype: `list`
 - **`lora_i_name`**
-    - Specifies the name of the i-th LoRA adjustment to be applied, enabling the identification and application of specific LoRA transformations.
+    - Specifies the name of the ith LoRA model to be applied, determining the specific adaptation for each model.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`lora_i_strength`**
-    - Defines the strength of the i-th LoRA adjustment for both model and clip in simple mode, allowing for uniform modification intensity.
+    - Defines the strength of the ith LoRA model adaptation, influencing the degree of modification.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`lora_i_model_strength`**
-    - Specifies the strength of the i-th LoRA adjustment applied to the model in advanced mode, enabling differentiated intensity for model transformations.
+    - Determines the model-specific strength of the ith LoRA adaptation, affecting the model's behavior.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`lora_i_clip_strength`**
-    - Specifies the strength of the i-th LoRA adjustment applied to the clip in advanced mode, enabling differentiated intensity for clip transformations.
+    - Specifies the clip-specific strength of the ith LoRA adaptation, modifying the clip's influence.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`optional_pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - Returns the enhanced or newly created pipeline configuration after applying the LoRA stack.
+    - The modified pipeline configuration after applying LoRA adjustments, including any model or clip overrides.
     - Python dtype: `dict`
 - **`lora_stack`**
     - Comfy dtype: `LORA_STACK`
-    - Provides the list of LoRA adjustments that were applied, detailing the modifications made to the model and clip.
-    - Python dtype: `list of tuples or None`
+    - A stack of LoRA models that have been applied, detailing each model's name and its model and clip strengths.
+    - Python dtype: `list`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -110,7 +110,7 @@ class ttN_pipeLoraStack:
     RETURN_NAMES = ("optional_pipe","lora_stack",)
     FUNCTION = "stack"
 
-    CATEGORY = "ttN/pipe"
+    CATEGORY = "🌏 tinyterra/pipe"
 
     def stack(self, toggle, mode, num_loras, optional_pipe=None, lora_stack=None, model_override=None, clip_override=None, **kwargs):
         if (toggle in [False, None, "False"]) or not kwargs:

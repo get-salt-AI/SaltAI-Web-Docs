@@ -1,33 +1,28 @@
----
-tags:
-- ImageTransformation
----
-
-# RemapMaskRange
+# Remap Mask Range
 ## Documentation
 - Class name: `RemapMaskRange`
 - Category: `KJNodes/masking`
 - Output node: `False`
 
-The `RemapMaskRange` node is designed to adjust the range of values within a mask to a new specified minimum and maximum, ensuring that the mask's values are scaled appropriately within this new range.
+The `RemapMaskRange` node is designed to adjust the range of values within a mask to a specified new minimum and maximum. This operation is useful for normalizing mask values or adjusting their scale for further processing.
 ## Input types
 ### Required
 - **`mask`**
-    - The mask whose values are to be remapped. This input is crucial for defining the source data that will undergo the range adjustment process.
+    - The input mask whose values are to be remapped. This mask serves as the basis for scaling to the new specified range.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`min`**
-    - Specifies the new minimum value in the remapped range. This parameter sets the lower bound of the target range for the mask's values.
+    - The new minimum value to which the lowest value in the mask will be scaled. This parameter sets the lower bound of the new value range for the mask.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`max`**
-    - Defines the new maximum value in the remapped range. This parameter establishes the upper limit of the target range for the mask's values.
+    - The new maximum value to which the highest value in the mask will be scaled. This parameter sets the upper bound of the new value range for the mask.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The output is the mask with its values remapped to the new specified range, ensuring that all values fall within this defined interval.
+    - The output mask with its values remapped to the new specified range. This mask is scaled such that its values lie between the new minimum and maximum values.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`

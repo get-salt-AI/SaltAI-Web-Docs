@@ -1,7 +1,7 @@
 ---
 tags:
-- Image
-- ImageThresholding
+- Color
+- Crop
 ---
 
 # DynamicThresholdingFull

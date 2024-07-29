@@ -1,7 +1,8 @@
 ---
 tags:
-- Image
-- ImageComposite
+- ImageBlend
+- ImageTransformation
+- VisualEffects
 ---
 
 # Crop Batch Image Paste
@@ -10,40 +11,40 @@ tags:
 - Category: `SALT/Image/Process`
 - Output node: `False`
 
-This node specializes in blending and sharpening operations for image processing, specifically focusing on pasting cropped images onto target images with adjustable blending and sharpening parameters. It enables the creation of composite images by seamlessly integrating cropped sections into original images, enhancing visual coherence through blending and sharpening techniques.
+The SaltImagePasteCrop node specializes in blending and sharpening operations for image processing within a batch context. It seamlessly integrates crop images into target images, applying specified blending and sharpening parameters to achieve a visually cohesive result.
 ## Input types
 ### Required
 - **`images`**
-    - The original images onto which the cropped images will be pasted. They serve as the base layer for the pasting operation, allowing for the creation of composite images.
+    - A batch of target images to which crop images will be applied. This parameter is crucial for defining the base images that will undergo the paste and crop operations.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `List[PIL.Image]`
+    - Python dtype: `torch.Tensor`
 - **`crop_images`**
-    - The cropped images to be pasted onto the original images. These images are positioned and blended according to specified parameters, enabling the integration into the original images.
+    - A batch of crop images that will be pasted onto the target images. This parameter is essential for supplying the images that will be integrated into the target images using blending and sharpening techniques.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `List[PIL.Image]`
+    - Python dtype: `torch.Tensor`
 - **`crop_data_batch`**
-    - A batch of data specifying the location, size, and additional parameters for each crop area in the original images. This data is essential for correctly aligning and integrating the cropped images during the pasting process.
+    - Optional batch of crop data providing specific instructions for each pasting operation, including position and size. When provided, it enables precise control over the pasting process.
     - Comfy dtype: `CROP_DATA_BATCH`
-    - Python dtype: `List[tuple]`
+    - Python dtype: `Optional[List[Tuple]]`
 - **`crop_blending`**
-    - Determines the intensity of blending between the original and cropped images, affecting the smoothness of the transition.
+    - The blending factor to be used when integrating crop images into the target images, controlling the blend's intensity.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`crop_sharpening`**
-    - Specifies the level of sharpening to be applied to the cropped images, enhancing their clarity and detail.
+    - The amount of sharpening to apply to the crop images before pasting, enhancing image details.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`images`**
     - Comfy dtype: `IMAGE`
-    - The result of pasting the cropped images onto the original, after blending and sharpening adjustments.
+    - A batch of images resulting from the pasting and cropping operations, with applied blending and sharpening effects.
     - Python dtype: `torch.Tensor`
 - **`masks`**
     - Comfy dtype: `IMAGE`
-    - Masks indicating the areas affected by the pasting operation, useful for further image processing steps.
+    - A batch of mask images corresponding to the areas affected by the pasting and cropping operations in the target images.
     - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -80,7 +81,8 @@ class SaltImagePasteCrop:
                 crop_data = crop_data_batch[i]
                 pasted_image, pasted_mask = self.paste_image(image, crop_image, crop_data, crop_blending, crop_sharpening)
             else:
-                print(f"No valid crop data found for Image {i}")
+                errmsg = f"No valid crop data found for Image {i}"
+                logger.warning(errmsg)
                 pasted_image = pil2tensor(image)
                 pasted_mask = pil2tensor(Image.new("RGB", image.size, (0,0,0)))
             

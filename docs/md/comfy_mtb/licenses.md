@@ -149,18 +149,6 @@ Open Source Software licensed under the BSD 3-Clause license:
 ```
 Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
 ```
-**LicenseRef-scancode-cve-tou**
-```
-copyright license to reproduce,
-    prepare derivative works of, publicly display, publicly perform,
-    sublicense and distribute its Work and any resulting derivative
-    works in any form.
-
-3. Limitations
-
-    3.1 Redistribution. You may reproduce or distribute the Work only
-    if (a) you do so under this License, (
-```
 **LicenseRef-scancode-unknown-license-reference**
 ```
 Other  dependencies and licenses:
@@ -256,6 +244,18 @@ You can obtain one at https://mozilla.org/MPL/2.0/.
 **PSF-2.0**
 ```
 PSF-2.0
+```
+**cve-tou**
+```
+copyright license to reproduce,
+    prepare derivative works of, publicly display, publicly perform,
+    sublicense and distribute its Work and any resulting derivative
+    works in any form.
+
+3. Limitations
+
+    3.1 Redistribution. You may reproduce or distribute the Work only
+    if (a) you do so under this License, (
 ```
 File name: `extern/GFPGAN/README.md`
 

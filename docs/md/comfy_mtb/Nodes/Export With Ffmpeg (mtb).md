@@ -1,6 +1,7 @@
 ---
 tags:
-- Image
+- Animation
+- ImageSave
 ---
 
 # Export With Ffmpeg (mtb)

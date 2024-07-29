@@ -1,5 +1,7 @@
 ---
 tags:
+- DepthMap
+- Inpaint
 - LayeredDiffusion
 ---
 

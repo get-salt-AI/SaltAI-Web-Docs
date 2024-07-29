@@ -1,5 +1,7 @@
 ---
 tags:
+- AnimationScheduling
+- Scheduling
 - SigmaScheduling
 ---
 

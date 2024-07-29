@@ -1,29 +1,33 @@
 ---
 tags:
 - Mask
+- MaskBatch
+- MaskGeneration
+- MaskList
+- MaskMorphology
 ---
 
-# Bitwise(MASK + MASK)
+# Pixelwise(MASK + MASK)
 ## Documentation
 - Class name: `AddMask`
 - Category: `ImpactPack/Operation`
 - Output node: `False`
 
-The AddMask node is designed to combine two mask inputs into a single mask output. It performs an operation that merges the features or areas covered by both input masks, effectively adding the second mask to the first.
+The AddMask node is designed to combine two mask inputs into a single mask output, effectively merging the areas covered by each input mask. This operation is useful in scenarios where the visual or logical integration of mask regions is required, such as in image processing tasks that involve layering or combining features from different sources.
 ## Input types
 ### Required
 - **`mask1`**
-    - The first mask input for the addition operation. It serves as the base to which the second mask will be added.
+    - The first mask input for the addition operation. It plays a crucial role in determining the initial areas to be combined with the second mask.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`mask2`**
-    - The second mask input for the addition operation. It is added to the first mask, combining their features or covered areas.
+    - The second mask input for the addition operation. It specifies additional areas to be combined with the first mask, contributing to the final merged output.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The output is a single mask that represents the combined features or areas of the two input masks.
+    - The result of combining the two input masks. This output represents the merged area covered by both input masks, providing a unified mask that encompasses the features of both.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`

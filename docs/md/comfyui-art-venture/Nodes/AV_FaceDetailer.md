@@ -1,8 +1,8 @@
 ---
 tags:
 - DetailEnhancement
-- Image
 - Pipeline
+- PipelineTransformation
 ---
 
 # FaceDetailer (AV)
@@ -11,7 +11,7 @@ tags:
 - Category: `ArtVenture/Detailer`
 - Output node: `False`
 
-The AV_FaceDetailer node is designed to enhance facial details in images within the ArtVenture/Detailer category. It leverages advanced detailing techniques to refine facial features, offering an optional toggle to enable or disable this enhancement process.
+The AV_FaceDetailer node enhances facial details in images within the ArtVenture/Detailer category, offering an optional toggle to enable or disable the detailing process. It leverages inherited functionality to apply detailed modifications to faces, with the ability to bypass the process based on user preference.
 ## Input types
 ### Required
 - **`image`**
@@ -159,15 +159,19 @@ The AV_FaceDetailer node is designed to enhance facial details in images within 
     - unknown
     - Comfy dtype: `INT`
     - Python dtype: `unknown`
+- **`scheduler_func_opt`**
+    - unknown
+    - Comfy dtype: `SCHEDULER_FUNC`
+    - Python dtype: `unknown`
 - **`enabled`**
-    - This parameter allows users to enable or disable the face detailing process, providing flexibility in how images are processed.
+    - A boolean toggle to enable or disable the face detailing process. When enabled, the node applies detailed modifications to faces in the image; when disabled, it bypasses the detailing process and returns the original image along with default processing outputs.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - unknown
-    - Python dtype: `unknown`
+    - The output image after potential face detailing, depending on the enabled state. If detailing is disabled, the original image is returned.
+    - Python dtype: `torch.Tensor`
 - **`cropped_refined`**
     - Comfy dtype: `IMAGE`
     - unknown
@@ -182,14 +186,12 @@ The AV_FaceDetailer node is designed to enhance facial details in images within 
     - Python dtype: `unknown`
 - **`detailer_pipe`**
     - Comfy dtype: `DETAILER_PIPE`
-    - unknown
-    - Python dtype: `unknown`
+    - A sequence of operations or transformations applied to the image for face detailing, encapsulated within a detailer pipeline object.
+    - Python dtype: `object`
 - **`cnet_images`**
     - Comfy dtype: `IMAGE`
     - unknown
     - Python dtype: `unknown`
-- **`ui`**
-    - The output includes the original image with facial details enhanced if enabled, along with additional processing information.
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

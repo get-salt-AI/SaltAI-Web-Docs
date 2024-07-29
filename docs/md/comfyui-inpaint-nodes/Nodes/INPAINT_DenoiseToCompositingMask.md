@@ -1,6 +1,6 @@
 ---
 tags:
-- DepthMap
+- DepthMapEstimation
 - Image
 - Inpaint
 ---

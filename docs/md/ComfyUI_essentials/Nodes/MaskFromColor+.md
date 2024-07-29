@@ -1,42 +1,46 @@
 ---
 tags:
+- ImageMaskConversion
 - Mask
+- MaskBatch
 - MaskGeneration
+- MaskList
+- MaskMorphology
 ---
 
 # 🔧 Mask From Color
 ## Documentation
 - Class name: `MaskFromColor+`
-- Category: `essentials`
+- Category: `essentials/mask`
 - Output node: `False`
 
-The `MaskFromColor` node generates a binary mask from an image based on specified RGB color values and a threshold. It identifies areas within the image that match the given color within the threshold range, creating a mask that highlights these regions.
+This node generates a mask from an image based on specified color values and a threshold. It allows for the selective isolation of parts of an image that match the given color within a certain tolerance, enabling targeted image manipulation or analysis.
 ## Input types
 ### Required
 - **`image`**
-    - The input image from which to generate the mask. The color within this image is compared against the specified RGB values to create the mask.
+    - The input image from which the mask will be generated. It serves as the basis for identifying areas that match the specified color criteria.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`red`**
-    - The red component of the target color, used in conjunction with green and blue components to define the color to match in the image.
+    - The red component of the target color. It defines the red value that the node will use to generate the mask.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`green`**
-    - The green component of the target color, used together with red and blue to specify the color to match within the image.
+    - The green component of the target color. It defines the green value that the node will use to generate the mask.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`blue`**
-    - The blue component of the target color, which, when combined with red and green, defines the specific color to match in the image.
+    - The blue component of the target color. It defines the blue value that the node will use to generate the mask.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`threshold`**
-    - The tolerance level for color matching. A higher threshold allows for a broader range of color variation to be considered a match.
+    - The tolerance for color matching. It specifies how closely the colors in the image must match the target color to be included in the mask.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The output binary mask highlighting areas of the image that match the specified color within the given threshold.
+    - The output mask indicating areas of the image that match the specified color within the given threshold.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -60,7 +64,7 @@ class MaskFromColor:
 
     RETURN_TYPES = ("MASK",)
     FUNCTION = "execute"
-    CATEGORY = "essentials"
+    CATEGORY = "essentials/mask"
 
     def execute(self, image, red, green, blue, threshold):
         temp = (torch.clamp(image, 0, 1.0) * 255.0).round().to(torch.int)

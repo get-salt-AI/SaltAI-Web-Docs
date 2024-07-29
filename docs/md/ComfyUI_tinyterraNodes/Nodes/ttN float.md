@@ -1,35 +1,35 @@
 ---
 tags:
 - DataConversion
-- DataTypeConversion
-- NumericConversion
+- Float
+- FloatList
 ---
 
 # float
 ## Documentation
 - Class name: `ttN float`
-- Category: `ttN/util`
+- Category: `🌏 tinyterra/util`
 - Output node: `False`
 
-The ttN_FLOAT node is designed for converting floating-point numbers into different formats. It takes a float as input and outputs the same value in float, integer, and string formats, facilitating versatile data manipulation and representation.
+The `ttN float` node is designed to perform conversions involving floating-point numbers. It takes a floating-point number as input and outputs the same number in three different formats: as a float, as an integer by truncating the decimal part, and as a string representation of the float. This node is useful in scenarios where different representations of a floating-point number are needed for further processing or display purposes.
 ## Input types
 ### Required
 - **`float`**
-    - The floating-point number to be converted. This input is crucial as it determines the base value from which the integer and string representations will be derived.
+    - The `float` parameter is the primary input for the `ttN float` node, representing the floating-point number to be converted. It is crucial for determining the output in three different formats: float, integer, and string. The precision and value of this input directly affect the conversion results.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`float`**
     - Comfy dtype: `FLOAT`
-    - The original floating-point number input.
+    - The original floating-point number inputted to the node, unchanged.
     - Python dtype: `float`
 - **`int`**
     - Comfy dtype: `INT`
-    - The integer representation of the input floating-point number.
+    - The integer part of the input floating-point number, obtained by truncating the decimal part.
     - Python dtype: `int`
 - **`text`**
     - Comfy dtype: `STRING`
-    - The string representation of the input floating-point number.
+    - The string representation of the input floating-point number, preserving its decimal part.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -46,7 +46,7 @@ class ttN_FLOAT:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": {
-                    "float": ("FLOAT", {"default": 0, "min": 0, "max": 0xffffffffffffffff}),
+                    "float": ("FLOAT", {"default": 0.00, "min": 0.00, "max": 0xffffffffffffffff, 'step': 0.01}),
                 },
                 "hidden": {"ttNnodeVersion": ttN_FLOAT.version},
         }
@@ -55,7 +55,7 @@ class ttN_FLOAT:
     RETURN_NAMES = ("float", "int", "text",)
     FUNCTION = "convert"
 
-    CATEGORY = "ttN/util"
+    CATEGORY = "🌏 tinyterra/util"
 
     @staticmethod
     def convert(float):

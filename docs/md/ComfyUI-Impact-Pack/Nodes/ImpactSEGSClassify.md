@@ -1,6 +1,7 @@
 ---
 tags:
 - ImpactPack
+- MediaPipeFaceMesh
 - Segmentation
 ---
 
@@ -10,39 +11,43 @@ tags:
 - Category: `ImpactPack/HuggingFace`
 - Output node: `False`
 
-The ImpactSEGSClassify node is designed to classify segments (SEGS) based on specified criteria, comparing attributes or labels within each segment to filter and categorize them accordingly. It supports complex conditional logic, allowing for dynamic segmentation based on the comparison results.
+The ImpactSEGSClassify node is designed to classify segments (SEGS) based on specified criteria, comparing attributes or labels within each segment to filter and categorize them accordingly. This process involves evaluating conditions such as greater than, less than, or equal to, between attributes or label scores within the segments, facilitating advanced segmentation and classification tasks.
 ## Input types
 ### Required
 - **`classifier`**
-    - The 'classifier' input specifies the classification model to be used for evaluating the segments. It is essential for determining the classification scores of each segment's attributes or labels.
+    - The 'classifier' input specifies the classification model to be used for evaluating the segments. It plays a crucial role in determining the classification outcomes based on the model's capabilities.
     - Comfy dtype: `TRANSFORMERS_CLASSIFIER`
-    - Python dtype: `str`
+    - Python dtype: `Any`
 - **`segs`**
-    - The 'segs' input represents the segments to be classified and filtered. It is crucial for providing the data that will be processed and evaluated by the classifier.
+    - The 'segs' input represents the segments to be classified, serving as the primary data upon which classification conditions are applied. It is crucial for determining which segments meet the specified criteria and which do not, affecting the node's execution and results.
     - Comfy dtype: `SEGS`
     - Python dtype: `List[Tuple[Any, Any]]`
 - **`preset_expr`**
-    - The 'preset_expr' input allows for the selection of predefined classification expressions or criteria. It influences the classification logic applied to the segments.
+    - The 'preset_expr' input allows for the selection of predefined classification expressions or the use of a manual expression. It defines the criteria for classification, impacting the filtering process.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `str`
 - **`manual_expr`**
-    - The 'manual_expr' input enables the specification of custom classification expressions or criteria. It allows for flexible and dynamic classification based on user-defined conditions.
+    - The 'manual_expr' input is used when a custom classification expression is required, providing flexibility in defining specific conditions for segment classification.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ### Optional
 - **`ref_image_opt`**
-    - The 'ref_image_opt' input optionally provides a reference image to enhance the classification process. It can affect the classification outcome by providing additional context.
+    - The 'ref_image_opt' input is an optional parameter that specifies a reference image from which segments may be extracted or compared, enhancing the classification accuracy.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `Optional[torch.Tensor]`
+    - Python dtype: `Optional[Any]`
 ## Output types
 - **`filtered_SEGS`**
     - Comfy dtype: `SEGS`
-    - This output contains the segments that meet the classification criteria, effectively categorizing the input segments based on the specified conditions.
+    - The 'filtered_SEGS' output contains segments that meet the specified classification criteria, effectively separating them based on the comparison conditions applied.
     - Python dtype: `List[Any]`
 - **`remained_SEGS`**
     - Comfy dtype: `SEGS`
-    - This output contains the segments that do not meet the classification criteria, allowing for further analysis or processing of unclassified segments.
+    - The 'remained_SEGS' output includes segments that do not meet the classification criteria, allowing for further processing or exclusion from certain analyses.
     - Python dtype: `List[Any]`
+- **`detected_labels`**
+    - Comfy dtype: `STRING`
+    - The 'detected_labels' output lists all unique labels identified during the classification process, offering insights into the variety of labels present within the segments.
+    - Python dtype: `List[str]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -65,8 +70,9 @@ class SEGS_Classify:
                     }
                 }
 
-    RETURN_TYPES = ("SEGS", "SEGS",)
-    RETURN_NAMES = ("filtered_SEGS", "remained_SEGS",)
+    RETURN_TYPES = ("SEGS", "SEGS", "STRING")
+    RETURN_NAMES = ("filtered_SEGS", "remained_SEGS", "detected_labels")
+    OUTPUT_IS_LIST = (False, False, True)
 
     FUNCTION = "doit"
 
@@ -99,7 +105,7 @@ class SEGS_Classify:
         match = re.match(classify_expr_pattern, expr_str)
 
         if match is None:
-            return ((segs[0], []), segs)
+            return (segs[0], []), segs, []
 
         a = match.group(1)
         op = match.group(2)
@@ -110,6 +116,7 @@ class SEGS_Classify:
 
         classified = []
         remained_SEGS = []
+        provided_labels = set()
 
         for seg in segs[1]:
             cropped_image = None
@@ -124,6 +131,9 @@ class SEGS_Classify:
                 cropped_image = to_pil(cropped_image)
                 res = classifier(cropped_image)
                 classified.append((seg, res))
+
+                for x in res:
+                    provided_labels.add(x['label'])
             else:
                 remained_SEGS.append(seg)
 
@@ -162,6 +172,6 @@ class SEGS_Classify:
             else:
                 remained_SEGS.append(seg)
 
-        return ((segs[0], filtered_SEGS), (segs[0], remained_SEGS))
+        return (segs[0], filtered_SEGS), (segs[0], remained_SEGS), list(provided_labels)
 
 ```

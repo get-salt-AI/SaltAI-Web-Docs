@@ -6,29 +6,29 @@ tags:
 # Audio Scheduled Pitch Shift
 ## Documentation
 - Class name: `SaltAudioPitchShiftScheduled`
-- Category: `SALT/Audio/Effect`
+- Category: `SALT/AudioViz/Audio/Effect`
 - Output node: `False`
 
-This node is designed for applying a scheduled pitch shift to audio data, allowing for dynamic adjustments to the pitch over time. It enables more complex and nuanced audio effects than a static pitch shift by incorporating a schedule for pitch variation and an option for interpolation.
+This node is designed for applying a scheduled pitch shift to audio data. It allows for dynamic adjustments to the pitch over time, based on a predefined schedule, enabling more complex and nuanced audio transformations than a static pitch shift.
 ## Input types
 ### Required
 - **`audio`**
-    - The audio data to which the pitch shift will be applied. It serves as the primary input for the pitch shifting process.
+    - The audio data to be processed. It is the primary input for pitch shifting operations, determining the raw sound material to be modified.
     - Comfy dtype: `AUDIO`
     - Python dtype: `bytes`
 - **`schedule`**
-    - A list of semitone values specifying the pitch shift amount at different points in the audio. It defines the dynamic nature of the pitch shift over time.
+    - A list or array defining the pitch shift values over time. This schedule dictates how the pitch is altered throughout the audio, allowing for dynamic and varied pitch changes.
     - Comfy dtype: `LIST`
-    - Python dtype: `List[float]`
+    - Python dtype: `List[float] or np.ndarray`
 ### Optional
 - **`interpolate`**
-    - A boolean flag indicating whether to interpolate between the points specified in the schedule, allowing for smoother transitions in pitch shift.
+    - A boolean flag indicating whether to interpolate between scheduled pitch values for smoother transitions or to apply them directly as discrete steps.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`audio`**
     - Comfy dtype: `AUDIO`
-    - The resulting audio data after applying the scheduled pitch shift, reflecting the dynamic changes in pitch specified by the input schedule.
+    - The resulting audio data after applying the scheduled pitch shifts. It reflects the dynamic pitch adjustments made according to the input schedule.
     - Python dtype: `bytes`
 ## Usage tips
 - Infra type: `CPU`
@@ -53,7 +53,7 @@ class SaltAudioPitchShiftScheduled:
     RETURN_TYPES = ("AUDIO",)
     RETURN_NAMES = ("audio",)
     FUNCTION = "shift_pitch_advanced"
-    CATEGORY = "SALT/Audio/Effect"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Audio/Effect"
 
     @staticmethod
     def shift_pitch_advanced(audio_bytes, schedule, interpolate=False):

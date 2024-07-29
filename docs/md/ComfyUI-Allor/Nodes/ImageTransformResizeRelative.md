@@ -1,9 +1,8 @@
 ---
 tags:
+- AspectRatio
 - ImageResize
-- ImageScaling
 - ImageSize
-- ImageTransformation
 ---
 
 # ImageTransformResizeRelative

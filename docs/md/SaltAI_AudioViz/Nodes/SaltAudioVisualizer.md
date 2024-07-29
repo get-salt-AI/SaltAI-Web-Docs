@@ -1,32 +1,34 @@
 ---
 tags:
 - Audio
+- List
+- ListExtension
 ---
 
 # Audio Visualizer
 ## Documentation
 - Class name: `SaltAudioVisualizer`
-- Category: `SALT/Audio/Util`
+- Category: `SALT/AudioViz/Audio/Util`
 - Output node: `True`
 
-The SaltAudioVisualizer node is designed to create visual representations of audio data. It processes audio input to generate visualizations that can be used for analysis or aesthetic purposes, highlighting the audio's structure, frequency content, and dynamics.
+Provides a visual representation of audio data, enabling users to visualize the waveform or spectrum of audio clips. This can be particularly useful for analyzing the audio's structure, identifying specific parts, or simply for aesthetic visualization purposes.
 ## Input types
 ### Required
 - **`audio`**
-    - The 'audio' parameter is the primary input for the visualization process, representing the audio data to be visualized.
+    - The audio data to be visualized. It is crucial for understanding the audio's structure and for generating its visual representation.
     - Comfy dtype: `AUDIO`
-    - Python dtype: `bytes`
+    - Python dtype: `np.ndarray`
 - **`frame_rate`**
-    - The 'frame_rate' parameter specifies the frame rate for the visualization, affecting the temporal resolution of the generated visual output.
+    - Defines the number of frames per second for the visualization, affecting the smoothness and detail of the output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`start_frame`**
-    - The 'start_frame' parameter defines the starting point of the audio segment to be visualized, allowing for selective visualization of specific parts of the audio.
+    - Specifies the starting frame for the visualization, allowing for partial visualization of the audio clip.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`end_frame`**
-    - The 'end_frame' parameter determines the end point of the audio segment for visualization, enabling customization of the visualization's length.
+    - Determines the ending frame for the visualization, enabling users to focus on a specific segment of the audio clip.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
@@ -57,7 +59,7 @@ class SaltAudioVisualizer:
     OUTPUT_NODE = True
 
     FUNCTION = "visualize_audio"
-    CATEGORY = "SALT/Audio/Util"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Audio/Util"
 
     def visualize_audio(self, audio, frame_rate, start_frame=0, end_frame=-1):
         TEMP = folder_paths.get_temp_directory()

@@ -1,7 +1,8 @@
 ---
 tags:
 - Prompt
-- PromptComposer
+- PromptStyling
+- Text
 ---
 
 # 🗫 Finalize Prompt

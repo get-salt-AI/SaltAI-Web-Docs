@@ -1,6 +1,7 @@
 ---
 tags:
-- Cache
+- Agents
+- BackendCache
 ---
 
 # VRAM Debug
@@ -9,57 +10,59 @@ tags:
 - Category: `KJNodes/misc`
 - Output node: `False`
 
-The VRAM_Debug node is designed to monitor and manage video RAM (VRAM) usage within a computational environment. It provides functionalities to clear memory caches, unload all models from memory, and perform garbage collection to free up VRAM. This node is particularly useful for optimizing memory usage and preventing out-of-memory errors during intensive computational tasks.
+The VRAM_Debug node is designed to monitor and manage the VRAM usage of models within a deep learning environment. It provides functionalities to clear the GPU cache, unload all models from memory, and perform garbage collection to free up VRAM. Additionally, it can return the amount of VRAM freed during its operation, aiding in debugging and optimizing memory usage.
 ## Input types
 ### Required
 - **`empty_cache`**
-    - Specifies whether to clear PyTorch's cache, potentially freeing up a significant amount of VRAM.
+    - Controls whether the GPU cache is cleared, which can help in freeing up unused memory.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`gc_collect`**
-    - Determines whether garbage collection is performed, helping to free up unused memory and optimize VRAM usage.
+    - Determines whether garbage collection is performed, potentially freeing up memory by removing unused objects.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`unload_all_models`**
-    - Indicates whether all models should be unloaded from memory, which can drastically reduce VRAM usage.
+    - Specifies whether all models should be unloaded from memory, which can significantly reduce VRAM usage.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`any_input`**
-    - Allows for any additional input to be passed through the node, offering flexibility in its application.
+    - An optional input that can be passed through the node without modification, allowing for flexible usage.
     - Comfy dtype: `*`
-    - Python dtype: `object`
+    - Python dtype: `Optional[Any]`
 - **`image_pass`**
-    - An optional image data that can be passed through the node without modification.
+    - An optional image input that can be passed through the node without modification.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `Optional[Any]`
 - **`model_pass`**
-    - An optional model data that can be passed through the node without modification.
+    - An optional model input that can be passed through the node without modification.
     - Comfy dtype: `MODEL`
-    - Python dtype: `object`
+    - Python dtype: `Optional[Any]`
 ## Output types
 - **`any_output`**
     - Comfy dtype: `*`
-    - Returns any additional input passed to the node, allowing for flexible data flow.
-    - Python dtype: `object`
+    - Returns the inputs passed to the node along with the VRAM usage information before and after the operation.
+    - Python dtype: `Tuple[Any, Optional[Any], Optional[Any], float, float]`
 - **`image_pass`**
     - Comfy dtype: `IMAGE`
-    - Returns the optional image data passed through the node without modification.
-    - Python dtype: `torch.Tensor`
+    - Returns the optional image input passed through the node without modification.
+    - Python dtype: `Optional[Any]`
 - **`model_pass`**
     - Comfy dtype: `MODEL`
-    - Returns the optional model data passed through the node without modification.
-    - Python dtype: `object`
+    - Returns the optional model input passed through the node without modification.
+    - Python dtype: `Optional[Any]`
 - **`freemem_before`**
     - Comfy dtype: `INT`
-    - Provides the amount of free VRAM before the node's operations were executed.
-    - Python dtype: `int`
+    - Returns the amount of free VRAM before the operation.
+    - Python dtype: `float`
 - **`freemem_after`**
     - Comfy dtype: `INT`
-    - Provides the amount of free VRAM after the node's operations, highlighting the effectiveness of memory management.
-    - Python dtype: `int`
+    - Returns the amount of free VRAM after the operation.
+    - Python dtype: `float`
+- **`ui`**
+    - Provides a visual representation of the VRAM usage before and after the operation.
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -94,9 +97,9 @@ and performs comfy model management functions and garbage collection,
 reports free VRAM before and after the operations.
 """
 
-    def VRAMdebug(self, gc_collect,empty_cache, unload_all_models, image_pass=None, model_pass=None, any_input=None):
+    def VRAMdebug(self, gc_collect, empty_cache, unload_all_models, image_pass=None, model_pass=None, any_input=None):
         freemem_before = model_management.get_free_memory()
-        print("VRAMdebug: free memory before: ", freemem_before)
+        print("VRAMdebug: free memory before: ", f"{freemem_before:,.0f}")
         if empty_cache:
             model_management.soft_empty_cache()
         if unload_all_models:
@@ -105,8 +108,11 @@ reports free VRAM before and after the operations.
             import gc
             gc.collect()
         freemem_after = model_management.get_free_memory()
-        print("VRAMdebug: free memory after: ", freemem_after)
-        print("VRAMdebug: freed memory: ", freemem_after - freemem_before)
-        return (any_input, image_pass, model_pass, freemem_before, freemem_after)
+        print("VRAMdebug: free memory after: ", f"{freemem_after:,.0f}")
+        print("VRAMdebug: freed memory: ", f"{freemem_after - freemem_before:,.0f}")
+        return {"ui": {
+            "text": [f"{freemem_before:,.0f}x{freemem_after:,.0f}"]}, 
+            "result": (any_input, image_pass, model_pass, freemem_before, freemem_after) 
+        }
 
 ```

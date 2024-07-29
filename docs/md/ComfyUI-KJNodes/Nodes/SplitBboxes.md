@@ -1,36 +1,34 @@
 ---
 tags:
-- BoundingBox
-- Image
-- ImageTransformation
+- Crop
 ---
 
-# SplitBboxes
+# Split Bboxes
 ## Documentation
 - Class name: `SplitBboxes`
 - Category: `KJNodes/masking`
 - Output node: `False`
 
-The SplitBboxes node is designed to divide a list of bounding boxes (bboxes) into two separate lists at a specified index. This functionality is essential for processing and manipulating bounding box data in various computer vision tasks, enabling targeted operations on segmented portions of the data.
+Splits a list of bounding boxes (bboxes) at a specified index into two separate lists, facilitating operations that require segmenting bounding box data.
 ## Input types
 ### Required
 - **`bboxes`**
-    - The 'bboxes' parameter represents the list of bounding boxes to be split. It is crucial for determining the segments of data to be processed and divided at the specified index.
+    - The list of bounding boxes to be split. This parameter is crucial for determining how the bounding boxes are divided into two groups.
     - Comfy dtype: `BBOX`
-    - Python dtype: `List[Tuple[int, int, int, int]]`
+    - Python dtype: `Tuple[BBOX]`
 - **`index`**
-    - The 'index' parameter specifies the position at which the list of bounding boxes should be split. It plays a pivotal role in dividing the bounding box list into two distinct parts.
+    - The index at which the list of bounding boxes is split. This parameter dictates the division point, affecting the composition of the resulting bounding box lists.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`bboxes_a`**
     - Comfy dtype: `BBOX`
-    - The first output list of bounding boxes, containing elements from the start of the original list up to (but not including) the specified index.
-    - Python dtype: `List[Tuple[int, int, int, int]]`
+    - The first sublist of bounding boxes, containing elements from the start of the original list up to (but not including) the specified index.
+    - Python dtype: `Tuple[BBOX]`
 - **`bboxes_b`**
     - Comfy dtype: `BBOX`
-    - The second output list of bounding boxes, starting from the specified index to the end of the original list.
-    - Python dtype: `List[Tuple[int, int, int, int]]`
+    - The second sublist of bounding boxes, containing elements from the specified index to the end of the original list.
+    - Python dtype: `Tuple[BBOX]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

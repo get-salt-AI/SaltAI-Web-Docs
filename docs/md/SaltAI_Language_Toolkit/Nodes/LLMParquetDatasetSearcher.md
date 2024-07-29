@@ -1,94 +1,99 @@
-# ∞ Dataset Search (1-Dimensional)
+---
+tags:
+- BackendCache
+---
+
+# ∞ Dataset/File Search (1-Dimensional)
 ## Documentation
 - Class name: `LLMParquetDatasetSearcher`
 - Category: `SALT/Language Toolkit/Tools/Dataset`
 - Output node: `False`
 
-This node is designed to perform advanced search operations within large datasets stored in Parquet format. It leverages language models to interpret and execute complex queries, applying filters, relevancy scoring, and parallel processing to efficiently retrieve and rank results based on the query's intent.
+The LLMParquetDatasetSearcher node is designed to efficiently search and filter data within Parquet files based on specified search terms, exclusion criteria, and length constraints. It leverages parallel processing to enhance search performance and incorporates relevancy scoring to prioritize results, making it a powerful tool for extracting and analyzing specific segments of large datasets.
 ## Input types
 ### Required
 - **`file_type`**
-    - Specifies the type of file to be searched, such as parquet, text, json, yaml, csv, or excel, determining the method of data extraction and processing.
+    - Specifies the type of file to be searched. This parameter determines the appropriate reader to use for the file, supporting formats such as parquet, text, json, yaml, csv, and excel.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `List[str]`
 - **`path_or_url`**
-    - The location of the file to be searched, either as a local file path or a URL, providing access to the dataset for the search operation.
+    - The path to the file or URL to be searched. It is the starting point for the search operation, allowing the node to access and process the specified file.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ### Optional
 - **`search_term`**
-    - The query or keywords to search for within the dataset, guiding the search and filtering process.
+    - Defines the search terms used to filter the dataset. These terms are crucial for identifying relevant data segments within the file.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`exclude_terms`**
-    - Terms to be excluded from the search results, allowing for more refined and relevant outcomes.
+    - Terms to be excluded from the search results, refining the search by removing irrelevant or undesired data segments.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`columns`**
-    - Specific columns within the dataset to search, enabling targeted searches and improving efficiency.
+    - Specifies the columns to be included in the search. By default, all columns are included ('*'), but this can be customized to target specific columns.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`case_sensitive`**
-    - Determines whether the search should be case sensitive, affecting the matching process.
+    - Determines whether the search should be case sensitive, affecting how search terms are matched against the dataset.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`max_results`**
-    - The maximum number of search results to return, controlling the scope of the search output.
+    - The maximum number of search results to return, allowing control over the volume of data retrieved.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`term_relevancy_threshold`**
-    - A threshold for relevancy scoring, filtering results based on their relevance to the search term.
+    - The threshold for term relevancy scoring, used to prioritize results based on their relevance to the search terms.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`use_relevancy`**
-    - Indicates whether relevancy scoring should be applied to the search results, enhancing result quality.
+    - Indicates whether relevancy scoring should be used to prioritize search results, enhancing the search's focus on the most relevant segments.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`min_length`**
-    - The minimum length of the search results, filtering out results that do not meet this criterion.
+    - The minimum length of the data segments to be included in the search results, enabling the exclusion of too-short segments.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`max_length`**
-    - The maximum length of the search results, ensuring that results are within a specified size range.
+    - The maximum length of the data segments to be considered in the search results, preventing overly long segments from being included.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`max_dynamic_retries`**
-    - The number of times the search should be retried with dynamic adjustments in case of no results, improving the chances of finding relevant data.
+    - The maximum number of retries with dynamic search terms if no results are found, enhancing the chance of retrieving relevant data.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`clean_content`**
-    - Specifies whether the content should be cleaned or pre-processed before searching, affecting the accuracy of the results.
+    - Specifies whether the content should be cleaned, removing unnecessary or irrelevant information from the search results.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`excel_sheet_position`**
-    - For excel files, specifies the sheet to be searched, allowing for targeted data extraction within multi-sheet documents.
+    - For Excel files, specifies the sheet to be searched by its position, allowing targeted searches within multi-sheet documents.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`recache`**
-    - Determines whether the data should be recached, potentially improving performance for repeated searches.
+    - Indicates whether the file should be recached, potentially updating the cached version with the latest content.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`condense_documents`**
-    - Indicates whether the search results should be condensed, potentially reducing the volume of data returned.
+    - Determines whether documents should be condensed, potentially merging similar documents to reduce redundancy.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`seed`**
-    - A seed value for random operations within the search, ensuring reproducibility of results.
+    - A seed value for random operations, ensuring reproducibility of the search results under the same conditions.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`results`**
     - Comfy dtype: `STRING`
-    - The primary output containing the search results, including relevant data entries.
-    - Python dtype: `str`
+    - The primary search results, containing data segments that match the search criteria.
+    - Python dtype: `List[Dict[str, Any]]`
 - **`results_list`**
     - Comfy dtype: `LIST`
-    - A list format of the search results, providing an alternative representation.
-    - Python dtype: `list`
+    - A list of search results, potentially including additional metadata or context about the matches.
+    - Python dtype: `List[Dict[str, Any]]`
 - **`documents`**
     - Comfy dtype: `DOCUMENT`
-    - Structured documents derived from the search results, potentially including metadata and additional context.
-    - Python dtype: `list`
+    - A collection of documents derived from the search results, formatted for further processing or analysis.
+    - Python dtype: `List[Dict[str, Any]]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -167,9 +172,6 @@ class LLMParquetDatasetSearcher:
             seed=min(seed, 99999999),
             use_relevancy=use_relevancy
         )
-
-        from pprint import pprint
-        pprint(results, indent=4)
 
         results_list = []
         results_text = "Prompts:\n\n"

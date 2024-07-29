@@ -1,9 +1,11 @@
 ---
 tags:
+- Checkpoint
+- CheckpointLoader
 - Loader
-- Model
-- ModelIO
 - ModelLoader
+- ModelMerge
+- ModelSwitching
 ---
 
 # EasyLoader (SVD)
@@ -12,75 +14,75 @@ tags:
 - Category: `EasyUse/Loaders`
 - Output node: `False`
 
-The `easy svdLoader` node is designed to facilitate the loading of SVD (Singular Value Decomposition) models into the system. It streamlines the process of identifying and retrieving SVD model files from a specified directory, excluding non-relevant files, to ensure that only valid SVD models are loaded for further processing or analysis.
+The `easy svdLoader` node is designed to facilitate the loading of SVD (Singular Value Decomposition) models into the system. It streamlines the process of identifying and retrieving SVD model files from a specified directory, ensuring that only relevant files are selected for further processing. This node plays a crucial role in simplifying the integration and utilization of SVD models within the broader computational framework, making it easier for users to leverage SVD-based functionalities.
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - Specifies the checkpoint name for the SVD model to be loaded, filtering the files to identify those relevant to the specified checkpoint.
+    - The `ckpt_name` parameter specifies the checkpoint name for the SVD model to be loaded. It is crucial for identifying the specific model file to be used in the loading process, thereby enabling the precise application of SVD models within the system.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`vae_name`**
-    - Identifies the VAE model to be loaded alongside the SVD model, ensuring compatibility and integration for processing.
+    - The `vae_name` parameter identifies the VAE model to be used alongside the SVD model, facilitating a combined application of these models for enhanced processing capabilities.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`clip_name`**
-    - Specifies the CLIP model name to be loaded, which is used for text and image understanding and processing in conjunction with the SVD model.
+    - The `clip_name` parameter specifies the CLIP model to be used in conjunction with the SVD model, enabling advanced feature extraction and analysis.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`init_image`**
-    - The initial image to be used in the processing pipeline, setting a starting point for model operations.
+    - The `init_image` parameter is used to provide an initial image for processing, serving as a starting point for model applications.
     - Comfy dtype: `IMAGE`
     - Python dtype: `str`
 - **`resolution`**
-    - Specifies the resolution for the output image or video, ensuring the processed content meets the desired dimensions.
+    - The `resolution` parameter specifies the desired resolution for the output, impacting the quality and size of the generated content.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`empty_latent_width`**
-    - Defines the width of the empty latent space to be used in the model's processing pipeline.
+    - Specifies the width of the empty latent space to be used, affecting the dimensions of the generated content.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`empty_latent_height`**
-    - Specifies the height of the empty latent space, contributing to the dimensions of the model's output.
+    - Specifies the height of the empty latent space, influencing the vertical dimension of the generated content.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`video_frames`**
-    - Determines the number of frames for video processing, affecting the length and fluidity of the output video.
+    - Determines the number of frames for video generation, directly affecting the video's length.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`motion_bucket_id`**
-    - Identifies the motion bucket to be used for video processing, influencing the motion dynamics in the output.
+    - Identifies the motion bucket to be used, influencing the motion characteristics of the generated video.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`fps`**
-    - Sets the frames per second for the output video, impacting the playback speed and smoothness.
+    - Sets the frames per second for the video, impacting the playback speed and smoothness.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`augmentation_level`**
-    - Adjusts the level of augmentation applied to the video or image, affecting the intensity of visual modifications.
+    - Controls the level of augmentation applied, affecting the variety and intensity of visual modifications.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`optional_positive`**
-    - An optional parameter for specifying positive conditioning aspects, enhancing certain features or attributes in the output.
+    - Optional positive conditioning text to guide the generation towards specific attributes.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`optional_negative`**
-    - An optional parameter for defining negative conditioning aspects, suppressing certain features or attributes in the output.
+    - Optional negative conditioning text to steer the generation away from certain attributes.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - The pipeline configuration for further processing of the loaded SVD model.
-    - Python dtype: `Pipeline`
+    - The `pipe` output represents the pipeline configuration resulting from the loaded models, integrating SVD, VAE, and possibly other models.
+    - Python dtype: `object`
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The loaded SVD model ready for use or analysis.
-    - Python dtype: `Model`
+    - The `model` output refers to the specific SVD model that has been loaded and is ready for use within the pipeline.
+    - Python dtype: `object`
 - **`vae`**
     - Comfy dtype: `VAE`
-    - The variational autoencoder associated with the SVD model, if applicable.
-    - Python dtype: `VAE`
+    - The `vae` output indicates the VAE model that has been loaded and integrated into the system for combined use with the SVD model.
+    - Python dtype: `object`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -92,7 +94,6 @@ class svdLoader:
 
     @classmethod
     def INPUT_TYPES(cls):
-        resolution_strings = [f"{width} x {height}" for width, height in BASE_RESOLUTIONS]
         def get_file_list(filenames):
             return [file for file in filenames if file != "put_models_here.txt" and "svd" in file.lower()]
 
@@ -161,11 +162,15 @@ class svdLoader:
             if clip_name == 'None':
                 raise Exception("You need choose a open_clip model when positive is not empty")
             clip = easyCache.load_clip(clip_name)
+            if has_chinese(optional_positive):
+                optional_positive = zh_to_en([optional_positive])[0]
             positive_embeddings_final, = CLIPTextEncode().encode(clip, optional_positive)
             positive, = ConditioningConcat().concat(positive, positive_embeddings_final)
         if optional_negative is not None and optional_negative != '':
             if clip_name == 'None':
                 raise Exception("You need choose a open_clip model when negative is not empty")
+            if has_chinese(optional_negative):
+                optional_positive = zh_to_en([optional_negative])[0]
             negative_embeddings_final, = CLIPTextEncode().encode(clip, optional_negative)
             negative, = ConditioningConcat().concat(negative, negative_embeddings_final)
 
@@ -188,18 +193,13 @@ class svdLoader:
                                     "vae_name": vae_name,
 
                                     "positive": positive,
-                                    "positive_l": None,
-                                    "positive_g": None,
-                                    "positive_balance": None,
                                     "negative": negative,
-                                    "negative_l": None,
-                                    "negative_g": None,
-                                    "negative_balance": None,
+                                    "resolution": resolution,
                                     "empty_latent_width": empty_latent_width,
                                     "empty_latent_height": empty_latent_height,
                                     "batch_size": 1,
                                     "seed": 0,
-                                    "empty_samples": samples, }
+                                     }
                 }
 
         return (pipe, model, vae)

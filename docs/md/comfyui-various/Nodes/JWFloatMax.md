@@ -1,6 +1,8 @@
 ---
 tags:
-- MathematicalFunctions
+- Math
+- MathematicalExpressions
+- NumericConversion
 ---
 
 # Float Maximum

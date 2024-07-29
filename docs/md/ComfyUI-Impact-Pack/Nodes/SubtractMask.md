@@ -1,29 +1,29 @@
 ---
 tags:
-- MaskMath
+- MaskRegion
 ---
 
-# Bitwise(MASK - MASK)
+# Pixelwise(MASK - MASK)
 ## Documentation
 - Class name: `SubtractMask`
 - Category: `ImpactPack/Operation`
 - Output node: `False`
 
-The SubtractMask node is designed to perform subtraction operations between two mask inputs, resulting in a single mask output that represents the difference between the two input masks. This operation is useful in scenarios where the removal of certain areas or features from a mask is required, effectively highlighting disparities or changes between the two masks.
+The SubtractMask node is designed for performing pixel-wise subtraction between two mask images, resulting in a new mask that highlights the differences. This operation is fundamental in image processing tasks where the goal is to isolate changes or differences between two images.
 ## Input types
 ### Required
 - **`mask1`**
-    - The first mask input for the subtraction operation. It serves as the base mask from which the second mask will be subtracted.
+    - The first mask image to be subtracted from. It plays a crucial role in determining the base or reference for the subtraction operation.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`mask2`**
-    - The second mask input for the subtraction operation. This mask is subtracted from the first mask, effectively removing its features from the first mask.
+    - The second mask image to be subtracted. This mask is subtracted from the first one to highlight differences.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The resulting mask after subtracting the second mask from the first. This output highlights the differences or changes between the two input masks.
+    - The resulting mask after subtracting mask2 from mask1, highlighting the differences between the two.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`

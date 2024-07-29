@@ -1,9 +1,9 @@
 ---
 tags:
-- AnimationScheduling
+- Curve
 - FrameInterpolation
 - Interpolation
-- VisualEffects
+- WavePatterns
 ---
 
 # Lerp 📅🅕🅝

@@ -1,9 +1,11 @@
 ---
 tags:
-- DepthMap
+- DepthMapEstimation
 - Image
-- ImagePreprocessing
+- ImageEnhancement
+- Inpaint
 - LineExtraction
+- Weight
 ---
 
 # Scribble XDoG Lines

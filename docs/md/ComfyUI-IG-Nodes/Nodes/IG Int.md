@@ -1,3 +1,9 @@
+---
+tags:
+- RegionalPrompt
+- Style
+---
+
 # ➡️ IG Int
 ## Documentation
 - Class name: `IG Int`

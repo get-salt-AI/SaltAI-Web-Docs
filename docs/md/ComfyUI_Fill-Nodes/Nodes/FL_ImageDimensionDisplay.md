@@ -1,7 +1,8 @@
 ---
 tags:
+- ImageResize
+- ImageScaling
 - ImageSize
-- ImageTransformation
 ---
 
 # FL Image Size

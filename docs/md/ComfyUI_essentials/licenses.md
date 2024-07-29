@@ -31,3 +31,9 @@ File name: `carve.py`
 ```
 # MIT licensed code from https://github.com/li-plus/seam-carving/
 ```
+File name: `image.py`
+
+**MIT**
+```
+# From https://github.com/yoonsikp/pycubelut/blob/master/pycubelut.py (MIT license)
+```

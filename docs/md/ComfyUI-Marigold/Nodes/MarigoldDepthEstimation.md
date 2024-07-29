@@ -1,8 +1,7 @@
 ---
 tags:
-- DepthMap
 - DepthMapEstimation
-- Image
+- Inpaint
 ---
 
 # MarigoldDepthEstimation
@@ -11,74 +10,74 @@ tags:
 - Category: `Marigold`
 - Output node: `False`
 
-The MarigoldDepthEstimation node is designed for generating depth maps from single images using a diffusion-based monocular depth estimation technique. It leverages the Marigold model to produce depth maps that can be further processed or visualized. This node is capable of handling both individual images and sequences for video applications, incorporating advanced features like ensembling for improved depth map accuracy and optical flow for video frame consistency.
+The MarigoldDepthEstimation node is designed for diffusion-based monocular depth estimation, leveraging the Marigold model to generate depth maps from single images. This node focuses on enhancing the accuracy of depth perception in images by employing a series of denoising steps and iterations, allowing for the creation of ensembled depth maps that offer a more detailed and accurate representation of depth. It supports various configurations, including model selection and inversion of depth map colors, to cater to different use cases and preferences.
 ## Input types
 ### Required
 - **`image`**
-    - The input image for which the depth map is to be generated. This is the primary input that drives the depth estimation process, directly influencing the output's appearance and quality.
+    - The input image for which the depth map is to be estimated. This is the primary input over which the depth estimation process is executed.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`seed`**
-    - Sets the random seed for depth map generation, ensuring reproducibility of results. This parameter allows for consistent outputs across multiple runs, facilitating comparisons and evaluations.
+    - A seed value for random number generation, ensuring reproducibility of the depth estimation process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`denoise_steps`**
-    - Specifies the number of steps per depth map to increase accuracy at the cost of processing time. This parameter directly influences the trade-off between the depth map's detail and the computational time required, impacting the overall execution time and the quality of the output.
+    - Specifies the number of steps per depth map to enhance the accuracy of the depth estimation. Increasing this value results in more detailed depth maps at the cost of longer processing times.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`n_repeat`**
-    - Determines the amount of iterations to be ensembled into a single depth map, affecting the final depth map's accuracy and detail. The higher the number, the more refined the depth map, at the expense of increased processing time.
+    - Determines the amount of iterations to be ensembled into a single depth map, affecting the overall depth accuracy and detail.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`regularizer_strength`**
-    - Adjusts the strength of the regularization during the ensembling process, typically left at default settings. While generally not modified, it can be adjusted to fine-tune the depth map's clarity and detail.
+    - Adjusts the strength of the regularization during the ensembling process, typically left at default settings.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`reduction_method`**
-    - Specifies the method used for reducing the ensemble of depth maps into a single map. This choice impacts how the individual depth maps are combined, affecting the final image's quality and detail.
+    - Specifies the method used for reducing the ensemble of depth maps into a single map, impacting the final depth representation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`max_iter`**
-    - Sets the maximum number of iterations for the ensembling process. This parameter controls how long the ensembling process can run, impacting the depth map's refinement level.
+    - Sets the maximum number of iterations for the ensembling process, controlling the depth map's refinement level.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`tol`**
-    - The tolerance level for the ensembling process, affecting when the process is considered complete. A lower tolerance can lead to a more detailed depth map but may increase processing time.
+    - Defines the tolerance level for the ensembling process, determining when the process should terminate based on convergence criteria.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`invert`**
-    - Inverts the default depth map colors for compatibility with certain applications. This parameter is essential for ensuring the depth map's visual representation matches the expected format for further processing.
+    - Inverts the default depth map colors from black representing the front to the opposite, catering to specific application requirements.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`keep_model_loaded`**
-    - Determines whether the depth estimation model remains loaded between invocations. Keeping the model loaded can significantly reduce processing time for subsequent images at the expense of increased memory usage.
+    - Indicates whether the Marigold model should remain loaded between invocations, improving performance at the expense of memory usage.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`n_repeat_batch_size`**
-    - Controls how many of the n_repeats are processed as a batch, optimizing VRAM usage and processing speed. This parameter is crucial for managing resource utilization effectively, especially on systems with limited VRAM.
+    - Controls how many of the n_repeat iterations are processed in a batch, optimizing VRAM usage and processing speed based on available resources.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`use_fp16`**
-    - Determines whether to use fp16 precision for reduced VRAM usage, with a potential impact on quality. This parameter is crucial for balancing between resource efficiency and the depth map's fidelity.
+    - Determines whether to use fp16 precision for processing, affecting VRAM usage and potentially the depth map's quality.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`scheduler`**
-    - Chooses the scheduler for the depth estimation process, affecting the outcome's nuances. Different schedulers can lead to variations in the depth map's appearance and accuracy, providing flexibility in the results.
+    - Chooses the scheduler for the denoising steps, affecting the depth map's final quality and characteristics.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`normalize`**
-    - Controls whether the output depth map is normalized. Normalization can affect the depth map's visual representation, making it more suitable for certain types of post-processing or visualization.
+    - Specifies whether the depth map should be normalized, affecting the range and distribution of depth values.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`model`**
-    - Selects between the Marigold model and its LCM version for depth estimation, influencing the depth map's characteristics. The choice of model affects the depth map's accuracy and the visual quality of the output.
+    - Selects between the Marigold model and its LCM version for depth estimation, influencing the depth map's accuracy and appearance.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`ensembled_image`**
     - Comfy dtype: `IMAGE`
-    - The final ensembled depth map image, ready for further processing or visualization. This output represents the culmination of the depth estimation process, incorporating all adjustments and refinements specified through the input parameters.
+    - The resulting depth map, ensembled from multiple iterations and denoising steps, providing a detailed representation of depth in the image.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -160,7 +159,7 @@ fp16 uses much less VRAM, but in some cases can lead to loss of quality.
     def process(self, image, seed, denoise_steps, n_repeat, regularizer_strength, reduction_method, max_iter, tol,invert, keep_model_loaded, n_repeat_batch_size, use_fp16, scheduler, normalize, model="Marigold"):
         batch_size = image.shape[0]
         precision = torch.float16 if use_fp16 else torch.float32
-        device = comfy.model_management.get_torch_device()
+        device = model_management.get_torch_device()
         torch.manual_seed(seed)
 
         image = image.permute(0, 3, 1, 2).to(device).to(dtype=precision)
@@ -273,7 +272,7 @@ fp16 uses much less VRAM, but in some cases can lead to loss of quality.
 
         if not keep_model_loaded:
             self.marigold_pipeline = None
-            comfy.model_management.soft_empty_cache()
-        return (outstack,)
+            model_management.soft_empty_cache()
+        return (outstack,)        
 
 ```

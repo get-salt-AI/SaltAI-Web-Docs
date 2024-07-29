@@ -1,7 +1,8 @@
 ---
 tags:
-- List
-- ListExtension
+- Comparison
+- Model
+- ModelList
 ---
 
 # ExtendImageList

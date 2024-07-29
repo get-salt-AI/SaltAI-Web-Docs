@@ -1,8 +1,3 @@
----
-tags:
-- ImageEnhancement
----
-
 # CoreMLDetailerHookProvider
 ## Documentation
 - Class name: `CoreMLDetailerHookProvider`

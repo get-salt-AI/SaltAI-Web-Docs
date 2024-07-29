@@ -1,25 +1,28 @@
 ---
 tags:
+- AnimationScheduling
 - Scheduling
+- SigmaScheduling
+- VisualEffects
 ---
 
 # Convert Schedule to Iterative Execution List
 ## Documentation
 - Class name: `SaltSchedule2ExecSchedule`
-- Category: `SALT/Scheduling`
+- Category: `SALT/AudioViz/Scheduling`
 - Output node: `False`
 
-This node is designed to transform a list into an iterative execution list, facilitating the conversion of scheduling data into a format suitable for sequential processing.
+This node is designed to transform a schedule list into an iterative execution list, facilitating the conversion of a sequence of elements for iterative processing.
 ## Input types
 ### Required
 - **`list_input`**
-    - Represents the input list to be converted into an iterative execution list, serving as the primary data structure for transformation.
+    - The input list to be converted for iterative execution. It plays a crucial role in determining the structure and content of the output list.
     - Comfy dtype: `LIST`
-    - Python dtype: `List`
+    - Python dtype: `List[Any]`
 ## Output types
 - **`float`**
     - Comfy dtype: `FLOAT`
-    - Outputs a list of floats derived from the input list, indicating the transformed scheduling data.
+    - The transformed list, now suitable for iterative execution, maintaining the original list's structure but enabling a different mode of processing.
     - Python dtype: `List[float]`
 ## Usage tips
 - Infra type: `CPU`
@@ -44,7 +47,7 @@ class SaltSchedule2ExecSchedule:
     RETURN_NAMES = ("float",)
     OUTPUT_IS_LIST = (True,)
     FUNCTION = "convert"
-    CATEGORY = "SALT/Scheduling"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling"
 
     def convert(self, list_input):
         return (list_input, )

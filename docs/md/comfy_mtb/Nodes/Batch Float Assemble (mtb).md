@@ -1,7 +1,6 @@
 ---
 tags:
-- Batch
-- FloatData
+- VectorMath
 ---
 
 # Batch Float Assemble (mtb)
@@ -10,17 +9,17 @@ tags:
 - Category: `mtb/batch`
 - Output node: `False`
 
-The MTB_BatchFloatAssemble node is designed to aggregate multiple batches of floating-point numbers into a unified batch, optionally reversing the order of the batches before combining them. This functionality is crucial for scenarios where the sequential order of data points impacts the processing or analysis outcomes.
+The MTB_BatchFloatAssemble node is designed to aggregate multiple batches of floating-point numbers into a single, unified batch. This process allows for the efficient combination of data streams, optionally reversing the order of the batches before assembly, to suit various data processing and analysis needs.
 ## Input types
 ### Required
 - **`reverse`**
-    - Determines whether the input batches of floats should be reversed before being assembled into a single batch. This option allows for flexibility in handling the order of data, which can be critical for certain analyses or processing tasks.
+    - Determines whether the batches of floats should be assembled in reverse order. Setting this to true reverses the order, which can be useful for certain data processing scenarios where the sequence of data matters.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`floats`**
     - Comfy dtype: `FLOATS`
-    - The output is a single batch of floats, assembled from the input batches. This consolidated batch can be used for further processing or analysis, providing a streamlined dataset.
+    - The output is a single, consolidated list of floating-point numbers, assembled from the input batches. This unified batch can be used for further processing or analysis.
     - Python dtype: `list[float]`
 ## Usage tips
 - Infra type: `CPU`
@@ -36,18 +35,21 @@ class MTB_BatchFloatAssemble:
     def INPUT_TYPES(cls):
         return {"required": {"reverse": ("BOOLEAN", {"default": False})}}
 
-    FUNCTION = "assemble_floats"
     RETURN_TYPES = ("FLOATS",)
     CATEGORY = "mtb/batch"
+    FUNCTION = "assemble_floats"
 
-    def assemble_floats(self, reverse, **kwargs):
-        res = []
+    def assemble_floats(self, reverse: bool, **kwargs: list[float]):
+        res: list[float] = []
+
         if reverse:
             for x in reversed(kwargs.values()):
-                res += x
+                if x:
+                    res += x
         else:
             for x in kwargs.values():
-                res += x
+                if x:
+                    res += x
 
         return (res,)
 

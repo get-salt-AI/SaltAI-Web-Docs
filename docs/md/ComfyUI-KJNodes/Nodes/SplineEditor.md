@@ -1,83 +1,87 @@
 ---
 tags:
-- XYPlotData
+- DataVisualization
 ---
 
 # Spline Editor
 ## Documentation
 - Class name: `SplineEditor`
-- Category: `KJNodes/experimental`
+- Category: `KJNodes/weights`
 - Output node: `False`
 
-The SplineEditor node is a graphical editor designed for creating and manipulating splines to generate various types of output data. It allows for intricate control over the spline's shape and characteristics through interactive editing features. This node is particularly useful for applications requiring custom schedules, mask batches, or coordinate transformations.
+The SplineEditor node is a graphical tool designed for creating and editing splines that represent various schedules or mask batches. It provides a user-friendly interface for manipulating control points and curves, enabling the customization of values for different applications. This node is particularly useful for tasks that require precise control over the interpolation and distribution of values across a specified domain, such as animation scheduling or data visualization.
 ## Input types
 ### Required
 - **`points_store`**
-    - Stores the control points data, used for generating and manipulating the spline.
+    - A storage mechanism for the control points. It plays a critical role in managing and accessing the points for spline generation and manipulation.
     - Comfy dtype: `STRING`
-    - Python dtype: `str`
+    - Python dtype: `object`
 - **`coordinates`**
-    - A string representation of coordinates for control points, used to define the shape and trajectory of the spline.
+    - A list of coordinates for control points. These points define the shape and trajectory of the spline, directly impacting its form and the interpolated values.
     - Comfy dtype: `STRING`
-    - Python dtype: `str`
+    - Python dtype: `list`
 - **`mask_width`**
-    - Specifies the width of the mask to be generated, affecting the spatial resolution of the output mask.
+    - Specifies the width of the mask to be generated. It determines the horizontal dimension of the output mask or batch, affecting the resolution and scale of the generated spline.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`mask_height`**
-    - Defines the height of the mask, influencing the vertical resolution of the output mask.
+    - Defines the height of the mask to be generated. It influences the vertical dimension of the output, playing a crucial role in determining the resolution and scale of the spline.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`points_to_sample`**
-    - Sets the number of sample points to generate from the spline, independent of the control points count.
+    - Sets the number of sample points to be generated from the spline. This value determines the granularity of the output, impacting the precision and detail of the interpolated values.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`sampling_method`**
-    - Chooses the sampling method, either along the time axis for schedules or along the path for coordinates.
+    - Chooses the method for sampling points along the spline, either by time or path. This affects how values are distributed along the spline, catering to different use cases like schedules or coordinates.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`interpolation`**
-    - Specifies the method of interpolation between control points, impacting the smoothness and shape of the spline.
+    - Specifies the method of interpolation between control points. This choice influences the smoothness and curvature of the spline, affecting its overall appearance and functionality.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`tension`**
-    - Adjusts the tension of the spline, affecting its curvature and how tightly it adheres to the control points.
+    - Controls the tension of the spline curve. Adjusting this parameter affects the curvature and tightness of the spline, allowing for finer control over its shape.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`repeat_output`**
-    - Determines how many times the output is repeated, useful for generating multiple instances of the output data.
+    - Determines whether the output should be repeated. This can be useful for creating looping animations or patterns that require a continuous sequence of values.
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `bool`
 - **`float_output_type`**
-    - Determines the format of the floating-point output, allowing selection among list, pandas series, or tensor formats.
+    - Determines the type of float values to be outputted, affecting the format and usability of the generated data for subsequent nodes or processes.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`min_value`**
-    - Specifies the minimum value for the output, setting a lower bound on the generated data.
+    - Sets the minimum value for the output range. This parameter ensures that the generated values do not fall below a certain threshold, maintaining consistency and control over the output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`max_value`**
-    - Defines the maximum value for the output, establishing an upper limit on the generated data.
+    - Establishes the maximum value for the output range. It caps the generated values to prevent them from exceeding a specified limit, ensuring the output remains within desired parameters.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - Generates a mask batch based on the defined spline, useful for applications requiring mask inputs.
-    - Python dtype: `str`
+    - Generates a batch of masks based on the defined spline. This output is suitable for nodes that require mask inputs for further processing.
+    - Python dtype: `object`
 - **`coord_str`**
     - Comfy dtype: `STRING`
-    - Provides a string representation of coordinates derived from the spline, useful for textual representation of paths or shapes.
-    - Python dtype: `str`
+    - Produces a list of float values interpolated from the spline. These values can be used for weight adjustments or other numerical applications.
+    - Python dtype: `list`
 - **`float`**
     - Comfy dtype: `FLOAT`
-    - Outputs a list of floats, pandas series, or tensor, depending on the selected output type, representing sampled values from the spline.
-    - Python dtype: `float`
+    - Outputs a pandas series containing values derived from the spline. This format is convenient for data analysis and manipulation within pandas-supported environments.
+    - Python dtype: `pandas.Series`
 - **`count`**
     - Comfy dtype: `INT`
-    - Returns an integer count, potentially representing the number of elements in the output data.
-    - Python dtype: `int`
+    - Creates a torch tensor from the spline's interpolated values. This output is compatible with PyTorch-based models and operations, facilitating integration into deep learning workflows.
+    - Python dtype: `torch.Tensor`
+- **`normalized_str`**
+    - Comfy dtype: `STRING`
+    - Provides a normalized string representation of the spline's interpolated values, useful for textual descriptions or further string-based processing.
+    - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -136,10 +140,10 @@ class SplineEditor:
             }
         }
 
-    RETURN_TYPES = ("MASK", "STRING", "FLOAT", "INT")
-    RETURN_NAMES = ("mask", "coord_str", "float", "count")
+    RETURN_TYPES = ("MASK", "STRING", "FLOAT", "INT", "STRING",)
+    RETURN_NAMES = ("mask", "coord_str", "float", "count", "normalized_str",)
     FUNCTION = "splinedata"
-    CATEGORY = "KJNodes/experimental"
+    CATEGORY = "KJNodes/weights"
     DESCRIPTION = """
 # WORK IN PROGRESS  
 Do not count on this as part of your workflow yet,  
@@ -182,14 +186,15 @@ output types:
                    points_to_sample, sampling_method, points_store, tension, repeat_output, min_value=0.0, max_value=1.0):
         
         coordinates = json.loads(coordinates)
+        normalized = []
+        normalized_y_values = []
         for coord in coordinates:
             coord['x'] = int(round(coord['x']))
             coord['y'] = int(round(coord['y']))
-            
-        normalized_y_values = [
-            (1.0 - (point['y'] / 512) - 0.0) * (max_value - min_value) + min_value
-            for point in coordinates
-        ]
+            norm_x = (1.0 - (coord['x'] / mask_height) - 0.0) * (max_value - min_value) + min_value
+            norm_y = (1.0 - (coord['y'] / mask_height) - 0.0) * (max_value - min_value) + min_value
+            normalized_y_values.append(norm_y)
+            normalized.append({'x':norm_x, 'y':norm_y})
         if float_output_type == 'list':
             out_floats = normalized_y_values * repeat_output
         elif float_output_type == 'pandas series':
@@ -208,6 +213,6 @@ output types:
         masks_out = torch.stack(mask_tensors)
         masks_out = masks_out.repeat(repeat_output, 1, 1, 1)
         masks_out = masks_out.mean(dim=-1)
-        return (masks_out, str(coordinates), out_floats, len(out_floats))
+        return (masks_out, json.dumps(coordinates), out_floats, len(out_floats) , json.dumps(normalized))
 
 ```

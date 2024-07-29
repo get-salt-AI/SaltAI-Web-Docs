@@ -3,6 +3,8 @@ tags:
 - Batch
 - Image
 - ImageBatch
+- ImageDuplication
+- Tiled
 ---
 
 # Extract Image Sequence From Batch

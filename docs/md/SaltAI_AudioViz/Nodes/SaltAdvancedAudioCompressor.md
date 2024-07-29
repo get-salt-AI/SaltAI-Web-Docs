@@ -1,45 +1,47 @@
 ---
 tags:
 - Audio
+- List
+- ListExtension
 ---
 
 # Audio Compressor Advanced
 ## Documentation
 - Class name: `SaltAdvancedAudioCompressor`
-- Category: `SALT/Audio/Process`
+- Category: `SALT/AudioViz/Audio/Process`
 - Output node: `False`
 
-The SaltAdvancedAudioCompressor node is designed for advanced audio compression, allowing for detailed control over the compression process through parameters such as threshold, ratio, attack, release, and makeup gain. It utilizes ffmpeg to apply compression, offering a way to adjust the dynamics of audio content for various applications.
+This node provides advanced audio compression capabilities, allowing for detailed control over the compression process through parameters such as threshold, ratio, attack, release, and makeup gain. It is designed to modify the dynamic range of audio signals for enhanced sound quality or specific audio effects.
 ## Input types
 ### Required
 - **`audio`**
-    - The raw audio data to be compressed. This input is crucial as it represents the audio content that will undergo compression, directly influencing the output quality and characteristics.
+    - The raw audio data to be compressed. This input is crucial for the compression process as it directly influences the output quality and effectiveness of the compression.
     - Comfy dtype: `AUDIO`
     - Python dtype: `bytes`
 - **`threshold_dB`**
-    - The threshold level in decibels (dB) for the compressor. Signals above this level will be compressed, making it a key parameter for determining the loudness at which compression begins.
+    - Sets the threshold level in decibels for the compressor. Audio signals above this level will be compressed, affecting the loudness and dynamic range of the output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`ratio`**
-    - The compression ratio, indicating how much the audio signal is reduced once it exceeds the threshold. This parameter affects the intensity of the compression effect.
+    - Determines the compression ratio, which affects how much the audio signal is reduced once it crosses the threshold level.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`attack_ms`**
-    - The attack time in milliseconds (ms), defining how quickly the compressor reacts to audio exceeding the threshold. Shorter attack times result in more immediate compression of transient sounds.
+    - The time in milliseconds it takes for the compressor to apply compression after the audio signal exceeds the threshold. This parameter influences the responsiveness of the compression effect.
     - Comfy dtype: `INT`
-    - Python dtype: `float`
+    - Python dtype: `int`
 - **`release_ms`**
-    - The release time in milliseconds (ms), specifying how quickly the compressor stops affecting the audio after it falls below the threshold. This parameter influences the smoothness of the audio's dynamic changes.
+    - The time in milliseconds for the compressor to cease the compression effect after the audio signal falls below the threshold level. It affects the smoothness of the audio output.
     - Comfy dtype: `INT`
-    - Python dtype: `float`
+    - Python dtype: `int`
 - **`makeup_gain`**
-    - The makeup gain in decibels (dB), applied after compression to restore or increase the overall level of the audio signal. This allows for compensation of volume lost during compression.
+    - The gain in decibels to be applied after compression, compensating for any loss in volume due to the compression process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`audio`**
     - Comfy dtype: `AUDIO`
-    - The compressed audio data, resulting from the application of the specified compression settings. This output reflects the adjustments made to the audio's dynamics, suitable for further processing or playback.
+    - The compressed audio data, resulting from the application of the specified compression settings.
     - Python dtype: `bytes`
 ## Usage tips
 - Infra type: `CPU`
@@ -65,7 +67,7 @@ class SaltAdvancedAudioCompressor:
     RETURN_TYPES = ("AUDIO",)
     RETURN_NAMES = ("audio",)
     FUNCTION = "compress_detailed_audio"
-    CATEGORY = "SALT/Audio/Process"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Audio/Process"
 
     def compress_detailed_audio(self, audio, threshold_dB, ratio, attack_ms, release_ms, makeup_gain):
         TEMP = folder_paths.get_temp_directory()

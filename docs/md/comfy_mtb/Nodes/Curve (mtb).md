@@ -1,7 +1,8 @@
 ---
 tags:
-- AnimationScheduling
 - Curve
+- VisualEffects
+- WavePatterns
 ---
 
 # Curve (mtb)
@@ -10,18 +11,18 @@ tags:
 - Category: `mtb/curve`
 - Output node: `False`
 
-The Curve (mtb) node is designed to handle FLOAT_CURVE data, allowing for the manipulation and processing of curve data structures within a given workflow. It focuses on maintaining the integrity of the curve data while enabling transformations or analyses that may be required.
+The MTB_Curve node is designed to process FLOAT_CURVE inputs, maintaining the integrity of the curve's structure. It primarily serves to ensure that curve data, whether received as a string or in a structured format, is correctly serialized or deserialized for further processing within the system.
 ## Input types
 ### Required
 - **`curve`**
-    - The 'curve' parameter is essential for the node's operation as it represents the FLOAT_CURVE data to be processed. This parameter's manipulation directly influences the node's output, making it crucial for curve data handling.
+    - The 'curve' parameter represents the FLOAT_CURVE input that the node operates on. It is essential for the node's functionality, as it dictates the curve data that will be serialized or deserialized for further processing.
     - Comfy dtype: `FLOAT_CURVE`
-    - Python dtype: `dict`
+    - Python dtype: `Union[str, Dict]`
 ## Output types
 - **`float_curve`**
     - Comfy dtype: `FLOAT_CURVE`
-    - Outputs the processed or unaltered FLOAT_CURVE data, depending on the node's implementation and the input provided.
-    - Python dtype: `dict`
+    - The output is a float_curve, which is either the original curve data or its serialized string representation, depending on the input's format.
+    - Python dtype: `Union[str, Dict]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -46,6 +47,7 @@ class MTB_Curve:
     CATEGORY = "mtb/curve"
 
     def do_curve(self, curve):
+        log.debug(f"Curve: {curve}")
         return (curve,)
 
 ```

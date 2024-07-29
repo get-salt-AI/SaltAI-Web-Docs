@@ -1,35 +1,33 @@
 ---
 tags:
-- ImageScaling
 - ImageUpscaling
-- Upscale
 ---
 
-# ImageUpscaleWithModelBatched
+# Image Upscale With Model Batched
 ## Documentation
 - Class name: `ImageUpscaleWithModelBatched`
 - Category: `KJNodes/image`
 - Output node: `False`
 
-This node is designed to upscale images using a specified model, with the added functionality of processing images in sub-batches to reduce VRAM usage. It is an enhancement over the native ComfyUI model upscaling node, offering more flexibility in handling large sets of images or images requiring significant computational resources.
+This node is designed to upscale images using a specified model, with the added functionality of processing images in sub-batches. This approach helps in managing VRAM usage more efficiently, making it suitable for systems with limited memory resources.
 ## Input types
 ### Required
 - **`upscale_model`**
-    - The model used for upscaling images. It determines the upscaling algorithm and its quality.
+    - The model used for upscaling images. It determines the quality and characteristics of the output images.
     - Comfy dtype: `UPSCALE_MODEL`
     - Python dtype: `torch.nn.Module`
 - **`images`**
-    - The batch of images to be upscaled. This input allows for multiple images to be processed in a single operation, optimizing throughput.
+    - The batch of images to be upscaled. This input allows the node to process multiple images simultaneously, optimizing throughput.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`per_batch`**
-    - Specifies the number of images to process per sub-batch, allowing for control over VRAM usage during upscaling.
+    - Defines the number of images to process in each sub-batch. This parameter helps in controlling VRAM usage by breaking down the batch into smaller, manageable chunks.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The upscaled images, returned as a batch with the same order as the input. This allows for direct comparison or further processing.
+    - The upscaled images, returned as a batch. This output provides higher resolution versions of the input images.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -56,14 +54,14 @@ but allows setting sub-batches for reduced VRAM usage.
         
         device = model_management.get_torch_device()
         upscale_model.to(device)
-        in_img = images.movedim(-1,-3).to(device)
+        in_img = images.movedim(-1,-3)
         
         steps = in_img.shape[0]
-        pbar = comfy.utils.ProgressBar(steps)
+        pbar = ProgressBar(steps)
         t = []
         
         for start_idx in range(0, in_img.shape[0], per_batch):
-            sub_images = upscale_model(in_img[start_idx:start_idx+per_batch])
+            sub_images = upscale_model(in_img[start_idx:start_idx+per_batch].to(device))
             t.append(sub_images.cpu())
             # Calculate the number of images processed in this batch
             batch_count = sub_images.shape[0]

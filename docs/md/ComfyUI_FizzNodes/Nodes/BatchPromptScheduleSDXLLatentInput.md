@@ -1,8 +1,8 @@
 ---
 tags:
 - AnimationScheduling
-- PromptScheduling
 - Scheduling
+- SigmaScheduling
 ---
 
 # Batch Prompt Schedule SDXL (Latent Input) 📅🅕🅝
@@ -11,99 +11,99 @@ tags:
 - Category: `FizzNodes 📅🅕🅝/BatchScheduleNodes`
 - Output node: `False`
 
-This node processes animation prompts for both G and L types, applies pre and post text modifications, and then generates positive and negative prompt conditionings for each. It utilizes a batch processing approach to handle multiple prompts simultaneously, incorporating latent inputs to tailor the output conditionings. The node is designed to work with SDXL scheduling, optimizing the animation prompt processing for scenarios involving complex scheduling and interpolation requirements.
+This node is designed to process animation prompts for both G and L clips, applying a scheduling algorithm that separates, tokenizes, and then recombines these prompts with weighted adjustments before finally applying a batch of conditionings. It uniquely handles latent inputs, allowing for the dynamic adjustment of animation parameters based on the provided latents.
 ## Input types
 ### Required
 - **`width`**
-    - Specifies the width of the output animation, affecting the processing and conditioning of animation prompts.
+    - The width of the clip or frame in pixels.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Specifies the height of the output animation, impacting the prompt processing and conditioning.
+    - The height of the clip or frame in pixels.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`crop_w`**
-    - The width of the crop area, used in the processing of animation prompts to adjust the visual focus.
+    - The width of the crop area in pixels.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`crop_h`**
-    - The height of the crop area, used alongside crop_w to fine-tune the focus area in the animation.
+    - The height of the crop area in pixels.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`target_width`**
-    - The target width for the animation output, influencing the scaling and processing of prompts.
+    - The target width of the clip or frame after processing.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`target_height`**
-    - The target height for the animation output, affecting the scaling and conditioning of prompts.
+    - The target height of the clip or frame after processing.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`text_g`**
-    - The text_g input is essential for generating the G type animation prompts, which are then processed to create positive and negative conditionings.
+    - The text prompt for G clips, which will be processed, tokenized, and adjusted according to the scheduling algorithm.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`clip`**
-    - The clip parameter is used to apply clip-based modifications or conditionings to the processed prompts, influencing the final output based on the clip's characteristics.
+    - Represents the clip information or parameters that are used in conjunction with the text prompts to apply the scheduling algorithm.
     - Comfy dtype: `CLIP`
     - Python dtype: `ClipType`
 - **`text_l`**
-    - The text_l input is used for generating the L type animation prompts, contributing to the creation of positive and negative conditionings alongside text_g.
+    - The text prompt for L clips, similar to text_g, it will be processed, tokenized, and adjusted for scheduling.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`num_latents`**
-    - Provides the number of latent vectors to be used, influencing the batch processing and conditioning of animation prompts.
+    - The number of latent inputs that are used to dynamically adjust the animation parameters during the scheduling process.
     - Comfy dtype: `LATENT`
     - Python dtype: `int`
 - **`print_output`**
-    - A boolean flag indicating whether to print the output of the processing for debugging or logging purposes.
+    - A flag indicating whether to print the output of the scheduling process.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`pre_text_G`**
-    - Pre-text to be added to the G type animation prompts before processing, used for modifying or enhancing the original prompts.
+    - Pre-text to be added to the G clip's text prompt before processing.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`app_text_G`**
-    - App-text to be appended to the G type animation prompts, further customizing the prompts before they are split into positive and negative conditionings.
+    - App-text to be appended to the G clip's text prompt after processing.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`pre_text_L`**
-    - Pre-text to be added to the L type animation prompts before processing, enhancing or modifying the original prompts.
+    - Pre-text to be added to the L clip's text prompt before processing.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`app_text_L`**
-    - App-text to be appended to the L type animation prompts, further customizing the prompts alongside pre_text_L before splitting into positive and negative conditionings.
+    - App-text to be appended to the L clip's text prompt after processing.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`pw_a`**
-    - A weight parameter for adjusting the processing of animation prompts, part of a set of weights used for fine-tuning the output.
+    - Weight parameter a, used in the scheduling algorithm for adjusting prompts.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pw_b`**
-    - Another weight parameter for prompt processing adjustment, contributing to the customization of the conditioning process.
+    - Weight parameter b, used in the scheduling algorithm for adjusting prompts.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pw_c`**
-    - A weight parameter used in conjunction with others to tailor the prompt processing and conditioning outputs.
+    - Weight parameter c, used in the scheduling algorithm for adjusting prompts.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pw_d`**
-    - The final weight parameter in the set, used for precise adjustments in the animation prompt conditioning process.
+    - Weight parameter d, used in the scheduling algorithm for adjusting prompts.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`POS`**
     - Comfy dtype: `CONDITIONING`
-    - The POS output consists of processed prompts that have been positively conditioned, ready for further processing or utilization in animation generation.
-    - Python dtype: `List[ConditioningType]`
+    - The positive conditioning batch resulting from the applied scheduling and animation adjustments.
+    - Python dtype: `ConditioningBatch`
 - **`NEG`**
     - Comfy dtype: `CONDITIONING`
-    - The NEG output includes prompts that have undergone negative conditioning, complementing the POS conditionings for a balanced approach to animation prompt processing.
-    - Python dtype: `List[ConditioningType]`
+    - The negative conditioning batch resulting from the applied scheduling and animation adjustments.
+    - Python dtype: `ConditioningBatch`
 - **`POS_CUR`**
     - Comfy dtype: `LATENT`
-    - unknown
-    - Python dtype: `unknown`
+    - The current positive prompt conditioning, part of the output detailing the specific conditioning state at the current animation frame.
+    - Python dtype: `ConditioningBatch`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -143,7 +143,7 @@ class BatchPromptScheduleEncodeSDXLLatentInput:
 
     CATEGORY = "FizzNodes 📅🅕🅝/BatchScheduleNodes"
 
-    def animate(self, clip, width, height, crop_w, crop_h, target_width, target_height, text_g, text_l, app_text_G, app_text_L, pre_text_G, pre_text_L, num_latents, print_output, pw_a, pw_b, pw_c, pw_d):
+    def animate(self, clip, text_g, text_l, width, height, crop_w, crop_h, target_width, target_height, num_latents, print_output, app_text_G = '', app_text_L = '', pre_text_G = '', pre_text_L = '', pw_a=0, pw_b=0, pw_c=0, pw_d=0):
         settings = ScheduleSettings(
             text_g=text_g,
             pre_text_G=pre_text_G,
@@ -159,6 +159,7 @@ class BatchPromptScheduleEncodeSDXLLatentInput:
             pw_c=pw_c,
             pw_d=pw_d,
             start_frame=0,
+            end_frame=0,
             width=width,
             height=height,
             crop_w=crop_w,

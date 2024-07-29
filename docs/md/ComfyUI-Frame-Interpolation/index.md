@@ -1,12 +1,12 @@
 # ComfyUI-Frame-Interpolation
-ComfyUI Frame Interpolation (ComfyUI VFI) is a work-in-progress custom node set designed for video frame interpolation within ComfyUI. It includes a variety of nodes for different interpolation methods, such as RIFE VFI, FILM VFI, and FLAVR VFI, aiming to improve memory management and reduce the usage of RAM and VRAM.
+ComfyUI Frame Interpolation is a custom node set designed for video frame interpolation within ComfyUI, featuring a variety of nodes for different interpolation methods such as RIFE, FILM, and Sepconv among others. It aims to enhance memory management for reduced RAM and VRAM usage and supports scheduling multiplier values for VFI nodes. The project is a work in progress and includes nodes that cater to both general and specific interpolation needs, including support for non-CUDA devices through an experimental feature.
 
 ## Tags
-AnimationScheduling * FrameInterpolation * Sampling * VisualEffects
+Curve * Frame * FrameInterpolation * Image * Interpolation * Keyframe * Pipeline * SamplerScheduler * Sampling * WavePatterns
 
 ## Repo info
 - Repo url: `https://github.com/Fannovel16/ComfyUI-Frame-Interpolation`
-- Commit hash: `5e11679995c68f33891c306a393915feefe234b5`
+- Commit hash: `551de2ffb99d868405fe7021ef8069cad429df4b`
 
 ## Licenses
 - **MIT**: `LICENSE`

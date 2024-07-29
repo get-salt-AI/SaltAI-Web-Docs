@@ -1,28 +1,28 @@
-# WidgetToString
+# Widget To String
 ## Documentation
 - Class name: `WidgetToString`
 - Category: `KJNodes/text`
 - Output node: `False`
 
-This node is designed to extract and return the value of a specified widget from a given node within a workflow. It focuses on retrieving widget values as strings, optionally aggregating all widget values from the specified node if required.
+The get_widget_value node is designed to select a specific widget within a node and output its value as a string. It enables dynamic access to widget data based on node ID and widget name, with an option to return all widget values from a node if required. This functionality is crucial for customizing user interactions and data retrieval within a workflow.
 ## Input types
 ### Required
 - **`id`**
-    - Specifies the unique identifier of the node from which to extract the widget value, playing a crucial role in identifying the correct node within a workflow.
+    - Specifies the unique identifier of the node whose widget's value is to be retrieved, essential for pinpointing the exact node within a workflow.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`widget_name`**
-    - The name of the widget whose value is to be retrieved, determining which specific widget's value is extracted from the node.
+    - The name of the widget whose value is to be extracted as a string, critical for identifying the specific widget within the node.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`return_all`**
-    - A boolean flag that, when set to true, changes the node's behavior to return all widget values from the specified node instead of just the value of a single widget.
+    - A boolean flag that determines whether the node should return the values of all widgets as a string, offering flexibility in the amount of information extracted.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`string`**
     - Comfy dtype: `STRING`
-    - The extracted widget value(s) as a string, which may represent a single widget's value or a concatenation of multiple widget values if 'return_all' is true.
+    - The extracted widget value(s) converted to a string, essential for presenting or further processing the widget data in text form.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -59,10 +59,8 @@ To see node id's, enable node id display from Manager badge menu.
 
     def get_widget_value(self, id, widget_name, extra_pnginfo, prompt, return_all=False):
         workflow = extra_pnginfo["workflow"]
-        print(workflow)
         results = []
         for node in workflow["nodes"]:
-            print(node)
             node_id = node["id"]
 
             if node_id != id:

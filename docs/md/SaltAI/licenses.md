@@ -713,3 +713,9 @@ File name: `pyproject.toml`
 ```
 license = "General Public License"
 ```
+File name: `web/display_any.js`
+
+**MIT**
+```
+// partly shamelessly ripped from rgthree, appreciate it, was MIT licensed
+```

@@ -1,6 +1,6 @@
 ---
 tags:
-- DataClamp
+- VAE
 ---
 
 # VaeClamp

@@ -1,7 +1,9 @@
 ---
 tags:
-- Image
-- VisualEffects
+- BackgroundRemoval
+- ImageDrawing
+- PatternGeneration
+- TextOnImage
 ---
 
 # 🎨 CR Color Tint

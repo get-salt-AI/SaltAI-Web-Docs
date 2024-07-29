@@ -1,6 +1,10 @@
 ---
 tags:
 - IPAdapter
+- IdentityImage
+- Loader
+- ModelIO
+- RegionalImageProcessing
 ---
 
 # IPAdapter Tiled
@@ -9,75 +13,75 @@ tags:
 - Category: `ipadapter/tiled`
 - Output node: `False`
 
-The IPAdapterTiled node is designed to apply image processing adaptations in a tiled manner, enabling the handling of larger images by processing them in segments. This approach allows for detailed and scalable image modifications, leveraging the capabilities of IP adapters to enhance or alter images with precision.
+The IPAdapterTiled node is designed to apply image processing adaptations in a tiled manner, allowing for detailed and scalable modifications to images. It leverages various image processing techniques and parameters to enhance, modify, or transform images based on the provided inputs and configurations.
 ## Input types
 ### Required
 - **`model`**
-    - Specifies the model to be used for image processing, serving as the core computational element in the adaptation process.
+    - Specifies the model to be used for image processing, serving as the core component for adaptations.
     - Comfy dtype: `MODEL`
     - Python dtype: `str`
 - **`ipadapter`**
-    - Defines the IP adapter to be applied, determining the specific image processing technique or enhancement to be utilized.
+    - Defines the IPAdapter configuration to be applied, dictating the specific image processing techniques and parameters.
     - Comfy dtype: `IPADAPTER`
     - Python dtype: `str`
 - **`image`**
-    - The input image to be processed, which will be adapted in a tiled manner according to the specified IP adapter.
+    - The input image to be processed, serving as the primary subject for the adaptations.
     - Comfy dtype: `IMAGE`
     - Python dtype: `str`
 - **`weight`**
-    - A floating-point value that adjusts the intensity of the applied adaptation, allowing for fine-tuning of the effect on the image.
+    - A floating-point value that adjusts the intensity of the applied adaptations, allowing for fine-tuned control over the output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`weight_type`**
-    - Specifies the method of weight application, influencing how the adaptation's intensity is modulated across the image.
+    - Determines the method of weighting the adaptations, influencing how different aspects of the image are emphasized or blended.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`combine_embeds`**
-    - Specifies the method for combining embeddings, offering various strategies to integrate or differentiate image features during the adaptation process.
+    - Determines how embeddings are combined, offering options like concatenation to influence the final image adaptation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`start_at`**
-    - A floating-point value indicating the starting point of the adaptation effect, enabling phased application over the image.
+    - A floating-point value indicating the starting point of the adaptations, enabling phased or gradual application.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end_at`**
-    - A floating-point value marking the end point of the adaptation effect, allowing for controlled application across the image.
+    - A floating-point value marking the end point of the adaptations, allowing for precise control over the extent of modifications.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sharpening`**
-    - Adjusts the sharpness of the adapted image, enhancing detail clarity as part of the image processing.
+    - A floating-point value that controls the level of sharpening applied to the image, enhancing detail and clarity.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`embeds_scaling`**
-    - Determines the scaling approach for embeddings, affecting the adaptation's influence based on different scaling strategies.
+    - Specifies the scaling method for embeddings, affecting the adaptation's influence on different image features.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `list`
 ### Optional
 - **`image_negative`**
-    - An optional negative image input that can be used for contrastive adaptations, enhancing specific features by comparison.
+    - An optional input image representing negative aspects to be minimized or avoided in the adaptations.
     - Comfy dtype: `IMAGE`
     - Python dtype: `str`
 - **`attn_mask`**
-    - An optional attention mask that can be applied to focus the adaptation on specific areas of the image, enhancing or preserving detail selectively.
+    - An optional mask that directs attention to specific areas of the image, focusing adaptations where needed.
     - Comfy dtype: `MASK`
     - Python dtype: `str`
 - **`clip_vision`**
-    - An optional CLIP vision model input that can be used to guide the adaptation process based on semantic understanding of the image content.
+    - An optional parameter that integrates CLIP vision models for guided image adaptations, enhancing relevance and coherence.
     - Comfy dtype: `CLIP_VISION`
     - Python dtype: `str`
 ## Output types
 - **`MODEL`**
     - Comfy dtype: `MODEL`
-    - The modified model after applying the tiled image processing adaptations.
+    - The processed model after image adaptations have been applied.
     - Python dtype: `str`
 - **`tiles`**
     - Comfy dtype: `IMAGE`
-    - The processed image segments, which have been adapted and are ready for further processing or analysis.
-    - Python dtype: `str`
+    - The resulting image tiles after processing, showcasing the segmented adaptations.
+    - Python dtype: `list`
 - **`masks`**
     - Comfy dtype: `MASK`
-    - Attention masks corresponding to each tile, indicating areas of focus or preservation during the adaptation process.
-    - Python dtype: `str`
+    - The masks applied to each tile, indicating areas of focus or modification.
+    - Python dtype: `list`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -116,7 +120,7 @@ class IPAdapterTiled:
     FUNCTION = "apply_tiled"
     CATEGORY = "ipadapter/tiled"
 
-    def apply_tiled(self, model, ipadapter, image, weight, weight_type, start_at, end_at, sharpening, combine_embeds="concat", image_negative=None, attn_mask=None, clip_vision=None, embeds_scaling='V only'):
+    def apply_tiled(self, model, ipadapter, image, weight, weight_type, start_at, end_at, sharpening, combine_embeds="concat", image_negative=None, attn_mask=None, clip_vision=None, embeds_scaling='V only', encode_batch_size=0):
         # 1. Select the models
         if 'ipadapter' in ipadapter:
             ipadapter_model = ipadapter['ipadapter']['model']
@@ -214,6 +218,7 @@ class IPAdapterTiled:
                 "attn_mask": masks[i],
                 "unfold_batch": self.unfold_batch,
                 "embeds_scaling": embeds_scaling,
+                "encode_batch_size": encode_batch_size,
             }
             # apply the ipadapter to the model without cloning it
             model, _ = ipadapter_execute(model, ipadapter_model, clip_vision, **ipa_args)

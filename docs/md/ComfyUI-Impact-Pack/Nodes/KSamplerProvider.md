@@ -10,44 +10,49 @@ tags:
 - Category: `ImpactPack/Sampler`
 - Output node: `False`
 
-The KSamplerProvider node is designed to facilitate the creation of custom samplers for generative models, allowing users to specify various parameters such as seed, steps, configuration settings, and the type of sampler and scheduler to be used. It abstracts the complexity of sampler initialization and configuration, making it easier to experiment with different sampling strategies.
+The KSamplerProvider node is designed to offer a flexible and efficient way to provide sampling functionality within a generative model framework. It abstracts the complexity of sampling algorithms, allowing for easy integration and customization of sampling strategies for various applications.
 ## Input types
 ### Required
 - **`seed`**
-    - The seed parameter ensures reproducibility of the sampling process by initializing the random number generator with a specific value.
+    - Random seed to use for generating CPU noise for sampling, influencing the randomness of the sampling process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`steps`**
-    - Defines the number of steps the sampler will take, affecting the detail and quality of the generated samples.
+    - Specifies the total number of sampling steps to be executed, affecting the granularity of the sampling process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - Configuration setting that influences the behavior of the sampler, potentially affecting aspects like sample diversity.
+    - Classifier free guidance value, used to control the influence of the conditioning on the sampling process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sampler_name`**
-    - Specifies the type of sampler to use, allowing for customization of the sampling process.
+    - Identifies the specific sampler to be used, allowing for the selection of different sampling algorithms.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - Determines the scheduling algorithm to be used, impacting how sampling parameters are adjusted over time.
+    - Defines the noise schedule to be applied during the sampling process, impacting the progression of noise reduction.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`denoise`**
-    - Controls the level of denoising applied to the samples, affecting their clarity and sharpness.
+    - Determines the amount of noise to remove at the start of the sampling process, affecting the initial state of the input latent.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`basic_pipe`**
-    - A foundational pipeline component that provides essential model and conditioning information for the sampling process.
+    - Serves as the primary input for the sampling process, encapsulating essential components like the model and conditioning parameters.
     - Comfy dtype: `BASIC_PIPE`
     - Python dtype: `tuple`
+### Optional
+- **`scheduler_func_opt`**
+    - An optional parameter that allows specifying a custom noise schedule generation function, offering further customization of the sampling process.
+    - Comfy dtype: `SCHEDULER_FUNC`
+    - Python dtype: `Optional[Callable]`
 ## Output types
 - **`ksampler`**
     - Comfy dtype: `KSAMPLER`
-    - Produces a custom sampler configured according to the specified parameters, ready for generating samples.
+    - The resulting sampler object, configured and ready for use in generating regional prompts or other sampling-based tasks.
     - Python dtype: `KSamplerWrapper`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -65,16 +70,34 @@ class KSamplerProvider:
                                 "denoise": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01}),
                                 "basic_pipe": ("BASIC_PIPE", )
                              },
+                "optional": {
+                    "scheduler_func_opt": ("SCHEDULER_FUNC",),
+                    }
                 }
+
+    TOOLTIPS = {
+        "input": {
+            "seed": "Random seed to use for generating CPU noise for sampling.",
+            "steps": "total sampling steps",
+            "cfg": "classifier free guidance value",
+            "sampler_name": "sampler",
+            "scheduler": "noise schedule",
+            "denoise": "The amount of noise to remove. This amount is the noise added at the start, and the higher it is, the more the input latent will be modified before being returned.",
+            "basic_pipe": "basic_pipe input for sampling",
+            "scheduler_func_opt": "[OPTIONAL] Noise schedule generation function. If this is set, the scheduler widget will be ignored.",
+        },
+        "output": ("sampler wrapper. (Can be used when generating a regional_prompt.)", )
+    }
 
     RETURN_TYPES = ("KSAMPLER",)
     FUNCTION = "doit"
 
     CATEGORY = "ImpactPack/Sampler"
 
-    def doit(self, seed, steps, cfg, sampler_name, scheduler, denoise, basic_pipe):
+    @staticmethod
+    def doit(seed, steps, cfg, sampler_name, scheduler, denoise, basic_pipe, scheduler_func_opt=None):
         model, _, _, positive, negative = basic_pipe
-        sampler = KSamplerWrapper(model, seed, steps, cfg, sampler_name, scheduler, positive, negative, denoise)
+        sampler = KSamplerWrapper(model, seed, steps, cfg, sampler_name, scheduler, positive, negative, denoise, scheduler_func=scheduler_func_opt)
         return (sampler, )
 
 ```

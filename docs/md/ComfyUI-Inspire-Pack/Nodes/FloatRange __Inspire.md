@@ -1,6 +1,7 @@
 ---
 tags:
-- NumberRangeGeneration
+- Math
+- MathematicalFunctions
 ---
 
 # Float Range (Inspire)

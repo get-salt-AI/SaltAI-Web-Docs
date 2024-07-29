@@ -1,6 +1,8 @@
 ---
 tags:
-- ImageTransformation
+- Mask
+- MaskInversion
+- MaskMath
 ---
 
 # RemapFromInsideParabolas
@@ -9,26 +11,26 @@ tags:
 - Category: `Bmad/CV/Transform`
 - Output node: `False`
 
-This node is designed to perform a remapping operation from the perspective of inside two parabolas, transforming an image based on specified parabolic contours and dimensions. It utilizes geometric transformations to adjust the image's representation, aligning it with the curvature and orientation defined by the parabolas.
+This node is designed to perform a remapping operation from the perspective of inside two parabolas, transforming an image based on specified width and height parameters. It utilizes a source mask defined by two parabolas to apply a unique geometric transformation, aiming to adjust the image's representation for specific visualization or processing needs.
 ## Input types
 ### Required
 - **`src_mask_with_i_parabolas`**
-    - Specifies the source mask that contains two parabolas, which are used to define the transformation geometry. This mask is crucial for determining how the image will be remapped according to the parabolic contours.
+    - Defines the source mask that contains two parabolas, which is crucial for determining the geometric transformation applied to the image.
     - Comfy dtype: `MASK`
-    - Python dtype: `numpy.ndarray`
+    - Python dtype: `torch.Tensor`
 - **`width`**
-    - Defines the width of the output image after remapping. This parameter allows for adjusting the scale of the transformed image.
+    - Specifies the desired width of the output image after remapping, affecting the scale and aspect ratio of the transformation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Specifies the height of the output image after remapping, enabling control over the vertical scale of the transformed image.
+    - Determines the height of the output image, influencing the vertical scale and aspect ratio post-transformation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`remap`**
     - Comfy dtype: `REMAP`
-    - The result of the remapping operation, which is an image transformed to align with the specified parabolic contours and dimensions.
-    - Python dtype: `Tuple[numpy.ndarray, numpy.ndarray, Tuple[int, int, int, int]]`
+    - The result of the remapping operation, providing a transformed image based on the input parameters and the geometric characteristics of the source mask.
+    - Python dtype: `Dict[str, Any]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -38,7 +40,7 @@ This node is designed to perform a remapping operation from the perspective of i
 ```python
 class RemapFromInsideParabolas(RemapBase):
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {
             "src_mask_with_2_parabolas": ("MASK",),
             "width": ("INT", {"default": 512, "min": 16, "max": 4096}),

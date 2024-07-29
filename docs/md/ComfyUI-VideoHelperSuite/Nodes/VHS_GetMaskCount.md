@@ -1,6 +1,7 @@
 ---
 tags:
-- Counting
+- Image
+- VideoHelperSuite
 ---
 
 # Get Mask Count 🎥🅥🅗🅢

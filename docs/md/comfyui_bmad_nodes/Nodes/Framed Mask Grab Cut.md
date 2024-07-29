@@ -1,5 +1,6 @@
 ---
 tags:
+- Mask
 - Segmentation
 ---
 
@@ -9,48 +10,48 @@ tags:
 - Category: `Bmad/CV/GrabCut`
 - Output node: `False`
 
-This node applies the GrabCut algorithm to segment the foreground from the background in an image, utilizing a frame-based approach to enhance the segmentation accuracy. It allows for the specification of certain areas as foreground or background, improving the precision of the mask generated.
+The Framed Mask Grab Cut node is designed to apply the GrabCut algorithm with additional framing options to segment the foreground from the background in images. It allows for the specification of probable and sure foreground and background areas, and incorporates frame options to exclude certain margins from consideration, enhancing the flexibility and accuracy of the segmentation process.
 ## Input types
 ### Required
 - **`image`**
-    - The input image on which the GrabCut algorithm will be applied, processed to segment the foreground from the background.
+    - The input image on which the GrabCut algorithm will be applied. It serves as the primary data for foreground-background segmentation.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `numpy.ndarray`
 - **`thresh`**
-    - Threshold values used to determine the initial segmentation of the foreground and background.
+    - A thresholded image indicating areas that might be the foreground or background. This parameter helps in refining the segmentation by marking uncertain areas.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `numpy.ndarray`
 - **`iterations`**
-    - The number of iterations the GrabCut algorithm will run, affecting the refinement of the segmentation.
+    - The number of iterations the GrabCut algorithm should run, affecting the refinement of the segmentation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`margin`**
-    - Specifies the margin size around the frame which is considered as definite background, aiding in more accurate segmentation.
+    - Specifies the margin size to be excluded from the frame options, allowing for more precise control over the area considered for segmentation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`frame_option`**
-    - Options to include or exclude certain frame areas from being considered as background, allowing for more control over the segmentation process.
+    - Defines the frame options to apply, such as ignoring certain margins, to tailor the segmentation process to specific requirements.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `int`
 - **`threshold_FGD`**
-    - The threshold for classifying pixels as definite foreground, contributing to the initial mask creation.
+    - The threshold value used to classify pixels in 'thresh' image as foreground.
     - Comfy dtype: `INT`
     - Python dtype: `float`
 - **`threshold_PR_FGD`**
-    - The threshold for classifying pixels as probable foreground, used in refining the segmentation mask.
+    - The threshold value used to classify pixels in 'thresh' image as probable foreground.
     - Comfy dtype: `INT`
     - Python dtype: `float`
 - **`output_format`**
-    - The format of the output, which can be either the segmented mask or the image with the background removed.
+    - The desired format for the output image, allowing for compatibility with different processing or display requirements.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output of the node, which is the segmented mask of the foreground, obtained after applying the GrabCut algorithm.
-    - Python dtype: `torch.Tensor`
+    - The segmented image with the foreground isolated from the background, based on the GrabCut algorithm and additional framing options.
+    - Python dtype: `numpy.ndarray`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -69,7 +70,7 @@ class FramedMaskGrabCut:
     frame_options = list(frame_options_values.keys())
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "image": ("IMAGE",),
@@ -86,8 +87,8 @@ class FramedMaskGrabCut:
                     "max": 100,
                     "step": 1
                 }),
-                "frame_option": (s.frame_options, {
-                    "default": s.frame_options[0]
+                "frame_option": (cls.frame_options, {
+                    "default": cls.frame_options[0]
                 }),
 
                 # to only use PR FGD set threshold_FGD to 0
@@ -113,7 +114,7 @@ class FramedMaskGrabCut:
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "grab_cut"
-    CATEGORY = "Bmad/CV/GrabCut"
+    CATEGORY = f"{cv_category_path}/GrabCut"
 
     def grab_cut(self, image, thresh, iterations, margin, frame_option, threshold_FGD, threshold_PR_FGD, output_format):
         image = tensor2opencv(image)

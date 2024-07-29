@@ -1,9 +1,8 @@
 ---
 tags:
-- DepthMap
-- Image
-- ImageFilter
-- ImagePreprocessing
+- DepthMapEstimation
+- Inpaint
+- LineExtraction
 ---
 
 # CtrlNet CannyEdge Settings (JPS)

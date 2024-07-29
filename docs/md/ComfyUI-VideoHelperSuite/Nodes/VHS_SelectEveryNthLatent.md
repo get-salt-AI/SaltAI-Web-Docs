@@ -1,7 +1,10 @@
 ---
 tags:
 - Latent
-- LatentBatch
+- LatentBlend
+- ModelGuidance
+- ModelPatch
+- VAE
 ---
 
 # Select Every Nth Latent 🎥🅥🅗🅢
@@ -10,25 +13,29 @@ tags:
 - Category: `Video Helper Suite 🎥🅥🅗🅢/latent`
 - Output node: `False`
 
-This node is designed to filter through a batch of latents, selecting every Nth latent according to a specified interval. It's useful for thinning out dense latent batches for more efficient processing or targeted analysis.
+This node is designed to selectively filter latents from a given batch based on specified criteria, effectively thinning the batch to include every nth latent while optionally skipping a number of initial latents. It's particularly useful for reducing the size of a latent batch or for sampling at regular intervals within a batch.
 ## Input types
 ### Required
 - **`latents`**
-    - The input latents to be filtered. This parameter is crucial for determining which latents will be processed and ultimately selected based on the interval.
+    - The input latent batch to be filtered. This parameter is crucial as it determines the subset of latents that will be selected based on the other criteria.
     - Comfy dtype: `LATENT`
     - Python dtype: `dict`
 - **`select_every_nth`**
-    - Specifies the interval at which latents are selected. This parameter directly influences the density of the output latent batch, allowing for customizable thinning of the input.
+    - Determines the interval at which latents are selected from the batch. For example, a value of 2 would select every second latent in the batch.
+    - Comfy dtype: `INT`
+    - Python dtype: `int`
+- **`skip_first_latents`**
+    - Specifies the number of initial latents to skip before beginning the selection process. This allows for more control over which latents are included in the resulting subset.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`LATENT`**
     - Comfy dtype: `LATENT`
-    - The filtered set of latents, containing only every Nth latent based on the specified interval.
+    - The filtered subset of latents after applying the selection criteria.
     - Python dtype: `dict`
 - **`count`**
     - Comfy dtype: `INT`
-    - The total count of latents selected after applying the specified interval. This provides a quick reference to the size of the output batch.
+    - The total number of latents in the filtered subset, providing a quick reference to the size of the output batch.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
@@ -44,6 +51,7 @@ class SelectEveryNthLatent:
                 "required": {
                     "latents": ("LATENT",),
                     "select_every_nth": ("INT", {"default": 1, "min": 1, "max": BIGMAX, "step": 1}),
+                    "skip_first_latents": ("INT", {"default": 0, "min": 0, "max": BIGMAX, "step": 1}),
                 },
             }
     
@@ -53,8 +61,8 @@ class SelectEveryNthLatent:
     RETURN_NAMES = ("LATENT", "count",)
     FUNCTION = "select_latents"
 
-    def select_latents(self, latents: dict, select_every_nth: int):
-        sub_latents = latents.copy()["samples"][0::select_every_nth]
+    def select_latents(self, latents: dict, select_every_nth: int, skip_first_latents: int):
+        sub_latents = latents.copy()["samples"][skip_first_latents::select_every_nth]
         return ({"samples": sub_latents}, sub_latents.size(0))
 
 ```

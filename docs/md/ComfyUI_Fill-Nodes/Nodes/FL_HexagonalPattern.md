@@ -1,7 +1,7 @@
 ---
 tags:
-- AnimationScheduling
-- VisualEffects
+- Curve
+- WavePatterns
 ---
 
 # FL Hexagonal Pattern

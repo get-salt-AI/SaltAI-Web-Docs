@@ -1,7 +1,6 @@
 ---
 tags:
 - LoRA
-- LoRAVisualization
 ---
 
 # XY Inputs: Lora //EasyUse
@@ -10,47 +9,47 @@ tags:
 - Category: `EasyUse/XY Inputs`
 - Output node: `False`
 
-This node facilitates the dynamic selection and manipulation of LORA (Low-Rank Adaptation) models for generating or modifying XY input values. It allows users to specify various parameters such as model and clip strengths, and optionally stack multiple LORA configurations for advanced customization.
+This node is designed to facilitate the generation and manipulation of XY plot values based on Lora configurations. It dynamically adjusts model and clip strengths for each Lora, optionally incorporating weights and allowing for the extension of Lora configurations through an optional stack. The node aims to provide a flexible interface for visualizing and customizing Lora-based data representations.
 ## Input types
 ### Required
 - **`input_mode`**
-    - Defines the mode of input, such as whether weights are included with Lora names, affecting how LORA models are selected and utilized.
+    - Specifies the mode of input, determining whether weights are included in the Lora configurations. It affects how the node processes and generates XY plot values.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`lora_count`**
-    - Specifies the number of LORA models to consider, enabling dynamic adjustment based on user requirements.
+    - Defines the number of Loras to be considered for generating XY plot values. It directly influences the size and complexity of the output data.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`model_strength`**
-    - Determines the strength of the model's influence, allowing for fine-tuning of the LORA model's impact.
+    - Sets a default or specific model strength for each Lora, used as a baseline unless overridden by individual Lora configurations.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`clip_strength`**
-    - Sets the strength of the clipping operation, offering control over the extent of clipping applied to the LORA model.
+    - Determines a default or specific clip strength for each Lora, serving as a baseline unless individual Lora configurations specify otherwise.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`lora_name_i`**
-    - Specifies the name of a LORA model to be considered in the stack, enabling targeted selection of LORA configurations. The index 'i' ranges from 1 to the number specified by 'lora_count', allowing for multiple LORA models to be specified.
+    - Specifies the name of each Lora, allowing for individual identification and configuration within the XY plot generation process.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`model_str_i`**
-    - Determines the model strength for a specified LORA model, allowing for precise control over its influence. The index 'i' corresponds to the LORA model specified by 'lora_name_i'.
+    - Sets the model strength for each Lora individually, overriding the default model strength if specified.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`clip_str_i`**
-    - Sets the clip strength for a specified LORA model, providing customization of the clipping effect. The index 'i' corresponds to the LORA model specified by 'lora_name_i'.
+    - Sets the clip strength for each Lora individually, overriding the default clip strength if specified.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`optional_lora_stack`**
-    - Allows for the inclusion of an existing stack of LORA configurations, providing flexibility in extending or modifying LORA setups.
+    - Allows for the extension of Lora configurations beyond the specified count, enabling more complex and customized data representations.
     - Comfy dtype: `LORA_STACK`
     - Python dtype: `list`
 ## Output types
 - **`X or Y`**
     - Comfy dtype: `X_Y`
-    - Outputs the generated or modified XY input values, ready for application or further processing.
-    - Python dtype: `str`
+    - Represents the generated XY plot values based on the provided Lora configurations, ready for visualization or further processing.
+    - Python dtype: `dict`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -111,7 +110,6 @@ class XYplot_Lora:
 
         optional_lora_stack = kwargs.get("optional_lora_stack") if "optional_lora_stack" in kwargs else []
 
-        print(values)
         xy_values = {"axis": axis, "values": values, "lora_stack": optional_lora_stack}
         return (xy_values,)
 

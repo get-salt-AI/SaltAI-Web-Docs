@@ -1,9 +1,8 @@
 ---
 tags:
 - DataConversion
-- DataTypeConversion
-- Integer
-- NumericConversion
+- Float
+- FloatList
 ---
 
 # Display Int (rgthree)

@@ -1,9 +1,8 @@
 ---
 tags:
 - DataConversion
-- DataTypeConversion
-- Integer
-- NumericConversion
+- Float
+- FloatList
 ---
 
 # Int
@@ -12,17 +11,17 @@ tags:
 - Category: `EasyUse/Logic/Type`
 - Output node: `False`
 
-The `easy int` node is designed to simplify the process of handling integer values within the ComfyUI framework. It abstracts the complexities involved in integer operations, providing a straightforward interface for users to work with integer data.
+The `easy int` node is designed to simplify the process of generating and manipulating integer values within a user's workflow. It abstracts away the complexities associated with integer operations, offering a straightforward interface for creating, configuring, and utilizing integers in various computational tasks.
 ## Input types
 ### Required
 - **`value`**
-    - Represents an integer value that the node processes. This parameter is crucial for the node's operation as it directly influences the outcome of the integer manipulation.
+    - Represents an integer value that can be configured by the user. It serves as the primary input for the node, allowing for the specification of integer-based parameters or values that influence the node's operation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`int`**
     - Comfy dtype: `INT`
-    - The output is an integer value, resulting from the node's processing of the input integer.
+    - Outputs an integer value as a result of the node's processing, reflecting the manipulation or generation of integer values based on the input provided.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
@@ -35,7 +34,7 @@ class Int:
     @classmethod
     def INPUT_TYPES(s):
         return {
-            "required": {"value": ("INT", {"default": 0})},
+            "required": {"value": ("INT", {"default": 0, "min": -999999, "max": 999999,})},
         }
 
     RETURN_TYPES = ("INT",)

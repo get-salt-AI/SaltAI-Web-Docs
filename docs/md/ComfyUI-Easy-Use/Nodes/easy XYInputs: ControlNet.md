@@ -1,6 +1,8 @@
 ---
 tags:
+- Conditioning
 - ControlNet
+- ControlNetLoader
 ---
 
 # XY Inputs: Controlnet //EasyUse

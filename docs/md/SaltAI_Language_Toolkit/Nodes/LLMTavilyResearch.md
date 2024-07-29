@@ -1,6 +1,7 @@
 ---
 tags:
 - LLM
+- LoRA
 ---
 
 # ∞ Tavily Research
@@ -9,57 +10,57 @@ tags:
 - Category: `SALT/Language Toolkit/Tools`
 - Output node: `False`
 
-The LLMTavilyResearch node is designed to leverage advanced language models for conducting in-depth research and analysis. It aims to provide comprehensive insights and summaries by processing and interpreting large volumes of text data.
+This node is designed to leverage the capabilities of the Tavily Research model, focusing on advanced language understanding and generation tasks. It aims to provide deep insights and analyses, potentially enhancing various applications with sophisticated language processing features.
 ## Input types
 ### Required
 - **`tavily_api_key`**
-    - unknown
+    - Specifies the API key required to access the Tavily Research model, essential for authenticating and enabling the node's operations.
     - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`search_query`**
-    - unknown
+    - The query input for conducting searches, serving as the basis for retrieving relevant information and insights.
     - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 ### Optional
 - **`search_depth`**
-    - unknown
+    - Determines the depth of the search, affecting the comprehensiveness of the results obtained.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`max_results`**
-    - unknown
+    - Limits the number of results returned, allowing for control over the volume of data processed.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`include_answer`**
-    - unknown
+    - A flag to include direct answers within the search results, enhancing the utility of the output.
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `unknown`
+    - Python dtype: `bool`
 - **`include_raw_content`**
-    - unknown
+    - A flag to include the raw content of the search results, providing access to unprocessed data.
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `unknown`
+    - Python dtype: `bool`
 - **`include_domains`**
-    - unknown
+    - Specifies domains to be included in the search results, focusing the search on specific sources.
     - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`exclude_domains`**
-    - unknown
+    - Specifies domains to be excluded from the search results, refining the scope of the search.
     - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`keep_looking_limit`**
-    - unknown
+    - Sets a limit on the number of times the search will attempt to find more results beyond the initial set, affecting the thoroughness of the search.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 ## Output types
 - **`documents`**
     - Comfy dtype: `DOCUMENT`
-    - The processed text data, structured and analyzed for insights.
-    - Python dtype: `List[str]`
+    - A collection of documents retrieved as a result of the search, providing structured insights.
+    - Python dtype: `list`
 - **`urls`**
     - Comfy dtype: `LIST`
-    - A collection of URLs that were referenced or extracted during the research process.
-    - Python dtype: `List[str]`
+    - A list of URLs corresponding to the documents found, offering direct links to the source material.
+    - Python dtype: `list`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -116,7 +117,7 @@ class LLMTavilyResearch:
                     ", ") if include_domains is not None and exclude_domains != "" else None,
             )
         
-        print("Tavily Search Query:", search_query)
+        logger.info("Tavily Search Query:", search_query)
 
         # Increment the search results because when using `include_raw_content` 
         # results are found in order of accessibility, so first X results may not 
@@ -128,11 +129,9 @@ class LLMTavilyResearch:
         while "results" not in response or not response["results"] and max_results < adjusted_max_results:
                 max_results += 1
                 if current_retry > 0:
-                    print(f"Unable find any results. Continuing Search...\nRetry {current_retry} of {keep_looking_limit}")
+                    logger.warning(f"Unable find any results. Continuing Search...\nRetry {current_retry} of {keep_looking_limit}")
                 response = tavily_search()
                 current_retry += 1
-
-        pprint(response, indent=4)
 
         results = response.get("results", None)
         urls = []

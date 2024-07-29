@@ -1,30 +1,29 @@
 ---
 tags:
-- BackgroundRemoval
-- Image
+- AlphaChannel
 ---
 
 # 🔧 RemBG Session
 ## Documentation
 - Class name: `RemBGSession+`
-- Category: `essentials`
+- Category: `essentials/image manipulation`
 - Output node: `False`
 
-The RemBGSession+ node is designed to create a new session for background removal tasks, supporting a variety of models and execution providers. It abstracts the complexity of initializing a session with specific models and providers, facilitating the removal of backgrounds from images with flexibility and efficiency.
+The RemBGSession node is designed for background removal from images, utilizing various models to cater to different purposes such as general image segmentation, human segmentation, and cloth parsing. It supports execution on multiple hardware providers, allowing for flexible deployment.
 ## Input types
 ### Required
 - **`model`**
-    - Specifies the model to be used for background removal, offering a selection from general-purpose to specialized models for human segmentation and cloth parsing, among others. This choice directly influences the accuracy and performance of the background removal process.
+    - Specifies the model to be used for background removal, offering a range of options for different segmentation tasks.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`providers`**
-    - Determines the execution provider for the background removal task, allowing for selection among various hardware acceleration options like CPU, CUDA, and more. This choice affects the performance and compatibility of the background removal operation.
+    - Determines the hardware provider for executing the model, supporting a variety of platforms including CPU, CUDA, and more.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`rembg_session`**
     - Comfy dtype: `REMBG_SESSION`
-    - Represents a session initialized for background removal tasks, ready to be used with images for removing backgrounds.
+    - Produces a session configured for background removal, ready to process images according to the specified model and provider.
     - Python dtype: `rembg.Session`
 ## Usage tips
 - Infra type: `CPU`
@@ -45,12 +44,12 @@ class RemBGSession:
 
     RETURN_TYPES = ("REMBG_SESSION",)
     FUNCTION = "execute"
-    CATEGORY = "essentials"
+    CATEGORY = "essentials/image manipulation"
 
     def execute(self, model, providers):
-        from rembg import new_session as rembg_new_session
+        from rembg import new_session
 
         model = model.split(":")[0]
-        return (rembg_new_session(model, providers=[providers+"ExecutionProvider"]),)
+        return (new_session(model, providers=[providers+"ExecutionProvider"]),)
 
 ```

@@ -1,6 +1,7 @@
 ---
 tags:
 - Color
+- ColorChannelManipulation
 ---
 
 # Color (hexadecimal)
@@ -9,18 +10,18 @@ tags:
 - Category: `Bmad/image`
 - Output node: `False`
 
-This node is designed to convert a hexadecimal color code into a specific color format. It validates the input hexadecimal code and returns the corresponding color, ensuring the input is in a valid hexadecimal format before proceeding with the conversion.
+This node is designed to convert hexadecimal color codes into a format that can be utilized within the system, ensuring compatibility and proper representation of colors as defined by their hex codes. It validates the hex code format and converts it to a recognized color format for further processing or display.
 ## Input types
 ### Required
 - **`hex`**
-    - The hexadecimal code representing a color. This parameter is crucial for determining the exact color to be converted. The node validates this code to ensure it is in a proper hexadecimal format before proceeding.
+    - The hexadecimal representation of a color, starting with a '#' followed by either 3 or 6 hexadecimal characters. This input is crucial for defining the specific color to be converted and validated.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`color`**
     - Comfy dtype: `COLOR`
-    - The color obtained from the input hexadecimal code. This output is the direct result of converting the validated hexadecimal code into its corresponding color format.
-    - Python dtype: `str`
+    - The validated and possibly transformed color information, maintaining the integrity of the original hexadecimal input for use in color-related operations.
+    - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -30,12 +31,12 @@ This node is designed to convert a hexadecimal color code into a specific color 
 ```python
 class ColorRGBFromHex:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {"hex": ("STRING", {"default": "#000000"})}}
 
     RETURN_TYPES = ("COLOR",)
     FUNCTION = "ret"
-    CATEGORY = "Bmad/image"
+    CATEGORY = images_category_path
 
     def ret(self, hex):
         import re

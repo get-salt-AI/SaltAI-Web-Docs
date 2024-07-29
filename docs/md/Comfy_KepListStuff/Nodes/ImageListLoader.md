@@ -1,7 +1,6 @@
 ---
 tags:
-- Image
-- ImageListLoader
+- Animation
 ---
 
 # Image List Loader

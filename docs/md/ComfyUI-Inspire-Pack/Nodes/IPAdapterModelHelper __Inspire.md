@@ -1,6 +1,7 @@
 ---
 tags:
 - IPAdapter
+- RegionalImageProcessing
 ---
 
 # IPAdapter Model Helper (Inspire)

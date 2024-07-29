@@ -1,6 +1,6 @@
 ---
 tags:
-- Image
+- Animation
 ---
 
 # 💾 CR Image Output

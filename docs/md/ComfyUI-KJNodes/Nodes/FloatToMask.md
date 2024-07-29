@@ -1,34 +1,39 @@
 ---
 tags:
+- Image
+- ImageMaskConversion
 - Mask
+- MaskBatch
 - MaskGeneration
+- MaskList
+- MaskMorphology
 ---
 
 # Float To Mask
 ## Documentation
 - Class name: `FloatToMask`
-- Category: `KJNodes`
+- Category: `KJNodes/masking/generate`
 - Output node: `False`
 
-This node is designed to generate masks based on input floating-point values, where each value determines the intensity or transparency of the mask. It is tailored for creating a batch of masks with specified dimensions, making it suitable for applications that require dynamic mask generation based on varying intensity levels.
+The `FloatToMask` node is designed to convert floating-point representations into mask formats, facilitating operations that require binary or discrete mask inputs. This node plays a crucial role in image processing and manipulation tasks where precise delineation of areas based on specific criteria is essential.
 ## Input types
 ### Required
 - **`input_values`**
-    - Represents the floating-point values used to generate the masks. Each value in this list determines the intensity of the corresponding mask in the batch, affecting its transparency or color depth.
+    - Represents the floating-point values to be converted into a mask. These values are typically thresholds or indicators that determine the mask's shape and boundaries.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `List[float] or float`
+    - Python dtype: `torch.Tensor`
 - **`width`**
-    - Specifies the width of the generated masks. This dimension determines how wide each mask in the batch will be, directly impacting the mask's size and shape.
+    - Specifies the width of the output mask. This parameter determines the horizontal dimension of the mask generated from the input values.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Specifies the height of the generated masks. This dimension determines the height of each mask in the batch, affecting the overall size and shape of the masks.
+    - Specifies the height of the output mask. This parameter determines the vertical dimension of the mask generated from the input values.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The output consists of a batch of masks generated based on the input floating-point values, with each mask having the specified width and height dimensions. These masks can be used for various applications that require custom mask generation.
+    - The output binary mask generated from the input floating-point values. This mask can be used for various image processing applications that require discrete delineation.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
@@ -50,7 +55,7 @@ class FloatToMask:
         }
     RETURN_TYPES = ("MASK",)
     FUNCTION = "execute"
-    CATEGORY = "KJNodes"
+    CATEGORY = "KJNodes/masking/generate"
     DESCRIPTION = """
 Generates a batch of masks based on the input float values.
 The batch size is determined by the length of the input float values.

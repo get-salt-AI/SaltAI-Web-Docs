@@ -1,8 +1,9 @@
 ---
 tags:
-- AnimationScheduling
-- Frame
-- Keyframe
+- Counting
+- Curve
+- Interpolation
+- WavePatterns
 ---
 
 # Latent Keyframe Group 🛂🅐🅒🅝
@@ -11,30 +12,30 @@ tags:
 - Category: `Adv-ControlNet 🛂🅐🅒🅝/keyframes`
 - Output node: `False`
 
-The LatentKeyframeGroup node is designed to manage and manipulate groups of latent keyframes, facilitating the creation, cloning, and integration of keyframe data. It serves as a foundational component in advanced control networks, enabling dynamic adjustments and enhancements to generated content through keyframe manipulation.
+The LatentKeyframeGroup node is designed to manage a collection of keyframes for latent space animations. It allows for adding, retrieving, and cloning keyframes, ensuring that keyframes are uniquely identified by their batch index and sorted accordingly. This node facilitates the manipulation and organization of keyframes within a sequence, supporting operations like replacing existing keyframes, checking for emptiness, and cloning the entire group for further manipulation.
 ## Input types
 ### Required
 - **`index_strengths`**
-    - A string representing index-strength pairs used to create new latent keyframes. This allows for precise control over the creation of keyframes based on specified strengths.
+    - A string representing batch indices and their corresponding strengths, used to generate or modify keyframes within the group. This input is crucial for defining the animation sequence in latent space.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ### Optional
 - **`prev_latent_kf`**
-    - Represents the previous group of latent keyframes to be cloned and integrated with new keyframe data. It is crucial for maintaining continuity and building upon existing keyframe configurations.
+    - An optional parameter representing a previously existing LatentKeyframeGroup. It is used to append or modify the current collection of keyframes based on the previous state.
     - Comfy dtype: `LATENT_KEYFRAME`
-    - Python dtype: `LatentKeyframeGroup`
+    - Python dtype: `LatentKeyframeGroup or None`
 - **`latent_optional`**
-    - An optional parameter that, when provided, influences the generation of latent keyframes based on additional latent image data.
+    - An optional latent parameter that can be used for additional configurations or conditions in keyframe manipulation.
     - Comfy dtype: `LATENT`
-    - Python dtype: `Optional[Latent]`
+    - Python dtype: `LatentKeyframeGroup or None`
 - **`print_keyframes`**
-    - A flag indicating whether to log information about each keyframe, including its batch index and strength, for debugging or informational purposes.
+    - A boolean flag indicating whether to log the details of the keyframes being processed. This is useful for debugging or detailed analysis of the keyframe sequence.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`LATENT_KF`**
     - Comfy dtype: `LATENT_KEYFRAME`
-    - The resulting group of latent keyframes, including both newly created and previously existing keyframes, ready for further manipulation or application.
+    - Represents the updated collection of keyframes within the group, reflecting any additions or modifications made through the node's operations.
     - Python dtype: `LatentKeyframeGroup`
 ## Usage tips
 - Infra type: `CPU`
@@ -150,7 +151,7 @@ class LatentKeyframeGroupNode:
         
         if print_keyframes:
             for keyframe in curr_latent_keyframe.keyframes:
-                logger.info(f"keyframe {keyframe.batch_index}:{keyframe.strength}")
+                logger.info(f"LatentKeyframe {keyframe.batch_index}={keyframe.strength}")
 
         # replace values with prev_latent_keyframes
         for latent_keyframe in prev_latent_keyframe.keyframes:

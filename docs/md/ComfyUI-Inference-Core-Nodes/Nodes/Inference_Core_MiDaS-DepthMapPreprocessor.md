@@ -1,8 +1,10 @@
 ---
 tags:
-- DepthMap
 - DepthMapEstimation
 - Image
+- ImageFilter
+- ImagePreprocessing
+- Inpaint
 ---
 
 # [Inference.Core] MiDaS Depth Map

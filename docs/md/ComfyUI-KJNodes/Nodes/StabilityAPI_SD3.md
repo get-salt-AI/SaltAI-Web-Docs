@@ -1,6 +1,7 @@
 ---
 tags:
-- Image
+- Prompt
+- PromptComposer
 ---
 
 # Stability API SD3
@@ -9,59 +10,57 @@ tags:
 - Category: `KJNodes/experimental`
 - Output node: `False`
 
-The StabilityAPI_SD3 node is designed to interface with the StabilityAI API, facilitating the generation of images or the application of transformations to existing images. It abstracts the complexities of interacting with the API, enabling users to focus on creative tasks.
+The StabilityAPI_SD3 node interfaces with the StabilityAI API to facilitate image generation or manipulation tasks. It leverages the StabilityAI platform's capabilities, allowing users to generate images based on textual descriptions or modify existing images. This node emphasizes the use of specific API keys for operation and warns against potential metadata storage issues when saving images through separate nodes.
 ## Input types
 ### Required
 - **`prompt`**
-    - Accepts a textual description or prompt to guide the image generation process, influencing the visual output based on the provided text.
+    - The main textual description guiding the image generation or manipulation process, serving as the primary input for creating or altering images.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`n_prompt`**
-    - Specifies the number of prompts to be used, allowing for multiple prompts to influence the generation process.
+    - A negative textual description to guide the image generation process by specifying what to avoid, refining the output.
     - Comfy dtype: `STRING`
-    - Python dtype: `int`
+    - Python dtype: `str`
 - **`seed`**
-    - A seed value for the random number generator, ensuring reproducibility of the generated images.
+    - A seed value for ensuring reproducibility of the generated images.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`model`**
-    - Defines the model used for image generation, allowing selection based on desired characteristics or capabilities.
+    - Specifies the model used by StabilityAI for the image generation or manipulation task.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`aspect_ratio`**
-    - Sets the aspect ratio of the output image, enabling control over the image's dimensions.
+    - The desired aspect ratio for the output image, influencing its dimensions.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `float`
 - **`output_format`**
-    - Determines the format of the output image, such as JPEG or PNG, according to user preference.
+    - The format in which the generated image will be outputted, such as PNG or JPEG.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`api_key`**
-    - The API key required for accessing the StabilityAI API, ensuring authorized use.
+    - The API key required for accessing the StabilityAI platform's services.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`image`**
-    - An initial image for img2img tasks, serving as a base for transformations or enhancements.
+    - An existing image to be modified or used as a basis for generation in image-to-image tasks.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `PIL.Image`
+    - Python dtype: `torch.Tensor`
 - **`img2img_strength`**
-    - Controls the strength of the transformation applied to the initial image in img2img tasks, adjusting the level of change.
+    - Controls the influence of the input image on the generated output in image-to-image tasks.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`disable_metadata`**
-    - Option to disable embedding metadata in the generated image, offering control over privacy and data storage.
+    - A flag to disable metadata storage, addressing privacy or data storage concerns.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The generated or transformed image as a result of the node's execution.
-    - Python dtype: `PIL.Image`
-- **`ui`**
-    - The node returns a user interface component, typically displaying the generated or transformed image.
+    - The generated or manipulated image as a result of the process, aligning with the provided descriptions and parameters.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -150,7 +149,6 @@ If no image is provided, mode is set to text-to-image
             args.disable_metadata = False
         
         import requests
-        from io import BytesIO
         from torchvision import transforms
         
         data = {
@@ -166,7 +164,7 @@ If no image is provided, mode is set to text-to-image
             to_pil = transforms.ToPILImage()
             pil_image = to_pil(image)
             # Save the PIL Image to a BytesIO object
-            buffer = BytesIO()
+            buffer = io.BytesIO()
             pil_image.save(buffer, format='PNG')
             buffer.seek(0)
             files = {"image": ("image.png", buffer, "image/png")}
@@ -203,7 +201,7 @@ If no image is provided, mode is set to text-to-image
 
         if response.status_code == 200:
             # Convert the response content to a PIL Image
-            image = Image.open(BytesIO(response.content))
+            image = Image.open(io.BytesIO(response.content))
             # Convert the PIL Image to a PyTorch tensor
             transform = transforms.ToTensor()
             tensor_image = transform(image)

@@ -1,6 +1,7 @@
 ---
 tags:
 - IPAdapter
+- RegionalImageProcessing
 ---
 
 # Easy Apply IPAdapter (Embeds)
@@ -9,59 +10,63 @@ tags:
 - Category: `EasyUse/Adapter`
 - Output node: `False`
 
-This node is designed for applying embedding adjustments to models using IPAdapter, facilitating the integration of specific embeddings into the model's processing pipeline. It abstracts the complexity of embedding manipulation, offering a streamlined approach to enhance model performance with tailored embeddings.
+The node 'easy ipadapterApplyEmbeds' is designed to apply embedding transformations to models using IPAdapter, facilitating the integration of positional and negative embeddings into the model's processing pipeline. It abstracts the complexity of embedding manipulation, offering a streamlined approach to enhance model performance with custom embeddings.
 ## Input types
 ### Required
 - **`model`**
-    - The model to which embeddings will be applied. It serves as the base for embedding adjustments, playing a crucial role in the node's operation.
+    - Specifies the model to which embeddings will be applied, serving as the foundational structure for embedding integration.
     - Comfy dtype: `MODEL`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `str`
+- **`clip_vision`**
+    - Indicates whether to apply CLIP vision embeddings, influencing the model's visual understanding and processing.
+    - Comfy dtype: `CLIP_VISION`
+    - Python dtype: `bool`
 - **`ipadapter`**
-    - The IPAdapter instance used for embedding adjustments. It is essential for the node's functionality, enabling the precise application of embeddings.
+    - The IPAdapter instance used for embedding transformations, central to the embedding application process.
     - Comfy dtype: `IPADAPTER`
-    - Python dtype: `IPAdapterClass`
+    - Python dtype: `str`
 - **`pos_embed`**
-    - The positive embeddings to be applied. These embeddings are crucial for adjusting the model's output in a desired direction, enhancing its performance.
+    - The positive embeddings to be applied, enhancing the model's positive feature recognition.
     - Comfy dtype: `EMBEDS`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `list`
 - **`weight`**
-    - Specifies the weight of the embeddings in the adjustment process, influencing the degree to which the embeddings affect the model.
+    - Defines the weight of the embeddings, influencing their impact on the model.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`weight_type`**
-    - Defines the type of weighting applied to the embeddings, affecting how they are integrated into the model.
+    - Specifies the type of weight applied to the embeddings, affecting their integration into the model.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`start_at`**
-    - The starting point in the model's layers or processing stages where the embeddings begin to be applied, determining the scope of their impact.
+    - Determines the starting point for embedding application, allowing for precise control over when embeddings influence the model.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end_at`**
-    - The ending point in the model's layers or processing stages where the embeddings cease to be applied, marking the limit of their influence.
+    - Sets the endpoint for embedding application, defining the scope of embedding influence on the model.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`embeds_scaling`**
-    - Describes how the embeddings are scaled or adjusted before being applied, impacting the final embedding integration.
+    - Defines the scaling method for embeddings, affecting how embeddings are integrated and weighted within the model.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`neg_embed`**
-    - The negative embeddings that can be optionally applied to counterbalance or adjust the model's output in the opposite direction.
+    - The negative embeddings to be applied, enhancing the model's negative feature recognition.
     - Comfy dtype: `EMBEDS`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `list`
 - **`attn_mask`**
-    - An optional attention mask that can be applied during the embedding adjustment process, focusing the embedding's impact on specific parts of the input.
+    - An optional attention mask for more targeted embedding application, providing additional control over how embeddings affect the model.
     - Comfy dtype: `MASK`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `list`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The model after applying the embeddings. It reflects the adjustments made using the specified embeddings, showcasing the node's capability to enhance model performance.
-    - Python dtype: `torch.nn.Module`
+    - The enhanced model with applied embeddings, reflecting the integration of positive and negative embeddings.
+    - Python dtype: `str`
 - **`ipadapter`**
     - Comfy dtype: `IPADAPTER`
-    - The IPAdapter instance after embedding adjustments. It indicates the successful application of embeddings, essential for the node's functionality.
-    - Python dtype: `IPAdapterClass`
+    - The IPAdapter instance after embedding application, indicating the successful integration of embeddings.
+    - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -81,6 +86,7 @@ class ipadapterApplyEmbeds(ipadapter):
         return {
             "required": {
                 "model": ("MODEL",),
+                "clip_vision": ("CLIP_VISION",),
                 "ipadapter": ("IPADAPTER",),
                 "pos_embed": ("EMBEDS",),
                 "weight": ("FLOAT", {"default": 1.0, "min": -1, "max": 3, "step": 0.05}),
@@ -101,12 +107,12 @@ class ipadapterApplyEmbeds(ipadapter):
     CATEGORY = "EasyUse/Adapter"
     FUNCTION = "apply"
 
-    def apply(self, model, ipadapter, pos_embed, weight, weight_type, start_at, end_at, embeds_scaling, attn_mask=None, neg_embed=None,):
+    def apply(self, model, ipadapter, clip_vision, pos_embed, weight, weight_type, start_at, end_at, embeds_scaling, attn_mask=None, neg_embed=None,):
         if "IPAdapterEmbeds" not in ALL_NODE_CLASS_MAPPINGS:
             self.error()
 
         cls = ALL_NODE_CLASS_MAPPINGS["IPAdapterEmbeds"]
-        model, image = cls().apply_ipadapter(model, ipadapter, pos_embed, weight, weight_type, start_at, end_at, neg_embed=neg_embed, attn_mask=attn_mask, clip_vision=None, embeds_scaling=embeds_scaling)
+        model, image = cls().apply_ipadapter(model, ipadapter, pos_embed, weight, weight_type, start_at, end_at, neg_embed=neg_embed, attn_mask=attn_mask, clip_vision=clip_vision, embeds_scaling=embeds_scaling)
 
         return (model, ipadapter)
 

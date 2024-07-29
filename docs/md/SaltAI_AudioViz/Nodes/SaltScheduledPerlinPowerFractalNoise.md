@@ -1,75 +1,77 @@
 ---
 tags:
+- ImageNoise
+- LatentNoise
 - Noise
-- NoisePatterns
+- Seed
 ---
 
 # Scheduled Perline Power Fractal Generator
 ## Documentation
 - Class name: `SaltScheduledPerlinPowerFractalNoise`
-- Category: `SALT/Scheduling/Image`
+- Category: `SALT/AudioViz/Scheduling/Image`
 - Output node: `False`
 
-This node is designed to generate complex, visually appealing noise patterns by leveraging the Perlin noise algorithm. It intricately schedules and modifies Perlin noise parameters over time or across frames to produce dynamic, fractal-like visual effects that can be used in audio visualization or other graphical applications.
+This node is designed to generate complex, visually appealing noise patterns by leveraging the Perlin noise algorithm. It intricately schedules and modifies Perlin noise parameters over time or across frames to produce dynamic, fractal-based noise textures that can be used for a variety of visual effects in audio visualization or graphical applications.
 ## Input types
 ### Required
 - **`batch_size`**
-    - Specifies the number of noise patterns to generate in a single batch, affecting the node's output volume and parallel processing efficiency.
+    - Specifies the number of noise patterns to generate in a single batch, allowing for efficient bulk processing of noise textures.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`width`**
-    - Determines the width of the generated noise pattern, directly influencing the spatial resolution and aspect ratio of the output.
+    - Determines the width of the generated noise texture, defining the horizontal resolution of the output pattern.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Sets the height of the generated noise pattern, impacting the spatial resolution and aspect ratio of the output.
+    - Sets the height of the generated noise texture, establishing the vertical resolution of the output pattern.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`scale_schedule`**
-    - A schedule that adjusts the scale of the noise pattern across different frames or instances, allowing for dynamic changes in the visual complexity and detail of the noise.
+    - A schedule of scale values to apply to the noise generation process, enabling dynamic control over the zoom level of the noise textures across different frames or instances.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 - **`octaves_schedule`**
-    - Controls the number of octaves used in the noise generation process, affecting the level of detail and the overall complexity of the resulting pattern.
+    - Controls the level of detail in the noise texture by specifying a schedule for the number of octaves to use, affecting the complexity and richness of the generated patterns.
     - Comfy dtype: `LIST`
     - Python dtype: `List[int]`
 - **`persistence_schedule`**
-    - Adjusts the persistence parameter across frames, influencing the amplitude of the noise octaves and thereby the visual contrast of the pattern.
+    - Adjusts the amplitude of each octave in the noise texture according to a predefined schedule, influencing the contrast between high and low-frequency details.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 - **`lacunarity_schedule`**
-    - Modifies the lacunarity parameter over time, which affects the frequency of noise details and contributes to the fractal-like appearance of the output.
+    - Defines a schedule for the lacunarity parameter, which affects the gap between successive octaves in the noise texture, thereby influencing its overall roughness and texture.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 - **`exponent_schedule`**
-    - A schedule for the exponent parameter that influences the intensity and contrast of the noise pattern, allowing for nuanced adjustments to the visual output.
+    - Specifies a schedule for the exponent values applied to the noise, allowing for fine-tuned adjustments to the intensity and distribution of the noise texture.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 - **`seed_schedule`**
-    - Determines the seed values for noise generation, ensuring variability and uniqueness in the patterns produced across different instances or frames.
+    - A sequence of seed values to initialize the noise generation process, ensuring variability and uniqueness across different noise textures.
     - Comfy dtype: `LIST`
     - Python dtype: `List[int]`
 - **`clamp_min_schedule`**
-    - Sets the minimum clamp value for the noise output, enabling control over the lower bounds of the noise intensity and ensuring consistency in the pattern's visual range.
+    - Sets a schedule for the minimum clamping value, defining the lower bound for the noise texture values to ensure they stay within a desired range.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 - **`clamp_max_schedule`**
-    - Defines the maximum clamp value for the noise output, allowing for control over the upper bounds of the noise intensity and ensuring consistency in the pattern's visual range.
+    - Determines a schedule for the maximum clamping value, setting the upper limit for the noise texture values to maintain control over the output intensity.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 - **`device`**
-    - Specifies the computing device (CPU or GPU) on which the noise generation process is executed, affecting performance and efficiency.
+    - Specifies the computing device (CPU or GPU) on which the noise generation process will be executed, affecting performance and efficiency.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`images`**
     - Comfy dtype: `IMAGE`
-    - The generated noise pattern as a tensor, ready for further processing or visualization.
+    - The generated noise images as a tensor, ready for further processing or visualization in various applications.
     - Python dtype: `torch.Tensor`
 - **`batch_size`**
     - Comfy dtype: `INT`
-    - The number of noise patterns generated, corresponding to the input batch size.
+    - The number of noise textures generated, corresponding to the input batch size, facilitating batch processing and management.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `GPU`
@@ -104,7 +106,7 @@ class SaltScheduledPerlinPowerFractalNoise:
     RETURN_NAMES = ("images", "batch_size")
 
     FUNCTION = "generate"
-    CATEGORY = "SALT/Scheduling/Image"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling/Image"
 
     def generate(self, batch_size, width, height, scale_schedule=[1.0], octaves_schedule=[4], persistence_schedule=[0.5], lacunarity_schedule=[2.0], exponent_schedule=[1.0], seed_schedule=[0], clamp_min_schedule=[-0.5], clamp_max_schedule=[1.5], device="cuda"):
         octaves_schedule = [int(octave) for octave in octaves_schedule]

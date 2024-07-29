@@ -1,6 +1,7 @@
 ---
 tags:
-- AnimationScheduling
+- Curve
+- WavePatterns
 ---
 
 # FL Audio Scanner

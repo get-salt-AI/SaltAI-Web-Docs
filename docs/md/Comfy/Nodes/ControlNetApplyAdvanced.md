@@ -1,6 +1,8 @@
 ---
 tags:
+- Conditioning
 - ControlNet
+- ControlNetLoader
 ---
 
 # Apply ControlNet (Advanced)
@@ -9,46 +11,46 @@ tags:
 - Category: `conditioning`
 - Output node: `False`
 
-This node applies advanced control net transformations to conditioning data based on an image and a control net model. It allows for fine-tuned adjustments of the control net's influence over the generated content, enabling more precise and varied modifications to the conditioning.
+This node is designed for advanced application of a control network to modify the conditioning of an image generation process. It leverages a control network to adjust the conditioning based on the provided image, strength, and additional parameters, enhancing the control over the generation outcome.
 ## Input types
 ### Required
 - **`positive`**
-    - The positive conditioning data to which the control net transformations will be applied. It represents the desired attributes or features to enhance or maintain in the generated content.
+    - The positive conditioning data that the control network will modify, representing the desired attributes or features to emphasize in the generated image.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `List[Tuple[str, Dict[str, Any]]]`
+    - Python dtype: `list of tuples`
 - **`negative`**
-    - The negative conditioning data, representing attributes or features to diminish or remove from the generated content. The control net transformations are applied to this data as well, allowing for a balanced adjustment of the content's characteristics.
+    - The negative conditioning data that the control network will modify, representing the attributes or features to de-emphasize or avoid in the generated image.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `List[Tuple[str, Dict[str, Any]]]`
+    - Python dtype: `list of tuples`
 - **`control_net`**
-    - The control net model is crucial for defining the specific adjustments and enhancements to the conditioning data. It interprets the reference image and strength parameters to apply transformations, significantly influencing the final output by modifying attributes in both positive and negative conditioning data.
+    - The control network model used to apply modifications to the conditioning. It is central to the node's functionality, enabling the dynamic adjustment of the generation process.
     - Comfy dtype: `CONTROL_NET`
     - Python dtype: `ControlNet`
 - **`image`**
-    - The image serving as a reference for the control net transformations. It influences the adjustments made by the control net to the conditioning data, guiding the enhancement or suppression of specific features.
+    - The image data that influences the control network's modifications to the conditioning. It serves as a contextual basis for the adjustments.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`strength`**
-    - A scalar value determining the intensity of the control net's influence on the conditioning data. Higher values result in more pronounced adjustments.
+    - A scalar value that determines the intensity of the control network's modifications. It allows for fine-tuning the impact of the control network on the conditioning.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`start_percent`**
-    - The starting percentage of the control net's effect, allowing for gradual application of transformations over a specified range.
+    - The starting percentage of the control effect, allowing for gradual application of the control network's influence over the image generation process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end_percent`**
-    - The ending percentage of the control net's effect, defining the range over which the transformations are applied. This enables more nuanced control over the adjustment process.
+    - The ending percentage of the control effect, defining the point at which the control network's influence ceases, enabling precise control over the conditioning modification.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`positive`**
     - Comfy dtype: `CONDITIONING`
-    - The modified positive conditioning data after the application of control net transformations, reflecting the enhancements made based on the input parameters.
-    - Python dtype: `List[Tuple[str, Dict[str, Any]]]`
+    - The modified positive conditioning data after the control network's application, reflecting the desired adjustments.
+    - Python dtype: `list of tuples`
 - **`negative`**
     - Comfy dtype: `CONDITIONING`
-    - The modified negative conditioning data after the application of control net transformations, reflecting the suppression or removal of specific features based on the input parameters.
-    - Python dtype: `List[Tuple[str, Dict[str, Any]]]`
+    - The modified negative conditioning data after the control network's application, reflecting the de-emphasized or avoided attributes.
+    - Python dtype: `list of tuples`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes:
@@ -85,7 +87,7 @@ class ControlNetApplyAdvanced:
 
     CATEGORY = "conditioning"
 
-    def apply_controlnet(self, positive, negative, control_net, image, strength, start_percent, end_percent):
+    def apply_controlnet(self, positive, negative, control_net, image, strength, start_percent, end_percent, vae=None):
         if strength == 0:
             return (positive, negative)
 
@@ -102,7 +104,7 @@ class ControlNetApplyAdvanced:
                 if prev_cnet in cnets:
                     c_net = cnets[prev_cnet]
                 else:
-                    c_net = control_net.copy().set_cond_hint(control_hint, strength, (start_percent, end_percent))
+                    c_net = control_net.copy().set_cond_hint(control_hint, strength, (start_percent, end_percent), vae)
                     c_net.set_previous_controlnet(prev_cnet)
                     cnets[prev_cnet] = c_net
 

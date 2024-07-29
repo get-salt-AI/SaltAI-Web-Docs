@@ -1,33 +1,33 @@
 ---
 tags:
-- Time
+- SigmaScheduling
 ---
 
-# 🛌 Sleep 🛌
+# Sleep
 ## Documentation
 - Class name: `Sleep`
 - Category: `KJNodes/misc`
 - Output node: `False`
 
-Delays the execution for the input amount of time, allowing for a pause in operations based on specified minutes and seconds.
+The Sleep node introduces a delay in the execution flow based on a specified amount of time, allowing for timed pauses in processing sequences.
 ## Input types
 ### Required
 - **`input`**
-    - A placeholder input that is returned after the delay, ensuring the flow of data is maintained throughout the node's operation.
+    - Acts as a pass-through for any input data, ensuring that the data is returned after the sleep delay without modification.
     - Comfy dtype: `*`
     - Python dtype: `any`
 - **`minutes`**
-    - Specifies the duration of the delay in whole minutes, contributing to the total delay time alongside seconds.
+    - Specifies the duration of the delay in whole minutes, contributing to the total sleep time.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`seconds`**
-    - Specifies the duration of the delay in fractional minutes (seconds), fine-tuning the total delay time in conjunction with minutes.
+    - Specifies the duration of the delay in fractional minutes (seconds), allowing for precise control over the total sleep time.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`*`**
     - Comfy dtype: `*`
-    - Returns the input data unchanged after the specified delay, serving as a pass-through with a time delay.
+    - Returns the input data unchanged after the specified delay, maintaining data integrity through the sleep process.
     - Python dtype: `any`
 ## Usage tips
 - Infra type: `CPU`

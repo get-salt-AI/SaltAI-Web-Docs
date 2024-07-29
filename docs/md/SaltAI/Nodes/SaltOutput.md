@@ -1,6 +1,7 @@
 ---
 tags:
 - Audio
+- SaltNodes
 ---
 
 # Salt Workflow Output
@@ -9,41 +10,41 @@ tags:
 - Category: `SALT/IO`
 - Output node: `True`
 
-The SaltOutput node is designed to handle various types of output data, including images, audio, and text, formatting and saving them appropriately based on the specified output type. It supports a wide range of file formats and is capable of generating complex UI structures to represent the output data effectively.
+The SaltOutput node is designed for handling the output process within the Salt AI framework, specifically focusing on generating and managing output data. It encapsulates the functionality for formatting output data, determining its type, and organizing it into a structured UI-friendly format for further use or display.
 ## Input types
 ### Required
 - **`output_name`**
-    - Specifies the name of the output, which is used as the base for generating filenames and identifiers in the saved output files.
+    - Specifies the name of the output, which is used for identification and organization purposes. It plays a crucial role in how the output is labeled and accessed in subsequent operations.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`output_desc`**
-    - Provides a description for the output, which may be used for metadata or UI display purposes.
+    - Provides a description for the output, offering context or additional details about the nature or content of the output data.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`output_type`**
-    - Determines the format of the output file (e.g., PNG, JPEG, MP3, WAV, STRING), influencing how the output data is processed and saved.
+    - Defines the type of the output data, such as image, audio, or text formats, influencing how the data is processed and presented.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`output_data`**
-    - The actual data to be output, which can vary widely in type (e.g., bytes for audio, torch.Tensor for images, string for text outputs).
+    - The actual data to be outputted, which can vary in type (e.g., image, audio, text) based on the output_type parameter.
     - Comfy dtype: `*`
-    - Python dtype: `Union[bytes, torch.Tensor, str]`
+    - Python dtype: `Union[torch.Tensor, str, bytes]`
 ### Optional
 - **`video_audio`**
-    - Optional audio data for video outputs, specifying the audio track to be included in video files.
+    - Optional audio data for video outputs, used when the output type is a video format that supports accompanying audio tracks.
     - Comfy dtype: `AUDIO`
     - Python dtype: `bytes`
 - **`animation_fps`**
-    - Specifies the frames per second for animated outputs, allowing control over the animation speed.
+    - Specifies the frames per second for animated outputs, affecting the playback speed and smoothness of animations.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`animation_quality`**
-    - Defines the quality level of the animation (DEFAULT or HIGH), affecting the output file's visual fidelity.
+    - Determines the quality level of the animation, allowing for a balance between visual fidelity and file size.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`ui`**
-    - Generates a complex UI structure representing the output data, including metadata and previews for supported file types.
+    - A structured dictionary containing UI-friendly formatted output data, including metadata and potentially preview images for supported types.
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -94,9 +95,9 @@ class SaltOutput:
 
         # Determine if valid type
         if not isinstance(output_data, torch.Tensor) and not isinstance(output_data, str) and not isinstance(output_data, bytes) and not is_lambda(output_data):
-            raise ValueError(
-                f"Unsupported output_data supplied `{str(type(output_data).__name__)}`. Please provide `IMAGE` (torch.Tensor), `STRING` (str), or `AUDIO` (bytes) input."
-            )
+            errmsg = f"Unsupported output_data supplied `{str(type(output_data).__name__)}`. Please provide `IMAGE` (torch.Tensor), `STRING` (str), or `AUDIO` (bytes) input."
+            logger.error(errmsg)
+            raise ValueError(errmsg)
         
         # Support VHS audio
         if output_type in ["AVI", "MP4", "WEBM", "MP3", "WAV"]:
@@ -106,9 +107,9 @@ class SaltOutput:
                 output_data = output_data()
         
         if video_audio and not isinstance(video_audio, bytes):
-            raise ValueError(
-                f"Unsupported video_audio supplied `{str(type(output_data).__name__)}. Please provide `AUDIO` (bytes)"
-            )  
+            errmsg = f"Unsupported video_audio supplied `{str(type(output_data).__name__)}. Please provide `AUDIO` (bytes)"
+            logger.error(errmsg)
+            raise ValueError(errmsg)
 
         # Is asset? I may have misunderstood this part
         if output_type in ["GIF", "WEBP", "AVI", "MP4", "WEBM", "MP3", "WAV"]:
@@ -126,7 +127,8 @@ class SaltOutput:
 
         os.makedirs(output_path, exist_ok=True)
         if not os.path.exists(output_path):
-            print(f"[SALT] Unable to create output directory `{output_path}`")
+            errmsg = f"Unable to create output directory `{output_path}`"
+            logger.warning(errmsg)
 
         results = []
         if output_type in ("PNG", "JPEG") and isinstance(output_data, torch.Tensor):
@@ -145,11 +147,14 @@ class SaltOutput:
                         "type": "output"
                     })
                     if os.path.exists(image_path):
-                        print(f"[SALT] Saved image to `{image_path}`")
+                        logger.info(f"Saved image to `{image_path}`")
                     else:
-                        print(f"[SALT] Unable to save image to `{image_path}`")
+                        errmsg = f"Unable to save image to `{image_path}`"
+                        logger.warning(errmsg)
 
             except Exception as e:
+                errmsg = f"Unknown exception {e}"
+                logger.error(errmsg)
                 raise e
 
         if output_type in ["GIF", "WEBP", "AVI", "MP4", "WEBM"] and isinstance(output_data, torch.Tensor):
@@ -165,9 +170,10 @@ class SaltOutput:
                 "type": "output"
             })
             if os.path.exists(filename):
-                print(f"[SALT] Saved file to `{filename}`")
+                logger.info(f"[SALT] Saved file to `{filename}`")
             else:
-                print(f"[SALT] Unable to save file to `{filename}`")
+                errmsg = f"[SALT] Unable to save file to `{filename}`"
+                logger.warning(errmsg)
         elif output_type in ["MP3", "WAV"] and isinstance(output_data, bytes):
             # Save audio file
             filename = os.path.join(output_path, f"{output_name}.{output_type.lower()}")
@@ -187,9 +193,10 @@ class SaltOutput:
             })
 
             if os.path.exists(filename):
-                print(f"[SALT] Saved file to `{filename}`")
+                logger.info(f"Saved file to `{filename}`")
             else:
-                print(f"[SALT] Unable to save file to `{filename}`")
+                errmsg = f"Unable to save file to `{filename}`"
+                logger.warning(errmsg)
 
         else:
             # Assume string output
@@ -217,11 +224,9 @@ class SaltOutput:
             ui["ui"].update({"images": results})
 
         # Print to log
-        print(f"[SaltOutput_{unique_id}] Output:")
-        from pprint import pprint
-
-        pprint(ui, indent=4)
-
+        logger.info(f"[SaltOutput_{unique_id}] Output:")
+        logger.data(ui, indent=4)
+        
         return ui
 
 ```

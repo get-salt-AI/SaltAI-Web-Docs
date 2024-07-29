@@ -1,16 +1,16 @@
-# 🔧 Tensor Shape Debug
+# 🔧 Debug Tensor Shape
 ## Documentation
 - Class name: `DebugTensorShape+`
-- Category: `essentials`
+- Category: `essentials/utilities`
 - Output node: `True`
 
-The DebugTensorShape+ node is designed to assist in debugging by printing the shapes of tensors within a given structure, such as lists, dictionaries, or tensors themselves. This functionality aids in understanding the dimensions and structure of data flowing through a model or computation graph.
+The DebugTensorShape node is designed for debugging purposes, specifically to inspect and print the shapes of tensors within a data structure. It recursively traverses through nested tensors, including those within dictionaries and lists, to collect and display their shapes, aiding in the understanding of data flow and structure in tensor-based computations.
 ## Input types
 ### Required
 - **`tensor`**
-    - The 'tensor' parameter can be a tensor, list, or dictionary containing tensors. It is crucial for determining the structure and dimensions of the data to be debugged, impacting the node's execution by dictating which shapes are printed.
+    - The 'tensor' parameter is the primary input for the DebugTensorShape node. Its purpose is to enable the inspection of tensor shapes within complex data structures, facilitating debugging and analysis.
     - Comfy dtype: `*`
-    - Python dtype: `Union[torch.Tensor, List[torch.Tensor], Dict[str, torch.Tensor]]`
+    - Python dtype: `Union[torch.Tensor, Dict, List]`
 ## Output types
 The node doesn't have output types
 ## Usage tips
@@ -21,9 +21,6 @@ The node doesn't have output types
 ## Source code
 ```python
 class DebugTensorShape:
-    def __init__(self):
-        pass
-
     @classmethod
     def INPUT_TYPES(s):
         return {
@@ -34,7 +31,7 @@ class DebugTensorShape:
 
     RETURN_TYPES = ()
     FUNCTION = "execute"
-    CATEGORY = "essentials"
+    CATEGORY = "essentials/utilities"
     OUTPUT_NODE = True
 
     def execute(self, tensor):

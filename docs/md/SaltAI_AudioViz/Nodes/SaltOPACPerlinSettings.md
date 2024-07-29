@@ -1,151 +1,152 @@
 ---
 tags:
+- AnimationScheduling
 - Scheduling
-- VisualEffects
+- SigmaScheduling
 ---
 
 # Perlin Tremor Settings
 ## Documentation
 - Class name: `SaltOPACPerlinSettings`
-- Category: `SALT/Scheduling`
+- Category: `SALT/AudioViz/Scheduling`
 - Output node: `False`
 
-The SaltOPACPerlinSettings node is designed to configure Perlin noise sampling parameters for the OPAC node, allowing for dynamic visual effects based on noise patterns. It processes input settings to adjust the appearance of visuals, such as opacity and texture, by applying Perlin noise algorithms.
+This node is designed for configuring Perlin noise parameters specifically for the OPAC visualization node. It allows for the dynamic adjustment of Perlin noise settings to influence visual effects based on audio or other inputs, enhancing the visual representation of data with more natural, organic variations.
 ## Input types
 ### Required
 - **`zoom_octaves`**
-    - Controls the number of layers of Perlin noise to apply, influencing the complexity of the visual effect.
+    - Specifies the number of octaves for zoom-related Perlin noise, affecting the level of detail in the zoom effect.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`zoom_persistence`**
-    - Affects the amplitude of each octave in the Perlin noise, adjusting the visual's contrast.
+    - Determines the persistence of zoom-related Perlin noise, influencing the smoothness of the zoom effect in the visualization.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`zoom_lacunarity`**
-    - Influences the frequency of each octave in the Perlin noise, modifying the texture of the visual effect.
+    - Controls the lacunarity of zoom-related Perlin noise, affecting the granularity of the zoom effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`zoom_repeat`**
-    - Determines how often the Perlin noise pattern repeats, affecting the visual's periodicity.
+    - Specifies the repeat interval for zoom-related Perlin noise, defining how often the noise pattern repeats.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`angle_octaves`**
-    - Specifies the number of Perlin noise layers for angle adjustments, affecting the rotation complexity.
+    - Specifies the number of octaves for angle-related Perlin noise, affecting the level of detail in the angle effect.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`angle_persistence`**
-    - Adjusts the amplitude of each octave for angle Perlin noise, influencing the rotation contrast.
+    - Determines the persistence of angle-related Perlin noise, influencing the smoothness of the angle effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`angle_lacunarity`**
-    - Modifies the frequency of each octave for angle Perlin noise, changing the rotation texture.
+    - Controls the lacunarity of angle-related Perlin noise, affecting the granularity of the angle effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`angle_repeat`**
-    - Sets the repetition rate of the angle Perlin noise pattern, impacting the rotation periodicity.
+    - Specifies the repeat interval for angle-related Perlin noise, defining how often the noise pattern repeats.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`trx_octaves`**
-    - Defines the number of Perlin noise layers for X-axis translation, affecting movement complexity.
+    - Specifies the number of octaves for translation-related Perlin noise along the x-axis, affecting the level of detail in the translation effect.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`trx_persistence`**
-    - Controls the amplitude of each octave for X-axis translation, adjusting movement contrast.
+    - Determines the persistence of translation-related Perlin noise along the x-axis, influencing the smoothness of the translation effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`trx_lacunarity`**
-    - Influences the frequency of each octave for X-axis translation, modifying movement texture.
+    - Controls the lacunarity of translation-related Perlin noise along the x-axis, affecting the granularity of the translation effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`trx_repeat`**
-    - Determines the repetition rate of the X-axis translation Perlin noise pattern, affecting movement periodicity.
+    - Specifies the repeat interval for translation-related Perlin noise along the x-axis, defining how often the noise pattern repeats.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`try_octaves`**
-    - Specifies the number of Perlin noise layers for Y-axis translation, impacting movement complexity.
+    - Specifies the number of octaves for translation-related Perlin noise along the y-axis, affecting the level of detail in the translation effect.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`try_persistence`**
-    - Adjusts the amplitude of each octave for Y-axis translation, influencing movement contrast.
+    - Determines the persistence of translation-related Perlin noise along the y-axis, influencing the smoothness of the translation effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`try_lacunarity`**
-    - Modifies the frequency of each octave for Y-axis translation, changing movement texture.
+    - Controls the lacunarity of translation-related Perlin noise along the y-axis, affecting the granularity of the translation effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`try_repeat`**
-    - Sets the repetition rate of the Y-axis translation Perlin noise pattern, impacting movement periodicity.
+    - Specifies the repeat interval for translation-related Perlin noise along the y-axis, defining how often the noise pattern repeats.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`trz_octaves`**
-    - Defines the number of Perlin noise layers for Z-axis translation, affecting depth movement complexity.
+    - Specifies the number of octaves for translation-related Perlin noise along the z-axis, affecting the level of detail in the translation effect.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`trz_persistence`**
-    - Controls the amplitude of each octave for Z-axis translation, adjusting depth movement contrast.
+    - Determines the persistence of translation-related Perlin noise along the z-axis, influencing the smoothness of the translation effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`trz_lacunarity`**
-    - Influences the frequency of each octave for Z-axis translation, modifying depth movement texture.
+    - Controls the lacunarity of translation-related Perlin noise along the z-axis, affecting the granularity of the translation effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`trz_repeat`**
-    - Determines the repetition rate of the Z-axis translation Perlin noise pattern, affecting depth movement periodicity.
+    - Specifies the repeat interval for translation-related Perlin noise along the z-axis, defining how often the noise pattern repeats.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`rotx_octaves`**
-    - unknown
+    - Specifies the number of octaves for rotation-related Perlin noise around the x-axis, affecting the level of detail in the rotation effect.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`rotx_persistence`**
-    - unknown
+    - Determines the persistence of rotation-related Perlin noise around the x-axis, influencing the smoothness of the rotation effect.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`rotx_lacunarity`**
-    - unknown
+    - Controls the lacunarity of rotation-related Perlin noise around the x-axis, affecting the granularity of the rotation effect.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`rotx_repeat`**
-    - unknown
+    - Specifies the repeat interval for rotation-related Perlin noise around the x-axis, defining how often the noise pattern repeats.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`roty_octaves`**
-    - unknown
+    - Specifies the number of octaves for rotation-related Perlin noise around the y-axis, affecting the level of detail in the rotation effect.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`roty_persistence`**
-    - unknown
+    - Determines the persistence of rotation-related Perlin noise around the y-axis, influencing the smoothness of the rotation effect.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`roty_lacunarity`**
-    - unknown
+    - Controls the lacunarity of rotation-related Perlin noise around the y-axis, affecting the granularity of the rotation effect.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`roty_repeat`**
-    - unknown
+    - Specifies the repeat interval for rotation-related Perlin noise around the y-axis, defining how often the noise pattern repeats.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`rotz_octaves`**
-    - unknown
+    - Specifies the number of octaves for rotation-related Perlin noise around the z-axis, affecting the level of detail in the rotation effect.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`rotz_persistence`**
-    - unknown
+    - Determines the persistence of rotation-related Perlin noise around the z-axis, influencing the smoothness of the rotation effect.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`rotz_lacunarity`**
-    - unknown
+    - Controls the lacunarity of rotation-related Perlin noise around the z-axis, affecting the granularity of the rotation effect.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`rotz_repeat`**
-    - unknown
+    - Specifies the repeat interval for rotation-related Perlin noise around the z-axis, defining how often the noise pattern repeats.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 ## Output types
 - **`opac_perlin_settings`**
     - Comfy dtype: `DICT`
-    - The configured Perlin noise parameters, ready to be applied to the OPAC node for generating dynamic visual effects.
-    - Python dtype: `Dict[str, float]`
+    - The modified schedule list after applying Perlin noise and optional easing curves, ready for use in OPAC visualization.
+    - Python dtype: `List[float]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -200,7 +201,7 @@ class SaltOPACPerlinSettings:
     RETURN_TYPES = ("DICT",)
     RETURN_NAMES = ("opac_perlin_settings",)
     FUNCTION = "process"
-    CATEGORY = "SALT/Scheduling"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling"
 
     def process(self, **kwargs):
         return (kwargs, )

@@ -2,37 +2,38 @@
 tags:
 - AlphaChannel
 - Image
+- ImageComposite
 ---
 
-# Guided Filter Alpha
+# (DEPRECATED) Guided Filter Alpha
 ## Documentation
 - Class name: `GuidedFilterAlpha`
 - Category: `image/filters`
 - Output node: `False`
 
-The GuidedFilterAlpha node applies a guided filter to images using a specified alpha channel and filter parameters. This process enhances the image by smoothing while preserving edges, guided by the alpha channel to control the blending and detail levels.
+The GuidedFilterAlpha node applies a guided filter to an image using a specified alpha mask. This process smooths the image while preserving edge details, guided by the alpha mask. It's designed for enhancing images or compositing tasks where maintaining edge integrity is crucial.
 ## Input types
 ### Required
 - **`images`**
-    - The input images to be filtered, where the alpha channel guides the filtering process.
+    - The input images to be filtered. This parameter is crucial for defining the visual content that will undergo the guided filtering process.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`alpha`**
-    - The alpha channel used to guide the filtering process, influencing how the image details are blended and preserved.
+    - The alpha mask used to guide the filtering process. It influences how the filtering is applied, particularly around edges, to preserve details.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`filter_radius`**
-    - Specifies the radius of the filter, affecting the extent of smoothing and edge preservation.
+    - Defines the radius of the filter. A larger radius increases the area of influence for smoothing, affecting the level of detail preservation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`sigma`**
-    - Controls the degree of smoothing, with higher values resulting in more blur.
+    - Controls the degree of smoothing. Higher values result in more aggressive smoothing, affecting the filter's sensitivity to edges.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The filtered images, where the guided filter has been applied according to the alpha channel and filter parameters.
+    - The filtered image, where the guided filter has been applied according to the alpha mask and other parameters.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`

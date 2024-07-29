@@ -2,7 +2,7 @@
 Comfy_KepListStuff is a collection of nodes designed to enhance the functionality of list support within ComfyUI, focusing on improving user interaction and data management.
 
 ## Tags
-DataVisualization * Image * ImageGeneration * ImageListLoader * ImageTransformation * List * ModelMerge * NumberRangeGeneration * Text * XYPlotData
+Animation * Blur * DataTypeAgnostic * DataVisualization * Debugging * Image * ImageBlend * LayeredDiffusion * LayeredDiffusionDecode * List * Math * MathematicalFunctions * Model * ModelMerge * Multiplication * String * Text * TextReplacement * VisualEffects * XYPlot * XYPlotData
 
 ## Repo info
 - Repo url: `https://github.com/M1kep/Comfy_KepListStuff.git`

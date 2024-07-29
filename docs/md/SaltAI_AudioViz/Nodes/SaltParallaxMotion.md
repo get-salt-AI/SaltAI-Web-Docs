@@ -1,110 +1,111 @@
 ---
 tags:
+- AnimationScheduling
 - Scheduling
-- VisualEffects
+- SigmaScheduling
 ---
 
 # Parallax Motion Parameter Schedule Generator
 ## Documentation
 - Class name: `SaltParallaxMotion`
-- Category: `SALT/Scheduling/Parallax Motion`
+- Category: `SALT/AudioViz/Scheduling/Parallax Motion`
 - Output node: `False`
 
-The SaltParallaxMotion node is designed to generate a schedule of parameters for parallax motion effects in audio-visual presentations. It leverages various inputs to dynamically adjust the motion and depth of elements, creating a more immersive and engaging experience.
+The SaltParallaxMotion node is designed to generate a schedule for parallax motion parameters, enabling dynamic visual effects in audio-visual presentations. It leverages Perlin noise and various movement modes to create complex, organic motion patterns that enhance the depth and immersion of visual content.
 ## Input types
 ### Required
 - **`zoom_preset`**
-    - unknown
+    - Specifies the zoom behavior for the parallax motion, allowing selection from predefined options or custom settings to tailor the visual zoom effect.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`horizontal_pan_preset`**
-    - unknown
+    - Determines the horizontal pan direction and behavior, offering a range of predefined or custom options to control the horizontal movement.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`vertical_pan_preset`**
-    - unknown
+    - Defines the vertical pan direction and behavior, with options for predefined or custom settings to manage the vertical movement.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`custom_x_min`**
-    - unknown
+    - The minimum custom horizontal position, enabling precise control over the horizontal aspect of the parallax motion.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`custom_x_max`**
-    - unknown
+    - The maximum custom horizontal position, allowing for detailed customization of the horizontal movement extent.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`custom_y_min`**
-    - unknown
+    - The minimum custom vertical position, facilitating fine-tuned control over the vertical aspect of the parallax motion.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`custom_y_max`**
-    - unknown
+    - The maximum custom vertical position, enabling detailed adjustment of the vertical movement range.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`custom_z_min`**
-    - unknown
+    - The minimum custom depth position, providing control over the depth aspect of the parallax motion.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`custom_z_max`**
-    - unknown
+    - The maximum custom depth position, allowing for precise depth customization in the parallax effect.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`parallax_intensity`**
-    - unknown
+    - Determines the intensity of the parallax effect, influencing how much the background moves relative to the foreground to create a sense of depth.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`zoom_intensity`**
-    - unknown
+    - Controls the intensity of the zoom effect, adjusting how much the zoom changes between the foreground and background layers to enhance the parallax effect.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 ## Output types
 - **`front_x_min`**
     - Comfy dtype: `FLOAT`
-    - Minimum X-axis value for the front layer's motion range, contributing to the depth effect in the parallax motion.
+    - The minimum X position for the front layer, part of the calculated parallax motion parameters.
     - Python dtype: `float`
 - **`front_x_max`**
     - Comfy dtype: `FLOAT`
-    - Maximum X-axis value for the front layer's motion range, contributing to the depth effect in the parallax motion.
+    - The maximum X position for the front layer, part of the calculated parallax motion parameters.
     - Python dtype: `float`
 - **`front_y_min`**
     - Comfy dtype: `FLOAT`
-    - Minimum Y-axis value for the front layer's motion range, contributing to the depth effect in the parallax motion.
+    - The minimum Y position for the front layer, part of the calculated parallax motion parameters.
     - Python dtype: `float`
 - **`front_y_max`**
     - Comfy dtype: `FLOAT`
-    - Maximum Y-axis value for the front layer's motion range, contributing to the depth effect in the parallax motion.
+    - The maximum Y position for the front layer, part of the calculated parallax motion parameters.
     - Python dtype: `float`
 - **`front_z_min`**
     - Comfy dtype: `FLOAT`
-    - Minimum Z-axis value for the front layer's motion range, contributing to the depth effect in the parallax motion.
+    - The minimum Z position for the front layer, indicating the depth of zoom at the start of the parallax motion.
     - Python dtype: `float`
 - **`front_z_max`**
     - Comfy dtype: `FLOAT`
-    - Maximum Z-axis value for the front layer's motion range, contributing to the depth effect in the parallax motion.
+    - The maximum Z position for the front layer, indicating the depth of zoom at the end of the parallax motion.
     - Python dtype: `float`
 - **`back_x_min`**
     - Comfy dtype: `FLOAT`
-    - Minimum X-axis value for the back layer's motion range, contributing to the depth effect in the parallax motion.
+    - The minimum X position for the back layer, calculated to create a differential motion effect with the front layer.
     - Python dtype: `float`
 - **`back_x_max`**
     - Comfy dtype: `FLOAT`
-    - Maximum X-axis value for the back layer's motion range, contributing to the depth effect in the parallax motion.
+    - The maximum X position for the back layer, calculated to create a differential motion effect with the front layer.
     - Python dtype: `float`
 - **`back_y_min`**
     - Comfy dtype: `FLOAT`
-    - Minimum Y-axis value for the back layer's motion range, contributing to the depth effect in the parallax motion.
+    - The minimum Y position for the back layer, calculated to enhance the depth effect in the parallax motion.
     - Python dtype: `float`
 - **`back_y_max`**
     - Comfy dtype: `FLOAT`
-    - Maximum Y-axis value for the back layer's motion range, contributing to the depth effect in the parallax motion.
+    - The maximum Y position for the back layer, calculated to enhance the depth effect in the parallax motion.
     - Python dtype: `float`
 - **`back_z_min`**
     - Comfy dtype: `FLOAT`
-    - Minimum Z-axis value for the back layer's motion range, contributing to the depth effect in the parallax motion.
+    - The minimum Z position for the back layer, kept constant to maintain a consistent background depth throughout the parallax motion.
     - Python dtype: `float`
 - **`back_z_max`**
     - Comfy dtype: `FLOAT`
-    - Maximum Z-axis value for the back layer's motion range, contributing to the depth effect in the parallax motion.
+    - The maximum Z position for the back layer, kept constant to maintain a consistent background depth throughout the parallax motion.
     - Python dtype: `float`
 ## Usage tips
 - Infra type: `CPU`
@@ -151,7 +152,7 @@ class SaltParallaxMotion:
     RETURN_TYPES = ("FLOAT", "FLOAT", "FLOAT", "FLOAT", "FLOAT", "FLOAT", "FLOAT", "FLOAT", "FLOAT", "FLOAT", "FLOAT", "FLOAT")
     RETURN_NAMES = ("front_x_min", "front_x_max", "front_y_min", "front_y_max", "front_z_min", "front_z_max", "back_x_min", "back_x_max", "back_y_min", "back_y_max", "back_z_min", "back_z_max")
     FUNCTION = "generate_parameters"
-    CATEGORY = "SALT/Scheduling/Parallax Motion"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling/Parallax Motion"
 
     def generate_parameters(self, zoom_preset, horizontal_pan_preset, vertical_pan_preset, 
                         custom_x_min, custom_x_max, custom_y_min, custom_y_max, 

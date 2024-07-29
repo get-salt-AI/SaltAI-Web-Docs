@@ -1,3 +1,8 @@
+---
+tags:
+- NumberRangeGeneration
+---
+
 # String Literal
 ## Documentation
 - Class name: `String Literal`
@@ -21,7 +26,7 @@ The String Literal node is designed to encapsulate and manage string values with
 - Common nodes:
     - [CLIPTextEncode](../../Comfy/Nodes/CLIPTextEncode.md)
     - [Text Concatenate](../../was-node-suite-comfyui/Nodes/Text Concatenate.md)
-    - [StringFunction|pysssss](../../ComfyUI-Custom-Scripts/Nodes/StringFunction|pysssss.md)
+    - StringFunction|pysssss
 
 
 

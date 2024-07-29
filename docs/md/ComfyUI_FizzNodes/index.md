@@ -2,11 +2,11 @@
 ComfyUI_FizzNodes offers scheduled prompts, scheduled float/int values, and wave function nodes designed for animations and utility, compatible with FrameSync and Keyframe String Generator for creating audio-synced animations in ComfyUI. It provides a set of tools and examples for users to integrate these functionalities into their ComfyUI projects, enhancing animation workflows and utility operations.
 
 ## Tags
-AnimationScheduling * Concatenate * Frame * FrameInterpolation * Interpolation * Keyframe * PromptScheduling * Scheduling * Text * VisualEffects * WavePatterns
+AnimationScheduling * ComfyrollNodes * Counting * Curve * FrameInterpolation * Index * Interpolation * Multimedia * Scheduling * SigmaScheduling * Text * VideoHelperSuite * VisualEffects * WavePatterns
 
 ## Repo info
 - Repo url: `https://github.com/FizzleDorf/ComfyUI_FizzNodes`
-- Commit hash: `0e05436071d18db18900a6e796c1358a4e9b10a3`
+- Commit hash: `86ab9619650fd33c101726f4023e4eaffc7ef5c0`
 
 ## Licenses
 - MIT: `LICENCE.txt`

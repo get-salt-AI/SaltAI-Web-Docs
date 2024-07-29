@@ -1,6 +1,8 @@
 ---
 tags:
+- Concatenate
 - Searge
+- Text
 ---
 
 # Generation Parameters v2

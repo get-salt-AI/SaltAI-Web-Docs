@@ -1,7 +1,6 @@
 ---
 tags:
-- ImageResolution
-- ImageTransformation
+- ImageSize
 ---
 
 # [Inference.Core] Pixel Perfect Resolution

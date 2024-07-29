@@ -1,7 +1,7 @@
 ---
 tags:
-- Contour
-- Image
+- Color
+- Crop
 ---
 
 # Draw Contour(s)
@@ -10,33 +10,33 @@ tags:
 - Category: `Bmad/CV/Contour`
 - Output node: `False`
 
-The DrawContours node is designed for visualizing contours on images by drawing them over the original image. It allows for customization of the contour visualization, such as selecting specific contours to draw, adjusting the thickness of the contour lines, and choosing their color, thereby enhancing the interpretability of contour-based analyses.
+The DrawContours node is designed for visualizing contours on images by drawing them over the input image. It allows for selective contour visualization and customization of the contour appearance, such as color and thickness, enhancing the interpretability of contour-based analyses in computer vision tasks.
 ## Input types
 ### Required
 - **`image`**
-    - The original image on which contours are to be drawn. It serves as the background for contour visualization.
+    - The input image on which contours will be drawn. It serves as the background for contour visualization.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`contours`**
-    - A collection of contours to be drawn on the image. Each contour is a sequence of points defining its shape.
+    - A collection of contours to be drawn on the image. Each contour is defined by a series of points.
     - Comfy dtype: `CV_CONTOURS`
-    - Python dtype: `List[List[Tuple[int, int]]]`
+    - Python dtype: `List[List[torch.Tensor]]`
 - **`index_to_draw`**
-    - Specifies which contour from the collection to draw. A value of -1 indicates that all contours should be drawn.
+    - Specifies which contour from the contours list to draw. A value of -1 indicates that all contours should be drawn.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`thickness`**
-    - The thickness of the contour lines. A negative value indicates that contours should be filled.
+    - The thickness of the contour lines. A negative value fills the contour.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`color`**
-    - The color of the contour lines. This allows for customization of the visual appearance of contours.
+    - The color of the contour lines in RGB format.
     - Comfy dtype: `COLOR`
     - Python dtype: `Tuple[int, int, int]`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The image with the specified contours drawn over it, enhancing visual analysis of contours.
+    - The output image with the specified contours drawn over it.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -47,7 +47,7 @@ The DrawContours node is designed for visualizing contours on images by drawing 
 ```python
 class DrawContours:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "image": ("IMAGE",),
@@ -71,7 +71,7 @@ class DrawContours:
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "draw"
 
-    CATEGORY = "Bmad/CV/Contour"
+    CATEGORY = f"{cv_category_path}/Contour"
 
     def draw(self, image, contours, index_to_draw, color, thickness):
         background = tensor2opencv(image)

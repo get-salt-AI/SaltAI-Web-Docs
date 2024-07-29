@@ -3,60 +3,60 @@ tags:
 - LoRA
 ---
 
-# Intrinsic_lora_sampling
+# Intrinsic Lora Sampling
 ## Documentation
 - Class name: `Intrinsic_lora_sampling`
 - Category: `KJNodes`
 - Output node: `False`
 
-This node integrates intrinsic LoRAs (Low-Rank Adaptations) into a given model to perform specialized sampling tasks, such as generating depth maps, surface normals, albedo, and shading. It leverages intrinsic LoRAs to modify the model's behavior for specific visual tasks, enabling the generation of images with detailed attributes based on the selected task.
+This node enables the application of intrinsic LoRAs (Low-Rank Adaptations) to models for specific tasks such as depth map generation, surface normal estimation, albedo, and shading. It leverages LoRAs to modify the behavior of pre-trained models without extensive retraining, focusing on enhancing or altering the model's output based on the task at hand.
 ## Input types
 ### Required
 - **`model`**
-    - The model to which intrinsic LoRAs will be applied, modifying its behavior for specific visual tasks.
+    - The model to which the intrinsic LoRA will be applied. It serves as the base for modifications and enhancements specific to the desired task.
     - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`lora_name`**
-    - The name of the intrinsic LoRa to be loaded and applied to the model, chosen from a predefined list of available LoRAs.
+    - The name of the LoRA to be applied, selected from a predefined list of available intrinsic LoRAs.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`task`**
-    - Specifies the visual task for which the image is generated, such as depth map, surface normals, albedo, or shading, influencing the modification applied to the model.
+    - Specifies the task for which the model's output is being adapted, such as depth map generation or surface normal estimation. The default task is depth map generation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`text`**
-    - Text input that, combined with the task, guides the image generation process.
+    - A text prompt that guides the model's adaptation process for the specified task, enhancing the relevance of the output to the input text.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`clip`**
-    - A CLIP model used for text encoding, aiding in the generation process by providing text-based guidance.
+    - A CLIP model used for encoding the text prompt into a format that guides the adaptation process.
     - Comfy dtype: `CLIP`
     - Python dtype: `torch.nn.Module`
 - **`vae`**
-    - A VAE model used for decoding the sampled latent representations into images.
+    - A VAE (Variational Autoencoder) model used for encoding or decoding the samples during the adaptation process.
     - Comfy dtype: `VAE`
     - Python dtype: `torch.nn.Module`
 - **`per_batch`**
-    - The number of samples processed per batch, affecting the efficiency and speed of the image generation process.
+    - The number of samples processed per batch, affecting the efficiency and speed of the adaptation process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`image`**
-    - An optional image input for tasks that require an initial image, providing a starting point for the generation process.
+    - An optional input image that can be used as a basis for the adaptation process, providing a visual context.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`optional_latent`**
-    - An optional latent representation that can be used as a starting point for the generation process, bypassing the need for an initial image.
+    - An optional latent representation that can be used instead of generating one from an input image, offering a shortcut in the adaptation process.
     - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The generated image with attributes specified by the task, such as depth map or surface normals.
+    - The output image after applying the intrinsic LoRA, adapted for the specified task.
     - Python dtype: `torch.Tensor`
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - The latent representation of the generated image, providing insight into the model's internal representation.
+    - The latent representation of the output image, providing a deeper insight into the model's adaptation process.
     - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
@@ -72,7 +72,7 @@ class Intrinsic_lora_sampling:
     @classmethod
     def INPUT_TYPES(s):
         return {"required": { "model": ("MODEL",),
-                "lora_name": (folder_paths.get_filename_list("intristic_loras"), ),
+                "lora_name": (folder_paths.get_filename_list("intrinsic_loras"), ),
                 "task": (
                 [   
                     'depth map',
@@ -105,7 +105,7 @@ with this node pack.
 """
 
     def onestepsample(self, model, lora_name, clip, vae, text, task, per_batch, image=None, optional_latent=None):
-        pbar = comfy.utils.ProgressBar(3)
+        pbar = ProgressBar(3)
 
         if optional_latent is None:
             image_list = []
@@ -137,8 +137,8 @@ with this node pack.
 
         #load lora
         model_clone = model.clone()
-        lora_path = folder_paths.get_full_path("intristic_loras", lora_name)        
-        lora = comfy.utils.load_torch_file(lora_path, safe_load=True)
+        lora_path = folder_paths.get_full_path("intrinsic_loras", lora_name)        
+        lora = load_torch_file(lora_path, safe_load=True)
         self.loaded_lora = (lora_path, lora)
 
         model_clone_with_lora = comfy.sd.load_lora_for_models(model_clone, None, lora, 1.0, 0)[0]

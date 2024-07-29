@@ -1,6 +1,7 @@
 ---
 tags:
 - Color
+- Image
 ---
 
 # FindComplementaryColor
@@ -9,34 +10,34 @@ tags:
 - Category: `Bmad/CV/Color A.`
 - Output node: `False`
 
-This node is designed to find a color complementary to the dominant color in an image, based on a given color dictionary and a specified power factor. It optionally allows for the application of a mask to focus the search on a specific area of the image.
+This node is designed to find a complementary color within an image based on a given color dictionary and a specified power level. It can optionally use a mask to limit the search area within the image. The node aims to enhance or modify images by identifying and utilizing complementary colors, thereby supporting tasks related to color theory and image editing.
 ## Input types
 ### Required
 - **`image`**
-    - The image in which to find the complementary color. It serves as the primary input for analysis.
+    - The input image on which the complementary color search is performed. It serves as the primary data for analysis.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`color_dict`**
-    - A dictionary mapping color names to their RGB values, used to identify and compare colors within the image.
+    - A dictionary mapping specific colors to their identifiers, used to determine the complementary color within the image.
     - Comfy dtype: `COLOR_DICT`
     - Python dtype: `Dict[str, Tuple[int, int, int]]`
 - **`power`**
-    - A factor that influences the selection of the complementary color, adjusting the algorithm's sensitivity or bias towards certain colors.
+    - Affects the intensity of the search for a complementary color, influencing how the complementary color is determined.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`mask`**
-    - An optional mask that can be applied to the image to limit the search for the complementary color to a specific area.
+    - An optional mask that can be applied to the image to restrict the search area for the complementary color.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`color`**
     - Comfy dtype: `COLOR`
-    - The RGB values of the complementary color found in the image.
+    - The RGB values of the identified complementary color.
     - Python dtype: `List[int]`
 - **`string`**
     - Comfy dtype: `STRING`
-    - The name of the complementary color found, as defined in the input color dictionary.
+    - The identifier of the found complementary color from the provided color dictionary.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
@@ -47,7 +48,7 @@ This node is designed to find a color complementary to the dominant color in an 
 ```python
 class FindComplementaryColor:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {
             "image": ("IMAGE",),
             "color_dict": ("COLOR_DICT",),
@@ -61,7 +62,7 @@ class FindComplementaryColor:
 
     RETURN_TYPES = ("COLOR", "STRING",)
     FUNCTION = "find_color"
-    CATEGORY = "Bmad/CV/Color A."
+    CATEGORY = f"{cv_category_path}/Color A."
 
     def find_color(self, image, color_dict, power, mask=None):
         image = tensor2opencv(image, 3)

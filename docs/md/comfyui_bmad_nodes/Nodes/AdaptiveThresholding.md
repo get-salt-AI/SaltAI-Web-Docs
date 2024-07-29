@@ -1,7 +1,7 @@
 ---
 tags:
-- Image
-- ImageThresholding
+- Color
+- Crop
 ---
 
 # AdaptiveThresholding
@@ -10,37 +10,37 @@ tags:
 - Category: `Bmad/CV/Thresholding`
 - Output node: `False`
 
-The AdaptiveThresholding node applies adaptive thresholding techniques to images, converting them from grayscale to binary images based on local image characteristics. This process enhances the visibility of features in various lighting conditions, making it suitable for preprocessing images in computer vision tasks.
+The AdaptiveThresholding node applies adaptive thresholding techniques to images, dynamically adjusting the threshold value over different regions of the image based on local image characteristics. This method is particularly useful for images with varying lighting conditions, enhancing the ability to distinguish foreground from background.
 ## Input types
 ### Required
 - **`src`**
-    - The source image to be thresholded. It is crucial for defining the input image on which adaptive thresholding will be applied.
+    - The source image to be thresholded. It is crucial for defining the input on which the adaptive thresholding operation will be performed.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`max_value`**
-    - The maximum intensity value that a pixel can have after thresholding. It determines the brightness of the white regions in the output binary image.
+    - The maximum intensity value that a pixel can have after thresholding. It determines the brightness of the foreground region in the output image.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`adaptive_method`**
-    - Specifies the method used for calculating the threshold for a pixel based on the pixel values in its neighborhood. It affects the adaptiveness of the thresholding process.
+    - Specifies the algorithm to use for calculating the threshold for a particular region of the image. It affects how the threshold values are computed across the image.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`threshold_type`**
-    - Determines whether the pixel value is set to the maximum value or zero, based on the comparison with the threshold. It influences the binary outcome of the thresholding.
+    - Determines the type of thresholding to be applied, influencing how pixels are classified into foreground and background.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`block_size`**
-    - The size of the neighborhood area used to calculate the threshold for each pixel. It impacts the granularity of the thresholding.
+    - The size of the neighborhood area used to calculate the threshold for each pixel. It influences the granularity of the thresholding.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`c`**
-    - A constant subtracted from the mean or weighted mean calculated. It fine-tunes the thresholding by adjusting the threshold value.
+    - A constant subtracted from the mean or weighted mean calculated. It allows fine-tuning of the thresholding process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The binary image resulting from the adaptive thresholding process. It highlights the features of interest in the image by converting it into a binary format.
+    - The result of applying adaptive thresholding to the input image, enhancing the distinction between regions of different intensities.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -57,13 +57,13 @@ class AdaptiveThresholding:
     adaptive_modes = list(adaptive_modes_map.keys())
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "src": ("IMAGE",),
                 "max_value": ("INT", {"default": 255, "min": 0, "max": 255, "step": 1}),
                 # maybe should just allow for 255? may just confuse some people that don't read documentation
-                "adaptive_method": (s.adaptive_modes, {"default": s.adaptive_modes[1]}),
+                "adaptive_method": (cls.adaptive_modes, {"default": cls.adaptive_modes[1]}),
                 "threshold_type": (thresh_types, {"default": thresh_types[0]}),
                 "block_size": ("INT", {"default": 4, "min": 2, "step": 2}),
                 "c": ("INT", {"default": 2, "min": -999, "step": 1}),
@@ -72,13 +72,13 @@ class AdaptiveThresholding:
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "thresh"
-    CATEGORY = "Bmad/CV/Thresholding"
+    CATEGORY = f"{cv_category_path}/Thresholding"
 
     def thresh(self, src, max_value, adaptive_method, threshold_type, block_size, c):
         # maybe allow to use from a specific channel 1st? nah, just create a node to fetch the channel
         # might be useful for other nodes
         src = tensor2opencv(src, 1)
-        src = cv.adaptiveThreshold(src, max_value, self.adaptive_modes_map[adaptive_method], \
+        src = cv.adaptiveThreshold(src, max_value, self.adaptive_modes_map[adaptive_method],
                                    thresh_types_map[threshold_type], block_size + 1, c)
         src = cv.cvtColor(src, cv.COLOR_GRAY2RGB)
         src = opencv2tensor(src)

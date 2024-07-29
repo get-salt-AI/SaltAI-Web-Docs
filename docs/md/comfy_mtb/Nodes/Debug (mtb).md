@@ -1,6 +1,8 @@
 ---
 tags:
+- DataTypeAgnostic
 - Debugging
+- Text
 ---
 
 # Debug (mtb)
@@ -9,16 +11,16 @@ tags:
 - Category: `mtb/debug`
 - Output node: `True`
 
-The MTB_Debug node is designed for experimental debugging of various Comfy values, with future enhancements planned to support more types and widgets. It allows for the inspection and output of debugging information, facilitating the troubleshooting process in development.
+The MTB_Debug node is designed for experimental debugging of various Comfy values, with plans to support additional types and widgets in the future. It allows for the inspection and logging of data passed through it, facilitating the debugging process by providing insights into the data's structure and content.
 ## Input types
 ### Required
 - **`output_to_console`**
-    - Determines whether the debug output should be printed to the console. This affects how the node processes and displays the debugging information.
+    - Determines whether the debug output should be printed to the console. Enabling this option allows for immediate visual inspection of the data being debugged, aiding in the debugging process.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`ui`**
-    - Contains the debugging output, including base64-encoded images and text, structured for UI display.
+    - Provides a structured output containing base64-encoded images and text, which can be used for debugging purposes by visually inspecting the processed data.
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -57,10 +59,11 @@ class MTB_Debug:
         }
         if output_to_console:
             for k, v in kwargs.items():
-                print(f"{k}: {v}")
+                log.info(f"{k}: {v}")
 
         for anything in kwargs.values():
             processor = processors.get(type(anything), process_text)
+
             processed_data = processor(anything)
 
             for ui_key, ui_value in processed_data.items():

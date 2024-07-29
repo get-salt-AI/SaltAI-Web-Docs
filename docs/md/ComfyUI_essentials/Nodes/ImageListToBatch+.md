@@ -3,25 +3,26 @@ tags:
 - Batch
 - Image
 - ImageBatch
+- ImageDuplication
 ---
 
 # 🔧 Image List To Batch
 ## Documentation
 - Class name: `ImageListToBatch+`
-- Category: `essentials`
+- Category: `essentials/image batch`
 - Output node: `False`
 
-The ImageListToBatch node is designed to transform a list of images into a batched tensor format, ensuring that all images conform to a uniform size through cropping and resizing operations. This process facilitates batch processing of images for neural network models, enhancing computational efficiency and consistency.
+This node is designed to convert a list of images into a single batched tensor, ensuring that all images conform to the same dimensions through optional resizing and cropping. It's particularly useful for preparing a collection of images for batch processing in machine learning models, where uniform input sizes are often required.
 ## Input types
 ### Required
 - **`image`**
-    - The 'image' parameter represents a list of images to be batched together. It is crucial for batch processing, as it allows for the transformation of individual images into a uniform tensor format, enabling efficient processing by neural network models.
+    - The list of images to be batched together. Each image in the list is processed to match the dimensions of the first image, using bicubic upsampling and center cropping if necessary.
     - Comfy dtype: `IMAGE`
     - Python dtype: `List[torch.Tensor]`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is a batched tensor of images, where individual images have been resized and cropped to match a uniform size, suitable for further processing or model inference.
+    - A single tensor containing all input images batched together. This tensor is suitable for direct use in models that require batched input.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -42,22 +43,17 @@ class ImageListToBatch:
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "execute"
     INPUT_IS_LIST = True
-    CATEGORY = "essentials"
+    CATEGORY = "essentials/image batch"
 
     def execute(self, image):
         shape = image[0].shape[1:3]
         out = []
 
         for i in range(len(image)):
-            img = p(image[i])
+            img = image[i]
             if image[i].shape[1:3] != shape:
-                transforms = T.Compose([
-                    T.CenterCrop(min(img.shape[2], img.shape[3])),
-                    T.Resize((shape[0], shape[1]), interpolation=T.InterpolationMode.BICUBIC),
-                ])
-                img = transforms(img)
-            out.append(pb(img))
-            #image[i] = pb(transforms(img))
+                img = comfy.utils.common_upscale(img.permute([0,3,1,2]), shape[1], shape[0], upscale_method='bicubic', crop='center').permute([0,2,3,1])
+            out.append(img)
 
         out = torch.cat(out, dim=0)
 

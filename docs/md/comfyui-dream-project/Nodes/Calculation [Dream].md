@@ -1,8 +1,9 @@
 ---
 tags:
-- DataTypeConversion
+- DataConversion
+- Float
+- FloatData
 - Math
-- MathematicalExpressions
 ---
 
 # 🖩 Calculation

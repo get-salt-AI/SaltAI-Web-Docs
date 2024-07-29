@@ -1,6 +1,10 @@
 ---
 tags:
-- Text
+- DataTypeAgnostic
+- Debugging
+- List
+- String
+- Time
 ---
 
 # 🔤 Text Blacklist

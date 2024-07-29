@@ -1,8 +1,7 @@
 ---
 tags:
+- Crop
 - Image
-- ImagePadding
-- ImageTransformation
 ---
 
 # ImageTransformPaddingRelative

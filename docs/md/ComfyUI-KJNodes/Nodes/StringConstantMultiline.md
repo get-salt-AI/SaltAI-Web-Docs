@@ -1,31 +1,33 @@
 ---
 tags:
+- DataTypeAgnostic
+- Debugging
 - List
-- MultilineText
+- String
 - Text
 ---
 
-# StringConstantMultiline
+# String Constant Multiline
 ## Documentation
 - Class name: `StringConstantMultiline`
 - Category: `KJNodes/constants`
 - Output node: `False`
 
-The StringConstantMultiline node is designed for handling multiline string inputs, allowing for the manipulation of text by optionally stripping newline characters. This node facilitates the processing of text data that spans multiple lines, making it suitable for applications requiring text normalization or preprocessing.
+The StringConstantMultiline node is designed to process multiline string inputs, optionally stripping newline characters based on a boolean flag. It enables the manipulation of text data by allowing the preservation or removal of formatting, making it versatile for various text processing tasks.
 ## Input types
 ### Required
 - **`string`**
-    - The 'string' parameter accepts a multiline string input, serving as the primary text data for processing. It enables the node to perform operations such as newline stripping based on the provided text.
+    - The primary text input that the node processes. It accepts multiline strings, enabling the handling of text data that spans multiple lines.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`strip_newlines`**
-    - The 'strip_newlines' parameter determines whether newline characters in the input text should be removed, allowing for flexible text manipulation based on the user's needs.
+    - A boolean flag that determines whether newline characters in the input string should be removed. When set to true, it strips newline characters, flattening the text to a single line.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`string`**
     - Comfy dtype: `STRING`
-    - Outputs the processed string, which may have newline characters removed based on the 'strip_newlines' parameter, making it suitable for further text-based operations or analyses.
+    - Outputs the processed string, which may have newline characters removed based on the input flag. This allows for flexible text manipulation and formatting.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`

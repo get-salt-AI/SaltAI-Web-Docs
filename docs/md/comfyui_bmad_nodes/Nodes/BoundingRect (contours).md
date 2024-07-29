@@ -1,7 +1,7 @@
 ---
 tags:
-- Contour
-- Image
+- Color
+- Crop
 ---
 
 # BoundingRect (contours)
@@ -10,21 +10,21 @@ tags:
 - Category: `Bmad/CV/Contour`
 - Output node: `False`
 
-The BoundingRect node is designed to calculate the bounding rectangle of a contour. It abstracts the process of determining the smallest rectangle that can completely enclose the contour, providing a simple way to understand the spatial extent of the contour.
+This node calculates the bounding rectangle of a contour. It is designed to provide a simple way to obtain the smallest rectangle that can fully enclose a contour. This functionality is crucial for various computer vision tasks where understanding the spatial extent of objects within an image is necessary.
 ## Input types
 ### Required
 - **`contour`**
-    - The contour for which the bounding rectangle is to be calculated. This input is crucial as it directly influences the output by determining the spatial extent of the given contour.
+    - A single contour for which the bounding rectangle will be calculated. This input is crucial for determining the spatial boundaries of the object represented by the contour.
     - Comfy dtype: `CV_CONTOUR`
-    - Python dtype: `CV_CONTOUR`
+    - Python dtype: `ndarray`
 - **`return_mode`**
-    - Specifies the mode of rectangle calculation to be used. This affects how the bounding rectangle's dimensions are computed and returned.
+    - Specifies the mode of calculation for the bounding rectangle, affecting the format of the returned values.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `rect_modes`
+    - Python dtype: `str`
 ## Output types
 - **`int`**
     - Comfy dtype: `INT`
-    - The output is the bounding rectangle of the specified contour, represented as a tuple of four integers (x, y, width, height), where (x, y) is the top-left corner of the rectangle.
+    - The coordinates of the top-left corner and the dimensions of the bounding rectangle (x, y, width, height). This output provides essential spatial information about the contour.
     - Python dtype: `Tuple[int, int, int, int]`
 ## Usage tips
 - Infra type: `CPU`
@@ -35,7 +35,7 @@ The BoundingRect node is designed to calculate the bounding rectangle of a conto
 ```python
 class ContourGetBoundingRect:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "contour": ("CV_CONTOUR",),
@@ -43,9 +43,9 @@ class ContourGetBoundingRect:
             },
         }
 
-    RETURN_TYPES = tuple(["INT" for x in range(4)])
+    RETURN_TYPES = tuple(["INT" for _ in range(4)])
     FUNCTION = "compute"
-    CATEGORY = "Bmad/CV/Contour"
+    CATEGORY = f"{cv_category_path}/Contour"
 
     def compute(self, contour, return_mode):
         if contour is None:

@@ -1,8 +1,7 @@
 ---
 tags:
-- ImageScaling
+- ImageTransformation
 - ImageUpscaling
-- Upscale
 ---
 
 # TwoSamplersForMask Upscaler Provider

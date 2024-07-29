@@ -10,27 +10,27 @@ tags:
 - Category: `ImpactPack/Util`
 - Output node: `True`
 
-The ImpactSEGSPicker node is designed to select and refine segmentation elements based on user-defined criteria, enhancing the precision of image segmentation outputs. It allows for the customization of segmentation results by applying selection logic to identify and retain only the relevant segments, potentially incorporating fallback options for image processing.
+The ImpactSEGSPicker node is designed for selecting specific segments from a collection based on user-defined criteria. It facilitates the generation of candidate images from the selected segments, enhancing the flexibility in processing and visualizing segment data.
 ## Input types
 ### Required
 - **`picks`**
-    - Specifies the indices of the segmentation elements to be selected, allowing for the customization of the output by retaining only the desired segments.
+    - A comma-separated list of indices specifying which segments to pick from the collection. This parameter allows users to selectively process and output only the segments of interest.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`segs`**
-    - The input segmentation elements to be processed and refined based on the selection criteria.
+    - The collection of segments from which specific items are to be selected. This parameter is central to the node's operation, serving as the input data that will be filtered according to the 'picks' parameter.
     - Comfy dtype: `SEGS`
-    - Python dtype: `tuple`
+    - Python dtype: `List[Segment]`
 ### Optional
 - **`fallback_image_opt`**
-    - An optional fallback image to be used for segment processing in cases where the original segment data is insufficient.
+    - An optional image used to adjust the scale of segments to match its dimensions. This parameter is useful for ensuring consistency in segment sizes when necessary.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `PIL.Image.Image`
+    - Python dtype: `Optional[Image]`
 ## Output types
 - **`segs`**
     - Comfy dtype: `SEGS`
-    - The refined set of segmentation elements after applying the selection and processing logic.
-    - Python dtype: `tuple`
+    - The modified collection of segments after applying the selection and scaling operations, ready for further processing or visualization.
+    - Python dtype: `Tuple[List[Segment]]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -59,7 +59,8 @@ class SEGSPicker:
 
     CATEGORY = "ImpactPack/Util"
 
-    def doit(self, picks, segs, fallback_image_opt=None, unique_id=None):
+    @staticmethod
+    def doit(picks, segs, fallback_image_opt=None, unique_id=None):
         if fallback_image_opt is not None:
             segs = core.segs_scale_match(segs, fallback_image_opt.shape)
 

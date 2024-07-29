@@ -1,6 +1,7 @@
 ---
 tags:
 - ControlNet
+- ControlNetLoader
 ---
 
 # Reference ControlNet (Finetune) 🛂🅐🅒🅝

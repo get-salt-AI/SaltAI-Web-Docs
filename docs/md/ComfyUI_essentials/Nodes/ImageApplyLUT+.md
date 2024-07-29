@@ -1,41 +1,42 @@
 ---
 tags:
 - Color
+- ImageEnhancement
 ---
 
 # 🔧 Image Apply LUT
 ## Documentation
 - Class name: `ImageApplyLUT+`
-- Category: `essentials`
+- Category: `essentials/image processing`
 - Output node: `False`
 
-The ImageApplyLUT+ node applies a Look-Up Table (LUT) to an image or a batch of images to adjust their colors, optionally applying color space transformations and blending the original images with their LUT-applied versions based on a specified strength. This process can enhance or stylize images by altering their color profiles.
+This node applies a Look-Up Table (LUT) to an image or a batch of images to modify their appearance based on the LUT's defined transformations. It supports optional gamma correction, clipping of LUT values, and blending the transformed image with the original based on a specified strength. This process allows for sophisticated color grading and image effect applications.
 ## Input types
 ### Required
 - **`image`**
-    - The image or batch of images to which the LUT will be applied. This input is crucial for defining the visual content that will undergo color transformation.
+    - The image or batch of images to which the LUT will be applied. This is the primary input that undergoes transformation.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`lut_file`**
-    - The filename of the Look-Up Table (LUT) to be applied. This determines the specific color transformation that will be executed on the input images.
+    - The filename of the Look-Up Table (LUT) to be applied. This determines the specific color transformation to be executed.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-- **`log_colorspace`**
-    - A boolean flag indicating whether to apply a logarithmic color space transformation to the images before and after applying the LUT, enhancing the effect of the LUT under certain conditions.
+- **`gamma_correction`**
+    - A boolean flag indicating whether gamma correction should be applied to the image before and after LUT application, enhancing the visual quality.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`clip_values`**
-    - A boolean flag that specifies whether to clip the color values of the images to fit within the LUT's domain, ensuring that the output colors are valid within the specified color space.
+    - A boolean flag that, when true, clips the LUT values to ensure they stay within the defined domain, preventing potential color distortion.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`strength`**
-    - A floating-point value that determines the blend strength between the original images and their LUT-applied versions, allowing for subtle to significant alterations in the image's appearance.
+    - A float value between 0 and 1 indicating the blend strength of the LUT-applied image with the original image, allowing for subtle to full application of the LUT effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The transformed images after applying the LUT, optional color space transformation, and blending based on the specified strength. This output showcases the final stylized or color-corrected images.
+    - The transformed image or batch of images after the LUT has been applied, optionally gamma-corrected and blended with the original based on the specified strength.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -50,20 +51,21 @@ class ImageApplyLUT:
         return {
             "required": {
                 "image": ("IMAGE",),
-                "lut_file": ([f for f in os.listdir(LUTS_DIR) if f.endswith('.cube')], ),
-                "log_colorspace": ("BOOLEAN", { "default": False }),
-                "clip_values": ("BOOLEAN", { "default": False }),
+                "lut_file": ([f for f in os.listdir(LUTS_DIR) if f.lower().endswith('.cube')], ),
+                "gamma_correction": ("BOOLEAN", { "default": True }),
+                "clip_values": ("BOOLEAN", { "default": True }),
                 "strength": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 1.0, "step": 0.1 }),
             }}
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "execute"
-    CATEGORY = "essentials"
+    CATEGORY = "essentials/image processing"
 
     # TODO: check if we can do without numpy
-    def execute(self, image, lut_file, log_colorspace, clip_values, strength):
+    def execute(self, image, lut_file, gamma_correction, clip_values, strength):
         from colour.io.luts.iridas_cube import read_LUT_IridasCube
 
+        device = image.device
         lut = read_LUT_IridasCube(os.path.join(LUTS_DIR, lut_file))
         lut.name = lut_file
 
@@ -80,22 +82,22 @@ class ImageApplyLUT:
 
         out = []
         for img in image: # TODO: is this more resource efficient? should we use a batch instead?
-            lut_img = img.numpy().copy()
+            lut_img = img.cpu().numpy().copy()
 
             is_non_default_domain = not np.array_equal(lut.domain, np.array([[0., 0., 0.], [1., 1., 1.]]))
             dom_scale = None
             if is_non_default_domain:
                 dom_scale = lut.domain[1] - lut.domain[0]
                 lut_img = lut_img * dom_scale + lut.domain[0]
-            if log_colorspace:
+            if gamma_correction:
                 lut_img = lut_img ** (1/2.2)
             lut_img = lut.apply(lut_img)
-            if log_colorspace:
+            if gamma_correction:
                 lut_img = lut_img ** (2.2)
             if is_non_default_domain:
                 lut_img = (lut_img - lut.domain[0]) / dom_scale
 
-            lut_img = torch.from_numpy(lut_img)
+            lut_img = torch.from_numpy(lut_img).to(device)
             if strength < 1.0:
                 lut_img = strength * lut_img + (1 - strength) * img
             out.append(lut_img)

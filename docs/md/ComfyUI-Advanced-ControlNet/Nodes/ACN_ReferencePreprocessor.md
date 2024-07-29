@@ -1,8 +1,9 @@
 ---
 tags:
-- DepthMap
-- Image
-- ImagePreprocessing
+- ControlNet
+- DepthMapEstimation
+- Inpaint
+- LineExtraction
 ---
 
 # Reference Preproccessor 🛂🅐🅒🅝

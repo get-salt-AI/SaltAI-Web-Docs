@@ -1,37 +1,41 @@
 ---
 tags:
 - Latent
+- LatentBatch
+- LatentBlend
+- Normalization
+- VAE
 ---
 
 # 🔧 SDXL Empty Latent Size Picker
 ## Documentation
 - Class name: `SDXLEmptyLatentSizePicker+`
-- Category: `essentials`
+- Category: `essentials/utilities`
 - Output node: `False`
 
-This node is designed to generate a tensor representing an empty latent space of a specified size, tailored for use in generative models. It allows for the dynamic creation of latent spaces based on resolution and batch size inputs, facilitating the generation of content at varying dimensions.
+This node is designed to select an appropriate latent size for a given resolution and batch size, specifically tailored for the SDXL model. It calculates the dimensions of the latent space required to accommodate the specified resolution and batch size, ensuring compatibility with the model's architecture.
 ## Input types
 ### Required
 - **`resolution`**
-    - Specifies the resolution of the generated latent space, influencing the dimensions of the output tensor. The choice of resolution directly impacts the size and aspect ratio of the generated content.
+    - Specifies the desired output resolution from a predefined list of resolutions, each associated with a scaling factor. This parameter is crucial for determining the dimensions of the generated latent space, directly influencing the quality and detail of the generated content.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`batch_size`**
-    - Determines the number of latent spaces to generate in a single batch, allowing for efficient bulk generation of content.
+    - Defines the number of latent samples to generate in one batch. This parameter is essential for managing the computational load and memory usage, impacting the efficiency of the generation process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`LATENT`**
     - Comfy dtype: `LATENT`
-    - The generated empty latent space tensor, ready for further processing or generation tasks.
+    - A tensor representing the generated latent space, structured to match the SDXL model's expected input dimensions.
     - Python dtype: `torch.Tensor`
 - **`width`**
     - Comfy dtype: `INT`
-    - The width dimension of the generated latent space, derived from the specified resolution.
+    - The width of the latent space, derived from the specified resolution.
     - Python dtype: `int`
 - **`height`**
     - Comfy dtype: `INT`
-    - The height dimension of the generated latent space, derived from the specified resolution.
+    - The height of the latent space, derived from the specified resolution.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `GPU`
@@ -54,7 +58,7 @@ class SDXLEmptyLatentSizePicker:
     RETURN_TYPES = ("LATENT","INT","INT",)
     RETURN_NAMES = ("LATENT","width", "height",)
     FUNCTION = "execute"
-    CATEGORY = "essentials"
+    CATEGORY = "essentials/utilities"
 
     def execute(self, resolution, batch_size):
         width, height = resolution.split(" ")[0].split("x")

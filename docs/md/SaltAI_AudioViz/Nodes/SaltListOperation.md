@@ -1,42 +1,45 @@
 ---
 tags:
+- AnimationScheduling
 - Scheduling
+- SigmaScheduling
+- VisualEffects
 ---
 
 # Schedule Numeric Operation
 ## Documentation
 - Class name: `SaltListOperation`
-- Category: `SALT/Scheduling/Filter`
+- Category: `SALT/AudioViz/Scheduling/Filter`
 - Output node: `False`
 
-The SaltListOperation node is designed for performing numeric operations on a schedule list, allowing for dynamic adjustments to scheduled values based on predefined operations. This node facilitates the manipulation of numeric lists within a scheduling context, enabling more complex and tailored scheduling behaviors.
+The SaltListOperation node is designed to perform specified numeric operations on schedule lists, enabling dynamic adjustments and manipulations of scheduling data. It abstracts the complexity of numeric list operations, providing a streamlined way to apply transformations like addition, subtraction, multiplication, or division to elements of scheduling lists.
 ## Input types
 ### Required
 - **`operation`**
-    - The 'operation' parameter specifies the type of numeric operation to apply to the schedule lists. Its selection determines how the lists' values are manipulated, impacting the resulting schedule's characteristics.
+    - Specifies the type of numeric operation to apply to the elements of the primary and secondary lists. This determines how the lists are combined or modified, impacting the final scheduling outcome.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `str`
 - **`output_type`**
-    - The 'output_type' parameter defines the desired data type of the operation's result, allowing for customization of the output format to match further processing requirements.
+    - Determines the data type of the output list after the operation is applied, allowing for customization of the result's format.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `str`
 ### Optional
 - **`schedule_list_a`**
-    - The 'schedule_list_a' parameter represents the primary numeric list to be operated on, serving as one of the inputs for the specified operation.
+    - The primary list of scheduled numeric values to be operated on. It serves as the base for applying operations in conjunction with another list or a single value, affecting the node's execution and the resulting list.
     - Comfy dtype: `*`
     - Python dtype: `List[float]`
 - **`schedule_list_b`**
-    - The 'schedule_list_b' parameter is the secondary numeric list involved in operations that require two input lists, such as 'add' or 'subtract'.
+    - The secondary list of scheduled numeric values or a single numeric value to be used in the operation with the primary list. Its role is to modify or influence the outcome of the operation applied to the primary list, enhancing the flexibility in scheduling adjustments.
     - Comfy dtype: `*`
-    - Python dtype: `List[float]`
+    - Python dtype: `Union[List[float], float]`
 - **`expression`**
-    - The 'expression' parameter allows for the input of a custom mathematical expression to be applied to the schedule lists, offering advanced flexibility in list manipulation.
+    - A custom mathematical expression used for the 'custom_expression' operation, providing flexibility for complex operations beyond the predefined ones.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`schedule_list`**
     - Comfy dtype: `*`
-    - The 'schedule_list' is the outcome of applying the specified operation to the input schedule lists. It reflects the modified sequence of values, ready for further scheduling use.
+    - The resulting list after applying the specified operation to the input lists. It reflects the adjustments made to the scheduling data, showcasing the effect of the operation.
     - Python dtype: `List[float]`
 ## Usage tips
 - Infra type: `CPU`
@@ -67,7 +70,7 @@ class SaltListOperation:
     RETURN_TYPES = (WILDCARD,)
     RETURN_NAMES = ("schedule_list",)
     FUNCTION = "calculate"
-    CATEGORY = "SALT/Scheduling/Filter"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling/Filter"
 
     def calculate(self, operation, output_type, schedule_list_a=[0], schedule_list_b=[0], expression=""):
         if not isinstance(schedule_list_a, list):

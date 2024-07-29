@@ -4,21 +4,21 @@
 - Category: `SALT/Language Toolkit/Messages`
 - Output node: `False`
 
-The LLMChatMessagesAdv node is designed to prepare chat messages by encapsulating system and user prompts into a structured format. This node facilitates the creation of chat interactions by organizing input prompts into a sequence of messages, thereby enabling a more structured and coherent dialogue flow.
+The LLMChatMessagesAdv node is designed to prepare chat messages by encapsulating system and user prompts into a structured format. This node plays a crucial role in initializing and structuring conversation data for further processing or interaction within a chat-based application.
 ## Input types
 ### Required
 - **`system_prompt`**
-    - The system prompt represents the initial message or context provided by the system. It sets the stage for the chat interaction, guiding the user's response.
+    - The system prompt represents the initial message or context provided by the system, setting the stage for the user's response. It is crucial for defining the scenario or environment in which the user interaction takes place.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`user_prompt`**
-    - The user prompt captures the user's input or question in response to the system prompt. It plays a crucial role in driving the conversation forward.
+    - The user prompt captures the user's input or response to the system's initial message. It is essential for driving the conversation forward and determining the direction of the interaction.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`llm_message`**
     - Comfy dtype: `LIST`
-    - A list of chat messages that includes both the system and user prompts, structured for further processing or interaction.
+    - A list of structured chat messages that include both the system's and the user's inputs, ready for further processing or analysis.
     - Python dtype: `List[ChatMessage]`
 ## Usage tips
 - Infra type: `CPU`
@@ -48,8 +48,8 @@ class LLMChatMessagesAdv:
 
     def prepare_messages(self, system_prompt, user_prompt):
         messages = [
-                ChatMessage(role=MessageRole.SYSTEM, content=system_prompt ),
-                ChatMessage(role=MessageRole.USER, content=user_prompt ),
+                ChatMessage(role=MessageRole.SYSTEM, content=repr(system_prompt) ),
+                ChatMessage(role=MessageRole.USER, content=repr(user_prompt) ),
         ]
         return (messages,)
 

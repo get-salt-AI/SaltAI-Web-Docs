@@ -2,6 +2,7 @@
 tags:
 - Mask
 - MaskRegion
+- Segmentation
 ---
 
 # Add Noise to Mask Regions

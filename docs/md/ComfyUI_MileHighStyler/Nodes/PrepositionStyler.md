@@ -1,6 +1,5 @@
 ---
 tags:
-- Prompt
 - PromptStyling
 ---
 

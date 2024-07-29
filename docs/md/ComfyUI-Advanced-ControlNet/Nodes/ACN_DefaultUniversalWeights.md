@@ -1,25 +1,30 @@
 ---
 tags:
 - ControlNet
-- Weight
+- ControlNetLoader
 ---
 
-# Force Default Weights 🛂🅐🅒🅝
+# Default Weights 🛂🅐🅒🅝
 ## Documentation
 - Class name: `ACN_DefaultUniversalWeights`
 - Category: `Adv-ControlNet 🛂🅐🅒🅝/weights`
 - Output node: `False`
 
-This node is designed to generate a default set of universal weights for advanced control networks. It focuses on providing a baseline weight configuration that can be applied across various scenarios, ensuring a consistent starting point for further customization and optimization.
+This node is designed to dynamically adjust the weights for advanced control networks in image generation tasks. It allows for the customization of weight parameters to influence the generation process, providing flexibility in achieving desired visual outcomes.
 ## Input types
+### Optional
+- **`cn_extras`**
+    - Allows for the inclusion of additional, custom control network weight parameters, enhancing the node's adaptability to specific needs.
+    - Comfy dtype: `CN_WEIGHTS_EXTRAS`
+    - Python dtype: `dict[str]`
 ## Output types
 - **`CN_WEIGHTS`**
     - Comfy dtype: `CONTROL_NET_WEIGHTS`
-    - The generated universal control network weights, ready for application within advanced control network configurations.
+    - The adjusted control network weights, ready for use in the image generation process.
     - Python dtype: `ControlWeights`
 - **`TK_SHORTCUT`**
     - Comfy dtype: `TIMESTEP_KEYFRAME`
-    - A timestep keyframe group that incorporates the generated control weights, facilitating their integration into the network's temporal dynamics.
+    - A keyframe group that encapsulates the timing and application of the control weights throughout the generation process.
     - Python dtype: `TimestepKeyframeGroup`
 ## Usage tips
 - Infra type: `CPU`
@@ -32,6 +37,9 @@ class DefaultWeights:
     @classmethod
     def INPUT_TYPES(s):
         return {
+            "optional": {
+                "cn_extras": ("CN_WEIGHTS_EXTRAS",),
+            }
         }
     
     RETURN_TYPES = ("CONTROL_NET_WEIGHTS", "TIMESTEP_KEYFRAME",)
@@ -40,8 +48,8 @@ class DefaultWeights:
 
     CATEGORY = "Adv-ControlNet 🛂🅐🅒🅝/weights"
 
-    def load_weights(self):
-        weights = ControlWeights.default()
+    def load_weights(self, cn_extras: dict[str]={}):
+        weights = ControlWeights.default(extras=cn_extras)
         return (weights, TimestepKeyframeGroup.default(TimestepKeyframe(control_weights=weights))) 
 
 ```

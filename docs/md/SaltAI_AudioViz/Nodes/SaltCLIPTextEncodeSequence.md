@@ -1,50 +1,50 @@
 ---
 tags:
-- CLIP
 - CLIPConditioning
+- CLIPTextEncoding
 - Conditioning
 ---
 
 # CLIPTextEncode Scheduled Sequence
 ## Documentation
 - Class name: `SaltCLIPTextEncodeSequence`
-- Category: `SALT/Scheduling/Conditioning`
+- Category: `SALT/AudioViz/Scheduling/Conditioning`
 - Output node: `False`
 
-The SaltCLIPTextEncodeSequence node is designed for generating a sequence of conditionings based on a schedule of text prompts for audio visualization. It utilizes CLIP models to encode text prompts into conditionings, adjusting for frame counts and applying token normalization and weight interpretation strategies to tailor the output for specific visualization needs.
+The SaltCLIPTextEncodeSequence node is designed for generating a sequence of conditioning data based on textual descriptions over a specified frame count. It leverages CLIP models to encode text into a format suitable for guiding generative models, with additional parameters to control the normalization and interpretation of token weights. This node is particularly useful for applications requiring dynamic content generation over time, such as animations or video content creation.
 ## Input types
 ### Required
 - **`clip`**
-    - The CLIP model used for encoding the text prompts into a conditioning format. It plays a crucial role in interpreting the text and converting it into a form that can be utilized for generating visualizations.
+    - The CLIP model used for text encoding. It plays a crucial role in converting textual descriptions into a format that can be understood by generative models.
     - Comfy dtype: `CLIP`
-    - Python dtype: `object`
+    - Python dtype: `torch.nn.Module`
 - **`token_normalization`**
-    - Specifies the method for normalizing the tokens generated from the text prompts, affecting how the text is processed and encoded into conditionings.
+    - Specifies the method for normalizing tokens, which can affect the encoding process and the resulting conditioning data. Options include none, mean, length, and length+mean, allowing for flexibility in handling token data.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 - **`weight_interpretation`**
-    - Determines how the weights are interpreted during the encoding process, influencing the final conditioning output for visualization.
+    - Determines how weights are interpreted during the encoding process, with options like comfy, A1111, compel, and comfy++. This parameter influences the generation of conditioning data by adjusting the significance of different tokens.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 - **`frame_count`**
-    - The total number of frames for which conditionings need to be generated, guiding the sequence generation process.
+    - The number of frames for which conditioning data is generated. This parameter sets the length of the sequence, enabling the creation of dynamic content over time.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`text`**
-    - A schedule of text prompts provided in a structured format, dictating the content and timing for each frame in the sequence.
+    - Textual descriptions provided as input, which are encoded into conditioning data. Supports multiline input and dynamic prompts, allowing for detailed and varied content generation.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`conditioning_sequence`**
     - Comfy dtype: `CONDITIONING`
-    - A sequence of conditionings generated based on the provided text prompts and frame count, tailored for audio visualization purposes.
-    - Python dtype: `List[object]`
+    - The generated sequence of conditioning data, suitable for guiding generative models over the specified frame count.
+    - Python dtype: `List[torch.Tensor]`
 - **`frame_count`**
     - Comfy dtype: `INT`
-    - The total number of frames for which conditionings have been generated, reflecting the input frame count.
+    - The number of frames for which conditioning data has been generated, confirming the length of the output sequence.
     - Python dtype: `int`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -70,7 +70,7 @@ class SaltCLIPTextEncodeSequence:
     RETURN_NAMES = ("conditioning_sequence", "frame_count")
 
     FUNCTION = "encode"
-    CATEGORY = "SALT/Scheduling/Conditioning"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling/Conditioning"
 
     def encode(self, clip, text, frame_count, token_normalization, weight_interpretation):
         

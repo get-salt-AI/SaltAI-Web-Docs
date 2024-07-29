@@ -1,7 +1,8 @@
 ---
 tags:
 - DataTypeConversion
-- NumericConversion
+- Float
+- FloatList
 ---
 
 # ImpactValueReceiver

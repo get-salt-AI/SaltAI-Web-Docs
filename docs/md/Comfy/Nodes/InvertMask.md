@@ -1,6 +1,7 @@
 ---
 tags:
-- MaskInversion
+- Mask
+- MaskRegion
 ---
 
 # InvertMask

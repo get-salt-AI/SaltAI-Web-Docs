@@ -1,8 +1,7 @@
 ---
 tags:
 - Checkpoint
-- Loader
-- ModelIO
+- CheckpointLoader
 - ModelLoader
 ---
 
@@ -12,15 +11,15 @@ tags:
 - Category: `advanced/model_merging`
 - Output node: `True`
 
-The CLIPSave node is designed for saving CLIP models along with additional information such as prompts and extra PNG metadata. It encapsulates the functionality to serialize and store the model's state, facilitating the preservation and sharing of model configurations and their associated creative prompts.
+The CLIPSave node is designed for persisting CLIP model states or outputs along with optional metadata to a specified file. It encapsulates the functionality to serialize and save the model's state, facilitating the sharing or storage of model configurations and their associated data.
 ## Input types
 ### Required
 - **`clip`**
-    - The CLIP model to be saved. This parameter is crucial as it represents the model whose state is to be serialized and stored.
+    - The CLIP model instance to be saved. This parameter is crucial as it represents the model whose state or output is being persisted.
     - Comfy dtype: `CLIP`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `supported_models_base.ClipTarget`
 - **`filename_prefix`**
-    - A prefix for the filename under which the model and its additional information will be saved. This parameter allows for organized storage and easy retrieval of saved models.
+    - A prefix for the filename under which the CLIP model and its data will be saved. This allows for organized storage and easy retrieval of saved models.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
@@ -59,7 +58,7 @@ class CLIPSave:
                 for x in extra_pnginfo:
                     metadata[x] = json.dumps(extra_pnginfo[x])
 
-        comfy.model_management.load_models_gpu([clip.load_model()])
+        comfy.model_management.load_models_gpu([clip.load_model()], force_patch_weights=True)
         clip_sd = clip.get_sd()
 
         for prefix in ["clip_l.", "clip_g.", ""]:

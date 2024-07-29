@@ -1,7 +1,7 @@
 ---
 tags:
 - AnimationScheduling
-- Scheduling
+- SigmaScheduling
 ---
 
 # String Schedule 📅🅕🅝
@@ -10,58 +10,58 @@ tags:
 - Category: `FizzNodes 📅🅕🅝/ScheduleNodes`
 - Output node: `False`
 
-The StringSchedule node is designed to manage and schedule string-based content for dynamic animation or content generation. It leverages scheduling settings to interpolate between different string values over a series of frames, facilitating the creation of animated text or evolving narratives.
+This node is designed for scheduling and animating text and other elements within a given frame range. It supports dynamic text updates, conditional formatting based on frame-specific parameters, and the integration of various inputs to create complex animation sequences. The node facilitates the creation of animated visual content by interpolating between values or states across frames, enabling the development of engaging and dynamic presentations.
 ## Input types
 ### Required
 - **`text`**
-    - This input takes a multiline string that represents the text to be scheduled and animated, serving as the primary content for the scheduling process.
+    - The primary text input for animation, serving as the base content or narrative to be animated or modified across frames.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`max_frames`**
-    - Specifies the maximum number of frames for the scheduling, determining the length of the animation or content generation process.
+    - Specifies the maximum number of frames for the animation, defining the length of the animation sequence.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`current_frame`**
-    - Indicates the current frame number in the scheduling process, used to calculate the specific string content to be displayed at any given frame.
+    - Indicates the current frame number within the animation sequence, used to determine the specific modifications or animations to apply.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`print_output`**
-    - A boolean flag that, when set to true, enables the printing of the scheduling process's output for debugging or tracking purposes.
+    - A boolean flag to enable or disable printing of the animation output for debugging or preview purposes.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`pre_text`**
-    - An optional string input that is prepended to the main text before scheduling.
+    - Optional text input that precedes the main text, used for adding introductory or contextual content to the animation.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`app_text`**
-    - An optional string input that is appended to the main text after scheduling.
+    - Optional text input that appends to the main text, used for adding concluding or additional content to the animation.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`pw_a`**
-    - A parameter weight used in the scheduling algorithm to adjust the influence of certain aspects of the text.
+    - A parameter weight used for adjusting or influencing the animation or text modification process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pw_b`**
-    - A parameter weight similar to pw_a, used for adjusting the scheduling algorithm's influence on the text.
+    - A parameter weight used for adjusting or influencing the animation or text modification process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pw_c`**
-    - Another parameter weight for fine-tuning the scheduling algorithm's effect on the text.
+    - A parameter weight used for adjusting or influencing the animation or text modification process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pw_d`**
-    - A parameter weight that works alongside pw_a, pw_b, and pw_c to customize the scheduling outcome.
+    - A parameter weight used for adjusting or influencing the animation or text modification process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`POS`**
     - Comfy dtype: `STRING`
-    - The output is a dynamically scheduled string, representing the positive aspect of the text adjusted according to the current frame and scheduling settings.
+    - Outputs the positive conditioning or formatted text for the current frame, reflecting dynamic changes or emphasis.
     - Python dtype: `str`
 - **`NEG`**
     - Comfy dtype: `STRING`
-    - The output is a dynamically scheduled string, representing the negative aspect of the text adjusted according to the current frame and scheduling settings.
+    - Outputs the negative conditioning or formatted text for the current frame, providing contrast or alternative emphasis.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -108,6 +108,7 @@ class StringSchedule:
         pw_c = pw_c,
         pw_d = pw_d,
         start_frame = 0,
+        end_frame=0,
         width = None,
         height = None,
         crop_w = None,

@@ -1,31 +1,34 @@
 ---
 tags:
 - Latent
-- LatentBatch
+- LatentBlend
+- ModelGuidance
+- ModelPatch
+- VAE
 ---
 
-# GetLatentsFromBatchIndexed
+# Get Latents From Batch Indexed
 ## Documentation
 - Class name: `GetLatentsFromBatchIndexed`
 - Category: `KJNodes`
 - Output node: `False`
 
-This node is designed to select and return specific latents from a given batch based on provided indices. It facilitates the extraction of a subset of latents for further processing or analysis, making it a crucial component for operations requiring targeted manipulation or inspection of latent spaces.
+This node is designed to select and return specific latents from a given batch based on provided indices. It facilitates the extraction of a subset of latents for further processing or analysis, making it a crucial component in workflows that require manipulation or inspection of individual or groups of latents within a larger batch.
 ## Input types
 ### Required
 - **`latents`**
-    - The 'latents' parameter represents the batch of latents from which specific items will be selected. It is crucial for determining the scope of latents available for selection.
+    - Represents the batch of latents from which specific items will be selected. It is essential for determining the scope of data the node will operate on.
     - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 - **`indexes`**
-    - The 'indexes' parameter specifies the indices of the latents to be selected from the batch. It plays a key role in identifying which latents are to be extracted and processed.
+    - A string of comma-separated indices indicating which latents to extract from the batch. This parameter allows for flexible selection of specific latents, enabling targeted manipulation or analysis.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`latent`**
     - Comfy dtype: `LATENT`
     - The output is a modified version of the input latent batch, containing only the latents at the specified indices.
-    - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
+    - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

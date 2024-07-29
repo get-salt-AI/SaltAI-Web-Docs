@@ -1,62 +1,62 @@
-# AddLabel
+# Add Label
 ## Documentation
 - Class name: `AddLabel`
 - Category: `KJNodes/text`
 - Output node: `False`
 
-The `AddLabel` node is designed to add textual labels to images, allowing for customization of text position, size, color, and the label's background color. It supports both single and batch processing, with the ability to handle multiple captions for batch images.
+The AddLabel node is designed to add textual labels to images, allowing for customization of text position, size, color, and font. It supports various directions for label placement, including overlaying text directly on the image or positioning it around the image's edges, enhancing the image's informational content or aesthetic appeal.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to which the label will be added. This is the primary canvas for label addition.
+    - The input image to which the label will be added. This is the primary canvas for the label application.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `PIL.Image.Image`
 - **`text_x`**
-    - The x-coordinate for the starting point of the text on the image. It determines where horizontally the text will begin.
+    - The x-coordinate for the starting point of the text on the image. It determines the horizontal position of the label.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`text_y`**
-    - The y-coordinate for the starting point of the text on the image. It determines where vertically the text will begin.
+    - The y-coordinate for the starting point of the text on the image. It determines the vertical position of the label.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - The height of the label area to be added to the image. It affects the overall height of the resulting image.
+    - The height of the label area in pixels. This can affect the overall size of the image if the label is not overlaid.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`font_size`**
-    - The size of the font used for the label text. This determines how large the text appears on the label.
+    - The size of the font used for the label text, impacting the readability and visual impact of the label.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`font_color`**
-    - The color of the font used for the label text. It defines the visual appearance of the text.
+    - The color of the font used for the label text, allowing for visual contrast or harmony with the image and label background.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`label_color`**
-    - The background color of the label area. This color will fill the background of the text label.
+    - The background color of the label area, which can be used to highlight the text or integrate with the image's color scheme.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`font`**
-    - The font used for the label text. This parameter allows for the selection of different font styles.
+    - The font used for the label text, selected from a predefined list of fonts. This choice influences the label's aesthetic and legibility.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`text`**
-    - The text content to be added as a label on the image. This is the actual label text.
+    - The text content of the label to be added to the image. This defines what the label will say.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`direction`**
-    - The direction in which the label will be added to the image, either above (up) or below (down).
+    - The direction in which the label will be added relative to the image, including options like up, down, left, right, and overlay, affecting the label's placement and interaction with the image.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`caption`**
-    - Optional captions for batch processing. When provided, each image in the batch will have its corresponding caption as a label.
+    - An optional caption to include with the label, providing additional context or information.
     - Comfy dtype: `STRING`
-    - Python dtype: `List[str]`
+    - Python dtype: `str`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output image with the added label. This image includes the original content plus the newly added label area.
-    - Python dtype: `torch.Tensor`
+    - The image with the added label, reflecting all specified customizations.
+    - Python dtype: `PIL.Image.Image`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -80,6 +80,9 @@ class AddLabel:
             "direction": (
             [   'up',
                 'down',
+                'left',
+                'right',
+                'overlay'
             ],
             {
             "default": 'up'
@@ -105,46 +108,67 @@ ComfyUI/custom_nodes/ComfyUI-KJNodes/fonts
         batch_size = image.shape[0]
         width = image.shape[2]
         
-        if font == "TTNorms-Black.otf":
-            font_path = os.path.join(script_directory, "fonts", "TTNorms-Black.otf")
-        else:
-            font_path = folder_paths.get_full_path("kjnodes_fonts", font)
+        font_path = os.path.join(script_directory, "fonts", "TTNorms-Black.otf") if font == "TTNorms-Black.otf" else folder_paths.get_full_path("kjnodes_fonts", font)
+        
+        def process_image(input_image, caption_text):
+            if direction == 'overlay':
+                pil_image = Image.fromarray((input_image.cpu().numpy() * 255).astype(np.uint8))
+            else:
+                label_image = Image.new("RGB", (width, height), label_color)
+                pil_image = label_image
+                
+            draw = ImageDraw.Draw(pil_image)
+            font = ImageFont.truetype(font_path, font_size)
+            
+            words = caption_text.split()
+            
+            lines = []
+            current_line = []
+            current_line_width = 0
+            for word in words:
+                word_width = font.getbbox(word)[2]
+                if current_line_width + word_width <= width - 2 * text_x:
+                    current_line.append(word)
+                    current_line_width += word_width + font.getbbox(" ")[2] # Add space width
+                else:
+                    lines.append(" ".join(current_line))
+                    current_line = [word]
+                    current_line_width = word_width
+            
+            if current_line:
+                lines.append(" ".join(current_line))
+            
+            y_offset = text_y
+            for line in lines:
+                try:
+                    draw.text((text_x, y_offset), line, font=font, fill=font_color, features=['-liga'])
+                except:
+                    draw.text((text_x, y_offset), line, font=font, fill=font_color)
+                y_offset += font_size # Move to the next line
+                
+            processed_image = torch.from_numpy(np.array(pil_image).astype(np.float32) / 255.0).unsqueeze(0)
+            return processed_image
         
         if caption == "":
-            label_image = Image.new("RGB", (width, height), label_color)
-            draw = ImageDraw.Draw(label_image)
-            font = ImageFont.truetype(font_path, font_size)
-            try:
-                draw.text((text_x, text_y), text, font=font, fill=font_color, features=['-liga'])
-            except:
-                draw.text((text_x, text_y), text, font=font, fill=font_color)
-
-            label_image = np.array(label_image).astype(np.float32) / 255.0
-            label_image = torch.from_numpy(label_image)[None, :, :, :]
-            # Duplicate the label image for the entire batch
-            label_batch = label_image.repeat(batch_size, 1, 1, 1)
+            processed_images = [process_image(img, text) for img in image]
         else:
-            label_list = []
             assert len(caption) == batch_size, "Number of captions does not match number of images"
-            for cap in caption:
-                label_image = Image.new("RGB", (width, height), label_color)
-                draw = ImageDraw.Draw(label_image)
-                font = ImageFont.truetype(font_path, font_size)
-                try:
-                    draw.text((text_x, text_y), cap, font=font, fill=font_color, features=['-liga'])
-                except:
-                    draw.text((text_x, text_y), cap, font=font, fill=font_color)
+            processed_images = [process_image(img, cap) for img, cap in zip(image, caption)]
+        processed_batch = torch.cat(processed_images, dim=0)
 
-                label_image = np.array(label_image).astype(np.float32) / 255.0
-                label_image = torch.from_numpy(label_image)
-                label_list.append(label_image)
-            label_batch = torch.stack(label_list)
-            print(label_batch.shape)
-
+        # Combine images based on direction
         if direction == 'down':
-            combined_images = torch.cat((image, label_batch), dim=1)
+            combined_images = torch.cat((image, processed_batch), dim=1)
         elif direction == 'up':
-            combined_images = torch.cat((label_batch, image), dim=1)
+            combined_images = torch.cat((processed_batch, image), dim=1)
+        elif direction == 'left':
+            processed_batch = torch.rot90(processed_batch, 3, (2, 3)).permute(0, 3, 1, 2)
+            combined_images = torch.cat((processed_batch, image), dim=2)
+        elif direction == 'right':
+            processed_batch = torch.rot90(processed_batch, 3, (2, 3)).permute(0, 3, 1, 2)
+            combined_images = torch.cat((image, processed_batch), dim=2)
+        else:
+            combined_images = processed_batch
         
         return (combined_images,)
 

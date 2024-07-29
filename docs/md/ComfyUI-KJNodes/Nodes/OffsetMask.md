@@ -1,54 +1,59 @@
 ---
 tags:
+- Image
+- ImageMaskConversion
 - Mask
+- MaskBatch
 - MaskGeneration
+- MaskList
+- MaskMorphology
 ---
 
-# OffsetMask
+# Offset Mask
 ## Documentation
 - Class name: `OffsetMask`
 - Category: `KJNodes/masking`
 - Output node: `False`
 
-The OffsetMask node is designed to manipulate and transform masks by applying specified offsets, rotations, and duplication factors. It enables the creation of multiple variations of a given mask, allowing for dynamic adjustments in positioning and orientation, which can be particularly useful in image processing and augmentation tasks.
+The OffsetMask node is designed to manipulate and transform masks by applying specified offsets, rotations, and potentially duplicating the mask to create a batch with varied transformations. This node allows for dynamic adjustments to mask positioning and orientation, enabling more complex mask-based operations and effects within image processing workflows.
 ## Input types
 ### Required
 - **`mask`**
-    - The input mask or batch of masks to be transformed. This parameter is central to the node's operation, serving as the basis for all subsequent transformations.
+    - The input mask or batch of masks to be transformed. It serves as the base for applying offsets, rotations, and duplications, directly influencing the output mask's appearance and arrangement.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`x`**
-    - Specifies the horizontal offset to apply to the mask. This parameter controls the lateral displacement of the mask.
+    - Specifies the horizontal offset to apply to the mask. A positive value shifts the mask right, while a negative value shifts it left, affecting the mask's horizontal position.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`y`**
-    - Specifies the vertical offset to apply to the mask. This parameter controls the vertical displacement of the mask.
+    - Specifies the vertical offset to apply to the mask. A positive value shifts the mask down, while a negative value shifts it up, affecting the mask's vertical position.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`angle`**
-    - Defines the angle in degrees for rotating the mask. This parameter allows for the rotational adjustment of the mask.
+    - The rotation angle in degrees to apply to the mask. This transformation rotates the mask around its center, altering its orientation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`duplication_factor`**
-    - The number of times the mask is duplicated to form a batch. This parameter enables the creation of multiple mask variations from a single input.
+    - The number of times the input mask is duplicated to form a batch. This parameter allows for the creation of multiple transformed copies of the mask.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`roll`**
-    - Determines whether edge wrapping is applied during the offset. This boolean parameter influences how the mask is manipulated at its borders.
+    - Determines whether edge wrapping (rolling) is applied during the offset. When true, the mask's edges wrap around, creating a continuous effect.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`incremental`**
-    - Indicates whether the offset should be applied incrementally. This boolean parameter affects the method of mask transformation.
+    - When set to true, applies the horizontal and vertical offsets incrementally across the mask batch, creating a progressive transformation effect.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`padding_mode`**
-    - Specifies the padding mode to be used when transforming the mask. This parameter affects how the mask's edges are handled during the offset.
+    - Defines the padding mode used when applying offsets and rotations, affecting how the mask's edges are handled during transformation. Options include 'empty', 'border', and 'reflection'.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The transformed mask or batch of masks after applying the specified offsets, rotations, and duplication factors.
+    - The transformed mask or batch of masks after applying the specified offsets, rotations, and duplications. It reflects the cumulative effect of all transformations.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`

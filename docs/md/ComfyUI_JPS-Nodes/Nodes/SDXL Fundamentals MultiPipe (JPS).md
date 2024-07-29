@@ -1,7 +1,8 @@
 ---
 tags:
-- Image
+- DetailEnhancement
 - Pipeline
+- PipelineTransformation
 ---
 
 # SDXL Fundamentals MultiPipe (JPS)

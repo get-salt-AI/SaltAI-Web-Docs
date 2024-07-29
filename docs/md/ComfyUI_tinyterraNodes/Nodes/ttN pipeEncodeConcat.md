@@ -1,82 +1,83 @@
 ---
 tags:
-- Image
+- DetailEnhancement
 - Pipeline
+- PipelineTransformation
 ---
 
 # pipeEncodeConcat
 ## Documentation
 - Class name: `ttN pipeEncodeConcat`
-- Category: `ttN/pipe`
+- Category: `🌏 tinyterra/pipe`
 - Output node: `True`
 
-The ttN pipeEncodeConcat node is designed to enhance and concatenate conditioning information within a pipeline, utilizing advanced encoding techniques to refine and merge textual conditioning inputs for improved model guidance.
+The ttN pipeEncodeConcat node is designed for advanced text processing within a pipeline, focusing on encoding and concatenating text inputs based on specific conditioning. It leverages token normalization and weight interpretation to refine the input text, aiming to enhance the overall quality and relevance of the generated content.
 ## Input types
 ### Required
 - **`pipe`**
-    - Represents the pipeline state, including model, conditioning, and other relevant settings, serving as the foundation for the encoding and concatenation process.
+    - Represents the pipeline configuration and state, serving as the foundational context for the node's operations.
     - Comfy dtype: `PIPE_LINE`
     - Python dtype: `dict`
 - **`toggle`**
-    - A boolean flag that determines whether the encoding and concatenation process should be executed.
+    - A boolean toggle that influences the node's processing behavior, although its specific role is not detailed in the provided context.
     - Comfy dtype: `COMBO[BOOLEAN]`
     - Python dtype: `bool`
 ### Optional
 - **`positive`**
-    - An optional positive textual input for conditioning, intended to guide the model towards generating content aligned with specified attributes.
+    - Specifies the positive text input to be encoded and concatenated. It plays a crucial role in guiding the node's output towards desired attributes or themes.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`positive_token_normalization`**
-    - Specifies the method for normalizing tokens in the positive conditioning, affecting how the model interprets and weights these tokens.
+    - Controls the normalization process for tokens in the positive text, affecting the encoding's sensitivity to token variations.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`positive_weight_interpretation`**
-    - Defines how the weights are interpreted in the positive conditioning, influencing the model's generation process.
+    - Adjusts the weight interpretation for the positive text, impacting the emphasis placed on different aspects of the input during encoding.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`negative`**
-    - An optional negative textual input for conditioning, used to guide the model away from generating content with specified attributes.
+    - Defines the negative text input for encoding and concatenation. This input helps in steering the output away from undesired attributes or themes.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`negative_token_normalization`**
-    - Specifies the method for normalizing tokens in the negative conditioning, affecting the model's interpretation and weighting of these tokens.
+    - Manages the normalization of tokens in the negative text, influencing how the encoding perceives token differences.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`negative_weight_interpretation`**
-    - Defines how the weights are interpreted in the negative conditioning, influencing the model's generation process in contrast to the positive conditioning.
+    - Modifies the weight interpretation for the negative text, altering the focus on various elements of the input during encoding.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`optional_positive_from`**
-    - Optional advanced conditioning input for positive guidance, allowing for more nuanced and specific model direction.
+    - Optional input specifying an alternative source of positive conditioning, allowing for dynamic adjustment of the encoding process.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `list of tuples`
+    - Python dtype: `dict`
 - **`optional_negative_from`**
-    - Optional advanced conditioning input for negative guidance, enabling more detailed and targeted model influence.
+    - Optional input indicating an alternative source of negative conditioning, enabling flexible modification of the encoding approach.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `list of tuples`
+    - Python dtype: `dict`
 - **`optional_clip`**
-    - An optional CLIP model parameter that can be used to further refine the conditioning process with visual guidance.
+    - An optional CLIP model parameter that can be used to further refine the encoding process, offering an additional layer of customization.
     - Comfy dtype: `CLIP`
-    - Python dtype: `object`
+    - Python dtype: `dict`
 ## Output types
 - **`pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - The updated pipeline state, including the newly encoded and concatenated conditioning information.
+    - The updated pipeline configuration after processing, reflecting changes made by the node.
     - Python dtype: `dict`
 - **`positive`**
     - Comfy dtype: `CONDITIONING`
-    - The enhanced and concatenated positive conditioning output, ready for guiding the model's generation.
-    - Python dtype: `list of tuples`
+    - The enhanced positive conditioning output, resulting from the encoding and concatenation process.
+    - Python dtype: `dict`
 - **`negative`**
     - Comfy dtype: `CONDITIONING`
-    - The enhanced and concatenated negative conditioning output, tailored to provide nuanced guidance against the positive conditioning.
-    - Python dtype: `list of tuples`
+    - The refined negative conditioning output, produced through the encoding and concatenation efforts.
+    - Python dtype: `dict`
 - **`clip`**
     - Comfy dtype: `CLIP`
-    - The CLIP model parameter, potentially updated through the encoding and concatenation process, to further refine visual guidance.
-    - Python dtype: `object`
+    - The possibly modified CLIP model parameter, adjusted during the node's operation.
+    - Python dtype: `dict`
 - **`ui`**
-    - A UI component displaying the generated text, offering insights into the encoding and concatenation process.
+    - Provides a user interface element that displays the new text generated after encoding and concatenation.
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -113,7 +114,7 @@ class ttN_pipeEncodeConcat:
     RETURN_NAMES = ("pipe", "positive", "negative", "clip")
     FUNCTION = "concat"
 
-    CATEGORY = "ttN/pipe"
+    CATEGORY = "🌏 tinyterra/pipe"
 
     def concat(self, toggle, positive_token_normalization, positive_weight_interpretation,
                negative_token_normalization, negative_weight_interpretation,

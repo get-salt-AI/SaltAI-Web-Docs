@@ -10,73 +10,73 @@ tags:
 - Category: `InspirePack/Regional`
 - Output node: `False`
 
-The RegionalIPAdapterColorMask node is designed to apply regional image processing adaptations based on color masks. It enables the integration of specific image embeddings and adjustments within designated areas of an image, identified by color, to achieve localized image modification or enhancement.
+This node is designed to adapt image processing inputs regionally by applying a color mask. It allows for the selective application of image embeddings and weights based on specified color regions within an image, facilitating targeted image manipulation and enhancement.
 ## Input types
 ### Required
 - **`color_mask`**
-    - Specifies the image to which the color mask will be applied, serving as the basis for regional adaptations.
+    - The color mask image used to define regions for applying the image processing. It serves as a spatial filter to apply different processing techniques to specific areas of an image.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`mask_color`**
-    - Defines the color used to identify the region of interest within the image for adaptations.
+    - The specific color value used to identify the regions of interest within the color mask. This color defines which parts of the image will be subject to the specified image processing operations.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`image`**
-    - The target image for which the adaptations are intended, providing a context for the applied effects.
+    - The image to which the regional adaptation and processing will be applied, using the defined color mask to target specific areas.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`weight`**
-    - Determines the intensity or influence of the applied embeddings on the specified region.
+    - A scalar value that adjusts the intensity or influence of the applied embeddings on the selected regions. It modulates how strongly the specified image features are applied.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`noise`**
-    - Specifies the level of noise to be applied in conjunction with the embeddings for the adaptation effect.
+    - A scalar value representing the amount of noise to be applied within the specified regions, affecting the texture and overall appearance.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`weight_type`**
-    - Specifies the method of applying weight to the embeddings, offering options like original, linear, or channel penalty for flexibility in adaptation.
+    - Specifies the method of applying weights to the embeddings, such as linear scaling or channel-specific penalties, offering control over the modification intensity.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `list`
 - **`start_at`**
-    - Marks the beginning of the effect application within the adaptation process, allowing for phased or gradual implementations.
+    - Defines the starting point of the effect's intensity gradient, allowing for gradual application of the image processing from a certain threshold.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end_at`**
-    - Defines the endpoint for the effect application, enabling precise control over the extent of adaptations.
+    - Sets the endpoint for the effect's intensity gradient, enabling a smooth transition of the image processing effect across the specified region.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`unfold_batch`**
-    - A boolean flag that, when set, allows for batch processing of images, enhancing efficiency in adaptations.
+    - A boolean flag that determines whether the batch of images should be processed individually or as a group, affecting the computational efficiency and result granularity.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`faceid_v2`**
-    - An optional boolean flag to enable or disable face identification version 2 for more refined adaptations.
+    - A boolean flag indicating whether to use an advanced face identification method for more precise region targeting within the image.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`weight_v2`**
-    - An optional weight parameter for version 2 adaptations, providing additional control over the adaptation intensity.
+    - An optional scalar value that provides an alternative weighting mechanism for the applied embeddings, offering additional control over the intensity of the image processing.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`combine_embeds`**
-    - Specifies the method for combining embeddings, with options like concat, add, subtract, average, and norm average, offering versatility in effect application.
+    - Specifies the method for combining multiple embeddings, such as concatenation or averaging, to achieve the desired effect within the targeted regions.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`neg_image`**
-    - An optional negative image that can be used to specify undesired effects or adjustments within the region, offering a counterbalance to the primary image.
+    - An optional image representing negative features or styles to be subtracted from the specified regions, allowing for more nuanced image manipulations.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`regional_ipadapter`**
     - Comfy dtype: `REGIONAL_IPADAPTER`
-    - The adapted image processing settings, encapsulating the regional adaptations based on the specified color mask and embeddings.
+    - The adapted image processing conditions tailored to the specified regions, ready for further image synthesis or manipulation tasks.
     - Python dtype: `IPAdapterConditioning`
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The generated mask based on the specified color, identifying the region of interest for adaptations.
+    - The generated mask based on the specified color, indicating the regions of the image that were targeted for processing.
     - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -111,7 +111,8 @@ class RegionalIPAdapterColorMask:
 
     CATEGORY = "InspirePack/Regional"
 
-    def doit(self, color_mask, mask_color, image, weight, noise, weight_type, start_at=0.0, end_at=1.0, unfold_batch=False, faceid_v2=False, weight_v2=False, combine_embeds="concat", neg_image=None):
+    @staticmethod
+    def doit(color_mask, mask_color, image, weight, noise, weight_type, start_at=0.0, end_at=1.0, unfold_batch=False, faceid_v2=False, weight_v2=False, combine_embeds="concat", neg_image=None):
         mask = color_to_mask(color_mask, mask_color)
         cond = IPAdapterConditioning(mask, weight, weight_type, noise=noise, image=image, neg_image=neg_image, start_at=start_at, end_at=end_at, unfold_batch=unfold_batch, weight_v2=weight_v2, combine_embeds=combine_embeds)
         return (cond, mask)

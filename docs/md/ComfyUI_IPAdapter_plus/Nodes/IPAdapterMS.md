@@ -1,6 +1,10 @@
 ---
 tags:
 - IPAdapter
+- IdentityImage
+- Loader
+- ModelIO
+- RegionalImageProcessing
 ---
 
 # IPAdapter Mad Scientist

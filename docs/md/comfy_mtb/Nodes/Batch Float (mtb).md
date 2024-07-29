@@ -1,7 +1,6 @@
 ---
 tags:
-- Batch
-- FloatData
+- VectorMath
 ---
 
 # Batch Float (mtb)
@@ -10,34 +9,34 @@ tags:
 - Category: `mtb/batch`
 - Output node: `False`
 
-This node is designed to generate a batch of float values with interpolation, offering flexibility in creating sequences of floats based on various easing functions. It supports different modes of generation, including single value replication or stepped interpolation, making it versatile for various numerical data manipulation needs.
+Generates a batch of float values with interpolation, offering customization through various parameters such as interpolation mode, count, and range. This node is essential for creating sequences of floats based on specified mathematical easing functions, enabling precise control over the generation of float batches for simulations, animations, or data analysis.
 ## Input types
 ### Required
 - **`mode`**
-    - Specifies the mode of float generation, either as a single replicated value or a sequence of values interpolated in steps. This choice affects the pattern and distribution of the generated float values.
+    - Specifies the interpolation mode for generating float values, with options like 'Single' or 'Steps' to define how values are interpolated.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `List[str]`
 - **`count`**
-    - Determines the number of float values to generate, directly influencing the length of the output batch.
+    - Determines the number of float values to generate, allowing for control over the size of the output batch.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`min`**
-    - Sets the minimum value in the range of generated floats, serving as the starting point for interpolation or the value to replicate in 'Single' mode.
+    - Sets the minimum value in the range of generated floats, providing a lower bound for interpolation.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`max`**
-    - Defines the maximum value in the range for generated floats, acting as the endpoint for interpolation in 'Steps' mode.
+    - Defines the maximum value in the range of generated floats, setting an upper limit for interpolation.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`easing`**
-    - Selects the easing function to apply during interpolation, affecting the transition between the min and max values. This parameter allows for the customization of the generated float sequence's progression.
+    - Selects the easing function to apply during interpolation, such as 'Linear', 'Sine In/Out', or 'Elastic In', affecting the distribution of generated values.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `List[str]`
 ## Output types
 - **`floats`**
     - Comfy dtype: `FLOATS`
-    - The output is a list of float values generated according to the specified mode, count, min, max, and easing parameters. This list can be used for further numerical data processing or visualization.
-    - Python dtype: `list[float]`
+    - The generated batch of interpolated float values, ready for further processing or analysis.
+    - Python dtype: `List[float]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -56,7 +55,7 @@ class MTB_BatchFloat:
                     ["Single", "Steps"],
                     {"default": "Steps"},
                 ),
-                "count": ("INT", {"default": 1}),
+                "count": ("INT", {"default": 2}),
                 "min": ("FLOAT", {"default": 0.0, "step": 0.001}),
                 "max": ("FLOAT", {"default": 1.0, "step": 0.001}),
                 "easing": (
@@ -94,6 +93,10 @@ class MTB_BatchFloat:
     CATEGORY = "mtb/batch"
 
     def set_floats(self, mode, count, min, max, easing):
+        if mode == "Steps" and count == 1:
+            raise ValueError(
+                "Steps mode requires at least a count of 2 values"
+            )
         keyframes = []
         if mode == "Single":
             keyframes = [min] * count

@@ -1,31 +1,32 @@
 ---
 tags:
-- Flip
-- Image
+- DataClamp
+- GridLayout
+- ImageDuplication
 - ImageTransformation
 ---
 
 # 🔧 Image Flip
 ## Documentation
 - Class name: `ImageFlip+`
-- Category: `essentials`
+- Category: `essentials/image manipulation`
 - Output node: `False`
 
-The ImageFlip+ node provides functionality for flipping images along specified axes. It allows for the manipulation of image orientation by flipping it horizontally, vertically, or both, offering a versatile tool for image preprocessing and augmentation tasks.
+The ImageFlip node provides functionality for flipping images along specified axes. It supports flipping images horizontally, vertically, or both, allowing for versatile image manipulation and orientation adjustments.
 ## Input types
 ### Required
 - **`image`**
-    - The 'image' parameter represents the input image to be flipped. It is crucial for determining the content and structure of the output image after the flipping operation is performed.
+    - The image to be flipped. This parameter is crucial for defining the visual content that will undergo the flipping transformation.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`axis`**
-    - The 'axis' parameter specifies the axes along which the image will be flipped. It can be 'x' for horizontal flipping, 'y' for vertical flipping, or 'xy' for flipping along both axes, affecting the orientation and appearance of the output image.
+    - Specifies the axis or axes along which the image will be flipped. Accepting values 'x', 'y', or 'xy', it determines the direction of the flip, affecting the final appearance of the image.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `Tuple[str]`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is the flipped version of the input image, modified according to the specified axis or axes of flipping.
+    - The flipped image. This output represents the visual result of applying the specified flip transformation to the input image.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -46,7 +47,7 @@ class ImageFlip:
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "execute"
-    CATEGORY = "essentials"
+    CATEGORY = "essentials/image manipulation"
 
     def execute(self, image, axis):
         dim = ()

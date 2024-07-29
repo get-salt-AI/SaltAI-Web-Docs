@@ -1,7 +1,6 @@
 ---
 tags:
-- ImageResolution
-- ImageTransformation
+- ImageSize
 ---
 
 # NearestSDXLResolution
@@ -29,7 +28,7 @@ This node is designed to find the nearest supported SDXL resolution to the input
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
-    - [ConstrainImage|pysssss](../../ComfyUI-Custom-Scripts/Nodes/ConstrainImage|pysssss.md)
+    - ConstrainImage|pysssss
     - Reroute
     - [ImageScale](../../Comfy/Nodes/ImageScale.md)
 

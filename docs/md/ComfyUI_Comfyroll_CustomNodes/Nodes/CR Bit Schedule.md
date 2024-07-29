@@ -1,7 +1,8 @@
 ---
 tags:
 - AnimationScheduling
-- Scheduling
+- PromptScheduling
+- SigmaScheduling
 ---
 
 # 📋 CR Bit Schedule

@@ -1,24 +1,30 @@
-# ⌨️IG ZFill
+---
+tags:
+- RegionalPrompt
+- Style
+---
+
+# ⌨️ IG ZFill
 ## Documentation
 - Class name: `IG ZFill`
 - Category: `🐓 IG Nodes/Primitives`
 - Output node: `False`
 
-The IG ZFill node provides a simple yet effective way to pad a given integer value with leading zeros until it reaches a specified length. This functionality is essential in formatting numbers to ensure consistent digit counts, which can be particularly useful in data presentation and string manipulation tasks.
+The IG ZFill node is designed to pad a given integer value with zeros up to a specified length. It is useful for formatting numbers to ensure they meet a certain string length requirement, enhancing readability or meeting specific data format standards.
 ## Input types
 ### Required
 - **`value`**
-    - Specifies the integer value to be padded with leading zeros. This parameter determines the base number that will undergo transformation.
+    - The integer value to be padded with leading zeros. This parameter determines the number to be formatted.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`fill`**
-    - Determines the total length of the output string after padding. This parameter sets the target length for the zero-filled string.
+    - Specifies the total length of the resulting string after padding with zeros. It determines how many leading zeros are added to the input value.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`string`**
     - Comfy dtype: `STRING`
-    - The resulting string after padding the input value with leading zeros to meet the specified length.
+    - The formatted string with the input value padded with leading zeros to meet the specified total length.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`

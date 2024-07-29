@@ -1,5 +1,6 @@
 ---
 tags:
+- SamplerScheduler
 - Sampling
 ---
 
@@ -9,75 +10,79 @@ tags:
 - Category: `Mikey/Sampling`
 - Output node: `False`
 
-This node is designed for advanced tiled sampling without the need for smooth steps or a refiner, optimizing the generation process for specific scenarios where these elements are not required.
+This node is designed for advanced tiled sampling without the need for smooth steps or a refiner. It focuses on generating or processing images in a tiled manner, optimizing for scenarios where seamless integration of tiles is crucial without additional refinement steps.
 ## Input types
 ### Required
 - **`base_model`**
-    - The base_model parameter specifies the primary model used for generating the tiles, serving as the foundation for the sampling process.
+    - Specifies the base model used for sampling, setting the foundation for the generation process.
     - Comfy dtype: `MODEL`
     - Python dtype: `str`
 - **`samples`**
-    - The samples parameter represents the initial latent space inputs that the base model will use to generate the tiles.
+    - The initial latent samples to be processed or refined through the sampling process.
     - Comfy dtype: `LATENT`
-    - Python dtype: `list`
+    - Python dtype: `torch.Tensor`
 - **`vae`**
-    - The vae parameter indicates the variational autoencoder used in conjunction with the base model to refine the generation of tiles.
+    - The variational autoencoder used alongside the base model to process or refine samples.
     - Comfy dtype: `VAE`
-    - Python dtype: `str`
+    - Python dtype: `torch.nn.Module`
 - **`positive_cond_base`**
-    - This parameter specifies the positive conditioning to guide the base model towards desired characteristics in the generated tiles.
+    - Positive conditioning for the base model to guide the sampling towards desired attributes.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `str`
 - **`negative_cond_base`**
-    - This parameter specifies the negative conditioning to steer the base model away from undesired characteristics in the generated tiles.
+    - Negative conditioning for the base model to steer the sampling away from undesired attributes.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `str`
 - **`model_name`**
-    - The model_name parameter allows for the selection of a specific model configuration from a list of available upscale models, influencing the final output quality.
+    - The name of the model, typically used to identify different models within a framework or library.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `List[str]`
 - **`seed`**
-    - The seed parameter ensures reproducibility of results by initializing the random number generator with a specific value, affecting the sampling outcome.
+    - Seed for random number generation, ensuring reproducibility across sampling runs.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`denoise_image`**
-    - The denoise_image parameter controls the intensity of denoising applied to the image, influencing the clarity and smoothness of the final output.
+    - Specifies the degree of denoising applied to the image, affecting the clarity and quality of the output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`steps`**
-    - The steps parameter defines the number of iterations the model will perform during the sampling process, affecting the detail and quality of the generated tiles.
+    - The number of steps to run in the sampling process, affecting the detail and quality of the generated image.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - The cfg parameter adjusts the conditioning factor, allowing for finer control over the generation process by influencing the model's behavior based on the conditioning inputs.
+    - Controls the conditioning factor, influencing the generation's adherence to the given conditions.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sampler_name`**
-    - The sampler_name parameter selects the specific sampling algorithm used during the generation process, impacting the efficiency and characteristics of the sampling.
+    - The name of the sampler used, affecting the diversity and quality of generated samples.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - The scheduler parameter determines the scheduling algorithm for the sampling process, affecting the progression and variation of the generated tiles.
+    - The scheduler used to manage the sampling process, impacting the progression and variation of samples.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`upscale_by`**
-    - The upscale_by parameter determines the factor by which the generated tiles are upscaled, affecting the resolution and detail of the final output.
+    - The factor by which the image is upscaled, affecting the resolution and detail of the final output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`tiler_denoise`**
-    - The tiler_denoise parameter adjusts the denoising level specifically for the tiling process, enhancing the visual quality of the tiles before they are stitched together.
+    - Specifies the degree of denoising applied to each tile, affecting the consistency and quality of the tiled output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
+- **`tile_size`**
+    - Defines the size of each tile in the generated image, affecting the granularity of the output.
+    - Comfy dtype: `INT`
+    - Python dtype: `int`
 ### Optional
 - **`image_optional`**
-    - The image_optional parameter allows for the optional inclusion of an initial image, which can be used instead of latent space samples for the generation process.
+    - An optional image input that can be used to influence the sampling process.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `str`
+    - Python dtype: `Optional[torch.Tensor]`
 ## Output types
 - **`output_image`**
     - Comfy dtype: `IMAGE`
-    - The output_image is the final generated image after the advanced tiled sampling process, reflecting the combined effects of the input parameters on the generation.
-    - Python dtype: `str`
+    - The generated image after the tiled sampling process, reflecting the combined influence of all input parameters.
+    - Python dtype: `PIL.Image`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -101,7 +106,8 @@ class MikeySamplerTiledAdvancedBaseOnly:
                              "sampler_name": (comfy.samplers.KSampler.SAMPLERS, ),
                              "scheduler": (comfy.samplers.KSampler.SCHEDULERS, ),
                              "upscale_by": ("FLOAT", {"default": 1.0, "min": 0.1, "max": 10.0, "step": 0.1}),
-                             "tiler_denoise": ("FLOAT", {"default": 0.25, "min": 0.0, "max": 1.0, "step": 0.05}),},
+                             "tiler_denoise": ("FLOAT", {"default": 0.25, "min": 0.0, "max": 1.0, "step": 0.05}),
+                             "tile_size": ("INT", {"default": 1024, "min": 256, "max": 4096, "step": 64})},
                 "optional": {"image_optional": ("IMAGE",),}}
 
     RETURN_TYPES = ('IMAGE', )
@@ -146,7 +152,7 @@ class MikeySamplerTiledAdvancedBaseOnly:
             return img, upscaled_width, upscaled_height
 
     def run(self, seed, base_model, vae, samples, positive_cond_base, negative_cond_base,
-            model_name, upscale_by=2.0, tiler_denoise=0.4,
+            model_name, upscale_by=2.0, tiler_denoise=0.4, tile_size=1024,
             upscale_method='normal', denoise_image=1.0, steps=30, cfg=6.5,
             sampler_name='dpmpp_sde_gpu', scheduler='karras', image_optional=None):
         # if image not none replace samples with decoded image
@@ -163,7 +169,7 @@ class MikeySamplerTiledAdvancedBaseOnly:
             img = self.upscale_image(samples, vae, upscale_by, model_name)
             img = tensor2pil(img)
         # phase 2: run tiler
-        tiled_image = run_tiler_for_steps(img, base_model, vae, seed, cfg, sampler_name, scheduler, positive_cond_base, negative_cond_base, steps, tiler_denoise)
+        tiled_image = run_tiler_for_steps(img, base_model, vae, seed, cfg, sampler_name, scheduler, positive_cond_base, negative_cond_base, steps, tiler_denoise, tile_size)
         return (tiled_image, )
 
 ```

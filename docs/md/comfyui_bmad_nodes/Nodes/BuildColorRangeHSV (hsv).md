@@ -1,7 +1,6 @@
 ---
 tags:
 - Color
-- HSVColorSpace
 ---
 
 # BuildColorRangeHSV (hsv)
@@ -10,29 +9,29 @@ tags:
 - Category: `Bmad/CV/Color A.`
 - Output node: `False`
 
-This node is designed to establish a range of HSV (Hue, Saturation, Value) colors based on provided samples and modifiers. It dynamically adjusts color bounds and determines the hue adjustment mode necessary for constructing a precise color range.
+This node is designed to establish a range of HSV (Hue, Saturation, Value) colors based on provided lower and upper bounds. It adjusts these bounds to ensure they are within acceptable limits and determines the optimal hue mode for color range construction.
 ## Input types
 ### Required
 - **`samples`**
-    - Represents the HSV color samples from which the color range is derived. These samples are crucial for determining the median or average values around which the color range is constructed.
+    - Specifies the HSV samples from which the color range is derived, influencing the determination of lower and upper bounds.
     - Comfy dtype: `HSV_SAMPLES`
     - Python dtype: `HSV_Samples`
 - **`percentage_modifier`**
-    - A modifier that influences the size of the color range. It adjusts the bounds based on a percentage, affecting how broad or narrow the resulting color range will be.
+    - A modifier that affects the interpolation of the HSV color range, influencing how the bounds are adjusted.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`interval_type`**
-    - Specifies the method used to calculate the color range interval. This choice dictates how the bounds are adjusted, impacting the final color range.
+    - Determines the method used for calculating the color range, affecting the selection of lower and upper bounds and the hue mode.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`hsv_color`**
     - Comfy dtype: `HSV_COLOR`
-    - The output is a tuple containing the adjusted upper and lower bounds of the HSV color range.
-    - Python dtype: `Tuple[Tuple[int, int, int], Tuple[int, int, int]]`
+    - The resulting HSV color range, including both lower and upper bounds, after adjustments.
+    - Python dtype: `Tuple[HSV_COLOR, HSV_COLOR]`
 - **`combo[string]`**
     - Comfy dtype: `COMBO[STRING]`
-    - Indicates the hue mode determined for the range construction, which affects how the hue is processed in the color range.
+    - The determined optimal hue mode for the color range construction, based on the adjusted bounds.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -87,16 +86,16 @@ class BuildColorRangeHSV:
     interval_modes = list(interval_modes_map.keys())
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {
             "samples": ("HSV_SAMPLES",),
             "percentage_modifier": ("INT", {"default": 50, "min": 1, "max": 100}),
-            "interval_type": (s.interval_modes, s.interval_modes[0]),
+            "interval_type": (cls.interval_modes, cls.interval_modes[0]),
         }}
 
     RETURN_TYPES = ("HSV_COLOR", "HSV_COLOR", InRangeHSV.hue_modes)
     FUNCTION = "get_interval"
-    CATEGORY = "Bmad/CV/Color A."
+    CATEGORY = f"{cv_category_path}/Color A."
 
     def get_interval(self, samples, percentage_modifier, interval_type):
         bounds = self.interval_modes_map[interval_type](samples, percentage_modifier)

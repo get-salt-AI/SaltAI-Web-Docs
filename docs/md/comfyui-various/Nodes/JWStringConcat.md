@@ -1,6 +1,7 @@
 ---
 tags:
-- Concatenate
+- ComfyrollNodes
+- Text
 ---
 
 # String Concatenate

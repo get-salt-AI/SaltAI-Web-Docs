@@ -1,6 +1,8 @@
 ---
 tags:
-- ImageTransformation
+- Mask
+- MaskInversion
+- MaskMath
 ---
 
 # RemapFromQuadrilateral (homography)
@@ -9,28 +11,28 @@ tags:
 - Category: `Bmad/CV/Transform`
 - Output node: `False`
 
-The RemapFromQuadrilateral node is designed to transform an image by remapping it from a specified quadrilateral shape to a rectangular shape using homography. This process involves calculating a homography matrix based on the source image's quadrilateral points and the destination rectangle's dimensions, allowing for perspective correction or transformation of the image.
+The RemapFromQuadrilateral node is designed for transforming images based on a source mask that defines a quadrilateral region. It primarily utilizes a homography transformation to map the specified quadrilateral region from the source image to a target rectangular shape, adjusting the image accordingly. This node is particularly useful for correcting or altering the perspective of an image region defined by four points.
 ## Input types
 ### Required
 - **`src_mask_with_i_points`**
-    - Specifies the source image mask with four points defining the quadrilateral to be transformed. This input is crucial for determining the quadrilateral's corners for the homography calculation.
+    - Specifies the source mask with four points defining the quadrilateral region to be transformed. This mask is crucial for determining the area of the image that will undergo the homography transformation.
     - Comfy dtype: `MASK`
     - Python dtype: `ndarray`
 - **`width`**
-    - Defines the width of the destination rectangle. This parameter influences the scale and aspect ratio of the transformed image.
+    - Defines the width of the target image after the transformation. This parameter directly influences the dimensions of the output image, ensuring that the transformed quadrilateral fits within these specified bounds.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Defines the height of the destination rectangle. Along with width, it determines the size and shape of the output image after transformation.
+    - Specifies the height of the target image post-transformation. Similar to the width parameter, it determines the dimensions of the output image, ensuring the transformed area is appropriately scaled.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`remap`**
     - Comfy dtype: `REMAP`
-    - The output is the transformed image data, remapped from the specified quadrilateral to a rectangular shape, based on the calculated homography matrix. This transformation allows for perspective correction or other adjustments to the image's appearance.
+    - The primary output of this node is the transformed image or 'remap', which results from applying the homography transformation to the specified quadrilateral region. This output is crucial for understanding the effect of the transformation on the original image.
     - Python dtype: `ndarray`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -38,7 +40,7 @@ The RemapFromQuadrilateral node is designed to transform an image by remapping i
 ```python
 class RemapFromQuadrilateral(RemapBase):
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {
             "src_mask_with_4_points": ("MASK",),
             # "mode": (s.modes_list, {"default": s.modes_list[0]}),

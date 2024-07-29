@@ -1,7 +1,7 @@
 ---
 tags:
-- ImageEnhancement
-- Scheduling
+- Batch
+- XYPlotData
 ---
 
 # DenoiseScheduleHookProvider

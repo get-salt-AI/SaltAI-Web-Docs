@@ -1,7 +1,6 @@
 ---
 tags:
-- ImageScaling
-- Upscale
+- ImageUpscaling
 ---
 
 # Scale Down By

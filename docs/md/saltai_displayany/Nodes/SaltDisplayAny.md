@@ -2,6 +2,7 @@
 tags:
 - DataTypeAgnostic
 - Debugging
+- Text
 ---
 
 # SaltDisplayAny
@@ -10,18 +11,20 @@ tags:
 - Category: `SALT/Utility`
 - Output node: `True`
 
-The SaltDisplayAny node is designed to universally display any type of input data, converting it into a human-readable format or indicating if the data type cannot be displayed. It supports a wide range of data types, including basic types like strings and numbers, complex data structures like dictionaries and lists, and even PyTorch tensors, making it a versatile utility for data visualization and debugging.
+The SaltDisplayAny node is designed to universally display any type of input data, converting it into a human-readable format or indicating if the data type cannot be displayed. It supports a wide range of data types, including basic types like strings and numbers, complex data structures like dictionaries and lists, and even PyTorch tensors, making it a versatile utility for debugging and data visualization.
 ## Input types
 ### Required
 - **`input_value`**
-    - The input_value parameter accepts any data type, making this node highly versatile for displaying various forms of data. It determines the content that will be converted into a readable format or indicated as non-displayable, depending on the data type.
+    - Represents the data to be displayed. It can be of any type, making this node highly versatile in handling various kinds of input for visualization or debugging purposes.
     - Comfy dtype: `*`
     - Python dtype: `AnyType`
 ## Output types
 - **`output`**
     - Comfy dtype: `*`
-    - The output parameter provides a human-readable representation of the input data or a message indicating that the data type cannot be displayed. It is essential for visualizing the data in a user-friendly manner.
+    - The output is a human-readable representation of the input data or a message indicating that the data type cannot be displayed.
     - Python dtype: `str`
+- **`ui`**
+    - A UI component that displays the text representation of the input data, facilitating easy visualization in a user interface.
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -62,6 +65,7 @@ class SaltDisplayAny:
         else:
             value = f"Data type {type(input_value).__name__} cannot be displayed"
 
+        logging.info(value)
         return {"ui": {"text": value}, "result": (input_value,)}
 
 ```

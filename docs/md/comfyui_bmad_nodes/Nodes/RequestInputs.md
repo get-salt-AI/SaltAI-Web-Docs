@@ -1,6 +1,8 @@
 ---
 tags:
-- Text
+- DataTypeAgnostic
+- Debugging
+- String
 ---
 
 # RequestInputs
@@ -9,17 +11,17 @@ tags:
 - Category: `Bmad/api`
 - Output node: `False`
 
-The RequestInputs node is designed to accept a JSON string of key-value pairs, parse it, and output the values as a tuple of strings. This node serves as a foundational component in processing and transforming input data received in JSON format into a more manageable and usable form for subsequent nodes in a pipeline.
+The RequestInputs node is designed to process a string of values, typically received as a JSON string, and convert them into a tuple of strings. This node is essential for handling and parsing input data received from web requests or other input sources, making it a key component in preparing data for further processing or analysis within a system.
 ## Input types
 ### Required
 - **`values`**
-    - The 'values' parameter takes a JSON string containing key-value pairs. It plays a crucial role in the node's operation by providing the raw data that will be parsed and transformed into a tuple of strings, which are then passed on for further processing.
+    - The 'values' parameter accepts a JSON string representing the input values. It plays a crucial role in the node's operation by determining the data that will be parsed and converted into a tuple of strings for further processing.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`string`**
     - Comfy dtype: `STRING`
-    - Outputs a tuple of strings extracted from the input JSON string. Each element of the tuple represents a value from the key-value pairs in the input JSON, making it easier to handle and process the data further.
+    - Each element in the output tuple represents a string value extracted and parsed from the input JSON string, facilitating the handling of multiple input values simultaneously.
     - Python dtype: `Tuple[str, ...]`
 ## Usage tips
 - Infra type: `CPU`
@@ -31,7 +33,7 @@ The RequestInputs node is designed to accept a JSON string of key-value pairs, p
 class RequestInputs:
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {
             "values": ("STRING", {"default": ""}),
         },
@@ -39,7 +41,7 @@ class RequestInputs:
 
     RETURN_TYPES = tuple(["STRING" for x in range(32)])
     FUNCTION = "start"
-    CATEGORY = "Bmad/api"
+    CATEGORY = api_category_path
 
     def start(self, values):
         values = tuple(json.loads(values).values())

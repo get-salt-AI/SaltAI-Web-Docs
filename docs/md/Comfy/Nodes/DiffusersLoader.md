@@ -1,9 +1,10 @@
 ---
 tags:
+- Checkpoint
+- CheckpointLoader
 - Loader
-- Model
-- ModelIO
 - ModelLoader
+- ModelMerge
 ---
 
 # DiffusersLoader

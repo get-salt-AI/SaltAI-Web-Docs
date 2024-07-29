@@ -2,7 +2,7 @@
 Comfy-image-saver provides tools for saving images along with their generation metadata on ComfyUI, supporting formats like png, jpeg, and webp. It features compatibility with Civitai & Prompthero for geninfo auto-detection.
 
 ## Tags
-Checkpoint * Image * ImageSave * RandomGeneration * SamplerScheduler * Sampling * Seed
+Animation * BackendCache * Image * ImageGeneration * ImageSave * ImageSequence * NumberRangeGeneration * RandomGeneration * Randomization * SamplerScheduler * Sampling * Seed
 
 ## Repo info
 - Repo url: `https://github.com/giriss/comfy-image-saver`

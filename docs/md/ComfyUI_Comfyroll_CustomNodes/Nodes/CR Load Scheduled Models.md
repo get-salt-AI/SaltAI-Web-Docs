@@ -1,10 +1,10 @@
 ---
 tags:
+- Checkpoint
+- CheckpointLoader
 - Loader
-- Model
-- ModelIO
 - ModelLoader
-- ModelSwitching
+- ModelMerge
 ---
 
 # 📑 CR Load Scheduled Models

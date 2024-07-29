@@ -4,7 +4,7 @@
 - Category: `SALT/Language Toolkit/Messages`
 - Output node: `False`
 
-This node is designed to encapsulate system and user prompts into structured chat messages, facilitating the preparation of these messages for further processing or interaction within chat-based applications.
+The LLMChatMessagesAdv node is designed to prepare and structure chat messages for interaction between a system and a user. It encapsulates the process of converting raw text inputs into a formatted list of chat messages, facilitating a structured dialogue flow.
 ## Input types
 ### Required
 - **`prompt`**
@@ -18,7 +18,7 @@ This node is designed to encapsulate system and user prompts into structured cha
 ## Output types
 - **`llm_message`**
     - Comfy dtype: `LIST`
-    - Outputs a list of structured chat messages that combine system and user inputs into a cohesive sequence for interaction.
+    - A list of structured chat messages, representing the dialogue between the system and the user. This output facilitates further processing or interaction within a chat-based application.
     - Python dtype: `List[ChatMessage]`
 ## Usage tips
 - Infra type: `CPU`
@@ -48,7 +48,7 @@ class LLMChatMessages:
 
     def prepare_messages(self, prompt, role):
         messages = [
-                ChatMessage(role=MessageRole.SYSTEM if role == "SYSTEM" else MessageRole.USER, content=prompt ),
+                ChatMessage(role=MessageRole.SYSTEM if role == "SYSTEM" else MessageRole.USER, content=repr(prompt) ),
         ]
         return (messages,)
 

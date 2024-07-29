@@ -1,7 +1,7 @@
 ---
 tags:
 - AnimationScheduling
-- Scheduling
+- SigmaScheduling
 ---
 
 # 📝 CR Encode Scheduled Prompts

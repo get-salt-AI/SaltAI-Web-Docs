@@ -2,7 +2,7 @@
 SeargeSDXL is a custom nodes extension for ComfyUI, designed to integrate a comprehensive workflow for utilizing SDXL 1.0 with both base and refiner checkpoints. It aims to enhance the user experience by providing a unified workflow file, facilitating the generation of images from text descriptions, image-to-image transformations, and inpainting tasks with improved efficiency and quality.
 
 ## Tags
-Checkpoint * CheckpointLoader * Concatenate * Conditioning * Constant * ControlNet * Debugging * DepthMap * Image * ImageSave * ImageScaling * ImageUpscaling * Inpaint * LoRA * Loader * ModelIO * ModelLoader * Preview * PromptComposer * SamplerScheduler * Sampling * Searge * Upscale * VAE
+Animation * CLIPConditioning * Checkpoint * CheckpointLoader * Concatenate * Conditioning * Context * ControlNet * ControlNetLoader * DataTypeAgnostic * Debugging * DepthMapEstimation * Image * ImageListLoader * ImageSave * ImageUpscaling * Inpaint * LoRA * Math * MathematicalFunctions * ModelLoader * NormalMap * NumberRangeGeneration * PromptComposer * SAM * SamplerScheduler * Sampling * Searge * Text * VAE
 
 ## Repo info
 - Repo url: `https://github.com/SeargeDP/SeargeSDXL`

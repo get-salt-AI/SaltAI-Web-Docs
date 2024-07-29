@@ -1,6 +1,7 @@
 ---
 tags:
 - Blur
+- ImageTransformation
 - VisualEffects
 ---
 
@@ -10,30 +11,30 @@ tags:
 - Category: `inpaint`
 - Output node: `False`
 
-The `MaskedBlur` node applies a blurring effect to an image specifically within areas defined by a mask, optionally adjusting the blur intensity and falloff to create a smooth transition between blurred and unblurred regions. This functionality is particularly useful in inpainting tasks where blending the edited areas seamlessly with the original image enhances the visual outcome.
+The node applies a blurring effect to areas of an image specified by a mask, with adjustable intensity and falloff, blending the altered regions smoothly with the rest of the image. It's designed for inpainting tasks where selective blurring can help integrate edited areas more naturally.
 ## Input types
 ### Required
 - **`image`**
-    - The `image` parameter represents the image to be processed, serving as the primary canvas for the blurring effect.
+    - The input image to be processed. The mask defines areas to blur, allowing for selective focus or smoothing within the image.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `Tensor`
+    - Python dtype: `torch.Tensor`
 - **`mask`**
-    - The `mask` parameter specifies the areas within the image to be blurred, effectively controlling the spatial application of the blur effect.
+    - A binary mask indicating areas of the image to apply the blur. It works in tandem with the image to selectively target regions for blurring.
     - Comfy dtype: `MASK`
-    - Python dtype: `Tensor`
+    - Python dtype: `torch.Tensor`
 - **`blur`**
-    - The `blur` parameter determines the intensity of the blur effect, with higher values resulting in a more pronounced blurring.
+    - Specifies the intensity of the blur to be applied. Higher values result in more pronounced blurring, affecting the visual softness of the masked areas.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`falloff`**
-    - The `falloff` parameter adjusts the transition between blurred and unblurred areas, enabling a smoother or more abrupt change depending on the value.
+    - Determines the transition smoothness between blurred and unblurred areas, enabling a gradual blend that enhances the natural appearance of the image.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - Returns the modified image with the specified areas blurred according to the mask and blur settings.
-    - Python dtype: `Tensor`
+    - The output is the modified image where specified areas have been blurred according to the mask and blur settings, seamlessly integrating edits.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -63,11 +64,11 @@ class MaskedBlur:
         image, mask = to_torch(image, mask)
 
         original = image.clone()
-        alpha = mask.floor()
+        alpha = mask_floor(mask)
         if falloff > 0:
             erosion = binary_erosion(alpha, falloff)
             alpha = alpha * gaussian_blur(erosion, falloff)
-        alpha = alpha.repeat(1, 3, 1, 1)
+        alpha = alpha.expand(-1, 3, -1, -1)
 
         image = gaussian_blur(image, blur)
         image = original + (image - original) * alpha

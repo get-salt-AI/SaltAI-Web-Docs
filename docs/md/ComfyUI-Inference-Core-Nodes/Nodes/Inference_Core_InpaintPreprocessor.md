@@ -1,8 +1,9 @@
 ---
 tags:
-- DepthMap
+- DepthMapEstimation
 - Image
 - Inpaint
+- NormalMap
 ---
 
 # [Inference.Core] Inpaint Preprocessor

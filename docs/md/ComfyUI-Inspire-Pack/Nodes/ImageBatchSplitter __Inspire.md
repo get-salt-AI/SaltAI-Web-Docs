@@ -2,7 +2,8 @@
 tags:
 - Batch
 - Image
-- ImageSplitting
+- ImageBatch
+- ImageDuplication
 ---
 
 # Image Batch Splitter (Inspire)

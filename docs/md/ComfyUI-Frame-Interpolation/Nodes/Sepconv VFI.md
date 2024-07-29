@@ -1,8 +1,11 @@
 ---
 tags:
-- AnimationScheduling
+- Curve
+- Frame
 - FrameInterpolation
-- VisualEffects
+- Interpolation
+- Keyframe
+- WavePatterns
 ---
 
 # Sepconv VFI
@@ -11,34 +14,34 @@ tags:
 - Category: `ComfyUI-Frame-Interpolation/VFI`
 - Output node: `False`
 
-The Sepconv VFI node is designed for video frame interpolation, utilizing separable convolutional networks to enhance the smoothness and quality of interpolated frames. It leverages advanced deep learning techniques to predict intermediate frames between existing ones in a video sequence, aiming to achieve high fidelity and temporally coherent video frame interpolation.
+The Sepconv VFI node is designed for video frame interpolation using separable convolutional networks. It enhances video quality by interpolating additional frames between existing ones, leveraging deep learning techniques to predict and generate intermediate frames with high accuracy and visual fidelity. This process is crucial for increasing the frame rate of videos, improving slow-motion effects, and enhancing the overall viewing experience.
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - Specifies the checkpoint name for the model, which is crucial for loading the correct pretrained weights and ensuring the model operates as expected.
+    - The checkpoint name for the model, specifying the pre-trained weights to be used for frame interpolation.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `List[str]`
 - **`frames`**
-    - The input video frames to be interpolated. This parameter is essential for providing the raw data from which intermediate frames will be generated.
+    - The sequence of frames to be interpolated, provided as a batch of images.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`clear_cache_after_n_frames`**
-    - Determines after how many frames the cache should be cleared to manage memory usage effectively during interpolation.
+    - Controls the cache clearing mechanism to manage memory usage, specifying after how many frames the cache should be cleared.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`multiplier`**
-    - Defines the number of intermediate frames to be generated between each pair of original frames, directly affecting the output video's frame rate.
+    - Defines the frame rate multiplier, indicating how many intermediate frames should be generated between each pair of original frames.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`optional_interpolation_states`**
-    - Allows for the passing of optional states that may affect the interpolation process, offering flexibility in handling different interpolation scenarios.
+    - Optional states for controlling the interpolation process, allowing for customization of the frame generation.
     - Comfy dtype: `INTERPOLATION_STATES`
     - Python dtype: `InterpolationStateList`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output interpolated video frames, enhanced in smoothness and quality through the sepconv VFI process.
+    - The output interpolated frames, enhancing the original video by increasing its frame rate through the addition of generated intermediate frames.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -87,7 +90,7 @@ class SepconvVFI:
         
         args = [interpolation_model]
         out = postprocess_frames(
-            generic_frame_loop(frames, clear_cache_after_n_frames, multiplier, return_middle_frame, *args, 
+            generic_frame_loop(type(self).__name__, frames, clear_cache_after_n_frames, multiplier, return_middle_frame, *args, 
                                interpolation_states=optional_interpolation_states, use_timestep=False, dtype=torch.float32)
         )
         return (out,)

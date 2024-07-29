@@ -1,6 +1,8 @@
 ---
 tags:
-- IdentityImage
+- CLIP
+- IPAdapter
+- Loader
 ---
 
 # Apply InstantID
@@ -9,71 +11,71 @@ tags:
 - Category: `InstantID`
 - Output node: `False`
 
-The ApplyInstantID node is designed to integrate InstantID technology into images, leveraging facial analysis and control networks to enhance or modify the image based on specified conditions. It utilizes advanced image processing and machine learning techniques to apply identity-related modifications or enhancements, ensuring high precision and customization in the output.
+The ApplyInstantID node is designed to integrate InstantID technology into images, leveraging facial analysis and control networks to enhance or modify the image based on specified conditions. It utilizes a combination of model inputs and image processing techniques to apply identity-preserving transformations, ensuring the output aligns with user-defined positive and negative conditioning.
 ## Input types
 ### Required
 - **`instantid`**
-    - Represents the InstantID model to be applied, crucial for the identity processing and enhancement operations.
+    - Represents the InstantID model configuration and weights, crucial for the identity transformation process.
     - Comfy dtype: `INSTANTID`
     - Python dtype: `dict`
 - **`insightface`**
-    - Facial analysis model used for detecting and analyzing faces within the image, essential for accurate application of InstantID.
+    - Facial analysis model used to extract facial features from the image, essential for guiding the InstantID transformation.
     - Comfy dtype: `FACEANALYSIS`
     - Python dtype: `dict`
 - **`control_net`**
-    - Control network model that guides the application of InstantID, ensuring the modifications adhere to specified conditions.
+    - Control network model that influences the strength and direction of the applied transformations.
     - Comfy dtype: `CONTROL_NET`
     - Python dtype: `dict`
 - **`image`**
-    - The input image to which InstantID will be applied, serving as the base for identity-related enhancements.
+    - The input image to be processed and transformed by the InstantID technology.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`model`**
-    - The specific model configuration used for InstantID application, dictating the processing and enhancement techniques.
+    - The underlying model used for generating the transformations.
     - Comfy dtype: `MODEL`
     - Python dtype: `dict`
 - **`positive`**
-    - Positive conditioning text guiding the InstantID application towards desired identity attributes.
+    - Positive conditioning phrases that guide the transformation towards desired attributes.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `str`
+    - Python dtype: `list of tuples`
 - **`negative`**
-    - Negative conditioning text that specifies undesired identity attributes to avoid during InstantID application.
+    - Negative conditioning phrases that guide the transformation away from undesired attributes.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `str`
+    - Python dtype: `list of tuples`
 - **`weight`**
-    - Overall weight factor influencing the strength of InstantID application, allowing for adjustment of the modification intensity.
+    - Overall weight of the transformation, affecting the intensity of the applied changes.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`start_at`**
-    - Defines the starting point of the application process, allowing for phased or gradual application of InstantID.
+    - Defines the starting point of the transformation process, allowing for gradual application.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end_at`**
-    - Specifies the endpoint of the application process, enabling precise control over the extent of InstantID modifications.
+    - Defines the ending point of the transformation process, ensuring the transformation is applied within a specific range.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`image_kps`**
-    - Optional keypoints image, used for more detailed and accurate facial analysis and InstantID application.
+    - Optional keypoints image for more precise facial feature alignment.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`mask`**
-    - Optional mask to be applied during the InstantID process, allowing for selective application of modifications.
+    - Optional mask to limit the transformation to specific areas of the image.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`MODEL`**
     - Comfy dtype: `MODEL`
-    - The modified model after applying InstantID, reflecting the integration of identity-related enhancements.
+    - The modified model after applying the InstantID transformations.
     - Python dtype: `dict`
 - **`positive`**
     - Comfy dtype: `CONDITIONING`
-    - The positive conditioning text after processing, potentially adjusted to better align with the applied InstantID modifications.
-    - Python dtype: `str`
+    - Updated positive conditioning reflecting the applied transformations.
+    - Python dtype: `list of tuples`
 - **`negative`**
     - Comfy dtype: `CONDITIONING`
-    - The negative conditioning text post-processing, potentially refined to exclude undesired identity attributes more effectively.
-    - Python dtype: `str`
+    - Updated negative conditioning reflecting the applied transformations.
+    - Python dtype: `list of tuples`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -175,7 +177,6 @@ class ApplyInstantID:
 
         patch_kwargs = {
             "ipadapter": self.instantid,
-            "number": 0,
             "weight": ip_weight,
             "cond": image_prompt_embeds,
             "uncond": uncond_image_prompt_embeds,
@@ -184,28 +185,23 @@ class ApplyInstantID:
             "sigma_end": sigma_end,
         }
 
-        if not is_sdxl:
-            for id in [1,2,4,5,7,8]: # id of input_blocks that have cross attention
-                _set_model_patch_replace(work_model, patch_kwargs, ("input", id))
-                patch_kwargs["number"] += 1
-            for id in [3,4,5,6,7,8,9,10,11]: # id of output_blocks that have cross attention
-                _set_model_patch_replace(work_model, patch_kwargs, ("output", id))
-                patch_kwargs["number"] += 1
-            _set_model_patch_replace(work_model, patch_kwargs, ("middle", 0))
-        else:
-            for id in [4,5,7,8]: # id of input_blocks that have cross attention
-                block_indices = range(2) if id in [4, 5] else range(10) # transformer_depth
-                for index in block_indices:
-                    _set_model_patch_replace(work_model, patch_kwargs, ("input", id, index))
-                    patch_kwargs["number"] += 1
-            for id in range(6): # id of output_blocks that have cross attention
-                block_indices = range(2) if id in [3, 4, 5] else range(10) # transformer_depth
-                for index in block_indices:
-                    _set_model_patch_replace(work_model, patch_kwargs, ("output", id, index))
-                    patch_kwargs["number"] += 1
-            for index in range(10):
-                _set_model_patch_replace(work_model, patch_kwargs, ("middle", 0, index))
-                patch_kwargs["number"] += 1
+        number = 0
+        for id in [4,5,7,8]: # id of input_blocks that have cross attention
+            block_indices = range(2) if id in [4, 5] else range(10) # transformer_depth
+            for index in block_indices:
+                patch_kwargs["module_key"] = str(number*2+1)
+                _set_model_patch_replace(work_model, patch_kwargs, ("input", id, index))
+                number += 1
+        for id in range(6): # id of output_blocks that have cross attention
+            block_indices = range(2) if id in [3, 4, 5] else range(10) # transformer_depth
+            for index in block_indices:
+                patch_kwargs["module_key"] = str(number*2+1)
+                _set_model_patch_replace(work_model, patch_kwargs, ("output", id, index))
+                number += 1
+        for index in range(10):
+            patch_kwargs["module_key"] = str(number*2+1)
+            _set_model_patch_replace(work_model, patch_kwargs, ("middle", 0, index))
+            number += 1
 
         # 2: do the ControlNet
         if mask is not None and len(mask.shape) < 3:

@@ -1,26 +1,30 @@
 ---
 tags:
 - Latent
+- LatentBatch
+- LatentBlend
+- Normalization
+- VAE
 ---
 
-# DummyLatentOut
+# Dummy Latent Out
 ## Documentation
 - Class name: `DummyLatentOut`
 - Category: `KJNodes/misc`
 - Output node: `True`
 
-Provides a simple pass-through for latent data, facilitating the visualization of workflow outputs in the UI without necessitating data persistence.
+Provides a simple pass-through for latent data, facilitating the visualization of workflow outputs in the UI without necessitating data persistence on disk.
 ## Input types
 ### Required
 - **`latent`**
-    - Acts as a direct pass-through for the latent data, enabling the visualization of outputs without saving them.
+    - The latent data to be passed through. This input is essential for the node's operation as it directly influences the output by being returned unchanged.
     - Comfy dtype: `LATENT`
-    - Python dtype: `tuple`
+    - Python dtype: `Tuple[torch.Tensor]`
 ## Output types
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - Echoes the input latent data, allowing for seamless integration into workflows that require visualization without data storage.
-    - Python dtype: `tuple`
+    - The unchanged latent data received as input, enabling direct visualization in the UI.
+    - Python dtype: `Tuple[torch.Tensor]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

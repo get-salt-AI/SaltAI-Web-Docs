@@ -1,7 +1,10 @@
 ---
 tags:
 - AnimateDiff
+- AnimateDiffContext
 - Animation
+- MotionData
+- PoseEstimation
 ---
 
 # 🚫[DEPR] Motion Model Settings (Simple) 🎭🅐🅓①
@@ -10,30 +13,30 @@ tags:
 - Category: ``
 - Output node: `False`
 
-This node is designed to configure motion model settings for simple scenarios within the AnimateDiff framework. It allows for the adjustment of motion scale parameters and the application of optional masks to fine-tune the animation process.
+This node is designed to configure motion model settings for AnimateDiff, focusing on simplifying the process by adjusting the stretch of motion path encoding (PE) and scaling motion effects. It's tailored for scenarios requiring basic motion adjustments without the complexity of full model configuration.
 ## Input types
 ### Required
 - **`motion_pe_stretch`**
-    - Defines the stretch factor of positional encoding in the motion model, affecting the scale and intensity of motion applied.
+    - Specifies the stretch factor for the motion path encoding, directly influencing the motion's perceived length and intensity.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`mask_motion_scale`**
-    - An optional mask tensor to apply scaling selectively across different regions, enhancing control over motion effects.
+    - Optional tensor to scale motion effects selectively across different regions of the image.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`min_motion_scale`**
-    - Sets the minimum scale for motion, providing a baseline for motion intensity.
+    - Sets the minimum scale for motion effects, providing a baseline for motion intensity.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`max_motion_scale`**
-    - Determines the maximum scale for motion, capping the intensity of motion effects.
+    - Defines the maximum scale for motion effects, capping the intensity of motion adjustments.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`ad_settings`**
     - Comfy dtype: `AD_SETTINGS`
-    - Outputs the configured motion model settings, encapsulating adjustments made to motion scale and optional masking.
+    - Outputs the configured motion model settings, encapsulating the adjustments made to motion path encoding and motion effect scaling.
     - Python dtype: `AnimateDiffSettings`
 ## Usage tips
 - Infra type: `CPU`
@@ -53,6 +56,7 @@ class AnimateDiffModelSettingsSimple:
                 "mask_motion_scale": ("MASK",),
                 "min_motion_scale": ("FLOAT", {"default": 1.0, "min": 0.0, "step": 0.001}),
                 "max_motion_scale": ("FLOAT", {"default": 1.0, "min": 0.0, "step": 0.001}),
+                "optional": {"deprecation_warning": ("ADEWARN", {"text": "Deprecated"})},
             }
         }
     

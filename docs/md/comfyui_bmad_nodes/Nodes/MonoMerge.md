@@ -1,6 +1,7 @@
 ---
 tags:
-- Image
+- ImageBlend
+- VisualEffects
 ---
 
 # MonoMerge
@@ -9,7 +10,7 @@ tags:
 - Category: `Bmad/image`
 - Output node: `False`
 
-The MonoMerge node is designed for merging two images into a monochromatic image based on a target color scheme (either towards white or black). This process involves comparing the luminance of corresponding pixels from both images and selecting the one that aligns with the target color scheme, thereby creating a new image that emphasizes either the lighter or darker aspects of the combined images.
+The MonoMerge node is designed to merge two images into a monochromatic image based on a target color scheme (either towards white or black). This process involves comparing the luminance (L component) of corresponding pixels from both images and selecting the higher or lower value depending on the target, resulting in an image that emphasizes either the lighter or darker aspects of the combined images.
 ## Input types
 ### Required
 - **`image1`**
@@ -17,21 +18,21 @@ The MonoMerge node is designed for merging two images into a monochromatic image
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`image2`**
-    - The second image to be merged. It is equally important as the first image, as its pixels are compared with those of the first image to create the final monochromatic image according to the target color scheme.
+    - The second image to be merged. It is compared against the first image to select the appropriate luminance values for the final monochromatic image, depending on the target color scheme.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`target`**
-    - Specifies the target color scheme for the merge, either 'white' or 'black'. This determines whether the merge emphasizes lighter or darker aspects of the images.
+    - Specifies the target color scheme for the merge, either 'white' or 'black'. This determines whether the merge will favor lighter or darker pixel values from the input images.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`output_format`**
-    - Defines the output format of the merged image, allowing for flexibility in how the result is utilized or displayed.
+    - Defines the format of the output image, such as JPEG, PNG, etc. This affects how the final image is encoded and saved.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is a monochromatic image that combines elements of the input images according to the specified target color scheme, either emphasizing lighter or darker tones.
+    - The resulting monochromatic image after merging the two input images based on the specified target color scheme.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -44,12 +45,12 @@ class MonoMerge:
     target = ["white", "black"]
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "image1": ("IMAGE",),
                 "image2": ("IMAGE",),
-                "target": (s.target, {"default": "white"}),
+                "target": (cls.target, {"default": "white"}),
                 "output_format": (image_output_formats_options, {
                     "default": image_output_formats_options[0]
                 })
@@ -59,7 +60,7 @@ class MonoMerge:
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "monochromatic_merge"
-    CATEGORY = "Bmad/image"
+    CATEGORY = images_category_path
 
     def monochromatic_merge(self, image1, image2, target, output_format):
         image1 = tensor2opencv(image1, 1)

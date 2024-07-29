@@ -1,7 +1,6 @@
 ---
 tags:
-- Text
-- TextReplacement
+- SigmaScheduling
 ---
 
 # String Replace
@@ -10,23 +9,23 @@ tags:
 - Category: `Derfuu_Nodes/Functions/String Operations`
 - Output node: `False`
 
-The `DF_String_Replace` node is designed to modify strings by replacing specified patterns with new substrings. It supports both strict replacements and regular expression-based modifications, allowing for flexible string manipulation.
+The `DF_String_Replace` node is designed to modify strings by replacing specified patterns with a new string. It supports both strict replacements and regular expression-based substitutions, allowing for flexible text manipulation within a given text input.
 ## Input types
 ### Required
 - **`Text`**
-    - The input text to be processed. This parameter is the target for the replacement operation.
+    - The original text in which replacements will be made. It serves as the base for modifications.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`Pattern`**
-    - The pattern to search for within the input text. This can be a literal string in 'Strict' mode or a regular expression pattern in 'RegEx' mode.
+    - The pattern to be replaced in the text. This can be a literal string (in strict mode) or a regular expression pattern.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`Replace_With`**
-    - The substring to replace the found pattern with in the input text.
+    - The string that will replace occurrences of the pattern in the text.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`Mode`**
-    - Determines the method of pattern matching: 'Strict' for exact matches or 'RegEx' for regular expression matching.
+    - Determines whether the replacement will be done using strict matching or regular expressions, offering flexibility in how patterns are identified and replaced.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
@@ -61,13 +60,14 @@ class StringReplace:
     FUNCTION = "replace"
     CATEGORY = TREE_STRINGS
 
-    def replace(self, Text, Pattern, Replace_With, Mode):
+    def replace(self, Text: str, Pattern: str, Replace_With: str, Mode: str):
         out = Text
+        Pattern = Pattern.encode().decode("unicode_escape")
         match Mode:
             case "Strict":
                 out = Text.replace(Pattern, Replace_With)
             case "RegEx":
-                out = re.sub(Pattern, Replace_With, Text)
+                out = re.sub(Pattern, Replace_With, out, flags=re.MULTILINE)
         return (out,)
 
 ```

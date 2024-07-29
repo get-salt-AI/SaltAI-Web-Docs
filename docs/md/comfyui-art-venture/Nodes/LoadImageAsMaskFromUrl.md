@@ -1,6 +1,8 @@
 ---
 tags:
+- Animation
 - Image
+- ImageDrawing
 - ImageLoad
 ---
 
@@ -10,21 +12,21 @@ tags:
 - Category: `Art Venture/Image`
 - Output node: `False`
 
-This node is designed to load images from URLs and convert them into masks based on a specified color channel. It supports selecting from alpha, red, green, or blue channels to create the mask, facilitating various image processing and manipulation tasks where masks are required.
+This node is designed to load images from URLs and convert them into masks based on a specified channel. It supports selecting from alpha, red, green, or blue channels to create the mask, making it versatile for various image processing tasks where masking based on color channels is required.
 ## Input types
 ### Required
-- **`url`**
-    - The URL(s) from which the image will be loaded. Supports loading multiple images if URLs are separated by new lines. This parameter is essential for fetching the image data to be processed into masks.
+- **`image`**
+    - A string containing the URL(s) of the image(s) to be loaded. If multiple URLs are provided, they should be separated by newlines. This parameter is essential for fetching the images from which masks will be created.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`channel`**
-    - Specifies the color channel ('alpha', 'red', 'green', 'blue') to be used for creating the mask. This choice determines which part of the image data will be converted into the mask, affecting the outcome significantly.
+    - Specifies the color channel ('alpha', 'red', 'green', 'blue') to be used for creating the mask. This choice determines which part of the image data will be converted into a mask, affecting the outcome significantly.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`masks`**
     - Comfy dtype: `MASK`
-    - The output masks generated from the images, based on the selected color channel. These masks are suitable for various image processing applications that require specific areas to be isolated or highlighted.
+    - The output is a tensor of masks created from the specified channel of the input images. These masks are suitable for further image processing tasks, such as compositing or inpainting.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -38,7 +40,7 @@ class UtilLoadImageAsMaskFromUrl(UtilLoadImageFromUrl):
     def INPUT_TYPES(s):
         return {
             "required": {
-                "url": ("STRING", {"default": "", "multiline": True, "dynamicPrompts": False}),
+                "image": ("STRING", {"default": "", "multiline": True, "dynamicPrompts": False}),
                 "channel": (["alpha", "red", "green", "blue"],),
             }
         }
@@ -46,8 +48,11 @@ class UtilLoadImageAsMaskFromUrl(UtilLoadImageFromUrl):
     RETURN_TYPES = ("MASK",)
     RETURN_NAMES = ("masks",)
 
-    def load_image(self, url: str, channel: str):
-        urls = url.strip().split("\n")
+    def load_image(self, image: str, channel: str, url=""):
+        if not image or image == "":
+            image = url
+
+        urls = image.strip().split("\n")
         images, alphas = load_images_from_url([urls], False)
 
         masks = []

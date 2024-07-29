@@ -1,6 +1,7 @@
 ---
 tags:
 - IPAdapter
+- RegionalImageProcessing
 ---
 
 # ToIPAdapterPipe (Inspire)
@@ -15,25 +16,25 @@ The ToIPAdapterPipe node is designed to create a pipeline that integrates variou
 - **`ipadapter`**
     - The 'ipadapter' parameter is crucial for specifying the IP adapter component to be used in the pipeline, serving as the foundational element for data or model adaptation.
     - Comfy dtype: `IPADAPTER`
-    - Python dtype: `tuple(IPADAPTER)`
+    - Python dtype: `str`
 - **`model`**
-    - The 'model' parameter identifies the specific model to be integrated into the pipeline, enabling tailored processing or analysis.
+    - The 'model' parameter identifies the specific model to be integrated into the pipeline, enabling its adaptation or enhancement through the IP adapter.
     - Comfy dtype: `MODEL`
-    - Python dtype: `tuple(MODEL)`
+    - Python dtype: `str`
 ### Optional
 - **`clip_vision`**
-    - The 'clip_vision' parameter optionally adds vision processing capabilities to the pipeline, enhancing the model's understanding or interpretation of visual data.
+    - The 'clip_vision' parameter optionally adds vision processing capabilities to the pipeline, leveraging CLIP models for enhanced visual understanding.
     - Comfy dtype: `CLIP_VISION`
-    - Python dtype: `tuple(CLIP_VISION)`
+    - Python dtype: `str`
 - **`insightface`**
-    - The 'insightface' parameter optionally incorporates face recognition technology into the pipeline, further enriching the model's analytical capabilities.
+    - The 'insightface' parameter optionally incorporates face recognition technology into the pipeline, providing advanced facial analysis features.
     - Comfy dtype: `INSIGHTFACE`
-    - Python dtype: `tuple(INSIGHTFACE)`
+    - Python dtype: `str`
 ## Output types
 - **`ipadapter_pipe`**
     - Comfy dtype: `IPADAPTER_PIPE`
-    - This output represents the assembled pipeline, encapsulating the specified IP adapter, model, and any optional enhancements for vision and face recognition.
-    - Python dtype: `tuple(IPADAPTER, MODEL, CLIP_VISION, INSIGHTFACE, function)`
+    - This output represents the assembled pipeline, encapsulating the integrated IP adapter, model, and any optional enhancements for vision and face recognition.
+    - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -60,7 +61,8 @@ class ToIPAdapterPipe:
 
     CATEGORY = "InspirePack/Util"
 
-    def doit(self, ipadapter, model, clip_vision, insightface=None):
+    @staticmethod
+    def doit(ipadapter, model, clip_vision, insightface=None):
         pipe = ipadapter, model, clip_vision, insightface, lambda x: x
 
         return (pipe,)

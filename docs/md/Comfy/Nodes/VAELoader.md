@@ -9,20 +9,20 @@ tags:
 - Category: `loaders`
 - Output node: `False`
 
-The VAELoader node is designed for loading Variational Autoencoder (VAE) models, specifically tailored to handle both standard and approximate VAEs. It supports loading VAEs by name, including specialized handling for 'taesd' and 'taesdxl' models, and dynamically adjusts based on the VAE's specific configuration.
+The VAELoader node is designed to load a Variational Autoencoder (VAE) model, supporting both standard and TAESD-specific VAE models. It dynamically selects the appropriate loading mechanism based on the VAE name provided, facilitating the use of different VAE architectures within the same framework.
 ## Input types
 ### Required
 - **`vae_name`**
-    - Specifies the name of the VAE to be loaded. This parameter determines which VAE model is fetched and loaded, supporting a range of predefined VAE names including 'taesd' and 'taesdxl'.
+    - Specifies the name of the VAE to be loaded. The choice of VAE determines the loading mechanism and the subsequent model configuration that is applied.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`vae`**
     - Comfy dtype: `VAE`
-    - Returns the loaded VAE model, ready for further operations such as encoding or decoding. The output is a model object that encapsulates the loaded model's state.
+    - Returns the loaded VAE model, ready for use in encoding or decoding operations within the framework.
     - Python dtype: `comfy.sd.VAE`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes:
     - [VAEDecode](../../Comfy/Nodes/VAEDecode.md)
     - [VAEEncode](../../Comfy/Nodes/VAEEncode.md)
@@ -47,6 +47,8 @@ class VAELoader:
         sdxl_taesd_dec = False
         sd1_taesd_enc = False
         sd1_taesd_dec = False
+        sd3_taesd_enc = False
+        sd3_taesd_dec = False
 
         for v in approx_vaes:
             if v.startswith("taesd_decoder."):
@@ -57,10 +59,16 @@ class VAELoader:
                 sdxl_taesd_dec = True
             elif v.startswith("taesdxl_encoder."):
                 sdxl_taesd_enc = True
+            elif v.startswith("taesd3_decoder."):
+                sd3_taesd_dec = True
+            elif v.startswith("taesd3_encoder."):
+                sd3_taesd_enc = True
         if sd1_taesd_dec and sd1_taesd_enc:
             vaes.append("taesd")
         if sdxl_taesd_dec and sdxl_taesd_enc:
             vaes.append("taesdxl")
+        if sd3_taesd_dec and sd3_taesd_enc:
+            vaes.append("taesd3")
         return vaes
 
     @staticmethod
@@ -81,8 +89,13 @@ class VAELoader:
 
         if name == "taesd":
             sd["vae_scale"] = torch.tensor(0.18215)
+            sd["vae_shift"] = torch.tensor(0.0)
         elif name == "taesdxl":
             sd["vae_scale"] = torch.tensor(0.13025)
+            sd["vae_shift"] = torch.tensor(0.0)
+        elif name == "taesd3":
+            sd["vae_scale"] = torch.tensor(1.5305)
+            sd["vae_shift"] = torch.tensor(0.0609)
         return sd
 
     @classmethod
@@ -95,7 +108,7 @@ class VAELoader:
 
     #TODO: scale factor?
     def load_vae(self, vae_name):
-        if vae_name in ["taesd", "taesdxl"]:
+        if vae_name in ["taesd", "taesdxl", "taesd3"]:
             sd = self.load_taesd(vae_name)
         else:
             vae_path = folder_paths.get_full_path("vae", vae_name)

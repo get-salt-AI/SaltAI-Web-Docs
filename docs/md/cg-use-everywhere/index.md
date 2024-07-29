@@ -1,12 +1,12 @@
 # cg-use-everywhere
-cg-use-everywhere is a collection of nodes designed to enhance workflow automation by allowing data to be dynamically routed between nodes based on matching criteria, including support for regex. It includes features like visualizing connections, converting virtual links to real ones, and handling various data types with specialized nodes for broad compatibility and workflow optimization. The project aims to simplify and streamline the process of connecting and managing data flows within workflows.
+cg-use-everywhere is a collection of nodes designed to enhance workflow automation by allowing data to be dynamically routed between nodes in a visual programming environment. It introduces nodes like `Anything Everywhere`, which dynamically connects inputs across the workflow based on matching data types or conditions, and `Seed Everywhere` for synchronizing seed values across nodes. The project aims to simplify and streamline the process of data manipulation and routing, making it easier to build complex workflows without manually connecting every node.
 
 ## Tags
-DataTypeAgnostic * Debugging * RandomGeneration * Seed * String * Text
+DataTypeAgnostic * Debugging * List * MultilineText * RandomGeneration * Randomization * Seed * String * Text
 
 ## Repo info
 - Repo url: `https://github.com/chrisgoringe/cg-use-everywhere`
-- Commit hash: `87743d7030b0602970a8bb7cb3567a008e5a4628`
+- Commit hash: `2566ac31176c9fa939eb198f3787f18eeb4f815a`
 
 ## Licenses
 - **Apache-2.0**: `LICENSE`

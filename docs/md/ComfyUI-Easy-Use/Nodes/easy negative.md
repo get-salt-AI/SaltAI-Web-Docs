@@ -4,18 +4,18 @@
 - Category: `EasyUse/Prompt`
 - Output node: `False`
 
-The 'easy negative' node is designed to process negative conditioning inputs for generative models, focusing on embedding and normalizing these inputs for enhanced model performance. It encapsulates the complexity of handling negative prompts, including tokenization, embedding, and optional adjustments based on specific normalization and weighting strategies, to optimize the generation process towards avoiding certain traits or characteristics.
+This node specializes in processing negative textual inputs for generative models, focusing on embedding and conditioning these inputs to influence the generative process negatively. It integrates with CLIP models for encoding text into embeddings and applies various normalization and interpretation strategies to tailor the negative influence on the generated content.
 ## Input types
 ### Required
 - **`negative`**
-    - The 'negative' input represents the textual content that the model should avoid generating. It is crucial for guiding the model to negate certain aspects or themes in the output, affecting the overall direction and quality of the generated content.
+    - The negative textual input to be processed. It is crucial for defining the aspects or features to be minimized or avoided in the generated content, affecting the overall direction and quality of the output.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`negative`**
     - Comfy dtype: `STRING`
-    - unknown
-    - Python dtype: `unknown`
+    - The processed negative text, now encoded and conditioned for use in influencing the generative model. This output is ready to be integrated into the model's generative process.
+    - Python dtype: `List[Tuple[torch.Tensor, Dict[str, torch.Tensor]]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -42,6 +42,9 @@ class negativePrompt:
 
     @staticmethod
     def main(negative):
-        return negative,
+        if has_chinese(negative):
+            return zh_to_en([negative])
+        else:
+            return negative,
 
 ```

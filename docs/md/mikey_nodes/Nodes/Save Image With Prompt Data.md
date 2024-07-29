@@ -1,6 +1,8 @@
 ---
 tags:
+- Animation
 - Image
+- ImageGeneration
 - ImageSave
 ---
 

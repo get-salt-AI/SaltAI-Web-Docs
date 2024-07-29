@@ -1,7 +1,6 @@
 ---
 tags:
-- BackgroundRemoval
-- Image
+- AlphaChannel
 ---
 
 # Image Remove Background Rembg (mtb)

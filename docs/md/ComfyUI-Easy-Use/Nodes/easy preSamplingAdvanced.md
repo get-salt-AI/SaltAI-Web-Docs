@@ -1,5 +1,6 @@
 ---
 tags:
+- SamplerScheduler
 - Sampling
 ---
 
@@ -9,63 +10,63 @@ tags:
 - Category: `EasyUse/PreSampling`
 - Output node: `True`
 
-This node facilitates advanced pre-sampling operations within a generative pipeline, offering customizable settings for fine-tuning the sampling process. It allows for the adjustment of various parameters to optimize the generation of images or other media, catering to specific needs or experimental setups.
+This node is designed to configure advanced pre-sampling settings for image generation processes. It allows for detailed customization of the sampling process, enabling users to fine-tune parameters such as noise levels, scheduler types, denoise settings, and seed values to achieve desired image qualities and variations. The node serves as a crucial component for preparing the image generation pipeline, offering flexibility and control over the pre-sampling phase.
 ## Input types
 ### Required
 - **`pipe`**
-    - Represents the generative pipeline through which the data flows, serving as the foundation for the pre-sampling process.
+    - The pipeline object that is being configured for the pre-sampling process. It is essential for defining the context and settings for the image generation workflow.
     - Comfy dtype: `PIPE_LINE`
-    - Python dtype: `Dict`
+    - Python dtype: `dict`
 - **`steps`**
-    - Specifies the number of steps to be taken in the sampling process, affecting the granularity and quality of the output.
+    - Specifies the number of steps to be executed in the pre-sampling process. This parameter directly influences the granularity and quality of the generated images.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - Controls the conditioning factor, influencing the adherence of the generated output to the given conditions.
+    - Configures the conditioning factor for the generation process, affecting the influence of the conditioning on the generated images.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sampler_name`**
-    - Selects the specific sampling algorithm to be used, allowing for customization of the sampling behavior.
+    - Determines the sampling algorithm to be used, allowing for selection from a variety of predefined samplers to optimize the generation process.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - Chooses the scheduling algorithm for the sampling process, affecting the progression of steps.
+    - Specifies the scheduler algorithm to be used during the pre-sampling process. This parameter allows for the selection from a predefined list of schedulers, including custom ones, to control the sampling behavior and efficiency.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`start_at_step`**
-    - Defines the starting step for the sampling process, allowing for control over the phase of generation.
+    - Defines the starting step for the pre-sampling process, allowing for control over the initial state of image generation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`end_at_step`**
-    - Sets the ending step for the sampling process, determining the final phase of generation.
+    - Sets the ending step for the pre-sampling process, determining the final state of the generated images.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`add_noise`**
-    - Enables or disables the addition of noise during the sampling process, affecting the texture and details of the output.
+    - Enables or disables the addition of noise during the pre-sampling process, affecting the texture and details of the generated images.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `bool`
 - **`seed`**
-    - Sets the initial seed for the random number generator, ensuring reproducibility of results.
+    - Sets the seed value for the random number generator used in the pre-sampling process. This ensures reproducibility of results by initializing the generator to a known state.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`return_with_leftover_noise`**
-    - Determines whether to return the output with leftover noise, impacting the visual characteristics of the generated media.
+    - Determines whether the generated images should retain some level of noise, offering a balance between clarity and naturalness.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `bool`
 ### Optional
 - **`image_to_latent`**
-    - Optionally converts an image to a latent representation, integrating it into the pre-sampling process.
+    - Optional input for providing an image to be converted into a latent representation, enabling direct manipulation of the latent space.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `Optional[Image]`
+    - Python dtype: `object`
 - **`latent`**
-    - Optionally provides a latent representation to be used directly in the sampling process.
+    - Optional input for providing a latent representation, offering an advanced level of customization by directly manipulating the latent space prior to sampling.
     - Comfy dtype: `LATENT`
-    - Python dtype: `Optional[Latent]`
+    - Python dtype: `object`
 ## Output types
 - **`pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - Outputs the enhanced generative pipeline, enriched with the applied pre-sampling configurations.
-    - Python dtype: `Dict`
+    - Outputs a configured pipeline object, encapsulating all the specified pre-sampling settings and ready for integration into the image generation workflow.
+    - Python dtype: `dict`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -85,7 +86,7 @@ class samplerSettingsAdvanced:
                      "steps": ("INT", {"default": 20, "min": 1, "max": 10000}),
                      "cfg": ("FLOAT", {"default": 8.0, "min": 0.0, "max": 100.0}),
                      "sampler_name": (comfy.samplers.KSampler.SAMPLERS,),
-                     "scheduler": (comfy.samplers.KSampler.SCHEDULERS + ['align_your_steps'],),
+                     "scheduler": (comfy.samplers.KSampler.SCHEDULERS + new_schedulers,),
                      "start_at_step": ("INT", {"default": 0, "min": 0, "max": 10000}),
                      "end_at_step": ("INT", {"default": 10000, "min": 0, "max": 10000}),
                      "add_noise": (["enable", "disable"],),
@@ -112,9 +113,14 @@ class samplerSettingsAdvanced:
         vae = pipe["vae"]
         batch_size = pipe["loader_settings"]["batch_size"] if "batch_size" in pipe["loader_settings"] else 1
         if image_to_latent is not None:
-            samples = {"samples": vae.encode(image_to_latent[:, :, :, :3])}
-            samples = RepeatLatentBatch().repeat(samples, batch_size)[0]
-            images = image_to_latent
+            _, height, width, _ = image_to_latent.shape
+            if height == 1 and width == 1:
+                samples = pipe["samples"]
+                images = pipe["images"]
+            else:
+                samples = {"samples": vae.encode(image_to_latent[:, :, :, :3])}
+                samples = RepeatLatentBatch().repeat(samples, batch_size)[0]
+                images = image_to_latent
         elif latent is not None:
             samples = latent
             images = pipe["images"]

@@ -4,31 +4,31 @@ tags:
 - LLMChat
 ---
 
-# LLM Api Config
+# LLM API Config
 ## Documentation
 - Class name: `AV_LLMApiConfig`
 - Category: `ArtVenture/LLM`
 - Output node: `False`
 
-The AV_LLMApiConfig node is designed to generate configuration settings for language model APIs, specifically focusing on model selection, token limits, and temperature settings. It abstracts the complexity of configuring language models for use in various applications, providing a streamlined interface for specifying essential parameters.
+The AV_LLMApiConfig node is designed to generate configuration settings for various large language models (LLMs) by specifying model type, maximum token count, and temperature. This configuration is essential for tailoring the behavior of LLMs to specific tasks or preferences, providing a foundation for further interactions with these models.
 ## Input types
 ### Required
 - **`model`**
-    - Specifies the language model to be used, allowing selection from a predefined list of GPT and Claude models. The choice of model directly influences the behavior and capabilities of the generated language model configuration.
+    - Specifies the model to be used for the LLM configuration. This parameter supports a wide range of models, including GPT, Claude, and Bedrock variants, allowing for flexible model selection based on the task at hand.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `Union[List[str], str]`
+    - Python dtype: `str`
 - **`max_token`**
-    - Defines the maximum number of tokens the language model can generate or process in a single request, setting a limit on the output's length.
+    - Defines the maximum number of tokens the LLM can generate or process in a single request. This parameter helps control the length of the output, ensuring it meets specific requirements or limitations.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`temperature`**
-    - Controls the creativity or randomness of the language model's responses, with higher values leading to more varied outputs.
+    - Controls the creativity or randomness of the LLM's responses. A higher temperature leads to more varied outputs, while a lower temperature results in more deterministic and predictable text.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`llm_config`**
     - Comfy dtype: `LLM_CONFIG`
-    - The generated configuration for the language model, encapsulating model choice, token limits, and temperature settings.
+    - The output is a configuration object tailored for LLM interactions, encapsulating the specified model, token limit, and temperature settings.
     - Python dtype: `LLMConfig`
 ## Usage tips
 - Infra type: `CPU`
@@ -42,7 +42,15 @@ class LLMApiConfigNode:
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "model": (gpt_models + claude_models, {"default": gpt_vision_models[0]}),
+                "model": (
+                    gpt_models
+                    + claude3_models
+                    + claude2_models
+                    + bedrock_claude3_models
+                    + bedrock_claude2_models
+                    + bedrock_mistral_models,
+                    {"default": gpt_vision_models[0]},
+                ),
                 "max_token": ("INT", {"default": 1024}),
                 "temperature": ("FLOAT", {"default": 0, "min": 0, "max": 1.0, "step": 0.001}),
             }

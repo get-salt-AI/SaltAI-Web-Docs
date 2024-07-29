@@ -1,7 +1,10 @@
 ---
 tags:
-- RandomGeneration
+- ImageEnhancement
+- ImageNoise
+- Noise
 - Randomization
+- Seed
 ---
 
 # Random Int

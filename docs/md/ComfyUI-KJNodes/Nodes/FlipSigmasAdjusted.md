@@ -1,41 +1,43 @@
 ---
 tags:
+- AnimationScheduling
+- Scheduling
 - SigmaScheduling
 ---
 
-# FlipSigmasAdjusted
+# Flip Sigmas Adjusted
 ## Documentation
 - Class name: `FlipSigmasAdjusted`
 - Category: `KJNodes/noise`
 - Output node: `False`
 
-The FlipSigmasAdjusted node is designed to manipulate a sequence of sigma values for use in diffusion models. It inverts the order of the sigma values, applies an offset, and optionally scales the sequence based on the last sigma value or a specified divisor. This node is useful for adjusting the noise levels applied during the denoising steps of a generative model's sampling process.
+The FlipSigmasAdjusted node is designed to manipulate a sequence of sigma values for use in diffusion models. It reverses the order of the sigma values, applies an offset, and optionally divides the entire sequence by the last sigma value or another specified divisor. This process is crucial for adjusting the noise levels in a controlled manner, ensuring that the diffusion process can be fine-tuned according to specific requirements.
 ## Input types
 ### Required
 - **`sigmas`**
-    - The sequence of sigma values to be adjusted. The inversion and adjustment operations are applied to this sequence.
+    - The sequence of sigma values to be adjusted. This sequence is reversed and potentially modified to meet certain conditions, such as avoiding zero values and applying offsets or divisions.
     - Comfy dtype: `SIGMAS`
     - Python dtype: `torch.Tensor`
 - **`divide_by_last_sigma`**
-    - A boolean flag that determines whether the adjusted sigma values should be scaled by the last sigma value in the sequence.
+    - A boolean flag indicating whether the sigma values should be divided by the last sigma value in the sequence. This is used to normalize the sequence based on its final value.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`divide_by`**
-    - A scalar value by which the adjusted sigma values are divided, providing a means to scale the sequence.
+    - A scalar value by which the entire sequence of sigma values is divided. This allows for further adjustment of the noise level across the sequence.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`offset_by`**
-    - An integer value indicating how much to offset the sigma values in the sequence, allowing for further adjustment.
+    - An integer indicating how many positions to offset the sigma values after reversing their order. This can be used to shift the noise levels applied at each step of the diffusion process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`SIGMAS`**
     - Comfy dtype: `SIGMAS`
-    - The adjusted sequence of sigma values after inversion, offsetting, and optional scaling.
+    - The adjusted sequence of sigma values, ready for use in diffusion processes. This output is a tensor of sigma values that have been reversed, offset, and potentially normalized or divided as specified.
     - Python dtype: `torch.Tensor`
 - **`sigmas_string`**
     - Comfy dtype: `STRING`
-    - A string representation of the adjusted sigma values, formatted for easy readability.
+    - A string representation of the adjusted sigma values, formatted with a specified precision and separator for easy readability.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`

@@ -1,53 +1,53 @@
 # ∞ Simple Chat
 ## Documentation
 - Class name: `SimpleChat`
-- Category: `SALT/Language Toolkit/Agents`
+- Category: `SALT/Language Toolkit/Agents/Chat`
 - Output node: `False`
 
-SimpleChat facilitates straightforward, one-on-one text-based conversations between two agents. It abstracts the complexities of initiating, managing, and summarizing chat interactions, providing a seamless interface for engaging in dialogues.
+SimpleChat facilitates one-on-one chat simulations between two conversable agents, allowing for the initiation of dialogues, the application of summary methods to chat histories, and the option to clear or maintain chat history for subsequent interactions. It abstracts the complexities of chat initiation and management, providing a straightforward interface for simulating realistic chat interactions.
 ## Input types
 ### Required
 - **`initiator`**
-    - Represents the agent initiating the chat, setting the stage for the conversation's context and dynamics.
+    - Represents the initiating conversable agent in the chat, setting the stage for the dialogue's commencement.
     - Comfy dtype: `AGENT`
     - Python dtype: `ConversableAgent`
 - **`recipient`**
-    - Denotes the agent receiving the chat initiation, playing a crucial role in the dialogue by responding to the initiator's messages.
+    - Denotes the recipient conversable agent, who responds to the initiator's messages, completing the two-way communication setup.
     - Comfy dtype: `AGENT`
     - Python dtype: `ConversableAgent`
 - **`summary_method`**
-    - Specifies the method used to summarize the chat conversation, impacting the overall understanding and takeaway of the dialogue.
+    - Specifies the method used to summarize the chat history, impacting the way the conversation's essence is captured and presented.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`clear_history`**
-    - Determines whether to clear the chat history before starting a new conversation, affecting the continuity and context of interactions.
+    - A boolean flag indicating whether to clear the chat history before starting a new chat session, affecting the continuity of conversations.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`init_message`**
-    - Optional initial message to set the tone and topic of the conversation.
+    - The initial message to start the chat with, setting the tone and context for the ensuing dialogue.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`max_turns`**
-    - Limits the number of exchanges between the agents, controlling the conversation's length.
+    - Limits the number of turns the chat can take, controlling the conversation's length and flow.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`chat_history`**
     - Comfy dtype: `STRING`
-    - Provides a detailed record of the chat conversation, capturing the exchange of messages between the agents.
+    - The compiled history of messages exchanged during the chat, presented in a readable format.
     - Python dtype: `str`
 - **`summary`**
     - Comfy dtype: `STRING`
-    - Offers a concise summary of the chat, highlighting key points and outcomes of the conversation.
+    - A concise summary of the chat, reflecting the conversation's key points and outcomes.
     - Python dtype: `str`
 - **`initiator`**
     - Comfy dtype: `AGENT`
-    - Returns the initiating agent, reflecting their role and contributions to the chat session.
+    - Returns the initiating agent after the chat, potentially with updated state or information.
     - Python dtype: `ConversableAgent`
 - **`recipient`**
     - Comfy dtype: `AGENT`
-    - Returns the recipient agent, showcasing their responses and engagement within the chat.
+    - Returns the recipient agent after the chat, potentially with updated state or information.
     - Python dtype: `ConversableAgent`
 ## Usage tips
 - Infra type: `CPU`
@@ -80,7 +80,7 @@ class SimpleChat:
     RETURN_NAMES = ("chat_history", "summary", "initiator", "recipient",)
 
     FUNCTION = "start_chat"
-    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Agents"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Agents/Chat"
 
     def start_chat(self, initiator, recipient, summary_method, clear_history, init_message=None, max_turns=None):
         initiator = clone_conversable_agent(initiator)

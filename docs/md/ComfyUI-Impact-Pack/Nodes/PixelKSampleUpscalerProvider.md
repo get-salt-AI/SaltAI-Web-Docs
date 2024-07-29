@@ -1,8 +1,8 @@
 ---
 tags:
-- ImageScaling
+- ImageResolution
+- ImageTransformation
 - ImageUpscaling
-- Upscale
 ---
 
 # PixelKSampleUpscalerProvider
@@ -11,75 +11,79 @@ tags:
 - Category: `ImpactPack/Upscale`
 - Output node: `False`
 
-This node serves as a provider for pixel-wise K-sample upscaling, facilitating the enhancement of image resolution through advanced sampling techniques. It acts as a foundational component in image processing pipelines, offering a method to upscale images with high fidelity.
+This node specializes in upscaling images through a K-sample strategy, leveraging advanced sampling techniques to enhance pixel quality. It simplifies the application of sophisticated upscaling algorithms, aiming to produce higher resolution images with greater detail and clarity.
 ## Input types
 ### Required
 - **`scale_method`**
-    - unknown
+    - Specifies the method used for upscaling, allowing selection from predefined algorithms to tailor the upscaling process to specific needs.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`model`**
-    - unknown
+    - Identifies the model used for upscaling, enabling the application of specific models tailored to enhance image quality.
     - Comfy dtype: `MODEL`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`vae`**
-    - unknown
+    - Specifies the variational autoencoder used in the upscaling process, contributing to the generation of high-quality images.
     - Comfy dtype: `VAE`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`seed`**
-    - unknown
+    - Sets the seed for random number generation, ensuring reproducibility of the upscaling process.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`steps`**
-    - unknown
+    - Defines the number of steps in the upscaling process, allowing control over the refinement level of the upscaled image.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`cfg`**
-    - unknown
+    - Configures the conditioning factor, influencing the upscaling process by adjusting the balance between the input image and the generated details.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`sampler_name`**
-    - unknown
+    - Specifies the sampler used in the upscaling process, affecting the sampling strategy and ultimately the quality of the upscaled image.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`scheduler`**
-    - unknown
+    - Determines the scheduler for the upscaling process, managing the progression of steps to optimize image quality.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`positive`**
-    - unknown
+    - Represents positive conditioning data that guides the upscaling towards desired outcomes, emphasizing certain visual features.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`negative`**
-    - unknown
+    - Represents negative conditioning data that the upscaling process should minimize, steering the algorithm away from undesired features.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`denoise`**
-    - unknown
+    - Controls the level of denoising applied during upscaling, affecting the clarity and detail of the upscaled image.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`use_tiled_vae`**
-    - unknown
+    - Indicates whether a tiled VAE is used, affecting the handling of large images by breaking them into manageable tiles for processing.
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `unknown`
+    - Python dtype: `bool`
 - **`tile_size`**
-    - unknown
+    - Specifies the size of tiles when using a tiled VAE, impacting the processing of large images by dividing them into smaller, manageable sections.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 ### Optional
 - **`upscale_model_opt`**
-    - unknown
+    - Optionally specifies an upscale model to be used, allowing for customization of the upscaling process with specific models.
     - Comfy dtype: `UPSCALE_MODEL`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`pk_hook_opt`**
-    - unknown
+    - Optionally specifies a post-processing hook, enabling custom post-upscaling adjustments.
     - Comfy dtype: `PK_HOOK`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
+- **`scheduler_func_opt`**
+    - Optionally specifies a scheduler function, allowing for advanced control over the scheduling of upscaling steps.
+    - Comfy dtype: `SCHEDULER_FUNC`
+    - Python dtype: `str`
 ## Output types
 - **`upscaler`**
     - Comfy dtype: `UPSCALER`
-    - unknown
-    - Python dtype: `unknown`
+    - Produces the upscaled image, showcasing the enhanced resolution and detail achieved through the upscaling process.
+    - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes:
@@ -102,7 +106,7 @@ class PixelKSampleUpscalerProvider:
                     "steps": ("INT", {"default": 20, "min": 1, "max": 10000}),
                     "cfg": ("FLOAT", {"default": 8.0, "min": 0.0, "max": 100.0}),
                     "sampler_name": (comfy.samplers.KSampler.SAMPLERS, ),
-                    "scheduler": (comfy.samplers.KSampler.SCHEDULERS, ),
+                    "scheduler": (core.SCHEDULERS, ),
                     "positive": ("CONDITIONING", ),
                     "negative": ("CONDITIONING", ),
                     "denoise": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01}),
@@ -112,6 +116,7 @@ class PixelKSampleUpscalerProvider:
                 "optional": {
                         "upscale_model_opt": ("UPSCALE_MODEL", ),
                         "pk_hook_opt": ("PK_HOOK", ),
+                        "scheduler_func_opt": ("SCHEDULER_FUNC",),
                     }
                 }
 
@@ -121,10 +126,10 @@ class PixelKSampleUpscalerProvider:
     CATEGORY = "ImpactPack/Upscale"
 
     def doit(self, scale_method, model, vae, seed, steps, cfg, sampler_name, scheduler, positive, negative, denoise,
-             use_tiled_vae, upscale_model_opt=None, pk_hook_opt=None, tile_size=512):
+             use_tiled_vae, upscale_model_opt=None, pk_hook_opt=None, tile_size=512, scheduler_func_opt=None):
         upscaler = core.PixelKSampleUpscaler(scale_method, model, vae, seed, steps, cfg, sampler_name, scheduler,
                                              positive, negative, denoise, use_tiled_vae, upscale_model_opt, pk_hook_opt,
-                                             tile_size=tile_size)
+                                             tile_size=tile_size, scheduler_func=scheduler_func_opt)
         return (upscaler, )
 
 ```

@@ -1,7 +1,8 @@
 ---
 tags:
+- ImageResize
+- ImageScaling
 - ImageSize
-- ImageTransformation
 ---
 
 # Get image size

@@ -1,6 +1,5 @@
 ---
 tags:
-- DepthMap
 - Image
 - Inpaint
 ---
@@ -11,25 +10,25 @@ tags:
 - Category: `inpaint`
 - Output node: `False`
 
-This node applies a specialized inpainting technique using the Fooocus method to enhance or modify images by integrating specific patches into the model's processing pipeline. It leverages a combination of model patching and latent space manipulation to achieve targeted inpainting effects, focusing on areas designated by noise masks.
+This node applies a specialized inpainting technique using the Fooocus method to enhance or modify images based on provided patches and latent information. It integrates seamlessly with the inpainting process, leveraging learned features and adjustments to achieve high-quality inpainting results.
 ## Input types
 ### Required
 - **`model`**
-    - The model to be patched with inpainting capabilities, allowing for the integration of Fooocus patches into its processing pipeline.
+    - The model parameter represents the base model to which the inpainting patches and adjustments will be applied. It is crucial for defining the starting point of the inpainting process.
     - Comfy dtype: `MODEL`
     - Python dtype: `ModelPatcher`
 - **`patch`**
-    - A tuple containing the inpaint head model and a dictionary of LoRA patches, which are applied to the base model to achieve inpainting effects.
+    - This parameter consists of the inpainting head model and the LoRA patch information, which are essential for applying the specific inpainting adjustments to the base model.
     - Comfy dtype: `INPAINT_PATCH`
     - Python dtype: `tuple[InpaintHead, dict[str, Tensor]]`
 - **`latent`**
-    - A dictionary containing the latent representations and noise masks used to guide the inpainting process, influencing where and how inpainting is applied.
+    - The latent parameter contains the latent representation and noise mask of the image to be inpainted, providing the necessary context for the inpainting operation.
     - Comfy dtype: `LATENT`
     - Python dtype: `dict[str, Any]`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The model after applying the Fooocus inpainting patches, ready for further processing or generating inpainted images.
+    - Returns a modified version of the base model with inpainting patches applied, ready for further inpainting tasks.
     - Python dtype: `ModelPatcher`
 ## Usage tips
 - Infra type: `GPU`
@@ -53,6 +52,9 @@ class ApplyFooocusInpaint:
     CATEGORY = "inpaint"
     FUNCTION = "patch"
 
+    _inpaint_head_feature: Tensor | None = None
+    _inpaint_block: Tensor | None = None
+
     def patch(
         self,
         model: ModelPatcher,
@@ -68,19 +70,15 @@ class ApplyFooocusInpaint:
         inpaint_head_model, inpaint_lora = patch
         feed = torch.cat([latent_mask, latent_pixels], dim=1)
         inpaint_head_model.to(device=feed.device, dtype=feed.dtype)
-        inpaint_head_feature = inpaint_head_model(feed)
-
-        def input_block_patch(h, transformer_options):
-            if transformer_options["block"][1] == 0:
-                h = h + inpaint_head_feature.to(h)
-            return h
+        self._inpaint_head_feature = inpaint_head_model(feed)
+        self._inpaint_block = None
 
         lora_keys = comfy.lora.model_lora_keys_unet(model.model, {})
         lora_keys.update({x: x for x in base_model.state_dict().keys()})
         loaded_lora = load_fooocus_patch(inpaint_lora, lora_keys)
 
         m = model.clone()
-        m.set_model_input_block_patch(input_block_patch)
+        m.set_model_input_block_patch(self._input_block_patch)
         patched = m.add_patches(loaded_lora, 1.0)
 
         not_patched_count = sum(1 for x in loaded_lora if x not in patched)
@@ -89,5 +87,14 @@ class ApplyFooocusInpaint:
 
         inject_patched_calculate_weight()
         return (m,)
+
+    def _input_block_patch(self, h: Tensor, transformer_options: dict):
+        if transformer_options["block"][1] == 0:
+            if self._inpaint_block is None or self._inpaint_block.shape != h.shape:
+                assert self._inpaint_head_feature is not None
+                batch = h.shape[0] // self._inpaint_head_feature.shape[0]
+                self._inpaint_block = self._inpaint_head_feature.to(h).repeat(batch, 1, 1, 1)
+            h = h + self._inpaint_block
+        return h
 
 ```

@@ -1,33 +1,33 @@
 # ∞ Add Tool
 ## Documentation
 - Class name: `AddTool`
-- Category: `SALT/Language Toolkit/Agents`
+- Category: `SALT/Language Toolkit/Agents/Tools`
 - Output node: `False`
 
-The AddTool node is designed to enhance conversational agents by registering new functionalities or tools to them. It abstracts the process of augmenting agents with additional capabilities, allowing for a more dynamic and versatile interaction experience.
+Facilitates the dynamic addition of tools to conversational agents by cloning and registering functions within these agents. This process enhances the agents' capabilities, allowing them to perform additional tasks as specified by the tool being added.
 ## Input types
 ### Required
 - **`tool`**
-    - Represents the tool to be added to the agent, encapsulating the functionality, name, and description of the tool.
+    - Represents the tool to be added, including its function, name, and description. This parameter is crucial for defining the new capabilities to be integrated into the agent.
     - Comfy dtype: `TOOL`
     - Python dtype: `Dict[str, Any]`
 - **`assistant`**
-    - The primary conversational agent to which the tool will be added, serving as the main interface for interaction.
+    - The conversational agent to which the tool will be added. This agent is cloned to ensure modifications do not affect the original instance.
     - Comfy dtype: `AGENT`
     - Python dtype: `AGENT`
 ### Optional
 - **`executor`**
-    - An optional secondary agent that can execute the tool's functionality, defaulting to the primary agent if not specified.
+    - An optional agent responsible for executing the tool's function. If not provided, the assistant itself is used as the executor.
     - Comfy dtype: `AGENT`
-    - Python dtype: `AGENT`
+    - Python dtype: `Optional[AGENT]`
 ## Output types
 - **`assistant`**
     - Comfy dtype: `AGENT`
-    - The enhanced conversational agent, now equipped with the new tool's capabilities.
+    - The modified conversational agent with the new tool added.
     - Python dtype: `AGENT`
 - **`executor`**
     - Comfy dtype: `AGENT`
-    - The agent responsible for executing the tool's functionality, which may be the same as the primary agent.
+    - The agent designated to execute the added tool's function, which may be the same as the assistant if no executor is specified.
     - Python dtype: `AGENT`
 ## Usage tips
 - Infra type: `CPU`
@@ -53,7 +53,7 @@ class AddTool:
     RETURN_NAMES = ("assistant", "executor",)
 
     FUNCTION = "create_tool"
-    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Agents"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Agents/Tools"
 
     def create_tool(self, tool, assistant, executor=None):
         assistant = clone_conversable_agent(assistant)

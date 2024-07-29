@@ -1,7 +1,7 @@
 ---
 tags:
-- Image
-- ImageThresholding
+- Color
+- Crop
 ---
 
 # DistanceTransform
@@ -10,25 +10,25 @@ tags:
 - Category: `Bmad/CV/Thresholding`
 - Output node: `False`
 
-This node applies a distance transform to a binary image, converting it into a grayscale image where each pixel's intensity is proportional to its distance from the nearest binary foreground pixel. It supports different distance types and mask sizes to tailor the transformation.
+The DistanceTransform node applies a distance transform to a binary image, converting it into a grayscale image where each pixel's intensity represents its distance to the nearest background pixel. It supports various distance types and mask sizes, allowing for customization of the distance calculation.
 ## Input types
 ### Required
 - **`binary_image`**
-    - The binary image to which the distance transform will be applied. It serves as the input for calculating the distance to the nearest foreground pixel.
+    - The binary image to which the distance transform will be applied. It is crucial for identifying foreground and background pixels for distance calculations.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`distance_type`**
-    - Specifies the type of distance calculation to use, allowing for customization of the distance transform effect.
+    - Specifies the type of distance calculation to use, such as Euclidean (L2), Manhattan (L1), or Chebyshev (C). It affects the way distances are computed in the image.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`mask_size`**
-    - Determines the size of the mask used in the distance transform, affecting the granularity of the distance calculation.
+    - Determines the size of the mask used in the distance calculation, affecting the precision and computational cost of the transform.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The resulting grayscale image where each pixel's intensity reflects its distance to the nearest foreground pixel, following the distance transform.
+    - The output grayscale image where pixel intensities represent distances to the nearest background pixel.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -53,18 +53,18 @@ class DistanceTransform:
     mask_sizes = list(mask_sizes_map.keys())
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "binary_image": ("IMAGE",),
-                "distance_type": (s.distance_types, {"default": s.distance_types[0]}),
-                "mask_size": (s.mask_sizes, {"default": s.mask_sizes[0]}),
+                "distance_type": (cls.distance_types, {"default": cls.distance_types[0]}),
+                "mask_size": (cls.mask_sizes, {"default": cls.mask_sizes[0]}),
             }
         }
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "apply"
-    CATEGORY = "Bmad/CV/Thresholding"
+    CATEGORY = f"{cv_category_path}/Thresholding"
 
     def apply(self, binary_image, distance_type, mask_size):
         binary_image = tensor2opencv(binary_image, 1)

@@ -1,8 +1,8 @@
 ---
 tags:
 - DetailEnhancement
-- Image
 - Pipeline
+- PipelineTransformation
 ---
 
 # FaceDetailer (pipe)
@@ -11,17 +11,17 @@ tags:
 - Category: `ImpactPack/Simple`
 - Output node: `False`
 
-The FaceDetailerPipe node specializes in enhancing facial details within images, leveraging advanced processing techniques to refine and accentuate facial features for improved visual quality.
+The FaceDetailerPipe node is designed to enhance facial details in images, leveraging advanced image processing techniques to improve the clarity and definition of facial features. This node is part of the ComfyUI Impact Pack, focusing on delivering high-quality facial detail enhancements for various applications.
 ## Input types
 ### Required
 - **`image`**
-    - unknown
+    - The image parameter represents the input image to be enhanced, serving as the primary subject for facial detailing.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `unknown`
+    - Python dtype: `torch.Tensor`
 - **`detailer_pipe`**
-    - Represents the core data structure for detailing operations, essential for processing and enhancing facial details within images.
+    - unknown
     - Comfy dtype: `DETAILER_PIPE`
-    - Python dtype: `tuple`
+    - Python dtype: `unknown`
 - **`guide_size`**
     - unknown
     - Comfy dtype: `FLOAT`
@@ -127,6 +127,10 @@ The FaceDetailerPipe node specializes in enhancing facial details within images,
     - unknown
     - Comfy dtype: `INT`
     - Python dtype: `unknown`
+- **`scheduler_func_opt`**
+    - unknown
+    - Comfy dtype: `SCHEDULER_FUNC`
+    - Python dtype: `unknown`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
@@ -138,29 +142,29 @@ The FaceDetailerPipe node specializes in enhancing facial details within images,
     - Python dtype: `unknown`
 - **`cropped_enhanced_alpha`**
     - Comfy dtype: `IMAGE`
-    - unknown
-    - Python dtype: `unknown`
+    - A list of cropped versions of the enhanced image with alpha channel, providing transparency information for the detailed areas.
+    - Python dtype: `List[torch.Tensor]`
 - **`mask`**
     - Comfy dtype: `MASK`
-    - unknown
-    - Python dtype: `unknown`
+    - The generated mask that highlights the detailed areas in the image, useful for further processing or refinement.
+    - Python dtype: `torch.Tensor`
 - **`detailer_pipe`**
     - Comfy dtype: `DETAILER_PIPE`
-    - Outputs the enhanced detailer_pipe structure, encapsulating the refined facial details for subsequent processing or visualization.
-    - Python dtype: `tuple`
+    - unknown
+    - Python dtype: `unknown`
 - **`cnet_images`**
     - Comfy dtype: `IMAGE`
     - unknown
     - Python dtype: `unknown`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes:
     - [PreviewImage](../../Comfy/Nodes/PreviewImage.md)
     - [MaskToImage](../../Comfy/Nodes/MaskToImage.md)
-    - [PlaySound|pysssss](../../ComfyUI-Custom-Scripts/Nodes/PlaySound|pysssss.md)
+    - PlaySound|pysssss
     - Reroute
     - [SaveImage](../../Comfy/Nodes/SaveImage.md)
-    - [ReroutePrimitive|pysssss](../../ComfyUI-Custom-Scripts/Nodes/ReroutePrimitive|pysssss.md)
+    - ReroutePrimitive|pysssss
     - [DetailerForEachDebugPipe](../../ComfyUI-Impact-Pack/Nodes/DetailerForEachDebugPipe.md)
     - [DetailerPipeToBasicPipe](../../ComfyUI-Impact-Pack/Nodes/DetailerPipeToBasicPipe.md)
     - [ImageUpscaleWithModel](../../Comfy/Nodes/ImageUpscaleWithModel.md)
@@ -176,7 +180,7 @@ class FaceDetailerPipe:
         return {"required": {
                     "image": ("IMAGE", ),
                     "detailer_pipe": ("DETAILER_PIPE",),
-                    "guide_size": ("FLOAT", {"default": 384, "min": 64, "max": nodes.MAX_RESOLUTION, "step": 8}),
+                    "guide_size": ("FLOAT", {"default": 512, "min": 64, "max": nodes.MAX_RESOLUTION, "step": 8}),
                     "guide_size_for": ("BOOLEAN", {"default": True, "label_on": "bbox", "label_off": "crop_region"}),
                     "max_size": ("FLOAT", {"default": 1024, "min": 64, "max": nodes.MAX_RESOLUTION, "step": 8}),
                     "seed": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff}),
@@ -187,7 +191,7 @@ class FaceDetailerPipe:
                     "denoise": ("FLOAT", {"default": 0.5, "min": 0.0001, "max": 1.0, "step": 0.01}),
                     "feather": ("INT", {"default": 5, "min": 0, "max": 100, "step": 1}),
                     "noise_mask": ("BOOLEAN", {"default": True, "label_on": "enabled", "label_off": "disabled"}),
-                    "force_inpaint": ("BOOLEAN", {"default": False, "label_on": "enabled", "label_off": "disabled"}),
+                    "force_inpaint": ("BOOLEAN", {"default": True, "label_on": "enabled", "label_off": "disabled"}),
 
                     "bbox_threshold": ("FLOAT", {"default": 0.5, "min": 0.0, "max": 1.0, "step": 0.01}),
                     "bbox_dilation": ("INT", {"default": 10, "min": -512, "max": 512, "step": 1}),
@@ -208,6 +212,7 @@ class FaceDetailerPipe:
                 "optional": {
                     "inpaint_model": ("BOOLEAN", {"default": False, "label_on": "enabled", "label_off": "disabled"}),
                     "noise_mask_feather": ("INT", {"default": 20, "min": 0, "max": 100, "step": 1}),
+                    "scheduler_func_opt": ("SCHEDULER_FUNC",),
                    }
                 }
 
@@ -222,7 +227,7 @@ class FaceDetailerPipe:
              denoise, feather, noise_mask, force_inpaint, bbox_threshold, bbox_dilation, bbox_crop_factor,
              sam_detection_hint, sam_dilation, sam_threshold, sam_bbox_expansion,
              sam_mask_hint_threshold, sam_mask_hint_use_negative, drop_size, refiner_ratio=None,
-             cycle=1, inpaint_model=False, noise_mask_feather=0):
+             cycle=1, inpaint_model=False, noise_mask_feather=0, scheduler_func_opt=None):
 
         result_img = None
         result_mask = None
@@ -245,7 +250,7 @@ class FaceDetailerPipe:
                 sam_mask_hint_use_negative, drop_size, bbox_detector, segm_detector, sam_model_opt, wildcard, detailer_hook,
                 refiner_ratio=refiner_ratio, refiner_model=refiner_model,
                 refiner_clip=refiner_clip, refiner_positive=refiner_positive, refiner_negative=refiner_negative,
-                cycle=cycle, inpaint_model=inpaint_model, noise_mask_feather=noise_mask_feather)
+                cycle=cycle, inpaint_model=inpaint_model, noise_mask_feather=noise_mask_feather, scheduler_func_opt=scheduler_func_opt)
 
             result_img = torch.cat((result_img, enhanced_img), dim=0) if result_img is not None else enhanced_img
             result_mask = torch.cat((result_mask, mask), dim=0) if result_mask is not None else mask

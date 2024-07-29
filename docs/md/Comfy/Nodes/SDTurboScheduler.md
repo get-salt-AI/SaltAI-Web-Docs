@@ -1,5 +1,7 @@
 ---
 tags:
+- AnimationScheduling
+- Scheduling
 - SigmaScheduling
 ---
 
@@ -9,25 +11,25 @@ tags:
 - Category: `sampling/custom_sampling/schedulers`
 - Output node: `False`
 
-SDTurboScheduler is designed to generate a sequence of sigma values for image sampling, adjusting the sequence based on the denoise level and the number of steps specified. It leverages a specific model's sampling capabilities to produce these sigma values, which are crucial for controlling the denoising process during image generation.
+The SDTurboScheduler node is designed to calculate a specific sequence of sigma values for diffusion models, based on the provided model, number of steps, and denoise level. It focuses on optimizing the sampling process by dynamically adjusting the timesteps according to the denoise parameter, enhancing the efficiency and quality of generated samples.
 ## Input types
 ### Required
 - **`model`**
-    - The model parameter specifies the generative model to be used for sigma value generation. It is crucial for determining the specific sampling behavior and capabilities of the scheduler.
+    - The model parameter specifies the diffusion model for which the sigma values are to be calculated. It is crucial for determining the appropriate sigma values based on the model's characteristics.
     - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`steps`**
-    - The steps parameter determines the length of the sigma sequence to be generated, directly influencing the granularity of the denoising process.
+    - The steps parameter indicates the number of timesteps for which sigma values are to be calculated. It plays a key role in defining the granularity and precision of the sampling process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`denoise`**
-    - The denoise parameter adjusts the starting point of the sigma sequence, allowing for finer control over the denoising level applied during image generation.
+    - The denoise parameter adjusts the starting point of the sigma calculation, allowing for finer control over the noise level in the generated samples. It directly influences the quality and characteristics of the output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`sigmas`**
     - Comfy dtype: `SIGMAS`
-    - A sequence of sigma values generated based on the specified model, steps, and denoise level. These values are essential for controlling the denoising process in image generation.
+    - This output represents the calculated sequence of sigma values for the specified diffusion model, steps, and denoise level. It is essential for guiding the sampling process in diffusion models.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -56,8 +58,7 @@ class SDTurboScheduler:
     def get_sigmas(self, model, steps, denoise):
         start_step = 10 - int(10 * denoise)
         timesteps = torch.flip(torch.arange(1, 11) * 100 - 1, (0,))[start_step:start_step + steps]
-        comfy.model_management.load_models_gpu([model])
-        sigmas = model.model.model_sampling.sigma(timesteps)
+        sigmas = model.get_model_object("model_sampling").sigma(timesteps)
         sigmas = torch.cat([sigmas, sigmas.new_zeros([1])])
         return (sigmas, )
 

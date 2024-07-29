@@ -1,9 +1,11 @@
 ---
 tags:
+- Checkpoint
+- CheckpointLoader
 - Loader
-- Model
-- ModelIO
 - ModelLoader
+- ModelMerge
+- ModelSwitching
 ---
 
 # EasyCascadeLoader
@@ -12,87 +14,87 @@ tags:
 - Category: `EasyUse/Loaders`
 - Output node: `False`
 
-The `cascadeLoader` node is designed to facilitate the loading and initialization of models for cascading generation processes. It abstracts the complexities involved in setting up the necessary components for cascade-based model operations, aiming to streamline the process of model preparation for subsequent generative tasks.
+The `easy cascadeLoader` node is designed to facilitate the loading and management of cascading models, specifically focusing on integrating multiple model stages for enhanced processing capabilities. It abstracts the complexity of handling various model stages, making it easier to implement sophisticated model cascading strategies within the ComfyUI framework.
 ## Input types
 ### Required
 - **`stage_c`**
-    - Specifies the 'C' stage latent representation required for the cascade process, indicating the initial layer of image generation.
+    - Specifies the combined list of filenames from the 'unet' and 'cascade' model directories. This input is crucial for determining the sequence and composition of models to be loaded for cascading operations, directly influencing the loader's behavior and the resulting model integration.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `Dict[str, torch.Tensor]`
+    - Python dtype: `List[str]`
 - **`stage_b`**
-    - Denotes the 'B' stage latent representation in the cascade process, serving as an intermediate layer for further image detail enhancement.
+    - Represents the filenames for the second stage of the cascading models, playing a critical role in the sequential processing and integration of model stages.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `Dict[str, torch.Tensor]`
+    - Python dtype: `List[str]`
 - **`stage_a`**
-    - Indicates the 'A' stage latent representation, setting the foundation for the cascade process.
+    - Denotes the filenames for the initial stage of the cascading models, essential for setting up the foundational processing layer in the cascading strategy.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 - **`clip_name`**
-    - Specifies the CLIP model to be used in the cascade process, influencing the direction of image generation.
+    - Specifies the filenames for the CLIP models to be used in conjunction with the cascading models, enhancing the model's understanding and processing capabilities.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 - **`lora_name`**
-    - Selects the LoRA model for adjustment of model parameters, enhancing the cascade process.
+    - Specifies the LoRA model names available for enhancing the model's capabilities, particularly in terms of adaptability and fine-tuning.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 - **`lora_model_strength`**
-    - Determines the strength of the LoRA model adjustments, impacting the final image generation.
+    - Determines the strength of the LoRA model adjustments, influencing the model's performance and adaptability.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`lora_clip_strength`**
-    - Sets the strength of CLIP guidance in the LoRA model, affecting the image's adherence to textual descriptions.
+    - Sets the strength of the CLIP adjustments when LoRA models are used, affecting the overall model performance.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`resolution`**
-    - Specifies the desired resolution for the output of the cascade process, formatted as strings indicating width and height (e.g., '1024 x 768'). This parameter is crucial for determining the size of the generated images and ensuring they meet the user's requirements.
+    - Defines the resolution for the model's output, impacting the quality and detail of the generated images.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `str`
 - **`empty_latent_width`**
-    - Defines the width of the empty latent space to be used in the cascade process, affecting the dimensions of the generated image.
+    - Specifies the width of the empty latent space, crucial for initializing the model's processing capabilities.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`empty_latent_height`**
-    - Defines the height of the empty latent space to be used in the cascade process, affecting the dimensions of the generated image.
+    - Determines the height of the empty latent space, essential for the model's initial setup and processing.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`compression`**
-    - Sets the compression level for the latent representations, influencing the detail and size of the generated images.
+    - Sets the level of compression for the model's output, balancing between quality and efficiency.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`positive`**
-    - The positive textual prompt guiding the image generation process towards desired characteristics.
+    - Captures positive prompts or keywords to guide the model's generation process towards desired outcomes.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`negative`**
-    - The negative textual prompt guiding the image generation away from undesired characteristics.
+    - Includes negative prompts or keywords to steer the model away from undesired elements in the generation process.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`batch_size`**
-    - Specifies the number of images to be generated in a single batch, affecting the cascade process's efficiency.
+    - Specifies the number of instances to be processed in a single batch, affecting the model's efficiency and throughput.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`optional_lora_stack`**
-    - Optionally includes a stack of LoRA models for enhanced customization of the cascade process.
+    - Allows for the optional inclusion of a stack of LoRA models, offering enhanced customization and fine-tuning capabilities.
     - Comfy dtype: `LORA_STACK`
     - Python dtype: `List[str]`
 ## Output types
 - **`pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - The complete pipeline configuration for the cascade process, encapsulating all stages and model settings.
-    - Python dtype: `Dict[str, Any]`
+    - The pipeline object that orchestrates the flow and integration of various model stages.
+    - Python dtype: `Pipeline`
 - **`model_c`**
     - Comfy dtype: `MODEL`
-    - The model configuration for the 'C' stage of the cascade process, essential for initiating the image generation.
-    - Python dtype: `Dict[str, Any]`
+    - The model object for the final stage in the cascading process, ready for further operations or analysis.
+    - Python dtype: `Model`
 - **`latent_c`**
     - Comfy dtype: `LATENT`
-    - The latent representation at the 'C' stage, forming the basis for subsequent image generation stages.
-    - Python dtype: `Dict[str, torch.Tensor]`
+    - The latent representation generated by the final stage model, capturing the processed information.
+    - Python dtype: `LatentRepresentation`
 - **`vae`**
     - Comfy dtype: `VAE`
-    - The VAE model used in the cascade process, crucial for encoding and decoding images.
-    - Python dtype: `Dict[str, Any]`
+    - The VAE model used in the cascading process, contributing to the generation or processing of data.
+    - Python dtype: `VAEModel`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -106,7 +108,6 @@ class cascadeLoader:
 
     @classmethod
     def INPUT_TYPES(s):
-        resolution_strings = [f"{width} x {height}" for width, height in BASE_RESOLUTIONS]
 
         return {"required": {
             "stage_c": (folder_paths.get_filename_list("unet") + folder_paths.get_filename_list("checkpoints"),),
@@ -123,8 +124,8 @@ class cascadeLoader:
             "empty_latent_height": ("INT", {"default": 1024, "min": 16, "max": MAX_RESOLUTION, "step": 8}),
             "compression": ("INT", {"default": 42, "min": 32, "max": 64, "step": 1}),
 
-            "positive": ("STRING", {"default": "Positive", "multiline": True}),
-            "negative": ("STRING", {"default": "", "multiline": True}),
+            "positive": ("STRING", {"default":"", "placeholder": "Positive", "multiline": True}),
+            "negative": ("STRING", {"default":"", "placeholder": "Negative", "multiline": True}),
 
             "batch_size": ("INT", {"default": 1, "min": 1, "max": 64}),
         },
@@ -157,23 +158,11 @@ class cascadeLoader:
         can_load_lora = True
         pipe_lora_stack = []
 
-        # resolution
-        if resolution != "自定义 x 自定义":
-            try:
-                width, height = map(int, resolution.split(' x '))
-                empty_latent_width = width
-                empty_latent_height = height
-            except ValueError:
-                raise ValueError("Invalid base_resolution format.")
-
-        # Create Empty Latent
-        latent_c = torch.zeros([batch_size, 16, empty_latent_height // compression, empty_latent_width // compression])
-        latent_b = torch.zeros([batch_size, 4, empty_latent_height // 4, empty_latent_width // 4])
-
-        samples = ({"samples": latent_c}, {"samples": latent_b})
-
         # Clean models from loaded_objects
         easyCache.update_loaded_objects(prompt)
+
+        # Create Empty Latent
+        samples = sampler.emptyLatent(resolution, empty_latent_width, empty_latent_height, batch_size, compression)
 
         if self.is_ckpt(stage_c):
             model_c, clip, vae_c, clip_vision = easyCache.load_checkpoint(stage_c)
@@ -215,6 +204,9 @@ class cascadeLoader:
 
         log_node_warn("正在处理提示词...")
         positive_seed = find_wildcards_seed(my_unique_id, positive, prompt)
+        # Translate cn to en
+        if has_chinese(positive):
+            positive = zh_to_en([positive])[0]
         model_c, clip, positive, positive_decode, show_positive_prompt, pipe_lora_stack = process_with_loras(positive,
                                                                                                            model_c, clip,
                                                                                                            "positive",
@@ -224,6 +216,9 @@ class cascadeLoader:
                                                                                                            easyCache)
         positive_wildcard_prompt = positive_decode if show_positive_prompt or is_positive_linked_styles_selector else ""
         negative_seed = find_wildcards_seed(my_unique_id, negative, prompt)
+        # Translate cn to en
+        if has_chinese(negative):
+            negative = zh_to_en([negative])[0]
         model_c, clip, negative, negative_decode, show_negative_prompt, pipe_lora_stack = process_with_loras(negative,
                                                                                                            model_c, clip,
                                                                                                            "negative",
@@ -257,32 +252,21 @@ class cascadeLoader:
 
             "loader_settings": {
                 "vae_name": stage_a,
-
+                "lora_name": lora_name,
+                "lora_model_strength": lora_model_strength,
+                "lora_clip_strength": lora_clip_strength,
                 "lora_stack": pipe_lora_stack,
 
-                "refiner_ckpt_name": None,
-                "refiner_vae_name": None,
-                "refiner_lora_name": None,
-                "refiner_lora_model_strength": None,
-                "refiner_lora_clip_strength": None,
-
                 "positive": positive,
-                "positive_l": None,
-                "positive_g": None,
                 "positive_token_normalization": 'none',
                 "positive_weight_interpretation": 'comfy',
-                "positive_balance": None,
                 "negative": negative,
-                "negative_l": None,
-                "negative_g": None,
                 "negative_token_normalization": 'none',
                 "negative_weight_interpretation": 'comfy',
-                "negative_balance": None,
+                "resolution": resolution,
                 "empty_latent_width": empty_latent_width,
                 "empty_latent_height": empty_latent_height,
                 "batch_size": batch_size,
-                "seed": 0,
-                "empty_samples": samples,
                 "compression": compression
             }
         }

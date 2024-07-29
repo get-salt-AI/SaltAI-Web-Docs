@@ -1,8 +1,9 @@
 ---
 tags:
-- DepthMap
 - DepthMapEstimation
-- Image
+- ImagePreprocessing
+- Inpaint
+- LineExtraction
 ---
 
 # [Inference.Core] Depth Anything

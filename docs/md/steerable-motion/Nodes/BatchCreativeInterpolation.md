@@ -1,8 +1,9 @@
 ---
 tags:
-- AnimationScheduling
+- Curve
 - FrameInterpolation
-- VisualEffects
+- Interpolation
+- WavePatterns
 ---
 
 # Batch Creative Interpolation 🎞️🅢🅜
@@ -11,77 +12,77 @@ tags:
 - Category: `Steerable-Motion`
 - Output node: `False`
 
-The BatchCreativeInterpolation node is designed to facilitate complex interpolation operations across a batch of creative content, enabling dynamic adjustments and transformations based on specified parameters. It leverages interpolation techniques to blend or transition between different states or frames within the batch, enhancing the creative output with smooth transitions or variations.
+The Batch Creative Interpolation node is designed to facilitate the generation and manipulation of frame sequences in a batch processing manner. It leverages advanced interpolation techniques to creatively adjust and enhance video frames, enabling dynamic frame rate conversion, motion smoothing, and the introduction of novel visual effects. This node is particularly useful in applications requiring high-quality video processing, animation, and effects generation, where frame-by-frame control and precision are paramount.
 ## Input types
 ### Required
 - **`positive`**
-    - unknown
+    - Specifies the positive conditioning input, used to guide the interpolation process towards desired outcomes.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `unknown`
+    - Python dtype: `List[str]`
 - **`negative`**
-    - unknown
+    - Specifies the negative conditioning input, used to steer the interpolation process away from undesired outcomes.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `unknown`
+    - Python dtype: `List[str]`
 - **`images`**
-    - unknown
+    - Specifies the images to be interpolated, serving as the basis for generating new frames within the sequence.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `unknown`
+    - Python dtype: `List[torch.Tensor]`
 - **`model`**
-    - unknown
+    - Defines the model to be used for the interpolation process, central to generating the interpolated frames.
     - Comfy dtype: `MODEL`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`ipadapter`**
-    - unknown
+    - Defines the IP adapter used for processing, crucial for integrating with different image processing pipelines.
     - Comfy dtype: `IPADAPTER`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`clip_vision`**
-    - unknown
+    - Provides the CLIP vision model input, aiding in the contextual understanding and guidance of the interpolation process.
     - Comfy dtype: `CLIP_VISION`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`type_of_frame_distribution`**
-    - unknown
+    - Determines the method for distributing frames, whether linearly or dynamically, to control the pacing of frame generation.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `List[str]`
 - **`linear_frame_distribution_value`**
-    - unknown
+    - Specifies the value for linear frame distribution, influencing the uniformity of frame spacing.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`dynamic_frame_distribution_values`**
-    - unknown
+    - Defines dynamic values for frame distribution, allowing for variable pacing and timing across the sequence.
     - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`type_of_key_frame_influence`**
-    - unknown
+    - Selects the method for key frame influence, impacting how key frames affect the interpolation.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `List[str]`
 - **`linear_key_frame_influence_value`**
-    - unknown
+    - Sets the linear influence value of key frames, determining their impact on the interpolation process.
     - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`dynamic_key_frame_influence_values`**
-    - unknown
+    - Specifies dynamic influence values for key frames, offering nuanced control over their effect.
     - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`type_of_strength_distribution`**
-    - unknown
+    - Chooses the method for distributing strength, affecting the intensity of interpolation effects.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `List[str]`
 - **`linear_strength_value`**
-    - unknown
+    - Determines the linear strength value, controlling the overall intensity of the interpolation.
     - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`dynamic_strength_values`**
-    - unknown
+    - Provides dynamic strength values, allowing for varied intensity levels throughout the sequence.
     - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`buffer`**
-    - unknown
+    - Sets the buffer size for processing, optimizing performance and resource utilization.
     - Comfy dtype: `INT`
-    - Python dtype: `unknown`
+    - Python dtype: `int`
 - **`high_detail_mode`**
-    - unknown
+    - Enables or disables high detail mode, affecting the quality and detail of the interpolated frames.
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `unknown`
+    - Python dtype: `bool`
 ### Optional
 - **`base_ipa_advanced_settings`**
     - unknown
@@ -94,8 +95,8 @@ The BatchCreativeInterpolation node is designed to facilitate complex interpolat
 ## Output types
 - **`GRAPH`**
     - Comfy dtype: `IMAGE`
-    - unknown
-    - Python dtype: `unknown`
+    - Provides a graphical representation of the interpolation process, detailing key frame positions and interpolation paths.
+    - Python dtype: `str`
 - **`POSITIVE`**
     - Comfy dtype: `CONDITIONING`
     - unknown
@@ -109,19 +110,23 @@ The BatchCreativeInterpolation node is designed to facilitate complex interpolat
     - unknown
     - Python dtype: `unknown`
 - **`KEYFRAME_POSITIONS`**
-    - Comfy dtype: `SPARSE_METHOD`
-    - unknown
-    - Python dtype: `unknown`
+    - Comfy dtype: `STRING`
+    - Lists the positions of key frames within the interpolated sequence, crucial for understanding frame distribution.
+    - Python dtype: `List[int]`
 - **`BATCH_SIZE`**
     - Comfy dtype: `INT`
-    - unknown
-    - Python dtype: `unknown`
+    - Indicates the number of frames processed in a single batch, relevant for performance optimization.
+    - Python dtype: `int`
 - **`BUFFER`**
     - Comfy dtype: `INT`
-    - unknown
-    - Python dtype: `unknown`
+    - Specifies the buffer size used during processing, affecting memory usage and computational efficiency.
+    - Python dtype: `int`
+- **`FRAMES_TO_DROP`**
+    - Comfy dtype: `STRING`
+    - Identifies frames that were dropped during the interpolation process, useful for quality control and adjustment.
+    - Python dtype: `List[int]`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -160,8 +165,8 @@ class BatchCreativeInterpolationNode:
             }
         }
 
-    RETURN_TYPES = ("IMAGE","CONDITIONING","CONDITIONING","MODEL","SPARSE_METHOD","INT", "INT")    
-    RETURN_NAMES = ("GRAPH","POSITIVE","NEGATIVE","MODEL","KEYFRAME_POSITIONS","BATCH_SIZE", "BUFFER")
+    RETURN_TYPES = ("IMAGE","CONDITIONING","CONDITIONING","MODEL","STRING","INT", "INT", "STRING")
+    RETURN_NAMES = ("GRAPH","POSITIVE","NEGATIVE","MODEL","KEYFRAME_POSITIONS","BATCH_SIZE", "BUFFER","FRAMES_TO_DROP")
     FUNCTION = "combined_function"
 
     CATEGORY = "Steerable-Motion"
@@ -412,11 +417,6 @@ class BatchCreativeInterpolationNode:
         shifted_keyframes_position = [position + buffer - 2 for position in keyframe_positions]
         shifted_keyframe_positions_string = ','.join(str(pos) for pos in shifted_keyframes_position)        
         
-        # GET SPARSE INDEXES
-        sparseindexmethod = SparseIndexMethodNodeImport()        
-        sparse_indexes, = sparseindexmethod.get_method(shifted_keyframe_positions_string)
-        
-        # ADD BUFFER TO KEYFRAME POSITIONS
         if buffer > 0:
             # add front buffer
             keyframe_positions = [position + buffer - 1 for position in keyframe_positions]
@@ -621,14 +621,7 @@ class BatchCreativeInterpolationNode:
             # PROCESS WEIGHTS
             ipa_frame_numbers, ipa_weights = process_weights(frame_numbers, weights, 1.0)    
 
-            # print(f'i {i} image index {image_index} ====')
-            # # print(f"frame numbers {frame_numbers}")
-            # # print(f"weights {weights}")
-            # print(f"frame numbers {ipa_frame_numbers}")
-            # print(f"weights {ipa_weights}")
-            # print("------")
-
-            # Prepare images and noise
+  
             prepare_for_clip_vision = PrepImageForClipVisionImport()
             prepped_image, = prepare_for_clip_vision.prep_image(image=image.unsqueeze(0), interpolation="LANCZOS", crop_position="pad", sharpening=0.1)
             
@@ -667,12 +660,7 @@ class BatchCreativeInterpolationNode:
 
                 # Add the image to the bin
                 bins[active_index].add(prepped_image, image.unsqueeze(0), negative_noise, big_negative_noise, image_index, ipa_frame_numbers, ipa_weights)
-
-            # for i, bin in enumerate(bins):
-            #     print(f"{i} schedule {bin.image_schedule}")
-            #     print(f"{i} weights  {bin.weight_schedule}")
-            #     i += 1
-                            
+  
             all_ipa_frame_numbers.append(ipa_frame_numbers)
             all_ipa_weights.append(ipa_weights)
         
@@ -680,13 +668,13 @@ class BatchCreativeInterpolationNode:
         for i, bin in enumerate(bins):
             ipadapter_application = IPAdapterBatchImport()
             negative_noise = torch.cat(bin.noiseBatch, dim=0) if len(bin.noiseBatch) > 0 else None
-            model, = ipadapter_application.apply_ipadapter(model=model, ipadapter=ipadapter, image=torch.cat(bin.imageBatch, dim=0), weight=[x * base_ipa_advanced_settings["ipa_weight"] for x in bin.weight_schedule], weight_type=base_ipa_advanced_settings["ipa_weight_type"], start_at=base_ipa_advanced_settings["ipa_starts_at"], end_at=base_ipa_advanced_settings["ipa_ends_at"], clip_vision=clip_vision,image_negative=negative_noise,embeds_scaling=base_ipa_advanced_settings["ipa_embeds_scaling"], image_schedule=bin.image_schedule)                
+            model, *_ = ipadapter_application.apply_ipadapter(model=model, ipadapter=ipadapter, image=torch.cat(bin.imageBatch, dim=0), weight=[x * base_ipa_advanced_settings["ipa_weight"] for x in bin.weight_schedule], weight_type=base_ipa_advanced_settings["ipa_weight_type"], start_at=base_ipa_advanced_settings["ipa_starts_at"], end_at=base_ipa_advanced_settings["ipa_ends_at"], clip_vision=clip_vision,image_negative=negative_noise,embeds_scaling=base_ipa_advanced_settings["ipa_embeds_scaling"], encode_batch_size=1, image_schedule=bin.image_schedule)                
             if high_detail_mode:
                 tiled_ipa_application = IPAdapterTiledBatchImport()
                 negative_noise = torch.cat(bin.bigNoiseBatch, dim=0) if len(bin.bigNoiseBatch) > 0 else None
-                model, *_ = tiled_ipa_application.apply_tiled(model=model, ipadapter=ipadapter, image=torch.cat(bin.bigImageBatch, dim=0), weight=[x * detail_ipa_advanced_settings["ipa_weight"] for x in bin.weight_schedule], weight_type=detail_ipa_advanced_settings["ipa_weight_type"], start_at=detail_ipa_advanced_settings["ipa_starts_at"], end_at=detail_ipa_advanced_settings["ipa_ends_at"], clip_vision=clip_vision,sharpening=0.1,image_negative=negative_noise,embeds_scaling=detail_ipa_advanced_settings["ipa_embeds_scaling"], image_schedule=bin.image_schedule)
+                model, *_ = tiled_ipa_application.apply_tiled(model=model, ipadapter=ipadapter, image=torch.cat(bin.bigImageBatch, dim=0), weight=[x * detail_ipa_advanced_settings["ipa_weight"] for x in bin.weight_schedule], weight_type=detail_ipa_advanced_settings["ipa_weight_type"], start_at=detail_ipa_advanced_settings["ipa_starts_at"], end_at=detail_ipa_advanced_settings["ipa_ends_at"], clip_vision=clip_vision,sharpening=0.1,image_negative=negative_noise,embeds_scaling=detail_ipa_advanced_settings["ipa_embeds_scaling"], encode_batch_size=1, image_schedule=bin.image_schedule)
 
         comparison_diagram, = plot_weight_comparison(all_cn_frame_numbers, all_cn_weights, all_ipa_frame_numbers, all_ipa_weights, buffer)
-        return comparison_diagram, positive, negative, model, sparse_indexes, last_key_frame_position, buffer
+        return comparison_diagram, positive, negative, model, shifted_keyframe_positions_string, last_key_frame_position, buffer, shifted_keyframes_position
 
 ```

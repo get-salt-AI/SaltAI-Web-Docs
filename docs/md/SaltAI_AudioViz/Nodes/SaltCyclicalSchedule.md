@@ -1,42 +1,45 @@
 ---
 tags:
+- AnimationScheduling
 - Scheduling
+- SigmaScheduling
+- VisualEffects
 ---
 
 # Schedule Cyclical Loop
 ## Documentation
 - Class name: `SaltCyclicalSchedule`
-- Category: `SALT/Scheduling/Filter`
+- Category: `SALT/AudioViz/Scheduling/Filter`
 - Output node: `False`
 
-The SaltCyclicalSchedule node is designed to generate a cyclical pattern within a given schedule list. It allows for the repetition of a specified segment of the schedule, optionally incorporating a ping-pong effect for a mirrored repetition, enhancing the dynamic range and variability of the schedule.
+This node is designed to generate a cyclical schedule from a given list of schedule items. It allows for the repetition of a specified segment within the schedule list, optionally incorporating a ping-pong effect for a mirrored repetition pattern. The node aims to facilitate the creation of repetitive, cyclical patterns in scheduling tasks, enhancing flexibility and creativity in schedule design.
 ## Input types
 ### Required
 - **`schedule_list`**
-    - The list of scheduled items to be processed for cyclical repetition. It serves as the base sequence from which a cyclical pattern is generated, determining the overall structure and content of the output.
+    - The list of schedule items to be processed. This list serves as the basis for generating the cyclical schedule, with specific segments being repeated according to the other parameters.
     - Comfy dtype: `LIST`
     - Python dtype: `List[Any]`
 - **`start_index`**
-    - Specifies the starting index of the segment within the schedule list to be repeated, marking the beginning of the cyclical pattern.
+    - The starting index of the segment within the schedule list to be repeated. This determines the beginning of the pattern that will be cyclically replicated.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`end_index`**
-    - Defines the ending index of the segment within the schedule list to be repeated, marking the end of the cyclical pattern.
+    - The ending index of the segment within the schedule list to be repeated. This marks the end of the pattern that will undergo cyclical replication.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`repetitions`**
-    - Determines the number of times the specified segment is repeated, directly influencing the length and repetition rate of the cyclical schedule.
+    - The number of times the specified segment is to be repeated in the cyclical schedule. This controls the length and repetition rate of the cyclical pattern.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`ping_pong`**
-    - When enabled, adds a mirrored repetition of the segment to the cycle, creating a back-and-forth pattern that enhances the schedule's complexity.
+    - A boolean flag that, when set to True, causes the repeated segment to be mirrored in a ping-pong fashion, enhancing the cyclical pattern with a reverse repetition.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`schedule_list`**
     - Comfy dtype: `LIST`
-    - The resulting list after applying the cyclical pattern generation, which includes the repeated segments and, if enabled, their mirrored repetitions.
+    - The resulting cyclical schedule list, composed of the original schedule items arranged according to the specified cyclical pattern.
     - Python dtype: `List[Any]`
 ## Usage tips
 - Infra type: `CPU`
@@ -63,7 +66,7 @@ class SaltCyclicalSchedule:
     RETURN_TYPES = ("LIST",)
     RETURN_NAMES = ("schedule_list",)
     FUNCTION = "generate_cyclical"
-    CATEGORY = "SALT/Scheduling/Filter"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling/Filter"
 
     def generate_cyclical(self, schedule_list, start_index, end_index, repetitions, ping_pong=False):
         if end_index < start_index:

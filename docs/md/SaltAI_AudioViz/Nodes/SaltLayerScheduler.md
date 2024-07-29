@@ -1,79 +1,80 @@
 ---
 tags:
+- AnimationScheduling
 - Scheduling
-- VisualEffects
+- SigmaScheduling
 ---
 
 # Parallax Motion Camera Scheduler
 ## Documentation
 - Class name: `SaltLayerScheduler`
-- Category: `SALT/Scheduling/Parallax Motion`
+- Category: `SALT/AudioViz/Scheduling/Parallax Motion`
 - Output node: `False`
 
-The SaltLayerScheduler node is designed for scheduling parallax motion effects in audio-visual presentations, enabling dynamic camera movements that enhance the depth and immersion of the visual experience.
+The SaltLayerScheduler node is designed for scheduling parallax motion effects in audio-visual presentations, enabling dynamic camera movements to enhance the visual storytelling experience.
 ## Input types
 ### Required
 - **`frame_count`**
-    - Specifies the total number of frames for the animation, setting the duration of the parallax motion effect.
+    - Specifies the total number of frames for the parallax motion effect, determining the duration of the animation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`zoom_speed`**
-    - Controls the speed of zooming in or out, affecting the perceived depth of the parallax effect.
+    - Controls the speed of zooming in or out, affecting the dynamic feel of the parallax motion.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pan_speed`**
-    - Determines the speed of panning, influencing the lateral movement in the parallax motion.
+    - Sets the speed of panning, influencing the smoothness and pace of horizontal movement.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`pan_directions`**
-    - Defines the directions for panning, allowing for varied lateral movement patterns.
+    - Defines the directions for panning, allowing for customization of the motion path.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`direction_change_frames`**
-    - Indicates the frames at which the direction of panning changes, adding dynamism to the motion.
+    - Determines the frames at which the direction of panning changes, enabling complex motion patterns.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`tremor_scale`**
-    - Sets the scale of the 'tremor' effect, adding a subtle shake to the parallax motion for realism.
+    - Adjusts the scale of tremor effects, adding a subtle dynamic to the visual presentation.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`tremor_octaves`**
-    - Determines the number of octaves for the tremor effect, influencing its complexity and texture.
+    - Modifies the complexity of the tremor effect through octaves, enhancing the visual texture.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`tremor_persistence`**
-    - Controls the persistence of the tremor effect, affecting its amplitude over time.
+    - Influences the persistence of tremor effects, affecting their visual impact over time.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`tremor_lacunarity`**
-    - Adjusts the lacunarity of the tremor effect, impacting the frequency of the tremor's variations.
+    - Controls the gap between successive tremor effects, shaping the overall motion aesthetic.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`direction_curve`**
-    - Specifies the easing function for direction changes, smoothing the transitions between panning directions.
+    - Specifies the easing function for direction changes, smoothing transitions between movements.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `list`
 - **`start_x`**
-    - Sets the starting X position for the camera, determining its initial horizontal placement.
+    - Sets the initial X position for the motion, establishing the starting point of the animation.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`start_y`**
-    - Sets the starting Y position for the camera, determining its initial vertical placement.
+    - Determines the initial Y position, marking the beginning of the vertical motion.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`zoom_mode`**
-    - Chooses the mode of zooming (in, out, or both), defining the zoom behavior throughout the animation.
+    - Selects the zooming mode, offering various options for zoom dynamics.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `list`
 - **`layer_offsets`**
-    - Defines the offsets for different layers, contributing to the layered depth effect in the parallax motion.
+    - Defines offsets for different layers, creating depth in the parallax effect.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`schedule_list`**
     - Comfy dtype: `LIST`
-    - A list representing the scheduled parallax motion effects, including zoom, pan, and tremor adjustments for each frame.
-    - Python dtype: `List[Any]`
+    - Outputs a list representing the scheduled parallax motion effects, detailing the sequence of camera movements and adjustments.
+    - Python dtype: `list`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -107,7 +108,7 @@ class SaltLayerScheduler:
     RETURN_TYPES = ("LIST",)
     RETURN_NAMES = ("schedule_list",)
     FUNCTION = "execute"
-    CATEGORY = "SALT/Scheduling/Parallax Motion"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling/Parallax Motion"
 
     def __init__(self):
         self.scheduler = None

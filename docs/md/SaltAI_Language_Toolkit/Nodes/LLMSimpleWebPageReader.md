@@ -4,23 +4,23 @@
 - Category: `SALT/Language Toolkit/Readers`
 - Output node: `False`
 
-The LLMSimpleWebPageReader node is designed to fetch and process web page content from specified URLs, converting HTML content to text if desired. It allows for the extraction of web page data by providing up to four URLs, making it a versatile tool for web content retrieval and preprocessing.
+The LLMSimpleWebPageReader node is designed to fetch and process web pages from specified URLs, converting them into a document format. It supports reading from multiple URLs, with the option to convert HTML content to text, facilitating the extraction of useful information from web pages.
 ## Input types
 ### Required
 - **`url_i`**
-    - unknown
+    - The primary URL from which the web page will be read. This is a mandatory parameter to initiate the reading process. The index 'i' indicates that multiple URLs can be specified, allowing for the reading of multiple web pages in a single operation.
     - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 ### Optional
 - **`html_to_text`**
-    - A boolean flag indicating whether to convert HTML content to plain text, facilitating easier processing and analysis of the web page data.
+    - A boolean flag indicating whether to convert HTML content to plain text, enhancing readability and processing of the web page content.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`documents`**
     - Comfy dtype: `DOCUMENT`
-    - The processed web page content, returned as documents. This output provides the extracted data from the specified URLs, potentially converted to text.
-    - Python dtype: `tuple`
+    - The processed documents obtained from the web pages, ready for further analysis or storage.
+    - Python dtype: `list`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -64,11 +64,11 @@ class LLMSimpleWebPageReader:
         valid_urls = []
         for url in urls:
             if not valid_url(url):
-                print("Skipping invalid URL", url)
+                logger.warning("Skipping invalid URL", url)
                 continue
             valid_urls.append(url)
 
-        print("Valided URLs:", valid_urls)
+        logger.info("Valided URLs:", valid_urls)
 
         documents = SimpleWebPageReader(html_to_text=html_to_text).load_data(valid_urls)
         return (documents,)

@@ -1,5 +1,6 @@
 ---
 tags:
+- SamplerScheduler
 - Sampling
 ---
 
@@ -9,86 +10,86 @@ tags:
 - Category: `SUPIR`
 - Output node: `False`
 
-The SUPIR_sample node is designed for sampling in the SUPIR model framework, utilizing a combination of model parameters, latents, and control scales to generate samples. It leverages a denoising process, conditional inputs, and various sampling configurations to produce outputs tailored to the given inputs, showcasing its flexibility in handling different sampling scenarios.
+The SUPIR_sample node is designed for sampling in the SUPIR model, utilizing various parameters to control the sampling process. It integrates model loading, latent manipulation, and conditional generation to produce samples based on the provided inputs.
 ## Input types
 ### Required
 - **`SUPIR_model`**
-    - The SUPIR model instance used for sampling, encompassing the denoiser, diffusion model, and control model, crucial for the sampling process.
+    - The SUPIR model to be used for sampling. It is crucial for defining the generative process.
     - Comfy dtype: `SUPIRMODEL`
-    - Python dtype: `SUPIRModel`
+    - Python dtype: `object`
 - **`latents`**
-    - Latent representations or noise inputs that serve as the basis for the sampling process, indicating the starting point for generation.
+    - Latent representations to be used as the basis for sampling. These play a key role in the generation process.
     - Comfy dtype: `LATENT`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `Dict[str, Any]`
 - **`positive`**
-    - Conditional inputs that guide the generation towards desired attributes or features, enhancing the relevance of the samples to specific conditions.
+    - Positive conditioning information, guiding the generation towards desired attributes.
     - Comfy dtype: `SUPIR_cond_pos`
-    - Python dtype: `dict`
+    - Python dtype: `Dict[str, Any]`
 - **`negative`**
-    - Unconditional inputs or negative guidance that the model should avoid, helping to steer the generation away from undesired attributes.
+    - Negative conditioning information, used to steer the generation away from certain attributes.
     - Comfy dtype: `SUPIR_cond_neg`
-    - Python dtype: `dict`
+    - Python dtype: `Dict[str, Any]`
 - **`seed`**
-    - A seed value for random number generation, ensuring reproducibility of the samples.
+    - A seed for random number generation, ensuring reproducibility of the samples.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`steps`**
-    - The number of steps to perform in the sampling process, affecting the detail and quality of the generated samples.
+    - The number of steps to perform in the sampling process. This parameter influences the quality and diversity of the generated samples.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg_scale_start`**
-    - The initial scaling factor for class-conditional guidance, setting the starting level of adherence to the specified conditions.
+    - The initial scaling factor for CFG, affecting the conditioning strength at the beginning of the sampling process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`cfg_scale_end`**
-    - The final scaling factor for class-conditional guidance, influencing the adherence to the specified conditions at the end of the sampling process.
+    - The final scaling factor for CFG (Classifier Free Guidance), affecting the conditioning strength at the end of the sampling process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`EDM_s_churn`**
-    - A parameter influencing the sampling dynamics, possibly related to the exploration of the latent space or the diversity of the generated samples.
+    - A parameter influencing the EDM sampling process, specifically related to churn.
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `float`
 - **`s_noise`**
-    - A parameter that might control the amount of noise introduced during the sampling process, affecting the variability of the outcomes.
+    - Noise level for the sampling process, affecting the randomness and variability of the generated samples.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`DPMPP_eta`**
-    - A parameter related to the DPM++ sampling algorithm, influencing the sampling behavior or efficiency.
+    - A parameter related to the DPM++ sampling method, influencing its behavior.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`control_scale_start`**
-    - The initial value for the control scale, possibly affecting the degree of control or influence over the generation process at the start.
+    - The initial control scale, influencing the degree of control at the start of the sampling process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`control_scale_end`**
-    - The final value for the control scale, determining the degree of control or influence over the generation process at the end.
+    - The final control scale, determining the degree of control at the end of the sampling process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`restore_cfg`**
-    - A parameter indicating whether to restore certain configurations after sampling, potentially related to model settings or parameters.
+    - A flag indicating whether to restore the CFG scale to its original value after sampling.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `bool`
 - **`keep_model_loaded`**
-    - A boolean indicating whether the model should remain loaded after sampling, affecting resource utilization and performance.
+    - A flag indicating whether to keep the model loaded in memory after sampling, which can improve performance for subsequent samples.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`sampler`**
-    - The specific sampling algorithm or method used, crucial for determining the approach to generating samples.
+    - The specific sampler to be used for generating samples, which can vary based on the desired sampling technique.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `Sampler`
+    - Python dtype: `Callable`
 ### Optional
 - **`sampler_tile_size`**
-    - The size of tiles used in tiled sampling, affecting the granularity of the sampling process.
+    - The size of tiles for the sampler, relevant when sampling is performed in a tiled manner.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`sampler_tile_stride`**
-    - The stride of tiles in tiled sampling, influencing the overlap between tiles and the continuity of the generated samples.
+    - The stride of tiles for the sampler, affecting how tiles are overlapped during the sampling process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - The generated samples as latent representations, ready for further processing or conversion into final outputs.
+    - The latent representations generated as a result of the sampling process, which may include modifications from the original input latents.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -113,9 +114,9 @@ class SUPIR_sample:
             "EDM_s_churn": ("INT", {"default": 5, "min": 0, "max": 40, "step": 1}),
             "s_noise": ("FLOAT", {"default": 1.003, "min": 1.0, "max": 1.1, "step": 0.001}),
             "DPMPP_eta": ("FLOAT", {"default": 1.0, "min": 0, "max": 10.0, "step": 0.01}),
-            "control_scale_start": ("FLOAT", {"default": 1.0, "min": 0, "max": 10.0, "step": 0.05}),
-            "control_scale_end": ("FLOAT", {"default": 1.0, "min": 0, "max": 10.0, "step": 0.05}),
-            "restore_cfg": ("FLOAT", {"default": -1.0, "min": -1.0, "max": 20.0, "step": 0.05}),
+            "control_scale_start": ("FLOAT", {"default": 1.0, "min": 0, "max": 10.0, "step": 0.01}),
+            "control_scale_end": ("FLOAT", {"default": 1.0, "min": 0, "max": 10.0, "step": 0.01}),
+            "restore_cfg": ("FLOAT", {"default": -1.0, "min": -1.0, "max": 20.0, "step": 0.01}),
             "keep_model_loaded": ("BOOLEAN", {"default": False}),
             "sampler": (
                     [
@@ -236,7 +237,8 @@ SUPIR Tiles -node for preview to understand how the image is tiled.
                     noised_z = torch.randn_like(sample.unsqueeze(0), device=samples.device)
                 else:
                     print("Using latent from input")
-                    noised_z = sample.unsqueeze(0) * 0.13025
+                    noised_z = torch.randn_like(sample.unsqueeze(0), device=samples.device)
+                    noised_z += sample.unsqueeze(0)
                 if len(positive) != len(samples):
                     print("Tiled sampling")
                     _samples = self.sampler(denoiser, noised_z, cond=positive, uc=negative, x_center=sample.unsqueeze(0), control_scale=control_scale_end,
@@ -270,6 +272,9 @@ SUPIR Tiles -node for preview to understand how the image is tiled.
             samples_out_stacked = torch.cat(out, dim=0)
         else:
             samples_out_stacked = torch.stack(out, dim=0)
+
+        if original_size is None:
+            samples_out_stacked = samples_out_stacked / 0.13025
 
         return ({"samples":samples_out_stacked, "original_size": original_size},)
 

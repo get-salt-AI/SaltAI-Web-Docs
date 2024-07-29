@@ -4,17 +4,17 @@
 - Category: `Bmad/CV/Thresholding`
 - Output node: `False`
 
-This node applies histogram equalization to an image, enhancing its contrast by redistributing the image's intensity levels.
+The EqualizeHistogram node is designed to enhance the contrast of an image by equalizing its histogram. This process redistributes the intensity levels of the image, potentially improving its visual perception.
 ## Input types
 ### Required
 - **`src`**
-    - The source image to be processed. Histogram equalization will be applied to enhance its contrast.
+    - The source image to be processed for histogram equalization. This input is crucial as it directly influences the enhancement of the image's contrast.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The processed image with enhanced contrast after applying histogram equalization.
+    - The output is an enhanced image with equalized histogram, aimed at improving the contrast and visual quality.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -25,7 +25,7 @@ This node applies histogram equalization to an image, enhancing its contrast by 
 ```python
 class EqualizeHistogram:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "src": ("IMAGE",),
@@ -34,7 +34,7 @@ class EqualizeHistogram:
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "eq"
-    CATEGORY = "Bmad/CV/Thresholding"
+    CATEGORY = f"{cv_category_path}/Thresholding"
 
     def eq(self, src):
         src = tensor2opencv(src, 1)

@@ -1,5 +1,6 @@
 ---
 tags:
+- SamplerScheduler
 - Sampling
 ---
 
@@ -9,46 +10,46 @@ tags:
 - Category: `ImpactPack/Sampler`
 - Output node: `False`
 
-This node provides advanced sampling capabilities for image masks, enabling precise control over the application and manipulation of masks in image processing tasks. It leverages specialized sampling techniques to modify latent images based on mask parameters, facilitating complex image transformations.
+This node provides advanced sampling functionalities for image manipulation, specifically designed to work with masks. It enables the application of different sampling strategies to distinct regions of an image, as defined by a mask, allowing for precise control over the sampling process in areas of interest.
 ## Input types
 ### Required
 - **`seed`**
-    - The seed parameter ensures reproducibility of the sampling process, allowing for consistent results across different runs.
+    - The seed for random number generation, ensuring reproducibility of the sampling process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`steps`**
-    - Defines the number of steps to be taken in the advanced sampling process, affecting the granularity of the transformation.
+    - The total number of steps to perform in the advanced sampling process, affecting the granularity of the operation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`denoise`**
-    - Controls the level of denoising applied during the sampling process, influencing the clarity and quality of the output image.
+    - A factor that influences the denoising process during sampling, impacting the clarity and quality of the sampled image.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`samples`**
-    - Represents the latent images to be processed, serving as the input for the advanced sampling operations.
+    - The initial latent images to be processed, serving as the starting point for the sampling operation.
     - Comfy dtype: `LATENT`
-    - Python dtype: `Dict[str, torch.Tensor]`
+    - Python dtype: `torch.Tensor`
 - **`base_sampler`**
-    - Specifies the base sampler used for the initial phase of image transformation, setting the foundation for further mask application.
+    - The sampler to apply to the region outside the mask, dictating the sampling behavior in non-masked areas.
     - Comfy dtype: `KSAMPLER_ADVANCED`
-    - Python dtype: `KSamplerAdvanced`
+    - Python dtype: `object`
 - **`mask_sampler`**
-    - Determines the sampler used for applying the mask to the image, directly influencing the areas of the image to be modified.
+    - The sampler to apply to the masked region, enabling specialized sampling within the mask boundaries.
     - Comfy dtype: `KSAMPLER_ADVANCED`
-    - Python dtype: `KSamplerAdvanced`
+    - Python dtype: `object`
 - **`mask`**
-    - The mask parameter defines the specific areas of the image to be targeted by the sampling process, enabling selective image manipulation.
+    - The mask defining areas of interest for different sampling strategies, guiding the application of the base and mask samplers.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`overlap_factor`**
-    - Adjusts the degree of overlap between mask applications, affecting the blending and transition between masked and unmasked areas.
+    - A parameter controlling the extent of mask overlap, affecting the transition between sampled regions.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - Outputs the modified latent image after the advanced sampling and mask application process.
-    - Python dtype: `Dict[str, torch.Tensor]`
+    - The modified latent image after applying advanced sampling techniques, reflecting changes in both masked and non-masked regions.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -70,6 +71,20 @@ class TwoAdvancedSamplersForMask:
                      "overlap_factor": ("INT", {"default": 10, "min": 0, "max": 10000})
                      },
                 }
+
+    TOOLTIPS = {
+        "input": {
+            "seed": "Random seed to use for generating CPU noise for sampling.",
+            "steps": "total sampling steps",
+            "denoise": "The amount of noise to remove. This amount is the noise added at the start, and the higher it is, the more the input latent will be modified before being returned.",
+            "samples": "input latent image",
+            "base_sampler": "Sampler to apply to the region outside the mask.",
+            "mask_sampler": "Sampler to apply to the masked region.",
+            "mask": "region mask",
+            "overlap_factor": "To smooth the seams of the region boundaries, expand the mask by the overlap_factor amount to overlap with other regions.",
+        },
+        "output": ("result latent", )
+    }
 
     RETURN_TYPES = ("LATENT", )
     FUNCTION = "doit"
@@ -94,7 +109,8 @@ class TwoAdvancedSamplersForMask:
 
         return mask_erosion[:, :, :w, :h].round()
 
-    def doit(self, seed, steps, denoise, samples, base_sampler, mask_sampler, mask, overlap_factor):
+    @staticmethod
+    def doit(seed, steps, denoise, samples, base_sampler, mask_sampler, mask, overlap_factor):
 
         inv_mask = torch.where(mask != 1.0, torch.tensor(1.0), torch.tensor(0.0))
 

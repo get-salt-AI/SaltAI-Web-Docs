@@ -1,7 +1,7 @@
 ---
 tags:
 - AnimationScheduling
-- Scheduling
+- SigmaScheduling
 ---
 
 # CR Simple Prompt List Keyframes (Legacy)

@@ -1,6 +1,6 @@
 ---
 tags:
-- Image
+- ImpactPack
 - Segmentation
 ---
 
@@ -10,71 +10,71 @@ tags:
 - Category: `ImpactPack/Detector`
 - Output node: `False`
 
-This node is designed to perform simplified detection tasks specifically tailored for animations and differences in images, leveraging segmentation models to identify and process distinct visual elements.
+This node is designed to perform complex detection tasks tailored for AnimateDiff (AD) applications within the SEGS framework, utilizing a combination of bounding box and segmentation models to process elements in image sequences. It supports a variety of configurations to optimize detection for animated content creation or manipulation, by identifying key visual components across frames.
 ## Input types
 ### Required
 - **`bbox_detector`**
-    - Specifies the bounding box detector to be used for detection, crucial for identifying distinct elements within the animation or image.
+    - Specifies the bounding box detector model used for initial detection steps, crucial for identifying preliminary regions of interest in the image frames.
     - Comfy dtype: `BBOX_DETECTOR`
-    - Python dtype: `object`
+    - Python dtype: `str`
 - **`image_frames`**
-    - The input image frames from an animation to be processed, serving as the primary data for detection tasks.
+    - A sequence of images on which detection is performed. These frames serve as the primary data source for the detection algorithm, enabling temporal analysis across frames.
     - Comfy dtype: `IMAGE`
     - Python dtype: `List[torch.Tensor]`
 - **`bbox_threshold`**
-    - A threshold value to determine the sensitivity of bounding box detection, influencing the identification of distinct elements.
+    - A threshold value for bounding box model predictions, controlling the sensitivity of detection. It influences the initial filtering of detected regions.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`bbox_dilation`**
-    - Adjusts the dilation of detected bounding boxes, allowing for more precise control over the segmentation boundaries.
+    - Specifies the dilation amount for the bounding boxes detected, allowing for adjustments in the boundaries to better capture the relevant segments.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`crop_factor`**
-    - Determines the factor by which the detected bounding boxes are cropped, affecting the focus area around detected elements.
+    - Determines the factor by which the detected bounding boxes are expanded or contracted, affecting the final cropping of segments.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`drop_size`**
-    - Specifies the minimum size for detected elements to be considered, filtering out smaller, potentially irrelevant detections.
+    - The minimum size of detected segments to be considered, helping to eliminate noise by disregarding overly small detections.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`sub_threshold`**
-    - A secondary threshold value for finer control over the detection process, possibly used in conjunction with additional segmentation models.
+    - A threshold value for sub-segmentation within the initially detected bounding boxes, refining the detection process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sub_dilation`**
-    - Adjusts the dilation for a secondary detection process, offering further refinement of detected elements' boundaries.
+    - Specifies the dilation amount for the sub-segmentation masks, fine-tuning the segmentation boundaries within each bounding box.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`sub_bbox_expansion`**
-    - Defines how much to expand the bounding boxes in the secondary detection process, allowing for inclusion of surrounding context.
+    - Determines the expansion size for bounding boxes during the sub-segmentation process, allowing for more inclusive segment capture.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`sam_mask_hint_threshold`**
-    - A threshold value for generating mask hints in the SAM model, influencing the model's focus on certain areas of the image.
+    - A threshold value that influences the selection of segments for SAM (Segmentation-Aided Masking) model hints, guiding the model towards more relevant areas.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`masking_mode`**
-    - Specifies the mode of combining detected segments or masks, affecting how the final segmentation is constructed.
+    - Defines the strategy for combining detected segments across frames, affecting how animations are constructed from the detected elements.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`segs_pivot`**
-    - Determines the pivot for segmentation, guiding the combination or selection of segments in the final output.
+    - Specifies the reference frame or mask used for segment alignment and combination, pivotal in determining the base for further processing.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`sam_model_opt`**
-    - Optional. Specifies the SAM model to be used for additional mask hint generation, enhancing the detection process.
+    - An optional parameter that specifies the SAM model to be used for enhanced segmentation, offering additional control over the detection quality.
     - Comfy dtype: `SAM_MODEL`
-    - Python dtype: `object`
+    - Python dtype: `str`
 - **`segm_detector_opt`**
-    - Optional. Specifies an additional segmentation detector to be used for refining the detection results.
+    - An optional parameter that specifies the segmentation detector model for refined detection, complementing the bounding box detection step.
     - Comfy dtype: `SEGM_DETECTOR`
-    - Python dtype: `object`
+    - Python dtype: `str`
 ## Output types
 - **`segs`**
     - Comfy dtype: `SEGS`
-    - The output provides segmented elements identified from the input image frames, ready for further processing or analysis.
-    - Python dtype: `tuple`
+    - The output consists of segmented elements across the image frames, identified and processed based on the specified models and parameters. These segments are essential for the creation or manipulation of animated content in AnimateDiff applications.
+    - Python dtype: `List[SEG]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes:
@@ -206,13 +206,14 @@ class SimpleDetectorForAnimateDiff:
                 return segs_by_frames[0][1]
             else:
                 merged_mask = get_whole_merged_mask()
-                return segs_nodes.MaskToSEGS().doit(merged_mask, False, crop_factor, False, drop_size, contour_fill=True)[0]
+                return segs_nodes.MaskToSEGS.doit(merged_mask, False, crop_factor, False, drop_size, contour_fill=True)[0]
 
-        def get_merged_neighboring_segs():
+        def get_segs(merged_neighboring=False):
             pivot_segs = get_pivot_segs()
 
             masks_by_frame = get_masked_frames()
-            masks_by_frame = get_merged_neighboring_mask(masks_by_frame)
+            if merged_neighboring:
+                masks_by_frame = get_merged_neighboring_mask(masks_by_frame)
 
             new_segs = []
             for seg in pivot_segs[1]:
@@ -231,33 +232,15 @@ class SimpleDetectorForAnimateDiff:
 
             return pivot_segs[0], new_segs
 
-        def get_separated_segs():
-            pivot_segs = get_pivot_segs()
-
-            masks_by_frame = get_masked_frames()
-
-            new_segs = []
-            for seg in pivot_segs[1]:
-                cropped_mask = torch.zeros(seg.cropped_mask.shape, dtype=torch.float32, device="cpu").unsqueeze(0)
-                x1, y1, x2, y2 = seg.crop_region
-                for mask in masks_by_frame:
-                    cropped_mask_at_frame = mask[y1:y2, x1:x2]
-                    cropped_mask = torch.cat((cropped_mask, cropped_mask_at_frame), dim=0)
-
-                new_seg = SEG(seg.cropped_image, cropped_mask, seg.confidence, seg.crop_region, seg.bbox, seg.label, seg.control_net_wrapper)
-                new_segs.append(new_seg)
-
-            return pivot_segs[0], new_segs
-
         # create result mask
         if masking_mode == "Pivot SEGS":
             return (get_pivot_segs(), )
 
         elif masking_mode == "Combine neighboring frames":
-            return (get_merged_neighboring_segs(), )
+            return (get_segs(merged_neighboring=True), )
 
         else: # elif masking_mode == "Don't combine":
-            return (get_separated_segs(), )
+            return (get_segs(merged_neighboring=False), )
 
     def doit(self, bbox_detector, image_frames, bbox_threshold, bbox_dilation, crop_factor, drop_size,
              sub_threshold, sub_dilation, sub_bbox_expansion, sam_mask_hint_threshold,

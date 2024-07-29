@@ -1,33 +1,35 @@
 ---
 tags:
+- AnimationScheduling
 - Scheduling
+- SigmaScheduling
 ---
 
 # Schedule Numeric Clamp
 ## Documentation
 - Class name: `SaltListClamp`
-- Category: `SALT/Scheduling/Filter`
+- Category: `SALT/AudioViz/Scheduling/Filter`
 - Output node: `False`
 
-The SaltListClamp node is designed to adjust the values in a given list to ensure they fall within a specified minimum and maximum range. This process, known as clamping, is crucial for maintaining the integrity of data by preventing values from exceeding predetermined bounds.
+The SaltListClamp node is designed to adjust the values in a schedule list so that they fall within a specified minimum and maximum range. This process, known as clamping, ensures that all values in the list adhere to defined boundaries, enhancing the control over the data's range for further processing or visualization.
 ## Input types
 ### Required
 - **`schedule_list`**
-    - The list of values to be clamped. This parameter is essential for defining the scope of data that will undergo the clamping process.
+    - The list of numerical values to be clamped. It serves as the primary data input for the node, determining the values that will be adjusted to fall within the specified range.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 - **`min_value`**
-    - The minimum allowable value in the clamped list. This parameter sets the lower bound for the clamping operation.
+    - The minimum allowable value in the clamped list. This parameter sets the lower boundary for the values, ensuring none fall below it.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`max_value`**
-    - The maximum allowable value in the clamped list. This parameter establishes the upper limit for the clamping operation.
+    - The maximum allowable value in the clamped list. This parameter sets the upper boundary for the values, ensuring none exceed it.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`schedule_list`**
     - Comfy dtype: `LIST`
-    - The resulting list after clamping, where all values are adjusted to fall within the specified minimum and maximum bounds.
+    - The list of clamped values, adjusted to ensure that each element falls within the specified minimum and maximum range.
     - Python dtype: `List[float]`
 ## Usage tips
 - Infra type: `CPU`
@@ -50,7 +52,7 @@ class SaltListClamp:
     RETURN_TYPES = ("LIST",)
     RETURN_NAMES = ("schedule_list",)
     FUNCTION = "clamp_values"
-    CATEGORY = "SALT/Scheduling/Filter"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling/Filter"
 
     def clamp_values(self, schedule_list, min_value, max_value):
         if min_value > max_value:

@@ -1,7 +1,6 @@
 ---
 tags:
 - DetailEnhancement
-- Image
 - Pipeline
 ---
 
@@ -11,29 +10,29 @@ tags:
 - Category: `ImpactPack/Detailer`
 - Output node: `False`
 
-The DetailerForEach node is designed to iterate over a collection of items, applying a detailed analysis or transformation to each item individually. This process enhances the granularity of the analysis or transformation, ensuring that each item is processed with a focus on its specific characteristics or requirements.
+The `DetailerForEach` node is designed to apply detailed processing to each element in a given dataset or collection. It focuses on enhancing or modifying the details of each item, potentially for purposes such as improving visual quality, extracting features, or applying specific transformations based on the context of use.
 ## Input types
 ### Required
 - **`image`**
-    - The 'image' input type is essential for operations that involve visual data, allowing the node to apply transformations or analyses directly to images.
+    - This input type is used to specify the images within the dataset or collection that the node will process. It focuses on applying detailed modifications or enhancements to improve the visual quality or extract features from each image.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `List[Image]`
 - **`segs`**
-    - unknown
+    - Segments to be detailed within the image, used for targeted detail enhancement or modification.
     - Comfy dtype: `SEGS`
-    - Python dtype: `unknown`
+    - Python dtype: `List[SegmentationMask]`
 - **`model`**
-    - The 'model' input type specifies the computational model used for processing, which is crucial for defining the behavior and capabilities of the node.
+    - The model used for generating enhancements or modifications on the image.
     - Comfy dtype: `MODEL`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `Any`
 - **`clip`**
-    - The 'clip' input type is used for operations that involve CLIP models, enabling the node to leverage textual or visual embeddings for analysis or transformation.
+    - CLIP model used for guiding the detail enhancement process based on textual descriptions.
     - Comfy dtype: `CLIP`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `Any`
 - **`vae`**
-    - The 'vae' input type indicates the use of a Variational Autoencoder, important for tasks involving latent space manipulations or generative processes.
+    - VAE model used for processing the image in a latent space for detail enhancement.
     - Comfy dtype: `VAE`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `Any`
 - **`guide_size`**
     - unknown
     - Comfy dtype: `FLOAT`
@@ -67,13 +66,13 @@ The DetailerForEach node is designed to iterate over a collection of items, appl
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `unknown`
 - **`positive`**
-    - The 'positive' input type represents conditioning information with a positive connotation, influencing the direction of the transformation or analysis.
+    - Positive conditioning factors to guide the detail enhancement process.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `Dict[str, torch.Tensor]`
+    - Python dtype: `List[str]`
 - **`negative`**
-    - The 'negative' input type signifies conditioning information with a negative connotation, affecting the node's processing to account for undesired aspects.
+    - Negative conditioning factors to guide the detail enhancement process.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `Dict[str, torch.Tensor]`
+    - Python dtype: `List[str]`
 - **`denoise`**
     - unknown
     - Comfy dtype: `FLOAT`
@@ -111,11 +110,15 @@ The DetailerForEach node is designed to iterate over a collection of items, appl
     - unknown
     - Comfy dtype: `INT`
     - Python dtype: `unknown`
+- **`scheduler_func_opt`**
+    - unknown
+    - Comfy dtype: `SCHEDULER_FUNC`
+    - Python dtype: `unknown`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - This output type provides the transformed or analyzed images, reflecting the changes or insights gained through the node's processing.
-    - Python dtype: `torch.Tensor`
+    - This output type represents the images after the node's processing, which have been enhanced or modified in detail. The processing aims to improve visual quality or extract specific features.
+    - Python dtype: `List[Image]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
@@ -124,7 +127,7 @@ The DetailerForEach node is designed to iterate over a collection of items, appl
     - Reroute
     - [CR Image Output](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Image Output.md)
     - [SaveImage](../../Comfy/Nodes/SaveImage.md)
-    - [ReroutePrimitive|pysssss](../../ComfyUI-Custom-Scripts/Nodes/ReroutePrimitive|pysssss.md)
+    - ReroutePrimitive|pysssss
 
 
 
@@ -139,7 +142,7 @@ class DetailerForEach:
                     "model": ("MODEL",),
                     "clip": ("CLIP",),
                     "vae": ("VAE",),
-                    "guide_size": ("FLOAT", {"default": 384, "min": 64, "max": nodes.MAX_RESOLUTION, "step": 8}),
+                    "guide_size": ("FLOAT", {"default": 512, "min": 64, "max": nodes.MAX_RESOLUTION, "step": 8}),
                     "guide_size_for": ("BOOLEAN", {"default": True, "label_on": "bbox", "label_off": "crop_region"}),
                     "max_size": ("FLOAT", {"default": 1024, "min": 64, "max": nodes.MAX_RESOLUTION, "step": 8}),
                     "seed": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff}),
@@ -161,6 +164,7 @@ class DetailerForEach:
                     "detailer_hook": ("DETAILER_HOOK",),
                     "inpaint_model": ("BOOLEAN", {"default": False, "label_on": "enabled", "label_off": "disabled"}),
                     "noise_mask_feather": ("INT", {"default": 20, "min": 0, "max": 100, "step": 1}),
+                    "scheduler_func_opt": ("SCHEDULER_FUNC",),
                    }
                 }
 
@@ -173,7 +177,7 @@ class DetailerForEach:
     def do_detail(image, segs, model, clip, vae, guide_size, guide_size_for_bbox, max_size, seed, steps, cfg, sampler_name, scheduler,
                   positive, negative, denoise, feather, noise_mask, force_inpaint, wildcard_opt=None, detailer_hook=None,
                   refiner_ratio=None, refiner_model=None, refiner_clip=None, refiner_positive=None, refiner_negative=None,
-                  cycle=1, inpaint_model=False, noise_mask_feather=0):
+                  cycle=1, inpaint_model=False, noise_mask_feather=0, scheduler_func_opt=None):
 
         if len(image) > 1:
             raise Exception('[Impact Pack] ERROR: DetailerForEach does not allow image batches.\nPlease refer to https://github.com/ltdrdata/ComfyUI-extension-tutorials/blob/Main/ComfyUI-Impact-Pack/tutorial/batching-detailer.md for more information.')
@@ -205,7 +209,7 @@ class DetailerForEach:
             ordered_segs = segs[1]
 
         for i, seg in enumerate(ordered_segs):
-            cropped_image = crop_ndarray4(image.numpy(), seg.crop_region)  # Never use seg.cropped_image to handle overlapping area
+            cropped_image = crop_ndarray4(image.cpu().numpy(), seg.crop_region)  # Never use seg.cropped_image to handle overlapping area
             cropped_image = to_tensor(cropped_image)
             mask = to_tensor(seg.cropped_mask)
             mask = tensor_gaussian_blur_mask(mask, feather)
@@ -253,7 +257,8 @@ class DetailerForEach:
                                                             refiner_ratio=refiner_ratio, refiner_model=refiner_model,
                                                             refiner_clip=refiner_clip, refiner_positive=refiner_positive,
                                                             refiner_negative=refiner_negative, control_net_wrapper=seg.control_net_wrapper,
-                                                            cycle=cycle, inpaint_model=inpaint_model, noise_mask_feather=noise_mask_feather)
+                                                            cycle=cycle, inpaint_model=inpaint_model, noise_mask_feather=noise_mask_feather,
+                                                            scheduler_func=scheduler_func_opt)
 
             if cnet_pils is not None:
                 cnet_pil_list.extend(cnet_pils)
@@ -267,7 +272,7 @@ class DetailerForEach:
                 enhanced_list.append(enhanced_image)
 
                 if detailer_hook is not None:
-                    detailer_hook.post_paste(image)
+                    image = detailer_hook.post_paste(image)
 
             if not (enhanced_image is None):
                 # Convert enhanced_pil_alpha to RGBA mode
@@ -296,13 +301,13 @@ class DetailerForEach:
 
     def doit(self, image, segs, model, clip, vae, guide_size, guide_size_for, max_size, seed, steps, cfg, sampler_name,
              scheduler, positive, negative, denoise, feather, noise_mask, force_inpaint, wildcard, cycle=1,
-             detailer_hook=None, inpaint_model=False, noise_mask_feather=0):
+             detailer_hook=None, inpaint_model=False, noise_mask_feather=0, scheduler_func_opt=None):
 
         enhanced_img, *_ = \
             DetailerForEach.do_detail(image, segs, model, clip, vae, guide_size, guide_size_for, max_size, seed, steps,
                                       cfg, sampler_name, scheduler, positive, negative, denoise, feather, noise_mask,
                                       force_inpaint, wildcard, detailer_hook,
-                                      cycle=cycle, inpaint_model=inpaint_model, noise_mask_feather=noise_mask_feather)
+                                      cycle=cycle, inpaint_model=inpaint_model, noise_mask_feather=noise_mask_feather, scheduler_func_opt=scheduler_func_opt)
 
         return (enhanced_img, )
 

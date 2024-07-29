@@ -1,5 +1,6 @@
 ---
 tags:
+- DepthMap
 - LayeredDiffusion
 ---
 
@@ -9,49 +10,47 @@ tags:
 - Category: `EasyUse/Sampler`
 - Output node: `True`
 
-The `easy kSamplerLayerDiffusion` node is designed to integrate layer diffusion techniques into the sampling process, enhancing image generation with more control over the blending and detailing of generated images. It leverages various diffusion methods to apply nuanced modifications to images, supporting both foreground and background blending, attention mechanisms, and convolutional approaches for a refined output.
+This node integrates the concept of layer diffusion with the kSampler process in a simplified manner, aiming to enhance image generation by applying specialized diffusion techniques. It focuses on adjusting the blending and diffusion parameters to optimize the visual output based on the layer diffusion method selected, thereby facilitating a more controlled and refined image synthesis process.
 ## Input types
 ### Required
 - **`pipe`**
-    - Represents the pipeline configuration, including model and sampling settings, crucial for the layer diffusion process.
+    - Represents the pipeline configuration, serving as the foundational structure for the layer diffusion process. It is crucial for defining the flow and parameters of the image generation task. The inclusion of this parameter directly influences the customization and execution of the diffusion and blending techniques applied to the image generation.
     - Comfy dtype: `PIPE_LINE`
-    - Python dtype: `Dict[str, Any]`
+    - Python dtype: `dict`
 - **`image_output`**
-    - Specifies the desired output format for the generated images, influencing how the final images are presented or saved.
+    - Determines the format in which the generated images are outputted, affecting the visualization and saving options. This parameter allows for flexibility in how the results are presented and stored, catering to different preferences and requirements.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`link_id`**
-    - A unique identifier used to link the current diffusion process with other processes or data within the pipeline.
+    - Specifies a unique identifier for the link within the pipeline, enabling the tracking and association of generated images with specific pipeline executions. This parameter plays a key role in managing and organizing the output images in complex workflows.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`save_prefix`**
-    - Defines the prefix for filenames when saving generated images, allowing for organized storage and retrieval.
+    - Defines a prefix for saving generated images, facilitating organized storage and retrieval of output files. This parameter is essential for categorizing and identifying images in large-scale image generation tasks.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ### Optional
 - **`model`**
-    - The model used for the diffusion process, central to determining the characteristics and quality of the generated images.
+    - The model parameter allows for the selection of a specific generative model to be used in the layer diffusion process. This choice significantly impacts the quality and characteristics of the generated images, enabling fine-tuned control over the synthesis outcome.
     - Comfy dtype: `MODEL`
-    - Python dtype: `Any`
+    - Python dtype: `object`
 ## Output types
 - **`pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - The modified pipeline configuration after applying layer diffusion, reflecting changes in image blending, sampling, and additional settings.
-    - Python dtype: `Dict[str, Any]`
+    - Outputs the modified pipeline configuration, incorporating the adjustments made during the layer diffusion process. This reflects the changes and optimizations applied to the diffusion and blending settings.
+    - Python dtype: `dict`
 - **`final_image`**
     - Comfy dtype: `IMAGE`
-    - The final image result after the layer diffusion process, showcasing the applied blending and detailing effects.
-    - Python dtype: `Any`
+    - The final generated image after the layer diffusion process, showcasing the enhanced visual quality and detail achieved through the applied techniques.
+    - Python dtype: `object`
 - **`original_image`**
     - Comfy dtype: `IMAGE`
-    - The original image before the application of layer diffusion, allowing for comparison with the final result.
-    - Python dtype: `Any`
+    - Provides the original image before the application of layer diffusion, allowing for comparison and evaluation of the diffusion effect on the image quality.
+    - Python dtype: `object`
 - **`alpha`**
     - Comfy dtype: `MASK`
-    - A value representing the blending factor used in the diffusion process, indicating the degree of blending between the original and diffused elements.
-    - Python dtype: `float`
-- **`ui`**
-    - Provides a user interface component, typically displaying the seed value used in the diffusion process, facilitating user interaction and customization.
+    - Outputs the alpha channel information of the generated images, which is crucial for understanding and manipulating transparency and blending effects in post-processing stages.
+    - Python dtype: `list`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -59,7 +58,7 @@ The `easy kSamplerLayerDiffusion` node is designed to integrate layer diffusion 
 
 ## Source code
 ```python
-class samplerSimpleLayerDiffusion:
+class samplerSimpleLayerDiffusion(samplerFull):
 
     def __init__(self):
         pass
@@ -85,11 +84,12 @@ class samplerSimpleLayerDiffusion:
     RETURN_NAMES = ("pipe", "final_image", "original_image", "alpha")
     OUTPUT_NODE = True
     OUTPUT_IS_LIST = (False, False, False, True)
-    FUNCTION = "run"
+    FUNCTION = "layerDiffusion"
     CATEGORY = "EasyUse/Sampler"
 
-    def run(self, pipe, image_output='preview', link_id=0, save_prefix='ComfyUI', model=None, prompt=None, extra_pnginfo=None, my_unique_id=None, force_full_denoise=False, disable_noise=False):
-        result = samplerFull().run(pipe, None, None,None,None,None, image_output, link_id, save_prefix,
+    def layerDiffusion(self, pipe, image_output='preview', link_id=0, save_prefix='ComfyUI', model=None, prompt=None, extra_pnginfo=None, my_unique_id=None, force_full_denoise=False, disable_noise=False):
+
+        result = super().run(pipe, None, None,None,None,None, image_output, link_id, save_prefix,
                                None, model, None, None, None, None, None, None,
                                None, prompt, extra_pnginfo, my_unique_id, force_full_denoise, disable_noise)
         pipe = result["result"][0] if "result" in result else None

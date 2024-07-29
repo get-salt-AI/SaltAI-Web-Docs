@@ -6,24 +6,24 @@ tags:
 # Audio Stereo Merge
 ## Documentation
 - Class name: `SaltAudioStereoMerge`
-- Category: `SALT/Audio/Effect`
+- Category: `SALT/AudioViz/Audio/Effect`
 - Output node: `False`
 
-The SaltAudioStereoMerge node is designed to merge two mono audio inputs into a single stereo audio output. It ensures that both audio inputs are of the same length and converts them to mono if they are not already, before merging them into a stereo track.
+This node merges two mono audio inputs into a single stereo audio output, ensuring that each input occupies one channel of the stereo output. It is designed to work with audio files in WAV format, automatically adjusting the channels of the inputs to mono if necessary and aligning their lengths before merging.
 ## Input types
 ### Required
 - **`audio_a`**
-    - The first audio input to be merged. It is treated as one of the channels in the resulting stereo audio.
+    - The first mono audio input to be merged into the stereo output. It occupies the left channel of the resulting stereo audio.
     - Comfy dtype: `AUDIO`
     - Python dtype: `bytes`
 - **`audio_b`**
-    - The second audio input to be merged alongside the first input. It complements the first input to form the stereo audio output.
+    - The second mono audio input to be merged into the stereo output. It occupies the right channel of the resulting stereo audio.
     - Comfy dtype: `AUDIO`
     - Python dtype: `bytes`
 ## Output types
 - **`audio`**
     - Comfy dtype: `AUDIO`
-    - The resulting stereo audio output from merging the two input audio tracks.
+    - The resulting stereo audio output, with the first input occupying the left channel and the second input occupying the right channel.
     - Python dtype: `bytes`
 ## Usage tips
 - Infra type: `CPU`
@@ -45,7 +45,7 @@ class SaltAudioStereoMerge:
     RETURN_TYPES = ("AUDIO",)
     RETURN_NAMES = ("audio",)
     FUNCTION = "merge_stereo"
-    CATEGORY = "SALT/Audio/Effect"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Audio/Effect"
 
     def merge_stereo(self, audio_a, audio_b):
         segment_a = AudioSegment.from_file(io.BytesIO(audio_a), format="wav")

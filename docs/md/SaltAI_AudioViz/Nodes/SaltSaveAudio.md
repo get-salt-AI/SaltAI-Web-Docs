@@ -1,27 +1,29 @@
 ---
 tags:
 - Audio
+- List
+- ListExtension
 ---
 
 # Save Audio
 ## Documentation
 - Class name: `SaltSaveAudio`
-- Category: `SALT/Audio`
+- Category: `SALT/AudioViz/Audio`
 - Output node: `True`
 
-The SaltSaveAudio node is designed for saving audio content to a file in various formats, including WAV, MP3, and FLAC. It automatically handles file naming and ensures that files are saved without overwriting existing files, making it a crucial component for audio processing workflows that require outputting audio files.
+The SaltSaveAudio node is designed for saving audio content to a file in various formats. It allows specifying the filename prefix and the audio format, supporting a range of common audio file types. This functionality is essential for audio processing workflows that require the output to be stored persistently.
 ## Input types
 ### Required
 - **`audio`**
-    - The raw audio data to be saved. This parameter is crucial as it directly represents the audio content that will be processed and saved to a file.
+    - The raw audio data to be saved. This is the primary content that the node operates on, determining the actual audio that will be written to the file.
     - Comfy dtype: `AUDIO`
     - Python dtype: `bytes`
 - **`filename_prefix`**
-    - A prefix for the generated filename, allowing for easy identification and organization of saved audio files. It defaults to 'audio_sfx', providing a base naming convention that can be customized.
+    - A prefix for the filename under which the audio will be saved. This allows for easy identification and organization of saved audio files.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`format`**
-    - Specifies the format of the saved audio file. Supported formats include 'wav', 'mp3', and 'flac', enabling flexibility in how audio is stored and used.
+    - The format in which the audio should be saved. This node supports saving in 'wav', 'mp3', and 'flac' formats, affecting the compatibility and quality of the saved audio file.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
@@ -48,7 +50,7 @@ class SaltSaveAudio:
     RETURN_NAMES = ()
     OUTPUT_NODE = True
     FUNCTION = "save_audio"
-    CATEGORY = "SALT/Audio"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Audio"
 
     def save_audio(self, audio, filename_prefix="audio_sfx", format="wav"):
         OUTPUT = folder_paths.get_output_directory()
@@ -56,7 +58,7 @@ class SaltSaveAudio:
 
         file_extension = format.lower()
         if format not in ['wav', 'mp3', 'flac']:
-            print(f"Unsupported format: {format}. Defaulting to WAV.")
+            logger.error(f"Unsupported format: {format}. Defaulting to WAV.")
             file_extension = "wav"
             format = "wav"
 
@@ -70,7 +72,7 @@ class SaltSaveAudio:
         audio_segment = AudioSegment.from_file(io.BytesIO(audio), format="wav")
         audio_segment.export(full_path, format=format)
 
-        print(f"Audio saved to {filename} in {format.upper()} format")
+        logger.info(f"Audio saved to {filename} in {format.upper()} format")
         return ()
 
 ```

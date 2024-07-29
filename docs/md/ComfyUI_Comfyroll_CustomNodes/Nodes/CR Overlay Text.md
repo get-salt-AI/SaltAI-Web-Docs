@@ -1,7 +1,8 @@
 ---
 tags:
-- Image
+- ImageDrawing
 - TextOnImage
+- VisualEffects
 ---
 
 # 🔤 CR Overlay Text

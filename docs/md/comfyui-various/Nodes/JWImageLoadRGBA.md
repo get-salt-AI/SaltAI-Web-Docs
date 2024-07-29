@@ -1,6 +1,8 @@
 ---
 tags:
+- Animation
 - Image
+- ImageLoad
 ---
 
 # Image Load RGBA

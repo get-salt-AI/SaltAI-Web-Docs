@@ -3,6 +3,10 @@ tags:
 - AnimateDiff
 - AnimateDiffContext
 - Animation
+- ModelTuning
+- MotionData
+- PoseEstimation
+- Weight
 ---
 
 # 🚫AnimateDiff Loader (Advanced) [DEPRECATED] 🎭🅐🅓
@@ -11,58 +15,63 @@ tags:
 - Category: ``
 - Output node: `False`
 
-This node facilitates the advanced loading of AnimateDiff models, specifically tailored for handling deprecated functionalities and legacy configurations. It abstractly supports the integration and utilization of older AnimateDiff models within current workflows, ensuring compatibility and access to historical model features.
+This node is designed for advanced loading of AnimateDiff models, offering enhanced configuration options and optimizations for deprecated model versions. It aims to provide a more flexible and efficient way to work with older AnimateDiff models, ensuring compatibility and performance.
 ## Input types
 ### Required
 - **`model`**
-    - Specifies the AnimateDiff model to be loaded, focusing on deprecated models for specific legacy applications.
+    - Specifies the AnimateDiff model to be loaded, allowing for advanced configuration and optimization of deprecated models.
     - Comfy dtype: `MODEL`
     - Python dtype: `str`
 - **`latents`**
-    - Defines the latent configurations to be applied to the AnimateDiff model during loading, allowing for customization of the model's behavior.
+    - Defines the latent variables associated with the AnimateDiff model, crucial for its operation and performance.
     - Comfy dtype: `LATENT`
-    - Python dtype: `str`
+    - Python dtype: `torch.Tensor`
 - **`model_name`**
-    - Identifies the specific name of the AnimateDiff model to be loaded, enabling precise selection of legacy models.
+    - Identifies the specific AnimateDiff model to be loaded, enabling precise selection and configuration.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`unlimited_area_hack`**
-    - A boolean flag that enables or disables the unlimited area hack, providing a workaround for specific loading scenarios.
+    - A boolean flag that, when enabled, allows for bypassing certain limitations, enhancing the model's flexibility.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`context_length`**
-    - Specifies the length of the context to be used during model loading, affecting how the model processes input.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`context_stride`**
-    - Determines the stride of the context, influencing the model's loading and processing efficiency.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`context_overlap`**
-    - Defines the overlap between context segments during model loading, optimizing the model's understanding of sequential data.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`context_schedule`**
-    - Selects the schedule for context application, allowing for flexible adaptation to various loading requirements.
+    - unknown
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `unknown`
+- **`closed_loop`**
+    - unknown
+    - Comfy dtype: `BOOLEAN`
+    - Python dtype: `unknown`
+- **`beta_schedule`**
+    - Determines the beta schedule used during the model's operation, affecting its performance and outcomes.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-- **`closed_loop`**
-    - A boolean parameter that indicates whether the model loading should operate in a closed loop, affecting the model's initialization process.
-    - Comfy dtype: `BOOLEAN`
-    - Python dtype: `bool`
-- **`beta_schedule`**
-    - Chooses the beta schedule to be used during model loading, impacting the model's adaptation and performance.
-    - Comfy dtype: `COMBO[STRING]`
+### Optional
+- **`deprecation_warning`**
+    - Provides a warning about the deprecated status of the model, advising on its experimental or limited use.
+    - Comfy dtype: `ADEWARN`
     - Python dtype: `str`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - Outputs the loaded AnimateDiff model, ready for further processing or application.
-    - Python dtype: `str`
+    - Outputs the loaded AnimateDiff model, configured and optimized for use.
+    - Python dtype: `AnimateDiffModel`
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - Provides the latent configurations applied during the model loading, reflecting the customization of the model's behavior.
-    - Python dtype: `str`
+    - unknown
+    - Python dtype: `unknown`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -86,6 +95,7 @@ class AnimateDiffLoaderAdvanced_Deprecated:
                 "closed_loop": ("BOOLEAN", {"default": False},),
                 "beta_schedule": (BetaSchedules.get_alias_list_with_first_element(BetaSchedules.SQRT_LINEAR),),
             },
+            "optional": {"deprecation_warning": ("ADEWARN", {"text": "Deprecated"})},
         }
 
     RETURN_TYPES = ("MODEL", "LATENT")

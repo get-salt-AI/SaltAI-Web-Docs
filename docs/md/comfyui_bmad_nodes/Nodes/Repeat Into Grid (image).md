@@ -1,8 +1,8 @@
 ---
 tags:
 - GridLayout
-- Image
-- Tiled
+- ImageDuplication
+- ImageTransformation
 ---
 
 # Repeat Into Grid (image)
@@ -11,25 +11,25 @@ tags:
 - Category: `Bmad/image`
 - Output node: `False`
 
-This node tiles the input image samples into a grid of configurable dimensions, effectively repeating the image across a specified number of rows and columns to create a larger, grid-like composite image.
+This node tiles input image samples into a grid of configurable dimensions, effectively repeating the input image across a specified number of rows and columns to create a larger, grid-like composite image.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be tiled across the grid. It determines the base image that will be repeated across the specified grid dimensions.
+    - The input image to be tiled across the grid. It determines the visual content that will be repeated in each cell of the grid.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`columns`**
-    - Specifies the number of columns in the grid. It determines how many times the input image is repeated horizontally.
+    - Specifies the number of columns in the grid. This determines how many times the input image is repeated horizontally.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`rows`**
-    - Specifies the number of rows in the grid. It determines how many times the input image is repeated vertically.
+    - Specifies the number of rows in the grid. This determines how many times the input image is repeated vertically.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is a single image composed of the input image tiled according to the specified rows and columns, forming a grid.
+    - The output composite image, consisting of the input image tiled according to the specified rows and columns.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -43,11 +43,8 @@ class RepeatIntoGridImage:
     Tiles the input samples into a grid of configurable dimensions.
     """
 
-    def __init__(self):
-        pass
-
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {"image": ("IMAGE",),
                              "columns": grid_len_INPUT,
                              "rows": grid_len_INPUT,
@@ -55,7 +52,7 @@ class RepeatIntoGridImage:
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "repeat_into_grid"
-    CATEGORY = "Bmad/image"
+    CATEGORY = images_category_path
 
     def repeat_into_grid(self, image, columns, rows):
         samples = image.movedim(-1, 1)

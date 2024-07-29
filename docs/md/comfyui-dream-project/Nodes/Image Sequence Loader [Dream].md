@@ -1,7 +1,8 @@
 ---
 tags:
+- Animation
 - Image
-- ImageSequence
+- ImageLoad
 ---
 
 # 💾 Image Sequence Loader

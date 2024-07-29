@@ -1,6 +1,6 @@
 ---
 tags:
-- Time
+- SigmaScheduling
 ---
 
 # Show Spent Time

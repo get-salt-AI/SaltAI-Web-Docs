@@ -1,3 +1,8 @@
+---
+tags:
+- Model
+---
+
 # 🛠️ CR Repeater
 ## Documentation
 - Class name: `CR Repeater`

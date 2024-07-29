@@ -1,6 +1,9 @@
 ---
 tags:
+- ImageEnhancement
+- ImageNoise
 - Noise
+- Seed
 ---
 
 # DisableNoise

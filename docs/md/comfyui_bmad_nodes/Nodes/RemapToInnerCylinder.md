@@ -1,6 +1,8 @@
 ---
 tags:
-- ImageTransformation
+- Mask
+- MaskInversion
+- MaskMath
 ---
 
 # RemapToInnerCylinder
@@ -9,21 +11,21 @@ tags:
 - Category: `Bmad/CV/Transform`
 - Output node: `False`
 
-This node applies a cylindrical remapping to an image, simulating the effect of viewing the image as if it were wrapped around an inner cylinder. It adjusts the image based on the field of view and can optionally swap the x and y axes for different perspectives.
+The RemapToInnerCylinder node is designed to transform an image by mapping it onto an inner cylinder, adjusting the field of view and optionally swapping the x and y coordinates based on the provided parameters. This node is part of a suite of remapping functionalities that manipulate images to simulate various perspectives and distortions.
 ## Input types
 ### Required
 - **`fov`**
-    - The field of view in degrees, which determines the curvature of the cylindrical projection. It affects how the image is stretched or compressed to fit the cylinder.
+    - The 'fov' parameter specifies the field of view in degrees, controlling the extent of the cylindrical projection. It determines how wide the view is on the resulting cylinder, affecting the distortion level of the remapped image.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`swap_xy`**
-    - A boolean flag that, when set to true, swaps the x and y axes of the image, altering the orientation of the cylindrical projection.
+    - The 'swap_xy' parameter indicates whether the x and y coordinates should be swapped in the remapping process. This can be used to change the orientation of the image on the cylindrical surface.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`remap`**
     - Comfy dtype: `REMAP`
-    - The result of the cylindrical remapping, providing the transformed image as if viewed on the surface of an inner cylinder.
+    - The output 'remap' provides the transformed image data after applying the inner cylinder mapping. It encapsulates the result of the remapping process, reflecting the adjustments made to the field of view and the orientation of the image.
     - Python dtype: `Dict[str, Any]`
 ## Usage tips
 - Infra type: `CPU`
@@ -34,7 +36,7 @@ This node applies a cylindrical remapping to an image, simulating the effect of 
 ```python
 class InnerCylinderRemap(RemapBase):
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {
             "fov": ("INT", {"default": 90, "min": 1, "max": 179}),
             "swap_xy": ("BOOLEAN", {"default": False}),

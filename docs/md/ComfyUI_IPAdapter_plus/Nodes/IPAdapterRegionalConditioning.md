@@ -10,59 +10,59 @@ tags:
 - Category: `ipadapter/params`
 - Output node: `False`
 
-The IPAdapterRegionalConditioning node is designed to apply regional conditioning to images using IPAdapter techniques. It focuses on enhancing or altering specific regions of an image based on given conditions, potentially including alternative conditions, unconditional inputs, and various weighting and masking strategies. This node plays a crucial role in customizing image processing tasks by allowing for detailed control over how different areas of an image are treated, making it essential for tasks that require precise adjustments or enhancements.
+This node specializes in applying regional conditioning to images within the IPAdapter framework. It leverages masks to selectively apply positive and negative prompts to specific areas of an image, enabling fine-grained control over the generation process. This functionality is crucial for tasks requiring targeted adjustments or enhancements, such as modifying specific image regions without affecting the overall composition.
 ## Input types
 ### Required
 - **`image`**
-    - The image to which regional conditioning will be applied, serving as the primary subject for the conditioning process.
+    - The image to be conditioned. It serves as the base for applying regional conditioning, determining the areas where positive or negative prompts will be applied.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `List[torch.Tensor]`
 - **`image_weight`**
-    - Defines the weight of the image in the conditioning process, influencing the balance between the image and the conditioning effects.
+    - A weight parameter for the image, influencing the degree to which the original image is retained or modified during the conditioning process.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `List[float]`
 - **`prompt_weight`**
-    - Specifies the weight of the prompt in the conditioning process, affecting the influence of textual conditions on the image.
+    - The weight assigned to the prompts, dictating the intensity of their influence on the conditioned regions of the image.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `List[float]`
 - **`weight_type`**
-    - unknown
+    - Specifies the type of weighting mechanism used for conditioning, affecting how image and prompt weights are balanced.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `List[str]`
 - **`start_at`**
-    - Indicates the starting point in the process where the conditioning begins to take effect, allowing for phased application.
+    - Defines the starting layer for applying conditioning, allowing for layer-specific adjustments.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `List[float]`
 - **`end_at`**
-    - Defines the ending point in the process where the conditioning ceases, enabling precise control over the duration of the effect.
+    - Determines the ending layer for conditioning, marking the depth of influence through the network layers.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `List[float]`
 ### Optional
 - **`mask`**
-    - unknown
+    - An optional mask to define specific regions for conditioning, enabling targeted application of positive or negative prompts.
     - Comfy dtype: `MASK`
-    - Python dtype: `unknown`
+    - Python dtype: `Optional[List[torch.Tensor]]`
 - **`positive`**
-    - A set of positive conditions under which the regional conditioning is applied, guiding the enhancements or adjustments.
+    - Optional positive prompts to be applied to the masked regions, enhancing or adding desired features.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `list`
+    - Python dtype: `Optional[List[dict]]`
 - **`negative`**
-    - A set of negative conditions that the regional conditioning aims to mitigate or alter, providing a counterbalance to the positive conditions.
+    - Optional negative prompts to be applied, used to diminish or remove undesired aspects within the masked areas.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `list`
+    - Python dtype: `Optional[List[dict]]`
 ## Output types
 - **`IPADAPTER_PARAMS`**
     - Comfy dtype: `IPADAPTER_PARAMS`
-    - The parameters configured for the IPAdapter, detailing how the image and conditions are processed together.
-    - Python dtype: `dict`
+    - The configured parameters for the IPAdapter, ready for integration with the image processing pipeline.
+    - Python dtype: `Dict[str, List]`
 - **`POSITIVE`**
     - Comfy dtype: `CONDITIONING`
-    - The modified set of positive conditions after the conditioning process, reflecting the applied enhancements.
-    - Python dtype: `list`
+    - The processed positive prompts, adjusted according to the conditioning settings.
+    - Python dtype: `Optional[List[dict]]`
 - **`NEGATIVE`**
     - Comfy dtype: `CONDITIONING`
-    - The modified set of negative conditions after the conditioning process, reflecting the mitigated or altered aspects.
-    - Python dtype: `list`
+    - The processed negative prompts, tailored to the specified conditioning requirements.
+    - Python dtype: `Optional[List[dict]]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -110,7 +110,7 @@ class IPAdapterRegionalConditioning:
             "start_at": [start_at],
             "end_at": [end_at],
         }
-        
+
         return (ipadapter_params, positive, negative, )
 
 ```

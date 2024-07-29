@@ -6,20 +6,20 @@ tags:
 # Audio to VHS Audio
 ## Documentation
 - Class name: `SaltAudio2VHS`
-- Category: `SALT/Audio/Util`
+- Category: `SALT/AudioViz/Audio/Util`
 - Output node: `False`
 
-The SaltAudio2VHS node is designed to convert audio inputs into a format that emulates the audio characteristics of VHS tapes, providing a nostalgic or vintage audio effect.
+The SaltAudio2VHS node is designed to transform audio inputs into a format reminiscent of VHS audio quality, providing a unique auditory experience that emulates the characteristics of vintage video cassette sound.
 ## Input types
 ### Required
 - **`audio`**
-    - The 'audio' input is the raw audio data that will be processed to simulate the sound quality of VHS tapes. It is crucial for defining the base audio content before applying the VHS effect.
+    - The 'audio' input accepts audio data to be processed and converted into VHS audio format, playing a crucial role in determining the final output's quality and authenticity.
     - Comfy dtype: `AUDIO`
     - Python dtype: `bytes`
 ## Output types
 - **`vhs_audio`**
     - Comfy dtype: `VHS_AUDIO`
-    - The 'vhs_audio' output is the transformed audio data that has been processed to mimic the audio characteristics of a VHS tape, offering a unique, retro audio experience.
+    - The output 'vhs_audio' delivers the transformed audio in VHS format, offering a nostalgic audio experience with the distinct sound quality of a bygone era.
     - Python dtype: `bytes`
 ## Usage tips
 - Infra type: `CPU`
@@ -41,7 +41,7 @@ class SaltAudio2VHS:
     RETURN_NAMES = ("vhs_audio",)
 
     FUNCTION = "convert"
-    CATEGORY = "SALT/Audio/Util"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Audio/Util"
 
     def convert(self, audio):
         return (lambda : audio,)

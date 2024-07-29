@@ -1,6 +1,6 @@
 ---
 tags:
-- Style
+- Prompt
 ---
 
 # Style Conditioner Base Only (Mikey)

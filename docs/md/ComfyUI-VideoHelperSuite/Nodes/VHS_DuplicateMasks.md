@@ -1,6 +1,7 @@
 ---
 tags:
 - Mask
+- MaskMorphology
 ---
 
 # Duplicate Mask Batch 🎥🅥🅗🅢

@@ -1,5 +1,6 @@
 ---
 tags:
+- CLIPConditioning
 - Conditioning
 ---
 
@@ -9,44 +10,52 @@ tags:
 - Category: `conditioning/instructpix2pix`
 - Output node: `False`
 
-This node is designed for advanced conditioning in the context of Pix2Pix image translation tasks. It takes in positive and negative conditioning inputs, along with new and original latent representations, to produce modified conditioning and latent outputs. The node aims to facilitate complex image manipulation tasks by allowing for the integration of additional latent information into the conditioning process.
+This node is designed for advanced conditioning in Pix2Pix models, enabling the manipulation and transformation of image data through a sophisticated encoding process. It facilitates the integration of additional conditioning inputs and scales, allowing for more nuanced control over the generation process.
 ## Input types
 ### Required
 - **`positive`**
-    - Represents the positive conditioning input, which is used to guide the image translation process in a desired direction.
+    - Specifies the positive conditioning elements, influencing the encoding process to favor certain outcomes.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `Tuple[CONDITIONING]`
+    - Python dtype: `list`
 - **`negative`**
-    - Represents the negative conditioning input, which is used to guide the image translation away from undesired characteristics.
+    - Specifies the negative conditioning elements, influencing the encoding process to avoid certain outcomes.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `Tuple[CONDITIONING]`
+    - Python dtype: `list`
 - **`new`**
-    - Represents the new latent representation to be integrated into the conditioning process.
+    - Represents the new input data to be encoded, providing a basis for the generation.
     - Comfy dtype: `LATENT`
-    - Python dtype: `Dict with key 'samples' and value as a tensor`
+    - Python dtype: `dict`
+- **`new_scale`**
+    - A scaling factor for the new input data, adjusting its influence in the encoding process.
+    - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`original`**
-    - Represents the original latent representation that is compared with the new one for shape consistency and integrated into the conditioning.
+    - Represents the original input data, serving as a reference or baseline in the encoding process.
     - Comfy dtype: `LATENT`
-    - Python dtype: `Dict with key 'samples' and value as a tensor`
+    - Python dtype: `dict`
+- **`original_scale`**
+    - A scaling factor for the original input data, adjusting its influence in the encoding process.
+    - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 ## Output types
 - **`cond1`**
     - Comfy dtype: `CONDITIONING`
-    - Modified positive conditioning output.
-    - Python dtype: `CONDITIONING`
+    - Outputs the modified positive conditioning elements after encoding.
+    - Python dtype: `list`
 - **`cond2`**
     - Comfy dtype: `CONDITIONING`
-    - Modified negative conditioning output.
-    - Python dtype: `CONDITIONING`
+    - Outputs the modified negative conditioning elements after encoding.
+    - Python dtype: `list`
 - **`negative`**
     - Comfy dtype: `CONDITIONING`
-    - Unmodified negative conditioning input, passed through for consistency.
-    - Python dtype: `CONDITIONING`
+    - Outputs the unaltered negative conditioning elements, maintaining their original state post-encoding.
+    - Python dtype: `list`
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - The new latent representation with samples integrated into the conditioning outputs.
-    - Python dtype: `Dict with key 'samples' and value as a tensor`
+    - Generates a new latent representation based on the encoded inputs and scales.
+    - Python dtype: `dict`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -58,7 +67,9 @@ class InstructPixToPixConditioningAdvanced:
         return {"required": {"positive": ("CONDITIONING", ),
                              "negative": ("CONDITIONING", ),
                              "new": ("LATENT", ),
+                             "new_scale": ("FLOAT", {"default": 1.0, "min": 0.01, "max": 100.0, "step": 0.01}),
                              "original": ("LATENT", ),
+                             "original_scale": ("FLOAT", {"default": 1.0, "min": 0.01, "max": 100.0, "step": 0.01}),
                              }}
 
     RETURN_TYPES = ("CONDITIONING","CONDITIONING","CONDITIONING","LATENT")
@@ -67,19 +78,19 @@ class InstructPixToPixConditioningAdvanced:
 
     CATEGORY = "conditioning/instructpix2pix"
 
-    def encode(self, positive, negative, new, original):
+    def encode(self, positive, negative, new, new_scale, original, original_scale):
         new_shape, orig_shape = new["samples"].shape, original["samples"].shape
         if new_shape != orig_shape:
             raise Exception(f"Latent shape mismatch: {new_shape} and {orig_shape}")
         
         out_latent = {}
-        out_latent["samples"] = new["samples"]
+        out_latent["samples"] = new["samples"] * new_scale
         out = []
         for conditioning in [positive, negative]:
             c = []
             for t in conditioning:
                 d = t[1].copy()
-                d["concat_latent_image"] = original["samples"]
+                d["concat_latent_image"] = original["samples"] * original_scale
                 n = [t[0], d]
                 c.append(n)
             out.append(c)

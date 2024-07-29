@@ -1,5 +1,7 @@
 ---
 tags:
+- AnimationScheduling
+- Scheduling
 - SigmaScheduling
 ---
 
@@ -9,21 +11,25 @@ tags:
 - Category: `sampling/custom_sampling/schedulers`
 - Output node: `False`
 
-The AlignYourStepsScheduler node is designed to adjust the noise levels (sigmas) for a given model type over a specified number of steps, ensuring that the diffusion process is aligned with the model's requirements. It dynamically interpolates or selects predefined noise levels to match the step count, facilitating a tailored diffusion process.
+This node is designed to adjust the noise levels (sigmas) for each step in a generative model's sampling process, based on the model type, desired number of steps, and denoising factor. It allows for fine-tuning the diffusion process to achieve more precise control over the generation quality and detail.
 ## Input types
 ### Required
 - **`model_type`**
-    - Specifies the model type for which the noise levels are to be adjusted, affecting the selection or interpolation of noise levels.
+    - Specifies the type of generative model being used, allowing the scheduler to adjust noise levels appropriately. It supports a predefined set of model types.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `List[str]`
 - **`steps`**
-    - Determines the number of steps for the diffusion process, influencing the interpolation or selection of noise levels.
+    - Determines the total number of steps for the diffusion process, influencing the granularity of noise adjustment.
     - Comfy dtype: `INT`
     - Python dtype: `int`
+- **`denoise`**
+    - A factor that adjusts the effective number of steps by scaling down the noise, enabling finer control over the diffusion process.
+    - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 ## Output types
 - **`sigmas`**
     - Comfy dtype: `SIGMAS`
-    - A tensor of noise levels (sigmas) adjusted to align with the specified steps and model type.
+    - A sequence of noise levels (sigmas) tailored for each step of the diffusion process, enabling controlled image generation.
     - Python dtype: `torch.FloatTensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -38,6 +44,7 @@ class AlignYourStepsScheduler:
         return {"required":
                     {"model_type": (["SD1", "SDXL", "SVD"], ),
                      "steps": ("INT", {"default": 10, "min": 10, "max": 10000}),
+                     "denoise": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01}),
                       }
                }
     RETURN_TYPES = ("SIGMAS",)
@@ -45,11 +52,18 @@ class AlignYourStepsScheduler:
 
     FUNCTION = "get_sigmas"
 
-    def get_sigmas(self, model_type, steps):
+    def get_sigmas(self, model_type, steps, denoise):
+        total_steps = steps
+        if denoise < 1.0:
+            if denoise <= 0.0:
+                return (torch.FloatTensor([]),)
+            total_steps = round(steps * denoise)
+
         sigmas = NOISE_LEVELS[model_type][:]
         if (steps + 1) != len(sigmas):
             sigmas = loglinear_interp(sigmas, steps + 1)
 
+        sigmas = sigmas[-(total_steps + 1):]
         sigmas[-1] = 0
         return (torch.FloatTensor(sigmas), )
 

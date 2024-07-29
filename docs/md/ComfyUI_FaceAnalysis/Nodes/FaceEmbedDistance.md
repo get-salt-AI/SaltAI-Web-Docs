@@ -1,6 +1,6 @@
 ---
 tags:
-- Face
+- FaceRestoration
 ---
 
 # Face Embeds Distance
@@ -9,52 +9,48 @@ tags:
 - Category: `FaceAnalysis`
 - Output node: `False`
 
-The FaceEmbedDistance node is designed to extract facial embeddings from an image using specified face analysis models. It supports different libraries for face detection and embedding extraction, providing a flexible approach to obtaining normalized face embeddings or descriptors for further analysis.
+The FaceEmbedDistance node calculates the distance between facial embeddings using cosine or Euclidean (L2) metrics. It supports normalization of embeddings for distance calculation, enabling a versatile approach to measuring facial similarity or dissimilarity.
 ## Input types
 ### Required
 - **`analysis_models`**
-    - The analysis models input specifies the face analysis models to be used for detecting faces and extracting embeddings. It is essential for configuring the node to use the appropriate library and models for face analysis.
+    - Specifies the face analysis models to be used for generating embeddings from the input images. It plays a critical role in the accuracy of the distance measurements.
     - Comfy dtype: `ANALYSIS_MODELS`
-    - Python dtype: `dict`
+    - Python dtype: `object`
 - **`reference`**
-    - The reference input is an image against which the face embeddings are to be compared. It is used in the context of analyzing the distance or similarity between faces.
+    - The reference image against which other images are compared. This image is used to generate a facial embedding for similarity comparison.
     - Comfy dtype: `IMAGE`
     - Python dtype: `numpy.ndarray`
 - **`image`**
-    - The image input is the primary data the node processes to extract facial embeddings. It plays a crucial role in the face analysis process, as the quality and characteristics of the image directly influence the accuracy and effectiveness of the embedding extraction.
+    - The image to be compared against the reference. It is used to generate a facial embedding for calculating the distance to the reference embedding.
     - Comfy dtype: `IMAGE`
     - Python dtype: `numpy.ndarray`
-- **`filter_thresh_eucl`**
-    - This input sets the Euclidean distance threshold for filtering face embeddings. It is used to determine the similarity between faces based on Euclidean distance.
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
-- **`filter_thresh_cos`**
-    - This input sets the cosine similarity threshold for filtering face embeddings. It is used to determine the similarity between faces based on cosine similarity.
+- **`similarity_metric`**
+    - Defines the metric used for calculating the distance between embeddings. Options include 'L2_norm', 'cosine', and 'euclidean', affecting the comparison's sensitivity and outcome.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
+- **`filter_thresh`**
+    - A threshold for filtering out distances above a certain value, enhancing the focus on closer matches.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`filter_best`**
-    - This input specifies the number of best matches to retain after filtering based on the specified thresholds. It allows for narrowing down the most similar faces.
+    - Limits the number of results to the best matches below the specified threshold, optimizing the search for similarity.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`generate_image_overlay`**
-    - This boolean input determines whether to generate an overlay image showing the comparison results between the reference and target faces. It enhances the visual analysis of face similarity.
+    - A boolean indicating whether to overlay the reference image on top of the comparison image, visually representing the similarity measurement.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`IMAGE`**
     - Comfy dtype: `IMAGE`
-    - The output image may include visual representations of the analysis, such as overlays or annotations to indicate detected faces or similarities.
-    - Python dtype: `numpy.ndarray or None`
-- **`euclidean`**
+    - The image result of overlaying the reference image on the comparison image, if enabled, providing a visual representation of the similarity.
+    - Python dtype: `numpy.ndarray`
+- **`distance`**
     - Comfy dtype: `FLOAT`
-    - The Euclidean distance output provides a measure of the similarity between the analyzed faces based on Euclidean distance. It is crucial for tasks requiring precise face comparison.
-    - Python dtype: `list of float`
-- **`cosine`**
-    - Comfy dtype: `FLOAT`
-    - The cosine similarity output provides a measure of the similarity between the analyzed faces based on cosine similarity. It is used for comparing the orientation of the face embeddings in the vector space.
-    - Python dtype: `list of float`
+    - The calculated distance between the facial embeddings of the reference and comparison images, quantifying their similarity.
+    - Python dtype: `float`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -68,30 +64,31 @@ class FaceEmbedDistance:
                 "analysis_models": ("ANALYSIS_MODELS", ),
                 "reference": ("IMAGE", ),
                 "image": ("IMAGE", ),
-                "filter_thresh_eucl": ("FLOAT", { "default": 1.0, "min": 0.001, "max": 2.0, "step": 0.001 }),
-                "filter_thresh_cos": ("FLOAT", { "default": 1.0, "min": 0.001, "max": 2.0, "step": 0.001 }),
+                "similarity_metric": (["L2_norm", "cosine", "euclidean"], ),
+                "filter_thresh": ("FLOAT", { "default": 100.0, "min": 0.001, "max": 100.0, "step": 0.001 }),
                 "filter_best": ("INT", { "default": 0, "min": 0, "max": 4096, "step": 1 }),
                 "generate_image_overlay": ("BOOLEAN", { "default": True }),
             },
         }
 
-    RETURN_TYPES = ("IMAGE", "FLOAT", "FLOAT")
-    RETURN_NAMES = ("IMAGE", "euclidean", "cosine")
-    OUTPUT_IS_LIST = (False, True, True)
+    RETURN_TYPES = ("IMAGE", "FLOAT")
+    RETURN_NAMES = ("IMAGE", "distance")
     FUNCTION = "analize"
     CATEGORY = "FaceAnalysis"
 
-    def analize(self, analysis_models, reference, image, filter_thresh_eucl=1.0, filter_thresh_cos=1.0, filter_best=0, generate_image_overlay=True):
+    def analize(self, analysis_models, reference, image, similarity_metric, filter_thresh, filter_best, generate_image_overlay=True):
         if generate_image_overlay:
             font = ImageFont.truetype(os.path.join(os.path.dirname(os.path.realpath(__file__)), "Inconsolata.otf"), 32)
             background_color = ImageColor.getrgb("#000000AA")
             txt_height = font.getmask("Q").getbbox()[3] + font.getmetrics()[1]
 
-        self.analysis_models = analysis_models
+        if filter_thresh == 0.0:
+            filter_thresh = analysis_models.thresholds[similarity_metric]
 
+        # you can send multiple reference images in which case the embeddings are averaged
         ref = []
         for i in reference:
-            ref_emb = self.get_descriptor(np.array(T.ToPILImage()(i.permute(2, 0, 1).cpu()).convert('RGB')))
+            ref_emb = analysis_models.get_embeds(np.array(T.ToPILImage()(i.permute(2, 0, 1)).convert('RGB')))
             if ref_emb is not None:
                 ref.append(torch.from_numpy(ref_emb))
         
@@ -102,33 +99,43 @@ class FaceEmbedDistance:
         ref = np.array(torch.mean(ref, dim=0))
 
         out = []
-        out_eucl = []
-        out_cos = []
+        out_dist = []
         
         for i in image:
-            img = np.array(T.ToPILImage()(i.permute(2, 0, 1).cpu()).convert('RGB'))
+            img = np.array(T.ToPILImage()(i.permute(2, 0, 1)).convert('RGB'))
 
-            img = self.get_descriptor(img)
+            img = analysis_models.get_embeds(img)
 
             if img is None: # No face detected
-                eucl_dist = 1.0
-                cos_dist = 1.0
+                dist = 100.0
+                norm_dist = 0
             else:
                 if np.array_equal(ref, img): # Same face
-                    eucl_dist = 0.0
-                    cos_dist = 0.0
+                    dist = 0.0
+                    norm_dist = 0.0
                 else:
-                    eucl_dist = np.float64(np.linalg.norm(ref - img))
-                    cos_dist = 1 - np.dot(ref, img) / (np.linalg.norm(ref) * np.linalg.norm(img))
-            
-            if eucl_dist <= filter_thresh_eucl and cos_dist <= filter_thresh_cos:
-                print(f"\033[96mFace Analysis: Euclidean: {eucl_dist}, Cosine: {cos_dist}\033[0m")
+                    if similarity_metric == "L2_norm":
+                        #dist = euclidean_distance(ref, img, True)
+                        ref = ref / np.linalg.norm(ref)
+                        img = img / np.linalg.norm(img)
+                        dist = np.float64(np.linalg.norm(ref - img))
+                    elif similarity_metric == "cosine":
+                        dist = np.float64(1 - np.dot(ref, img) / (np.linalg.norm(ref) * np.linalg.norm(img)))
+                        #dist = cos_distance(ref, img)
+                    else:
+                        #dist = euclidean_distance(ref, img)
+                        dist = np.float64(np.linalg.norm(ref - img))
+                    
+                    norm_dist = min(1.0, 1 / analysis_models.thresholds[similarity_metric] * dist)
+           
+            if dist <= filter_thresh:
+                print(f"\033[96mFace Analysis: value: {dist}, normalized: {norm_dist}\033[0m")
 
                 if generate_image_overlay:
                     tmp = T.ToPILImage()(i.permute(2, 0, 1)).convert('RGBA')
                     txt = Image.new('RGBA', (image.shape[2], txt_height), color=background_color)
                     draw = ImageDraw.Draw(txt)
-                    draw.text((0, 0), f"EUC: {round(eucl_dist, 3)} | COS: {round(cos_dist, 3)}", font=font, fill=(255, 255, 255, 255))
+                    draw.text((0, 0), f"VALUE: {round(dist, 3)} | DIST: {round(norm_dist, 3)}", font=font, fill=(255, 255, 255, 255))
                     composite = Image.new('RGBA', tmp.size)
                     composite.paste(txt, (0, tmp.height - txt.height))
                     composite = Image.alpha_composite(tmp, composite)
@@ -136,40 +143,23 @@ class FaceEmbedDistance:
                 else:
                     out.append(i)
 
-                out_eucl.append(eucl_dist)
-                out_cos.append(cos_dist)
+                out_dist.append(dist)
 
         if not out:
             raise Exception('No image matches the filter criteria.')
+    
+        out = torch.stack(out)
 
         # filter out the best matches
         if filter_best > 0:
-            out = np.array(out)
-            out_eucl = np.array(out_eucl)
-            out_cos = np.array(out_cos)
-            idx = np.argsort((out_eucl + out_cos) / 2)
-            out = torch.from_numpy(out[idx][:filter_best])
-            out_eucl = out_eucl[idx][:filter_best].tolist()
-            out_cos = out_cos[idx][:filter_best].tolist()
+            filter_best = min(filter_best, len(out))
+            out_dist, idx = torch.topk(torch.tensor(out_dist), filter_best, largest=False)
+            out = out[idx]
+            out_dist = out_dist.cpu().numpy().tolist()
+        
+        if out.shape[3] > 3:
+            out = out[:, :, :, :3]
 
-        if isinstance(out, list):
-            out = torch.stack(out)
-
-        return(out, out_eucl, out_cos,)
-    
-    def get_descriptor(self, image):
-        embeds = None
-
-        if self.analysis_models["library"] == "insightface":
-            faces = self.analysis_models["detector"].get(image)
-            if len(faces) > 0:
-                embeds = faces[0].normed_embedding
-        else:
-            faces = self.analysis_models["detector"](image)
-            if len(faces) > 0:
-                shape = self.analysis_models["shape_predict"](image, faces[0])
-                embeds = np.array(self.analysis_models["face_recog"].compute_face_descriptor(image, shape))
-
-        return embeds
+        return(out, out_dist,)
 
 ```

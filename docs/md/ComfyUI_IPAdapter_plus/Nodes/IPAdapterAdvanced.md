@@ -1,6 +1,10 @@
 ---
 tags:
 - IPAdapter
+- IdentityImage
+- Loader
+- ModelIO
+- RegionalImageProcessing
 ---
 
 # IPAdapter Advanced
@@ -9,62 +13,62 @@ tags:
 - Category: `ipadapter`
 - Output node: `False`
 
-The IPAdapterAdvanced node represents an enhanced version of the IPAdapter, designed to apply intricate image processing adaptations. It extends the basic functionalities with advanced features for more complex and refined image manipulation tasks, catering to specialized requirements in image processing workflows.
+The IPAdapterAdvanced node is designed to enhance image processing capabilities by applying advanced image processing techniques. It extends the functionality of simpler IP adapters, offering more sophisticated options for image manipulation and enhancement.
 ## Input types
 ### Required
 - **`model`**
-    - The model parameter specifies the underlying model to which the IPAdapterAdvanced will apply its adaptations, serving as the foundation for the image processing tasks.
+    - The model parameter specifies the neural network model to be used for image processing. It plays a crucial role in determining the quality and type of image enhancements applied.
     - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`ipadapter`**
-    - This parameter represents the specific IPAdapterAdvanced instance being applied, encapsulating the advanced image processing logic and configurations.
+    - This parameter represents the specific IP adapter to be applied, dictating the nature of the image processing technique used.
     - Comfy dtype: `IPADAPTER`
-    - Python dtype: `IPAdapterAdvanced`
+    - Python dtype: `IPAdapter`
 - **`image`**
-    - Specifies the input image to be processed, serving as the primary subject for the adaptations applied by the IPAdapterAdvanced.
+    - The input image to be processed, serving as the base for all applied enhancements.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `Image`
+    - Python dtype: `torch.Tensor`
 - **`weight`**
-    - Determines the overall intensity or influence of the IPAdapterAdvanced's effects on the image, providing a means to adjust the strength of the adaptations.
+    - Controls the intensity of the applied image processing effect, offering flexibility in the final image output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`weight_type`**
-    - Defines the method or strategy for applying weights during the image processing, influencing how adaptations are integrated.
+    - Specifies the method used to calculate the weight of the image processing effect, affecting how the effect is applied over time.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `WEIGHT_TYPES`
+    - Python dtype: `str`
 - **`combine_embeds`**
-    - Specifies the technique for combining multiple embeddings, affecting the final image adaptation outcome.
+    - Determines how multiple embeddings are combined during the image processing, impacting the final image's characteristics.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `['concat', 'add', 'subtract', 'average', 'norm average']`
+    - Python dtype: `str`
 - **`start_at`**
-    - Defines the starting point (as a fraction of the total process) for applying the IPAdapterAdvanced's effects, allowing for phased or gradual application.
+    - Defines the starting point of the effect applied by the IP adapter, allowing for fine-tuned control over the image processing.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end_at`**
-    - Specifies the ending point (as a fraction of the total process) for the IPAdapterAdvanced's effects, enabling precise control over the extent of application.
+    - Specifies the endpoint of the effect applied, enabling precise manipulation of the image enhancement process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`embeds_scaling`**
-    - Determines how embeddings are scaled, impacting the adaptation process and the final image quality.
+    - Specifies the scaling method for embeddings, affecting the influence of different components in the image processing.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `['V only', 'K+V', 'K+V w/ C penalty', 'K+mean(V) w/ C penalty']`
+    - Python dtype: `str`
 ### Optional
 - **`image_negative`**
-    - An optional input image that serves as a negative influence or counterbalance to the primary image, used in certain adaptation strategies.
+    - An optional image used to specify negative effects, enabling the exclusion of certain aspects from the final output.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `Image`
+    - Python dtype: `torch.Tensor`
 - **`attn_mask`**
-    - An optional attention mask that can be applied to focus or restrict the adaptations to specific areas of the image.
+    - An optional attention mask for more precise control over the areas affected by the image processing.
     - Comfy dtype: `MASK`
-    - Python dtype: `MASK`
+    - Python dtype: `torch.Tensor`
 - **`clip_vision`**
-    - An optional parameter that integrates CLIP vision features into the adaptation process, enhancing the contextual relevance of the adaptations.
+    - Optional parameter for integrating CLIP vision models, enhancing the semantic understanding of the image.
     - Comfy dtype: `CLIP_VISION`
-    - Python dtype: `CLIP_VISION`
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The modified model after applying the IPAdapterAdvanced's adaptations, reflecting the changes made to the image processing capabilities.
+    - Returns the modified model after applying the IP adapter, reflecting the enhancements made to the image processing capabilities.
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
@@ -102,7 +106,7 @@ class IPAdapterAdvanced:
     FUNCTION = "apply_ipadapter"
     CATEGORY = "ipadapter"
 
-    def apply_ipadapter(self, model, ipadapter, start_at=0.0, end_at=1.0, weight=1.0, weight_style=1.0, weight_composition=1.0, expand_style=False, weight_type="linear", combine_embeds="concat", weight_faceidv2=None, image=None, image_style=None, image_composition=None, image_negative=None, clip_vision=None, attn_mask=None, insightface=None, embeds_scaling='V only', layer_weights=None, ipadapter_params=None):
+    def apply_ipadapter(self, model, ipadapter, start_at=0.0, end_at=1.0, weight=1.0, weight_style=1.0, weight_composition=1.0, expand_style=False, weight_type="linear", combine_embeds="concat", weight_faceidv2=None, image=None, image_style=None, image_composition=None, image_negative=None, clip_vision=None, attn_mask=None, insightface=None, embeds_scaling='V only', layer_weights=None, ipadapter_params=None, encode_batch_size=0, style_boost=None):
         is_sdxl = isinstance(model.model, (comfy.model_base.SDXL, comfy.model_base.SDXLRefiner, comfy.model_base.SDXL_instructpix2pix))
 
         if 'ipadapter' in ipadapter:
@@ -159,6 +163,8 @@ class IPAdapterAdvanced:
                 "embeds_scaling": embeds_scaling,
                 "insightface": insightface if insightface is not None else ipadapter['insightface']['model'] if 'insightface' in ipadapter else None,
                 "layer_weights": layer_weights,
+                "encode_batch_size": encode_batch_size,
+                "style_boost": style_boost,
             }
 
             work_model, face_image = ipadapter_execute(work_model, ipadapter_model, clip_vision, **ipa_args)

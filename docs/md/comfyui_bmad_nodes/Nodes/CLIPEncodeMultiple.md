@@ -1,8 +1,7 @@
 ---
 tags:
-- CLIP
 - CLIPConditioning
-- Conditioning
+- CLIPTextEncoding
 ---
 
 # CLIPEncodeMultiple
@@ -11,21 +10,21 @@ tags:
 - Category: `Bmad/conditioning`
 - Output node: `False`
 
-The CLIPEncodeMultiple node is designed to encode multiple inputs using a CLIP model, producing a list of conditionings based on the inputs. It abstracts the complexity of handling multiple inputs and leverages the CLIP model's capabilities to generate relevant conditionings for each input.
+The CLIPEncodeMultiple node is designed to encode multiple text inputs into a conditioning format using a CLIP model. It iterates over a specified number of inputs, encoding each one separately and aggregating the results into a list of conditionings. This node is useful for scenarios where multiple textual descriptions need to be encoded in parallel and then utilized for further processing or generation tasks.
 ## Input types
 ### Required
 - **`clip`**
-    - The CLIP model used for encoding the inputs. It is crucial for determining how the inputs are processed and encoded into conditionings.
+    - The CLIP model used for encoding the text inputs. It is crucial for the text encoding process, affecting the quality and relevance of the generated conditionings.
     - Comfy dtype: `CLIP`
     - Python dtype: `torch.nn.Module`
 - **`inputs_len`**
-    - Specifies the number of inputs to be encoded. It affects the number of iterations and consequently the size of the output list of conditionings.
+    - Specifies the number of text inputs to encode. It determines the iteration count for the encoding process, directly influencing the output list's length.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`conditioning`**
     - Comfy dtype: `CONDITIONING`
-    - A list of conditionings generated from the inputs. Each element in the list corresponds to the conditioning of an individual input.
+    - A list of encoded text inputs, each transformed into a conditioning format suitable for further processing or generation tasks.
     - Python dtype: `List[torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
@@ -36,7 +35,7 @@ The CLIPEncodeMultiple node is designed to encode multiple inputs using a CLIP m
 ```python
 class CLIPEncodeMultiple(nodes.CLIPTextEncode):
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {
             "clip": ("CLIP",),
             "inputs_len": ("INT", {"default": 9, "min": 0, "max": 32}),
@@ -44,7 +43,7 @@ class CLIPEncodeMultiple(nodes.CLIPTextEncode):
 
     RETURN_TYPES = ("CONDITIONING",)
     FUNCTION = "gen2"
-    CATEGORY = "Bmad/conditioning"
+    CATEGORY = conditioning_category_path
     OUTPUT_IS_LIST = (True,)
 
     def gen2(self, clip, inputs_len, **kwargs):

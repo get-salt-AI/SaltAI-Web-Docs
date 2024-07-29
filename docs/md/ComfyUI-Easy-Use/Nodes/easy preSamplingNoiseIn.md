@@ -1,7 +1,12 @@
 ---
 tags:
-- LatentNoise
+- DataVisualization
+- ImageEnhancement
+- ImageNoise
 - Noise
+- Scheduling
+- Seed
+- XYPlotData
 ---
 
 # PreSampling (NoiseIn)
@@ -10,57 +15,57 @@ tags:
 - Category: `EasyUse/PreSampling`
 - Output node: `True`
 
-This node is designed to inject noise into latent representations before sampling. It allows for the manipulation of latent space by adding noise, which can be controlled in terms of strength and distribution, to influence the generation process. This can be particularly useful in creative applications where variation and unpredictability are desired.
+This node is designed to inject noise into latent representations before the sampling process in a customizable manner. It allows for the adjustment of noise characteristics and the application of noise based on specific conditions or parameters, enhancing the flexibility and control over the noise injection process in generative models.
 ## Input types
 ### Required
 - **`pipe`**
-    - The pipeline configuration that includes the latent representations and possibly other settings for noise injection.
+    - Represents the pipeline configuration and state, serving as the context for noise injection and other processing steps.
     - Comfy dtype: `PIPE_LINE`
-    - Python dtype: `Dict[str, Any]`
+    - Python dtype: `dict`
 - **`factor`**
-    - A factor influencing the noise injection process, adjusting how the noise affects the latent space.
+    - Adjusts the intensity of the noise injected into the latent representation, allowing for finer control over the noise level.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`steps`**
-    - The number of steps to apply in the noise injection process, determining the depth of manipulation.
+    - Determines the number of steps for the sampling process, impacting the intensity and granularity of noise injection.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - Configuration settings for the noise injection, providing additional control over the process.
+    - Controls the configuration strength, influencing the balance between the original content and the generated aspects in the output.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `Dict[str, Any]`
+    - Python dtype: `float`
 - **`sampler_name`**
-    - The name of the sampler to use in conjunction with noise injection, affecting the sampling process.
+    - Specifies the sampler to be used, allowing for different sampling strategies and their corresponding noise characteristics.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - The scheduler settings for noise injection, coordinating the timing and sequence of operations.
+    - Defines the scheduling strategy for noise injection, enabling precise control over the timing and sequence of noise application.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `Dict[str, Any]`
+    - Python dtype: `object`
 - **`denoise`**
-    - A parameter to control the denoising aspect of the process, affecting the clarity of the resulting latent space.
+    - Adjusts the denoising factor, affecting the level of noise reduction applied to the latent representation.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`seed`**
-    - The seed for random noise generation, ensuring reproducibility of the noise characteristics.
+    - Sets the seed for random number generation, ensuring consistency and reproducibility in noise injection.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`optional_noise_seed`**
-    - An optional seed parameter for more fine-grained control over the noise generation process.
+    - An optional seed for generating noise, providing an additional layer of control over the randomness of the noise injected.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`optional_latent`**
-    - An optional direct input of latent representations, allowing for bypassing initial conversion steps.
+    - An optional latent representation that can be directly manipulated or injected with noise, offering more flexibility in the noise injection process.
     - Comfy dtype: `LATENT`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `dict`
 ## Output types
 - **`pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - The updated pipeline configuration after noise injection, including the manipulated latent representations.
-    - Python dtype: `Dict[str, Any]`
+    - The modified latent representation with noise injected, ready for further processing or sampling in the pipeline.
+    - Python dtype: `dict`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -79,7 +84,7 @@ class samplerSettingsNoiseIn:
                      "steps": ("INT", {"default": 20, "min": 1, "max": 10000}),
                      "cfg": ("FLOAT", {"default": 8.0, "min": 0.0, "max": 100.0}),
                      "sampler_name": (comfy.samplers.KSampler.SAMPLERS,),
-                     "scheduler": (comfy.samplers.KSampler.SCHEDULERS+['align_your_steps'],),
+                     "scheduler": (comfy.samplers.KSampler.SCHEDULERS+new_schedulers,),
                      "denoise": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01}),
                      "seed": ("INT", {"default": 0, "min": 0, "max": MAX_SEED_NUM}),
                      },
@@ -127,7 +132,6 @@ class samplerSettingsNoiseIn:
 
     def expand_mask(self, mask, expand, tapered_corners):
         try:
-            import numpy as np
             import scipy
 
             c = 0 if tapered_corners else 1

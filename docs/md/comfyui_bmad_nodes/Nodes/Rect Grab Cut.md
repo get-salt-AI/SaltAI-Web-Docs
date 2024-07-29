@@ -1,5 +1,6 @@
 ---
 tags:
+- Mask
 - Segmentation
 ---
 
@@ -9,11 +10,11 @@ tags:
 - Category: `Bmad/CV/GrabCut`
 - Output node: `False`
 
-The RectGrabCut node is designed for image segmentation using the GrabCut algorithm with a predefined rectangular area. It aims to separate the foreground from the background within the specified rectangle, enhancing the focus on the desired object or area in an image.
+The RectGrabCut node is designed for image segmentation using the GrabCut algorithm with a predefined rectangular area. It aims to separate the foreground from the background within the specified rectangle, enhancing image processing tasks by allowing for more precise object isolation.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be segmented. This image is processed to separate the foreground from the background within a specified rectangular area.
+    - The input image to be segmented. It plays a crucial role in determining the effectiveness of the foreground-background separation.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`x1`**
@@ -33,17 +34,17 @@ The RectGrabCut node is designed for image segmentation using the GrabCut algori
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`iterations`**
-    - The number of iterations the GrabCut algorithm should run to refine the segmentation.
+    - Specifies the number of iterations the GrabCut algorithm should run, affecting the accuracy and detail of the segmentation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`output_format`**
-    - The format in which the segmented image should be outputted, affecting how the image is processed and displayed post-segmentation.
+    - Defines the format of the output image, influencing how the segmented image is presented and utilized in subsequent processes.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The segmented image with the foreground separated from the background within the specified rectangular area.
+    - The segmented image with the foreground isolated from the background, ready for further processing or analysis.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -57,7 +58,7 @@ class RectGrabCut:
     # TODO maybe add option to exclude PR_BGD or include PR_FGD in outputMask
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "image": ("IMAGE",),
@@ -100,7 +101,7 @@ class RectGrabCut:
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "grab_cut"
 
-    CATEGORY = "Bmad/CV/GrabCut"
+    CATEGORY = f"{cv_category_path}/GrabCut"
 
     def grab_cut(self, image, iterations, x1, y1, x2, y2, output_format):
         image = tensor2opencv(image)

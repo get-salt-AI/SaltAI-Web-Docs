@@ -1,6 +1,8 @@
 ---
 tags:
 - IPAdapter
+- IdentityImage
+- RegionalImageProcessing
 ---
 
 # IPAdapter Style & Composition SDXL

@@ -3,6 +3,7 @@ tags:
 - DocumentConversion
 - LLM
 - LlamaIndex
+- WebContentExtraction
 ---
 
 # ∞ PyMuPDF

@@ -1,8 +1,6 @@
 ---
 tags:
-- Prompt
-- Text
-- Wildcard
+- Searge
 ---
 
 # ImpactWildcardProcessor
@@ -11,33 +9,33 @@ tags:
 - Category: `ImpactPack/Prompt`
 - Output node: `False`
 
-The ImpactWildcardProcessor node is designed to process text inputs by populating them with dynamic content based on predefined wildcards. It allows for the customization of text through the use of wildcards, enabling the generation of varied and context-specific outputs.
+The ImpactWildcardProcessor node is designed to enhance text inputs by dynamically populating them with predefined or custom wildcards. It leverages a comprehensive system for wildcard management, including loading, normalization, and replacement, to inject variability and specificity into text. This node supports both fixed and randomized text generation modes, allowing for controlled or stochastic text transformations based on the provided wildcards.
 ## Input types
 ### Required
 - **`wildcard_text`**
-    - The text containing wildcards that need to be populated. It serves as the template for generating dynamic content.
+    - The text containing wildcards that need to be populated or replaced. It serves as the template for generating the final text output.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`populated_text`**
-    - The text after wildcards have been replaced with their corresponding values. It represents the final output with dynamic content populated.
+    - The text after wildcards have been populated. This represents the output of the wildcard processing, ready for further use or display.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`mode`**
-    - A boolean flag indicating whether the text should be populated (True) or left as is (False). This allows for flexibility in processing the text based on user preference.
+    - A boolean flag indicating the operation mode: 'Populate' to dynamically replace wildcards in the text, or 'Fixed' to use a predetermined set of replacements.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`seed`**
-    - An integer used to seed the random number generator for consistent wildcard replacement. This ensures reproducibility of the output.
+    - An integer seed for random number generation, ensuring reproducibility of the wildcard replacement process when generating text.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`Select to add Wildcard`**
-    - Allows the user to select specific wildcards to add to the text, providing control over the customization of the output.
+    - Allows selection of specific wildcards to add to the text, providing a way to customize the text generation process further.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `list[str]`
+    - Python dtype: `list`
 ## Output types
 - **`string`**
     - Comfy dtype: `STRING`
-    - The processed text with wildcards replaced by their corresponding values, ready for use.
+    - The text after all applicable wildcards have been processed and replaced, reflecting the final output of the node's operation.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -70,7 +68,7 @@ class ImpactWildcardProcessor:
         return impact.wildcards.process(**kwargs)
 
     def doit(self, *args, **kwargs):
-        populated_text = kwargs['populated_text']
+        populated_text = ImpactWildcardProcessor.process(text=kwargs['populated_text'], seed=kwargs['seed'])
         return (populated_text, )
 
 ```

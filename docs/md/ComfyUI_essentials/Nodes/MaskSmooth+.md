@@ -1,34 +1,34 @@
 ---
 tags:
 - Blur
-- MaskBlur
+- ImageTransformation
 - VisualEffects
 ---
 
 # 🔧 Mask Smooth
 ## Documentation
 - Class name: `MaskSmooth+`
-- Category: `essentials`
+- Category: `essentials/mask`
 - Output node: `False`
 
-The MaskSmooth node is designed to apply a Gaussian blur to a given mask, with the intensity of the blur adjustable by the user. This process smooths the edges of the mask, creating a more visually appealing and less jagged appearance.
+This node applies a Gaussian blur to a given mask to smooth its edges, with the amount of smoothing determined by the input parameter. It's designed to refine mask outlines, making them less jagged and more visually appealing for further processing or application.
 ## Input types
 ### Required
 - **`mask`**
-    - The mask input represents the binary or grayscale image to which the Gaussian blur will be applied. It is central to achieving the smoothing effect.
+    - The mask to be smoothed. It represents the area or object of interest that will undergo the smoothing process.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`amount`**
-    - The amount parameter controls the intensity of the Gaussian blur applied to the mask. A higher value results in a more pronounced smoothing effect.
+    - Determines the intensity of the smoothing effect. A higher value results in more blurring, thus a smoother mask.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The output is a modified version of the input mask, having undergone Gaussian blurring to smooth its edges.
+    - The smoothed version of the input mask, with edges blurred to the specified degree.
     - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -46,7 +46,7 @@ class MaskSmooth:
 
     RETURN_TYPES = ("MASK",)
     FUNCTION = "execute"
-    CATEGORY = "essentials"
+    CATEGORY = "essentials/mask"
 
     def execute(self, mask, amount):
         if amount == 0:

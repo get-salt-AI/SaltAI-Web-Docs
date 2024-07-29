@@ -2,62 +2,63 @@
 tags:
 - AnimationScheduling
 - Scheduling
+- SigmaScheduling
 ---
 
 # Schedule Metrics
 ## Documentation
 - Class name: `SaltKeyframeMetrics`
-- Category: `SALT/Scheduling/Util`
+- Category: `SALT/AudioViz/Scheduling/Util`
 - Output node: `False`
 
-The SaltKeyframeMetrics node is designed to compute and present various metrics for keyframe values within a given schedule. It focuses on analyzing the statistical properties of keyframe sequences, such as maximum, minimum, sum, average, absolute sum, and absolute average values, along with the duration of the sequence. This node aids in evaluating the dynamic range and overall characteristics of keyframe data, useful for optimizing and understanding animation or audio-visual synchronization schedules.
+The SaltKeyframeMetrics node is designed to compute and visualize key metrics of a keyframe schedule, such as minimum, maximum, sum, average, absolute sum, and absolute average values, along with the duration of the schedule. It aims to provide a comprehensive overview of the schedule's characteristics through numerical analysis and graphical representation, facilitating the evaluation and adjustment of keyframe-based animations or effects.
 ## Input types
 ### Required
 - **`schedule_list`**
-    - The 'schedule_list' parameter represents the sequence of keyframe values to be analyzed. It is crucial for determining the statistical metrics that will be calculated, affecting the node's execution and results.
+    - The list of keyframe values to be analyzed. It is crucial for determining the metrics and visual representation of the schedule.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 ### Optional
 - **`start_frame`**
-    - Specifies the starting frame index from which to begin analysis within the 'schedule_list'. It influences the subset of keyframes considered for metric calculation.
+    - The starting frame index for the analysis, allowing for partial evaluation of the schedule.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`end_frame`**
-    - Defines the ending frame index for the analysis within the 'schedule_list'. It determines the range of keyframes to be included in the metric calculations.
+    - The ending frame index for the analysis. If set to -1 or beyond the schedule list length, it defaults to the length of the schedule list.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`frame_rate`**
-    - The frame rate parameter is used to calculate the duration of the keyframe sequence. It affects the temporal aspect of the metrics, providing context to the statistical values in terms of time.
+    - The frame rate used to calculate the duration of the schedule, enhancing the accuracy of temporal metrics.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`value_min`**
     - Comfy dtype: `FLOAT`
-    - Minimum value among the keyframe values analyzed.
+    - The minimum value among the keyframe values within the specified range.
     - Python dtype: `float`
 - **`value_max`**
     - Comfy dtype: `FLOAT`
-    - Maximum value among the keyframe values analyzed.
+    - The maximum value among the keyframe values within the specified range.
     - Python dtype: `float`
 - **`value_sum`**
     - Comfy dtype: `FLOAT`
-    - Sum of all keyframe values within the specified range.
+    - The sum of all keyframe values within the specified range.
     - Python dtype: `float`
 - **`value_avg`**
     - Comfy dtype: `FLOAT`
-    - Average value of the keyframe values within the analyzed range.
+    - The average of the keyframe values within the specified range.
     - Python dtype: `float`
 - **`abs_sum`**
     - Comfy dtype: `FLOAT`
-    - Sum of the absolute values of the keyframe values, highlighting the overall activity regardless of direction.
+    - The sum of the absolute values of the keyframe values within the specified range, providing insight into the overall activity level regardless of direction.
     - Python dtype: `float`
 - **`abs_avg`**
     - Comfy dtype: `FLOAT`
-    - Average of the absolute values of the keyframe values, providing insight into the general magnitude of activity.
+    - The average of the absolute values of the keyframe values within the specified range, offering a measure of the general intensity.
     - Python dtype: `float`
 - **`duration`**
     - Comfy dtype: `FLOAT`
-    - The duration of the keyframe sequence, calculated based on the frame rate and the number of frames.
+    - The total duration of the specified range of keyframes, calculated based on the frame rate.
     - Python dtype: `float`
 ## Usage tips
 - Infra type: `CPU`
@@ -85,7 +86,7 @@ class SaltKeyframeMetrics:
     RETURN_NAMES = ("value_min", "value_max", "value_sum", "value_avg", "abs_sum", "abs_avg", "duration")
 
     FUNCTION = "schedule_metrics"
-    CATEGORY = "SALT/Scheduling/Util"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling/Util"
 
     def schedule_metrics(self, schedule_list, start_frame=0, end_frame=-1, frame_rate=24.0):
         if end_frame == -1 or end_frame > len(schedule_list):

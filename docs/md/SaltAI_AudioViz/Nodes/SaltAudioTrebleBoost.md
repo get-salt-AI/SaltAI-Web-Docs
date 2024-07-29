@@ -1,33 +1,34 @@
 ---
 tags:
 - Audio
+- List
 ---
 
 # Audio Treble Boost
 ## Documentation
 - Class name: `SaltAudioTrebleBoost`
-- Category: `SALT/Audio/Effect`
+- Category: `SALT/AudioViz/Audio/Effect`
 - Output node: `False`
 
-The SaltAudioTrebleBoost node enhances the treble frequencies of an audio input, allowing for a customizable increase in the higher frequency ranges. This node is designed to modify audio content by applying a high-pass filter and gain adjustment, tailored to the user's specifications for cutoff frequency and boost level.
+This node enhances the treble frequencies of an audio file, allowing for a clearer and more pronounced high-end sound. It applies a high-pass filter at a specified cutoff frequency and then boosts the gain of frequencies above this threshold.
 ## Input types
 ### Required
 - **`audio`**
-    - The 'audio' parameter is the raw audio data to be processed. It serves as the primary input for treble enhancement, determining the audio content that will undergo frequency-specific amplification.
+    - The audio input to be processed for treble enhancement. It serves as the primary content for treble frequency boosting.
     - Comfy dtype: `AUDIO`
     - Python dtype: `bytes`
 - **`cutoff_freq`**
-    - The 'cutoff_freq' parameter specifies the frequency threshold above which treble frequencies will be boosted. It plays a critical role in defining the range of frequencies affected by the treble boost, impacting the overall sound character.
+    - The cutoff frequency for the high-pass filter, determining the lowest frequency to be boosted in the treble enhancement process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`boost_dB`**
-    - The 'boost_dB' parameter controls the level of gain applied to the treble frequencies above the cutoff point. It directly influences the intensity of the treble enhancement, allowing for a range of subtle to significant audio modifications.
+    - The amount of gain, in decibels, to apply to frequencies above the cutoff frequency, enhancing the treble portion of the audio.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`audio`**
     - Comfy dtype: `AUDIO`
-    - The modified audio with enhanced treble frequencies, reflecting the applied high-pass filter and gain adjustments.
+    - The processed audio with enhanced treble frequencies.
     - Python dtype: `bytes`
 ## Usage tips
 - Infra type: `CPU`
@@ -50,7 +51,7 @@ class SaltAudioTrebleBoost:
     RETURN_TYPES = ("AUDIO",)
     RETURN_NAMES = ("audio",)
     FUNCTION = "treble_bass"
-    CATEGORY = "SALT/Audio/Effect"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Audio/Effect"
 
     def treble_bass(self, audio, cutoff_freq, boost_dB):
         original = AudioSegment.from_file(io.BytesIO(audio), format="wav")

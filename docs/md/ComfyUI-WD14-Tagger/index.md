@@ -6,7 +6,7 @@ ComfyUI-WD14-Tagger is an extension for ComfyUI that enables the extraction of b
 
 ## Repo info
 - Repo url: `https://github.com/pythongosssss/ComfyUI-WD14-Tagger`
-- Commit hash: `d2d482868364f942ace65d49630d017ec13ee47e`
+- Commit hash: `4f1a857ff1a73ad2b4cbaf1f487e6aeaf802d226`
 
 ## Licenses
 - **MIT**: `LICENSE`

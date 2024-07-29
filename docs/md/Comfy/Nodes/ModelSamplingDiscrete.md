@@ -1,5 +1,6 @@
 ---
 tags:
+- SamplerScheduler
 - Sampling
 ---
 
@@ -38,7 +39,7 @@ This node is designed to modify the sampling behavior of a model by applying a d
     - [CR Module Pipe Loader](../../ComfyUI_Comfyroll_CustomNodes/Nodes/CR Module Pipe Loader.md)
     - FreeU (Advanced)
     - [Anything Everywhere](../../cg-use-everywhere/Nodes/Anything Everywhere.md)
-    - [ReroutePrimitive|pysssss](../../ComfyUI-Custom-Scripts/Nodes/ReroutePrimitive|pysssss.md)
+    - ReroutePrimitive|pysssss
     - [BasicScheduler](../../Comfy/Nodes/BasicScheduler.md)
     - [KSampler (Efficient)](../../efficiency-nodes-comfyui/Nodes/KSampler (Efficient).md)
 

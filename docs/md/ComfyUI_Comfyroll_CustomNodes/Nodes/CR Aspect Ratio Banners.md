@@ -1,8 +1,11 @@
 ---
 tags:
 - AspectRatio
+- Batch
+- Image
+- ImageDuplication
+- ImageResize
 - ImageSize
-- ImageTransformation
 ---
 
 # 🔳 CR Aspect Ratio Banners

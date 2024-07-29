@@ -1,7 +1,9 @@
 ---
 tags:
 - DataConversion
-- DataTypeConversion
+- Float
+- FloatList
+- LogEntry
 - NumericConversion
 ---
 

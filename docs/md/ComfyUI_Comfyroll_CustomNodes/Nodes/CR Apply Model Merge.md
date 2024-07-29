@@ -1,5 +1,6 @@
 ---
 tags:
+- Face
 - ModelMerge
 ---
 
@@ -49,7 +50,7 @@ This node is designed to merge multiple models and CLIPs based on specified rati
 - Infra type: `GPU`
 - Common nodes:
     - [KSampler](../../Comfy/Nodes/KSampler.md)
-    - [LoraLoader|pysssss](../../ComfyUI-Custom-Scripts/Nodes/LoraLoader|pysssss.md)
+    - LoraLoader|pysssss
     - [CLIPSetLastLayer](../../Comfy/Nodes/CLIPSetLastLayer.md)
     - [Display Any (rgthree)](../../rgthree-comfy/Nodes/Display Any (rgthree).md)
 

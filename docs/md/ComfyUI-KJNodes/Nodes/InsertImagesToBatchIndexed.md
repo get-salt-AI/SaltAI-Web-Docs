@@ -3,33 +3,35 @@ tags:
 - Batch
 - Image
 - ImageBatch
+- ImageDuplication
+- Tiled
 ---
 
-# InsertImagesToBatchIndexed
+# Insert Images To Batch Indexed
 ## Documentation
 - Class name: `InsertImagesToBatchIndexed`
 - Category: `KJNodes/image`
 - Output node: `False`
 
-The node is designed to insert images at specified indices into an original batch of images, effectively modifying the original sequence by adding new images at the designated positions. This operation allows for dynamic manipulation of image batches, enabling the customization of image sequences for various applications.
+The InsertImagesToBatchIndexed node is designed for integrating specific images into a predefined batch of images at designated positions. It enables precise control over the composition of an image batch by allowing the insertion of new images at specified indices, thus modifying the original batch without altering its overall structure.
 ## Input types
 ### Required
 - **`original_images`**
-    - Represents the original batch of images where new images will be inserted. It is crucial for defining the base sequence that will be modified.
+    - Specifies the original batch of images where new images will be inserted. It plays a crucial role in determining the base structure of the image batch.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`images_to_insert`**
-    - Specifies the images to be inserted into the original batch. This parameter is essential for determining which new images will be added to the sequence.
+    - Defines the images to be inserted into the original batch. This parameter is essential for customizing the content of the image batch.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`indexes`**
-    - A string of comma-separated indices indicating where in the original batch the new images should be inserted. This parameter dictates the positions at which the images will be added, affecting the final arrangement of the batch.
+    - Indicates the specific positions within the original image batch where the new images should be inserted. This parameter allows for targeted modifications of the batch.
     - Comfy dtype: `STRING`
-    - Python dtype: `str`
+    - Python dtype: `list[int]`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The modified batch of images after the insertion of new images at specified indices.
+    - The modified image batch with the new images inserted at the specified indices.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`

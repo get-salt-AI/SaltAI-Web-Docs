@@ -1,38 +1,40 @@
 ---
 tags:
+- AnimationScheduling
 - Scheduling
+- SigmaScheduling
 ---
 
 # Scheduled Image Displacement
 ## Documentation
 - Class name: `SaltScheduledImageDisplacement`
-- Category: `SALT/Scheduling/Image`
+- Category: `SALT/AudioViz/Scheduling/Image`
 - Output node: `False`
 
-This node applies a scheduled displacement to a batch of images based on provided amplitude and angle schedules, utilizing an optimized displacement layer for image transformation. It allows for dynamic image manipulation over a sequence, adapting the displacement effect according to predefined schedules.
+This node applies a scheduled displacement to a batch of images based on provided amplitude and angle schedules. It utilizes a displacement layer to modify each image in the batch according to the specified schedules, allowing for dynamic image transformations over time.
 ## Input types
 ### Required
 - **`images`**
-    - The batch of images to be displaced. This input is crucial for defining the base content that will undergo displacement.
+    - The batch of images to be displaced. This input is crucial for determining the base content that will undergo displacement.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`displacement_images`**
-    - Images used to determine the displacement direction and magnitude for each image in the batch. These images play a key role in guiding the displacement process.
+    - Images used to determine the pattern or direction of displacement for each image in the batch.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 ### Optional
 - **`amplitude_schedule`**
-    - A schedule specifying the amplitude of displacement for each image in the batch. It controls the intensity of the displacement effect.
+    - A schedule dictating the amplitude of displacement over time. If not provided or too short, a default value is used.
     - Comfy dtype: `LIST`
     - Python dtype: `Optional[List[float]]`
 - **`angle_schedule`**
-    - A schedule detailing the angle of displacement for each image. This parameter dictates the direction of the displacement effect.
+    - A schedule dictating the angle of displacement over time. If not provided or too short, a default value is used.
     - Comfy dtype: `LIST`
     - Python dtype: `Optional[List[float]]`
 ## Output types
 - **`images`**
     - Comfy dtype: `IMAGE`
-    - The batch of images after applying the scheduled displacement. This output showcases the transformed images with the displacement effects applied.
+    - The batch of images after applying the scheduled displacement transformations.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -59,7 +61,7 @@ class SaltScheduledImageDisplacement:
     RETURN_NAMES = ("images",)
 
     FUNCTION = "apply_displacement"
-    CATEGORY = "SALT/Scheduling/Image"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling/Image"
 
     def apply_displacement(self, images, displacement_images, amplitude_schedule=None, angle_schedule=None):
         batch_size, height, width, _ = images.shape

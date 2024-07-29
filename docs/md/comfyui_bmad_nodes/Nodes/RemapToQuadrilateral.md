@@ -1,6 +1,8 @@
 ---
 tags:
-- ImageTransformation
+- Mask
+- MaskInversion
+- MaskMath
 ---
 
 # RemapToQuadrilateral
@@ -9,26 +11,24 @@ tags:
 - Category: `Bmad/CV/Transform`
 - Output node: `False`
 
-This node specializes in transforming images by remapping them based on quadrilateral shapes. It adjusts the perspective of images or maps them to or from a quadrilateral shape, utilizing various methods including homography.
+This node is designed to transform images by remapping them to fit within quadrilateral shapes, utilizing various methods including homography and edge pair interpolation. It abstracts complex geometric transformations, making it easier to apply perspective adjustments or corrections based on specified quadrilateral regions within images.
 ## Input types
 ### Required
 - **`dst_mask_with_i_points`**
-    - Specifies the destination mask with four points defining the quadrilateral to which the image will be remapped. This input is crucial for determining the transformation's target geometry.
+    - Specifies the destination mask with i points defining the quadrilateral to which the image will be remapped. This mask is crucial for determining the target shape and area for the remapping process.
     - Comfy dtype: `MASK`
     - Python dtype: `ndarray`
 - **`mode`**
-    - Defines the method used for the remapping process, such as homography or other quadrilateral remapping techniques. The choice of mode affects how the image is transformed.
+    - Defines the method to be used for the remapping process, such as homography or length-wise interpolation, allowing for flexibility in how the image is transformed to fit the quadrilateral.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`remap`**
     - Comfy dtype: `REMAP`
-    - Provides the details of the remapping process, including the transformed image and any relevant geometric transformations applied.
+    - The result of the remapping process, which includes the transformed image fitted within the specified quadrilateral shape.
     - Python dtype: `tuple`
-- **`ui`**
-    - The output includes a transformed image according to the specified quadrilateral shape and remapping method.
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -40,10 +40,10 @@ class RemapQuadrilateral(RemapBase):
     modes_list = list(quad_remap_methods_map.keys())
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {
             "dst_mask_with_4_points": ("MASK",),
-            "mode": (s.modes_list, {"default": s.modes_list[0]}),
+            "mode": (cls.modes_list, {"default": cls.modes_list[0]}),
         }
         }
 

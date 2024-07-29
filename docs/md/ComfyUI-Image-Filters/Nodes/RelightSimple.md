@@ -1,6 +1,6 @@
 ---
 tags:
-- VisualEffects
+- Blur
 ---
 
 # Relight (Simple)

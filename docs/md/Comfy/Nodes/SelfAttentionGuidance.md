@@ -1,6 +1,7 @@
 ---
 tags:
 - ModelGuidance
+- Seed
 ---
 
 # Self-Attention Guidance
@@ -9,28 +10,28 @@ tags:
 - Category: `_for_testing`
 - Output node: `False`
 
-The SelfAttentionGuidance node is designed to modify the attention mechanism within a given model to enhance its focus on specific aspects of the input data. It achieves this by guiding the self-attention process, potentially leading to improved model performance and interpretability.
+This node enhances the self-attention mechanism within neural networks by recording and potentially modifying attention scores based on specific conditions. It aims to improve model performance and interpretability by providing insights into how different parts of the input are weighted during the attention process.
 ## Input types
 ### Required
 - **`model`**
-    - The model parameter represents the neural network model that will be modified by the SelfAttentionGuidance node. It is crucial for defining the structure and behavior of the attention mechanism to be guided.
+    - The neural network model to which self-attention guidance will be applied. It is crucial for enabling the node to interact with and modify the model's attention mechanisms.
     - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`scale`**
-    - unknown
+    - A scaling factor that adjusts the intensity of the attention modification. It plays a significant role in determining how much the original attention scores are altered.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`blur_sigma`**
-    - unknown
+    - Specifies the standard deviation of the Gaussian blur applied to attention scores. This parameter influences the smoothness of the attention distribution, affecting the model's focus on input features.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The modified model with an adjusted self-attention mechanism, reflecting the guidance applied through the SelfAttentionGuidance node.
+    - The modified neural network model with enhanced self-attention mechanisms. This output reflects the adjustments made to the model's attention scores, aiming to improve focus and interpretability.
     - Python dtype: `torch.nn.Module`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes:
     - [KSampler](../../Comfy/Nodes/KSampler.md)
     - Reroute
@@ -70,13 +71,13 @@ class SelfAttentionGuidance:
             if 1 in cond_or_uncond:
                 uncond_index = cond_or_uncond.index(1)
                 # do the entire attention operation, but save the attention scores to attn_scores
-                (out, sim) = attention_basic_with_sim(q, k, v, heads=heads)
+                (out, sim) = attention_basic_with_sim(q, k, v, heads=heads, attn_precision=extra_options["attn_precision"])
                 # when using a higher batch size, I BELIEVE the result batch dimension is [uc1, ... ucn, c1, ... cn]
                 n_slices = heads * b
                 attn_scores = sim[n_slices * uncond_index:n_slices * (uncond_index+1)]
                 return out
             else:
-                return optimized_attention(q, k, v, heads=heads)
+                return optimized_attention(q, k, v, heads=heads, attn_precision=extra_options["attn_precision"])
 
         def post_cfg_function(args):
             nonlocal attn_scores

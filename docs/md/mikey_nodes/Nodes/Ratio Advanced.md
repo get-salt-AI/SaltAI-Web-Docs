@@ -1,8 +1,9 @@
 ---
 tags:
 - AspectRatio
+- Image
+- ImageResize
 - ImageSize
-- ImageTransformation
 ---
 
 # Ratio Advanced (Mikey)

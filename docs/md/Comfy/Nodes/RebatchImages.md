@@ -1,7 +1,8 @@
 ---
 tags:
-- Batch
 - Image
+- ImageDuplication
+- ImageSplitting
 ---
 
 # Rebatch Images

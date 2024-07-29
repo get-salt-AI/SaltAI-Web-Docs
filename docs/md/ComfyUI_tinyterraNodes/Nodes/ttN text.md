@@ -1,30 +1,33 @@
 ---
 tags:
+- DataTypeAgnostic
+- Debugging
+- String
 - Text
 ---
 
 # text
 ## Documentation
 - Class name: `ttN text`
-- Category: `ttN/text`
+- Category: `🌏 tinyterra/text`
 - Output node: `False`
 
-The ttN text node is designed for handling text input, specifically allowing for multiline text input with dynamic prompts. It serves as a foundational element in text processing within the ttN/text category, enabling the customization and manipulation of text data.
+The `ttN text` node is designed for text manipulation within the tinyterra ecosystem, offering functionalities to process and transform text data based on dynamic prompts. It encapsulates the ability to handle multiline text inputs, allowing for versatile text processing operations.
 ## Input types
 ### Required
 - **`text`**
-    - This parameter accepts a string of text, potentially spanning multiple lines, and supports dynamic prompts. It's essential for defining the text content to be processed or manipulated by the node.
+    - The `text` parameter is the primary input for text manipulation, accepting multiline strings. It supports dynamic prompts, enabling flexible and context-aware text processing.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`text`**
     - Comfy dtype: `STRING`
-    - Outputs the processed or manipulated text as a string, maintaining the input's integrity and format.
+    - The output is a transformed or processed version of the input text, maintaining the string data type.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
-    - [SDXLPromptStyler](../../comfyui-art-venture/Nodes/SDXLPromptStyler.md)
+    - [SDXLPromptStyler](../../comfyui-copilot/Nodes/SDXLPromptStyler.md)
     - comfy-qr-by-module-split
     - comfy-qr-validate
 
@@ -49,7 +52,7 @@ class ttN_text:
     RETURN_NAMES = ("text",)
     FUNCTION = "conmeow"
 
-    CATEGORY = "ttN/text"
+    CATEGORY = "🌏 tinyterra/text"
 
     @staticmethod
     def conmeow(text):

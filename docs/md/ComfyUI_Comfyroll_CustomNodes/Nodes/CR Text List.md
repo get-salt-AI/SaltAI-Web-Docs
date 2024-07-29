@@ -1,7 +1,9 @@
 ---
 tags:
+- DataTypeAgnostic
+- Debugging
 - List
-- MultilineText
+- String
 - Text
 ---
 

@@ -1,6 +1,5 @@
 ---
 tags:
-- Image
 - ImageBlend
 - ImageComposite
 ---

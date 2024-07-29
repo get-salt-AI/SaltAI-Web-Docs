@@ -1,7 +1,9 @@
 ---
 tags:
-- AnimateDiff
 - Animation
+- Cache
+- MotionData
+- PoseEstimation
 ---
 
 # Multival Scaled Mask 🎭🅐🅓
@@ -10,33 +12,33 @@ tags:
 - Category: `Animate Diff 🎭🅐🅓/multival`
 - Output node: `False`
 
-The ADE_MultivalScaledMask node is designed to apply scaling to a given mask based on specified minimum and maximum float values, with the option to choose between absolute or relative scaling methods. This functionality allows for dynamic adjustment of mask values, facilitating various image processing and animation effects within the ComfyUI-AnimateDiff-Evolved framework.
+The ADE_MultivalScaledMask node is designed to dynamically adjust and scale the values of a mask based on specified minimum and maximum float values. It supports both absolute and relative scaling modes, allowing for flexible manipulation of mask values to fit various animation or image processing needs.
 ## Input types
 ### Required
 - **`min_float_val`**
-    - Specifies the minimum value for scaling the mask. It sets the lower bound for the mask's value transformation, playing a crucial role in the scaling process.
+    - Specifies the minimum value (or a list of minimum values) to which the mask's values will be scaled. This parameter sets the lower bound of the scaling operation.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `Union[float, List[float]]`
 - **`max_float_val`**
-    - Defines the maximum value for scaling the mask. It establishes the upper limit for the mask's value transformation, significantly impacting the scaling outcome.
+    - Defines the maximum value (or a list of maximum values) to which the mask's values will be scaled. It sets the upper bound for the scaling, ensuring the mask's values are adjusted within a specific range.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `Union[float, List[float]]`
 - **`mask`**
-    - The input mask to be scaled. This tensor represents the target data for scaling operations, serving as the primary subject of the node's functionality. Its values are dynamically adjusted based on the scaling parameters, directly influencing the intensity and distribution of the scaled effects applied.
+    - The mask input represents the initial mask to be scaled. It is crucial for determining the base structure and values that will be adjusted according to the scaling parameters.
     - Comfy dtype: `MASK`
-    - Python dtype: `Tensor`
+    - Python dtype: `torch.Tensor`
 ### Optional
 - **`scaling`**
-    - Determines the scaling method to be applied to the mask, either absolute or relative. This choice dictates how the mask values are adjusted, influencing the final effect on the mask.
+    - Determines the type of scaling to be applied: absolute or relative. This choice affects how the mask values are adjusted, either by directly setting new minimum and maximum values or by normalizing them within a range.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `ScaleType`
 ## Output types
 - **`multival`**
     - Comfy dtype: `MULTIVAL`
-    - The scaled mask after applying the specified scaling method. This output reflects the transformation of the input mask based on the provided scaling parameters.
-    - Python dtype: `Tensor`
+    - The output is a dynamically adjusted version of the input mask, with its values scaled according to the specified minimum and maximum float values and the chosen scaling mode.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -61,12 +63,25 @@ class MultivalScaledMaskNode:
     FUNCTION = "create_multival"
 
     def create_multival(self, min_float_val: float, max_float_val: float, mask: Tensor, scaling: str=ScaleType.ABSOLUTE):
-        # TODO: allow min_float_val and max_float_val to be list[float]
+        lengths = [mask.shape[0]]
+        iterable_inputs = [False, False]
+        val_inputs = [min_float_val, max_float_val]
         if isinstance(min_float_val, Iterable):
-            raise ValueError(f"min_float_val must be type float (no lists allowed here), not {type(min_float_val).__name__}.")
+            iterable_inputs[0] = True
+            val_inputs[0] = list(min_float_val)
+            lengths.append(len(min_float_val))
         if isinstance(max_float_val, Iterable):
-            raise ValueError(f"max_float_val must be type float (no lists allowed here), not {type(max_float_val).__name__}.")
-        
+            iterable_inputs[1] = True
+            val_inputs[1] = list(max_float_val)
+            lengths.append(len(max_float_val))
+        # make sure mask and any iterable float_vals match max length
+        max_length = max(lengths)
+        mask = extend_to_batch_size(mask, max_length)
+        for i in range(len(iterable_inputs)):
+            if iterable_inputs[i] == True:
+                # make sure tensors will match dimensions of mask
+                val_inputs[i] = torch.tensor(extend_list_to_batch_size(val_inputs[i], max_length)).unsqueeze(-1).unsqueeze(-1)
+        min_float_val, max_float_val = val_inputs
         if scaling == ScaleType.ABSOLUTE:
             mask = linear_conversion(mask.clone(), new_min=min_float_val, new_max=max_float_val)
         elif scaling == ScaleType.RELATIVE:

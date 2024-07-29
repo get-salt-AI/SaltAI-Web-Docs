@@ -1,34 +1,42 @@
 ---
 tags:
 - Mask
+- MaskBatch
+- MaskGeneration
 - MaskList
+- MaskMorphology
 ---
 
 # 🔧 Mask From List
 ## Documentation
 - Class name: `MaskFromList+`
-- Category: `essentials`
+- Category: `essentials/mask`
 - Output node: `False`
 
-The `MaskFromList` node is designed for creating masks from a list of values, allowing for the specification of mask dimensions through width and height parameters. This functionality is essential for generating custom masks tailored to specific dimensions, facilitating various image processing tasks such as segmentation and conditioning.
+The MaskFromList+ node generates a mask based on a list of values, allowing for the creation of custom masks with specified dimensions and values. It supports both numerical and string inputs for mask values, providing flexibility in defining the mask's content.
 ## Input types
 ### Required
-- **`values`**
-    - The `values` parameter is a list of floating-point numbers representing the intensity values for the mask. These values are crucial for defining the mask's appearance, with each value corresponding to a pixel's intensity in the mask.
-    - Comfy dtype: `FLOAT`
-    - Python dtype: `List[float]`
 - **`width`**
-    - The `width` parameter specifies the width of the mask to be generated. It determines the horizontal dimension of the mask, playing a critical role in shaping the mask's size and aspect ratio.
+    - Specifies the width of the generated mask. It determines the horizontal dimension of the mask.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - The `height` parameter defines the height of the mask to be generated. It determines the vertical dimension of the mask, affecting the mask's size and aspect ratio.
+    - Specifies the height of the generated mask. It determines the vertical dimension of the mask.
     - Comfy dtype: `INT`
     - Python dtype: `int`
+### Optional
+- **`values`**
+    - A list of numerical values (integers or floats) or a single numerical value used to populate the mask. This input allows for the customization of the mask's intensity or transparency.
+    - Comfy dtype: `INT,FLOAT`
+    - Python dtype: `List[Union[int, float]] | Union[int, float]`
+- **`str_values`**
+    - A string representation of numerical values, separated by commas, used to populate the mask. This provides an alternative method for defining the mask's content.
+    - Comfy dtype: `STRING`
+    - Python dtype: `str`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The output `mask` parameter is the generated mask based on the provided values and dimensions. It represents the custom mask created to meet the specified width and height, suitable for various image processing applications.
+    - The output is a mask created from the provided list of values, with the specified dimensions and value intensities.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
@@ -42,24 +50,40 @@ class MaskFromList:
     def INPUT_TYPES(s):
         return {
             "required": {
-                "values": ("FLOAT", { "min": 0.0, "max": 1.0, "step": 0.01, }),
-                "width": ("INT", { "default": 32, "min": 1, "max": MAX_RESOLUTION, "step": 8, }),
-                "height": ("INT", { "default": 32, "min": 1, "max": MAX_RESOLUTION, "step": 8, }),
+                "width": ("INT", { "default": 32, "min": 0, "max": MAX_RESOLUTION, "step": 8, }),
+                "height": ("INT", { "default": 32, "min": 0, "max": MAX_RESOLUTION, "step": 8, }),
+            }, "optional": {
+                "values": ("INT,FLOAT", { "default": 0.0, "min": 0.0, "max": 1.0, }),
+                "str_values": ("STRING", { "default": "", "multiline": True, "placeholder": "0.0, 0.5, 1.0",}),
             }
         }
 
     RETURN_TYPES = ("MASK",)
     FUNCTION = "execute"
-    CATEGORY = "essentials"
+    CATEGORY = "essentials/mask"
 
-    def execute(self, values, width, height):
-        if not isinstance(values, list):
-            values = [values]
+    def execute(self, width, height, values=None, str_values=""):
+        out = []
 
-        values = torch.tensor(values).float()
-        values = torch.clamp(values, 0.0, 1.0)
-        #values = (values - values.min()) / values.max()
+        if values is not None:
+            if not isinstance(values, list):
+                out = [values]
+            else:
+                out.extend(values)
 
-        return (values.unsqueeze(1).unsqueeze(2).repeat(1, width, height), )
+        if str_values != "":
+            str_values = [float(v) for v in str_values.split(",")]
+            out.extend(str_values)
+
+        if out == []:
+            raise ValueError("No values provided")
+        
+        out = torch.tensor(out).float().clamp(0.0, 1.0)
+        out = out.view(-1, 1, 1).expand(-1, height, width)
+        
+        values = None
+        str_values = ""
+
+        return (out, )
 
 ```

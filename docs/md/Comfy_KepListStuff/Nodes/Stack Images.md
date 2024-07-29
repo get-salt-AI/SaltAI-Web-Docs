@@ -1,7 +1,8 @@
 ---
 tags:
-- Image
-- ImageTransformation
+- Blur
+- ImageBlend
+- VisualEffects
 ---
 
 # Stack Images(Deprecated)

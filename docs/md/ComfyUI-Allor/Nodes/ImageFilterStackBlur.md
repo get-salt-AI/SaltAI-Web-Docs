@@ -1,7 +1,7 @@
 ---
 tags:
 - Blur
-- VisualEffects
+- MaskBlur
 ---
 
 # ImageFilterStackBlur

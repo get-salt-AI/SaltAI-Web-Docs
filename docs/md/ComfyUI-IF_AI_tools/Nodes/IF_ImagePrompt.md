@@ -1,6 +1,6 @@
 ---
 tags:
-- Prompt
+- PromptStyling
 ---
 
 # IF Image to Prompt🖼️
@@ -9,85 +9,85 @@ tags:
 - Category: `ImpactFrames💥🎞️`
 - Output node: `True`
 
-The IF_ImagePrompt node transforms visual inputs into textual prompts, leveraging user profiles and image characteristics to generate tailored text descriptions. It encapsulates the process of interpreting images, applying thematic embellishments, and incorporating stylistic or negative prompts to produce rich, context-aware textual outputs.
+The IF_ImagePrompt node transforms visual inputs into textual prompts, leveraging user profiles and image characteristics to generate tailored text descriptions. It supports customization through various parameters, including style and embellishment options, to enhance the generated prompts.
 ## Input types
 ### Required
 - **`image`**
-    - The visual input for which a textual prompt is generated. It supports various formats including torch.Tensor, PIL.Image, or a file path, making it versatile for different input sources.
+    - The image input can be a torch.Tensor, a PIL.Image, or a file path to an image. It serves as the primary visual content for generating the text prompt.
     - Comfy dtype: `IMAGE`
     - Python dtype: `Union[torch.Tensor, PIL.Image, str]`
 - **`image_prompt`**
-    - The initial prompt related to the image, which can be empty or filled based on the user's input, influencing the direction of the generated text.
+    - A textual description or directive provided by the user to guide the generation of the text prompt, influencing its thematic direction.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`base_ip`**
-    - The IP address of the server where the AI engine is hosted, facilitating remote processing and generation.
+    - The IP address of the server where the model engine is hosted, required for sending the image processing request.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`port`**
-    - The port number on the server for accessing the AI engine, ensuring proper communication and data exchange.
+    - The port number on the server for accessing the model engine, used in conjunction with the base IP address.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`engine`**
-    - Specifies the AI engine used for generating the textual prompt, allowing for flexibility in choosing the underlying technology.
+    - The name of the engine (e.g., ollama, openai, anthropic) used for generating the text prompt, determining the underlying AI model.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`selected_model`**
-    - Determines the specific model within the chosen engine to use for text generation, enabling fine-tuned control over the output.
+    - The specific model selected for generating the text prompt, chosen from the available models on the specified engine.
     - Comfy dtype: `[]`
     - Python dtype: `str`
 - **`profile`**
-    - A user profile that influences the thematic direction and content of the generated text, personalizing the output.
+    - A user profile identifier used to select specific settings or preferences for text generation, affecting the style and content of the generated prompts.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`embellish_prompt`**
-    - A thematic embellishment added to the prompt to enrich the textual output with specific themes or ideas.
+    - An optional parameter for adding embellishment to the generated text, enhancing its descriptive quality.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`style_prompt`**
-    - A stylistic overlay for the prompt, guiding the tone or style of the generated text to match desired aesthetics.
+    - A parameter for specifying the style of the generated text, affecting its tone and presentation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`neg_prompt`**
-    - A negative prompt used to steer the generated text away from certain themes or concepts, enhancing content control.
+    - A parameter for providing a negative or contrasting prompt, used to generate alternative text descriptions.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`temperature`**
-    - Controls the creativity of the AI's responses, affecting the variability and unpredictability of the generated text.
+    - Controls the creativity of the generated text. A higher temperature results in more varied text.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`max_tokens`**
-    - Sets the maximum length of the generated text, ensuring outputs are within desired constraints.
+    - The maximum number of tokens to generate for the text prompt, limiting its length.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`seed`**
-    - A seed value for the random number generator, enabling reproducible outputs in the text generation process.
+    - A seed value for the random number generator, ensuring reproducibility of the generated text.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`random`**
-    - A flag indicating whether to introduce randomness into the text generation, adding an element of unpredictability.
+    - A boolean parameter that, when true, uses a random seed for text generation, adding variability to the output.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`keep_alive`**
-    - Determines whether the connection to the AI engine should be maintained after the request, optimizing for repeated use.
+    - A boolean parameter indicating whether to keep the model loaded between requests, affecting resource utilization.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`Question`**
     - Comfy dtype: `STRING`
-    - The initial image prompt or question derived from the input image and user profile, setting the context for the generated text.
+    - A system-generated message or question based on the image prompt and user profile.
     - Python dtype: `str`
 - **`Response`**
     - Comfy dtype: `STRING`
-    - The main body of the generated text, enriched with embellishments, style, and thematic content based on the input prompts.
+    - The main text description generated from the visual input, incorporating any specified style or embellishment.
     - Python dtype: `str`
 - **`Negative`**
     - Comfy dtype: `STRING`
-    - A segment of the generated text that specifically addresses the negative prompt, ensuring certain themes or concepts are avoided.
+    - A negative or alternative text prompt, possibly used for contrast or to provide different perspectives.
     - Python dtype: `str`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 

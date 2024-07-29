@@ -1,6 +1,8 @@
 ---
 tags:
+- Animation
 - Image
+- ImageDrawing
 - ImageLoad
 ---
 
@@ -10,21 +12,21 @@ tags:
 - Category: `mask`
 - Output node: `False`
 
-The LoadImageMask node is designed to load images and their associated masks from a specified path, processing them to ensure compatibility with further image manipulation or analysis tasks. It focuses on handling various image formats and conditions, such as presence of an alpha channel for masks, and prepares the images and masks for downstream processing by converting them to a standardized format.
+The LoadImageMask node is designed for loading and processing an image to generate a mask based on a specified color channel. It supports handling images with different formats and orientations, converting them to a standardized RGBA format if necessary, and extracting a specific channel (alpha, red, green, blue) to create a mask. This functionality is crucial for tasks that require image segmentation or specific channel manipulation.
 ## Input types
 ### Required
 - **`image`**
-    - The 'image' parameter specifies the image file to be loaded and processed. It plays a crucial role in determining the output by providing the source image for mask extraction and format conversion.
+    - Specifies the image file to be loaded and processed. The selection is limited to the files available in a predefined input directory, facilitating the upload and handling of images for mask generation.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `List[str]`
 - **`channel`**
-    - The 'channel' parameter specifies the color channel of the image that will be used to generate the mask. This allows for flexibility in mask creation based on different color channels, enhancing the node's utility in various image processing scenarios.
+    - Determines the color channel ('alpha', 'red', 'green', 'blue') of the image to be used for mask creation. This choice directly influences the resulting mask by selecting the relevant channel data.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `List[str]`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - This node outputs the mask generated from the specified image and channel, prepared in a standardized format suitable for further processing in image manipulation tasks.
+    - The output is a mask generated from the specified color channel of the input image. This mask is useful for segmentation and other image processing tasks that require specific channel information.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
@@ -50,8 +52,8 @@ class LoadImageMask:
     FUNCTION = "load_image"
     def load_image(self, image, channel):
         image_path = folder_paths.get_annotated_filepath(image)
-        i = Image.open(image_path)
-        i = ImageOps.exif_transpose(i)
+        i = node_helpers.pillow(Image.open, image_path)
+        i = node_helpers.pillow(ImageOps.exif_transpose, i)
         if i.getbands() != ("R", "G", "B", "A"):
             if i.mode == 'I':
                 i = i.point(lambda i: i * (1 / 255))

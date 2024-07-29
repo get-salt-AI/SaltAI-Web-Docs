@@ -1,5 +1,8 @@
 ---
 tags:
+- DataTypeAgnostic
+- Debugging
+- String
 - Text
 ---
 
@@ -9,24 +12,24 @@ tags:
 - Category: `Derfuu_Nodes/Debug`
 - Output node: `True`
 
-The `DF_To_text_(Debug)` node is designed for debugging purposes, allowing users to print and inspect any data passed to it. It converts the input data to a string representation, facilitating the examination of data structures, variables, or any other information during the node's execution. This node aids in identifying issues or verifying data processing steps within a workflow by providing a clear textual output of the input data.
+The `DF_To_text_(Debug)` node is designed for debugging purposes, allowing users to log and inspect any data passed through it. It converts the input data to a string format, logs the original and string-converted data for debugging, and handles exceptions by logging them. This node facilitates the observation and troubleshooting of data flow within node-based processing pipelines.
 ## Input types
 ### Required
 - **`ANY`**
-    - Accepts any type of data for debugging purposes. It allows users to inspect the content and structure of the data passed to the node, aiding in debugging and data verification tasks.
+    - Accepts any type of data for debugging purposes. It logs the input data in its original form and after conversion to a string, aiding in the inspection and troubleshooting of data flow.
     - Comfy dtype: `*`
     - Python dtype: `Any`
 ## Output types
 - **`SAME AS INPUT`**
     - Comfy dtype: `*`
-    - Returns the original input data unchanged, facilitating further processing or inspection in the workflow.
+    - Returns the original input data, allowing it to be passed through for further processing or inspection.
     - Python dtype: `Any`
 - **`STRING`**
     - Comfy dtype: `STRING`
-    - Returns the string representation of the input data or the exception message if an error occurred during processing.
+    - Returns the input data converted to a string, or an error message if an exception occurs, facilitating debugging and error tracking.
     - Python dtype: `str`
 - **`ui`**
-    - Provides a user interface element displaying the textual representation of the input data or any exceptions encountered during processing.
+    - Provides a user interface component displaying the debug information as text. It shows the input data in both its original and string-converted forms, or an error message if an exception occurs.
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -55,9 +58,9 @@ class ShowDataDebug:
         out = ANY
         try:
             out = str(out)
-            print(colorize(f"[DEBUG]: {ANY}", ConsoleColor.blue.value))
+            logging.info(colorize(f"[DEBUG]: {ANY}", ConsoleColor.blue.value))
         except Exception as e:
-            print(colorize(f"[DEBUG-EXCEPTION]: {e}", ConsoleColor.bold_red.value))
+            logging.info(colorize(f"[DEBUG-EXCEPTION]: {e}", ConsoleColor.bold_red.value))
             out = str(e)
         return {"ui": {"text": [out]}, "result": (ANY, out)}
 

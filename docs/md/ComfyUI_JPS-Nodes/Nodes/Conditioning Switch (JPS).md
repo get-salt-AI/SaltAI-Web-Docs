@@ -1,6 +1,8 @@
 ---
 tags:
 - ConditionalSelection
+- ImageSwitching
+- ImpactPack
 ---
 
 # Conditioning Switch (JPS)

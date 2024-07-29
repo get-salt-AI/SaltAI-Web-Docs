@@ -1,5 +1,6 @@
 ---
 tags:
+- CLIPConditioning
 - Conditioning
 ---
 
@@ -9,43 +10,43 @@ tags:
 - Category: `Animate Diff 🎭🅐🅓/conditioning/single cond ops`
 - Output node: `False`
 
-This node specializes in the advanced manipulation of conditioning data for generative models, specifically focusing on the application and combination of masks and additional conditioning layers. It enables the enhancement or modification of existing conditioning through the application of masks, strength adjustments, and the integration of new conditioning data, thereby allowing for more precise control over the generative process.
+This node specializes in the advanced manipulation of conditioning data for generative models, specifically focusing on the application of masks, the combination of multiple conditioning inputs, and the adjustment of their influence through strength parameters. It enables the dynamic alteration and enhancement of conditioning inputs to tailor the generative process more precisely to desired outcomes.
 ## Input types
 ### Required
 - **`cond`**
-    - The original conditioning data to be enhanced or modified. It serves as the base upon which additional conditioning layers and masks are applied, directly influencing the final output.
+    - The original conditioning data to be modified or enhanced.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `CustomType[CONDITIONING]`
+    - Python dtype: `Tensor`
 - **`cond_ADD`**
-    - Additional conditioning data to be combined with the original conditioning. This layer is applied on top of the existing conditioning, allowing for the introduction of new features or modifications.
+    - Additional conditioning data to be combined with the original conditioning, allowing for the introduction of new elements or modifications.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `CustomType[CONDITIONING]`
+    - Python dtype: `Tensor`
 - **`strength`**
-    - A scalar value that determines the intensity of the mask application on the conditioning. It controls how strongly the additional conditioning and masks affect the original data.
+    - A scalar value that determines the intensity of the applied modifications or enhancements on the conditioning data.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`set_cond_area`**
-    - Specifies the area within the conditioning data where modifications are targeted, without mentioning a specific type.
+    - Specifies the area within the conditioning data that the modifications, such as masking or strength adjustments, should be applied to.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`opt_mask`**
-    - An optional mask that can be applied to the conditioning data. It allows for selective enhancement or modification of specific areas within the conditioning.
+    - An optional mask that can be applied to the conditioning data to selectively modify or enhance specific regions.
     - Comfy dtype: `MASK`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `Tensor`
 - **`opt_lora_hook`**
-    - An optional LoraHookGroup that can be applied for further manipulation of the conditioning data. It provides additional flexibility in modifying the conditioning.
+    - An optional hook for applying LoRA adjustments to the conditioning data, enabling more fine-grained control over the modifications.
     - Comfy dtype: `LORA_HOOK`
     - Python dtype: `LoraHookGroup`
 - **`opt_timesteps`**
-    - Optional timesteps for conditional manipulation. This parameter allows for the application of modifications at specific points in the generative process.
+    - Optional timesteps conditioning that allows for temporal adjustments to the conditioning data, useful in sequential generative processes.
     - Comfy dtype: `TIMESTEPS_COND`
     - Python dtype: `TimestepsCond`
 ## Output types
 - **`conditioning`**
     - Comfy dtype: `CONDITIONING`
-    - The enhanced or modified conditioning data, resulting from the application of additional conditioning layers, masks, and adjustments.
-    - Python dtype: `CustomType[CONDITIONING]`
+    - The resulting conditioning data after applying the specified modifications, combinations, and enhancements.
+    - Python dtype: `Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -74,10 +75,10 @@ class ConditioningSetMaskAndCombineHooked:
     CATEGORY = "Animate Diff 🎭🅐🅓/conditioning/single cond ops"
     FUNCTION = "append_and_combine"
 
-    def append_and_combine(self, conditioning, conditioning_ADD,
+    def append_and_combine(self, cond, cond_ADD,
                            strength: float, set_cond_area: str,
                            opt_mask: Tensor=None, opt_lora_hook: LoraHookGroup=None, opt_timesteps: TimestepsCond=None):
-        (final_conditioning,) = set_mask_and_combine_conds(conds=[conditioning], new_conds=[conditioning_ADD],
+        (final_conditioning,) = set_mask_and_combine_conds(conds=[cond], new_conds=[cond_ADD],
                                                                     strength=strength, set_cond_area=set_cond_area,
                                                                     opt_mask=opt_mask, opt_lora_hook=opt_lora_hook, opt_timesteps=opt_timesteps)
         return (final_conditioning,)

@@ -1,6 +1,8 @@
 ---
 tags:
+- CLIP
 - ControlNet
+- ControlNetLoader
 ---
 
 # ControlNet Switch (JPS)

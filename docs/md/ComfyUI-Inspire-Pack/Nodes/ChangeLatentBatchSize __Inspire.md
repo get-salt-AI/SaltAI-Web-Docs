@@ -1,7 +1,8 @@
 ---
 tags:
-- Batch
 - Image
+- ImageDuplication
+- ImageSplitting
 ---
 
 # Change Latent Batch Size (Inspire)

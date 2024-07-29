@@ -1,5 +1,6 @@
 ---
 tags:
+- SamplerScheduler
 - Sampling
 ---
 
@@ -9,82 +10,82 @@ tags:
 - Category: `Bmad/experimental`
 - Output node: `False`
 
-This node specializes in applying advanced sampling techniques to generate or modify latent spaces in a grid format. It leverages multiple samplers and masking strategies to create or alter latents, enabling complex manipulations like forking and merging regions within the grid. The node's functionality is crucial for tasks that require precise control over the spatial distribution of features within generated images or patterns.
+This node specializes in applying advanced sampling techniques to generate or modify latent images based on a grid pattern. It leverages mask-based operations to selectively apply changes to specific regions of the latent space, enabling complex image manipulations and enhancements.
 ## Input types
 ### Required
 - **`model`**
-    - Specifies the model used for sampling. It's essential for defining the generative model's architecture that will be utilized during the sampling process.
+    - The model parameter specifies the generative model used for sampling operations within the specified regions of the latent space.
     - Comfy dtype: `MODEL`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `object`
 - **`add_noise`**
-    - Indicates whether noise should be added to the sampling process. This parameter can significantly affect the diversity and quality of the generated latents.
+    - Determines whether noise is added to the sampling process, enhancing the diversity of the generated images.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `bool`
 - **`noise_seed`**
-    - Sets the seed for noise generation, ensuring reproducibility when adding noise to the sampling process.
+    - The seed for noise generation, ensuring reproducibility in the sampling process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`steps`**
-    - Defines the number of steps to perform during the sampling process. This parameter controls the depth of the sampling operation, affecting the detail and quality of the generated latents.
+    - The number of steps to perform in the sampling process, affecting the detail and quality of the generated images.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - Specifies the conditioning factor for the generative model, influencing the strength of the conditioning during the sampling process.
+    - Configuration settings for the sampling process, allowing for customization of the generation.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sampler_name`**
-    - Determines the specific sampler algorithm to be used. Different samplers can produce varied effects on the generated latents.
+    - The name of the sampler algorithm used for generating the latent images.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - Selects the scheduler for the sampling process, which can affect the progression and outcome of the sampling operation.
+    - The scheduler controls the sampling process, managing the progression of steps.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `object`
 - **`positive`**
-    - Provides positive conditioning inputs to guide the sampling towards desired attributes or features.
+    - Positive text prompts that guide the generation towards desired characteristics.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `str`
 - **`negative`**
-    - Provides negative conditioning inputs to steer the sampling away from certain attributes or features.
+    - Negative text prompts that steer the generation away from undesired characteristics.
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `str`
 - **`latent_image`**
-    - Represents the initial latent images to be modified through the sampling and masking operations. This parameter is the starting point for the node's complex manipulations.
+    - The latent_image parameter represents the initial state of the latent space that will undergo sampling. It is fundamental to the node's operation, serving as the canvas on which mask-based modifications are applied.
     - Comfy dtype: `LATENT`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `Dict[str, torch.Tensor]`
 - **`start_at_step`**
-    - Defines the starting step for the sampling process, allowing for more control over the sampling progression.
+    - The initial step of the sampling process, allowing for control over the starting point.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`end_at_step`**
-    - Defines the ending step for the sampling process, providing a boundary for the sampling operation.
+    - The final step of the sampling process, defining the endpoint of generation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`return_with_leftover_noise`**
-    - Indicates whether the output should include leftover noise from the sampling process. This can be useful for further manipulations or analysis.
+    - Indicates whether to include leftover noise in the output, providing additional control over the output's characteristics.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `bool`
 - **`mask`**
-    - Specifies the mask to be applied to the latent images, enabling targeted modifications within the grid.
+    - The mask parameter is crucial for defining the regions within the latent image that will be subjected to sampling operations. It plays a key role in determining which parts of the image are modified, ensuring targeted and precise adjustments.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`rows`**
-    - Determines the number of rows in the grid format. This parameter affects the spatial organization of the latents within the grid.
+    - The number of rows in the grid pattern, defining the layout of the applied masks.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`columns`**
-    - Determines the number of columns in the grid format. This parameter affects the spatial organization of the latents within the grid.
+    - The number of columns in the grid pattern, further specifying the layout of the applied masks.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`mode`**
-    - Specifies the mode of operation, such as forking before or after sampling. This choice can significantly impact the outcome of the manipulations.
+    - The mode of operation, determining how the sampling and mask application are conducted.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - The modified latent images after applying advanced sampling and masking techniques. This output is significant for downstream tasks that rely on the spatially manipulated features within the latents.
-    - Python dtype: `List[torch.Tensor]`
+    - The latent output consists of a modified latent image reflecting the application of advanced sampling techniques within specified grid regions.
+    - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -100,17 +101,17 @@ class MaskGridNKSamplersAdvanced(nodes.KSamplerAdvanced):
     fork_options = list(fork_before_sampling.keys())
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         types = super().INPUT_TYPES()
         types["required"]["mask"] = ("IMAGE",)
         types["required"]["rows"] = ("INT", {"default": 1, "min": 1, "max": 16})
         types["required"]["columns"] = ("INT", {"default": 3, "min": 1, "max": 16})
-        types["required"]["mode"] = (s.fork_options, {"default": s.fork_options[0]})
+        types["required"]["mode"] = (cls.fork_options, {"default": cls.fork_options[0]})
         return types
 
     RETURN_TYPES = ("LATENT",)
     FUNCTION = "gen_batch"
-    CATEGORY = "Bmad/experimental"
+    CATEGORY = f"{base_category_path}/experimental"
 
     def gen_batch(self, model, add_noise, noise_seed, steps, cfg, sampler_name, scheduler, positive, negative,
                   latent_image, start_at_step, end_at_step, return_with_leftover_noise,

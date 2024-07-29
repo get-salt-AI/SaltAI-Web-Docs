@@ -1,24 +1,29 @@
 ---
 tags:
-- LatentNoise
+- DataVisualization
+- ImageEnhancement
+- ImageNoise
 - Noise
+- Scheduling
+- Seed
+- XYPlotData
 ---
 
-# InjectNoiseToLatent
+# Inject Noise To Latent
 ## Documentation
 - Class name: `InjectNoiseToLatent`
 - Category: `KJNodes/noise`
 - Output node: `False`
 
-The InjectNoiseToLatent node is designed to modify latent representations by injecting noise into them. This process can include averaging the original and noise latents, scaling the noise by a strength factor, normalizing the noised latent, applying a mask to selectively noise parts of the latent, and optionally mixing in random noise. The node aims to enhance or alter the characteristics of the latent space for various generative tasks.
+The InjectNoiseToLatent node is designed to modify the latent representations by injecting noise into them. This process can include averaging the original and noise latents, scaling the noise by a strength factor, normalizing the resulting latent, applying a mask to selectively inject noise, and optionally mixing in random noise. The node aims to enhance or alter the characteristics of the latent space for various generative tasks, such as image synthesis or manipulation.
 ## Input types
 ### Required
 - **`latents`**
-    - The original latent representations to which noise will be added. It serves as the base for noise injection, influencing the final output by its initial characteristics.
+    - The original latent representations to which noise will be added. This input is crucial for defining the base structure that the noise will modify.
     - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 - **`strength`**
-    - A factor that scales the injected noise, controlling the intensity of the noise effect on the latents.
+    - A factor that scales the noise before it is added to the latents, allowing for control over the intensity of the noise injection.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`noise`**
@@ -26,7 +31,7 @@ The InjectNoiseToLatent node is designed to modify latent representations by inj
     - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 - **`normalize`**
-    - A boolean flag indicating whether to normalize the noised latent, affecting its distribution.
+    - A boolean flag indicating whether the noised latent should be normalized, affecting the distribution of the final output.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`average`**
@@ -35,22 +40,22 @@ The InjectNoiseToLatent node is designed to modify latent representations by inj
     - Python dtype: `bool`
 ### Optional
 - **`mask`**
-    - An optional mask to apply selective noise injection, allowing for targeted alterations of the latent space.
+    - An optional mask to apply selective noise injection, allowing for targeted alterations in the latent space.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`mix_randn_amount`**
-    - The amount of random noise to mix into the noised latent, further introducing randomness.
+    - The amount of random noise to mix into the noised latent, introducing additional randomness.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`seed`**
-    - An optional seed for random number generation, ensuring reproducibility when mixing random noise.
+    - An optional seed for generating random noise, ensuring reproducibility when desired.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - The modified latent representations after noise injection, reflecting the combined effects of the input parameters.
-    - Python dtype: `Dict[str, torch.Tensor]`
+    - The modified latent representations after noise injection, reflecting the applied changes.
+    - Python dtype: `Tuple[Dict[str, torch.Tensor]]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

@@ -1,31 +1,32 @@
 ---
 tags:
-- Flip
-- Image
+- DataClamp
+- GridLayout
+- ImageDuplication
 - ImageTransformation
 ---
 
 # 🔧 Mask Flip
 ## Documentation
 - Class name: `MaskFlip+`
-- Category: `essentials`
+- Category: `essentials/mask`
 - Output node: `False`
 
-The MaskFlip node is designed to flip a given mask along specified axes, allowing for the manipulation of mask orientation in image processing tasks.
+The MaskFlip+ node is designed for flipping masks along specified axes. It provides functionality to manipulate the orientation of mask data, allowing for horizontal, vertical, or both flips, enhancing flexibility in mask manipulation for various image processing tasks.
 ## Input types
 ### Required
 - **`mask`**
-    - The mask to be flipped. This parameter is crucial as it determines the input mask that will undergo the flipping operation.
+    - The 'mask' parameter represents the input mask to be flipped. It is crucial for determining the spatial data that will undergo orientation changes.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`axis`**
-    - Specifies the axis or axes along which the mask will be flipped. This affects the direction of the flip, enabling horizontal, vertical, or both flips.
+    - The 'axis' parameter specifies the axes along which the mask will be flipped. It plays a key role in defining the direction of the flip operation, affecting the final output.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `Tuple[str]`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The flipped version of the input mask, altered according to the specified axis or axes.
+    - The output is a flipped version of the input mask, modified according to the specified axis or axes of flipping.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -46,9 +47,12 @@ class MaskFlip:
 
     RETURN_TYPES = ("MASK",)
     FUNCTION = "execute"
-    CATEGORY = "essentials"
+    CATEGORY = "essentials/mask"
 
     def execute(self, mask, axis):
+        if mask.dim() == 2:
+            mask = mask.unsqueeze(0)
+
         dim = ()
         if "y" in axis:
             dim += (1,)

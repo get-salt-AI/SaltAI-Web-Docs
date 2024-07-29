@@ -1,6 +1,6 @@
 ---
 tags:
-- SAM
+- Sampling
 ---
 
 # SAM Loader
@@ -9,20 +9,20 @@ tags:
 - Category: `Art Venture/Segmentation`
 - Output node: `False`
 
-The AV_SAMLoader node is designed for loading SAM (Segmentation-Aware Models) specifically tailored for Art Venture's segmentation tasks. It facilitates the dynamic loading of SAM models based on the model name, ensuring that the appropriate segmentation model is utilized for image processing tasks.
+The AV_SAMLoader node is designed for loading SAM models specific to the Art Venture project. It facilitates the retrieval and initialization of SAM models from a predefined directory, ensuring that the models are ready for use in segmentation tasks.
 ## Input types
 ### Required
 - **`model_name`**
-    - Specifies the name of the SAM model to be loaded. This parameter is crucial for identifying and loading the correct model for segmentation tasks.
+    - Specifies the name of the SAM model to load. This parameter is crucial for identifying and retrieving the correct model file from the available SAM models directory.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`sam_model`**
     - Comfy dtype: `AV_SAM_MODEL`
-    - Returns the loaded SAM model, ready for segmentation tasks.
+    - Returns the loaded SAM model, ready for use in segmentation tasks.
     - Python dtype: `torch.nn.Module`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -54,6 +54,9 @@ class SAMLoader:
             model_kind = "vit_l"
         else:
             model_kind = "vit_b"
+
+        ensure_package("segment_anything")
+        from segment_anything import sam_model_registry
 
         sam = sam_model_registry[model_kind]()
         sam.load_state_dict(state_dict)

@@ -1,6 +1,6 @@
 ---
 tags:
-- Face
+- FaceRestoration
 ---
 
 # Load Instance Fusers Model

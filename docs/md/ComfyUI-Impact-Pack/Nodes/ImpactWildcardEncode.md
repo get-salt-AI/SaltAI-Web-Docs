@@ -1,8 +1,6 @@
 ---
 tags:
-- Prompt
-- Text
-- Wildcard
+- Searge
 ---
 
 # ImpactWildcardEncode
@@ -11,57 +9,57 @@ tags:
 - Category: `ImpactPack/Prompt`
 - Output node: `False`
 
-The ImpactWildcardEncode node is designed to dynamically replace placeholders within a string with actual values based on a predefined set of rules and dictionaries. It leverages patterns and wildcards to identify placeholders and uses a combination of random selection and specific matching criteria to determine the replacement values, thereby enabling the generation of customized and varied outputs.
+The ImpactWildcardEncode node is designed to dynamically encode text by replacing specified wildcard patterns with corresponding values or options. It leverages a comprehensive wildcard system to interpret and transform text inputs based on predefined or custom wildcard dictionaries, supporting complex pattern matching and replacement strategies to tailor text outputs for varied applications.
 ## Input types
 ### Required
 - **`model`**
-    - This parameter specifies the model to be used in the process, playing a crucial role in determining the output based on the model's capabilities and characteristics.
+    - This input specifies the model to be used in the encoding process, enabling the node to leverage specific model capabilities for text transformation.
     - Comfy dtype: `MODEL`
     - Python dtype: `str`
 - **`clip`**
-    - The clip parameter is used to specify the clip to be used alongside the model, affecting the final output by providing additional context or constraints.
+    - The 'clip' parameter represents the CLIP model used for encoding, providing a mechanism for integrating visual context into the text transformation process.
     - Comfy dtype: `CLIP`
     - Python dtype: `str`
 - **`wildcard_text`**
-    - The input string containing placeholders that need to be dynamically replaced. Its role is crucial as it serves as the template for the output generation, dictating where and how replacements should occur.
+    - This input contains the text with wildcard patterns that the node will interpret and replace, serving as the primary source for the encoding operation.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`populated_text`**
-    - The text resulting from the replacement of wildcards in the wildcard_text. It represents the final output of the node's processing.
+    - The text resulting from the wildcard replacement process, which is further processed or utilized within the node's workflow.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`mode`**
-    - Determines the mode of operation, either populating the text with dynamic content or keeping it fixed, thus affecting the processing strategy.
+    - A boolean input that toggles between different modes of operation, such as 'Populate' or 'Fixed', affecting how text is processed and wildcards are handled.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`Select to add LoRA`**
-    - Allows the selection of LoRA to be added to the text, influencing the customization and specificity of the output.
+    - Allows selection of a LoRA to add to the text, introducing specific logic or rules-based adjustments to the encoding process.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `list`
 - **`Select to add Wildcard`**
-    - Enables the selection of additional wildcards to be incorporated into the text, further customizing the output.
+    - Enables the selection of additional wildcards to be added to the text, expanding the node's capability to transform and customize text outputs.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `list`
 - **`seed`**
-    - A numerical seed that influences the randomness of wildcard replacements, ensuring reproducibility or variation in outputs.
+    - A numerical input that seeds the randomization process, ensuring reproducibility and consistency in the text transformation outcomes.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The model parameter output, potentially modified or selected based on the input conditions.
+    - The model output, potentially modified or utilized within the node's processing flow.
     - Python dtype: `str`
 - **`clip`**
     - Comfy dtype: `CLIP`
-    - The clip parameter output, which may be adjusted or chosen as part of the processing.
+    - The CLIP model output, reflecting any changes or usage within the node's operations.
     - Python dtype: `str`
 - **`conditioning`**
     - Comfy dtype: `CONDITIONING`
-    - Represents additional conditioning information derived from the processing, affecting the final output.
+    - Conditioning information generated or modified by the node, used in further processing steps.
     - Python dtype: `str`
 - **`populated_text`**
     - Comfy dtype: `STRING`
-    - The text with placeholders replaced by actual values, reflecting the dynamic content generation based on the provided options.
+    - The final text output, with all specified wildcards replaced and processed according to the node's logic and parameters.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -107,7 +105,8 @@ class ImpactWildcardEncode:
 
     def doit(self, *args, **kwargs):
         populated = kwargs['populated_text']
-        model, clip, conditioning = impact.wildcards.process_with_loras(populated, kwargs['model'], kwargs['clip'])
-        return (model, clip, conditioning, populated)
+        processed = []
+        model, clip, conditioning = impact.wildcards.process_with_loras(wildcard_opt=populated, model=kwargs['model'], clip=kwargs['clip'], seed=kwargs['seed'], processed=processed)
+        return model, clip, conditioning, processed[0]
 
 ```

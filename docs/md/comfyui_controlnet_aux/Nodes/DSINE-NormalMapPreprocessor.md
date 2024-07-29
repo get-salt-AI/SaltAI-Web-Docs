@@ -1,9 +1,7 @@
 ---
 tags:
-- DepthMap
 - DepthMapEstimation
-- Image
-- NormalMap
+- Inpaint
 ---
 
 # DSINE Normal Map

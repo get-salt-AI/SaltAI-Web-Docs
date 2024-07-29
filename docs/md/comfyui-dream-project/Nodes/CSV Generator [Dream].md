@@ -1,7 +1,8 @@
 ---
 tags:
-- AnimationScheduling
 - Curve
+- VisualEffects
+- WavePatterns
 ---
 
 # ⌗ CSV Generator

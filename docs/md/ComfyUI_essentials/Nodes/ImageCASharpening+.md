@@ -1,30 +1,32 @@
 ---
 tags:
+- Blur
 - ImageEnhancement
+- ImageFilter
 - VisualEffects
 ---
 
 # 🔧 Image Contrast Adaptive Sharpening
 ## Documentation
 - Class name: `ImageCASharpening+`
-- Category: `essentials`
+- Category: `essentials/image processing`
 - Output node: `False`
 
-The ImageCASharpening+ node applies contrast adaptive sharpening to images, enhancing their clarity and detail by adjusting local contrast. This process is particularly useful for improving the visual quality of images by making them appear more crisp and defined without significantly altering their overall appearance.
+The ImageCASharpening+ node applies contrast adaptive sharpening to images, enhancing their clarity and detail without significantly altering the overall composition. This process adjusts the sharpness of an image based on its local contrast, making it particularly effective for images that may appear soft or slightly out of focus.
 ## Input types
 ### Required
 - **`image`**
-    - The 'image' parameter represents the input image to be processed. It is crucial for defining the visual content on which the contrast adaptive sharpening will be applied, directly influencing the outcome of the node's operation.
+    - The input image to be sharpened. This is the primary data upon which the contrast adaptive sharpening algorithm operates.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`amount`**
-    - The 'amount' parameter controls the intensity of the contrast adaptive sharpening applied to the image. It plays a key role in determining the strength of the effect, allowing for fine-tuning of the image's sharpness and detail enhancement.
+    - A floating-point value that determines the intensity of the sharpening effect. Higher values result in more pronounced sharpening, allowing for fine-tuning based on the specific needs of the image or application.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output 'image' parameter is the result of applying contrast adaptive sharpening to the input image. It showcases enhanced clarity and detail, reflecting the adjustments made to the local contrast.
+    - The output image after applying contrast adaptive sharpening. This image will have enhanced sharpness and detail, particularly in areas of varying contrast.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -47,11 +49,12 @@ class ImageCAS:
         }
 
     RETURN_TYPES = ("IMAGE",)
-    CATEGORY = "essentials"
+    CATEGORY = "essentials/image processing"
     FUNCTION = "execute"
 
     def execute(self, image, amount):
-        img = F.pad(p(image), pad=(1, 1, 1, 1)).cpu()
+        epsilon = 1e-5
+        img = F.pad(image.permute([0,3,1,2]), pad=(1, 1, 1, 1))
 
         a = img[..., :-2, :-2]
         b = img[..., :-2, 1:-1]
@@ -75,7 +78,7 @@ class ImageCAS:
         mn = mn + mn2
 
         # Computing local weight
-        inv_mx = torch.reciprocal(mx + EPSILON)
+        inv_mx = torch.reciprocal(mx + epsilon)
         amp = inv_mx * torch.minimum(mn, (2 - mx))
 
         # scaling
@@ -85,9 +88,9 @@ class ImageCAS:
 
         output = ((b + d + f + h)*w + e) * div
         output = output.clamp(0, 1)
-        #output = torch.nan_to_num(output)   # this seems the only way to ensure there are no NaNs
+        #output = torch.nan_to_num(output)
 
-        output = pb(output)
+        output = output.permute([0,2,3,1])
 
         return (output,)
 

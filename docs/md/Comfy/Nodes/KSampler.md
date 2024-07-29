@@ -1,5 +1,8 @@
 ---
 tags:
+- Image
+- Pipeline
+- SamplerScheduler
 - Sampling
 ---
 
@@ -65,7 +68,7 @@ The KSampler node is designed for advanced sampling operations within generative
     - [VAEDecodeTiled](../../Comfy/Nodes/VAEDecodeTiled.md)
     - Reroute
     - [LatentComposite](../../Comfy/Nodes/LatentComposite.md)
-    - NNLatentUpscale
+    - [NNLatentUpscale](../../ComfyUi_NNLatentUpscale/Nodes/NNLatentUpscale.md)
     - [LatentUpscale](../../Comfy/Nodes/LatentUpscale.md)
     - [KSampler](../../Comfy/Nodes/KSampler.md)
     - workflow/front

@@ -2,6 +2,7 @@
 tags:
 - DataTypeAgnostic
 - Debugging
+- Text
 ---
 
 # Show Any
@@ -10,17 +11,16 @@ tags:
 - Category: `EasyUse/Logic`
 - Output node: `True`
 
-The `easy showAnything` node is designed to display any type of input data as a string, making it versatile for debugging or logging purposes. It abstracts the complexity of data type handling by converting various data types into a human-readable string format.
+This node is designed to display any given input in a user-friendly manner, regardless of its original data type. It abstracts the complexity of data types, making it easier for users to visualize and understand the data presented within the ComfyUI environment.
 ## Input types
 ### Required
 ### Optional
 - **`anything`**
-    - This parameter accepts any type of input, allowing for a wide range of data types to be displayed as strings. It's crucial for the node's functionality to convert diverse inputs into a unified string output.
+    - Accepts any data type as input, allowing for a wide range of data to be displayed. This flexibility ensures that users can visualize virtually any piece of data without concern for compatibility issues.
     - Comfy dtype: `*`
     - Python dtype: `Any`
 ## Output types
-- **`ui`**
-    - The output is a user interface element that displays the converted string, providing a simple way to visualize any input data in text form.
+The node doesn't have output types
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -56,7 +56,11 @@ class showAnything:
                     values.append(str(val))
                     pass
 
-        if unique_id and extra_pnginfo and "workflow" in extra_pnginfo[0]:
+        if not extra_pnginfo:
+            print("Error: extra_pnginfo is empty")
+        elif (not isinstance(extra_pnginfo[0], dict) or "workflow" not in extra_pnginfo[0]):
+            print("Error: extra_pnginfo[0] is not a dict or missing 'workflow' key")
+        else:
             workflow = extra_pnginfo[0]["workflow"]
             node = next((x for x in workflow["nodes"] if str(x["id"]) == unique_id[0]), None)
             if node:

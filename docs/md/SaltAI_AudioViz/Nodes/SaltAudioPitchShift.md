@@ -6,24 +6,24 @@ tags:
 # Audio Pitch Shift
 ## Documentation
 - Class name: `SaltAudioPitchShift`
-- Category: `SALT/Audio/Effect`
+- Category: `SALT/AudioViz/Audio/Effect`
 - Output node: `False`
 
-This node applies a pitch shift to an audio input by a specified number of semitones, allowing for audio manipulation that can adjust the perceived pitch of the sound without altering the playback speed.
+This node applies a pitch shift to an audio input by a specified number of semitones, allowing for audio manipulation that can adjust the pitch without altering the playback speed.
 ## Input types
 ### Required
 - **`audio`**
-    - The audio input to be pitch-shifted. It is the primary content that undergoes the pitch shift process.
+    - The raw audio data to be pitch-shifted. This input is crucial for determining the source audio material on which the pitch shift effect will be applied.
     - Comfy dtype: `AUDIO`
     - Python dtype: `bytes`
 - **`semitones`**
-    - The number of semitones to shift the pitch of the audio input. Positive values raise the pitch, while negative values lower it.
+    - The number of semitones by which the audio's pitch is to be shifted. This parameter directly influences the pitch alteration, with positive values raising the pitch and negative values lowering it.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`audio`**
     - Comfy dtype: `AUDIO`
-    - The output audio after applying the pitch shift, with its pitch adjusted by the specified number of semitones.
+    - The pitch-shifted audio data, resulting from the application of the specified semitone shift to the input audio.
     - Python dtype: `bytes`
 ## Usage tips
 - Infra type: `CPU`
@@ -45,7 +45,7 @@ class SaltAudioPitchShift:
     RETURN_TYPES = ("AUDIO",)
     RETURN_NAMES = ("audio",)
     FUNCTION = "shift_pitch"
-    CATEGORY = "SALT/Audio/Effect"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Audio/Effect"
 
     def shift_pitch(cls, audio, semitones):
         TEMP = tempfile.gettempdir()
@@ -66,7 +66,7 @@ class SaltAudioPitchShift:
         try:
             subprocess.run(command, check=True)
         except subprocess.CalledProcessError as e:
-            print(f"Error during pitch shifting: {e}")
+            logger.error(f"Error during pitch shifting: {e}")
             os.remove(temp_input_path)
             if os.path.exists(temp_output_path):
                 os.remove(temp_output_path)

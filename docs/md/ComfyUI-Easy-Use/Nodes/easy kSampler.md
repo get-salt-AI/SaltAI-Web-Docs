@@ -10,38 +10,38 @@ tags:
 - Category: `EasyUse/Sampler`
 - Output node: `True`
 
-The easy kSampler node is designed to facilitate complex sampling processes by abstracting the intricacies of various sampling and scheduling algorithms. It integrates a range of samplers and schedulers, allowing for flexible and advanced image generation and manipulation through conditioning, denoising, and latent space exploration.
+The `easy kSampler` node simplifies the sampling process in generative models by providing a streamlined interface for generating images. It abstracts complex sampling configurations and parameters, offering users an easier way to produce high-quality image outputs.
 ## Input types
 ### Required
 - **`pipe`**
-    - Specifies the pipeline configuration for the sampling process, central to orchestrating the flow and execution of tasks.
+    - Specifies the pipeline configuration for the sampling process, determining how input data is processed and how outputs are generated.
     - Comfy dtype: `PIPE_LINE`
     - Python dtype: `str`
 - **`image_output`**
-    - Determines the output format and characteristics of the generated image, influencing the visual quality and aspects of the final product.
+    - Controls the output behavior of the sampling process, including whether to preview, save, or send the generated images.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`link_id`**
-    - A unique identifier used to link the sampling process with other processes or outputs, facilitating integration and traceability.
+    - A unique identifier for the link in the pipeline, used to manage and track the flow of data.
     - Comfy dtype: `INT`
-    - Python dtype: `str`
+    - Python dtype: `int`
 - **`save_prefix`**
-    - Defines a prefix for saving the generated images, aiding in the organization and retrieval of output files.
+    - Defines a prefix for saved image files, allowing for organized storage and easy retrieval.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ### Optional
 - **`model`**
-    - Specifies the model to be used for sampling, central to determining the behavior and output of the sampling process.
+    - Specifies the generative model used for sampling. This parameter is optional, allowing for flexibility in model selection.
     - Comfy dtype: `MODEL`
     - Python dtype: `str`
 ## Output types
 - **`pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - The output pipeline configuration after the sampling process, reflecting any changes or adjustments made during execution.
+    - Represents the updated pipeline configuration after the sampling process, reflecting any changes or adjustments made.
     - Python dtype: `str`
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The generated image resulting from the sampling process, ready for further use or analysis.
+    - The generated image as a result of the sampling process, which can be previewed, saved, or sent based on the specified output behavior.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
@@ -50,10 +50,7 @@ The easy kSampler node is designed to facilitate complex sampling processes by a
 
 ## Source code
 ```python
-class samplerSimple:
-
-    def __init__(self):
-        pass
+class samplerSimple(samplerFull):
 
     @classmethod
     def INPUT_TYPES(cls):
@@ -76,12 +73,12 @@ class samplerSimple:
     RETURN_TYPES = ("PIPE_LINE", "IMAGE",)
     RETURN_NAMES = ("pipe", "image",)
     OUTPUT_NODE = True
-    FUNCTION = "run"
+    FUNCTION = "simple"
     CATEGORY = "EasyUse/Sampler"
 
-    def run(self, pipe, image_output, link_id, save_prefix, model=None, tile_size=None, prompt=None, extra_pnginfo=None, my_unique_id=None, force_full_denoise=False, disable_noise=False):
+    def simple(self, pipe, image_output, link_id, save_prefix, model=None, tile_size=None, prompt=None, extra_pnginfo=None, my_unique_id=None, force_full_denoise=False, disable_noise=False):
 
-        return samplerFull().run(pipe, None, None, None, None, None, image_output, link_id, save_prefix,
+        return super().run(pipe, None, None, None, None, None, image_output, link_id, save_prefix,
                                  None, model, None, None, None, None, None, None,
                                  None, prompt, extra_pnginfo, my_unique_id, force_full_denoise, disable_noise)
 

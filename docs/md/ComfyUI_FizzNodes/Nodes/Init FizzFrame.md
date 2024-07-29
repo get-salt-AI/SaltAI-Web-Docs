@@ -1,7 +1,9 @@
 ---
 tags:
-- AnimationScheduling
-- Frame
+- Counting
+- Curve
+- Interpolation
+- WavePatterns
 ---
 
 # Init Node Frame 📅🅕🅝

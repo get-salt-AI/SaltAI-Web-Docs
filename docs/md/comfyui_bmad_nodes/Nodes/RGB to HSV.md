@@ -1,7 +1,6 @@
 ---
 tags:
 - Color
-- HSVColorSpace
 ---
 
 # RGB to HSV
@@ -10,17 +9,17 @@ tags:
 - Category: `Bmad/CV/Color A.`
 - Output node: `False`
 
-This node converts RGB color values to HSV color space, enabling a different representation of colors that separates color hue, saturation, and value (brightness).
+The node converts RGB color values to HSV color space, facilitating color transformations and analysis by separating color hue, saturation, and value. This conversion is essential for tasks that require color space manipulation or analysis, such as image processing and computer vision applications.
 ## Input types
 ### Required
 - **`rgb_color`**
-    - The RGB color to be converted to HSV. This input is crucial as it determines the color that will undergo the transformation from RGB to HSV color space.
+    - The RGB color input that needs to be converted to HSV. This parameter is crucial for the conversion process, as it represents the color in RGB format that will be transformed into its HSV equivalent.
     - Comfy dtype: `COLOR`
     - Python dtype: `Tuple[int, int, int]`
 ## Output types
 - **`hsv_color`**
     - Comfy dtype: `HSV_COLOR`
-    - The resulting HSV color representation of the input RGB color.
+    - The output HSV color, represented as a tuple of hue, saturation, and value. This conversion is useful for applications that rely on the HSV color space for more intuitive handling of colors.
     - Python dtype: `Tuple[int, int, int]`
 ## Usage tips
 - Infra type: `CPU`
@@ -31,14 +30,14 @@ This node converts RGB color values to HSV color space, enabling a different rep
 ```python
 class ColorToHSVColor:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {
             "rgb_color": ("COLOR",)
         }}
 
     RETURN_TYPES = ("HSV_COLOR",)
     FUNCTION = "convert"
-    CATEGORY = "Bmad/CV/Color A."
+    CATEGORY = f"{cv_category_path}/Color A."
 
     def convert(self, rgb_color):
         from colorsys import rgb_to_hsv

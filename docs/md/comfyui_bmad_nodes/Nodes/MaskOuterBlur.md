@@ -1,6 +1,7 @@
 ---
 tags:
 - Blur
+- ImageTransformation
 - VisualEffects
 ---
 
@@ -10,32 +11,32 @@ tags:
 - Category: `Bmad/CV/Misc`
 - Output node: `False`
 
-The MaskOuterBlur node is designed for advanced image processing, specifically focusing on applying a blur effect to the outer regions of a mask within an image. It leverages both CPU and GPU capabilities for efficient execution, accommodating various kernel sizes and shapes to achieve the desired blurring effect. This node is particularly useful in scenarios where selective blurring is required to enhance the visual quality of images or to obscure certain parts for privacy or aesthetic reasons.
+The MaskOuterBlur node is designed to selectively apply a blur effect to the outer regions of an image, utilizing a mask to distinguish between areas to be blurred and those to remain sharp. This technique is aimed at enhancing focus on specific parts of an image or creating a depth-of-field effect, making it particularly useful for image editing and post-processing applications.
 ## Input types
 ### Required
 - **`src`**
-    - The source image to be processed. It serves as the base for applying the mask and subsequent blurring effect, playing a crucial role in the overall transformation.
+    - The source image to which the blur effect will be applied. It serves as the primary input for determining the areas to be blurred based on the mask.
     - Comfy dtype: `IMAGE`
     - Python dtype: `numpy.ndarray`
 - **`mask`**
-    - The mask that specifies the regions within the image to be blurred. This mask determines the areas where the blur effect will be applied, allowing for selective blurring of the image.
+    - The mask used to differentiate between the areas of the image to be blurred and those to remain sharp. It plays a crucial role in guiding the selective blurring process.
     - Comfy dtype: `IMAGE`
     - Python dtype: `numpy.ndarray`
 - **`kernel_size`**
-    - Specifies the size of the kernel used for the blurring operation. The kernel size affects the intensity and spread of the blur effect.
+    - Specifies the size of the blur kernel. A larger kernel size results in a more pronounced blur effect.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`paste_src`**
-    - An optional parameter that allows for the original source image to be pasted back onto the blurred image, enabling a combination of blurred and sharp regions within the same image.
+    - A boolean flag indicating whether the original source image should be pasted over the blurred areas, preserving detail in the non-blurred regions.
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `numpy.ndarray`
+    - Python dtype: `bool`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The resulting image after applying the blurring effect to the specified regions. This image combines blurred and potentially sharp regions, depending on the mask and paste_src parameters.
+    - The output image after applying the selective blur effect, showcasing the enhanced focus or depth-of-field effect.
     - Python dtype: `numpy.ndarray`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -43,7 +44,7 @@ The MaskOuterBlur node is designed for advanced image processing, specifically f
 ```python
 class MaskOuterBlur:  # great, another "funny" name; what would you call this?
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "src": ("IMAGE",),
@@ -55,7 +56,7 @@ class MaskOuterBlur:  # great, another "funny" name; what would you call this?
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "compute"
-    CATEGORY = "Bmad/CV/Misc"
+    CATEGORY = f"{cv_category_path}/Misc"
 
     def compute(self, src, mask, kernel_size, paste_src):
         from comfy.model_management import is_nvidia
@@ -101,12 +102,12 @@ class MaskOuterBlur:  # great, another "funny" name; what would you call this?
             # setup grid/block sizes
             gpu = get_current_device()
             w, h = mask.shape[1], mask.shape[0]
-            blockDimx, blockDimy = np.floor(np.array([w / h, h / w]) * gpu.MAX_THREADS_PER_BLOCK ** (1 / 2)).astype(
-                np.int32)
-            gridx, gridy = np.ceil(np.array([w / blockDimx, h / blockDimy])).astype(np.int32)
+            block_dim_x, block_dim_y = np.floor(
+                np.array([w / h, h / w]) * gpu.MAX_THREADS_PER_BLOCK ** (1 / 2)).astype(np.int32)
+            gridx, gridy = np.ceil(np.array([w / block_dim_x, h / block_dim_y])).astype(np.int32)
 
             # run on gpu, and then fetch result as numpy array
-            blur_cuda((gridx, gridy), (blockDimx, blockDimy),
+            blur_cuda((gridx, gridy), (block_dim_x, block_dim_y),
                       (image_cupy, mask_cupy, out, kernel_gpu, kernel_size, mask_extended.shape[1],
                        mask_extended.shape[0]))
             result_float32 = cp.asnumpy(out)

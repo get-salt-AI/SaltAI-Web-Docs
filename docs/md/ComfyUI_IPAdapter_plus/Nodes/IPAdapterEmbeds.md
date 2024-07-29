@@ -1,6 +1,7 @@
 ---
 tags:
 - IPAdapter
+- RegionalImageProcessing
 ---
 
 # IPAdapter Embeds
@@ -9,58 +10,58 @@ tags:
 - Category: `ipadapter/embeds`
 - Output node: `False`
 
-The IPAdapterEmbeds node is designed to handle embedding operations within the IPAdapter framework, focusing on the manipulation and processing of embeddings to enhance or modify the input data for further use in image processing or generation tasks.
+This node is designed for embedding generation within the IPAdapter framework. It focuses on creating embeddings from given inputs, which can then be utilized in various image processing and enhancement tasks, emphasizing the adaptability and enhancement of images through embedding manipulation.
 ## Input types
 ### Required
 - **`model`**
-    - The 'model' parameter specifies the model to be used in conjunction with the IPAdapter, playing a pivotal role in how embeddings are applied or generated.
+    - unknown
     - Comfy dtype: `MODEL`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `unknown`
 - **`ipadapter`**
-    - The 'ipadapter' parameter indicates the specific IPAdapter instance to be used, crucial for determining the embedding manipulation or application strategy.
+    - Specifies the IPAdapter to be used for embedding generation, indicating the specific adapter configuration.
     - Comfy dtype: `IPADAPTER`
-    - Python dtype: `IPAdapterInstance`
+    - Python dtype: `str`
 - **`pos_embed`**
-    - The 'pos_embed' parameter represents the positive embeddings to be processed, serving as a key input for operations aiming to enhance or modify image generation.
+    - unknown
     - Comfy dtype: `EMBEDS`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `unknown`
 - **`weight`**
-    - The 'weight' parameter allows for the adjustment of the influence of embeddings on the output, offering a means to fine-tune the generation process.
+    - A floating-point value that adjusts the influence of the embedding in the overall processing, allowing for fine-tuning of the embedding's impact.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`weight_type`**
-    - The 'weight_type' parameter specifies the method of weighting to be applied to embeddings, affecting the overall impact on the generated output.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `WeightType`
+    - Python dtype: `unknown`
 - **`start_at`**
-    - The 'start_at' parameter defines the starting point for embedding application, enabling precise control over the integration of embeddings into the generation process.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 - **`end_at`**
-    - The 'end_at' parameter determines the endpoint for embedding application, allowing for targeted modifications to the generated output.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 - **`embeds_scaling`**
-    - The 'embeds_scaling' parameter outlines the scaling strategy for embeddings, influencing how embeddings are adjusted and applied.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `EmbedsScalingType`
+    - Python dtype: `unknown`
 ### Optional
 - **`neg_embed`**
-    - The 'neg_embed' parameter represents the negative embeddings, providing a means to incorporate contrasting elements into the generation process.
+    - unknown
     - Comfy dtype: `EMBEDS`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `unknown`
 - **`attn_mask`**
-    - The 'attn_mask' parameter allows for the specification of an attention mask, offering additional control over the focus of embedding application.
+    - unknown
     - Comfy dtype: `MASK`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `unknown`
 - **`clip_vision`**
-    - The 'clip_vision' parameter indicates whether CLIP vision embeddings are to be used, potentially enhancing the relevance of generated outputs to textual descriptions.
+    - An optional parameter that allows for the inclusion of CLIP vision features, enhancing the embedding's adaptability to various contexts.
     - Comfy dtype: `CLIP_VISION`
-    - Python dtype: `CLIPVisionInstance`
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The output 'model' represents the modified or enhanced model after embedding operations, ready for further use in image generation tasks.
+    - The output model enhanced with generated embeddings, showcasing the adaptability and enhancement capabilities of the IPAdapter framework.
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `CPU`
@@ -70,6 +71,9 @@ The IPAdapterEmbeds node is designed to handle embedding operations within the I
 ## Source code
 ```python
 class IPAdapterEmbeds:
+    def __init__(self):
+        self.unfold_batch = False
+
     @classmethod
     def INPUT_TYPES(s):
         return {
@@ -104,6 +108,7 @@ class IPAdapterEmbeds:
             "end_at": end_at,
             "attn_mask": attn_mask,
             "embeds_scaling": embeds_scaling,
+            "unfold_batch": self.unfold_batch,
         }
 
         if 'ipadapter' in ipadapter:

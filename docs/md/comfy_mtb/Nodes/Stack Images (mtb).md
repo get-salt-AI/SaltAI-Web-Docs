@@ -1,7 +1,8 @@
 ---
 tags:
-- Image
-- ImageTransformation
+- Blur
+- ImageBlend
+- VisualEffects
 ---
 
 # Stack Images (mtb)
@@ -10,17 +11,17 @@ tags:
 - Category: `mtb/image utils`
 - Output node: `False`
 
-The Stack Images node is designed to combine multiple input images into a single image by stacking them either horizontally or vertically, based on the specified orientation.
+This node is designed to stack multiple input images either vertically or horizontally, based on the specified orientation. It ensures that all images are normalized to the same size and RGBA format before stacking, allowing for consistent and seamless image composition.
 ## Input types
 ### Required
 - **`vertical`**
-    - Determines the orientation of the stacking process. If true, images are stacked vertically; otherwise, they are stacked horizontally.
+    - Determines the orientation of the stacking process. When true, images are stacked vertically, requiring uniform width across all images. When false, images are stacked horizontally, necessitating uniform height.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is a single image that results from stacking the input images in the specified orientation.
+    - The output is a single image tensor that represents the stacked composition of the input images, arranged according to the specified orientation.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -52,6 +53,11 @@ class MTB_StackImages:
 
         normalized_tensors = [
             self.normalize_to_rgba(tensor) for tensor in tensors
+        ]
+        max_batch_size = max(tensor.shape[0] for tensor in normalized_tensors)
+        normalized_tensors = [
+            self.duplicate_frames(tensor, max_batch_size)
+            for tensor in normalized_tensors
         ]
 
         if vertical:
@@ -92,5 +98,20 @@ class MTB_StackImages:
                 "Tensor has an unsupported number of channels: "
                 "expected 3 (RGB) or 4 (RGBA)."
             )
+
+    def duplicate_frames(self, tensor, target_batch_size):
+        """Duplicate frames in tensor to match the target batch size."""
+        current_batch_size = tensor.shape[0]
+        if current_batch_size < target_batch_size:
+            duplication_factors: int = target_batch_size // current_batch_size
+            duplicated_tensor = tensor.repeat(duplication_factors, 1, 1, 1)
+            remaining_frames = target_batch_size % current_batch_size
+            if remaining_frames > 0:
+                duplicated_tensor = torch.cat(
+                    (duplicated_tensor, tensor[:remaining_frames]), dim=0
+                )
+            return duplicated_tensor
+        else:
+            return tensor
 
 ```

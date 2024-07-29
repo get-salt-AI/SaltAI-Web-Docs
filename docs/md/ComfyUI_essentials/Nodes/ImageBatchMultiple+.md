@@ -3,30 +3,32 @@ tags:
 - Batch
 - Image
 - ImageBatch
+- ImageDuplication
+- Tiled
 ---
 
 # 🔧 Images Batch Multiple
 ## Documentation
 - Class name: `ImageBatchMultiple+`
-- Category: `essentials`
+- Category: `essentials/image batch`
 - Output node: `False`
 
-The ImageBatchMultiple+ node is designed to combine multiple images into a single batch, facilitating operations that require batch processing of images. This node abstracts the complexity of handling multiple image formats and sizes, ensuring they are compatible for batch operations.
+The node 'ImageBatchMultiple+' is designed to handle multiple images simultaneously, applying operations that involve combining, transforming, or otherwise processing these images in a batch-oriented manner. It abstracts the complexity of dealing with image dimensions and formats, providing a streamlined approach to batch image manipulation.
 ## Input types
 ### Required
 - **`image_i`**
-    - Represents an image to be included in the batch. Its format and size are adjusted as necessary to ensure compatibility with other images in the batch.
+    - Specifies the input images to be processed. It is central to the node's operation, as it determines the images that will undergo manipulation.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`method`**
-    - Specifies the method used for combining images into a batch, ensuring uniformity and compatibility among all images.
+    - Specifies the approach for resizing or manipulating the images, such as stretching or cropping, which affects the final appearance.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is a batch of images, combined from the input images. This batch can be used for further image processing or analysis tasks.
+    - The manipulated images after processing according to the specified parameters.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -41,9 +43,9 @@ class ImageBatchMultiple:
         return {
             "required": {
                 "image_1": ("IMAGE",),
-                "image_2": ("IMAGE",),
                 "method": (["nearest-exact", "bilinear", "area", "bicubic", "lanczos"], { "default": "lanczos" }),
             }, "optional": {
+                "image_2": ("IMAGE",),
                 "image_3": ("IMAGE",),
                 "image_4": ("IMAGE",),
                 "image_5": ("IMAGE",),
@@ -51,13 +53,15 @@ class ImageBatchMultiple:
         }
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "execute"
-    CATEGORY = "essentials"
+    CATEGORY = "essentials/image batch"
 
-    def execute(self, image_1, image_2, method, image_3=None, image_4=None, image_5=None):
-        if image_1.shape[1:] != image_2.shape[1:]:
-            image_2 = comfy.utils.common_upscale(image_2.movedim(-1,1), image_1.shape[2], image_1.shape[1], method, "center").movedim(1,-1)
-        out = torch.cat((image_1, image_2), dim=0)
+    def execute(self, image_1, method, image_2=None, image_3=None, image_4=None, image_5=None):
+        out = image_1
 
+        if image_2 is not None:
+            if image_1.shape[1:] != image_2.shape[1:]:
+                image_2 = comfy.utils.common_upscale(image_2.movedim(-1,1), image_1.shape[2], image_1.shape[1], method, "center").movedim(1,-1)
+            out = torch.cat((image_1, image_2), dim=0)
         if image_3 is not None:
             if image_1.shape[1:] != image_3.shape[1:]:
                 image_3 = comfy.utils.common_upscale(image_3.movedim(-1,1), image_1.shape[2], image_1.shape[1], method, "center").movedim(1,-1)
@@ -70,7 +74,7 @@ class ImageBatchMultiple:
             if image_1.shape[1:] != image_5.shape[1:]:
                 image_5 = comfy.utils.common_upscale(image_5.movedim(-1,1), image_1.shape[2], image_1.shape[1], method, "center").movedim(1,-1)
             out = torch.cat((out, image_5), dim=0)
-        
+
         return (out,)
 
 ```

@@ -1,6 +1,5 @@
 ---
 tags:
-- SamplerScheduler
 - Sampling
 ---
 
@@ -10,29 +9,29 @@ tags:
 - Category: `Efficiency Nodes/XY Inputs`
 - Output node: `False`
 
-This node is designed to process and validate combinations of samplers and schedulers for use in generative models. It ensures that the provided sampler and scheduler names are valid and compatible, potentially adjusting them based on predefined constraints to optimize the sampling process.
+This node is designed to process and validate combinations of samplers and schedulers for use in sampling operations. It ensures that the provided sampler and scheduler names are valid within the system's defined bounds, potentially adjusting or providing feedback if invalid options are encountered. The node's functionality is crucial for configuring and optimizing sampling processes, facilitating the selection of appropriate sampling and scheduling strategies based on user input or system requirements.
 ## Input types
 ### Required
 - **`target_parameter`**
-    - Specifies the target parameter for the sampling or scheduling process, indicating the specific aspect of the generative model's operation to be optimized or adjusted.
+    - Specifies the target parameter for optimization, such as 'sampler', 'scheduler', or a combination of both. It determines the focus of the node's processing and directly influences the selection and validation process, guiding the optimization of sampling operations.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`input_count`**
-    - Indicates the number of inputs to be processed, reflecting the volume of data or parameters the node will handle in optimizing the sampling or scheduling.
+    - Defines the number of inputs to be considered for the target parameter. This count affects the node's execution by determining how many sampler or scheduler options are evaluated, influencing the comprehensiveness of the validation process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`sampler_i`**
-    - Specifies the index of the sampler to be used, playing a crucial role in determining the sampling strategy and its compatibility with the scheduler.
+    - Represents one of potentially multiple sampler names to be validated. The index 'i' varies, indicating each sampler's position in the sequence for evaluation. This parameter is crucial for assessing the suitability of various samplers within the specified sampling strategy.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `int`
+    - Python dtype: `str`
 - **`scheduler_i`**
-    - Defines the index of the scheduler to be employed alongside the sampler, adjusting the sampling parameters dynamically for efficient generation.
+    - Denotes one of potentially multiple scheduler names to be validated, with 'i' indicating the scheduler's position in the sequence. It plays a key role in evaluating the compatibility and efficiency of different scheduling algorithms for the sampling process.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `int`
+    - Python dtype: `str`
 ## Output types
 - **`X or Y`**
     - Comfy dtype: `XY`
-    - The result of processing, which could be either an optimized parameter value (X) or a decision metric (Y), ensuring the sampler and scheduler are effectively paired.
+    - This output represents the result of the validation process, either confirming the suitability of a sampler or scheduler ('X') or providing an alternative recommendation ('Y'). It ensures that the chosen strategies are optimal for the intended sampling operation.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -47,7 +46,7 @@ class TSC_XYplot_Sampler_Scheduler:
     @classmethod
     def INPUT_TYPES(cls):
         samplers = ["None"] + comfy.samplers.KSampler.SAMPLERS
-        schedulers = ["None"] + comfy.samplers.KSampler.SCHEDULERS
+        schedulers = ["None"] + SCHEDULERS
         inputs = {
             "required": {
                 "target_parameter": (cls.parameters,),

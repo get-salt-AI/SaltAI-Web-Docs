@@ -11,17 +11,17 @@ tags:
 - Category: `SALT/Language Toolkit/Readers`
 - Output node: `False`
 
-This node is designed for advanced web content extraction, leveraging the Trafilatura library to efficiently parse and retrieve documents from a list of URLs. It focuses on validating URLs and extracting web content into a structured document format, suitable for further processing or analysis.
+The LLMTrafilaturaWebReaderAdv node is designed to extract content from web pages provided as a list of URLs. It validates the URLs and uses the Trafilatura library to efficiently scrape and process web content, returning it in a structured document format.
 ## Input types
 ### Required
 - **`urls`**
-    - A list of URLs from which the node will attempt to extract web content. This parameter is essential for defining the sources of information the node will process.
+    - A list of URLs from which the content is to be extracted. This parameter is essential for the node's operation as it defines the sources of the web content to be processed.
     - Comfy dtype: `LIST`
     - Python dtype: `List[str]`
 ## Output types
 - **`documents`**
     - Comfy dtype: `DOCUMENT`
-    - The extracted web content, structured as documents. This output is crucial for users needing processed and accessible information from the provided URLs.
+    - The structured content extracted from the provided web pages, returned as documents.
     - Python dtype: `Tuple[List[Dict[str, Any]],]`
 ## Usage tips
 - Infra type: `CPU`
@@ -53,11 +53,11 @@ class LLMTrafilaturaWebReaderAdv:
         valid_urls = []
         for url in urls:
             if not valid_url(url):
-                print("Skipping invalid URL", url)
+                logger.warning("Skipping invalid URL", url)
                 continue
             valid_urls.append(url)
 
-        print("Valided URLs:", valid_urls)
+        logger.info("Valided URLs:", valid_urls)
 
         documents = TrafilaturaWebReader().load_data(valid_urls)
         return (documents,)

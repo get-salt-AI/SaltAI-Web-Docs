@@ -1,8 +1,6 @@
 ---
 tags:
-- ImageScaling
 - ImageUpscaling
-- Upscale
 ---
 
 # High Resolution v2

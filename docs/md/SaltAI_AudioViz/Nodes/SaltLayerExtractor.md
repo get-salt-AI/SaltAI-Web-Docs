@@ -1,24 +1,25 @@
 ---
 tags:
+- AnimationScheduling
 - Scheduling
-- VisualEffects
+- SigmaScheduling
 ---
 
 # Parallax Motion Camera Scheduler Extractor
 ## Documentation
 - Class name: `SaltLayerExtractor`
-- Category: `SALT/Scheduling/Parallax Motion`
+- Category: `SALT/AudioViz/Scheduling/Parallax Motion`
 - Output node: `False`
 
-The SaltLayerExtractor node is designed for extracting specific layer data from a set of animation layers, focusing on parallax motion scheduling. It processes input layers to generate schedules for zoom, x, and y values, facilitating the creation of dynamic, multi-dimensional animations.
+The SaltLayerExtractor node is designed for extracting specific layer data from a sequence of animation layers based on a given index. It focuses on isolating zoom, x, and y values for a particular layer, facilitating the creation of detailed animation schedules for parallax motion effects.
 ## Input types
 ### Required
 - **`float_layers`**
-    - A list of animation layers, where each layer contains frame data for zoom, x, and y values. This input is crucial for determining the specific layer's data to be extracted and scheduled.
+    - A list of animation layers, where each layer is represented as a sequence of frames with float values for zoom, x, and y positions. This input is crucial for determining the specific layer data to extract.
     - Comfy dtype: `LIST`
     - Python dtype: `List[List[float]]`
 - **`layer_index`**
-    - An index specifying which layer's data to extract from the provided list of animation layers. This allows for targeted extraction of animation data, enabling precise control over the scheduling of parallax motion.
+    - An integer specifying the index of the layer to extract from the list of animation layers. This determines which layer's data is processed and extracted.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
@@ -28,11 +29,11 @@ The SaltLayerExtractor node is designed for extracting specific layer data from 
     - Python dtype: `unknown`
 - **`x_schedule_list`**
     - Comfy dtype: `LIST`
-    - A list of x-coordinate values extracted from the specified animation layer, used for scheduling horizontal movement in parallax motion.
+    - A list of x position values extracted from the specified layer, representing the horizontal movement schedule for animation.
     - Python dtype: `List[float]`
 - **`y_schedule_list`**
     - Comfy dtype: `LIST`
-    - A list of y-coordinate values extracted from the specified animation layer, used for scheduling vertical movement in parallax motion.
+    - A list of y position values extracted from the specified layer, representing the vertical movement schedule for animation.
     - Python dtype: `List[float]`
 ## Usage tips
 - Infra type: `CPU`
@@ -55,7 +56,7 @@ class SaltLayerExtractor:
     RETURN_TYPES = ("LIST", "LIST", "LIST")
     RETURN_NAMES = ("zoom_schedule_lsit", "x_schedule_list", "y_schedule_list")
     FUNCTION = "extract"
-    CATEGORY = "SALT/Scheduling/Parallax Motion"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling/Parallax Motion"
 
     def extract(self, **kwargs):
         animation_data = kwargs.get("float_layers", [])
@@ -69,7 +70,7 @@ class SaltLayerExtractor:
         x_values = [frame[1] for frame in selected_layer_data]
         y_values = [frame[2] for frame in selected_layer_data]
 
-        print("\033[1m\033[94mOPAC Schedule Curves:\033[0m")
+        logger.info("\033[1m\033[94mOPAC Schedule Curves:\033[0m")
         log_curve("Zoom Values", zoom_values)
         log_curve("X Values", x_values)
         log_curve("Y Values", y_values)

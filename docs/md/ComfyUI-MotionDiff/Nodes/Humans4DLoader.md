@@ -1,6 +1,6 @@
 ---
 tags:
-- Face
+- FaceRestoration
 ---
 
 # Human4D Loader

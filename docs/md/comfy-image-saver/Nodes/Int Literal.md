@@ -1,3 +1,8 @@
+---
+tags:
+- NumberRangeGeneration
+---
+
 # Int Literal
 ## Documentation
 - Class name: `Int Literal`

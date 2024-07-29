@@ -1,20 +1,20 @@
 # ∞ Agent As Tool
 ## Documentation
 - Class name: `ConvertAgentAsTool`
-- Category: `SALT/Language Toolkit/Agents`
+- Category: `SALT/Language Toolkit/Agents/Tools`
 - Output node: `False`
 
-This node is designed to transform conversational agents into tools that can be utilized within a broader system. It encapsulates the functionality of an agent, allowing it to be invoked as a callable tool with a specific interface, thereby extending the agent's capabilities to new contexts.
+This node is designed to transform an agent into a tool that can be utilized within a broader system. It encapsulates the functionality of an agent, allowing it to be invoked as a callable tool for processing messages.
 ## Input types
 ### Required
 - **`agent`**
-    - The conversational agent to be transformed into a tool. This agent's conversational abilities are repurposed to function within a tool interface, enabling its integration into larger workflows.
+    - The agent parameter represents the conversational agent to be converted into a tool. This conversion enables the agent's capabilities to be accessed in a tool-like manner, facilitating its integration into larger workflows or systems.
     - Comfy dtype: `AGENT`
     - Python dtype: `ConversableAgent`
 ## Output types
 - **`tool`**
     - Comfy dtype: `TOOL`
-    - The transformed conversational agent, now structured as a callable tool. This tool retains the agent's conversational capabilities, repackaged for direct invocation within system workflows.
+    - The output is a tool encapsulating the agent's functionality, enabling it to be called with messages and return responses. This allows the agent's conversational capabilities to be utilized in a broader context.
     - Python dtype: `Dict[str, Any]`
 ## Usage tips
 - Infra type: `CPU`
@@ -36,7 +36,7 @@ class ConvertAgentAsTool:
     RETURN_NAMES = ("tool",)
 
     FUNCTION = "create_tool"
-    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Agents"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Agents/Tools"
 
     def create_tool(self, agent):
         agent = clone_conversable_agent(agent)

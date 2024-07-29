@@ -1,6 +1,6 @@
 ---
 tags:
-- VisualEffects
+- Blur
 ---
 
 # Filter Z (mtb)

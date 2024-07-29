@@ -1,7 +1,7 @@
 ---
 tags:
 - Concatenate
-- PromptComposer
+- Text
 ---
 
 # Prompt Composer Merge

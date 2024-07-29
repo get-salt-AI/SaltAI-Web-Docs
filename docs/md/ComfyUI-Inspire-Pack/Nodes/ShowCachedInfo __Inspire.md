@@ -1,6 +1,9 @@
 ---
 tags:
-- Cache
+- Agents
+- BackendCache
+- LLMImage
+- LlamaIndex
 ---
 
 # Show Cached Info (Inspire)

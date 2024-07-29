@@ -1,38 +1,41 @@
 ---
 tags:
+- AnimationScheduling
 - Scheduling
+- SigmaScheduling
+- VisualEffects
 ---
 
 # Schedule Random Values
 ## Documentation
 - Class name: `SaltScheduleRandomValues`
-- Category: `SALT/Scheduling`
+- Category: `SALT/AudioViz/Scheduling`
 - Output node: `False`
 
-This node is designed to generate a list of random values within a specified range, optionally forcing the values to be integers. It's useful for creating randomized schedules or sequences where variability is desired.
+This node is designed to generate a list of random values within a specified range. It allows for the creation of random schedules by specifying a count of values to generate, along with minimum and maximum values. An option to force the generated values to be integers is also provided, enhancing its flexibility for various scheduling and sequencing tasks.
 ## Input types
 ### Required
 - **`count`**
-    - Specifies the number of random values to generate, dictating the length of the output list.
+    - Specifies the number of random values to generate. It determines the length of the resulting schedule list.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`min_value`**
-    - Defines the minimum value that can be generated, setting the lower bound of the random range.
+    - The minimum value that can be generated. This sets the lower bound for the random values in the schedule list.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`max_value`**
-    - Sets the upper limit for the random values, establishing the maximum possible value in the range.
+    - The maximum value that can be generated. This sets the upper bound for the random values in the schedule list.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`force_integer`**
-    - Determines whether the generated random values should be integers, adding a layer of control over the output data type.
+    - A boolean flag that, when set to true, forces all generated values to be integers, providing control over the numerical type of the schedule list.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`schedule_list`**
     - Comfy dtype: `LIST`
-    - The list of generated random values, adhering to the specified constraints and data type.
+    - The list of randomly generated values, adhering to the specified minimum and maximum values and count. It can consist of either floating-point numbers or integers, depending on the 'force_integer' flag.
     - Python dtype: `List[float] or List[int]`
 ## Usage tips
 - Infra type: `CPU`
@@ -58,7 +61,7 @@ class SaltScheduleRandomValues:
     RETURN_TYPES = ("LIST",)
     RETURN_NAMES = ("schedule_list", )
     FUNCTION = "generate_random"
-    CATEGORY = "SALT/Scheduling"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling"
 
     def generate_random(self, count, min_value, max_value, force_integer=False):
         if min_value >= max_value:

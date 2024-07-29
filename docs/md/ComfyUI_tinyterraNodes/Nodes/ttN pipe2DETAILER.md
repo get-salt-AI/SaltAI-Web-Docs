@@ -1,6 +1,7 @@
 ---
 tags:
-- Image
+- ControlNet
+- DetailEnhancement
 - Pipeline
 - PipelineTransformation
 ---
@@ -8,46 +9,46 @@ tags:
 # pipe > detailer_pipe
 ## Documentation
 - Class name: `ttN pipe2DETAILER`
-- Category: `ttN/pipe`
+- Category: `🌏 tinyterra/pipe`
 - Output node: `False`
 
-The ttN pipe2DETAILER node is designed to enhance and detail a given pipeline with additional features and processing steps, incorporating bounding box detection, optional segmentation, and other detailing functionalities to refine the output.
+The ttN pipe2DETAILER node is designed to enhance and detail the data pipeline by integrating additional processing steps. It focuses on refining and enriching the pipeline's output, making it more detailed and tailored for subsequent operations or analyses.
 ## Input types
 ### Required
 - **`pipe`**
-    - Represents the pipeline to be enhanced and detailed, serving as the foundational structure for further processing.
+    - The 'pipe' input is the primary data structure that carries the flow of data through the node. It is essential for the node's operation, serving as the basis for the detailing process.
     - Comfy dtype: `PIPE_LINE`
-    - Python dtype: `Dict[str, Any]`
+    - Python dtype: `dict`
 - **`bbox_detector`**
-    - Specifies the bounding box detector to be used for identifying regions of interest within the pipeline's output.
+    - The 'bbox_detector' input specifies the bounding box detector to be used for identifying regions of interest within the data. This is crucial for the detailing process, as it allows for targeted enhancements.
     - Comfy dtype: `BBOX_DETECTOR`
-    - Python dtype: `Callable`
+    - Python dtype: `object`
 - **`wildcard`**
-    - A flexible input for additional specifications or configurations, allowing for custom adjustments to the detailing process.
+    - The 'wildcard' input allows for flexible specification of additional conditions or parameters that can be applied during the detailing process. It enables customization and fine-tuning of the output.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ### Optional
 - **`sam_model_opt`**
-    - An optional model for semantic segmentation, providing additional detail through segmentation masks.
+    - An optional input for specifying a SAM model to be used in the detailing process. It provides an opportunity to apply specialized attention mechanisms for improved detail and accuracy.
     - Comfy dtype: `SAM_MODEL`
-    - Python dtype: `Optional[Callable]`
+    - Python dtype: `object`
 - **`segm_detector_opt`**
-    - An optional segmentation detector to further refine the output with segmentation details.
+    - An optional input for specifying a segmentation detector. This enhances the detailing process by allowing for precise segmentation of areas within the data, contributing to more focused enhancements.
     - Comfy dtype: `SEGM_DETECTOR`
-    - Python dtype: `Optional[Callable]`
+    - Python dtype: `object`
 - **`detailer_hook`**
-    - A hook for custom detailing functions, enabling further customization of the detailing process.
+    - An optional input that allows for the integration of custom detailing functions or hooks. This enables the node to perform highly customized detailing operations based on specific requirements.
     - Comfy dtype: `DETAILER_HOOK`
-    - Python dtype: `Optional[Callable]`
+    - Python dtype: `object`
 ## Output types
 - **`detailer_pipe`**
     - Comfy dtype: `DETAILER_PIPE`
-    - The enhanced and detailed version of the input pipeline, incorporating additional features and processing steps.
-    - Python dtype: `Tuple[Optional[Any], ...]`
+    - The 'detailer_pipe' output represents the enhanced and detailed version of the input pipeline, enriched with additional data and processing steps.
+    - Python dtype: `tuple`
 - **`pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - The original pipeline input, returned for reference or further processing.
-    - Python dtype: `Dict[str, Any]`
+    - The 'pipe' output provides the original input pipeline, allowing for comparison or further processing alongside the detailed version.
+    - Python dtype: `dict`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -74,7 +75,7 @@ class ttN_pipe_2DETAILER:
     RETURN_NAMES = ("detailer_pipe", "pipe")
     FUNCTION = "flush"
 
-    CATEGORY = "ttN/pipe"
+    CATEGORY = "🌏 tinyterra/pipe"
 
     def flush(self, pipe, bbox_detector, wildcard, sam_model_opt=None, segm_detector_opt=None, detailer_hook=None):
         detailer_pipe = (pipe.get('model'), pipe.get('clip'), pipe.get('vae'), pipe.get('positive'), pipe.get('negative'), wildcard,

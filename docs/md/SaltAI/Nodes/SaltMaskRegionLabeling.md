@@ -1,8 +1,9 @@
 ---
 tags:
 - Mask
-- MaskEnhancement
 - MaskRegion
+- SEGSPrep
+- Segmentation
 ---
 
 # Label Mask Regions (RGB)

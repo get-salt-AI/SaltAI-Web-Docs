@@ -1,5 +1,6 @@
 ---
 tags:
+- SamplerScheduler
 - Sampling
 ---
 
@@ -9,72 +10,72 @@ tags:
 - Category: `ImpactPack/Regional`
 - Output node: `False`
 
-The RegionalSamplerAdvanced node is designed for advanced sampling operations within specific regions of latent images. It utilizes a base sampler and additional samplers to apply complex sampling strategies, enabling precise control over the sampling process in targeted areas.
+The RegionalSamplerAdvanced node is designed to enhance image generation processes by applying region-specific sampling techniques. It allows for more precise control over the denoising and detail enhancement in different areas of an image, potentially leading to higher quality and more detailed outputs.
 ## Input types
 ### Required
 - **`add_noise`**
-    - Determines whether noise is added to the sampling process, affecting the texture and details of the sampled output.
+    - Determines whether noise should be added to the sampling process, affecting the initial state of the latent image.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`noise_seed`**
-    - Sets the seed for noise generation, ensuring reproducibility of the noise patterns in the sampling process.
+    - Specifies the random seed for generating noise, ensuring reproducibility in the sampling process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`steps`**
-    - Specifies the number of steps to perform in the sampling process, influencing the depth and detail of the sampling.
+    - Defines the total number of sampling steps to be executed, impacting the depth of the denoising process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`start_at_step`**
-    - Defines the starting step for the sampling process, allowing for partial sampling starting from a specific point.
+    - Indicates the starting step for applying the sampling, allowing for staged or delayed sampling interventions.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`end_at_step`**
-    - Determines the ending step for the sampling process, enabling partial sampling up to a specific point.
+    - Marks the final step where sampling is applied, controlling the extent of the sampling process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`overlap_factor`**
-    - Controls the overlap between sampled regions, affecting the blending and transition between sampled areas.
+    - Adjusts the overlap between regions to smooth the transitions, enhancing the coherence of the sampled image.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`restore_latent`**
-    - Indicates whether the original latent image is restored after sampling, preserving the original content outside the sampled regions.
+    - Controls whether to restore the noise outside the mask area to its original state, affecting the fidelity of the inpainting.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`return_with_leftover_noise`**
-    - Determines whether the sampled output includes leftover noise, adding an additional layer of texture to the output.
+    - Decides whether to return the latent image with remaining noise, influencing the final image's texture.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`latent_image`**
-    - The latent image to be sampled, serving as the base for the sampling operations.
+    - The input latent image to be processed, serving as the base for the sampling operations.
     - Comfy dtype: `LATENT`
     - Python dtype: `torch.Tensor`
 - **`base_sampler`**
-    - The base sampler used for the initial sampling process, setting the foundation for further sampling operations.
+    - The sampler used outside the region specified by the regional prompts, affecting the overall image quality.
     - Comfy dtype: `KSAMPLER_ADVANCED`
     - Python dtype: `str`
 - **`regional_prompts`**
-    - Specifies the regional prompts used to guide the sampling process in specific areas, enhancing the relevance and accuracy of the sampled output.
+    - Prompts applied to each specified region, directing the sampling process in those areas.
     - Comfy dtype: `REGIONAL_PROMPTS`
-    - Python dtype: `List[Dict]`
+    - Python dtype: `list`
 - **`additional_mode`**
-    - Defines the mode for additional sampling operations, allowing for customization of the sampling strategy.
+    - Specifies the operational mode for additional denoising in specific regions, offering options to either disable the feature, increase the total denoising amount, or balance the denoising between the primary and recovery samplers.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`additional_sampler`**
-    - Specifies the additional sampler used for enhanced sampling operations, providing flexibility in the sampling approach.
+    - Determines the recovery sampler to be used for additional denoising in specific regions, with options for automatic selection based on the primary sampler or manual selection for more customized control.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`additional_sigma_ratio`**
-    - Sets the sigma ratio for additional sampling operations, influencing the variance and intensity of the sampling.
+    - Defines the multiplier for the noise schedule in the additional denoising process, affecting how much additional denoising is applied based on the selected mode.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - The latent image after the advanced regional sampling process, reflecting the targeted modifications and enhancements.
+    - The processed latent image after applying region-specific sampling and denoising techniques.
     - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -102,12 +103,34 @@ class RegionalSamplerAdvanced:
                  "hidden": {"unique_id": "UNIQUE_ID"},
                 }
 
+    TOOLTIPS = {
+        "input": {
+            "add_noise": "Whether to add noise",
+            "noise_seed": "Random seed to use for generating CPU noise for sampling.",
+            "steps": "total sampling steps",
+            "start_at_step": "The starting step of the sampling to be applied at this node within the range of 'steps'.",
+            "end_at_step": "The step at which sampling applied at this node will stop within the range of steps (if greater than steps, sampling will continue only up to steps).",
+            "overlap_factor": "To smooth the seams of the region boundaries, expand the mask set in regional_prompts by the overlap_factor amount to overlap with other regions.",
+            "restore_latent": "At each step, restore the noise outside the mask area to its original state, as per the principle of inpainting. This option is provided for backward compatibility, and it is recommended to always set it to true.",
+            "return_with_leftover_noise": "Whether to return the latent with noise remaining if the noise has not been completely removed according to the noise schedule, or to completely remove the noise before returning it.",
+            "latent_image": "input latent image",
+            "base_sampler": "The sampler applied outside the area set by the regional_prompt.",
+            "regional_prompts": "The prompt applied to each region",
+            "additional_mode": "..._sde or uni_pc and other special samplers are used, the region is not properly denoised, and it causes a phenomenon that destroys the overall harmony. To compensate for this, a recovery operation is performed using another sampler. This requires a longer time for sampling because a second sampling is performed at each step in each region using a special sampler. 1) DISABLE: Disable this feature. 2) ratio additional: After performing the denoise amount to be performed in the step with the sampler set in the region, the recovery sampler is additionally applied by the additional_sigma_ratio. If you use this option, the total denoise amount increases by additional_sigma_ratio. 3) ratio between: The denoise amount to be performed in the step with the sampler set in the region and the denoise amount to be applied to the recovery sampler are divided by additional_sigma_ratio, and denoise is performed for each denoise amount. If you use this option, the total denoise amount does not change.",
+            "additional_sampler": "1) AUTO: Automatically set the recovery sampler. If the sampler is uni_pc, uni_pc_bh2, dpmpp_sde, dpmpp_sde_gpu, the dpm_fast sampler is selected If the sampler is dpmpp_2m_sde, dpmpp_2m_sde_gpu, dpmpp_3m_sde, dpmpp_3m_sde_gpu, the dpmpp_2m sampler is selected. 2) Others: Manually set the recovery sampler.",
+            "additional_sigma_ratio": "Multiplier of noise schedule to be applied according to additional_mode.",
+        },
+        "output": ("result latent", )
+    }
+
+
     RETURN_TYPES = ("LATENT", )
     FUNCTION = "doit"
 
     CATEGORY = "ImpactPack/Regional"
 
-    def doit(self, add_noise, noise_seed, steps, start_at_step, end_at_step, overlap_factor, restore_latent, return_with_leftover_noise, latent_image, base_sampler, regional_prompts,
+    @staticmethod
+    def doit(add_noise, noise_seed, steps, start_at_step, end_at_step, overlap_factor, restore_latent, return_with_leftover_noise, latent_image, base_sampler, regional_prompts,
              additional_mode, additional_sampler, additional_sigma_ratio, unique_id):
 
         if restore_latent:
@@ -134,9 +157,16 @@ class RegionalSamplerAdvanced:
 
             cur_add_noise = True if i == start_at_step and add_noise else False
 
+            if cur_add_noise:
+                noise = Noise_RandomNoise(noise_seed).generate_noise(new_latent_image)
+                for rp in regional_prompts:
+                    noise = rp.touch_noise(noise)
+            else:
+                noise = None
+
             new_latent_image['noise_mask'] = inv_mask
             new_latent_image = base_sampler.sample_advanced(cur_add_noise, noise_seed, steps, new_latent_image, i, i + 1, True,
-                                                            recovery_mode=additional_mode, recovery_sampler=additional_sampler, recovery_sigma_ratio=additional_sigma_ratio)
+                                                            recovery_mode=additional_mode, recovery_sampler=additional_sampler, recovery_sigma_ratio=additional_sigma_ratio, noise=noise)
 
             if restore_latent:
                 del new_latent_image['noise_mask']

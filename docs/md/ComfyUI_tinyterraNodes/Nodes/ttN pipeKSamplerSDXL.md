@@ -1,165 +1,168 @@
 ---
 tags:
+- SamplerScheduler
 - Sampling
 ---
 
 # pipeKSamplerSDXL v1 (Legacy)
 ## Documentation
 - Class name: `ttN pipeKSamplerSDXL`
-- Category: `ttN/legacy`
+- Category: `🌏 tinyterra/legacy`
 - Output node: `True`
 
-The `ttN_pipeKSamplerSDXL` node is designed for advanced image sampling, leveraging a sophisticated pipeline to enhance image generation with specific configurations and enhancements. It integrates various components such as LoRA adjustments, noise control, and optional model inputs to tailor the image generation process, aiming to produce high-quality images with fine-tuned characteristics.
+This node is designed to manage the sampling process within a specific pipeline, handling the initialization, state management, and output generation for image sampling tasks. It leverages a sampler to initialize states for pipeline and results, conditionally manages image output visibility, and updates the pipeline state based on the sampling results.
 ## Input types
 ### Required
 - **`sdxl_pipe`**
-    - Represents the current state of the sampling pipeline, including configurations and intermediate results, which is essential for continuing or adjusting the image generation process.
+    - Represents the pipeline configuration for the sampling process, affecting how images are sampled and processed.
     - Comfy dtype: `PIPE_LINE_SDXL`
     - Python dtype: `dict`
 - **`upscale_method`**
-    - Specifies the method used for upscaling images, affecting the resolution and quality of the output images.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`factor`**
-    - Determines the scaling factor for upscaling, directly influencing the final image size and detail level.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 - **`crop`**
-    - Defines the cropping parameters to apply to the generated images, adjusting the composition and focus areas.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`sampler_state`**
-    - Indicates the current state of the sampler, guiding the flow of the sampling process and determining the next steps.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`base_steps`**
-    - Specifies the number of steps for the base sampling process, affecting the detail and quality of the generated images.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`refiner_steps`**
-    - Determines the number of steps for the refining process, enhancing the final image quality through additional adjustments.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`cfg`**
-    - Controls the CFG (Classifier Free Guidance) scale, influencing the adherence to the input prompts and the overall image quality.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 - **`sampler_name`**
-    - Identifies the specific sampler algorithm to be used, affecting the sampling behavior and output characteristics.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`scheduler`**
-    - Specifies the scheduler for controlling the sampling process, impacting the progression and adjustments during image generation.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`image_output`**
-    - Determines the output format and handling of the generated images, including saving and displaying options.
+    - Controls the visibility and saving behavior of the sampled images, influencing whether images are displayed or saved based on specified conditions.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`save_prefix`**
-    - Sets the prefix for saved image files, organizing and identifying the outputs.
+    - unknown
     - Comfy dtype: `STRING`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 ### Optional
 - **`seed`**
-    - Provides a seed for the random number generator, ensuring reproducibility of the generated images.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`optional_model`**
-    - Allows for the specification of an alternative model for image generation, offering flexibility in the sampling process.
+    - unknown
     - Comfy dtype: `MODEL`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`optional_positive`**
-    - Enables the use of alternative positive prompts, adjusting the thematic direction of the generated images.
+    - unknown
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`optional_negative`**
-    - Permits the specification of alternative negative prompts, refining the avoidance criteria in the image generation.
+    - unknown
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`optional_vae`**
-    - Provides an option to use an alternative VAE model, affecting the encoding and decoding of images.
+    - unknown
     - Comfy dtype: `VAE`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`optional_refiner_model`**
-    - Allows for the use of a different model for refining the generated images, enhancing the final output quality.
+    - unknown
     - Comfy dtype: `MODEL`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`optional_refiner_positive`**
-    - Enables the use of alternative positive prompts for the refining process, further guiding the image enhancement.
+    - unknown
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`optional_refiner_negative`**
-    - Permits the specification of alternative negative prompts for the refining process, fine-tuning the avoidance criteria.
+    - unknown
     - Comfy dtype: `CONDITIONING`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`optional_refiner_vae`**
     - unknown
     - Comfy dtype: `VAE`
     - Python dtype: `unknown`
 - **`optional_latent`**
-    - Provides an option to specify an alternative latent representation, influencing the starting point of the generation process.
+    - unknown
     - Comfy dtype: `LATENT`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`optional_clip`**
-    - Allows for the use of an alternative CLIP model, affecting the alignment between text prompts and generated images.
+    - unknown
     - Comfy dtype: `CLIP`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 ## Output types
 - **`sdxl_pipe`**
     - Comfy dtype: `PIPE_LINE_SDXL`
-    - Outputs the updated state of the sampling pipeline, including any changes or results from the current sampling operation.
-    - Python dtype: `dict`
+    - unknown
+    - Python dtype: `unknown`
 - **`model`**
     - Comfy dtype: `MODEL`
-    - Returns the model used in the sampling process, potentially updated or altered based on optional inputs.
-    - Python dtype: `str`
+    - unknown
+    - Python dtype: `unknown`
 - **`positive`**
     - Comfy dtype: `CONDITIONING`
-    - Provides the positive prompts used in the image generation, reflecting any optional adjustments.
-    - Python dtype: `str`
+    - unknown
+    - Python dtype: `unknown`
 - **`negative`**
     - Comfy dtype: `CONDITIONING`
-    - Returns the negative prompts guiding the avoidance criteria in the image generation.
-    - Python dtype: `str`
+    - unknown
+    - Python dtype: `unknown`
 - **`vae`**
     - Comfy dtype: `VAE`
-    - Outputs the VAE model involved in the encoding and decoding of images during the sampling process.
-    - Python dtype: `str`
+    - unknown
+    - Python dtype: `unknown`
 - **`refiner_model`**
     - Comfy dtype: `MODEL`
-    - Provides the model used for refining the generated images, potentially updated or altered based on optional inputs.
-    - Python dtype: `str`
+    - unknown
+    - Python dtype: `unknown`
 - **`refiner_positive`**
     - Comfy dtype: `CONDITIONING`
-    - Returns the positive prompts used in the refining process, reflecting any optional adjustments.
-    - Python dtype: `str`
+    - unknown
+    - Python dtype: `unknown`
 - **`refiner_negative`**
     - Comfy dtype: `CONDITIONING`
-    - Provides the negative prompts used in the refining process, guiding the avoidance criteria.
-    - Python dtype: `str`
+    - unknown
+    - Python dtype: `unknown`
 - **`refiner_vae`**
     - Comfy dtype: `VAE`
     - unknown
     - Python dtype: `unknown`
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - Outputs the latent representation of the generated images, central to the image generation and refinement processes.
-    - Python dtype: `str`
+    - unknown
+    - Python dtype: `unknown`
 - **`clip`**
     - Comfy dtype: `CLIP`
-    - Returns the CLIP model used to align text prompts with the generated images, potentially updated based on optional inputs.
-    - Python dtype: `str`
+    - unknown
+    - Python dtype: `unknown`
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - Provides the final generated images, showcasing the results of the sampling and refining processes.
-    - Python dtype: `str`
+    - unknown
+    - Python dtype: `unknown`
 - **`seed`**
     - Comfy dtype: `INT`
-    - Outputs the seed used in the random number generator, ensuring reproducibility of the generated images.
-    - Python dtype: `int`
+    - unknown
+    - Python dtype: `unknown`
+- **`ui`**
+    - Provides a user interface component, typically images, based on the sampling results and the specified image output behavior.
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -216,7 +219,7 @@ class ttN_pipeKSamplerSDXL:
     RETURN_NAMES = ("sdxl_pipe", "model", "positive", "negative" ,"vae", "refiner_model", "refiner_positive", "refiner_negative" ,"refiner_vae", "latent", "clip", "image", "seed", )
     OUTPUT_NODE = True
     FUNCTION = "sample"
-    CATEGORY = "ttN/legacy"
+    CATEGORY = "🌏 tinyterra/legacy"
 
     def sample(self, sdxl_pipe, sampler_state,
                base_steps, refiner_steps, cfg, sampler_name, scheduler, image_output, save_prefix, denoise=1.0, 
@@ -226,9 +229,6 @@ class ttN_pipeKSamplerSDXL:
                start_step=None, last_step=None, force_full_denoise=False, disable_noise=False):
         
         sdxl_pipe = {**sdxl_pipe}
-
-        # Clean Loader Models from Global
-        loader.update_loaded_objects(prompt)
 
         my_unique_id = int(my_unique_id)
 
@@ -286,9 +286,6 @@ class ttN_pipeKSamplerSDXL:
             results = ttN_save.images(sdxl_images, save_prefix, image_output)
 
             sampler.update_value_by_id("results", my_unique_id, results)
-
-            # Clean loaded_objects
-            loader.update_loaded_objects(prompt)
 
             new_sdxl_pipe = {"model": sdxl_model,
                 "positive": sdxl_positive,

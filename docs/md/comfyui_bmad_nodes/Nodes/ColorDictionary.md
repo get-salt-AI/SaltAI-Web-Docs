@@ -1,6 +1,7 @@
 ---
 tags:
 - Color
+- ColorChannelManipulation
 ---
 
 # ColorDictionary
@@ -9,17 +10,17 @@ tags:
 - Category: `Bmad/CV/Color A.`
 - Output node: `False`
 
-The ColorDictionary node provides a predefined set of color names and their corresponding RGB values. It allows for the selection of a specific number of colors from this set, based on the input parameter, to create a customized color dictionary.
+The ColorDictionary node provides a predefined dictionary of color names to RGB values, allowing users to retrieve a subset of these colors based on a specified number. It simplifies the process of accessing common colors for various applications by offering a default set of colors and the ability to specify how many colors are needed.
 ## Input types
 ### Required
 - **`number_of_colors`**
-    - Specifies the number of colors to select from the predefined set. This determines the size of the resulting color dictionary.
+    - Specifies the number of colors to retrieve from the predefined color dictionary. It determines the size of the returned dictionary, allowing for flexible customization of the color selection.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`color_dict`**
     - Comfy dtype: `COLOR_DICT`
-    - A dictionary mapping color names to their RGB values, limited by the specified number of colors.
+    - Returns a dictionary mapping color names to their corresponding RGB values, limited to the specified number of colors.
     - Python dtype: `Dict[str, Tuple[int, int, int]]`
 ## Usage tips
 - Infra type: `CPU`
@@ -47,12 +48,12 @@ class ColorDefaultDictionary:
     }
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {"number_of_colors": ("INT", {"default": 8, "min": 2, "max": 12})}}
 
     RETURN_TYPES = ("COLOR_DICT",)
     FUNCTION = "ret"
-    CATEGORY = "Bmad/CV/Color A."
+    CATEGORY = f"{cv_category_path}/Color A."
 
     def ret(self, number_of_colors):
         dic = dict(list(self.default_color_dict.items())[0: number_of_colors])

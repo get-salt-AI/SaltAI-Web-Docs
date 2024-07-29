@@ -1,7 +1,6 @@
 ---
 tags:
-- MathematicalFunctions
-- Multiplication
+- DataTypeConversion
 ---
 
 # ⚙️ CR Integer Multiple

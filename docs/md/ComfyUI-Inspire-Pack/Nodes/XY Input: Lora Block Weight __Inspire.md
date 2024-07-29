@@ -1,7 +1,6 @@
 ---
 tags:
 - LoRA
-- LoRAVisualization
 ---
 
 # XY Input: Lora Block Weight

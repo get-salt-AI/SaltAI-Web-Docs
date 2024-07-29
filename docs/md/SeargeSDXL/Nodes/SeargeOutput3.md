@@ -1,6 +1,8 @@
 ---
 tags:
+- Concatenate
 - Searge
+- Text
 ---
 
 # Advanced Parameters

@@ -2,7 +2,6 @@
 tags:
 - Crop
 - Image
-- ImageTransformation
 ---
 
 # Crop Batch Image Location
@@ -11,42 +10,42 @@ tags:
 - Category: `SALT/Image/Process`
 - Output node: `False`
 
-This node is designed to crop images based on specified locations, allowing for precise adjustments and modifications to image datasets. It focuses on enhancing or isolating specific areas within images for further processing or analysis.
+This node specializes in identifying and extracting specific image locations for cropping within a batch processing environment. It facilitates precise, location-based cropping operations on multiple images, enhancing the efficiency and accuracy of batch image manipulation tasks.
 ## Input types
 ### Required
 - **`images`**
-    - The collection of images to be cropped. This parameter is central to the node's operation, as it determines the specific images that will undergo cropping based on the provided dimensions.
+    - The collection of images to be processed for location-based cropping. This parameter is crucial for determining the specific areas within each image that need to be cropped, based on the provided location data.
     - Comfy dtype: `IMAGE`
     - Python dtype: `List[Image]`
 - **`top`**
-    - Specifies the top boundary of the crop area. Adjusting this value alters the vertical starting point of the crop, enabling fine-tuned control over the cropped region.
+    - Specifies the top boundary for the cropping operation. It defines the starting vertical point from which the image will be cropped.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`left`**
-    - Defines the left boundary of the crop area. This parameter allows for precise horizontal positioning of the crop, affecting the area of the image that is retained.
+    - Specifies the left boundary for the cropping operation. It defines the starting horizontal point from which the image will be cropped.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`right`**
-    - Sets the right boundary of the crop area, determining the horizontal extent of the cropped region. This value influences the width of the resulting cropped image.
+    - Specifies the right boundary for the cropping operation, determining the end horizontal point for the crop.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`bottom`**
-    - Indicates the bottom boundary of the crop area. This parameter affects the vertical extent of the crop, controlling the height of the cropped image.
+    - Specifies the bottom boundary for the cropping operation, determining the end vertical point for the crop.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`crop_data_batch`**
-    - An optional batch of crop data that can be used to specify multiple crop regions for a set of images. This parameter enables batch processing of images with varying crop specifications.
+    - Optional parameter that includes pre-defined cropping data for batch processing. When provided, it can override manual boundary settings for more automated cropping.
     - Comfy dtype: `CROP_DATA_BATCH`
     - Python dtype: `Optional[List[Tuple[int, int, int, int]]]`
 ## Output types
 - **`images`**
     - Comfy dtype: `IMAGE`
-    - The resulting images after the cropping operation. This output is essential for further processing or analysis of the cropped areas.
+    - The resulting images after the cropping operation has been applied, reflecting the specified location-based adjustments.
     - Python dtype: `List[Image]`
 - **`crop_data_batch`**
     - Comfy dtype: `CROP_DATA_BATCH`
-    - A batch of crop data corresponding to the processed images. This output provides detailed information about the crop regions applied to each image, facilitating further manipulations or analyses.
+    - A batch of crop data corresponding to each processed image, detailing the specific crop locations and dimensions applied.
     - Python dtype: `List[Tuple[int, int, int, int]]`
 ## Usage tips
 - Infra type: `CPU`
@@ -103,7 +102,9 @@ class SaltCropImageLocation:
             crop_height = crop_bottom - crop_top
 
             if crop_width <= 0 or crop_height <= 0:
-                raise ValueError("Invalid crop dimensions.")
+                errmsg = "Invalid crop dimensions."
+                logger.error(errmsg)
+                raise ValueError(errmsg)
             
             crop = image.crop((crop_left, crop_top, crop_right, crop_bottom))
             crop_data = (crop.size, (crop_left, crop_top, crop_right, crop_bottom))

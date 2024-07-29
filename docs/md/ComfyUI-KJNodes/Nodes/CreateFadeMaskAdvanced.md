@@ -1,46 +1,50 @@
 ---
 tags:
+- BoundingBox
+- ImagePadding
+- ImageTransformation
 - Mask
-- MaskGeneration
+- MaskList
+- MaskMorphology
 ---
 
-# CreateFadeMaskAdvanced
+# Create Fade Mask Advanced
 ## Documentation
 - Class name: `CreateFadeMaskAdvanced`
 - Category: `KJNodes/masking/generate`
 - Output node: `False`
 
-This node is designed to generate advanced fade masks with customizable parameters, allowing for intricate control over the fade effect's progression, intensity, and spatial distribution. It enables the creation of dynamic visual transitions in image sequences or animations.
+The CreateFadeMaskAdvanced node is designed for generating sophisticated fade masks with customizable parameters, allowing for advanced control over the mask's appearance and behavior. This node enables the creation of dynamic masks that can be tailored to specific needs, incorporating features such as decay, alpha blending, and the ability to grow or shrink the mask with precision.
 ## Input types
 ### Required
 - **`points_string`**
-    - Defines a string of points and their corresponding mask values at specific frames, used to generate the fade effect over the sequence.
+    - Specifies the sequence of points defining the fade effect over frames, allowing for complex mask transitions based on frame index and corresponding mask values.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`invert`**
-    - A boolean flag to invert the mask values, allowing for the creation of inverse fade effects.
+    - When enabled, inverts the final mask output, offering an alternative visual representation where masked areas are reversed.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`frames`**
-    - Specifies the total number of frames for the mask sequence, determining the length of the animation.
+    - Defines the total number of frames for the mask animation, setting the scope for how the fade effect progresses over time.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`width`**
-    - Sets the width of the mask, defining the horizontal dimension of the generated mask.
+    - Sets the width of the mask, determining the horizontal dimension of the generated mask.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Sets the height of the mask, defining the vertical dimension of the generated mask.
+    - Sets the height of the mask, determining the vertical dimension of the generated mask.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`interpolation`**
-    - Chooses the interpolation method for transitioning between mask values across frames, affecting the smoothness and style of the fade effect.
+    - Determines the method of interpolation between points, affecting the smoothness and style of the fade transition.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - Outputs a batch of masks generated based on the specified parameters, suitable for creating fade effects in image sequences.
+    - The modified mask after applying the specified transformations, reflecting changes in size, shape, and appearance.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`

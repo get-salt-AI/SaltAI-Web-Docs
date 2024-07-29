@@ -1,6 +1,6 @@
 ---
 tags:
-- Time
+- SigmaScheduling
 ---
 
 # Datetime String

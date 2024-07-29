@@ -4,35 +4,35 @@
 - Category: `SALT/Language Toolkit/Readers`
 - Output node: `False`
 
-The LLMDirectoryReader node is designed to read and process directories, efficiently handling and organizing the contents into a structured format suitable for further analysis or processing. It abstracts the complexity of directory traversal and content extraction, making it easier to work with large sets of files or nested directory structures.
+The LLMDirectoryReader node specializes in reading and processing directory structures, enabling the extraction and organization of document data from various file types contained within. It serves as a versatile tool for handling bulk document processing tasks, streamlining the workflow for data ingestion from directories.
 ## Input types
 ### Required
 - **`input_directory`**
-    - Specifies the path to the directory to be read, serving as the starting point for the node's directory traversal and content extraction operations. This parameter is essential for defining the scope of the reading process.
+    - Specifies the root directory from which documents will be read. This is the starting point for the directory traversal.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ### Optional
 - **`optional_path_list`**
-    - A list of specific paths within the directory to focus on. This can refine the reading process to target particular files or subdirectories, potentially optimizing performance and relevance of the output.
+    - A list of specific paths within the directory to include or exclude, providing finer control over which files are processed.
     - Comfy dtype: `*`
-    - Python dtype: `list`
+    - Python dtype: `List[str] or None`
 - **`recursive`**
-    - A boolean flag that determines whether the reading operation should recursively traverse subdirectories. Enabling this can significantly affect the depth and comprehensiveness of the directory reading process.
+    - Determines whether the directory reading should be recursive, allowing for the inclusion of files in subdirectories.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`required_ext_list`**
-    - Defines a list of file extensions to include in the reading process. This filters the files to be processed, directly influencing the node's output by limiting it to files of specified types.
+    - A comma-separated list of file extensions to include in the reading process, enabling filtering of files by type.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`exclude_glob_list`**
-    - Specifies patterns to exclude from the reading process. This can prevent certain files or directories from being processed, tailoring the output to exclude irrelevant or sensitive information.
+    - A comma-separated list of patterns to exclude from the reading process, offering a way to skip over unwanted files or directories.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`documents`**
     - Comfy dtype: `DOCUMENT`
-    - Returns a structured representation of the contents read from the directory, typically organized in a way that facilitates further analysis or processing.
-    - Python dtype: `list`
+    - The output is a collection of documents extracted from the specified directory, organized and ready for further processing.
+    - Python dtype: `List[Document]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -73,8 +73,8 @@ class LLMDirectoryReader:
         else:
             exclude = None
 
-        print("Excluding: ", exclude)
-        print("Required Extensions: ", required_exts)
+        logger.info("Excluding: ", exclude)
+        logger.info("Required Extensions: ", required_exts)
 
         if not optional_path_list:
             full_path = get_full_path(1, input_directory.strip())

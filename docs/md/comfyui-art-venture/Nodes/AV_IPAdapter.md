@@ -1,85 +1,88 @@
 ---
 tags:
 - IPAdapter
+- IdentityImage
+- Loader
+- RegionalImageProcessing
 ---
 
-# IP Adapter Pipeline
+# IP Adapter Apply
 ## Documentation
 - Class name: `AV_IPAdapter`
 - Category: `Art Venture/IP Adapter`
 - Output node: `False`
 
-The AV_IPAdapter node is designed to integrate and apply IP Adapter models to images within the Art Venture framework. It facilitates the enhancement or alteration of images by leveraging IP Adapter and CLIP vision models, allowing for the customization of visual content based on specified parameters and options.
+The AV_IPAdapter node is designed to integrate and apply image processing adapters to models, enhancing their capabilities with additional image processing techniques. It allows for the dynamic application of IP adapters and clip vision models to modify and improve the input model's performance on image data, based on specified weights, noise levels, and optional configurations.
 ## Input types
 ### Required
 - **`ip_adapter_name`**
-    - Specifies the name of the IP Adapter model to be used. This parameter is crucial for selecting the appropriate model for image processing.
+    - Specifies the name of the IP adapter to be used. It is crucial for determining which IP adapter model to load and apply.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`clip_name`**
-    - Determines the CLIP vision model to be utilized alongside the IP Adapter model. This parameter is essential for the combined application of both models to the image.
+    - Defines the name of the clip vision model to be used alongside the IP adapter. This parameter is essential for selecting the appropriate clip vision model to complement the IP adapter's functionality.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`model`**
-    - The initial model state before applying the IP Adapter. This parameter represents the starting point for the adaptation process.
+    - The model to which the IP adapter and clip vision modifications will be applied. This parameter is central to the node's operation, serving as the base for enhancements.
     - Comfy dtype: `MODEL`
-    - Python dtype: `object`
+    - Python dtype: `torch.nn.Module`
 - **`image`**
-    - The image to which the IP Adapter and CLIP vision models will be applied. This parameter is central to the node's functionality, serving as the input for the adaptation process.
+    - The image data to be processed by the IP adapter and clip vision models. This input is key to the adaptation and enhancement process.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `object`
+    - Python dtype: `torch.Tensor`
 - **`weight`**
-    - Controls the influence of the IP Adapter on the image. This parameter adjusts the strength of the adaptation effect.
+    - Affects the intensity of the IP adapter's application on the image/model. It allows for fine-tuning the strength of the modifications.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`noise`**
-    - Adjusts the level of noise introduced during the adaptation process. This parameter can be used to fine-tune the visual output.
+    - Introduces a level of noise to the adaptation process, offering a means to adjust the effect of the IP adapter on the image/model.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`ip_adapter_opt`**
-    - Optional configurations for the IP Adapter model. This parameter allows for further customization of the adaptation process.
+    - Optional configurations for the IP adapter, providing flexibility in customizing its application.
     - Comfy dtype: `IPADAPTER`
-    - Python dtype: `dict`
+    - Python dtype: `Dict`
 - **`clip_vision_opt`**
-    - Optional configurations for the CLIP vision model. This parameter enables additional adjustments to how the CLIP model is applied.
+    - Optional configurations for the clip vision model, enabling further customization of the clip vision's application.
     - Comfy dtype: `CLIP_VISION`
-    - Python dtype: `dict`
+    - Python dtype: `Dict`
 - **`attn_mask`**
-    - An optional mask that can be applied during the adaptation process, allowing for targeted modifications.
+    - unknown
     - Comfy dtype: `MASK`
-    - Python dtype: `object`
+    - Python dtype: `unknown`
 - **`start_at`**
-    - Defines the starting point of the effect applied by the IP Adapter, enabling phased integration over the image.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 - **`end_at`**
-    - Specifies the end point of the IP Adapter's effect, allowing for a gradual cessation of the adaptation.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 - **`weight_type`**
-    - Determines the type of weighting applied to the adaptation effect, offering options for standard, prompt importance, or style transfer.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`enabled`**
-    - Toggles the application of the IP Adapter and CLIP vision models. When set to false, the adaptation process is bypassed.
+    - Controls whether the IP adapter and clip vision modifications are applied, allowing for conditional processing.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The model after applying the IP Adapter, reflecting the modifications made to the image.
-    - Python dtype: `object`
+    - The enhanced model after applying the IP adapter and clip vision modifications.
+    - Python dtype: `torch.nn.Module`
 - **`pipeline`**
     - Comfy dtype: `IPADAPTER`
-    - A dictionary containing the IP Adapter and CLIP vision models used in the adaptation process. This output provides insight into the models' configurations.
-    - Python dtype: `dict`
+    - A dictionary detailing the applied IP adapter and clip vision models, offering insight into the modifications made.
+    - Python dtype: `Dict`
 - **`clip_vision`**
     - Comfy dtype: `CLIP_VISION`
-    - The specific CLIP vision model applied during the adaptation process. This output highlights the role of CLIP vision in the image's transformation.
-    - Python dtype: `object`
+    - The specific clip vision model applied during the process, providing context for the enhancements.
+    - Python dtype: `torch.nn.Module`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes:
     - [KSampler (Efficient)](../../efficiency-nodes-comfyui/Nodes/KSampler (Efficient).md)
 

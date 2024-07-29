@@ -1,7 +1,10 @@
 ---
 tags:
 - Latent
-- LatentBatch
+- LatentBlend
+- ModelGuidance
+- ModelPatch
+- VAE
 ---
 
 # Split Latent Batch 🎥🅥🅗🅢

@@ -1,7 +1,7 @@
 ---
 tags:
-- Math
-- MathematicalFunctions
+- Arithmetic
+- Multiplication
 ---
 
 # Power

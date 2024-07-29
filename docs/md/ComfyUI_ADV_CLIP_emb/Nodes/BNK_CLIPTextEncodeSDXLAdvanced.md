@@ -1,6 +1,5 @@
 ---
 tags:
-- CLIP
 - CLIPConditioning
 - CLIPTextEncoding
 - Conditioning

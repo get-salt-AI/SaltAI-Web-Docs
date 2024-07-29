@@ -1,8 +1,6 @@
 ---
 tags:
-- BoundingBox
-- Image
-- ImageTransformation
+- Crop
 ---
 
 # Face Bounding Box
@@ -11,48 +9,52 @@ tags:
 - Category: `FaceAnalysis`
 - Output node: `False`
 
-The FaceBoundingBox node is designed to detect and extract the bounding boxes of faces within an image. It utilizes analysis models to identify faces and calculate their bounding box coordinates, optionally adjusting for padding to ensure the entire face is captured.
+The FaceBoundingBox node is designed to detect and extract bounding boxes around faces in images. It utilizes analysis models to identify the location and dimensions of faces, applying optional padding and selecting specific faces based on an index. This functionality is crucial for tasks that require precise face detection and cropping, such as facial recognition or analysis applications.
 ## Input types
 ### Required
 - **`analysis_models`**
-    - Specifies the models and libraries used for face detection, impacting the accuracy and method of bounding box calculation.
+    - Specifies the models used for face detection and analysis. It's crucial for determining the accuracy and efficiency of face detection within images.
     - Comfy dtype: `ANALYSIS_MODELS`
-    - Python dtype: `dict`
+    - Python dtype: `object`
 - **`image`**
-    - The input image in which faces are to be detected and their bounding boxes calculated.
+    - The input image or images in which faces need to be detected. It serves as the primary data for face detection.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `PIL.Image or torch.Tensor`
+    - Python dtype: `List[torch.Tensor]`
 - **`padding`**
-    - An optional padding value to expand the bounding boxes, ensuring the entire face is captured without being too close to the edges.
+    - An optional parameter that adds a fixed padding to the detected face bounding boxes, allowing for more context around the faces.
     - Comfy dtype: `INT`
     - Python dtype: `int`
+- **`padding_percent`**
+    - Similar to padding, but adds a percentage-based padding around the detected face bounding boxes, offering flexible context inclusion.
+    - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
 - **`index`**
-    - Optionally specifies the index of a specific face to focus on, with a default value that processes all detected faces.
+    - Specifies the index of the face to focus on when multiple faces are detected. A negative index indicates no specific focus, utilizing all detected faces.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`IMAGE`**
     - Comfy dtype: `IMAGE`
-    - The cropped image of the detected face, adjusted according to the specified padding and index.
-    - Python dtype: `torch.Tensor`
+    - The cropped images of detected faces, potentially adjusted by padding and index selection.
+    - Python dtype: `List[torch.Tensor]`
 - **`x`**
     - Comfy dtype: `INT`
-    - The x-coordinate of the top-left corner of the face bounding box.
-    - Python dtype: `int`
+    - The x-coordinate of the top-left corner of each face bounding box.
+    - Python dtype: `List[int]`
 - **`y`**
     - Comfy dtype: `INT`
-    - The y-coordinate of the top-left corner of the face bounding box.
-    - Python dtype: `int`
+    - The y-coordinate of the top-left corner of each face bounding box.
+    - Python dtype: `List[int]`
 - **`width`**
     - Comfy dtype: `INT`
-    - The width of the face bounding box.
-    - Python dtype: `int`
+    - The width of each face bounding box.
+    - Python dtype: `List[int]`
 - **`height`**
     - Comfy dtype: `INT`
-    - The height of the face bounding box.
-    - Python dtype: `int`
+    - The height of each face bounding box.
+    - Python dtype: `List[int]`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -66,6 +68,7 @@ class FaceBoundingBox:
                 "analysis_models": ("ANALYSIS_MODELS", ),
                 "image": ("IMAGE", ),
                 "padding": ("INT", { "default": 0, "min": 0, "max": 4096, "step": 1 }),
+                "padding_percent": ("FLOAT", { "default": 0.0, "min": 0.0, "max": 2.0, "step": 0.05 }),
                 "index": ("INT", { "default": -1, "min": -1, "max": 4096, "step": 1 }),
             },
         }
@@ -76,7 +79,7 @@ class FaceBoundingBox:
     CATEGORY = "FaceAnalysis"
     OUTPUT_IS_LIST = (True, True, True, True, True,)
 
-    def bbox(self, analysis_models, image, padding, index=-1):
+    def bbox(self, analysis_models, image, padding, padding_percent, index=-1):
         out_img = []
         out_x = []
         out_y = []
@@ -84,39 +87,13 @@ class FaceBoundingBox:
         out_h = []
 
         for i in image:
-            img = T.ToPILImage()(i.permute(2, 0, 1)).convert('RGB')
-
-            if analysis_models["library"] == "insightface":
-                faces = analysis_models["detector"].get(np.array(img))
-                for face in faces:
-                    x, y, w, h = face.bbox.astype(int)
-                    w = w - x
-                    h = h - y
-                    x = max(0, x - padding)
-                    y = max(0, y - padding)
-                    w = min(img.width, w + 2 * padding)
-                    h = min(img.height, h + 2 * padding)
-                    crop = img.crop((x, y, x + w, y + h))
-                    out_img.append(T.ToTensor()(crop).permute(1, 2, 0).unsqueeze(0))
-                    out_x.append(x)
-                    out_y.append(y)
-                    out_w.append(w)
-                    out_h.append(h)
-
-            else:
-                faces = analysis_models["detector"](np.array(img), 1)
-                for face in faces:
-                    x, y, w, h = face.left(), face.top(), face.width(), face.height()
-                    x = max(0, x - padding)
-                    y = max(0, y - padding)
-                    w = min(img.width, w + 2 * padding)
-                    h = min(img.height, h + 2 * padding)
-                    crop = img.crop((x, y, x + w, y + h))
-                    out_img.append(T.ToTensor()(crop).permute(1, 2, 0).unsqueeze(0))
-                    out_x.append(x)
-                    out_y.append(y)
-                    out_w.append(w)
-                    out_h.append(h)
+            i = T.ToPILImage()(i.permute(2, 0, 1)).convert('RGB')
+            img, x, y, w, h = analysis_models.get_bbox(i, padding, padding_percent)
+            out_img.extend(img)
+            out_x.extend(x)
+            out_y.extend(y)
+            out_w.extend(w)
+            out_h.extend(h)
 
         if not out_img:
             raise Exception('No face detected in image.')

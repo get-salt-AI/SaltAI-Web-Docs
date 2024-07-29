@@ -1,6 +1,7 @@
 ---
 tags:
-- Animation
+- CameraControl
+- MotionData
 - PoseEstimation
 ---
 

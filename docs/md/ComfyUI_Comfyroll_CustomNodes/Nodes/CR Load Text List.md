@@ -1,7 +1,11 @@
 ---
 tags:
+- DataTypeAgnostic
+- Debugging
 - List
+- String
 - Text
+- TextReplacement
 ---
 
 # 📜 CR Load Text List

@@ -43,7 +43,7 @@ The MilehighStyler node dynamically generates and applies a variety of styling o
 - Common nodes:
     - [CLIPTextEncode](../../Comfy/Nodes/CLIPTextEncode.md)
     - [Efficient Loader](../../efficiency-nodes-comfyui/Nodes/Efficient Loader.md)
-    - [ShowText|pysssss](../../ComfyUI-Custom-Scripts/Nodes/ShowText|pysssss.md)
+    - ShowText|pysssss
 
 
 

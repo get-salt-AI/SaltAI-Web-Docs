@@ -2,70 +2,71 @@
 tags:
 - AnimationScheduling
 - Scheduling
+- SigmaScheduling
 ---
 
 # Keyframe Scheduler (BIG)
 ## Documentation
 - Class name: `SaltKeyframeSchedulerBFN`
-- Category: `SALT/Scheduling`
+- Category: `SALT/AudioViz/Scheduling`
 - Output node: `False`
 
-This node is designed for scheduling keyframe animations with customizable easing functions. It allows for the precise timing and sequencing of animations by specifying keyframes, easing modes, and optional parameters to fine-tune the animation's progression.
+This node is designed for scheduling keyframes in a customizable manner, allowing for the application of easing modes and the inclusion of optional variables to fine-tune the animation process. It provides a flexible framework for generating animation schedules based on keyframe data, easing specifications, and additional parameters, facilitating the creation of dynamic and nuanced animations.
 ## Input types
 ### Required
 - **`keyframe_schedule`**
-    - Defines the sequence of keyframes for the animation. It's the backbone of the scheduling process, dictating the timing and values of the animation frames.
+    - Specifies the schedule of keyframes to be animated. It is crucial for defining the sequence and timing of the animation, impacting the overall flow and rhythm of the generated animation.
     - Comfy dtype: `STRING`
-    - Python dtype: `str`
-- **`easing_mode`**
-    - Specifies the easing function to apply between keyframes, influencing the animation's pace and style.
-    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `list`
+- **`easing_mode`**
+    - Determines the easing function to be applied to the keyframe animation, influencing the acceleration and deceleration of the animation between keyframes. This choice significantly affects the visual smoothness and dynamics of the animation.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
 ### Optional
 - **`end_frame`**
-    - Determines the last frame of the animation, allowing for the animation's duration to be limited.
+    - Optional parameter that specifies the last frame of the animation, allowing for the animation duration to be limited or extended as needed.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`ndigits`**
-    - Sets the precision of the computed keyframe values, affecting the smoothness and accuracy of the animation.
+    - Optional parameter that defines the precision of the computed keyframe values, enabling control over the granularity of the animation's timing.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`a`**
-    - Custom variable 'a' for additional flexibility in defining the animation, supporting complex scheduling scenarios.
+    - An optional variable that can be used to introduce custom behavior or adjustments to the animation schedule, enhancing flexibility.
     - Comfy dtype: `*`
-    - Python dtype: `list | int | float | bool`
+    - Python dtype: `Union[int, float, bool, list]`
 - **`b`**
-    - Custom variable 'b' for additional flexibility in defining the animation, supporting complex scheduling scenarios.
+    - Another optional variable similar to 'a', providing additional capacity for custom modifications to the animation schedule.
     - Comfy dtype: `*`
-    - Python dtype: `list | int | float | bool`
+    - Python dtype: `Union[int, float, bool, list]`
 - **`c`**
-    - Custom variable 'c', extending the flexibility and complexity of animation scheduling.
+    - An optional variable that can be introduced for further customization of the animation schedule.
     - Comfy dtype: `*`
-    - Python dtype: `list | int | float | bool`
+    - Python dtype: `list`
 - **`d`**
-    - Custom variable 'd', further enhancing the scheduling capabilities with additional customization options.
+    - Similar to 'c', this optional variable allows for additional adjustments to the animation schedule.
     - Comfy dtype: `*`
-    - Python dtype: `list | int | float | bool`
+    - Python dtype: `list`
 - **`e`**
-    - Custom variable 'e', adds another layer of customization for intricate animation scheduling.
+    - Provides further flexibility in customizing the animation schedule through this optional variable.
     - Comfy dtype: `*`
-    - Python dtype: `list | int | float | bool`
+    - Python dtype: `list`
 - **`f`**
-    - Custom variable 'f', allows for even more detailed control over the animation's scheduling.
+    - An optional variable for additional customization options within the animation schedule.
     - Comfy dtype: `*`
-    - Python dtype: `list | int | float | bool`
+    - Python dtype: `list`
 - **`g`**
-    - Custom variable 'g', contributes to the depth of customization available for scheduling animations.
+    - Allows for further adjustments and customization of the animation schedule.
     - Comfy dtype: `*`
-    - Python dtype: `list | int | float | bool`
+    - Python dtype: `list`
 - **`h`**
-    - Custom variable 'h', completes the extensive set of customization options for detailed animation scheduling.
+    - An optional variable for extending the customization capabilities of the animation schedule.
     - Comfy dtype: `*`
-    - Python dtype: `list | int | float | bool`
+    - Python dtype: `list`
 ## Output types
 - **`schedule_list`**
     - Comfy dtype: `LIST`
-    - The computed schedule list of keyframe values, ready for use in animating objects or scenes.
+    - The generated animation schedule, comprising keyframe timings and values adjusted according to the specified easing mode and optional parameters. This output is essential for implementing the planned animation.
     - Python dtype: `list`
 ## Usage tips
 - Infra type: `CPU`
@@ -102,10 +103,10 @@ class SaltKeyframeSchedulerBFN:
     RETURN_NAMES = ("schedule_list", )
 
     FUNCTION = "keyframe_schedule"
-    CATEGORY = "SALT/Scheduling"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling"
 
     def keyframe_schedule(self, keyframe_schedule, easing_mode, end_frame=0, ndigits=2, a=[0], b=[0], c=[0], d=[0], e=[0], f=[0], g=[0], h=[0]):
-        print("Received keyframe_schedule:", keyframe_schedule)
+        logger.info("Received keyframe_schedule:", keyframe_schedule)
         custom_vars = {"a": a, "b": b, "c": c, "d": d, "e": e, "f": f, "g": g, "h": h}
         scheduler = KeyframeScheduler(end_frame=end_frame, custom_vars=custom_vars)
         schedule = scheduler.generate_schedule(keyframe_schedule, easing_mode=easing_mode, ndigits=ndigits)

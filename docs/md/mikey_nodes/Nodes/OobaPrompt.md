@@ -1,8 +1,6 @@
 ---
 tags:
-- Prompt
-- Text
-- Wildcard
+- Searge
 ---
 
 # OobaPrompt (Mikey)

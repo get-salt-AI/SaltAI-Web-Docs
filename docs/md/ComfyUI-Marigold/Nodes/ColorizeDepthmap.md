@@ -1,32 +1,31 @@
 ---
 tags:
-- DepthMap
 - DepthMapEstimation
-- Image
+- Inpaint
 ---
 
-# ColorizeDepthmap
+# Colorize Depthmap
 ## Documentation
 - Class name: `ColorizeDepthmap`
 - Category: `Marigold`
 - Output node: `False`
 
-The ColorizeDepthmap node is designed to transform depth maps into colorized images. It leverages color mapping techniques to visually represent the depth information contained within a depth map, enhancing interpretability and visual appeal. This process involves adjusting the color intensity based on the depth values, providing a more intuitive understanding of depth variations in the visualized data.
+The ColorizeDepthmap node is designed to transform depth maps into colorized representations, enhancing visual interpretation by applying a colormap. This process facilitates easier understanding and analysis of depth information by converting grayscale depth maps into vibrant, color-coded images.
 ## Input types
 ### Required
 - **`image`**
-    - The depth map to be colorized. It is the primary input that contains depth information which will be visually enhanced through colorization.
+    - The depth map to be colorized, which can be either a torch.Tensor or a numpy.ndarray. This map represents the depth information of a scene as a 2D array.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor or numpy.ndarray`
+    - Python dtype: `Union[torch.Tensor, numpy.ndarray]`
 - **`colorize_method`**
-    - The colormap name to use for colorizing the depth map. It specifies the color scheme applied to represent different depth values.
+    - The name of the matplotlib colormap to use for colorizing the depth map.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The colorized depth map, where depth information is represented through color variations. This output provides a visually enhanced version of the original depth data, making it easier to interpret.
-    - Python dtype: `torch.Tensor or numpy.ndarray`
+    - The colorized depth map, enhanced with a colormap for better visual interpretation. The output is in the same data type as the input depth map.
+    - Python dtype: `Union[torch.Tensor, numpy.ndarray]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

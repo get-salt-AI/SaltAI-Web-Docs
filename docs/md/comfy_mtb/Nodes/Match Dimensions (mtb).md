@@ -1,7 +1,7 @@
 ---
 tags:
+- ImageResize
 - ImageSize
-- ImageTransformation
 ---
 
 # Match Dimensions (mtb)
@@ -10,33 +10,33 @@ tags:
 - Category: `mtb/utils`
 - Output node: `False`
 
-The MTB_MatchDimensions node is designed to adjust the dimensions of an image to match those of a reference image along a specified dimension (height or width), ensuring the aspect ratio is preserved throughout the process.
+The MTB_MatchDimensions node is designed to adjust the dimensions of source images to match those of reference images along a specified dimension (height or width), ensuring the aspect ratio is preserved. This functionality is crucial for tasks requiring uniform image dimensions without distorting the image content.
 ## Input types
 ### Required
 - **`source`**
-    - The source image to be resized. It plays a crucial role in determining the new dimensions while preserving the aspect ratio.
+    - The source image whose dimensions are to be adjusted. It plays a critical role in determining the new dimensions while preserving the aspect ratio.
     - Comfy dtype: `IMAGE`
     - Python dtype: `IMAGE`
 - **`reference`**
-    - The reference image whose dimensions are used as the target for resizing the source image. It dictates the final dimensions to aim for, guiding the resizing process.
+    - The reference image provides the target dimensions to match. It sets the benchmark for adjusting the source image, ensuring consistency in dimensions across images.
     - Comfy dtype: `IMAGE`
     - Python dtype: `IMAGE`
 - **`match`**
-    - Specifies whether the matching should be done based on the height or width of the reference image. This choice influences the resizing strategy and the final aspect ratio of the source image.
+    - Specifies the dimension (height or width) along which the source image's dimensions should be matched to the reference image. It guides the adjustment process, ensuring the aspect ratio is preserved.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `Tuple[str, Dict[str, str]]`
+    - Python dtype: `str`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The resized image with dimensions matched to the reference image, maintaining the original aspect ratio.
+    - The adjusted image with dimensions matched to the reference image, preserving the aspect ratio.
     - Python dtype: `IMAGE`
 - **`new_width`**
     - Comfy dtype: `INT`
-    - The new width of the resized image.
+    - The new width of the adjusted image after matching dimensions.
     - Python dtype: `INT`
 - **`new_height`**
     - Comfy dtype: `INT`
-    - The new height of the resized image.
+    - The new height of the adjusted image after matching dimensions.
     - Python dtype: `INT`
 ## Usage tips
 - Infra type: `CPU`
@@ -66,6 +66,8 @@ class MTB_MatchDimensions:
     def execute(
         self, source: torch.Tensor, reference: torch.Tensor, match: str
     ):
+        import torchvision.transforms.functional as VF
+
         _batch_size, height, width, _channels = source.shape
         _rbatch_size, rheight, rwidth, _rchannels = reference.shape
 
@@ -83,7 +85,7 @@ class MTB_MatchDimensions:
             new_height = int(rwidth / source_aspect_ratio)
 
         resized_images = [
-            F.resize(
+            VF.resize(
                 source[i],
                 (new_height, new_width),
                 antialias=True,

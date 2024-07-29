@@ -1,7 +1,8 @@
 ---
 tags:
-- Conditioning
-- Context
+- CLIPConditioning
+- SAM
+- Sampling
 ---
 
 # Context Big (rgthree)

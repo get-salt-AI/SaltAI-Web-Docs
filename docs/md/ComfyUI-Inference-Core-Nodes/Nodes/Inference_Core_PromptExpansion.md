@@ -1,6 +1,7 @@
 ---
 tags:
 - Prompt
+- PromptStyling
 ---
 
 # [Inference.Core] [Inference.Core] Prompt Expansion

@@ -1,14 +1,15 @@
 # ComfyUI-sampler-lcm-alternative
-ComfyUI-sampler-lcm-alternative introduces three new custom sampler nodes for ComfyUI, enhancing the LCM sampler functions with additional parameters and functionalities. These nodes, named SamplerLCMAlternative, SamplerLCMCycle, and LCMScheduler, offer users the ability to fine-tune their sampling process with options for Euler steps, cycle repetition of Euler and LCM sampling steps, and the injection of randomness to improve image quality and detail. The project aims to provide more versatile and detailed sampling options for users working with ComfyUI.
+ComfyUI-sampler-lcm-alternative introduces three new custom nodes for ComfyUI, aimed at enhancing the LCM sampler functions for improved image generation. These nodes, SamplerLCMAlternative, SamplerLCMCycle, and LCMScheduler, offer advanced parameters for fine-tuning the sampling process, including options for Euler sampling, cycle repetition, and noise normalization. The project emphasizes the use of these samplers for achieving better results in scenarios like SD1.5 with LCM Lora and CFG 1.0, particularly highlighting the SamplerLCMDualNoise for its exceptional performance and versatility in both txt2img and img2img applications.
 
 ## Tags
-Sampling * SigmaScheduling
+AnimationScheduling * Sampling * Scheduling * SigmaScheduling
 
 ## Repo info
 - Repo url: `https://github.com/jojkaart/ComfyUI-sampler-lcm-alternative`
-- Commit hash: `389812eff10d0cd7a183b87cbac197c0da96003e`
+- Commit hash: `47b6ef102f5aff706712adce4bcbd1cb2cec1d2c`
 
 ## Licenses
 - **GPL-3.0-only**: `LICENSE`
+- GPL-3.0-only: `pyproject.toml`
 
 Visit [licenses page](licenses.md) for the details

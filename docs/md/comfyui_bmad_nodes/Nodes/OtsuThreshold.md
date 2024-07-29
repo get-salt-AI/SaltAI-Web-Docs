@@ -1,7 +1,7 @@
 ---
 tags:
-- Image
-- ImageThresholding
+- Color
+- Crop
 ---
 
 # OtsuThreshold
@@ -14,29 +14,29 @@ The OtsuThreshold node applies Otsu's thresholding method to an image to separat
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be thresholded. It is the primary data on which Otsu's method will be applied.
+    - The input image to be thresholded. Otsu's method is applied to this image to determine the optimal threshold value for separating foreground and background.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`threshold_type`**
-    - Specifies the type of thresholding to apply, which influences how the foreground and background are distinguished.
+    - Specifies the type of thresholding to apply in conjunction with Otsu's method, allowing for customization of the thresholding process.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `Enum`
 - **`gaussian_blur_x`**
-    - The kernel width for the Gaussian blur. A higher value means more blurring, which can help in reducing noise before thresholding.
+    - The kernel width for the Gaussian blur applied to the image before thresholding. A larger value reduces noise but can blur edges.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`gaussian_blur_y`**
-    - The kernel height for the Gaussian blur. Works in conjunction with gaussian_blur_x to define the blur extent.
+    - The kernel height for the Gaussian blur applied to the image before thresholding. Works in conjunction with gaussian_blur_x to define the blur extent.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`gaussian_border_type`**
-    - Determines how the border of the image is handled during the Gaussian blur process.
+    - Defines the border type used in the Gaussian blur process, affecting how image edges are handled during blurring.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `Enum`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output image after applying Otsu's thresholding, with the foreground and background separated.
+    - The output image after applying Otsu's thresholding. The image is segmented into foreground and background, with noise reduced if Gaussian blur was applied.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -48,7 +48,7 @@ The OtsuThreshold node applies Otsu's thresholding method to an image to separat
 class OtsuThreshold:
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "image": ("IMAGE",),
@@ -72,7 +72,7 @@ class OtsuThreshold:
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "otsu_thresthold"
-    CATEGORY = "Bmad/CV/Thresholding"
+    CATEGORY = f"{cv_category_path}/Thresholding"
 
     def otsu_thresthold(self, image, threshold_type, gaussian_blur_x, gaussian_blur_y, gaussian_border_type):
         image = tensor2opencv(image, 1)

@@ -1,6 +1,7 @@
 ---
 tags:
-- MathematicalFunctions
+- Math
+- MathematicalExpressions
 ---
 
 # Float Absolute Value

@@ -1,6 +1,9 @@
 ---
 tags:
+- ImpactPack
+- SEGSPrep
 - Segmentation
+- SemanticSegmentationPreprocessing
 ---
 
 # MeshGraphormer Depth Map Preprocessor Provider (SEGS)

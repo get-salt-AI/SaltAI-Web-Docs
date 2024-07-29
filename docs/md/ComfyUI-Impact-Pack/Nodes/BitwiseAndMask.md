@@ -1,29 +1,30 @@
 ---
 tags:
+- Mask
 - Segmentation
 ---
 
-# Bitwise(MASK & MASK)
+# Pixelwise(MASK & MASK)
 ## Documentation
 - Class name: `BitwiseAndMask`
 - Category: `ImpactPack/Operation`
 - Output node: `False`
 
-The BitwiseAndMask node performs a bitwise AND operation between two masks, resulting in a new mask that represents the intersection of the input masks. This operation is useful for combining or filtering mask data based on overlapping regions.
+The BitwiseAndMask node performs a bitwise AND operation on two input masks, resulting in a single mask that represents the intersection of the input masks. This operation is useful for combining or overlaying masks to highlight areas of overlap between them.
 ## Input types
 ### Required
 - **`mask1`**
-    - The first input mask for the bitwise AND operation. It plays a crucial role in determining the resulting mask by intersecting its content with the second mask.
+    - The first input mask for the bitwise AND operation. It plays a crucial role in determining the areas of overlap with the second mask.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`mask2`**
-    - The second input mask for the bitwise AND operation. It intersects with the first mask to produce the resulting mask that highlights the overlapping areas.
+    - The second input mask for the bitwise AND operation. It is combined with the first mask to identify overlapping areas.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The output mask resulting from the bitwise AND operation between the two input masks, highlighting the areas where both masks overlap.
+    - The result of the bitwise AND operation between the two input masks, highlighting the areas where both masks overlap.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`

@@ -1,12 +1,12 @@
 # OneButtonPrompt
-One Button Prompt is a tool designed for users of Automatic1111/ComfyUI/RuinedFooocus, aimed at both beginners struggling with prompt creation and advanced users seeking inspiration. It generates complete, random yet controlled prompts for Stable Diffusion models, supporting a wide range of models and offering features like full prompt generation with a click, support for various image generation modes, and the ability to save favorite settings as presets.
+One Button Prompt is a full AI prompt generator designed for use with Stable Diffusion models, aimed at both beginners struggling to write effective prompts and advanced users seeking inspiration. It offers a controlled yet random generation of complete prompts with a simple button press, supporting various models and integration with tools like Automatic1111, ComfyUI, and RuinedFooocus. The tool is versatile, allowing for customization through presets, workflow assistance, and various generation modes to cater to different artistic needs.
 
 ## Tags
-Prompt * PromptComposer
+Prompt * PromptStyling * Text
 
 ## Repo info
 - Repo url: `https://github.com/AIrjen/OneButtonPrompt`
-- Commit hash: `d7f98f7d351aef5fe04406e686a2ad4fcaa63756`
+- Commit hash: `421853ea2e14d8ebfd19aaf50fb8d846aa245e3b`
 
 ## Licenses
 - **GPL-3.0-only**: `LICENSE`

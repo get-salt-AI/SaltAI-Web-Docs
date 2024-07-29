@@ -9,46 +9,46 @@ tags:
 - Category: `Animate Diff 🎭🅐🅓/conditioning/schedule lora hooks`
 - Output node: `False`
 
-This node is designed for creating interpolated LoRA hook keyframes, allowing for the dynamic adjustment of model behavior over time. It facilitates the generation of a sequence of keyframes based on specified start and end percentages, strengths, and interpolation method, enabling fine-grained control over the temporal evolution of model parameters.
+This node is designed to create interpolated LoRA hook keyframes for animation conditioning, allowing for the dynamic adjustment of model behavior over a sequence of frames. It leverages interpolation techniques to generate a series of keyframes based on specified start and end percentages, strengths, and intervals, facilitating smooth transitions and precise control over the animation process.
 ## Input types
 ### Required
 - **`start_percent`**
-    - Defines the starting percentage for the interpolation, setting the initial point in the sequence of generated keyframes.
+    - Defines the starting percentage of the animation sequence where the first keyframe is to be applied, influencing the initial point of model behavior adjustment.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end_percent`**
-    - Specifies the ending percentage for the interpolation, determining the final point in the sequence of generated keyframes.
+    - Specifies the ending percentage of the animation sequence, marking where the last keyframe's effect concludes, thus delineating the span of the interpolation.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`strength_start`**
-    - Sets the initial strength value for the interpolation, marking the beginning of the strength adjustment range.
+    - Sets the initial strength value for the first keyframe, determining the starting intensity of the model's behavior modification.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`strength_end`**
-    - Determines the ending strength value for the interpolation, concluding the strength adjustment range.
+    - Determines the final strength value for the last keyframe, defining the ending intensity of the model's behavior adjustment.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`interpolation`**
-    - Selects the interpolation method to be used for generating the sequence of keyframes, influencing the transition between start and end values.
+    - Chooses the method of interpolation for generating intermediate strength values between keyframes, affecting the smoothness and progression of the animation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `InterpolationMethod`
 - **`intervals`**
-    - Specifies the number of intervals (or keyframes) to generate between the start and end points, affecting the granularity of the interpolation.
+    - Specifies the number of intervals (or keyframes) to generate between the start and end points, impacting the granularity of the animation conditioning.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`print_keyframes`**
-    - Optional. Controls whether the generated keyframes are logged, aiding in debugging and visualization of the interpolation process.
+    - A flag to enable or disable printing of the generated keyframes for debugging or verification purposes.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`prev_hook_kf`**
-    - Optional. Allows for the inclusion of a previously defined set of LoRA hook keyframes to which the new interpolated keyframes will be added.
+    - An optional parameter allowing for the inclusion of previously defined LoRA hook keyframes, enabling the extension or modification of an existing keyframe sequence.
     - Comfy dtype: `LORA_HOOK_KEYFRAMES`
     - Python dtype: `LoraHookKeyframeGroup`
 ## Output types
 - **`HOOK_KF`**
     - Comfy dtype: `LORA_HOOK_KEYFRAMES`
-    - Returns a group of LoRA hook keyframes, including both previously existing and newly interpolated keyframes, ready for application in model conditioning.
+    - The resulting sequence of interpolated LoRA hook keyframes, ready for use in animation conditioning.
     - Python dtype: `LoraHookKeyframeGroup`
 ## Usage tips
 - Infra type: `CPU`
@@ -88,7 +88,7 @@ class CreateLoraHookKeyframeInterpolation:
             prev_hook_kf = prev_hook_kf.clone()
         else:
             prev_hook_kf = LoraHookKeyframeGroup()
-        percents = InterpolationMethod.get_weights(num_from=start_percent, num_to=end_percent, length=intervals, method=interpolation)
+        percents = InterpolationMethod.get_weights(num_from=start_percent, num_to=end_percent, length=intervals, method=InterpolationMethod.LINEAR)
         strengths = InterpolationMethod.get_weights(num_from=strength_start, num_to=strength_end, length=intervals, method=interpolation)
         
         is_first = True

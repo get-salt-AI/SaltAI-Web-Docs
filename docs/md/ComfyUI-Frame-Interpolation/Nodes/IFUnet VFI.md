@@ -1,8 +1,11 @@
 ---
 tags:
-- AnimationScheduling
+- Curve
+- Frame
 - FrameInterpolation
-- VisualEffects
+- Interpolation
+- Keyframe
+- WavePatterns
 ---
 
 # IFUnet VFI
@@ -11,43 +14,43 @@ tags:
 - Category: `ComfyUI-Frame-Interpolation/VFI`
 - Output node: `False`
 
-The IFUnet_VFI node is designed for video frame interpolation, leveraging deep learning models to predict and generate intermediate frames between existing frames in a video sequence. This process enhances video smoothness and can be used for various applications such as slow-motion video generation, video restoration, and improving video frame rates.
+The IFUnet_VFI node specializes in video frame interpolation, leveraging deep learning models to predict and generate intermediate frames between existing frames in a video sequence. This process enhances video fluidity and can be used to increase the frame rate of videos, improve slow-motion effects, or restore missing frames in damaged video files.
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - Specifies the checkpoint name for the model to be used in the interpolation process, determining the specific pre-trained weights and configuration.
+    - Specifies the checkpoint name for the model to be used in the frame interpolation process, determining the specific pre-trained model configuration.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `typing.AnyStr`
+    - Python dtype: `str`
 - **`frames`**
-    - The input video frames to be interpolated, provided as a tensor. This is the core data on which the interpolation model operates.
+    - A sequence of images representing the video frames between which the interpolation will occur, serving as the input for generating intermediate frames.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `List[Image]`
 - **`clear_cache_after_n_frames`**
-    - Controls how often the cache is cleared during the interpolation process to manage memory usage effectively.
+    - Controls the frequency of cache clearing to manage memory usage during the interpolation process, optimizing performance.
     - Comfy dtype: `INT`
-    - Python dtype: `typing.SupportsInt`
+    - Python dtype: `int`
 - **`multiplier`**
-    - Determines the number of intermediate frames to be generated between each pair of original frames, directly affecting the smoothness of the output video.
+    - Defines the factor by which the frame rate is to be increased, indicating the number of intermediate frames to be generated.
     - Comfy dtype: `INT`
-    - Python dtype: `typing.SupportsInt`
+    - Python dtype: `int`
 - **`scale_factor`**
-    - A factor that scales the resolution of the output frames, allowing for adjustments in the size of the interpolated frames.
+    - Determines the scaling factor applied to the frames during the interpolation process, affecting the resolution and size of the output frames.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `typing.SupportsFloat`
+    - Python dtype: `float`
 - **`ensemble`**
-    - A boolean flag indicating whether to use ensemble methods for interpolation, potentially improving the quality of the output frames.
+    - A boolean flag that enables or disables the use of ensemble methods for frame interpolation, potentially improving the quality of the output.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`optional_interpolation_states`**
-    - Provides the option to specify states for selective frame interpolation, enabling more control over which frames are processed.
+    - Optional states for managing the interpolation process, allowing for advanced control over frame selection and processing.
     - Comfy dtype: `INTERPOLATION_STATES`
-    - Python dtype: `InterpolationStateList`
+    - Python dtype: `InterpolationStates`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output interpolated video frames, enhancing the smoothness and temporal resolution of the input video sequence.
-    - Python dtype: `torch.Tensor`
+    - The output image sequence after interpolation, representing the enhanced video with additional frames inserted.
+    - Python dtype: `List[Image]`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -99,7 +102,7 @@ class IFUnet_VFI:
         
         args = [interpolation_model, scale_factor, ensemble]
         out = postprocess_frames(
-            generic_frame_loop(frames, clear_cache_after_n_frames, multiplier, return_middle_frame, *args, 
+            generic_frame_loop(type(self).__name__, frames, clear_cache_after_n_frames, multiplier, return_middle_frame, *args, 
                                interpolation_states=optional_interpolation_states, dtype=torch.float32)
         )
         return (out,)

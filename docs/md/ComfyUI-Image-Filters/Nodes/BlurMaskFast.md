@@ -1,7 +1,7 @@
 ---
 tags:
 - Blur
-- MaskBlur
+- ImageTransformation
 - VisualEffects
 ---
 

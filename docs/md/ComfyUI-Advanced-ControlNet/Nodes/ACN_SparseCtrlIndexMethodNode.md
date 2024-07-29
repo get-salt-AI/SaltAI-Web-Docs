@@ -1,6 +1,7 @@
 ---
 tags:
 - ControlNet
+- ControlNetLoader
 ---
 
 # SparseCtrl Index Method 🛂🅐🅒🅝
@@ -9,17 +10,17 @@ tags:
 - Category: `Adv-ControlNet 🛂🅐🅒🅝/SparseCtrl`
 - Output node: `False`
 
-This node is designed to generate a sparse control method based on unique integer indexes. It processes a string of comma-separated indexes, ensuring they are unique and valid, to create a method that selectively applies control based on these specified indexes.
+This node is designed to generate a sparse control method based on specified indexes. It abstracts the complexity of selecting specific indexes for sparse control in advanced control networks, facilitating targeted manipulation or analysis of data points within a given dataset.
 ## Input types
 ### Required
 - **`indexes`**
-    - Specifies the unique integer indexes as a comma-separated string. These indexes determine the specific elements to which the sparse control method will be applied, ensuring targeted and efficient control.
+    - Specifies the indexes to be used for the sparse control method. This parameter allows for targeted selection within the dataset, enabling precise control over which data points are manipulated or analyzed.
     - Comfy dtype: `STRING`
-    - Python dtype: `str`
+    - Python dtype: `list[int]`
 ## Output types
 - **`sparse_method`**
     - Comfy dtype: `SPARSE_METHOD`
-    - The output is a sparse method configured with the specified unique indexes. This method is used to apply control selectively to the elements identified by the indexes.
+    - Returns a sparse method object configured with the specified indexes. This object is used to apply sparse control techniques within advanced control networks.
     - Python dtype: `SparseIndexMethod`
 ## Usage tips
 - Infra type: `CPU`
@@ -43,21 +44,7 @@ class SparseIndexMethodNode:
     CATEGORY = "Adv-ControlNet 🛂🅐🅒🅝/SparseCtrl"
 
     def get_method(self, indexes: str):
-        idxs = []
-        unique_idxs = set()
-        # get indeces from string
-        str_idxs = [x.strip() for x in indexes.strip().split(",")]
-        for str_idx in str_idxs:
-            try:
-                idx = int(str_idx)
-                if idx in unique_idxs:
-                    raise ValueError(f"'{idx}' is duplicated; indexes must be unique.")
-                idxs.append(idx)
-                unique_idxs.add(idx)
-            except ValueError:
-                raise ValueError(f"'{str_idx}' is not a valid integer index.")
-        if len(idxs) == 0:
-            raise ValueError(f"No indexes were listed in Sparse Index Method.")
+        idxs = get_idx_list_from_str(indexes)
         return (SparseIndexMethod(idxs),)
 
 ```

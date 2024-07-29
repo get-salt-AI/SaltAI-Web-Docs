@@ -4,22 +4,22 @@
 - Category: `SALT/Language Toolkit/Loaders`
 - Output node: `False`
 
-The LLMMistralAI node is designed to load and initialize language models from the MistralAI suite, providing an interface to leverage their capabilities for natural language processing tasks. It encapsulates the process of authenticating with the MistralAI API and preparing the model for use, including embedding models for enhanced functionality.
+The LLMMistralAI node is designed to interface with the MistralAI API, allowing users to load and interact with various pre-trained language models provided by MistralAI. It facilitates the integration of advanced natural language processing capabilities into applications by leveraging the power of large language models.
 ## Input types
 ### Required
 - **`model_name`**
-    - Specifies the name of the MistralAI model to be loaded. This selection determines the specific language model and its capabilities that will be utilized for processing tasks.
+    - Specifies the name of the MistralAI model to be loaded. This parameter is crucial for determining which specific pre-trained model is utilized for processing, affecting the node's behavior and the nature of its output.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`api_key`**
-    - The API key required for authenticating with the MistralAI service. This key enables access to the model loading functionality, ensuring secure and authorized use of MistralAI's resources.
+    - The API key required for authenticating with the MistralAI service. This parameter is essential for enabling access to the MistralAI models, ensuring secure and authorized use of the API.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`model`**
     - Comfy dtype: `LLM_MODEL`
-    - Outputs the loaded MistralAI language model along with an embedding model, encapsulated in a structure ready for integration into natural language processing tasks.
-    - Python dtype: `Tuple[Dict[str, Any]]`
+    - The output includes the loaded MistralAI model along with an embedding model, providing the necessary components for further natural language processing tasks.
+    - Python dtype: `Dict[str, Any]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -47,7 +47,6 @@ class LLMMistralAI:
                 ],),
                 "api_key": ("STRING", {
                     "multiline": False, 
-                    "dynamicPrompts": False, 
                     "default": os.environ.get("MISTRAL_API_KEY", "")
                 }),
             },
@@ -60,8 +59,10 @@ class LLMMistralAI:
     CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Loaders"
 
     def load_model(self, model_name:str, api_key:str) -> Dict[str, Any]:
+        if LAST_TOKENIZER:
+            Settings.tokenizer = LAST_TOKENIZER
         llm = MistralAI(model_name=model_name, api_key=api_key)
         embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5")
-        return ({"llm":llm, "embed_model":embed_model},)
+        return ({"llm":llm, "llm_name": model_name, "embed_model": embed_model, "embed_name": "bge-small-en-v1.5"},)
 
 ```

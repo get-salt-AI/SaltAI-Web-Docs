@@ -1,6 +1,7 @@
 ---
 tags:
 - ImpactPack
+- MediaPipeFaceMesh
 - Segmentation
 ---
 
@@ -10,38 +11,38 @@ tags:
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-The ImpactSEGSRangeFilter node is designed to filter segments (SEGS) based on specified range criteria. It evaluates each segment against given parameters such as area, width, height, or specific coordinates, and segregates them into new segments that meet or do not meet the criteria. This functionality is crucial for refining segment selection based on geometric properties.
+The ImpactSEGSRangeFilter node is designed to filter segmentation elements (SEGS) based on specified criteria such as area, width, height, coordinates, or confidence level. It allows for the inclusion or exclusion of segments within a given range, enhancing the ability to focus on segments of interest within an image.
 ## Input types
 ### Required
 - **`segs`**
-    - The input segments to be filtered. It's the primary data upon which the range filtering operation is performed.
+    - The segmentation elements to be filtered. This is the primary data upon which the filtering operations are performed.
     - Comfy dtype: `SEGS`
-    - Python dtype: `Tuple[str, List[SEG]]`
+    - Python dtype: `tuple`
 - **`target`**
-    - Specifies the geometric property (e.g., area, width, height, x1, y1, x2, y2, length_percent) based on which the segments will be filtered.
+    - Specifies the attribute of the segmentation elements to be filtered, such as area, dimensions, or confidence level. This determines the basis on which segments are evaluated and filtered.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`mode`**
-    - Determines the filtering mode. If true, segments within the specified range are included; if false, segments outside the range are included.
+    - Determines the filtering mode, either including segments within the specified range ('inside') or excluding them ('outside'). This affects how segments are selected based on the target attribute's value.
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `bool`
+    - Python dtype: `str`
 - **`min_value`**
-    - The minimum value of the specified geometric property for a segment to be included or excluded, depending on the mode.
+    - The minimum value of the target attribute for a segment to be considered for inclusion or exclusion, depending on the mode.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`max_value`**
-    - The maximum value of the specified geometric property for a segment to be included or excluded, depending on the mode.
+    - The maximum value of the target attribute for a segment to be considered for inclusion or exclusion, depending on the mode.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`filtered_SEGS`**
     - Comfy dtype: `SEGS`
-    - Returns the segments that meet the specified criteria.
-    - Python dtype: `Tuple[str, List[SEG]]`
+    - The segments that meet the filtering criteria based on the specified target and range.
+    - Python dtype: `tuple`
 - **`remained_SEGS`**
     - Comfy dtype: `SEGS`
-    - Returns the segments that do not meet the specified criteria.
-    - Python dtype: `Tuple[str, List[SEG]]`
+    - The segments that do not meet the filtering criteria and are thus excluded based on the specified target and range.
+    - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -54,7 +55,7 @@ class SEGSRangeFilter:
     def INPUT_TYPES(s):
         return {"required": {
                         "segs": ("SEGS", ),
-                        "target": (["area(=w*h)", "width", "height", "x1", "y1", "x2", "y2", "length_percent"],),
+                        "target": (["area(=w*h)", "width", "height", "x1", "y1", "x2", "y2", "length_percent", "confidence(0-100)"],),
                         "mode": ("BOOLEAN", {"default": True, "label_on": "inside", "label_off": "outside"}),
                         "min_value": ("INT", {"default": 0, "min": 0, "max": sys.maxsize, "step": 1}),
                         "max_value": ("INT", {"default": 67108864, "min": 0, "max": sys.maxsize, "step": 1}),
@@ -94,8 +95,12 @@ class SEGSRangeFilter:
                 value = x2
             elif target == "y1":
                 value = y1
-            else:
+            elif target == "y2":
                 value = y2
+            elif target == "confidence(0-100)":
+                value = seg.confidence*100
+            else:
+                raise Exception(f"[Impact Pack] SEGSRangeFilter - Unexpected target '{target}'")
 
             if mode and min_value <= value <= max_value:
                 print(f"[in] value={value} / {mode}, {min_value}, {max_value}")
@@ -107,6 +112,6 @@ class SEGSRangeFilter:
                 remained_segs.append(seg)
                 print(f"[filter] value={value} / {mode}, {min_value}, {max_value}")
 
-        return ((segs[0], new_segs), (segs[0], remained_segs), )
+        return (segs[0], new_segs), (segs[0], remained_segs),
 
 ```

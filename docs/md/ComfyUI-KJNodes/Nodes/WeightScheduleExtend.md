@@ -1,30 +1,30 @@
 ---
 tags:
-- DataTypeConversion
-- NumericConversion
+- Float
+- FloatList
 ---
 
 # Weight Schedule Extend
 ## Documentation
 - Class name: `WeightScheduleExtend`
-- Category: `KJNodes`
+- Category: `KJNodes/weights`
 - Output node: `False`
 
-The WeightScheduleExtend node is designed to extend, and convert if needed, different value lists/series. It supports various input types and can output the extended or converted values in the specified format, facilitating the manipulation and analysis of data within computational workflows.
+The WeightScheduleExtend node is designed to extend and convert weight schedules or value lists, supporting various output types for flexible integration into different model architectures. It allows for the manipulation of input values to match specific requirements, facilitating the customization of model behavior over time.
 ## Input types
 ### Required
 - **`input_values_i`**
-    - unknown
+    - Represents the first set of input values for the operation, playing a crucial role in the extension or conversion process.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `unknown`
+    - Python dtype: `float`
 - **`output_type`**
-    - Specifies the desired output format of the extended or converted data, allowing for flexibility in how the results are utilized or further processed.
+    - Specifies the desired output type of the operation, influencing the format of the extended or converted values.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`float`**
     - Comfy dtype: `FLOAT`
-    - The output is a float value or a collection of float values, depending on the operation performed and the output type specified.
+    - The output of the operation, which can be a single float value or a collection of float values, depending on the specified output type.
     - Python dtype: `float`
 ## Usage tips
 - Infra type: `CPU`
@@ -56,7 +56,7 @@ class WeightScheduleExtend:
         }
     RETURN_TYPES = ("FLOAT",)
     FUNCTION = "execute"
-    CATEGORY = "KJNodes"
+    CATEGORY = "KJNodes/weights"
     DESCRIPTION = """
 Extends, and converts if needed, different value lists/series  
 """

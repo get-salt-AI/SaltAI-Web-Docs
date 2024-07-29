@@ -1,7 +1,8 @@
 ---
 tags:
-- SMPL
-- SMPLModel
+- Animation
+- MotionData
+- PoseEstimation
 ---
 
 # Render OpenPose from SMPL Multiple

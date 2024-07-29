@@ -1,8 +1,6 @@
 ---
 tags:
-- ImageScaling
 - ImageUpscaling
-- Upscale
 ---
 
 # Upscale Image (using Model)
@@ -11,21 +9,21 @@ tags:
 - Category: `image/upscaling`
 - Output node: `False`
 
-This node is designed to upscale images using a specified upscale model, adjusting the process dynamically to manage memory constraints and optimize for performance. It employs a tiling strategy to handle large images in segments, ensuring efficient use of resources while maintaining high-quality upscaling.
+This node is designed to upscale images using a specified upscale model. It dynamically manages memory requirements based on the model and image size, performs the upscaling in a tiled manner to handle large images efficiently, and ensures the output image is clamped within a valid range.
 ## Input types
 ### Required
 - **`upscale_model`**
-    - The upscale model to be used for upscaling the image. It determines the upscaling algorithm and its parameters, playing a crucial role in the quality and characteristics of the output image.
+    - The upscale model to be used for upscaling the image. It determines the upscaling algorithm and its parameters.
     - Comfy dtype: `UPSCALE_MODEL`
     - Python dtype: `torch.nn.Module`
 - **`image`**
-    - The input image to be upscaled. This image is processed and upscaled according to the specifications of the provided upscale model.
+    - The input image to be upscaled. The image is processed and upscaled according to the specified upscale model.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The upscaled image, processed and enhanced by the upscale model. It is returned as a tensor with adjustments to its dimensions and pixel values to reflect the upscaling.
+    - The upscaled image, with pixel values clamped to the range [0, 1].
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -59,8 +57,8 @@ class ImageUpscaleWithModel:
     def upscale(self, upscale_model, image):
         device = model_management.get_torch_device()
 
-        memory_required = model_management.module_size(upscale_model)
-        memory_required += (512 * 512 * 3) * image.element_size() * max(upscale_model.scale, 1.0) * 256.0 #The 256.0 is an estimate of how much some of these models take, TODO: make it more accurate
+        memory_required = model_management.module_size(upscale_model.model)
+        memory_required += (512 * 512 * 3) * image.element_size() * max(upscale_model.scale, 1.0) * 384.0 #The 384.0 is an estimate of how much some of these models take, TODO: make it more accurate
         memory_required += image.nelement() * image.element_size()
         model_management.free_memory(memory_required, device)
 
@@ -82,7 +80,7 @@ class ImageUpscaleWithModel:
                 if tile < 128:
                     raise e
 
-        upscale_model.cpu()
+        upscale_model.to("cpu")
         s = torch.clamp(s.movedim(-3,-1), min=0, max=1.0)
         return (s,)
 

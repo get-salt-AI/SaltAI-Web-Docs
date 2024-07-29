@@ -9,18 +9,18 @@ tags:
 - Category: `SALT/Language Toolkit/Loaders`
 - Output node: `False`
 
-The LLMLlamaCPPModel node is designed to load and initialize LlamaCPP models, providing a bridge to leverage the capabilities of LlamaCPP for natural language processing tasks. It encapsulates the process of locating, loading, and preparing the model for use, including the integration of an embedding model for enhanced functionality.
+The LLMLlamaCPPModel node is designed to load and initialize LlamaCPP models, incorporating an embedding model alongside. It facilitates the integration of LlamaCPP models into larger workflows by providing a streamlined mechanism for model loading, including setting up necessary configurations and embedding models for enhanced functionality.
 ## Input types
 ### Required
 - **`model_name`**
-    - Specifies the name of the LlamaCPP model to be loaded. This name is used to locate the model within a predefined set of available models, ensuring the correct model is initialized for use.
+    - Specifies the name of the LlamaCPP model to be loaded. This parameter is crucial for identifying the correct model file and initializing the LlamaCPP model accordingly.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`model`**
     - Comfy dtype: `LLM_MODEL`
-    - Outputs a dictionary containing the loaded LlamaCPP model, its name, the associated embedding model, and the embedding model's name, ready for further processing or use in NLP tasks.
-    - Python dtype: `Dict[str, Any]`
+    - Returns a dictionary containing the loaded LlamaCPP model, its name, the associated embedding model, and the embedding model's name. This output is essential for subsequent processing or analysis steps in the workflow.
+    - Python dtype: `Dict[str, Union[LlamaCPP, HuggingFaceEmbedding]]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -50,6 +50,8 @@ class LLMLlamaCPP:
     CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Loaders"
 
     def load_model(self, model_name: str) -> Dict[str, Any]:
+        if LAST_TOKENIZER:
+            Settings.tokenizer = LAST_TOKENIZER
         path = folder_paths.get_full_path('llm', model_name)
         llm = LlamaCPP(model_path=path)
         embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5")

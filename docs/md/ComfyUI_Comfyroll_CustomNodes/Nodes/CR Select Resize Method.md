@@ -1,6 +1,6 @@
 ---
 tags:
-- ImageTransformation
+- ImageSize
 ---
 
 # ⚙️ CR Select Resize Method

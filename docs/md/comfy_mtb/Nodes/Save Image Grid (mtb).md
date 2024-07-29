@@ -1,8 +1,8 @@
 ---
 tags:
 - GridLayout
-- Image
-- Tiled
+- ImageDuplication
+- ImageTransformation
 ---
 
 # Save Image Grid (mtb)

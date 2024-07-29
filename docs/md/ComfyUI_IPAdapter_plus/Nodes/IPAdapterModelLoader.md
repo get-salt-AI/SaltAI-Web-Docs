@@ -1,7 +1,7 @@
 ---
 tags:
 - IPAdapter
-- IPAdapterLoader
+- RegionalImageProcessing
 ---
 
 # IPAdapter Model Loader

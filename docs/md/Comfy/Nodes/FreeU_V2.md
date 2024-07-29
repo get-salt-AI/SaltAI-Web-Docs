@@ -9,33 +9,33 @@ tags:
 - Category: `model_patches`
 - Output node: `False`
 
-The FreeU_V2 node is designed to enhance the flexibility and performance of neural network models by dynamically adjusting their internal processing based on the model's channel configuration and specific scaling factors. It applies sophisticated transformations to the model's output, including scaling and Fourier filtering, to optimize the model's behavior for various computational and application-specific requirements.
+The FreeU_V2 node enhances the functionality of generative models by applying dynamic scaling and filtering techniques to the model's output. It utilizes a scale dictionary to adjust the model's hidden states based on predefined scaling factors and applies a Fourier filter to the spatial components, ensuring optimized output quality. This node is particularly useful for improving the visual fidelity of generated images or patterns, making it a valuable tool for tasks requiring high-quality visual outputs.
 ## Input types
 ### Required
 - **`model`**
-    - The neural network model to be enhanced and adjusted by the FreeU_V2 node. It serves as the foundation for the node's operations, determining the base architecture that will undergo dynamic scaling and filtering transformations.
+    - The generative model to be enhanced by the FreeU_V2 node. It is crucial for defining the base functionality that will be augmented by the node's scaling and filtering operations.
     - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`b1`**
-    - A scaling factor that influences the intensity of the transformation applied to the model's output, specifically targeting the higher model channel configurations.
+    - A scaling factor for adjusting the model's hidden states, contributing to the dynamic scaling functionality of the node.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`b2`**
-    - A scaling factor similar to b1 but tailored for lower model channel configurations, affecting the transformation's intensity.
+    - Another scaling factor for adjusting the model's hidden states, working alongside b1 to fine-tune the output quality.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`s1`**
-    - A scaling parameter that, along with b1, defines the degree of adjustment applied to the model's output for higher channel configurations.
+    - A scaling parameter used in the Fourier filtering process to modify the spatial components of the model's output, enhancing visual clarity.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`s2`**
-    - A scaling parameter that works in conjunction with b2 to set the adjustment level for lower channel configurations in the model's output.
+    - A secondary scaling parameter for the Fourier filter, used to further refine the spatial aspects of the generated output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The enhanced and dynamically adjusted neural network model, reflecting the applied transformations for optimized performance and flexibility.
+    - The enhanced generative model, with improved output quality through dynamic scaling and Fourier filtering.
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
@@ -75,7 +75,7 @@ class FreeU_V2:
         on_cpu_devices = {}
 
         def output_block_patch(h, hsp, transformer_options):
-            scale = scale_dict.get(h.shape[1], None)
+            scale = scale_dict.get(int(h.shape[1]), None)
             if scale is not None:
                 hidden_mean = h.mean(1).unsqueeze(1)
                 B = hidden_mean.shape[0]

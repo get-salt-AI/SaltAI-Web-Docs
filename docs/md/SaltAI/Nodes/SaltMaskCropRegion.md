@@ -11,53 +11,53 @@ tags:
 - Category: `SALT/Masking/Process`
 - Output node: `False`
 
-The SaltMaskCropRegion node focuses on cropping regions within masks based on specified criteria, such as dominant or minority areas, and applying padding around these regions. It aims to refine mask data by isolating and resizing specific regions, facilitating targeted analysis or manipulation of mask-based data.
+This node focuses on cropping regions from a batch of masks based on a specified region type and padding. It dynamically adjusts the crop to focus on areas of interest within each mask, resizing the cropped regions to a uniform size for batch processing. The node is designed to enhance or isolate specific features within masks, facilitating further analysis or processing.
 ## Input types
 ### Required
 - **`masks`**
-    - The 'masks' parameter represents the input masks to be cropped. It is crucial for determining the areas within each mask that meet the specified cropping criteria, directly influencing the output cropped masks.
+    - A batch of masks to be processed for cropping. This parameter is crucial for determining the areas within each mask that will be cropped based on the specified region type and padding.
     - Comfy dtype: `MASK`
     - Python dtype: `torch.Tensor`
 - **`padding`**
-    - The 'padding' parameter specifies the amount of padding to add around the cropped region. It affects the size of the output cropped masks by expanding the cropped area, allowing for more flexible usage of the masks.
+    - The padding value adds a specified number of pixels around the crop region. This parameter allows for flexibility in the size of the cropped area, ensuring that important features are not clipped.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`region_type`**
-    - The 'region_type' parameter determines the criteria for cropping, choosing between 'dominant' or 'minority' regions within the masks. This choice directs the cropping process, tailoring the output to specific areas of interest.
+    - Specifies the type of region to focus on for cropping, such as 'dominant'. This parameter influences how the cropping algorithm identifies and isolates areas of interest within each mask.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`cropped_masks`**
     - Comfy dtype: `MASK`
-    - The cropped masks after applying the specified cropping and padding, ready for further processing or analysis.
+    - The batch of masks after cropping, resized to a uniform size for consistency across the batch.
     - Python dtype: `torch.Tensor`
 - **`crop_data_batch`**
     - Comfy dtype: `CROP_DATA_BATCH`
-    - A batch of data detailing the cropping operations performed, including dimensions and locations of the cropped regions.
-    - Python dtype: `List[Dict]`
+    - A list of crop data for each mask, detailing the specific crop dimensions and locations.
+    - Python dtype: `list`
 - **`top_int`**
     - Comfy dtype: `INT`
-    - The top boundary integer value of the cropped region.
+    - The top coordinate of the crop region for the first mask in the batch.
     - Python dtype: `int`
 - **`left_int`**
     - Comfy dtype: `INT`
-    - The left boundary integer value of the cropped region.
+    - The left coordinate of the crop region for the first mask in the batch.
     - Python dtype: `int`
 - **`right_int`**
     - Comfy dtype: `INT`
-    - The right boundary integer value of the cropped region.
+    - The right coordinate of the crop region for the first mask in the batch.
     - Python dtype: `int`
 - **`bottom_int`**
     - Comfy dtype: `INT`
-    - The bottom boundary integer value of the cropped region.
+    - The bottom coordinate of the crop region for the first mask in the batch.
     - Python dtype: `int`
 - **`width_int`**
     - Comfy dtype: `INT`
-    - The width integer value of the cropped region, calculated from the cropping data.
+    - The width of the cropped region for the first mask in the batch, providing insight into the size of the cropped area.
     - Python dtype: `int`
 - **`height_int`**
     - Comfy dtype: `INT`
-    - The height integer value of the cropped region, calculated from the cropping data.
+    - The height of the cropped region for the first mask in the batch, offering a measure of the cropped area's size.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `GPU`
@@ -91,7 +91,7 @@ class SaltMaskCropRegion:
         
         for n in range(N):
             mask = masks[n]
-            mask_pil = mask2pil(mask.unsqueeze(0))
+            mask_pil = tensor2pil(mask)
             if not master_size:
                 master_size = mask_pil.size
             region_mask, crop_data = MaskFilters.crop_region(mask_pil, region_type, padding)
@@ -102,6 +102,10 @@ class SaltMaskCropRegion:
 
         cropped_masks_batch = torch.cat(cropped_masks, dim=0)
 
-        return (cropped_masks_batch, crop_data_list)
+        # Extract crop data
+        top_int, left_int, right_int, bottom_int = crop_data_list[0][1]
+        width_int, height_int = cropped_masks_batch.shape[2], cropped_masks_batch.shape[1]
+
+        return (cropped_masks_batch, crop_data_list, top_int, left_int, right_int, bottom_int, width_int, height_int)
 
 ```

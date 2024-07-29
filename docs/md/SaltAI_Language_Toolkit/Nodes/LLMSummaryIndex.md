@@ -4,29 +4,29 @@
 - Category: `SALT/Language Toolkit/Indexing`
 - Output node: `False`
 
-The LLMSummaryIndex node is designed to facilitate the summarization of documents using a language model. It leverages a summarization model to process and condense the input documents into summaries, aiming to capture the essential information in a concise format.
+The LLMSummaryIndex node is designed to create a summary index from a collection of documents using a specified language model embedding. It processes each document to handle metadata and text, applying sentence splitting as part of its transformation steps, and then constructs an index that can be used for summarizing or retrieving information from the documents.
 ## Input types
 ### Required
 - **`llm_model`**
-    - Specifies the language model to be used for summarization, playing a crucial role in determining the quality and style of the generated summaries.
+    - The language model and its embedding model used for generating document summaries. It's crucial for determining the embedding strategy for the documents.
     - Comfy dtype: `LLM_MODEL`
     - Python dtype: `Dict[str, Any]`
 - **`document`**
-    - Represents the input documents to be summarized. The quality of the input directly influences the effectiveness of the summarization.
+    - A list of documents to be indexed. Each document's text and metadata are processed for indexing.
     - Comfy dtype: `DOCUMENT`
     - Python dtype: `List[Document]`
 ### Optional
 - **`optional_llm_context`**
-    - Additional context or parameters for the language model, allowing for customized summary outputs.
+    - Optional context provided to the language model during the indexing process. It can be used to tailor the embedding process to specific requirements or contexts.
     - Comfy dtype: `LLM_CONTEXT`
-    - Python dtype: `Dict[str, Any] or None`
+    - Python dtype: `Optional[Dict[str, Any]]`
 ## Output types
 - **`llm_index`**
     - Comfy dtype: `LLM_INDEX`
-    - The summarized output of the documents, providing a structured and easily interpretable representation of the summaries.
+    - The summary index created from the documents, ready for use in summarization or information retrieval tasks.
     - Python dtype: `SummaryIndex`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -63,7 +63,9 @@ class LLMSummaryIndex:
 
         documents = []
         for doc in document:
-            print(doc)
+            logger.info("Document:")
+            logger.data(doc)
+            logger.info("\n==================\n")
             metadata = {}
             text = doc.text
             if doc.metadata:

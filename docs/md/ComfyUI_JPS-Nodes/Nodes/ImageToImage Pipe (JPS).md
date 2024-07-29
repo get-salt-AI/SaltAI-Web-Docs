@@ -1,8 +1,10 @@
 ---
 tags:
+- IPAdapter
 - Image
 - ImagePreprocessing
 - ImageTransformation
+- Pipeline
 ---
 
 # ImageToImage Pipe (JPS)

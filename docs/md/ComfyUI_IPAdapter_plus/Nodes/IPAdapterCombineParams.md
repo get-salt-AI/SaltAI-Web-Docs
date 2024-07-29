@@ -1,6 +1,7 @@
 ---
 tags:
 - IPAdapter
+- RegionalImageProcessing
 ---
 
 # IPAdapter Combine Params
@@ -9,19 +10,19 @@ tags:
 - Category: `ipadapter/params`
 - Output node: `False`
 
-The IPAdapterCombineParams node is designed to merge multiple sets of parameters for image processing adapters, facilitating the combination of various image attributes and effects into a single, cohesive set. This node simplifies the process of integrating multiple image processing parameters, ensuring a harmonized approach to image adaptation and enhancement.
+This node is designed to combine multiple sets of parameters for IP adapters, allowing for the flexible integration of various input parameters into a single, unified set. It supports the aggregation of images, attention masks, weights, weight types, and start and end points from up to five different parameter sets, facilitating complex parameter management and customization in image processing tasks.
 ## Input types
 ### Required
 - **`params_i`**
-    - Represents a set of parameters to be combined. Each 'params_i' (where i ranges from 1 to 5) serves as an individual set of image processing attributes, contributing to the merge and enhancing the overall effect.
+    - A set of parameters to be combined. This generalized parameter name represents any of the up to five sets of parameters (params_1 to params_5) that can be provided. Each set contributes to the overall aggregation, enriching the combined parameters with its values. The index 'i' ranges from 1 to 5, indicating the position of the parameter set in the combination process.
     - Comfy dtype: `IPADAPTER_PARAMS`
-    - Python dtype: `Dict[str, Union[str, List[str], float, bool]]`
+    - Python dtype: `Dict[str, Any]`
 ### Optional
 ## Output types
 - **`ipadapter_params`**
     - Comfy dtype: `IPADAPTER_PARAMS`
-    - The combined set of image processing parameters, resulting from the integration of up to five individual sets. This consolidated output facilitates enhanced and harmonized image adaptation.
-    - Python dtype: `Dict[str, Union[str, List[str], float, bool]]`
+    - The resulting combined set of parameters, encompassing aggregated values from up to five input parameter sets. This unified parameter set is ready for use in further image processing tasks.
+    - Python dtype: `Dict[str, Any]`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -40,7 +41,7 @@ class IPAdapterCombineParams:
             "params_4": ("IPADAPTER_PARAMS",),
             "params_5": ("IPADAPTER_PARAMS",),
         }}
-    
+
     RETURN_TYPES = ("IPADAPTER_PARAMS",)
     FUNCTION = "combine"
     CATEGORY = "ipadapter/params"

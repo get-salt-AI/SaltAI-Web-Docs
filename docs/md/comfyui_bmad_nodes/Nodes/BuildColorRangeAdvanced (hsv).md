@@ -1,7 +1,6 @@
 ---
 tags:
 - Color
-- HSVColorSpace
 ---
 
 # BuildColorRangeAdvanced (hsv)
@@ -10,36 +9,34 @@ tags:
 - Category: `Bmad/CV/Color A.`
 - Output node: `False`
 
-The BuildColorRangeAdvanced (hsv) node is designed to create a comprehensive range of colors in the HSV color space. It leverages advanced techniques to accurately define and adjust the boundaries of color ranges, ensuring precise color selection and manipulation for various computer vision tasks.
+The `BuildColorRangeAdvanced (hsv)` node is designed to create a sophisticated range of colors in the HSV color space. It leverages advanced techniques to adjust and fix the bounds of hue, saturation, and value based on given parameters, enabling precise color selection and manipulation for various computer vision tasks.
 ## Input types
 ### Required
 - **`samples`**
-    - The 'samples' parameter represents the data points or color samples in the HSV color space that the node will use to determine the range. It is crucial for defining the scope of the color range to be generated.
+    - Specifies the HSV color samples from which to derive the color range. It is essential for determining the base colors for range calculation.
     - Comfy dtype: `HSV_SAMPLES`
-    - Python dtype: `numpy.ndarray`
+    - Python dtype: `HSV_Samples`
 - **`hue_exp`**
-    - The 'hue_exp' parameter is expected to adjust the hue component of the color range, affecting the final color selection.
+    - Defines the expression or method to adjust the hue component of the color range. It allows for dynamic hue range adjustments based on specific criteria or algorithms.
     - Comfy dtype: `STRING`
-    - Python dtype: `float`
+    - Python dtype: `str`
 - **`sat_exp`**
-    - The 'sat_exp' parameter is expected to adjust the saturation component of the color range, affecting the final color selection.
+    - Specifies the expression or method to adjust the saturation component of the color range. It enables fine-tuning of the saturation levels within the generated color range.
     - Comfy dtype: `STRING`
-    - Python dtype: `float`
+    - Python dtype: `str`
 - **`val_exp`**
-    - The 'val_exp' parameter is expected to adjust the value component of the color range, affecting the final color selection.
+    - Indicates the expression or method to adjust the value (brightness) component of the color range. It facilitates the manipulation of brightness levels to achieve the desired color range.
     - Comfy dtype: `STRING`
-    - Python dtype: `float`
+    - Python dtype: `str`
 ## Output types
 - **`hsv_color`**
     - Comfy dtype: `HSV_COLOR`
-    - The 'hsv_color' output represents the generated color range in the HSV color space. It is essential for applications requiring precise color manipulation and selection.
-    - Python dtype: `tuple`
+    - Returns the calculated HSV color range based on the provided expressions and samples. It represents the final color range after all adjustments have been applied.
+    - Python dtype: `Tuple[int, int, int]`
 - **`combo[string]`**
     - Comfy dtype: `COMBO[STRING]`
-    - The 'combo[string]' output provides additional information or metadata about the generated color range, enhancing the node's utility in complex color analysis tasks.
-    - Python dtype: `list`
-- **`ui`**
-    - The 'ui' parameter provides a user interface component for interacting with the node's outputs, enhancing usability and accessibility.
+    - Provides additional information or results related to the color range calculation, potentially including details about the applied adjustments or methods.
+    - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -52,18 +49,18 @@ class BuildColorRangeHSVAdvanced:
         self.samples = None
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {
             # "average": ("HSV_COLOR",), # compute from sample?
             "samples": ("HSV_SAMPLES",),
-            "hue_exp": ("STRING", {"multiline": True, "default": s.default_hue_expression}),
-            "sat_exp": ("STRING", {"multiline": True, "default": s.default_saturation_expression}),
-            "val_exp": ("STRING", {"multiline": True, "default": s.default_value_expression}),
+            "hue_exp": ("STRING", {"multiline": True, "default": cls.default_hue_expression}),
+            "sat_exp": ("STRING", {"multiline": True, "default": cls.default_saturation_expression}),
+            "val_exp": ("STRING", {"multiline": True, "default": cls.default_value_expression}),
         }}
 
     RETURN_TYPES = ("HSV_COLOR", "HSV_COLOR", InRangeHSV.hue_modes)
     FUNCTION = "get_interval"
-    CATEGORY = "Bmad/CV/Color A."
+    CATEGORY = f"{cv_category_path}/Color A."
 
     default_hue_expression = """# hue
 h_quant2(0, 1).scale_by_constant(16) if 2 < v_median < 253 else to_interval(0, 180)

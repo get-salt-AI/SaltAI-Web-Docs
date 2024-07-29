@@ -1,6 +1,7 @@
 ---
 tags:
 - ConditionalSelection
+- ImpactPack
 ---
 
 # 🔀 CR Latent Input Switch

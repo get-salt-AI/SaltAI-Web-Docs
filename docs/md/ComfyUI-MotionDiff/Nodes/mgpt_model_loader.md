@@ -1,6 +1,8 @@
 ---
 tags:
+- Animation
 - MotionData
+- PoseEstimation
 ---
 
 # MotionGPT Model Loader

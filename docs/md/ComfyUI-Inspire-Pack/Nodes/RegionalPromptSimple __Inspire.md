@@ -1,6 +1,8 @@
 ---
 tags:
-- RegionalPrompt
+- Image
+- Prompt
+- Style
 ---
 
 # Regional Prompt Simple (Inspire)
@@ -9,48 +11,65 @@ tags:
 - Category: `InspirePack/Regional`
 - Output node: `False`
 
-The RegionalPromptSimple node is designed to generate regional prompts based on a given basic pipeline configuration and a mask. It utilizes the basic components of a generative model pipeline, including model, clip, and VAE settings, along with positive and negative prompts, to create new prompts that are regionally focused. This node is essential for tasks that require targeted prompt generation within specific areas of an image, enabling more precise control over the generative process.
+The RegionalPromptSimple node is designed to facilitate the creation of region-specific prompts within an image generation pipeline. It leverages regional information to tailor the generation process, ensuring that the output images are aligned with the specified regional characteristics and constraints.
 ## Input types
 ### Required
 - **`basic_pipe`**
-    - Represents the foundational components of the generative model pipeline, including the model, clip, VAE, and positive and negative prompts. It is crucial for defining the base upon which regional prompts are generated.
+    - Represents the foundational components of the image generation pipeline, including models and initial conditions. It's essential for the node to function within the broader generation context.
     - Comfy dtype: `BASIC_PIPE`
-    - Python dtype: `Tuple[torch.nn.Module, torch.nn.Module, torch.nn.Module, List[Tuple[str, Dict]], List[Tuple[str, Dict]]]`
+    - Python dtype: `Tuple[Model, ClipModel, VAEModel, List[Tuple[str, Dict[str, Any]]], List[Tuple[str, Dict[str, Any]]]]`
 - **`mask`**
-    - A binary mask that specifies the region of interest within an image. It plays a pivotal role in determining where the regional prompts will be applied, allowing for targeted prompt generation.
+    - An image mask defining the regions of interest. It is used to apply regional prompts specifically to areas highlighted by the mask.
     - Comfy dtype: `MASK`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `Image`
 - **`cfg`**
-    - The configuration setting for the generative model, influencing the detail and quality of the generated prompts.
+    - Controls the conditioning factor for generation, affecting how strongly the regional prompts influence the output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sampler_name`**
-    - Specifies the sampling method to be used in the generative process, affecting the diversity and quality of the output.
+    - Determines the sampling method used during image generation, impacting the diversity and quality of the output.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - Determines the scheduling algorithm for the generative model, impacting the progression and variation of the generated prompts.
+    - Defines the scheduling algorithm for controlling the generation process, influencing the progression and variation of the output.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`wildcard_prompt`**
-    - An optional prompt that can be dynamically inserted into the generation process, offering flexibility and creativity in prompt design.
+    - Allows for the inclusion of dynamic or variable text elements within the prompts, adding flexibility to the generation process.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`controlnet_in_pipe`**
-    - A boolean flag indicating whether to keep or override existing control settings in the pipeline, affecting the influence of control mechanisms on the generation process.
+    - Indicates whether control networks are included in the pipeline, affecting the application of regional prompts.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`sigma_factor`**
-    - A scaling factor for the noise level in the sampling process, allowing for fine-tuning of the prompt generation's randomness and variability.
+    - Adjusts the noise level in the generation process, influencing the variability and creativity of the output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
+### Optional
+- **`variation_seed`**
+    - A seed for introducing variations in the generation process, providing a way to explore different outcomes.
+    - Comfy dtype: `INT`
+    - Python dtype: `int`
+- **`variation_strength`**
+    - Determines the strength of the variations introduced by the variation seed, affecting the diversity of the generated output.
+    - Comfy dtype: `FLOAT`
+    - Python dtype: `float`
+- **`variation_method`**
+    - Specifies the method used for applying variations, influencing how changes are integrated into the generation process.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `str`
+- **`scheduler_func_opt`**
+    - An optional scheduling function that can be used to further customize the generation process.
+    - Comfy dtype: `SCHEDULER_FUNC`
+    - Python dtype: `SchedulerFunc`
 ## Output types
 - **`regional_prompts`**
     - Comfy dtype: `REGIONAL_PROMPTS`
-    - The generated regional prompts, tailored to the specified region of interest within the image, enabling targeted and precise control over the content generation.
-    - Python dtype: `List[Tuple[str, Dict]]`
+    - The generated regional prompts, tailored to specific areas of the image as defined by the input mask.
+    - Python dtype: `List[RegionalPrompt]`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -70,6 +89,12 @@ class RegionalPromptSimple:
                 "controlnet_in_pipe": ("BOOLEAN", {"default": False, "label_on": "Keep", "label_off": "Override"}),
                 "sigma_factor": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 10.0, "step": 0.01}),
             },
+            "optional": {
+                "variation_seed": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff}),
+                "variation_strength": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 1.0, "step": 0.01}),
+                "variation_method": (["linear", "slerp"],),
+                "scheduler_func_opt": ("SCHEDULER_FUNC",),
+            }
         }
 
     RETURN_TYPES = ("REGIONAL_PROMPTS", )
@@ -77,7 +102,9 @@ class RegionalPromptSimple:
 
     CATEGORY = "InspirePack/Regional"
 
-    def doit(self, basic_pipe, mask, cfg, sampler_name, scheduler, wildcard_prompt, controlnet_in_pipe=False, sigma_factor=1.0):
+    @staticmethod
+    def doit(basic_pipe, mask, cfg, sampler_name, scheduler, wildcard_prompt,
+             controlnet_in_pipe=False, sigma_factor=1.0, variation_seed=0, variation_strength=0.0, variation_method='linear', scheduler_func_opt=None):
         if 'RegionalPrompt' not in nodes.NODE_CLASS_MAPPINGS:
             utils.try_install_custom_node('https://github.com/ltdrdata/ComfyUI-Impact-Pack',
                                           "To use 'RegionalPromptSimple' node, 'Impact Pack' extension is required.")
@@ -90,7 +117,7 @@ class RegionalPromptSimple:
         rp = nodes.NODE_CLASS_MAPPINGS['RegionalPrompt']()
 
         if wildcard_prompt != "":
-            model, clip, new_positive, _ = iwe.doit(model=model, clip=clip, populated_text=wildcard_prompt)
+            model, clip, new_positive, _ = iwe.doit(model=model, clip=clip, populated_text=wildcard_prompt, seed=None)
 
             if controlnet_in_pipe:
                 prev_cnet = None
@@ -109,8 +136,11 @@ class RegionalPromptSimple:
 
         basic_pipe = model, clip, vae, new_positive, negative
 
-        sampler = kap.doit(cfg, sampler_name, scheduler, basic_pipe, sigma_factor=sigma_factor)[0]
-        regional_prompts = rp.doit(mask, sampler)[0]
+        sampler = kap.doit(cfg, sampler_name, scheduler, basic_pipe, sigma_factor=sigma_factor, scheduler_func_opt=scheduler_func_opt)[0]
+        try:
+            regional_prompts = rp.doit(mask, sampler, variation_seed=variation_seed, variation_strength=variation_strength, variation_method=variation_method)[0]
+        except:
+            raise Exception("[Inspire-Pack] ERROR: Impact Pack is outdated. Update Impact Pack to latest version to use this.")
 
         return (regional_prompts, )
 

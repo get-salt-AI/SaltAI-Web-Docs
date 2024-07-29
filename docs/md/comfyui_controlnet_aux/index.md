@@ -1,12 +1,12 @@
 # comfyui_controlnet_aux
-comfyui_controlnet_aux is a collection of plug-and-play node sets designed for use with ComfyUI, aimed at generating ControlNet hint images for various preprocessing tasks such as line extraction, depth estimation, and semantic segmentation. It integrates code from ControlNet's annotator folders and connects to the 🤗 Hub for easy access to pre-trained models, supporting a wide range of preprocessors for creating hint images like stickman, canny edge, and more.
+comfyui_controlnet_aux is a collection of plug-and-play node sets designed for the ComfyUI interface, aimed at generating ControlNet hint images to enhance image processing tasks. It includes a variety of preprocessors for line extraction, depth and normal estimation, face and pose estimation, semantic segmentation, and more, facilitating the creation of detailed and accurate hint images for improved image synthesis. The project also supports integration with the 🤗 Hub, allowing users to access and utilize a wide range of preprocessor nodes directly within the ComfyUI environment.
 
 ## Tags
-Animation * ControlNet * DepthMap * DepthMapEstimation * Image * ImageEnhancement * ImageFilter * ImagePreprocessing * ImageResolution * ImageTransformation * Inpaint * LineExtraction * MediaPipeFaceMesh * NormalMap * OpticalFlow * PoseEstimation * SAM * Segmentation * SemanticSegmentationPreprocessing * Tiled
+AnimateDiff * CLIP * CameraControl * ControlNet * ControlNetLoader * DepthMapEstimation * Flip * GridLayout * Image * ImageDuplication * ImageEnhancement * ImageFilter * ImagePreprocessing * ImageSize * ImageTransformation * ImpactPack * Inpaint * LineExtraction * MotionData * NormalMap * PoseEstimation * SEGSPrep * SamplerScheduler * Sampling * Segmentation * Tiled * Weight
 
 ## Repo info
 - Repo url: `https://github.com/Fannovel16/comfyui_controlnet_aux`
-- Commit hash: `692a3d0f70d6be02d5509c5ebeac16081c6e05c8`
+- Commit hash: `3c1d9de28afd59392c07f8419c14998df2b9204a`
 
 ## Licenses
 - **Apache-2.0**: `LICENSE.txt`
@@ -18,7 +18,8 @@ Animation * ControlNet * DepthMap * DepthMapEstimation * Image * ImageEnhancemen
 - Apache-2.0, MIT: `src/controlnet_aux/depth_anything/torchhub/facebookresearch_dinov2_main/hubconf.py`
 - CC-BY-NC-4.0, LicenseRef-scancode-proprietary-license, LicenseRef-scancode-unknown-license-reference, MIT: `src/controlnet_aux/depth_anything/torchhub/facebookresearch_dinov2_main/setup.py`
 - Apache-2.0, MIT: `src/controlnet_aux/depth_anything/torchhub/facebookresearch_dinov2_main/vision_transformer.py`
-- Apache-2.0, BSD-3-Clause, LicenseRef-scancode-proprietary-license, LicenseRef-scancode-unknown-license-reference: `src/controlnet_aux/dsine/LICENSE`
+- Apache-2.0, MIT: `src/controlnet_aux/depth_anything_v2/dinov2.py`
+- BSD-3-Clause, LicenseRef-scancode-proprietary-license, LicenseRef-scancode-unknown-license-reference: `src/controlnet_aux/dsine/LICENSE`
 - Apache-2.0: `src/controlnet_aux/dsine/models/submodules/efficientnet_repo/LICENSE`
 - Apache-2.0: `src/controlnet_aux/dsine/models/submodules/efficientnet_repo/setup.py`
 - BSD-2-Clause, LicenseRef-scancode-generic-cla, LicenseRef-scancode-proprietary-license, LicenseRef-scancode-unknown-license-reference, PostgreSQL: `src/controlnet_aux/dwpose/LICENSE`

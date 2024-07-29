@@ -1,8 +1,9 @@
 ---
 tags:
-- DepthMap
-- Image
-- ImagePreprocessing
+- ControlNet
+- DepthMapEstimation
+- Inpaint
+- LineExtraction
 ---
 
 # ControlNet Preprocessor
@@ -11,38 +12,38 @@ tags:
 - Category: `Art Venture/Loaders`
 - Output node: `False`
 
-The AV_ControlNetPreprocessor node is designed for preparing images for further processing or analysis within the ControlNet framework. It allows for the application of various preprocessing techniques to images, including resolution adjustment and the selection of specific preprocessors, to optimize them for ControlNet's requirements.
+The AV_ControlNetPreprocessor node is designed for preparing images for further processing or analysis within the Art Venture framework, specifically by applying various preprocessing techniques to enhance or modify the images based on the selected preprocessor and resolution settings. It supports a range of preprocessing options, including segmentation, edge detection, and artistic style adjustments, tailored to the requirements of subsequent control net detection and application.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be preprocessed. This is the primary data upon which preprocessing operations are performed.
+    - The input image to be preprocessed. This is the primary data upon which preprocessing operations are performed, setting the stage for enhanced image analysis or manipulation.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `ImageType`
+    - Python dtype: `IMAGE`
 - **`preprocessor`**
-    - Specifies the preprocessing technique to be applied to the input image. It can be one of several predefined preprocessors or a custom one, influencing the preprocessing outcome.
+    - Specifies the preprocessing technique to be applied to the input image. This selection determines how the image will be modified or enhanced, impacting the effectiveness of subsequent control net detection.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`sd_version`**
-    - Indicates the specific version of Stable Diffusion to be used, affecting how the preprocessing aligns with the model's requirements.
+    - Indicates the version of the Stable Diffusion model to be used, affecting the compatibility and performance of the preprocessing and control net detection processes.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`resolution`**
-    - The desired resolution for the output image, which can be adjusted to meet specific quality or performance criteria.
+    - The target resolution for the preprocessed image. Adjusting this parameter can influence the detail level and quality of the preprocessing output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`preprocessor_override`**
-    - Allows for the override of the initially selected preprocessor with an alternative, providing flexibility in preprocessing choices.
+    - Allows for overriding the default preprocessor choice, providing flexibility in experimenting with different preprocessing techniques.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`IMAGE`**
     - Comfy dtype: `IMAGE`
-    - The preprocessed image, ready for further processing or analysis within the ControlNet framework.
-    - Python dtype: `ImageType`
+    - The preprocessed image, ready for further analysis or processing within the Art Venture framework.
+    - Python dtype: `IMAGE`
 - **`CNET_NAME`**
     - Comfy dtype: `STRING`
-    - The name of the ControlNet used or identified during the preprocessing, providing context for subsequent processing steps.
+    - The name of the detected control net, indicating the specific preprocessing technique applied to the input image.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -62,7 +63,7 @@ class AV_ControlNetPreprocessor:
             "required": {
                 "image": ("IMAGE",),
                 "preprocessor": (["None", "tile"] + s.preprocessors,),
-                "sd_version": (["sd15", "sd15++", "sdxl", "sdxl_t2i", "sdxl_lllite"],),
+                "sd_version": (["sd15", "sdxl", "sdxl_t2i"],),
             },
             "optional": {
                 "resolution": ("INT", {"default": 512, "min": 64, "max": 2048, "step": 64}),

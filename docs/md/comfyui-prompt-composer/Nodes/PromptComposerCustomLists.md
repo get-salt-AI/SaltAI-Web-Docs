@@ -1,6 +1,6 @@
 ---
 tags:
-- PromptComposer
+- PromptStyling
 ---
 
 # Prompt Composer Custom Lists

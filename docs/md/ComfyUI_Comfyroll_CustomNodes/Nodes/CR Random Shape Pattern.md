@@ -1,7 +1,9 @@
 ---
 tags:
-- Image
+- BackgroundRemoval
+- ImageDrawing
 - PatternGeneration
+- TextOnImage
 - VisualEffects
 ---
 

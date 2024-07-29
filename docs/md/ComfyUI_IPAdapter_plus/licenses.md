@@ -678,3 +678,10 @@ the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 <https://www.gnu.org/licenses/why-not-lgpl.html>.
 ```
+# Other detected licenses
+File name: `pyproject.toml`
+
+**GPL-2.0-or-later**
+```
+license = "GPL-3.0 license"
+```

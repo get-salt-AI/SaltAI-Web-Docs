@@ -1,7 +1,8 @@
 ---
 tags:
-- Image
+- ImageDrawing
 - TextOnImage
+- VisualEffects
 ---
 
 # 🔤️ CR Simple Text Watermark

@@ -1,8 +1,10 @@
 ---
 tags:
+- IPAdapter
 - Image
 - ImagePreprocessing
 - ImageTransformation
+- Pipeline
 ---
 
 # Crop Image Settings (JPS)

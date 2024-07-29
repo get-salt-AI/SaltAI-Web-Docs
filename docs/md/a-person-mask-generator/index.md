@@ -1,12 +1,12 @@
 # a-person-mask-generator
-a-person-mask-generator is an extension for Automatic1111 and ComfyUI designed to automatically create masks for Background, Hair, Body, Face, and Clothes in Img2Img tasks. It utilizes the Multi-class selfie segmentation model by Google to segment images into these categories for further processing or editing.
+a-person-mask-generator is an extension for Automatic1111 and ComfyUI designed to automatically create masks for Background, Hair, Body, Face, and Clothes in Img2Img tasks. It leverages the Multi-class selfie segmentation model by Google to facilitate the segmentation process.
 
 ## Tags
-Segmentation
+Mask * MaskMorphology * Segmentation
 
 ## Repo info
 - Repo url: `https://github.com/djbielejeski/a-person-mask-generator`
-- Commit hash: `99709cf999bd00fe0eb864f55acabda88e3e2654`
+- Commit hash: `116560ab5c884bf6b25aade1db27c2f43c02464f`
 
 ## Licenses
 - **MIT**: `LICENSE`

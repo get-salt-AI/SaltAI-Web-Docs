@@ -9,41 +9,41 @@ tags:
 - Category: `SALT/Language Toolkit/Tools`
 - Output node: `False`
 
-This node is designed to evaluate images using the LLaVA Next V1 model, generating descriptions or captions based on the provided prompts and images. It abstracts the complexity of image processing and model evaluation, offering a streamlined interface for generating textual representations of images.
+This node is designed to evaluate images using the LLaVA Next V1 model, providing detailed assessments and generating keywords, lists, and documents based on the image content. It aims to facilitate a deeper understanding and categorization of images through advanced image analysis techniques.
 ## Input types
 ### Required
 - **`lnv1_model`**
-    - The LLaVA Next V1 model used for evaluating the images. It is crucial for the execution as it directly influences the quality and relevance of the generated captions.
+    - Specifies the LLaVA Next V1 model to be used for image evaluation, determining the analytical capabilities and accuracy of the assessment.
     - Comfy dtype: `LLAVA_NEXT_V1_MODEL`
-    - Python dtype: `LlavaNextV1`
+    - Python dtype: `str`
 - **`images`**
-    - A batch of images represented as tensors. These images are the subject of evaluation and caption generation, serving as the primary input for the model.
+    - The images to be evaluated, serving as the primary input for analysis and categorization by the node.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `List[Image]`
 - **`max_tokens`**
-    - Specifies the maximum number of tokens to be generated for each image description. This parameter controls the verbosity and detail level of the output captions.
+    - Defines the maximum number of tokens to be used in the evaluation, affecting the depth and detail of the analysis.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`prompt_format`**
-    - The format used to construct the prompt for the model, incorporating the image and user instructions into a structured template.
+    - Determines the format of the prompt used in the evaluation, guiding the model's analysis and output generation.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`prompt`**
-    - The specific prompt or instruction given to the model for generating the image description, influencing the context and focus of the generated text.
+    - The specific prompt to guide the evaluation, directly influencing the focus and nature of the analysis.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`strings`**
     - Comfy dtype: `STRING`
-    - The raw strings generated as image descriptions.
-    - Python dtype: `List[str]`
+    - A string representation of the evaluation results, providing a concise summary or keywords.
+    - Python dtype: `str`
 - **`list`**
     - Comfy dtype: `LIST`
-    - A list of raw strings, each representing a generated description for the input images.
-    - Python dtype: `List[str]`
+    - A list of structured data or keywords extracted from the image, offering detailed insights.
+    - Python dtype: `List[Any]`
 - **`documents`**
     - Comfy dtype: `DOCUMENT`
-    - A collection of Document objects, each encapsulating a generated image description along with additional metadata such as user prompts and image thumbnails.
+    - Generated documents that encapsulate the evaluation findings, providing comprehensive details and context.
     - Python dtype: `List[Document]`
 ## Usage tips
 - Infra type: `GPU`
@@ -69,10 +69,10 @@ class LLMLLaVANextImageEvaluator:
     RETURN_NAMES = ("strings", "list", "documents")
     OUTPUT_IS_LIST =(True, False)
 
-    FUNCTION = "eval"
+    FUNCTION = "eval_image"
     CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Tools"
 
-    def eval(
+    def eval_image(
         self, 
         lnv1_model: LlavaNextV1,
         images: torch.Tensor,  
@@ -84,7 +84,10 @@ class LLMLLaVANextImageEvaluator:
         for image in images:
             pil_image = tensor2pil(image)
             results.append(lnv1_model.eval(pil_image, prompt, prompt_format, max_tokens=max_tokens))
-        documents = [Document(text=result, extra_info={"user_prompt": prompt, "thumbnail": self.b64_thumb(pil_image, (128, 64))}) for result in results]
+        documents = [Document(text=result, extra_info={"thumbnail": self.b64_thumb(pil_image, (128, 64))}) for result in results]
+        logger.info("DOCUMENTS -----")
+        logger.data(documents)
+        logger.info("END DOCUMENTS -----")
         return (results, results, documents)
 
     def b64_thumb(self, image, max_size=(128, 128)):

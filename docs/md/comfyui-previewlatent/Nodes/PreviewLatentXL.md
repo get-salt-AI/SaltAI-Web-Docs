@@ -1,6 +1,11 @@
 ---
 tags:
 - Latent
+- LatentBatch
+- LatentBlend
+- Normalization
+- Preview
+- VAE
 ---
 
 # Preview Latent XL

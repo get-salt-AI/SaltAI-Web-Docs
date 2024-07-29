@@ -1,6 +1,7 @@
 ---
 tags:
 - LLM
+- LoRA
 ---
 
 # ∞ Vector Store Index (Adv)
@@ -9,37 +10,37 @@ tags:
 - Category: `SALT/Language Toolkit/Indexing`
 - Output node: `False`
 
-The LLMVectorStoreIndexAdv node is designed to enhance the efficiency and accuracy of vector storage and indexing operations within large language models. It focuses on advanced techniques for managing vector data, aiming to optimize retrieval and storage processes in a scalable manner.
+The LLMVectorStoreIndexAdv node is designed for advanced vector storage indexing within a language model framework. It extends the capabilities of standard vector indexing by incorporating additional features or optimizations tailored for complex language processing tasks. This node is pivotal for enhancing the efficiency and accuracy of retrieving and managing vectorized representations of text data in large-scale language models.
 ## Input types
 ### Required
 - **`llm_model`**
-    - Specifies the large language model used for embedding generation, playing a crucial role in the indexing process by determining the vector representations of text.
+    - Specifies the language model to be used for indexing, serving as the core component for generating vector representations of text.
     - Comfy dtype: `LLM_MODEL`
-    - Python dtype: `dict`
+    - Python dtype: `str`
 - **`document`**
-    - The input document(s) to be indexed, where each document's text and optional metadata are processed and transformed into vector embeddings.
+    - The text document to be indexed, which is processed to generate its vector representation.
     - Comfy dtype: `DOCUMENT`
-    - Python dtype: `Sequence[Document]`
+    - Python dtype: `str`
 ### Optional
 - **`chunk_size`**
-    - Defines the size of text chunks for processing, affecting how documents are split and indexed.
+    - Defines the size of text chunks for processing, allowing for customization of indexing granularity.
     - Comfy dtype: `COMBO[INT]`
-    - Python dtype: `int`
+    - Python dtype: `List[int]`
 - **`chunk_overlap`**
-    - Specifies the overlap between consecutive text chunks, influencing the continuity and coverage of the indexing process.
+    - Determines the overlap between consecutive text chunks to ensure continuity in the indexing process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`optional_llm_context`**
-    - An optional context parameter that allows for customization of the indexing process based on specific requirements or configurations of the large language model.
+    - Provides additional context from a language model to enhance the indexing accuracy.
     - Comfy dtype: `LLM_CONTEXT`
-    - Python dtype: `dict`
+    - Python dtype: `str`
 ## Output types
 - **`llm_index`**
     - Comfy dtype: `LLM_INDEX`
-    - The output is an index object that facilitates efficient storage and retrieval of vector embeddings, representing the processed documents.
-    - Python dtype: `VectorStoreIndex`
+    - The result of the indexing process, representing the vectorized form of the input document.
+    - Python dtype: `str`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -76,20 +77,22 @@ class LLMVectorStoreIndexAdv:
         splitter = SentenceSplitter(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
         tokenizer = MockTokenizer(max_tokens=chunk_size, char_per_token=1)
 
-        documents = []
-        for doc in document:
-            print(doc)
-            metadata = {}
-            text = doc.text
-            if doc.metadata:
-                metadata = doc.metadata
-                token_count = tokenizer.count(metadata)
-                if token_count > 1024:
-                    metadata = tokenizer.truncate(metadata)
-            documents.append(Document(text=text, extra_info=metadata))
+        #documents = []
+        #for doc in document:
+        #    logger.info("Document:")
+        #    logger.data(doc)
+        #    logger.info("\n==================\n")
+        #    metadata = {}
+        #    text = doc.text
+        #    if doc.metadata:
+        #        metadata = doc.metadata
+        #        token_count = tokenizer.count(metadata)
+        #        if token_count > 1024:
+        #            metadata = tokenizer.truncate(metadata)
+        #    documents.append(Document(text=text, extra_info=metadata))
         
         index = VectorStoreIndex.from_documents(
-            documents, 
+            document, 
             embed_model=embed_model,
             service_context=optional_llm_context,
             transformations=[splitter]

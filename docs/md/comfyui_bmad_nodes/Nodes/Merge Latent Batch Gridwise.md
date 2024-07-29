@@ -1,8 +1,8 @@
 ---
 tags:
 - GridLayout
-- Image
-- Tiled
+- ImageDuplication
+- ImageTransformation
 ---
 
 # Merge Latent Batch Gridwise
@@ -11,29 +11,29 @@ tags:
 - Category: `Bmad/latent`
 - Output node: `False`
 
-This node is designed to merge a batch of latent representations into a single grid layout, allowing for the efficient organization and visualization of multiple latent samples. It utilizes a mask to determine the grid dimensions and placement of each sample within the grid, effectively creating a composite latent representation.
+This node is designed to merge a batch of latent representations into a single grid layout, utilizing specified rows and columns to organize the batch elements spatially. It aims to facilitate the visualization or further processing of batches by structuring them in a grid format, making it easier to handle and interpret the collective data.
 ## Input types
 ### Required
 - **`batch`**
-    - The batch of latent representations to be merged into a grid. It plays a crucial role in determining the final merged output by providing the individual samples to be arranged.
+    - The batch of latent representations to be merged into a grid. It is the primary input that dictates the content and structure of the output grid.
     - Comfy dtype: `LATENT`
     - Python dtype: `Dict[str, torch.Tensor]`
 - **`mask`**
-    - An image mask used to fetch the sizes for the grid layout. Although not directly used in the merging process, it is essential for determining the dimensions of the grid.
+    - A mask image used to determine the dimensions of the grid cells. Although it is primarily for fetching sizes, it plays a crucial role in defining the spatial layout of the merged grid.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`rows`**
-    - The number of rows in the grid layout. It defines how the latent samples are vertically arranged within the grid.
+    - Specifies the number of rows in the grid. It determines the vertical dimension of the grid layout.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`columns`**
-    - The number of columns in the grid layout. It defines how the latent samples are horizontally arranged within the grid.
+    - Specifies the number of columns in the grid. It determines the horizontal dimension of the grid layout.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - The merged latent representation in a grid layout, combining multiple individual samples into a single composite representation.
+    - The merged latent representations arranged in a grid format. This output facilitates the collective handling and visualization of the batch.
     - Python dtype: `Dict[str, torch.Tensor]`
 ## Usage tips
 - Infra type: `GPU`
@@ -44,7 +44,7 @@ This node is designed to merge a batch of latent representations into a single g
 ```python
 class MergeLatentsBatchGridwise:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {
             "batch": ("LATENT",),
             "mask": ("IMAGE",),  # only to fetch the sizes, not really needed.
@@ -54,7 +54,7 @@ class MergeLatentsBatchGridwise:
 
     RETURN_TYPES = ("LATENT",)
     FUNCTION = "merge"
-    CATEGORY = "Bmad/latent"
+    CATEGORY = latent_category_path
 
     def merge(self, batch, mask, rows, columns):
         _, mask_height, mask_width, _ = mask.size()

@@ -2,6 +2,8 @@
 tags:
 - AnimateDiff
 - Animation
+- MotionData
+- PoseEstimation
 ---
 
 # 🚫AnimateDiff Combine [DEPRECATED, Use Video Combine (VHS) Instead!] 🎭🅐🅓
@@ -10,42 +12,47 @@ tags:
 - Category: ``
 - Output node: `True`
 
-Originally designed for combining multiple animation frames into a cohesive sequence, this node facilitates the creation of complex animations from individual frames.
+This node is designed for combining multiple animation sequences or frames into a single, cohesive animation. It focuses on integrating various elements of animation to create a unified and seamless experience.
 ## Input types
 ### Required
 - **`images`**
-    - A collection of animation frames to be combined into a single sequence, supporting the creation of complex animations from individual frames.
+    - The images input consists of a sequence of frames that are to be combined into a single animation. It plays a crucial role in determining the content and visual flow of the final animation output.
     - Comfy dtype: `IMAGE`
     - Python dtype: `List[Image.Image]`
 - **`frame_rate`**
-    - Specifies the playback speed of the combined animation sequence, determining how fast the frames are displayed.
+    - Specifies the playback speed of the combined animation in frames per second. This parameter influences the temporal aspect of the animation, affecting how smoothly it plays.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`loop_count`**
-    - Defines how many times the animation sequence will repeat, with a value of 0 indicating infinite looping.
+    - Determines the number of times the animation will loop. This affects the duration and replayability of the final animation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`filename_prefix`**
-    - The prefix for the output file name, aiding in the organization and identification of generated animations.
+    - A prefix for the filename under which the animation will be saved. It aids in organizing and identifying the output files.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`format`**
-    - The format of the output animation file, such as GIF, allowing for customization of the output type.
+    - Defines the file format of the output animation. This choice impacts compatibility and quality.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `List[str]`
 - **`pingpong`**
-    - A boolean indicating whether the animation should play forwards and then backwards, creating a seamless looping effect.
+    - A boolean indicating whether the animation should play forwards and then backwards, creating a seamless loop effect.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`save_image`**
-    - Determines whether the combined animation sequence should be saved as an image file, providing flexibility in output handling.
+    - Controls whether the final animation is saved to disk. This parameter is essential for persisting the output for later use.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
+### Optional
+- **`deprecation_warning`**
+    - Provides a warning that this node is deprecated and suggests using an alternative node for similar functionality.
+    - Comfy dtype: `ADEWARN`
+    - Python dtype: `str`
 ## Output types
 - **`gif`**
     - Comfy dtype: `GIF`
-    - The resulting animation file, combining the input frames according to the specified parameters.
-    - Python dtype: `str`
+    - The output is a GIF animation combining the input frames according to the specified parameters.
+    - Python dtype: `File`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -80,6 +87,7 @@ class AnimateDiffCombine_Deprecated:
                 "pingpong": ("BOOLEAN", {"default": False}),
                 "save_image": ("BOOLEAN", {"default": True}),
             },
+            "optional": {"deprecation_warning": ("ADEWARN", {"text": "Deprecated. Use VHS Video Combine"})},
             "hidden": {
                 "prompt": "PROMPT",
                 "extra_pnginfo": "EXTRA_PNGINFO",

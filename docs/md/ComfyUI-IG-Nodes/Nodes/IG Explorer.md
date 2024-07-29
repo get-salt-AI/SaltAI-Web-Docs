@@ -1,3 +1,9 @@
+---
+tags:
+- RegionalPrompt
+- Style
+---
+
 # 🤖 IG Explorer
 ## Documentation
 - Class name: `IG Explorer`

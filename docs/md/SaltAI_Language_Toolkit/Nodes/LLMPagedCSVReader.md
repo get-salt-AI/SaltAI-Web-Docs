@@ -2,6 +2,7 @@
 tags:
 - LLM
 - LlamaIndex
+- WebContentExtraction
 ---
 
 # ∞ Paged CSV

@@ -1,6 +1,7 @@
 ---
 tags:
 - Mask
+- MaskMorphology
 ---
 
 # Select Every Nth Mask 🎥🅥🅗🅢
@@ -9,25 +10,29 @@ tags:
 - Category: `Video Helper Suite 🎥🅥🅗🅢/mask`
 - Output node: `False`
 
-This node is designed to streamline the process of selecting every Nth mask from a batch of masks, facilitating operations such as thinning out data or creating subsets for specific processing needs. It abstracts the complexity of batch manipulation, offering a straightforward way to reduce the volume of mask data by periodic sampling.
+The node is designed to filter a batch of masks by selecting every Nth mask from the sequence, optionally skipping a specified number of initial masks. This functionality is useful for thinning out dense sequences of masks to reduce computational load or to select masks at a regular interval for processing or analysis.
 ## Input types
 ### Required
 - **`mask`**
-    - The input mask tensor from which every Nth mask will be selected. This parameter is crucial for determining the subset of masks to be processed, directly impacting the node's output by filtering the input data based on the specified interval.
+    - The input tensor containing a batch of masks from which the node will select every Nth mask. This parameter is crucial for defining the subset of masks to be processed.
     - Comfy dtype: `MASK`
     - Python dtype: `Tensor`
 - **`select_every_nth`**
-    - Specifies the interval at which masks are selected from the input batch. This parameter defines the thinning rate, playing a pivotal role in the output by determining the frequency of mask selection within the batch.
+    - Specifies the interval at which masks are selected from the input batch. A higher value thins out the sequence more by selecting masks less frequently.
+    - Comfy dtype: `INT`
+    - Python dtype: `int`
+- **`skip_first_masks`**
+    - Determines the number of initial masks to skip before starting to select every Nth mask. This allows for the exclusion of a certain number of masks from the beginning of the sequence.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`MASK`**
     - Comfy dtype: `MASK`
-    - The output tensor containing every Nth mask selected from the input batch, effectively reducing the dataset size based on the specified interval.
+    - The output tensor containing the selected masks after applying the specified interval and skip criteria.
     - Python dtype: `Tensor`
 - **`count`**
     - Comfy dtype: `INT`
-    - The total count of masks selected and returned by the node, providing a straightforward way to understand the output's volume.
+    - The total number of masks selected and returned by the node.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
@@ -43,6 +48,7 @@ class SelectEveryNthMask:
                 "required": {
                     "mask": ("MASK",),
                     "select_every_nth": ("INT", {"default": 1, "min": 1, "max": BIGMAX, "step": 1}),
+                    "skip_first_masks": ("INT", {"default": 0, "min": 0, "max": BIGMAX, "step": 1}),
                 },
             }
     
@@ -52,8 +58,8 @@ class SelectEveryNthMask:
     RETURN_NAMES = ("MASK", "count",)
     FUNCTION = "select_masks"
 
-    def select_masks(self, mask: Tensor, select_every_nth: int):
-        sub_mask = mask[0::select_every_nth]
+    def select_masks(self, mask: Tensor, select_every_nth: int, skip_first_masks: int):
+        sub_mask = mask[skip_first_masks::select_every_nth]
         return (sub_mask, sub_mask.size(0))
 
 ```

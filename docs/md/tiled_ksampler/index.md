@@ -2,7 +2,7 @@
 tiled_ksampler introduces nodes for image processing that extend the functionality of the standard KSampler. It includes a Tiled KSampler Node for regular tiling effects, an Asymmetric Tiled KSampler Node for directional tiling, and a Circular VAE Decoder to prevent edge bleeding in decoded images. These tools are designed to enhance image sampling and manipulation by offering tiling options and improving image quality.
 
 ## Tags
-Sampling * VAE
+Latent * SamplerScheduler * Sampling * VAE
 
 ## Repo info
 - Repo url: `https://github.com/FlyingFireCo/tiled_ksampler.git`

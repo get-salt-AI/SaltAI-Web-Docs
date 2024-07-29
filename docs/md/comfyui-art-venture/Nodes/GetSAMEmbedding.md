@@ -1,6 +1,7 @@
 ---
 tags:
-- SAM
+- SamplerScheduler
+- Sampling
 ---
 
 # Get SAM Embedding
@@ -9,27 +10,27 @@ tags:
 - Category: `Art Venture/Segmentation`
 - Output node: `False`
 
-This node is designed to generate a SAM embedding from an image using a specified SAM model. It adjusts the model to the appropriate device based on the execution mode and processes the image to produce its embedding, which is crucial for further image manipulation or analysis tasks.
+The GetSAMEmbedding node is designed to extract semantic embeddings from images using a specific SAM model. It facilitates the transformation of visual content into a format that can be further processed or analyzed, emphasizing the extraction of meaningful features that represent the underlying content of the images.
 ## Input types
 ### Required
 - **`sam_model`**
-    - The SAM model to be used for generating the embedding. It determines the architecture and weights for processing the image.
+    - The SAM model used for generating embeddings from images. It plays a crucial role in determining the quality and relevance of the extracted features.
     - Comfy dtype: `AV_SAM_MODEL`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `custom type representing a SAM model instance`
 - **`image`**
-    - The image to be processed. This is the input image from which the SAM embedding will be generated.
+    - The input image from which embeddings are to be extracted. This image is processed by the SAM model to generate a semantic representation.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `PIL.Image or torch.Tensor representing an image`
 ### Optional
 - **`device_mode`**
-    - Specifies the device (AUTO, Prefer GPU, CPU) on which the SAM model should run. This affects the performance and efficiency of the embedding generation.
+    - Specifies the computational device (AUTO, Prefer GPU, CPU) for model inference, affecting performance and resource utilization.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`sam_embedding`**
     - Comfy dtype: `SAM_EMBEDDING`
-    - The generated SAM embedding of the input image. This embedding is used for further processing or analysis within the image manipulation pipeline.
-    - Python dtype: `np.ndarray`
+    - The semantic embedding generated from the input image, representing its meaningful features in a condensed form.
+    - Python dtype: `numpy.ndarray`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -55,6 +56,9 @@ class GetSAMEmbedding:
     def get_sam_embedding(self, image, sam_model, device_mode="AUTO"):
         device = gpu if device_mode != "CPU" else cpu
         sam_model.to(device)
+
+        ensure_package("segment_anything")
+        from segment_anything import SamPredictor
 
         try:
             predictor = SamPredictor(sam_model)

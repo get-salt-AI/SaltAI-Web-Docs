@@ -1,6 +1,8 @@
 ---
 tags:
-- SMPLModel
+- Animation
+- MotionData
+- PoseEstimation
 ---
 
 # Export SMPL to 3DCGI Software

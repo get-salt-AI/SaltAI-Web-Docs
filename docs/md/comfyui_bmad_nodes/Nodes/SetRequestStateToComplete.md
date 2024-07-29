@@ -1,10 +1,15 @@
+---
+tags:
+- BackendCache
+---
+
 # SetRequestStateToComplete
 ## Documentation
 - Class name: `SetRequestStateToComplete`
 - Category: `Bmad/api`
 - Output node: `True`
 
-This node is designed to mark the state of a request as 'complete' within the request metadata file, effectively signaling the successful completion of a task.
+This node is designed to mark the state of a request as 'complete' within the request metadata file, effectively signaling the successful completion of a task or set of tasks.
 ## Input types
 ### Required
 - **`resource_i`**
@@ -30,7 +35,7 @@ class SetRequestStateToComplete:
         self.type = "output"
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {
             "resource_0": ("TASK_DONE",)
         },
@@ -38,7 +43,7 @@ class SetRequestStateToComplete:
 
     RETURN_TYPES = ()
     FUNCTION = "update_outdata"
-    CATEGORY = "Bmad/api"
+    CATEGORY = api_category_path
     OUTPUT_NODE = True
 
     def update_outdata(self, **kwargs):

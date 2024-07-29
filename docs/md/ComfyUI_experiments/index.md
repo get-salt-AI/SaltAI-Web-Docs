@@ -2,7 +2,7 @@
 ComfyUI_experiments introduces a collection of experimental custom nodes designed to enhance the functionality of ComfyUI, a user interface framework. These nodes include features such as applying a simple tonemapping algorithm to manage noise in images, implementing Rescale Classifier-Free Guidance for image processing, and providing methods for merging models by block or specifically for SDXL base models. Additionally, it offers a node for "reference only controlnet," aimed at refining workflow processes.
 
 ## Tags
-Conditioning * ImageEnhancement * ModelGuidance * ModelMerge * ModelPatch
+CLIPConditioning * Face * ImageNoise * ModelGuidance * ModelMerge * NoisePatterns * ReActorFace * SAM * Seed
 
 ## Repo info
 - Repo url: `https://github.com/comfyanonymous/ComfyUI_experiments.git`

@@ -1,5 +1,6 @@
 ---
 tags:
+- Latent
 - VAE
 ---
 

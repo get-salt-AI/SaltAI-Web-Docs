@@ -1,7 +1,8 @@
 ---
 tags:
 - Image
-- ImageComposite
+- ImageBlend
+- ImageTransformation
 ---
 
 # Overlay Inpainted Image

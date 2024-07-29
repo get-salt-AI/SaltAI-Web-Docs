@@ -10,54 +10,54 @@ tags:
 - Category: `InspirePack/Regional`
 - Output node: `False`
 
-This node specializes in applying regional image processing adaptations based on encoded color masks. It integrates specific color-based mask regions with embedding adjustments, allowing for targeted image modifications that respect the spatial and color-based constraints defined by the user.
+This node specializes in applying regional image processing adaptations based on encoded color masks, enabling targeted image manipulation and enhancement. It leverages color masks to conditionally apply transformations or effects to specific regions of an image, guided by embedding weights and types.
 ## Input types
 ### Required
 - **`color_mask`**
-    - The color mask image used to define regions for adaptation. It serves as a spatial guide for where the adaptations should be applied, based on color matching.
+    - The color mask image used to identify specific regions for adaptation. It serves as a key input for determining where the encoded adjustments should be applied.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`mask_color`**
-    - A string specifying the color used in the color mask to identify the regions of interest. This color acts as a key to isolate specific areas for processing.
+    - A string specifying the color used in the color mask to identify the target region. This color determines which parts of the image will be affected by the regional adaptations.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`embeds`**
-    - Embeddings that represent the desired adjustments or effects to be applied within the specified regions. These embeddings guide the adaptation process.
+    - Embeddings representing the desired adjustments or effects to be applied to the identified regions. These embeddings guide the adaptation process.
     - Comfy dtype: `EMBEDS`
     - Python dtype: `torch.Tensor`
 - **`weight`**
-    - A float value that determines the intensity or influence of the embeddings on the adaptation process. It modulates how strongly the specified adjustments are applied.
+    - A floating-point value that adjusts the intensity or influence of the applied embeddings on the target regions.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`weight_type`**
-    - Specifies the method of applying weights to the embeddings, offering options like original, linear, or channel penalty to fine-tune the adaptation effect.
+    - Specifies the method of applying weights to the embeddings, such as linear or channel-specific penalties, influencing how the adaptations are blended into the target regions.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `list`
+    - Python dtype: `List[str]`
 - **`start_at`**
-    - A float indicating the start point (in terms of progression through layers or steps) for applying the adaptations, allowing for phased or gradual application.
+    - Defines the starting point of the effect's intensity gradient, allowing for gradual application of the adaptation from this point onwards.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end_at`**
-    - A float indicating the end point for the adaptation application, enabling precise control over the extent of the modifications.
+    - Sets the endpoint for the effect's intensity gradient, ensuring the adaptation effect tapers off at this specified point.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`unfold_batch`**
-    - A boolean indicating whether to unfold the batch for processing, affecting how adaptations are applied across multiple instances.
+    - A boolean indicating whether to process each item in a batch separately, affecting the adaptation's application across multiple images.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`neg_embeds`**
-    - Optional embeddings that represent negative adjustments or effects, providing a means to specify adaptations that should be avoided or counteracted within the regions.
+    - Optional embeddings that represent negative adjustments or effects, providing a means to counterbalance or negate certain aspects of the primary embeddings.
     - Comfy dtype: `EMBEDS`
     - Python dtype: `torch.Tensor`
 ## Output types
 - **`regional_ipadapter`**
     - Comfy dtype: `REGIONAL_IPADAPTER`
-    - The result of the regional image processing adaptation, incorporating the specified embeddings and adjustments within the defined color mask regions.
+    - The result of applying the regional IP adapter process, encapsulating the conditioned adaptations based on the input parameters.
     - Python dtype: `IPAdapterConditioning`
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The processed mask that was used to guide the adaptations, potentially altered based on the specified color and regions of interest.
+    - The processed mask derived from the input color mask and mask color, indicating the regions of the image that were targeted for adaptation.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -91,7 +91,8 @@ class RegionalIPAdapterEncodedColorMask:
 
     CATEGORY = "InspirePack/Regional"
 
-    def doit(self, color_mask, mask_color, embeds, weight, weight_type, start_at=0.0, end_at=1.0, unfold_batch=False, neg_embeds=None):
+    @staticmethod
+    def doit(color_mask, mask_color, embeds, weight, weight_type, start_at=0.0, end_at=1.0, unfold_batch=False, neg_embeds=None):
         mask = color_to_mask(color_mask, mask_color)
         cond = IPAdapterConditioning(mask, weight, weight_type, embeds=embeds, start_at=start_at, end_at=end_at, unfold_batch=unfold_batch, neg_embeds=neg_embeds)
         return (cond, mask)

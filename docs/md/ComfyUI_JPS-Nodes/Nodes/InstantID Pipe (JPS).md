@@ -1,6 +1,9 @@
 ---
 tags:
 - Image
+- ImagePreprocessing
+- ImageTransformation
+- Pipeline
 ---
 
 # InstantID Pipe (JPS)

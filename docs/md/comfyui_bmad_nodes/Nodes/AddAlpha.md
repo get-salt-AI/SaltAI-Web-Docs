@@ -2,6 +2,8 @@
 tags:
 - AlphaChannel
 - Image
+- ImageBlend
+- ImageComposite
 ---
 
 # AddAlpha
@@ -10,20 +12,20 @@ tags:
 - Category: `Bmad/image`
 - Output node: `False`
 
-The `AddAlpha` node is designed to add an alpha channel to RGB images, allowing for the manipulation of image transparency. It supports different methods for alpha channel creation, including direct specification or inversion, providing flexibility in handling image transparency.
+The `AddAlpha` node is designed to add an alpha channel to RGB images, allowing for the manipulation of image transparency. It supports optional inversion of the alpha channel, providing flexibility in handling transparency effects.
 ## Input types
 ### Required
 - **`rgb_image`**
-    - The RGB image to which an alpha channel will be added. This is the base image that will be modified to include transparency information.
+    - The RGB image to which an alpha channel will be added. This is the primary image input for transparency manipulation.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 ### Optional
 - **`alpha`**
-    - An optional alpha channel to be added to the RGB image. If provided, it specifies the transparency levels for the image. The method parameter determines how this alpha channel is applied.
+    - An optional alpha channel to be added to the RGB image. If provided, it specifies the transparency levels for the image.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`method`**
-    - Determines how the alpha channel is applied to the RGB image. It can either use the alpha channel as provided ('default') or invert it, offering flexibility in transparency manipulation.
+    - An optional method specifying how the alpha channel should be applied. It can either add the alpha channel directly or invert it, affecting the transparency effect.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
@@ -32,7 +34,7 @@ The `AddAlpha` node is designed to add an alpha channel to RGB images, allowing 
     - The resulting image with an alpha channel added, enabling transparency manipulation.
     - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -42,20 +44,20 @@ class AddAlpha:
     method = ["default", "invert"]
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "rgb_image": ("IMAGE",),
             },
             "optional": {
                 "alpha": ("IMAGE",),
-                "method": (s.method, {"default": s.method[0]}),
+                "method": (cls.method, {"default": cls.method[0]}),
             }
         }
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "add_alpha"
-    CATEGORY = "Bmad/image"
+    CATEGORY = images_category_path
 
     def add_alpha(self, rgb_image, alpha=None, method=None):
         rgb_image = tensor2opencv(rgb_image, 3)

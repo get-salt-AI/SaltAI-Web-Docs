@@ -1,136 +1,141 @@
 ---
 tags:
-- Image
+- DetailEnhancement
 - Pipeline
+- PipelineTransformation
 ---
 
 # pipeLoader
 ## Documentation
 - Class name: `ttN pipeLoader_v2`
-- Category: `ttN/pipe`
+- Category: `🌏 tinyterra/pipe`
 - Output node: `False`
 
-This node is designed to load and initialize pipelines for various tasks within the tinyterraNodes framework, facilitating the setup and configuration of data processing and model interaction pipelines.
+The `ttN pipeLoader_v2` node is designed for advanced data loading and preprocessing within a pipeline. It focuses on efficiently handling and transforming data to prepare it for subsequent processing or analysis steps, leveraging enhanced capabilities over its predecessor for improved performance and flexibility.
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - Specifies the checkpoint name for model initialization, allowing for the selection of different model states.
+    - Specifies the checkpoint name for model loading, affecting the pipeline's configuration.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `list`
+    - Python dtype: `str`
 - **`config_name`**
-    - Determines the configuration name, enabling the selection from various predefined settings.
+    - Specifies the configuration name for the pipeline, affecting how data is processed and managed.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `list`
+    - Python dtype: `str`
 - **`vae_name`**
-    - Specifies the VAE model name, allowing for the selection of different VAE models for processing.
+    - Specifies the VAE model name for loading, affecting the pipeline's configuration and capabilities.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `list`
+    - Python dtype: `str`
 - **`clip_skip`**
-    - An integer value to skip certain CLIP model layers, optimizing performance based on specific requirements.
+    - Determines the number of CLIP layers to skip, affecting the data preprocessing phase.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`loras`**
-    - A string specifying LoRA parameters, enabling dynamic adjustment of LoRA layers for model refinement.
+    - Specifies the LoRA models to be used, affecting the pipeline's performance and output.
     - Comfy dtype: `STRING`
-    - Python dtype: `str`
+    - Python dtype: `list`
 - **`positive`**
     - unknown
     - Comfy dtype: `STRING`
     - Python dtype: `unknown`
 - **`positive_token_normalization`**
-    - unknown
+    - Indicates the method for normalizing positive tokens, affecting text processing.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`positive_weight_interpretation`**
-    - unknown
+    - Specifies how the weights for positive tokens are interpreted, affecting text processing.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`negative`**
     - unknown
     - Comfy dtype: `STRING`
     - Python dtype: `unknown`
 - **`negative_token_normalization`**
-    - unknown
+    - Indicates the method for normalizing negative tokens, affecting text processing.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`negative_weight_interpretation`**
-    - unknown
+    - Specifies how the weights for negative tokens are interpreted, affecting text processing.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
+    - Python dtype: `str`
 - **`empty_latent_aspect`**
-    - Defines the aspect ratio for empty latent space initialization, setting the groundwork for image generation.
+    - Specifies the aspect ratio for empty latent images, affecting the pipeline's image processing capabilities.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`empty_latent_width`**
-    - Specifies the width for empty latent space, determining the initial dimensions for image generation.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`empty_latent_height`**
-    - Specifies the height for empty latent space, determining the initial dimensions for image generation.
+    - unknown
+    - Comfy dtype: `INT`
+    - Python dtype: `unknown`
+- **`batch_size`**
+    - Specifies the batch size for processing, affecting the pipeline's efficiency and throughput.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`seed`**
-    - An integer seed for random number generation, ensuring reproducibility across pipeline executions.
+    - Specifies the seed for random number generation in the pipeline, ensuring reproducibility.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`model_override`**
-    - Allows for the override of the default model, enabling the use of alternative models within the pipeline.
+    - Allows for overriding the default model, affecting the pipeline's flexibility and output.
     - Comfy dtype: `MODEL`
     - Python dtype: `str`
 - **`clip_override`**
-    - Allows for the override of the default CLIP model, integrating alternative visual understanding capabilities.
+    - Allows for overriding the default CLIP model, affecting the pipeline's flexibility and output.
     - Comfy dtype: `CLIP`
     - Python dtype: `str`
 - **`optional_lora_stack`**
-    - Optional parameter to specify a stack of LoRA adjustments, enhancing model performance with custom configurations.
+    - Specifies an optional stack of LoRA models, enhancing the pipeline's adaptability and performance.
     - Comfy dtype: `LORA_STACK`
-    - Python dtype: `str`
+    - Python dtype: `list`
 - **`optional_controlnet_stack`**
-    - Optional parameter to specify a stack of ControlNet adjustments, enabling fine-tuned control over model behavior.
-    - Comfy dtype: `CONTROLNET_STACK`
-    - Python dtype: `str`
+    - Specifies an optional stack of ControlNet models, enhancing the pipeline's adaptability and performance.
+    - Comfy dtype: `CONTROL_NET_STACK`
+    - Python dtype: `list`
 - **`prepend_positive`**
-    - Optional text to prepend to positive conditioning, enriching the context for desired attributes.
+    - Specifies text to prepend to positive conditioning, affecting text processing.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`prepend_negative`**
-    - Optional text to prepend to negative conditioning, refining the context for undesired attributes.
+    - Specifies text to prepend to negative conditioning, affecting text processing.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - The updated pipeline configuration after processing inputs.
+    - Outputs a modified pipeline object, incorporating the loaded and preprocessed data ready for further stages.
     - Python dtype: `dict`
 - **`model`**
     - Comfy dtype: `MODEL`
-    - unknown
-    - Python dtype: `unknown`
+    - Outputs the model used in the pipeline after processing.
+    - Python dtype: `str`
 - **`positive`**
     - Comfy dtype: `CONDITIONING`
-    - The processed positive conditioning, ready for use in the pipeline.
+    - Outputs the positive conditioning used in the pipeline after processing.
     - Python dtype: `str`
 - **`negative`**
     - Comfy dtype: `CONDITIONING`
-    - The processed negative conditioning, ready for use in the pipeline.
+    - Outputs the negative conditioning used in the pipeline after processing.
     - Python dtype: `str`
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - unknown
-    - Python dtype: `unknown`
+    - Outputs the latent variables used in the pipeline after processing.
+    - Python dtype: `int`
 - **`vae`**
     - Comfy dtype: `VAE`
-    - unknown
-    - Python dtype: `unknown`
+    - Outputs the VAE model used in the pipeline after processing.
+    - Python dtype: `str`
 - **`clip`**
     - Comfy dtype: `CLIP`
-    - The CLIP model parameter, integrated based on the optional input.
+    - Outputs the CLIP model used in the pipeline after processing.
     - Python dtype: `str`
 - **`seed`**
     - Comfy dtype: `INT`
-    - unknown
-    - Python dtype: `unknown`
+    - Outputs the seed used for random number generation in the pipeline after processing.
+    - Python dtype: `int`
 - **`width`**
     - Comfy dtype: `INT`
     - unknown
@@ -141,14 +146,12 @@ This node is designed to load and initialize pipelines for various tasks within 
     - Python dtype: `unknown`
 - **`pos_string`**
     - Comfy dtype: `STRING`
-    - unknown
-    - Python dtype: `unknown`
+    - Outputs the final positive conditioning string after processing.
+    - Python dtype: `str`
 - **`neg_string`**
     - Comfy dtype: `STRING`
-    - unknown
-    - Python dtype: `unknown`
-- **`ui`**
-    - A user interface component generated by the node, providing interactive or informative elements.
+    - Outputs the final negative conditioning string after processing.
+    - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -157,7 +160,7 @@ This node is designed to load and initialize pipelines for various tasks within 
 ## Source code
 ```python
 class ttN_pipeLoader_v2:
-    version = '2.0.0'
+    version = '2.1.0'
     @classmethod
     def INPUT_TYPES(cls):
         aspect_ratios = ["width x height [custom]",
@@ -175,6 +178,7 @@ class ttN_pipeLoader_v2:
                         
                         "512 x 1024 [P] 1:2",
                         "1024 x 512 [L] 2:1",
+                        "1024 x 1024 [S] 1:1",
                         ]
 
         return {"required": { 
@@ -196,29 +200,31 @@ class ttN_pipeLoader_v2:
                         "empty_latent_aspect": (aspect_ratios, {"default":"512 x 512 [S] 1:1"}),
                         "empty_latent_width": ("INT", {"default": 512, "min": 64, "max": MAX_RESOLUTION, "step": 8}),
                         "empty_latent_height": ("INT", {"default": 512, "min": 64, "max": MAX_RESOLUTION, "step": 8}),
+                        "batch_size": ("INT", {"default": 1, "min": 1, "max": 64}),
                         "seed": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff}),
                         },                
                 "optional": {
                     "model_override": ("MODEL",), 
                     "clip_override": ("CLIP",), 
                     "optional_lora_stack": ("LORA_STACK",),
-                    "optional_controlnet_stack": ("CONTROLNET_STACK",),
+                    "optional_controlnet_stack": ("CONTROL_NET_STACK",),
                     "prepend_positive": ("STRING", {"default": None, "forceInput": True}),
                     "prepend_negative": ("STRING", {"default": None, "forceInput": True}),
                     },
-                "hidden": {"prompt": "PROMPT", "ttNnodeVersion": ttN_pipeLoader_v2.version}, "my_unique_id": "UNIQUE_ID",}
+                "hidden": {"prompt": "PROMPT", "ttNnodeVersion": ttN_pipeLoader_v2.version, "my_unique_id": "UNIQUE_ID",}
+                }
 
     RETURN_TYPES = ("PIPE_LINE" ,"MODEL", "CONDITIONING", "CONDITIONING", "LATENT", "VAE", "CLIP", "INT", "INT", "INT", "STRING", "STRING")
     RETURN_NAMES = ("pipe","model", "positive", "negative", "latent", "vae", "clip", "seed", "width", "height", "pos_string", "neg_string")
 
     FUNCTION = "adv_pipeloader"
-    CATEGORY = "ttN/pipe"
+    CATEGORY = "🌏 tinyterra/pipe"
 
     def adv_pipeloader(self, ckpt_name, config_name, vae_name, clip_skip,
                        loras,
                        positive, positive_token_normalization, positive_weight_interpretation, 
                        negative, negative_token_normalization, negative_weight_interpretation, 
-                       empty_latent_aspect, empty_latent_width, empty_latent_height, seed,
+                       empty_latent_aspect, empty_latent_width, empty_latent_height, batch_size, seed,
                        model_override=None, clip_override=None, optional_lora_stack=None, optional_controlnet_stack=None, prepend_positive=None, prepend_negative=None,
                        prompt=None, my_unique_id=None):
 
@@ -227,20 +233,18 @@ class ttN_pipeLoader_v2:
         vae: VAE | None = None
 
         # Create Empty Latent
-        latent = sampler.emptyLatent(empty_latent_aspect, 1, empty_latent_width, empty_latent_height)
+        latent = sampler.emptyLatent(empty_latent_aspect, batch_size, empty_latent_width, empty_latent_height)
         samples = {"samples":latent}
 
-        # Clean models from loaded_objects
-        loader.update_loaded_objects(prompt)
+        loader.clear_cache(prompt)
+        model, clip, vae = loader.load_main3(ckpt_name, config_name, vae_name, loras, clip_skip, model_override, clip_override, optional_lora_stack, my_unique_id)
 
-        model, clip, vae = loader.load_main3(ckpt_name, config_name, vae_name, loras, model_override, clip_override, optional_lora_stack)
+        positive_embedding = loader.embedding_encode(positive, positive_token_normalization, positive_weight_interpretation, clip, seed=seed, title='pipeLoader Positive', my_unique_id=my_unique_id, prepend_text=prepend_positive)
+        negative_embedding = loader.embedding_encode(negative, negative_token_normalization, negative_weight_interpretation, clip, seed=seed, title='pipeLoader Negative', my_unique_id=my_unique_id, prepend_text=prepend_negative)
 
-        positive_embedding = loader.embedding_encode(positive, positive_token_normalization, positive_weight_interpretation, clip, clip_skip, seed=seed, title='pipeLoader Positive', my_unique_id=my_unique_id, prepend_text=prepend_positive)
-        negative_embedding = loader.embedding_encode(negative, negative_token_normalization, negative_weight_interpretation, clip, clip_skip, seed=seed, title='pipeLoader Negative', my_unique_id=my_unique_id, prepend_text=prepend_negative)
-
-        if optional_controlnet_stack is not None:
+        if optional_controlnet_stack is not None and len(optional_controlnet_stack) > 0:
             for cnt in optional_controlnet_stack:
-                positive_embedding, negative_embedding = loader.load_controlNet(self, positive_embedding, negative_embedding, cnt[0], cnt[1], cnt[2], cnt[3], cnt[4])
+                positive_embedding, negative_embedding = loader.load_controlNet(positive_embedding, negative_embedding, cnt[0], cnt[1], cnt[2], cnt[3], cnt[4])
 
         image = None
 
@@ -254,44 +258,7 @@ class ttN_pipeLoader_v2:
                 "images": image,
                 "seed": seed,
 
-                "loader_settings": {"ckpt_name": ckpt_name,
-                                    "vae_name": vae_name,
-
-                                    "loras": loras,
-
-                                    "model_override": model_override,
-                                    "clip_override": clip_override,
-                                    "optional_lora_stack": optional_lora_stack,
-                                    "optional_controlnet_stack": optional_controlnet_stack,
-                                    "prepend_positive": prepend_positive,
-                                    "prepend_negative": prepend_negative,
-
-                                    "refiner_ckpt_name": None,
-                                    "refiner_vae_name": None,
-                                    "refiner_lora1_name": None,
-                                    "refiner_lora1_model_strength": None,
-                                    "refiner_lora1_clip_strength": None,
-                                    "refiner_lora2_name": None,
-                                    "refiner_lora2_model_strength": None,
-                                    "refiner_lora2_clip_strength": None,
-                                    
-                                    "clip_skip": clip_skip,
-                                    "positive": positive,
-                                    "positive_l": None,
-                                    "positive_g": None,
-                                    "positive_token_normalization": positive_token_normalization,
-                                    "positive_weight_interpretation": positive_weight_interpretation,
-                                    "positive_balance": None,
-                                    "negative": negative,
-                                    "negative_l": None,
-                                    "negative_g": None,
-                                    "negative_token_normalization": negative_token_normalization,
-                                    "negative_weight_interpretation": negative_weight_interpretation,
-                                    "negative_balance": None,
-                                    "empty_latent_width": empty_latent_width,
-                                    "empty_latent_height": empty_latent_height,
-                                    "seed": seed,
-                                    "empty_samples": samples,}
+                "loader_settings": None,
         }
 
         final_positive = (prepend_positive + ' ' if prepend_positive else '') + (positive + ' ' if positive else '')

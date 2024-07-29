@@ -1,5 +1,6 @@
 ---
 tags:
+- Animation
 - Image
 ---
 
@@ -9,21 +10,21 @@ tags:
 - Category: `Bmad/CV`
 - Output node: `False`
 
-The ConvertImg node is designed for explicit image format conversion, facilitating the use of specific image formats required by certain custom nodes without resorting to workarounds.
+The ConvertImg node is designed for explicit image format conversion within a custom node environment, facilitating direct transformations between different image color spaces without resorting to workarounds.
 ## Input types
 ### Required
 - **`image`**
-    - The 'image' parameter represents the input image to be converted. Its format is crucial for the conversion process, impacting the node's execution and the resulting image format.
+    - The 'image' parameter represents the input image to be converted. Its role is crucial as it serves as the source image for the conversion process.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`to`**
-    - The 'to' parameter specifies the target image format for the conversion, influencing the output image's format and potentially its usability in subsequent processing steps.
+    - The 'to' parameter specifies the target color space format for the conversion, influencing the output image's color representation.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output is an image that has been converted to the specified format, ready for further processing or use within the application.
+    - The output is an image that has been converted to the specified color space format, reflecting the changes in color representation as per the 'to' parameter.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -42,15 +43,15 @@ class ConvertImg:
     options = list(options_map.keys())
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {
             "image": ("IMAGE",),
-            "to": (s.options, {"default": s.options[1]})
+            "to": (cls.options, {"default": cls.options[1]})
         }}
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "convert"
-    CATEGORY = "Bmad/CV"
+    CATEGORY = f"{cv_category_path}"
 
     def convert(self, image, to):
         image = tensor2opencv(image, self.options_map[to])

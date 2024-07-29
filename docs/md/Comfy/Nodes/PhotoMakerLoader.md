@@ -1,6 +1,6 @@
 ---
 tags:
-- Loader
+- ModelLoader
 ---
 
 # PhotoMakerLoader

@@ -1,8 +1,6 @@
 ---
 tags:
-- ImageScaling
 - ImageUpscaling
-- Upscale
 ---
 
 # 🔍 CR Apply Multi Upscale

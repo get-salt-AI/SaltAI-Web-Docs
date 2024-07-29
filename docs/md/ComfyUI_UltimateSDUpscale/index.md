@@ -1,12 +1,12 @@
 # ComfyUI_UltimateSDUpscale
-ComfyUI_UltimateSDUpscale provides nodes for the Ultimate Stable Diffusion Upscale script by Coyote-A, designed to be used with the A1111 extension. It acts as a wrapper, offering functionalities for image upscaling and tiled sampling, with specific nodes tailored for images that are already upscaled or require upscaling.
+ComfyUI_UltimateSDUpscale provides nodes for the Ultimate Stable Diffusion Upscale script by Coyote-A, designed to be used with the A1111 extension. It acts as a wrapper, allowing users to upscale images with various options, including the ability to handle already upscaled images or to apply custom sampling and sigmas for more control over the upscaling process.
 
 ## Tags
-ImageScaling * ImageUpscaling * Upscale
+ImageResolution * ImageTransformation * ImageUpscaling * SamplerScheduler * Sampling
 
 ## Repo info
 - Repo url: `https://github.com/ssitu/ComfyUI_UltimateSDUpscale`
-- Commit hash: `b303386bd363df16ad6706a13b3b47a1c2a1ea49`
+- Commit hash: `70083f5d449c498ee0fb35f5293c91cebac4b758`
 
 ## Licenses
 - **GPL-3.0-only**: `LICENSE`

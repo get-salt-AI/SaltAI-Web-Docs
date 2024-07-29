@@ -2,7 +2,8 @@
 tags:
 - Batch
 - Image
-- ImageSplitting
+- ImageBatch
+- ImageDuplication
 ---
 
 # Split Image Batch 🎥🅥🅗🅢

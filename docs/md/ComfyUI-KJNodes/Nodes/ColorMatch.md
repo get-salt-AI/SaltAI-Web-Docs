@@ -1,15 +1,16 @@
 ---
 tags:
 - Color
+- Image
 ---
 
-# ColorMatch
+# Color Match
 ## Documentation
 - Class name: `ColorMatch`
 - Category: `KJNodes/image`
 - Output node: `False`
 
-The ColorMatch node is designed for transferring color schemes between images, utilizing various color matching techniques. It supports multiple color transfer methods, including MKL and histogram matching, to adapt the color palette of a target image to match that of a reference image.
+The ColorMatch node is designed for transferring color schemes between images, utilizing advanced color matching techniques. It supports multiple methods for color transfer, including histogram matching and various statistical approaches, to achieve high-quality color grading, correction, and harmonization across images.
 ## Input types
 ### Required
 - **`image_ref`**
@@ -17,20 +18,20 @@ The ColorMatch node is designed for transferring color schemes between images, u
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`image_target`**
-    - The target image that will receive the color palette of the reference image. This image is transformed to match the color scheme of the reference image.
+    - The target image that will receive the color palette from the reference image. This image is transformed to match the color scheme of the reference image.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`method`**
-    - Specifies the color transfer method to be used, such as MKL or histogram matching, affecting the style of color adaptation.
+    - Specifies the method used for color transfer. Different methods can produce varying effects, allowing for flexibility in achieving the desired color grading.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The resulting image after color transfer, with its colors adapted to match the reference image's palette.
+    - The resulting image after color transfer, with the color scheme of the reference image applied to the target image.
     - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes:
     - [ImageBatch](../../Comfy/Nodes/ImageBatch.md)
     - [VHS_SplitImages](../../ComfyUI-VideoHelperSuite/Nodes/VHS_SplitImages.md)
@@ -107,6 +108,9 @@ https://github.com/hahnec/color-matcher/
                 print(f"Error occurred during transfer: {e}")
                 break
             out.append(torch.from_numpy(image_result))
-        return (torch.stack(out, dim=0).to(torch.float32), )
+            
+        out = torch.stack(out, dim=0).to(torch.float32)
+        out.clamp_(0, 1)
+        return (out,)
 
 ```

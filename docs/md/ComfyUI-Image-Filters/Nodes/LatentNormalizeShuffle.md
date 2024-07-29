@@ -1,7 +1,8 @@
 ---
 tags:
-- Latent
-- Normalization
+- LatentBlend
+- ModelGuidance
+- VAE
 ---
 
 # LatentNormalizeShuffle

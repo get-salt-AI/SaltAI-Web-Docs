@@ -1,6 +1,7 @@
 ---
 tags:
 - Prompt
+- PromptStyling
 ---
 
 # Superprompt
@@ -9,11 +10,11 @@ tags:
 - Category: `KJNodes/text`
 - Output node: `False`
 
-The Superprompt node utilizes a T5 model fine-tuned on the SuperPrompt dataset to enhance text prompts with more detailed descriptions. This process is designed to improve the performance of text-to-image models by providing them with more elaborate prompts.
+Superprompt is designed to enhance text prompts by upsampling them into more detailed descriptions using a T5 model fine-tuned on the SuperPrompt dataset. It serves as a pre-generation step to enrich prompts for text-to-image models, facilitating the creation of more detailed and accurate images.
 ## Input types
 ### Required
 - **`instruction_prompt`**
-    - A guiding instruction for the prompt expansion, setting the context for how the prompt should be elaborated.
+    - A guiding instruction to shape the expansion of the prompt, setting the context for how the text should be detailed.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`prompt`**
@@ -21,13 +22,13 @@ The Superprompt node utilizes a T5 model fine-tuned on the SuperPrompt dataset t
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`max_new_tokens`**
-    - Specifies the maximum number of new tokens to be generated, controlling the length of the expanded prompt.
+    - Specifies the maximum number of new tokens to be generated, controlling the length of the expanded description.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`string`**
     - Comfy dtype: `STRING`
-    - The enhanced, more detailed version of the original text prompt.
+    - The enhanced, detailed version of the original text prompt.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
@@ -64,18 +65,23 @@ https://huggingface.co/roborovski/superprompt-v1
         from transformers import T5Tokenizer, T5ForConditionalGeneration
 
         checkpoint_path = os.path.join(script_directory, "models","superprompt-v1")
+        if not os.path.exists(checkpoint_path):
+                print(f"Downloading model to: {checkpoint_path}")
+                from huggingface_hub import snapshot_download
+                snapshot_download(repo_id="roborovski/superprompt-v1", 
+                                  local_dir=checkpoint_path, 
+                                  local_dir_use_symlinks=False)
         tokenizer = T5Tokenizer.from_pretrained("google/flan-t5-small", legacy=False)
 
         model = T5ForConditionalGeneration.from_pretrained(checkpoint_path, device_map=device)
         model.to(device)
         input_text = instruction_prompt + ": " + prompt
-        print(input_text)
+  
         input_ids = tokenizer(input_text, return_tensors="pt").input_ids.to(device)
         outputs = model.generate(input_ids,  max_new_tokens=max_new_tokens)
         out = (tokenizer.decode(outputs[0]))
         out = out.replace('<pad>', '')
         out = out.replace('</s>', '')
-        print(out)
         
         return (out, )
 

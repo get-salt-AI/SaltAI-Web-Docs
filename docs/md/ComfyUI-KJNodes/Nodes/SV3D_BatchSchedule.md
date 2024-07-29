@@ -1,66 +1,67 @@
 ---
 tags:
+- CLIPConditioning
 - Conditioning
 ---
 
-# SV3D_BatchSchedule
+# SV3D Batch Schedule
 ## Documentation
 - Class name: `SV3D_BatchSchedule`
 - Category: `KJNodes/experimental`
 - Output node: `False`
 
-The SV3D_BatchSchedule node is designed for scheduling azimuth and elevation conditions for SV3D, a video model by Stability AI. It allows users to define how the camera's azimuth and elevation should change over time, enhancing the generation of 3D videos.
+The SV3D_BatchSchedule node is designed to facilitate the scheduling of azimuth and elevation conditions for SV3D, a video model. It allows for the dynamic adjustment of these conditions over the course of a video, enhancing the model's ability to generate more precise and contextually appropriate visual content.
 ## Input types
 ### Required
 - **`clip_vision`**
-    - Specifies the CLIP vision model to use, affecting how visual features are interpreted and processed.
+    - Specifies the CLIP vision model to be used for conditioning the SV3D model, affecting the visual content generated.
     - Comfy dtype: `CLIP_VISION`
     - Python dtype: `str`
 - **`init_image`**
-    - The initial image to start the video generation from, setting the visual context.
+    - Initial image to start the video generation process, setting the visual context for the SV3D model.
     - Comfy dtype: `IMAGE`
     - Python dtype: `str`
 - **`vae`**
-    - Defines the VAE model used for encoding and decoding images, crucial for the video generation process.
+    - The VAE model used for encoding and decoding images within the SV3D framework, crucial for the video generation process.
     - Comfy dtype: `VAE`
     - Python dtype: `str`
 - **`width`**
-    - The width of the generated video frames, allowing customization of the video's resolution.
+    - Defines the width of the generated video frames, allowing for customization of the video's resolution.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - The height of the generated video frames, enabling control over the video's aspect ratio and resolution.
+    - Sets the height of the generated video frames, enabling control over the video's aspect ratio and resolution.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`batch_size`**
-    - Determines the number of video frames to generate in a single batch, impacting the generation speed and memory usage.
+    - Determines the number of video frames to be processed in a single batch, impacting the efficiency of video generation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`interpolation`**
-    - The method of interpolation between keyframes, affecting the smoothness of the transition in generated video frames.
+    - Specifies the interpolation method for transitioning between different azimuth and elevation points, affecting the smoothness of the video.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `List[str]`
 - **`azimuth_points_string`**
-    - A string defining key points for azimuth changes over the video timeline, controlling the horizontal rotation of the camera.
+    - A string defining key points for azimuth adjustment throughout the video, guiding the directional focus of the generated content.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`elevation_points_string`**
-    - A string specifying key points for elevation changes over the video timeline, managing the vertical angle of the camera.
+    - A string detailing key points for elevation changes over the video, influencing the vertical angle of the generated visuals.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`positive`**
     - Comfy dtype: `CONDITIONING`
-    - The positive conditioning output, influencing the generation towards desired features.
-    - Python dtype: `str`
+    - The positive conditioning output, influencing the generation towards desired visual attributes.
+    - Python dtype: `Any`
 - **`negative`**
     - Comfy dtype: `CONDITIONING`
-    - The negative conditioning output, guiding the generation away from undesired features.
-    - Python dtype: `str`
+    - The negative conditioning output, steering the generation away from undesired visual aspects.
+    - Python dtype: `Any`
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - The latent representation of the video, serving as a foundational element for video generation.
-    - Python dtype: `str`
+    - The latent representation of the video, encapsulating the high-dimensional space that the model navigates during generation.
+    - Python dtype: `Any`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -95,7 +96,7 @@ https://huggingface.co/stabilityai/sv3d
     def encode(self, clip_vision, init_image, vae, width, height, batch_size, azimuth_points_string, elevation_points_string, interpolation):
         output = clip_vision.encode_image(init_image)
         pooled = output.image_embeds.unsqueeze(0)
-        pixels = comfy.utils.common_upscale(init_image.movedim(-1,1), width, height, "bilinear", "center").movedim(1,-1)
+        pixels = common_upscale(init_image.movedim(-1,1), width, height, "bilinear", "center").movedim(1,-1)
         encode_pixels = pixels[:,:,:,:3]
         t = vae.encode(encode_pixels)
 
@@ -181,8 +182,8 @@ https://huggingface.co/stabilityai/sv3d
             azimuths.append(interpolated_azimuth)
             elevations.append(interpolated_elevation)
 
-        print("azimuths", azimuths)
-        print("elevations", elevations)
+        #print("azimuths", azimuths)
+        #print("elevations", elevations)
 
         # Structure the final output
         final_positive = [[pooled, {"concat_latent_image": t, "elevation": elevations, "azimuth": azimuths}]]

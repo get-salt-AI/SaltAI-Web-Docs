@@ -10,29 +10,29 @@ tags:
 - Category: `ArtVenture/LLM`
 - Output node: `False`
 
-The AV_LLMChat node facilitates conversation generation by leveraging language model APIs. It processes a series of messages, configuration parameters, and an optional seed to produce a coherent and contextually relevant response.
+The LLMChat node facilitates conversation with language models by processing and forwarding messages, configurations, and optional seed information to an API for generating responses. It abstracts the complexities of interacting with different language model APIs, providing a unified interface for initiating chat sessions.
 ## Input types
 ### Required
 - **`messages`**
-    - A list of messages that represent the conversation history. Each message has a role indicating its source (system, user, or assistant) and can include text and optionally an image. This input is crucial for maintaining context and generating relevant responses.
+    - A list of messages that include both user and system messages, which are processed and formatted for the API call. This parameter is crucial for determining the flow and context of the conversation.
     - Comfy dtype: `LLM_MESSAGE`
     - Python dtype: `List[LLMMessage]`
 - **`api`**
-    - The API object used to communicate with a specific language model service, such as OpenAI or Claude. This parameter determines the underlying model and API settings for the response generation.
+    - The API object that specifies the language model to be used for the chat session. It plays a key role in directing the request to the appropriate language model API.
     - Comfy dtype: `LLM_API`
     - Python dtype: `LLMApi`
 - **`config`**
-    - Configuration settings for the language model, including the model type, maximum token count, and temperature. These settings fine-tune the generation process.
+    - Configuration settings for the language model, including model selection and parameters like max tokens and temperature, which influence the generation's verbosity and creativity.
     - Comfy dtype: `LLM_CONFIG`
     - Python dtype: `LLMConfig`
 - **`seed`**
-    - An optional seed for deterministic output generation, ensuring reproducibility of responses.
+    - An optional seed for deterministic output, enhancing reproducibility of the chat responses.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`response`**
     - Comfy dtype: `STRING`
-    - The generated text response from the language model, based on the input messages and configuration.
+    - The generated text response from the language model, encapsulating the model's reply to the input messages.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `CPU`
@@ -59,7 +59,7 @@ class LLMChatNode:
     CATEGORY = "ArtVenture/LLM"
 
     def chat(self, messages: List[LLMMessage], api: LLMApi, config: LLMConfig, seed):
-        response = api.completion(messages, config, seed)
+        response = api.chat(messages, config, seed)
         return (response,)
 
 ```

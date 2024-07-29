@@ -2,7 +2,7 @@
 Save Image Extended for ComfyUI allows users to customize file and folder names by incorporating sampler parameters and saves detailed job data (including sampler, prompts, models) as entries in a JSON file within each folder. This project enhances file organization and metadata management for generated content in ComfyUI environments.
 
 ## Tags
-Image * ImageSave
+Animation * Image * ImageGeneration * ImageSave * ImageSequence
 
 ## Repo info
 - Repo url: `https://github.com/thedyze/save-image-extended-comfyui`

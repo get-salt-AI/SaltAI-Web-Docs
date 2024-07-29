@@ -1,5 +1,6 @@
 ---
 tags:
+- DetailEnhancement
 - Image
 - Pipeline
 - PipelineTransformation

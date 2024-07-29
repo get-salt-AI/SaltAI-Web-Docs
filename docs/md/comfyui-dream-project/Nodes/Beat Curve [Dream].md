@@ -1,7 +1,10 @@
 ---
 tags:
-- AnimationScheduling
 - Curve
+- FrameInterpolation
+- Interpolation
+- VisualEffects
+- WavePatterns
 ---
 
 # 📈 Beat Curve

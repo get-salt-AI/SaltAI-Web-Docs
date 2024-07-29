@@ -1,6 +1,10 @@
 ---
 tags:
 - Latent
+- LatentBatch
+- LatentBlend
+- Normalization
+- VAE
 ---
 
 # SaveLatent

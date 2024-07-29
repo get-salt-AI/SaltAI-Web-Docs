@@ -2,6 +2,8 @@
 tags:
 - Batch
 - Image
+- ImageBatch
+- ImageDuplication
 ---
 
 # Batch Shake (mtb)

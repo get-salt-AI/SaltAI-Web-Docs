@@ -1,6 +1,8 @@
 ---
 tags:
-- Image
+- DataClamp
+- GridLayout
+- ImageDuplication
 - ImageTransformation
 ---
 
@@ -10,35 +12,35 @@ tags:
 - Category: `mtb/utils`
 - Output node: `False`
 
-The ToDevice node is designed to transfer image or mask tensors to a specified computing device, such as CPU, GPU, or MPS (Apple Silicon), facilitating the manipulation of tensor data across different hardware platforms.
+The `MTB_ToDevice` node is designed to transfer image or mask tensors to a specified computing device, such as CPU, GPU, or MPS (Apple Silicon), enhancing computational efficiency and flexibility in data processing pipelines.
 ## Input types
 ### Required
 - **`ignore_errors`**
-    - Determines whether to proceed without throwing an error when both image and mask inputs are absent, allowing for flexible error handling.
+    - Determines whether to proceed without throwing an error if both image and mask inputs are absent, allowing for more flexible error handling.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`device`**
-    - Specifies the computing device to which the image or mask tensor will be transferred, supporting dynamic selection based on available hardware.
+    - Specifies the computing device to which the tensors will be transferred. It dynamically includes available options like CPU, GPU, and MPS, adapting to the system's capabilities.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`image`**
-    - The image tensor to be transferred to the specified device, enabling hardware-specific tensor operations.
+    - An optional image tensor that, if provided, will be transferred to the specified device.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `Optional[torch.Tensor]`
+    - Python dtype: `torch.Tensor | None`
 - **`mask`**
-    - The mask tensor to be transferred to the specified device, similar to the image tensor, for hardware-accelerated processing.
+    - An optional mask tensor that, if provided, will be transferred to the specified device.
     - Comfy dtype: `MASK`
-    - Python dtype: `Optional[torch.Tensor]`
+    - Python dtype: `torch.Tensor | None`
 ## Output types
 - **`images`**
     - Comfy dtype: `IMAGE`
     - The image tensor after being transferred to the specified device.
-    - Python dtype: `Optional[torch.Tensor]`
+    - Python dtype: `torch.Tensor | None`
 - **`masks`**
     - Comfy dtype: `MASK`
     - The mask tensor after being transferred to the specified device.
-    - Python dtype: `Optional[torch.Tensor]`
+    - Python dtype: `torch.Tensor | None`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -80,8 +82,8 @@ class MTB_ToDevice:
         *,
         ignore_errors=False,
         device="cuda",
-        image: Optional[torch.Tensor] = None,
-        mask: Optional[torch.Tensor] = None,
+        image: torch.Tensor | None = None,
+        mask: torch.Tensor | None = None,
     ):
         if not ignore_errors and image is None and mask is None:
             raise ValueError(

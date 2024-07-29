@@ -1,66 +1,67 @@
 ---
 tags:
+- CLIPConditioning
 - Conditioning
 ---
 
-# StableZero123_BatchSchedule
+# Stable Zero123 Batch Schedule
 ## Documentation
 - Class name: `StableZero123_BatchSchedule`
 - Category: `KJNodes/experimental`
 - Output node: `False`
 
-The StableZero123_BatchSchedule node is designed to manage and schedule batch processing tasks for Stable Diffusion models, optimizing the workflow for generating images in batches. It focuses on efficiently organizing the rendering process to accommodate various frame counts and scheduling requirements, ensuring a streamlined operation for large-scale image generation projects.
+This node is designed to manage and schedule batch operations for the StableZero123 model, optimizing the processing of multiple inputs in a batched manner for efficiency and performance.
 ## Input types
 ### Required
 - **`clip_vision`**
-    - Specifies the CLIP vision model to be used for conditioning the generation process, impacting the visual style and content of the generated images.
+    - Represents the CLIP vision model input, used to provide visual context or features for processing.
     - Comfy dtype: `CLIP_VISION`
     - Python dtype: `str`
 - **`init_image`**
-    - Defines the initial image to start the batch processing from, setting the visual basis for subsequent image generations.
+    - Initial image input for the model to process or modify.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `str`
+    - Python dtype: `Image`
 - **`vae`**
-    - Determines the variational autoencoder used for encoding and decoding images, crucial for the quality and characteristics of the output.
+    - The variational autoencoder used for encoding or decoding images in the model's processing pipeline.
     - Comfy dtype: `VAE`
-    - Python dtype: `str`
+    - Python dtype: `VAE`
 - **`width`**
-    - Sets the width of the images to be generated, directly affecting the resolution and aspect ratio of the output.
+    - Specifies the width of the output image, allowing for customization of the image dimensions.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Specifies the height of the images to be generated, directly affecting the resolution and aspect ratio of the output.
+    - Specifies the height of the output image, allowing for customization of the image dimensions.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`batch_size`**
-    - Defines the number of images to be processed in a single batch, influencing the efficiency and speed of the batch processing task.
+    - Determines the number of images processed in a single batch, affecting efficiency and performance.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`interpolation`**
-    - Determines the interpolation method used for processing images, affecting the smoothness and quality of transitions between frames.
+    - Defines the interpolation method used in image processing, affecting the smoothness and quality of the output.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`azimuth_points_string`**
-    - Specifies the azimuth conditions for 3D model rendering, influencing the orientation and angle of the generated images.
+    - A string defining azimuth points for 3D model orientation, used in scheduling the model's view direction.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`elevation_points_string`**
-    - Defines the elevation conditions for 3D model rendering, affecting the vertical angle and perspective of the generated images.
+    - A string defining elevation points for 3D model orientation, used in scheduling the model's view direction.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`positive`**
     - Comfy dtype: `CONDITIONING`
-    - Represents the positive conditioning output, influencing the generation towards desired attributes.
-    - Python dtype: `str`
+    - The positive conditioning output from the model, used for enhancing certain features or aspects in the generated content.
+    - Python dtype: `Conditioning`
 - **`negative`**
     - Comfy dtype: `CONDITIONING`
-    - Represents the negative conditioning output, used to steer the generation away from undesired attributes.
-    - Python dtype: `str`
+    - The negative conditioning output from the model, used for suppressing certain features or aspects in the generated content.
+    - Python dtype: `Conditioning`
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - Outputs the latent representation of the generated images, crucial for further processing or manipulation.
-    - Python dtype: `str`
+    - Represents the latent space encoding of the input, capturing the essential features for further processing or generation.
+    - Python dtype: `Latent`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -90,7 +91,7 @@ class StableZero123_BatchSchedule:
     def encode(self, clip_vision, init_image, vae, width, height, batch_size, azimuth_points_string, elevation_points_string, interpolation):
         output = clip_vision.encode_image(init_image)
         pooled = output.image_embeds.unsqueeze(0)
-        pixels = comfy.utils.common_upscale(init_image.movedim(-1,1), width, height, "bilinear", "center").movedim(1,-1)
+        pixels = common_upscale(init_image.movedim(-1,1), width, height, "bilinear", "center").movedim(1,-1)
         encode_pixels = pixels[:,:,:,:3]
         t = vae.encode(encode_pixels)
 

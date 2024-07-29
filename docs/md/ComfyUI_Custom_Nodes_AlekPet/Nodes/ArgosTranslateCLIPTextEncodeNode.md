@@ -4,33 +4,33 @@
 - Category: `AlekPet Nodes/conditioning`
 - Output node: `False`
 
-This node integrates translation and text encoding functionalities, leveraging the Argos Translate library for language translation and CLIP for text encoding. It supports translating text from one language to another and then encoding the translated text into a format suitable for conditioning models, facilitating multilingual text processing and analysis.
+This node is designed for translating text from one language to another and encoding the translated text using the CLIP model for further processing or conditioning in AI models. It supports a variety of languages and leverages the CLIP model to provide a rich, contextual representation of the translated text.
 ## Input types
 ### Required
 - **`from_translate`**
-    - Specifies the source language code for the translation. It determines the language from which the text will be translated, impacting the translation accuracy and the selection of target languages.
+    - Specifies the source language from which the text will be translated. It determines the starting point of the translation process.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `List[str]`
 - **`to_translate`**
-    - Defines the target language code for the translation. It affects the final language of the translated text, enabling users to convert text into a wide range of supported languages.
+    - Defines the target language to which the text will be translated. It affects the final output of the translation process by setting the desired language.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `List[str]`
 - **`text`**
-    - The input text to be translated. This text is processed through translation and then encoded, serving as the primary content for subsequent operations.
+    - The text to be translated. This input is crucial as it provides the content that will undergo translation and subsequent encoding.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`clip`**
-    - A CLIP model instance used for encoding the translated text. It plays a crucial role in converting text into a format that can be utilized for conditioning, enhancing the node's utility in text analysis.
+    - A CLIP model instance used for encoding the translated text. It plays a key role in generating contextual embeddings for the text.
     - Comfy dtype: `CLIP`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `CLIP`
 ## Output types
 - **`conditioning`**
     - Comfy dtype: `CONDITIONING`
-    - The encoded representation of the translated text, suitable for conditioning models.
-    - Python dtype: `torch.Tensor`
+    - Provides the conditioning information derived from the CLIP model's encoding of the translated text.
+    - Python dtype: `List[List[torch.Tensor, Dict[str, torch.Tensor]]]`
 - **`string`**
     - Comfy dtype: `STRING`
-    - The translated text, providing a direct output of the translation process.
+    - The translated text, serving as a direct output of the translation process.
     - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
@@ -39,5 +39,35 @@ This node integrates translation and text encoding functionalities, leveraging t
 
 ## Source code
 ```python
-# Built-in or C extension class, unable to automatically detect source code
+class ArgosTranslateCLIPTextEncodeNode:
+    @classmethod
+    def INPUT_TYPES(self):
+        self.langs_support = ALL_CODES["russian"]["targets"]
+        return {
+            "required": {
+                "from_translate": (list(ALL_CODES.keys()), {"default": "russian"}),
+                "to_translate": (self.langs_support, {"default": "english"}),
+                "text": ("STRING", {"multiline": True, "placeholder": "Input text"}),
+                "clip": ("CLIP",),
+            }
+        }
+
+    RETURN_TYPES = (
+        "CONDITIONING",
+        "STRING",
+    )
+    FUNCTION = "argos_translate_text"
+    CATEGORY = "AlekPet Nodes/conditioning"
+
+    def argos_translate_text(self, from_translate, to_translate, text, clip):
+        self.langs_support = ALL_CODES[from_translate]["targets"]
+        text = translate(text, from_translate, to_translate)
+        tokens = clip.tokenize(text)
+        cond, pooled = clip.encode_from_tokens(tokens, return_pooled=True)
+        return ([[cond, {"pooled_output": pooled}]], text)
+
+    @classmethod
+    def VALIDATE_INPUTS(cls, from_translate, to_translate, text, clip):
+        return True
+
 ```

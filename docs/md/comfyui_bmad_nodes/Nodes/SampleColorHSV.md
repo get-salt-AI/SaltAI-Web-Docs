@@ -1,7 +1,6 @@
 ---
 tags:
 - Color
-- HSVColorSpace
 ---
 
 # SampleColorHSV
@@ -10,28 +9,28 @@ tags:
 - Category: `Bmad/CV/Color A.`
 - Output node: `False`
 
-This node is designed to sample pixels from an RGB image and convert these samples into the HSV color space. It aims to facilitate the analysis and manipulation of color information within images by providing a representative subset of the image's color distribution in HSV format.
+This node is designed to sample pixels from an RGB image and convert these samples into the HSV color space. It aims to facilitate color analysis and processing by providing a representative subset of the image's color distribution in HSV format.
 ## Input types
 ### Required
 - **`rgb_image`**
-    - The RGB image from which pixels will be sampled. This image is the primary input for generating a subset of color information in HSV format.
+    - The RGB image from which pixels will be sampled. This image is the primary input for color sampling and subsequent conversion to HSV.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `numpy.ndarray`
 - **`sample_size`**
-    - Determines the number of pixels to sample from the RGB image. A larger sample size provides a more representative subset of the image's color distribution.
+    - Determines the number of pixels to be sampled from the RGB image. A larger sample size provides a more representative color distribution but requires more processing time.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`sampling_seed`**
-    - A seed value for the random number generator used in sampling pixels. This ensures reproducibility of the sampled subset across different runs.
+    - A seed value for the random number generator used in pixel sampling. This ensures reproducibility of the sample selection across different runs.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`hsv_samples`**
     - Comfy dtype: `HSV_SAMPLES`
-    - The output is a collection of sampled pixels converted from RGB to HSV color space, providing a basis for further color analysis or manipulation.
-    - Python dtype: `tuple`
+    - The output is a collection of HSV color space samples derived from the sampled RGB image pixels. This facilitates further color analysis or processing.
+    - Python dtype: `HSV_Samples`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -39,7 +38,7 @@ This node is designed to sample pixels from an RGB image and convert these sampl
 ```python
 class SampleColorHSV:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         import sys
         return {"required": {
             "rgb_image": ("IMAGE",),
@@ -49,15 +48,15 @@ class SampleColorHSV:
 
     RETURN_TYPES = ("HSV_SAMPLES",)
     FUNCTION = "sample"
-    CATEGORY = "Bmad/CV/Color A."
+    CATEGORY = f"{cv_category_path}/Color A."
 
     def sample(self, rgb_image, sample_size, sampling_seed):
         image = tensor2opencv(rgb_image, 3)
         image_width = image.shape[1]
 
         # sample pixels
-        np.random.seed(sampling_seed)
-        random_indices = np.random.choice(image.shape[0] * image_width, sample_size, replace=False)
+        rng = np.random.default_rng(seed=sampling_seed)
+        random_indices = rng.choice(image.shape[0] * image_width, sample_size, replace=False)
         sample_pixels = np.array([image[i // image_width, i % image_width] for i in random_indices])
         sample_pixels = sample_pixels.reshape((1, -1, 3))
 

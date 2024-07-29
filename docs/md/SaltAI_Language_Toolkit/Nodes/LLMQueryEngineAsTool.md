@@ -1,29 +1,29 @@
-# ∞ Query Engine As Tool
+# ∞ Query Engine as Tool
 ## Documentation
 - Class name: `LLMQueryEngineAsTool`
-- Category: `SALT/Language Toolkit/Querying`
+- Category: `SALT/Language Toolkit/Agents/Tools`
 - Output node: `False`
 
-This node serves as a tool for executing queries using a language model, designed to facilitate complex information retrieval and processing tasks. It abstracts the intricacies of querying language models, providing a streamlined interface for users to leverage advanced natural language understanding capabilities.
+This node encapsulates a query engine as a tool, enabling the execution of queries against a document to extract or generate information based on the input question. It is designed to facilitate communication with documents by analyzing their content and providing relevant answers.
 ## Input types
 ### Required
 - **`name`**
-    - Specifies the name of the tool, serving as an identifier and descriptor for the query engine.
+    - Specifies the name of the tool, used for identification and display purposes.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`description`**
-    - Provides a detailed description of the tool's purpose and functionality, offering context and guidance for its use.
+    - Provides a detailed description of the tool's functionality and its intended use case.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`llm_index`**
-    - Identifies the specific index or database to be queried, allowing for targeted information retrieval based on the input query.
+    - Identifies the language model index to be used for querying, enabling the tool to access the appropriate resources for information retrieval.
     - Comfy dtype: `LLM_INDEX`
-    - Python dtype: `LLM_INDEX`
+    - Python dtype: `custom type, specific to the implementation`
 ## Output types
 - **`query_tool`**
     - Comfy dtype: `TOOL`
-    - The output of the node, which includes the tool configured for query processing, encapsulating the function and its parameters.
-    - Python dtype: `Dict[str, Any]`
+    - Returns a tool configured to perform queries, encapsulating the query engine functionality within a callable interface.
+    - Python dtype: `dict`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -46,7 +46,7 @@ class LLMQueryEngineAsTool:
     RETURN_NAMES = ("query_tool",)
 
     FUNCTION = "return_tool"
-    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Querying"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Agents/Tools"
     
     def return_tool(self, name, description, llm_index):
         def query_engine(query: str) -> str:
@@ -57,12 +57,10 @@ class LLMQueryEngineAsTool:
                 if query.strip():
                     query_components.append("user: " + query)
             query_components.append("assistant:")
-            pprint(query_components, indent=4)
             query_join = "\n".join(query_components)
 
             query_engine = llm_index.as_query_engine()
             response = query_engine.query(query_join)
-            pprint(response, indent=4)
             return (response.response,)
         tool = {"name": name, "description": description, "function": query_engine}
         return (tool,)

@@ -1,7 +1,9 @@
 ---
 tags:
-- Image
-- Tiled
+- Flip
+- GridLayout
+- ImageDuplication
+- ImageTransformation
 ---
 
 # Upscale Tile Calculator (Mikey)

@@ -10,55 +10,57 @@ tags:
 - Category: `EasyUse/Loaders`
 - Output node: `True`
 
-This node specializes in loading advanced control networks, offering enhanced capabilities for fine-tuning and applying control nets to various models. It extends the functionality of standard control net loaders by supporting additional parameters and configurations, enabling more precise control and customization of the control net's application.
+The `easy controlnetLoaderADV` node specializes in loading advanced control networks for use in generative models, offering enhanced capabilities over standard loaders by supporting additional parameters and configurations. It facilitates the dynamic adjustment and application of control networks to influence the generation process, accommodating complex requirements and customization needs.
 ## Input types
 ### Required
 - **`pipe`**
-    - Represents the pipeline context in which the control net is applied, affecting how the control net integrates with other components.
+    - Represents the pipeline context in which the control network will be applied, providing a framework for the integration and application of the control network.
     - Comfy dtype: `PIPE_LINE`
-    - Python dtype: `Dict[str, Any]`
+    - Python dtype: `dict`
 - **`image`**
-    - The image to which the control net will be applied, serving as the target for control net adjustments.
+    - The image to which the control network adjustments will be applied, serving as the direct target for the control network's effects.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `ImageType`
 - **`control_net_name`**
-    - Specifies the name of the control net to be loaded. This parameter is crucial as it determines which control net is utilized for the operation, affecting the outcome significantly.
+    - The name of the control network to be loaded, acting as a key identifier for retrieving the specific control network configuration from a predefined list or directory.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`control_net`**
-    - The control net object to be applied, allowing for the customization and application of specific control net configurations.
+    - An optional parameter allowing for the specification of an already loaded control network, facilitating reuse and efficiency in processing.
     - Comfy dtype: `CONTROL_NET`
-    - Python dtype: `Any`
+    - Python dtype: `ControlNetType`
 - **`strength`**
-    - Defines the intensity of the control net's effect, allowing for dynamic adjustment of its impact on the image.
+    - Defines the intensity of the control network's effect on the image, allowing for fine-tuned adjustments to the generation process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`start_percent`**
-    - Specifies the starting percentage of the effect, enabling phased application of the control net over the image.
+    - Specifies the starting point of the control network's effect in terms of the generation process timeline, enabling phased application.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end_percent`**
-    - Determines the ending percentage of the effect, facilitating a gradual application of the control net's influence.
+    - Determines the end point of the control network's effect, allowing for precise control over the duration and timing of its influence.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`scale_soft_weights`**
-    - Adjusts the softness of the weights applied by the control net, allowing for finer control over its influence.
+    - Adjusts the softness of the control network's weights, providing an additional layer of customization for the control network's application.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - The updated pipeline after applying the control net, reflecting changes and adjustments made.
-    - Python dtype: `Dict[str, Any]`
+    - The updated pipeline context, reflecting the application of the control network.
+    - Python dtype: `dict`
 - **`positive`**
     - Comfy dtype: `CONDITIONING`
-    - The positive conditioning effect produced by the control net, enhancing certain aspects of the image.
-    - Python dtype: `List[Tuple[str, Dict[str, Any]]]`
+    - The positive conditioning effects resulting from the control network's application, enhancing the generative model's output.
+    - Python dtype: `ConditioningType`
 - **`negative`**
     - Comfy dtype: `CONDITIONING`
-    - The negative conditioning effect produced by the control net, diminishing certain aspects of the image.
-    - Python dtype: `List[Tuple[str, Dict[str, Any]]]`
+    - The negative conditioning effects, offering a counterbalance to the positive effects and enriching the model's generative capabilities.
+    - Python dtype: `ConditioningType`
+- **`ui`**
+    - A user interface component generated by the node, facilitating interaction and visualization of the control network's effects.
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -98,7 +100,7 @@ class controlnetAdvanced:
 
     def controlnetApply(self, pipe, image, control_net_name, control_net=None, strength=1, start_percent=0, end_percent=1, scale_soft_weights=1):
         positive, negative = easyControlnet().apply(control_net_name, image, pipe["positive"], pipe["negative"],
-                                                    strength, start_percent, end_percent, control_net, scale_soft_weights)
+                                                    strength, start_percent, end_percent, control_net, scale_soft_weights, None, easyCache)
 
         new_pipe = {
             "model": pipe['model'],

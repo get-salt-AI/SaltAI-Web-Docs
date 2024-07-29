@@ -1,7 +1,9 @@
 ---
 tags:
-- RandomGeneration
+- ImageEnhancement
+- Noise
 - Randomization
+- Seed
 ---
 
 # 🎲 CR Random Multiline Values

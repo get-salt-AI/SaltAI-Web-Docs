@@ -1,7 +1,8 @@
 ---
 tags:
-- Face
 - FaceRestoration
+- SMPL
+- SMPLModel
 ---
 
 # Restore Face (mtb)
@@ -10,37 +11,42 @@ tags:
 - Category: `mtb/facetools`
 - Output node: `False`
 
-The Restore Face node leverages GFPGan to enhance and restore faces in images, focusing on improving visual quality and details. It supports adjustments such as alignment, center face restoration, and weight modulation for tailored image enhancement.
+The Restore Face node leverages advanced face restoration techniques to enhance and restore faces in images. It utilizes models like GFPGan to improve the quality of facial features, making it suitable for applications requiring high-quality face images.
 ## Input types
 ### Required
 - **`image`**
-    - The input image tensor to be enhanced. It is crucial for the restoration process, determining the quality and focus of the enhancement.
+    - The input image tensor containing faces to be restored. It plays a crucial role in the restoration process by serving as the primary data on which enhancement operations are performed.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`model`**
-    - The face enhancement model used for restoration. It defines the algorithm and parameters for the enhancement process.
+    - The face enhancement model used for restoring faces. This model dictates the restoration technique and its effectiveness.
     - Comfy dtype: `FACEENHANCE_MODEL`
-    - Python dtype: `GFPGANer`
+    - Python dtype: `object`
 - **`aligned`**
-    - A boolean indicating if the input faces are aligned. This affects how the model processes the image, potentially improving restoration quality for aligned faces.
+    - A boolean indicating whether the input faces are aligned. This affects the restoration process by determining how the model approaches face enhancement.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`only_center_face`**
-    - A boolean that, when true, restricts the restoration to only the center face in the image, focusing the enhancement efforts.
+    - A boolean that specifies whether to only restore the center face in the image. This is useful for focusing the enhancement on the primary subject.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`weight`**
-    - A float value representing the weight of the restoration effect. It allows for fine-tuning the intensity of the enhancement.
+    - A float value representing the weight of the restoration effect. It allows for fine-tuning the intensity of the face enhancement.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`save_tmp_steps`**
-    - A boolean indicating whether to save intermediate steps of the restoration process. This can be useful for debugging or analysis.
+    - A boolean indicating whether to save intermediate steps of the restoration process. This can be useful for debugging or for detailed analysis of the enhancement process.
+    - Comfy dtype: `BOOLEAN`
+    - Python dtype: `bool`
+### Optional
+- **`preserve_alpha`**
+    - A boolean that determines whether to preserve the alpha channel of the input image during restoration. This is important for maintaining transparency in images where applicable.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The enhanced image tensor, showcasing improved facial details and overall image quality after restoration.
+    - The output tensor containing the enhanced and restored faces. It represents the final result of the face restoration process.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -72,7 +78,10 @@ class MTB_RestoreFace:
                 # Adjustable weights
                 "weight": ("FLOAT", {"default": 0.5}),
                 "save_tmp_steps": ("BOOLEAN", {"default": True}),
-            }
+            },
+            "optional": {
+                "preserve_alpha": ("BOOLEAN", {"default": True}),
+            },
         }
 
     def do_restore(
@@ -83,10 +92,18 @@ class MTB_RestoreFace:
         only_center_face,
         weight,
         save_tmp_steps,
+        preserve_alpha: bool = False,
     ) -> torch.Tensor:
         pimage = tensor2np(image)[0]
         width, height = pimage.shape[1], pimage.shape[0]
         source_img = cv2.cvtColor(np.array(pimage), cv2.COLOR_RGB2BGR)
+
+        alpha_channel = None
+        if (
+            preserve_alpha and image.size(-1) == 4
+        ):  # Check if the image has an alpha channel
+            alpha_channel = pimage[:, :, 3]
+            pimage = pimage[:, :, :3]  # Remove alpha channel for processing
 
         sys.stdout = NullWriter()
         cropped_faces, restored_faces, restored_img = model.enhance(
@@ -106,9 +123,14 @@ class MTB_RestoreFace:
             )
         output = None
         if restored_img is not None:
-            output = Image.fromarray(
-                cv2.cvtColor(restored_img, cv2.COLOR_BGR2RGB)
-            )
+            restored_img = cv2.cvtColor(restored_img, cv2.COLOR_BGR2RGB)
+            output = Image.fromarray(restored_img)
+
+            if alpha_channel is not None:
+                alpha_resized = Image.fromarray(alpha_channel).resize(
+                    output.size, Image.LANCZOS
+                )
+                output.putalpha(alpha_resized)
             # imwrite(restored_img, save_restore_path)
 
         return pil2tensor(output)
@@ -121,6 +143,7 @@ class MTB_RestoreFace:
         only_center_face=False,
         weight=0.5,
         save_tmp_steps=True,
+        preserve_alpha: bool = False,
     ) -> tuple[torch.Tensor]:
         out = [
             self.do_restore(
@@ -130,6 +153,7 @@ class MTB_RestoreFace:
                 only_center_face,
                 weight,
                 save_tmp_steps,
+                preserve_alpha,
             )
             for i in range(image.size(0))
         ]
@@ -155,7 +179,7 @@ class MTB_RestoreFace:
         self, cropped_faces, restored_faces, height, width
     ):
         for idx, (cropped_face, restored_face) in enumerate(
-            zip(cropped_faces, restored_faces)
+            zip(cropped_faces, restored_faces, strict=False)
         ):
             face_id = idx + 1
             file = self.get_step_image_path("cropped_faces", face_id)

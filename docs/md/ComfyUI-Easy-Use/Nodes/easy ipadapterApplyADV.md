@@ -1,6 +1,10 @@
 ---
 tags:
 - IPAdapter
+- IdentityImage
+- Loader
+- ModelIO
+- RegionalImageProcessing
 ---
 
 # Easy Apply IPAdapter (Advanced)
@@ -9,107 +13,111 @@ tags:
 - Category: `EasyUse/Adapter`
 - Output node: `False`
 
-This node specializes in applying advanced IPAdapter configurations to models, enhancing their capabilities with custom image processing and adaptation strategies. It leverages IPAdapter to modify and fine-tune model behaviors based on specific image attributes, presets, and adaptation parameters, aiming to achieve optimal integration and performance for specialized tasks.
+This node specializes in applying advanced IPAdapter configurations to models, enhancing their capabilities with custom style, composition, and embedding adjustments. It leverages a sophisticated set of parameters to fine-tune the integration of IPAdapter into the model's processing pipeline, offering a high degree of customization for generating or modifying images.
 ## Input types
 ### Required
 - **`model`**
-    - The model to which the IPAdapter will be applied, serving as the base for further adaptations.
+    - The model to which the IPAdapter will be applied, serving as the foundation for the advanced customization and enhancements.
     - Comfy dtype: `MODEL`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `comfy.model_base.Model`
 - **`image`**
-    - The image to be processed or adapted by the IPAdapter, acting as a key input for the adaptation process.
+    - The image to be processed, serving as the input for the IPAdapter's style and composition adjustments.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `PIL.Image`
+    - Python dtype: `IMAGE`
 - **`preset`**
-    - A predefined configuration or set of parameters that dictate how the IPAdapter should modify the model, tailoring its behavior to specific needs.
+    - Defines the preset configuration for the IPAdapter, guiding its application strategy.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`lora_strength`**
-    - Specifies the strength of the LoRA model adjustment.
+    - Adjusts the strength of the LoRA adjustments within the IPAdapter, affecting the depth of customization.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`provider`**
-    - Defines the computation provider for the operation, such as CPU or GPU.
+    - Specifies the provider for the model or service, influencing the selection of processing resources.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`weight`**
-    - The weight factor for the adaptation process, influencing how the IPAdapter modifies the model.
+    - The overall weight influencing the application of the IPAdapter, affecting the output's visual characteristics.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`weight_faceidv2`**
-    - Specific weight adjustment for FaceID v2 features within the adaptation process.
+    - Specific weight for FaceID v2 adjustments, tailoring the facial recognition enhancements.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`weight_type`**
-    - Specifies the type of weighting method used in the adaptation process, such as linear or non-linear.
+    - Determines the type of weighting applied, affecting the balance between different adjustment types.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`combine_embeds`**
-    - Describes how multiple embeddings are combined during the adaptation process, e.g., concatenation or averaging.
+    - Determines whether embeddings should be combined, impacting the integration of multiple embeddings into the model.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `bool`
 - **`start_at`**
-    - Defines the starting point of the adaptation effect on the model.
+    - Specifies the starting point within the model's layers for applying the IPAdapter, allowing for targeted enhancements.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end_at`**
-    - Specifies the end point of the adaptation effect on the model, allowing for precise control over the adaptation range.
+    - Defines the end point within the model's layers for the application of the IPAdapter, enabling precise control over the extent of modifications.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`embeds_scaling`**
-    - Defines how embeddings are scaled or adjusted during the adaptation, influencing the final output.
+    - Controls the scaling of embeddings, adjusting the impact of embeddings on the model's output.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`cache_mode`**
-    - Determines the caching strategy for the adaptation process, affecting performance and resource utilization.
+    - Controls the caching strategy for the IPAdapter, optimizing performance and resource usage.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`use_tiled`**
-    - Indicates whether a tiled adaptation approach should be used, affecting the processing of large images.
+    - Indicates whether to apply the IPAdapter in a tiled manner, affecting the processing of large images.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`use_batch`**
-    - Indicates whether batch processing is utilized for efficiency in handling multiple images or data points.
+    - Specifies whether to process images in batches, improving efficiency for multiple inputs.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`sharpening`**
-    - Specifies the level of sharpening applied to the adapted images, enhancing clarity and detail.
+    - Adjusts the sharpness of the output images, enhancing detail and clarity.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`image_negative`**
-    - An optional negative image input for the adaptation process, used to negate certain features or effects.
+    - unknown
     - Comfy dtype: `IMAGE`
-    - Python dtype: `PIL.Image`
+    - Python dtype: `unknown`
 - **`attn_mask`**
-    - An optional attention mask to focus or ignore specific parts of the image during adaptation.
+    - An optional attention mask to focus the IPAdapter's adjustments on specific areas, enhancing the relevance of modifications.
     - Comfy dtype: `MASK`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `AttnMask`
 - **`clip_vision`**
-    - Optional CLIP vision model input to guide the adaptation process based on visual concepts.
+    - unknown
     - Comfy dtype: `CLIP_VISION`
-    - Python dtype: `torch.nn.Module`
+    - Python dtype: `unknown`
 - **`optional_ipadapter`**
-    - An optional IPAdapter instance to be used in conjunction with the primary adaptation process.
+    - An optional IPAdapter parameter for additional customization and flexibility in the application process.
     - Comfy dtype: `IPADAPTER`
-    - Python dtype: `CustomIPAdapterType`
+    - Python dtype: `IPAdapter`
+- **`layer_weights`**
+    - Specifies the weights for different layers within the model, allowing for fine-tuned adjustments.
+    - Comfy dtype: `STRING`
+    - Python dtype: `Dict[str, float]`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The modified model after applying the IPAdapter, showcasing enhanced or altered capabilities.
-    - Python dtype: `torch.nn.Module`
+    - The enhanced model with the advanced IPAdapter configurations applied, reflecting the customized adjustments.
+    - Python dtype: `comfy.model_base.Model`
 - **`images`**
     - Comfy dtype: `IMAGE`
-    - The images resulting from the adaptation process, potentially modified or enhanced.
-    - Python dtype: `List[PIL.Image]`
+    - The images generated or modified by the IPAdapter, showcasing the applied adjustments.
+    - Python dtype: `List[IMAGE]`
 - **`masks`**
     - Comfy dtype: `MASK`
-    - The masks generated during the adaptation process, used for focusing or excluding specific image areas.
-    - Python dtype: `List[Optional[PIL.Image]]`
+    - The masks applied during the IPAdapter process, indicating areas of focus or exclusion.
+    - Python dtype: `List[Optional[MASK]]`
 - **`ipadapter`**
     - Comfy dtype: `IPADAPTER`
-    - The IPAdapter instance used for the adaptation, encapsulating the specific configurations applied.
-    - Python dtype: `CustomIPAdapterType`
+    - The IPAdapter instance after application, encapsulating the advanced configurations and customizations.
+    - Python dtype: `IPAdapter`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -141,7 +149,7 @@ class ipadapterApplyAdvanced(ipadapter):
                 "start_at": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 1.0, "step": 0.001}),
                 "end_at": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 1.0, "step": 0.001}),
                 "embeds_scaling": (['V only', 'K+V', 'K+V w/ C penalty', 'K+mean(V) w/ C penalty'],),
-                "cache_mode": (["insightface only", "clip_vision only","ipadapter only", "all", "none"], {"default": "insightface only"},),
+                "cache_mode": (["insightface only", "clip_vision only","ipadapter only", "all", "none"], {"default": "all"},),
                 "use_tiled": ("BOOLEAN", {"default": False},),
                 "use_batch": ("BOOLEAN", {"default": False},),
                 "sharpening": ("FLOAT", {"default": 0.0, "min": 0.0, "max": 1.0, "step": 0.05}),
@@ -152,6 +160,7 @@ class ipadapterApplyAdvanced(ipadapter):
                 "attn_mask": ("MASK",),
                 "clip_vision": ("CLIP_VISION",),
                 "optional_ipadapter": ("IPADAPTER",),
+                "layer_weights": ("STRING", {"default": "", "multiline": True, "placeholder": "Mad Scientist Layer Weights"}),
             }
         }
 
@@ -160,10 +169,15 @@ class ipadapterApplyAdvanced(ipadapter):
     CATEGORY = "EasyUse/Adapter"
     FUNCTION = "apply"
 
-    def apply(self, model, image, preset, lora_strength, provider, weight, weight_faceidv2, weight_type, combine_embeds, start_at, end_at, embeds_scaling, cache_mode, use_tiled, use_batch, sharpening, weight_style=1.0, weight_composition=1.0, image_style=None, image_composition=None, expand_style=False, image_negative=None, clip_vision=None, attn_mask=None, optional_ipadapter=None):
+    def apply(self, model, image, preset, lora_strength, provider, weight, weight_faceidv2, weight_type, combine_embeds, start_at, end_at, embeds_scaling, cache_mode, use_tiled, use_batch, sharpening, weight_style=1.0, weight_composition=1.0, image_style=None, image_composition=None, expand_style=False, image_negative=None, clip_vision=None, attn_mask=None, optional_ipadapter=None, layer_weights=None):
         images, masks = image, [None]
         model, ipadapter = self.load_model(model, preset, lora_strength, provider, clip_vision=clip_vision, optional_ipadapter=optional_ipadapter, cache_mode=cache_mode)
-        if use_tiled:
+        if layer_weights:
+            if "IPAdapterMS" not in ALL_NODE_CLASS_MAPPINGS:
+                self.error()
+            cls = ALL_NODE_CLASS_MAPPINGS["IPAdapterAdvanced"]
+            model, images = cls().apply_ipadapter(model, ipadapter, weight=weight, weight_type=weight_type, start_at=start_at, end_at=end_at, combine_embeds=combine_embeds, weight_faceidv2=weight_faceidv2, image=image, image_negative=image_negative, weight_style=weight_style, weight_composition=weight_composition, image_style=image_style, image_composition=image_composition, expand_style=expand_style, clip_vision=clip_vision, attn_mask=attn_mask, insightface=None, embeds_scaling=embeds_scaling, layer_weights=layer_weights)
+        elif use_tiled:
             if use_batch:
                 if "IPAdapterTiledBatch" not in ALL_NODE_CLASS_MAPPINGS:
                     self.error()

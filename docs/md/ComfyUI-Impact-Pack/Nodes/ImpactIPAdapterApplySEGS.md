@@ -1,6 +1,8 @@
 ---
 tags:
 - IPAdapter
+- IdentityImage
+- RegionalImageProcessing
 ---
 
 # IPAdapterApply (SEGS)
@@ -9,73 +11,73 @@ tags:
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-This node applies an IP Adapter to SEGS (segmentation elements), enhancing or modifying them based on a set of parameters and a reference image. It is designed to work within the context of image processing, particularly in adjusting and refining segmentation results through advanced control mechanisms.
+This node applies an IP Adapter to SEGS (segmentation elements), enhancing or modifying them based on a set of parameters and a reference image. It allows for the dynamic adjustment of segmentation elements through image processing techniques and neural network models, facilitating complex image manipulation tasks.
 ## Input types
 ### Required
 - **`segs`**
-    - The segmentation elements to be processed, providing the basis for the adaptation process.
+    - The segmentation elements to be processed, typically including information such as crop regions and masks.
     - Comfy dtype: `SEGS`
     - Python dtype: `List[Tuple[Any, List[SEG]]]`
 - **`ipadapter_pipe`**
-    - A pipeline of IP Adapter configurations, dictating how the segmentation elements are to be modified.
+    - A pipeline of models or functions that the IP Adapter will use to process the segmentation elements.
     - Comfy dtype: `IPADAPTER_PIPE`
-    - Python dtype: `List[Dict[str, Any]]`
+    - Python dtype: `List[Callable]`
 - **`weight`**
-    - A weight factor influencing the adaptation strength.
+    - A parameter controlling the influence of the IP Adapter on the segmentation elements.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`noise`**
-    - Noise level to be applied during the adaptation process.
+    - An optional noise parameter that can be applied for variability in the adaptation process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`weight_type`**
-    - Specifies the type of weight application in the adaptation process.
+    - Specifies the type of weighting mechanism used in the adaptation process.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`start_at`**
-    - Defines the starting point within the segmentation elements for the adaptation.
+    - Defines the starting point within the pipeline for applying the IP Adapter.
     - Comfy dtype: `FLOAT`
     - Python dtype: `int`
 - **`end_at`**
-    - Defines the ending point within the segmentation elements for the adaptation.
+    - Specifies the endpoint within the pipeline for the application of the IP Adapter.
     - Comfy dtype: `FLOAT`
     - Python dtype: `int`
 - **`unfold_batch`**
-    - Determines whether the adaptation process should unfold across batches.
+    - Determines whether the processing should unfold in batches for efficiency.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`faceid_v2`**
-    - Indicates whether to use an updated version of face identification in the adaptation process.
+    - An optional parameter for face identification, relevant in certain contexts.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`weight_v2`**
-    - A secondary weight factor for the adaptation, potentially for an updated adaptation mechanism.
+    - A secondary weight parameter, potentially used for more nuanced control.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`context_crop_factor`**
-    - A factor determining the extent of the context crop around the segmentation elements.
+    - Adjusts the crop region in relation to the context, affecting how much of the surrounding area is considered in the adaptation.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`reference_image`**
-    - The reference image against which the segmentation elements are adapted.
+    - The reference image against which the segmentation elements are adapted or modified.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 ### Optional
 - **`combine_embeds`**
-    - Method for combining embeddings in the adaptation process, defaulting to 'concat'.
+    - Determines how embeddings are combined in the adaptation process, with options such as 'concat'.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`neg_image`**
-    - An optional negative image to be considered during the adaptation process.
+    - An optional negative image that can be used for contrast or as a counter-reference in the adaptation.
     - Comfy dtype: `IMAGE`
     - Python dtype: `Optional[torch.Tensor]`
 ## Output types
 - **`segs`**
     - Comfy dtype: `SEGS`
-    - The adapted segmentation elements, reflecting the applied modifications.
-    - Python dtype: `List[Tuple[Any, List[SEG]]]`
+    - The enhanced or modified segmentation elements after applying the IP Adapter.
+    - Python dtype: `Tuple[Tuple[Any, List[SEG]]]`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -109,7 +111,8 @@ class IPAdapterApplySEGS:
 
     CATEGORY = "ImpactPack/Util"
 
-    def doit(self, segs, ipadapter_pipe, weight, noise, weight_type, start_at, end_at, unfold_batch, faceid_v2, weight_v2, context_crop_factor, reference_image, combine_embeds="concat", neg_image=None):
+    @staticmethod
+    def doit(segs, ipadapter_pipe, weight, noise, weight_type, start_at, end_at, unfold_batch, faceid_v2, weight_v2, context_crop_factor, reference_image, combine_embeds="concat", neg_image=None):
 
         if len(ipadapter_pipe) == 4:
             print(f"[Impact Pack] IPAdapterApplySEGS: Installed Inspire Pack is outdated.")

@@ -1,3 +1,8 @@
+---
+tags:
+- ImageDrawing
+---
+
 # Create QR Code
 ## Documentation
 - Class name: `Create QR Code`

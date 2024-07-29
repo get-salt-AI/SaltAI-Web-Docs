@@ -1,33 +1,33 @@
 # ∞ Group Chat Manager
 ## Documentation
 - Class name: `GroupChatManagerCreator`
-- Category: `SALT/Language Toolkit/Agents`
+- Category: `SALT/Language Toolkit/Agents/Chat`
 - Output node: `False`
 
-This node is designed to facilitate the creation of a group chat manager, capable of overseeing and managing the interactions within a group chat environment. It specializes in configuring and initializing a chat manager agent that is tailored for group chat scenarios, ensuring smooth communication and interaction management among multiple participants.
+The GroupChatManagerCreator node specializes in creating a group chat manager agent designed to oversee and manage group chat interactions among multiple agents. It is tailored for scenarios where group chat functionality is essential, providing tools to configure and control the chat environment effectively.
 ## Input types
 ### Required
 - **`name`**
-    - The name of the group chat manager, serving as an identifier and a label for the chat management entity.
+    - The 'name' parameter specifies the name of the group chat manager. It is a key identifier for the chat manager within the group chat environment.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`system_message`**
-    - A system message that can be used by the group chat manager, typically for announcements or instructions within the group chat.
+    - The 'system_message' parameter is a customizable message that the group chat manager can use to communicate system-level information within the group chat.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ### Optional
 - **`llm_model`**
-    - An optional parameter specifying the large language model (LLM) configuration for the chat manager, enabling advanced language understanding and response generation capabilities.
+    - The 'llm_model' parameter allows for the specification of a language model to be used by the group chat manager, enabling advanced language understanding and response generation capabilities.
     - Comfy dtype: `LLM_MODEL`
     - Python dtype: `dict`
 - **`max_consecutive_auto_reply`**
-    - An optional parameter that limits the maximum number of consecutive automatic replies by the chat manager, helping to prevent spam and maintain conversation quality.
+    - This parameter sets the maximum number of consecutive automatic replies the group chat manager can send, helping to prevent spam and maintain conversation quality.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`group_manager`**
     - Comfy dtype: `GROUP_MANAGER`
-    - The configured group chat manager, ready to be utilized in managing a group chat session.
+    - The output is a configured group manager agent, ready to be deployed in managing group chat interactions.
     - Python dtype: `dict`
 ## Usage tips
 - Infra type: `CPU`
@@ -61,7 +61,7 @@ class GroupChatManagerCreator:
 	RETURN_NAMES = ("group_manager",)
 
 	FUNCTION = "create_agent"
-	CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Agents"
+	CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Agents/Chat"
 
 	def create_agent(self, name, system_message, llm_model=None, max_consecutive_auto_reply=None):
 		group_manager = {

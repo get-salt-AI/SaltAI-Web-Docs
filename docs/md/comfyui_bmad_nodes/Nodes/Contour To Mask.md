@@ -1,7 +1,7 @@
 ---
 tags:
-- Contour
-- Image
+- Color
+- Crop
 ---
 
 # Contour To Mask
@@ -10,25 +10,25 @@ tags:
 - Category: `Bmad/CV/Contour`
 - Output node: `False`
 
-This node is designed to convert a contour into a mask image, utilizing the specified output format. It effectively transforms the shape defined by the contour into a binary mask, which can be used for various image processing tasks.
+The Contour To Mask node transforms a given contour into a mask on the specified image, allowing for the visualization or application of contours in image processing tasks. It supports customization of the output image format.
 ## Input types
 ### Required
 - **`image`**
-    - The input image on which the contour is to be drawn. It serves as the base for the mask creation process.
+    - The input image on which the contour will be drawn to create a mask. It serves as the canvas for the contour transformation.
     - Comfy dtype: `IMAGE`
     - Python dtype: `torch.Tensor`
 - **`contour`**
-    - The contour to be converted into a mask. It defines the shape that will be filled in the mask.
+    - The contour to be transformed into a mask on the image. This parameter defines the shape and location of the mask.
     - Comfy dtype: `CV_CONTOUR`
-    - Python dtype: `custom type representing a contour in computer vision tasks`
+    - Python dtype: `CV_CONTOUR`
 - **`output_format`**
-    - Specifies the desired output format for the mask image, allowing for flexibility in how the mask is utilized downstream.
+    - Specifies the desired output image format, allowing for flexibility in how the resulting masked image is encoded or saved.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `enum representing different image output formats`
+    - Python dtype: `image_output_formats_options`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The resulting mask image, where the specified contour has been filled to create a binary mask.
+    - The output is an image with the specified contour transformed into a mask, reflecting the shape and position of the contour on the original image.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -39,7 +39,7 @@ This node is designed to convert a contour into a mask image, utilizing the spec
 ```python
 class ContourToMask:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "image": ("IMAGE",),
@@ -52,7 +52,7 @@ class ContourToMask:
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "draw"
-    CATEGORY = "Bmad/CV/Contour"
+    CATEGORY = f"{cv_category_path}/Contour"
 
     def draw(self, image, contour, output_format):
         image = tensor2opencv(image, 1)

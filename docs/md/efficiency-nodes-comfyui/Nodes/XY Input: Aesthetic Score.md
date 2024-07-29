@@ -1,5 +1,6 @@
 ---
 tags:
+- DataVisualization
 - XYPlotData
 ---
 

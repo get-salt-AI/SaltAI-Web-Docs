@@ -1,6 +1,7 @@
 ---
 tags:
 - Mask
+- MaskMorphology
 ---
 
 # FadeMaskEdges
@@ -9,38 +10,38 @@ tags:
 - Category: `Bmad/CV/Misc`
 - Output node: `False`
 
-This node is designed to premultiply and alpha blend the edges of a subject to prevent outer pixels from creeping in. It is particularly useful for stylized subjects, such as drawings with black outlines, by allowing for different edge fades to optimize the blending of the subject into its background.
+This node is designed for refining the edges of masks in images, specifically targeting the enhancement of edge blending and smooth transitions. It focuses on premultiplying and alpha blending the edges of a subject to prevent the intrusion of outer pixels, which is particularly useful for stylized subjects or images requiring precise edge manipulation.
 ## Input types
 ### Required
 - **`binary_image`**
-    - The binary image to be processed, focusing on premultiplying and alpha blending its edges.
+    - Represents the mask image to be processed, where the edge modifications will be applied.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `IMAGE`
+    - Python dtype: `torch.Tensor`
 - **`edge_size`**
-    - Defines the size of the edge fade, influencing how the subject's edges blend into the background.
+    - Defines the size of the edge to be faded, impacting the extent of the edge modification.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `FLOAT`
+    - Python dtype: `float`
 - **`edge_tightness`**
-    - Controls the tightness of the edge fade, affecting the transition smoothness from the subject to the background.
+    - Controls the rate at which the edge fades to black, affecting the sharpness of the edge transition.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `FLOAT`
+    - Python dtype: `float`
 - **`edge_exponent`**
-    - Determines the fade curve, allowing for customization of the edge transition effect.
+    - Determines the nature of the fade, potentially softening small lines for a smoother transition.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `FLOAT`
+    - Python dtype: `float`
 - **`smoothing_diameter`**
-    - Specifies the diameter for edge smoothing, used to refine the blending effect post-premultiplication and alpha setting.
+    - Specifies the diameter for optional smoothing applied after edge processing, to further refine the edge appearance.
     - Comfy dtype: `INT`
-    - Python dtype: `INT`
+    - Python dtype: `int`
 - **`paste_original_blacks`**
-    - A boolean flag indicating whether to paste original black pixels back into the image, aiding in preserving the subject's integrity.
+    - A boolean flag indicating whether to paste original black values back into the image, preserving dark regions.
     - Comfy dtype: `BOOLEAN`
-    - Python dtype: `BOOLEAN`
+    - Python dtype: `bool`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The processed image with premultiplied and alpha blended edges, ready for further use or display.
-    - Python dtype: `IMAGE`
+    - The processed image with enhanced and smoothly blended edges.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -61,7 +62,7 @@ class FadeMaskEdges:
     """
 
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {
             "required": {
                 "binary_image": ("IMAGE",),
@@ -77,7 +78,7 @@ class FadeMaskEdges:
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "apply"
-    CATEGORY = "Bmad/CV/Misc"
+    CATEGORY = f"{cv_category_path}/Misc"
 
     def apply(self, binary_image, edge_size, edge_tightness, edge_exponent, smoothing_diameter, paste_original_blacks):
         binary_image = tensor2opencv(binary_image, 1)

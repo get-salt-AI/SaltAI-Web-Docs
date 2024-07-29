@@ -1,6 +1,9 @@
 ---
 tags:
-- Text
+- DataTypeAgnostic
+- Debugging
+- List
+- String
 ---
 
 # 📉 CR XY List

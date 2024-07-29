@@ -1,1 +1,7 @@
-For this pack, no licenses were identified
+# Main License
+File name: `pyproject.toml`
+
+**MIT**
+```
+license = "MIT"
+```

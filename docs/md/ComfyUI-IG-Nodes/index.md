@@ -1,12 +1,12 @@
 # ComfyUI-IG-Nodes
-ComfyUI-IG-Nodes is designed to facilitate image processing and manipulation within a graphical user interface. It offers a variety of classes for loading and handling images, adjusting their properties (such as size, opacity, and blending), and analyzing image similarity. The project also includes utilities for file management and exploration, making it easier to work with image datasets directly from the interface.
+ComfyUI-IG-Nodes is designed to facilitate image processing and manipulation through a user-friendly interface. It offers a variety of classes for handling different data types (such as floats, integers, and strings), managing files and folders, loading and cross-fading images, as well as performing mathematical operations and image quality analysis. The project streamlines the process of adjusting and analyzing images, making it accessible for users to perform complex tasks efficiently.
 
 ## Tags
-AnimationScheduling * DataConversion * DataTypeConversion * Float * FloatData * Image * ImageLoad * MathematicalFunctions * Multiplication * NumericConversion * VisualEffects
+Animation * Curve * DataConversion * DataTypeConversion * Float * FloatList * FrameInterpolation * IPAdapter * Image * ImageDrawing * ImageLoad * Integer * Interpolation * RegionalPrompt * Style * WavePatterns
 
 ## Repo info
 - Repo url: `https://github.com/IDGallagher/ComfyUI-IG-Nodes`
-- Commit hash: `d354b0a7c431b4703de1859145b5331d397978c9`
+- Commit hash: `5941433ba16f83e43f7cb34c3b0b078961810387`
 
 ## Licenses
 For this pack, no licenses were identified

@@ -10,31 +10,33 @@ tags:
 - Category: `EasyUse/Prompt`
 - Output node: `True`
 
-The `easy stylesSelector` node is designed to facilitate the selection and application of various styles to prompts within the ComfyUI framework. It allows users to dynamically choose from a predefined set of styles, applying them to enhance or modify the prompt's appearance or thematic direction based on the selected options.
+The `easy stylesSelector` node is designed to facilitate the selection of styles for prompts in a user-friendly manner. It abstracts the complexity of choosing and applying styles by providing a simplified interface for users to select from predefined style options, enhancing the customization and creativity of prompt generation.
 ## Input types
 ### Required
 - **`styles`**
-    - Specifies the style or styles to be applied. This can include a single style or a combination of styles, influencing the overall aesthetic or thematic direction of the prompt.
+    - This parameter allows users to select from a list of predefined styles, determining the visual and thematic presentation of the prompt.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`positive`**
-    - The positive prompt text to which styles will be applied, enhancing its thematic or aesthetic appeal.
+    - The positive prompt input where users can specify custom text to influence the style selection process positively.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`negative`**
-    - The negative prompt text to which styles can be applied, potentially altering its thematic or aesthetic direction.
+    - The negative prompt input where users can specify custom text to influence the style selection process negatively.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`positive`**
     - Comfy dtype: `STRING`
-    - The enhanced positive prompt text after style application.
+    - The positive styled prompt, reflecting the user's style selection and customizations.
     - Python dtype: `str`
 - **`negative`**
     - Comfy dtype: `STRING`
-    - The modified negative prompt text following style application.
+    - The negative styled prompt, reflecting the user's style selection and customizations.
     - Python dtype: `str`
+- **`ui`**
+    - Indicates whether the selected styles are linked to the prompt, providing a boolean value that signifies the presence of a styles selection for the given prompt and user context.
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -70,26 +72,6 @@ class stylesPromptSelector:
     FUNCTION = 'run'
     OUTPUT_NODE = True
 
-
-    def replace_repeat(self, prompt):
-        prompt = prompt.replace("，", ",")
-        arr = prompt.split(",")
-        if len(arr) != len(set(arr)):
-            all_weight_prompt = re.findall(re.compile(r'[(](.*?)[)]', re.S), prompt)
-            if len(all_weight_prompt) > 0:
-                # others_prompt = prompt
-                # for w_prompt in all_weight_prompt:
-                # others_prompt = others_prompt.replace('(','').replace(')','')
-                # print(others_prompt)
-                return prompt
-            else:
-                for i in range(len(arr)):
-                    arr[i] = arr[i].strip()
-                arr = list(set(arr))
-                return ", ".join(arr)
-        else:
-            return prompt
-
     def run(self, styles, positive='', negative='', prompt=None, extra_pnginfo=None, my_unique_id=None):
         values = []
         all_styles = {}
@@ -123,10 +105,6 @@ class stylesPromptSelector:
 
         if has_prompt == False and positive:
             positive_prompt = positive + ', '
-
-        # 去重
-        positive_prompt = self.replace_repeat(positive_prompt) if positive_prompt else ''
-        negative_prompt = self.replace_repeat(negative_prompt) if negative_prompt else ''
 
         return (positive_prompt, negative_prompt)
 

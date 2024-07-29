@@ -1,7 +1,7 @@
 ---
 tags:
-- Image
-- ImageComposite
+- ImageBlend
+- ImageTransformation
 ---
 
 # Paste By Mask

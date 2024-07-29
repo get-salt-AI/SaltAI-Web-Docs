@@ -3,6 +3,7 @@ tags:
 - Batch
 - Image
 - ImageBatch
+- ImageDuplication
 ---
 
 # JoinImageBatch
@@ -11,21 +12,21 @@ tags:
 - Category: `EasyUse/Image`
 - Output node: `False`
 
-The `easy joinImageBatch` node is designed to transform a batch of images into a single, larger image. This process involves combining multiple images into one cohesive visual output, effectively creating a composite image from a collection of individual images.
+This node is designed to merge a batch of images into a single large image, either by stacking them horizontally or vertically based on the specified mode. It abstracts the complexity of image manipulation and resizing, providing a straightforward way to create composite images from multiple inputs.
 ## Input types
 ### Required
 - **`images`**
-    - The collection of images to be combined into a single composite image. This parameter is crucial for determining the content and layout of the final composite output.
+    - A batch of images to be joined into a single image. The importance of this parameter lies in its role as the primary input that determines the content and structure of the output image.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `List[torch.Tensor]`
+    - Python dtype: `torch.Tensor`
 - **`mode`**
-    - Specifies the method or mode used to combine the images into a single batch. This parameter influences the arrangement and blending of individual images within the composite output.
+    - Specifies the orientation for joining images, either 'horizontal' or 'vertical'. This affects the final layout of the composite image, influencing its visual presentation and dimensions.
     - Comfy dtype: `['horizontal', 'vertical']`
-    - Python dtype: `str`
+    - Python dtype: `Tuple[str, Dict[str, Any]]`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - Represents the output of the node, which is a single, composite image created from the input batch of images.
+    - The resulting single large image created by joining the input batch of images according to the specified mode.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`

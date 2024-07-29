@@ -1,6 +1,9 @@
 ---
 tags:
 - Prompt
+- PromptStyling
+- Text
+- Wildcard
 ---
 
 # ⚙️ CR Get Parameter From Prompt

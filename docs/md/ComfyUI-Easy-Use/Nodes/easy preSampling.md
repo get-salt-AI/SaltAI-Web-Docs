@@ -1,5 +1,6 @@
 ---
 tags:
+- SamplerScheduler
 - Sampling
 ---
 
@@ -9,53 +10,53 @@ tags:
 - Category: `EasyUse/PreSampling`
 - Output node: `True`
 
-The 'easy preSampling' node is designed to facilitate the pre-sampling process in generative models, providing a simplified interface for configuring and executing pre-sampling operations. It abstracts the complexities involved in pre-sampling settings, allowing users to easily adjust parameters such as sampling steps, configuration gradients, and noise levels to influence the generation process.
+The 'easy preSampling' node is designed to configure and initiate a pre-sampling process, optimizing the input data before it undergoes further processing or model inference. This node abstracts the complexity of pre-sampling settings, allowing users to easily adjust parameters for improved model performance or data quality.
 ## Input types
 ### Required
 - **`pipe`**
-    - The 'pipe' parameter represents the pipeline configuration, including model, sampler, and other settings, serving as the foundation for the pre-sampling process.
+    - Specifies the pipeline configuration for the pre-sampling process, determining the sequence of operations and models to be applied.
     - Comfy dtype: `PIPE_LINE`
-    - Python dtype: `Dict[str, Any]`
+    - Python dtype: `str`
 - **`steps`**
-    - Specifies the number of steps to be used in the pre-sampling process, affecting the detail and quality of the generated output.
+    - Defines the number of steps to be executed in the pre-sampling process, affecting the depth of sampling and refinement.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - Controls the configuration gradient, influencing the strength of the conditioning on the generated output.
+    - Adjusts the conditioning factor, influencing the guidance and direction of the pre-sampling process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sampler_name`**
-    - Determines the sampling algorithm to be used, impacting the generation's diversity and quality.
+    - Selects the specific sampler algorithm to be used in the pre-sampling process, tailoring the sampling strategy.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - Selects the scheduling algorithm for the sampling process, affecting the progression of noise reduction.
+    - Chooses the scheduler for controlling the sampling process, managing the progression through steps.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`denoise`**
-    - Adjusts the denoising level applied during sampling, fine-tuning the clarity of the generated output.
+    - Sets the denoising level applied during the pre-sampling, enhancing the clarity and quality of the output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`seed`**
-    - Sets the random seed for the sampling process, ensuring reproducibility of the results.
+    - Provides a seed value for the random number generator, ensuring reproducibility of the pre-sampling process.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`image_to_latent`**
-    - Optional parameter to provide an image for conversion to latent space, enabling direct manipulation of latent representations.
+    - Converts an input image to a latent representation, preparing it for further processing in the pre-sampling stage.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `str`
 - **`latent`**
-    - Optional parameter to directly provide a latent representation for sampling, offering advanced control over the generation process.
+    - Specifies the initial latent space representation to be used or modified during the pre-sampling process.
     - Comfy dtype: `LATENT`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `str`
 ## Output types
 - **`pipe`**
     - Comfy dtype: `PIPE_LINE`
-    - Returns the updated pipeline configuration, including the results of the pre-sampling process and any modifications to the settings.
-    - Python dtype: `Tuple[Dict[str, Any]]`
+    - The output pipeline configuration, reflecting any adjustments or transformations applied during the pre-sampling process.
+    - Python dtype: `str`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -73,7 +74,7 @@ class samplerSettings:
                      "steps": ("INT", {"default": 20, "min": 1, "max": 10000}),
                      "cfg": ("FLOAT", {"default": 8.0, "min": 0.0, "max": 100.0}),
                      "sampler_name": (comfy.samplers.KSampler.SAMPLERS,),
-                     "scheduler": (comfy.samplers.KSampler.SCHEDULERS + ['align_your_steps'],),
+                     "scheduler": (comfy.samplers.KSampler.SCHEDULERS + new_schedulers,),
                      "denoise": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01}),
                      "seed": ("INT", {"default": 0, "min": 0, "max": MAX_SEED_NUM}),
                      },
@@ -97,9 +98,14 @@ class samplerSettings:
         vae = pipe["vae"]
         batch_size = pipe["loader_settings"]["batch_size"] if "batch_size" in pipe["loader_settings"] else 1
         if image_to_latent is not None:
-            samples = {"samples": vae.encode(image_to_latent[:, :, :, :3])}
-            samples = RepeatLatentBatch().repeat(samples, batch_size)[0]
-            images = image_to_latent
+            _, height, width, _ = image_to_latent.shape
+            if height == 1 and width == 1:
+                samples = pipe["samples"]
+                images = pipe["images"]
+            else:
+                samples = {"samples": vae.encode(image_to_latent[:, :, :, :3])}
+                samples = RepeatLatentBatch().repeat(samples, batch_size)[0]
+                images = image_to_latent
         elif latent is not None:
             samples = latent
             images = pipe["images"]

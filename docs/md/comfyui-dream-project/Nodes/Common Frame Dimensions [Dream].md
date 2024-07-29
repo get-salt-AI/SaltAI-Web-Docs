@@ -1,8 +1,8 @@
 ---
 tags:
 - AspectRatio
+- ImageResize
 - ImageSize
-- ImageTransformation
 ---
 
 # ⌗ Common Frame Dimensions

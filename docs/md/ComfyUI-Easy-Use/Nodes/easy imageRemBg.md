@@ -1,7 +1,6 @@
 ---
 tags:
-- BackgroundRemoval
-- Image
+- AlphaChannel
 ---
 
 # Image Remove Bg
@@ -10,34 +9,34 @@ tags:
 - Category: `EasyUse/Image`
 - Output node: `True`
 
-This node is designed to remove the background from images, offering a straightforward way for users to process images by isolating the foreground from the background. It supports different removal modes to accommodate various use cases and image types.
+This node specializes in removing backgrounds from images, offering a streamlined approach for image processing tasks that require isolating subjects from their backgrounds. It leverages specific removal modes to adapt the background removal process to various requirements, enhancing flexibility and utility in image manipulation workflows.
 ## Input types
 ### Required
 - **`images`**
-    - The images from which the background should be removed. This input is crucial for determining the subject matter and executing the background removal process.
+    - Specifies the images from which backgrounds are to be removed. This parameter is crucial for defining the input images that the node will process, directly influencing the outcome of the background removal.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `List[Image]`
+    - Python dtype: `torch.Tensor`
 - **`rem_mode`**
-    - Specifies the mode of background removal to be used, such as 'RMBG-1.4'. This affects the algorithm and technique applied for background removal, tailoring the process to the specific needs of the input images.
+    - Determines the removal mode to be used, which can affect the method and quality of the background removal. This allows for customization of the background removal process based on specific needs or preferences.
     - Comfy dtype: `['RMBG-1.4']`
     - Python dtype: `str`
 - **`image_output`**
-    - Determines how the output images are handled, such as whether they are saved, hidden, or displayed. This parameter influences the node's output behavior, affecting the visibility and storage of the processed images.
+    - Defines how the output image should be handled, whether it should be hidden, previewed, saved, or both hidden and saved. This parameter allows for flexible management of the output image.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`save_prefix`**
-    - A prefix added to the filenames of saved images, providing a way to organize and identify processed images easily.
+    - Specifies the prefix for saved images, providing a way to organize and identify output files easily.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The resulting image after background removal, with the foreground preserved and the background made transparent or removed.
-    - Python dtype: `Image`
+    - The output image with the background removed. This highlights the node's ability to isolate the subject from its background, providing a clean image ready for further processing or use.
+    - Python dtype: `torch.Tensor`
 - **`mask`**
     - Comfy dtype: `MASK`
-    - The mask generated during the background removal process, indicating areas of the image that were identified as foreground.
-    - Python dtype: `Image`
+    - The mask generated during the background removal process. This can be used for further image processing tasks, such as compositing or additional manipulations.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown

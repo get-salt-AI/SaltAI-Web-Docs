@@ -6,20 +6,20 @@ tags:
 # Audio Reverse
 ## Documentation
 - Class name: `SaltAudioInversion`
-- Category: `SALT/Audio/Process`
+- Category: `SALT/AudioViz/Audio/Process`
 - Output node: `False`
 
-The SaltAudioInversion node is designed to invert the waveform of an audio file, effectively flipping its phase. This process can be used to create unique sound effects or for audio testing purposes, where phase inversion might be necessary.
+The node is designed to invert the waveform of an audio file, effectively flipping its phase. This process can be used to create unique sound effects or to cancel out specific audio components when mixed with the original.
 ## Input types
 ### Required
 - **`audio`**
-    - The 'audio' parameter takes an audio file as input, which is the target for phase inversion. This input is crucial as it directly influences the outcome of the inversion process, determining the characteristics of the resulting audio.
+    - The audio input is the raw audio data that will be inverted. This process alters the audio's waveform by reversing its phase, which can be useful for sound design or audio correction purposes.
     - Comfy dtype: `AUDIO`
     - Python dtype: `bytes`
 ## Output types
 - **`audio`**
     - Comfy dtype: `AUDIO`
-    - The output is the inverted audio file, where the phase of the original audio has been flipped. This can be used for further audio processing or as an effect in audio production.
+    - The output is the inverted audio data, with its waveform phase reversed from the original input. This can be used for creative audio effects or technical audio manipulation.
     - Python dtype: `bytes`
 ## Usage tips
 - Infra type: `CPU`
@@ -40,7 +40,7 @@ class SaltAudioInversion:
     RETURN_TYPES = ("AUDIO",)
     RETURN_NAMES = ("audio",)
     FUNCTION = "invert_audio"
-    CATEGORY = "SALT/Audio/Process"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Audio/Process"
 
     def invert_audio(cls, audio):
         audio_segment = AudioSegment.from_file(io.BytesIO(audio), format="wav")

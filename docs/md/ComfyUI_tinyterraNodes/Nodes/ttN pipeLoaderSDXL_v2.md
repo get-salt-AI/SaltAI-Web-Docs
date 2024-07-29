@@ -1,66 +1,67 @@
 ---
 tags:
-- Image
+- DetailEnhancement
 - Pipeline
+- PipelineTransformation
 ---
 
 # pipeLoaderSDXL
 ## Documentation
 - Class name: `ttN pipeLoaderSDXL_v2`
-- Category: `ttN/pipe`
+- Category: `🌏 tinyterra/pipe`
 - Output node: `False`
 
-This node is designed to load and initialize the Stable Diffusion XL model for image generation tasks, providing an enhanced version with optimizations for larger scale operations.
+This node is designed for advanced data loading and preprocessing in a pipeline, specifically tailored for handling large-scale datasets with efficiency and speed. It leverages specialized techniques to optimize data throughput and preprocessing, making it suitable for high-performance computing environments.
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - Specifies the checkpoint name for the Stable Diffusion XL model, crucial for loading the correct model version for image generation.
+    - Specifies the checkpoint name for loading the model, serving as a key input for initializing the pipeline with the desired model state.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `List[str]`
 - **`config_name`**
-    - Defines the configuration name, essential for setting up the model with the appropriate parameters and optimizations.
+    - Determines the configuration to be used alongside the checkpoint, allowing for customization of the model's initialization parameters.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `List[str]`
 - **`vae_name`**
-    - Names the VAE used in conjunction with the Stable Diffusion XL model, important for the image generation process and quality.
+    - Identifies the VAE model to be loaded, crucial for the pipeline's operation in handling specific data transformations or enhancements.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `List[str]`
 - **`clip_skip`**
-    - Determines the number of layers to skip in the CLIP model, affecting the integration of textual guidance.
+    - Defines the number of layers to skip in the CLIP model, adjusting the depth of feature extraction and influencing the model's performance.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`loras`**
-    - Specifies LoRA modifications to apply, enhancing model capabilities with additional parameters.
+    - Specifies custom LoRA configurations, enabling fine-tuning of the model's behavior through weight adjustments and optional CLIP weight modifications.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`refiner_ckpt_name`**
-    - Names the checkpoint for the refiner model, used to refine or alter the generated images.
+    - Optional input for loading a secondary refinement model, enhancing the pipeline's output through additional processing steps.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `List[str]`
+- **`refiner_config_name`**
+    - Selects the configuration for the refinement model, similar to the main model configuration, for tailored processing adjustments.
+    - Comfy dtype: `COMBO[STRING]`
+    - Python dtype: `List[str]`
+- **`positive_g`**
+    - Global positive textual inputs that specify overarching inclusion criteria for the dataset, guiding the model's focus.
+    - Comfy dtype: `STRING`
+    - Python dtype: `str`
+- **`positive_l`**
+    - Local positive textual inputs that detail finer inclusion criteria, allowing for more granular control over the dataset's composition.
+    - Comfy dtype: `STRING`
+    - Python dtype: `str`
+- **`negative_g`**
+    - Global negative textual inputs that outline broad exclusion criteria, specifying what data or parameters should be avoided.
+    - Comfy dtype: `STRING`
+    - Python dtype: `str`
+- **`negative_l`**
+    - Local negative textual inputs that provide detailed exclusion criteria, offering precise control over what is omitted from the dataset.
+    - Comfy dtype: `STRING`
+    - Python dtype: `str`
+- **`conditioning_aspect`**
+    - Defines the aspect ratio for conditioning, influencing the shape and dimensions of the generated or processed data.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
-- **`refiner_config_name`**
-    - unknown
-    - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
-- **`positive_g`**
-    - unknown
-    - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
-- **`positive_l`**
-    - unknown
-    - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
-- **`negative_g`**
-    - unknown
-    - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
-- **`negative_l`**
-    - unknown
-    - Comfy dtype: `STRING`
-    - Python dtype: `unknown`
-- **`conditioning_aspect`**
-    - unknown
-    - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `unknown`
 - **`conditioning_width`**
     - unknown
     - Comfy dtype: `INT`
@@ -109,6 +110,10 @@ This node is designed to load and initialize the Stable Diffusion XL model for i
     - unknown
     - Comfy dtype: `INT`
     - Python dtype: `unknown`
+- **`batch_size`**
+    - unknown
+    - Comfy dtype: `INT`
+    - Python dtype: `unknown`
 - **`seed`**
     - unknown
     - Comfy dtype: `INT`
@@ -128,7 +133,7 @@ This node is designed to load and initialize the Stable Diffusion XL model for i
     - Python dtype: `unknown`
 - **`optional_controlnet_stack`**
     - unknown
-    - Comfy dtype: `CONTROLNET_STACK`
+    - Comfy dtype: `CONTROL_NET_STACK`
     - Python dtype: `unknown`
 - **`refiner_model_override`**
     - unknown
@@ -157,68 +162,68 @@ This node is designed to load and initialize the Stable Diffusion XL model for i
 ## Output types
 - **`sdxl_pipe`**
     - Comfy dtype: `PIPE_LINE_SDXL`
-    - Provides the initialized Stable Diffusion XL pipeline, ready for image generation tasks.
-    - Python dtype: `dict`
+    - The comprehensive pipeline output, encapsulating the processed data and model states for further use.
+    - Python dtype: `str`
 - **`model`**
     - Comfy dtype: `MODEL`
-    - Returns the loaded model component of the Stable Diffusion XL pipeline.
-    - Python dtype: `torch.nn.Module`
+    - The loaded model's state, ready for integration into the pipeline for data processing or generation tasks.
+    - Python dtype: `str`
 - **`positive`**
     - Comfy dtype: `CONDITIONING`
-    - Outputs the positive conditioning component, guiding the image generation towards desired themes.
+    - The positive conditioning output, representing the data or features to be emphasized in the pipeline's processing.
     - Python dtype: `str`
 - **`negative`**
     - Comfy dtype: `CONDITIONING`
-    - Outputs the negative conditioning component, steering the image generation away from undesired themes.
+    - The negative conditioning output, indicating the data or features to be de-emphasized or excluded.
     - Python dtype: `str`
 - **`vae`**
     - Comfy dtype: `VAE`
-    - Returns the loaded VAE component, crucial for the image encoding and decoding processes.
-    - Python dtype: `torch.nn.Module`
+    - The VAE model loaded into the pipeline, crucial for specific data transformations or enhancements.
+    - Python dtype: `str`
 - **`clip`**
     - Comfy dtype: `CLIP`
-    - Outputs the loaded CLIP model component, used for textual guidance in image generation.
-    - Python dtype: `torch.nn.Module`
+    - The CLIP model integrated into the pipeline, essential for extracting or processing textual and visual features.
+    - Python dtype: `str`
 - **`refiner_model`**
     - Comfy dtype: `MODEL`
-    - Provides the loaded refiner model component, used for refining or altering the generated images.
-    - Python dtype: `torch.nn.Module`
+    - The refinement model loaded into the pipeline for enhanced processing capabilities.
+    - Python dtype: `str`
 - **`refiner_positive`**
     - Comfy dtype: `CONDITIONING`
-    - unknown
-    - Python dtype: `unknown`
+    - The positive conditioning output from the refinement model, further specifying inclusion criteria.
+    - Python dtype: `str`
 - **`refiner_negative`**
     - Comfy dtype: `CONDITIONING`
-    - unknown
-    - Python dtype: `unknown`
+    - The negative conditioning output from the refinement model, further specifying exclusion criteria.
+    - Python dtype: `str`
 - **`refiner_clip`**
     - Comfy dtype: `CLIP`
-    - unknown
-    - Python dtype: `unknown`
+    - The CLIP model integrated into the refinement process, enhancing the pipeline's ability to process textual and visual features.
+    - Python dtype: `str`
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - unknown
-    - Python dtype: `unknown`
+    - The latent representation generated by the pipeline, serving as a foundational component for further data manipulation or generation.
+    - Python dtype: `str`
 - **`seed`**
     - Comfy dtype: `INT`
-    - unknown
-    - Python dtype: `unknown`
+    - A seed value for ensuring reproducibility in the pipeline's operations, affecting randomness in data processing.
+    - Python dtype: `int`
 - **`width`**
     - Comfy dtype: `INT`
-    - unknown
-    - Python dtype: `unknown`
+    - The width dimension for the output data, defining the horizontal size of generated images or processed data.
+    - Python dtype: `int`
 - **`height`**
     - Comfy dtype: `INT`
-    - unknown
-    - Python dtype: `unknown`
+    - The height dimension for the output data, defining the vertical size of generated images or processed data.
+    - Python dtype: `int`
 - **`pos_string`**
     - Comfy dtype: `STRING`
-    - unknown
-    - Python dtype: `unknown`
+    - A textual representation of the positive conditioning, summarizing the inclusion criteria for the dataset.
+    - Python dtype: `str`
 - **`neg_string`**
     - Comfy dtype: `STRING`
-    - unknown
-    - Python dtype: `unknown`
+    - A textual representation of the negative conditioning, summarizing the exclusion criteria for the dataset.
+    - Python dtype: `str`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -227,7 +232,7 @@ This node is designed to load and initialize the Stable Diffusion XL model for i
 ## Source code
 ```python
 class ttN_pipeLoaderSDXL_v2:
-    version = '2.0.0'
+    version = '2.1.0'
     @classmethod
     def INPUT_TYPES(cls):
         aspect_ratios = ["width x height [custom]",
@@ -274,7 +279,7 @@ class ttN_pipeLoaderSDXL_v2:
                         "negative_g": ("STRING", {"placeholder": "negative_g", "multiline": True, "dynamicPrompts": True}),
                         "negative_l": ("STRING", {"placeholder": "negative_l", "multiline": True, "dynamicPrompts": True}),
 
-                        "conditioning_aspect": (relative_ratios, {"default": "2x Empty Latent Aspect"}),
+                        "conditioning_aspect": (relative_ratios, {"default": "1x Empty Latent Aspect"}),
                         "conditioning_width": ("INT", {"default": 2048.0, "min": 64, "max": MAX_RESOLUTION, "step": 8}),
                         "conditioning_height": ("INT", {"default": 2048.0, "min": 64, "max": MAX_RESOLUTION, "step": 8}),
                         
@@ -291,13 +296,14 @@ class ttN_pipeLoaderSDXL_v2:
                         "empty_latent_aspect": (aspect_ratios, {"default": "1024 x 1024 [S] 1:1"}),
                         "empty_latent_width": ("INT", {"default": 1024, "min": 64, "max": MAX_RESOLUTION, "step": 8}),
                         "empty_latent_height": ("INT", {"default": 1024, "min": 64, "max": MAX_RESOLUTION, "step": 8}),
+                        "batch_size": ("INT", {"default": 1, "min": 1, "max": 64}),
                         "seed": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff}),
                         },                
                 "optional": {
                     "model_override": ("MODEL",),
                     "clip_override": ("CLIP",),
                     "optional_lora_stack": ("LORA_STACK",),
-                    "optional_controlnet_stack": ("CONTROLNET_STACK",),
+                    "optional_controlnet_stack": ("CONTROL_NET_STACK",),
                     "refiner_model_override": ("MODEL",),
                     "refiner_clip_override": ("CLIP",),
                     "prepend_positive_g": ("STRING", {"default": None, "forceInput": True}),
@@ -305,21 +311,22 @@ class ttN_pipeLoaderSDXL_v2:
                     "prepend_negative_g": ("STRING", {"default": None, "forceInput": True}),
                     "prepend_negative_l": ("STRING", {"default": None, "forceInput": True}),
                     },
-                "hidden": {"prompt": "PROMPT", "ttNnodeVersion": ttN_pipeLoaderSDXL_v2.version}, "my_unique_id": "UNIQUE_ID",}
+                "hidden": {"prompt": "PROMPT", "ttNnodeVersion": ttN_pipeLoaderSDXL_v2.version, "my_unique_id": "UNIQUE_ID",}
+                }
 
     RETURN_TYPES = ("PIPE_LINE_SDXL" ,"MODEL", "CONDITIONING", "CONDITIONING", "VAE", "CLIP", "MODEL", "CONDITIONING", "CONDITIONING", "CLIP", "LATENT", "INT", "INT", "INT", "STRING", "STRING")
     RETURN_NAMES = ("sdxl_pipe","model", "positive", "negative", "vae", "clip", "refiner_model", "refiner_positive", "refiner_negative", "refiner_clip", "latent", "seed", "width", "height", "pos_string", "neg_string")
 
 
     FUNCTION = "sdxl_pipeloader"
-    CATEGORY = "ttN/pipe"
+    CATEGORY = "🌏 tinyterra/pipe"
 
     def sdxl_pipeloader(self, ckpt_name, config_name, vae_name, clip_skip, loras,
                         refiner_ckpt_name, refiner_config_name,
                         conditioning_aspect, conditioning_width, conditioning_height, crop_width, crop_height, target_aspect, target_width, target_height,
                         positive_g, positive_l, negative_g, negative_l,
                         positive_ascore, negative_ascore,
-                        empty_latent_aspect, empty_latent_width, empty_latent_height, seed,
+                        empty_latent_aspect, empty_latent_width, empty_latent_height, batch_size, seed,
                         model_override=None, clip_override=None, optional_lora_stack=None, optional_controlnet_stack=None,
                         refiner_model_override=None, refiner_clip_override=None,
                         prepend_positive_g=None, prepend_positive_l=None, prepend_negative_g=None, prepend_negative_l=None,
@@ -330,16 +337,14 @@ class ttN_pipeLoaderSDXL_v2:
         vae: VAE | None = None
 
         # Create Empty Latent
-        latent = sampler.emptyLatent(empty_latent_aspect, 1, empty_latent_width, empty_latent_height)
+        latent = sampler.emptyLatent(empty_latent_aspect, batch_size, empty_latent_width, empty_latent_height)
         samples = {"samples":latent}
 
-        # Clean models from loaded_objects
-        loader.update_loaded_objects(prompt)
-
-        model, clip, vae = loader.load_main3(ckpt_name, config_name, vae_name, loras, model_override, clip_override, optional_lora_stack)
+        loader.clear_cache(prompt)
+        model, clip, vae = loader.load_main3(ckpt_name, config_name, vae_name, loras, clip_skip, model_override, clip_override, optional_lora_stack, my_unique_id)
 
         if refiner_ckpt_name not in ["None", None]:
-            refiner_model, refiner_clip, refiner_vae = loader.load_main3(refiner_ckpt_name, refiner_config_name, vae_name, refiner_model_override, refiner_clip_override)
+            refiner_model, refiner_clip, refiner_vae = loader.load_main3(refiner_ckpt_name, refiner_config_name, vae_name, None, clip_skip, refiner_model_override, refiner_clip_override)
         else:
             refiner_model, refiner_clip, refiner_vae = None, None, None
 
@@ -358,14 +363,13 @@ class ttN_pipeLoaderSDXL_v2:
             target_height = int(target_factor) * int(empty_latent_height)
 
 
-        positive_embedding, refiner_positive_embedding = loader.embedding_encodeXL(positive_g, clip, clip_skip, seed=seed, title='pipeLoaderSDXL Positive', my_unique_id=my_unique_id, prepend_text=prepend_positive_g, text2=positive_l, prepend_text2=prepend_positive_l, width=conditioning_width, height=conditioning_height, crop_width=crop_width, crop_height=crop_height, target_width=target_width, target_height=target_height, refiner_clip=refiner_clip, ascore=positive_ascore)
-        negative_embedding, refiner_negative_embedding = loader.embedding_encodeXL(negative_g, clip, clip_skip, seed=seed, title='pipeLoaderSDXL Negative', my_unique_id=my_unique_id, prepend_text=prepend_negative_g, text2=negative_l, prepend_text2=prepend_negative_l, width=conditioning_width, height=conditioning_height, crop_width=crop_width, crop_height=crop_height, target_width=target_width, target_height=target_height, refiner_clip=refiner_clip, ascore=negative_ascore)
+        positive_embedding, refiner_positive_embedding = loader.embedding_encodeXL(positive_g, clip, seed=seed, title='pipeLoaderSDXL Positive', my_unique_id=my_unique_id, prepend_text=prepend_positive_g, text2=positive_l, prepend_text2=prepend_positive_l, width=conditioning_width, height=conditioning_height, crop_width=crop_width, crop_height=crop_height, target_width=target_width, target_height=target_height, refiner_clip=refiner_clip, ascore=positive_ascore)
+        negative_embedding, refiner_negative_embedding = loader.embedding_encodeXL(negative_g, clip, seed=seed, title='pipeLoaderSDXL Negative', my_unique_id=my_unique_id, prepend_text=prepend_negative_g, text2=negative_l, prepend_text2=prepend_negative_l, width=conditioning_width, height=conditioning_height, crop_width=crop_width, crop_height=crop_height, target_width=target_width, target_height=target_height, refiner_clip=refiner_clip, ascore=negative_ascore)
 
 
         if optional_controlnet_stack is not None:
             for cnt in optional_controlnet_stack:
-                positive_embedding, negative_embedding = loader.load_controlNet(self, positive_embedding, negative_embedding, cnt[0], cnt[1], cnt[2], cnt[3], cnt[4])
-                refiner_positive_embedding, refiner_negative_embedding = loader.load_controlNet(self, refiner_positive_embedding, refiner_negative_embedding, cnt[0], cnt[1], cnt[2], cnt[3], cnt[4])
+                positive_embedding, negative_embedding = loader.load_controlNet(positive_embedding, negative_embedding, cnt[0], cnt[1], cnt[2], cnt[3], cnt[4])
 
         image = None
 
@@ -384,44 +388,7 @@ class ttN_pipeLoaderSDXL_v2:
                     "images": image,
                     "seed": seed,
 
-                "loader_settings": {"ckpt_name": ckpt_name,
-                                    "config_name": config_name,
-                                    "vae_name": vae_name,
-                                    "clip_skip": None,
-                                    "loras": loras,
-
-                                    "refiner_ckpt_name": refiner_ckpt_name,
-                                    "refiner_config_name": refiner_config_name,
-                                    "refiner_clip_skip": None,
-
-                                    "model_override": model_override,
-                                    "clip_override": clip_override,
-                                    "optional_lora_stack": optional_lora_stack,
-                                    "optional_controlnet_stack": optional_controlnet_stack,
-                                    "refiner_model_override": refiner_model_override,
-                                    "refiner_clip_override": refiner_clip_override,
-
-                                    "prepend_positive_g": prepend_positive_g,
-                                    "prepend_positive_l": prepend_positive_l,
-                                    "prepend_negative_g": prepend_negative_g,
-                                    "prepend_negative_l": prepend_negative_l,
-
-                                    "conditioning_width": conditioning_width,
-                                    "conditioning_height": conditioning_height,
-
-                                    "positive_g": positive_g,
-                                    "positive_l": positive_l,
-
-                                    "negative_g": negative_g,
-                                    "negative_l": negative_l,
-
-                                    "positive_ascore": positive_ascore,
-                                    "negative_ascore": negative_ascore,
-
-                                    "empty_latent_width": empty_latent_width,
-                                    "empty_latent_height": empty_latent_height,
-                                    "seed": seed,
-                                    "empty_samples": samples,}
+                "loader_settings": None
         }
 
         final_positive = (prepend_positive_g + ' ' if prepend_positive_g else '') + (positive_g + ' ' if positive_g else '') + (prepend_positive_l + ' ' if prepend_positive_l else '') + (positive_l + ' ' if positive_l else '')

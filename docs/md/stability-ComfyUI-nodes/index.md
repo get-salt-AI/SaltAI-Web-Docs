@@ -2,7 +2,7 @@
 stability-ComfyUI-nodes is a collection of custom nodes designed to enhance the functionality of ComfyUI by providing additional tools in the stability section. Specifically, it includes the ControlLoraSave node, which creates a Control Lora by calculating and storing the difference between model weights and controlnet weights in Lora format.
 
 ## Tags
-Image * ImageBlend * ImageComposite * ImageSize * ImageTransformation * LoRA
+ImageBlend * ImageComposite * ImageResize * ImageScaling * ImageSize * LoRA
 
 ## Repo info
 - Repo url: `https://github.com/Stability-AI/stability-ComfyUI-nodes`

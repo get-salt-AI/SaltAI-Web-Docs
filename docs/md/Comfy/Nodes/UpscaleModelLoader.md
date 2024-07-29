@@ -1,8 +1,6 @@
 ---
 tags:
-- ImageScaling
 - ImageUpscaling
-- Upscale
 ---
 
 # Load Upscale Model
@@ -11,18 +9,18 @@ tags:
 - Category: `loaders`
 - Output node: `False`
 
-The UpscaleModelLoader node is designed for loading upscale models from a specified directory. It facilitates the retrieval and preparation of upscale models for image upscaling tasks, ensuring that the models are correctly loaded and configured for evaluation.
+The UpscaleModelLoader node is designed to load and prepare upscale models for image enhancement tasks. It ensures that the loaded model is compatible with single-image processing and performs necessary adjustments to the model's state dictionary for optimal functionality.
 ## Input types
 ### Required
 - **`model_name`**
-    - Specifies the name of the upscale model to be loaded. This parameter is crucial for identifying and retrieving the correct model file from the upscale models directory.
+    - Specifies the name of the upscale model to load. This name is used to locate the model file within a predefined directory structure.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`upscale_model`**
     - Comfy dtype: `UPSCALE_MODEL`
-    - Returns the loaded and prepared upscale model, ready for use in image upscaling tasks.
-    - Python dtype: `torch.nn.Module`
+    - Returns an instance of the loaded and prepared upscale model, ready for image upscaling tasks.
+    - Python dtype: `ImageModelDescriptor`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes:
@@ -52,7 +50,11 @@ class UpscaleModelLoader:
         sd = comfy.utils.load_torch_file(model_path, safe_load=True)
         if "module.layers.0.residual_group.blocks.0.norm1.weight" in sd:
             sd = comfy.utils.state_dict_prefix_replace(sd, {"module.":""})
-        out = model_loading.load_state_dict(sd).eval()
+        out = ModelLoader().load_from_state_dict(sd).eval()
+
+        if not isinstance(out, ImageModelDescriptor):
+            raise Exception("Upscale model must be a single-image model.")
+
         return (out, )
 
 ```

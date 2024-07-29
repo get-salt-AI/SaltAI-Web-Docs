@@ -1,6 +1,7 @@
 ---
 tags:
 - LLM
+- LoRA
 ---
 
 # ∞ Query Engine (Advanced)
@@ -9,41 +10,41 @@ tags:
 - Category: `SALT/Language Toolkit/Querying`
 - Output node: `False`
 
-The LLMQueryEngineAdv node is designed to enhance querying capabilities by leveraging language models and embedding models to process and understand complex queries. It integrates advanced settings and post-processing to refine search results based on similarity and relevance.
+The LLMQueryEngineAdv node is designed to leverage language models for advanced querying capabilities. It constructs a comprehensive query from user inputs and messages, utilizes an embedding model for query expansion, and employs a vector index retriever with post-processing for similarity-based filtering. This node aims to provide precise and relevant responses by integrating language understanding and retrieval technologies.
 ## Input types
 ### Required
 - **`llm_model`**
-    - Represents the language and embedding models used for query processing. It's crucial for understanding and generating responses to the queries.
+    - The language model and optional embedding model used for query expansion and understanding. It's crucial for interpreting the query and retrieving relevant information.
     - Comfy dtype: `LLM_MODEL`
     - Python dtype: `Dict[str, Any]`
 - **`llm_index`**
-    - The index used for retrieving information, essential for navigating through the data and extracting relevant responses.
+    - The index used for retrieving query results based on vector similarity. Essential for the node's ability to find the most relevant responses.
     - Comfy dtype: `LLM_INDEX`
-    - Python dtype: `VectorStoreIndex | JSONQueryEngine`
+    - Python dtype: `Any`
 ### Optional
 - **`query`**
-    - The user's input query, which is processed to extract information or answer questions based on the data indexed.
+    - The user's query, which is combined with other messages to form the complete query input. It plays a key role in directing the search and retrieval process.
     - Comfy dtype: `STRING`
     - Python dtype: `Optional[str]`
 - **`llm_message`**
-    - A list of messages that can be used to provide additional context or information for the query processing.
+    - A list of messages that can be included in the query construction. These messages add context and detail to the query, enhancing its comprehensiveness.
     - Comfy dtype: `LIST`
-    - Python dtype: `Optional[List[ChatMessage]]`
+    - Python dtype: `Optional[List[Any]]`
 - **`top_k`**
-    - Specifies the number of top results to retrieve, allowing for control over the breadth of the search results.
+    - Specifies the number of top similar results to retrieve. It determines the breadth of the search results.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`similarity_cutoff`**
-    - A threshold for filtering results based on their similarity score, ensuring relevance of the returned information.
+    - The similarity threshold for filtering results. Only results with a similarity score above this cutoff are considered relevant.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`results`**
     - Comfy dtype: `STRING`
-    - The processed query results, returned in a structured format.
+    - The retrieved and processed query response, which is expected to be relevant and precise based on the input query and similarity criteria.
     - Python dtype: `Tuple[str]`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -96,7 +97,6 @@ class LLMQueryEngineAdv:
 
         query_components.append("assistant:")
 
-        pprint(query_components, indent=4)
         query_join = "\n".join(query_components)
 
         retriever = VectorIndexRetriever(index=llm_index, similarity_top_k=top_k, embed_model=embed_model)
@@ -110,7 +110,6 @@ class LLMQueryEngineAdv:
         Settings.llm = None
         Settings.embed_model = None
 
-        pprint(response, indent=4)
         return (response.response,)
 
 ```

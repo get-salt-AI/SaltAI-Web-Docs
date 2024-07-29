@@ -1,118 +1,119 @@
 ---
 tags:
-- Image
+- DetailEnhancement
 - Pipeline
+- PipelineTransformation
 ---
 
 # pipeLoaderSDXL v1 (Legacy)
 ## Documentation
 - Class name: `ttN pipeLoaderSDXL`
-- Category: `ttN/legacy`
+- Category: `🌏 tinyterra/legacy`
 - Output node: `False`
 
-The `ttN pipeLoaderSDXL` node is designed to load and initialize large-scale models specifically tailored for the ComfyUI environment, facilitating the seamless integration and utilization of advanced deep learning models within custom pipelines.
+The ttN pipeLoaderSDXL node is designed for loading and initializing the state of a pipeline specifically tailored for SDXL models within the tinyterra ecosystem. It plays a crucial role in setting up the pipeline's initial state, managing data flow, and ensuring that the pipeline is ready for subsequent operations, such as sampling and image generation.
 ## Input types
 ### Required
 - **`ckpt_name`**
-    - Specifies the checkpoint name for the model to be loaded, crucial for initializing the model with pre-trained weights.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`vae_name`**
-    - Identifies the VAE model to be loaded, essential for the generation or manipulation of images.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`lora1_name`**
-    - Names the first LoRA model to be applied, allowing for adaptive adjustments to the model's behavior.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`lora1_model_strength`**
-    - Defines the strength of the first LoRA model's influence on the model, adjusting how significantly the model's outputs are modified.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 - **`lora1_clip_strength`**
-    - Specifies the strength of the first LoRA model's influence on CLIP, tuning the interaction between text and image representations.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 - **`lora2_name`**
-    - Names the second LoRA model, enabling further customization of the model's output through additional adaptive adjustments.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`lora2_model_strength`**
-    - Defines the strength of the second LoRA model's influence on the model, further customizing output modifications.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 - **`lora2_clip_strength`**
-    - Specifies the strength of the second LoRA model's influence on CLIP, further tuning the interaction between text and image representations.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 - **`refiner_ckpt_name`**
-    - Specifies the checkpoint name for the refiner model, essential for refining the outputs with another set of pre-trained weights.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`refiner_vae_name`**
-    - Identifies the VAE model used for refining, crucial for the post-processing or enhancement of generated images.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`refiner_lora1_name`**
-    - Names the first LoRA model used in refining, allowing for adaptive adjustments to the refiner model's behavior.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`refiner_lora1_model_strength`**
-    - Defines the strength of the first LoRA model's influence on the refiner model, adjusting the refinement process.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 - **`refiner_lora1_clip_strength`**
-    - Specifies the strength of the first LoRA model's influence on CLIP during refinement, tuning the refined interaction between text and image representations.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 - **`refiner_lora2_name`**
-    - Names the second LoRA model used in refining, enabling further customization of the refinement process through additional adaptive adjustments.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`refiner_lora2_model_strength`**
-    - Defines the strength of the second LoRA model's influence on the refiner model, further customizing the refinement modifications.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 - **`refiner_lora2_clip_strength`**
-    - Specifies the strength of the second LoRA model's influence on CLIP during refinement, further tuning the refined interaction between text and image representations.
+    - unknown
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `unknown`
 - **`clip_skip`**
     - unknown
     - Comfy dtype: `INT`
     - Python dtype: `unknown`
 - **`positive`**
-    - Specifies the positive prompts or conditions to guide the model's generation towards desired themes or concepts.
+    - unknown
     - Comfy dtype: `STRING`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`positive_token_normalization`**
-    - Determines the method for normalizing positive tokens, affecting how the model interprets and weights these inputs.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`positive_weight_interpretation`**
-    - Defines how the model should interpret the weight of positive inputs, influencing the generation process.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`negative`**
-    - Specifies the negative prompts or conditions to avoid in the model's generation, helping to steer clear of undesired themes or concepts.
+    - unknown
     - Comfy dtype: `STRING`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`negative_token_normalization`**
-    - Determines the method for normalizing negative tokens, affecting how the model interprets and weights these inputs.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`negative_weight_interpretation`**
-    - Defines how the model should interpret the weight of negative inputs, influencing the generation process.
+    - unknown
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `unknown`
 - **`empty_latent_width`**
-    - Specifies the width of the empty latent space to be generated, setting the dimensions for image generation.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`empty_latent_height`**
-    - Specifies the height of the empty latent space to be generated, setting the dimensions for image generation.
+    - unknown
     - Comfy dtype: `INT`
-    - Python dtype: `int`
+    - Python dtype: `unknown`
 - **`batch_size`**
     - unknown
     - Comfy dtype: `INT`
@@ -124,56 +125,58 @@ The `ttN pipeLoaderSDXL` node is designed to load and initialize large-scale mod
 ## Output types
 - **`sdxl_pipe`**
     - Comfy dtype: `PIPE_LINE_SDXL`
-    - Outputs the enhanced pipeline configuration, incorporating the specified models, conditionings, and settings for further processing.
-    - Python dtype: `dict`
+    - unknown
+    - Python dtype: `unknown`
 - **`model`**
     - Comfy dtype: `MODEL`
-    - Returns the main model component loaded and configured for use, ready for integration into the pipeline.
-    - Python dtype: `str`
+    - unknown
+    - Python dtype: `unknown`
 - **`positive`**
     - Comfy dtype: `CONDITIONING`
-    - Generates conditioning that aligns with the specified positive inputs, tailored to guide the model towards desired themes.
-    - Python dtype: `str`
+    - unknown
+    - Python dtype: `unknown`
 - **`negative`**
     - Comfy dtype: `CONDITIONING`
-    - Generates conditioning that avoids specified negative inputs, ensuring outputs remain within desired content boundaries.
-    - Python dtype: `str`
+    - unknown
+    - Python dtype: `unknown`
 - **`vae`**
     - Comfy dtype: `VAE`
-    - Returns the VAE component used in the pipeline, crucial for image generation and manipulation.
-    - Python dtype: `str`
+    - unknown
+    - Python dtype: `unknown`
 - **`clip`**
     - Comfy dtype: `CLIP`
-    - Provides the CLIP model component, enabling advanced text-to-image and image-to-text processing capabilities.
-    - Python dtype: `str`
+    - unknown
+    - Python dtype: `unknown`
 - **`refiner_model`**
     - Comfy dtype: `MODEL`
-    - Returns the refiner model component, used for further refining and enhancing the generated outputs.
-    - Python dtype: `str`
+    - unknown
+    - Python dtype: `unknown`
 - **`refiner_positive`**
     - Comfy dtype: `CONDITIONING`
-    - Generates conditioning that aligns with the specified positive inputs for the refiner model, tailored to refine outcomes towards desired themes.
-    - Python dtype: `str`
+    - unknown
+    - Python dtype: `unknown`
 - **`refiner_negative`**
     - Comfy dtype: `CONDITIONING`
-    - Generates conditioning that avoids specified negative inputs for the refiner model, ensuring refined outputs remain within desired content boundaries.
-    - Python dtype: `str`
+    - unknown
+    - Python dtype: `unknown`
 - **`refiner_vae`**
     - Comfy dtype: `VAE`
-    - Returns the VAE component used for refining, crucial for the enhancement of generated images.
-    - Python dtype: `str`
+    - unknown
+    - Python dtype: `unknown`
 - **`refiner_clip`**
     - Comfy dtype: `CLIP`
-    - Provides the CLIP model component used in refining, enabling enhanced text-to-image and image-to-text processing capabilities during refinement.
-    - Python dtype: `str`
+    - unknown
+    - Python dtype: `unknown`
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - Outputs the latent representation used in the pipeline, essential for controlling the generative aspects of the model.
-    - Python dtype: `str`
+    - unknown
+    - Python dtype: `unknown`
 - **`seed`**
     - Comfy dtype: `INT`
-    - Returns the seed value used for initializing random processes, ensuring reproducibility of the pipeline's outputs.
-    - Python dtype: `int`
+    - unknown
+    - Python dtype: `unknown`
+- **`ui`**
+    - Provides a user interface component, typically for displaying images generated by the pipeline, depending on the 'image_output' parameter settings.
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -223,13 +226,13 @@ class ttN_pipeLoaderSDXL:
                         "batch_size": ("INT", {"default": 1, "min": 1, "max": 64}),
                         "seed": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff}),
                         },
-                "hidden": {"prompt": "PROMPT", "ttNnodeVersion": ttN_pipeLoaderSDXL.version}, "my_unique_id": "UNIQUE_ID"}
+                "hidden": {"prompt": "PROMPT", "ttNnodeVersion": ttN_pipeLoaderSDXL.version, "my_unique_id": "UNIQUE_ID"}}
 
     RETURN_TYPES = ("PIPE_LINE_SDXL" ,"MODEL", "CONDITIONING", "CONDITIONING", "VAE", "CLIP", "MODEL", "CONDITIONING", "CONDITIONING", "VAE", "CLIP", "LATENT", "INT",)
     RETURN_NAMES = ("sdxl_pipe","model", "positive", "negative", "vae", "clip", "refiner_model", "refiner_positive", "refiner_negative", "refiner_vae", "refiner_clip", "latent", "seed",)
 
     FUNCTION = "adv_pipeloader"
-    CATEGORY = "ttN/legacy"
+    CATEGORY = "🌏 tinyterra/legacy"
 
     def adv_pipeloader(self, ckpt_name, vae_name,
                        lora1_name, lora1_model_strength, lora1_clip_strength,
@@ -303,9 +306,6 @@ class ttN_pipeLoaderSDXL:
                                                                                                                                 negative, negative_token_normalization, negative_weight_interpretation)
         else:
             refiner_model, refiner_positive_embeddings, refiner_negative_embeddings, refiner_vae, refiner_clip = None, None, None, None, None
-
-        # Clean models from loaded_objects
-        loader.update_loaded_objects(prompt)
 
         image = ttNsampler.pil2tensor(Image.new('RGB', (1, 1), (0, 0, 0)))
 

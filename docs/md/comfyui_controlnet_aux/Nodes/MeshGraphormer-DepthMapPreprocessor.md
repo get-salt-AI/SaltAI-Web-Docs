@@ -1,8 +1,8 @@
 ---
 tags:
-- DepthMap
 - DepthMapEstimation
-- Image
+- ImagePreprocessing
+- Inpaint
 ---
 
 # MeshGraphormer Hand Refiner
@@ -11,50 +11,50 @@ tags:
 - Category: `ControlNet Preprocessors/Normal and Depth Estimators`
 - Output node: `False`
 
-The MeshGraphormer-DepthMapPreprocessor node is designed to refine hand depth maps and predict 2D joint positions in image space using a Graphormer-based model. It processes input images to generate enhanced depth maps and corresponding masks, leveraging deep learning techniques for improved hand pose estimation accuracy.
+This node is designed to preprocess images for depth map generation, specifically tailored for hand gestures. It utilizes a MeshGraphormer model to refine depth maps and masks of hands within images, enhancing the accuracy of depth perception for each detected hand region.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be processed for hand depth map refinement and 2D joint position prediction. It serves as the primary data source for the node's operations.
+    - The input image to be processed for hand gesture depth map generation. It serves as the primary data for detecting hand landmarks and generating corresponding depth maps and masks.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `torch.Tensor`
+    - Python dtype: `numpy.ndarray`
 ### Optional
 - **`mask_bbox_padding`**
-    - This parameter defines the padding around detected hand bounding boxes for mask generation, affecting the size and coverage of the output masks. It ensures that the masks adequately encompass the hand regions for accurate depth map refinement.
+    - Specifies the padding around the bounding box of detected hands, affecting the area considered for depth map generation. It helps in adjusting the focus area around the hands.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`resolution`**
-    - Specifies the resolution at which the input images are processed. This parameter influences the detail level of the generated depth maps and masks.
+    - The resolution to which the input images are resized before processing. This parameter directly impacts the model's performance and the quality of the output depth maps.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`mask_type`**
-    - Specifies the method for generating masks from the depth maps, offering options like 'based_on_depth' for depth-based masks, 'tight_bboxes' for masks based on tight bounding boxes, and 'original' for using the original mask. This choice affects the mask generation strategy and the final output quality.
+    - Determines the type of mask to be generated, such as based on depth values or tight bounding boxes, influencing how hand regions are isolated from the background.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`mask_expand`**
-    - Determines the expansion size of the masks beyond their original boundaries, affecting the coverage area of the masks in the output. This parameter allows for fine-tuning the mask size for better depth map refinement.
+    - Defines the expansion or contraction of the mask boundaries, allowing for finer control over the size of the hand region to be processed.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`rand_seed`**
-    - A random seed to ensure reproducibility in the mask and depth map generation process. It helps in maintaining consistency across multiple runs of the node with the same input.
+    - A seed value for random number generation, ensuring reproducibility of the depth maps and masks across multiple runs.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`detect_thr`**
-    - The detection threshold for the Graphormer model, determining the sensitivity of hand detection within the input images. This parameter influences the model's ability to accurately identify hands in various conditions.
+    - The detection threshold for the MeshGraphormer model, determining the sensitivity of hand detection within the images.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`presence_thr`**
-    - The presence threshold for the Graphormer model, affecting the model's confidence in the detected hand's presence within the input images. It plays a significant role in ensuring the reliability of the depth map and 2D joint predictions.
+    - The presence threshold for the MeshGraphormer model, affecting the likelihood of a hand's presence being recognized in the processed area.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`IMAGE`**
     - Comfy dtype: `IMAGE`
-    - The refined depth maps for each hand detected in the input images, providing enhanced detail and accuracy for hand pose estimation.
+    - The refined depth maps for each hand region detected in the input images. These maps provide detailed depth information, crucial for subsequent processing steps.
     - Python dtype: `torch.Tensor`
 - **`INPAINTING_MASK`**
     - Comfy dtype: `MASK`
-    - The generated masks corresponding to the detected hands in the input images, used for isolating hand regions in depth map refinement.
+    - Binary masks corresponding to the hand regions within the input images. These masks are essential for isolating hand gestures from the background.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`
@@ -90,7 +90,8 @@ class Mesh_Graphormer_Depth_Map_Preprocessor:
     def execute(self, image, mask_bbox_padding=30, mask_type="based_on_depth", mask_expand=5, resolution=512, rand_seed=88, detect_thr=0.6, presence_thr=0.6, **kwargs):
         install_deps()
         from controlnet_aux.mesh_graphormer import MeshGraphormerDetector
-        model = MeshGraphormerDetector.from_pretrained(detect_thr=detect_thr, presence_thr=presence_thr).to(model_management.get_torch_device())
+        model = kwargs["model"] if "model" in kwargs \
+            else MeshGraphormerDetector.from_pretrained(detect_thr=detect_thr, presence_thr=presence_thr).to(model_management.get_torch_device())
         
         depth_map_list = []
         mask_list = []

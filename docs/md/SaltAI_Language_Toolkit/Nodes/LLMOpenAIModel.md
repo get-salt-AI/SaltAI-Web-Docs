@@ -9,37 +9,37 @@ tags:
 - Category: `SALT/Language Toolkit/Loaders`
 - Output node: `False`
 
-This node facilitates the integration and utilization of OpenAI's language models, enabling the loading and embedding of models for various applications such as text generation, analysis, and more. It abstracts the complexity of directly interacting with OpenAI's API, providing a streamlined interface for embedding and model management.
+The LLMOpenAIModel node is designed to interface with OpenAI's language models, facilitating the loading and utilization of these models for various language processing tasks. It abstracts the complexities involved in interacting with OpenAI's API, providing a streamlined way to leverage their advanced natural language understanding and generation capabilities.
 ## Input types
 ### Required
 - **`model`**
-    - Specifies the OpenAI model to be loaded. This selection determines the capabilities and performance of the language model in use.
+    - Specifies the name of the OpenAI model to be loaded. This parameter is crucial for determining which specific language model is utilized for processing, affecting the node's behavior and the quality of its outputs.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `list`
+    - Python dtype: `str`
 - **`api_key`**
-    - The API key required for authenticating requests to OpenAI's services. It ensures secure access to the model loading functionality.
+    - The API key required to authenticate with OpenAI's services. This key enables the node to access OpenAI's language models, making it essential for the operation of the node.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`embedding_model`**
-    - Defines the specific embedding model to be used alongside the primary language model, enhancing its functionality with additional text embedding capabilities.
+    - Defines the model used for embedding purposes, which is part of OpenAI's suite. This parameter influences how text inputs are converted into embeddings, affecting tasks such as similarity searches or contextual analysis.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`multimodal`**
-    - A boolean flag indicating whether the model to be loaded should support multimodal inputs, allowing for a broader range of input types beyond text.
+    - A boolean flag indicating whether the multimodal capabilities of the model should be enabled. This affects whether the model can process and understand inputs that include both text and other modalities, such as images.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`llm_model`**
     - Comfy dtype: `LLM_MODEL`
-    - Returns the primary language model loaded, including its configuration and capabilities, ready for various applications.
+    - The loaded language model from OpenAI, ready for language processing tasks.
     - Python dtype: `Dict[str, Any]`
 - **`embed_model_only`**
     - Comfy dtype: `LLM_EMBED_MODEL`
-    - Provides the embedding model loaded separately, detailing its specific features and how it complements the primary language model.
+    - The embedding model loaded alongside the main language model, used for generating embeddings from text inputs.
     - Python dtype: `Dict[str, Any]`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -56,8 +56,7 @@ class LLMOpenAI:
                 "model": (list(ALL_AVAILABLE_MODELS),),
                 "api_key": ("STRING", {
                     "multiline": False, 
-                    "dynamicPrompts": False, 
-                    "default": os.environ.get("OPENAI_API_KEY", "")
+                    "default": os.environ.get("OPENAI_API_KEY", "SALTAI_OPENAI_KEY")
                 }),
                 "embedding_model": (
                     sorted([x.value for x in OpenAIEmbeddingModelType]),
@@ -76,8 +75,9 @@ class LLMOpenAI:
     CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Loaders"
 
     def load_model(self, model:str, embedding_model:str, api_key:str, multimodal:bool = False) -> Dict[str, Any]:
-        llm = OpenAI(model=model) if not multimodal else OpenAIMultiModal(model=model)
-        llm.api_key = api_key
+        if LAST_TOKENIZER:
+            Settings.tokenizer = LAST_TOKENIZER
+        llm = OpenAI(model=model, api_key=api_key) if not multimodal else OpenAIMultiModal(model=model, api_key=api_key)
         embed_model = OpenAIEmbedding(model_name=embedding_model, api_key=api_key,)
         return ({"llm":llm, "llm_name": model, "embed_model":embed_model, "embed_name": embedding_model}, {"embed_model": embed_model, "embed_name": embedding_model})
 

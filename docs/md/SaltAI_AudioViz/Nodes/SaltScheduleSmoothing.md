@@ -1,29 +1,33 @@
 ---
 tags:
+- AnimationScheduling
 - Scheduling
+- SigmaScheduling
+- VisualEffects
+- WavePatterns
 ---
 
 # Schedule Smoothing
 ## Documentation
 - Class name: `SaltScheduleSmoothing`
-- Category: `SALT/Scheduling/Filter`
+- Category: `SALT/AudioViz/Scheduling/Filter`
 - Output node: `False`
 
-The SaltScheduleSmoothing node is designed to apply a smoothing filter to a schedule list, using a specified smoothing factor to blend between consecutive values. This process aims to create a more gradual transition between points in the schedule, enhancing the overall smoothness of the sequence.
+Provides a method to smooth a given schedule list by applying a smoothing factor to each element, effectively filtering out rapid changes and creating a more gradual transition between values.
 ## Input types
 ### Required
 - **`schedule_list`**
-    - The schedule_list is the sequence of values to be smoothed. It serves as the primary data upon which the smoothing operation is performed, influencing the smoothness of the resulting schedule.
+    - The list of schedule values to be smoothed. This list represents a sequence of numerical values that will undergo smoothing to reduce abrupt changes.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 - **`smoothing_factor`**
-    - The smoothing_factor determines the degree of smoothing applied to the schedule list. A higher factor results in a smoother transition between points, directly affecting the smoothness of the output.
+    - A factor determining the degree of smoothing applied to the schedule list. A higher value results in a smoother transition between schedule values.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`schedule_list`**
     - Comfy dtype: `LIST`
-    - The output is a smoothed version of the input schedule list, with transitions between points made more gradual by the smoothing process.
+    - The smoothed list of schedule values, where each value has been adjusted according to the smoothing factor to create a gradual transition.
     - Python dtype: `List[float]`
 ## Usage tips
 - Infra type: `CPU`
@@ -45,7 +49,7 @@ class SaltScheduleSmoothing:
     RETURN_TYPES = ("LIST",)
     RETURN_NAMES = ("schedule_list", )
     FUNCTION = "smooth"
-    CATEGORY = "SALT/Scheduling/Filter"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling/Filter"
 
     def smooth(self, schedule_list, smoothing_factor):
         smoothed_schedule = schedule_list[:]

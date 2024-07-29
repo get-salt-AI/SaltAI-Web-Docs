@@ -1,5 +1,7 @@
 ---
 tags:
+- Mask
+- MaskMorphology
 - Segmentation
 ---
 
@@ -9,43 +11,43 @@ tags:
 - Category: `A Person Mask Generator - David Bielejeski`
 - Output node: `False`
 
-The APersonMaskGenerator node is designed to generate segmented masks for different parts of a person in an image, such as hair, face, body, and clothes. It utilizes image segmentation techniques to identify and isolate these areas, creating masks that can be used for various image editing and processing tasks.
+This node is designed to generate masks for persons in images, leveraging advanced segmentation techniques to isolate specific parts of a person, such as hair, body, face, and clothes. It utilizes image segmentation models to create detailed masks that can be used for various applications like image editing or augmentation.
 ## Input types
 ### Required
 - **`images`**
-    - The input images for which the masks are to be generated. They are crucial as they serve as the base for all segmentation operations, determining the areas to be isolated and masked.
+    - The input images for which the masks need to be generated. They are essential for the segmentation process, as the quality and characteristics of the images directly influence the accuracy and detail of the generated masks.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `List[Image]`
+    - Python dtype: `numpy.ndarray`
 ### Optional
 - **`face_mask`**
-    - Indicates whether a mask for the face should be generated, affecting the segmentation process by isolating the face area.
+    - Indicates whether a mask for the face should be generated, allowing for targeted segmentation of the face area.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`background_mask`**
-    - Indicates whether a mask for the background should be generated, affecting the segmentation process by isolating areas not covered by other specified masks.
+    - Indicates whether a mask for the background should be generated, enabling isolation or removal of the background from the image.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`hair_mask`**
-    - Indicates whether a mask for the hair should be generated, guiding the segmentation to isolate the hair area.
+    - Specifies whether a mask for the hair should be generated, facilitating targeted editing or enhancement of the hair in the image.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`body_mask`**
-    - Indicates whether a mask for the body should be generated, guiding the segmentation to isolate the body area.
+    - Determines whether a mask for the body should be generated, allowing for precise segmentation of the body area for various editing purposes.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`clothes_mask`**
-    - Indicates whether a mask for the clothes should be generated, guiding the segmentation to isolate the clothes area.
+    - Indicates whether a mask for the clothes should be generated, enabling detailed editing or alteration of clothing in the image.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`confidence`**
-    - Specifies the confidence threshold for mask generation, affecting the precision of the segmentation and the resulting masks.
+    - The confidence threshold for mask generation, affecting the precision and accuracy of the segmentation process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`masks`**
     - Comfy dtype: `MASK`
-    - The output is a collection of masks for the specified targets, each representing a segmented area of the image. These masks can be used for further image editing or processing tasks.
-    - Python dtype: `List[Image]`
+    - The generated masks highlighting the specified parts of the person. These masks can be used for various purposes, including image editing and augmentation.
+    - Python dtype: `PIL.Image`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -61,6 +63,9 @@ class APersonMaskGenerator:
 
     @classmethod
     def INPUT_TYPES(self):
+        false_widget = ("BOOLEAN", {"default": False, "label_on": "enabled", "label_off": "disabled"})
+        true_widget = ("BOOLEAN", {"default": True, "label_on": "enabled", "label_off": "disabled"})
+
         return {
             "required":
                 {
@@ -68,11 +73,11 @@ class APersonMaskGenerator:
                 },
             "optional":
                 {
-                    "face_mask": ("BOOLEAN", {"default": True, "label_on": "enabled", "label_off": "disabled"}),
-                    "background_mask": ("BOOLEAN", {"default": False, "label_on": "enabled", "label_off": "disabled"}),
-                    "hair_mask": ("BOOLEAN", {"default": False, "label_on": "enabled", "label_off": "disabled"}),
-                    "body_mask": ("BOOLEAN", {"default": False, "label_on": "enabled", "label_off": "disabled"}),
-                    "clothes_mask": ("BOOLEAN", {"default": False, "label_on": "enabled", "label_off": "disabled"}),
+                    "face_mask": true_widget,
+                    "background_mask": false_widget,
+                    "hair_mask": false_widget,
+                    "body_mask": false_widget,
+                    "clothes_mask": false_widget,
                     "confidence": ("FLOAT", {"default": 0.40, "min": 0.01, "max": 1.0, "step": 0.01},),
                 }
         }

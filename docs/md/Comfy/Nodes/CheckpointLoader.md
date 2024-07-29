@@ -3,7 +3,7 @@ tags:
 - Checkpoint
 - CheckpointLoader
 - Loader
-- ModelIO
+- Model
 - ModelLoader
 ---
 
@@ -13,29 +13,29 @@ tags:
 - Category: `advanced/loaders`
 - Output node: `False`
 
-The CheckpointLoader node is designed for advanced loading operations, specifically to load model checkpoints along with their configurations. It facilitates the retrieval of model components necessary for initializing and running generative models, including configurations and checkpoints from specified directories.
+The CheckpointLoader node is designed for advanced loading of model checkpoints, specifically enabling the selection of configurations and checkpoints from predefined folders. It facilitates the dynamic loading of various components such as models, CLIP, and VAE based on the specified configuration and checkpoint names, supporting complex setups and custom model loading strategies.
 ## Input types
 ### Required
 - **`config_name`**
-    - Specifies the name of the configuration file to be used. This is crucial for determining the model's parameters and settings, affecting the model's behavior and performance.
+    - Specifies the name of the configuration to use, allowing the node to locate and load the corresponding model settings from a predefined list of configurations.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `str`
 - **`ckpt_name`**
-    - Indicates the name of the checkpoint file to be loaded. This directly influences the state of the model being initialized, impacting its initial weights and biases.
+    - Determines the specific checkpoint to load, enabling the node to fetch and apply the model weights from a predefined list of checkpoints.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `List[str]`
+    - Python dtype: `str`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - Represents the primary model loaded from the checkpoint, ready for further operations or inference.
+    - Outputs the loaded model, ready for further use or integration within a pipeline.
     - Python dtype: `torch.nn.Module`
 - **`clip`**
     - Comfy dtype: `CLIP`
-    - Provides the CLIP model component, if available and requested, loaded from the checkpoint.
+    - Provides the CLIP component loaded alongside the model, if applicable.
     - Python dtype: `torch.nn.Module`
 - **`vae`**
     - Comfy dtype: `VAE`
-    - Delivers the VAE model component, if available and requested, loaded from the checkpoint.
+    - Returns the VAE component loaded with the model, facilitating various generative tasks.
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
@@ -54,7 +54,7 @@ class CheckpointLoader:
 
     CATEGORY = "advanced/loaders"
 
-    def load_checkpoint(self, config_name, ckpt_name, output_vae=True, output_clip=True):
+    def load_checkpoint(self, config_name, ckpt_name):
         config_path = folder_paths.get_full_path("configs", config_name)
         ckpt_path = folder_paths.get_full_path("checkpoints", ckpt_name)
         return comfy.sd.load_checkpoint(config_path, ckpt_path, output_vae=True, output_clip=True, embedding_directory=folder_paths.get_folder_paths("embeddings"))

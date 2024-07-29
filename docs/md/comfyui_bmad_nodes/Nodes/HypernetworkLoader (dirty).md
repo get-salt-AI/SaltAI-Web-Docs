@@ -1,7 +1,7 @@
 ---
 tags:
-- Loader
-- ModelIO
+- Checkpoint
+- CheckpointLoader
 - ModelLoader
 ---
 
@@ -11,25 +11,25 @@ tags:
 - Category: `Bmad/api/dirty loaders`
 - Output node: `False`
 
-The HypernetworkLoader node is designed to dynamically modify a given model by applying a hypernetwork patch. This process enhances the model's capabilities by integrating additional computational paths, thereby enabling more complex and nuanced behaviors. The node focuses on the customization and enhancement of models through the application of hypernetworks, facilitating a more versatile and adaptive model performance.
+The HypernetworkLoader node is designed to enhance or modify the capabilities of a given model by applying a hypernetwork patch. This process involves loading a specified hypernetwork and applying it to the model with a certain strength, thereby potentially altering the model's behavior or performance based on the characteristics of the hypernetwork.
 ## Input types
 ### Required
 - **`model`**
-    - The 'model' parameter represents the base model to which the hypernetwork patch will be applied. It is crucial for defining the starting point of the enhancement process, as the hypernetwork's modifications are built upon this model.
+    - The model to which the hypernetwork patch will be applied. This parameter is crucial as it determines the base model that will be enhanced or modified by the hypernetwork.
     - Comfy dtype: `MODEL`
     - Python dtype: `torch.nn.Module`
 - **`hypernetwork_name`**
-    - The 'hypernetwork_name' parameter specifies the name of the hypernetwork to be applied to the model. It determines the specific computational modifications that will be integrated into the model, affecting its behavior and performance.
+    - The name of the hypernetwork to be loaded and applied. This parameter specifies which hypernetwork patch will be used to modify the model.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`strength`**
-    - The 'strength' parameter controls the intensity of the hypernetwork's influence on the model. It adjusts how significantly the hypernetwork's modifications impact the model's behavior, allowing for fine-tuning of the enhancement process.
+    - The strength with which the hypernetwork patch will be applied to the model. This affects the intensity of the modification or enhancement.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`model`**
     - Comfy dtype: `MODEL`
-    - The output 'model' is the enhanced version of the input model, having been modified by the applied hypernetwork patch. It represents the culmination of the node's process, showcasing the model's improved capabilities and performance.
+    - The modified model after the hypernetwork patch has been applied. This output reflects the changes made to the original model by the hypernetwork.
     - Python dtype: `torch.nn.Module`
 ## Usage tips
 - Infra type: `GPU`
@@ -40,7 +40,7 @@ The HypernetworkLoader node is designed to dynamically modify a given model by a
 ```python
 class DirtyHypernetworkLoader:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {"model": ("MODEL",),
                              "hypernetwork_name": ("STRING", {"default": ""}),
                              "strength": ("FLOAT", {"default": 1.0, "min": -10.0, "max": 10.0, "step": 0.01}),
@@ -49,7 +49,7 @@ class DirtyHypernetworkLoader:
     RETURN_TYPES = ("MODEL",)
     FUNCTION = "load_hypernetwork"
 
-    CATEGORY = "Bmad/api/dirty loaders"
+    CATEGORY = f"{api_category_path}/dirty loaders"
 
     def load_hypernetwork(self, model, hypernetwork_name, strength):
         hypernetwork_name = DirtyLoaderUtils.find_matching_filename(

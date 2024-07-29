@@ -1,7 +1,6 @@
 ---
 tags:
-- ComfyrollNodes
-- Index
+- Dictionary
 ---
 
 # 🔢 CR Trigger

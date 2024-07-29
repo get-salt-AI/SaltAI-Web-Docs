@@ -1,7 +1,9 @@
 ---
 tags:
-- AnimationScheduling
 - Curve
+- FrameInterpolation
+- VisualEffects
+- WavePatterns
 ---
 
 # 📈 Smooth Event Curve

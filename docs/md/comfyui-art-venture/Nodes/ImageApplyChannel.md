@@ -1,7 +1,8 @@
 ---
 tags:
 - Color
-- ColorChannelManipulation
+- Image
+- Preview
 ---
 
 # Image Apply Channel

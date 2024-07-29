@@ -4,31 +4,31 @@ tags:
 - LLMChat
 ---
 
-# Claude Api
+# Claude API
 ## Documentation
 - Class name: `AV_ClaudeApi`
 - Category: `ArtVenture/LLM`
 - Output node: `False`
 
-The AV_ClaudeApi node facilitates the creation of an API interface for interacting with Claude's language model, enabling the configuration and utilization of Claude's AI capabilities through specified API keys, endpoints, and version information.
+The AV_ClaudeApi node is designed to facilitate interaction with Claude's API, enabling the creation of API instances for further operations with Claude's language models. It abstracts the complexities of API key management and endpoint configuration, providing a streamlined way to access Claude's advanced language processing capabilities.
 ## Input types
 ### Required
 - **`claude_api_key`**
-    - The API key for Claude's service, essential for authenticating and gaining access to the language model's capabilities.
+    - The API key for Claude, essential for authenticating requests to the API. It's a critical component for enabling access to Claude's language models.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`endpoint`**
-    - The URL endpoint for Claude's API, allowing for the specification of the base path for API requests. Defaults to the official Claude API endpoint if not provided.
+    - The URL of the Claude API endpoint. This parameter allows for specifying the API's location, with a default value pointing to Anthropic's API.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`version`**
-    - The version of Claude's API to use, enabling control over which features or improvements are accessible. Defaults to the latest version supported by the node.
+    - The version of the Claude API to be used, allowing for control over which features and improvements are accessible.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`llm_api`**
     - Comfy dtype: `LLM_API`
-    - Provides an interface to Claude's language model, encapsulating the API key, endpoint, and version for making requests.
+    - The created instance of ClaudeApi, ready for making requests to Claude's language model API.
     - Python dtype: `ClaudeApi`
 ## Usage tips
 - Infra type: `CPU`

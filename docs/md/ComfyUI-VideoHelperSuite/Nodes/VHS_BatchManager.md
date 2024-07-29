@@ -1,6 +1,7 @@
 ---
 tags:
-- Multimedia
+- OpticalFlow
+- Segmentation
 - VideoHelperSuite
 ---
 
@@ -10,18 +11,20 @@ tags:
 - Category: `Video Helper Suite 🎥🅥🅗🅢`
 - Output node: `False`
 
-The VHS_BatchManager node is designed to manage and orchestrate batch processing tasks within the Video Helper Suite, facilitating efficient handling and manipulation of video-related data in batched operations.
+The BatchManager node is designed to manage and orchestrate the processing of video data in batches. It facilitates the efficient handling of large video datasets by breaking them down into smaller, manageable batches for processing, thereby optimizing resource utilization and improving performance.
 ## Input types
 ### Required
 - **`frames_per_batch`**
-    - Specifies the number of frames to be processed per batch, controlling the granularity of batch processing and affecting performance and resource utilization.
+    - Specifies the number of frames to be processed in each batch. This parameter is essential for controlling the batch size and thus directly influences the processing efficiency and resource allocation.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`meta_batch`**
     - Comfy dtype: `VHS_BatchManager`
-    - Represents the managed batch of video processing tasks, encapsulating the state and progress of batch operations.
-    - Python dtype: `dict`
+    - Returns the updated meta information about the batch after processing, which includes details such as the current state and any data associated with the batch.
+    - Python dtype: `CustomType`
+- **`ui`**
+    - Provides a user interface component indicating the unfinished state of the batch, if applicable.
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -36,6 +39,7 @@ class BatchManager:
         self.outputs = {}
         self.unique_id = None
         self.has_closed_inputs = False
+        self.total_frames = float('inf')
     def reset(self):
         self.close_inputs()
         for key in self.outputs:
@@ -82,6 +86,9 @@ class BatchManager:
             self.reset()
             self.frames_per_batch = frames_per_batch
             self.unique_id = unique_id
+        else:
+            num_batches = (self.total_frames+self.frames_per_batch-1)//frames_per_batch
+            print(f'Meta-Batch {requeue}/{num_batches}')
         #onExecuted seems to not be called unless some message is sent
         return (self,)
 

@@ -1,6 +1,8 @@
 ---
 tags:
+- Conditioning
 - ControlNet
+- ControlNetLoader
 ---
 
 # ControlNetApplyAdvanced (SEGS)
@@ -9,45 +11,45 @@ tags:
 - Category: `ImpactPack/Util`
 - Output node: `False`
 
-This node applies an advanced control network to SEGS (segmentation masks) with additional parameters for fine-tuning the application process. It allows for the dynamic adjustment of the control network's influence over the segmentation masks, enabling more precise and context-sensitive modifications.
+This node is designed to apply advanced segmentation (SEGS) adjustments using a control network. It enhances or modifies the segmentation data based on the control network's parameters, offering a way to fine-tune or dynamically adjust the segmentation output for more precise or varied results.
 ## Input types
 ### Required
 - **`segs`**
-    - The segmentation masks to which the control network will be applied. It's crucial for defining the areas of interest for modification.
+    - The segmentation data to be processed. It serves as the primary input for the node, determining the base segmentation that will be adjusted.
     - Comfy dtype: `SEGS`
     - Python dtype: `Tuple[Size, List[SEG]]`
 - **`control_net`**
-    - The control network used to modify the segmentation masks. It determines the nature of the modifications applied to the segs.
+    - The control network used to adjust the segmentation. It defines the transformation or adjustment logic applied to the segmentation data.
     - Comfy dtype: `CONTROL_NET`
     - Python dtype: `ControlNet`
 - **`strength`**
-    - A scalar value that adjusts the intensity of the control network's effect on the segmentation masks.
+    - A scalar value that determines the intensity of the control network's effect on the segmentation. Higher values result in more pronounced adjustments.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`start_percent`**
-    - The starting percentage of the control network's effect, allowing for gradual application from a certain point.
+    - The starting percentage of the effect's application range, allowing for gradual application of the control network's adjustments.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end_percent`**
-    - The ending percentage of the control network's effect, enabling the control network's influence to taper off.
+    - The ending percentage of the effect's application range, enabling fine-tuning of where the adjustments taper off.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`segs_preprocessor`**
-    - An optional preprocessor for the segmentation masks before applying the control network. It can be used for initial adjustments.
+    - An optional preprocessor for the segmentation data before applying the control network adjustments. It can be used for initial modifications or preparations of the SEGS.
     - Comfy dtype: `SEGS_PREPROCESSOR`
-    - Python dtype: `Optional[Preprocessor]`
+    - Python dtype: `SEGS_PREPROCESSOR`
 - **`control_image`**
-    - An optional image that can be used alongside the control network to further guide the modifications applied to the segmentation masks.
+    - An optional image that can influence the control network's adjustments, providing additional context or guidance for the transformations.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `Optional[Image]`
+    - Python dtype: `IMAGE`
 ## Output types
 - **`segs`**
     - Comfy dtype: `SEGS`
-    - The modified segmentation masks after the application of the control network, reflecting the adjustments made.
+    - The adjusted segmentation data after applying the control network's enhancements or modifications.
     - Python dtype: `Tuple[Size, List[SEG]]`
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 
@@ -74,7 +76,8 @@ class ControlNetApplyAdvancedSEGS:
 
     CATEGORY = "ImpactPack/Util"
 
-    def doit(self, segs, control_net, strength, start_percent, end_percent, segs_preprocessor=None, control_image=None):
+    @staticmethod
+    def doit(segs, control_net, strength, start_percent, end_percent, segs_preprocessor=None, control_image=None):
         new_segs = []
 
         for seg in segs[1]:

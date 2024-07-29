@@ -1,6 +1,6 @@
 ---
 tags:
-- Mask
+- MaskMorphology
 ---
 
 # Prune By Mask

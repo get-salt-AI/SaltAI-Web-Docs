@@ -1,16 +1,18 @@
 ---
 tags:
-- AnimationScheduling
-- VisualEffects
+- Curve
+- FrameInterpolation
+- Interpolation
+- WavePatterns
 ---
 
-# CrossFadeImages
+# Cross Fade Images
 ## Documentation
 - Class name: `CrossFadeImages`
 - Category: `KJNodes/image`
 - Output node: `False`
 
-The CrossFadeImages node is designed to blend two sequences of images together over a specified number of frames, using a variety of easing functions to control the transition dynamics. This node allows for the creation of smooth transitions between images, enhancing visual storytelling or creating dynamic visual effects.
+The CrossFadeImages node is designed to blend two sequences of images together over a specified number of frames, using a variety of easing functions to control the transition dynamics. This node allows for the creation of smooth transitions between images, making it ideal for generating animations or video effects where a gradual change from one image set to another is desired.
 ## Input types
 ### Required
 - **`images_i`**
@@ -18,11 +20,11 @@ The CrossFadeImages node is designed to blend two sequences of images together o
     - Comfy dtype: `IMAGE`
     - Python dtype: `unknown`
 - **`interpolation`**
-    - Specifies the easing function to be used for the transition, affecting how the crossfade between images progresses over time.
+    - Specifies the easing function to be used for the transition, allowing for various types of dynamic effects such as linear, ease-in, ease-out, and more complex functions like bounce or elastic.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`transition_start_index`**
-    - The index in the image sequences where the transition begins, allowing for precise control over the timing of the crossfade.
+    - The index in the image sequences where the transition begins, allowing for precise control over the timing of the crossfade effect.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`transitioning_frames`**
@@ -30,17 +32,17 @@ The CrossFadeImages node is designed to blend two sequences of images together o
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`start_level`**
-    - The initial alpha value for the crossfade, determining the starting blend ratio between the two image sequences.
+    - The initial alpha value for blending the images at the start of the transition, providing control over the beginning transparency level.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end_level`**
-    - The final alpha value for the crossfade, determining the ending blend ratio between the two image sequences.
+    - The final alpha value for blending the images at the end of the transition, allowing for adjustment of the ending transparency level.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The resulting sequence of images after applying the crossfade transition between the two input sequences.
+    - The resulting sequence of images after applying the crossfade transition, combining elements of both input sequences into a single smooth animation.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `GPU`

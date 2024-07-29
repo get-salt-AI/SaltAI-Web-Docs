@@ -1,25 +1,26 @@
 ---
 tags:
-- Counting
+- Image
+- VideoHelperSuite
 ---
 
 # 🔧 Batch Count
 ## Documentation
 - Class name: `BatchCount+`
-- Category: `essentials`
+- Category: `essentials/utilities`
 - Output node: `False`
 
-The BatchCount+ node is designed to count the number of elements in a batch. It can handle various data structures, including tensors, dictionaries, and lists, making it versatile for different types of batched data.
+The `BatchCount` node is designed to calculate the total number of elements within a given batch. It supports various data structures such as tensors, dictionaries, and lists, adapting its counting mechanism based on the structure's characteristics to accurately determine the batch size.
 ## Input types
 ### Required
 - **`batch`**
-    - The 'batch' parameter represents the batch of data whose size is to be counted. It can be a tensor, a dictionary containing 'samples', or a list, accommodating a wide range of data structures.
+    - The `batch` parameter is the primary input for the node, representing the data collection whose size is to be determined. It plays a crucial role in the node's functionality by allowing it to adapt its counting mechanism to the input's structure.
     - Comfy dtype: `*`
-    - Python dtype: `Union[torch.Tensor, Dict[str, Any], List[Any]]`
+    - Python dtype: `Union[torch.Tensor, dict, list]`
 ## Output types
 - **`int`**
     - Comfy dtype: `INT`
-    - This output represents the count of elements in the input batch, providing a straightforward way to determine the batch size.
+    - This output represents the total count of elements within the input batch, providing a single integer value as the result.
     - Python dtype: `int`
 ## Usage tips
 - Infra type: `CPU`
@@ -39,7 +40,7 @@ class BatchCount:
 
     RETURN_TYPES = ("INT",)
     FUNCTION = "execute"
-    CATEGORY = "essentials"
+    CATEGORY = "essentials/utilities"
 
     def execute(self, batch):
         count = 0

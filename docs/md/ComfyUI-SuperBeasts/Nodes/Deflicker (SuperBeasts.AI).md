@@ -1,7 +1,9 @@
 ---
 tags:
-- AnimationScheduling
-- VisualEffects
+- Curve
+- FrameInterpolation
+- Interpolation
+- WavePatterns
 ---
 
 # Deflicker (SuperBeasts.AI)

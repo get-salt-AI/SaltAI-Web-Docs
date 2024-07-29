@@ -1,6 +1,7 @@
 ---
 tags:
-- Counting
+- Image
+- VideoHelperSuite
 ---
 
 # ImageCount

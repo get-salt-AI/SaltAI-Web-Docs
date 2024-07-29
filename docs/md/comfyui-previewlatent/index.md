@@ -2,7 +2,7 @@
 comfyui-previewlatent is a ComfyUI plugin designed for previewing latents without the need for VAE decoding, offering a faster alternative for generating "preview images." It allows for the direct forwarding of input latents to output for quick testing and intermediate result showcasing, supporting full-resolution previews and the use of taesd (or latent2rgb) for decoding.
 
 ## Tags
-Latent
+Latent * LatentBatch * LatentBlend * Normalization * Preview * VAE
 
 ## Repo info
 - Repo url: `https://github.com/martijnat/comfyui-previewlatent`

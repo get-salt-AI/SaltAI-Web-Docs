@@ -3304,12 +3304,20 @@ File name: `src/controlnet_aux/depth_anything/torchhub/facebookresearch_dinov2_m
 # This source code is licensed under the Apache License, Version 2.0
 # found in the LICENSE file in the root directory of this source tree.
 ```
-File name: `src/controlnet_aux/dsine/LICENSE`
+File name: `src/controlnet_aux/depth_anything_v2/dinov2.py`
 
 **Apache-2.0**
 ```
-exclude all liability whether in contract, tort, negligence or otherwise, in
+# This source code is licensed under the Apache License, Version 2.0
+# found in the LICENSE file in the root directory of this source tree.
 ```
+**MIT**
+```
+# This source code is licensed under the Apache License, Version 2.0
+# found in the LICENSE file in the root directory of this source tree.
+```
+File name: `src/controlnet_aux/dsine/LICENSE`
+
 **BSD-3-Clause**
 ```
 Redistribution and use in source and binary forms, with or without
@@ -3340,6 +3348,9 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 **LicenseRef-scancode-proprietary-license**
 ```
 (b) You may use the Software solely for non-commercial, internal  or academic
+```
+```
+exclude all liability whether in contract, tort, negligence or otherwise, in
 ```
 **LicenseRef-scancode-unknown-license-reference**
 ```

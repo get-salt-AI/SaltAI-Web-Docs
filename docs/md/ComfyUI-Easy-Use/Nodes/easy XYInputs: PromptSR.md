@@ -1,6 +1,7 @@
 ---
 tags:
 - Prompt
+- PromptStyling
 ---
 
 # XY Inputs: PromptSR //EasyUse

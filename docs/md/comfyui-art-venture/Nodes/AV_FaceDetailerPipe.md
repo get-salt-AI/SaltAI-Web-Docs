@@ -1,8 +1,8 @@
 ---
 tags:
 - DetailEnhancement
-- Image
 - Pipeline
+- PipelineTransformation
 ---
 
 # FaceDetailerPipe (AV)
@@ -11,7 +11,7 @@ tags:
 - Category: `ArtVenture/Detailer`
 - Output node: `False`
 
-The AV_FaceDetailerPipe node enhances facial details in images within the ArtVenture/Detailer category, leveraging an optional enabled flag to control its operation. It builds upon the FaceDetailerPipe's functionality, offering a specialized approach to refining facial features in artwork or photographs.
+The AV_FaceDetailerPipe node enhances facial details in images within the ArtVenture Detailer category, leveraging an optional enabled flag to control its operation. It builds upon the FaceDetailerPipe's functionality, allowing for detailed customization and refinement of facial features in artwork or photographs.
 ## Input types
 ### Required
 - **`image`**
@@ -127,14 +127,18 @@ The AV_FaceDetailerPipe node enhances facial details in images within the ArtVen
     - unknown
     - Comfy dtype: `INT`
     - Python dtype: `unknown`
+- **`scheduler_func_opt`**
+    - unknown
+    - Comfy dtype: `SCHEDULER_FUNC`
+    - Python dtype: `unknown`
 - **`enabled`**
-    - The 'enabled' parameter controls whether the face detailing process is activated. When set to True, the node performs facial detailing on the input image; when False, it bypasses the detailing process and returns the original image.
+    - A boolean flag that determines whether the face detailing process is activated. When enabled, the node performs facial detailing on the input image; when disabled, it bypasses the detailing process and returns the original image.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The output image, which may be the original or a version with enhanced facial details, depending on the 'enabled' parameter.
+    - The output image, which may be the original or a version with enhanced facial details, depending on whether the detailing process was enabled.
     - Python dtype: `Image`
 - **`cropped_refined`**
     - Comfy dtype: `IMAGE`
@@ -150,14 +154,12 @@ The AV_FaceDetailerPipe node enhances facial details in images within the ArtVen
     - Python dtype: `unknown`
 - **`detailer_pipe`**
     - Comfy dtype: `DETAILER_PIPE`
-    - unknown
-    - Python dtype: `unknown`
+    - The detailer pipe configuration used for processing the image. This output is part of the node's mechanism to allow further customization or analysis.
+    - Python dtype: `DetailerPipe`
 - **`cnet_images`**
     - Comfy dtype: `IMAGE`
     - unknown
     - Python dtype: `unknown`
-- **`ui`**
-    - A UI component reflecting the node's processing status and results, dynamically generated based on the operation's outcome.
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

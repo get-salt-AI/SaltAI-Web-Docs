@@ -1,6 +1,8 @@
 ---
 tags:
+- Animation
 - Image
+- ImageLoad
 ---
 
 # Load Image From URL
@@ -9,34 +11,38 @@ tags:
 - Category: `Art Venture/Image`
 - Output node: `False`
 
-This node specializes in fetching and processing images from URLs, enabling the handling of various image formats with an option to maintain transparency information.
+This node is designed to load images from URLs, supporting a variety of formats including direct links, file paths, and data URIs. It abstracts the complexities of fetching and decoding images from different sources, making it easier to integrate external images into workflows or applications.
 ## Input types
 ### Required
-- **`url`**
-    - Specifies the URL from which the image will be loaded, supporting a wide range of sources.
+### Optional
+- **`image`**
+    - The image data directly provided for processing, allowing for flexibility in sourcing images beyond URLs.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
-### Optional
 - **`keep_alpha_channel`**
-    - Indicates whether the transparency channel of the image should be retained, useful for images where transparency is key.
+    - Determines whether the alpha channel of the image should be preserved during processing, affecting the output image format.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`output_mode`**
-    - Controls the output format of the image, offering options between list and batch modes for flexibility in handling the loaded images.
+    - Specifies the desired format of the output image, influencing how the image is processed and returned.
     - Comfy dtype: `BOOLEAN`
+    - Python dtype: `str`
+- **`url`**
+    - The URL or path of the image to be loaded. It supports direct links, file paths, and data URIs, enabling the node to fetch and decode images from various sources.
+    - Comfy dtype: `STRING`
     - Python dtype: `str`
 ## Output types
 - **`images`**
     - Comfy dtype: `IMAGE`
-    - The loaded images, potentially including transparency information if specified.
-    - Python dtype: `torch.Tensor`
+    - The loaded images, processed according to the specified parameters such as alpha channel preservation and output mode.
+    - Python dtype: `List[PIL.Image.Image]`
 - **`masks`**
     - Comfy dtype: `MASK`
-    - Generated masks from the images, useful for further image processing tasks.
-    - Python dtype: `torch.Tensor`
+    - The masks generated for the images, if any, based on the processing options selected.
+    - Python dtype: `List[torch.Tensor]`
 - **`has_image`**
     - Comfy dtype: `BOOLEAN`
-    - A boolean indicator of whether an image was successfully loaded.
+    - A flag indicating whether an image was successfully loaded and processed.
     - Python dtype: `bool`
 ## Usage tips
 - Infra type: `CPU`
@@ -53,10 +59,9 @@ class UtilLoadImageFromUrl:
     @classmethod
     def INPUT_TYPES(s):
         return {
-            "required": {
-                "url": ("STRING", {"default": "", "multiline": True, "dynamicPrompts": False}),
-            },
+            "required": {},
             "optional": {
+                "image": ("STRING", {"default": "", "multiline": True, "dynamicPrompts": False}),
                 "keep_alpha_channel": (
                     "BOOLEAN",
                     {"default": False, "label_on": "enabled", "label_off": "disabled"},
@@ -65,6 +70,7 @@ class UtilLoadImageFromUrl:
                     "BOOLEAN",
                     {"default": False, "label_on": "list", "label_off": "batch"},
                 ),
+                "url": ("STRING", {"default": "", "multiline": True, "dynamicPrompts": False}),
             },
         }
 
@@ -74,8 +80,11 @@ class UtilLoadImageFromUrl:
     CATEGORY = "Art Venture/Image"
     FUNCTION = "load_image"
 
-    def load_image(self, url: str, keep_alpha_channel=False, output_mode=False):
-        urls = url.strip().split("\n")
+    def load_image(self, image="", keep_alpha_channel=False, output_mode=False, url=""):
+        if not image or image == "":
+            image = url
+
+        urls = image.strip().split("\n")
         images, masks = load_images_from_url(urls, keep_alpha_channel)
         if len(images) == 0:
             image = torch.zeros((1, 64, 64, 3), dtype=torch.float32, device="cpu")

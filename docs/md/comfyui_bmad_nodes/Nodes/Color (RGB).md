@@ -1,6 +1,7 @@
 ---
 tags:
 - Color
+- ColorChannelManipulation
 ---
 
 # Color (RGB)
@@ -9,26 +10,26 @@ tags:
 - Category: `Bmad/image`
 - Output node: `False`
 
-This node is designed for creating a color representation from individual red, green, and blue (RGB) components. It enables the specification of each color component to form a composite color, which can be used in various image processing and color manipulation tasks.
+This node is designed for creating a color representation from individual red, green, and blue components. It allows for the precise specification of colors in RGB format, facilitating their use in various image processing and visualization tasks.
 ## Input types
 ### Required
 - **`r`**
-    - The red component of the color, an integral value that defines the intensity of red in the final color.
+    - Specifies the red component of the color, contributing to the overall hue when combined with green and blue components.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`g`**
-    - The green component of the color, an integral value that defines the intensity of green in the final color.
+    - Specifies the green component of the color, contributing to the overall hue when combined with red and blue components.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`b`**
-    - The blue component of the color, an integral value that defines the intensity of blue in the final color.
+    - Specifies the blue component of the color, contributing to the overall hue when combined with red and green components.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`color`**
     - Comfy dtype: `COLOR`
-    - The composite color formed from the specified red, green, and blue components. This output is significant for subsequent image processing or color manipulation tasks, providing a standardized color format.
-    - Python dtype: `Tuple[int, int, int]`
+    - The RGB representation of the input components, allowing for its use in various image processing and visualization contexts.
+    - Python dtype: `list`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -38,12 +39,12 @@ This node is designed for creating a color representation from individual red, g
 ```python
 class ColorRGB:
     @classmethod
-    def INPUT_TYPES(s):
+    def INPUT_TYPES(cls):
         return {"required": {"r": color255_INPUT, "g": color255_INPUT, "b": color255_INPUT}}
 
     RETURN_TYPES = ("COLOR",)
     FUNCTION = "ret"
-    CATEGORY = "Bmad/image"
+    CATEGORY = images_category_path
 
     def ret(self, r, g, b):
         return ([r, g, b],)

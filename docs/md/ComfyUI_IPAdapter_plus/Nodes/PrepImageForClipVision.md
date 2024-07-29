@@ -1,8 +1,8 @@
 ---
 tags:
-- CLIP
-- Loader
-- ModelIO
+- Checkpoint
+- CheckpointLoader
+- ModelLoader
 ---
 
 # Prep Image For ClipVision

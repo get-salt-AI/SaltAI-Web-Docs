@@ -1,92 +1,93 @@
 ---
 tags:
+- SamplerScheduler
 - Sampling
 ---
 
 # KSampler Scheduled Sequence
 ## Documentation
 - Class name: `SaltKSamplerSequence`
-- Category: `SALT/Scheduling/Sampling`
+- Category: `SALT/AudioViz/Scheduling/Sampling`
 - Output node: `False`
 
-The SaltKSamplerSequence node is designed for advanced scheduling and sequencing within audio-visual projects, focusing on the manipulation and generation of sequences based on predefined conditions and parameters. It integrates complex scheduling algorithms to optimize sequence generation for specific project needs, ensuring that sequences are generated or modified according to precise scheduling requirements.
+The SaltKSamplerSequence node is designed for advanced audio visualization and manipulation tasks, leveraging a sequence-based approach to sample, modify, and enhance audio data. It integrates complex scheduling, noise injection, and latent space interpolation techniques to produce high-quality audio outputs tailored to specific conditions or creative objectives.
 ## Input types
 ### Required
 - **`model`**
-    - Specifies the model to be used for sequence generation or manipulation, serving as the core computational resource for the node's operations.
+    - Specifies the model used for audio sampling, serving as the core engine driving the node's functionality.
     - Comfy dtype: `MODEL`
     - Python dtype: `str`
 - **`seed_sequence`**
-    - A list of seed values used to initialize the sequence generation process, ensuring variability and control over the generated sequences.
+    - A sequence of seeds used to initialize the random number generator at different stages of the sampling process, ensuring variability and control over the output.
     - Comfy dtype: `LIST`
     - Python dtype: `List[int]`
 - **`steps`**
-    - Defines the number of steps or iterations to be executed in the sequence generation process, dictating the granularity and length of the output sequence.
+    - Defines the number of steps to perform in the sampling process, affecting the granularity and quality of the audio output.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`cfg`**
-    - The conditioning factor used to guide the sequence generation, influencing the direction and characteristics of the generated sequence.
+    - Controls the conditioning factor, influencing the strength of the conditioning on the generated audio.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sampler_name`**
-    - Identifies the specific sampler algorithm to be employed in the sequence generation, affecting the quality and nature of the output.
+    - Determines the specific sampling algorithm to use, impacting the texture and characteristics of the audio output.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`scheduler`**
-    - Specifies the scheduling algorithm to be used, impacting how sequences are generated and modified over time.
+    - Selects the scheduling algorithm for controlling the sampling process, affecting the evolution of the audio over time.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`denoise_start`**
-    - The starting value for the denoising process applied to the sequence, aiding in the refinement and clarity of the generated sequence.
+    - Specifies the starting point of denoise strength, setting the initial condition for noise reduction in the audio.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`denoise_sequence`**
-    - A list of denoise values applied sequentially to the generated sequence, further refining its quality and coherence.
+    - A sequence of denoise values to apply at different stages of the sampling process, allowing for dynamic control over noise reduction.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 - **`positive_sequence`**
-    - A list of positive conditioning factors to enhance certain aspects of the generated sequence, promoting desired characteristics.
+    - A sequence of positive conditioning factors to enhance certain aspects of the audio throughout the sampling process.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[str]`
 - **`negative_sequence`**
-    - A list of negative conditioning factors to suppress certain aspects of the generated sequence, eliminating undesired characteristics.
+    - A sequence of negative conditioning factors to suppress certain aspects of the audio throughout the sampling process.
     - Comfy dtype: `CONDITIONING`
     - Python dtype: `List[str]`
 - **`use_latent_interpolation`**
-    - A boolean indicating whether latent space interpolation is to be used, affecting the smoothness and transition between sequence elements.
+    - Indicates whether latent space interpolation is used, enabling transitions between different audio states.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`latent_interpolation_mode`**
-    - The mode of latent space interpolation, determining the mathematical approach to blending sequence elements.
+    - Specifies the mode of latent space interpolation, affecting how transitions between audio states are handled.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `List[str]`
 - **`latent_interp_strength_sequence`**
-    - A list of strengths for the latent interpolation, controlling the intensity of interpolation effects at different points in the sequence.
+    - A sequence of strengths for latent space interpolation, controlling the intensity of transitions between audio states.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 - **`unsample_latents`**
-    - A boolean indicating whether to apply unsampling to the latent representations, potentially enhancing the resolution and detail of the sequence.
+    - Determines whether to perform unsampling on the latents, potentially enhancing the quality of the audio output.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`inject_noise`**
-    - A boolean indicating whether noise should be injected into the sequence, introducing variability and potentially enhancing creativity.
+    - Indicates whether noise is injected into the sampling process, adding texture and variability to the audio.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`noise_strength_sequence`**
-    - A list of noise strengths to be applied at different points in the sequence, controlling the amount of variability introduced.
+    - A sequence of noise strengths to apply at different stages of the sampling process, allowing for dynamic control over the texture of the audio.
     - Comfy dtype: `LIST`
     - Python dtype: `List[float]`
 - **`latent_image`**
-    - The initial latent image to be used as a starting point for the sequence generation, setting the baseline for subsequent modifications.
+    - The latent image to be used or modified during the sampling process, serving as a basis for audio manipulation.
     - Comfy dtype: `LATENT`
-    - Python dtype: `str`
+    - Python dtype: `torch.Tensor`
 ## Output types
 - **`latent`**
     - Comfy dtype: `LATENT`
-    - The final latent representation resulting from the sequence generation and manipulation process, encapsulating the cumulative effects of all applied conditions and modifications.
-    - Python dtype: `str`
+    - The final latent output, which is the result of the complex sampling and manipulation process, tailored to the specified conditions and creative objectives.
+    - Python dtype: `torch.Tensor`
 ## Usage tips
-- Infra type: `CPU`
+- Infra type: `GPU`
 - Common nodes: unknown
 
 
@@ -120,7 +121,7 @@ class SaltKSamplerSequence:
     RETURN_TYPES = ("LATENT",)
 
     FUNCTION = "sample"
-    CATEGORY = "SALT/Scheduling/Sampling"
+    CATEGORY = f"{MENU_NAME}/{SUB_MENU_NAME}/Scheduling/Sampling"
 
     def inject_noise(self, latent_image, noise_strength):
         noise = torch.randn_like(latent_image) * noise_strength
@@ -166,7 +167,7 @@ class SaltKSamplerSequence:
 
         sequence_loop_count = len(positive_sequence)
 
-        print(f"Starting loop sequence with {sequence_loop_count} frames.")
+        logger.info(f"Starting loop sequence with {sequence_loop_count} frames.")
 
         positive_conditioning = None
         negative_conditioning = None
@@ -195,24 +196,24 @@ class SaltKSamplerSequence:
             denoise = denoise_sequence[loop_count] if loop_count > 0 else denoise_start
 
             if inject_noise and loop_count > 0:
-                print(f"Injecting noise at {noise_strength_sequence[loop_count]} strength.")
+                logger.info(f"Injecting noise at {noise_strength_sequence[loop_count]} strength.")
                 latent_input['samples'] = self.inject_noise(latent_input['samples'], noise_strength_sequence[loop_count])
 
             if unsample_latents and loop_count > 0:
                 force_full_denoise = not (loop_count > 0 or loop_count <= steps - 1)
                 disable_noise = False
-                print("Unsampling latent image.")
+                logger.info("Unsampling latent image.")
                 unsampled_latent = unsample(model=model, seed=seed_sequence[loop_count], cfg=cfg, sampler_name=sampler_name, steps=steps+1, end_at_step=steps, scheduler=scheduler, normalize=False, positive=positive_conditioning, negative=negative_conditioning, latent_image=latent_input)[0]
                 if inject_noise and loop_count > 0:
-                    print(f"Injecting noise at {noise_strength_sequence[loop_count]} strength.")
+                    logger.info(f"Injecting noise at {noise_strength_sequence[loop_count]} strength.")
                     unsampled_latent['samples'] = self.inject_noise(unsampled_latent['samples'], noise_strength_sequence[loop_count])
-                print(f"Sampling Denoise: {denoise}")
-                print("Sampling.")
+                logger.info(f"Sampling Denoise: {denoise}")
+                logger.info("Sampling.")
                 sample = nodes.common_ksampler(model, seed_sequence[loop_count], steps, cfg, sampler_name, scheduler, positive_conditioning, negative_conditioning, unsampled_latent, denoise=denoise, disable_noise=disable_noise, start_step=start_at_step, last_step=end_at_step, force_full_denoise=force_full_denoise)[0]['samples']
             else:
 
                 if inject_noise and loop_count > 0:
-                    print(f"Injecting noise at {noise_strength_sequence[loop_count]} strength.")
+                    logger.info(f"Injecting noise at {noise_strength_sequence[loop_count]} strength.")
                     latent_input['samples'] = self.inject_noise(latent_input['samples'], noise_strength_sequence[loop_count])
                 sample = nodes.common_ksampler(model, seed_sequence[loop_count], steps, cfg, sampler_name, scheduler, positive_conditioning, negative_conditioning, latent_input, denoise=denoise)[0]['samples']
 

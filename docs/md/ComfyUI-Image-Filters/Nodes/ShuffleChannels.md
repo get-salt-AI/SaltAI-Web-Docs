@@ -1,6 +1,6 @@
 ---
 tags:
-- Image
+- Inpaint
 ---
 
 # Shuffle Channels

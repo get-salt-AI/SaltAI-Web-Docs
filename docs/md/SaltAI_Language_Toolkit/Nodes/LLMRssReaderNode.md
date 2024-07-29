@@ -4,18 +4,18 @@
 - Category: `SALT/Language Toolkit/Readers`
 - Output node: `False`
 
-This node is designed to fetch and parse RSS feeds from provided URLs, enabling the extraction of news or blog content in a structured format for further processing or analysis.
+The LLMRssReaderNode is designed to fetch and parse RSS feeds from provided URLs, converting the feed data into a structured document format. This node facilitates the aggregation of content from multiple RSS sources, streamlining the process of accessing and analyzing news or blog feeds programmatically.
 ## Input types
 ### Required
 - **`url_i`**
-    - The primary URL from which to read the RSS feed. This is a required input to initiate the reading process.
+    - The URL from which to read the RSS feed. This parameter is mandatory and initiates the RSS reading process. Up to four URLs can be provided, allowing for the aggregation of content from multiple sources.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 ### Optional
 ## Output types
 - **`documents`**
     - Comfy dtype: `DOCUMENT`
-    - The structured documents extracted from the RSS feeds, ready for downstream processing or analysis.
+    - The structured document format output containing the aggregated content from the RSS feeds.
     - Python dtype: `tuple`
 ## Usage tips
 - Infra type: `CPU`
@@ -58,7 +58,7 @@ class LLMRssReaderNode:
 
         urls = [url for url in urls if valid_url(url)]
 
-        print("Valided URLs:", urls)
+        logger.info("Valided URLs:", urls)
 
         documents = RssReader().load_data(urls)
         return (documents,)

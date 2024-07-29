@@ -1,6 +1,6 @@
 ---
 tags:
-- OpticalFlow
+- Segmentation
 ---
 
 # Mask Optical Flow (DragNUWA)

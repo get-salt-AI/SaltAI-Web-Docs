@@ -1,6 +1,7 @@
 ---
 tags:
 - Color
+- HSVColorSpace
 ---
 
 # ⭆ Big Palette Switch

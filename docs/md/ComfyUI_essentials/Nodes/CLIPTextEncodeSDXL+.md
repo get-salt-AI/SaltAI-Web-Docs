@@ -1,45 +1,44 @@
 ---
 tags:
-- CLIP
 - CLIPConditioning
 - CLIPTextEncoding
 - Conditioning
 ---
 
-# 🔧 SDXLCLIPTextEncode
+# 🔧 SDXL CLIPTextEncode
 ## Documentation
 - Class name: `CLIPTextEncodeSDXL+`
-- Category: `essentials`
+- Category: `essentials/conditioning`
 - Output node: `False`
 
-This node is designed to encode text inputs using the CLIP model tailored for the SDXL architecture, facilitating advanced text-to-image generation tasks by converting textual descriptions into a format that can be effectively utilized by image synthesis models.
+This node is designed to encode text inputs using a CLIP model, specifically tailored for the Stable Diffusion XL framework. It processes text inputs to generate conditioning vectors and pooled outputs that are optimized for image generation tasks, incorporating additional parameters such as aesthetic scores and dimensions to fine-tune the generated images.
 ## Input types
 ### Required
 - **`width`**
-    - Specifies the width of the target image in pixels. This parameter influences the dimensions of the encoded output, affecting how the textual description is spatially conditioned for image synthesis.
+    - Defines the width of the target image in pixels, affecting the aspect ratio and resolution of the generated image.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Specifies the height of the target image in pixels. Similar to width, it affects the spatial conditioning of the textual description, tailoring the encoded output to the desired image dimensions.
+    - Sets the height of the target image in pixels, impacting the aspect ratio and resolution of the generated image.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`size_cond_factor`**
-    - A factor that adjusts the size of the conditioning, impacting the resolution at which the text is encoded. This can affect the level of detail and the scale at which the text influences the image synthesis process.
+    - Specifies the factor by which the dimensions of the target image are scaled, affecting the detail and scale of the generated image.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`text`**
-    - The textual input to be encoded. This parameter is crucial as it provides the descriptive content that the node will encode into a format suitable for image synthesis. The specific text influences the thematic elements and details that will be present in the synthesized image.
+    - The text input to be encoded, serving as the basis for generating the conditioning vector and influencing the content of the generated image.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`clip`**
-    - A reference to the CLIP model instance used for encoding the text. This parameter is essential for the node to perform the encoding process, leveraging the CLIP model's capabilities to interpret and encode the textual description in a way that's compatible with image synthesis models.
+    - The CLIP model used for text tokenization and encoding, central to generating the conditioning vectors.
     - Comfy dtype: `CLIP`
     - Python dtype: `torch.nn.Module`
 ## Output types
 - **`conditioning`**
     - Comfy dtype: `CONDITIONING`
-    - The output of the node, which includes the encoded text along with additional information relevant for image synthesis, such as aesthetic scores and dimensions. This conditioning data is crucial for guiding the image synthesis process according to the encoded textual description.
-    - Python dtype: `List[Dict[str, torch.Tensor]]`
+    - Outputs a conditioning vector and associated metadata, including the aesthetic score and image dimensions, tailored for image generation.
+    - Python dtype: `list`
 ## Usage tips
 - Infra type: `GPU`
 - Common nodes: unknown
@@ -59,7 +58,7 @@ class CLIPTextEncodeSDXLSimplified:
             }}
     RETURN_TYPES = ("CONDITIONING",)
     FUNCTION = "execute"
-    CATEGORY = "essentials"
+    CATEGORY = "essentials/conditioning"
 
     def execute(self, clip, width, height, size_cond_factor, text):
         crop_w = 0

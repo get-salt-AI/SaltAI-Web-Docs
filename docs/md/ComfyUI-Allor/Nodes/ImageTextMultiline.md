@@ -1,7 +1,9 @@
 ---
 tags:
-- Image
+- ImageDrawing
+- PanelDesign
 - TextOnImage
+- VisualEffects
 ---
 
 # ImageTextMultiline

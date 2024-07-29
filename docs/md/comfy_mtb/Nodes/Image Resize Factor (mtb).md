@@ -1,8 +1,8 @@
 ---
 tags:
-- ImageScaling
+- AspectRatio
+- ImageResize
 - ImageSize
-- ImageTransformation
 ---
 
 # Image Resize Factor (mtb)

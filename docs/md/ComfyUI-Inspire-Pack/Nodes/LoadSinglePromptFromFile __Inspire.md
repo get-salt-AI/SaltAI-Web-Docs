@@ -1,6 +1,7 @@
 ---
 tags:
 - Prompt
+- PromptStyling
 ---
 
 # Load Single Prompt From File (Inspire)
