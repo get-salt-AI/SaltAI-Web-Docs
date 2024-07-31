@@ -1,8 +1,3 @@
----
-tags:
-- BackendCache
----
-
 # debugInput
 ## Documentation
 - Class name: `ttN debugInput`

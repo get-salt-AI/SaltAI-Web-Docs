@@ -1,7 +1,6 @@
 ---
 tags:
 - Prompt
-- PromptStyling
 ---
 
 # XY Input: Prompt S/R

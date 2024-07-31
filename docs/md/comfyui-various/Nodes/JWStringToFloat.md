@@ -1,9 +1,7 @@
 ---
 tags:
 - DataTypeConversion
-- Math
-- MathematicalExpressions
-- NumericConversion
+- MathematicalFunctions
 ---
 
 # String to Float

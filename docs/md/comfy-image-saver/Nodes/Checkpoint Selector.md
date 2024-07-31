@@ -1,6 +1,6 @@
 ---
 tags:
-- BackendCache
+- Checkpoint
 ---
 
 # Checkpoint Selector

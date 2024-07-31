@@ -1,8 +1,6 @@
 ---
 tags:
 - Latent
-- LatentBlend
-- VAE
 ---
 
 # Get latent size

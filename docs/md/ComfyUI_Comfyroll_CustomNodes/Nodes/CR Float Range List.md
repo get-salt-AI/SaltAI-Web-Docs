@@ -1,7 +1,6 @@
 ---
 tags:
-- Math
-- MathematicalFunctions
+- NumberRangeGeneration
 ---
 
 # 📜 CR Float Range List

@@ -1,6 +1,7 @@
 ---
 tags:
-- AlphaChannel
+- BackgroundRemoval
+- Image
 ---
 
 # Image Rembg (Remove Background)

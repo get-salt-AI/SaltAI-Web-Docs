@@ -1,8 +1,3 @@
----
-tags:
-- BackendCache
----
-
 # ModelPass
 ## Documentation
 - Class name: `ModelPassThrough`

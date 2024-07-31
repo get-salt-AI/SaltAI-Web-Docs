@@ -1,8 +1,6 @@
 ---
 tags:
-- Comparison
-- Model
-- ModelList
+- List
 ---
 
 # FromListGetStrings

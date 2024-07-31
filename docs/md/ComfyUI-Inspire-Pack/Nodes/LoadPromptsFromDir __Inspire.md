@@ -1,7 +1,6 @@
 ---
 tags:
 - Prompt
-- PromptStyling
 ---
 
 # Load Prompts From Dir (Inspire)

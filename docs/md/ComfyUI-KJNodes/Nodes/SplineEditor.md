@@ -1,6 +1,6 @@
 ---
 tags:
-- DataVisualization
+- XYPlotData
 ---
 
 # Spline Editor

@@ -1,7 +1,8 @@
 ---
 tags:
+- DepthMap
 - DepthMapEstimation
-- Inpaint
+- Image
 ---
 
 # MarigoldDepthEstimation

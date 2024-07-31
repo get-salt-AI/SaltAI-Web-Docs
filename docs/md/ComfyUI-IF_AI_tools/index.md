@@ -2,7 +2,7 @@
 ComfyUI-IF_AI_tools is a collection of custom nodes designed for ComfyUI, aimed at enhancing image generation workflows through the integration of a local Large Language Model (LLM) via Ollama. It allows users to generate prompts for image creation, leveraging the capabilities of language models to improve the quality and relevance of generated images.
 
 ## Tags
-DataTypeAgnostic * Debugging * PromptStyling * String * Text
+Prompt * Text
 
 ## Repo info
 - Repo url: `https://github.com/if-ai/ComfyUI-IF_AI_tools`

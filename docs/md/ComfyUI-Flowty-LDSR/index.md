@@ -2,7 +2,7 @@
 ComfyUI-Flowty-LDSR is a custom node designed for integrating Latent Diffusion Super Resolution (LDSR) models within ComfyUI, aimed at enhancing image resolution with superior quality compared to other upscalers, albeit at a slower pace and requiring more sampling steps. The project encourages experimentation and contributions for performance enhancements.
 
 ## Tags
-ImageUpscaling
+ImageScaling * ImageUpscaling * Upscale
 
 ## Repo info
 - Repo url: `https://github.com/flowtyone/ComfyUI-Flowty-LDSR`

@@ -2,7 +2,7 @@
 Hakkun-ComfyUI-nodes is a collection of custom nodes designed to enhance the functionality of ComfyUI, a user interface framework. These nodes offer a variety of features such as parsing prompts with special syntax to include or exclude certain elements, merging multiple texts, selecting random lines or images, calculating upscale values for images, and resizing images to specific dimensions. The project aims to simplify and automate tasks within ComfyUI by providing advanced text manipulation, image processing, and utility functions.
 
 ## Tags
-AspectRatio * ComfyrollNodes * DataTypeConversion * Float * FloatList * Image * ImageResize * ImageSize * Index * Prompt * PromptStyling * Text * VideoHelperSuite * Wildcard
+Concatenate * DataTypeConversion * Image * ImageResize * ImageScaling * ImageSize * ImageTransformation * Multimedia * NumericConversion * Prompt * Text
 
 ## Repo info
 - Repo url: `https://github.com/tudal/Hakkun-ComfyUI-nodes`

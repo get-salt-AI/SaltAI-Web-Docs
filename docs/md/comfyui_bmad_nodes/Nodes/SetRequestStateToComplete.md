@@ -1,8 +1,3 @@
----
-tags:
-- BackendCache
----
-
 # SetRequestStateToComplete
 ## Documentation
 - Class name: `SetRequestStateToComplete`

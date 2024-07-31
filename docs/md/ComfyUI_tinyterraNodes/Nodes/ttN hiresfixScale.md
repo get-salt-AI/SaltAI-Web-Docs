@@ -1,8 +1,8 @@
 ---
 tags:
-- ImageResolution
-- ImageTransformation
+- ImageScaling
 - ImageUpscaling
+- Upscale
 ---
 
 # hiresfixScale

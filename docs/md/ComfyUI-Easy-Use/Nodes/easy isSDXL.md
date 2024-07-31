@@ -1,9 +1,7 @@
 ---
 tags:
 - Image
-- ImagePreprocessing
-- ImageTransformation
-- Pipeline
+- SDXLSettings
 ---
 
 # Is SDXL

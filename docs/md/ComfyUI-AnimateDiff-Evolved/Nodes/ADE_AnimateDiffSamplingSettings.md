@@ -2,8 +2,6 @@
 tags:
 - AnimateDiff
 - Animation
-- MotionData
-- PoseEstimation
 ---
 
 # Sample Settings 🎭🅐🅓

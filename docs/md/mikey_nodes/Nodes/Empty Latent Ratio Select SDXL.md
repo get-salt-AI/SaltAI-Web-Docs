@@ -1,9 +1,6 @@
 ---
 tags:
 - Latent
-- LatentBatch
-- LatentBlend
-- VAE
 ---
 
 # Empty Latent Ratio Select SDXL (Mikey)

@@ -2,7 +2,7 @@
 ComfyUI-Allor is a comprehensive image manipulation and processing library designed to handle a wide range of tasks including image compositing, transformation, filtering, noise addition, and segmentation. It provides tools for both basic and advanced image effects, such as grayscale, sepia, lens effects, and blurring, as well as functionalities for drawing shapes, text, and handling alpha channels. The library supports batch image processing, allowing for efficient manipulation of image collections.
 
 ## Tags
-AlphaChannel * AspectRatio * Batch * Blur * Color * Crop * DataClamp * GridLayout * Image * ImageBatch * ImageBlend * ImageComposite * ImageDrawing * ImageDuplication * ImageEnhancement * ImageFilter * ImageNoise * ImageResize * ImageScaling * ImageSize * ImageThresholding * ImageTransformation * ImageUpscaling * LatentNoise * Mask * MaskBlur * MaskMorphology * Noise * PanelDesign * Seed * Segmentation * TextOnImage * Tiled * Upscale * VAE * VisualEffects
+AlphaChannel * Batch * Blur * Contour * Crop * DataClamp * Image * ImageBatch * ImageDrawing * ImageDuplication * ImageEnhancement * ImageFilter * ImageNoise * ImagePadding * ImageResize * ImageScaling * ImageSize * ImageTransformation * LensEffects * Noise * Segmentation * TextOnImage * VisualEffects
 
 ## Repo info
 - Repo url: `https://github.com/Nourepide/ComfyUI-Allor`

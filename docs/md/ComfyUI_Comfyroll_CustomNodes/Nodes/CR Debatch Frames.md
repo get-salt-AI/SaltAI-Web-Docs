@@ -1,7 +1,7 @@
 ---
 tags:
 - Animation
-- Metadata
+- Image
 ---
 
 # 🛠️ CR Debatch Frames

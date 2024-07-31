@@ -1,8 +1,7 @@
 ---
 tags:
+- AnimationScheduling
 - Curve
-- VisualEffects
-- WavePatterns
 ---
 
 # Curve (mtb)

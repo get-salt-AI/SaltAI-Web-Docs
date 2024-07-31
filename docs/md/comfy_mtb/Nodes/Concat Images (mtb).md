@@ -1,7 +1,6 @@
 ---
 tags:
-- ImageBlend
-- VisualEffects
+- Image
 ---
 
 # Concat Images (mtb)

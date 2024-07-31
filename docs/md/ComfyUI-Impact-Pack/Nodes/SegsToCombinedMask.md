@@ -1,6 +1,6 @@
 ---
 tags:
-- Mask
+- SEGSPrep
 - Segmentation
 ---
 

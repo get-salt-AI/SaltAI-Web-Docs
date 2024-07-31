@@ -1,6 +1,7 @@
 ---
 tags:
-- DataTypeConversion
+- MathematicalFunctions
+- Multiplication
 ---
 
 # 🔢 CR Index Multiply

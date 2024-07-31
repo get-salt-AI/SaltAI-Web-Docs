@@ -1,6 +1,8 @@
 ---
 tags:
+- ImageScaling
 - ImageUpscaling
+- Upscale
 ---
 
 # Iterative Upscale (Latent/on Pixel Space)

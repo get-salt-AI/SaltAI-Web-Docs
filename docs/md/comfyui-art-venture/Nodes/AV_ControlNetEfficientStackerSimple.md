@@ -1,9 +1,6 @@
 ---
 tags:
-- CLIP
-- Conditioning
 - ControlNet
-- ControlNetLoader
 ---
 
 # ControlNet Stacker

@@ -2,7 +2,6 @@
 tags:
 - Latent
 - LatentBlend
-- VAE
 ---
 
 # Latent Composite

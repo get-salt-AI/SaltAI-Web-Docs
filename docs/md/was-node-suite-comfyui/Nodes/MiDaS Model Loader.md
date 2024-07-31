@@ -1,9 +1,8 @@
 ---
 tags:
+- DepthMap
 - DepthMapEstimation
 - Image
-- ImagePreprocessing
-- Inpaint
 ---
 
 # MiDaS Model Loader

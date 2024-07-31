@@ -1,11 +1,8 @@
 ---
 tags:
-- ImageMaskConversion
+- ImageMask
 - Mask
-- MaskBatch
 - MaskGeneration
-- MaskList
-- MaskMorphology
 ---
 
 # ImageColorToMask

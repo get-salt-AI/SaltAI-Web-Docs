@@ -2,8 +2,6 @@
 tags:
 - AlphaChannel
 - Image
-- ImageBlend
-- ImageComposite
 ---
 
 # Split Image with Alpha

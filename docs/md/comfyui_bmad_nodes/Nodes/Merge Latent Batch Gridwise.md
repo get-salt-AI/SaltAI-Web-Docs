@@ -1,8 +1,8 @@
 ---
 tags:
 - GridLayout
-- ImageDuplication
-- ImageTransformation
+- Image
+- Tiled
 ---
 
 # Merge Latent Batch Gridwise

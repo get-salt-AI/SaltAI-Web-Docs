@@ -1,7 +1,7 @@
 ---
 tags:
-- Prompt
-- PromptComposer
+- Image
+- Style
 ---
 
 # Face Styler

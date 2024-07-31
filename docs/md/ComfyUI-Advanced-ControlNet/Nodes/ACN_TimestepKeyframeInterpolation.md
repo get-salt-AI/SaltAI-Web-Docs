@@ -1,9 +1,8 @@
 ---
 tags:
-- Counting
-- Curve
-- Interpolation
-- WavePatterns
+- AnimationScheduling
+- Frame
+- Keyframe
 ---
 
 # Timestep Keyframe Interpolation 🛂🅐🅒🅝

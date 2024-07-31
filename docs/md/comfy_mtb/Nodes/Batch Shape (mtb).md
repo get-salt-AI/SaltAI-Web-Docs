@@ -2,8 +2,6 @@
 tags:
 - Batch
 - Image
-- ImageBatch
-- ImageDuplication
 ---
 
 # Batch Shape (mtb)

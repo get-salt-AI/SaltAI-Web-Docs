@@ -1,9 +1,6 @@
 ---
 tags:
-- AnimationScheduling
 - Scheduling
-- SigmaScheduling
-- VisualEffects
 ---
 
 # Schedule Split

@@ -1,8 +1,7 @@
 ---
 tags:
-- Blur
-- ImageBlend
-- VisualEffects
+- Image
+- ImageTransformation
 ---
 
 # ImageCompositeAbsoluteByContainer

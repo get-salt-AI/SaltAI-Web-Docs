@@ -1,9 +1,3 @@
----
-tags:
-- DataTypeAgnostic
-- Debugging
----
-
 # Text Add Token by Input
 ## Documentation
 - Class name: `Text Add Token by Input`

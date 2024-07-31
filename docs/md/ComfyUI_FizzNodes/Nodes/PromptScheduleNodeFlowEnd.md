@@ -2,7 +2,6 @@
 tags:
 - AnimationScheduling
 - Scheduling
-- SigmaScheduling
 ---
 
 # Prompt Schedule NodeFlow End 📅🅕🅝

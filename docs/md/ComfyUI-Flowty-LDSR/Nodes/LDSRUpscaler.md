@@ -1,6 +1,8 @@
 ---
 tags:
+- ImageScaling
 - ImageUpscaling
+- Upscale
 ---
 
 # LDSR Upscale (all-in-one)

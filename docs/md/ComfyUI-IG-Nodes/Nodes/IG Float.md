@@ -3,8 +3,8 @@ tags:
 - DataConversion
 - DataTypeConversion
 - Float
-- FloatList
-- Integer
+- FloatData
+- NumericConversion
 ---
 
 # ➡️ IG Float

@@ -1,8 +1,6 @@
 ---
 tags:
-- Mask
-- MaskInversion
-- MaskMath
+- ImageTransformation
 ---
 
 # RemapInsideParabolas

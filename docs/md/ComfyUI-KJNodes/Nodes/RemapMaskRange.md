@@ -1,3 +1,8 @@
+---
+tags:
+- ImageTransformation
+---
+
 # Remap Mask Range
 ## Documentation
 - Class name: `RemapMaskRange`

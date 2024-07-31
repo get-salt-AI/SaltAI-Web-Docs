@@ -1,7 +1,7 @@
 ---
 tags:
-- Float
-- FloatList
+- DataTypeConversion
+- NumericConversion
 ---
 
 # Weight Schedule Extend

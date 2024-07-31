@@ -1,8 +1,3 @@
----
-tags:
-- SigmaScheduling
----
-
 # Scheduled CFGGuider (Inspire)
 ## Documentation
 - Class name: `ScheduledCFGGuider __Inspire`

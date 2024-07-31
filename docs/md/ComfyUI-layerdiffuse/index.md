@@ -2,7 +2,7 @@
 ComfyUI-layerdiffuse is an implementation of LayerDiffuse for ComfyUI, designed to enhance image generation workflows by providing functionalities for generating foregrounds, blending foreground/background, and extracting foreground or background from blended images. It supports various workflows to manipulate images, including generating images with RGB and alpha channels separately, blending given foregrounds or backgrounds, and extracting elements from blended images, tailored specifically for use with SDXL/SD15 models.
 
 ## Tags
-DepthMap * Image * Inpaint * LayeredDiffusion
+LayeredDiffusion * LayeredDiffusionDecode
 
 ## Repo info
 - Repo url: `https://github.com/huchenlei/ComfyUI-layerdiffuse`

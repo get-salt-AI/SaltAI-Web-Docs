@@ -1,8 +1,6 @@
 ---
 tags:
 - ConditionalSelection
-- ImageSwitching
-- ImpactPack
 ---
 
 # 🔀 CR Conditioning Input Switch

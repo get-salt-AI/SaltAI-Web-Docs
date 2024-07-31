@@ -1,7 +1,6 @@
 ---
 tags:
 - Color
-- Image
 ---
 
 # LayerColor: Color of Shadow & Highlight

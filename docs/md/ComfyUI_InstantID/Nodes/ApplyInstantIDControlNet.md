@@ -1,8 +1,6 @@
 ---
 tags:
-- CLIP
-- IPAdapter
-- Loader
+- IdentityImage
 ---
 
 # InstantID Apply ControlNet

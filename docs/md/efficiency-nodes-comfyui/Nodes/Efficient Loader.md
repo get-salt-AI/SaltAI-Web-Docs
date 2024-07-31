@@ -1,11 +1,9 @@
 ---
 tags:
-- Checkpoint
-- CheckpointLoader
 - Loader
+- Model
+- ModelIO
 - ModelLoader
-- ModelMerge
-- ModelSwitching
 ---
 
 # Efficient Loader

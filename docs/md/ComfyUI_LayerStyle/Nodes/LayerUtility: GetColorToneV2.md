@@ -1,3 +1,8 @@
+---
+tags:
+- Color
+---
+
 # LayerUtility: GetColorTone V2
 ## Documentation
 - Class name: `LayerUtility: GetColorToneV2`

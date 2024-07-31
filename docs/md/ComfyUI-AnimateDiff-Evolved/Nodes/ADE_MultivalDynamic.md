@@ -1,9 +1,7 @@
 ---
 tags:
+- AnimateDiff
 - Animation
-- Cache
-- MotionData
-- PoseEstimation
 ---
 
 # Multival Dynamic 🎭🅐🅓

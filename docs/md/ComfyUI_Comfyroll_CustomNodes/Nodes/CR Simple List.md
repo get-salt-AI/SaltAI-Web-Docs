@@ -1,11 +1,7 @@
 ---
 tags:
-- DataTypeAgnostic
-- Debugging
 - List
-- String
 - Text
-- TextReplacement
 ---
 
 # 📜 CR Simple List

@@ -1,6 +1,6 @@
 ---
 tags:
-- MaskMorphology
+- Mask
 ---
 
 # IsMaskEmpty

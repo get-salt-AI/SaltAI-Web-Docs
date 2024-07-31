@@ -2,7 +2,7 @@
 ComfyUI_IPAdapter_plus is a reference implementation for IPAdapter models, designed to facilitate powerful image-to-image conditioning within the ComfyUI framework. It enables easy transfer of the subject or style from reference images to generated images, akin to a one-image lora, enhancing the capabilities of ComfyUI with advanced image manipulation and generation features.
 
 ## Tags
-Checkpoint * CheckpointLoader * ControlNet * IPAdapter * IdentityImage * ImageNoise * LatentNoise * Loader * ModelIO * ModelLoader * MotionData * Noise * RegionalImageProcessing * Seed
+CLIP * ControlNet * IPAdapter * IPAdapterLoader * ImageNoise * Loader * ModelIO * Noise * RegionalImageProcessing * Weight
 
 ## Repo info
 - Repo url: `https://github.com/cubiq/ComfyUI_IPAdapter_plus`

@@ -1,7 +1,6 @@
 ---
 tags:
-- MotionData
-- PoseEstimation
+- Face
 ---
 
 # tinyLoader

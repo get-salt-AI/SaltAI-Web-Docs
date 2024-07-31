@@ -1,6 +1,6 @@
 ---
 tags:
-- Prompt
+- Style
 ---
 
 # Apply Style Model

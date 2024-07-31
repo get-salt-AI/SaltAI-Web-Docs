@@ -1,10 +1,7 @@
 ---
 tags:
-- Agents
 - BackendCache
-- LLMDataConversion
-- LLMImage
-- LlamaIndex
+- Cache
 ---
 
 # Retrieve Backend Data (Inspire)

@@ -1,8 +1,6 @@
 ---
 tags:
-- Image
 - ImageDrawing
-- TextOnImage
 ---
 
 # ImageDrawRectangleByContainer

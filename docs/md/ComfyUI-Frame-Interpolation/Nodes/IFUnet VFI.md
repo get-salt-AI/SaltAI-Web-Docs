@@ -1,11 +1,8 @@
 ---
 tags:
-- Curve
-- Frame
+- AnimationScheduling
 - FrameInterpolation
-- Interpolation
-- Keyframe
-- WavePatterns
+- VisualEffects
 ---
 
 # IFUnet VFI

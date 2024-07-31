@@ -1,8 +1,3 @@
----
-tags:
-- BackendCache
----
-
 # ∞ Web Crawler
 ## Documentation
 - Class name: `LLMSaltWebCrawler`

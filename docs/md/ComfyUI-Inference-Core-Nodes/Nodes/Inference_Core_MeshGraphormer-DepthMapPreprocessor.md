@@ -1,8 +1,8 @@
 ---
 tags:
+- DepthMap
 - DepthMapEstimation
-- ImagePreprocessing
-- Inpaint
+- Image
 ---
 
 # [Inference.Core] MeshGraphormer Hand Refiner

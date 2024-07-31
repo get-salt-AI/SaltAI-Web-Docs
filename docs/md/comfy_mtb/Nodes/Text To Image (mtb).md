@@ -1,9 +1,7 @@
 ---
 tags:
-- ImageDrawing
-- PanelDesign
+- Image
 - TextOnImage
-- VisualEffects
 ---
 
 # Text To Image (mtb)
@@ -12,74 +10,74 @@ tags:
 - Category: `mtb/generate`
 - Output node: `False`
 
-The Text To Image node is designed for the dynamic generation of text-based images, leveraging a variety of fonts to visually represent textual content. It enables the creation of customized images by adjusting text appearance, alignment, and color settings, catering to diverse applications such as content visualization, labeling, or user interface design.
+The Text To Image node is designed to convert text into an image using specified fonts. It searches for font files within a specified directory and utilizes these fonts to render the given text into an image format. This functionality allows for dynamic text visualization with various font styles, supporting a range of font file formats.
 ## Input types
 ### Required
 - **`text`**
-    - The text string to be converted into an image, serving as the primary content for visual representation.
+    - The text string to be converted into an image. This parameter is crucial as it defines the content that will be visually represented in the resulting image.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`font`**
-    - The font used for the text in the image, selected from a list of available fonts, enabling customization of text appearance.
+    - Specifies the font to be used for rendering the text into an image. This parameter allows for customization of the text's appearance, enhancing the visual appeal of the output.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`wrap`**
-    - Controls whether the text should wrap within the image boundaries, affecting text distribution across lines.
+    - Determines whether the text should wrap to fit within the specified width of the image. This parameter is important for ensuring the text fits neatly within the image boundaries without being cut off.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`trim`**
-    - Determines whether to trim whitespace around the text, adjusting text positioning and image aesthetics.
+    - Indicates whether whitespace around the text should be trimmed in the final image. This parameter helps in creating a cleaner, more focused visual representation of the text.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`line_height`**
-    - Adjusts the height between lines of text, affecting text spacing for readability or design requirements.
+    - Controls the spacing between lines of text when the text wraps. This parameter is essential for maintaining readability and aesthetic spacing in multi-line text images.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `float`
+    - Python dtype: `int`
 - **`font_size`**
-    - The size of the font for the text, influencing the text's visual prominence within the image.
+    - The size of the font used to render the text. This parameter directly affects the readability and visual impact of the text in the image.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`width`**
-    - The width of the image, defining the horizontal boundary for the text and any wrapping behavior.
+    - The desired width of the output image. This parameter defines the horizontal dimension of the image canvas.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - The height of the image, defining the vertical space for text layout.
+    - The desired height of the output image. This parameter defines the vertical dimension of the image canvas.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`color`**
-    - The color of the text, enabling visual customization to match design themes or preferences.
+    - The color of the text in the image. This parameter allows for customization of the text color, enabling contrast and visibility against the background.
     - Comfy dtype: `COLOR`
     - Python dtype: `str`
 - **`background`**
-    - The background color of the image, set to complement or contrast with the text color.
+    - The background color of the image. This parameter is crucial for setting the overall tone and contrast of the image, affecting the visibility of the text.
     - Comfy dtype: `COLOR`
     - Python dtype: `str`
 - **`h_align`**
-    - The horizontal alignment of the text (left, center, right), affecting its positioning relative to image boundaries.
-    - Comfy dtype: `['left', 'center', 'right']`
+    - Horizontal alignment of the text within the image. This parameter controls the text's positioning along the horizontal axis, affecting the layout and balance of the image.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`v_align`**
-    - The vertical alignment of the text (top, center, bottom), influencing its vertical positioning.
-    - Comfy dtype: `['top', 'center', 'bottom']`
+    - Vertical alignment of the text within the image. This parameter controls the text's positioning along the vertical axis, affecting the layout and balance of the image.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`h_offset`**
-    - The horizontal offset for the text, allowing fine control over its position within the image.
+    - Horizontal offset for the text position from its aligned location. This parameter allows for fine-tuning of the text's placement within the image, enabling precise layout adjustments.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`v_offset`**
-    - The vertical offset for the text, enabling precise adjustment of its vertical position.
+    - Vertical offset for the text position from its aligned location. This parameter allows for fine-tuning of the text's placement within the image, enabling precise layout adjustments.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`h_coverage`**
-    - The percentage of image width the text should cover, controlling the text's spread within the image.
+    - Specifies the percentage of the image width that the text should cover. This parameter is important for controlling the text's spread across the image, affecting the visual density and readability.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - The generated image from the input text and customization parameters, visually representing the text according to specified settings.
-    - Python dtype: `PIL.Image.Image`
+    - The output is an image with the specified text rendered using the chosen font and settings. This image represents the visual interpretation of the input text, customized according to the provided parameters.
+    - Python dtype: `Image`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown

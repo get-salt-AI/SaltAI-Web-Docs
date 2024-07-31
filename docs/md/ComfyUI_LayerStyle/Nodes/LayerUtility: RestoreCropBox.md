@@ -1,9 +1,3 @@
----
-tags:
-- Crop
-- Image
----
-
 # LayerUtility: RestoreCropBox
 ## Documentation
 - Class name: `LayerUtility: RestoreCropBox`

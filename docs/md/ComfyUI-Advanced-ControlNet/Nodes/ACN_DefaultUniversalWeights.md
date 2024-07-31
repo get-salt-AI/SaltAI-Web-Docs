@@ -1,7 +1,7 @@
 ---
 tags:
 - ControlNet
-- ControlNetLoader
+- Weight
 ---
 
 # Default Weights 🛂🅐🅒🅝

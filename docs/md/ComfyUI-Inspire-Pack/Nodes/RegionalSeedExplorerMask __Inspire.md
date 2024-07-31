@@ -1,8 +1,6 @@
 ---
 tags:
-- Image
-- Prompt
-- Style
+- RegionalPrompt
 ---
 
 # Regional Seed Explorer By Mask (Inspire)

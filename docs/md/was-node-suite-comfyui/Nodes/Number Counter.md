@@ -1,8 +1,3 @@
----
-tags:
-- Math
----
-
 # Number Counter
 ## Documentation
 - Class name: `Number Counter`

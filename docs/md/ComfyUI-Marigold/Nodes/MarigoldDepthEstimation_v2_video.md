@@ -1,8 +1,3 @@
----
-tags:
-- MotionData
----
-
 # MarigoldDepthEstimation_v2_video
 ## Documentation
 - Class name: `MarigoldDepthEstimation_v2_video`

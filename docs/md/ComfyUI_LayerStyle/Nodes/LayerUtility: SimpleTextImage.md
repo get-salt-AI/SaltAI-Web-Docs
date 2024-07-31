@@ -1,8 +1,3 @@
----
-tags:
-- ImageDrawing
----
-
 # LayerUtility: SimpleTextImage
 ## Documentation
 - Class name: `LayerUtility: SimpleTextImage`

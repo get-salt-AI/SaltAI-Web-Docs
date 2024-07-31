@@ -2,7 +2,7 @@
 ComfyUI-IC-Light is a native implementation of IC-Light for the ComfyUI framework, offering advanced models for enhancing user interfaces. It allows users to integrate IC-Light models into ComfyUI by placing them in the specified directory, with support for additional features through the latest KJNodes.
 
 ## Tags
-Animation * Blur * CLIPConditioning * Conditioning * GridLayout * Image * ImageDuplication * ImageLoad
+Conditioning * Image * VisualEffects
 
 ## Repo info
 - Repo url: `https://github.com/kijai/ComfyUI-IC-Light.git`

@@ -1,49 +1,44 @@
----
-tags:
-- ImageDrawing
----
-
 # Qr Code (mtb)
 ## Documentation
 - Class name: `Qr Code (mtb)`
 - Category: `mtb/generate`
 - Output node: `False`
 
-The MTB_QrCode node is designed for generating QR codes based on user-defined parameters such as URL, size, error correction level, and color inversion. It emphasizes ease of customization for QR code generation, catering to a variety of use cases where QR codes are needed.
+This node generates QR codes based on provided parameters such as URL, size, error correction level, and color inversion. It's designed for creating customizable QR codes that can be further adjusted in terms of dimensions, error resilience, and aesthetic preferences.
 ## Input types
 ### Required
 - **`url`**
-    - Specifies the URL to be encoded in the QR code, serving as the primary content of the QR code.
+    - The URL to be encoded into the QR code. This is the primary content of the QR code.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`width`**
-    - Determines the width of the generated QR code image in pixels, allowing for size customization.
+    - The width of the generated QR code image in pixels. This determines the size of the QR code on the horizontal axis.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`height`**
-    - Determines the height of the generated QR code image in pixels, enabling size customization similar to width.
+    - The height of the generated QR code image in pixels. This determines the size of the QR code on the vertical axis.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`error_correct`**
-    - Sets the error correction level for the QR code, affecting its resilience to damage.
-    - Comfy dtype: `['L', 'M', 'Q', 'H']`
+    - The level of error correction applied to the QR code, which can be one of 'L', 'M', 'Q', 'H'. Higher levels increase the QR code's resilience to damage.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`box_size`**
-    - Specifies the size of each box in the QR code grid, impacting the overall density and size of the QR code.
+    - The size of each box in the QR code grid, affecting the granularity of the QR code.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`border`**
-    - Defines the width of the border around the QR code, ensuring it is distinguishable from its surroundings.
+    - The width of the border around the QR code, measured in boxes, not pixels.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`invert`**
-    - Allows for the inversion of the QR code's color scheme, offering visual customization.
-    - Comfy dtype: `['BOOLEAN']`
+    - A boolean indicating whether the QR code's colors should be inverted, swapping the foreground and background colors.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `bool`
 ## Output types
 - **`image`**
     - Comfy dtype: `IMAGE`
-    - Returns the generated QR code as an image, ready for use in various applications.
+    - The generated QR code as an image tensor, ready for further processing or saving.
     - Python dtype: `torch.Tensor`
 ## Usage tips
 - Infra type: `CPU`

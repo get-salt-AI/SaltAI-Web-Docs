@@ -2,7 +2,7 @@
 Comfyui-SAL-VTON is a quick implementation of the SAL-VTON node for ComfyUI, designed to facilitate virtual try-ons by dressing up models in a virtual environment. It is based on a research paper that focuses on linking garments with persons using semantically associated landmarks, aiming to enhance the virtual try-on experience.
 
 ## Tags
-FaceRestoration * Image * VideoHelperSuite
+Face * Image * Multimedia
 
 ## Repo info
 - Repo url: `https://github.com/ratulrafsan/Comfyui-SAL-VTON`

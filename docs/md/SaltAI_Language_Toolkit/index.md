@@ -2,7 +2,7 @@
 SaltAI_Llama-Index integrates the Retrieval Augmented Generation tool Llama-Index, Microsoft's AutoGen, and LlaVA-Next with ComfyUI's adaptable node interface to enhance the functionality and user experience of the platform. It aims to provide a comprehensive toolkit for creating conversible agents, searching with Groq LLM models, and converting search results into JSON output for further use.
 
 ## Tags
-Agents * BackendCache * DocumentConversion * LLM * LLMChat * LlamaIndex * LoRA * SamplerScheduler * Sampling * WebContentExtraction
+Agents * DocumentConversion * LLM * LLMChat * LLMDataConversion * LLMImage * LlamaIndex * LoRA * Sampling * WebContentExtraction
 
 ## Repo info
 - Repo url: `https://gitlab.com/plai-app/ai-studio/orchestra-nodes/to-release/SaltAI_Language_Toolkit.git`

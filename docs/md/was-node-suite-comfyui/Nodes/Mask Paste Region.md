@@ -1,7 +1,7 @@
 ---
 tags:
-- ImageBlend
-- ImageTransformation
+- Image
+- ImageComposite
 ---
 
 # Mask Paste Region

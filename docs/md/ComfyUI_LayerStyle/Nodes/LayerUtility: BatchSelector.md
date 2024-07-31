@@ -1,3 +1,10 @@
+---
+tags:
+- Batch
+- Image
+- ImageBatch
+---
+
 # LayerUtility: Batch Selector
 ## Documentation
 - Class name: `LayerUtility: BatchSelector`

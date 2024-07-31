@@ -1,7 +1,6 @@
 ---
 tags:
 - Mask
-- MaskMorphology
 ---
 
 # Split Mask Batch 🎥🅥🅗🅢

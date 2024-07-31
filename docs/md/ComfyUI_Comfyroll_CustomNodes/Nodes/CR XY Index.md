@@ -1,6 +1,7 @@
 ---
 tags:
-- Dictionary
+- ComfyrollNodes
+- Index
 ---
 
 # 📉 CR XY Index

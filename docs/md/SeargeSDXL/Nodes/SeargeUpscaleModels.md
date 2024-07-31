@@ -1,6 +1,8 @@
 ---
 tags:
+- ImageScaling
 - ImageUpscaling
+- Upscale
 ---
 
 # Upscale Models Selector v2

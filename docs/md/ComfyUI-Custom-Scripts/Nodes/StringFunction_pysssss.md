@@ -1,6 +1,7 @@
 ---
 tags:
-- SigmaScheduling
+- Text
+- TextReplacement
 ---
 
 # String Function 🐍

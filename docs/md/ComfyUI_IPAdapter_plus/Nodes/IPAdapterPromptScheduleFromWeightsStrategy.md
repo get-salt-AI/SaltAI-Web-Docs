@@ -1,6 +1,7 @@
 ---
 tags:
 - ControlNet
+- Weight
 ---
 
 # Prompt Schedule From Weights Strategy

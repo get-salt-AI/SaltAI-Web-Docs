@@ -2,7 +2,7 @@
 saltai_displayany is a quick node designed to display primitive values without requiring any dependencies, ensuring that the output remains the same type as the input.
 
 ## Tags
-DataTypeAgnostic * Debugging * Text
+DataTypeAgnostic * Debugging
 
 ## Repo info
 - Repo url: `https://gitlab.com/plai-app/ai-studio/orchestra-nodes/to-release/saltai_displayany.git`

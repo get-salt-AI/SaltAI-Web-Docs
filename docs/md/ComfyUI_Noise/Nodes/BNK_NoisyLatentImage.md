@@ -1,11 +1,7 @@
 ---
 tags:
-- ImageEnhancement
-- ImageNoise
+- LatentNoise
 - Noise
-- Scheduling
-- Seed
-- XYPlotData
 ---
 
 # Noisy Latent Image

@@ -1,7 +1,6 @@
 ---
 tags:
-- MaskInversion
-- MaskMath
+- ImageTransformation
 ---
 
 # RemapWarpPolar

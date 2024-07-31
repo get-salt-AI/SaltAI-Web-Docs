@@ -1,8 +1,5 @@
 ---
 tags:
-- DataTypeAgnostic
-- Debugging
-- String
 - Text
 ---
 

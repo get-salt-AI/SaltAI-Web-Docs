@@ -1,6 +1,6 @@
 ---
 tags:
-- PromptStyling
+- Prompt
 ---
 
 # Image To Prompt

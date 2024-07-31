@@ -2,7 +2,7 @@
 ComfyUI_LayerStyle is a comprehensive toolkit designed to enhance and manipulate images through a wide array of layer-based adjustments and effects. It offers functionalities for color correction, exposure adjustment, applying various filters like blur, HDR, and watercolor effects, as well as creating and managing masks for selective editing. Additionally, ComfyUI_LayerStyle provides utilities for image transformation, blending modes, adding text or watermarks, and generating QR codes, catering to both basic and advanced image editing needs.
 
 ## Tags
-Animation * AspectRatio * BackendCache * Blur * BoundingBox * CLIPConditioning * Color * Conditioning * Crop * DataClamp * DataConversion * DataTypeAgnostic * Debugging * Float * FloatList * GridLayout * Image * ImageBlend * ImageComposite * ImageDrawing * ImageDuplication * ImageEnhancement * ImageFilter * ImageGeneration * ImageMask * ImageMaskConversion * ImageResize * ImageSave * ImageSize * ImageTransformation * ImpactPack * Integer * Mask * MaskBatch * MaskGeneration * MaskList * MaskMorphology * Segmentation * String * VisualEffects
+AspectRatio * Batch * Color * Conditioning * Crop * DataConversion * DataTypeConversion * FloatData * Image * ImageBatch * ImageBlend * ImageComposite * ImageEnhancement * ImageSave * ImageScaling * ImageSize * ImageTransformation * Mask * MaskGeneration * NumericConversion * Segmentation * Text * TextOnImage * VisualEffects
 
 ## Repo info
 - Repo url: `https://github.com/chflame163/ComfyUI_LayerStyle.git`

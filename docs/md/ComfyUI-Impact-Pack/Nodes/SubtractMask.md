@@ -1,6 +1,6 @@
 ---
 tags:
-- MaskRegion
+- MaskMath
 ---
 
 # Pixelwise(MASK - MASK)

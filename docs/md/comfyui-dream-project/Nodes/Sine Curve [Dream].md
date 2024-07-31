@@ -1,10 +1,7 @@
 ---
 tags:
+- AnimationScheduling
 - Curve
-- FrameInterpolation
-- Interpolation
-- VisualEffects
-- WavePatterns
 ---
 
 # 📈 Sine Curve

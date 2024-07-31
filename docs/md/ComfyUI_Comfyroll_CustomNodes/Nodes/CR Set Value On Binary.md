@@ -1,7 +1,6 @@
 ---
 tags:
-- Debugging
-- Dictionary
+- ComfyrollNodes
 ---
 
 # ⚙️ CR Set Value On Binary

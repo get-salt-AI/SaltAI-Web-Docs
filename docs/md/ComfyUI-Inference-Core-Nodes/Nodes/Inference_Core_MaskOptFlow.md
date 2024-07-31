@@ -1,6 +1,6 @@
 ---
 tags:
-- Segmentation
+- OpticalFlow
 ---
 
 # [Inference.Core] Mask Optical Flow (DragNUWA)

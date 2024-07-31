@@ -1,7 +1,6 @@
 ---
 tags:
 - ConditionalSelection
-- ImpactPack
 ---
 
 # CLIP Vision Input Switch

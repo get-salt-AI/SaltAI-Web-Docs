@@ -1,8 +1,7 @@
 ---
 tags:
-- DataTypeAgnostic
-- Debugging
 - String
+- Text
 ---
 
 # Show String (klinter)

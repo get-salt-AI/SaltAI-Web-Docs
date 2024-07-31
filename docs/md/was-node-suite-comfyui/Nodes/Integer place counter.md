@@ -1,8 +1,3 @@
----
-tags:
-- Math
----
-
 # Integer place counter
 ## Documentation
 - Class name: `Integer place counter`

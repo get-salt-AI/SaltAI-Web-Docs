@@ -1,6 +1,6 @@
 ---
 tags:
-- Constant
+- Math
 - VectorMath
 ---
 

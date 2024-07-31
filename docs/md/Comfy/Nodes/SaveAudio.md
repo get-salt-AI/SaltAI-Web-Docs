@@ -1,8 +1,3 @@
----
-tags:
-- BackendCache
----
-
 # SaveAudio
 ## Documentation
 - Class name: `SaveAudio`

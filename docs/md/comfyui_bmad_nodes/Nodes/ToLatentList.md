@@ -1,9 +1,6 @@
 ---
 tags:
 - Latent
-- LatentBlend
-- ModelGuidance
-- VAE
 ---
 
 # ToLatentList

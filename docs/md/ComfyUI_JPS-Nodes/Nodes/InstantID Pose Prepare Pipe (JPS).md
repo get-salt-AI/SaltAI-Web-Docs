@@ -1,10 +1,8 @@
 ---
 tags:
-- IPAdapter
 - Image
 - ImagePreprocessing
 - ImageTransformation
-- Pipeline
 ---
 
 # InstantID Pose Prepare Pipe (JPS)

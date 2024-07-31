@@ -1,6 +1,8 @@
 ---
 tags:
+- ImageScaling
 - ImageUpscaling
+- Upscale
 ---
 
 # Load Upscale Model

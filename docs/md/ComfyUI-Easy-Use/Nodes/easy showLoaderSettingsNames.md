@@ -1,6 +1,6 @@
 ---
 tags:
-- ModelLoader
+- Loader
 ---
 
 # Show Loader Settings Names

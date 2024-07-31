@@ -2,7 +2,7 @@
 Facerestore CF is a modified version of the facerestore custom node designed to work with ComfyUI, specifically adding support for the CodeFormer Fidelity parameter to enhance face restoration in images. It leverages models from GFPGAN and CodeFormer for face restoration, and utilizes face detection models to crop and process each face found in an image before restoring it, ensuring high-quality results.
 
 ## Tags
-Crop * FaceRestoration * Image * ImageTransformation * SMPL * SMPLModel
+Crop * Face * FaceRestoration * Image * ImageTransformation
 
 ## Repo info
 - Repo url: `https://github.com/mav-rik/facerestore_cf.git`

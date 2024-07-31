@@ -1,6 +1,5 @@
 ---
 tags:
-- CLIPConditioning
 - Conditioning
 ---
 

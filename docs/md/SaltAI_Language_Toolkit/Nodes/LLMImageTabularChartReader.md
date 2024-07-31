@@ -1,7 +1,6 @@
 ---
 tags:
 - LLM
-- LlamaIndex
 ---
 
 # ∞ Image Tabular Chart

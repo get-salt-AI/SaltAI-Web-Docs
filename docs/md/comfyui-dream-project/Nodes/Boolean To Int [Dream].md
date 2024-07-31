@@ -2,9 +2,6 @@
 tags:
 - BooleanLogic
 - ConditionalSelection
-- FloatData
-- ImpactPack
-- Math
 ---
 
 # ⬖ Boolean To Int

@@ -1,8 +1,8 @@
 ---
 tags:
-- Contour
 - Crop
 - Image
+- ImageTransformation
 ---
 
 # Resize Image for SDXL (Mikey)

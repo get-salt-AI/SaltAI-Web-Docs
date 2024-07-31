@@ -1,7 +1,6 @@
 ---
 tags:
-- Prompt
-- PromptComposer
+- Image
 ---
 
 # Stability API SD3

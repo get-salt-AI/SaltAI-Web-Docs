@@ -3,8 +3,6 @@ tags:
 - Batch
 - Image
 - ImageBatch
-- ImageDuplication
-- Tiled
 ---
 
 # Load Image Batch

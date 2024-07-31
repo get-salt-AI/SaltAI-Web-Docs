@@ -2,9 +2,6 @@
 tags:
 - Mask
 - MaskBatch
-- MaskGeneration
-- MaskList
-- MaskMorphology
 ---
 
 # 🔧 Mask From Batch

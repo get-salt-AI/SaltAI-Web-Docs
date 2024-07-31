@@ -1,11 +1,6 @@
 ---
 tags:
-- Checkpoint
-- CheckpointLoader
-- Loader
-- ModelLoader
-- ModelMerge
-- ModelSwitching
+- Face
 ---
 
 # EasyLoader (HunYuanDiT)

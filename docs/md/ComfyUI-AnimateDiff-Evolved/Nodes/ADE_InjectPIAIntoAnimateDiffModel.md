@@ -1,3 +1,9 @@
+---
+tags:
+- AnimateDiff
+- Animation
+---
+
 # 🧪Inject PIA into AnimateDiff Model 🎭🅐🅓②
 ## Documentation
 - Class name: `ADE_InjectPIAIntoAnimateDiffModel`

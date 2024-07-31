@@ -2,8 +2,6 @@
 tags:
 - Image
 - ImagePreprocessing
-- ImageTransformation
-- Pipeline
 ---
 
 # IP Adapter Tiled Settings (JPS)

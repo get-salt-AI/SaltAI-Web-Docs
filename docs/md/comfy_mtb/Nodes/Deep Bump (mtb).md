@@ -1,7 +1,9 @@
 ---
 tags:
+- DepthMap
 - DepthMapEstimation
-- Inpaint
+- Image
+- NormalMap
 ---
 
 # Deep Bump (mtb)

@@ -1,9 +1,7 @@
 ---
 tags:
-- ImageTransformation
-- ImpactPack
-- SEGSPrep
 - Segmentation
+- SemanticSegmentationPreprocessing
 ---
 
 # UniFormer Segmentor

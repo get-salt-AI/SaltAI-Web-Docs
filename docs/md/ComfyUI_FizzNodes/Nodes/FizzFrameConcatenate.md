@@ -1,9 +1,7 @@
 ---
 tags:
-- Counting
-- Curve
-- Interpolation
-- WavePatterns
+- AnimationScheduling
+- Frame
 ---
 
 # Frame Concatenate 📅🅕🅝

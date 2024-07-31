@@ -1,6 +1,6 @@
 ---
 tags:
-- SigmaScheduling
+- Text
 ---
 
 # Regex Search and Replace

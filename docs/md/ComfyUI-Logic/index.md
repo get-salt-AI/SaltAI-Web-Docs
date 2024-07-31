@@ -2,7 +2,7 @@
 ComfyUI-Logic is an extension for ComfyUI that adds logic nodes and conditional rendering capabilities, including operations like If, Compare, and handling of Int, String, Float, Bool data types. It enables users to perform comparisons, data type conversions, conditional executions, and debugging by printing inputs to the console.
 
 ## Tags
-BackendCache * Batch * BooleanLogic * Comparison * ConditionalSelection * DataConversion * DataTypeAgnostic * DataTypeConversion * Debugging * Float * FloatData * FloatList * ImpactPack * Integer * RegionalPrompt * Style * VectorMath
+BooleanLogic * ConditionalSelection * DataConversion * DataTypeConversion * Float * FloatData * NumericConversion * String * Text
 
 ## Repo info
 - Repo url: `https://github.com/theUpsider/ComfyUI-Logic`

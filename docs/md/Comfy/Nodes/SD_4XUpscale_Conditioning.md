@@ -1,8 +1,8 @@
 ---
 tags:
-- ImageResolution
-- ImageTransformation
+- ImageScaling
 - ImageUpscaling
+- Upscale
 ---
 
 # SD_4XUpscale_Conditioning

@@ -1,6 +1,6 @@
 ---
 tags:
-- UnaryOperations
+- Math
 - VectorMath
 ---
 

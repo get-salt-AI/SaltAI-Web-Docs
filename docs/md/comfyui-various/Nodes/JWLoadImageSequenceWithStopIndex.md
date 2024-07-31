@@ -1,8 +1,7 @@
 ---
 tags:
-- Animation
 - Image
-- ImageLoad
+- ImageSequence
 ---
 
 # Batch Load Image Sequence With Stop Index

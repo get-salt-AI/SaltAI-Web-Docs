@@ -1,7 +1,6 @@
 ---
 tags:
-- Image
-- Style
+- RegionalPrompt
 ---
 
 # Regional Conditioning Simple (Inspire)

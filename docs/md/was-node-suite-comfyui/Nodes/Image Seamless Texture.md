@@ -1,8 +1,7 @@
 ---
 tags:
-- GridLayout
-- ImageDuplication
-- ImageTransformation
+- Image
+- Tiled
 ---
 
 # Image Seamless Texture

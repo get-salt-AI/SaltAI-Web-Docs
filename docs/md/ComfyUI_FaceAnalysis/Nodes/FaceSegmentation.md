@@ -1,7 +1,5 @@
 ---
 tags:
-- ImpactPack
-- SEGSPrep
 - Segmentation
 ---
 

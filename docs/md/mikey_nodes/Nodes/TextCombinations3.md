@@ -1,6 +1,6 @@
 ---
 tags:
-- Searge
+- Text
 ---
 
 # Text Combinations 3 (Mikey)

@@ -1,8 +1,6 @@
 ---
 tags:
 - IPAdapter
-- IdentityImage
-- RegionalImageProcessing
 ---
 
 # Easy Apply IPAdapter (StyleComposition)

@@ -1,8 +1,7 @@
 ---
 tags:
-- Animation
-- MotionData
-- PoseEstimation
+- SMPL
+- SMPLModel
 ---
 
 # Human4D Image2SMPL

@@ -2,7 +2,6 @@
 tags:
 - DataTypeAgnostic
 - Debugging
-- Text
 ---
 
 # Display Any (rgthree)

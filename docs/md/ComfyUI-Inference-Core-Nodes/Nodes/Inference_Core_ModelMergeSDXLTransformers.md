@@ -1,8 +1,6 @@
 ---
 tags:
-- Face
 - ModelMerge
-- ReActorFace
 ---
 
 # Inference_Core_ModelMergeSDXLTransformers

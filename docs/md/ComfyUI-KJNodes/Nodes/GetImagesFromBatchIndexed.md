@@ -3,8 +3,6 @@ tags:
 - Batch
 - Image
 - ImageBatch
-- ImageDuplication
-- Tiled
 ---
 
 # Get Images From Batch Indexed

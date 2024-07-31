@@ -2,8 +2,7 @@
 tags:
 - Batch
 - Image
-- ImageBatch
-- ImageDuplication
+- ImageSplitting
 ---
 
 # imageSplitList

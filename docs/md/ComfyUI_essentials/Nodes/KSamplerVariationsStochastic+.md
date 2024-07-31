@@ -1,8 +1,5 @@
 ---
 tags:
-- Image
-- Pipeline
-- SamplerScheduler
 - Sampling
 ---
 

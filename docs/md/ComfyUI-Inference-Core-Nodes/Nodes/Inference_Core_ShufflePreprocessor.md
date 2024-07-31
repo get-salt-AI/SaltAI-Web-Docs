@@ -1,6 +1,6 @@
 ---
 tags:
-- Inpaint
+- Image
 ---
 
 # [Inference.Core] Content Shuffle

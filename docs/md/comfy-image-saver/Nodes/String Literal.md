@@ -1,8 +1,3 @@
----
-tags:
-- NumberRangeGeneration
----
-
 # String Literal
 ## Documentation
 - Class name: `String Literal`

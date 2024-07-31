@@ -1,7 +1,6 @@
 ---
 tags:
-- Image
-- VideoHelperSuite
+- Counting
 ---
 
 # Get Image Batch Count

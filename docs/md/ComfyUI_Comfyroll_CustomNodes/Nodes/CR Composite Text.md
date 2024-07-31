@@ -1,8 +1,7 @@
 ---
 tags:
-- ImageDrawing
+- Image
 - TextOnImage
-- VisualEffects
 ---
 
 # 🔤️ CR Composite Text

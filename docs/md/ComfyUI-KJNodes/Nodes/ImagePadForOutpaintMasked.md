@@ -1,7 +1,8 @@
 ---
 tags:
-- Crop
 - Image
+- ImagePadding
+- ImageTransformation
 ---
 
 # Image Pad For Outpaint Masked

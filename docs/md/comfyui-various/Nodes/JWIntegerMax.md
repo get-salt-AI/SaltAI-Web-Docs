@@ -1,8 +1,6 @@
 ---
 tags:
-- Math
-- MathematicalExpressions
-- NumericConversion
+- MathematicalFunctions
 ---
 
 # Integer Maximum

@@ -1,7 +1,7 @@
 ---
 tags:
 - Concatenate
-- Text
+- PromptComposer
 ---
 
 # ⚙️ CR Combine Prompt

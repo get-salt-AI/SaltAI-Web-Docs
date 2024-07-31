@@ -1,8 +1,8 @@
 ---
 tags:
 - LLM
+- LLMImage
 - LlamaIndex
-- WebContentExtraction
 ---
 
 # ∞ Image Vision LLM

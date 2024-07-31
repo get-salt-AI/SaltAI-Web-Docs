@@ -1,7 +1,6 @@
 ---
 tags:
-- ComfyrollNodes
-- Text
+- Concatenate
 ---
 
 # Concat String (Single) 📅🅕🅝

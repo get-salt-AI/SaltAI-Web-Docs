@@ -1,6 +1,6 @@
 ---
 tags:
-- PromptStyling
+- PromptComposer
 ---
 
 # Prompt Composer Grouping

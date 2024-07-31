@@ -1,6 +1,6 @@
 ---
 tags:
-- FaceRestoration
+- Face
 ---
 
 # (Down)Load LivePortraitModels

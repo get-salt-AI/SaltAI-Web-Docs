@@ -1,7 +1,8 @@
 ---
 tags:
+- CLIP
 - CLIPConditioning
-- CLIPTextEncoding
+- Conditioning
 ---
 
 # MotionCLIP Text Encode

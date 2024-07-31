@@ -1,8 +1,7 @@
 ---
 tags:
-- CLIPConditioning
-- SAM
-- Sampling
+- Conditioning
+- Context
 ---
 
 # Context Merge Big (rgthree)

@@ -1,7 +1,6 @@
 ---
 tags:
-- Constant
-- NumberRangeGeneration
+- Math
 - VectorMath
 ---
 

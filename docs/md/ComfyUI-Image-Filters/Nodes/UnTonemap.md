@@ -1,8 +1,6 @@
 ---
 tags:
-- ImageNoise
-- NoisePatterns
-- Seed
+- ImageEnhancement
 ---
 
 # UnTonemap

@@ -1,6 +1,7 @@
 ---
 tags:
-- ImageSize
+- ImageResolution
+- ImageTransformation
 ---
 
 # SDXLResolution

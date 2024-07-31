@@ -1,11 +1,7 @@
 ---
 tags:
-- ImageMaskConversion
 - Mask
-- MaskBatch
 - MaskGeneration
-- MaskList
-- MaskMorphology
 ---
 
 # LayerMask: Shadow & Highlight Mask

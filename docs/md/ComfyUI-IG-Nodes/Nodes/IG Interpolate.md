@@ -1,8 +1,3 @@
----
-tags:
-- IPAdapter
----
-
 # 🧑🏻‍🧑🏿‍🧒🏽 IG Interpolate
 ## Documentation
 - Class name: `IG Interpolate`

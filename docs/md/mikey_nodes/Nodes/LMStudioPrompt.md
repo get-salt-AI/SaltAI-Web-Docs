@@ -1,9 +1,6 @@
 ---
 tags:
 - Prompt
-- PromptStyling
-- Text
-- Wildcard
 ---
 
 # LM Studio Prompt (Mikey)

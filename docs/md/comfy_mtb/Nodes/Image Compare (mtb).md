@@ -1,6 +1,6 @@
 ---
 tags:
-- ImpactPack
+- Comparison
 ---
 
 # Image Compare (mtb)

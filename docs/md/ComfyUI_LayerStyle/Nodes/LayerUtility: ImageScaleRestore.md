@@ -1,7 +1,7 @@
 ---
 tags:
-- ImageResize
 - ImageSize
+- ImageTransformation
 ---
 
 # LayerUtility: ImageScaleRestore

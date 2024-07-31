@@ -1,6 +1,6 @@
 ---
 tags:
-- DetailEnhancement
+- Image
 - Pipeline
 ---
 

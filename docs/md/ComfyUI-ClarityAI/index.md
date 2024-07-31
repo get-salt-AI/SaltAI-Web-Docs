@@ -2,7 +2,7 @@
 ComfyUI-ClarityAI is a node for ComfyUI that integrates with Clarity AI to upscale and enhance images to high resolution, providing a solution for improving image quality within the ComfyUI environment.
 
 ## Tags
-ImageUpscaling
+ImageScaling * ImageUpscaling * Upscale
 
 ## Repo info
 - Repo url: `https://github.com/philz1337x/ComfyUI-ClarityAI.git`

@@ -1,9 +1,3 @@
----
-tags:
-- DataTypeAgnostic
-- Debugging
----
-
 # 🪙 String Tokenizer
 ## Documentation
 - Class name: `String Tokenizer [Dream]`

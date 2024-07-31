@@ -1,10 +1,7 @@
 ---
 tags:
 - Latent
-- LatentBlend
-- ModelGuidance
-- ModelPatch
-- VAE
+- LatentBatch
 ---
 
 # Select Every Nth Latent 🎥🅥🅗🅢

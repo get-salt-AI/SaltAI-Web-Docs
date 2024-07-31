@@ -1,7 +1,6 @@
 ---
 tags:
 - ControlNet
-- ControlNetLoader
 ---
 
 # SparseCtrl Index Method 🛂🅐🅒🅝

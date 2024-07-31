@@ -1,8 +1,9 @@
 ---
 tags:
-- DepthMapEstimation
-- Inpaint
-- LineExtraction
+- DepthMap
+- Image
+- ImageFilter
+- ImagePreprocessing
 ---
 
 # Canny Edge

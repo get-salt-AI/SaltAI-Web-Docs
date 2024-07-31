@@ -1,8 +1,6 @@
 ---
 tags:
-- CLIP
 - ControlNet
-- ControlNetLoader
 ---
 
 # 🔀 CR ControlNet Input Switch

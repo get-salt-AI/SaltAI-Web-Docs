@@ -1,8 +1,6 @@
 ---
 tags:
-- CLIPConditioning
 - Conditioning
-- Context
 ---
 
 # Conditioning (Set Mask)

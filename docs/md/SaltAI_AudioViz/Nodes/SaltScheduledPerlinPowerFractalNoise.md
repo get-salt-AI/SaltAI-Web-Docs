@@ -1,9 +1,7 @@
 ---
 tags:
-- ImageNoise
-- LatentNoise
 - Noise
-- Seed
+- NoisePatterns
 ---
 
 # Scheduled Perline Power Fractal Generator

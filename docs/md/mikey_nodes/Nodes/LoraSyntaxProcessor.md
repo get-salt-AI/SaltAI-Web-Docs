@@ -1,6 +1,7 @@
 ---
 tags:
-- Searge
+- Prompt
+- Text
 ---
 
 # Lora Syntax Processor (Mikey)

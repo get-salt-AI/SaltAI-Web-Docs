@@ -1,6 +1,6 @@
 ---
 tags:
-- FaceRestoration
+- Face
 ---
 
 # Load Instance PositionNet Model

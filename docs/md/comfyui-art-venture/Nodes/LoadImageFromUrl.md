@@ -1,8 +1,6 @@
 ---
 tags:
-- Animation
 - Image
-- ImageLoad
 ---
 
 # Load Image From URL

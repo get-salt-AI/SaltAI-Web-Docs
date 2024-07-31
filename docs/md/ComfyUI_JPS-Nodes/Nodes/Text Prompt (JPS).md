@@ -1,8 +1,6 @@
 ---
 tags:
 - Prompt
-- PromptStyling
-- Text
 ---
 
 # Text Prompt (JPS)

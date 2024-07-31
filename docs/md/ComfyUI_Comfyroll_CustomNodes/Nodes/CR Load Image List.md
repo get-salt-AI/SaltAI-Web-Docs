@@ -1,6 +1,7 @@
 ---
 tags:
-- Animation
+- Image
+- ImageListLoader
 ---
 
 # ⌨️ CR Load Image List

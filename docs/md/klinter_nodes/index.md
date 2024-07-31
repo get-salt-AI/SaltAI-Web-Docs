@@ -2,7 +2,7 @@
 klinter_nodes is a personal project aimed at enhancing the creator's coding skills by developing nodes useful in their workflows. The project includes nodes for string concatenation, filtering based on a bad words list, a size selector for calling sizes from an external list, and a placeholder for a PresentString node.
 
 ## Tags
-Blur * ComfyrollNodes * DataTypeAgnostic * Debugging * ImageSize * List * MotionData * MultilineText * String * Text
+Concatenate * ImageTransformation * String * Text * VisualEffects
 
 ## Repo info
 - Repo url: `https://github.com/klinter007/klinter_nodes`

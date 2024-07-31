@@ -1,9 +1,6 @@
 ---
 tags:
-- ImageEnhancement
-- ImageNoise
 - Noise
-- Seed
 ---
 
 # Noise Layer [Add Weighted] 🎭🅐🅓

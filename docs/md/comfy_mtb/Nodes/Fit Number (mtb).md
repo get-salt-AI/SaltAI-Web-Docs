@@ -1,9 +1,3 @@
----
-tags:
-- Math
-- MathematicalFunctions
----
-
 # Fit Number (mtb)
 ## Documentation
 - Class name: `Fit Number (mtb)`

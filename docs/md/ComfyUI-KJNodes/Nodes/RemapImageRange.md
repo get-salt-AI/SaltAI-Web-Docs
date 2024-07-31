@@ -1,3 +1,8 @@
+---
+tags:
+- ImageTransformation
+---
+
 # Remap Image Range
 ## Documentation
 - Class name: `RemapImageRange`

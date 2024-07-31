@@ -1,6 +1,7 @@
 ---
 tags:
 - ModelGuidance
+- ModelPatch
 ---
 
 # RescaleClassifierFreeGuidanceTest

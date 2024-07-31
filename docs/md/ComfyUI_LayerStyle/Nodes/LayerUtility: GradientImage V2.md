@@ -1,8 +1,3 @@
----
-tags:
-- ImageDrawing
----
-
 # LayerUtility: GradientImage V2
 ## Documentation
 - Class name: `LayerUtility: GradientImage V2`

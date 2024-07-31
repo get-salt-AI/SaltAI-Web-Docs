@@ -1,8 +1,8 @@
 ---
 tags:
-- Checkpoint
-- CheckpointLoader
-- ModelLoader
+- CLIP
+- Loader
+- ModelIO
 ---
 
 # CLIPSeg Model Loader

@@ -1,8 +1,3 @@
----
-tags:
-- Segmentation
----
-
 # (Down)load CLIPSeg
 ## Documentation
 - Class name: `DownloadAndLoadCLIPSeg`

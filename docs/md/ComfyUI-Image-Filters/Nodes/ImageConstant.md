@@ -1,7 +1,7 @@
 ---
 tags:
-- Animation
 - Image
+- ImageGeneration
 ---
 
 # Image Constant Color (RGB)

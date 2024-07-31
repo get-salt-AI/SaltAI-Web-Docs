@@ -1,9 +1,3 @@
----
-tags:
-- RegionalPrompt
-- Style
----
-
 # ➡️ IG String
 ## Documentation
 - Class name: `IG String`

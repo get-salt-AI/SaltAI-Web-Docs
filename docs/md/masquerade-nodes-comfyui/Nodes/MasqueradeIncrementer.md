@@ -1,8 +1,3 @@
----
-tags:
-- Math
----
-
 # Incrementer
 ## Documentation
 - Class name: `MasqueradeIncrementer`

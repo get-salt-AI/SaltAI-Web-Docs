@@ -1,8 +1,6 @@
 ---
 tags:
-- Image
-- Prompt
-- Style
+- RegionalPrompt
 ---
 
 # Regional Prompt By Color Mask (Inspire)

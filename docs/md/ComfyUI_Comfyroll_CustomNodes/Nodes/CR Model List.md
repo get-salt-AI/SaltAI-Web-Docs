@@ -1,10 +1,10 @@
 ---
 tags:
-- Checkpoint
-- CheckpointLoader
 - Loader
+- Model
+- ModelIO
 - ModelLoader
-- ModelMerge
+- ModelSwitching
 ---
 
 # CR Model List (Legacy)

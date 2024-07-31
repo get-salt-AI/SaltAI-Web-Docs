@@ -1,9 +1,8 @@
 ---
 tags:
+- DepthMap
 - DepthMapEstimation
-- ImagePreprocessing
-- Inpaint
-- LineExtraction
+- Image
 ---
 
 # LeReS Depth Map (enable boost for leres++)

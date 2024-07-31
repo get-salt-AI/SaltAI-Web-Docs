@@ -2,7 +2,7 @@
 ComfyUI-InstanceDiffusion integrates nodes for utilizing InstanceDiffusion within ComfyUI, allowing for advanced image and video manipulation based on the InstanceDiffusion models trained by frank-xwang. It provides a way to splice these models into individual components for use with other StableDiffusion 1.5 checkpoints, enhancing ComfyUI's capabilities with specialized models for fusing, positioning, and scaling.
 
 ## Tags
-FaceRestoration
+Face
 
 ## Repo info
 - Repo url: `https://github.com/logtd/ComfyUI-InstanceDiffusion.git`

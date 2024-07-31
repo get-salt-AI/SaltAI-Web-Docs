@@ -1,7 +1,6 @@
 ---
 tags:
 - Mask
-- MaskMorphology
 ---
 
 # LayerMask: Mediapipe Facial Segment

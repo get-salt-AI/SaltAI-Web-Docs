@@ -1,7 +1,7 @@
 ---
 tags:
-- ImageScaling
 - ImageSize
+- ImageTransformation
 ---
 
 # Latent Size to Number

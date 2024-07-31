@@ -1,6 +1,6 @@
 ---
 tags:
-- Multiplication
+- Math
 ---
 
 # Tangent

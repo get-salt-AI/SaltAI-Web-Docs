@@ -1,8 +1,7 @@
 ---
 tags:
+- Face
 - FaceRestoration
-- SMPL
-- SMPLModel
 ---
 
 # Load Face Enhance Model (mtb)

@@ -1,8 +1,6 @@
 ---
 tags:
-- ConditionalSelection
 - Model
-- ModelList
 ---
 
 # 🔧 Model Compile

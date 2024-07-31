@@ -1,11 +1,8 @@
 ---
 tags:
-- IPAdapter
-- IPAdapterLoader
 - Image
 - ImagePreprocessing
 - ImageTransformation
-- Pipeline
 ---
 
 # Prepare Image Plus (JPS)

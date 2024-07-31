@@ -1,8 +1,6 @@
 ---
 tags:
-- Animation
-- MotionData
-- PoseEstimation
+- SMPLModel
 ---
 
 # Export Multiple SMPL Subjects toto 3DCGI Software 

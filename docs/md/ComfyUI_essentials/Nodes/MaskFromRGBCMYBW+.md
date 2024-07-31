@@ -1,11 +1,7 @@
 ---
 tags:
-- ImageMaskConversion
 - Mask
-- MaskBatch
 - MaskGeneration
-- MaskList
-- MaskMorphology
 ---
 
 # 🔧 Mask From RGB/CMY/BW

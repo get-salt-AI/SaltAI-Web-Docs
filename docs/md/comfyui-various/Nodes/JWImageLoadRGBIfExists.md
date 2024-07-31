@@ -1,8 +1,6 @@
 ---
 tags:
-- Animation
 - Image
-- ImageLoad
 ---
 
 # Image Load RGB If Exists

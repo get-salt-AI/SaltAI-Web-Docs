@@ -1,8 +1,3 @@
----
-tags:
-- BackendCache
----
-
 # GetCategoryByIndex
 ## Documentation
 - Class name: `GetCategoryByIndex`

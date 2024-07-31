@@ -1,10 +1,8 @@
 ---
 tags:
-- Curve
-- Frame
+- AnimationScheduling
 - FrameInterpolation
-- Interpolation
-- WavePatterns
+- VisualEffects
 ---
 
 # GMFSS Fortuna VFI

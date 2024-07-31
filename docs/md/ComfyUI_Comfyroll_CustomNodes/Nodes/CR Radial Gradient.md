@@ -1,9 +1,7 @@
 ---
 tags:
-- BackgroundRemoval
-- ImageDrawing
-- PatternGeneration
-- TextOnImage
+- Image
+- VisualEffects
 ---
 
 # 🟨 CR Radial Gradient

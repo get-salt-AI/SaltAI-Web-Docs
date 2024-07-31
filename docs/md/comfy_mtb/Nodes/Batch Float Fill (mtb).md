@@ -1,6 +1,7 @@
 ---
 tags:
-- VectorMath
+- Batch
+- FloatData
 ---
 
 # Batch Float Fill (mtb)

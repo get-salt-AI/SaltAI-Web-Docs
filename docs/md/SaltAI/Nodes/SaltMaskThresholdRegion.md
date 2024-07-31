@@ -1,9 +1,8 @@
 ---
 tags:
 - Mask
+- MaskEnhancement
 - MaskRegion
-- SEGSPrep
-- Segmentation
 ---
 
 # Threshold Mask Regions

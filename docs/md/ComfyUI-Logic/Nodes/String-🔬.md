@@ -1,7 +1,7 @@
 ---
 tags:
-- DataTypeAgnostic
-- Debugging
+- String
+- Text
 ---
 
 # String

@@ -1,8 +1,3 @@
----
-tags:
-- ImageDrawing
----
-
 # Create Shape Image On Path
 ## Documentation
 - Class name: `CreateShapeImageOnPath`

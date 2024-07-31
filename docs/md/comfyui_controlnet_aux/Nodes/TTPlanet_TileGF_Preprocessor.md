@@ -1,8 +1,8 @@
 ---
 tags:
-- DepthMapEstimation
-- Inpaint
-- LineExtraction
+- DepthMap
+- Image
+- ImagePreprocessing
 ---
 
 # TTPlanet Tile GuidedFilter

@@ -1,9 +1,7 @@
 ---
 tags:
-- AnimateDiff
+- Animation
 - CameraControl
-- MotionData
-- PoseEstimation
 ---
 
 # Motion Data Visualizer

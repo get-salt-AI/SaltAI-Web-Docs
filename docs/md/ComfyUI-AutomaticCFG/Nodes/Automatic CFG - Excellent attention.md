@@ -1,7 +1,6 @@
 ---
 tags:
-- MotionData
-- PoseEstimation
+- Animation
 ---
 
 # Automatic CFG - Excellent attention

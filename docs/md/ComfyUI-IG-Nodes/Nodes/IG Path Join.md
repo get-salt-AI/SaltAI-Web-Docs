@@ -1,9 +1,3 @@
----
-tags:
-- RegionalPrompt
-- Style
----
-
 # 📂 IG Path Join
 ## Documentation
 - Class name: `IG Path Join`

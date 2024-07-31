@@ -1,8 +1,7 @@
 ---
 tags:
-- BooleanLogic
 - ConditionalSelection
-- ImpactPack
+- ImageSwitching
 ---
 
 # Switch (images, mask)

@@ -1,8 +1,6 @@
 ---
 tags:
-- DataTypeAgnostic
 - Debugging
-- Text
 ---
 
 # Dictionary to Console

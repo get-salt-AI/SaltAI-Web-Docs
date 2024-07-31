@@ -1,12 +1,7 @@
 ---
 tags:
-- Image
-- ImageMaskConversion
 - Mask
-- MaskBatch
 - MaskGeneration
-- MaskList
-- MaskMorphology
 ---
 
 # Offset Mask

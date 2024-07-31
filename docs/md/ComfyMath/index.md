@@ -2,7 +2,7 @@
 ComfyMath offers mathematical nodes for ComfyUI, including Boolean logic, integer and floating-point arithmetic, as well as arithmetic and functions for Vec2, Vec3, and Vec4.
 
 ## Tags
-BooleanLogic * ConditionalSelection * Constant * DataConversion * Float * FloatData * FloatList * ImageSize * ImpactPack * Math * NumberRangeGeneration * NumericConversion * UnaryOperations * VectorMath
+BooleanLogic * ConditionalSelection * DataConversion * DataTypeConversion * ImageResolution * ImageTransformation * Math * NumericConversion * UnaryOperations * VectorMath
 
 ## Repo info
 - Repo url: `https://github.com/evanspearman/ComfyMath`

@@ -1,8 +1,7 @@
 ---
 tags:
-- Comparison
-- Model
-- ModelList
+- List
+- ListExtension
 ---
 
 # ExtendIntList

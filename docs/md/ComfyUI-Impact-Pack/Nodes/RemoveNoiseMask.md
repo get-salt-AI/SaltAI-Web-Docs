@@ -1,10 +1,7 @@
 ---
 tags:
-- ImageEnhancement
-- ImageNoise
+- LatentNoise
 - Noise
-- Scheduling
-- Seed
 ---
 
 # Remove Noise Mask

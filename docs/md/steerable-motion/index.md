@@ -2,7 +2,7 @@
 Steerable Motion is a ComfyUI node designed for batch creative interpolation, aiming to provide high-quality and precise methods for steering motion in videos using batches of images. It is optimized for use with Dough, a creative tool that simplifies settings for a better creative flow, and can also be utilized within Discord communities. The project emphasizes artistic control, allowing users to adjust key settings such as key frame position, length and strength of influence, and image adherence to achieve desired motion effects in video models.
 
 ## Tags
-Curve * FrameInterpolation * IPAdapter * Interpolation * WavePatterns
+AnimationScheduling * FrameInterpolation * VisualEffects
 
 ## Repo info
 - Repo url: `https://github.com/banodoco/steerable-motion`

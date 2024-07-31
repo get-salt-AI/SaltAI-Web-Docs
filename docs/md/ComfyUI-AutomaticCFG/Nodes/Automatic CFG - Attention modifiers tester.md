@@ -1,8 +1,3 @@
----
-tags:
-- MotionData
----
-
 # Automatic CFG - Attention modifiers tester
 ## Documentation
 - Class name: `Automatic CFG - Attention modifiers tester`

@@ -1,9 +1,3 @@
----
-tags:
-- DataTypeAgnostic
-- Debugging
----
-
 # Text Parse Tokens
 ## Documentation
 - Class name: `Text Parse Tokens`

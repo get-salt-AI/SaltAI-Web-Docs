@@ -1,11 +1,7 @@
 ---
 tags:
-- BoundingBox
-- ImagePadding
-- ImageTransformation
 - Mask
-- MaskList
-- MaskMorphology
+- MaskGeneration
 ---
 
 # Create Gradient Mask

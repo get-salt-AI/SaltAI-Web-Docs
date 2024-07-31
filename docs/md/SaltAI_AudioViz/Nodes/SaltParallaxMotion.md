@@ -1,8 +1,7 @@
 ---
 tags:
-- AnimationScheduling
 - Scheduling
-- SigmaScheduling
+- VisualEffects
 ---
 
 # Parallax Motion Parameter Schedule Generator

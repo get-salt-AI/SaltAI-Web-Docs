@@ -1,10 +1,6 @@
 ---
 tags:
-- AnimationScheduling
 - Scheduling
-- SigmaScheduling
-- VisualEffects
-- WavePatterns
 ---
 
 # Schedule Smoothing

@@ -2,7 +2,6 @@
 tags:
 - AnimationScheduling
 - Scheduling
-- SigmaScheduling
 ---
 
 # Schedule Audio Framesync

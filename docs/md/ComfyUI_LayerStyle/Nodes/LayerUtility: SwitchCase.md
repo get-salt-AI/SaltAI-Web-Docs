@@ -1,8 +1,3 @@
----
-tags:
-- BackendCache
----
-
 # LayerUtility: Switch Case
 ## Documentation
 - Class name: `LayerUtility: SwitchCase`

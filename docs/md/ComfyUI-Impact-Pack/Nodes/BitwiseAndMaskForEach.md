@@ -1,6 +1,5 @@
 ---
 tags:
-- Mask
 - Segmentation
 ---
 

@@ -2,7 +2,7 @@
 Efficiency-nodes-comfyui is a collection of custom nodes designed for use with ComfyUI Version 2.0+, aimed at streamlining workflows and reducing the total node count in projects. These nodes include functionalities for model loading and caching, live preview of generations, image upscaling, noise control, and simple Python expression evaluation, among others, to enhance efficiency and productivity in various tasks.
 
 ## Tags
-CLIP * Checkpoint * CheckpointLoader * Conditioning * ControlNet * ControlNetLoader * DataConversion * DataVisualization * Float * FloatData * Image * ImageBlend * ImageNoise * ImageTransformation * ImageUpscaling * LayeredDiffusion * LayeredDiffusionDecode * LoRA * Loader * ModelGuidance * ModelLoader * ModelMerge * ModelSwitching * Noise * Pipeline * Prompt * PromptStyling * RandomGeneration * SamplerScheduler * Sampling * Seed * VAE * XYPlot * XYPlotData
+Batch * ControlNet * DataTypeConversion * DataVisualization * Image * ImageComposite * ImageScaling * ImageUpscaling * LoRA * LoRAVisualization * Loader * Math * MathematicalExpressions * Model * ModelGuidance * ModelIO * ModelLoader * ModelMerge * Noise * Prompt * SamplerScheduler * Sampling * Upscale * VAE * XYPlot * XYPlotData
 
 ## Repo info
 - Repo url: `https://github.com/jags111/efficiency-nodes-comfyui.git`

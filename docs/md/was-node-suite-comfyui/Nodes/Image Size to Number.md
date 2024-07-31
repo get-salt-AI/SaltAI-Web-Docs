@@ -1,7 +1,7 @@
 ---
 tags:
-- ImageScaling
 - ImageSize
+- ImageTransformation
 ---
 
 # Image Size to Number

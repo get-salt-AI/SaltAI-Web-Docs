@@ -1,9 +1,7 @@
 ---
 tags:
 - Image
-- ImagePreprocessing
-- ImageTransformation
-- Pipeline
+- SDXLSettings
 ---
 
 # SDXL Settings Pipe (JPS)

@@ -1,10 +1,8 @@
 ---
 tags:
 - AspectRatio
-- Batch
-- Image
-- ImageResize
 - ImageSize
+- ImageTransformation
 ---
 
 # CR Image Size (Legacy)

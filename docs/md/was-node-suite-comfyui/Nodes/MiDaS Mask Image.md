@@ -1,10 +1,8 @@
 ---
 tags:
+- DepthMap
 - DepthMapEstimation
 - Image
-- ImageFilter
-- ImagePreprocessing
-- Inpaint
 ---
 
 # MiDaS Mask Image

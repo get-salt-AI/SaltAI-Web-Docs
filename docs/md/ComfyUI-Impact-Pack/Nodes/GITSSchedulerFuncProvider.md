@@ -1,8 +1,3 @@
----
-tags:
-- SigmaScheduling
----
-
 # GITSScheduler Func Provider
 ## Documentation
 - Class name: `GITSSchedulerFuncProvider`

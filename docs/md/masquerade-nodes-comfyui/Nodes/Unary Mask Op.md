@@ -1,8 +1,3 @@
----
-tags:
-- Mask
----
-
 # Unary Mask Op
 ## Documentation
 - Class name: `Unary Mask Op`

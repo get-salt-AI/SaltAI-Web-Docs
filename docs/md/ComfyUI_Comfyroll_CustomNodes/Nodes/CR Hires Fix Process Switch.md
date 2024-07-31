@@ -1,8 +1,6 @@
 ---
 tags:
-- BooleanLogic
 - ConditionalSelection
-- ImpactPack
 ---
 
 # 🔂 CR Hires Fix Process Switch

@@ -2,7 +2,7 @@
 ComfyUI-Inference-Core-Nodes is a comprehensive toolkit designed for enhancing and processing images and videos through a variety of AI-driven techniques. It includes functionalities for image segmentation, pose estimation, depth mapping, line art conversion, and noise reduction, among others. The project aims to provide a versatile set of tools for tasks such as image enhancement, content generation, and transformation, catering to a wide range of applications in digital media and content creation.
 
 ## Tags
-AnimateDiff * CLIPConditioning * CameraControl * ControlNet * DepthMap * DepthMapEstimation * Face * Flip * GridLayout * Image * ImageDuplication * ImageEnhancement * ImageFilter * ImageNoise * ImagePreprocessing * ImageSize * ImageTransformation * ImpactPack * Inpaint * LayeredDiffusion * LineExtraction * ModelGuidance * ModelMerge * MotionData * NoisePatterns * NormalMap * PoseEstimation * Prompt * PromptStyling * ReActorFace * SAM * SEGSPrep * SamplerScheduler * Sampling * Seed * Segmentation * Tiled * Weight
+Animation * Conditioning * DepthMap * DepthMapEstimation * Image * ImageEnhancement * ImageFilter * ImagePreprocessing * ImageResolution * ImageTransformation * Inpaint * LayeredDiffusion * LayeredDiffusionDecode * LineExtraction * MediaPipeFaceMesh * ModelGuidance * ModelMerge * ModelPatch * NormalMap * OpticalFlow * PoseEstimation * Prompt * SAM * Segmentation * SemanticSegmentationPreprocessing * Tiled
 
 ## Repo info
 - Repo url: `https://github.com/LykosAI/ComfyUI-Inference-Core-Nodes`

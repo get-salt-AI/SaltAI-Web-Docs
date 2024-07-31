@@ -1,9 +1,6 @@
 ---
 tags:
-- CLIPConditioning
 - Conditioning
-- Context
-- SAM
 ---
 
 # Conditioning area scale by ratio

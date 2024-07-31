@@ -1,6 +1,6 @@
 ---
 tags:
-- ImageUpscaling
+- ImageScaling
 ---
 
 # PatchModelAddDownscale (Kohya Deep Shrink)

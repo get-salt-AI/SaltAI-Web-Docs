@@ -1,6 +1,8 @@
 ---
 tags:
-- Crop
+- BoundingBox
+- Image
+- ImageTransformation
 ---
 
 # 🔧 Mask Bounding Box

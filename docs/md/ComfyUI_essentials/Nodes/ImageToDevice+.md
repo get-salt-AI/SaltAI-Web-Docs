@@ -1,7 +1,6 @@
 ---
 tags:
-- GridLayout
-- ImageDuplication
+- Image
 - ImageTransformation
 ---
 

@@ -1,7 +1,6 @@
 ---
 tags:
-- FaceRestoration
-- SMPLModel
+- Face
 ---
 
 # Face Swap (mtb)

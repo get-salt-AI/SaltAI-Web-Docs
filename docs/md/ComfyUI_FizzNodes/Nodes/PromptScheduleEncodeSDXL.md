@@ -1,8 +1,8 @@
 ---
 tags:
 - AnimationScheduling
+- PromptScheduling
 - Scheduling
-- SigmaScheduling
 ---
 
 # Prompt Schedule SDXL 📅🅕🅝

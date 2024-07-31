@@ -1,7 +1,7 @@
 ---
 tags:
-- FaceRestoration
-- SMPLModel
+- Face
+- ReActorFace
 ---
 
 # Make Face Model Batch 🌌 ReActor

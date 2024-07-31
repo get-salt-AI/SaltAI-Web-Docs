@@ -2,8 +2,6 @@
 tags:
 - AlphaChannel
 - Image
-- ImageBlend
-- ImageComposite
 ---
 
 # 🔧 Image Remove Alpha

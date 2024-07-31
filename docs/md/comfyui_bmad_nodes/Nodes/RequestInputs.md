@@ -1,8 +1,6 @@
 ---
 tags:
-- DataTypeAgnostic
-- Debugging
-- String
+- Text
 ---
 
 # RequestInputs

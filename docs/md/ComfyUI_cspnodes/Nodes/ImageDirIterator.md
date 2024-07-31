@@ -1,7 +1,7 @@
 ---
 tags:
 - Image
-- VideoHelperSuite
+- Multimedia
 ---
 
 # Image Dir Iterator

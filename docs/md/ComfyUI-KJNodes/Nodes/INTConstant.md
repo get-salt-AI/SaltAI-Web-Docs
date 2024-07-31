@@ -1,6 +1,6 @@
 ---
 tags:
-- NumberRangeGeneration
+- Constant
 ---
 
 # INT Constant

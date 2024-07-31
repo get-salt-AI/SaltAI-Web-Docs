@@ -1,7 +1,7 @@
 ---
 tags:
+- ControlNet
 - Image
-- Pipeline
 ---
 
 # CtrlNet ZoeDepth Settings (JPS)

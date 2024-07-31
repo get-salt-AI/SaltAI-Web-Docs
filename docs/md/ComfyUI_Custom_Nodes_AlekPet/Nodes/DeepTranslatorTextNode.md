@@ -1,8 +1,3 @@
----
-tags:
-- Debugging
----
-
 # Deep Translator Text Node
 ## Documentation
 - Class name: `DeepTranslatorTextNode`

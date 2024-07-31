@@ -1,7 +1,7 @@
 ---
 tags:
+- Face
 - FaceRestoration
-- SMPL
 ---
 
 # ReActor 🌌 Face Booster

@@ -1,6 +1,6 @@
 ---
 tags:
-- Curve
+- AnimationScheduling
 - WavePatterns
 ---
 

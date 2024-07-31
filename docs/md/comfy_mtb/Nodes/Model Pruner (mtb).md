@@ -1,6 +1,6 @@
 ---
 tags:
-- ModelMerge
+- Face
 ---
 
 # Model Pruner (mtb)
@@ -21,58 +21,58 @@ The MTB_ModelPruner node is designed for optimizing and pruning machine learning
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`fix_clip`**
-    - Indicates whether to apply fixes specific to CLIP models, enhancing compatibility and performance.
+    - Indicates whether to apply fixes to the CLIP model component, potentially improving compatibility or performance.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`remove_junk`**
-    - Controls the removal of redundant or unnecessary parts of the model to streamline its structure.
+    - Controls the removal of unnecessary or redundant parts of the model to streamline and optimize.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`ema_mode`**
-    - Defines the mode for Exponential Moving Average (EMA) handling, impacting model accuracy and stability.
-    - Comfy dtype: `['disabled', 'remove_ema', 'ema_only']`
+    - Defines the mode for Exponential Moving Average (EMA) handling within the model, affecting model stability and performance.
+    - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`precision_unet`**
-    - Sets the precision level for the U-Net model component, affecting memory usage and computational efficiency.
+    - Sets the precision level for the U-Net model component, impacting memory usage and computational efficiency.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`operation_unet`**
-    - Describes the operation to be performed on the U-Net model component, such as pruning or optimization.
+    - Specifies the operation to be performed on the U-Net model component, such as pruning or optimization.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`precision_clip`**
-    - Determines the precision level for the CLIP model component, balancing between performance and resource consumption.
+    - Sets the precision level for the CLIP model component, impacting memory usage and computational efficiency.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`operation_clip`**
-    - Outlines the operation for the CLIP model component, targeting specific enhancements or reductions.
+    - Specifies the operation to be performed on the CLIP model component, such as pruning or optimization.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`precision_vae`**
-    - Specifies the precision level for the VAE model component, influencing its execution speed and accuracy.
+    - Sets the precision level for the VAE model component, impacting memory usage and computational efficiency.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`operation_vae`**
-    - Details the operation for the VAE model component, focusing on efficiency improvements or feature trimming.
+    - Specifies the operation to be performed on the VAE model component, such as pruning or optimization.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`unet`**
-    - Provides the U-Net model component for pruning or optimization, if available.
+    - Optional U-Net model component to be pruned or optimized, provided as a dictionary of tensors.
     - Comfy dtype: `MODEL`
     - Python dtype: `dict[str, torch.Tensor] | None`
 - **`clip`**
-    - Supplies the CLIP model component for targeted adjustments or enhancements, if present.
+    - Optional CLIP model component to be pruned or optimized, provided as a dictionary of tensors.
     - Comfy dtype: `CLIP`
     - Python dtype: `dict[str, torch.Tensor] | None`
 - **`vae`**
-    - Includes the VAE model component for modification or optimization, if applicable.
+    - Optional VAE model component to be pruned or optimized, provided as a dictionary of tensors.
     - Comfy dtype: `VAE`
     - Python dtype: `dict[str, torch.Tensor] | None`
 ## Output types
 The node doesn't have output types
 ## Usage tips
-- Infra type: `GPU`
+- Infra type: `CPU`
 - Common nodes: unknown
 
 

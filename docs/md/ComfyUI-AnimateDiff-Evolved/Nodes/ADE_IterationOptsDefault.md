@@ -2,8 +2,6 @@
 tags:
 - AnimateDiff
 - Animation
-- MotionData
-- PoseEstimation
 ---
 
 # Default Iteration Options 🎭🅐🅓

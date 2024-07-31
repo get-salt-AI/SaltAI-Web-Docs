@@ -1,7 +1,7 @@
 ---
 tags:
-- Color
-- Crop
+- Contour
+- Image
 ---
 
 # BoundingRect (contours)

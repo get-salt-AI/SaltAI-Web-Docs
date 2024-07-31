@@ -1,6 +1,6 @@
 ---
 tags:
-- FaceRestoration
+- ModelMerge
 ---
 
 # SUPIR Model Loader (v2) (Clip)

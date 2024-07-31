@@ -1,9 +1,9 @@
 ---
 tags:
-- Curve
+- AnimationScheduling
 - FrameInterpolation
 - Interpolation
-- WavePatterns
+- VisualEffects
 ---
 
 # 🔢 CR Increment Float

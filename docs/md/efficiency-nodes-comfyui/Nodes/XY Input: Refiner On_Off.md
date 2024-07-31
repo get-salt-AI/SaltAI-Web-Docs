@@ -1,8 +1,6 @@
 ---
 tags:
 - DataVisualization
-- LayeredDiffusion
-- XYPlot
 - XYPlotData
 ---
 

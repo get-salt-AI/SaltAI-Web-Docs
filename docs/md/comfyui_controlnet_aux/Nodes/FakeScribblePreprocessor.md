@@ -1,11 +1,9 @@
 ---
 tags:
-- DepthMapEstimation
+- DepthMap
 - Image
-- ImageEnhancement
-- Inpaint
+- ImagePreprocessing
 - LineExtraction
-- Weight
 ---
 
 # Fake Scribble Lines (aka scribble_hed)

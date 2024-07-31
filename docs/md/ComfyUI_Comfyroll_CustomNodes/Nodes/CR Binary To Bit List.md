@@ -1,7 +1,6 @@
 ---
 tags:
-- Debugging
-- Dictionary
+- ComfyrollNodes
 ---
 
 # 📜 CR Binary To Bit List

@@ -1,8 +1,7 @@
 ---
 tags:
-- LatentBlend
-- ModelGuidance
-- VAE
+- Latent
+- Normalization
 ---
 
 # Image Normalize -1 to 1

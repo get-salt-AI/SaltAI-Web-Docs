@@ -1,6 +1,6 @@
 ---
 tags:
-- Seed
+- RandomGeneration
 ---
 
 # Text Random Prompt

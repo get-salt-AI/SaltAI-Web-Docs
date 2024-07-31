@@ -1,11 +1,7 @@
 ---
 tags:
-- Counting
-- Curve
-- Interpolation
-- Multimedia
-- VideoHelperSuite
-- WavePatterns
+- AnimationScheduling
+- Frame
 ---
 
 # ⌛ Frame Count Calculator

@@ -3,7 +3,6 @@ tags:
 - Batch
 - Image
 - ImageBatch
-- ImageDuplication
 ---
 
 # Image List to Image Batch

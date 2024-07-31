@@ -1,8 +1,3 @@
----
-tags:
-- Audio
----
-
 # Whisper Transcribe (OpenAI API)
 ## Documentation
 - Class name: `SAIOpenAIAPIWhisper`

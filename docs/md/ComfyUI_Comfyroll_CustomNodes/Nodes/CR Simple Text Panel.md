@@ -1,9 +1,7 @@
 ---
 tags:
 - Image
-- ImageDrawing
-- PatternGeneration
-- TextOnImage
+- PanelDesign
 - VisualEffects
 ---
 

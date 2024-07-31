@@ -1,7 +1,5 @@
 ---
 tags:
-- Image
-- SamplerScheduler
 - Sampling
 ---
 

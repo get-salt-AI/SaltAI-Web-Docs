@@ -1,9 +1,7 @@
 ---
 tags:
-- ImageTransformation
-- ImpactPack
-- SEGSPrep
 - Segmentation
+- SemanticSegmentationPreprocessing
 ---
 
 # OneFormer ADE20K Segmentor

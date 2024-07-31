@@ -1,7 +1,7 @@
 ---
 tags:
 - Color
-- Image
+- ColorMatch
 ---
 
 # Color Match Image

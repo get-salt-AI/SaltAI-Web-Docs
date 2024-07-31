@@ -1,8 +1,7 @@
 ---
 tags:
 - Prompt
-- PromptStyling
-- Text
+- PromptComposer
 ---
 
 # Create Prompt Variant

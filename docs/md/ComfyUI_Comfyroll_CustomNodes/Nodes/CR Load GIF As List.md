@@ -2,8 +2,6 @@
 tags:
 - Animation
 - Image
-- ImageSave
-- Metadata
 ---
 
 # ⌨️ CR Load GIF As List

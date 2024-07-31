@@ -1,7 +1,7 @@
 ---
 tags:
-- FaceRestoration
-- SMPLModel
+- Face
+- ReActorFace
 ---
 
 # Load Face Model 🌌 ReActor

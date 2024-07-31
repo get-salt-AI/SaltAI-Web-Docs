@@ -1,6 +1,6 @@
 ---
 tags:
-- ModelLoader
+- Loader
 ---
 
 # PhotoMakerEncode

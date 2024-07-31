@@ -1,7 +1,7 @@
 ---
 tags:
 - Animation
-- ImageSave
+- Image
 ---
 
 # Create Morph Image from Path

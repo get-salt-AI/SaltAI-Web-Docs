@@ -1,9 +1,6 @@
 ---
 tags:
-- CLIPConditioning
 - Conditioning
-- Context
-- SAM
 ---
 
 # Add CLIP SDXL Params

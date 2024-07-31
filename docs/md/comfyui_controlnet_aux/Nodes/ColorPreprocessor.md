@@ -1,9 +1,9 @@
 ---
 tags:
-- ControlNet
-- DepthMapEstimation
-- Inpaint
-- LineExtraction
+- DepthMap
+- Image
+- ImageEnhancement
+- ImagePreprocessing
 ---
 
 # Color Pallete

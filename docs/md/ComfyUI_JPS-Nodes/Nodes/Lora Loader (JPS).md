@@ -1,6 +1,5 @@
 ---
 tags:
-- Audio
 - LoRA
 ---
 

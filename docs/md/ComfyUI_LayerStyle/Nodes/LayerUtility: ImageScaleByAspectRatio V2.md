@@ -1,9 +1,8 @@
 ---
 tags:
 - AspectRatio
-- Image
-- ImageResize
 - ImageSize
+- ImageTransformation
 ---
 
 # LayerUtility: ImageScaleByAspectRatio V2

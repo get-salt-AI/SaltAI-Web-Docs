@@ -1,8 +1,7 @@
 ---
 tags:
-- Animation
-- MotionData
-- PoseEstimation
+- SMPL
+- SMPLModel
 ---
 
 # Render SMPL Mesh

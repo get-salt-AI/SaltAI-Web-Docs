@@ -1,8 +1,3 @@
----
-tags:
-- BackendCache
----
-
 # ∞ Scale SERP Search
 ## Documentation
 - Class name: `LLMScaleSERPSearch`

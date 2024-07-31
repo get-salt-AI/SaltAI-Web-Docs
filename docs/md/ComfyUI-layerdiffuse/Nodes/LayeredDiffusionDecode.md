@@ -1,7 +1,7 @@
 ---
 tags:
-- Image
 - LayeredDiffusion
+- LayeredDiffusionDecode
 ---
 
 # Layer Diffuse Decode

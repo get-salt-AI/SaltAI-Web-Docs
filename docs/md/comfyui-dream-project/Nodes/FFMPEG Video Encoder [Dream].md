@@ -1,7 +1,6 @@
 ---
 tags:
-- Animation
-- ImageSave
+- Image
 ---
 
 # 🎬 Video Encoder (FFMPEG)

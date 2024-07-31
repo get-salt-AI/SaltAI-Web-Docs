@@ -1,9 +1,7 @@
 ---
 tags:
-- Agents
 - BackendCache
-- LLMImage
-- LlamaIndex
+- Cache
 ---
 
 # Remove Backend Data [NumberKey] (Inspire)

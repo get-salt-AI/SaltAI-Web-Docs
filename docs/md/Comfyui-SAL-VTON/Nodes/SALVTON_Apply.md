@@ -1,6 +1,6 @@
 ---
 tags:
-- FaceRestoration
+- Face
 ---
 
 # Apply SAL-VTON

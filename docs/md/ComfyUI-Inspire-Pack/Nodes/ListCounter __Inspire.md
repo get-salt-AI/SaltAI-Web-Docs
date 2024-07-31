@@ -1,8 +1,3 @@
----
-tags:
-- Math
----
-
 # List Counter (Inspire)
 ## Documentation
 - Class name: `ListCounter __Inspire`

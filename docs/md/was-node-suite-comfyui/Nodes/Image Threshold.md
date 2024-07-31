@@ -1,7 +1,7 @@
 ---
 tags:
-- Color
-- Crop
+- Image
+- ImageThresholding
 ---
 
 # Image Threshold

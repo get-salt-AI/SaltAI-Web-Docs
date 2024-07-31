@@ -1,8 +1,3 @@
----
-tags:
-- MotionData
----
-
 # YellowBus (klinter)
 ## Documentation
 - Class name: `YellowBus`

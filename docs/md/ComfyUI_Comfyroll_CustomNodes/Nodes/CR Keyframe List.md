@@ -1,7 +1,7 @@
 ---
 tags:
 - AnimationScheduling
-- SigmaScheduling
+- Scheduling
 ---
 
 # 📝 CR Keyframe List

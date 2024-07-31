@@ -1,9 +1,6 @@
 ---
 tags:
-- Animation
 - Image
-- ImageDrawing
-- ImageLoad
 ---
 
 # Image History Loader

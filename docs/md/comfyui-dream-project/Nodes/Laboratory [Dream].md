@@ -1,9 +1,7 @@
 ---
 tags:
-- ImageEnhancement
-- Noise
+- RandomGeneration
 - Randomization
-- Seed
 ---
 
 # 🧪 Laboratory

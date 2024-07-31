@@ -1,7 +1,7 @@
 ---
 tags:
-- FaceRestoration
-- SMPLModel
+- Face
+- ReActorFace
 ---
 
 # Build Blended Face Model 🌌 ReActor

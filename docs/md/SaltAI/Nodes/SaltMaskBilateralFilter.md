@@ -2,8 +2,6 @@
 tags:
 - Mask
 - MaskRegion
-- SEGSPrep
-- Segmentation
 ---
 
 # Bilateral Filter Mask Regions

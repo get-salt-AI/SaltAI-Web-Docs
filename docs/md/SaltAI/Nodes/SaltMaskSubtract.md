@@ -1,6 +1,6 @@
 ---
 tags:
-- MaskRegion
+- MaskMath
 ---
 
 # Subtract Mask Regions

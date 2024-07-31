@@ -1,6 +1,6 @@
 ---
 tags:
-- Debugging
+- Dictionary
 ---
 
 # Text Dictionary Update

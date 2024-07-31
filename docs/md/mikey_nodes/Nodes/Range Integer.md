@@ -1,7 +1,6 @@
 ---
 tags:
-- Math
-- MathematicalFunctions
+- NumberRangeGeneration
 ---
 
 # Range Integer (Mikey)

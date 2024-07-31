@@ -2,8 +2,6 @@
 tags:
 - Mask
 - MaskRegion
-- SEGSPrep
-- Segmentation
 ---
 
 # Skeletonize Mask Regions

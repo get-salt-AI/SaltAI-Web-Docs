@@ -1,7 +1,7 @@
 ---
 tags:
-- CLIPConditioning
-- SAM
+- Conditioning
+- Context
 ---
 
 # Dependencies Edit

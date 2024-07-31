@@ -1,6 +1,6 @@
 ---
 tags:
-- RegionalPrompt
+- LogEntry
 ---
 
 # 🗎 Float to Log Entry

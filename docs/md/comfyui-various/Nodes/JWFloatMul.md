@@ -1,6 +1,7 @@
 ---
 tags:
-- DataTypeConversion
+- MathematicalFunctions
+- Multiplication
 ---
 
 # Float Multiply

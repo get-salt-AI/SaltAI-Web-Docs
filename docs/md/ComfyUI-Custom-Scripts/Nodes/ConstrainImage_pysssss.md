@@ -1,8 +1,9 @@
 ---
 tags:
-- AspectRatio
 - ImageResize
+- ImageScaling
 - ImageSize
+- ImageTransformation
 ---
 
 # Constrain Image 🐍

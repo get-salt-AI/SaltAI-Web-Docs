@@ -1,8 +1,3 @@
----
-tags:
-- SigmaScheduling
----
-
 # Scheduled PerpNeg CFGGuider (Inspire)
 ## Documentation
 - Class name: `ScheduledPerpNegCFGGuider __Inspire`

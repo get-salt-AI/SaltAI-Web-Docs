@@ -1,6 +1,6 @@
 ---
 tags:
-- PromptStyling
+- Prompt
 ---
 
 # IF Image to Prompt🖼️

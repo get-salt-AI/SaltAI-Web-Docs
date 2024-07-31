@@ -1,7 +1,6 @@
 ---
 tags:
 - ControlNet
-- ControlNetLoader
 ---
 
 # Controlnet Adapter v2

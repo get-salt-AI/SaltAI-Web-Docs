@@ -1,10 +1,7 @@
 ---
 tags:
-- BoundingBox
-- ImageTransformation
 - Mask
-- MaskList
-- MaskMorphology
+- MaskGeneration
 ---
 
 # LayerMask: CreateGradientMask

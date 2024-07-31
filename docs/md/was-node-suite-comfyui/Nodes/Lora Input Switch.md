@@ -1,7 +1,6 @@
 ---
 tags:
 - ConditionalSelection
-- ImpactPack
 ---
 
 # Lora Input Switch

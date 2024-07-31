@@ -1,8 +1,6 @@
 ---
 tags:
-- Agents
-- BackendCache
-- LlamaIndex
+- Cache
 ---
 
 # Load Cache

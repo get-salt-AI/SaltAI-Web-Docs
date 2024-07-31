@@ -1,7 +1,6 @@
 ---
 tags:
 - Audio
-- List
 ---
 
 # Audio Bandpass Filter

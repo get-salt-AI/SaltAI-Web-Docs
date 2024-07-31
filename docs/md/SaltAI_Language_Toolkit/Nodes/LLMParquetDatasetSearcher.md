@@ -1,8 +1,3 @@
----
-tags:
-- BackendCache
----
-
 # ∞ Dataset/File Search (1-Dimensional)
 ## Documentation
 - Class name: `LLMParquetDatasetSearcher`

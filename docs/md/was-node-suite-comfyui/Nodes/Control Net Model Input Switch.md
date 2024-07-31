@@ -1,8 +1,6 @@
 ---
 tags:
-- CLIP
 - ControlNet
-- ControlNetLoader
 ---
 
 # Control Net Model Input Switch

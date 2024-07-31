@@ -1,9 +1,8 @@
 ---
 tags:
 - Mask
+- MaskEnhancement
 - MaskRegion
-- SEGSPrep
-- Segmentation
 ---
 
 # Edge Detect Mask Regions

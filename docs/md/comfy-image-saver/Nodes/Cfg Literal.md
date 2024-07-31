@@ -1,8 +1,3 @@
----
-tags:
-- NumberRangeGeneration
----
-
 # Cfg Literal
 ## Documentation
 - Class name: `Cfg Literal`

@@ -1,8 +1,7 @@
 ---
 tags:
-- BooleanLogic
 - ConditionalSelection
-- ImpactPack
+- ImageSwitching
 ---
 
 # Mask Switch (JPS)

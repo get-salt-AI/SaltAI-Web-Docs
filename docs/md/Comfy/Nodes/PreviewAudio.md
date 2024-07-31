@@ -1,8 +1,3 @@
----
-tags:
-- Audio
----
-
 # PreviewAudio
 ## Documentation
 - Class name: `PreviewAudio`

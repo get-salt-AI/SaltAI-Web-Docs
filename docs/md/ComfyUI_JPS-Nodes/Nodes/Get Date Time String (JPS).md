@@ -1,6 +1,6 @@
 ---
 tags:
-- SigmaScheduling
+- Time
 ---
 
 # Get Date Time String (JPS)

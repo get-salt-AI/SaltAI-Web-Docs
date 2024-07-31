@@ -1,7 +1,6 @@
 ---
 tags:
 - Color
-- HSVColorSpace
 ---
 
 # Image Color Palette

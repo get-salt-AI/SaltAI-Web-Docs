@@ -1,6 +1,7 @@
 ---
 tags:
-- BackendCache
+- LLM
+- LLMChat
 ---
 
 # ∞ Get Prompt JSON

@@ -1,9 +1,6 @@
 ---
 tags:
-- Blur
-- ImageEnhancement
 - ImageFilter
-- ImageScaling
 - VisualEffects
 ---
 

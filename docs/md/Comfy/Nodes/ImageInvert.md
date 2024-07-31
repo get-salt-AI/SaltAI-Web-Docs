@@ -1,7 +1,6 @@
 ---
 tags:
-- Mask
-- MaskRegion
+- MaskInversion
 ---
 
 # Invert Image

@@ -1,7 +1,7 @@
 ---
 tags:
 - ControlNet
-- ControlNetLoader
+- Weight
 ---
 
 # ControlNet Soft Weights 🛂🅐🅒🅝

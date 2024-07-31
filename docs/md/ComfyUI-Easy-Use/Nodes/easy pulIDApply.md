@@ -1,7 +1,6 @@
 ---
 tags:
-- CLIP
-- IPAdapter
+- IdentityImage
 ---
 
 # Easy Apply PuLID

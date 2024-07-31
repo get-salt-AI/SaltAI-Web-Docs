@@ -1,8 +1,6 @@
 ---
 tags:
-- AnimationScheduling
 - Scheduling
-- SigmaScheduling
 ---
 
 # Batch Image Scheduled Adjustments

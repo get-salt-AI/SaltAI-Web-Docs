@@ -1,10 +1,8 @@
 ---
 tags:
-- DetailEnhancement
 - Image
 - Pipeline
 - PipelineTransformation
-- SDXLSettings
 ---
 
 # ToBasicPipe

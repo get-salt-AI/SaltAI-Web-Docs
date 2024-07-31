@@ -1,9 +1,7 @@
 ---
 tags:
 - Mask
-- MaskBatch
 - MaskList
-- MaskMorphology
 ---
 
 # FromListGetMasks

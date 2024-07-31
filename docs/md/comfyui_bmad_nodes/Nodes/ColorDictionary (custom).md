@@ -1,7 +1,6 @@
 ---
 tags:
 - Color
-- ColorChannelManipulation
 ---
 
 # ColorDictionary (custom)

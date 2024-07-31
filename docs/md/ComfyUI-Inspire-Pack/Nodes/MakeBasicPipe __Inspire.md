@@ -1,8 +1,7 @@
 ---
 tags:
-- DetailEnhancement
+- Image
 - Pipeline
-- PipelineTransformation
 ---
 
 # Make Basic Pipe (Inspire)

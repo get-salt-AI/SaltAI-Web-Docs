@@ -1,8 +1,3 @@
----
-tags:
-- Audio
----
-
 # EmptyLatentAudio
 ## Documentation
 - Class name: `EmptyLatentAudio`

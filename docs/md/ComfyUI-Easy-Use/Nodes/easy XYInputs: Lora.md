@@ -1,6 +1,7 @@
 ---
 tags:
 - LoRA
+- LoRAVisualization
 ---
 
 # XY Inputs: Lora //EasyUse

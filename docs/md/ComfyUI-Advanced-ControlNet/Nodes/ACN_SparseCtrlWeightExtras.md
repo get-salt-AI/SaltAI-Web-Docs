@@ -1,8 +1,3 @@
----
-tags:
-- MotionData
----
-
 # SparseCtrl Weight Extras 🛂🅐🅒🅝
 ## Documentation
 - Class name: `ACN_SparseCtrlWeightExtras`

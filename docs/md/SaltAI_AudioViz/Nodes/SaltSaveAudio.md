@@ -1,8 +1,6 @@
 ---
 tags:
 - Audio
-- List
-- ListExtension
 ---
 
 # Save Audio

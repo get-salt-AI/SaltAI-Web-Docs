@@ -1,6 +1,7 @@
 ---
 tags:
-- SigmaScheduling
+- Text
+- TextReplacement
 ---
 
 # Text Parse A1111 Embeddings

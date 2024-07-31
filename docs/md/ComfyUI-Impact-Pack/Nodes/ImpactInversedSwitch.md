@@ -1,9 +1,3 @@
----
-tags:
-- Mask
-- MaskRegion
----
-
 # Inversed Switch (Any)
 ## Documentation
 - Class name: `ImpactInversedSwitch`

@@ -1,11 +1,7 @@
 ---
 tags:
-- ImageMask
 - Mask
-- MaskBatch
 - MaskGeneration
-- MaskList
-- MaskMorphology
 ---
 
 # Create Text Mask

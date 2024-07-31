@@ -1,9 +1,3 @@
----
-tags:
-- RegionalPrompt
-- Style
----
-
 # Int
 ## Documentation
 - Class name: `Int-🔬`

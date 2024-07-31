@@ -1,8 +1,3 @@
----
-tags:
-- BackendCache
----
-
 # CheckpointPerturbWeights
 ## Documentation
 - Class name: `CheckpointPerturbWeights`

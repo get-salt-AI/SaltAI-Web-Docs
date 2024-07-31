@@ -1,6 +1,6 @@
 ---
 tags:
-- Inpaint
+- Image
 ---
 
 # Content Shuffle

@@ -1,8 +1,3 @@
----
-tags:
-- Audio
----
-
 # Whisper Model Loader
 ## Documentation
 - Class name: `SAIWhisperLoadModel`

@@ -1,9 +1,8 @@
 ---
 tags:
 - AnimateDiff
+- AnimateDiffContext
 - Animation
-- MotionData
-- PoseEstimation
 ---
 
 # Context Options◆Standard Static 🎭🅐🅓

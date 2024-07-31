@@ -1,6 +1,7 @@
 ---
 tags:
-- CLIPConditioning
+- CLIP
+- Conditioning
 ---
 
 # GLIGENTextBoxApply

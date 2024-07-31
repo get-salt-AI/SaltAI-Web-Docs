@@ -1,6 +1,7 @@
 ---
 tags:
-- ImageDrawing
+- Image
+- TextOnImage
 ---
 
 # LayerUtility: TextImage

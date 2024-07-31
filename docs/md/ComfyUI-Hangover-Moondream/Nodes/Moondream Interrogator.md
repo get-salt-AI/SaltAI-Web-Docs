@@ -1,9 +1,3 @@
----
-tags:
-- Prompt
-- PromptComposer
----
-
 # Moondream Interrogator
 ## Documentation
 - Class name: `Moondream Interrogator`

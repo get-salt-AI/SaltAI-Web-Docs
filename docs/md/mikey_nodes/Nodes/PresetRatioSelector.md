@@ -1,9 +1,8 @@
 ---
 tags:
 - AspectRatio
-- Image
-- ImageResize
 - ImageSize
+- ImageTransformation
 ---
 
 # Preset Ratio Selector (Mikey)

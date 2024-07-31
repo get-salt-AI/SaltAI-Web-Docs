@@ -1,9 +1,7 @@
 ---
 tags:
-- ImpactPack
 - SEGSPrep
 - Segmentation
-- SemanticSegmentationPreprocessing
 ---
 
 # LineArt Preprocessor Provider (SEGS)

@@ -1,7 +1,7 @@
 ---
 tags:
 - Image
-- VideoHelperSuite
+- Multimedia
 ---
 
 # Select Every Nth Image 🎥🅥🅗🅢

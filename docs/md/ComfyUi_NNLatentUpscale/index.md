@@ -2,7 +2,7 @@
 ComfyUi_NNLatentUpscale is a custom node for ComfyUI designed for upscaling latents quickly using a small neural network, avoiding the need to decode and encode with VAE. It is intended for workflows where an initial image is generated at a lower resolution, then the latent is upscaled and fed back into the stable diffusion u-net for a low noise diffusion pass, achieving a significant speed advantage over traditional VAE upscaling methods with minimal quality loss.
 
 ## Tags
-Latent * LatentBlend * VAE
+Latent
 
 ## Repo info
 - Repo url: `https://github.com/Ttl/ComfyUi_NNLatentUpscale.git`

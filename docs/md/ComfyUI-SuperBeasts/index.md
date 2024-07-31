@@ -2,7 +2,7 @@
 ComfyUI-SuperBeasts is a repository containing custom nodes for ComfyUI, developed by SuperBeasts.AI, aimed at enhancing image and video processing tasks. It includes nodes for HDR effects to improve the dynamic range and visual appeal of images, batch management tools for resizing, cropping, and reordering images and masks, and experimental video tools for reducing flickering artifacts in image sequences. The project focuses on providing adjustable parameters for fine-tuning effects, supporting batch processing for efficiency, and improving the quality of visual outputs.
 
 ## Tags
-Batch * Blur * Curve * FrameInterpolation * Image * ImageBatch * ImageDuplication * ImageEnhancement * Interpolation * Mask * MaskBatch * MaskGeneration * MaskList * MaskMorphology * VisualEffects * WavePatterns
+AnimationScheduling * Batch * Image * ImageBatch * Mask * MaskBatch * VisualEffects
 
 ## Repo info
 - Repo url: `https://github.com/SuperBeastsAI/ComfyUI-SuperBeasts.git`

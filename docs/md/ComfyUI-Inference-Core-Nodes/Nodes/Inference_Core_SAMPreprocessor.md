@@ -1,7 +1,6 @@
 ---
 tags:
-- SamplerScheduler
-- Sampling
+- SAM
 ---
 
 # [Inference.Core] SAM Segmentor

@@ -1,9 +1,8 @@
 ---
 tags:
-- Curve
+- AnimationScheduling
 - FrameInterpolation
-- Interpolation
-- WavePatterns
+- VisualEffects
 ---
 
 # Make Interpolation State List

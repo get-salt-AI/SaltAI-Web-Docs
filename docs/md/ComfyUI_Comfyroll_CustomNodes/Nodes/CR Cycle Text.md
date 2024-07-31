@@ -1,10 +1,6 @@
 ---
 tags:
-- DataTypeAgnostic
-- Debugging
-- List
-- String
-- Time
+- Text
 ---
 
 # CR Cycle Text (Legacy)

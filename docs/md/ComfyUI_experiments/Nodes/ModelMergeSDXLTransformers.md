@@ -1,8 +1,6 @@
 ---
 tags:
-- Face
 - ModelMerge
-- ReActorFace
 ---
 
 # ModelMergeSDXLTransformers

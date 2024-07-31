@@ -1,8 +1,6 @@
 ---
 tags:
-- CLIP
-- IPAdapter
-- Loader
+- IdentityImage
 ---
 
 # Apply InstantID Advanced

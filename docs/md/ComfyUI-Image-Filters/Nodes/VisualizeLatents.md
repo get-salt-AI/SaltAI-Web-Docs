@@ -1,10 +1,6 @@
 ---
 tags:
 - Latent
-- LatentBatch
-- LatentBlend
-- Normalization
-- VAE
 ---
 
 # Visualize Latents

@@ -2,7 +2,7 @@
 SaltAI_GenAPI provides a set of general API tools designed for enhancing workflows, as illustrated by the example workflow for the ollama API included in the documentation.
 
 ## Tags
-Audio * BackendCache * SaltNodes
+Audio * SaltNodes
 
 ## Repo info
 - Repo url: `https://gitlab.com/plai-app/ai-studio/orchestra-nodes/to-release/SaltAI_GenAPI.git`

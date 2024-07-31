@@ -2,7 +2,7 @@
 ComfyUI_ELLA is an implementation of ELLA, designed to enhance semantic alignment by equipping diffusion models with Large Language Models (LLMs). It involves setting up specific models in a structured directory and provides a workflow for utilizing the ELLA Loader and ELLA Text Encode functionalities to integrate and condition the diffusion process with textual prompts, aiming to improve the quality and relevance of generated content.
 
 ## Tags
-AnimationScheduling * LoRA * Scheduling * SigmaScheduling
+LoRA * SigmaScheduling
 
 ## Repo info
 - Repo url: `https://github.com/ExponentialML/ComfyUI_ELLA.git`

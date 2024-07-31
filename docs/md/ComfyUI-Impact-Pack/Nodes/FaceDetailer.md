@@ -1,8 +1,8 @@
 ---
 tags:
 - DetailEnhancement
+- Image
 - Pipeline
-- PipelineTransformation
 ---
 
 # FaceDetailer

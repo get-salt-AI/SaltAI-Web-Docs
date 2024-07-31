@@ -1,7 +1,6 @@
 ---
 tags:
-- ImpactPack
-- SEGSPrep
+- MediaPipeFaceMesh
 - Segmentation
 ---
 

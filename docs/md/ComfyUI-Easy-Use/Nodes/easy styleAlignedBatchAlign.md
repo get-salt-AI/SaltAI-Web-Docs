@@ -1,7 +1,7 @@
 ---
 tags:
-- LatentBlend
-- VAE
+- Latent
+- Normalization
 ---
 
 # Easy Apply StyleAlign

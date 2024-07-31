@@ -1,7 +1,6 @@
 ---
 tags:
 - ModelGuidance
-- Seed
 ---
 
 # 🔧 SD3 Negative Conditioning

@@ -1,7 +1,6 @@
 ---
 tags:
 - ModelGuidance
-- RandomGeneration
 ---
 
 # XY Input: CFG Scale

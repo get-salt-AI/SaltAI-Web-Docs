@@ -1,7 +1,6 @@
 ---
 tags:
 - Mask
-- MaskMorphology
 ---
 
 # Select Every Nth Mask 🎥🅥🅗🅢

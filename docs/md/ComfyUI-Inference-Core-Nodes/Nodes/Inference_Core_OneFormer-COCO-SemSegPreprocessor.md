@@ -1,9 +1,7 @@
 ---
 tags:
-- ImageTransformation
-- ImpactPack
-- SEGSPrep
 - Segmentation
+- SemanticSegmentationPreprocessing
 ---
 
 # [Inference.Core] OneFormer COCO Segmentor

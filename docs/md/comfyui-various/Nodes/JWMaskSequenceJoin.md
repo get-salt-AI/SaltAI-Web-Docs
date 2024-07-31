@@ -1,8 +1,6 @@
 ---
 tags:
 - Mask
-- MaskList
-- MaskMorphology
 ---
 
 # Join Mask Sequence

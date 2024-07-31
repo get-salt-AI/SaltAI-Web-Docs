@@ -1,10 +1,6 @@
 ---
 tags:
 - IPAdapter
-- IdentityImage
-- Loader
-- ModelIO
-- RegionalImageProcessing
 ---
 
 # IPAdapter Advanced

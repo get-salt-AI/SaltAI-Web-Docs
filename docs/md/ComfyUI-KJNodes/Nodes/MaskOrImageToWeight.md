@@ -1,8 +1,6 @@
 ---
 tags:
 - Mask
-- MaskList
-- MaskMorphology
 ---
 
 # Mask Or Image To Weight

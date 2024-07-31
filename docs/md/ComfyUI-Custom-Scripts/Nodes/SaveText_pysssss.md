@@ -1,8 +1,3 @@
----
-tags:
-- BackendCache
----
-
 # Save Text 🐍
 ## Documentation
 - Class name: `SaveText_pysssss`

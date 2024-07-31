@@ -1,8 +1,3 @@
----
-tags:
-- NumberRangeGeneration
----
-
 # Width/Height Literal
 ## Documentation
 - Class name: `Width_Height Literal`

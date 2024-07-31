@@ -1,10 +1,9 @@
 ---
 tags:
-- Checkpoint
-- CheckpointLoader
 - Loader
+- Model
+- ModelIO
 - ModelLoader
-- ModelSwitching
 ---
 
 # EasyLLLite

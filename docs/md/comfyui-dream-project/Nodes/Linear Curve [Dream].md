@@ -1,9 +1,7 @@
 ---
 tags:
+- AnimationScheduling
 - Curve
-- FrameInterpolation
-- VisualEffects
-- WavePatterns
 ---
 
 # 📈 Linear Curve

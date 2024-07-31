@@ -1,10 +1,7 @@
 ---
 tags:
-- Animation
 - Image
-- ImageGeneration
 - ImageSave
-- ImageSequence
 ---
 
 # Image Save

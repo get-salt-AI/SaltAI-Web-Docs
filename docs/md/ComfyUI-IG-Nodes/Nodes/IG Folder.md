@@ -1,9 +1,3 @@
----
-tags:
-- RegionalPrompt
-- Style
----
-
 # 📂 IG Folder
 ## Documentation
 - Class name: `IG Folder`

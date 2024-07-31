@@ -1,6 +1,7 @@
 ---
 tags:
-- Constant
+- Math
+- UnaryOperations
 - VectorMath
 ---
 

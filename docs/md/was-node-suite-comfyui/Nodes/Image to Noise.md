@@ -1,9 +1,7 @@
 ---
 tags:
 - ImageNoise
-- LatentNoise
 - Noise
-- Seed
 ---
 
 # Image to Noise

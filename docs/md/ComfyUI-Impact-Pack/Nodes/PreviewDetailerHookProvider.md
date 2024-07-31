@@ -1,3 +1,8 @@
+---
+tags:
+- ImageEnhancement
+---
+
 # PreviewDetailerHookProvider
 ## Documentation
 - Class name: `PreviewDetailerHookProvider`

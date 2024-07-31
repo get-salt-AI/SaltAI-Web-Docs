@@ -1,8 +1,8 @@
 ---
 tags:
+- DepthMap
 - DepthMapEstimation
-- ImagePreprocessing
-- Inpaint
+- Image
 ---
 
 # MeshGraphormer Hand Refiner With External Detector

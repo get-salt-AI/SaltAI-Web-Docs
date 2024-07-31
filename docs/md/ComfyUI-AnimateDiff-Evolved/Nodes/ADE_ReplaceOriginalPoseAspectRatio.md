@@ -1,9 +1,7 @@
 ---
 tags:
-- AnimateDiff
+- Animation
 - CameraControl
-- MotionData
-- PoseEstimation
 ---
 
 # Replace Orig. Pose Aspect Ratio 🎭🅐🅓②

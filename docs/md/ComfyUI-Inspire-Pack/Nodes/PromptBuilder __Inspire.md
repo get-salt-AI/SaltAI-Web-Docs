@@ -1,7 +1,6 @@
 ---
 tags:
 - Prompt
-- PromptStyling
 ---
 
 # Prompt Builder (Inspire)

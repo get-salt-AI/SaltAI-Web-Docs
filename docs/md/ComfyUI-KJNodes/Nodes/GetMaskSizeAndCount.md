@@ -1,8 +1,3 @@
----
-tags:
-- VideoHelperSuite
----
-
 # Get Mask Size & Count
 ## Documentation
 - Class name: `GetMaskSizeAndCount`

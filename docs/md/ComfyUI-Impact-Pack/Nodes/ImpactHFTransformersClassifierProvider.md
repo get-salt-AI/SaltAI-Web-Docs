@@ -1,9 +1,3 @@
----
-tags:
-- Prompt
-- PromptComposer
----
-
 # HF Transformers Classifier Provider
 ## Documentation
 - Class name: `ImpactHFTransformersClassifierProvider`

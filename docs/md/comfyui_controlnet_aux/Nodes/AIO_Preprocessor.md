@@ -1,9 +1,8 @@
 ---
 tags:
-- ControlNet
-- DepthMapEstimation
-- Inpaint
-- LineExtraction
+- DepthMap
+- Image
+- ImagePreprocessing
 ---
 
 # AIO Aux Preprocessor

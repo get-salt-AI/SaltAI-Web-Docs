@@ -1,6 +1,7 @@
 ---
 tags:
-- Blur
+- ImageFilter
+- VisualEffects
 ---
 
 # Guided Filter Image

@@ -1,7 +1,6 @@
 ---
 tags:
-- Math
-- MathematicalExpressions
+- MathematicalFunctions
 ---
 
 # Integer Absolute Value

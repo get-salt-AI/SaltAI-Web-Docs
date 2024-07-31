@@ -1,8 +1,8 @@
 ---
 tags:
-- Blur
+- Image
 - ImageBlend
-- VisualEffects
+- ImageComposite
 ---
 
 # Image Add Multi

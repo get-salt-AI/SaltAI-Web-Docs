@@ -1,8 +1,6 @@
 ---
 tags:
-- Conditioning
 - ControlNet
-- ControlNetLoader
 ---
 
 # Apply ControlNet

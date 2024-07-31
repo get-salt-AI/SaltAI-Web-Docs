@@ -1,8 +1,6 @@
 ---
 tags:
-- ImageNoise
 - Noise
-- Seed
 ---
 
 # XY Input: Add/Return Noise

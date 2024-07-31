@@ -1,10 +1,7 @@
 ---
 tags:
-- Counting
-- Curve
-- Interpolation
-- Multimedia
-- WavePatterns
+- AnimationScheduling
+- Frame
 ---
 
 # Animation Builder (mtb)

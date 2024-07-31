@@ -1,8 +1,7 @@
 ---
 tags:
 - Color
-- Image
-- Preview
+- ColorChannelManipulation
 ---
 
 # Image Select Color

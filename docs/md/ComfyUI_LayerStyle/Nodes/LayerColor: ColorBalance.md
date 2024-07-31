@@ -1,7 +1,6 @@
 ---
 tags:
 - Color
-- Image
 ---
 
 # LayerColor: ColorBalance

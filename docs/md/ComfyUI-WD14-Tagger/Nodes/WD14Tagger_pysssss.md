@@ -1,3 +1,8 @@
+---
+tags:
+- Loader
+---
+
 # WD14 Tagger 🐍
 ## Documentation
 - Class name: `WD14Tagger_pysssss`

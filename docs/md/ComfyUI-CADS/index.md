@@ -2,7 +2,7 @@
 ComfyUI-CADS is an experimental implementation aimed at integrating CADS (Contextual Anomaly Detection System) into ComfyUI to potentially enhance the variety and quality of generations in the user interface. It allows users to apply noise to model generations through various parameters such as `noise_scale`, `rescale`, and selective application options, although the exact impact of CADS on generation outcomes remains uncertain. The project draws inspiration from a similar implementation, A1111, and includes features for comparing CADS and non-CADS generations within ComfyUI.
 
 ## Tags
-MotionData * PoseEstimation
+Animation
 
 ## Repo info
 - Repo url: `https://github.com/asagi4/ComfyUI-CADS.git`

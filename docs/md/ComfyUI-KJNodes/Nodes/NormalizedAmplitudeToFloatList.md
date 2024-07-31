@@ -1,8 +1,3 @@
----
-tags:
-- Audio
----
-
 # NormalizedAmplitudeToFloatList
 ## Documentation
 - Class name: `NormalizedAmplitudeToFloatList`

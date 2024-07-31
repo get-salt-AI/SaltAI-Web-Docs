@@ -1,6 +1,6 @@
 ---
 tags:
-- CLIPConditioning
+- Conditioning
 ---
 
 # XY Inputs: NegCond //EasyUse

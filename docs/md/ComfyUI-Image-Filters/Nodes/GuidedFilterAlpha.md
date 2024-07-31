@@ -2,7 +2,6 @@
 tags:
 - AlphaChannel
 - Image
-- ImageComposite
 ---
 
 # (DEPRECATED) Guided Filter Alpha

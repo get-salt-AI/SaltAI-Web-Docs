@@ -1,7 +1,7 @@
 ---
 tags:
+- RandomGeneration
 - Randomization
-- Seed
 ---
 
 # Text Shuffle

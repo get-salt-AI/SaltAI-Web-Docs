@@ -2,7 +2,7 @@
 ComfyUI-Advanced-ControlNet is designed to enhance the scheduling and application of ControlNet strength across different timesteps and batched latents in AI models. It introduces nodes for applying custom weights, attention masks, and supports various ControlNet types including T2IAdapters, ControlLoRAs, and SparseCtrls, among others. The project aims to replicate and extend features from sd-webui ControlNet extensions, allowing for more granular control over the importance of prompts and ControlNets through adjustable multipliers and supports sliding context sampling for dynamic content generation.
 
 ## Tags
-Animation * Conditioning * ControlNet * ControlNetLoader * Counting * Curve * DepthMapEstimation * Image * ImageDrawing * ImageLoad * Inpaint * Interpolation * LineExtraction * MotionData * WavePatterns
+AnimationScheduling * ControlNet * ControlNetLoader * DepthMap * Frame * Image * ImageLoad * ImagePreprocessing * Keyframe * Weight
 
 ## Repo info
 - Repo url: `https://github.com/Kosinkadink/ComfyUI-Advanced-ControlNet.git`

@@ -1,8 +1,3 @@
----
-tags:
-- FaceRestoration
----
-
 # Face Align
 ## Documentation
 - Class name: `FaceAlign`

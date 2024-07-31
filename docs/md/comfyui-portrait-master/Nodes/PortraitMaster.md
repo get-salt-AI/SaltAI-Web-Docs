@@ -1,6 +1,6 @@
 ---
 tags:
-- PromptStyling
+- Prompt
 ---
 
 # Portrait Master v.2.9

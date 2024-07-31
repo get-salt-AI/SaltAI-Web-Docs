@@ -1,9 +1,6 @@
 ---
 tags:
-- Batch
 - Image
-- ImageBatch
-- ImageDuplication
 ---
 
 # Image Concatenate Multi

@@ -1,3 +1,10 @@
+---
+tags:
+- DataConversion
+- DataTypeConversion
+- NumericConversion
+---
+
 # Floats To Ints (mtb)
 ## Documentation
 - Class name: `Floats To Ints (mtb)`

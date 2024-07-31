@@ -2,7 +2,7 @@
 ComfyUI_cspnodes is designed to facilitate the manipulation and iteration of multimedia content, including images and videos, through directories. It provides tools for transforming text to video, video to video, and adjusting data ranges, alongside iterating through text files and multimedia directories for efficient data handling and processing.
 
 ## Tags
-Image * Prompt * PromptComposer * VideoHelperSuite
+Image * Multimedia
 
 ## Repo info
 - Repo url: `https://github.com/cerspense/ComfyUI_cspnodes`

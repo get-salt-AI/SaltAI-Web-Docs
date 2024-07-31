@@ -1,10 +1,7 @@
 ---
 tags:
-- ImageTransformation
-- ImpactPack
 - SEGSPrep
 - Segmentation
-- SemanticSegmentationPreprocessing
 ---
 
 # OpenPose Preprocessor Provider (SEGS)

@@ -1,9 +1,8 @@
 ---
 tags:
-- DepthMapEstimation
+- DepthMap
 - Image
 - Inpaint
-- NormalMap
 ---
 
 # EasyKSampler (Inpainting)

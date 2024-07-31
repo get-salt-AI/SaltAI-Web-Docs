@@ -1,8 +1,7 @@
 ---
 tags:
 - Animation
-- ImageSave
-- Metadata
+- Image
 ---
 
 # 🛠️ CR Current Frame

@@ -1,7 +1,6 @@
 ---
 tags:
-- Curve
-- VisualEffects
+- AnimationScheduling
 - WavePatterns
 ---
 

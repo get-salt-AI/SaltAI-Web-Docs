@@ -1,7 +1,6 @@
 ---
 tags:
-- SamplerScheduler
-- Sampling
+- SAM
 ---
 
 # GroundingDinoSAMSegment (segment anything)

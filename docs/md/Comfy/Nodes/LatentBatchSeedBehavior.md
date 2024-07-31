@@ -1,8 +1,7 @@
 ---
 tags:
+- Batch
 - Image
-- ImageDuplication
-- ImageSplitting
 ---
 
 # LatentBatchSeedBehavior

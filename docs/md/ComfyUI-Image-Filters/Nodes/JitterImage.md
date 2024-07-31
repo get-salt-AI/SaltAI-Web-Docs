@@ -1,7 +1,6 @@
 ---
 tags:
-- Blur
-- LensEffects
+- ImageTransformation
 - VisualEffects
 ---
 

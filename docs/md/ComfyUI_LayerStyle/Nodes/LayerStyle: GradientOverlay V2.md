@@ -1,3 +1,8 @@
+---
+tags:
+- Image
+---
+
 # LayerStyle: GradientOverlay V2
 ## Documentation
 - Class name: `LayerStyle: GradientOverlay V2`

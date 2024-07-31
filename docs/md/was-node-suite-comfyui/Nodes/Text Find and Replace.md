@@ -1,6 +1,7 @@
 ---
 tags:
-- SigmaScheduling
+- Text
+- TextReplacement
 ---
 
 # Text Find and Replace

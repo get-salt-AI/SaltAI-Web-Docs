@@ -1,8 +1,7 @@
 ---
 tags:
-- Checkpoint
-- CheckpointLoader
-- ModelLoader
+- Loader
+- ModelIO
 ---
 
 # BLIP Model Loader

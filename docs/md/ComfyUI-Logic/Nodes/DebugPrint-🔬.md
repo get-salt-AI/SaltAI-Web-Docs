@@ -1,8 +1,3 @@
----
-tags:
-- BackendCache
----
-
 # DebugPrint
 ## Documentation
 - Class name: `DebugPrint-🔬`

@@ -1,8 +1,6 @@
 ---
 tags:
-- ImageNoise
 - Noise
-- Seed
 ---
 
 # Noise Control Script

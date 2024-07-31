@@ -1,10 +1,7 @@
 ---
 tags:
 - AnimationScheduling
-- PromptScheduling
 - Scheduling
-- SigmaScheduling
-- VisualEffects
 ---
 
 # 📋 CR Output Schedule To File

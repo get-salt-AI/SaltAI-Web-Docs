@@ -1,7 +1,6 @@
 ---
 tags:
-- CLIP
-- IPAdapter
+- IdentityImage
 ---
 
 # Load InstantID Model

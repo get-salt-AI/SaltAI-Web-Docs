@@ -1,6 +1,6 @@
 ---
 tags:
-- Image
+- RegionalPrompt
 ---
 
 # Remove ControlNet (Inspire)

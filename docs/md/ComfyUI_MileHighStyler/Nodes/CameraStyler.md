@@ -1,7 +1,7 @@
 ---
 tags:
-- Prompt
-- PromptComposer
+- Image
+- Style
 ---
 
 # Camera Styler

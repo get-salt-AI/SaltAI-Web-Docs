@@ -2,8 +2,6 @@
 tags:
 - Batch
 - Image
-- ImageBatch
-- ImageDuplication
 ---
 
 # Batch Time Wrap (mtb)

@@ -1,8 +1,8 @@
 ---
 tags:
-- DataConversion
-- Float
-- FloatData
+- DataTypeConversion
+- Math
+- MathematicalExpressions
 ---
 
 # Evaluate Strings

@@ -1,10 +1,7 @@
 ---
 tags:
 - Latent
-- LatentBlend
-- ModelGuidance
-- ModelPatch
-- VAE
+- LatentBatch
 ---
 
 # Merge Latent Batches 🎥🅥🅗🅢

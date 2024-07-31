@@ -1,6 +1,7 @@
 ---
 tags:
-- Multiplication
+- Math
+- MathematicalFunctions
 ---
 
 # Sum

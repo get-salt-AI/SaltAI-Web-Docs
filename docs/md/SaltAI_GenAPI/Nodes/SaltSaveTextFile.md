@@ -1,8 +1,3 @@
----
-tags:
-- BackendCache
----
-
 # Save Text File
 ## Documentation
 - Class name: `SaltSaveTextFile`

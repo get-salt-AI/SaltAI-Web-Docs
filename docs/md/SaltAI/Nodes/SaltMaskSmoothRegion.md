@@ -1,7 +1,7 @@
 ---
 tags:
 - Blur
-- ImageTransformation
+- VisualEffects
 ---
 
 # Smooth Mask Regions

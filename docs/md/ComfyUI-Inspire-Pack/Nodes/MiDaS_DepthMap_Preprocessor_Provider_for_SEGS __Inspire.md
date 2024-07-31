@@ -1,9 +1,6 @@
 ---
 tags:
-- ImpactPack
-- SEGSPrep
 - Segmentation
-- SemanticSegmentationPreprocessing
 ---
 
 # MiDaS Depth Map Preprocessor Provider (SEGS)

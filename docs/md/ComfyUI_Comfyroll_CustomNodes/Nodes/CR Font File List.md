@@ -1,6 +1,6 @@
 ---
 tags:
-- Dictionary
+- ComfyrollNodes
 ---
 
 # ⌨️ CR Font File List

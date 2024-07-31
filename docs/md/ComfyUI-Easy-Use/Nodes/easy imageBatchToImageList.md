@@ -1,7 +1,6 @@
 ---
 tags:
-- Image
-- VideoHelperSuite
+- Multimedia
 ---
 
 # Image Batch To Image List

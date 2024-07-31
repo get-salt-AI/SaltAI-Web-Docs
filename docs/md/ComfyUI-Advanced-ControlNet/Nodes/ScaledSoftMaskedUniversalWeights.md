@@ -1,7 +1,7 @@
 ---
 tags:
 - ControlNet
-- ControlNetLoader
+- Weight
 ---
 
 # Scaled Soft Masked Weights 🛂🅐🅒🅝

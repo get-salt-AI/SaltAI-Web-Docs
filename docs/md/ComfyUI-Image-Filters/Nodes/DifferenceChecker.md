@@ -1,6 +1,6 @@
 ---
 tags:
-- ImpactPack
+- Comparison
 ---
 
 # Difference Checker

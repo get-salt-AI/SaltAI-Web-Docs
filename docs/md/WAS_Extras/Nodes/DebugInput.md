@@ -1,8 +1,6 @@
 ---
 tags:
-- DataTypeAgnostic
 - Debugging
-- Text
 ---
 
 # Debug Input

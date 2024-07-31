@@ -1,5 +1,6 @@
 ---
 tags:
+- Image
 - Pipeline
 ---
 

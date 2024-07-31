@@ -2,7 +2,7 @@
 ComfyUI_InstantID provides native support for InstantID within the ComfyUI framework, differentiating itself by not relying on diffusers but instead integrating InstantID directly and fully with ComfyUI. This extension aims to enhance the functionality of ComfyUI by incorporating InstantID's capabilities seamlessly.
 
 ## Tags
-CLIP * FaceRestoration * IPAdapter * Loader * ModelGuidance
+Face * IdentityImage * ModelGuidance * ModelPatch
 
 ## Repo info
 - Repo url: `https://github.com/cubiq/ComfyUI_InstantID`

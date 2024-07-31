@@ -1,9 +1,3 @@
----
-tags:
-- Comparison
-- ImpactPack
----
-
 # Compare
 ## Documentation
 - Class name: `Compare-🔬`

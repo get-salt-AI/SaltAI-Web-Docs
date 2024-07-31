@@ -1,3 +1,8 @@
+---
+tags:
+- Image
+---
+
 # MarigoldDepthEstimation_v2
 ## Documentation
 - Class name: `MarigoldDepthEstimation_v2`

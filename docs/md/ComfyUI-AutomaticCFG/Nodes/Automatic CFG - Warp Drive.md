@@ -1,8 +1,3 @@
----
-tags:
-- MotionData
----
-
 # Automatic CFG - Warp Drive
 ## Documentation
 - Class name: `Automatic CFG - Warp Drive`

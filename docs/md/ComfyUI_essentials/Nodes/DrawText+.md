@@ -1,9 +1,7 @@
 ---
 tags:
-- ImageDrawing
-- PanelDesign
+- Image
 - TextOnImage
-- VisualEffects
 ---
 
 # 🔧 Draw Text

@@ -1,8 +1,6 @@
 ---
 tags:
 - ConditionalSelection
-- ImageSwitching
-- ImpactPack
 ---
 
 # ⚙️ CR Set Switch From String

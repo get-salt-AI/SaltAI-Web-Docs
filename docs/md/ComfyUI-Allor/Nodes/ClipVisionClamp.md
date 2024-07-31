@@ -1,6 +1,6 @@
 ---
 tags:
-- VAE
+- DataClamp
 ---
 
 # ClipVisionClamp

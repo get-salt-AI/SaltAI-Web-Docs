@@ -2,7 +2,7 @@
 ComfyUI Inpaint Nodes introduces nodes to enhance inpainting capabilities within ComfyUI, utilizing the Fooocus inpaint model for SDXL, LaMa, MAT, and other tools for pre-filling inpaint and outpaint areas. It offers a suite of pre-processing and post-processing nodes to improve the quality of inpainting tasks, including mask expansion, filling, blurring, and denoising, tailored for seamless integration and flexibility in creative workflows.
 
 ## Tags
-Blur * CLIPConditioning * Conditioning * DepthMapEstimation * Image * ImageTransformation * Inpaint * Mask * NormalMap * VisualEffects
+Blur * Conditioning * DepthMap * Image * Inpaint * Mask * VisualEffects
 
 ## Repo info
 - Repo url: `https://github.com/Acly/comfyui-inpaint-nodes`

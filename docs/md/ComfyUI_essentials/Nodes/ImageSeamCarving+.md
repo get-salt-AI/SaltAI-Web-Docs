@@ -1,7 +1,6 @@
 ---
 tags:
-- Color
-- Crop
+- Image
 ---
 
 # 🔧 Image Seam Carving

@@ -1,7 +1,6 @@
 ---
 tags:
-- GridLayout
-- ImageDuplication
+- VisualEffects
 ---
 
 # Calculate Normals From Images

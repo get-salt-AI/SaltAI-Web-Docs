@@ -1,8 +1,6 @@
 ---
 tags:
-- CameraControl
-- MotionData
-- PoseEstimation
+- Animation
 ---
 
 # Colorize Facial Parts from PoseKPS

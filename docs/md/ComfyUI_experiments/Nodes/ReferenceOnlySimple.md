@@ -1,7 +1,6 @@
 ---
 tags:
-- CLIPConditioning
-- SAM
+- Conditioning
 ---
 
 # ReferenceOnlySimple

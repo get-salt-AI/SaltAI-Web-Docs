@@ -1,9 +1,8 @@
 ---
 tags:
-- DepthMapEstimation
+- DepthMap
 - Image
 - Inpaint
-- NormalMap
 ---
 
 # Easy Apply Inpaint

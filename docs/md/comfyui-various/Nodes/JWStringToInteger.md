@@ -1,10 +1,8 @@
 ---
 tags:
 - DataConversion
-- Float
-- FloatList
+- DataTypeConversion
 - NumericConversion
-- RegionalPrompt
 ---
 
 # String to Integer

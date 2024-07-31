@@ -1,12 +1,7 @@
 ---
 tags:
 - AnimateDiff
-- AnimateDiffContext
 - Animation
-- ModelTuning
-- MotionData
-- PoseEstimation
-- Weight
 ---
 
 # 🧪Inject I2V into AnimateDiff Model 🎭🅐🅓②

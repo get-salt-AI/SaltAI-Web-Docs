@@ -1,9 +1,3 @@
----
-tags:
-- Color
-- Image
----
-
 # LayerColor: RGB
 ## Documentation
 - Class name: `LayerColor: RGB`

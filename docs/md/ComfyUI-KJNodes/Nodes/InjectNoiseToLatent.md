@@ -1,12 +1,7 @@
 ---
 tags:
-- DataVisualization
-- ImageEnhancement
-- ImageNoise
+- LatentNoise
 - Noise
-- Scheduling
-- Seed
-- XYPlotData
 ---
 
 # Inject Noise To Latent

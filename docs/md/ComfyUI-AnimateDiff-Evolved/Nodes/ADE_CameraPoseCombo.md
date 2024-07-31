@@ -1,10 +1,7 @@
 ---
 tags:
-- AnimateDiff
-- AnimateDiffContext
+- Animation
 - CameraControl
-- MotionData
-- PoseEstimation
 ---
 
 # Create CameraCtrl Poses (Combo) 🎭🅐🅓②

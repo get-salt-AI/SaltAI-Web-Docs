@@ -1,7 +1,6 @@
 ---
 tags:
 - Mask
-- MaskMorphology
 ---
 
 # Color Map To Masks (Inspire)

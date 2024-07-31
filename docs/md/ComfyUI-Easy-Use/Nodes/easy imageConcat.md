@@ -1,3 +1,8 @@
+---
+tags:
+- Image
+---
+
 # imageConcat
 ## Documentation
 - Class name: `easy imageConcat`

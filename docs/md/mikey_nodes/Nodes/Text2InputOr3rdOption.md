@@ -1,6 +1,6 @@
 ---
 tags:
-- Searge
+- Text
 ---
 
 # Text 2 Inputs Or 3rd Option Instead (Mikey)

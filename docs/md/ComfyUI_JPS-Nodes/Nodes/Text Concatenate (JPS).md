@@ -1,7 +1,6 @@
 ---
 tags:
-- ComfyrollNodes
-- Index
+- Concatenate
 - Text
 ---
 

@@ -1,6 +1,7 @@
 ---
 tags:
-- SigmaScheduling
+- Text
+- TextReplacement
 ---
 
 # Search And Replace (Mikey)

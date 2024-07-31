@@ -1,8 +1,6 @@
 ---
 tags:
-- Curve
-- Interpolation
-- WavePatterns
+- AnimationScheduling
 ---
 
 # Preview Animation

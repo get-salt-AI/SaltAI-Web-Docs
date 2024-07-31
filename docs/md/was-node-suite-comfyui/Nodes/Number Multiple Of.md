@@ -1,6 +1,7 @@
 ---
 tags:
-- DataTypeConversion
+- MathematicalFunctions
+- Multiplication
 ---
 
 # Number Multiple Of

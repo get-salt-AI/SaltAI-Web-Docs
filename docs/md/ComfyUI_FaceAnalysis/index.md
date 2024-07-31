@@ -2,7 +2,7 @@
 ComfyUI_FaceAnalysis is an extension that leverages DLib or InsightFace to calculate the Euclidean and Cosine distances between two faces, aiming to evaluate the similarity of generated faces against a set of reference images. It suggests sending a batch of three reference images to establish a baseline for comparison with generated images, enhancing the accuracy of face analysis.
 
 ## Tags
-Crop * FaceRestoration * ImpactPack * SEGSPrep * Segmentation
+BoundingBox * Face * Image * ImageTransformation * Segmentation
 
 ## Repo info
 - Repo url: `https://github.com/cubiq/ComfyUI_FaceAnalysis.git`

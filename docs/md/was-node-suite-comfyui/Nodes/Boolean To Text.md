@@ -1,10 +1,7 @@
 ---
 tags:
-- Batch
 - BooleanLogic
 - ConditionalSelection
-- FloatData
-- ImpactPack
 ---
 
 # Boolean To Text

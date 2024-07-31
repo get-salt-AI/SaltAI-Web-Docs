@@ -1,8 +1,9 @@
 ---
 tags:
 - DataConversion
-- Float
-- FloatList
+- DataTypeConversion
+- Integer
+- NumericConversion
 ---
 
 # Remote Int (on prompt)

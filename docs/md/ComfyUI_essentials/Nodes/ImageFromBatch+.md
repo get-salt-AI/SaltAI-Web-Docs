@@ -1,11 +1,8 @@
 ---
 tags:
 - Batch
-- GridLayout
 - Image
 - ImageBatch
-- ImageDuplication
-- Tiled
 ---
 
 # 🔧 Image From Batch

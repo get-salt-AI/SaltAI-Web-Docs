@@ -1,8 +1,6 @@
 ---
 tags:
-- Animation
-- MotionData
-- PoseEstimation
+- SMPLModel
 ---
 
 # Smplify Motion Data

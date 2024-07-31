@@ -1,8 +1,3 @@
----
-tags:
-- MotionData
----
-
 # EasyLoader (PixArt)
 ## Documentation
 - Class name: `easy pixArtLoader`

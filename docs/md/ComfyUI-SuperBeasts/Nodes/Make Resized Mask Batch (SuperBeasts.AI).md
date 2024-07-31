@@ -2,9 +2,6 @@
 tags:
 - Mask
 - MaskBatch
-- MaskGeneration
-- MaskList
-- MaskMorphology
 ---
 
 # Make Resized Mask Batch (SuperBeasts.AI)

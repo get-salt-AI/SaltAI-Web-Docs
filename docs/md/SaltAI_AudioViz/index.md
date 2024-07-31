@@ -2,7 +2,7 @@
 SaltAI AudioViz is designed for generating complex audio reactive visualizations using ComfyUI nodes. It allows users to create dynamic visual effects that respond to audio inputs, enhancing the user experience with interactive and engaging visuals.
 
 ## Tags
-AnimationScheduling * Audio * CLIPConditioning * CLIPTextEncoding * Conditioning * ImageBlend * ImageComposite * ImageNoise * LatentNoise * List * ListExtension * Noise * SamplerScheduler * Sampling * Scheduling * Seed * SigmaScheduling * VisualEffects * WavePatterns
+AnimationScheduling * Audio * CLIP * CLIPConditioning * Conditioning * Image * ImageBlend * ImageComposite * Noise * NoisePatterns * Sampling * Scheduling * VisualEffects
 
 ## Repo info
 - Repo url: `https://gitlab.com/plai-app/ai-studio/orchestra-nodes/to-release/SaltAI_AudioViz.git`

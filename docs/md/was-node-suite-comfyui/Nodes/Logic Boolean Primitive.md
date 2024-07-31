@@ -1,11 +1,7 @@
 ---
 tags:
-- Batch
 - BooleanLogic
 - ConditionalSelection
-- FloatData
-- ImpactPack
-- VectorMath
 ---
 
 # Logic Boolean Primitive

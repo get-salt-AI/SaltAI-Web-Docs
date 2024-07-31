@@ -1,8 +1,3 @@
----
-tags:
-- ImageDrawing
----
-
 # QR Code Generator
 ## Documentation
 - Class name: `QRCodeGenerator`

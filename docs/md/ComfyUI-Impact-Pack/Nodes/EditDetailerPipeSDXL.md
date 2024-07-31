@@ -1,7 +1,6 @@
 ---
 tags:
-- ControlNet
-- DetailEnhancement
+- Image
 - Pipeline
 - PipelineTransformation
 ---

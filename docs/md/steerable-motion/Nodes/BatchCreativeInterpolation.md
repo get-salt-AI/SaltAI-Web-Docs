@@ -1,9 +1,8 @@
 ---
 tags:
-- Curve
+- AnimationScheduling
 - FrameInterpolation
-- Interpolation
-- WavePatterns
+- VisualEffects
 ---
 
 # Batch Creative Interpolation 🎞️🅢🅜

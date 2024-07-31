@@ -1,8 +1,3 @@
----
-tags:
-- MotionData
----
-
 # IPAdapter Precise Style Transfer
 ## Documentation
 - Class name: `IPAdapterPreciseStyleTransfer`

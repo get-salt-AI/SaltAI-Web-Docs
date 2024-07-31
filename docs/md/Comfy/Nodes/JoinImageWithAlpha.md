@@ -2,8 +2,6 @@
 tags:
 - AlphaChannel
 - Image
-- ImageBlend
-- ImageComposite
 ---
 
 # Join Image with Alpha

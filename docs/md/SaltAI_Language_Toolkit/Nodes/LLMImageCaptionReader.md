@@ -2,7 +2,6 @@
 tags:
 - LLM
 - LlamaIndex
-- WebContentExtraction
 ---
 
 # ∞ Image BLIP Caption

@@ -1,7 +1,7 @@
 ---
 tags:
-- Curve
-- WavePatterns
+- AnimationScheduling
+- VisualEffects
 ---
 
 # FL Ripple

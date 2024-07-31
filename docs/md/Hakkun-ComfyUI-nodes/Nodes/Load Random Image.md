@@ -1,7 +1,7 @@
 ---
 tags:
 - Image
-- VideoHelperSuite
+- Multimedia
 ---
 
 # Load Random Image

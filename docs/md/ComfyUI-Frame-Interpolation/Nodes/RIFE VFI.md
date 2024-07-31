@@ -1,11 +1,8 @@
 ---
 tags:
-- Curve
-- Frame
+- AnimationScheduling
 - FrameInterpolation
-- Interpolation
-- Keyframe
-- WavePatterns
+- VisualEffects
 ---
 
 # RIFE VFI (recommend rife47 and rife49)

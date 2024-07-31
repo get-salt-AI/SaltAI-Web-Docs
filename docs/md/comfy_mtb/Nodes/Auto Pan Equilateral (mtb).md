@@ -1,8 +1,6 @@
 ---
 tags:
-- GridLayout
-- ImageDuplication
-- ImageTransformation
+- Image
 ---
 
 # Auto Pan Equilateral (mtb)

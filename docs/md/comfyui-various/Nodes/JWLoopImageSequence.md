@@ -1,8 +1,7 @@
 ---
 tags:
-- Animation
 - Image
-- ImageLoad
+- ImageSequence
 ---
 
 # Loop Image Sequence

@@ -1,8 +1,3 @@
----
-tags:
-- Crop
----
-
 # LayerUtility: ExtendCanvas
 ## Documentation
 - Class name: `LayerUtility: ExtendCanvas`

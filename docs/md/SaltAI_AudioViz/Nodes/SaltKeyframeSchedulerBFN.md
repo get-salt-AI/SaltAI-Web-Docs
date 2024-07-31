@@ -2,7 +2,6 @@
 tags:
 - AnimationScheduling
 - Scheduling
-- SigmaScheduling
 ---
 
 # Keyframe Scheduler (BIG)

@@ -1,6 +1,6 @@
 ---
 tags:
-- CLIPConditioning
+- Conditioning
 ---
 
 # ExtendCondList

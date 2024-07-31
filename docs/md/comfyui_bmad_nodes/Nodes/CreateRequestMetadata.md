@@ -1,8 +1,3 @@
----
-tags:
-- BackendCache
----
-
 # CreateRequestMetadata
 ## Documentation
 - Class name: `CreateRequestMetadata`

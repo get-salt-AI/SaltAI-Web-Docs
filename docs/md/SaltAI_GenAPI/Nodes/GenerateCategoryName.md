@@ -1,8 +1,3 @@
----
-tags:
-- BackendCache
----
-
 # GenerateCategoryName
 ## Documentation
 - Class name: `GenerateCategoryName`

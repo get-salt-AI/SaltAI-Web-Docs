@@ -1,6 +1,6 @@
 ---
 tags:
-- Batch
+- ImageEnhancement
 ---
 
 # NoiseInjectionDetailerHookProvider

@@ -1,6 +1,7 @@
 ---
 tags:
-- Inpaint
+- DepthMap
+- Image
 ---
 
 # Image Injection 🎭🅐🅓

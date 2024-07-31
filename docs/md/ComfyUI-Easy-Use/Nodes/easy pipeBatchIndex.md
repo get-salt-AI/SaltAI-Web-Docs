@@ -1,6 +1,6 @@
 ---
 tags:
-- Pipeline
+- Image
 ---
 
 # Pipe Batch Index

@@ -2,6 +2,7 @@
 tags:
 - Crop
 - Image
+- ImageTransformation
 ---
 
 # Crop Latent

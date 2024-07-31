@@ -2,7 +2,7 @@
 ComfyUI-AnimateDiff-Evolved enhances the integration of AnimateDiff with ComfyUI, offering advanced sampling options and compatibility with various node packs for improved animation generation in image processing. It extends the functionality of AnimateDiff by providing evolved sampling techniques that can be utilized independently, supporting infinite animation lengths, ControlNet, SparseCtrl, and IPAdapter support, among other features. This project aims to facilitate complex animation workflows within ComfyUI, leveraging additional node packs for prompt-travel, video manipulation, and more precise control over animation parameters.
 
 ## Tags
-AnimateDiff * AnimateDiffContext * Animation * AnimationScheduling * CLIPConditioning * Cache * CameraControl * Checkpoint * CheckpointLoader * Conditioning * Context * ImageEnhancement * ImageNoise * Inpaint * Latent * LatentBatch * LatentBlend * LoRA * LoRAVisualization * Model * ModelLoader * ModelTuning * MotionData * Noise * Normalization * PoseEstimation * SAM * Scheduling * Seed * SigmaScheduling * VAE * Weight
+AnimateDiff * AnimateDiffContext * Animation * CameraControl * Checkpoint * CheckpointLoader * Conditioning * DepthMap * Image * Latent * LoRA * Loader * ModelIO * ModelLoader * ModelTuning * Noise * SigmaScheduling * VAE * Weight
 
 ## Repo info
 - Repo url: `https://github.com/Kosinkadink/ComfyUI-AnimateDiff-Evolved`

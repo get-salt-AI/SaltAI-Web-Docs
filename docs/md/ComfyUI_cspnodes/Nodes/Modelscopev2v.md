@@ -1,9 +1,3 @@
----
-tags:
-- Prompt
-- PromptComposer
----
-
 # Modelscope v2v
 ## Documentation
 - Class name: `Modelscopev2v`

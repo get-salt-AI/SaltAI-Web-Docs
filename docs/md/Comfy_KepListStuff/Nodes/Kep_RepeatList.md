@@ -1,8 +1,3 @@
----
-tags:
-- Model
----
-
 # Repeat List
 ## Documentation
 - Class name: `Kep_RepeatList`

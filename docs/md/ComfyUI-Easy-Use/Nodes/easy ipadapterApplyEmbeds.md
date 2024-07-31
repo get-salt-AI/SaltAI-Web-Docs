@@ -1,7 +1,6 @@
 ---
 tags:
 - IPAdapter
-- RegionalImageProcessing
 ---
 
 # Easy Apply IPAdapter (Embeds)

@@ -1,8 +1,3 @@
----
-tags:
-- BackendCache
----
-
 # Select Nth Mask (Inspire)
 ## Documentation
 - Class name: `SelectNthMask __Inspire`

@@ -1,10 +1,6 @@
 ---
 tags:
 - Latent
-- LatentBatch
-- LatentBlend
-- Normalization
-- VAE
 ---
 
 # Empty Latent Image (Big Batch) 🎭🅐🅓

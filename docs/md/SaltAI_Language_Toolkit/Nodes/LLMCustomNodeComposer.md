@@ -1,7 +1,6 @@
 ---
 tags:
 - LLM
-- LoRA
 ---
 
 # ∞ Simple ComfyUI Node Drafter

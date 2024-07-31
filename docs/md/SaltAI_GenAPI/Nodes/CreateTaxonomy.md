@@ -1,8 +1,3 @@
----
-tags:
-- BackendCache
----
-
 # Create Taxonomy
 ## Documentation
 - Class name: `CreateTaxonomy`

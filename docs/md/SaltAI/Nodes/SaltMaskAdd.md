@@ -2,7 +2,6 @@
 tags:
 - Mask
 - MaskRegion
-- Segmentation
 ---
 
 # Add Mask Regions

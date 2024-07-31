@@ -1,7 +1,6 @@
 ---
 tags:
 - Comparison
-- ImpactPack
 ---
 
 # Compare

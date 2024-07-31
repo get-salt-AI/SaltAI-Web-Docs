@@ -1,8 +1,8 @@
 ---
 tags:
-- AspectRatio
-- ImageResize
+- ImageScaling
 - ImageSize
+- ImageTransformation
 ---
 
 # LayerUtility: ImageScaleRestore V2

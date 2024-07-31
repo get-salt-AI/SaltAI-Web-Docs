@@ -2,7 +2,6 @@
 tags:
 - DataTypeAgnostic
 - Debugging
-- Text
 ---
 
 # Show Any

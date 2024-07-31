@@ -1,6 +1,6 @@
 ---
 tags:
-- VectorMath
+- FloatData
 ---
 
 # Plot Batch Float (mtb)

@@ -1,7 +1,6 @@
 ---
 tags:
-- SamplerScheduler
-- Sampling
+- SAM
 ---
 
 # Get SAM Embedding

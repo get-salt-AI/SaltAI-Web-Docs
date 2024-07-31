@@ -1,8 +1,6 @@
 ---
 tags:
 - Image
-- ImagePreprocessing
-- Pipeline
 ---
 
 # Generation TXT IMG Settings (JPS)

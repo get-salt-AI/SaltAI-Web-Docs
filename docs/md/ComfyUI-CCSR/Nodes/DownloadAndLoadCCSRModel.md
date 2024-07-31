@@ -1,8 +1,3 @@
----
-tags:
-- BackendCache
----
-
 # DownloadAndLoad CCSRModel
 ## Documentation
 - Class name: `DownloadAndLoadCCSRModel`

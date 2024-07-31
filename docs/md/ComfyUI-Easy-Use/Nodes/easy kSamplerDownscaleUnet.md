@@ -1,6 +1,6 @@
 ---
 tags:
-- ImageUpscaling
+- ImageScaling
 ---
 
 # EasyKsampler (Downscale Unet)

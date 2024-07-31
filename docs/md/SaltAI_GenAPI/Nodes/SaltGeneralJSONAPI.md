@@ -1,8 +1,3 @@
----
-tags:
-- BackendCache
----
-
 # General API JSON Request
 ## Documentation
 - Class name: `SaltGeneralJSONAPI`

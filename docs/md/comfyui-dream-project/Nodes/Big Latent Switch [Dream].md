@@ -1,7 +1,6 @@
 ---
 tags:
 - ConditionalSelection
-- ImpactPack
 ---
 
 # ⭆ Big Latent Switch

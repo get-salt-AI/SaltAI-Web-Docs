@@ -1,9 +1,6 @@
 ---
 tags:
-- ImpactPack
-- SEGSPrep
 - Segmentation
-- SemanticSegmentationPreprocessing
 ---
 
 # LeReS Depth Map Preprocessor Provider (SEGS)

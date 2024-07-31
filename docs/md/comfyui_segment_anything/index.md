@@ -2,7 +2,7 @@
 ComfyUI Segment Anything is a ComfyUI version of a project originally developed by continue-revolution, designed to replicate core functionalities for segmenting various inputs with consistent output quality. It acknowledges the foundational work of continue-revolution and aims to maintain output consistency when given the same inputs, with models that are automatically downloaded upon use.
 
 ## Tags
-Checkpoint * CheckpointLoader * Mask * MaskMorphology * MaskRegion * ModelLoader * SamplerScheduler * Sampling
+Loader * Mask * MaskInversion * ModelIO * ModelLoader * SAM
 
 ## Repo info
 - Repo url: `https://github.com/storyicon/comfyui_segment_anything.git`

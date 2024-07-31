@@ -1,8 +1,3 @@
----
-tags:
-- Audio
----
-
 # Whisper Transcribe
 ## Documentation
 - Class name: `SAIWhisperTranscribe`

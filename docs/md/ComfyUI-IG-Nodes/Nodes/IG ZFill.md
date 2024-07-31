@@ -1,9 +1,3 @@
----
-tags:
-- RegionalPrompt
-- Style
----
-
 # ⌨️ IG ZFill
 ## Documentation
 - Class name: `IG ZFill`

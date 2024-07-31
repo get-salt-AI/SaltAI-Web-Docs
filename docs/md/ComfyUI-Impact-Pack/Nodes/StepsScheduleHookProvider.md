@@ -1,7 +1,7 @@
 ---
 tags:
-- Batch
-- XYPlotData
+- ImageEnhancement
+- Scheduling
 ---
 
 # StepsScheduleHookProvider

@@ -1,8 +1,6 @@
 ---
 tags:
-- Image
-- Prompt
-- Style
+- RegionalPrompt
 ---
 
 # RegionalPrompt

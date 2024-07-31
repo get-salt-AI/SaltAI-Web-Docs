@@ -1,6 +1,6 @@
 ---
 tags:
-- Blur
+- VisualEffects
 ---
 
 # ImageFilterRank

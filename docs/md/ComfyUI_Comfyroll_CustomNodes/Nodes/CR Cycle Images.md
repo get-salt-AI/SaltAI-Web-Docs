@@ -2,8 +2,6 @@
 tags:
 - Animation
 - Image
-- ImageSave
-- Metadata
 ---
 
 # CR Cycle Images (Legacy)

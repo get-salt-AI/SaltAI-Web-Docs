@@ -1,8 +1,3 @@
----
-tags:
-- BackendCache
----
-
 # Prompt
 ## Documentation
 - Class name: `easy prompt`

@@ -1,6 +1,6 @@
 ---
 tags:
-- Blur
+- Color
 ---
 
 # 🔧 Image Histogram Match

@@ -1,9 +1,7 @@
 ---
 tags:
-- Curve
-- FrameInterpolation
-- Interpolation
-- WavePatterns
+- AnimationScheduling
+- VisualEffects
 ---
 
 # ⚙ Image Sequence Blend

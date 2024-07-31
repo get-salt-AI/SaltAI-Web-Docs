@@ -1,9 +1,3 @@
----
-tags:
-- DataTypeAgnostic
-- Debugging
----
-
 # Text Add Tokens
 ## Documentation
 - Class name: `Text Add Tokens`

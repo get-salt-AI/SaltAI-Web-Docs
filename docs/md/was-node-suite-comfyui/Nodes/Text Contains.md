@@ -1,3 +1,8 @@
+---
+tags:
+- Text
+---
+
 # Text Contains
 ## Documentation
 - Class name: `Text Contains`

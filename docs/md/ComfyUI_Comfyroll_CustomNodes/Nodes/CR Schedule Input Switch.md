@@ -1,9 +1,7 @@
 ---
 tags:
 - AnimationScheduling
-- PromptScheduling
 - Scheduling
-- SigmaScheduling
 ---
 
 # 📋 CR Schedule Input Switch

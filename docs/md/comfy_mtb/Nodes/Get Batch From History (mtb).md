@@ -2,8 +2,6 @@
 tags:
 - Batch
 - Image
-- ImageBatch
-- ImageDuplication
 ---
 
 # Get Batch From History (mtb)

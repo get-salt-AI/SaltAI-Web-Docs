@@ -1,8 +1,7 @@
 ---
 tags:
+- Batch
 - DataVisualization
-- LayeredDiffusion
-- XYPlot
 - XYPlotData
 ---
 

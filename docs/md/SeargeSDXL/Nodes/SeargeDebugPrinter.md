@@ -1,6 +1,5 @@
 ---
 tags:
-- DataTypeAgnostic
 - Debugging
 ---
 

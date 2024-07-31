@@ -1,6 +1,6 @@
 ---
 tags:
-- FaceRestoration
+- IdentityImage
 ---
 
 # Easy Apply PuLID (Advanced)

@@ -3,7 +3,6 @@ tags:
 - Batch
 - Image
 - ImageBatch
-- ImageDuplication
 ---
 
 # Image Batch Test Pattern

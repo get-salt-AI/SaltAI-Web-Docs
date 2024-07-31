@@ -1,6 +1,6 @@
 ---
 tags:
-- MaskInversion
+- ImageTransformation
 ---
 
 # RemapReverseBarrelDistortion

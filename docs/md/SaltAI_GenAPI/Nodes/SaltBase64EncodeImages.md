@@ -1,8 +1,3 @@
----
-tags:
-- Audio
----
-
 # Base64 Encode Images
 ## Documentation
 - Class name: `SaltBase64EncodeImages`

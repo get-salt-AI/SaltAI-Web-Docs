@@ -1,10 +1,3 @@
----
-tags:
-- Latent
-- LatentBlend
-- VAE
----
-
 # EmptySD3LatentImage
 ## Documentation
 - Class name: `EmptySD3LatentImage`

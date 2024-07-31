@@ -1,9 +1,7 @@
 ---
 tags:
-- ImageTransformation
 - Mask
-- MaskList
-- MaskMorphology
+- MaskGeneration
 ---
 
 # Resize Mask

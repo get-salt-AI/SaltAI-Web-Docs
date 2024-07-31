@@ -1,9 +1,7 @@
 ---
 tags:
 - Mask
-- MaskEnhancement
 - MaskRegion
-- Segmentation
 ---
 
 # Mask Dominant Region

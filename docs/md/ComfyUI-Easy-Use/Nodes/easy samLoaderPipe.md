@@ -1,6 +1,6 @@
 ---
 tags:
-- Sampling
+- SAM
 ---
 
 # SAMLoader (Pipe)

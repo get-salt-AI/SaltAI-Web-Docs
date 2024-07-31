@@ -1,8 +1,3 @@
----
-tags:
-- Inpaint
----
-
 # Easy Apply BrushNet
 ## Documentation
 - Class name: `easy applyBrushNet`

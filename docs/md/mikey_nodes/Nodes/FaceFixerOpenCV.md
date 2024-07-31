@@ -1,7 +1,7 @@
 ---
 tags:
+- Face
 - FaceRestoration
-- SMPL
 ---
 
 # Face Fixer OpenCV (Mikey)

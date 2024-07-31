@@ -1,9 +1,9 @@
 ---
 tags:
 - DataConversion
-- Float
-- FloatList
-- Integer
+- DataTypeConversion
+- FloatData
+- NumericConversion
 ---
 
 # LayerUtility: Float

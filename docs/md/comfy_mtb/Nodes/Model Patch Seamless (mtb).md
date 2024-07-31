@@ -1,6 +1,7 @@
 ---
 tags:
 - ModelGuidance
+- ModelPatch
 ---
 
 # Model Patch Seamless (mtb)

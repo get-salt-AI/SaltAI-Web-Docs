@@ -2,7 +2,6 @@
 tags:
 - BooleanLogic
 - ConditionalSelection
-- ImpactPack
 ---
 
 # Logic Comparison OR

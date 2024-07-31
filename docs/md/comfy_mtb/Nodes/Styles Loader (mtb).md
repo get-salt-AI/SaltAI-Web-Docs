@@ -1,6 +1,6 @@
 ---
 tags:
-- Prompt
+- Style
 ---
 
 # Styles Loader (mtb)

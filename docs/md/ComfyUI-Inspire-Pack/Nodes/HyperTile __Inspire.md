@@ -1,8 +1,7 @@
 ---
 tags:
-- GridLayout
-- ImageDuplication
-- ImageTransformation
+- Image
+- Tiled
 ---
 
 # HyperTile (Inspire)

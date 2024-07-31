@@ -1,11 +1,7 @@
 ---
 tags:
 - Latent
-- LatentBatch
-- LatentBlend
-- Normalization
-- Preview
-- VAE
+- LatentPreview
 ---
 
 # 🔧 Image Preview From Latent

@@ -1,8 +1,3 @@
----
-tags:
-- IPAdapter
----
-
 # IPA Switch (JPS)
 ## Documentation
 - Class name: `IPA Switch (JPS)`

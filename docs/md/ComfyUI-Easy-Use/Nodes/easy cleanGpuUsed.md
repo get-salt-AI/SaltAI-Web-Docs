@@ -1,7 +1,6 @@
 ---
 tags:
-- Agents
-- BackendCache
+- Cache
 ---
 
 # Clean GPU Used

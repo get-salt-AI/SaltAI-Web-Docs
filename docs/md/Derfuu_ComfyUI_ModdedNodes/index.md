@@ -2,7 +2,7 @@
 Derfuu_ComfyUI_ModdedNodes is designed to automate calculations based on image sizes or user-defined parameters, facilitate the editing of multiple values across various nodes, and provide tools for mathematical operations, string manipulations, and modded scaling functions. It includes nodes for debugging output, variable management (float, integer, text), functional operations (random values, image size retrieval), string operations (concatenation, replacement, search), math calculations, and specialized scaling for images and latent sizes.
 
 ## Tags
-Arithmetic * BooleanLogic * CLIPConditioning * ComfyrollNodes * ConditionalSelection * Conditioning * Context * DataConversion * DataTypeAgnostic * DataTypeConversion * Debugging * Float * FloatList * ImageEnhancement * ImageNoise * ImageResize * ImageScaling * ImageSize * ImageUpscaling * ImpactPack * Integer * Latent * LatentBlend * Math * MathematicalExpressions * Multiplication * Noise * Randomization * SAM * Seed * SigmaScheduling * String * Text * VAE
+Arithmetic * BooleanLogic * Concatenate * ConditionalSelection * Conditioning * DataConversion * DataTypeConversion * Float * FloatData * ImageScaling * ImageSize * ImageTransformation * ImageUpscaling * Latent * Math * MathematicalFunctions * Multiplication * NumericConversion * RandomGeneration * Randomization * Text * TextReplacement * Upscale
 
 ## Repo info
 - Repo url: `https://github.com/Derfuu/Derfuu_ComfyUI_ModdedNodes.git`

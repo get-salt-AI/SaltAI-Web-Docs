@@ -1,7 +1,6 @@
 ---
 tags:
 - ModelGuidance
-- RandomGeneration
 ---
 
 # Automatic CFG

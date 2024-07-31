@@ -1,7 +1,6 @@
 ---
 tags:
 - IPAdapter
-- RegionalImageProcessing
 ---
 
 # Apply Regional IPAdapters (Inspire)

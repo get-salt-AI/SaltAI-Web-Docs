@@ -2,9 +2,8 @@
 tags:
 - DataConversion
 - DataTypeConversion
-- Float
+- FloatData
 - FloatList
-- Integer
 - NumericConversion
 ---
 

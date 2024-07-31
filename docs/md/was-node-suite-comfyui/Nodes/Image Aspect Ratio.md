@@ -1,10 +1,8 @@
 ---
 tags:
 - AspectRatio
-- Batch
-- Image
-- ImageResize
 - ImageSize
+- ImageTransformation
 ---
 
 # Image Aspect Ratio

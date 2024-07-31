@@ -1,7 +1,6 @@
 ---
 tags:
-- Animation
-- MotionData
+- SMPLModel
 ---
 
 # SMPL Shape Parameters

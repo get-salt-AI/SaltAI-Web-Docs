@@ -1,8 +1,7 @@
 ---
 tags:
 - Image
-- ImageBlend
-- ImageTransformation
+- ImageComposite
 ---
 
 # 🌁 CR Overlay Transparent Image

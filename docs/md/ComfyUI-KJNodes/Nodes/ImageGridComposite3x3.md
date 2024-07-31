@@ -1,8 +1,8 @@
 ---
 tags:
 - GridLayout
-- ImageDuplication
-- ImageTransformation
+- Image
+- Tiled
 ---
 
 # Image Grid Composite 3x3

@@ -1,7 +1,7 @@
 ---
 tags:
-- FaceRestoration
-- SMPLModel
+- Face
+- ReActorFace
 ---
 
 # ReActor 🌌 Fast Face Swap [OPTIONS]

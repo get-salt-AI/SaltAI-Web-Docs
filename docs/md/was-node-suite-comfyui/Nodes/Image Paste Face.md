@@ -1,8 +1,7 @@
 ---
 tags:
-- ImageBlend
-- ImageTransformation
-- VisualEffects
+- Image
+- ImageComposite
 ---
 
 # Image Paste Face

@@ -1,7 +1,6 @@
 ---
 tags:
 - ModelGuidance
-- Seed
 ---
 
 # Self-Attention Guidance

@@ -2,7 +2,7 @@
 The comfyui-dream-project repository offers a collection of custom nodes designed to support Deforum-style animation generation within ComfyUI. These nodes were initially created for personal use in video production for the "Alt Key Project" music channel but are intended to be versatile enough for broader ComfyUI user applications. The project is no longer being updated in favor of a new direction focusing on batch video generation workflows.
 
 ## Tags
-Animation * AspectRatio * Blur * BooleanLogic * Color * ConditionalSelection * Counting * Curve * DataClamp * DataConversion * DataTypeAgnostic * DataTypeConversion * Debugging * Float * FloatData * FloatList * FrameInterpolation * GridLayout * HSVColorSpace * Image * ImageDuplication * ImageEnhancement * ImageFilter * ImageLoad * ImageResize * ImageSave * ImageSize * ImageSwitching * ImageTransformation * ImpactPack * Integer * Interpolation * Math * Multimedia * Noise * Prompt * PromptStyling * Randomization * RegionalPrompt * Seed * String * Text * VideoHelperSuite * VisualEffects * WavePatterns
+AnimationScheduling * AspectRatio * BooleanLogic * Color * ConditionalSelection * Counting * Curve * DataConversion * DataTypeConversion * Float * FloatData * Frame * Image * ImageEnhancement * ImageSave * ImageSequence * ImageSize * ImageSwitching * ImageTransformation * Integer * LogEntry * Math * MathematicalExpressions * NumericConversion * Prompt * PromptComposer * RandomGeneration * Randomization * Text * VisualEffects
 
 ## Repo info
 - Repo url: `https://github.com/alt-key-project/comfyui-dream-project`

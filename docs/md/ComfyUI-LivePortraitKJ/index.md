@@ -2,7 +2,7 @@
 ComfyUI-LivePortraitKJ integrates LivePortrait functionality into ComfyUI nodes, allowing for the use of converted pickle files to safetensors for facial animation. It requires the installation of Insightface for facial recognition capabilities, providing detailed instructions for installation and troubleshooting, including the handling of non-commercial licenses.
 
 ## Tags
-CameraControl * FaceRestoration * MotionData * PoseEstimation
+Animation * Face
 
 ## Repo info
 - Repo url: `https://github.com/kijai/ComfyUI-LivePortraitKJ.git`
