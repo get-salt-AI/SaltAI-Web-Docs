@@ -11,42 +11,46 @@ tags:
 - Category: `Adv-ControlNet 🛂🅐🅒🅝/keyframes`
 - Output node: `False`
 
-The LatentKeyframeTiming node is designed to manage and interpolate keyframes within a latent space, facilitating the creation of smooth transitions and animations. It operates by adjusting the timing and strength of keyframes based on specified parameters, enabling precise control over the animation's flow and dynamics.
+This node is designed to manage the timing and sequencing of latent keyframes within a generative model's control network. It focuses on interpolating and scheduling keyframes based on specified timing parameters, ensuring smooth transitions and accurate timing for the generation process.
 ## Input types
 ### Required
 - **`batch_index_from`**
-    - Specifies the starting index for the batch of keyframes to be interpolated, serving as the initial point in the sequence of animations.
+    - Specifies the starting index for the batch of keyframes to be processed, serving as the initial point for timing and sequencing operations.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`batch_index_to_excl`**
-    - Defines the exclusive end index for the batch of keyframes, marking the boundary up to which the interpolation should occur.
+    - Defines the exclusive end index for the batch of keyframes, marking the boundary for the sequence of keyframes to be interpolated or scheduled.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`strength_from`**
-    - Sets the initial strength value for the interpolation, determining the starting intensity of the keyframe effect.
+    - Indicates the starting strength value for the interpolation of keyframes, setting the initial intensity or effect level.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`strength_to`**
-    - Indicates the final strength value for the interpolation, defining the ending intensity of the keyframe effect.
+    - Specifies the ending strength value for the interpolation, determining the final intensity or effect level for the sequence of keyframes.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`interpolation`**
-    - Determines the method of interpolation (e.g., linear, ease-in, ease-out) to be used for transitioning between keyframes, affecting the smoothness and dynamics of the animation.
+    - Defines the method of interpolation to be used for transitioning between keyframes, such as linear or ease-in/out, to ensure smooth changes in strength or effects.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ### Optional
 - **`prev_latent_kf`**
-    - Optional parameter that allows for the inclusion of previous latent keyframes to be considered in the interpolation process, enabling continuity in the animation sequence.
+    - Optional parameter for providing a previous set of latent keyframes to be considered or integrated into the current timing and sequencing operation.
     - Comfy dtype: `LATENT_KEYFRAME`
     - Python dtype: `LatentKeyframeGroup`
 - **`print_keyframes`**
-    - Enables the option to print the details of the keyframes being processed, aiding in debugging or for informational purposes.
+    - A flag to enable logging of keyframe details for debugging or informational purposes.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
+- **`autosize`**
+    - unknown
+    - Comfy dtype: `ACNAUTOSIZE`
+    - Python dtype: `unknown`
 ## Output types
 - **`LATENT_KF`**
     - Comfy dtype: `LATENT_KEYFRAME`
-    - The resulting LatentKeyframeGroup after interpolation, containing the newly adjusted keyframes based on the specified timing and strength parameters.
+    - The output is a modified or newly created set of latent keyframes, reflecting the applied timing and sequencing operations.
     - Python dtype: `LatentKeyframeGroup`
 ## Usage tips
 - Infra type: `CPU`
@@ -68,7 +72,8 @@ class LatentKeyframeInterpolationNode:
             },
             "optional": {
                 "prev_latent_kf": ("LATENT_KEYFRAME", ),
-                "print_keyframes": ("BOOLEAN", {"default": False})
+                "print_keyframes": ("BOOLEAN", {"default": False}),
+                "autosize": ("ACNAUTOSIZE", {"padding": 90}),
             }
         }
 

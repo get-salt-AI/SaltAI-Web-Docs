@@ -10,34 +10,38 @@ tags:
 - Category: `Adv-ControlNet 🛂🅐🅒🅝/weights/T2IAdapter`
 - Output node: `False`
 
-The CustomT2IAdapterWeights node is designed for advanced control over text-to-image (T2I) generation processes by allowing users to dynamically adjust the weights of different control parameters. It integrates with the ComfyUI Advanced ControlNet framework to provide a flexible mechanism for fine-tuning image generation based on specific weights, including the ability to flip weights and apply an unconditional multiplier for nuanced control.
+This node is designed to adapt and load custom weights for text-to-image (T2I) generation within the Advanced ControlNet framework. It allows for precise control over the influence of various weights on the image generation process, accommodating adjustments and enhancements to the control mechanism.
 ## Input types
 ### Required
 - **`weight_i`**
-    - Represents a series of weights (weight_00 to weight_03) for controlling various aspects of the T2I generation process. Each weight influences the impact of corresponding control parameters on the image generation outcome.
+    - Specifies a weight in the sequence, setting the foundational influence for the T2I generation process. The index 'i' ranges from 00 to 03, each adjusting the influence on the generation process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`flip_weights`**
-    - A boolean flag to reverse the order of weights, accommodating recent changes in ComfyUI's handling of control parameters.
+    - A boolean flag to reverse the order of weights, accommodating recent changes in ComfyUI.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`uncond_multiplier`**
-    - Applies an unconditional multiplier to all weights, offering an additional layer of control over the image generation process.
+    - A multiplier for unconditional weights, offering additional control over the generation process.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`cn_extras`**
-    - Allows for the inclusion of extra control parameters specific to the ComfyUI Advanced ControlNet, enhancing customization.
+    - A dictionary for extra control net weights, allowing for extended customization.
     - Comfy dtype: `CN_WEIGHTS_EXTRAS`
+    - Python dtype: `dict[str]`
+- **`autosize`**
+    - Specifies the padding size for automatic sizing, enhancing layout adaptability.
+    - Comfy dtype: `ACNAUTOSIZE`
     - Python dtype: `dict[str]`
 ## Output types
 - **`CN_WEIGHTS`**
     - Comfy dtype: `CONTROL_NET_WEIGHTS`
-    - The adjusted control net weights, ready for use in T2I generation.
-    - Python dtype: `list[float]`
+    - The customized control net weights adapted for T2I generation.
+    - Python dtype: `torch.Tensor`
 - **`TK_SHORTCUT`**
     - Comfy dtype: `TIMESTEP_KEYFRAME`
-    - A keyframe group object encapsulating the control weights for each timestep, facilitating precise control over the image generation timeline.
+    - A timestep keyframe shortcut, encapsulating the control weights for efficient processing.
     - Python dtype: `TimestepKeyframeGroup`
 ## Usage tips
 - Infra type: `CPU`
@@ -60,6 +64,7 @@ class CustomT2IAdapterWeights:
             "optional": {
                 "uncond_multiplier": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01}, ),
                 "cn_extras": ("CN_WEIGHTS_EXTRAS",),
+                "autosize": ("ACNAUTOSIZE", {"padding": 65}),
             }
         }
     

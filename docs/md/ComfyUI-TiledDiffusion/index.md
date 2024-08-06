@@ -6,7 +6,7 @@ LayeredDiffusion * VAE
 
 ## Repo info
 - Repo url: `https://github.com/shiimizu/ComfyUI-TiledDiffusion`
-- Commit hash: `ccee242bb7bcef89e46d69d3c069ccb32b406faa`
+- Commit hash: `7c1cbfa6715ba92c35e788bea674382b96dfc16f`
 
 ## Licenses
 - CC-BY-NC-SA-4.0: `tiled_vae.py`

@@ -11,66 +11,70 @@ tags:
 - Category: `Adv-ControlNet 🛂🅐🅒🅝/keyframes`
 - Output node: `False`
 
-The ACN_TimestepKeyframeInterpolation node is designed to generate a sequence of interpolated keyframes based on specified start and end percentages, strengths, and other control parameters. It leverages linear or custom interpolation methods to create smooth transitions between keyframes, facilitating the creation of dynamic and nuanced animations or effects within a control network.
+This node specializes in interpolating keyframes over timesteps within an advanced control network, enabling the creation of smooth transitions and animations by adjusting parameters such as strength and percentage over specified intervals. It leverages linear or custom interpolation methods to generate a sequence of keyframes that guide the animation or transformation process, ensuring a seamless progression from one state to another.
 ## Input types
 ### Required
 - **`start_percent`**
-    - Specifies the starting percentage for the interpolation, marking the beginning of the transition sequence.
+    - Specifies the starting percentage for the interpolation, marking the initial point of the transition within the animation or transformation process. It plays a crucial role in determining the beginning of the keyframe sequence and sets the initial context for the interpolation, directly influencing the starting point of the generated keyframe sequence.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end_percent`**
-    - Defines the ending percentage for the interpolation, indicating the conclusion of the transition sequence.
+    - Defines the ending percentage for the interpolation, indicating the final point of the transition within the animation or transformation process. It is essential for establishing the conclusion of the keyframe sequence and determines the endpoint for the interpolation, ensuring that the transition smoothly concludes at the desired state.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`strength_start`**
-    - Sets the initial strength value at the start of the interpolation, influencing the intensity or impact of the starting keyframe.
+    - Sets the starting strength for the interpolation, influencing the initial intensity or impact of the transition on the animation or transformation. It affects the beginning of the keyframe sequence's effectiveness and establishes the initial intensity level for the transition, providing a baseline for the interpolation's impact.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`strength_end`**
-    - Determines the final strength value at the end of the interpolation, affecting the intensity or impact of the ending keyframe.
+    - Determines the ending strength for the interpolation, affecting the final intensity or impact of the transition on the animation or transformation. It is vital for defining the end of the keyframe sequence's effectiveness and sets the final intensity level, ensuring a targeted impact by the conclusion of the transition.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`interpolation`**
-    - The method of interpolation to be used for transitioning between keyframes, such as linear, ease-in, ease-out, or custom methods.
+    - Defines the method of interpolation used for transitioning between keyframes, such as linear or custom easing functions. It significantly impacts the smoothness and dynamics of the animation or transformation, determining the character and flow of the transition between keyframes.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`intervals`**
-    - The number of intervals or steps between the start and end points, dictating the granularity of the interpolation.
+    - Specifies the number of intervals or steps in the interpolation process, dictating the granularity and smoothness of the transition. It directly influences the number of keyframes generated and their distribution over the transition, impacting the overall smoothness and detail of the interpolated sequence.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 ### Optional
 - **`prev_timestep_kf`**
-    - The previous TimestepKeyframeGroup to which the new interpolated keyframes will be added, allowing for the continuation or extension of an existing sequence.
+    - Specifies the previous timestep keyframe group to be considered in the interpolation process, ensuring continuity and leveraging existing keyframe data for the new sequence. This input provides a foundation for the new interpolation, utilizing prior keyframe data to inform and enhance the current transition.
     - Comfy dtype: `TIMESTEP_KEYFRAME`
-    - Python dtype: `TimestepKeyframeGroup`
+    - Python dtype: `object`
 - **`cn_weights`**
-    - Control network weights that influence the behavior and characteristics of the generated keyframes.
+    - Specifies the control network weights for the interpolation, influencing how different aspects are weighted during the transition. It enables precise control over the dynamics and balance of the transition, affecting how various elements are emphasized throughout the interpolation process.
     - Comfy dtype: `CONTROL_NET_WEIGHTS`
-    - Python dtype: `ControlWeights`
+    - Python dtype: `object`
 - **`latent_keyframe`**
-    - A group of latent keyframes that can be optionally included to further customize the interpolation process.
+    - Determines the latent keyframes to be included in the interpolation, allowing for the integration of specific transformation states into the sequence. It enriches the transition with predefined keyframe data, adding depth and complexity to the interpolation by incorporating existing keyframe information.
     - Comfy dtype: `LATENT_KEYFRAME`
-    - Python dtype: `LatentKeyframeGroup`
+    - Python dtype: `object`
 - **`null_latent_kf_strength`**
-    - The strength of the null latent keyframe, used to adjust the influence of latent keyframes within the interpolation.
+    - Sets the strength for null latent keyframes, providing a means to adjust the influence of keyframes that do not directly contribute to the visible transformation. It allows for fine-tuning the overall effect of the interpolation, offering control over the presence and impact of latent elements in the transition.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`inherit_missing`**
-    - A boolean flag indicating whether to inherit missing values from previous keyframes, ensuring continuity in the sequence.
+    - Indicates whether to inherit missing parameters from previous keyframes, ensuring continuity and consistency across the interpolation sequence. It helps maintain the integrity of the transition, ensuring that any gaps or missing data are seamlessly integrated for a cohesive interpolation experience.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`mask_optional`**
-    - An optional mask hint to be applied to the keyframes, providing additional control over the interpolation effect.
+    - Provides an optional mask hint for the interpolation, enabling targeted adjustments to specific regions or aspects of the animation or transformation. It offers additional control over the transition effects, allowing for localized modifications that can enhance or focus the interpolation's impact on certain areas.
     - Comfy dtype: `MASK`
-    - Python dtype: `Mask`
+    - Python dtype: `object`
 - **`print_keyframes`**
-    - A boolean flag that, when enabled, prints the details of each keyframe to the log, aiding in debugging and visualization.
+    - Enables logging of keyframe information for debugging or analysis purposes, offering insights into the interpolation process and the generated keyframe sequence. This feature aids in the evaluation and refinement of the interpolation, providing valuable feedback on the generated keyframes and their alignment with the intended transition.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
+- **`autosize`**
+    - Specifies the autosize configuration, adjusting the size of the control network's output to fit certain dimensions, which can be crucial for ensuring the proper scaling of animations or transformations. This parameter impacts the final output's dimensions, ensuring that the interpolated keyframes are appropriately scaled to match the desired output size.
+    - Comfy dtype: `ACNAUTOSIZE`
+    - Python dtype: `object`
 ## Output types
 - **`TIMESTEP_KF`**
     - Comfy dtype: `TIMESTEP_KEYFRAME`
-    - The resulting TimestepKeyframeGroup object containing the interpolated keyframes, ready for further processing or integration into the control network.
+    - Returns the interpolated timestep keyframe group, encapsulating the sequence of generated keyframes over the specified intervals. This output is crucial for integrating the smooth transitions into the control network's animation or transformation process.
     - Python dtype: `TimestepKeyframeGroup`
 ## Usage tips
 - Infra type: `CPU`
@@ -99,6 +103,7 @@ class TimestepKeyframeInterpolationNode:
                 "inherit_missing": ("BOOLEAN", {"default": True},),
                 "mask_optional": ("MASK", ),
                 "print_keyframes": ("BOOLEAN", {"default": False}),
+                "autosize": ("ACNAUTOSIZE", {"padding": 70}),
             }
         }
     

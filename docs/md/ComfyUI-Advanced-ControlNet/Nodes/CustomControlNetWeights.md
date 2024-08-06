@@ -10,35 +10,39 @@ tags:
 - Category: `Adv-ControlNet 🛂🅐🅒🅝/weights/ControlNet`
 - Output node: `False`
 
-This node is designed to dynamically load and apply custom weight configurations for the ControlNet architecture within the Advanced ControlNet framework. It allows for the fine-tuning of model behavior by adjusting weight parameters, enabling more precise control over the generation process.
+This node is designed to dynamically load and apply custom control net weights for advanced manipulation of neural network behavior. It allows for fine-tuning the influence of various control parameters on the network's output, enabling more precise and tailored generation of content.
 ## Input types
 ### Required
 - **`weight_i`**
-    - Specifies a weight parameter at index i, contributing to the custom configuration of the ControlNet weights. This generalization covers multiple weight inputs, allowing for nuanced adjustments across a range of weight parameters.
+    - Specifies a weight in the control net, contributing to the nuanced adjustment of network behavior. The index 'i' ranges from 00 to 03, allowing for detailed control over the network's processing and output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`flip_weights`**
-    - A boolean flag that, when set, reverses the order of weights, potentially altering the model's focus or priority.
+    - A boolean flag that, when set, reverses the order of weight application, potentially altering the network's behavior in significant ways.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`uncond_multiplier`**
-    - An optional multiplier that adjusts the unconditional weights, offering another layer of fine-tuning for the model's output.
+    - Adjusts the unconditional multiplier for the control weights, offering an additional layer of fine-tuning over the network's output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`cn_extras`**
-    - A dictionary of extra parameters for further customization of the ControlNet weights, allowing for advanced configuration beyond the standard parameters.
+    - Provides a mechanism to include extra control weight parameters, further expanding the customization capabilities for network behavior.
     - Comfy dtype: `CN_WEIGHTS_EXTRAS`
     - Python dtype: `dict[str]`
+- **`autosize`**
+    - Configures the autosizing feature, which automatically adjusts the size of control weights based on specified parameters, enhancing the adaptability of network behavior.
+    - Comfy dtype: `ACNAUTOSIZE`
+    - Python dtype: `int`
 ## Output types
 - **`CN_WEIGHTS`**
     - Comfy dtype: `CONTROL_NET_WEIGHTS`
-    - The adjusted ControlNet weights, ready for use in the model to influence generation.
-    - Python dtype: `object`
+    - The customized control net weights, tailored according to the input parameters.
+    - Python dtype: `ControlWeights`
 - **`TK_SHORTCUT`**
     - Comfy dtype: `TIMESTEP_KEYFRAME`
-    - A timestep keyframe object that encapsulates the control weights, facilitating their application at specific points in the generation process.
-    - Python dtype: `object`
+    - A shortcut to timestep keyframe data, facilitating easier manipulation and application of control net weights over time.
+    - Python dtype: `TimestepKeyframeGroup`
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -69,6 +73,7 @@ class CustomControlNetWeights:
             "optional": {
                 "uncond_multiplier": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01}, ),
                 "cn_extras": ("CN_WEIGHTS_EXTRAS",),
+                "autosize": ("ACNAUTOSIZE", {"padding": 65}),
             }
         }
     

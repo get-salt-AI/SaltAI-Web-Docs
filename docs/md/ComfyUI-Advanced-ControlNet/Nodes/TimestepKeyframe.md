@@ -11,24 +11,24 @@ tags:
 - Category: `Adv-ControlNet 🛂🅐🅒🅝/keyframes`
 - Output node: `False`
 
-The TimestepKeyframe node represents a specific point within a sequence of operations, characterized by its start percentage, strength, and various optional parameters such as control weights, latent keyframes, and mask hints. It serves as a foundational element in defining the behavior and influence of keyframes over the course of an animation or transformation process, allowing for precise control over the interpolation and application of effects at specific intervals.
+The TimestepKeyframe node is designed to encapsulate the concept of a keyframe within a timeline, specifying the moment and intensity of an effect, along with associated control weights, latent keyframes, and other properties. It serves as a foundational element for defining and manipulating animation or effect progressions over time.
 ## Input types
 ### Required
 - **`start_percent`**
-    - Specifies the starting percentage of the keyframe within the sequence, determining its position relative to the entire animation or transformation process. It is crucial for defining the timing of when the keyframe's effects should begin to take effect.
+    - Specifies the starting point of the keyframe as a percentage of the total animation or effect duration, influencing when the keyframe's effect begins.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`prev_timestep_kf`**
-    - Optional parameter that specifies the previous timestep keyframe group, allowing for the continuation or branching of keyframe sequences.
+    - References a previous timestep keyframe group, allowing for the continuation or modification of existing keyframe sequences.
     - Comfy dtype: `TIMESTEP_KEYFRAME`
     - Python dtype: `TimestepKeyframeGroup`
 - **`strength`**
-    - Defines the intensity or magnitude of the keyframe's effect, influencing how strongly it impacts the animation or transformation at the specified interval.
+    - Determines the intensity or magnitude of the keyframe's effect, affecting how strongly it influences the animation or effect.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`cn_weights`**
-    - Optional parameter that specifies the weights for controlling the influence of this keyframe on different aspects of the animation or transformation, allowing for fine-tuned adjustments.
+    - Associates specific control net weights with the keyframe, dictating the influence of various control parameters on the keyframe's effect.
     - Comfy dtype: `CONTROL_NET_WEIGHTS`
     - Python dtype: `ControlWeights`
 - **`latent_keyframe`**
@@ -36,25 +36,29 @@ The TimestepKeyframe node represents a specific point within a sequence of opera
     - Comfy dtype: `LATENT_KEYFRAME`
     - Python dtype: `unknown`
 - **`null_latent_kf_strength`**
-    - Specifies the strength of the null latent keyframe, offering a way to adjust the baseline influence of latent keyframes within the sequence.
+    - Defines the strength of a null or default latent keyframe, providing a baseline effect intensity.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`inherit_missing`**
-    - A boolean flag indicating whether missing attributes from previous keyframes should be inherited, ensuring continuity and consistency across the sequence.
+    - Indicates whether missing properties from the parent or previous keyframes should be inherited by this keyframe.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`guarantee_steps`**
-    - Determines the minimum number of steps for which the keyframe's effects are guaranteed to be applied, ensuring a certain level of persistence in its influence.
+    - Specifies the minimum number of steps for which the keyframe's effect is guaranteed to be applied, ensuring a minimum duration.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`mask_optional`**
-    - Optional parameter that provides a hint for masking, enabling selective application of the keyframe's effects based on spatial considerations.
+    - Optionally includes a mask hint, which can guide the application of the keyframe's effect based on spatial criteria.
     - Comfy dtype: `MASK`
     - Python dtype: `Tensor`
+- **`autosize`**
+    - Configures automatic sizing for the keyframe, adjusting its dimensions based on specified parameters.
+    - Comfy dtype: `ACNAUTOSIZE`
+    - Python dtype: `ACNAUTOSIZE`
 ## Output types
 - **`TIMESTEP_KF`**
     - Comfy dtype: `TIMESTEP_KEYFRAME`
-    - Represents the updated or newly created timestep keyframe group after processing the input parameters, encapsulating the sequence of keyframes with their specified attributes and effects.
+    - Outputs a modified or newly created timestep keyframe group, incorporating the defined keyframe settings.
     - Python dtype: `TimestepKeyframeGroup`
 ## Usage tips
 - Infra type: `CPU`
@@ -81,6 +85,7 @@ class TimestepKeyframeNode:
                 "inherit_missing": ("BOOLEAN", {"default": True}, ),
                 "guarantee_steps": ("INT", {"default": 1, "min": 0, "max": BIGMAX}),
                 "mask_optional": ("MASK", ),
+                "autosize": ("ACNAUTOSIZE", {"padding": 0}),
             }
         }
     

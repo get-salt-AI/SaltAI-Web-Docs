@@ -4,29 +4,33 @@
 - Category: `Adv-ControlNet 🛂🅐🅒🅝/SparseCtrl/extras`
 - Output node: `False`
 
-This node is designed to create and manage additional weight parameters for Sparse Control Networks, enhancing their flexibility and control over the generation process. It allows for the adjustment of weights related to hints, non-hints, and masks within the network, facilitating fine-tuned control over the sparse conditioning aspects.
+This node is designed to create and manage additional weight parameters for Sparse Control Networks, enabling fine-tuned control over the network's behavior by adjusting hint, non-hint, and mask multipliers.
 ## Input types
 ### Optional
 - **`cn_extras`**
-    - A dictionary of existing extra weights for the ControlNet, allowing for the extension or modification of these weights based on the sparse control requirements.
+    - A dictionary to store extra weight parameters, allowing for the customization and fine-tuning of the Sparse Control Network's behavior.
     - Comfy dtype: `CN_WEIGHTS_EXTRAS`
     - Python dtype: `dict[str]`
 - **`sparse_hint_mult`**
-    - Multiplier for hint-based weights, influencing how strongly hints affect the generation process.
+    - Multiplier for sparse hints, influencing how strongly hints affect the network's output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sparse_nonhint_mult`**
-    - Multiplier for non-hint weights, adjusting the influence of non-hint elements in the generation.
+    - Multiplier for non-hints, adjusting the influence of non-hint areas on the network's output.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`sparse_mask_mult`**
-    - Multiplier for mask weights, controlling the impact of masks on the generation outcome.
+    - Multiplier for the mask, determining the impact of the mask on the network's behavior.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
+- **`autosize`**
+    - An optional parameter to adjust the size of the network's components, providing flexibility in network configuration and optimization.
+    - Comfy dtype: `ACNAUTOSIZE`
+    - Python dtype: `{'padding': int}`
 ## Output types
 - **`cn_extras`**
     - Comfy dtype: `CN_WEIGHTS_EXTRAS`
-    - The updated dictionary of extra weights for the ControlNet, including adjustments made to hint, non-hint, and mask multipliers.
+    - Updated dictionary of extra weight parameters, reflecting the adjustments made for hint, non-hint, and mask multipliers.
     - Python dtype: `dict[str]`
 ## Usage tips
 - Infra type: `CPU`
@@ -44,6 +48,7 @@ class SparseWeightExtras:
                 "sparse_hint_mult": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 10.0, "step": 0.001}, ),
                 "sparse_nonhint_mult": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 10.0, "step": 0.001}, ),
                 "sparse_mask_mult": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 10.0, "step": 0.001}, ),
+                "autosize": ("ACNAUTOSIZE", {"padding": 50}),
             }
         }
     

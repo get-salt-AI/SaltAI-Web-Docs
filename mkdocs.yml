@@ -329,6 +329,9 @@ nav:
           - Licenses: md/ComfyUI-Advanced-ControlNet/licenses.md
           - Nodes:
               - ACN_AdvancedControlNetApply: md/ComfyUI-Advanced-ControlNet/Nodes/ACN_AdvancedControlNetApply.md
+              - ACN_ControlNet++InputNode: md/ComfyUI-Advanced-ControlNet/Nodes/ACN_ControlNet++InputNode.md
+              - ACN_ControlNet++LoaderAdvanced: md/ComfyUI-Advanced-ControlNet/Nodes/ACN_ControlNet++LoaderAdvanced.md
+              - ACN_ControlNet++LoaderSingle: md/ComfyUI-Advanced-ControlNet/Nodes/ACN_ControlNet++LoaderSingle.md
               - ACN_DefaultUniversalWeights: md/ComfyUI-Advanced-ControlNet/Nodes/ACN_DefaultUniversalWeights.md
               - ACN_ReferenceControlNet: md/ComfyUI-Advanced-ControlNet/Nodes/ACN_ReferenceControlNet.md
               - ACN_ReferenceControlNetFinetune: md/ComfyUI-Advanced-ControlNet/Nodes/ACN_ReferenceControlNetFinetune.md

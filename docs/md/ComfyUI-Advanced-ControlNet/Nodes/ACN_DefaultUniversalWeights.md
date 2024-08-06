@@ -10,21 +10,25 @@ tags:
 - Category: `Adv-ControlNet 🛂🅐🅒🅝/weights`
 - Output node: `False`
 
-This node is designed to dynamically adjust the weights for advanced control networks in image generation tasks. It allows for the customization of weight parameters to influence the generation process, providing flexibility in achieving desired visual outcomes.
+This node specializes in loading and configuring default universal weights for the Advanced ControlNet system, facilitating the customization and optimization of weight parameters for enhanced control in text-to-image adaptation processes.
 ## Input types
 ### Optional
 - **`cn_extras`**
-    - Allows for the inclusion of additional, custom control network weight parameters, enhancing the node's adaptability to specific needs.
+    - Allows for the inclusion of additional, custom weight parameters, offering extended customization capabilities for the control network.
     - Comfy dtype: `CN_WEIGHTS_EXTRAS`
     - Python dtype: `dict[str]`
+- **`autosize`**
+    - Configures automatic sizing for the control network, optimizing its structure and parameters for improved performance.
+    - Comfy dtype: `ACNAUTOSIZE`
+    - Python dtype: `{'padding': int}`
 ## Output types
 - **`CN_WEIGHTS`**
     - Comfy dtype: `CONTROL_NET_WEIGHTS`
-    - The adjusted control network weights, ready for use in the image generation process.
+    - Outputs the configured control net weights, ready for use in the Advanced ControlNet system.
     - Python dtype: `ControlWeights`
 - **`TK_SHORTCUT`**
     - Comfy dtype: `TIMESTEP_KEYFRAME`
-    - A keyframe group that encapsulates the timing and application of the control weights throughout the generation process.
+    - Provides a shortcut to timestep keyframe configurations, facilitating efficient integration and application within the system.
     - Python dtype: `TimestepKeyframeGroup`
 ## Usage tips
 - Infra type: `CPU`
@@ -39,6 +43,7 @@ class DefaultWeights:
         return {
             "optional": {
                 "cn_extras": ("CN_WEIGHTS_EXTRAS",),
+                "autosize": ("ACNAUTOSIZE", {"padding": 0}),
             }
         }
     

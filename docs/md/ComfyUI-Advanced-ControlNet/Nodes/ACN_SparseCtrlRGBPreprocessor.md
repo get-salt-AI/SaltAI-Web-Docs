@@ -11,25 +11,30 @@ tags:
 - Category: `Adv-ControlNet 🛂🅐🅒🅝/SparseCtrl/preprocess`
 - Output node: `False`
 
-The ACN_SparseCtrlRGBPreprocessor node is designed for preprocessing images for use with RGB Sparse ControlNet models. It adjusts the input image to match the latent size required by the model, encodes the image into a latent representation, and wraps this representation in a format that is specifically tailored for subsequent processing by Advanced ControlNet nodes. This preprocessing step is crucial for ensuring that the input images are compatible with the unique requirements of RGB Sparse ControlNet models.
+The ACN_SparseCtrlRGBPreprocessor node is designed for preprocessing images for use with Sparse ControlNet models. It transforms input images into a format suitable for these models, specifically by encoding the images into a latent space that mimics the appearance of an image. This preprocessing step is crucial for the subsequent application of Sparse ControlNet techniques, ensuring compatibility and optimizing performance.
 ## Input types
 ### Required
 - **`image`**
-    - The input image to be preprocessed. This image is resized and encoded into a latent representation suitable for RGB Sparse ControlNet models.
+    - The input image to be preprocessed. This image is transformed to match the latent size requirements of the Sparse ControlNet model.
     - Comfy dtype: `IMAGE`
-    - Python dtype: `Tensor`
+    - Python dtype: `torch.Tensor`
 - **`vae`**
-    - The variational autoencoder (VAE) used for encoding the input image into a latent representation.
+    - The Variational Autoencoder (VAE) model used for encoding the input image into a latent representation.
     - Comfy dtype: `VAE`
     - Python dtype: `VAE`
 - **`latent_size`**
-    - The target size for the latent representation, ensuring compatibility with the RGB Sparse ControlNet model's requirements.
+    - Specifies the size of the latent representation to which the input image should be resized and encoded.
     - Comfy dtype: `LATENT`
-    - Python dtype: `Tensor`
+    - Python dtype: `torch.Tensor`
+### Optional
+- **`autosize`**
+    - An optional parameter that allows for automatic resizing of the input image, with an option to specify padding.
+    - Comfy dtype: `ACNAUTOSIZE`
+    - Python dtype: `Dict[str, int]`
 ## Output types
 - **`proc_IMAGE`**
     - Comfy dtype: `IMAGE`
-    - The processed image, now in a latent format wrapped in a PreprocSparseRGBWrapper, ready for use with Advanced ControlNet nodes.
+    - The processed image, now encoded in a latent space that simulates the appearance of an image, ready for use with Sparse ControlNet models.
     - Python dtype: `PreprocSparseRGBWrapper`
 ## Usage tips
 - Infra type: `GPU`
@@ -46,6 +51,9 @@ class RgbSparseCtrlPreprocessor:
                 "image": ("IMAGE", ),
                 "vae": ("VAE", ),
                 "latent_size": ("LATENT", ),
+            },
+            "optional": {
+                "autosize": ("ACNAUTOSIZE", {"padding": 0}),
             }
         }
 

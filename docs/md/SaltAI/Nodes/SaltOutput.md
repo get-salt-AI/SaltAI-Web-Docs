@@ -10,11 +10,11 @@ tags:
 - Category: `SALT/IO`
 - Output node: `True`
 
-The SaltOutput node is designed for handling the output process within the Salt AI framework, specifically focusing on generating and managing output data. It encapsulates the functionality for formatting output data, determining its type, and organizing it into a structured UI-friendly format for further use or display.
+The SaltOutput node is designed to handle the final output processing within the SaltAI framework, focusing on formatting and logging the output data according to specified parameters. It encapsulates the functionality to dynamically generate output metadata, manage file paths, and support a variety of output types including images, audio, and zip files, ensuring the output is correctly structured and accessible.
 ## Input types
 ### Required
 - **`output_name`**
-    - Specifies the name of the output, which is used for identification and organization purposes. It plays a crucial role in how the output is labeled and accessed in subsequent operations.
+    - Specifies the name of the output, which is used to label and identify the output data. It plays a crucial role in organizing and accessing the output effectively.
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`output_desc`**
@@ -22,29 +22,29 @@ The SaltOutput node is designed for handling the output process within the Salt 
     - Comfy dtype: `STRING`
     - Python dtype: `str`
 - **`output_type`**
-    - Defines the type of the output data, such as image, audio, or text formats, influencing how the data is processed and presented.
+    - Determines the format of the output data, supporting a wide range of types including images, audio, video, and various file formats. This parameter is key to ensuring the output is correctly processed and rendered.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 - **`output_data`**
-    - The actual data to be outputted, which can vary in type (e.g., image, audio, text) based on the output_type parameter.
+    - Contains the actual data to be outputted, which can vary widely in type depending on the output_type parameter.
     - Comfy dtype: `*`
-    - Python dtype: `Union[torch.Tensor, str, bytes]`
+    - Python dtype: `Any`
 ### Optional
 - **`video_audio`**
-    - Optional audio data for video outputs, used when the output type is a video format that supports accompanying audio tracks.
+    - Optional audio track for video outputs, allowing for the inclusion of sound in video files.
     - Comfy dtype: `AUDIO`
-    - Python dtype: `bytes`
+    - Python dtype: `str`
 - **`animation_fps`**
-    - Specifies the frames per second for animated outputs, affecting the playback speed and smoothness of animations.
+    - Specifies the frames per second for animated outputs, controlling the playback speed of animations.
     - Comfy dtype: `INT`
     - Python dtype: `int`
 - **`animation_quality`**
-    - Determines the quality level of the animation, allowing for a balance between visual fidelity and file size.
+    - Defines the quality level of animations, offering options to balance between performance and visual fidelity.
     - Comfy dtype: `COMBO[STRING]`
     - Python dtype: `str`
 ## Output types
 - **`ui`**
-    - A structured dictionary containing UI-friendly formatted output data, including metadata and potentially preview images for supported types.
+    - Generates a structured UI dictionary containing metadata and results for the output, facilitating the integration and display of the output data within the SaltAI framework.
 ## Usage tips
 - Infra type: `CPU`
 - Common nodes: unknown
@@ -60,7 +60,7 @@ class SaltOutput:
                 "output_name": ("STRING", {}),
                 "output_desc": ("STRING", {}),
                 "output_type": (
-                    ["PNG", "JPEG", "GIF", "WEBP", "AVI", "MP4", "WEBM", "MP3", "WAV", "STRING"],
+                    ["PNG", "JPEG", "GIF", "WEBP", "AVI", "MP4", "WEBM", "MP3", "WAV", "STRING", "ZIP", "ZIP (Audio)", "ZIP (Video)", "Path"],
                 ),
                 "output_data": (WILDCARD, {}),
             },
@@ -94,10 +94,10 @@ class SaltOutput:
         asset_id = str(uuid.uuid4())
 
         # Determine if valid type
-        if not isinstance(output_data, torch.Tensor) and not isinstance(output_data, str) and not isinstance(output_data, bytes) and not is_lambda(output_data):
-            errmsg = f"Unsupported output_data supplied `{str(type(output_data).__name__)}`. Please provide `IMAGE` (torch.Tensor), `STRING` (str), or `AUDIO` (bytes) input."
-            logger.error(errmsg)
-            raise ValueError(errmsg)
+        #if not isinstance(output_data, torch.Tensor) and not isinstance(output_data, str) and not isinstance(output_data, bytes) and not is_lambda(output_data):
+        #    errmsg = f"Unsupported output_data supplied `{str(type(output_data).__name__)}`. Please provide `IMAGE` (torch.Tensor), `STRING` (str), or `AUDIO` (bytes) input."
+        #    logger.error(errmsg)
+        #    raise ValueError(errmsg)
         
         # Support VHS audio
         if output_type in ["AVI", "MP4", "WEBM", "MP3", "WAV"]:
@@ -112,7 +112,7 @@ class SaltOutput:
             raise ValueError(errmsg)
 
         # Is asset? I may have misunderstood this part
-        if output_type in ["GIF", "WEBP", "AVI", "MP4", "WEBM", "MP3", "WAV"]:
+        if output_type in ["GIF", "WEBP", "AVI", "MP4", "WEBM", "MP3", "WAV", "ZIP", "ZIP (Audio)", "ZIP (Video)", "Path"]:
             is_asset = True
 
         # Determine output name, and sanitize if input (for filesystem)
@@ -132,7 +132,9 @@ class SaltOutput:
 
         results = []
         if output_type in ("PNG", "JPEG") and isinstance(output_data, torch.Tensor):
+
             # Save all images in the tensor batch as specified by output_type
+            logger.info("Saving image...")
             try:
                 for index, img in enumerate(output_data):
                     pil_image = tensor2pil(img)
@@ -158,7 +160,9 @@ class SaltOutput:
                 raise e
 
         if output_type in ["GIF", "WEBP", "AVI", "MP4", "WEBM"] and isinstance(output_data, torch.Tensor):
+
             # Save animation file
+            logger.info("Saving animation...")
             filename = os.path.join(output_path, f"{output_name}.{output_type.lower()}")
             animator = ImageAnimator(
                 output_data, fps=int(animation_fps), quality=animation_quality
@@ -175,7 +179,9 @@ class SaltOutput:
                 errmsg = f"[SALT] Unable to save file to `{filename}`"
                 logger.warning(errmsg)
         elif output_type in ["MP3", "WAV"] and isinstance(output_data, bytes):
+
             # Save audio file
+            logger.info("Saving audio...")
             filename = os.path.join(output_path, f"{output_name}.{output_type.lower()}")
 
             audio_buffer = io.BytesIO(output_data)
@@ -198,8 +204,120 @@ class SaltOutput:
                 errmsg = f"Unable to save file to `{filename}`"
                 logger.warning(errmsg)
 
+        elif output_type in ["ZIP", "ZIP (Audio)", "ZIP (Video)", "Path"]:
+            zip_filename = os.path.join(output_path, f"{output_name}.zip")
+            with zipfile.ZipFile(zip_filename, 'w') as zipf:
+                if output_type == "ZIP" and isinstance(output_data, torch.Tensor):
+
+                    # Save batch images as ZIP
+                    logger.info("Saving image ZIP...")
+                    for index, img in enumerate(output_data):
+                        pil_image = tensor2pil(img)
+                        file_prefix = output_name.strip().replace(" ", "_")
+                        file_ext = ".png"  # default to PNG inside ZIP
+                        filename = f"{file_prefix}_{index:04d}{file_ext}"
+                        image_path = os.path.join(output_path, filename)
+                        pil_image.save(image_path, "PNG")
+                        zipf.write(image_path, arcname=filename)
+                        os.remove(image_path)
+
+                elif output_type == "ZIP" and isinstance(output_data, str):
+
+                    # Save text to ZIP
+                    logger.info("Saving document ZIP...")
+                    data_filename = f"{output_name}.txt"
+                    data_path = os.path.join(output_path, data_filename)
+                    with open(data_path, 'wb' if isinstance(output_data, bytes) else 'w') as f:
+                        f.write(output_data)
+                    zipf.write(data_path, arcname=data_filename)
+                    os.remove(data_path)
+
+                elif output_type == "ZIP" and isinstance(output_data, list):
+
+                    # Save each item in the (string) list to ZIP
+                    logger.info("Saving documents ZIP...")
+                    for index, item in enumerate(output_data):
+                        data_filename = f"{output_name}_{index:04d}.txt"
+                        data_path = os.path.join(output_path, data_filename)
+                        with open(data_path, 'w') as f:
+                            f.write(str(item))
+                        zipf.write(data_path, arcname=data_filename)
+                        os.remove(data_path)
+
+                elif output_type == "ZIP" and isinstance(output_data, dict):
+
+                    # Save dictionary as JSON to ZIP
+                    logger.info("Saving JSON ZIP...")
+                    data_filename = f"{output_name}.json"
+                    data_path = os.path.join(output_path, data_filename)
+                    with open(data_path, 'w') as f:
+                        json.dump(output_data, f)
+                    zipf.write(data_path, arcname=data_filename)
+                    os.remove(data_path)
+
+                elif output_type == "ZIP (Audio)" and isinstance(output_data, bytes):
+
+                    # Save audio data to ZIP
+                    logger.info("Saving audio ZIP...")
+                    data_filename = f"{output_name}.mp3"
+                    data_path = os.path.join(output_path, data_filename)
+                    audio_buffer = io.BytesIO(output_data)
+                    audio = AudioSegment.from_file(audio_buffer)
+                    audio.export(data_path, format="mp3")
+                    zipf.write(data_path, arcname=data_filename)
+                    os.remove(data_path)
+
+                elif output_type == "ZIP (Video)" and isinstance(output_data, torch.Tensor):
+
+                    # Save video data to ZIP
+                    logger.info("Saving video ZIP...")
+                    filename = f"{output_name}.mp4"
+                    video_path = os.path.join(output_path, filename)
+                    animator = ImageAnimator(
+                        output_data, fps=int(animation_fps), quality=animation_quality
+                    )
+                    animator.save_animation(video_path, format="MP4", audio=video_audio)
+                    zipf.write(video_path, arcname=filename)
+                    os.remove(video_path)
+
+                elif output_type == "Path":
+
+                    # Save file or directory as ZIP
+                    logger.info("Saving path as ZIP...")
+                    if os.path.exists(output_data):
+                        if allowed_path(output_data):
+                            if os.path.isfile(output_data):
+                                zipf.write(output_data, arcname=os.path.basename(output_data))
+                            elif os.path.isdir(output_data):
+                                for root, dirs, files in os.walk(output_data):
+                                    for file in files:
+                                        file_path = os.path.join(root, file)
+                                        arcname = os.path.relpath(file_path, start=output_data)
+                                        zipf.write(file_path, arcname=arcname)
+                        else:
+                            errmsg = f"The provided path `{output_data}` is not within the allowed directories."
+                            logger.error(errmsg)
+                            raise ValueError(errmsg)
+                    else:
+                        errmsg = f"The path specified `{output_data}` does not exist."
+                        logger.error(errmsg)
+                        raise ValueError(errmsg)
+            
+            results.append({
+                "filename": os.path.basename(zip_filename),
+                "subfolder": subfolder,
+                "type": "output"
+            })
+            
+            if os.path.exists(zip_filename):
+                logger.info(f"Saved ZIP file to `{zip_filename}`")
+            else:
+                errmsg = f"Unable to save ZIP file to `{zip_filename}`"
+                logger.warning(errmsg)
+
         else:
             # Assume string output
+            logger.info("Saving string...")
             if output_type == "STRING":
                 results.append(str(output_data))
 
@@ -225,8 +343,10 @@ class SaltOutput:
 
         # Print to log
         logger.info(f"[SaltOutput_{unique_id}] Output:")
-        logger.data(ui, indent=4)
-        
+        from pprint import pprint
+
+        pprint(ui, indent=4) # Not converting this to logger yet to get the rest done - Daniel
+
         return ui
 
 ```

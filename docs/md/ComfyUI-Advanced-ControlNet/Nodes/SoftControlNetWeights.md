@@ -10,34 +10,38 @@ tags:
 - Category: `Adv-ControlNet 🛂🅐🅒🅝/weights/ControlNet`
 - Output node: `False`
 
-The SoftControlNetWeights node is designed to dynamically adjust the control net weights based on a set of parameters, including a series of individual weight parameters, flip weights, unconditional multipliers, and additional control net extras. It abstracts the complexity of weight manipulation, offering a flexible interface for fine-tuning the influence of various control factors in generative models.
+This node is designed to dynamically adjust the weights for control networks in a soft, nuanced manner, allowing for more refined and flexible control over the generation process. It focuses on providing a customizable approach to weight manipulation, enabling users to fine-tune the influence of various control parameters based on specific needs or desired outcomes.
 ## Input types
 ### Required
 - **`weight_i`**
-    - Specifies an individual weight in the series for the control weights, serving as an adjustment factor. The index 'i' ranges from 0 to 12, covering the entire spectrum of weights available for adjustment.
+    - Specifies a weight in the control network, serving as an adjustable factor for nuanced control. The index 'i' ranges from 0 to 3, allowing for multiple levels of refinement in control adjustments.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`flip_weights`**
-    - A boolean flag that, when set to True, reverses the effect of the weights, allowing for inverted control dynamics.
+    - A boolean flag that determines whether the control weights should be inverted, offering an alternative perspective on the control influence.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 ### Optional
 - **`uncond_multiplier`**
-    - An optional float that scales the weights unconditionally, providing an additional layer of control over the weight adjustment.
+    - Defines an unconditional multiplier that applies universally across all control weights, allowing for a global adjustment to their influence.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`cn_extras`**
-    - A dictionary of extra parameters for further customization of the control net weights, enabling advanced configurations beyond the standard parameters.
+    - Allows for the inclusion of additional, custom-defined control weight parameters, providing a mechanism for extending and customizing the control influence beyond the standard set.
     - Comfy dtype: `CN_WEIGHTS_EXTRAS`
     - Python dtype: `dict[str]`
+- **`autosize`**
+    - Configures automatic sizing parameters for the control network, facilitating adaptive adjustments to the network's dimensions based on specific requirements.
+    - Comfy dtype: `ACNAUTOSIZE`
+    - Python dtype: `dict[str, int]`
 ## Output types
 - **`CN_WEIGHTS`**
     - Comfy dtype: `CONTROL_NET_WEIGHTS`
-    - The adjusted control net weights, ready for use in controlling generative models.
-    - Python dtype: `ControlWeights`
+    - The computed control network weights after applying the specified adjustments.
+    - Python dtype: `Tensor`
 - **`TK_SHORTCUT`**
     - Comfy dtype: `TIMESTEP_KEYFRAME`
-    - A keyframe group that encapsulates the timing and application of the control weights over a sequence.
+    - A shortcut to the timestep keyframe, encapsulating the adjusted control weights.
     - Python dtype: `TimestepKeyframeGroup`
 ## Usage tips
 - Infra type: `CPU`
@@ -69,6 +73,7 @@ class SoftControlNetWeights:
             "optional": {
                 "uncond_multiplier": ("FLOAT", {"default": 1.0, "min": 0.0, "max": 1.0, "step": 0.01}, ),
                 "cn_extras": ("CN_WEIGHTS_EXTRAS",),
+                "autosize": ("ACNAUTOSIZE", {"padding": 50}),
             }
         }
     

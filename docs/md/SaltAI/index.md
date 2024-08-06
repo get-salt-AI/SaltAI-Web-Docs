@@ -6,7 +6,7 @@ Audio * Blur * CLIP * Color * ColorMatch * Crop * DataTypeConversion * Image * I
 
 ## Repo info
 - Repo url: `https://gitlab.com/plai-app/ai-studio/orchestra-nodes/to-release/SaltAI.git`
-- Commit hash: `94bee888ed7f9c78d622f6c8bd3c928b15b62fd6`
+- Commit hash: `e4bc6aa396ed44f204be068af5f71bf894582ef6`
 
 ## Licenses
 - **GPL-3.0-only**: `LICENSE`

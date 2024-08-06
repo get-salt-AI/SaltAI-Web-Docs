@@ -10,22 +10,22 @@ tags:
 - Category: `Adv-ControlNet 🛂🅐🅒🅝`
 - Output node: `False`
 
-This node is designed to load an advanced ControlNet model, optionally incorporating a timestep keyframe group for enhanced control. It abstracts the complexities of fetching and initializing ControlNet models, ensuring they are ready for further manipulation or application within a broader system.
+This node is designed to load advanced control networks, enabling the customization and enhancement of generative models through specified control net configurations. It supports loading control nets by name and optionally applying timestep keyframe adjustments for fine-tuned control.
 ## Input types
 ### Required
 - **`control_net_name`**
-    - Specifies the name of the ControlNet model to be loaded. This name is used to locate the model within a predefined directory structure.
+    - Specifies the name of the control net to load, serving as a key identifier for retrieving the appropriate control net configuration.
     - Comfy dtype: `COMBO[STRING]`
-    - Python dtype: `str`
+    - Python dtype: `List[str]`
 ### Optional
-- **`timestep_keyframe`**
-    - An optional parameter that allows for the inclusion of a timestep keyframe group, providing additional control and customization capabilities for the loaded ControlNet model.
+- **`tk_optional`**
+    - An optional parameter for specifying timestep keyframe adjustments, enhancing the control net's application with temporal fine-tuning.
     - Comfy dtype: `TIMESTEP_KEYFRAME`
-    - Python dtype: `TimestepKeyframeGroup or None`
+    - Python dtype: `TimestepKeyframeGroup`
 ## Output types
 - **`control_net`**
     - Comfy dtype: `CONTROL_NET`
-    - Returns the loaded ControlNet model, ready for use in various applications that require advanced control mechanisms.
+    - Returns the loaded control net, ready for application in generative model customization.
     - Python dtype: `ControlNet`
 ## Usage tips
 - Infra type: `CPU`
@@ -48,7 +48,7 @@ class ControlNetLoaderAdvanced:
                 "control_net_name": (folder_paths.get_filename_list("controlnet"), ),
             },
             "optional": {
-                "timestep_keyframe": ("TIMESTEP_KEYFRAME", ),
+                "tk_optional": ("TIMESTEP_KEYFRAME", ),
             }
         }
 
@@ -58,10 +58,13 @@ class ControlNetLoaderAdvanced:
     CATEGORY = "Adv-ControlNet 🛂🅐🅒🅝"
 
     def load_controlnet(self, control_net_name,
-                        timestep_keyframe: TimestepKeyframeGroup=None
+                        tk_optional: TimestepKeyframeGroup=None,
+                        timestep_keyframe: TimestepKeyframeGroup=None,
                         ):
+        if timestep_keyframe is not None: # backwards compatibility
+            tk_optional = timestep_keyframe
         controlnet_path = folder_paths.get_full_path("controlnet", control_net_name)
-        controlnet = load_controlnet(controlnet_path, timestep_keyframe)
+        controlnet = load_controlnet(controlnet_path, tk_optional)
         return (controlnet,)
 
 ```

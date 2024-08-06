@@ -11,54 +11,58 @@ tags:
 - Category: `Adv-ControlNet 🛂🅐🅒🅝/keyframes`
 - Output node: `False`
 
-This node is designed to generate a sequence of timestep keyframes based on a list of strengths, facilitating the creation of dynamic and customizable animation paths within the Advanced ControlNet framework. It allows for the precise control of animation intensity and timing through keyframe interpolation, supporting a variety of interpolation methods to achieve smooth transitions between keyframes.
+This node is designed to generate a sequence of timestep keyframes based on a list of strength values. It facilitates the creation of dynamic animations or effects within a control network by interpolating between specified strength levels over a series of timesteps, allowing for precise control over the animation's progression.
 ## Input types
 ### Required
 - **`float_strengths`**
-    - A list of numerical values representing the strengths of each keyframe in the sequence, which dictate the intensity of the animation at various points.
+    - Specifies the strength values for each keyframe. This input allows for the dynamic generation of keyframes based on varying strength levels, enabling the creation of nuanced animations or effects.
     - Comfy dtype: `FLOAT`
-    - Python dtype: `Union[float, list[float]]`
+    - Python dtype: `Union[float, List[float]]`
 - **`start_percent`**
-    - Specifies the starting percentage of the animation timeline where the keyframe sequence begins, enabling precise control over the timing of animations.
+    - Defines the starting percentage for the keyframe sequence, allowing for the customization of when the animation effects begin within the control network.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`end_percent`**
-    - Defines the ending percentage of the animation timeline for the keyframe sequence, allowing for the delineation of the animation's duration within the overall timeline.
+    - Sets the ending percentage for the keyframe sequence, determining when the animation effects conclude within the control network.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 ### Optional
 - **`prev_timestep_kf`**
-    - References a previous TimestepKeyframeGroup to which the new keyframes will be added, allowing for the continuation or modification of an existing animation sequence.
+    - An optional input representing the previous state of timestep keyframes, enabling the continuation or modification of an existing sequence.
     - Comfy dtype: `TIMESTEP_KEYFRAME`
     - Python dtype: `TimestepKeyframeGroup`
 - **`cn_weights`**
-    - Control network weights that influence the animation's behavior, providing a mechanism for fine-tuning the animation's appearance.
+    - Optional control network weights that can be applied to the keyframes, offering additional customization for the animation's behavior.
     - Comfy dtype: `CONTROL_NET_WEIGHTS`
     - Python dtype: `ControlWeights`
 - **`latent_keyframe`**
-    - Specifies a group of latent keyframes that can be used to influence the animation, offering additional control over the animation's characteristics.
+    - Optional latent keyframes that can be integrated into the timestep keyframes for enhanced control over the animation's characteristics.
     - Comfy dtype: `LATENT_KEYFRAME`
     - Python dtype: `LatentKeyframeGroup`
 - **`null_latent_kf_strength`**
-    - Determines the strength of the null latent keyframe, affecting the baseline intensity of the animation.
+    - Defines the strength of a null latent keyframe, allowing for the adjustment of the animation's intensity.
     - Comfy dtype: `FLOAT`
     - Python dtype: `float`
 - **`inherit_missing`**
-    - A boolean flag that indicates whether missing keyframes should be inherited from the previous set, ensuring continuity in the animation.
+    - A boolean flag indicating whether missing keyframe attributes should be inherited from previous keyframes, ensuring continuity in the animation.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
 - **`mask_optional`**
-    - An optional mask that can be applied to the keyframes, allowing for localized control over the animation.
+    - An optional mask that can be applied to the keyframes, providing further customization of the animation's appearance.
     - Comfy dtype: `MASK`
-    - Python dtype: `Mask`
+    - Python dtype: `Tensor`
 - **`print_keyframes`**
-    - A flag that, when enabled, prints the details of each keyframe to the console for debugging or informational purposes.
+    - A boolean flag that, when set to true, enables logging of the generated keyframes for debugging or informational purposes.
     - Comfy dtype: `BOOLEAN`
     - Python dtype: `bool`
+- **`autosize`**
+    - Specifies the autosizing options for the control network, facilitating the automatic adjustment of the network's dimensions based on the provided parameters.
+    - Comfy dtype: `ACNAUTOSIZE`
+    - Python dtype: `Dict[str, int]`
 ## Output types
 - **`TIMESTEP_KF`**
     - Comfy dtype: `TIMESTEP_KEYFRAME`
-    - Returns an updated TimestepKeyframeGroup object that includes the newly generated keyframes, ready for further manipulation or rendering within the animation pipeline.
+    - The output is a sequence of timestep keyframes, which are generated based on the provided strength values and other parameters. This sequence can be used to control animations or effects within a control network.
     - Python dtype: `TimestepKeyframeGroup`
 ## Usage tips
 - Infra type: `CPU`
@@ -84,6 +88,7 @@ class TimestepKeyframeFromStrengthListNode:
                 "inherit_missing": ("BOOLEAN", {"default": True},),
                 "mask_optional": ("MASK", ),
                 "print_keyframes": ("BOOLEAN", {"default": False}),
+                "autosize": ("ACNAUTOSIZE", {"padding": 0}),
             }
         }
     
