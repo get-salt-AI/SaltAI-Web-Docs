@@ -48,6 +48,7 @@ extra:
   analytics:
     provider: google
     property: G-MHLEW2T4PQ
+
 plugins:
   - search
   - tags
