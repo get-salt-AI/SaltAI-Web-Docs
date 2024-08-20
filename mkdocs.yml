@@ -61,6 +61,7 @@ nav:
   - Getting Started: index.md
   - Core Concepts: concepts.md
   - Usage & Rate Limits: usage-rate-limits.md
+  - Guides:
     - Creating Workflows: workflows.md
     - Using Nodes: nodes.md
     - Importing Models: model-import.md  
