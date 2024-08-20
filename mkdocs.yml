@@ -60,7 +60,7 @@ plugins:
 nav:
   - Getting Started: index.md
   - Core Concepts: concepts.md
-  - Workflow Builder:
+  - Usage & Rate Limits: usage-rate-limits.md
     - Creating Workflows: workflows.md
     - Using Nodes: nodes.md
     - Importing Models: model-import.md  
