@@ -48,6 +48,7 @@ extra:
   analytics:
     provider: google
     property: G-MHLEW2T4PQ
+
 plugins:
   - search
   - tags
@@ -60,6 +61,7 @@ plugins:
 nav:
   - Getting Started: index.md
   - Core Concepts: concepts.md
+  - Usage & Rate Limits: usage-rate-limits.md
   - Workflow Builder:
       - Creating Workflows: workflows.md
       - Using Nodes: nodes.md
