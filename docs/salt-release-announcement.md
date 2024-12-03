@@ -1,11 +1,9 @@
-# Announcing Salt v0.8
+# Announcing Salt v1.0
 
 **Coming December 10th, 2024**
 
 
-We're excited to announce Salt v0.8 — a ground-up rebuild of our platform that transforms how teams build and deploy AI workflows. This release includes a new node catalog, enhanced core platform, and a custom node builder. 
-
-
+We're excited to announce Salt v1.0 — a ground-up rebuild of our platform that transforms how teams build and deploy AI workflows. This release includes a new node catalog, enhanced core platform, and a custom node builder. 
 
 <img src="/images/announcement.jpg" class='rounded-lg'>
 
@@ -36,7 +34,7 @@ We've completely redesigned our node library with powerful new capabilities. Thi
 
 ## Breaking Changes
 
-The launch of Salt v0.8 includes **significant changes to the platform**:
+The launch of Salt includes **significant changes to the platform**:
 
 ### Node Compatibility
 - Current node catalog will be replaced with a totally new library
