@@ -20,16 +20,18 @@ We've completely redesigned our node library with powerful new capabilities. Thi
 - Stable Diffusion nodes for creating images and videos
 - And more!
 
-### Enhanced Core Platform
-- Rebuilt workflow engine
-- Streamlined user experience
-- More powerful integration options
+### Improved User Experience
+- All-new workflow building experience
 - Additional features coming soon
 
-### Custom Node Builder (Coming Soon)
+### LLMs & Knowledge Bases
+- New LLM nodes for interacting with your data
+- Tools and agents for building complex workflows
+- Knowledge bases for storing and retrieving information
+- Data connectors for bringing your data to Salt
+
+### Custom Node Builder (Soon)
 - Build custom nodes in the platform with an integrated IDE and runtime
-- Enhanced node configuration capabilities
-- Improved node layout and appearance
 
 
 ## Breaking Changes
