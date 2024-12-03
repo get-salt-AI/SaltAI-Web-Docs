@@ -1,11 +1,13 @@
-# Announcing Salt AI Next Generation
+# Announcing Salt v0.8
 
-Coming December 10th, 2024
----
-**We're thrilled** to announce Salt AI Next Generation — a ground-up rebuild of our platform launching December 10th, 2024. This represents a major evolution in how teams can build and deploy AI workflows.
+**Coming December 10th, 2024**
+
+
+We're excited to announce Salt v0.8 — a ground-up rebuild of our platform that transforms how teams build and deploy AI workflows. This release includes a new node catalog, enhanced core platform, and a custom node builder. 
+
+
 
 <img src="/images/announcement.jpg" class='rounded-lg'>
-
 
 ## What's New
 
@@ -18,33 +20,30 @@ We've completely redesigned our node library with powerful new capabilities. Thi
 - Stable Diffusion nodes for creating images and videos
 - And more!
 
-### Enhanced Core Platform
-- Rebuilt workflow engine
-- Streamlined user experience
-- More powerful integration options
+### Improved User Experience
+- All-new workflow building experience
 - Additional features coming soon
 
-### New Node Editor (Coming Soon)
+### LLMs & Knowledge Bases
+- New LLM nodes for interacting with your data
+- Tools and agents for building complex workflows
+- Knowledge bases for storing and retrieving information
+- Data connectors for bringing your data to Salt
+
+### Custom Node Builder (Soon)
 - Build custom nodes in the platform with an integrated IDE and runtime
-- Enhanced node configuration capabilities
-- Improved node layout and appearance
 
 
-### Custom Node Creation
-Build and integrate custom nodes directly in the platform. For the first time, you'll be able to create specialized nodes that perfectly match your workflow needs, all without leaving Salt.
+## Breaking Changes
 
-
-## Important Changes
-
-The launch of Salt AI Next Generation includes some significant changes to the platform:
+The launch of Salt v0.8 includes **significant changes to the platform**:
 
 ### Node Compatibility
-- Current node catalog will be replaced with our new library
-- Existing workflows using discontinued nodes will need to be rebuilt
+- Current node catalog will be replaced with a totally new library
+- Existing workflows using discontinued nodes will need to be rebuilt or migrated to a compatible platform
 - All workflows can be exported as ComfyUI-compatible JSON files
 
 ### Feature Updates
-<!-- add ad warning -->
 - Custom model uploading will be **discontinued**
 - Deploy to API feature will be **temporarily unavailable** during refactoring
 - New deployment features coming in future updates
