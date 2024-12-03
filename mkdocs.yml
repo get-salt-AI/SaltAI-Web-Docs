@@ -59,7 +59,7 @@ plugins:
         background_color: '#C0BED3'
         color: black
 nav:
-  - Salt AI Next Generation: announcing-next-gen-salt.md
+  - Coming Soon: Salt v0.8: salt-release-announcement.md
   - Getting Started: index.md
   - Core Concepts: concepts.md
   - Usage & Rate Limits: usage-rate-limits.md
