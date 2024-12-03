@@ -24,14 +24,10 @@ We've completely redesigned our node library with powerful new capabilities. Thi
 - More powerful integration options
 - Additional features coming soon
 
-### New Node Editor (Coming Soon)
+### Custom Node Builder (Coming Soon)
 - Build custom nodes in the platform with an integrated IDE and runtime
 - Enhanced node configuration capabilities
 - Improved node layout and appearance
-
-
-### Custom Node Creation
-Build and integrate custom nodes directly in the platform. For the first time, you'll be able to create specialized nodes that perfectly match your workflow needs, all without leaving Salt.
 
 
 ## Important Changes
