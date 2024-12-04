@@ -31,7 +31,6 @@ We've completely redesigned our node library with powerful new capabilities. Thi
 ### Custom Node Builder (Soon)
 - Build custom nodes in the platform with an integrated IDE and runtime
 
-
 ## Breaking Changes
 
 The launch of Salt includes **significant changes to the platform**:
