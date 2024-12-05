@@ -33,7 +33,7 @@ We've completely redesigned our node library with powerful new capabilities. Thi
 
 ## Breaking Changes
 
-The launch of Salt includes **significant changes to the platform**:
+The launch of Salt includes **significant changes to the platform and to deployments**:
 
 ### Node Compatibility
 - Current node catalog will be replaced with a totally new library
@@ -41,17 +41,26 @@ The launch of Salt includes **significant changes to the platform**:
 - All workflows can be exported as ComfyUI-compatible JSON files
 
 ### Feature Updates
-- Custom model uploading will be **discontinued**
+- Custom model importing (Hugging Face, etc...) will be **discontinued**
 - Deploy to API feature will be **temporarily unavailable** during refactoring
 - New deployment features coming in future updates
 
 ## Your Data & Workflows
-
 - All your generated outputs remain accessible
 - Ability to export workflows as JSON files
 - Full access to your historical data
 
-Need to maintain current workflows? You can export them as ComfyUI-compatible JSON files and visit [ComfyUI.org](https://comfy.org) to explore compatible platforms.
+## Discord Deployments & Salt AI Bot
+- We are discontinuing the Discord Deployment feature on Salt
+- The Discord Bot will be **discontinued** 
+- The Salt AI Discord is being replaced with a new community support system
+
+## Support & Community
+- We are replacing our Discord with a new community support system
+- The Salt AI Discord will remain active for support and community engagement through the end of 2024
+
+## Need to maintain current workflows?
+- You can export them as ComfyUI-compatible JSON files and visit [ComfyUI.org](https://comfy.org) to explore compatible platforms.
 
 ## Timeline
 
