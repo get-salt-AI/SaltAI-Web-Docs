@@ -5,7 +5,7 @@
 
 We're excited to announce Salt v1.0 — a ground-up rebuild of our platform that transforms how teams build and deploy AI workflows. This release includes a new node catalog, enhanced core platform, and a custom node builder. 
 
-<img src="/images/announcement.jpg" class='rounded-lg'>
+<img src="/images/index.jpg" class='rounded-lg'>
 
 ## What's New
 
@@ -69,6 +69,4 @@ The launch of Salt includes **significant changes to the platform and to deploym
 - **Your Data**: Remains accessible, no rush to download
 
 ## Questions?
-
-Join our [Discord community](https://discord.gg/salt) to ask questions and get help from our team.
-
+Email support@getsalt.ai with any questions.

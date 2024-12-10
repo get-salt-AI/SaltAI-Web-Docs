@@ -1,50 +1,87 @@
----
-description: Your go-to platform for building powerful AI-driven applications without writing a single line of code.
----
+# Welcome to Salt
 
-# Getting Started with Salt AI
+!!! note
+    This documentation is a work in progress. Check back soon for more details! We are actively working on documenting all of our nodes and features.
 
-Welcome to [Salt AI](https://getsalt.ai), your go-to platform for building powerful AI-driven applications without writing a single line of code. Salt AI offers an intuitive, node-based environment for creating sophisticated AI workflows.
 
-<img src="/images/salt-hero.jpg" class='rounded-lg'>
+<img src="/images/index.jpg" alt="Salt">
+## Why Salt?
 
-## Key Features
+Salt bridges the gap between advanced AI capabilities and practical business needs. Our platform empowers both technical and non-technical teams to:
 
-- **Node-Based Development:** Drag, drop, and connect nodes to build complex AI workflows.
-- **Cutting edge AI models:** Access a variety of AI models, from standard to advanced, to power your workflows.
-- **Scalable Infrastructure:** Run your workflows at scale without worrying about the underlying technical complexities.
+- **Build Visually**: Create sophisticated AI workflows by connecting specialized nodes in our intuitive interface
+- **Deploy Anywhere**: Run your workflows in your own environment or our managed cloud
+- **Scale Confidently**: From proof-of-concept to enterprise-wide deployment, Salt grows with your needs
 
-## Building Your First Workflow
+## Core Platform Capabilities
 
-[Workflows Guide](/workflows)
+### AI Powerhouse
+Harness industry-leading AI models and tools in one unified platform:
 
-1. **Access the Canvas:** Log in to Salt AI and navigate to the workflow builder. You'll see the default workflow on the canvas.
+- **Language Models**: OpenAI, Anthropic, Gemini, and Groq integrations for text generation, analysis, and reasoning
 
-2. **Understand the Default Setup:** Take a moment to examine the pre-configured nodes and their connections. This will give you an idea of how workflows are structured in Salt AI.
+- **Image Processing**: Generate, edit, and transform images with Stable Diffusion and custom processors
 
-3. **Add or Remove Nodes:** Use the node library on the left side of the screen to add new nodes to your workflow. You can also remove existing nodes if they're not needed for your specific task.
+- **Enterprise Data**: Connect seamlessly with your existing tools like Notion, Slack, Google Drive, and more
 
-4. **Connect Nodes:** Link the nodes by drawing connections from the output of one node to the input of another. This defines the flow of data through your workflow.
+### Built for Teams
+Designed for collaboration from the ground up:
 
-5. **Configure Salt Inputs & Outputs:** Ensure your Salt Input and Salt Output nodes are correctly configured for your desired format and specifications.
+- **Visual Workflows**: Build complex AI processes using our drag-and-drop interface
+- **Real-Time Collaboration**: Work together on workflows with your entire team
+- **Version Control**: Track changes and manage workflow versions with ease
 
-6. **Test Your Workflow:** Use the `Run` button to execute your workflow. Review the output and the logs for each node to understand how data flows through your system.
+## Getting Started
 
-7. **Iterate and Refine:** Based on the results, refine your workflow by adjusting node configurations, adding new nodes, or restructuring the flow.
+**Explore Basic Concepts**
 
-## Best Practices
+  - Learn about nodes - the building blocks of Salt workflows
+  - Understand how to connect nodes to create powerful processes
+  - Master the visual workflow builder
 
-- Start with the Default: Use the default workflow as a learning tool. Modify it step by step to understand how each change affects the output.
+**Build Your First Workflow**
 
-- Understand Input/Output: Pay special attention to the Salt Input and Salt Output nodes, as they define how your workflow interacts with the outside world.
+   - Follow our quick-start tutorial
+   - Use pre-built templates to jumpstart your projects
+   - Test and iterate with real-time feedback
 
-- Use Templates: Explore our library of pre-built templates to jumpstart your development or learn best practices.
+**Scale Your Solutions**
 
-- Leverage AI Models Wisely: Choose the appropriate AI model for your task, considering factors like accuracy, speed, and credit usage.
+   - Deploy workflows to production
+   - Monitor performance and usage
+   - Optimize for efficiency and cost
 
-- Collaborate: Share your workflows with team members for feedback and collaborative improvement.
+## Popular Use Cases
 
-## Need Help?
+### Content Generation
+Create high-quality content at scale:
 
-- Join our [Discord](https://discord.gg/saltai) Community to connect with other developers and get support.
-- Explore our comprehensive [Node Documentation](https://docs.getsalt.ai/md/) to discover all of the nodes available on the platform.
+- Marketing copy generation
+- Product descriptions
+- Social media content
+- Document summarization
+
+### Data Processing
+
+Transform and analyze data intelligently:
+
+  - Document extraction and analysis
+  - Image processing and transformation
+  - Data enrichment and classification
+  - Automated research and analysis
+
+### Enterprise Automation
+Streamline business processes:
+
+- Customer support automation
+- Document processing workflows
+- Knowledge base management
+- Data validation and enrichment
+
+## Resources
+
+- **[Quickstart Guide →](/getting-started)**
+- **[Video Tutorials →](/tutorials-preview)** (Coming Soon - Sign up for updates)
+- **[Node Reference →](/nodes-preview)** (Coming Soon - View preliminary documentation)
+- **[API Documentation →](/api-preview)** (Coming Soon - Check our development roadmap)
+
