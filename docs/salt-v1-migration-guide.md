@@ -11,7 +11,7 @@ Salt v1.0 represents a complete platform rebuild with a new node catalog that of
 ### 1. Export and Preserve Your Workflows
 - All existing workflows can be exported as ComfyUI-compatible JSON files
 - This preserves your work and enables transition to alternative platforms
-- Export process is available through your Salt dashboard
+- Export process is available through your Salt workflows dashboard in the `...` menu.
 
 ### 2. Choose Your Hosting Solution
 
@@ -78,21 +78,26 @@ If you're ready to take advantage of our new features:
 
 Consider these factors when selecting your migration strategy:
 
-1. Workflow Complexity
-   - Simple workflows may be easily rebuilt in v1.0
-   - Complex workflows might benefit from ComfyUI compatibility
+Workflow Complexity
 
-2. Resource Requirements
-   - Evaluate GPU needs and usage patterns
-   - Consider cost implications of different hosting options
+    - Simple workflows may be easily rebuilt in v1.0
+    - Complex workflows might benefit from ComfyUI compatibility
 
-3. Team Structure
-   - Single user vs team collaboration needs
-   - Technical expertise available
 
-4. Integration Requirements
-   - API needs
-   - External system connections
-   - Custom node requirements
+Resource Requirements
+   
+    - Evaluate GPU needs and usage patterns
+    - Consider cost implications of different hosting options
 
-We're committed to supporting your transition, whether you choose to move to Salt v1.0 or explore alternative platforms. Our support team is ready to assist with specific questions and challenges throughout your migration journey.
+Team Structure
+   
+    - Single user vs team collaboration needs
+    - Technical expertise available
+
+Integration Requirements
+
+    - API needs
+    - External system connections
+    - Custom node requirements
+
+We're committed to supporting your transition, whether you choose to move to Salt v1.0 or explore alternative platforms. Our support team is ready to assist with specific questions and challenges throughout your migration journey. You can reach us via our support widget in the nav at app.getsalt.ai.
