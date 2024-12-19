@@ -66,3 +66,5 @@ nav:
     - Nodes: nodes/index.md
     - Text: nodes/text.md
     - LLMs: nodes/llms.md
+  - Node Builder:
+    - Getting Started with Node Builder: node-builder/getting-started.md
