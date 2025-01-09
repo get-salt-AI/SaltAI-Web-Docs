@@ -286,7 +286,7 @@ Salt provides a built-in logger utility to help you debug and monitor your nodes
 First, import the logger in your node:
 
 ```python
-from .. import logger
+from salt.node_builder import logger
 
 class MyNode:
     def process(self, input_data):
