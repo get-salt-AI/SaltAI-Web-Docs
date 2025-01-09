@@ -66,5 +66,6 @@ nav:
     - Nodes: nodes/index.md
     - Text: nodes/text.md
     - LLMs: nodes/llms.md
+    - Slack Writer: nodes/slack_writer.md
   - Node Builder:
     - Getting Started with Node Builder: node-builder/getting-started.md
