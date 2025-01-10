@@ -62,6 +62,7 @@ nav:
   - Announcing Salt v1.0: salt-v1-announcement.md
   - Migrating to Salt v1.0: salt-v1-migration-guide.md
   - Getting Started: index.md
+  - Connectors: connectors/index.md
   - Nodes:
     - Agents:
       - Web Research Agent: nodes/web-research-agent.md
