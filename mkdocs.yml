@@ -63,6 +63,8 @@ nav:
   - Migrating to Salt v1.0: salt-v1-migration-guide.md
   - Getting Started: index.md
   - Nodes:
+    - Agents:
+      - Web Research Agent: nodes/web-research-agent.md
     - Inputs: 
       - Text: nodes/text-input.md
       - Image: nodes/image-input.md
