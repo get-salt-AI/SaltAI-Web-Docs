@@ -1,146 +1,126 @@
-# **Slack Writer Node Documentation**
+# Slack Writer
 
-The Slack Writer node allows users to send messages to a Slack workspace using the Slack API. This documentation provides an overview of the node's inputs. For more information on Slack Block-Kit, please refer to [**Slack's Block-Kit Documentation**](https://api.slack.com/block-kit/building).
+Send messages to Slack channels and users through the Slack API.
 
 <img src="/images/nodes/slack_writer.png" alt="Slack Writer Node" class="rounded-lg">
 
-## Quick Facts
-* Allows users to send messages to public channels, private channels, or direct messages.
-* Supports advanced formatting using Slack Block-Kit for rich message content.
-* Requires a Slack bot token with appropriate permissions.
+## Quick Start
 
-## Note:
-* Ensure your Slack Bot has the necessary permission scopes to send messages and customize the bot's icon. For advanced messages, refer to [**Slack API Scopes Documentation**](https://api.slack.com/scopes).
+1. [Create a Slack App](https://api.slack.com/apps) and install it to your workspace
+2. Copy your Bot User OAuth Token (starts with `xoxb-`)
+3. Add the Slack Writer node to your workflow
+4. Paste your token and specify a channel (e.g., `#general`)
+5. Send a test message
 
+## Setup Guide
 
-## Input
-* **Slack Token**
-  - **Description**: The Slack bot token required to authenticate and send messages. This token must have the necessary permissions (`chat:write`, `chat:write.customize`) in the Slack workspace. You can obtain a token from your Slack account or try the [**quick-start tutorial**](https://api.slack.com/tutorials/tracks/getting-a-token).
-  - **Type**: Password (hidden string)
-  - **Example Input**: `xoxb-1234567890-abcdefg-hijklmnop`
-  - **Tooltip**: Slack Bot authentication token. Obtain one through the quick-start tutorial: https://api.slack.com/quickstart.
+### 1. Create a Slack App
+1. Go to [Slack API Apps page](https://api.slack.com/apps)
+2. Click "Create New App" → "From scratch"
+3. Name your app and select your workspace
 
-* **Channel**
-  - **Description**: The Slack channel where the message will be sent. It can be a channel name or user ID.
-  - **Type**: String
-  - **Default Value**: `#general`
-  - **Example Input**:
-    - Public channel: `#general`
-    - Direct user message: `U12345`
-  - **Tooltip**: Specify the channel name (e.g., `#general`), channel ID (e.g., `C05NNPR6A42`), or user ID (e.g., `U031AFC238B`).
+### 2. Configure Bot Permissions
+1. Navigate to "OAuth & Permissions"
+2. Add these Bot Token Scopes:
+   * `chat:write` - Send messages
+   * `chat:write.customize` - Customize bot name/icon
+   * `channels:read` - View channels
+   * `groups:read` - View private channels
 
-* **Icon Emoji (Optional)**
-  - **Description**: Emoji to use as the bot's icon. The bot must have the `chat:write.customize` permission to use this feature. If provided, it overrides `icon_url`.
-  - **Type**: String
-  - **Default Value**: Empty
-  - **Example Input**: `:robot:`
-  - **Tooltip**: Emoji tag (e.g., `:smile:` or `:robot:`).
+### 3. Install & Configure
+1. Click "Install to Workspace" and authorize
+2. Copy the "Bot User OAuth Token"
+3. In Slack, invite bot to channels with `/invite @YourBotName`
 
-* **Icon URL (Optional)**
-  - **Description**: URL of an image to use as the bot's icon. The image should be 512x512 pixels or smaller. The bot must have the `chat:write.customize` permission to use this feature.
-  - **Type**: String
-  - **Default Value**: Empty
-  - **Example Input**: `https://example.com/bot-icon.png`
-  - **Tooltip**: URL of a valid image to customize the bot's icon.
+## Basic Usage
 
-* **Thread Timestamp (Optional)**
-  - **Description**: Timestamp of the parent message to reply to in a thread. If provided, the message will be posted as a reply. This is obtained via the API when writing a message. Use a previous Slack Writer node's `thread_timestamp` output for threading or save it for another workflow.
-  - **Type**: String
-  - **Default Value**: Empty
-  - **Example Input**: `1680123456.789000`
-  - **Tooltip**: Provide the thread timestamp to reply to a specific message.
+### Simple Message
+```json
+{
+  "channel": "#general",
+  "message": "Hello team! Important meeting at 2 PM."
+}
+```
 
-* **Message**
-  - **Description**: Plain text message content. If `block_kit_json` is provided, this input will be overridden. Useful for simple text-based messages.
-  - **Type**: Multiline String
-  - **Default Value**: `Hello, from Salt AI!`
-  - **Placeholder**: `Insert message...`
-  - **Example Input**: `Hello, team! This is a test message.`
-  - **Tooltip**: The text content of the message.
+### Thread Reply
+```json
+{
+  "channel": "#general",
+  "message": "Here are the meeting notes.",
+  "thread_timestamp": "1680123456.789000"
+}
+```
 
-* **Block Kit JSON (Optional)**
-  - **Description**: JSON-formatted string for creating advanced messages using Slack Block-Kit. Overrides the `message` input if provided. Use this to send rich content like buttons, images, and interactive elements.
-  - **Type**: Multiline String
-  - **Default Value**:
-      ```json
-      [
-        {
-          "type": "section",
-          "text": {
-            "type": "mrkdwn",
-            "text": "Hello from Salt AI! This is a block-kit message."
-          }
-        },
-        {
-          "type": "actions",
-          "elements": [
-            {
-              "type": "button",
-              "text": {
-                "type": "plain_text",
-                "text": "Check out Salt AI",
-                "emoji": true
-              },
-              "url": "<https://getsalt.ai>"
-            }
-          ]
-        }
-      ]
-      ```
-  - **Example Input**:
-      ```json
-      [
-        {
-          "type": "section",
-          "text": {
-            "type": "mrkdwn",
-            "text": "Hello from the Slack Writer Node!"
-          }
-        },
-        {
-          "type": "divider"
-        },
-        {
-          "type": "actions",
-          "elements": [
-            {
-              "type": "button",
-              "text": {
-                "type": "plain_text",
-                "text": "Learn More",
-                "emoji": true
-              },
-              "url": "<https://www.example.com>"
-            }
-          ]
-        }
-      ]
-      ```
-  - **Tooltip**: Block-Kit JSON for rich content. Refer to https://api.slack.com/block-kit/building.
+### Rich Message with Block Kit
+```json
+[
+  {
+    "type": "header",
+    "text": {
+      "type": "plain_text",
+      "text": "🚨 System Alert",
+      "emoji": true
+    }
+  },
+  {
+    "type": "section",
+    "text": {
+      "type": "mrkdwn",
+      "text": "*Database Backup Complete*\nAll systems operating normally."
+    }
+  }
+]
+```
 
+## Configuration
 
-## Output
-* **Status**
-  - **Description**: The status of the Slack API call. Usually `ok` if successful.
-  - **Type**: String
-  - **Example Output**: `ok`
+### Required Inputs
+| Field | Description | Type | Example |
+|-------|-------------|------|---------|
+| **Slack Token** | Bot User OAuth Token | Password | `xoxb-1234567890-abcdefg-hijklmnop` |
+| **Channel** | Channel or user to message | String | `#general` or `@username` |
+| **Message** | Text content (if not using Block Kit) | String | `Hello team!` |
 
-* **Response**
-  - **Description**: The full API response from Slack in JSON format.
-  - **Type**: String
-  - **Example Output**:
-      ```json
-      {
-        "channel": "C12345678",
-        "ts": "1680123456.789000",
-        "message": {
-          "text": "Hello, from Salt AI!",
-          "user": "U12345678"
-        }
-      }
-      ```
+### Optional Inputs
+| Field | Description | Type | Example |
+|-------|-------------|------|---------|
+| **Block Kit JSON** | Rich message formatting | JSON | See examples below |
+| **Icon Emoji** | Bot icon emoji | String | `:robot:` |
+| **Icon URL** | Bot icon image URL | String | `https://example.com/icon.png` |
+| **Thread Timestamp** | Reply to thread | String | `1680123456.789000` |
 
-* **Thread Timestamp**
-  - **Description**: The timestamp of the sent message, useful for replying to a previous channel message to create a thread with more information.
-  - **Type**: String
-  - **Example Output**: `1680123456.789000`
+### Outputs
+| Field | Description | Example |
+|-------|-------------|---------|
+| **Status** | API call status | `ok` |
+| **Thread Timestamp** | Message timestamp | `1680123456.789000` |
+| **Response** | Full API response | See below |
+
+## Best Practices
+
+### Message Design
+* Keep messages concise and well-structured
+* Use Block Kit for complex layouts
+* Include clear call-to-actions
+
+### Threading
+* Use threads to organize conversations
+* Save timestamps for follow-ups
+* Avoid deep nesting
+
+### Performance & Security
+* Store tokens securely
+* Batch messages when possible
+* Monitor rate limits
+
+## Troubleshooting
+
+### Common Issues
+* **Message Not Sent**: Check token and channel permissions
+* **Invalid Token**: Ensure token starts with `xoxb-`
+* **Channel Not Found**: Verify channel exists and bot is invited
+
+### Need Help?
+* Validate Block Kit JSON in [Block Kit Builder](https://app.slack.com/block-kit-builder)
+* Check [Slack API Status](https://status.slack.com/)
+* Review [Slack's API Documentation](https://api.slack.com/messaging)
