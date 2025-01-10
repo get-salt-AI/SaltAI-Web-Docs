@@ -63,9 +63,14 @@ nav:
   - Migrating to Salt v1.0: salt-v1-migration-guide.md
   - Getting Started: index.md
   - Nodes:
-    - Nodes: nodes/index.md
-    - Text: nodes/text.md
+    - Inputs: 
+      - Text: nodes/text-input.md
+      - Image: nodes/image-input.md
     - LLMs: nodes/llms.md
-    - Slack Writer: nodes/slack_writer.md
+    - Outputs: 
+      - Output: nodes/output.md
+      - Writers:
+        - Slack Writer: nodes/slack-writer.md
+        - Notion Writer: nodes/notion-writer.md
   - Node Builder:
     - Getting Started with Node Builder: node-builder/getting-started.md

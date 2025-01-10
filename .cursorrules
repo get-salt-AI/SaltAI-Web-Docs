@@ -1,0 +1,105 @@
+{
+  "node_documentation": {
+    "file_pattern": "docs/nodes/*.md",
+    "template": {
+      "required_sections": [
+        {
+          "name": "Title & Description",
+          "format": "# {NodeName}\n\nBrief description of the node's primary function."
+        },
+        {
+          "name": "Quick Start",
+          "format": "## Quick Start\n\n1. Essential setup step\n2. ...\n3. First usage step"
+        },
+        {
+          "name": "Setup Guide",
+          "format": "## Setup Guide\n\n### 1. {FirstMajorStep}\n1. Detailed instruction\n2. ...\n\n### 2. {SecondMajorStep}\n..."
+        },
+        {
+          "name": "Basic Usage",
+          "format": "## Basic Usage\n\n### {UseCase1}\n```json\n{example_config}\n```"
+        },
+        {
+          "name": "Configuration",
+          "format": "## Configuration\n\n### Required Inputs\n| Field | Description | Type | Example |\n|-------|-------------|------|---------|",
+          "subsections": [
+            "Required Inputs",
+            "Optional Inputs",
+            "Outputs"
+          ]
+        },
+        {
+          "name": "Best Practices",
+          "format": "## Best Practices\n\n### {Category}\n* Best practice point\n* ...",
+          "min_categories": 2
+        },
+        {
+          "name": "Troubleshooting",
+          "format": "## Troubleshooting\n\n### Common Issues\n* **{Issue}**: {Solution}\n\n### Need Help?\n* Resource links..."
+        }
+      ],
+      "style_rules": {
+        "headings": {
+          "title": "# Title",
+          "major_sections": "## Section",
+          "subsections": "### Subsection"
+        },
+        "lists": {
+          "use_bullets": "* ",
+          "numbered_only_for": [
+            "Setup steps",
+            "Quick start steps"
+          ]
+        },
+        "tables": {
+          "required_columns": {
+            "configuration": [
+              "Field",
+              "Description",
+              "Type",
+              "Example"
+            ],
+            "outputs": [
+              "Field",
+              "Description",
+              "Example"
+            ]
+          }
+        },
+        "code_blocks": {
+          "json": "```json\n{content}\n```",
+          "other": "```{language}\n{content}\n```"
+        }
+      },
+      "content_guidelines": {
+        "descriptions": {
+          "max_length": 200,
+          "style": "clear and concise",
+          "voice": "direct and active"
+        },
+        "examples": {
+          "should_be": [
+            "realistic",
+            "practical",
+            "complete"
+          ],
+          "format": "working code or configuration"
+        },
+        "troubleshooting": {
+          "format": "Problem: Solution",
+          "include": [
+            "common issues",
+            "verification steps",
+            "external resources"
+          ]
+        }
+      }
+    },
+    "image_requirements": {
+      "path": "docs/images/nodes/{node_name}.png",
+      "format": "PNG",
+      "max_size": "800x600",
+      "required": true
+    }
+  }
+}
