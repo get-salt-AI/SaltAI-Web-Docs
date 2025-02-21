@@ -8,7 +8,7 @@ Welcome to Salt AI! This guide introduces you to the fundamental concepts and te
 
 ## Workflows
 
-[https://app.getsalt.ai/workflows](https://app.getsalt.ai/workflows)
+[https://app.salt.ai/workflows](https://app.salt.ai/workflows)
 
 A workflow is the central element in Salt AI. It's a visual representation of an AI-driven process, composed of interconnected nodes that define a series of operations.
 
