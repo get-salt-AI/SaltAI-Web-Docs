@@ -77,3 +77,7 @@ nav:
         - Notion Writer: nodes/notion-writer.md
   - Node Builder:
     - Getting Started with Node Builder: node-builder/getting-started.md
+  - Deployments:
+    - Getting Started with Deployments: deployments/index.md
+    - Webform: deployments/webform.md
+    - API: deployments/api.md
