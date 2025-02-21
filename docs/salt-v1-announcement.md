@@ -29,7 +29,7 @@ We've completely redesigned our node library with powerful new capabilities. Thi
 - Knowledge bases for storing and retrieving information
 - Data connectors for bringing your data to Salt
 
-### Custom Node Builder (Soon)
+### Custom Node Builder
 
 - Build custom nodes in the platform with an integrated IDE and runtime
 
