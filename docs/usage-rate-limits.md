@@ -41,4 +41,4 @@ If you exceed the rate limits, you will receive a 429 (Too Many Requests) error.
 
 ## Upgrading Your Plan
 
-If you find that you frequently hit the rate limits on the Free plan, consider upgrading to the Individual (Paid) plan for higher limits and additional features. Learn more at getsalt.ai/pricing.
+If you find that you frequently hit the rate limits on the Free plan, consider upgrading to the Individual (Paid) plan for higher limits and additional features. Learn more at [salt.ai/#pricing](https://salt.ai/#pricing).
