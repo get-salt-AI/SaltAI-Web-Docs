@@ -66,6 +66,13 @@ nav:
   - Nodes:
     - Agents:
       - Web Research Agent: nodes/web-research-agent.md
+    - Biotech:
+      - Biotech Utils:
+        - Batch PDB: nodes/biotech/biotech-utils/batch-pdb.md
+        - Load PDB: nodes/biotech/biotech-utils/load-pdb.md
+        - PDB Visualization: nodes/biotech/biotech-utils/pdb-visualization.md
+        - Save To Bucket: nodes/biotech/biotech-utils/save-to-bucket.md
+        - Save To Zip: nodes/biotech/biotech-utils/save-to-zip.md
     - Inputs: 
       - Text: nodes/text-input.md
       - Image: nodes/image-input.md

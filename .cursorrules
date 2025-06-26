@@ -1,6 +1,6 @@
 {
   "node_documentation": {
-    "file_pattern": "docs/nodes/*.md",
+    "file_pattern": "docs/nodes/**/*.md",
     "template": {
       "required_sections": [
         {
@@ -17,7 +17,7 @@
         },
         {
           "name": "Basic Usage",
-          "format": "## Basic Usage\n\n### {UseCase1}\n```json\n{example_config}\n```"
+          "format": "## Basic Usage\n\n### {UseCase1}\nUse case description as bullet points"
         },
         {
           "name": "Configuration",
@@ -96,7 +96,7 @@
       }
     },
     "image_requirements": {
-      "path": "docs/images/nodes/{node_name}.png",
+      "path": "/images/nodes/{relative_path}.png",
       "format": "PNG",
       "max_size": "800x600",
       "required": true
