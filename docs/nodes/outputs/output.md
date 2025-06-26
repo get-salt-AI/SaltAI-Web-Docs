@@ -2,7 +2,7 @@
 
 View and save results from your workflow. The Output node automatically formats and displays your data in a readable way.
 
-<img src="/images/output.png" alt="Output Node" class="rounded-lg">
+<img src="/images/nodes/outputs/output.png" alt="Output Node" class="rounded-lg">
 
 ## Quick Start
 

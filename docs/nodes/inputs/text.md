@@ -1,8 +1,8 @@
-# Text Input
+# Text
 
 A simple node that lets you add and edit text content in your workflow. Perfect for prompts, configuration, or any text-based input.
 
-<img src="/images/nodes/text.png" alt="Text Input Node" class='rounded-lg'>
+<img src="/images/nodes/inputs/text.png" alt="Text Node" class='rounded-lg'>
 
 ## Quick Start
 
