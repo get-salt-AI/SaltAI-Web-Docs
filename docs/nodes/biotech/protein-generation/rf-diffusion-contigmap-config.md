@@ -63,5 +63,5 @@ Provides interface for passing contigmap configuration to RF Diffusion node.
 * **Unexpected results in RF Diffusion**: Double-check that masking/unmasking regions are specified as intended.
 
 ### Need Help?
-* See the [RF Diffusion documentation](../rf-diffusion.md) for more details on contigmap configuration.
+* See the [RF Diffusion documentation](../protein-generation/rf-diffusion.md) for more details on contigmap configuration.
 * For further assistance, contact support or visit the SaltAI community forums.

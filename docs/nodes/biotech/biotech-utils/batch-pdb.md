@@ -25,7 +25,7 @@ Merges multiple PDB dictionaries into a single batch, ensuring all PDB IDs are u
 ### Batch Multiple PDBs
 * Combine single or batched PDB dictionaries into one batch.
 * Automatically checks for unique IDs to prevent conflicts.
-* Supports up to 31 PDB inputs.
+* Supports up to 30 PDB inputs.
 
 ## Configuration
 

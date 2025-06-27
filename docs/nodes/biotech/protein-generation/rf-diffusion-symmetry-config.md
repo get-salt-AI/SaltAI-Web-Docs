@@ -64,5 +64,5 @@ Provides interface for passing symmetry configuration to the RF Diffusion node, 
 * **Unexpected geometry**: Adjust radius or check input structure for compatibility with the chosen symmetry.
 
 ### Need Help?
-* Refer to the [RF Diffusion documentation](https://github.com/salt-labs/rf-diffusion) for symmetry options.
-* For workflow examples, see the [SaltAI example gallery](https://app.salt.ai/share/).
+* See the [RF Diffusion documentation](../protein-generation/rf-diffusion.md) for more details on symmetry configuration.
+* For further assistance, contact support or visit the SaltAI community forums.

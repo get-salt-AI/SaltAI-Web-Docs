@@ -63,5 +63,5 @@ Provides interface for passing denoiser configuration parameters to the RF Diffu
 * **Node not connected:** Ensure the output is linked to the correct RF Diffusion input.
 
 ### Need Help?
-* See the [RF Diffusion documentation](../rf-diffusion.md) for integration examples.
+* See the [RF Diffusion documentation](../protein-generation/rf-diffusion.md) for integration examples.
 * For further support, visit the SaltAI community or documentation portal.

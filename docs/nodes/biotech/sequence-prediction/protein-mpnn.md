@@ -2,7 +2,7 @@
 
 Predicts possible amino acid sequences for a given protein backbone, returning generated and top-scoring sequences.
 
-<img src="/images/nodes/biotech/sequence-prediction/protein_mpnn.png" alt="ProteinMPNN" class="rounded-lg">
+<img src="/images/nodes/biotech/sequence-prediction/protein-mpnn.png" alt="ProteinMPNN" class="rounded-lg">
 
 ## Quick Start
 

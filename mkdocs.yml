@@ -65,23 +65,84 @@ nav:
   - Connectors: connectors/index.md
   - Nodes:
     - Agents:
-      - Web Research Agent: nodes/web-research-agent.md
+      - Create Agent: nodes/agents/create-agent.md
+      - Google Web Search: nodes/agents/google-web-search.md
+      - Run Agents Team: nodes/agents/run-agents-team.md
+      - Tavily Web Search: nodes/agents/tavily-web-search.md
+      - Web Research Agent: nodes/agents/web-research-agent.md
+      - Web Scraper: nodes/agents/web-scraper.md
     - Biotech:
       - Biotech Utils:
+        - A3M Combiner: nodes/biotech/biotech-utils/a3m-combiner.md
         - Batch PDB: nodes/biotech/biotech-utils/batch-pdb.md
+        - Fasta Combiner: nodes/biotech/biotech-utils/fasta-combiner.md
         - Load PDB: nodes/biotech/biotech-utils/load-pdb.md
+        - PDB To Fasta: nodes/biotech/biotech-utils/pdb-to-fasta.md
         - PDB Visualization: nodes/biotech/biotech-utils/pdb-visualization.md
         - Save To Bucket: nodes/biotech/biotech-utils/save-to-bucket.md
         - Save To Zip: nodes/biotech/biotech-utils/save-to-zip.md
+      - Boltz-2:
+        - Boltz-2 Complex Molecular Assembly: nodes/biotech/boltz-2/boltz-2-complex-molecular-assembly.md
+        - Boltz-2 Protein Ligand Complex Prediction: nodes/biotech/boltz-2/boltz-2-protein-ligand-complex-prediction.md
+        - Boltz-2 Protein Structure Prediction: nodes/biotech/boltz-2/boltz-2-protein-structure-prediction.md
+        - Boltz-2 Structure Refinement: nodes/biotech/boltz-2/boltz-2-structure-refinement.md
+        - Boltz-2 Virtual-Screening: nodes/biotech/boltz-2/boltz-2-virtual-screening.md
+      - Functional Prediction:
+        - Evaluate Diversity: nodes/biotech/functional-prediction/evaluate-diversity.md
+        - Evaluate Prot Param: nodes/biotech/functional-prediction/evaluate-prot-param.md
+        - Evaluate Unconditional Initial Guess: nodes/biotech/functional-prediction/evaluate-unconditional-initial-guess.md
+        - Evaluate Unconditional: nodes/biotech/functional-prediction/evaluate-unconditional.md
+        - Haddock: nodes/biotech/functional-prediction/haddock.md
+        - Immunogenicity B-Cell Epiptope: nodes/biotech/functional-prediction/immunogenicity-b-cell-epiptope.md
+        - Immunogenicity Class 1: nodes/biotech/functional-prediction/immunogenicity-class-1.md
+        - Immunogenicity MHC 2: nodes/biotech/functional-prediction/immunogenicity-mhc-2.md
+        - Prodigy: nodes/biotech/functional-prediction/prodigy.md
+      - Protein Generation:
+        - Chroma: nodes/biotech/protein-generation/chroma.md
+        - Genie 2: nodes/biotech/protein-generation/genie-2.md
+        - Rf Diffusion Contigmap Config: nodes/biotech/protein-generation/rf-diffusion-contigmap-config.md
+        - Rf Diffusion Denoiser Config: nodes/biotech/protein-generation/rf-diffusion-denoiser-config.md
+        - RF Diffusion Potentials Config: nodes/biotech/protein-generation/rf-diffusion-potentials-config.md
+        - Rf Diffusion Symmetry Config: nodes/biotech/protein-generation/rf-diffusion-symmetry-config.md
+        - RF Diffusion: nodes/biotech/protein-generation/rf-diffusion.md      
+      - Protein Structure Prediction:
+        - Alphafold Initial Guess: nodes/biotech/protein-structure-prediction/alphafold-initial-guess.md
+        - Alphafold: nodes/biotech/protein-structure-prediction/alphafold.md
+        - Colabfold Batch: nodes/biotech/protein-structure-prediction/colabfold-batch.md
+        - Colabfold Search: nodes/biotech/protein-structure-prediction/colabfold-search.md
+        - MSA Search: nodes/biotech/protein-structure-prediction/msa-search.md
+        - Rosetta Fast Relax: nodes/biotech/protein-structure-prediction/rosetta-fast-relax.md
+      - Sequence Prediction:
+        - ProteinMPNN: nodes/biotech/sequence-prediction/protein-mpnn.md
     - Inputs: 
-      - Text: nodes/text-input.md
-      - Image: nodes/image-input.md
-    - LLMs: nodes/llms.md
+      - Draw Mask: nodes/inputs/draw-mask.md
+      - Dynamic Text: nodes/inputs/dynamic-text.md
+      - File: nodes/inputs/file.md
+      - Image: nodes/inputs/image.md
+      - Text: nodes/inputs/text.md
+    - LLMs: nodes/llms/llms.md
     - Outputs: 
-      - Output: nodes/output.md
+      - Inspect: nodes/outputs/inspect.md
+      - Output: nodes/outputs/output.md
+      - Preview Image: nodes/outputs/preview-image.md
       - Writers:
-        - Slack Writer: nodes/slack-writer.md
-        - Notion Writer: nodes/notion-writer.md
+        - Slack Writer: nodes/outputs/writers/slack-writer.md
+        - Notion Writer: nodes/outputs/writers/notion-writer.md
+    - Stable Diffusion:
+      - Edit Object: nodes/stable-diffusion/edit-object.md
+      - Erase: nodes/stable-diffusion/erase.md
+      - Inpaint: nodes/stable-diffusion/inpaint.md
+      - Outpaint: nodes/stable-diffusion/outpaint.md
+      - Remove Background: nodes/stable-diffusion/remove-background.md
+      - Stable Diffusion Advanced: nodes/stable-diffusion/stable-diffusion-advanced.md
+      - Stable Diffusion Control: nodes/stable-diffusion/stable-diffusion-control.md
+      - Stable Diffusion Core: nodes/stable-diffusion/stable-diffusion-core.md
+      - Stable Diffusion Ultra: nodes/stable-diffusion/stable-diffusion-ultra.md
+      - Upscale Advanced: nodes/stable-diffusion/upscale-advanced.md
+      - Upscale Fast: nodes/stable-diffusion/upscale-fast.md
+    - Utils:
+      - Regex Search And Match: nodes/utils/regex-search-and-match.md
+      - Regex Search And Replace: nodes/utils/regex-search-and-replace.md
   - Node Builder:
     - Getting Started with Node Builder: node-builder/getting-started.md
   - Deployments:
