@@ -2,7 +2,9 @@
 
 Saves all connected node outputs into a downloadable zip folder, preserving folder and file structure based on node metadata. Enables selective export of results (PDBs, FASTAs, CSVs, etc.) for local download.
 
-<img src="/images/nodes/biotech/biotech-utils/save-to-zip.png" alt="Save To Zip" class="rounded-lg">
+<img src="/images/nodes/biotech/biotech-utils/save-to-zip-1.png" alt="Save To Zip" class="rounded-lg">
+
+<img src="/images/nodes/biotech/biotech-utils/save-to-zip-2.png" alt="Save To Zip" class="rounded-lg">
 
 ## Quick Start
 

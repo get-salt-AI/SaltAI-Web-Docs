@@ -2,7 +2,11 @@
 
 Uploads all connected inputs to a specified folder path in a GCP bucket, applying a merge strategy for results from multiple runs. Returns a temporary download link for a zip containing the current state of the folder.
 
-<img src="/images/nodes/biotech/biotech-utils/save-to-bucket.png" alt="Save To Bucket" class="rounded-lg">
+<img src="/images/nodes/biotech/biotech-utils/save-to-bucket-1.png" alt="Save To Bucket" class="rounded-lg">
+
+<img src="/images/nodes/biotech/biotech-utils/save-to-bucket-2.png" alt="Save To Bucket" class="rounded-lg">
+
+<img src="/images/nodes/biotech/biotech-utils/save-to-bucket-3.png" alt="Save To Bucket" class="rounded-lg">
 
 ## Quick Start
 

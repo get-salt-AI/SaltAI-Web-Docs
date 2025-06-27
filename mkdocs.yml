@@ -124,10 +124,9 @@ nav:
     - Outputs: 
       - Inspect: nodes/outputs/inspect.md
       - Output: nodes/outputs/output.md
-      - Preview Image: nodes/outputs/preview-image.md
       - Writers:
-        - Slack Writer: nodes/outputs/writers/slack-writer.md
         - Notion Writer: nodes/outputs/writers/notion-writer.md
+        - Slack Writer: nodes/outputs/writers/slack-writer.md
     - Stable Diffusion:
       - Edit Object: nodes/stable-diffusion/edit-object.md
       - Erase: nodes/stable-diffusion/erase.md
