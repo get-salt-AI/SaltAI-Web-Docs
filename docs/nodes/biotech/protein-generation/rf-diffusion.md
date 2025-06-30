@@ -83,5 +83,4 @@ Runs inference of a RF Diffusion model (conditional or unconditional) for protei
 
 ### Need Help?
 * See [RF Diffusion documentation](https://github.com/aqlaboratory/rfdiffusion) for model details.
-* For workflow examples, visit: [RFDiffusion-Alphafold-EGFR-Nside](https://app.salt.ai/share/tlh3u0keaqu8za5m)
 * For support, contact the SaltAI team or consult the platform's help resources.
