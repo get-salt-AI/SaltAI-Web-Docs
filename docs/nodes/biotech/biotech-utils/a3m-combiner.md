@@ -33,13 +33,12 @@ Combines multiple A3M MSA dictionaries into a single A3M input, supporting up to
 ## Configuration
 
 ### Required Inputs
-| Field | Description | Type | Example |
-|-------|-------------|------|---------|
-| a3m_1 | First A3M MSA dictionary | A3M | {"A": "..."} |
+*None*
 
 ### Optional Inputs
 | Field | Description | Type | Example |
 |-------|-------------|------|---------|
+| a3m_1 | First A3M MSA dictionary | A3M | {"A": "..."} |
 | a3m_2 | Second A3M MSA dictionary | A3M | {"B": "..."} |
 | a3m_3 | Third A3M MSA dictionary | A3M | {"C": "..."} |
 | a3m_4 | Fourth A3M MSA dictionary | A3M | {"D": "..."} |
@@ -68,5 +67,4 @@ Combines multiple A3M MSA dictionaries into a single A3M input, supporting up to
 * **Empty output**: Ensure at least one valid A3M input is connected.
 
 ### Need Help?
-* Refer to the SaltAI documentation for node usage examples.
-* For advanced issues, contact support or consult the workflow gallery for working configurations.
+* Contact support for further assistance.

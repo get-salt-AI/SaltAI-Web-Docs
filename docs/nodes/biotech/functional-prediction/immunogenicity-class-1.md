@@ -64,5 +64,4 @@ Runs immunogenicity class 1 evaluation on the provided batch of proteins, predic
 * **Incorrect allele format**: Use standard allele names (e.g., HLA-A0101).
 
 ### Need Help?
-* Refer to the [SaltAI documentation](https://docs.salt.ai/) for node usage examples.
-* For technical support, contact the SaltAI team or visit the user forum.
+* Contact support for further assistance.

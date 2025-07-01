@@ -60,5 +60,4 @@ Loads PDB content from a string and assigns a unique ID for use in downstream wo
 * **Invalid PDB Format**: Check that the PDB string is correctly formatted and complete.
 
 ### Need Help?
-* Refer to the [SaltAI documentation](https://docs.salt.ai/) for more examples.
-* For workflow issues, consult the platform's support resources or community forums.
+* Contact support for further assistance.

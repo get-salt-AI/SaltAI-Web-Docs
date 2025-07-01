@@ -64,5 +64,4 @@ Runs immunogenicity B-cell epitope evaluation on a batch of protein structures, 
 * **No scores in output**: Check that the window size is appropriate and input structures are not empty.
 
 ### Need Help?
-* Refer to the [SaltAI documentation](https://docs.salt.ai/) for more details.
-* For technical support, contact the SaltAI team or visit the user forum.
+* Contact support for further assistance.

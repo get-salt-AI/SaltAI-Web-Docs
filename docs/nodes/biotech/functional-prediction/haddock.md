@@ -73,4 +73,4 @@ Predicts docking of candidate proteins against a target protein using the HADDOC
 
 ### Need Help?
 * [HADDOCK documentation](https://www.bonvinlab.org/software/haddock2.4/)
-* [SaltAI support](https://salt.ai/contact)
+* Contact support for further assistance.

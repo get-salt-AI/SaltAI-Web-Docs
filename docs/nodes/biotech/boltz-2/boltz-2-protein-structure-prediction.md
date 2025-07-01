@@ -78,5 +78,4 @@ Predicts 3D protein structures from MSA (A3M) and FASTA using the Boltz-2 model.
 * **Output is empty**: Check input sequence IDs and formats.
 
 ### Need Help?
-* [Boltz-2 Model Documentation](https://github.com/salt-ai/boltz2)
-* [SaltAI Community Support](https://community.salt.ai)
+* Contact support for further assistance.

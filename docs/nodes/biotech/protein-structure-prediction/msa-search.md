@@ -64,3 +64,4 @@ Performs MSA search on provided protein sequences against known sequence databas
 ### Need Help?
 * [MSA search documentation](https://alphafold.ebi.ac.uk/)
 * [FASTA format guide](https://en.wikipedia.org/wiki/FASTA_format)
+* Contact support for further assistance.

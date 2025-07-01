@@ -69,5 +69,4 @@ Refines protein structures using Boltz-2 with inference-time potentials for impr
 * **No output generated**: Check that all required fields are provided and input is not empty.
 
 ### Need Help?
-* Refer to the [SaltAI documentation](https://docs.salt.ai/) for node usage examples.
-* For technical support, contact the SaltAI team or visit the user forum.
+* Contact support for further assistance.

@@ -60,4 +60,4 @@ Generates an HTML string for interactive protein structure visualization from a 
 
 ### Need Help?
 * [Mol* Viewer Documentation](https://molstar.org/viewer/)
-* [SaltAI Support](https://support.salt.ai)
+* Contact support for further assistance.

@@ -64,4 +64,4 @@ Provides interface for passing denoiser configuration parameters to the RF Diffu
 
 ### Need Help?
 * See the [RF Diffusion documentation](../protein-generation/rf-diffusion.md) for integration examples.
-* For further support, visit the SaltAI community or documentation portal.
+* Contact support for further assistance.

@@ -77,5 +77,4 @@ Runs inference of a Genie 2 model for protein generation, supporting both uncond
 * **Chain breaks not supported:** All segments in `contigs` are sequentially connected; do not use chain breaks.
 
 ### Need Help?
-* See [SaltAI Genie 2 Example Workflow](https://dev-app.salt.ai/share/o5z2i5ipes7pa6ik)
-* For further assistance, consult the SaltAI documentation or support channels.
+* Contact support for further assistance.

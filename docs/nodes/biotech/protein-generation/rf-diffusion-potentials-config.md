@@ -67,4 +67,4 @@ Provides interface for passing potential configuration to the RF Diffusion node,
 
 ### Need Help?
 * Refer to the node tooltip for supported potential types and argument details.
-* See [SaltAI documentation](https://docs.salt.ai/) for advanced configuration examples.
+* Contact support for further assistance.

@@ -61,5 +61,4 @@ Runs diversity evaluation pipeline on the provided batch of proteins. Clusters s
 * **Node runs slowly on large batches**: Increase `num_processes` if possible, or reduce batch size.
 
 ### Need Help?
-* Refer to the [SaltAI documentation](https://docs.salt.ai/) for workflow examples.
-* For technical support, contact the SaltAI team or visit the user forum.
+* Contact support for further assistance.

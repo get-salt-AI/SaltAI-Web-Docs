@@ -78,6 +78,4 @@ Performs high-throughput virtual screening of small molecules against a target p
 * **Mismatch in ligand names and SMILES**: Provide the same number of names as SMILES entries.
 
 ### Need Help?
-* Refer to the [Boltz-2 documentation](https://app.salt.ai/docs/boltz-2) for detailed usage.
-* For MSA preparation, see [MSA Search node documentation](https://app.salt.ai/docs/msa-search).
-* Contact support at support@salt.ai for further assistance.
+* Contact support for further assistance.

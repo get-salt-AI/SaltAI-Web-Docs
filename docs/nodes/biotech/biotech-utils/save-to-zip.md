@@ -63,5 +63,4 @@ Saves all connected node outputs into a downloadable zip folder, preserving fold
 * **Missing expected files**: Check that all desired outputs are connected to the node.
 
 ### Need Help?
-* [SaltAI Documentation](https://docs.salt.ai)
-* [Contact Support](mailto:support@salt.ai)
+* Contact support for further assistance.

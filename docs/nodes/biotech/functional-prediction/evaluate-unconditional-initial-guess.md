@@ -62,5 +62,4 @@ Runs unconditional evaluation on outputs from the Alphafold Initial Guess node. 
 * **Missing score table**: Always connect the score output from Alphafold Initial Guess.
 
 ### Need Help?
-* [SaltAI Documentation](https://docs.salt.ai/)
-* [Contact Support](mailto:support@salt.ai)
+* Contact support for further assistance.

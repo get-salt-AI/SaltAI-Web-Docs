@@ -61,5 +61,4 @@ Runs unconditional evaluation pipeline on the outputs of Alphafold or Colabfold 
 * **Empty Outputs:** Check that both inputs contain valid PDB data.
 
 ### Need Help?
-* [SaltAI Documentation](https://docs.salt.ai/)
-* [Contact Support](mailto:support@salt.ai)
+* Contact support for further assistance.

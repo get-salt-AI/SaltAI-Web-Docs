@@ -66,5 +66,4 @@ Predicts binder structure from sequence and an initial guess structure, initiali
 * **Unexpected output**: Check input formats and parameter values.
 
 ### Need Help?
-* [SaltAI Documentation](https://docs.salt.ai/)
-* [Contact Support](mailto:support@salt.ai)
+* Contact support for further assistance.

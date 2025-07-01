@@ -63,5 +63,4 @@ Runs Colabfold model inference on Colabfold MSA search results, generating 5 ran
 * **Unexpected output IDs**: Ensure input sequence IDs are unique and consistent.
 
 ### Need Help?
-* Refer to the [SaltAI documentation](https://docs.salt.ai/) for workflow examples.
-* For technical support, contact the SaltAI team or visit the user forum.
+* Contact support for further assistance.

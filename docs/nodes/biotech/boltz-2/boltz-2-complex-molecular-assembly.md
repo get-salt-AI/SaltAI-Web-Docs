@@ -82,5 +82,4 @@ Boltz-2 Complex Molecular Assembly enables the joint prediction and assembly of 
 * **Affinity prediction error**: Ensure at least one ligand is present and binder chain is specified or auto-detectable.
 
 ### Need Help?
-* See the [SaltAI documentation](https://docs.salt.ai/) for more details.
-* For support, contact the SaltAI team or visit the user forum.
+* Contact support for further assistance.

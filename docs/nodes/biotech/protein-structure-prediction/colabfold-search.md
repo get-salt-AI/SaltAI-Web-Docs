@@ -63,4 +63,4 @@ Performs Colabfold MSA search on provided protein sequences against known sequen
 
 ### Need Help?
 * [ColabFold documentation](https://colabfold.com/)
-* [SaltAI support](https://salt.ai/support)
+* Contact support for further assistance.

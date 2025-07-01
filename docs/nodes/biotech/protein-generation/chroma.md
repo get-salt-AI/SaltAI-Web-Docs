@@ -85,6 +85,4 @@ Runs inference of a Chroma model for protein structure generation, supporting bo
 * **Chain manipulation not working:** Check that chain names are valid and comma-separated.
 
 ### Need Help?
-* [Chroma-Alphafold-EGFR-Nside Example Workflow](https://app.salt.ai/share/khp89rk9fkkqafgc)
-* [SaltAI Documentation](https://docs.salt.ai)
-* For further support, contact the SaltAI team or visit the user community forums.
+* Contact support for further assistance.

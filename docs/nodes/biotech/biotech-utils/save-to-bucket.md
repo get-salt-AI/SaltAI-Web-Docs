@@ -70,6 +70,5 @@ Uploads all connected inputs to a specified folder path in a GCP bucket, applyin
 * **Unexpected data merging**: Results from different runs with the same `folder_path` are merged. Use unique paths for separate experiments.
 
 ### Need Help?
-* [SaltAI Documentation Home](/docs/)
-* [Contact Support](mailto:support@salt.ai)
 * [GCP Storage Documentation](https://cloud.google.com/storage/docs/)
+* Contact support for further assistance.

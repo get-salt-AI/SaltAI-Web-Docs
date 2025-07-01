@@ -65,4 +65,4 @@ Predicts the binding affinity of protein-protein complexes using structural and 
 
 ### Need Help?
 * [Prodigy web server documentation](https://bianca.science.uu.nl/prodigy/)
-* [SaltAI documentation](https://docs.salt.ai/)
+* Contact support for further assistance.

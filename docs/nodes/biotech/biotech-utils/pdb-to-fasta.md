@@ -65,3 +65,4 @@ Extracts FASTA-formatted amino acid sequences from the provided PDB record, supp
 ### Need Help?
 * [PDB Format Guide](https://www.wwpdb.org/documentation/file-format)
 * [FASTA Format Reference](https://en.wikipedia.org/wiki/FASTA_format)
+* Contact support for further assistance.

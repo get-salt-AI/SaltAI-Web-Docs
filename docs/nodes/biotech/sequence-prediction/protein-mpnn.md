@@ -75,4 +75,4 @@ Predicts possible amino acid sequences for a given protein backbone, returning g
 
 ### Need Help?
 * [ProteinMPNN GitHub](https://github.com/dauparas/ProteinMPNN)
-* [SaltAI Documentation](https://docs.salt.ai)
+* Contact support for further assistance.

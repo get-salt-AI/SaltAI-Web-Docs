@@ -61,5 +61,4 @@ Merges multiple PDB dictionaries into a single batch, ensuring all PDB IDs are u
 * **Missing Inputs**: At least one PDB input (`pdb_1`) is required.
 
 ### Need Help?
-* [SaltAI Documentation](https://docs.salt.ai/)
-* [Contact Support](mailto:support@salt.ai)
+* Contact support for further assistance.

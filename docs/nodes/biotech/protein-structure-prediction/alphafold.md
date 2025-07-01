@@ -75,4 +75,4 @@ Runs Alphafold model inference on MSA search results and generates 5 pdb folding
 
 ### Need Help?
 * [Alphafold documentation](https://alphafold.ebi.ac.uk/)
-* [SaltAI support](https://salt.ai/contact)
+* Contact support for further assistance.

@@ -63,5 +63,4 @@ Runs protein parameters evaluation on the provided batch of proteins, calculatin
 * **Incorrect pH format**: Use comma-separated floats (e.g., `7,5.5`), not lists or other delimiters.
 
 ### Need Help?
-* Refer to the [SaltAI documentation](https://docs.salt.ai/) for workflow examples.
-* For advanced troubleshooting, check node logs or contact support.
+* Contact support for further assistance.

@@ -64,4 +64,4 @@ Provides interface for passing contigmap configuration to RF Diffusion node.
 
 ### Need Help?
 * See the [RF Diffusion documentation](../protein-generation/rf-diffusion.md) for more details on contigmap configuration.
-* For further assistance, contact support or visit the SaltAI community forums.
+* Contact support for further assistance.

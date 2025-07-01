@@ -65,4 +65,4 @@ Provides interface for passing symmetry configuration to the RF Diffusion node, 
 
 ### Need Help?
 * See the [RF Diffusion documentation](../protein-generation/rf-diffusion.md) for more details on symmetry configuration.
-* For further assistance, contact support or visit the SaltAI community forums.
+* Contact support for further assistance.

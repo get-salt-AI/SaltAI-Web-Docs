@@ -81,6 +81,4 @@ Predicts the structure and binding affinity of protein-ligand complexes using th
 * **Affinity prediction fails:** Confirm ligand is present and correctly specified.
 
 ### Need Help?
-* [Boltz-2 documentation](https://github.com/salt-ai/boltz2)
-* [Protein-ligand complex prediction guide](https://docs.salt.ai/biotech/boltz2)
-* [Contact support](mailto:support@salt.ai)
+* Contact support for further assistance.

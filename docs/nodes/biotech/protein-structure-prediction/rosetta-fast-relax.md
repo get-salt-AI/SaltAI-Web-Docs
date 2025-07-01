@@ -62,6 +62,5 @@ Runs ProteinMPNN-FastRelax cycles on sequences and structures to make proteins m
 * **Node crashes on error**: Set `debug` to false to skip failed poses instead of crashing.
 
 ### Need Help?
-* [SaltAI Documentation](https://docs.salt.ai/)
 * [Rosetta Fast Relax Paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2849174/)
-* [Contact Support](mailto:support@salt.ai)
+* Contact support for further assistance.

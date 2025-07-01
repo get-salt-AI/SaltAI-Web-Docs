@@ -66,5 +66,4 @@ Runs immunogenicity MHC class II evaluation on a batch of protein structures, pr
 * **Window size out of range**: Set `window_size` between 11 and 30.
 
 ### Need Help?
-* [SaltAI Documentation](https://docs.salt.ai/)
-* [Contact Support](mailto:support@salt.ai)
+* Contact support for further assistance.

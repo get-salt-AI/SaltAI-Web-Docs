@@ -30,9 +30,7 @@ Combine multiple FASTA sequences into a single FASTA input for downstream proces
 ## Configuration
 
 ### Required Inputs
-| Field    | Description                        | Type  | Example         |
-|----------|------------------------------------|-------|----------------|
-| *None*   |                                    |       |                |
+*None*
 
 ### Optional Inputs
 | Field     | Description                                      | Type   | Example         |
@@ -67,5 +65,4 @@ Combine multiple FASTA sequences into a single FASTA input for downstream proces
 * **Downstream errors**: Confirm the combined FASTA format matches requirements of subsequent nodes.
 
 ### Need Help?
-* Refer to the [SaltAI documentation](https://docs.salt.ai/) for workflow examples.
-* For technical support, contact the SaltAI team or visit the user forum.
+* Contact support for further assistance.
