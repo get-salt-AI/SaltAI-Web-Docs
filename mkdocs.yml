@@ -59,8 +59,6 @@ plugins:
         background_color: '#C0BED3'
         color: black
 nav:
-  - Announcing Salt v1.0: salt-v1-announcement.md
-  - Migrating to Salt v1.0: salt-v1-migration-guide.md
   - Getting Started: index.md
   - Nodes:
     - Agents:
@@ -119,25 +117,25 @@ nav:
       - File: nodes/inputs/file.md
       - Image: nodes/inputs/image.md
       - Text: nodes/inputs/text.md
-    - LLMs: nodes/llms/llms.md
+    # - LLMs: nodes/llms/llms.md
     - Outputs: 
       - Inspect: nodes/outputs/inspect.md
       - Output: nodes/outputs/output.md
       - Writers:
         - Notion Writer: nodes/outputs/writers/notion-writer.md
         - Slack Writer: nodes/outputs/writers/slack-writer.md
-    - Stable Diffusion:
-      - Edit Object: nodes/stable-diffusion/edit-object.md
-      - Erase: nodes/stable-diffusion/erase.md
-      - Inpaint: nodes/stable-diffusion/inpaint.md
-      - Outpaint: nodes/stable-diffusion/outpaint.md
-      - Remove Background: nodes/stable-diffusion/remove-background.md
-      - Stable Diffusion Advanced: nodes/stable-diffusion/stable-diffusion-advanced.md
-      - Stable Diffusion Control: nodes/stable-diffusion/stable-diffusion-control.md
-      - Stable Diffusion Core: nodes/stable-diffusion/stable-diffusion-core.md
-      - Stable Diffusion Ultra: nodes/stable-diffusion/stable-diffusion-ultra.md
-      - Upscale Advanced: nodes/stable-diffusion/upscale-advanced.md
-      - Upscale Fast: nodes/stable-diffusion/upscale-fast.md
+    # - Stable Diffusion:
+    #   - Edit Object: nodes/stable-diffusion/edit-object.md
+    #   - Erase: nodes/stable-diffusion/erase.md
+    #   - Inpaint: nodes/stable-diffusion/inpaint.md
+    #   - Outpaint: nodes/stable-diffusion/outpaint.md
+    #   - Remove Background: nodes/stable-diffusion/remove-background.md
+    #   - Stable Diffusion Advanced: nodes/stable-diffusion/stable-diffusion-advanced.md
+    #   - Stable Diffusion Control: nodes/stable-diffusion/stable-diffusion-control.md
+    #   - Stable Diffusion Core: nodes/stable-diffusion/stable-diffusion-core.md
+    #   - Stable Diffusion Ultra: nodes/stable-diffusion/stable-diffusion-ultra.md
+    #   - Upscale Advanced: nodes/stable-diffusion/upscale-advanced.md
+    #   - Upscale Fast: nodes/stable-diffusion/upscale-fast.md
     - Utils:
       - Regex Search And Match: nodes/utils/regex-search-and-match.md
       - Regex Search And Replace: nodes/utils/regex-search-and-replace.md
