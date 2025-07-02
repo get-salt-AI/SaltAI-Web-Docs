@@ -2,7 +2,7 @@
 
 LLM (Large Language Model) nodes allow you to interact with various AI models directly in your workflows. Each LLM provider (Anthropic, OpenAI, Google, etc.) has its own node with consistent interfaces but unique model options.
 
-<img src="/images/nodes/llms.png" alt="LLM Nodes">
+<img src="/images/nodes/llms/llms.png" alt="LLM Nodes">
 
 ## Required Inputs
 

@@ -2,7 +2,7 @@
 
 Create and update pages in Notion databases and workspaces through the Notion API.
 
-<img src="/images/notion-writer.png" alt="Notion Writer Node" class="rounded-lg">
+<img src="/images/nodes/outputs/writers/notion-writer.png" alt="Notion Writer Node" class="rounded-lg">
 
 ## Quick Start
 

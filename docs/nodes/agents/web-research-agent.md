@@ -4,7 +4,7 @@ Conduct automated web research and generate structured reports. Uses multiple LL
 
 This node is powered by [GPT Researcher](https://github.com/assafelovic/gpt-researcher), an open-source autonomous research agent that conducts comprehensive online research on any given topic.
 
-<img src="/images/web-research-agent.png" alt="Web Research Agent Node" class="rounded-lg">
+<img src="/images/nodes/agents/web-research-agent.png" alt="Web Research Agent Node" class="rounded-lg">
 
 ## Quick Start
 

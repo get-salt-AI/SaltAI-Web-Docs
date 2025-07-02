@@ -2,7 +2,7 @@
 
 Send messages to Slack channels and users through the Slack API.
 
-<img src="/images/nodes/slack_writer.png" alt="Slack Writer Node" class="rounded-lg">
+<img src="/images/nodes/outputs/writers/slack_writer.png" alt="Slack Writer Node" class="rounded-lg">
 
 ## Quick Start
 

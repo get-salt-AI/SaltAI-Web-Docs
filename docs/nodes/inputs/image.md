@@ -1,8 +1,8 @@
-# Image Input
+# Image
 
 A node that lets you select images from your input directory or upload new ones directly. Provides instant preview and handles various image formats.
 
-<img src="/images/image-input.png" alt="Image Input Node" class="rounded-lg">
+<img src="/images/nodes/inputs/image.png" alt="Image Node" class="rounded-lg">
 
 ## Quick Start
 
