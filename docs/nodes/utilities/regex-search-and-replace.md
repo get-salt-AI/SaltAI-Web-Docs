@@ -2,7 +2,7 @@
 
 Performs regex-based search and replace on input text, or extracts all matches using a regular expression pattern.
 
-<img src="/images/nodes/utils/regex-search-and-replace.png" alt="Regex Search and Replace" class="rounded-lg">
+<img src="/images/nodes/utilities/regex-search-and-replace.png" alt="Regex Search and Replace" class="rounded-lg">
 
 ## Quick Start
 

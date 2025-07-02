@@ -6,7 +6,7 @@
 
 Performs Colabfold MSA search on provided protein sequences against known sequence databases, returning results for each sequence in `.a3m` format as a dictionary `{seq_id: a3m_content}`.
 
-<img src="/images/nodes/biotech/protein-structure-prediction/colabfold-search.png" alt="Colabfold Search" class="rounded-lg">
+<!-- <img src="/images/nodes/biotech/protein-structure-prediction/colabfold-search.png" alt="Colabfold Search" class="rounded-lg"> -->
 
 ## Quick Start
 

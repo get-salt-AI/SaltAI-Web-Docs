@@ -2,7 +2,7 @@
 
 Boltz-2 Complex Molecular Assembly enables the joint prediction and assembly of multi-component biomolecular complexes, including proteins, DNA, RNA, and ligands, with optional constraints and affinity prediction.
 
-<img src="/images/nodes/biotech/boltz-2/boltz-2-complex-molecular-assembly.png" alt="Boltz-2 Complex Molecular Assembly" class="rounded-lg">
+<img src="/images/nodes/biotech/protein-structure-prediction/boltz-2-complex-molecular-assembly.png" alt="Boltz-2 Complex Molecular Assembly" class="rounded-lg">
 
 ## Quick Start
 

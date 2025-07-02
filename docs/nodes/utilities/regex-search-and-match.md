@@ -2,7 +2,7 @@
 
 Performs a regular expression search on input text and returns all matches as a list.
 
-<img src="/images/nodes/utils/regex-search-and-match.png" alt="Regex Search and Match" class="rounded-lg">
+<img src="/images/nodes/utilities/regex-search-and-match.png" alt="Regex Search and Match" class="rounded-lg">
 
 ## Quick Start
 

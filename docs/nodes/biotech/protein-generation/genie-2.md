@@ -2,7 +2,7 @@
 
 Runs inference of a Genie 2 model for protein generation, supporting both unconditional and motif/multimotif scaffolding. Fully reproducible, with flexible control over sequence length and motif placement.
 
-<img src="/images/nodes/biotech/protein-generation/genie-2.png" alt="Genie 2" class="rounded-lg">
+<!-- <img src="/images/nodes/biotech/protein-generation/genie-2.png" alt="Genie 2" class="rounded-lg"> -->
 
 ## Quick Start
 

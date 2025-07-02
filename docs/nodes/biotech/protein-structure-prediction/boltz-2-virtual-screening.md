@@ -2,7 +2,7 @@
 
 Performs high-throughput virtual screening of small molecules against a target protein using Boltz-2, predicting binding affinity and ranking top candidates for drug discovery.
 
-<img src="/images/nodes/biotech/boltz-2/boltz-2-virtual-screening.png" alt="Boltz-2 Virtual Screening" class="rounded-lg">
+<!-- <img src="/images/nodes/biotech/protein-structure-prediction/boltz-2-virtual-screening.png" alt="Boltz-2 Virtual Screening" class="rounded-lg"> -->
 
 ## Quick Start
 

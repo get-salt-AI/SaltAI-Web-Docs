@@ -2,7 +2,7 @@
 
 Predicts the structure and binding affinity of protein-ligand complexes using the Boltz-2 model. Supports both separate protein/ligand inputs and pre-formed complex PDBs.
 
-<img src="/images/nodes/biotech/boltz-2/boltz-2-protein-ligand-complex-prediction.png" alt="Boltz-2 Protein-Ligand Complex Prediction" class="rounded-lg">
+<!-- <img src="/images/nodes/biotech/protein-structure-prediction/boltz-2-protein-ligand-complex-prediction.png" alt="Boltz-2 Protein-Ligand Complex Prediction" class="rounded-lg"> -->
 
 ## Quick Start
 

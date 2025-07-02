@@ -2,7 +2,7 @@
 
 Node for inspecting and logging data flowing through the workflow. Displays a visual preview and logs information about the input value.
 
-<img src="/images/nodes/outputs/inspect.png" alt="Inspect" class="rounded-lg">
+<img src="/images/nodes/utilities/inspect.png" alt="Inspect" class="rounded-lg">
 
 ## Quick Start
 

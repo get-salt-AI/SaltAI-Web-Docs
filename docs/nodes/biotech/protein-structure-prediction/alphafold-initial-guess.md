@@ -2,7 +2,7 @@
 
 Predicts binder structure from sequence and an initial guess structure, initializing Alphafold with binder atoms to ensure proper binding during folding.
 
-<img src="/images/nodes/biotech/protein-structure-prediction/alphafold-initial-guess.png" alt="Alphafold Initial Guess" class="rounded-lg">
+<!-- <img src="/images/nodes/biotech/protein-structure-prediction/alphafold-initial-guess.png" alt="Alphafold Initial Guess" class="rounded-lg"> -->
 
 ## Quick Start
 

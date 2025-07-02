@@ -6,7 +6,7 @@
 
 Runs Colabfold model inference on Colabfold MSA search results, generating 5 ranked PDB foldings per input sample.
 
-<img src="/images/nodes/biotech/protein-structure-prediction/colabfold-batch.png" alt="Colabfold Batch" class="rounded-lg">
+<!-- <img src="/images/nodes/biotech/protein-structure-prediction/colabfold-batch.png" alt="Colabfold Batch" class="rounded-lg"> -->
 
 ## Quick Start
 

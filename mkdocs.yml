@@ -78,12 +78,6 @@ nav:
         - PDB Visualization: nodes/biotech/biotech-utils/pdb-visualization.md
         - Save To Bucket: nodes/biotech/biotech-utils/save-to-bucket.md
         - Save To Zip: nodes/biotech/biotech-utils/save-to-zip.md
-      - Boltz-2:
-        - Boltz-2 Complex Molecular Assembly: nodes/biotech/boltz-2/boltz-2-complex-molecular-assembly.md
-        - Boltz-2 Protein Ligand Complex Prediction: nodes/biotech/boltz-2/boltz-2-protein-ligand-complex-prediction.md
-        - Boltz-2 Protein Structure Prediction: nodes/biotech/boltz-2/boltz-2-protein-structure-prediction.md
-        - Boltz-2 Structure Refinement: nodes/biotech/boltz-2/boltz-2-structure-refinement.md
-        - Boltz-2 Virtual-Screening: nodes/biotech/boltz-2/boltz-2-virtual-screening.md
       - Functional Prediction:
         - Evaluate Diversity: nodes/biotech/functional-prediction/evaluate-diversity.md
         - Evaluate Prot Param: nodes/biotech/functional-prediction/evaluate-prot-param.md
@@ -105,6 +99,11 @@ nav:
       - Protein Structure Prediction:
         - Alphafold Initial Guess: nodes/biotech/protein-structure-prediction/alphafold-initial-guess.md
         - Alphafold: nodes/biotech/protein-structure-prediction/alphafold.md
+        - Boltz-2 Complex Molecular Assembly: nodes/biotech/protein-structure-prediction/boltz-2-complex-molecular-assembly.md
+        - Boltz-2 Protein Ligand Complex Prediction: nodes/biotech/protein-structure-prediction/boltz-2-protein-ligand-complex-prediction.md
+        - Boltz-2 Protein Structure Prediction: nodes/biotech/protein-structure-prediction/boltz-2-protein-structure-prediction.md
+        - Boltz-2 Structure Refinement: nodes/biotech/protein-structure-prediction/boltz-2-structure-refinement.md
+        - Boltz-2 Virtual-Screening: nodes/biotech/protein-structure-prediction/boltz-2-virtual-screening.md
         - Colabfold Batch: nodes/biotech/protein-structure-prediction/colabfold-batch.md
         - Colabfold Search: nodes/biotech/protein-structure-prediction/colabfold-search.md
         - MSA Search: nodes/biotech/protein-structure-prediction/msa-search.md
@@ -119,7 +118,6 @@ nav:
       - Text: nodes/inputs/text.md
     # - LLMs: nodes/llms/llms.md
     - Outputs: 
-      - Inspect: nodes/outputs/inspect.md
       - Output: nodes/outputs/output.md
       - Writers:
         - Notion Writer: nodes/outputs/writers/notion-writer.md
@@ -136,9 +134,10 @@ nav:
     #   - Stable Diffusion Ultra: nodes/stable-diffusion/stable-diffusion-ultra.md
     #   - Upscale Advanced: nodes/stable-diffusion/upscale-advanced.md
     #   - Upscale Fast: nodes/stable-diffusion/upscale-fast.md
-    - Utils:
-      - Regex Search And Match: nodes/utils/regex-search-and-match.md
-      - Regex Search And Replace: nodes/utils/regex-search-and-replace.md
+    - Utilities:
+      - Inspect: nodes/utilities/inspect.md
+      - Regex Search And Match: nodes/utilities/regex-search-and-match.md
+      - Regex Search And Replace: nodes/utilities/regex-search-and-replace.md
   - Node Builder:
     - Getting Started with Node Builder: node-builder/getting-started.md
   - Deployments:

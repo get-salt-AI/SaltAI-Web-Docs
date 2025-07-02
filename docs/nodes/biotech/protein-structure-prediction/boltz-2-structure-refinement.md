@@ -2,7 +2,7 @@
 
 Refines protein structures using Boltz-2 with inference-time potentials for improved accuracy and quality.
 
-<img src="/images/nodes/biotech/boltz-2/boltz-2-structure-refinement.png" alt="Boltz-2 Structure Refinement" class="rounded-lg">
+<!-- <img src="/images/nodes/biotech/protein-structure-prediction/boltz-2-structure-refinement.png" alt="Boltz-2 Structure Refinement" class="rounded-lg"> -->
 
 ## Quick Start
 

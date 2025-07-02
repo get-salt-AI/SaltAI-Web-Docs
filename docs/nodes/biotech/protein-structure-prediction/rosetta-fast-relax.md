@@ -2,7 +2,7 @@
 
 Runs ProteinMPNN-FastRelax cycles on sequences and structures to make proteins more stable and realistic.
 
-<img src="/images/nodes/biotech/protein-structure-prediction/rosetta-fast-relax.png" alt="Rosetta Fast Relax" class="rounded-lg">
+<!-- <img src="/images/nodes/biotech/protein-structure-prediction/rosetta-fast-relax.png" alt="Rosetta Fast Relax" class="rounded-lg"> -->
 
 ## Quick Start
 

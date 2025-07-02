@@ -2,7 +2,7 @@
 
 Predicts 3D protein structures from MSA (A3M) and FASTA using the Boltz-2 model. Supports batch prediction, confidence scoring, and reproducible sampling.
 
-<img src="/images/nodes/biotech/boltz-2/boltz-2-protein-structure-prediction.png" alt="Boltz-2 Protein Structure Prediction" class="rounded-lg">
+<img src="/images/nodes/biotech/protein-structure-prediction/boltz-2-protein-structure-prediction.png" alt="Boltz-2 Protein Structure Prediction" class="rounded-lg">
 
 ## Quick Start
 

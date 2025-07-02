@@ -2,7 +2,7 @@
 
 Runs unconditional evaluation on outputs from the Alphafold Initial Guess node. Merges initial guess scores with unconditional evaluation scores and returns the resulting scores table.
 
-<img src="/images/nodes/biotech/functional-prediction/evaluate-unconditional-initial-guess.png" alt="Evaluate Unconditional Initial Guess" class="rounded-lg">
+<!-- <img src="/images/nodes/biotech/functional-prediction/evaluate-unconditional-initial-guess.png" alt="Evaluate Unconditional Initial Guess" class="rounded-lg"> -->
 
 ## Quick Start
 
