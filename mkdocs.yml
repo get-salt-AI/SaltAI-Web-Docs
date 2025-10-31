@@ -1,5 +1,6 @@
 site_name: Salt AI Docs
-site_url: https://docs.salt.ai
+site_url: https://docs.salt.ai/
+site_description: Salt AI documentation for nodes, deployments, and platform guides.
 theme:
   name: material
   logo: images/salt-word@2x.png
@@ -15,6 +16,7 @@ theme:
   - search.highlight
   - search.share
   - content.code.copy
+  custom_dir: overrides
 markdown_extensions:
 - tables
 - pymdownx.emoji:

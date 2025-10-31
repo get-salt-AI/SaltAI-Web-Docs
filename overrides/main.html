@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+  {{ super() }}
+
+  {# ------ Safe guards for missing page/meta ------ #}
+  {% set headline    = (page and page.title) or config.site_name %}
+  {% set url         = (page and page.canonical_url) or config.site_url %}
+  {% set description = (page and page.meta and page.meta.get('description'))
+                        or config.site_description
+                        or config.site_name %}
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "{{ headline | e }}",
+    "description": "{{ description | e }}",
+    "url": "{{ url | e }}",
+    "publisher": { "@type": "Organization", "name": "Salt AI" },
+    "author": { "@type": "Organization", "name": "Salt AI" }
+  }
+  </script>
+{% endblock %}
