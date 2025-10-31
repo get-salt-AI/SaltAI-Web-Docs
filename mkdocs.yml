@@ -64,181 +64,181 @@ nav:
 - Getting Started: index.md
 - Nodes:
   - Agents:
-    - Create Agent: nodes/md/Agents/CreateAgent.md
-    - Google Web Search: nodes/md/Agents/WebSearchGoogle.md
-    - Run Agents Team: nodes/md/Agents/RunAgentsTeam.md
-    - Tavily Web Search: nodes/md/Agents/WebSearchTavily.md
-    - Web Research Agent: nodes/md/Agents/WebResearchAgent.md
-    - Web Scraper: nodes/md/Agents/WebScraper.md
+    - Create Agent: nodes/md/agents/createagent.md
+    - Google Web Search: nodes/md/agents/websearchgoogle.md
+    - Run Agents Team: nodes/md/agents/runagentsteam.md
+    - Tavily Web Search: nodes/md/agents/websearchtavily.md
+    - Web Research Agent: nodes/md/agents/webresearchagent.md
+    - Web Scraper: nodes/md/agents/webscraper.md
   - Biotech:
     - Biotech Utils:
-      - A3M Combiner: nodes/md/Biotech/Biotech Utils/A3MCombinerNode.md
-      - Batch PDB: nodes/md/Biotech/Biotech Utils/BatchPDBNode.md
-      - FASTA Combiner: nodes/md/Biotech/Biotech Utils/FastaCombinerNode.md
-      - Load PDB: nodes/md/Biotech/Biotech Utils/LoadPDBNode.md
-      - PDB Visualization: nodes/md/Biotech/Biotech Utils/PDBVisualizationNode.md
-      - Pdb To Fasta Node: nodes/md/Biotech/Biotech Utils/PDBToFastaNode.md
-      - Save To Bucket: nodes/md/Biotech/Biotech Utils/SaveToBucketNode.md
-      - Save To Zip: nodes/md/Biotech/Biotech Utils/SaveToZipNode.md
+      - A3M Combiner: nodes/md/biotech/biotech-utils/a3mcombinernode.md
+      - Batch PDB: nodes/md/biotech/biotech-utils/batchpdbnode.md
+      - FASTA Combiner: nodes/md/biotech/biotech-utils/fastacombinernode.md
+      - Load PDB: nodes/md/biotech/biotech-utils/loadpdbnode.md
+      - PDB Visualization: nodes/md/biotech/biotech-utils/pdbvisualizationnode.md
+      - Pdb To Fasta Node: nodes/md/biotech/biotech-utils/pdbtofastanode.md
+      - Save To Bucket: nodes/md/biotech/biotech-utils/savetobucketnode.md
+      - Save To Zip: nodes/md/biotech/biotech-utils/savetozipnode.md
     - Functional Prediction:
-      - Evaluate Diversity: nodes/md/Biotech/Functional Prediction/EvaluateDiversityNode.md
-      - Evaluate Prot Param: nodes/md/Biotech/Functional Prediction/EvaluateProtParamNode.md
-      - Evaluate Unconditional: nodes/md/Biotech/Functional Prediction/EvaluateUnconditionalNode.md
-      - Evaluate Unconditional Initial Guess: nodes/md/Biotech/Functional Prediction/EvaluateUnconditionalInitialGuessNode.md
-      - Haddock: nodes/md/Biotech/Functional Prediction/HaddockNode.md
-      - Immunogenicity B-Cell Epiptope: nodes/md/Biotech/Functional Prediction/ImmunogenicityBCellEpiptopeNode.md
-      - Immunogenicity Class 1: nodes/md/Biotech/Functional Prediction/ImmunogenicityClass1Node.md
-      - Immunogenicity MHC 2: nodes/md/Biotech/Functional Prediction/ImmunogenicityMHC2Node.md
-      - Prodigy: nodes/md/Biotech/Functional Prediction/ProdigyNode.md
+      - Evaluate Diversity: nodes/md/biotech/functional-prediction/evaluatediversitynode.md
+      - Evaluate Prot Param: nodes/md/biotech/functional-prediction/evaluateprotparamnode.md
+      - Evaluate Unconditional: nodes/md/biotech/functional-prediction/evaluateunconditionalnode.md
+      - Evaluate Unconditional Initial Guess: nodes/md/biotech/functional-prediction/evaluateunconditionalinitialguessnode.md
+      - Haddock: nodes/md/biotech/functional-prediction/haddocknode.md
+      - Immunogenicity B-Cell Epiptope: nodes/md/biotech/functional-prediction/immunogenicitybcellepiptopenode.md
+      - Immunogenicity Class 1: nodes/md/biotech/functional-prediction/immunogenicityclass1node.md
+      - Immunogenicity MHC 2: nodes/md/biotech/functional-prediction/immunogenicitymhc2node.md
+      - Prodigy: nodes/md/biotech/functional-prediction/prodigynode.md
     - Protein Generation:
-      - Chroma: nodes/md/Biotech/Protein Generation/ChromaNode.md
-      - Genie 2: nodes/md/Biotech/Protein Generation/Genie2Node.md
-      - RF Diffusion: nodes/md/Biotech/Protein Generation/RFDiffusionNode.md
-      - RF Diffusion Contigmap Config: nodes/md/Biotech/Protein Generation/RFDiffusionContigmapConfigNode.md
-      - RF Diffusion Denoiser Config: nodes/md/Biotech/Protein Generation/RFDiffusionDenoiserConfigNode.md
-      - RF Diffusion Potentials Config: nodes/md/Biotech/Protein Generation/RFDiffusionPotentialsConfigNode.md
-      - RF Diffusion Symmetry Config: nodes/md/Biotech/Protein Generation/RFDiffusionSymmetryConfigNode.md
+      - Chroma: nodes/md/biotech/protein-generation/chromanode.md
+      - Genie 2: nodes/md/biotech/protein-generation/genie2node.md
+      - RF Diffusion: nodes/md/biotech/protein-generation/rfdiffusionnode.md
+      - RF Diffusion Contigmap Config: nodes/md/biotech/protein-generation/rfdiffusioncontigmapconfignode.md
+      - RF Diffusion Denoiser Config: nodes/md/biotech/protein-generation/rfdiffusiondenoiserconfignode.md
+      - RF Diffusion Potentials Config: nodes/md/biotech/protein-generation/rfdiffusionpotentialsconfignode.md
+      - RF Diffusion Symmetry Config: nodes/md/biotech/protein-generation/rfdiffusionsymmetryconfignode.md
     - Protein Structure Prediction:
-      - Alphafold: nodes/md/Biotech/Protein Structure Prediction/AlphafoldNode.md
-      - Alphafold Initial Guess: nodes/md/Biotech/Protein Structure Prediction/AlphafoldInitialGuessNode.md
-      - Colabfold Batch: nodes/md/Biotech/Protein Structure Prediction/ColabfoldBatchNode.md
-      - Colabfold Search: nodes/md/Biotech/Protein Structure Prediction/ColabfoldSearchNode.md
-      - MSA Search: nodes/md/Biotech/Protein Structure Prediction/MSASearchNode.md
-      - Rosetta Fast Relax: nodes/md/Biotech/Protein Structure Prediction/RosettaFastRelaxNode.md
+      - Alphafold: nodes/md/biotech/protein-structure-prediction/alphafoldnode.md
+      - Alphafold Initial Guess: nodes/md/biotech/protein-structure-prediction/alphafoldinitialguessnode.md
+      - Colabfold Batch: nodes/md/biotech/protein-structure-prediction/colabfoldbatchnode.md
+      - Colabfold Search: nodes/md/biotech/protein-structure-prediction/colabfoldsearchnode.md
+      - MSA Search: nodes/md/biotech/protein-structure-prediction/msasearchnode.md
+      - Rosetta Fast Relax: nodes/md/biotech/protein-structure-prediction/rosettafastrelaxnode.md
     - Sequence Prediction:
-      - ProteinMPNN: nodes/md/Biotech/Sequence Prediction/ProteinMPNNNode.md
+      - ProteinMPNN: nodes/md/biotech/sequence-prediction/proteinmpnnnode.md
   - Inputs:
-    - Draw Mask: nodes/md/Inputs/DrawMask.md
-    - Dynamic Text: nodes/md/Inputs/SaltDynamicInput.md
-    - File: nodes/md/Inputs/SaltFileInput.md
-    - Load Image: nodes/md/Inputs/LoadImage.md
-    - Text: nodes/md/Inputs/SaltTextInput.md
+    - Draw Mask: nodes/md/inputs/drawmask.md
+    - Dynamic Text: nodes/md/inputs/saltdynamicinput.md
+    - File: nodes/md/inputs/saltfileinput.md
+    - Load Image: nodes/md/inputs/loadimage.md
+    - Text: nodes/md/inputs/salttextinput.md
   - Knowledge Bases:
-    - Documents: nodes/md/Knowledge Bases/CarbonConnectorLocalFiles.md
-    - Dropbox: nodes/md/Knowledge Bases/CarbonConnectorDropbox.md
-    - GitHub: nodes/md/Knowledge Bases/CarbonConnectorGitHub.md
-    - Gmail: nodes/md/Knowledge Bases/CarbonConnectorGmail.md
-    - Google Cloud Storage: nodes/md/Knowledge Bases/CarbonConnectorGCS.md
-    - Google Drive: nodes/md/Knowledge Bases/CarbonConnectorGoogleDrive.md
-    - Notion: nodes/md/Knowledge Bases/CarbonConnectorNotion.md
-    - OneDrive: nodes/md/Knowledge Bases/CarbonConnectorOneDrive.md
-    - S3: nodes/md/Knowledge Bases/CarbonConnectorS3.md
-    - Slack: nodes/md/Knowledge Bases/CarbonConnectorSlack.md
-    - Web URLs: nodes/md/Knowledge Bases/CarbonConnectorWebScraper.md
-  - Llms:
-    - Anthropic LLM: nodes/md/LLMs/LiteLLMAnthropic.md
-    - DeepSeek LLM: nodes/md/LLMs/LiteLLMDeepSeek.md
-    - Gemini LLM: nodes/md/LLMs/LiteLLMGemini.md
-    - Groq LLM: nodes/md/LLMs/LiteLLMGroq.md
-    - OpenAI LLM: nodes/md/LLMs/LiteLLMOpenAi.md
+    - Documents: nodes/md/knowledge-bases/carbonconnectorlocalfiles.md
+    - Dropbox: nodes/md/knowledge-bases/carbonconnectordropbox.md
+    - GitHub: nodes/md/knowledge-bases/carbonconnectorgithub.md
+    - Gmail: nodes/md/knowledge-bases/carbonconnectorgmail.md
+    - Google Cloud Storage: nodes/md/knowledge-bases/carbonconnectorgcs.md
+    - Google Drive: nodes/md/knowledge-bases/carbonconnectorgoogledrive.md
+    - Notion: nodes/md/knowledge-bases/carbonconnectornotion.md
+    - OneDrive: nodes/md/knowledge-bases/carbonconnectoronedrive.md
+    - S3: nodes/md/knowledge-bases/carbonconnectors3.md
+    - Slack: nodes/md/knowledge-bases/carbonconnectorslack.md
+    - Web URLs: nodes/md/knowledge-bases/carbonconnectorwebscraper.md
+  - LLMs:
+    - Anthropic LLM: nodes/md/llms/litellmanthropic.md
+    - DeepSeek LLM: nodes/md/llms/litellmdeepseek.md
+    - Gemini LLM: nodes/md/llms/litellmgemini.md
+    - Groq LLM: nodes/md/llms/litellmgroq.md
+    - OpenAI LLM: nodes/md/llms/litellmopenai.md
   - Logic:
     - Condition:
-      - Bool Operation: nodes/md/Logic/Condition/SaltBoolOperationNode.md
-      - Float Condition: nodes/md/Logic/Condition/SaltFloatConditions.md
-      - Int Condition: nodes/md/Logic/Condition/SaltIntConditions.md
-      - Lazy Conditional: nodes/md/Logic/Condition/SaltLazyConditional.md
-      - Lazy Index Switch: nodes/md/Logic/Condition/SaltLazyIndexSwitch.md
-      - Lazy Switch: nodes/md/Logic/Condition/SaltLazySwitch.md
-      - String Condition: nodes/md/Logic/Condition/SaltStringConditions.md
+      - Bool Operation: nodes/md/logic/condition/saltbooloperationnode.md
+      - Float Condition: nodes/md/logic/condition/saltfloatconditions.md
+      - Int Condition: nodes/md/logic/condition/saltintconditions.md
+      - Lazy Conditional: nodes/md/logic/condition/saltlazyconditional.md
+      - Lazy Index Switch: nodes/md/logic/condition/saltlazyindexswitch.md
+      - Lazy Switch: nodes/md/logic/condition/saltlazyswitch.md
+      - String Condition: nodes/md/logic/condition/saltstringconditions.md
     - Flow Control:
-      - For Loop Close (Deprecated): nodes/md/Logic/Flow Control/SaltForLoopClose.md
-      - For Loop Open (Deprecated): nodes/md/Logic/Flow Control/SaltForLoopOpen.md
-      - While Loop Close (Deprecated): nodes/md/Logic/Flow Control/SaltWhileLoopClose.md
-      - While Loop Open (Deprecated): nodes/md/Logic/Flow Control/SaltWhileLoopOpen.md
+      - For Loop Close (Deprecated): nodes/md/logic/flow-control/saltforloopclose.md
+      - For Loop Open (Deprecated): nodes/md/logic/flow-control/saltforloopopen.md
+      - While Loop Close (Deprecated): nodes/md/logic/flow-control/saltwhileloopclose.md
+      - While Loop Open (Deprecated): nodes/md/logic/flow-control/saltwhileloopopen.md
       - Accumulation:
-        - Accumulate: nodes/md/Logic/Flow Control/Accumulation/SaltAccumulateNode.md
-        - Accumulation Get Item: nodes/md/Logic/Flow Control/Accumulation/SaltAccumulationGetItemNode.md
-        - Accumulation Get Length: nodes/md/Logic/Flow Control/Accumulation/SaltAccumulationGetLengthNode.md
-        - Accumulation Head: nodes/md/Logic/Flow Control/Accumulation/SaltAccumulationHeadNode.md
-        - Accumulation Set Item: nodes/md/Logic/Flow Control/Accumulation/SaltAccumulationSetItemNode.md
-        - Accumulation Tail: nodes/md/Logic/Flow Control/Accumulation/SaltAccumulationTailNode.md
-        - Accumulation to List: nodes/md/Logic/Flow Control/Accumulation/SaltAccumulationToListNode.md
-        - List to Accumulation: nodes/md/Logic/Flow Control/Accumulation/SaltListToAccumulationNode.md
+        - Accumulate: nodes/md/logic/flow-control/accumulation/saltaccumulatenode.md
+        - Accumulation Get Item: nodes/md/logic/flow-control/accumulation/saltaccumulationgetitemnode.md
+        - Accumulation Get Length: nodes/md/logic/flow-control/accumulation/saltaccumulationgetlengthnode.md
+        - Accumulation Head: nodes/md/logic/flow-control/accumulation/saltaccumulationheadnode.md
+        - Accumulation Set Item: nodes/md/logic/flow-control/accumulation/saltaccumulationsetitemnode.md
+        - Accumulation Tail: nodes/md/logic/flow-control/accumulation/saltaccumulationtailnode.md
+        - Accumulation to List: nodes/md/logic/flow-control/accumulation/saltaccumulationtolistnode.md
+        - List to Accumulation: nodes/md/logic/flow-control/accumulation/saltlisttoaccumulationnode.md
     - Logic Utility:
-      - Int Math Operation: nodes/md/Logic/Logic Utility/SaltIntMathOperation.md
-      - Make List: nodes/md/Logic/Logic Utility/SaltMakeListNode.md
-      - SaltDebugPrint: nodes/md/Logic/Logic Utility/SaltDebugPrint.md
-      - To Bool: nodes/md/Logic/Logic Utility/SaltToBoolNode.md
-  - New-Uncategorized:
-    - API Fetcher: nodes/md/New-Uncategorized/SaltAPIFetcher.md
-    - Advanced Math Operation: nodes/md/New-Uncategorized/SaltAdvancedMathOperation.md
-    - Boltz (Deprecated): nodes/md/New-Uncategorized/BoltzNode.md
-    - Boltz Constraint Builder: nodes/md/New-Uncategorized/BoltzConstraintNode.md
-    - Boltz Ligand Sequence: nodes/md/New-Uncategorized/BoltzLigandSequenceNode.md
-    - Boltz List Combiner: nodes/md/New-Uncategorized/BoltzListCombinerNode.md
-    - Boltz Multimer: nodes/md/New-Uncategorized/BoltzMultimerNode.md
-    - Boltz Partial Diffusion: nodes/md/New-Uncategorized/BoltzPartialDiffusionNode.md
-    - Boltz Predict: nodes/md/New-Uncategorized/BoltzPredictNode.md
-    - Boltz Property Builder: nodes/md/New-Uncategorized/BoltzPropertyNode.md
-    - Boltz Protein Sequence: nodes/md/New-Uncategorized/BoltzProteinSequenceNode.md
-    - Boltz Sequence Builder: nodes/md/New-Uncategorized/BoltzSequenceNode.md
-    - Boltz Template Builder: nodes/md/New-Uncategorized/BoltzTemplateNode.md
-    - Boltz YAML Combiner: nodes/md/New-Uncategorized/BoltzYAMLCombinerNode.md
-    - CIF to PDB: nodes/md/New-Uncategorized/CIFToPDBNode.md
-    - ClinicalTrials Study Count: nodes/md/New-Uncategorized/ClinicalTrialsStudyCountNode.md
-    - ClinicalTrials Study Detail: nodes/md/New-Uncategorized/ClinicalTrialsStudyDetailNode.md
-    - ClinicalTrials Study Fields: nodes/md/New-Uncategorized/ClinicalTrialsStudyFieldsNode.md
-    - ClinicalTrials Study Search: nodes/md/New-Uncategorized/ClinicalTrialsStudySearchNode.md
-    - Code Executor: nodes/md/New-Uncategorized/SaltCodeExecutor.md
-    - Comparison Operation: nodes/md/New-Uncategorized/SaltComparisonOperation.md
-    - 'DailyMed: Drug Search': nodes/md/New-Uncategorized/DailyMedAPINode.md
-    - 'DailyMed: Ingredient Search': nodes/md/New-Uncategorized/DailyMedIngredientSearchNode.md
-    - 'DailyMed: NDC Lookup': nodes/md/New-Uncategorized/DailyMedNDCLookupNode.md
-    - Data Monitor: nodes/md/New-Uncategorized/SaltDataMonitor.md
-    - Delay Execution: nodes/md/New-Uncategorized/SaltDelayExecution.md
-    - Drug Class Analysis: nodes/md/New-Uncategorized/SaltAIDrugClassAnalysis.md
-    - Drug Classes: nodes/md/New-Uncategorized/SaltAIRxClassByDrug.md
-    - Float Math Operation: nodes/md/New-Uncategorized/SaltFloatMathOperation.md
-    - Halt Execution: nodes/md/New-Uncategorized/SaltHaltExecution.md
-    - If: nodes/md/New-Uncategorized/IfConditionSelector.md
-    - JSON List Processor: nodes/md/New-Uncategorized/SaltJSONListProcessor.md
-    - JSON Loop Close: nodes/md/New-Uncategorized/SaltJsonSaltLoopClose.md
-    - JSON Loop Open: nodes/md/New-Uncategorized/SaltJsonSaltLoopOpen.md
-    - 'JSON: Filter': nodes/md/New-Uncategorized/SaltJsonFilter.md
-    - 'JSON: From String': nodes/md/New-Uncategorized/SaltJsonFromString.md
-    - 'JSON: Get Value': nodes/md/New-Uncategorized/SaltJsonGetValue.md
-    - 'JSON: Merge': nodes/md/New-Uncategorized/SaltJsonMerge.md
-    - 'JSON: Set Value': nodes/md/New-Uncategorized/SaltJsonSetValue.md
-    - 'JSON: To String': nodes/md/New-Uncategorized/SaltJsonToString.md
-    - 'JSON: Validate': nodes/md/New-Uncategorized/SaltJsonValidate.md
-    - Load A3M MSA: nodes/md/New-Uncategorized/LoadA3MNode.md
-    - Load FASTA: nodes/md/New-Uncategorized/LoadFastaNode.md
-    - Logarithmic Operation: nodes/md/New-Uncategorized/SaltLogarithmicOperation.md
-    - Loop Close: nodes/md/New-Uncategorized/SaltLoopClose.md
-    - Loop Open: nodes/md/New-Uncategorized/SaltLoopOpen.md
-    - OpenFDA Drug Product Label: nodes/md/New-Uncategorized/OpenFDADProductLabelNode.md
-    - OpenFDA NDC Directory: nodes/md/New-Uncategorized/OpenFDANDCNode.md
-    - PDB Chain Extractor: nodes/md/New-Uncategorized/PDBChainExtractorNode.md
-    - PDB Combiner: nodes/md/New-Uncategorized/PDBCombinerNode.md
-    - PDB Fixer: nodes/md/New-Uncategorized/PdbFixerNode.md
-    - PDB To CIF: nodes/md/New-Uncategorized/PDBToCIFNode.md
-    - Population Medication Analysis: nodes/md/New-Uncategorized/SaltAIPopulationMedicationAnalysis.md
-    - Primitive Value Converter: nodes/md/New-Uncategorized/SaltPrimitiveConverter.md
-    - Rounding Operation: nodes/md/New-Uncategorized/SaltRoundingOperation.md
-    - RxCUI by NDC: nodes/md/New-Uncategorized/SaltAIRxCUIByNDC.md
-    - RxClass Information: nodes/md/New-Uncategorized/SaltAIRxClassInfo.md
-    - RxClass Members: nodes/md/New-Uncategorized/SaltAIRxClassMembers.md
-    - RxClass Search: nodes/md/New-Uncategorized/SaltAIRxClassSearch.md
-    - RxNorm Approximate Match: nodes/md/New-Uncategorized/SaltAIRxNormApproximateMatch.md
-    - RxNorm Concept Info: nodes/md/New-Uncategorized/SaltAIRxNormConceptInfo.md
-    - RxNorm Drug Interactions: nodes/md/New-Uncategorized/SaltAIRxNormDrugInteractions.md
-    - RxNorm Drug Search: nodes/md/New-Uncategorized/SaltAIRxNormSearch.md
-    - RxNorm Drugs by Class: nodes/md/New-Uncategorized/SaltAIRxClassDrugMembers.md
-    - RxNorm Related Concepts: nodes/md/New-Uncategorized/SaltAIRxNormRelatedConcepts.md
-    - RxTerms Information: nodes/md/New-Uncategorized/SaltAIRxTermsInfo.md
-    - Statistical Operation: nodes/md/New-Uncategorized/SaltStatisticalOperation.md
-    - String Operation: nodes/md/New-Uncategorized/SaltStringOperation.md
-    - Trigonometric Operation: nodes/md/New-Uncategorized/SaltTrigonometricOperation.md
+      - Int Math Operation: nodes/md/logic/logic-utility/saltintmathoperation.md
+      - Make List: nodes/md/logic/logic-utility/saltmakelistnode.md
+      - SaltDebugPrint: nodes/md/logic/logic-utility/saltdebugprint.md
+      - To Bool: nodes/md/logic/logic-utility/salttoboolnode.md
+  - New/Uncategorized:
+    - API Fetcher: nodes/md/new-uncategorized/saltapifetcher.md
+    - Advanced Math Operation: nodes/md/new-uncategorized/saltadvancedmathoperation.md
+    - Boltz (Deprecated): nodes/md/new-uncategorized/boltznode.md
+    - Boltz Constraint Builder: nodes/md/new-uncategorized/boltzconstraintnode.md
+    - Boltz Ligand Sequence: nodes/md/new-uncategorized/boltzligandsequencenode.md
+    - Boltz List Combiner: nodes/md/new-uncategorized/boltzlistcombinernode.md
+    - Boltz Multimer: nodes/md/new-uncategorized/boltzmultimernode.md
+    - Boltz Partial Diffusion: nodes/md/new-uncategorized/boltzpartialdiffusionnode.md
+    - Boltz Predict: nodes/md/new-uncategorized/boltzpredictnode.md
+    - Boltz Property Builder: nodes/md/new-uncategorized/boltzpropertynode.md
+    - Boltz Protein Sequence: nodes/md/new-uncategorized/boltzproteinsequencenode.md
+    - Boltz Sequence Builder: nodes/md/new-uncategorized/boltzsequencenode.md
+    - Boltz Template Builder: nodes/md/new-uncategorized/boltztemplatenode.md
+    - Boltz YAML Combiner: nodes/md/new-uncategorized/boltzyamlcombinernode.md
+    - CIF to PDB: nodes/md/new-uncategorized/ciftopdbnode.md
+    - ClinicalTrials Study Count: nodes/md/new-uncategorized/clinicaltrialsstudycountnode.md
+    - ClinicalTrials Study Detail: nodes/md/new-uncategorized/clinicaltrialsstudydetailnode.md
+    - ClinicalTrials Study Fields: nodes/md/new-uncategorized/clinicaltrialsstudyfieldsnode.md
+    - ClinicalTrials Study Search: nodes/md/new-uncategorized/clinicaltrialsstudysearchnode.md
+    - Code Executor: nodes/md/new-uncategorized/saltcodeexecutor.md
+    - Comparison Operation: nodes/md/new-uncategorized/saltcomparisonoperation.md
+    - 'DailyMed: Drug Search': nodes/md/new-uncategorized/dailymedapinode.md
+    - 'DailyMed: Ingredient Search': nodes/md/new-uncategorized/dailymedingredientsearchnode.md
+    - 'DailyMed: NDC Lookup': nodes/md/new-uncategorized/dailymedndclookupnode.md
+    - Data Monitor: nodes/md/new-uncategorized/saltdatamonitor.md
+    - Delay Execution: nodes/md/new-uncategorized/saltdelayexecution.md
+    - Drug Class Analysis: nodes/md/new-uncategorized/saltaidrugclassanalysis.md
+    - Drug Classes: nodes/md/new-uncategorized/saltairxclassbydrug.md
+    - Float Math Operation: nodes/md/new-uncategorized/saltfloatmathoperation.md
+    - Halt Execution: nodes/md/new-uncategorized/salthaltexecution.md
+    - If: nodes/md/new-uncategorized/ifconditionselector.md
+    - JSON List Processor: nodes/md/new-uncategorized/saltjsonlistprocessor.md
+    - JSON Loop Close: nodes/md/new-uncategorized/saltjsonsaltloopclose.md
+    - JSON Loop Open: nodes/md/new-uncategorized/saltjsonsaltloopopen.md
+    - 'JSON: Filter': nodes/md/new-uncategorized/saltjsonfilter.md
+    - 'JSON: From String': nodes/md/new-uncategorized/saltjsonfromstring.md
+    - 'JSON: Get Value': nodes/md/new-uncategorized/saltjsongetvalue.md
+    - 'JSON: Merge': nodes/md/new-uncategorized/saltjsonmerge.md
+    - 'JSON: Set Value': nodes/md/new-uncategorized/saltjsonsetvalue.md
+    - 'JSON: To String': nodes/md/new-uncategorized/saltjsontostring.md
+    - 'JSON: Validate': nodes/md/new-uncategorized/saltjsonvalidate.md
+    - Load A3M MSA: nodes/md/new-uncategorized/loada3mnode.md
+    - Load FASTA: nodes/md/new-uncategorized/loadfastanode.md
+    - Logarithmic Operation: nodes/md/new-uncategorized/saltlogarithmicoperation.md
+    - Loop Close: nodes/md/new-uncategorized/saltloopclose.md
+    - Loop Open: nodes/md/new-uncategorized/saltloopopen.md
+    - OpenFDA Drug Product Label: nodes/md/new-uncategorized/openfdadproductlabelnode.md
+    - OpenFDA NDC Directory: nodes/md/new-uncategorized/openfdandcnode.md
+    - PDB Chain Extractor: nodes/md/new-uncategorized/pdbchainextractornode.md
+    - PDB Combiner: nodes/md/new-uncategorized/pdbcombinernode.md
+    - PDB Fixer: nodes/md/new-uncategorized/pdbfixernode.md
+    - PDB To CIF: nodes/md/new-uncategorized/pdbtocifnode.md
+    - Population Medication Analysis: nodes/md/new-uncategorized/saltaipopulationmedicationanalysis.md
+    - Primitive Value Converter: nodes/md/new-uncategorized/saltprimitiveconverter.md
+    - Rounding Operation: nodes/md/new-uncategorized/saltroundingoperation.md
+    - RxCUI by NDC: nodes/md/new-uncategorized/saltairxcuibyndc.md
+    - RxClass Information: nodes/md/new-uncategorized/saltairxclassinfo.md
+    - RxClass Members: nodes/md/new-uncategorized/saltairxclassmembers.md
+    - RxClass Search: nodes/md/new-uncategorized/saltairxclasssearch.md
+    - RxNorm Approximate Match: nodes/md/new-uncategorized/saltairxnormapproximatematch.md
+    - RxNorm Concept Info: nodes/md/new-uncategorized/saltairxnormconceptinfo.md
+    - RxNorm Drug Interactions: nodes/md/new-uncategorized/saltairxnormdruginteractions.md
+    - RxNorm Drug Search: nodes/md/new-uncategorized/saltairxnormsearch.md
+    - RxNorm Drugs by Class: nodes/md/new-uncategorized/saltairxclassdrugmembers.md
+    - RxNorm Related Concepts: nodes/md/new-uncategorized/saltairxnormrelatedconcepts.md
+    - RxTerms Information: nodes/md/new-uncategorized/saltairxtermsinfo.md
+    - Statistical Operation: nodes/md/new-uncategorized/saltstatisticaloperation.md
+    - String Operation: nodes/md/new-uncategorized/saltstringoperation.md
+    - Trigonometric Operation: nodes/md/new-uncategorized/salttrigonometricoperation.md
   - Outputs:
-    - Output: nodes/md/Outputs/SaltOutput.md
+    - Output: nodes/md/outputs/saltoutput.md
     - Writers:
-      - Notion Writer: nodes/md/Outputs/Writers/Notion Writer.md
-      - Slack Writer: nodes/md/Outputs/Writers/SlackWriter.md
+      - Notion Writer: nodes/md/outputs/writers/notion-writer.md
+      - Slack Writer: nodes/md/outputs/writers/slackwriter.md
   - Utilities:
-    - Inspect: nodes/md/Utilities/SaltInspect.md
-    - Preview Image: nodes/md/Utilities/PreviewImage.md
-    - Regex Search and Match: nodes/md/Utilities/SAIStringRegexSearchMatch.md
-    - Regex Search and Replace: nodes/md/Utilities/SAIStringRegexSearchReplace.md
+    - Inspect: nodes/md/utilities/saltinspect.md
+    - Preview Image: nodes/md/utilities/previewimage.md
+    - Regex Search and Match: nodes/md/utilities/saistringregexsearchmatch.md
+    - Regex Search and Replace: nodes/md/utilities/saistringregexsearchreplace.md
 - Node Builder:
   - Getting Started with Node Builder: node-builder/getting-started.md
 - Deployments:

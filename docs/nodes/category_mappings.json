@@ -1,0 +1,64 @@
+{
+  "biotech/biotech-utils": [
+    "Biotech",
+    "Biotech Utils"
+  ],
+  "biotech/protein-structure-prediction": [
+    "Biotech",
+    "Protein Structure Prediction"
+  ],
+  "new-uncategorized": [
+    "New/Uncategorized"
+  ],
+  "knowledge-bases": [
+    "Knowledge Bases"
+  ],
+  "biotech/protein-generation": [
+    "Biotech",
+    "Protein Generation"
+  ],
+  "agents": [
+    "Agents"
+  ],
+  "inputs": [
+    "Inputs"
+  ],
+  "biotech/functional-prediction": [
+    "Biotech",
+    "Functional Prediction"
+  ],
+  "llms": [
+    "LLMs"
+  ],
+  "outputs/writers": [
+    "Outputs",
+    "Writers"
+  ],
+  "utilities": [
+    "Utilities"
+  ],
+  "biotech/sequence-prediction": [
+    "Biotech",
+    "Sequence Prediction"
+  ],
+  "logic/flow-control/accumulation": [
+    "Logic",
+    "Flow Control",
+    "Accumulation"
+  ],
+  "logic/condition": [
+    "Logic",
+    "Condition"
+  ],
+  "logic/logic-utility": [
+    "Logic",
+    "Logic Utility"
+  ],
+  "logic/flow-control": [
+    "Logic",
+    "Flow Control"
+  ],
+  "outputs": [
+    "Outputs"
+  ]
+}
