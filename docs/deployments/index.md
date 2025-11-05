@@ -6,7 +6,7 @@ description: Vew, manage, and monitor your deployed workflows.
 
 Deployments enable the execution of your workflow without the need to run it from the editor and are a great way to share your workflow with others and integrate them into other applications. They are managed in the Deployments tab of the workflow editor, where you can create, view, and manage deployments of your workflow.
 
-![Deployment Tab Open in Editor](../images/deployments1.png)
+![Deployment Tab Open in Editor](deployments1.png)
 
 ## Availability
 
@@ -43,4 +43,4 @@ If you encounter issues with a deployment:
 
 <aside> ℹ️ Remember, changes made to workflows after deployment will not affect existing deployments. To incorporate workflow changes, you must update and redeploy your deployment.</aside>
 
-For more detailed information on creating specific types of deployments, please refer to our [Webform Deployment](/deployments/webform) and [API Deployment](/deployments/api) guides.
+For more detailed information on creating specific types of deployments, please refer to our [Webform Deployment](webform.md) and [API Deployment](api.md) guides.

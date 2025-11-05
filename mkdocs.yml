@@ -3,8 +3,8 @@ site_url: https://docs.salt.ai/
 site_description: Salt AI documentation for nodes, deployments, and platform guides.
 theme:
   name: material
-  logo: images/salt-word@2x.png
-  favicon: images/favicon-light.png
+  logo: salt-word@2x.png
+  favicon: favicon-light.png
   features:
   - navigation.instant
   - navigation.tracking

@@ -23,7 +23,7 @@ Key benefits:
 5. Click the `Deploy` button to create the new API deployment.
 6. You'll receive a unique endpoint for executing your workflow via API calls.
 
-![Deployment Process](../images/deployments-api1.png)
+![Deployment Process](deployments-api1.png)
 
 ### Configuring Input and Output Visibility
 
@@ -32,7 +32,7 @@ If you have intermediate input or output nodes that you don't want to expose to 
 - **Hidden Inputs** will be automatically defaulted to their current value, and attempts to set them via the API will be treated as an invalid input.
 - **Hidden Outputs** will not be included in the API response sent to the callback URL.
 
-![Configuring Input and Output Visibility](../images/deployments-api2.png)
+![Configuring Input and Output Visibility](deployments-api2.png)
 
 ## Making API Requests
 

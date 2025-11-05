@@ -6,7 +6,7 @@ This guide will walk you through the basics of using Node Builder and creating y
 
 ## Understanding the Interface
 
-<img src="/images/node-builder-examples.png" alt="Node Builder Examples">
+<img src="/node-builder/node-builder-examples.png" alt="Node Builder Examples">
 
 
 Node Builder provides a professional development environment with four main areas:

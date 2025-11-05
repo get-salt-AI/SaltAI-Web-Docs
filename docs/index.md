@@ -4,7 +4,7 @@
     This documentation is a work in progress. Check back soon for more details! We are actively working on documenting all of our nodes and features.
 
 
-<img src="/images/index.jpg" alt="Salt">
+<img src="/index.jpg" alt="Salt">
 ## Why Salt?
 
 Salt bridges the gap between advanced AI capabilities and practical business needs. Our platform empowers both technical and non-technical teams to:
@@ -80,8 +80,8 @@ Streamline business processes:
 
 ## Resources
 
-- **[Quickstart Guide →](/getting-started)**
-- **[Video Tutorials →](/tutorials-preview)** (Coming Soon - Sign up for updates)
-- **[Node Reference →](/nodes-preview)** (Coming Soon - View preliminary documentation)
-- **[API Documentation →](/api-preview)** (Coming Soon - Check our development roadmap)
+- **[Quickstart Guide →](getting-started.md)**
+- **[Video Tutorials →](tutorials-preview.md)** (Coming Soon - Sign up for updates)
+- **[Node Reference →](nodes-preview.md)** (Coming Soon - View preliminary documentation)
+- **[API Documentation →](api-preview.md)** (Coming Soon - Check our development roadmap)
 
