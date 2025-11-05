@@ -4,7 +4,7 @@
     This documentation is a work in progress. Check back soon for more details! We are actively working on documenting all of our nodes and features.
 
 
-<a href="https://salt.ai"><img src="/index.jpg" alt="Salt"></a>
+<a href="https://salt.ai/" target="_blank" rel="noopener noreferrer"><img src="/index.jpg" alt="Salt"></a>
 ## Why Salt?
 
 Salt bridges the gap between advanced AI capabilities and practical business needs. Our platform empowers both technical and non-technical teams to:
