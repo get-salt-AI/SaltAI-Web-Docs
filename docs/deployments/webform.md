@@ -4,7 +4,7 @@ description: The Deploy to Webform feature in Salt AI allows you to transform yo
 
 # Deployments: Webform
 
-![A simple webform](../images/deployments-webform1.png)
+![A simple webform](deployments-webform1.png)
 
 ## Overview
 
@@ -25,7 +25,7 @@ Key benefits:
 5. Click the `Deploy` button to create the new Webform deployment.
 6. You'll receive a unique URL for accessing the webform which you can share with others.
 
-![Deployment Process](../images/deployments-webform-config.png)
+![Deployment Process](deployments-webform-config.png)
 
 ## Configuration
 
@@ -37,7 +37,7 @@ The "Details" section of the deployment configuration allows you to configure th
 - **Description**: A description to be displayed below the heading.
 - **Button Text**: The text to be displayed on the submit button.
 
-![General Settings](../images/deployments-webform-general.png)
+![General Settings](deployments-webform-general.png)
 
 ### Input Settings
 
@@ -48,7 +48,7 @@ The "Input" section of the deployment configuration allows you to configure inpu
 - **Default**: The default value to be displayed in the input field, which can be blank.
 - **Required**: Whether the input field is required to be set to some value to submit the form.
 
-![Input Settings](../images/deployments-webform-inputs.png)
+![Input Settings](deployments-webform-inputs.png)
 
 ### Output Settings
 
@@ -57,7 +57,7 @@ The "Output" section of the deployment configuration allows you to configure out
 - **Visibility**: Whether the output field is shown to the user at all. If hidden; other settings will be unavailable.
 - **Label**: The label to be displayed above the output field.
 
-![Output Settings](../images/deployments-webform-outputs.png)
+![Output Settings](deployments-webform-outputs.png)
 
 ## Using the Webform
 
@@ -65,10 +65,10 @@ The "Output" section of the deployment configuration allows you to configure out
 
 Once deployed, the webform will be available at the unique URL can copy from the deployments tab in the right-side panel. Navigate to the URL to view the webform.
 
-![Deployment Configuration: Deployed View](../images/deployments-webform-config-deployed.png)
+![Deployment Configuration: Deployed View](deployments-webform-config-deployed.png)
 
 ### Run the Workflow
 
 When you navigate to the webform URL, you will see the webform displayed as a simple form with the input fields and a submit button. Submitting the form will trigger the workflow to run and display the results in the outputs section (after some loading time, which may take a while for larger workflows).
 
-![A simple webform](../images/deployments-webform1.png)
+![A simple webform](deployments-webform1.png)
