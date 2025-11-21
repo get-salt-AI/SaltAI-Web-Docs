@@ -3,29 +3,34 @@
     "Biotech",
     "Biotech Utils"
   ],
-  "biotech/protein-structure-prediction": [
+  "biotech/boltz": [
     "Biotech",
-    "Protein Structure Prediction"
-  ],
-  "new-uncategorized": [
-    "New/Uncategorized"
+    "Boltz"
   ],
   "knowledge-bases": [
     "Knowledge Bases"
   ],
-  "biotech/protein-generation": [
+  "healthcare/clinicaltrials": [
+    "Healthcare",
+    "ClinicalTrials"
+  ],
+  "biotech/protein-structure-prediction": [
     "Biotech",
-    "Protein Generation"
+    "Protein Structure Prediction"
   ],
   "agents": [
     "Agents"
   ],
+  "healthcare/dailymed": [
+    "Healthcare",
+    "DailyMed"
+  ],
   "inputs": [
     "Inputs"
   ],
-  "biotech/functional-prediction": [
-    "Biotech",
-    "Functional Prediction"
+  "logic/condition": [
+    "Logic",
+    "Condition"
   ],
   "llms": [
     "LLMs"
@@ -34,29 +39,53 @@
     "Outputs",
     "Writers"
   ],
+  "healthcare/openfda": [
+    "Healthcare",
+    "OpenFDA"
+  ],
   "utilities": [
     "Utilities"
   ],
-  "biotech/sequence-prediction": [
-    "Biotech",
-    "Sequence Prediction"
+  "healthcare/rxnorm": [
+    "Healthcare",
+    "RxNorm"
   ],
   "logic/flow-control/accumulation": [
     "Logic",
     "Flow Control",
     "Accumulation"
   ],
-  "logic/condition": [
-    "Logic",
-    "Condition"
+  "utilities/math": [
+    "Utilities",
+    "Math"
   ],
   "logic/logic-utility": [
     "Logic",
     "Logic Utility"
   ],
+  "utilities/execution": [
+    "Utilities",
+    "Execution"
+  ],
   "logic/flow-control": [
     "Logic",
     "Flow Control"
+  ],
+  "utilities/json": [
+    "Utilities",
+    "Json"
+  ],
+  "connectors/mssql": [
+    "Connectors",
+    "MSSQL"
+  ],
+  "connectors/mysql": [
+    "Connectors",
+    "MySQL"
+  ],
+  "connectors/oracle": [
+    "Connectors",
+    "Oracle"
   ],
   "outputs": [
     "Outputs"
