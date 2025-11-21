@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Processes each item in a JSON array concurrently using user-provided Python logic. You supply a JSON list and a short processing script that operates on each item as input_data; the node runs items in parallel with a configurable worker count and per-item timeout. Returns aggregated results as a JSON string along with an execution log, success count, and total item count.
+Processes each item in a JSON array using user-provided Python logic, executing items concurrently with a configurable worker pool. Captures execution output and errors per item, aggregates results into a JSON string, and returns a detailed execution log, success count, and total items.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/utilities/json/saltjsonlistprocessor.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Processes each item in a JSON array concurrently using user-provided Python logi
 
 ## Usage
 
-Use this node when you have a JSON array (e.g., API response or precomputed list) and need to transform or analyze each element in parallel. Typical workflow: provide the JSON list, write simple Python logic that reads input_data and produces a result object, set max_workers and timeout, then run. The node aggregates per-item outputs into a JSON array and logs per-item execution details.
+Use this node when you have a JSON list and need to apply the same transformation to each element in parallel. Common in data cleaning or enrichment workflows where each list item (e.g., records from an API) must be processed with custom logic and summarized into a single result set.
 
 ## Inputs
 
@@ -26,10 +26,10 @@ Use this node when you have a JSON array (e.g., API response or precomputed list
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">json_list</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON-formatted list (array) of items to process. Each element is passed as input_data to your Python logic.</td><td style="word-wrap: break-word;">[{"id":1,"title":"First"},{"id":2,"title":"Second"}]</td></tr>
-<tr><td style="word-wrap: break-word;">python_code</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Python logic that runs for each element. Use the variable input_data (and optionally input_index, all_inputs) to read the current item and set a result (e.g., a dict or value) to be collected.</td><td style="word-wrap: break-word;">Use input_data to compute and assign a result value for each item.</td></tr>
-<tr><td style="word-wrap: break-word;">max_workers</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum number of concurrent workers used to process items in parallel.</td><td style="word-wrap: break-word;">4</td></tr>
-<tr><td style="word-wrap: break-word;">timeout_seconds</td><td>True</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">Per-item execution timeout in seconds. Items exceeding this timeout are marked as timed out.</td><td style="word-wrap: break-word;">30.0</td></tr>
+<tr><td style="word-wrap: break-word;">json_list</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON-encoded array to process. Each array element is passed to your Python code as input_data.</td><td style="word-wrap: break-word;">[{"id":1,"title":"Item A"},{"id":2,"title":"Item B"}]</td></tr>
+<tr><td style="word-wrap: break-word;">python_code</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Python logic applied to each item. Access the current item via input_data and return a value for aggregation. Variables available: input_data (current item), input_index (0-based index), all_inputs (full list), logger.</td><td style="word-wrap: break-word;">A short script that reads fields from input_data and returns a dictionary with computed values.</td></tr>
+<tr><td style="word-wrap: break-word;">max_workers</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum number of concurrent worker threads used to process items in parallel.</td><td style="word-wrap: break-word;">4</td></tr>
+<tr><td style="word-wrap: break-word;">timeout_seconds</td><td>True</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">Per-item timeout in seconds. If a single item exceeds this duration, it is marked as a timeout and processing continues for others.</td><td style="word-wrap: break-word;">30.0</td></tr>
 </tbody>
 </table>
 </div>
@@ -46,26 +46,26 @@ Use this node when you have a JSON array (e.g., API response or precomputed list
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">results_json</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Aggregated results as a JSON string array. Each element corresponds to the output from processing one input item.</td><td style="word-wrap: break-word;">[{"post_id":1,"processed":true},{"post_id":2,"processed":true}]</td></tr>
-<tr><td style="word-wrap: break-word;">execution_log</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Multiline log summarizing per-item execution outcomes, including success messages, warnings, and timeouts.</td><td style="word-wrap: break-word;">Item 0: SUCCESS \| Item 1: SUCCESS \| Processed 2 items. Success: 2, Failed: 0</td></tr>
-<tr><td style="word-wrap: break-word;">success_count</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Number of items processed successfully.</td><td style="word-wrap: break-word;">2</td></tr>
-<tr><td style="word-wrap: break-word;">total_items</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Total number of items provided in the input JSON list.</td><td style="word-wrap: break-word;">2</td></tr>
+<tr><td style="word-wrap: break-word;">results_json</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON-encoded array of results returned by your Python logic for each input item. Items that failed or timed out may be null or omitted in the transformation depending on your code.</td><td style="word-wrap: break-word;">[{"post_id":1,"processed":true},{"post_id":2,"processed":true}]</td></tr>
+<tr><td style="word-wrap: break-word;">execution_log</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Multi-line text log summarizing the outcome for each item, including any captured stdout/stderr, errors, or timeouts.</td><td style="word-wrap: break-word;">Item 0: SUCCESS \| Item 1: TIMEOUT after 30.0 seconds</td></tr>
+<tr><td style="word-wrap: break-word;">success_count</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Number of items that completed successfully according to the node's execution status.</td><td style="word-wrap: break-word;">3</td></tr>
+<tr><td style="word-wrap: break-word;">total_items</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Total number of items provided in the input json_list.</td><td style="word-wrap: break-word;">5</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Safety checks**: The node validates code and rejects potentially dangerous patterns (e.g., attempts to run system commands or import sensitive modules).
-- **Execution variables**: Your code can reference input_data, input_index, all_inputs, and logger.
-- **Per-item timeout**: timeout_seconds applies to each item; timed-out items are logged and counted as failures.
-- **Parallelism**: max_workers controls concurrency; higher values can improve throughput but increase resource usage.
-- **Serialization**: Results are returned as a JSON string. Non-serializable objects are converted to strings when necessary.
-- **Empty or invalid input**: An empty list returns no results; invalid JSON input returns an error in the log with zero successes.
+- **Execution variables**: Your code can use input_data, input_index, all_inputs, and logger.
+- **Result handling**: The node collects the value your code returns. If you set a variable named result or output, it will be used; otherwise the node attempts to use the last expression's value.
+- **Safety checks**: Code containing high-risk operations (e.g., importing os/sys/subprocess/shutil, using exec/eval/__import__, opening files, prompting for input, or compile) is rejected.
+- **Timeouts**: timeout_seconds applies per item. Timed-out items are reported in the log and counted as failures.
+- **Serialization**: Results are converted to JSON. Non-serializable values are converted to strings, with a warning appended to the log.
+- **Concurrency**: Processing uses a thread pool up to max_workers. Choose a value appropriate for your workload and environment.
 
 ## Troubleshooting
-- **Invalid JSON list**: If you see 'Invalid JSON format' or 'Input must be a JSON list/array', ensure the json_list is a valid JSON array (starts with [ and contains properly formatted items).
-- **Code rejected as unsafe**: If you get 'Invalid Python code provided', remove disallowed patterns (e.g., system imports, exec/eval) and keep logic focused on transforming input_data.
-- **Syntax errors in code**: Fix Python syntax issues (missing colons, indentation, etc.) before running.
-- **Per-item timeout**: If logs show 'TIMEOUT', increase timeout_seconds or reduce the complexity of the per-item logic.
-- **Result not JSON-serializable**: If the log warns about serialization, ensure your result is a JSON-friendly type (dict, list, string, number, boolean, or null).
-- **Unexpected None results**: Ensure your code sets a result value for each item using the available variables.
+- **Invalid JSON input**: If json_list cannot be parsed or is not an array, the node returns an error. Ensure it's a valid JSON array string.
+- **Rejected Python code**: If your code uses restricted operations or has syntax errors, it will be rejected. Remove risky imports/functions and fix syntax.
+- **Item timeouts**: Increase timeout_seconds if legitimate tasks need more time, or optimize your code for faster execution.
+- **Empty results**: If results_json contains nulls or fewer items than total, review your code to ensure it returns a value for each input_data.
+- **Serialization errors**: If complex objects are produced, convert them to basic types (dict/list/str/number) before returning to ensure clean JSON output.
+- **Low success_count**: Check execution_log for per-item errors or warnings. Validate that your code handles all expected input shapes.

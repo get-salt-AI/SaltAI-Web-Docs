@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Combines multiple BOLTZ objects into a single flat list. It accepts up to 50 inputs of any compatible BOLTZ type (e.g., sequences, constraints, templates, properties). If an input is itself a list, it is flattened into the combined output; single items are appended as-is.
+Combines multiple Boltz items (sequences, constraints, templates, properties) into a single ordered list. Accepts up to 50 inputs, each of which can be a single item or a list of items; lists are flattened into one combined list.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/boltz/boltzlistcombinernode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Combines multiple BOLTZ objects into a single flat list. It accepts up to 50 inp
 
 ## Usage
 
-Use this node when you need to merge several BOLTZ components into one ordered collection before passing them to downstream nodes (e.g., prediction or configuration builders). Connect your first BOLTZ object to input_1, then additional inputs will progressively reveal (input_2, input_3, etc.). The node preserves the order based on input indices.
+Use this node to gather outputs from one or more Boltz builder nodes into a single list before constructing a Boltz YAML configuration. Typical workflow: build sequences/constraints/templates/properties, feed them into this node (chained inputs appear as you connect), then connect its output to the Boltz YAML Combiner.
 
 ## Inputs
 
@@ -26,7 +26,11 @@ Use this node when you need to merge several BOLTZ components into one ordered c
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">input_1</td><td>True</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">First BOLTZ object or list of BOLTZ objects to include. This initial connection enables subsequent inputs.</td><td style="word-wrap: break-word;">{'sequence': {'name': 'A', 'seq': 'MKT...'}}</td></tr>
+<tr><td style="word-wrap: break-word;">input_1</td><td>True</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">First Boltz item or list of items to include. Can be a sequence, constraint, template, property, or a list of such items.</td><td style="word-wrap: break-word;">[{'protein': {'id': 'A', 'sequence': 'MKT...', '_sequence_name': 'seqA', 'msa': 'empty'}}]</td></tr>
+<tr><td style="word-wrap: break-word;">input_2</td><td>False</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Second Boltz item or list of items. This input becomes available after connecting input_1.</td><td style="word-wrap: break-word;">[{'ligand': {'id': 'L', 'smiles': 'CCO'}}]</td></tr>
+<tr><td style="word-wrap: break-word;">input_3</td><td>False</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Third Boltz item or list of items. Becomes available after connecting input_2.</td><td style="word-wrap: break-word;">[{'pocket': {'binder': 'L', 'contacts': [['A', 10], ['A', 25]]}}]</td></tr>
+<tr><td style="word-wrap: break-word;">input_4</td><td>False</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Optional additional input. Up to input_50 are supported, each appearing after the previous is connected.</td><td style="word-wrap: break-word;">[{'pdb': '<PDB_FILE_CONTENT>'}]</td></tr>
+<tr><td style="word-wrap: break-word;">input_5..input_50</td><td>False</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Further optional inputs. Each can be a single Boltz item or a list; lists are flattened into the final combined list.</td><td style="word-wrap: break-word;">[{'affinity': {'binder': 'L'}}]</td></tr>
 </tbody>
 </table>
 </div>
@@ -43,21 +47,21 @@ Use this node when you need to merge several BOLTZ components into one ordered c
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">combined_list</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">A single, flat list containing all provided BOLTZ objects in input order.</td><td style="word-wrap: break-word;">[{'sequence': {'name': 'A', 'seq': 'MKT...'}}, {'sequence': {'name': 'B', 'seq': 'GGK...'}}, {'constraint': {'type': 'distance', 'pairs': [['A:45', 'B:12', 8.0]]}}]</td></tr>
+<tr><td style="word-wrap: break-word;">combined_list</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">A single flattened list containing all provided Boltz items, in the order of inputs.</td><td style="word-wrap: break-word;">[{'protein': {'id': 'A', 'sequence': 'MKT...', '_sequence_name': 'seqA', 'msa': 'empty'}}, {'ligand': {'id': 'L', 'smiles': 'CCO'}}, {'pocket': {'binder': 'L', 'contacts': [['A', 10], ['A', 25]]}}]</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **At least one input is required**: The node will error if no inputs are connected.
-- **Flattening behavior**: If an input is a list, its elements are expanded into the combined output; nested lists are effectively flattened one level.
-- **Progressive input reveal**: input_2 becomes available after connecting input_1, and so on up to input_50.
-- **Order is preserved**: Items are appended in ascending input index order (input_1, then input_2, etc.).
-- **Type flexibility**: Each input accepts any BOLTZ object type or a list of them; mixing types is supported.
-- **Hidden system fields**: 'id' and 'prompt' are managed by the system and do not require user input.
+- **At least one input is required**: If no inputs are connected or all are null, the node raises an error.
+- **Flattening behavior**: If an input is a list, its items are appended individually; single inputs are appended as-is.
+- **Dynamic inputs**: Inputs input_2 through input_50 become available only after the previous input is connected (chained reveal).
+- **Ordering preserved**: Items are combined in ascending input order (input_1 first, then input_2, etc.).
+- **No validation or deduplication**: The node does not validate content types beyond accepting '*', nor does it remove duplicates or enforce schemas.
+- **Maximum inputs**: Up to 50 inputs are supported.
 
 ## Troubleshooting
-- **Error: 'At least one input is required'**: Connect at least one BOLTZ object to input_1.
-- **Inputs not appearing (input_2, input_3, ...)**: Ensure input_1 is connected; subsequent inputs reveal only after the previous slot is filled.
-- **Unexpected nesting in output**: Provide lists or items directly; the node flattens one level of lists. If you pass a list of lists, inner lists will remain nested.
-- **Incorrect item order**: Verify which input index each object is connected to; the output list follows input_1 through input_50 order.
+- **Error: 'At least one input is required'**: Connect at least one valid item to input_1 (or provide a non-empty list).
+- **Unexpected nesting in output**: If you see nested lists, verify that each provided input is either a single item or a flat list; avoid wrapping lists within lists.
+- **Missing subsequent inputs**: input_2 (and beyond) appear only after connecting the previous input. Connect input_1 first to reveal input_2, and so on.
+- **Type issues downstream**: If a downstream node expects a list of a specific Boltz item type, ensure you pass only those items here or split by multiple combiners.

@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Retrieves detailed information about a specific RxClass using its class ID and returns the results as a JSON string. It validates that the class ID is provided, calls the underlying RxNorm service, and formats the response with the provided class_id and returned data. Status messages indicate success or provide error details if the API reports an issue.
+Retrieves detailed RxClass information for a given RxClass class ID using the RxNorm/RxClass service. Returns the raw data as a JSON string along with a status message. The output is formatted with the requested class_id and the service response for easier downstream handling.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/healthcare/rxnorm/saltairxclassinfo.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Retrieves detailed information about a specific RxClass using its class ID and r
 
 ## Usage
 
-Use this node when you have an RxClass identifier and need structured metadata about that class (e.g., to display details, verify a class, or feed downstream nodes that require class context). Typical workflow: search or select a class via a search node, pass the class_id here to fetch details, then parse the JSON output for display or further processing.
+Use this node when you already have an RxClass class identifier and need to fetch its metadata/details (e.g., for display, validation, or as input to further Rx-related nodes). Typical workflow: search or determine a class ID via a search node or external source, then pass that class_id here to obtain structured information about the class.
 
 ## Inputs
 
@@ -26,7 +26,7 @@ Use this node when you have an RxClass identifier and need structured metadata a
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">class_id</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The RxClass identifier to query. Must be a non-empty string representing a valid RxClass class ID.</td><td style="word-wrap: break-word;">100</td></tr>
+<tr><td style="word-wrap: break-word;">class_id</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The RxClass identifier to look up. This should be a valid class ID from the RxClass system.</td><td style="word-wrap: break-word;">100</td></tr>
 </tbody>
 </table>
 </div>
@@ -43,21 +43,21 @@ Use this node when you have an RxClass identifier and need structured metadata a
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">class_info</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON string containing the requested RxClass information, wrapped as {"class_id": ..., "data": ...}.</td><td style="word-wrap: break-word;">{"class_id": "100", "data": {"rxclassMinConceptItem": {"classId": "100", "className": "Example Class", "classType": "ATC"}}}</td></tr>
-<tr><td style="word-wrap: break-word;">status</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable status message describing the result of the operation or the error encountered.</td><td style="word-wrap: break-word;">Successfully retrieved RxClass info for class ID 100</td></tr>
+<tr><td style="word-wrap: break-word;">class_info</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON string containing the fetched RxClass information, formatted as {"class_id": "<input>", "data": <service_response>}.</td><td style="word-wrap: break-word;">{"class_id": "100", "data": {"rxclassMinConceptItem": {"classId": "100", "className": "Example", "classType": "ATC"}}}</td></tr>
+<tr><td style="word-wrap: break-word;">status</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A human-readable status message indicating success or describing the error encountered.</td><td style="word-wrap: break-word;">Successfully retrieved RxClass info for class ID 100</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- Inputs must not be empty; an empty class_id returns an empty JSON object and an error status.
-- The class_info output is always a JSON string; downstream consumers should parse it before use.
-- If the underlying RxNorm service returns an error, the JSON may include an "error" field and the status will begin with "API Error:".
-- This node does not validate whether the class_id corresponds to a specific classification system; ensure you provide the correct identifier from your source.
-- Network issues or service outages will result in a generic error message and an empty JSON object for class_info.
+- **Required input**: class_id must be a non-empty string; empty input returns an error status and empty JSON.
+- **Output format**: class_info is a JSON string that includes the original class_id and a 'data' object containing the RxClass API response.
+- **Error handling**: If the underlying service returns an error, the 'data' may include an 'error' field and the status will describe the API error.
+- **Dependency**: Relies on the RxNorm/RxClass service response; availability and content depend on that external service.
+- **No schema guarantee**: The structure within 'data' reflects the RxClass response and may vary by class or service version.
 
 ## Troubleshooting
-- Empty class_id: Provide a non-empty RxClass class ID; the node returns "Error: Class ID cannot be empty" if omitted.
-- Invalid or unknown class_id: You may receive an API Error status and a payload containing an "error" field; verify the ID from a prior search step.
-- Parsing output: If a downstream step cannot read class_info, ensure you parse the JSON string before accessing fields.
-- Intermittent API failures: Retry the operation or verify connectivity; check rate limits or service status if repeated API Error statuses occur.
+- **Empty class_id**: Ensure 'class_id' is provided; empty input results in status 'Error: Class ID cannot be empty' and '{}' for class_info.
+- **API Error in output**: If status starts with 'API Error:' and class_info contains an 'error' field, verify the class_id is valid and retry later in case of service issues.
+- **Unexpected data shape**: If downstream parsing fails, inspect the class_info JSON to accommodate the exact structure returned by RxClass for that class.
+- **No results found**: Some class IDs may return minimal or empty data; confirm the identifier from a trusted source or use a search node to locate the correct ID.

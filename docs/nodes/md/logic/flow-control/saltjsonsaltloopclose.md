@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Finalizes a JSON-based loop that iterates over items from a JSON array. Works together with JSON Loop Open: it checks the loop’s continuation condition, signals completion, and returns the final values of any auxiliary data passed through the loop. When the loop ends (end of array or condition not met), FINISHED? outputs True.
+Completes and advances a JSON Loop created by JSON Loop Open. It evaluates a condition to decide whether to continue iterating or finish, and passes along final auxiliary values when the loop ends. This node emits a FINISHED? flag that is True only when the loop has completed or has been terminated by the condition.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/logic/flow-control/saltjsonsaltloopclose.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Finalizes a JSON-based loop that iterates over items from a JSON array. Works to
 
 ## Usage
 
-Use this node with JSON Loop Open to iterate over a JSON array. Connect the LOOP output from JSON Loop Open to this node’s LOOP input. Set the condition to control whether the loop continues. Pass any auxiliary data (aux, aux2, aux3, aux4) through both nodes to maintain and retrieve state across iterations. Monitor FINISHED? to know when the loop has completed and then use the aux outputs for the final aggregated or updated values.
+Use this node in tandem with JSON Loop Open to iterate over a JSON array. Connect the LOOP output from JSON Loop Open to this node. Optionally provide auxiliary inputs to carry state across iterations. Set the condition to control whether the loop should continue; when the loop is done, FINISHED? will be True and the final auxiliary values are output.
 
 ## Inputs
 
@@ -26,12 +26,12 @@ Use this node with JSON Loop Open to iterate over a JSON array. Connect the LOOP
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">LOOP</td><td>True</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Loop context from JSON Loop Open. This establishes the linkage and state for the JSON iteration.</td><td style="word-wrap: break-word;">Connect from JSON Loop Open → LOOP</td></tr>
-<tr><td style="word-wrap: break-word;">condition</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Expression that determines if the loop should continue. If it evaluates to False, the loop ends and FINISHED? becomes True.</td><td style="word-wrap: break-word;">True</td></tr>
-<tr><td style="word-wrap: break-word;">aux</td><td>False</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Primary auxiliary data passed through each iteration. Use it to carry and update state across the loop.</td><td style="word-wrap: break-word;">{"count": 3}</td></tr>
-<tr><td style="word-wrap: break-word;">aux2</td><td>False</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Secondary auxiliary data slot for additional state or payloads.</td><td style="word-wrap: break-word;">["accumulated", "values"]</td></tr>
-<tr><td style="word-wrap: break-word;">aux3</td><td>False</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Tertiary auxiliary data slot for additional state or payloads.</td><td style="word-wrap: break-word;">42</td></tr>
-<tr><td style="word-wrap: break-word;">aux4</td><td>False</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Quaternary auxiliary data slot for additional state or payloads.</td><td style="word-wrap: break-word;">null</td></tr>
+<tr><td style="word-wrap: break-word;">LOOP</td><td>True</td><td style="word-wrap: break-word;">any</td><td style="word-wrap: break-word;">The loop state dictionary from JSON Loop Open. Required to track index, finish state, and control iteration.</td><td style="word-wrap: break-word;">{'id': 1, 'index': 0, 'finished': False, 'total_items': 3, 'last_id': 42}</td></tr>
+<tr><td style="word-wrap: break-word;">condition</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Expression evaluated each step to decide whether to continue. If it evaluates to False or errors, the loop finalizes and FINISHED? becomes True.</td><td style="word-wrap: break-word;">index < total_items - 1</td></tr>
+<tr><td style="word-wrap: break-word;">aux</td><td>False</td><td style="word-wrap: break-word;">any</td><td style="word-wrap: break-word;">Primary auxiliary data carried through each iteration and returned when the loop finishes.</td><td style="word-wrap: break-word;">{'accumulator': []}</td></tr>
+<tr><td style="word-wrap: break-word;">aux2</td><td>False</td><td style="word-wrap: break-word;">any</td><td style="word-wrap: break-word;">Secondary auxiliary data slot to persist state across iterations.</td><td style="word-wrap: break-word;">10</td></tr>
+<tr><td style="word-wrap: break-word;">aux3</td><td>False</td><td style="word-wrap: break-word;">any</td><td style="word-wrap: break-word;">Tertiary auxiliary data slot to persist state across iterations.</td><td style="word-wrap: break-word;">partial_result</td></tr>
+<tr><td style="word-wrap: break-word;">aux4</td><td>False</td><td style="word-wrap: break-word;">any</td><td style="word-wrap: break-word;">Quaternary auxiliary data slot to persist state across iterations.</td><td style="word-wrap: break-word;">{'seen_ids': [1, 2]}</td></tr>
 </tbody>
 </table>
 </div>
@@ -48,25 +48,24 @@ Use this node with JSON Loop Open to iterate over a JSON array. Connect the LOOP
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">FINISHED?</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">True when the loop has completed (array fully processed or condition evaluated to False).</td><td style="word-wrap: break-word;">true</td></tr>
-<tr><td style="word-wrap: break-word;">aux</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Final value of the primary auxiliary data after the loop completes.</td><td style="word-wrap: break-word;">{"count": 10}</td></tr>
-<tr><td style="word-wrap: break-word;">aux2</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Final value of the secondary auxiliary data after completion.</td><td style="word-wrap: break-word;">["a", "b", "c"]</td></tr>
-<tr><td style="word-wrap: break-word;">aux3</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Final value of the tertiary auxiliary data after completion.</td><td style="word-wrap: break-word;">84</td></tr>
-<tr><td style="word-wrap: break-word;">aux4</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Final value of the quaternary auxiliary data after completion.</td><td style="word-wrap: break-word;">null</td></tr>
+<tr><td style="word-wrap: break-word;">FINISHED?</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">True when the loop has completed or has been terminated by the condition. Otherwise the loop continues.</td><td style="word-wrap: break-word;">True</td></tr>
+<tr><td style="word-wrap: break-word;">aux</td><td style="word-wrap: break-word;">any</td><td style="word-wrap: break-word;">Final value of the primary auxiliary data after the loop completes.</td><td style="word-wrap: break-word;">{'accumulator': ['a', 'b', 'c']}</td></tr>
+<tr><td style="word-wrap: break-word;">aux2</td><td style="word-wrap: break-word;">any</td><td style="word-wrap: break-word;">Final value of the secondary auxiliary data after the loop completes.</td><td style="word-wrap: break-word;">27</td></tr>
+<tr><td style="word-wrap: break-word;">aux3</td><td style="word-wrap: break-word;">any</td><td style="word-wrap: break-word;">Final value of the tertiary auxiliary data after the loop completes.</td><td style="word-wrap: break-word;">done</td></tr>
+<tr><td style="word-wrap: break-word;">aux4</td><td style="word-wrap: break-word;">any</td><td style="word-wrap: break-word;">Final value of the quaternary auxiliary data after the loop completes.</td><td style="word-wrap: break-word;">{'seen_ids': [1, 2, 3]}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- Condition controls continuation. If it evaluates to False, the loop stops and FINISHED? becomes True.
-- Connect this node’s LOOP input to the LOOP output of JSON Loop Open. Without this connection, the node cannot operate.
-- Aux inputs (aux–aux4) are optional passthroughs for maintaining state; their final values are emitted when the loop ends.
-- An empty condition is treated as True.
-- Hidden inputs are system-managed and typically should not be modified.
+- **Condition behavior**: The condition is a string expression evaluated against the loop state and provided inputs. If it evaluates to False or throws an error, the loop finalizes and FINISHED? outputs True.
+- **Required connection**: LOOP must be connected from the JSON Loop Open node; otherwise the node cannot function.
+- **Aux persistence**: Only auxiliary inputs that are wired into this node are preserved and returned when the loop finishes.
+- **Early termination**: You can terminate the loop early by setting a condition that becomes False before all items are processed.
+- **Empty list handling**: If the JSON array is empty, the loop finalizes immediately and FINISHED? is True.
 
 ## Troubleshooting
-- FINISHED? never becomes True: Ensure your condition will eventually evaluate to False or that the JSON array is non-empty and iterates to completion.
-- Aux outputs are None: Verify that you wired aux/aux2/aux3/aux4 into both JSON Loop Open and JSON Loop Close throughout your loop.
-- Loop stops immediately: Check the condition expression; if it evaluates to False on the first check, the loop will complete right away.
-- Error about creating the JSON loop system: Update your Salt environment to the latest version to ensure loop orchestration features are supported.
-- Unexpected condition behavior: Ensure any variables used in the condition are available from the loop context or provided as aux inputs.
+- **FINISHED? never becomes True**: Verify that the condition can become False or that the input list has finite length. Ensure LOOP is properly connected from JSON Loop Open.
+- **Loop stops immediately**: Check the condition string; if it evaluates to False at the first step or is invalid, the loop will finalize immediately.
+- **Aux outputs are None**: Make sure aux, aux2, aux3, and aux4 are connected into this node during the loop. Unwired auxiliaries will not carry state.
+- **Condition errors**: If the condition references variables that do not exist (e.g., misspelled 'index' or 'total_items'), it will be treated as False and finalize the loop. Use available loop variables from LOOP such as index and total_items.

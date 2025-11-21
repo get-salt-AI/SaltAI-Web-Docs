@@ -46,6 +46,14 @@
   "utilities": [
     "Utilities"
   ],
+  "biotech/sequence-prediction": [
+    "Biotech",
+    "Sequence Prediction"
+  ],
+  "biotech/protein-generation": [
+    "Biotech",
+    "Protein Generation"
+  ],
   "healthcare/rxnorm": [
     "Healthcare",
     "RxNorm"
@@ -89,5 +97,9 @@
   ],
   "outputs": [
     "Outputs"
+  ],
+  "connectors/postgresql": [
+    "Connectors",
+    "PostgreSQL"
   ]
 }

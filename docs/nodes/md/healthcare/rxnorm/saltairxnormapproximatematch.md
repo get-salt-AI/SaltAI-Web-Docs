@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Finds approximate RxNorm matches for a free-text drug term, useful for handling misspellings or variant drug names. Returns a JSON string of results and a status message. Designed to quickly map user-entered medication terms to likely RxNorm concepts.
+Finds approximate RxNorm matches for a free-text term (e.g., a common drug name or misspelling). It queries the RxNorm service and returns the raw results as a JSON string along with a status message. Useful for fuzzy matching when exact concept names or identifiers are unknown.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/healthcare/rxnorm/saltairxnormapproximatematch.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Finds approximate RxNorm matches for a free-text drug term, useful for handling 
 
 ## Usage
 
-Use this node when you have a free-text drug name and need likely RxNorm matches (e.g., from user input or messy datasets). Typical workflow: run Approximate Match on a term, inspect returned candidate RxCUIs, then feed selected RxCUI(s) into nodes like RxNorm Concept Info, Related Concepts, or Drug Interactions.
+Use this node when you have a user-entered or noisy medication string and need to discover likely RxNorm concepts. Provide a single term (like 'acetamenophen' or a brand name). The node returns a JSON string containing the search term and the RxNorm API results. Downstream nodes can parse this JSON to extract candidate RxCUIs or display suggestions.
 
 ## Inputs
 
@@ -26,7 +26,7 @@ Use this node when you have a free-text drug name and need likely RxNorm matches
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">term</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The free-text drug term to search for approximate matches. Supports common drug names and misspellings.</td><td style="word-wrap: break-word;">acetaminophen</td></tr>
+<tr><td style="word-wrap: break-word;">term</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The free-text term to approximate-match against RxNorm (drug name, brand, or potentially misspelled term).</td><td style="word-wrap: break-word;">acetaminophen</td></tr>
 </tbody>
 </table>
 </div>
@@ -43,20 +43,22 @@ Use this node when you have a free-text drug name and need likely RxNorm matches
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">approximate_matches</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON string containing the search term and the approximate match results returned by RxNorm.</td><td style="word-wrap: break-word;">{ "search_term": "acetaminophen", "results": { ... } }</td></tr>
-<tr><td style="word-wrap: break-word;">status</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A human-readable message indicating success or describing an error.</td><td style="word-wrap: break-word;">Successfully retrieved approximate matches for 'acetaminophen'</td></tr>
+<tr><td style="word-wrap: break-word;">approximate_matches</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON string containing the search term and the RxNorm approximate-match results. Structure: { "search_term": <term>, "results": <RxNorm API response> }.</td><td style="word-wrap: break-word;">{   "search_term": "acetaminophen",   "results": { "approximateGroup": { "candidate": [ { "rxcui": "161", "rxaui": "...", "score": "100", "name": "Acetaminophen" } ] } } }</td></tr>
+<tr><td style="word-wrap: break-word;">status</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable status message indicating success or the error encountered.</td><td style="word-wrap: break-word;">Successfully retrieved approximate matches for 'acetaminophen'</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Empty term handling**: If the input term is empty or whitespace-only, the node returns an empty JSON object and an error status.
-- **API errors**: If the underlying service returns an error, it is surfaced in the status and the results JSON will contain the error information.
-- **Output format**: The first output is a pretty-printed JSON string with keys 'search_term' and 'results'.
-- **Result selection**: This node does not choose a single best match; review results and select appropriate RxCUI(s) for downstream steps.
+- **Input required**: The term must be a non-empty string; an empty or whitespace-only term returns "{}" and an error status.
+- **Raw API structure**: The node returns the RxNorm approximate-match results without normalization; downstream logic should parse the JSON and handle fields like scores, candidate lists, and RxCUIs.
+- **Error handling**: If the RxNorm service responds with an error (results contain an "error" key), the node returns that error payload in the JSON and a corresponding API error status.
+- **Output types**: Both outputs are strings; parse the first output as JSON before extracting values.
+- **Service dependency**: Results depend on the availability and behavior of the RxNorm API; network or service issues can impact responses.
 
 ## Troubleshooting
-- **Empty or missing term**: Ensure 'term' is a non-empty string. The node will error on blank input.
-- **No matches found**: Try a simpler term, remove dosage/strength, or correct spelling.
-- **API/network issues**: On timeouts or API rate limits, retry later or check connectivity. The status output will include any API error messages.
-- **Unexpected JSON structure**: The results reflect the external service response; validate the JSON before parsing and handle missing fields defensively.
+- **Empty results or '{}' output**: Ensure the 'term' input is not empty and does not contain only whitespace.
+- **API Error in status**: The returned JSON likely includes an "error" key from RxNorm; inspect the 'approximate_matches' JSON for details and retry later or adjust the term.
+- **Unexpected JSON structure**: RxNorm responses can vary; log or print the JSON to confirm keys like 'approximateGroup' and 'candidate' are present before indexing.
+- **Unicode or special characters**: If the term includes special characters, try a simplified ASCII version or a common synonym.
+- **Downstream parsing errors**: Remember the output is a string; parse it as JSON in subsequent steps before accessing fields like 'candidate' or 'rxcui'.
