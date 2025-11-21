@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Pauses the current branch of a workflow for a specified number of seconds, then forwards the provided data unchanged. Supports fractional seconds for sub-second waits. Useful for pacing, synchronization, or rate-limiting steps.
+Pauses workflow execution for a specified duration, then forwards the provided data unchanged. Supports fractional seconds for sub-second delays and works with any input type.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/utilities/execution/saltdelayexecution.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Pauses the current branch of a workflow for a specified number of seconds, then 
 
 ## Usage
 
-Insert this node between two steps when you need to wait before continuing (e.g., spacing out API calls, giving time for external processes, or coordinating concurrent branches). Set the delay in seconds; connect any upstream data to have it forwarded after the wait.
+Use this node to introduce a wait between steps, e.g., to pace requests, coordinate time-sensitive operations, or add a buffer before downstream processing. Place it inline in your workflow: connect the data you want to pass through to the optional input, set the desired delay in seconds, and route the output to subsequent nodes.
 
 ## Inputs
 
@@ -26,8 +26,8 @@ Insert this node between two steps when you need to wait before continuing (e.g.
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">delay</td><td>True</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">Number of seconds to wait before forwarding data. Supports fractional values for sub-second delays.</td><td style="word-wrap: break-word;">2.5</td></tr>
-<tr><td style="word-wrap: break-word;">input</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Any data to pass through after the delay. The node does not modify this data.</td><td style="word-wrap: break-word;">Upstream data object to be delayed (e.g., an image, text, or structured payload)</td></tr>
+<tr><td style="word-wrap: break-word;">delay</td><td>True</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">Number of seconds to wait before passing the input forward. Supports fractional values for sub-second delays.</td><td style="word-wrap: break-word;">2.5</td></tr>
+<tr><td style="word-wrap: break-word;">input</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Any data to be forwarded after the delay completes. If not provided, the node returns a null/None value.</td><td style="word-wrap: break-word;"><any data></td></tr>
 </tbody>
 </table>
 </div>
@@ -44,20 +44,22 @@ Insert this node between two steps when you need to wait before continuing (e.g.
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">output</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The same data that was provided to the input, emitted after the delay completes.</td><td style="word-wrap: break-word;">Same object/value received at input</td></tr>
+<tr><td style="word-wrap: break-word;">output</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The same data received on the input, forwarded after the delay. If no input was provided, this will be null/None.</td><td style="word-wrap: break-word;"><same as input></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- This node blocks its downstream execution for the specified duration; the rest of the workflow branch resumes only after the delay completes.
-- Fractional seconds are supported (e.g., 0.1 for 100 ms). Actual timing precision depends on the operating system and system load.
-- Providing a negative delay will cause an error from the underlying timing system.
-- If no input is connected, the node will output an empty/null value after the delay.
-- Long delays will increase total workflow runtime; use with care in time-sensitive pipelines.
+- **Blocking behavior**: The node synchronously waits; long delays pause downstream execution until completion.
+- **Fractional seconds**: You can specify decimals (e.g., 0.001 for ~1 ms); real timing accuracy depends on the environment.
+- **Pass-through**: Output is identical to the input; no transformation is applied.
+- **No input case**: If no input is connected, the output will be null/None.
+- **Timeout risk**: Very long delays may cause workflow timeouts depending on your runtime limits.
+- **Non-interruptible sleep**: Once waiting starts, it cannot be canceled mid-sleep from within the node.
 
 ## Troubleshooting
-- Node seems stuck or slow: It is likely waiting for the configured delay. Reduce the delay value to speed up execution.
-- No output received: Ensure the input is connected. Without an input, the node forwards a null/empty output after waiting.
-- Error about delay value: Use a non-negative float for the delay (e.g., 0, 0.5, 3). Negative values are not allowed.
-- Downstream steps start too early: Place this node directly before the steps you need to pause to ensure they are gated by the delay.
+- **Workflow appears stalled**: Verify the delay value isn't set too high; reduce the delay and try again.
+- **Downstream node errors on type**: While this node accepts/outputs any type, ensure downstream nodes support the specific data type you are passing.
+- **Output is null/None**: Connect the input or provide data to the optional input field.
+- **Timing seems imprecise**: Minor variations can occur due to system scheduling; avoid relying on this node for high-precision timing.
+- **Runtime limit exceeded**: Decrease the delay duration or adjust environment limits if possible.

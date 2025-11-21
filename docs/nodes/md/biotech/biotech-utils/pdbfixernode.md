@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Replaces the residue types of a specific chain in one or more PDB structures with a provided FASTA sequence. The node keeps atom coordinates and residue numbering, modifying only the 3-letter residue names to match the FASTA sequence. If the FASTA length differs from the chain length, it replaces as many residues as possible and logs a warning.
+Rewrites residue identities in a specified chain of one or more PDB structures to match a provided FASTA sequence. It parses the FASTA, maps 1-letter amino acids to 3-letter residue names, and updates the residue names for the target chain in-place, preserving coordinates and atom records. If sequence length differs from the chain residue count, it replaces as many residues as possible and warns about the mismatch.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/biotech-utils/pdbfixernode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Replaces the residue types of a specific chain in one or more PDB structures wit
 
 ## Usage
 
-Use this node when you need to substitute a placeholder chain (for example, a poly-Gly chain produced by design tools) with a target amino acid sequence while preserving the original PDB geometry. Typical workflow: load or generate a PDB, provide a FASTA sequence for the desired chain, set the target chain ID (e.g., 'B'), and feed the fixed PDB into downstream modeling or design nodes.
+Use this node after loading PDB files and a target FASTA sequence when you need a PDB chain's residue identities to match a designed or target sequence (e.g., workflows involving structure generation then sequence design). Typical flow: Load PDB -> Load/prepare FASTA -> PDB Fixer (set target_chain) -> downstream design/refinement or export.
 
 ## Inputs
 
@@ -26,9 +26,9 @@ Use this node when you need to substitute a placeholder chain (for example, a po
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">pdb</td><td>True</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">PDB structure(s) to modify. Expects a dictionary mapping PDB IDs to PDB text content.</td><td style="word-wrap: break-word;">{'template_1': 'ATOM      1  N   GLY A   1 ...', 'template_2': 'ATOM      1  N   GLY B   1 ...'}</td></tr>
-<tr><td style="word-wrap: break-word;">fasta</td><td>True</td><td style="word-wrap: break-word;">FASTA</td><td style="word-wrap: break-word;">FASTA sequence to apply to the target chain. Headers are ignored; only sequence lines are used. Whitespace is stripped.</td><td style="word-wrap: break-word;">>target_chain_B MKTFFVAGL</td></tr>
-<tr><td style="word-wrap: break-word;">target_chain</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Single-character chain ID to replace (e.g., 'A', 'B').</td><td style="word-wrap: break-word;">B</td></tr>
+<tr><td style="word-wrap: break-word;">pdb</td><td>True</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Dictionary of PDB structures to modify, keyed by name. Each value is the full PDB file content as a string.</td><td style="word-wrap: break-word;">{'1abc_fixed': 'ATOM      1  N   ALA A   1 ...', 'design_model': 'ATOM      1  N   GLY B   1 ...'}</td></tr>
+<tr><td style="word-wrap: break-word;">fasta</td><td>True</td><td style="word-wrap: break-word;">FASTA</td><td style="word-wrap: break-word;">FASTA content containing the target amino acid sequence (1-letter codes). Header lines starting with '>' are supported; the sequence can span multiple lines.</td><td style="word-wrap: break-word;">>target_chain ACDEFGHIKLMNPQRSTVWY</td></tr>
+<tr><td style="word-wrap: break-word;">target_chain</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Chain identifier in the PDB to rewrite (e.g., "A" or "B").</td><td style="word-wrap: break-word;">B</td></tr>
 </tbody>
 </table>
 </div>
@@ -45,26 +45,24 @@ Use this node when you need to substitute a placeholder chain (for example, a po
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">fixed_pdb</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Dictionary of PDB structures with the target chain's residue names replaced according to the FASTA sequence while retaining coordinates and numbering.</td><td style="word-wrap: break-word;">{'template_1': 'ATOM      1  N   MET B   1 ...', 'template_2': 'ATOM      1  N   LYS B   1 ...'}</td></tr>
+<tr><td style="word-wrap: break-word;">fixed_pdb</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Dictionary of PDB structures with the specified chain's residue names updated to match the FASTA sequence. Keys mirror the input names.</td><td style="word-wrap: break-word;">{'design_model': 'ATOM      1  N   ALA B   1 ...\nATOM      2  CA  ALA B   1 ...\n...'}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Input format**: The PDB input must be a non-empty dictionary {pdb_name: pdb_string}.
-- **Target chain**: Must be a single alphanumeric character matching the chain ID present in the PDB (position 22 in standard PDB lines).
-- **FASTA parsing**: Headers (lines starting with '>') are ignored; sequence lines are concatenated with whitespace removed.
-- **Residue mapping**: The node maps 1-letter amino acids to 3-letter codes (A→ALA, R→ARG, ..., U→SEC, O→PYL, X→UNK). Unknown letters are left as original residue names.
-- **Length mismatch**: If the FASTA length differs from the number of residues detected in the target chain, it replaces residues up to the shorter length and logs a warning.
-- **Scope of changes**: Only residue names are changed for ATOM/HETATM records of the target chain; coordinates, atom names, residue numbering, and all other records remain unchanged.
-- **Per-residue logic**: Replacement is based on residue sequence order inferred from residue number changes (unique residues by number). Multiple atoms for the same residue are updated consistently.
-- **Multiple PDBs**: Supports batch operation; each PDB entry in the input dictionary is processed independently.
-- **Requirements**: PDB lines must follow standard fixed-column formatting for chain ID (col 22) and residue number (cols 23–26).
-- **Failure cases**: The node raises an error if the PDB dict is empty/invalid, the chain is not found, or the FASTA contains no sequence.
+- **Residue identity only**: This node updates residue names (3-letter codes) for atoms in the target chain; it does not change coordinates, atom counts, backbone, or numbering.
+- **Sequence length mismatch**: If the FASTA length differs from the number of residues detected in the chain, only the overlapping positions are replaced. A warning is issued.
+- **Chain detection**: The chain must exist in ATOM/HETATM records with a standard chain ID character at column 22 (index 21). If not found, processing fails for that PDB.
+- **Unknown residues**: Any 1-letter code not in the supported set is left unchanged at that position and triggers a warning.
+- **Multiple inputs supported**: Accepts a dictionary of multiple PDBs and processes each independently.
+- **Standard residues expected**: Works best when the chain is composed of standard amino acids; non-protein residues are skipped for identity inference.
+- **Case handling**: FASTA amino acids are case-insensitive; they are normalized to uppercase for mapping.
 
 ## Troubleshooting
-- **Chain not found**: Error like "Chain 'B' not found" indicates the target_chain does not exist in the input PDB. Verify the chain ID and that your PDB uses standard chain identifiers.
-- **Empty or invalid FASTA**: If you see "FASTA content cannot be empty" or "No sequence found in FASTA data", ensure your FASTA includes sequence lines beneath any header.
-- **Length mismatch warning**: If you get a warning about different lengths, confirm your FASTA matches the chain length. The node will still replace up to the shorter length.
-- **Unknown amino acids**: If warnings appear about unknown letters, replace nonstandard characters in the FASTA or note that those residues will keep original 3-letter names.
-- **Unexpected output structure**: If the output is not usable downstream, ensure the input was a dict of {id: pdb_content} and that your PDB lines maintain correct column formatting.
+- **Error: 'PDB input must be a non-empty dictionary'**: Ensure you pass a dictionary mapping names to PDB file contents and that strings are non-empty.
+- **Error: 'Target chain ID cannot be empty' or 'Chain <X> not found in PDB'**: Confirm the chain ID exists in the PDB (check the chain column in ATOM records) and matches exactly.
+- **Error: 'FASTA content cannot be empty' or 'No sequence found in FASTA data'**: Provide valid FASTA with at least one non-header sequence line.
+- **Sequence length mismatch warnings**: This is expected if the target chain length differs from the FASTA. Verify you chose the correct chain or adjust the sequence.
+- **Unexpected amino acid warnings (e.g., 'Unknown amino acid X')**: Replace unsupported characters in the FASTA (e.g., X, B, Z) with standard 1-letter amino acid codes.
+- **No changes observed**: Verify that the specified chain matches the chain in the PDB, the FASTA length overlaps the residue count, and the sequence uses standard amino acid letters.

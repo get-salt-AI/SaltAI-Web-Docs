@@ -74,9 +74,9 @@ nav:
     - Biotech Utils:
       - A3M Combiner: nodes/md/biotech/biotech-utils/a3mcombinernode.md
       - Batch PDB: nodes/md/biotech/biotech-utils/batchpdbnode.md
-      - CIF to PDB: nodes/md/biotech/biotech-utils/ciftopdbnode.md
+      - CIF To PDB: nodes/md/biotech/biotech-utils/ciftopdbnode.md
       - FASTA Combiner: nodes/md/biotech/biotech-utils/fastacombinernode.md
-      - Load A3M MSA: nodes/md/biotech/biotech-utils/loada3mnode.md
+      - Load A3M: nodes/md/biotech/biotech-utils/loada3mnode.md
       - Load FASTA: nodes/md/biotech/biotech-utils/loadfastanode.md
       - Load PDB: nodes/md/biotech/biotech-utils/loadpdbnode.md
       - PDB Chain Extractor: nodes/md/biotech/biotech-utils/pdbchainextractornode.md
@@ -100,9 +100,17 @@ nav:
       - Boltz Sequence Builder: nodes/md/biotech/boltz/boltzsequencenode.md
       - Boltz Template Builder: nodes/md/biotech/boltz/boltztemplatenode.md
       - Boltz YAML Combiner: nodes/md/biotech/boltz/boltzyamlcombinernode.md
+    - Protein Generation:
+      - RF Diffusion: nodes/md/biotech/protein-generation/saasrfdiffusionnode.md
+      - RF Diffusion Contigmap Config: nodes/md/biotech/protein-generation/saasrfdiffusioncontigmapconfignode.md
+      - RF Diffusion Denoiser Config: nodes/md/biotech/protein-generation/saasrfdiffusiondenoiserconfignode.md
+      - RF Diffusion Potentials Config: nodes/md/biotech/protein-generation/saasrfdiffusionpotentialsconfignode.md
+      - RF Diffusion Symmetry Config: nodes/md/biotech/protein-generation/saasrfdiffusionsymmetryconfignode.md
     - Protein Structure Prediction:
       - Colabfold Batch: nodes/md/biotech/protein-structure-prediction/colabfoldbatchnode.md
       - Colabfold Search: nodes/md/biotech/protein-structure-prediction/colabfoldsearchnode.md
+    - Sequence Prediction:
+      - ProteinMPNN: nodes/md/biotech/sequence-prediction/saasproteinmpnnnode.md
   - Connectors:
     - MSSQL:
       - SQL Server Connection String: nodes/md/connectors/mssql/saltmssqlconnectionstring.md
@@ -122,6 +130,7 @@ nav:
       - SaltMySQLTableInfo: nodes/md/connectors/mysql/saltmysqltableinfo.md
     - Oracle:
       - Oracle Complex Query: nodes/md/connectors/oracle/saltoraclecomplexquery.md
+      - Oracle Connection String: nodes/md/connectors/oracle/saltoracleconnectionstring.md
       - Oracle Database Info: nodes/md/connectors/oracle/saltoracledatabaseinfo.md
       - Oracle Execute: nodes/md/connectors/oracle/saltoracleexecute.md
       - Oracle List Schemas: nodes/md/connectors/oracle/saltoraclelistschemas.md
@@ -131,6 +140,14 @@ nav:
       - Oracle Table Info: nodes/md/connectors/oracle/saltoracletableinfo.md
       - Oracle Test Connection: nodes/md/connectors/oracle/saltoracletestconnection.md
       - Oracle Visual Query Builder: nodes/md/connectors/oracle/saltoraclevisualquery.md
+    - PostgreSQL:
+      - PostgreSQL Connection String: nodes/md/connectors/postgresql/saltpostgresconnectionstring.md
+      - PostgreSQL List Tables: nodes/md/connectors/postgresql/saltpostgreslisttables.md
+      - PostgreSQL Query: nodes/md/connectors/postgresql/saltpostgresquery.md
+      - PostgreSQL Query Builder Helper: nodes/md/connectors/postgresql/saltpostgresquerybuilder.md
+      - PostgreSQL Table Info: nodes/md/connectors/postgresql/saltpostgrestableinfo.md
+      - PostgreSQL Visual Query Builder: nodes/md/connectors/postgresql/saltpostgresvisualquery.md
+      - SaltPostgresExecute: nodes/md/connectors/postgresql/saltpostgresexecute.md
   - Healthcare:
     - ClinicalTrials:
       - ClinicalTrials Study Count: nodes/md/healthcare/clinicaltrials/clinicaltrialsstudycountnode.md

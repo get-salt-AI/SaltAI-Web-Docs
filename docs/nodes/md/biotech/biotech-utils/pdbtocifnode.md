@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Converts one or more PDB structures into CIF format using BioPython. Accepts a dictionary of PDB strings and returns a dictionary of corresponding CIF strings. The node also attempts to improve chain-to-entity mappings in the resulting CIF to better reflect protein chain entities.
+Converts one or more PDB structures to CIF format using BioPython. The node parses each PDB, writes an mmCIF representation, and applies a light post-processing step to improve atom-to-entity mappings based on detected protein chains.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/biotech-utils/pdbtocifnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Converts one or more PDB structures into CIF format using BioPython. Accepts a d
 
 ## Usage
 
-Use this node when downstream tools require CIF instead of PDB. Typical workflow: load or assemble your PDB data (e.g., with Load PDB, PDB Chain Extractor, or PDB Combiner), then pass the result to PDB To CIF. The output CIF dictionary can be saved or fed into analysis or modeling nodes that expect CIF input.
+Use this node when you need CIF (mmCIF) files from PDB inputs for downstream tools that prefer or require CIF format. Provide a dictionary mapping names to PDB content; the node returns a dictionary with the same keys mapped to CIF strings. Commonly placed after nodes that load or generate PDB and before nodes that require CIF.
 
 ## Inputs
 
@@ -26,7 +26,7 @@ Use this node when downstream tools require CIF instead of PDB. Typical workflow
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">pdb</td><td>True</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Dictionary of PDB structure contents to convert, formatted as {pdb_name: pdb_content}. Each value should be a valid PDB text string.</td><td style="word-wrap: break-word;">{'example_dict': {'my_structure': 'ATOM      1  N   MET A   1      ...', 'complex_A': 'ATOM      1  N   ALA B   1      ...'}}</td></tr>
+<tr><td style="word-wrap: break-word;">pdb</td><td>True</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Dictionary of PDB structure content to convert. Keys are structure names (identifiers), values are PDB file contents as strings.</td><td style="word-wrap: break-word;">{'1ABC': 'HEADER ...\\nATOM      1  N   MET A   1 ...\\nTER\\nEND\\n', 'design_model': 'ATOM      1  N   GLY B   1 ...\\nEND\\n'}</td></tr>
 </tbody>
 </table>
 </div>
@@ -43,22 +43,23 @@ Use this node when downstream tools require CIF instead of PDB. Typical workflow
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">structure.cif</td><td style="word-wrap: break-word;">CIF</td><td style="word-wrap: break-word;">Dictionary of CIF structures converted from the provided PDB input, keyed by the original names.</td><td style="word-wrap: break-word;">{'example_dict': {'my_structure': 'data_template\n##_atom_site ...', 'complex_A': 'data_template\n##_atom_site ...'}}</td></tr>
+<tr><td style="word-wrap: break-word;">structure.cif</td><td style="word-wrap: break-word;">CIF</td><td style="word-wrap: break-word;">Dictionary of converted CIF structures. Keys mirror the input names; values are CIF (mmCIF) contents as strings.</td><td style="word-wrap: break-word;">{'1ABC': 'data_template\\nloop_\\n_atom_site.group_PDB ...', 'design_model': 'data_template\\nloop_\\n_atom_site.group_PDB ...'}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Input format**: The input must be a non-empty dictionary mapping IDs to PDB text. Empty or whitespace-only entries are skipped and may cause errors if no valid entries remain.
-- **Entity mapping adjustment**: After conversion, the node attempts to correct chain-to-entity mappings in the CIF, which can improve compatibility with tools that rely on label_entity_id.
-- **Protein chain focus**: The entity mapping adjustment focuses on protein chains detected by standard amino-acid residue names; non-protein chains are not guaranteed to be mapped.
-- **Batch-friendly**: Multiple PDBs can be converted in one call; outputs preserve the original keys.
-- **Dependencies**: Requires BioPython with PDB and mmCIF I/O support.
-- **Temporary files**: The node uses temporary files for conversion and cleans them up after processing.
+- **Input format**: The input must be a non-empty dictionary {name: pdb_string}. Empty or whitespace-only entries are skipped.
+- **Dependencies**: Requires BioPython's PDB modules (e.g., PDBParser, MMCIFIO) to be available.
+- **Entity mapping fix**: After conversion, the node attempts to fix atom-to-entity label mappings for protein chains. This adjustment is heuristic and may not cover all edge cases.
+- **Protein chains only**: Chain detection for mapping focuses on protein residues (standard amino acids). Non-protein chains may not receive adjusted entity IDs.
+- **Temporary files**: The node writes temporary .pdb and .cif files during conversion and cleans them up afterward.
+- **Error handling**: If any conversion fails, the node raises a ValueError with a message indicating which structure failed.
+- **Multi-structure support**: Processes multiple structures in a single run and returns a dictionary of outputs with the same keys.
 
 ## Troubleshooting
-- **Conversion failed: 'Failed to convert PDB to CIF'**: Ensure each PDB string is valid and complete. Corrupted or non-standard formatting can cause parsing failures.
-- **Empty output or error about no structures converted**: Verify the input dictionary is not empty and that each value contains non-empty PDB content.
-- **Unexpected chain/entity mapping in CIF**: Some complex or non-protein chains may not map as expected. Consider simplifying the input or reviewing chain IDs to confirm they represent protein chains.
-- **Performance issues with very large structures**: Large PDBs may take longer to parse and convert. Reduce input size or convert structures individually when needed.
-- **Mismatched keys**: Output keys mirror input keys. If you expect a specific name, ensure your input dictionary uses that exact key.
+- **Conversion failed for a structure**: Ensure the PDB content is valid and complete. Malformed headers or atom lines can cause BioPython parsing errors.
+- **Module not found (Bio.PDB)**: Install BioPython in the environment and verify the relevant PDB modules are available.
+- **Empty output or missing keys**: Check that input values are non-empty strings. Empty entries are skipped and may result in missing outputs.
+- **Incorrect entity IDs in CIF**: The heuristic mapping might not fit specialized molecules or modified residues. Consider post-processing the CIF or adjusting inputs.
+- **Chain not detected**: If a protein chain contains only non-standard residues, it may be missed by the protein-only filter, reducing mapping fixes.

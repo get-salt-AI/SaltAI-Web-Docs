@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Parses a JSON-formatted string and outputs the corresponding data structure. If the input is not valid JSON or is empty/whitespace, the node returns None. The output type is flexible (object, array, string, number, boolean, or null) depending on the parsed content.
+Parses a JSON string and returns the corresponding data structure. If the input is not valid JSON, the node returns None. Supports multiline input for large or formatted JSON blocks.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/utilities/json/saltjsonfromstring.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Parses a JSON-formatted string and outputs the corresponding data structure. If 
 
 ## Usage
 
-Use this node when you need to convert a JSON string (from a file, API response, prompt output, or text input) into structured data for downstream processing. Commonly paired with nodes that read, query, or modify JSON data such as JSON: Get Value, JSON: Set Value, JSON: Merge, or JSON: Filter.
+Use this node when you have JSON text (e.g., from an API response, file, or another node that outputs a string) and need to convert it into structured data for downstream processing. Typically paired after nodes that fetch or construct JSON strings, and before nodes that inspect, filter, or extract values from JSON.
 
 ## Inputs
 
@@ -26,7 +26,7 @@ Use this node when you need to convert a JSON string (from a file, API response,
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">json_string</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The JSON string to parse. Supports multiline text. Must be valid JSON to return structured data.</td><td style="word-wrap: break-word;">{ "user": { "name": "Ada", "id": 42 }, "active": true }</td></tr>
+<tr><td style="word-wrap: break-word;">json_string</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The JSON text to parse into a data structure. Must be valid JSON with proper quoting and structure.</td><td style="word-wrap: break-word;">{"name": "Ada", "skills": ["math", "logic"], "active": true}</td></tr>
 </tbody>
 </table>
 </div>
@@ -43,19 +43,20 @@ Use this node when you need to convert a JSON string (from a file, API response,
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">data</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The parsed data structure from the input string. Can be an object (dict), array (list), string, number, boolean, or null. Returns None if parsing fails.</td><td style="word-wrap: break-word;">{'user': {'name': 'Ada', 'id': 42}, 'active': True}</td></tr>
+<tr><td style="word-wrap: break-word;">data</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The parsed data structure. Can be an object (dict), array (list), string, number, boolean, null, or None if parsing fails.</td><td style="word-wrap: break-word;">{'name': 'Ada', 'skills': ['math', 'logic'], 'active': True}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- If the input string is invalid JSON or empty, the node returns None.
-- Output type varies based on input JSON (object, array, string, number, boolean, or null). Ensure downstream nodes can handle None.
-- This node does not attempt to fix malformed JSON; validate or correct your string upstream if needed.
-- Multiline input is supported, which is helpful for large or pretty-printed JSON.
+- **Returns None on invalid JSON**: If parsing fails, the output is None instead of raising an error.
+- **Multiline supported**: The input field supports multiline JSON strings for readability.
+- **Exact JSON required**: Use double quotes for keys/strings and avoid trailing commas or comments.
+- **Data type passthrough**: Output type varies based on the root JSON type (object, array, string, number, boolean, null).
+- **Large inputs**: Very large JSON strings may impact performance; consider validating or streaming upstream.
 
 ## Troubleshooting
-- Parsed output is None: The input is likely invalid JSON or empty. Validate with the JSON: Validate node or check for syntax errors (missing commas/braces, unquoted keys, etc.).
-- Downstream node errors: Ensure downstream nodes can handle None and that you provide a valid JSON string to this node.
-- Unexpected output type: The output mirrors the JSON content. Confirm the input string matches the structure your workflow expects (e.g., array vs. object).
-- Large or complex JSON not parsing: Check for hidden control characters or encoding issues; ensure the input is UTF-8 and properly escaped.
+- **Output is None**: The JSON is invalid. Ensure proper JSON formatting (double quotes, no trailing commas, valid escapes).
+- **Unexpected data type**: Check the top-level JSON value. If it's an array, the output will be a list; if it's an object, a dict, etc.
+- **Encoding issues**: Make sure the input string is UTF-8 and special characters are properly escaped (e.g., "\n", "\uXXXX").
+- **Boolean or null errors**: JSON uses true/false/null (lowercase), not True/False/None.

@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Runs legacy Boltz structure prediction on protein sequences using MSA inputs. Generates multiple sampled structures and corresponding confidence/quality metrics. This node is deprecated; use Boltz-2 nodes for enhanced features.
+Runs single-chain protein structure prediction using the legacy Boltz pipeline. It consumes an A3M multiple sequence alignment and corresponding FASTA to produce ranked 3D structures (PDB) along with model confidence scores. This node is deprecated in favor of Boltz-2 and may be disabled in some environments.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/boltz/boltznode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Runs legacy Boltz structure prediction on protein sequences using MSA inputs. Ge
 
 ## Usage
 
-Use this node only for legacy workflows that still depend on the original Boltz service. Provide MSA search results (A3M) for one or more sequences; the node will perform structure prediction with configurable recycling and diffusion sampling, returning ranked PDBs and confidence scores. For new projects, migrate to Boltz2StructurePredictionNode.
+Use this node after you have generated A3M alignments for one or more sequences. Provide the A3M(s) and set sampling parameters. The node publishes a Boltz prediction job and returns a dict of ranked PDBs per input along with confidence metrics. For new projects, migrate to Boltz-2 for YAML-based configs, ligand/DNA/RNA support, potentials, and affinity prediction.
 
 ## Inputs
 
@@ -26,11 +26,11 @@ Use this node only for legacy workflows that still depend on the original Boltz 
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">a3m</td><td>True</td><td style="word-wrap: break-word;">A3M</td><td style="word-wrap: break-word;">MSA search results as a dictionary mapping sequence IDs to A3M-formatted strings. Each entry will be processed to predict structures.</td><td style="word-wrap: break-word;">{'seq1': '>seq1\nAAAA...\n>seq1/2-100\n-AAA...', 'seq2': '>seq2\nMKTW...\n>seq2/align\n-MKT...'}</td></tr>
-<tr><td style="word-wrap: break-word;">recycling_steps</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Number of recycling iterations during prediction. Higher values can improve accuracy but increase runtime.</td><td style="word-wrap: break-word;">10</td></tr>
-<tr><td style="word-wrap: break-word;">diffusion_samples</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Number of structure samples to generate via diffusion for each input sequence. More samples yield more diverse predictions.</td><td style="word-wrap: break-word;">5</td></tr>
-<tr><td style="word-wrap: break-word;">seed</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Base random seed. If multiple sequences are processed, each uses an incremented seed (seed + index).</td><td style="word-wrap: break-word;">42</td></tr>
-<tr><td style="word-wrap: break-word;">mode</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Execution mode: MOCK (uses predefined mock outputs), PROD (runs the live service), TEST (overrides key params for quick checks).</td><td style="word-wrap: break-word;">PROD</td></tr>
+<tr><td style="word-wrap: break-word;">a3m</td><td>True</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Mapping of sequence names to A3M alignment contents for single-chain inputs. Each value should be the plain-text A3M for the corresponding sequence.</td><td style="word-wrap: break-word;">{"my_protein": ">seq1\nMKT...\n>seq2\nMRT..."}</td></tr>
+<tr><td style="word-wrap: break-word;">recycling_steps</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Number of structure recycling iterations used by the model. Higher values can improve quality but increase runtime.</td><td style="word-wrap: break-word;">3</td></tr>
+<tr><td style="word-wrap: break-word;">diffusion_samples</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Number of diffusion samples (model runs) to generate diverse candidate structures.</td><td style="word-wrap: break-word;">5</td></tr>
+<tr><td style="word-wrap: break-word;">seed</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Base random seed for reproducibility. When multiple inputs are provided, the seed is offset per input to avoid identical samples.</td><td style="word-wrap: break-word;">42</td></tr>
+<tr><td style="word-wrap: break-word;">mode</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Execution mode. PROD = normal execution. TEST = overrides to minimal parameters for quick checks. MOCK = returns precomputed mock results when available.</td><td style="word-wrap: break-word;">PROD</td></tr>
 </tbody>
 </table>
 </div>
@@ -47,23 +47,22 @@ Use this node only for legacy workflows that still depend on the original Boltz 
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">folding.pdb</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Ranked predicted structures as a dictionary mapping '<input_id>_<rank>' to PDB content strings.</td><td style="word-wrap: break-word;">{'seq1_rank_001': 'MODEL 1\nATOM ...\nENDMDL\n', 'seq1_rank_002': 'MODEL 1\nATOM ...\nENDMDL\n'}</td></tr>
-<tr><td style="word-wrap: break-word;">confidence_scores.json</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Confidence and related quality metrics for each predicted structure, keyed by '<input_id>_<metric_or_rank>'.</td><td style="word-wrap: break-word;">{'seq1_rank_001': {'pLDDT_mean': 78.4, 'PAE': [[0.0, 1.2], [1.1, 0.0]]}, 'seq1_rank_002': {'pLDDT_mean': 74.2, 'PAE': [[0.0, 2.0], [2.1, 0.0]]}}</td></tr>
+<tr><td style="word-wrap: break-word;">folding.pdb</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Dictionary mapping ranked identifiers to PDB contents for each input. Keys typically include the input name and rank (e.g., my_protein_rank_1.pdb).</td><td style="word-wrap: break-word;">{"my_protein_rank_1.pdb": "ATOM ...", "my_protein_rank_2.pdb": "ATOM ..."}</td></tr>
+<tr><td style="word-wrap: break-word;">confidence</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Dictionary of confidence metrics per ranked structure (e.g., pLDDT, PAE). Provided as JSON-serializable data per output structure.</td><td style="word-wrap: break-word;">{"my_protein_rank_1": {"pLDDT": 0.86, "PAE": "..."}}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Deprecated**: This node is deprecated. Prefer Boltz2StructurePredictionNode for YAML input support, ligands, DNA/RNA, potentials, and affinity prediction.
-- **Mode behavior**: TEST mode forces recycling_steps=1 and diffusion_samples=1 to reduce runtime. MOCK mode returns predefined mock results.
-- **Multiple inputs**: When multiple sequences are provided, the node processes each and increments the seed per sequence.
-- **Performance**: Increasing recycling_steps and diffusion_samples increases runtime and cost.
-- **Input expectations**: a3m must be a dict of A3M-formatted strings keyed by sequence IDs; each must contain a valid FASTA header and aligned sequences.
+- This node is deprecated. Use Boltz-2 for enhanced functionality, YAML configs, ligand/DNA/RNA support, potentials, and affinity prediction.
+- May be disabled in some environments. If disabled, jobs will fail immediately with a message indicating deprecation/availability.
+- High recycling_steps and diffusion_samples significantly increase runtime and cost.
+- Input must be single-chain. For multimer predictions, use the dedicated multimer node or Boltz-2 with a multimer configuration.
+- Mode=TEST forces minimal parameters (e.g., recycling_steps=1, diffusion_samples=1) for quick validation; Mode=MOCK returns canned results if available.
 
 ## Troubleshooting
-- **Empty or missing outputs**: Ensure 'a3m' is a non-empty dict and each value is valid A3M text with a FASTA header line.
-- **Service timeout or long runtime**: Reduce diffusion_samples and recycling_steps, or test with mode='TEST' to validate the pipeline quickly.
-- **Inconsistent IDs in results**: Output keys are derived from input sequence IDs; verify your 'a3m' dict keys are unique and meaningful.
-- **Unexpectedly few structures**: Check diffusion_samples; in TEST mode it is forced to 1.
-- **Reproducibility issues**: Confirm the base seed and remember seeds are incremented per sequence (seed + index).
-- **Mock data confusion**: If using mode='MOCK', outputs are fixed from mock data and will not reflect your inputs.
+- Job fails immediately with a deprecation/disabled error: This node may be disabled. Switch to Boltz-2 and re-run.
+- Empty or malformed A3M input: Ensure the a3m field is a mapping from names to valid A3M text. Regenerate A3Ms using an alignment/search node and retry.
+- Very long runtimes: Reduce diffusion_samples and recycling_steps, or use TEST mode to validate the pipeline before full runs.
+- No structures returned for some inputs: Verify the corresponding A3M and FASTA are valid and consistent. Recreate alignments and try again.
+- Confidence output missing metrics: Downstream services may omit some metrics in test/mock modes. Re-run in PROD mode for full outputs.

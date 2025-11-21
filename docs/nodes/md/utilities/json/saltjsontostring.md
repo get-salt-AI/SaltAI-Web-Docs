@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Converts any input data into a JSON-formatted string. Supports pretty (indented) or compact output and handles common Python types like dicts, lists, numbers, booleans, and nulls.
+Converts any input data into a JSON-formatted string. Preserves numbers, booleans, lists, and objects; non-JSON-serializable values are coerced to their string representation. The Pretty option controls indentation for human-readable output.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/utilities/json/saltjsontostring.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Converts any input data into a JSON-formatted string. Supports pretty (indented)
 
 ## Usage
 
-Use this node when you need a clean JSON string from data produced elsewhere in your workflow—such as preparing payloads for APIs, logging structured output, or storing configuration/results as text. Toggle Pretty for human-readable formatting or disable it for compact single-line output.
+Use this node when you need a JSON string representation of data to pass to APIs, store in text fields, or log. Typically follows nodes producing dictionaries/lists and precedes HTTP, file, or database nodes that accept text payloads.
 
 ## Inputs
 
@@ -26,8 +26,8 @@ Use this node when you need a clean JSON string from data produced elsewhere in 
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">input</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The data to convert to JSON. Accepts objects, arrays, numbers, booleans, null, or strings.</td><td style="word-wrap: break-word;">{'user': {'id': 123, 'name': 'Ada'}, 'active': True}</td></tr>
-<tr><td style="word-wrap: break-word;">pretty</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, formats the JSON with indentation for readability; if false, produces compact JSON.</td><td style="word-wrap: break-word;">True</td></tr>
+<tr><td style="word-wrap: break-word;">input</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The data to convert to a JSON string. Can be a dict/object, list/array, number, boolean, null, or any other value (which will be converted to a string).</td><td style="word-wrap: break-word;">{'user': {'id': 123, 'name': 'Ada', 'roles': ['admin', 'editor']}}</td></tr>
+<tr><td style="word-wrap: break-word;">pretty</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, formats the JSON with indentation for readability; if false, outputs compact JSON.</td><td style="word-wrap: break-word;">true</td></tr>
 </tbody>
 </table>
 </div>
@@ -44,19 +44,20 @@ Use this node when you need a clean JSON string from data produced elsewhere in 
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">json_string</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The JSON-formatted string representation of the input.</td><td style="word-wrap: break-word;">{   "user": {     "id": 123,     "name": "Ada"   },   "active": true }</td></tr>
+<tr><td style="word-wrap: break-word;">json_string</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The JSON-formatted string representation of the input.</td><td style="word-wrap: break-word;">{"user":{"id":123,"name":"Ada","roles":["admin","editor"]}}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Strings as input**: If the input is already a string, the output will be a valid JSON string with quotes (e.g., input hello becomes "hello").
-- **Fallback on errors**: If serialization fails, the node returns the input's plain string representation, which may not be valid JSON.
-- **Compact vs pretty**: Set Pretty to false for compact single-line JSON when minimizing size matters (e.g., API payloads).
-- **Type handling**: Common data types are serialized to JSON equivalents; values not naturally JSON-serializable are converted to their string form.
+- If the input is already a plain string, the output will be a JSON string containing that string (wrapped in quotes), not parsed JSON.
+- Non-serializable objects are converted to their string representation; if you need structured JSON, supply serializable data (dicts, lists, numbers, booleans, null).
+- Pretty formatting adds indentation and increases size; disable it for compact payloads in production or bandwidth-constrained contexts.
+- Unicode characters are preserved (not ASCII-escaped) in the output string.
+- This node does not validate or parse JSON strings; to parse a JSON string into structured data, use JSON: From String.
 
 ## Troubleshooting
-- **Output is not valid JSON**: Ensure the input is JSON-serializable. If errors occurred, the node may have fallen back to a plain string; validate with a JSON validator.
-- **Unexpected quotes around output**: This occurs when the input is a raw string. If you already have JSON text and don't want it re-quoted, parse it first, then convert.
-- **Missing indentation**: Set Pretty to true to enable multi-line, indented formatting.
-- **Unicode characters escaped unexpectedly**: Check downstream consumers; this node preserves non-ASCII characters in the output, but other steps might alter encoding.
+- Output has unexpected surrounding quotes: This occurs when the input was a plain string. If you intended to parse JSON, use JSON: From String before converting.
+- Output contains escaped characters (e.g., \" inside the text): This is normal for JSON string encoding. When downstream systems parse the JSON, escapes will resolve.
+- Got a simple stringified object representation instead of structured JSON: The input contained non-serializable types. Convert them to dicts/lists or primitives before using this node.
+- Output too large or hard to read: Toggle pretty to false for compact output, or true for readability as needed.

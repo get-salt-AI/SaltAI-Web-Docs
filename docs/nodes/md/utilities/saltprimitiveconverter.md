@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Converts an input value into a specified primitive type: STRING, INT, FLOAT, BOOLEAN, LIST, or DICT. Supports parsing of simple list/dict strings, optional casting of elements inside collections, and targeted extraction by index or key when outputting a single string. Includes safe fallbacks and formatting to reduce errors during data preparation.
+Converts an input value to a target primitive/container type with flexible parsing and safe fallbacks. Supports converting to STRING, LIST, and DICT, with optional element/value casting via a sub-data-type. You can also extract a specific element from lists or dicts by index/key when producing a STRING.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/utilities/saltprimitiveconverter.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Converts an input value into a specified primitive type: STRING, INT, FLOAT, BOO
 
 ## Usage
 
-Use this node whenever you need to normalize or transform incoming data into a specific primitive type for downstream nodes. Typical flows include: turning user or tool outputs into structured lists/dicts, coercing numeric or boolean values, extracting a single element from a list/dict as a string, or pretty-printing any input as a JSON string.
+Use this node when you need to normalize or reshape incoming data into strings, lists, or dictionaries for downstream nodes. Typical flows include: parsing user-entered text into a list or dict, extracting a single value from a list/dict as a string, or recasting elements within lists/dicts to a specific primitive type.
 
 ## Inputs
 
@@ -26,10 +26,10 @@ Use this node whenever you need to normalize or transform incoming data into a s
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">input_value</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The value to convert. Accepts any type, including strings, numbers, booleans, lists, and dicts. Strings can represent comma-separated lists or key:value pairs.</td><td style="word-wrap: break-word;">a:1, b:2, c:3</td></tr>
-<tr><td style="word-wrap: break-word;">output_type</td><td>True</td><td style="word-wrap: break-word;">ENUM[STRING\|INT\|FLOAT\|BOOLEAN\|LIST\|DICT]</td><td style="word-wrap: break-word;">Target type for the conversion. Determines the final shape of the output.</td><td style="word-wrap: break-word;">LIST</td></tr>
-<tr><td style="word-wrap: break-word;">sub_data_type</td><td>False</td><td style="word-wrap: break-word;">ENUM[ORIGIN\|STRING\|INT\|FLOAT\|BOOLEAN]</td><td style="word-wrap: break-word;">For LIST/DICT outputs and for element extraction, controls how individual elements/values are cast. ORIGIN preserves original types.</td><td style="word-wrap: break-word;">INT</td></tr>
-<tr><td style="word-wrap: break-word;">index_or_key</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">When extracting a specific element to STRING output: provide a zero-based index for lists or a key for dicts. If omitted and output_type is STRING, the entire input is returned as a formatted JSON string.</td><td style="word-wrap: break-word;">0</td></tr>
+<tr><td style="word-wrap: break-word;">input_value</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Any value to convert. May be a string, number, boolean, list, or dictionary. Strings can be parsed into lists or dicts using simple patterns.</td><td style="word-wrap: break-word;">apples, bananas, oranges</td></tr>
+<tr><td style="word-wrap: break-word;">output_type</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">Target type for the output. Options: STRING, INT, FLOAT, BOOLEAN, LIST, DICT. STRING produces a pretty-printed JSON string or a single extracted string; LIST/DICT produce parsed/converted containers.</td><td style="word-wrap: break-word;">LIST</td></tr>
+<tr><td style="word-wrap: break-word;">sub_data_type</td><td>False</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">Element/value casting type when producing LIST/DICT or when extracting a single value into STRING. Options: ORIGIN (no change), STRING, INT, FLOAT, BOOLEAN.</td><td style="word-wrap: break-word;">INT</td></tr>
+<tr><td style="word-wrap: break-word;">index_or_key</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">For LIST/DICT inputs when output_type is STRING (or when sub_data_type is STRING), specify a list index (e.g., 0) or a dict key to extract a single element as a string.</td><td style="word-wrap: break-word;">0</td></tr>
 </tbody>
 </table>
 </div>
@@ -46,22 +46,24 @@ Use this node whenever you need to normalize or transform incoming data into a s
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">output</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The converted value in the requested type. For STRING outputs without index_or_key, the whole input is JSON-formatted. For LIST/DICT outputs, elements/values can be cast using sub_data_type.</td><td style="word-wrap: break-word;">[1, 2, 3]</td></tr>
+<tr><td style="word-wrap: break-word;">output</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The converted value. For STRING, returns a pretty-printed JSON string or an extracted single value. For LIST/DICT, returns a parsed/converted container based on input and sub_data_type.</td><td style="word-wrap: break-word;">['apples', 'bananas', 'oranges']</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- Index or key extraction applies when output_type is STRING. If provided, the node attempts to extract that element from a list/dict and cast it using sub_data_type.
-- If index_or_key is empty and output_type is STRING, the entire input is returned as a pretty JSON string.
-- For LIST/DICT outputs, sub_data_type controls casting of elements/values. Use ORIGIN to preserve original types.
-- String parsing supports simple CSV lists (e.g., "a,b,c") and comma-separated key:value pairs (e.g., "a:1, b:2"). It also understands basic multiline formats like "key: value" per line or list items prefixed with '-' or '1)'.
-- On conversion errors (e.g., bad index/key or incompatible casting), the node returns a safe default for the target type (e.g., empty string for STRING, [] for LIST, {} for DICT) and logs a warning.
-- Boolean casting follows a sanitizer that interprets common truthy/falsey string forms.
+- STRING output behavior: without index_or_key, the node returns a pretty-printed JSON string of the input; with index_or_key on list/dict inputs, it returns the extracted value cast to sub_data_type (commonly STRING).
+- String parsing to LIST: a comma-separated string like "a, b, c" is parsed into a list. Elements are cast using sub_data_type.
+- String parsing to DICT: if output_type is DICT and the input is comma-separated key:value pairs (e.g., "k1:v1, k2:v2"), it parses into a dict and casts values using sub_data_type.
+- Multiline string parsing: lines matching "key: value" form a dict; lines starting with '-' or '1)' form a list; standalone numeric lines may be parsed as floats.
+- When converting existing dicts/lists, their values/elements are cast to the chosen sub_data_type.
+- Invalid index/key extraction logs a warning and returns an empty string for STRING output.
+- If conversion fails, the node falls back to a sensible default for the requested type (e.g., empty list or dict).
+- Direct scalar outputs for INT/FLOAT/BOOLEAN are not typically produced; if specified, the node may default to returning list-like results rather than a single scalar. Prefer STRING for single-value extraction or use LIST/DICT outputs with sub_data_type for element casting.
 
 ## Troubleshooting
-- Getting an empty string when extracting from a list/dict: Verify index_or_key is valid (0-based index for lists, existing key for dicts) and that output_type is STRING.
-- LIST/DICT output not as expected: Check sub_data_type to ensure elements are being cast correctly (e.g., set to INT for numeric lists).
-- Parsed list/dict is empty from a string: Ensure the input string uses supported formats (comma-separated items, key:value pairs, or multiline with '-' or 'key: value').
-- Unexpected numeric conversion results: If input values contain decimals and you selected INT, they are truncated by casting via float first. Choose FLOAT if you need decimals.
-- Boolean not converting: Ensure your input uses recognizable truthy/falsey representations (e.g., true/false, yes/no, 1/0).
+- Extraction returns empty string: Ensure index_or_key is valid for the given input (0-based index for lists, exact key for dicts) and that output_type is STRING when extracting.
+- Output is a list instead of a single scalar: This node primarily produces STRING, LIST, or DICT. To get a single scalar, use STRING with index_or_key to extract a specific element, or handle scalar casting downstream.
+- Parsed dict is empty: Confirm your input string uses 'key: value' format on lines or 'key:value' pairs separated by commas when output_type is DICT.
+- Values not in desired type: Set sub_data_type to STRING/INT/FLOAT/BOOLEAN so elements/values are cast during parsing or conversion.
+- Comma-separated text became a list, not a dict: For dict parsing from comma-separated text, include ':' in each pair and set output_type to DICT (e.g., "a:1, b:2").

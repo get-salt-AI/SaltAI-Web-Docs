@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Retrieves available ClinicalTrials.gov study fields and their values via the API's field values endpoint. You can optionally filter by field type and select specific fields to include. Returns two JSON strings: the raw results and a small metadata object with a result count.
+Retrieves study field information from the ClinicalTrials.gov API, returning the raw results and lightweight metadata as JSON strings. You can optionally filter by field type and specify a comma-separated list of fields to include. Useful for discovering available fields and their values to inform downstream queries or UI options.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/healthcare/clinicaltrials/clinicaltrialsstudyfieldsnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Retrieves available ClinicalTrials.gov study fields and their values via the API
 
 ## Usage
 
-Use this node when you need to discover or enumerate study fields (for example, to understand which field names and values you can query against) before running searches or building downstream filtering. Typical workflow: run this node to list fields/values, inspect results and metadata, then feed chosen fields into study search or detail nodes.
+Use this node when you need to explore or enumerate study fields from ClinicalTrials.gov before building more targeted queries. Typically placed early in a workflow to fetch the list of fields (optionally filtered) and pass the results to parsers, selectors, or query-construction nodes.
 
 ## Inputs
 
@@ -26,8 +26,8 @@ Use this node when you need to discover or enumerate study fields (for example, 
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">type</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional filter for field categories/types provided by the ClinicalTrials.gov API.</td><td style="word-wrap: break-word;">Study, Location, Condition</td></tr>
-<tr><td style="word-wrap: break-word;">fields</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Comma-separated list of field names to include in the response.</td><td style="word-wrap: break-word;">Condition, InterventionName</td></tr>
+<tr><td style="word-wrap: break-word;">type</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional filter for field types (as defined by the ClinicalTrials.gov API). Leave empty to return all applicable field information.</td><td style="word-wrap: break-word;">Study</td></tr>
+<tr><td style="word-wrap: break-word;">fields</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Comma-separated list of field names to include in the results. If omitted, the API may return broader field information.</td><td style="word-wrap: break-word;">Condition, InterventionName</td></tr>
 </tbody>
 </table>
 </div>
@@ -44,22 +44,22 @@ Use this node when you need to discover or enumerate study fields (for example, 
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">results</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON string containing the field values data returned by the API.</td><td style="word-wrap: break-word;">{ "Condition": ["Lung Cancer", "Diabetes"], "InterventionName": ["Drug A", "Procedure B"] }</td></tr>
-<tr><td style="word-wrap: break-word;">metadata</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON string with basic metadata about the response, including result_count.</td><td style="word-wrap: break-word;">{ "result_count": 2 }</td></tr>
+<tr><td style="word-wrap: break-word;">results</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON string containing the API response with study fields information based on the provided filters.</td><td style="word-wrap: break-word;">{ "fields": [{ "name": "Condition", "values": [...] }, ... ] }</td></tr>
+<tr><td style="word-wrap: break-word;">metadata</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON string with basic metadata about the response. Includes result_count indicating the number of top-level items returned.</td><td style="word-wrap: break-word;">{ "result_count": 2 }</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **API dependency**: Requires live access to ClinicalTrials.gov API v2; network issues will prevent retrieval.
-- **Input formatting**: Supply multiple fields as a comma-separated string with proper field names recognized by the API.
-- **Timeouts**: Requests use a 30-second timeout; slow networks or large responses may need retries.
-- **Error handling**: On errors, outputs return JSON strings like {"error": "Network error"} instead of structured data.
-- **Categories**: The node is grouped under SALT/ClinicalTrials/Study Fields for organization with related nodes.
+- This node performs an external HTTP request to the ClinicalTrials.gov API; network connectivity is required.
+- Inputs are optional and should be plain text. The 'fields' input must be a comma-separated list without special formatting.
+- On errors, both outputs return JSON strings with an 'error' field (for example, {"error": "Network error"}).
+- Response size and structure depend on the ClinicalTrials.gov API; downstream nodes should parse the 'results' JSON string accordingly.
+- Default 'fields' is "Condition, InterventionName" if not overridden.
 
 ## Troubleshooting
-- **No results or empty lists**: Verify 'fields' and/or 'type' values are valid API-recognized names. Try removing filters to test connectivity.
-- **Network error**: Check internet connectivity, firewall settings, or API availability; retry later.
-- **JSON decode error**: Ensure the API is returning valid JSON; temporarily remove filters and test again.
-- **Unexpected field names**: Consult ClinicalTrials.gov documentation for valid field identifiers or first call without 'type' to explore available options.
-- **Slow or timed-out requests**: Reduce the number of requested fields, ensure stable connectivity, and retry.
+- Network error: Ensure internet access and that the ClinicalTrials.gov API is reachable. Retry or reduce request frequency.
+- JSON decode error: The upstream API response may be malformed or unexpected. Try again later or adjust inputs.
+- Empty or unexpected results: Verify 'type' and 'fields' values match valid API field names; try removing filters to test.
+- Slow responses or timeouts: The node uses a 30-second timeout. Narrow filters or try at a different time if the API is slow.
+- Downstream parsing failures: Confirm you are parsing the 'results' output as JSON text before accessing fields.

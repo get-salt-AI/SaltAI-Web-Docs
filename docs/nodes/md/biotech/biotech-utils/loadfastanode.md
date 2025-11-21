@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Loads a FASTA sequence string into the workflow. It accepts multiline text and passes it through unchanged as a FASTA-typed output. No validation or parsing is performed; the node simply outputs exactly what you provide.
+Loads a FASTA sequence provided as plain text and outputs it as a FASTA-typed value for downstream biotech nodes. It does not modify or validate the content beyond passing it through. Use this to introduce single or multi-record FASTA content into your workflow.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/biotech-utils/loadfastanode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Loads a FASTA sequence string into the workflow. It accepts multiline text and p
 
 ## Usage
 
-Use this node at the start of a biotech workflow when you already have a FASTA sequence (or multiple records) and need to provide it to downstream nodes for tasks like sequence analysis, structure prediction, or conversion. Paste or programmatically supply the FASTA text, then connect the output to nodes that consume FASTA.
+Use when you have one or more FASTA records as text and need to feed them into biotech processing nodes (e.g., sequence analysis, conversion, combination). Paste or programmatically supply the FASTA-formatted string; the node outputs a FASTA type that can be combined or transformed by subsequent nodes.
 
 ## Inputs
 
@@ -26,7 +26,7 @@ Use this node at the start of a biotech workflow when you already have a FASTA s
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">fasta_string</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The FASTA content to upload. Can include one or multiple FASTA records, with standard '>' headers and sequence lines. Content is not validated or reformatted.</td><td style="word-wrap: break-word;">>seq1 MGSSHHHHHHSSGLVPRGSHMASMTGGQQMGRGSEF-EXAMPLE >seq2 GATTACAGATTACAGATTACA</td></tr>
+<tr><td style="word-wrap: break-word;">fasta_string</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">FASTA content as a text string. Can contain one or multiple records with headers (lines starting with '>') followed by sequence lines.</td><td style="word-wrap: break-word;">>seq1 MKTAYIAKQRQISFVKSHFSRQDILDLWIYHTQGYFP >seq2 GSSHHHHHHSSGLVPRGSHMASMTGGQQMGRDLYDDDDK</td></tr>
 </tbody>
 </table>
 </div>
@@ -43,19 +43,18 @@ Use this node at the start of a biotech workflow when you already have a FASTA s
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">sequence.fasta</td><td style="word-wrap: break-word;">FASTA</td><td style="word-wrap: break-word;">The provided FASTA content, passed through unchanged as a FASTA-typed value.</td><td style="word-wrap: break-word;">>my_protein MKTAYIAKQRQISFVKSHFSRQDILD-EXAMPLE</td></tr>
+<tr><td style="word-wrap: break-word;">sequence.fasta</td><td style="word-wrap: break-word;">FASTA</td><td style="word-wrap: break-word;">The provided FASTA content passed through as a FASTA-typed output for downstream nodes.</td><td style="word-wrap: break-word;">>protein_A MVLSEGEWQLVLHVWAKVEADVAGHGQDILIRLFKSHPETLEKFDR</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- This node performs no format validation; ensure your input follows FASTA conventions (header lines start with '>' followed by sequence lines).
-- Outputs exactly the input text (including headers, line wrapping, and whitespace). Downstream behavior depends on the correctness of your FASTA.
-- Supports multiple FASTA records in a single input string.
-- Large inputs are accepted as plain text; consider memory limits if supplying very large multi-record FASTA files.
+- FASTA content is passed through without structural validation; ensure it is properly formatted (headers starting with '>' and valid sequence lines).
+- Supports multiline input and multiple FASTA records in a single input string.
+- This node does not assign IDs; downstream nodes that require IDs typically infer them from FASTA headers.
+- For merging multiple sources of FASTA, use the FASTA Combiner node after loading individual strings.
 
 ## Troubleshooting
-- If downstream nodes fail, verify headers and sequences are valid FASTA (no illegal characters, proper '>' headers).
-- If the output appears empty, ensure the input field is filled and not just whitespace.
-- If line wrapping causes issues in other tools, reformat your FASTA before loading (this node will not modify wrapping).
-- If sequences map incorrectly downstream, confirm that record IDs in headers match the expectations of those nodes.
+- Invalid FASTA format: Verify each record begins with a header line starting with '>' and that sequence lines contain only valid characters.
+- Empty output: Ensure fasta_string is not empty or whitespace-only.
+- Downstream node rejects input: Confirm the downstream node expects a FASTA type (string) and not a dictionary-like structure; provide properly formatted headers if IDs are needed.
