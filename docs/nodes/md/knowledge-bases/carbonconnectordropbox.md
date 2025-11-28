@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Retrieves file content from the Carbon data service for a user's Dropbox integration. Given selected Carbon file IDs, it queries the Carbon service and returns a single concatenated string of the matched file contents, each wrapped in a simple <file> block with identifiers. Supports an optional query to further narrow the returned content.
+Connects your Dropbox account to Salt’s Carbon data layer. This node delegates to the Carbon Dropbox integration so you can authorize access, browse, and select Dropbox content for downstream use in workflows. It standardizes how Dropbox files are referenced and retrieved through Carbon.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/knowledge-bases/carbonconnectordropbox.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Retrieves file content from the Carbon data service for a user's Dropbox integra
 
 ## Usage
 
-Use this node when you need to bring Dropbox-sourced documents into your workflow for downstream processing (for example, as context for LLM prompts or analysis steps). Typically, you first select files via a Carbon file picker or an upstream step that supplies Carbon file IDs. Then pass those IDs here to fetch and return the combined text content.
+Use this node when you need to bring files or folders from Dropbox into a Salt workflow via the Carbon platform. Typically, place it early in a data ingestion pipeline to authenticate, select content, and pass a Carbon-managed reference to subsequent processing nodes (e.g., parsing, chunking, embedding, or search).
 
 ## Inputs
 
@@ -26,8 +26,7 @@ Use this node when you need to bring Dropbox-sourced documents into your workflo
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">file_ids</td><td>True</td><td style="word-wrap: break-word;">CARBON_FILE_IDS</td><td style="word-wrap: break-word;">A JSON-encoded array of Carbon file IDs associated with the Dropbox integration. These identify which Dropbox files to fetch.</td><td style="word-wrap: break-word;">[12345, 67890]</td></tr>
-<tr><td style="word-wrap: break-word;">query</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional text query to filter or narrow the selection of content returned from the specified files.</td><td style="word-wrap: break-word;">quarterly earnings</td></tr>
+<tr><td style="word-wrap: break-word;">Not specified</td><td>False</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">The node inherits its inputs from the Carbon base data node. Exact input fields (e.g., user/account context, file selection, filters) are not specified in the available source.</td><td style="word-wrap: break-word;">Not specified</td></tr>
 </tbody>
 </table>
 </div>
@@ -44,22 +43,21 @@ Use this node when you need to bring Dropbox-sourced documents into your workflo
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">Output</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A single string containing all fetched file contents, each enclosed in a <file id="..."> block. If the data is chunked, the id may include a chunk suffix.</td><td style="word-wrap: break-word;"><file id="12345"> Document content here... </file> <file id="67890-chunk:0"> Another document chunk... </file></td></tr>
+<tr><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Emits a Carbon-managed reference to the selected Dropbox content and/or associated metadata for downstream nodes. Exact output fields and types are not specified in the available source.</td><td style="word-wrap: break-word;">Not specified</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **File IDs must be valid JSON**: Provide file_ids as a JSON array (for example, [12345, 67890]); otherwise, the node will fail to parse.
-- **Integration is fixed to Dropbox**: This node specifically targets the Dropbox integration within Carbon.
-- **Authorization handled automatically**: salt_user_id is injected by the platform and should not be modified manually.
-- **Single concatenated output**: All matched content is combined into one string output, wrapped in simple <file> blocks.
-- **Network-dependent**: The node relies on the Carbon service; connectivity or service issues may cause request failures.
-- **Timeout behavior**: Requests have a default timeout; large queries or many files may require patience or narrower queries.
+- **Authentication required**: You must authorize Dropbox access via the Carbon connection flow before the node can list or retrieve content.
+- **Permissions apply**: The node only accesses files permitted by the connected Dropbox account and granted scopes.
+- **Integration targeting**: This node is bound to the Dropbox integration; it will use Dropbox as the content source within Carbon.
+- **Indexing/availability**: Newly connected or updated files may require some time before they become fully searchable or retrievable depending on Carbon’s sync/indexing status.
+- **Environment dependency**: The node relies on the Carbon service being reachable and properly configured in your environment.
 
 ## Troubleshooting
-- **Invalid JSON in file_ids**: Ensure file_ids is a JSON array string (e.g., [12345, 67890]). Fix formatting if you see a JSON decoding error.
-- **Empty or unexpected output**: Confirm the selected file IDs belong to Dropbox and that your optional query is not overly restrictive.
-- **Request failed errors**: Check network connectivity and service status. Retry with fewer files or without a query if the request times out.
-- **Malformed response errors**: If you see a response decoding error, try again later; ensure the Carbon service is operating normally.
-- **Missing authorization**: If access is denied, verify that your session/account is valid so salt_user_id can be injected correctly.
+- **No files visible after connecting**: Ensure the Dropbox account was successfully authorized and has the expected files. Reopen the connection modal and verify scopes and selected folders.
+- **Authentication fails**: Check that Carbon service is reachable and that your token fetcher or JWT creation flow is configured. Re-authenticate Dropbox via the Carbon connection UI.
+- **Missing or delayed content**: Allow time for Carbon to sync/index the Dropbox content. If delays persist, re-trigger a refresh or reconnect.
+- **Permission errors**: Confirm the Dropbox account has access to the files/folders you’re trying to use and that the integration scopes grant read access.
+- **Workflow errors downstream**: Verify downstream nodes support the Carbon content reference emitted here and are configured to read from Carbon-backed sources.

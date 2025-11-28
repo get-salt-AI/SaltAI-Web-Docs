@@ -1,10 +1,17 @@
 # Oracle Visual Query Builder
 
-Builds and executes Oracle SQL queries from visual parameters without requiring users to write SQL. Supports JOINs via a JSON join configuration, optional WHERE/GROUP BY/HAVING/ORDER BY clauses, and row limiting. Results can be returned as plain text/JSON, or exported to HTML, Excel (XLSX), PDF, or all formats.
+<div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
+<div style="flex: 1; min-width: 0;">
+
+Builds and executes Oracle SQL SELECT queries using a visual, parameter-driven interface. Supports JOINs via JSON configuration, WHERE/GROUP BY/HAVING/ORDER BY clauses, and optional row limits. Results can be returned in multiple formats, including text, HTML, Excel, and PDF.
+
+</div>
+<div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/oracle/saltoraclevisualquery.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
+</div>
 
 ## Usage
 
-Use this node when you need to compose complex Oracle queries interactively. Provide the main table and optional schema, list the columns to select, and optionally add JOINs, filters, grouping, and ordering. Choose the desired output format to get human-readable tables (HTML/PDF), spreadsheet-friendly data (XLSX), or a standard text/JSON response. Typically placed after a credentials provider and before downstream nodes that consume text, JSON, or file outputs.
+Use this node when you need to assemble complex Oracle queries without manually writing SQL. It is ideal for combining tables with JOINs, filtering with conditions, grouping, and ordering. Connect it to your Oracle credentials and set visual parameters to generate and run the query, then choose the desired output format for downstream use.
 
 ## Inputs
 
@@ -19,18 +26,18 @@ Use this node when you need to compose complex Oracle queries interactively. Pro
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Path to the stored Oracle credentials configuration that this node will use to authenticate.</td><td style="word-wrap: break-word;">/data/credentials/oracle.json</td></tr>
-<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time (in seconds) to wait for the query to complete before failing.</td><td style="word-wrap: break-word;">60</td></tr>
-<tr><td style="word-wrap: break-word;">main_table</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Primary table to query from.</td><td style="word-wrap: break-word;">employees</td></tr>
-<tr><td style="word-wrap: break-word;">schema</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Oracle schema name. Leave empty to use the current user's default schema.</td><td style="word-wrap: break-word;">HR</td></tr>
-<tr><td style="word-wrap: break-word;">selected_columns</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Columns to select. Use comma-separated column names or '*' for all columns.</td><td style="word-wrap: break-word;">employee_id, first_name, last_name, department_id</td></tr>
-<tr><td style="word-wrap: break-word;">join_config</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON array describing JOINs to apply. Each item supports 'type' (INNER/LEFT/RIGHT/FULL), 'table', optional 'schema', and 'on' join condition.</td><td style="word-wrap: break-word;">[{"type":"INNER","table":"departments","schema":"HR","on":"employees.department_id = departments.department_id"}]</td></tr>
-<tr><td style="word-wrap: break-word;">where_conditions</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Filter conditions for the WHERE clause (without the WHERE keyword).</td><td style="word-wrap: break-word;">salary > 50000 AND department_id = 10</td></tr>
-<tr><td style="word-wrap: break-word;">group_by_columns</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Comma-separated columns to GROUP BY.</td><td style="word-wrap: break-word;">department_id</td></tr>
-<tr><td style="word-wrap: break-word;">having_conditions</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">HAVING clause conditions to filter aggregated results (without the HAVING keyword).</td><td style="word-wrap: break-word;">COUNT(*) > 5</td></tr>
-<tr><td style="word-wrap: break-word;">order_by_columns</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Comma-separated ORDER BY expressions. Append DESC for descending order as needed.</td><td style="word-wrap: break-word;">salary DESC, last_name ASC</td></tr>
-<tr><td style="word-wrap: break-word;">limit_rows</td><td>False</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Limit the number of rows returned (0 means no limit).</td><td style="word-wrap: break-word;">100</td></tr>
-<tr><td style="word-wrap: break-word;">output_format</td><td>True</td><td style="word-wrap: break-word;">['text', 'html', 'xlsx', 'pdf', 'all']</td><td style="word-wrap: break-word;">Select output format: text (plain text + JSON), html (HTML table), xlsx (Excel), pdf (PDF), or all (returns all available formats).</td><td style="word-wrap: break-word;">all</td></tr>
+<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">CREDENTIALS</td><td style="word-wrap: break-word;">Path or reference to Oracle credentials configured for the service.</td><td style="word-wrap: break-word;"><oracle-credentials-ref></td></tr>
+<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time in seconds to wait for the operation before timing out.</td><td style="word-wrap: break-word;">60</td></tr>
+<tr><td style="word-wrap: break-word;">main_table</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Primary table to select from.</td><td style="word-wrap: break-word;">employees</td></tr>
+<tr><td style="word-wrap: break-word;">schema</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Schema name to qualify tables. Leave empty to use the current user schema.</td><td style="word-wrap: break-word;">HR</td></tr>
+<tr><td style="word-wrap: break-word;">selected_columns</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Columns to return. Use comma-separated list or * to select all.</td><td style="word-wrap: break-word;">employee_id, first_name, last_name</td></tr>
+<tr><td style="word-wrap: break-word;">join_config</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON array describing JOINs. Each item should include type, table, optional schema, and on condition.</td><td style="word-wrap: break-word;">[{"type": "INNER", "table": "departments", "schema": "HR", "on": "employees.department_id = departments.department_id"}]</td></tr>
+<tr><td style="word-wrap: break-word;">where_conditions</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Raw WHERE clause conditions without the WHERE keyword.</td><td style="word-wrap: break-word;">salary > 50000 AND department_id = 10</td></tr>
+<tr><td style="word-wrap: break-word;">group_by_columns</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Comma-separated columns for GROUP BY.</td><td style="word-wrap: break-word;">department_id</td></tr>
+<tr><td style="word-wrap: break-word;">having_conditions</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Raw HAVING clause conditions without the HAVING keyword.</td><td style="word-wrap: break-word;">COUNT(*) > 5</td></tr>
+<tr><td style="word-wrap: break-word;">order_by_columns</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Comma-separated ORDER BY expressions. Add DESC for descending.</td><td style="word-wrap: break-word;">salary DESC, last_name</td></tr>
+<tr><td style="word-wrap: break-word;">limit_rows</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum number of rows to return (0 means no limit).</td><td style="word-wrap: break-word;">100</td></tr>
+<tr><td style="word-wrap: break-word;">output_format</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">Format of the output: text (plain text + JSON), html (HTML table), xlsx (Excel), pdf (PDF), or all (all formats).</td><td style="word-wrap: break-word;">text</td></tr>
 </tbody>
 </table>
 </div>
@@ -47,27 +54,27 @@ Use this node when you need to compose complex Oracle queries interactively. Pro
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">text_output</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary or table text of the query results. Included for text and all formats.</td><td style="word-wrap: break-word;">Oracle Visual Query: employees Rows: 10 Columns: employee_id, first_name, last_name, department_name</td></tr>
-<tr><td style="word-wrap: break-word;">json_output</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Raw query results in JSON string form. Always included for text and all formats; included alongside other formats when selected individually.</td><td style="word-wrap: break-word;">[{"EMPLOYEE_ID":101,"FIRST_NAME":"Neena","LAST_NAME":"Kochhar","DEPARTMENT_NAME":"Executive"}]</td></tr>
-<tr><td style="word-wrap: break-word;">html_output</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">HTML table rendering of the results when output format is html or all.</td><td style="word-wrap: break-word;"><table><thead><tr><th>EMPLOYEE_ID</th><th>FIRST_NAME</th>...</tr></thead><tbody>...</tbody></table></td></tr>
-<tr><td style="word-wrap: break-word;">xlsx_file</td><td style="word-wrap: break-word;">BYTES</td><td style="word-wrap: break-word;">Excel workbook (XLSX) containing the results when output format is xlsx or all.</td><td style="word-wrap: break-word;"><bytes of .xlsx file></td></tr>
-<tr><td style="word-wrap: break-word;">pdf_file</td><td style="word-wrap: break-word;">BYTES</td><td style="word-wrap: break-word;">PDF document containing tabular results when output format is pdf or all.</td><td style="word-wrap: break-word;"><bytes of .pdf file></td></tr>
+<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary or table preview of the query results.</td><td style="word-wrap: break-word;">Oracle Visual Query: employees — 100 rows returned</td></tr>
+<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Raw result data serialized as JSON.</td><td style="word-wrap: break-word;">{"rows": [{"EMPLOYEE_ID": 101, "FIRST_NAME": "Neena"}], "row_count": 10}</td></tr>
+<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">HTML</td><td style="word-wrap: break-word;">HTML table representation of the results (available when output_format is html or all).</td><td style="word-wrap: break-word;"><table><tr><th>EMPLOYEE_ID</th>...</tr>...</table></td></tr>
+<tr><td style="word-wrap: break-word;">xlsx</td><td style="word-wrap: break-word;">XLSX</td><td style="word-wrap: break-word;">Excel file bytes/handle for the results (available when output_format is xlsx or all).</td><td style="word-wrap: break-word;"><binary-xlsx-data></td></tr>
+<tr><td style="word-wrap: break-word;">pdf</td><td style="word-wrap: break-word;">PDF</td><td style="word-wrap: break-word;">PDF file bytes/handle for the results (available when output_format is pdf or all).</td><td style="word-wrap: break-word;"><binary-pdf-data></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **JOIN configuration must be valid JSON**: If join_config is invalid JSON, JOINs are skipped.
-- **Schema prefixing**: When 'schema' is provided, the main table is referenced as schema.main_table.
-- **Row limiting**: The query uses 'FETCH FIRST n ROWS ONLY' when limit_rows > 0.
-- **SQL validity**: where_conditions, group_by_columns, having_conditions, and order_by_columns must be valid Oracle SQL fragments (do not include the keywords themselves).
-- **Selected columns**: Use '*' to select all columns or a comma-separated list for specific columns.
-- **Outputs by format**: 'text' returns text + JSON; 'html' returns JSON + HTML; 'xlsx' returns JSON + XLSX; 'pdf' returns JSON + PDF; 'all' returns text, JSON, HTML, XLSX, and PDF.
+- Selected columns accept '*' or a comma-separated list. Ensure column names are correctly qualified if ambiguous.
+- join_config must be valid JSON. Invalid JSON is ignored and JOINs are skipped with a warning.
+- Schema is optional; when omitted, the current user schema is used. JOIN targets can also specify their own schema.
+- WHERE, GROUP BY, HAVING, and ORDER BY inputs are raw SQL snippets; no validation is performed.
+- Row limiting uses 'FETCH FIRST n ROWS ONLY' which requires Oracle 12c or later. For older versions, results may not limit as expected.
+- Choosing output_format = 'all' returns all supported formats; otherwise, a default text/JSON response is provided.
 
 ## Troubleshooting
-- **Invalid join_config JSON**: Ensure join_config is a well-formed JSON array. Example: [{"type":"INNER","table":"departments","on":"employees.department_id = departments.department_id"}].
-- **SQL errors from database**: Verify column names, table names, and syntax in where_conditions/group_by_columns/having_conditions/order_by_columns.
-- **No rows returned**: Remove or adjust filters in where_conditions and verify the main_table/schema. Temporarily set limit_rows to 0 to see all results.
-- **Row limit not applied**: Some Oracle environments may not support FETCH FIRST syntax; consider adding a ROWNUM filter in where_conditions (e.g., ROWNUM <= 100) as a workaround.
-- **Permission errors**: Confirm credentials have access to the specified schema and tables.
-- **Large result sets causing timeouts**: Increase timeout, apply stricter filters, or reduce limit_rows.
+- Query returns no results: Verify where_conditions and join_config ON clauses. Test the base table and relax filters.
+- Invalid JSON in join_config: Provide well-formed JSON array with objects that include type, table, and on. Example format is shown in the input tooltip.
+- ORA-00942: table or view does not exist: Confirm schema and table names. Provide the schema parameter or qualify tables in join_config.
+- Permission errors: Ensure the credentials have SELECT privileges on all referenced tables and schemas.
+- Output not limited: If using an Oracle version prior to 12c, FETCH FIRST may not work. Set limit_rows to 0 and add a ROWNUM filter in where_conditions.
+- Timeouts: Increase the timeout input or simplify the query (reduce JOINs, filters, or result size).

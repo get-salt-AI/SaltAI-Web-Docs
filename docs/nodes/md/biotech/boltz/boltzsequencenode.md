@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Creates a single Boltz YAML-ready sequence entry for proteins, nucleic acids, or ligands. Supports FASTA or raw sequence text, optional MSA (A3M or text) for proteins, chemical specifications for ligands, chain duplication, cyclic polymers, and residue-level modifications.
+Creates a single molecular sequence entry for use in Boltz YAML workflows. Supports proteins, DNA, RNA, and ligands, including chain IDs, multiple identical chains, optional MSA for proteins, residue modifications, and cyclic polymers. Outputs a list containing one standardized sequence mapping ready to be combined into a full Boltz configuration.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/boltz/boltzsequencenode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Creates a single Boltz YAML-ready sequence entry for proteins, nucleic acids, or
 
 ## Usage
 
-Use this node to define one molecular entity (protein, DNA, RNA, or ligand) that will go into a Boltz YAML configuration. Typically, you create one or more sequences with this node, optionally add constraints/templates/properties, combine them with a list combiner, and then feed them to the Boltz YAML combiner and prediction nodes.
+Use this node to define each molecular entity in your system before assembling the final Boltz YAML. For proteins/DNA/RNA, provide the sequence (as raw string or FASTA). For ligands, provide either a SMILES string or a CCD code. If you have multiple identical chains (e.g., A,B), use the multiple_chains input. For proteins, you can attach MSA content (A3M file or raw string). Feed the resulting 'sequences' output into a list combiner and then into the Boltz YAML combiner.
 
 ## Inputs
 
@@ -26,17 +26,17 @@ Use this node to define one molecular entity (protein, DNA, RNA, or ligand) that
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">entity_type</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">Type of molecular entity to define.</td><td style="word-wrap: break-word;">protein</td></tr>
-<tr><td style="word-wrap: break-word;">chain_id</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Primary chain identifier for this entity. If multiple_chains is provided, this becomes the first chain in the list.</td><td style="word-wrap: break-word;">A</td></tr>
-<tr><td style="word-wrap: break-word;">sequence</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Raw sequence text for protein/DNA/RNA. Can be plain sequence or FASTA-formatted text. If FASTA is used here, the header name is extracted automatically.</td><td style="word-wrap: break-word;">>my_protein ACDEFGHIKLMNPQRSTVWY</td></tr>
-<tr><td style="word-wrap: break-word;">sequence_fasta</td><td>False</td><td style="word-wrap: break-word;">FASTA</td><td style="word-wrap: break-word;">Sequence in FASTA input type (alternative to sequence). The first entry’s header becomes the sequence name; sequence lines are concatenated.</td><td style="word-wrap: break-word;">{'my_protein': '>my_protein\nACDEFGHIKLMNPQRSTVWY'}</td></tr>
-<tr><td style="word-wrap: break-word;">msa_content</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Protein MSA content as plain text (A3M format). If omitted and no msa_a3m is provided, the MSA is set to 'empty'.</td><td style="word-wrap: break-word;">>seq1 ACD- >seq2 ACDE</td></tr>
-<tr><td style="word-wrap: break-word;">msa_a3m</td><td>False</td><td style="word-wrap: break-word;">A3M</td><td style="word-wrap: break-word;">Protein MSA provided via A3M input type (alternative to msa_content). The first key’s content is used.</td><td style="word-wrap: break-word;">{'msa_1.a3m': '>seq1\nACD-\n>seq2\nACDE'}</td></tr>
-<tr><td style="word-wrap: break-word;">ligand_smiles</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Ligand specification via SMILES string (for entity_type=ligand). Provide either this or ligand_ccd, not both.</td><td style="word-wrap: break-word;">CCO</td></tr>
-<tr><td style="word-wrap: break-word;">ligand_ccd</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Ligand specification via PDB CCD code (for entity_type=ligand). Provide either this or ligand_smiles, not both.</td><td style="word-wrap: break-word;">HEM</td></tr>
-<tr><td style="word-wrap: break-word;">modifications</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Residue-level modifications for polymer entities. One per line in the form 'position:ccd_code'.</td><td style="word-wrap: break-word;">5:SEP 12:MSE</td></tr>
-<tr><td style="word-wrap: break-word;">cyclic</td><td>False</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Whether the polymer is cyclic. Applicable to protein/DNA/RNA.</td><td style="word-wrap: break-word;">false</td></tr>
-<tr><td style="word-wrap: break-word;">multiple_chains</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Additional chain IDs for identical copies of this entity. Comma-separated; the final 'id' will be a list if provided.</td><td style="word-wrap: break-word;">B,C</td></tr>
+<tr><td style="word-wrap: break-word;">entity_type</td><td>True</td><td style="word-wrap: break-word;">one of: protein \| dna \| rna \| ligand</td><td style="word-wrap: break-word;">Type of molecular entity to define.</td><td style="word-wrap: break-word;">protein</td></tr>
+<tr><td style="word-wrap: break-word;">chain_id</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Primary chain identifier for this entity. If multiple copies are needed, add them via multiple_chains.</td><td style="word-wrap: break-word;">A</td></tr>
+<tr><td style="word-wrap: break-word;">sequence</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Sequence string for protein/DNA/RNA. Can be a raw sequence or FASTA text. If FASTA text is provided here, the header name will be used and the sequence extracted automatically.</td><td style="word-wrap: break-word;">MKTAYIAKQRQISFVKSHFSRQDILD...</td></tr>
+<tr><td style="word-wrap: break-word;">sequence_fasta</td><td>False</td><td style="word-wrap: break-word;">FASTA</td><td style="word-wrap: break-word;">Sequence provided as a FASTA file/object (alternative to 'sequence'). The header name is stored, and the sequence is extracted.</td><td style="word-wrap: break-word;">{'seq_proteinA': '>seq_proteinA\nMKTAYI...\n'}</td></tr>
+<tr><td style="word-wrap: break-word;">msa_content</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">MSA content as a raw string (protein only). Leave empty to mark MSA as 'empty'. If 'msa_a3m' is provided, it takes precedence.</td><td style="word-wrap: break-word;">>seq1/100-200 ACDE... >seq2/101-201 AC-E... </td></tr>
+<tr><td style="word-wrap: break-word;">msa_a3m</td><td>False</td><td style="word-wrap: break-word;">A3M</td><td style="word-wrap: break-word;">MSA in A3M format (protein only). If provided, overrides 'msa_content'.</td><td style="word-wrap: break-word;">{'msaA': '>seq1\nACDE...\n>seq2\nAC-E...\n'}</td></tr>
+<tr><td style="word-wrap: break-word;">ligand_smiles</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">SMILES string for ligand entities. Provide this or 'ligand_ccd', not both.</td><td style="word-wrap: break-word;">CC(=O)OC1=CC=CC=C1C(=O)O</td></tr>
+<tr><td style="word-wrap: break-word;">ligand_ccd</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">CCD (Chemical Component Dictionary) code for ligand entities. Provide this or 'ligand_smiles', not both.</td><td style="word-wrap: break-word;">ATP</td></tr>
+<tr><td style="word-wrap: break-word;">modifications</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Residue-level modifications for protein/DNA/RNA. One per line in the form position:ccd_code.</td><td style="word-wrap: break-word;">5:MSE 42:SEP</td></tr>
+<tr><td style="word-wrap: break-word;">cyclic</td><td>False</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Mark the polymer as cyclic (applies to protein/DNA/RNA).</td><td style="word-wrap: break-word;">false</td></tr>
+<tr><td style="word-wrap: break-word;">multiple_chains</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Comma-separated list of additional chain IDs to create identical copies of this entity.</td><td style="word-wrap: break-word;">B,C</td></tr>
 </tbody>
 </table>
 </div>
@@ -53,23 +53,25 @@ Use this node to define one molecular entity (protein, DNA, RNA, or ligand) that
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">sequences</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">A list containing one Boltz-ready sequence mapping for the specified entity. This should be combined with other sequences using a list combiner before building the final YAML.</td><td style="word-wrap: break-word;">[{'protein': {'id': ['A', 'B'], 'sequence': 'ACDEFGHIKLMNPQRSTVWY', '_sequence_name': 'my_protein', 'msa': 'empty', 'modifications': [{'position': 5, 'ccd': 'SEP'}], 'cyclic': False}}]</td></tr>
+<tr><td style="word-wrap: break-word;">sequences</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">A list containing one standardized sequence mapping for the specified entity. Includes chain id(s) and the appropriate fields (sequence or ligand spec, MSA if protein, modifications, cyclic).</td><td style="word-wrap: break-word;">[{'protein': {'id': ['A', 'B'], 'sequence': 'MKTAYIAKQRQISFVKSHFSRQDILD...', '_sequence_name': 'protein_sequence', 'msa': 'empty', 'modifications': [{'position': 5, 'ccd': 'MSE'}], 'cyclic': False}}]</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Protein/DNA/RNA sequences**: You must provide a sequence via 'sequence' or 'sequence_fasta'. If 'sequence' starts with '>' it is treated as FASTA and the header name is extracted.
-- **Ligands**: Provide exactly one of 'ligand_smiles' or 'ligand_ccd' when entity_type is 'ligand'. Supplying both will raise an error.
-- **MSA handling (proteins)**: If neither 'msa_a3m' nor 'msa_content' is provided, the MSA is set to 'empty'.
-- **Chain IDs**: If 'multiple_chains' is set, the 'id' field becomes a list of chain IDs; otherwise it is a single string.
-- **Modifications format**: Each line must be 'position:ccd_code' with an integer position; invalid lines are ignored with a warning.
-- **Cyclic polymers**: Setting 'cyclic' to true will add a 'cyclic' flag to the entity (polymer only).
+- **Sequence requirement**: For protein/DNA/RNA, you must provide a sequence via 'sequence' or 'sequence_fasta'.
+- **Ligand exclusivity**: For ligands, provide exactly one of 'ligand_smiles' or 'ligand_ccd'—not both.
+- **Multiple chains**: Use 'multiple_chains' for identical copies (e.g., A with additional B,C). All listed IDs will be included under a single entity.
+- **MSA handling**: If no MSA is provided for proteins, the node sets MSA to the literal value 'empty'.
+- **FASTA headers**: When a FASTA is provided, the header name (without commas) is stored as '_sequence_name'.
+- **Modifications format**: Each modification line must be 'position:ccd_code' with a valid integer position.
+- **Downstream uniqueness**: Final YAML requires unique chain IDs across all sequences; ensure IDs don’t conflict when combining multiple entities.
 
 ## Troubleshooting
-- **Error: 'Sequence is required for protein/dna/rna'**: Provide a non-empty 'sequence' or 'sequence_fasta'. If using FASTA, ensure it contains a header and sequence lines.
-- **Error: 'SMILES or CCD code is required for ligands'**: When entity_type='ligand', supply either 'ligand_smiles' or 'ligand_ccd'.
-- **Error: 'Provide either SMILES or CCD code, not both'**: Remove one of the ligand specifications so only one remains.
-- **Unexpected sequence name**: If using 'sequence' with a FASTA header, the header’s first token becomes the sequence name. Adjust the header or use 'sequence_fasta' for clarity.
-- **Modifications ignored**: Ensure each line follows 'position:ccd' and that 'position' is an integer (e.g., '12:MSE').
-- **Multiple chains not applied**: Provide comma-separated chain IDs with no spaces or ensure you trim spaces (e.g., 'B,C' not 'B, C').
+- **Error: 'Sequence is required for protein/dna/rna'**: Provide a valid sequence string or FASTA via 'sequence' or 'sequence_fasta'.
+- **Error: 'SMILES or CCD code is required for ligands'**: Set 'ligand_smiles' or 'ligand_ccd' (exactly one).
+- **Error: 'Provide either SMILES or CCD code, not both'**: Remove one of the ligand fields so only a single specification remains.
+- **Invalid modification format warning**: Ensure each line in 'modifications' follows 'position:ccd_code' with a numeric position (e.g., '42:SEP').
+- **Unexpected FASTA in 'sequence'**: If pasting FASTA into 'sequence', the node will extract header and sequence automatically. Verify the header is correct and the lines contain only sequence characters.
+- **Multiple chains not applied**: Confirm 'multiple_chains' uses comma-separated IDs without spaces (e.g., 'B,C').
+- **Downstream duplicate chain ID error**: When later combining into YAML, ensure this node’s chain IDs do not overlap with other entities’ chain IDs.

@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Interactive node to create a grayscale mask using a canvas. Produces a single-channel mask normalized between 0 and 1, where white is fully masked and black is unmasked. If the canvas is empty, it outputs a zero mask with the specified width and height.
+Interactive node to draw a grayscale mask on a canvas and output it as a normalized tensor mask. It decodes the provided canvas image, resizes it to the specified dimensions, and ensures values are in the 0–1 range. If the canvas is empty (all black), it returns a zero mask with the requested size.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/inputs/drawmask.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Interactive node to create a grayscale mask using a canvas. Produces a single-ch
 
 ## Usage
 
-Use this node when you need a custom, hand-drawn mask for tasks like inpainting, compositing, or selectively applying effects. Configure the canvas size before drawing to match your target resolution, draw on the canvas with the chosen brush size and color, and pass the resulting mask to downstream nodes that accept a MASK input.
+Use this node when you need a hand-drawn mask for image operations such as inpainting, blending, or selective processing. Configure canvas size and brush parameters in the UI, draw on the canvas, and connect the resulting mask to downstream nodes that accept MASK inputs.
 
 ## Inputs
 
@@ -26,11 +26,11 @@ Use this node when you need a custom, hand-drawn mask for tasks like inpainting,
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">canvas</td><td>True</td><td style="word-wrap: break-word;">CANVAS</td><td style="word-wrap: break-word;">Interactive drawing surface input from the UI. Contains the strokes you draw to define the mask.</td><td style="word-wrap: break-word;">Interactive canvas data from the UI</td></tr>
-<tr><td style="word-wrap: break-word;">width</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Output mask width in pixels. Also updates the canvas aspect ratio in the UI.</td><td style="word-wrap: break-word;">512</td></tr>
-<tr><td style="word-wrap: break-word;">height</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Output mask height in pixels. Also updates the canvas aspect ratio in the UI.</td><td style="word-wrap: break-word;">512</td></tr>
-<tr><td style="word-wrap: break-word;">brush_size</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Brush size used when drawing on the canvas in the UI.</td><td style="word-wrap: break-word;">10</td></tr>
-<tr><td style="word-wrap: break-word;">brush_color</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Brush color in grayscale for drawing on the canvas. 0 is black (unmasked), 255 is white (masked).</td><td style="word-wrap: break-word;">255</td></tr>
+<tr><td style="word-wrap: break-word;">canvas</td><td>True</td><td style="word-wrap: break-word;">CANVAS</td><td style="word-wrap: break-word;">The drawn canvas image encoded as a data URL string. Represents the grayscale mask drawn in the UI.</td><td style="word-wrap: break-word;">data:image/png;base64,<base64-encoded-bytes></td></tr>
+<tr><td style="word-wrap: break-word;">width</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Output mask width in pixels. Also controls the canvas aspect ratio in the UI.</td><td style="word-wrap: break-word;">512</td></tr>
+<tr><td style="word-wrap: break-word;">height</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Output mask height in pixels. Also controls the canvas aspect ratio in the UI.</td><td style="word-wrap: break-word;">512</td></tr>
+<tr><td style="word-wrap: break-word;">brush_size</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Brush diameter used in the drawing UI. Adjust to control stroke thickness.</td><td style="word-wrap: break-word;">10</td></tr>
+<tr><td style="word-wrap: break-word;">brush_color</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Brush intensity in grayscale from 0 (black) to 255 (white). Controls how strongly drawn areas contribute to the mask.</td><td style="word-wrap: break-word;">255</td></tr>
 </tbody>
 </table>
 </div>
@@ -47,24 +47,25 @@ Use this node when you need a custom, hand-drawn mask for tasks like inpainting,
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">mask</td><td style="word-wrap: break-word;">MASK</td><td style="word-wrap: break-word;">Single-channel mask tensor of shape 1×H×W with values in [0, 1]. White areas (1.0) indicate masked regions; black areas (0.0) indicate unmasked regions.</td><td style="word-wrap: break-word;">A 1×512×512 mask tensor with values between 0 and 1</td></tr>
+<tr><td style="word-wrap: break-word;">mask</td><td style="word-wrap: break-word;">MASK</td><td style="word-wrap: break-word;">A single-channel mask tensor with shape (1, height, width), normalized to 0–1. Matches the specified width and height.</td><td style="word-wrap: break-word;">A tensor-like mask with values between 0.0 (black) and 1.0 (white) at size 1x512x512</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Canvas size matters**: Set width and height to your intended final resolution before drawing to avoid resampling artifacts.
-- **Empty canvas behavior**: If nothing is drawn, the node outputs a zero mask with the specified width and height.
-- **Value range**: The mask is normalized to [0, 1], where 1.0 represents white (masked) and 0.0 represents black (unmasked).
-- **Brush controls**: Brush size and brush color control the drawing behavior in the UI; they are not separate inputs to downstream nodes.
-- **Resizing**: If the drawn canvas differs from the specified width/height, it is resized to match the target dimensions.
+- Width and height must be between 32 and 2048 pixels; values outside this range are not allowed.
+- Brush size must be between 1 and 100; brush color must be between 0 and 255.
+- The mask is grayscale: 0 (black) indicates no mask, 1 (white) indicates full mask, intermediate values represent partial strength.
+- If the canvas is entirely empty/black, an all-zero mask is produced with the requested dimensions.
+- The input canvas is resized to the specified width and height, which may introduce smoothing.
+- The canvas input must be a valid data URL (e.g., PNG) encoded as base64.
 
 ## Troubleshooting
-- **Mask appears blank**: Ensure you are drawing with a nonzero brush color (e.g., 255 for white) and an adequate brush size.
-- **Wrong mask size downstream**: Adjust this node's width and height to match the expected resolution of downstream nodes.
-- **Mask looks soft or blurry**: Set the desired width and height first, then draw at that resolution to avoid resizing.
-- **Mask is inverted**: Use white for areas you want masked and black for areas you want unmasked. If needed, invert in a downstream node.
-- **Nothing changes after drawing**: Verify that the canvas input is being updated in the UI and that the node has been re-executed.
+- Mask appears all zero: Ensure you drew with a non-zero brush_color and that the canvas contains non-black content.
+- Output size is unexpected: Confirm width and height are set as intended; the mask is always resized to these values.
+- Edges look soft or blurry: Resizing the canvas to different dimensions can soften edges; draw at the target size to minimize resampling artifacts.
+- Invalid canvas error or no output: Verify the canvas string is a properly formatted data URL (e.g., data:image/png;base64,<...>).
+- Downstream node rejects mask shape: Ensure the receiving node expects a single-channel mask with shape (1, H, W).
 
 ## Example Pipelines
 

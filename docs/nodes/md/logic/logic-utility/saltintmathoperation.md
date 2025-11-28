@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Performs a basic mathematical operation on two integers. Supports addition, subtraction, multiplication, integer division, modulo, and exponentiation. Handles divide/modulo by zero by returning 0 and logging a warning.
+Performs basic integer arithmetic on two inputs. Supports addition, subtraction, multiplication, integer division, modulo, and exponentiation. Division and modulo handle zero safely by returning 0.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/logic/logic-utility/saltintmathoperation.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Performs a basic mathematical operation on two integers. Supports addition, subt
 
 ## Usage
 
-Use this node whenever you need simple arithmetic between two integer values in a workflow. Typical uses include counters, index calculations, loop arithmetic, and conditional evaluations where integer results are required.
+Use this node whenever you need deterministic integer math within a workflow, such as counters, index calculations, loop increments/decrements, or preparing integer parameters for other nodes. Choose the desired operation and provide two integer operands.
 
 ## Inputs
 
@@ -26,9 +26,9 @@ Use this node whenever you need simple arithmetic between two integer values in 
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">a</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">First integer operand. Supports very large positive or negative integers.</td><td style="word-wrap: break-word;">10</td></tr>
-<tr><td style="word-wrap: break-word;">b</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Second integer operand. Supports very large positive or negative integers.</td><td style="word-wrap: break-word;">3</td></tr>
-<tr><td style="word-wrap: break-word;">operation</td><td>True</td><td style="word-wrap: break-word;">ENUM</td><td style="word-wrap: break-word;">The arithmetic operation to apply to a and b. Options: add, subtract, multiply, divide (integer division), modulo, power.</td><td style="word-wrap: break-word;">divide</td></tr>
+<tr><td style="word-wrap: break-word;">a</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">First integer operand.</td><td style="word-wrap: break-word;">10</td></tr>
+<tr><td style="word-wrap: break-word;">b</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Second integer operand.</td><td style="word-wrap: break-word;">3</td></tr>
+<tr><td style="word-wrap: break-word;">operation</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">Mathematical operation to perform on the two integers. Options: add, subtract, multiply, divide (integer division), modulo, power.</td><td style="word-wrap: break-word;">subtract</td></tr>
 </tbody>
 </table>
 </div>
@@ -45,22 +45,20 @@ Use this node whenever you need simple arithmetic between two integer values in 
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">The integer result of the selected operation. For divide, the result is integer (floor) division.</td><td style="word-wrap: break-word;">3</td></tr>
+<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">The result of the selected integer operation.</td><td style="word-wrap: break-word;">7</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- Division is integer division using floor semantics; results with negative numbers are floored, not truncated toward zero.
-- Divide and modulo by zero are guarded; the node returns 0 and logs a warning in these cases.
-- If an unknown operation is provided, the node returns 0 and logs a warning.
-- Exponentiation can produce very large numbers; extremely large exponents may be slow or resource-intensive.
-- Using a negative exponent will mathematically yield a fractional result in Python, but the node declares an INT output; avoid negative exponents to keep results integral.
-- Valid operations are exactly: add, subtract, multiply, divide, modulo, power.
+- Division uses integer division (a // b).
+- Division by zero and modulo by zero are guarded and will return 0.
+- If an unknown operation is provided or an error occurs, the node returns 0.
+- Input values are integers and are constrained by very large min/max bounds; ensure values are within the UI-allowed range.
+- Exponentiation (power) can grow quickly; use with care.
 
 ## Troubleshooting
-- Result is 0 unexpectedly: Check for divide/modulo by zero or an invalid operation string; both return 0 by design.
-- Unexpected negative division result: Remember the node uses floor division; for negative operands, the quotient is floored (e.g., -3 // 2 = -2).
-- Large or slow computation: Very large exponents can be expensive; reduce the exponent or reconsider the operation.
-- Non-integer-like output expected from power: Avoid negative exponents; use non-negative integer exponents to keep the output integral.
-- Operation not found in the dropdown: Ensure the operation is one of add, subtract, multiply, divide, modulo, power.
+- Result is 0 unexpectedly: Verify that b is not 0 for divide/modulo and that the chosen operation is correct.
+- Non-integer behavior observed: Ensure both inputs are integers; this node performs integer math (e.g., divide truncates toward negative infinity).
+- Overflow or extremely large results: Check inputs for large exponents or products; consider smaller values or a float operation node if appropriate.
+- Wrong operation applied: Reconfirm the 'operation' choice from the list [add, subtract, multiply, divide, modulo, power].

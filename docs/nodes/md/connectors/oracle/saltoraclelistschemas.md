@@ -1,10 +1,17 @@
 # Oracle List Schemas
 
-Retrieves all available schemas from the connected Oracle database using the provided credentials. Returns a human-readable summary and structured JSON, with optional formatted exports.
+<div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
+<div style="flex: 1; min-width: 0;">
+
+Lists all accessible schemas in an Oracle database using the configured Oracle credentials. It loads credentials, calls the Oracle service to retrieve schema names, and returns formatted outputs including human-readable text and structured JSON.
+
+</div>
+<div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/oracle/saltoraclelistschemas.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
+</div>
 
 ## Usage
 
-Use this node to discover which schemas exist in your Oracle instance before listing tables or building queries. Place it early in a workflow to validate connectivity and explore the database structure.
+Use this node when you need to discover which schemas are available in an Oracle instance before querying tables or building data workflows. Typically placed early in a database workflow to guide subsequent table discovery or query-building steps.
 
 ## Inputs
 
@@ -19,8 +26,8 @@ Use this node to discover which schemas exist in your Oracle instance before lis
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Path to the saved Oracle credential profile containing connection details.</td><td style="word-wrap: break-word;">/projects/my-flow/credentials/oracle.json</td></tr>
-<tr><td style="word-wrap: break-word;">timeout</td><td>False</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time (in seconds) to wait for the operation before it times out.</td><td style="word-wrap: break-word;">30</td></tr>
+<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Path or reference to the saved Oracle credentials. Must match the 'oracle' credential template.</td><td style="word-wrap: break-word;">/configs/credentials/oracle.json</td></tr>
+<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time in seconds to wait for the Oracle service to respond.</td><td style="word-wrap: break-word;">60</td></tr>
 </tbody>
 </table>
 </div>
@@ -37,23 +44,25 @@ Use this node to discover which schemas exist in your Oracle instance before lis
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Readable summary of the schemas found.</td><td style="word-wrap: break-word;">Oracle Schemas: HR, SALES, SYSTEM, USERS</td></tr>
-<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Structured JSON payload containing the list of schemas and related metadata.</td><td style="word-wrap: break-word;">{"schemas": ["HR", "SALES", "SYSTEM", "USERS"], "count": 4}</td></tr>
-<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">HTML-formatted table of schemas for rendering in UI contexts. May be empty if not requested by downstream tools.</td><td style="word-wrap: break-word;"><table><tr><th>Schema</th></tr><tr><td>HR</td></tr></table></td></tr>
-<tr><td style="word-wrap: break-word;">xlsx</td><td style="word-wrap: break-word;">FILE</td><td style="word-wrap: break-word;">Excel file export of the schema list when applicable. May be empty if not generated.</td><td style="word-wrap: break-word;"><binary-xlsx-file-reference></td></tr>
-<tr><td style="word-wrap: break-word;">pdf</td><td style="word-wrap: break-word;">FILE</td><td style="word-wrap: break-word;">PDF export of the schema list when applicable. May be empty if not generated.</td><td style="word-wrap: break-word;"><binary-pdf-file-reference></td></tr>
+<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">TEXT</td><td style="word-wrap: break-word;">Readable summary listing the Oracle schemas.</td><td style="word-wrap: break-word;">Oracle Schemas: HR, SYS, SYSTEM, APP_USER</td></tr>
+<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Structured data containing the list of schemas and any metadata returned by the service.</td><td style="word-wrap: break-word;">{"schemas": ["HR", "SYS", "SYSTEM", "APP_USER"], "count": 4}</td></tr>
+<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">HTML</td><td style="word-wrap: break-word;">HTML-formatted table or list of the schemas (may be empty if not requested by the service).</td><td style="word-wrap: break-word;"><table><tr><th>Schema</th></tr><tr><td>HR</td></tr><tr><td>SYS</td></tr></table></td></tr>
+<tr><td style="word-wrap: break-word;">xlsx</td><td style="word-wrap: break-word;">XLSX</td><td style="word-wrap: break-word;">Spreadsheet export of the schemas (if generated by the service).</td><td style="word-wrap: break-word;"><binary xlsx data or file reference></td></tr>
+<tr><td style="word-wrap: break-word;">pdf</td><td style="word-wrap: break-word;">PDF</td><td style="word-wrap: break-word;">PDF export of the schemas (if generated by the service).</td><td style="word-wrap: break-word;"><binary pdf data or file reference></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Credentials required**: The node requires a valid Oracle credential profile to connect.
-- **Permissions affect results**: The schemas returned depend on the database permissions of the provided user.
-- **Timeout behavior**: Long-running or slow connections may require increasing the timeout input.
-- **Output variability**: Depending on configuration and downstream usage, only text and JSON may be populated; HTML/XLSX/PDF may be empty.
+- **Credentials**: This node requires valid Oracle credentials configured under the 'oracle' credential template.
+- **Permissions**: The connected user must have sufficient privileges to list schemas; results are limited to schemas the user can access.
+- **Timeouts**: Large instances or network latency may require increasing the timeout value.
+- **Output formats**: Text and JSON are always provided; HTML, XLSX, and PDF may depend on service capabilities or configuration.
+- **No additional parameters**: This node does not take schema filters; it returns all accessible schemas.
 
 ## Troubleshooting
-- **Connection failed**: Verify the credentials file path and contents, network access to the Oracle host, and that the database is reachable.
-- **No schemas returned**: Ensure the user has permission to view schemas. Try connecting with a user that has the necessary privileges.
-- **Operation timed out**: Increase the timeout input and confirm the database isn't under heavy load.
-- **Authentication errors**: Confirm username, password, service name/SID, and connection parameters in the credentials profile.
+- **Authentication failed**: Verify credentials_path points to a valid Oracle credential file and that username/password and connection details are correct.
+- **No schemas returned**: Ensure the user has permissions to view schemas. Try a different account with broader access.
+- **Timeout errors**: Increase the timeout input and verify network connectivity to the Oracle service and database.
+- **Service unavailable**: Confirm the Oracle data service is running and reachable from your environment.
+- **Partial results or permission errors**: Check Oracle roles and grants; some system schemas may be restricted.

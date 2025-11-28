@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Converts any incoming value to a boolean. For tensor inputs, it returns False only when all elements are exactly zero; otherwise True. For non-tensor values, it uses standard truthiness conversion and can optionally invert the result.
+Converts an incoming value to a boolean. Tensors are treated as False only if all elements are zero; otherwise True. An optional invert flag flips the final result.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/logic/logic-utility/salttoboolnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Converts any incoming value to a boolean. For tensor inputs, it returns False on
 
 ## Usage
 
-Use this node when you need a clear True/False decision from a value of any type. Common in control flows, gating logic, and branching where inputs may be numbers, strings, lists, or tensors. Toggle 'invert' to flip the final boolean.
+Use this node when you need a boolean signal from any prior output to drive logic branches or condition checks. Typical workflows include validating non-empty strings, non-zero numbers, or non-all-zero tensors before routing execution.
 
 ## Inputs
 
@@ -26,8 +26,8 @@ Use this node when you need a clear True/False decision from a value of any type
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">value</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The value to convert to boolean. Tensors are True if any element is non-zero; other types follow standard truthiness (e.g., empty collections and zero are False, non-empty and non-zero are True).</td><td style="word-wrap: break-word;">0, 1, "", "hello", [], [1], a tensor of all zeros, a tensor with any non-zero element</td></tr>
-<tr><td style="word-wrap: break-word;">invert</td><td>False</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If True, the computed boolean result is inverted.</td><td style="word-wrap: break-word;">False</td></tr>
+<tr><td style="word-wrap: break-word;">value</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Any input value to evaluate as a boolean. For tensors, the result is False if all elements are zero, otherwise True. For other types, standard truthiness is used.</td><td style="word-wrap: break-word;">A tensor, number, string, list, or any object</td></tr>
+<tr><td style="word-wrap: break-word;">invert</td><td>False</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If True, inverts the computed boolean result.</td><td style="word-wrap: break-word;">False</td></tr>
 </tbody>
 </table>
 </div>
@@ -44,21 +44,20 @@ Use this node when you need a clear True/False decision from a value of any type
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">The boolean outcome after conversion (and optional inversion).</td><td style="word-wrap: break-word;">True</td></tr>
+<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">The computed boolean value after optional inversion.</td><td style="word-wrap: break-word;">True</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Tensor behavior**: Returns False only if the tensor's min and max are both exactly 0 (i.e., all elements are zero). Any non-zero element yields True.
-- **NaN in tensors**: Tensors containing NaN will not have min/max equal to 0 and will evaluate to True.
-- **Non-tensor truthiness**: Uses standard truthiness rules. Examples: 0, 0.0, empty string, empty list/dict evaluate to False; non-zero numbers and non-empty strings/collections evaluate to True.
-- **String caveat**: The string "false" (or any non-empty string) evaluates to True. Parse strings first if you need semantic boolean parsing.
-- **Fallback on conversion errors**: If a non-tensor value cannot be converted (rare), the node defaults to True before applying 'invert'.
-- **Invert option**: When enabled, it flips the final boolean result.
+- Tensors are considered False only when both their max and min are 0 (i.e., all elements are zero). Any non-zero element makes it True.
+- Non-tensor values use normal truthiness rules (e.g., empty string/list -> False; non-empty -> True; zero -> False; non-zero -> True).
+- If the node cannot convert a non-tensor value to bool due to a ValueError or TypeError, it defaults to True.
+- Any unexpected runtime error during processing results in False.
+- Setting invert to True flips the final boolean outcome.
 
 ## Troubleshooting
-- **Unexpected True for text 'false'**: Convert the string to a real boolean before this node (e.g., map 'true'/'false' to booleans) since non-empty strings are truthy.
-- **Tensor evaluates True when expected False**: Ensure the tensor truly contains only zeros; even a single non-zero (or NaN) element makes it True.
-- **Result seems reversed**: Check if 'invert' is enabled.
-- **Got False due to error**: While rare, internal errors log and return False. Validate your input type and shape, and retry.
+- Result is False for a tensor you expected to be True: Ensure the tensor contains at least one non-zero element. All-zero tensors evaluate to False.
+- Result is unexpectedly True for a custom object: If the object's boolean conversion raises an error, the node defaults to True. Implement a __bool__ method or provide a different input type.
+- Result is False due to an internal error: Check upstream inputs for invalid or unsupported values (e.g., tensors with problematic states). The node returns False on unhandled exceptions.
+- Performance concerns with very large tensors: The check uses min/max; if performance is an issue, consider pre-reducing or summarizing the tensor before this node.

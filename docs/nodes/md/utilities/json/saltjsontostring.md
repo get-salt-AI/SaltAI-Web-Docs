@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Converts any input data into a JSON-formatted string. Preserves numbers, booleans, lists, and objects; non-JSON-serializable values are coerced to their string representation. The Pretty option controls indentation for human-readable output.
+Converts any input data into a JSON-formatted string. Supports pretty (indented) or compact formatting and safely handles common Python types, converting non-JSON-serializable values to strings. Returns a single STRING output containing the serialized JSON.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/utilities/json/saltjsontostring.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Converts any input data into a JSON-formatted string. Preserves numbers, boolean
 
 ## Usage
 
-Use this node when you need a JSON string representation of data to pass to APIs, store in text fields, or log. Typically follows nodes producing dictionaries/lists and precedes HTTP, file, or database nodes that accept text payloads.
+Use this node when you need to serialize data for logging, storage, display, or passing into downstream nodes or external services that expect JSON text. Common in workflows that transform structured data (dicts/lists) into a transportable string or when preparing payloads for API requests.
 
 ## Inputs
 
@@ -26,8 +26,8 @@ Use this node when you need a JSON string representation of data to pass to APIs
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">input</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The data to convert to a JSON string. Can be a dict/object, list/array, number, boolean, null, or any other value (which will be converted to a string).</td><td style="word-wrap: break-word;">{'user': {'id': 123, 'name': 'Ada', 'roles': ['admin', 'editor']}}</td></tr>
-<tr><td style="word-wrap: break-word;">pretty</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, formats the JSON with indentation for readability; if false, outputs compact JSON.</td><td style="word-wrap: break-word;">true</td></tr>
+<tr><td style="word-wrap: break-word;">input</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The data to convert to a JSON string. Accepts dictionaries, lists, numbers, booleans, None, strings, and other types (which will be stringified).</td><td style="word-wrap: break-word;">{'user': {'id': 123, 'name': 'Ava'}, 'items': [{'sku': 'A-100', 'qty': 2}]}</td></tr>
+<tr><td style="word-wrap: break-word;">pretty</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, output is indented for readability; if false, output is compact with no extra whitespace.</td><td style="word-wrap: break-word;">True</td></tr>
 </tbody>
 </table>
 </div>
@@ -44,20 +44,20 @@ Use this node when you need a JSON string representation of data to pass to APIs
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">json_string</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The JSON-formatted string representation of the input.</td><td style="word-wrap: break-word;">{"user":{"id":123,"name":"Ada","roles":["admin","editor"]}}</td></tr>
+<tr><td style="word-wrap: break-word;">json_string</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The JSON-formatted string representation of the input data.</td><td style="word-wrap: break-word;">{   "user": {     "id": 123,     "name": "Ava"   },   "items": [     {       "sku": "A-100",       "qty": 2     }   ] }</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- If the input is already a plain string, the output will be a JSON string containing that string (wrapped in quotes), not parsed JSON.
-- Non-serializable objects are converted to their string representation; if you need structured JSON, supply serializable data (dicts, lists, numbers, booleans, null).
-- Pretty formatting adds indentation and increases size; disable it for compact payloads in production or bandwidth-constrained contexts.
-- Unicode characters are preserved (not ASCII-escaped) in the output string.
-- This node does not validate or parse JSON strings; to parse a JSON string into structured data, use JSON: From String.
+- Strings as input are converted to JSON string literals (they will be wrapped in quotes and may contain escaped characters), not passed through verbatim.
+- Non-JSON-serializable objects are converted to their string representation.
+- None becomes null; booleans are rendered as true/false; Unicode is preserved (no ASCII escaping).
+- Pretty formatting adds indentation; compact formatting uses minimal separators.
+- On serialization errors, the node falls back to returning str(input), which may not be valid JSON.
 
 ## Troubleshooting
-- Output has unexpected surrounding quotes: This occurs when the input was a plain string. If you intended to parse JSON, use JSON: From String before converting.
-- Output contains escaped characters (e.g., \" inside the text): This is normal for JSON string encoding. When downstream systems parse the JSON, escapes will resolve.
-- Got a simple stringified object representation instead of structured JSON: The input contained non-serializable types. Convert them to dicts/lists or primitives before using this node.
-- Output too large or hard to read: Toggle pretty to false for compact output, or true for readability as needed.
+- Output shows extra quotes or escaped characters: Your input was a plain string; the node emits a JSON string literal. If you need the raw string, avoid converting to JSON or parse downstream accordingly.
+- Output is 'null' or empty-like: The input might have been None or an empty/whitespace string parsed as None upstream.
+- Output is not valid JSON: The node fell back to str(input) due to a serialization error. Check for circular references or unsupported objects and consider converting them to dict/list or primitives before serialization.
+- Unexpected large file size: Disable pretty formatting (set pretty to false) to produce a compact JSON string.

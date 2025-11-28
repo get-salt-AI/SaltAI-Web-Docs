@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Extracts a value from JSON data using a dot-separated key path. Works with dicts, lists, or JSON strings and supports numeric indices for arrays (e.g., items.0). If the path cannot be resolved, it returns a supplied default value.
+Extracts a value from JSON data using a dot-separated key path. Supports nested objects and arrays (use numeric indices for arrays). If the path cannot be resolved, returns the provided default value.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/utilities/json/saltjsongetvalue.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Extracts a value from JSON data using a dot-separated key path. Works with dicts
 
 ## Usage
 
-Use this node when you need to read a specific field or nested value from JSON data within a workflow. Typical usage includes pulling a property from an API response, selecting a list item by index, or safely retrieving deeply nested values with a fallback default.
+Use this node to pull a specific field from complex JSON data, such as API responses or configuration blobs. Provide the JSON (object, array, or JSON string) and a dot-separated path like "user.name" or "items.0.title" to retrieve the desired field. Commonly used after parsing a JSON string or before feeding a single value into downstream nodes.
 
 ## Inputs
 
@@ -26,9 +26,9 @@ Use this node when you need to read a specific field or nested value from JSON d
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">json_data</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The JSON source to read from. Accepts a Python dict, list, or a JSON-formatted string.</td><td style="word-wrap: break-word;">{"user": {"name": "Ada", "id": 123}, "items": [{"title": "First"}]}</td></tr>
-<tr><td style="word-wrap: break-word;">key_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Dot-separated path to the target value. Use dots to traverse objects and numeric segments to index lists.</td><td style="word-wrap: break-word;">items.0.title</td></tr>
-<tr><td style="word-wrap: break-word;">default_value</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Value to return if the path does not exist, resolves to None, or an error occurs.</td><td style="word-wrap: break-word;">Not found</td></tr>
+<tr><td style="word-wrap: break-word;">json_data</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The source JSON data. Can be a dictionary, list, or a JSON-formatted string which will be parsed.</td><td style="word-wrap: break-word;">{"user": {"name": "Alice"}, "items": [{"title": "First"}]}</td></tr>
+<tr><td style="word-wrap: break-word;">key_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Dot-separated path to the target value. Use dots to navigate objects and integers to index arrays.</td><td style="word-wrap: break-word;">items.0.title</td></tr>
+<tr><td style="word-wrap: break-word;">default_value</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Value to return if the key path is not found or cannot be resolved.</td><td style="word-wrap: break-word;"><fallback></td></tr>
 </tbody>
 </table>
 </div>
@@ -45,21 +45,23 @@ Use this node when you need to read a specific field or nested value from JSON d
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">value</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The value found at the specified key path. If not found or an error occurs, returns the provided default_value.</td><td style="word-wrap: break-word;">First</td></tr>
+<tr><td style="word-wrap: break-word;">value</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The value located at the specified key path, or the default value if not found.</td><td style="word-wrap: break-word;">First</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Path format**: Use dot-separated keys for objects and numeric segments for lists (e.g., "user.name", "items.0.title").
-- **Input parsing**: If json_data is a string, the node attempts to parse it as JSON before traversal.
-- **Empty path behavior**: If key_path is empty, the node returns the original json_data unchanged.
-- **Missing values**: If a key is missing, an index is invalid, the traversal hits a non-container, or a step resolves to None, the node returns default_value.
-- **Error handling**: On unexpected errors (including invalid JSON strings), the node returns default_value.
+- **Empty key_path returns input**: If key_path is empty, the entire json_data is returned.
+- **String inputs are parsed**: When json_data is a string, the node attempts to parse it as JSON before traversal.
+- **Array access**: Use integer segments (e.g., "items.2") to access list elements; non-integer segments on lists will cause a fallback to default_value.
+- **Missing keys or None stops traversal**: If any step is missing or resolves to None, the node returns default_value.
+- **Invalid JSON strings**: If json_data is a string but cannot be parsed, traversal will fail and default_value is returned.
+- **Type-sensitive traversal**: Traversal only works through dict keys and list indices; encountering other types leads to default_value.
 
 ## Troubleshooting
-- **Returned default instead of value**: Verify the key_path spelling and structure matches the JSON. Ensure array indices are numeric and within range.
-- **Invalid JSON string**: If json_data is a string, confirm it is valid JSON. Use a JSON validation tool or a dedicated validator node first.
-- **Type mismatch along path**: If a segment expects a dict but encounters a list (or vice versa), adjust the path (e.g., add a numeric index for lists).
-- **Received entire input back**: This happens when key_path is empty. Provide a non-empty path to extract a specific value.
-- **Unexpected None**: If an intermediate value is None, the node returns default_value. Check your source data or provide a suitable fallback.
+- **Got None instead of a value**: Provide default_value to avoid None, and verify the key_path matches the JSON structure.
+- **Path not working on arrays**: Ensure array segments in key_path are valid integers (e.g., "0", "1").
+- **Index out of range**: Accessing a list element that doesn't exist will return default_value; adjust the index or provide a fallback.
+- **Invalid JSON string**: If json_data is a malformed string, it cannot be parsed; validate or correct the input string first.
+- **Unexpected type in path**: If a segment targets a list but a dict is present (or vice versa), the node returns default_value; confirm your path matches the actual data shape.
+- **Empty or whitespace-only input**: Empty strings parse to None; supply valid JSON or a default_value.

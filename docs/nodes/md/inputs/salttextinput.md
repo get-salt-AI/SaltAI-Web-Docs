@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Provides a simple text input field for workflows, supporting both single-line and multi-line entry. It outputs the entered text as a generic value that can be consumed by any downstream node. Designed to surface the user’s input in the run view as a text message-style entry.
+Provides a user-editable text field for workflows. Supports single-line and multi-line input and emits the entered content to downstream nodes. Useful for prompts, configuration strings, or any free-form text data.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/inputs/salttextinput.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Provides a simple text input field for workflows, supporting both single-line an
 
 ## Usage
 
-Use this node whenever you need a user to provide text to your workflow—such as prompts, messages, configuration strings, or parameters. Place it near the start of a workflow and connect its output to nodes that process or act on text.
+Place this node at the beginning of a workflow when you need human-provided text. Connect its output to nodes that consume text (e.g., prompt processors, evaluators, message senders). It can also be used to quickly tweak parameters or content without editing node graphs.
 
 ## Inputs
 
@@ -26,7 +26,7 @@ Use this node whenever you need a user to provide text to your workflow—such a
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">input</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The text to pass through the workflow. Supports multi-line input and is suitable for prompts, messages, or configuration text.</td><td style="word-wrap: break-word;">Write a friendly greeting to a new customer named Alex.</td></tr>
+<tr><td style="word-wrap: break-word;">input</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The text value to pass into the workflow. Accepts multi-line content.</td><td style="word-wrap: break-word;">Write a short, friendly welcome message for new users.</td></tr>
 </tbody>
 </table>
 </div>
@@ -43,18 +43,19 @@ Use this node whenever you need a user to provide text to your workflow—such a
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">output</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">The text value entered by the user, emitted as a generic output so it can connect to any compatible input.</td><td style="word-wrap: break-word;">Hello Alex! Welcome aboard — we're excited to have you with us.</td></tr>
+<tr><td style="word-wrap: break-word;">output</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">The text value provided by the user, available for any downstream node expecting text or wildcard input.</td><td style="word-wrap: break-word;">Welcome to our platform! Let me know how I can help you get started.</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Multiline supported**: The input field allows multi-line text.
-- **Generic output type**: The output is wildcard-typed, making it broadly compatible with other nodes expecting text.
-- **Empty handling**: If no text is provided, the node outputs an empty string.
-- **Display name**: Appears in the editor as "Text" under the SALT/Inputs category.
+- The input field supports multi-line text; line breaks are preserved in the output.
+- If no text is provided, the node outputs an empty string.
+- The node’s internal unique_id is auto-assigned and should not be modified.
+- Output is a wildcard type, allowing broad compatibility with downstream nodes.
 
 ## Troubleshooting
-- **Nothing appears downstream**: Ensure the Text node’s output is connected to the correct input on the next node.
-- **Unexpected empty output**: Confirm that the input field is not blank and that any upstream overrides are disabled.
-- **Cannot find the node**: Look for it under the SALT/Inputs category with the display name "Text".
+- Text not appearing downstream: Verify the node is connected to the correct input of the next node.
+- Unexpected empty output: Ensure the text field is not blank and the workflow run has been updated.
+- Line breaks not handled as expected: Confirm the downstream node supports multi-line text and does not trim or sanitize input.
+- UI not updating after changes: Save or re-run the workflow to refresh the displayed output.
