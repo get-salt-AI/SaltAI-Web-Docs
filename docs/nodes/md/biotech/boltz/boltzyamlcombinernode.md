@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Combines sequences, constraints, templates, and properties into a single Boltz YAML configuration and assembles all auxiliary files referenced by that YAML. It validates chain ID uniqueness and schema requirements, rewrites inlined MSA/template contents to file references, and returns both the YAML object and a keyed map of file contents.
+Combines molecular building blocks into a valid Boltz YAML configuration. It merges sequences (required) with optional constraints, templates, and properties, validates structure and chain ID uniqueness, and prepares auxiliary files (e.g., MSA and template PDB/CIF) referenced by filename in the YAML.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/boltz/boltzyamlcombinernode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Combines sequences, constraints, templates, and properties into a single Boltz Y
 
 ## Usage
 
-Use this node after building lists of items with the Boltz Sequence/Protein/Ligand, Constraint, Template, and Property builder nodes (optionally merged via Boltz List Combiner). Connect the resulting lists into this node to generate a valid Boltz YAML and associated files. Feed its outputs into Boltz Predict or Boltz Partial Diffusion to run inference.
+Use this after assembling lists with Boltz List Combiner. Connect the combined sequences (and optionally constraints, templates, and properties). The node outputs a Boltz YAML dictionary and a file-bundle dictionary that upstream prediction nodes consume.
 
 ## Inputs
 
@@ -26,10 +26,10 @@ Use this node after building lists of items with the Boltz Sequence/Protein/Liga
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">sequences</td><td>True</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">List (or single item) of sequence objects describing proteins, DNA/RNA, or ligands. Typically produced by Boltz Sequence Builder or its specialized variants and merged via Boltz List Combiner.</td><td style="word-wrap: break-word;">[{"protein": {"id": "A", "sequence": "MKT...", "msa": "empty", "_sequence_name": "seqA"}}, {"ligand": {"id": "L", "smiles": "CCO"}}]</td></tr>
-<tr><td style="word-wrap: break-word;">constraints</td><td>False</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">List (or single item) of constraint objects (bond, pocket, contact) to guide modeling. Optional; typically from Boltz Constraint Builder combined via Boltz List Combiner.</td><td style="word-wrap: break-word;">[{"pocket": {"binder": "L", "contacts": [["A", 10], ["A", 15]], "max_distance": 6.0}}]</td></tr>
-<tr><td style="word-wrap: break-word;">templates</td><td>False</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">List (or single item) of template objects with structure content. Optional; typically from Boltz Template Builder combined via Boltz List Combiner.</td><td style="word-wrap: break-word;">[{"pdb": "ATOM ...\nEND"}]</td></tr>
-<tr><td style="word-wrap: break-word;">properties</td><td>False</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">List (or single item) of property requests, e.g., affinity prediction specifications. Optional; typically from Boltz Property Builder.</td><td style="word-wrap: break-word;">[{"affinity": {"binder": "L"}}]</td></tr>
+<tr><td style="word-wrap: break-word;">sequences</td><td>True</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">List of sequence objects (proteins, nucleic acids, or ligands). Typically created by Boltz Sequence Builder/Protein/Ligand nodes and merged by Boltz List Combiner.</td><td style="word-wrap: break-word;">[{"protein": {"id": "A", "sequence": "MSEQUENCE", "msa": "empty", "_sequence_name": "protA"}}, {"ligand": {"id": "L", "smiles": "C1=CC=CC=C1"}}]</td></tr>
+<tr><td style="word-wrap: break-word;">constraints</td><td>False</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Optional list of constraint objects (e.g., pocket, bond, contact) from Boltz Constraint Builder combined via Boltz List Combiner.</td><td style="word-wrap: break-word;">[{"pocket": {"binder": "L", "contacts": [["A", 10], ["A", 25]], "max_distance": 6.0}}]</td></tr>
+<tr><td style="word-wrap: break-word;">templates</td><td>False</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Optional list of template objects that include structure content (PDB/CIF). The node converts embedded content to filenames and adds them to the file bundle.</td><td style="word-wrap: break-word;">[{"pdb": "<pdb-file-content>", "chain_id": "A"}]</td></tr>
+<tr><td style="word-wrap: break-word;">properties</td><td>False</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Optional list of property objects (e.g., affinity specifications) from Boltz Property Builder combined via Boltz List Combiner.</td><td style="word-wrap: break-word;">[{"affinity": {"binder": "L"}}]</td></tr>
 </tbody>
 </table>
 </div>
@@ -46,25 +46,25 @@ Use this node after building lists of items with the Boltz Sequence/Protein/Liga
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">boltz_yaml</td><td style="word-wrap: break-word;">BOLTZ_YAML</td><td style="word-wrap: break-word;">The assembled Boltz YAML configuration as a dictionary object, including sequences and optional constraints/templates/properties. MSA and template fields are converted to file references.</td><td style="word-wrap: break-word;">{"version": 1, "sequences": [{"protein": {"id": "A", "sequence": "MKT...", "msa": "msa_1.a3m", "_sequence_name": "seqA"}}, {"ligand": {"id": "L", "smiles": "CCO"}}], "templates": [{"pdb": "template_2.pdb"}], "properties": [{"affinity": {"binder": "L"}}]}</td></tr>
-<tr><td style="word-wrap: break-word;">boltz_files</td><td style="word-wrap: break-word;">BOLTZ_FILES</td><td style="word-wrap: break-word;">A map of auxiliary filenames to their contents. Includes generated MSA files (e.g., msa_1.a3m) and template files (e.g., template_2.pdb or template_3.cif).</td><td style="word-wrap: break-word;">{"msa_1.a3m": ">seqA\nMKT...", "template_2.pdb": "ATOM ...\nEND"}</td></tr>
+<tr><td style="word-wrap: break-word;">boltz_yaml</td><td style="word-wrap: break-word;">BOLTZ_YAML</td><td style="word-wrap: break-word;">Validated Boltz YAML dictionary with sequences and any provided constraints, templates, and properties. Includes version and filename references to auxiliary files.</td><td style="word-wrap: break-word;">{"version": 1, "sequences": [{"protein": {"id": "A", "sequence": "MSEQUENCE", "msa": "msa_1.a3m"}}, {"ligand": {"id": "L", "smiles": "C1=CC=CC=C1"}}], "templates": [{"pdb": "template_2.pdb", "chain_id": "A"}], "properties": [{"affinity": {"binder": "L"}}]}</td></tr>
+<tr><td style="word-wrap: break-word;">boltz_files</td><td style="word-wrap: break-word;">BOLTZ_FILES</td><td style="word-wrap: break-word;">Dictionary of auxiliary files referenced by the YAML (e.g., MSA files and template structures) keyed by generated filenames.</td><td style="word-wrap: break-word;">{"msa_1.a3m": "<a3m-content>", "template_2.pdb": "<pdb-file-content>"}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Chain ID uniqueness**: All chain IDs across all sequences must be unique. The node will raise an error if duplicates are detected.
-- **Schema validation**: Ensures version is set (defaults to 1) and that each sequence has required fields (id and sequence for protein/dna/rna; either smiles or ccd for ligands, but not both).
-- **MSA handling**: For protein sequences with non-empty MSA content, the node writes MSA contents to generated filenames (msa_X.a3m) and replaces inline content with the filename. If multiple chains have identical sequences, they share a single MSA file.
-- **Template handling**: Template PDB/CIF contents are written to generated filenames (template_X.pdb or template_X.cif) and the template entries are updated to reference those filenames.
-- **Flexible inputs**: Each input can be a single object or a list; the node normalizes to lists internally.
-- **Intended pipeline**: Outputs should be passed to Boltz Predict or Boltz Partial Diffusion nodes.
+- **Unique chain IDs**: All chain IDs across all sequences must be unique; duplicates cause an error.
+- **Required sequence fields**: Protein/DNA/RNA sequences must include "sequence"; ligands must include exactly one of "smiles" or "ccd".
+- **MSA handling**: If a protein has an MSA that is not "empty", the content is written to a generated filename (msa_N.a3m) and the YAML references that filename.
+- **Shared MSA optimization**: Proteins with identical sequence strings share the same MSA file; the YAML for those entries points to the same filename.
+- **Template handling**: Template PDB/CIF content is moved to generated filenames (template_N.pdb or template_N.cif) and referenced from the YAML.
+- **Validation**: The node enforces Boltz YAML structure, auto-sets version=1 if missing, and will error on invalid entity types or missing required fields.
+- **Input form**: Each input can be a single object or a list; the node normalizes internally. Typically, use Boltz List Combiner to construct lists.
 
 ## Troubleshooting
-- **Error: Duplicate chain ID found**: Ensure each chain ID across all sequences is unique. If duplicating a chain, use different IDs or configure multiple_chains appropriately when building sequences.
-- **Error: At least one sequence is required**: Provide at least one sequence object as input.
-- **Error: Missing 'sequence' field in protein/dna/rna**: Verify sequence builders produced objects containing 'sequence' and 'id'.
-- **Error: Ligand must have either 'smiles' or 'ccd' (not both)**: Provide only one of these fields in ligand entries.
-- **MSA not applied as expected**: Confirm the protein entry's 'msa' is not 'empty' and contains valid A3M content. The node will convert content to a file reference in the YAML and add the file into boltz_files.
-- **Templates not referenced**: Ensure each template object includes 'pdb' or legacy 'cif' content. The node will create a corresponding file and update the YAML reference.
-- **Unexpected list vs single item behavior**: If providing a single object instead of a list, the node will wrap it to a list automatically. Use Boltz List Combiner to merge multiple sources consistently.
+- **Duplicate chain ID found**: Ensure each chain ID appears only once across all sequences (including duplicated chains from multi-chain entries).
+- **Missing sequence field**: For protein/dna/rna entries, include the "sequence" field. For ligand entries, include exactly one of "smiles" or "ccd".
+- **Both SMILES and CCD provided for ligand**: Provide only one field for ligands; remove the extra field.
+- **No sequences provided**: The sequences input is required and must contain at least one sequence object.
+- **Invalid template content**: Template objects must include valid PDB/CIF content; the node generates filenames from non-empty contents only.
+- **Unexpected input type**: If inputs are raw objects instead of lists, ensure they are combined with Boltz List Combiner or pass as lists; the node accepts both.

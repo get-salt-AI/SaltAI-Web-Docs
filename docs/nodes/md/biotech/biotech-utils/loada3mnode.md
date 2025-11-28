@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Loads an A3M multiple sequence alignment (MSA) provided as a raw text string and labels it with a user-defined ID. Outputs a dictionary-style A3M object keyed by the provided ID, suitable for downstream biotech/protein modeling nodes.
+Loads an A3M-formatted multiple sequence alignment (MSA) string and assigns it a user-defined identifier. Produces a typed A3M output as a dictionary mapping the given ID to the provided A3M content.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/biotech-utils/loada3mnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Loads an A3M multiple sequence alignment (MSA) provided as a raw text string and
 
 ## Usage
 
-Use this node when you already have an A3M MSA (e.g., from external alignment tools) and need to inject it into a workflow. Provide the full A3M text and assign a unique ID so downstream nodes can reference the correct alignment.
+Use this node at the start of a protein design or structure prediction workflow to import an existing MSA in A3M format. Provide the raw A3M text and an ID for referencing it downstream. Connect its output to nodes that consume A3M (e.g., MSA combiners or structure prediction steps).
 
 ## Inputs
 
@@ -26,8 +26,8 @@ Use this node when you already have an A3M MSA (e.g., from external alignment to
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">a3m_string</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The full A3M MSA content as plain text. Include all alignment lines exactly as produced by your MSA tool.</td><td style="word-wrap: break-word;">>query AAAAAAAAAA >homolog1 AA-A-AAA-A</td></tr>
-<tr><td style="word-wrap: break-word;">a3m_id</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Identifier assigned to this A3M MSA. Should be unique within the workflow. If pairing with a specific protein sequence, use a matching sequence ID for clarity.</td><td style="word-wrap: break-word;">msa</td></tr>
+<tr><td style="word-wrap: break-word;">a3m_string</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The raw A3M MSA content as a text string. Should follow A3M conventions (FASTA-like headers, aligned sequences, insertions typically in lowercase).</td><td style="word-wrap: break-word;"><a3m-formatted-msa></td></tr>
+<tr><td style="word-wrap: break-word;">a3m_id</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Identifier assigned to this A3M entry. Must be unique within the workflow if multiple A3Ms are used, and should match related sequence IDs when applicable.</td><td style="word-wrap: break-word;">msa</td></tr>
 </tbody>
 </table>
 </div>
@@ -44,17 +44,17 @@ Use this node when you already have an A3M MSA (e.g., from external alignment to
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">msa.a3m</td><td style="word-wrap: break-word;">A3M</td><td style="word-wrap: break-word;">A dictionary-like A3M object mapping the provided ID to the A3M text, ready for downstream nodes.</td><td style="word-wrap: break-word;">{"msa": ">query\nAAAAAAAAAA\n>homolog1\nAA-A-AAA-A"}</td></tr>
+<tr><td style="word-wrap: break-word;">msa.a3m</td><td style="word-wrap: break-word;">A3M</td><td style="word-wrap: break-word;">A typed A3M object represented as a dictionary mapping the provided ID to the A3M string.</td><td style="word-wrap: break-word;">{'msa': '<a3m-formatted-msa>'}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Unique IDs**: Ensure a3m_id values are unique across the workflow to avoid collisions when combining or batching inputs.
-- **Format integrity**: Provide the A3M in its original text format; do not modify line wrapping, headers, or gap characters.
-- **Sequence pairing**: If this A3M corresponds to a specific sequence input elsewhere, align the IDs for easier tracking and compatibility.
+- IDs should be unique if you load multiple A3M files in the same workflow to avoid collisions.
+- If you also provide protein sequences elsewhere in the workflow, use matching IDs to keep data aligned.
+- This node does not validate A3M formatting; ensure your input follows A3M conventions to prevent downstream errors.
 
 ## Troubleshooting
-- **Empty or malformed A3M**: If downstream nodes fail, verify that a3m_string is non-empty and follows valid A3M formatting (headers and aligned sequences).
-- **ID conflicts**: If later nodes report duplicate keys or unexpected merges, change a3m_id to a unique value.
-- **Unexpected downstream behavior**: Confirm that the A3M corresponds to the intended sequence (e.g., matching query sequence) to prevent misalignment issues.
+- A3M content rejected downstream: Ensure the input is valid A3M (proper headers like >id and correctly aligned sequences, with insertions in lowercase).
+- Downstream node reports missing MSA by ID: Confirm that a3m_id matches the expected sequence or chain ID in connected nodes.
+- Duplicate ID conflict: Change a3m_id to a unique value when multiple A3Ms are loaded in the workflow.

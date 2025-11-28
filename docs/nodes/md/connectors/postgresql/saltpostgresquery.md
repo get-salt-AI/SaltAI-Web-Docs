@@ -1,10 +1,17 @@
 # PostgreSQL Query
 
-Executes a PostgreSQL SELECT query against a configured database connection. Returns a human-readable summary and machine-readable JSON of the result set, with optional export-friendly formats depending on downstream usage. Designed for read-only SQL retrieval operations.
+<div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
+<div style="flex: 1; min-width: 0;">
+
+Executes a PostgreSQL SELECT query through Salt’s CData-backed database service. It uses provided credentials to connect to a PostgreSQL database, sends the SQL to the service, and returns a formatted summary along with the raw results. This node is read-focused and intended for retrieving data, not performing INSERT/UPDATE/DELETE operations.
+
+</div>
+<div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/postgresql/saltpostgresquery.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
+</div>
 
 ## Usage
 
-Use this node when you need to run a SELECT statement on a PostgreSQL database and pass the results to subsequent steps for analysis, reporting, or export. Typical workflow: provide a credentials file, set an appropriate timeout, author your SQL query, and connect the outputs to viewers, formatters, or file writers.
+Use this node when you need to fetch records from a PostgreSQL database as part of a workflow (e.g., pulling rows for analysis or feeding downstream processing). Provide a valid credentials file for the PostgreSQL connection and a SELECT statement. The node will call the backend service and return a readable text summary and structured results suitable for further steps.
 
 ## Inputs
 
@@ -19,9 +26,9 @@ Use this node when you need to run a SELECT statement on a PostgreSQL database a
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Path or reference to the PostgreSQL credentials configuration to authenticate the connection.</td><td style="word-wrap: break-word;"><path-to-postgres-credentials.json></td></tr>
-<tr><td style="word-wrap: break-word;">timeout</td><td>False</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum number of seconds to wait for the query to complete before aborting.</td><td style="word-wrap: break-word;">60</td></tr>
-<tr><td style="word-wrap: break-word;">sql_text</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The SQL SELECT statement to execute. Supports multiline input.</td><td style="word-wrap: break-word;">SELECT id, email, created_at FROM users WHERE created_at >= '2024-01-01' ORDER BY created_at DESC LIMIT 100</td></tr>
+<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Path to the saved PostgreSQL credential configuration used by the service to authenticate and connect.</td><td style="word-wrap: break-word;">/workspace/credentials/postgres.json</td></tr>
+<tr><td style="word-wrap: break-word;">timeout</td><td>False</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Maximum time in seconds to wait for the query request before timing out.</td><td style="word-wrap: break-word;">60</td></tr>
+<tr><td style="word-wrap: break-word;">sql_text</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The SQL SELECT query to execute against PostgreSQL.</td><td style="word-wrap: break-word;">SELECT id, email FROM users WHERE created_at >= '2024-01-01' LIMIT 100</td></tr>
 </tbody>
 </table>
 </div>
@@ -38,27 +45,22 @@ Use this node when you need to run a SELECT statement on a PostgreSQL database a
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Readable summary of the query results, suitable for quick inspection or logging.</td><td style="word-wrap: break-word;">PostgreSQL Query Results (100 rows): ...</td></tr>
-<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON-encoded data payload of the query results for programmatic use in downstream nodes.</td><td style="word-wrap: break-word;">{"data": [{"id": 1, "email": "user@example.com"}, ...], "row_count": 100}</td></tr>
-<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">HTML table representation of the results (may be empty if not requested/used by downstream consumers).</td><td style="word-wrap: break-word;"><table><thead>...</thead><tbody>...</tbody></table></td></tr>
-<tr><td style="word-wrap: break-word;">xlsx</td><td style="word-wrap: break-word;">BYTES</td><td style="word-wrap: break-word;">Excel (.xlsx) binary data of the results (may be empty if not requested/used).</td><td style="word-wrap: break-word;"><bytes-of-xlsx-file></td></tr>
-<tr><td style="word-wrap: break-word;">pdf</td><td style="word-wrap: break-word;">BYTES</td><td style="word-wrap: break-word;">PDF binary data of the results (may be empty if not requested/used).</td><td style="word-wrap: break-word;"><bytes-of-pdf-file></td></tr>
+<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">A human-readable summary of the query results suitable for display.</td><td style="word-wrap: break-word;">PostgreSQL Query Results: 100 rows returned.</td></tr>
+<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Raw results from the service as structured data for downstream processing.</td><td style="word-wrap: break-word;">{"rows": [{"id": 1, "email": "user@example.com"}], "row_count": 1}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Read-only intent**: This node is intended for SELECT queries. Use a dedicated execute node for INSERT/UPDATE/DELETE.
-- **Credentials required**: A valid PostgreSQL credentials configuration must be supplied via credentials_path.
-- **Timeout behavior**: Long-running queries may be interrupted if they exceed the provided timeout.
-- **Result size**: Prefer LIMIT clauses to constrain large result sets to avoid timeouts and excessive memory usage.
-- **SQL injection safety**: Avoid interpolating untrusted user input directly into sql_text.
-- **Schema qualification**: If multiple schemas exist, qualify tables with schema.table (e.g., public.users) to avoid ambiguity.
+- **Query type**: Designed for SELECT queries only. Use a separate execute node for INSERT/UPDATE/DELETE.
+- **Credentials required**: You must supply a valid PostgreSQL credential file that the service recognizes.
+- **Timeouts and large results**: Complex or large queries may require increased timeouts or result limiting.
+- **Service-backed**: The node routes requests to a backend service endpoint ("/query"); connectivity and service availability affect results.
+- **Result formatting**: Returns both a readable summary and structured data to support human review and automated use.
 
 ## Troubleshooting
-- **Authentication or connection failed**: Verify credentials_path, host, port, database, and network access to the PostgreSQL server.
-- **Query timed out**: Increase the timeout value or optimize the query with indexes, filters, and LIMIT.
-- **SQL syntax error**: Validate sql_text syntax and ensure referenced tables/columns exist.
-- **Empty results**: Confirm WHERE conditions and schema/table names; try removing filters or lowering constraints.
-- **Permission denied**: Ensure the database user has SELECT privileges on the target schema and tables.
-- **Large exports slow or empty**: Use LIMIT and selective columns; ensure downstream consumers expect and handle HTML/XLSX/PDF outputs if used.
+- **Invalid SQL or syntax errors**: Verify the SQL is a valid SELECT statement and test it directly in your database; ensure references to schemas/tables are correct.
+- **Authentication or connection failures**: Check the credentials_path points to a valid PostgreSQL configuration and that network/firewall settings allow service access.
+- **Timeouts**: Increase the timeout input or optimize the query with indexes, filters, or LIMIT.
+- **Empty results**: Confirm the query conditions and that the connected database/schema contains the expected data.
+- **Permission errors**: Ensure the configured database user has SELECT privileges on the target tables/views.

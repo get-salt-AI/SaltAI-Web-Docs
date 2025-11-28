@@ -1,10 +1,17 @@
 # PostgreSQL Connection String
 
-Builds a PostgreSQL database connection URI from individual parameters. It concatenates host, port, database, username, and password, and conditionally appends schema and SSL options as query parameters. Designed as a helper to generate a ready-to-use connection string for downstream database nodes or external tools.
+<div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
+<div style="flex: 1; min-width: 0;">
+
+Constructs a PostgreSQL connection URI from individual parameters. It concatenates host, port, database, username, and password into a standard postgresql:// URI and appends optional sslmode and schema query parameters when provided.
+
+</div>
+<div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/postgresql/saltpostgresconnectionstring.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
+</div>
 
 ## Usage
 
-Use this node when you need a correctly formatted PostgreSQL connection string from separate inputs (e.g., for plugging into other database nodes or services). Typical workflow: provide your server details and credentials, choose SSL mode if needed, and pass the generated URI to nodes that accept a connection string.
+Use this node when you need a ready-to-use PostgreSQL connection string to pass into downstream nodes, services, or configuration fields. It is ideal for workflows that collect connection details interactively and then require a single DSN-style string.
 
 ## Inputs
 
@@ -19,13 +26,13 @@ Use this node when you need a correctly formatted PostgreSQL connection string f
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">host</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Database hostname or IP address.</td><td style="word-wrap: break-word;">localhost</td></tr>
-<tr><td style="word-wrap: break-word;">port</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Database port number. Must be between 1 and 65535.</td><td style="word-wrap: break-word;">5432</td></tr>
-<tr><td style="word-wrap: break-word;">database</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Target database name.</td><td style="word-wrap: break-word;">postgres</td></tr>
-<tr><td style="word-wrap: break-word;">username</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Database user name.</td><td style="word-wrap: break-word;">postgres</td></tr>
-<tr><td style="word-wrap: break-word;">password</td><td>True</td><td style="word-wrap: break-word;">PASSWORD</td><td style="word-wrap: break-word;">Database user password. Keep this secure.</td><td style="word-wrap: break-word;"><password></td></tr>
-<tr><td style="word-wrap: break-word;">schema</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Default schema to use. If set to 'public', it will not be added to the URI query.</td><td style="word-wrap: break-word;">public</td></tr>
-<tr><td style="word-wrap: break-word;">sslmode</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">SSL connection mode. Only added to the URI if not 'disable'.</td><td style="word-wrap: break-word;">require</td></tr>
+<tr><td style="word-wrap: break-word;">host</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Database hostname or IP address.</td><td style="word-wrap: break-word;">db.example.com</td></tr>
+<tr><td style="word-wrap: break-word;">port</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Database port number.</td><td style="word-wrap: break-word;">5432</td></tr>
+<tr><td style="word-wrap: break-word;">database</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Target database name.</td><td style="word-wrap: break-word;">my_database</td></tr>
+<tr><td style="word-wrap: break-word;">username</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Database user name for authentication.</td><td style="word-wrap: break-word;">db_user</td></tr>
+<tr><td style="word-wrap: break-word;">password</td><td>True</td><td style="word-wrap: break-word;">PASSWORD</td><td style="word-wrap: break-word;">Password for the provided database user.</td><td style="word-wrap: break-word;"><password></td></tr>
+<tr><td style="word-wrap: break-word;">schema</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Schema name to include as a query parameter. If set to the default 'public', it will be omitted from the URI.</td><td style="word-wrap: break-word;">analytics</td></tr>
+<tr><td style="word-wrap: break-word;">sslmode</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">SSL connection mode to include as a query parameter. If 'disable', it will be omitted from the URI.</td><td style="word-wrap: break-word;">require</td></tr>
 </tbody>
 </table>
 </div>
@@ -42,24 +49,24 @@ Use this node when you need a correctly formatted PostgreSQL connection string f
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The constructed PostgreSQL connection string (URI).</td><td style="word-wrap: break-word;">postgresql://postgres:<password>@localhost:5432/postgres?sslmode=disable</td></tr>
-<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON output (unused for successful construction; may contain error details on failure).</td><td style="word-wrap: break-word;"></td></tr>
-<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">HTML</td><td style="word-wrap: break-word;">HTML output (not used by this node; empty on success).</td><td style="word-wrap: break-word;"></td></tr>
-<tr><td style="word-wrap: break-word;">xlsx</td><td style="word-wrap: break-word;">XLSX</td><td style="word-wrap: break-word;">XLSX output (not used by this node; empty on success).</td><td style="word-wrap: break-word;"></td></tr>
-<tr><td style="word-wrap: break-word;">pdf</td><td style="word-wrap: break-word;">PDF</td><td style="word-wrap: break-word;">PDF output (not used by this node; empty on success).</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The constructed PostgreSQL connection URI.</td><td style="word-wrap: break-word;">postgresql://db_user:<password>@db.example.com:5432/my_database?sslmode=require&schema=analytics</td></tr>
+<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Empty string (not used by this node).</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Empty string (not used by this node).</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">xlsx</td><td style="word-wrap: break-word;">BYTES</td><td style="word-wrap: break-word;">Empty bytes (not used by this node).</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">pdf</td><td style="word-wrap: break-word;">BYTES</td><td style="word-wrap: break-word;">Empty bytes (not used by this node).</td><td style="word-wrap: break-word;"></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- The schema parameter is appended only when it is not 'public'.
-- The sslmode parameter is appended only when it is not 'disable'.
-- This node does not validate database connectivity; it only formats a connection string.
-- If your username or password contains special characters, ensure they are URL-encoded before use.
-- Handle secrets carefully. Avoid exposing passwords in logs, shared graphs, or UI screenshots.
+- **Security**: The returned URI includes the password in plain text; avoid displaying or logging it. Use secure storage/handling.
+- **Encoding**: If your username or password contains special characters, they may need URL-encoding to form a valid URI.
+- **Optional params**: The 'sslmode' and 'schema' parameters are appended only if different from their defaults ('disable' and 'public' respectively).
+- **Connectivity**: This node does not validate or test the connection; errors will surface when a downstream process attempts to connect.
+- **Schema behavior**: Not all drivers honor a 'schema' query parameter. You may need to set search_path or driver-specific options if the schema is not applied.
 
 ## Troubleshooting
-- If downstream nodes fail to connect, verify host, port, database, username, and password are correct, and that the server is reachable.
-- If authentication issues occur, confirm that sslmode matches your server's SSL requirements (e.g., 'require', 'verify-ca', or 'verify-full').
-- If special characters in credentials cause parsing errors, URL-encode the username and password.
-- If you see an error message in the JSON output slot, check for invalid or missing input values.
+- **Downstream connection fails**: Verify host, port, database, username, and password are correct and that the database is reachable from your environment.
+- **Authentication errors**: Check for typos and ensure any special characters in credentials are URL-encoded.
+- **SSL issues**: If the server requires SSL, set 'sslmode' to 'require' or stricter ('verify-ca', 'verify-full'). Ensure certificates are configured as required by your client.
+- **Schema not applied**: If objects are not found in the intended schema, confirm whether your client honors the 'schema' query parameter. Consider setting the search_path or using a driver-specific parameter.

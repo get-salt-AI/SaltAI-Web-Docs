@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Extracts the first element (head) from an accumulation. If the accumulation is empty or invalid, it outputs None. The node is type-agnostic and returns the element in its original type.
+Returns the first element (head) from an accumulation. If the accumulation is empty or invalid, it outputs None. Works with any item type and preserves the original type of the head element.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../../images/previews/logic/flow-control/accumulation/saltaccumulationheadnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Extracts the first element (head) from an accumulation. If the accumulation is e
 
 ## Usage
 
-Use this node when you are incrementally building a list of values with Accumulate (or converting a list to an accumulation) and need to read the first item in that collection. Typical in iterative workflows, conditional branching, or when peeking at the current leading value without modifying the accumulation.
+Use this node after building an accumulation (e.g., via Accumulate or List to Accumulation) when you need to extract just the first item. Typical in list-processing workflows where you split a collection into head and tail or need to peek at the first value for control logic.
 
 ## Inputs
 
@@ -26,7 +26,7 @@ Use this node when you are incrementally building a list of values with Accumula
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">accumulation</td><td>True</td><td style="word-wrap: break-word;">ACCUMULATION</td><td style="word-wrap: break-word;">An accumulation object containing a list of values under the internal key. Usually produced by Accumulate or List to Accumulation.</td><td style="word-wrap: break-word;">{'accum': ['first', 'second', 'third']}</td></tr>
+<tr><td style="word-wrap: break-word;">accumulation</td><td>True</td><td style="word-wrap: break-word;">ACCUMULATION</td><td style="word-wrap: break-word;">An accumulation object representing a list-like collection produced by other Salt list/accumulation nodes.</td><td style="word-wrap: break-word;">{'accum': ['hello', 'world']}</td></tr>
 </tbody>
 </table>
 </div>
@@ -43,18 +43,17 @@ Use this node when you are incrementally building a list of values with Accumula
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">head</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The first element of the accumulation. Returns None if the accumulation is empty or not properly formed.</td><td style="word-wrap: break-word;">first</td></tr>
+<tr><td style="word-wrap: break-word;">head</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The first element of the provided accumulation. Returns None if the accumulation is empty or invalid.</td><td style="word-wrap: break-word;">hello</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Returns None for empty inputs**: If the accumulation has no items or is malformed, the output will be None.
-- **Type-agnostic output**: The output type matches the type of the first element in the accumulation (string, number, image, etc.).
-- **Requires a valid accumulation**: Ensure the input is produced by compatible nodes like Accumulate or List to Accumulation.
-- **Non-mutating**: This node does not modify the accumulation; it only reads the first element.
+- The output type is WILDCARD and matches the type of the first item in the accumulation.
+- If the accumulation is empty or not a valid accumulation object, the node returns None.
+- Provide a proper ACCUMULATION object (typically produced by Accumulate, List to Accumulation, or related nodes) rather than a raw list.
 
 ## Troubleshooting
-- **Got None instead of a value**: Verify the accumulation is not empty and is a valid accumulation object (e.g., produced by Accumulate).
-- **Unexpected type on output**: Remember the output type is the same as the first element's type. Check the data being added to the accumulation.
-- **Head doesn't match expected item**: Ensure items are added in the intended order to the accumulation (new items are appended, so the head is the earliest added item unless the accumulation was constructed differently).
+- Head is None: Ensure the accumulation is not empty and is a valid ACCUMULATION object.
+- Unexpected output type: The node preserves the type of the first element; verify the items being accumulated are of the expected type.
+- Invalid input error or silent None: Feed in an ACCUMULATION from compatible nodes instead of a plain list or mismatched structure.

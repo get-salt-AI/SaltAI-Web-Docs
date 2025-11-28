@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Retrieves a single item from an accumulation at the specified index. If the index is invalid or the accumulation is missing the expected data, it returns None instead of failing.
+Retrieves a single element from an accumulation at a specified index. If the index is invalid or the accumulation is malformed, the node returns a null item. The output type matches the type of the stored element.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../../images/previews/logic/flow-control/accumulation/saltaccumulationgetitemnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Retrieves a single item from an accumulation at the specified index. If the inde
 
 ## Usage
 
-Use this node when you have an accumulation (built by Salt list/accumulation nodes) and need to extract a specific element by its position. Commonly placed after building or transforming an accumulation to pick a particular entry for further processing.
+Use this node when you need to extract a specific element from an accumulation created or transformed by other list/accumulation nodes (e.g., Accumulate, Accumulation Head/Tail, List to Accumulation). Provide the accumulation and the zero-based index of the item you want to retrieve.
 
 ## Inputs
 
@@ -26,8 +26,8 @@ Use this node when you have an accumulation (built by Salt list/accumulation nod
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">accumulation</td><td>True</td><td style="word-wrap: break-word;">ACCUMULATION</td><td style="word-wrap: break-word;">The accumulation structure containing an ordered collection of items. It must be a valid accumulation produced by related accumulation nodes.</td><td style="word-wrap: break-word;">An accumulation containing items, e.g., a collection of images or texts.</td></tr>
-<tr><td style="word-wrap: break-word;">index</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Zero-based position of the item to retrieve. Negative indices select from the end if supported by the underlying accumulation.</td><td style="word-wrap: break-word;">0</td></tr>
+<tr><td style="word-wrap: break-word;">accumulation</td><td>True</td><td style="word-wrap: break-word;">ACCUMULATION</td><td style="word-wrap: break-word;">The accumulation object to read from, typically produced by other accumulation or list nodes.</td><td style="word-wrap: break-word;"><accumulation-object></td></tr>
+<tr><td style="word-wrap: break-word;">index</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Zero-based position of the item to retrieve. Supports typical integer indexing.</td><td style="word-wrap: break-word;">0</td></tr>
 </tbody>
 </table>
 </div>
@@ -44,19 +44,20 @@ Use this node when you have an accumulation (built by Salt list/accumulation nod
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">item</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The item at the specified index from the accumulation. The type matches whatever is stored at that position (image, text, number, etc.). Returns None if not found.</td><td style="word-wrap: break-word;">A single image, a string, a number, or None</td></tr>
+<tr><td style="word-wrap: break-word;">item</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The element at the provided index within the accumulation. Returns null if the index is out of range or the accumulation is invalid.</td><td style="word-wrap: break-word;">example-item</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Indexing**: Uses zero-based indexing; negative indices are supported if the underlying list supports them.
-- **Invalid access**: If the index is out of range or the accumulation is missing its data slot, the output will be None.
-- **Type propagation**: Output type is dynamic (WILDCARD) and depends on the stored item; ensure downstream nodes can accept that type.
-- **Input validity**: Pass only valid accumulations produced by Salt accumulation nodes; other structures may cause errors.
+- **Indexing is zero-based**: Index 0 returns the first element.
+- **Out-of-range indices return null**: If the index is invalid, the node outputs a null item.
+- **Output type is dynamic**: The output type follows the element type stored in the accumulation.
+- **Provide a valid accumulation**: Ensure the input is a proper accumulation object produced by compatible nodes.
+- **Negative indices**: Depending on the accumulation's underlying list behavior, negative indices may access from the end; if unsupported or out of range, null is returned.
 
 ## Troubleshooting
-- **Output is None**: The requested index may be out of bounds. Check the accumulation length first using 'Accumulation Get Length' and adjust the index.
-- **Unexpected type downstream**: The retrieved item type may not match what the next node expects. Confirm the item type or insert conversion nodes as needed.
-- **Errors with invalid input**: If you see errors, ensure the input is a proper ACCUMULATION (not a plain list or dict) created by the Salt accumulation nodes.
-- **Negative index not working as expected**: Verify the accumulation contains a list-like structure. If needed, confirm valid indices via length and adjust accordingly.
+- **Got null output**: Verify the index is within the valid range of the accumulation and that the accumulation contains elements.
+- **Unexpected type**: Ensure the accumulation contains the expected element types; this node returns whatever type is stored at the index.
+- **Accummulation input not accepted**: Confirm the input comes from accumulation-compatible nodes (e.g., Accumulate or List to Accumulation) and not a raw list.
+- **Off-by-one errors**: Remember indexing starts at 0; adjust the index accordingly.

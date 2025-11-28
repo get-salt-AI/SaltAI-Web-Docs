@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Sends messages to Slack channels, users, or threads using a Slack Bot token. Supports both plain text and rich Block Kit payloads, automatically generating a text fallback from Block Kit for broader client compatibility. Can reply in threads and customize bot icon via emoji or image URL.
+Sends messages to Slack channels, users (DMs), or threads using a Slack Bot token. Supports plain-text messages and rich Block Kit payloads, auto-generating a fallback text for clients that cannot render blocks. Can customize bot icon via emoji or URL and reply in an existing thread.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/outputs/writers/slackwriter.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Sends messages to Slack channels, users, or threads using a Slack Bot token. Sup
 
 ## Usage
 
-Use this node to post notifications, status updates, or rich interactive messages to Slack during a workflow. Provide a valid Slack Bot token, target channel (name, channel ID, or user ID), and either plain text or a Block Kit JSON payload. For replies, pass a thread timestamp to post within an existing thread.
+Use this node to post notifications, updates, or interactive Block Kit messages into Slack from your workflow. Provide a Bot token, a target channel (channel name/ID or user ID for DM), and either plain text or a Block Kit JSON payload. Optionally reply within a thread using a timestamp and customize the bot appearance.
 
 ## Inputs
 
@@ -26,13 +26,13 @@ Use this node to post notifications, status updates, or rich interactive message
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">slack_token</td><td>True</td><td style="word-wrap: break-word;">PASSWORD</td><td style="word-wrap: break-word;">Slack Bot OAuth token used to authenticate API requests. Obtain via Slack's quick-start app setup.</td><td style="word-wrap: break-word;"><slack-bot-token></td></tr>
-<tr><td style="word-wrap: break-word;">channel</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Destination in Slack. Accepts channel name (e.g., #general), channel ID (e.g., C0123456789), or user ID (e.g., U0123456789). User IDs are resolved to a DM channel automatically.</td><td style="word-wrap: break-word;">#alerts</td></tr>
-<tr><td style="word-wrap: break-word;">icon_emoji</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Emoji to use as the bot icon (requires chat:write.customize). Ignored if empty or if icon_url is also set.</td><td style="word-wrap: break-word;">:robot_face:</td></tr>
-<tr><td style="word-wrap: break-word;">icon_url</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Direct URL to an image to use as the bot icon (512x512 or smaller; requires chat:write.customize).</td><td style="word-wrap: break-word;">https://example.com/bot.png</td></tr>
-<tr><td style="word-wrap: break-word;">thread_timestamp</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Slack message timestamp to reply to, posting the message in that thread.</td><td style="word-wrap: break-word;">1734479286.246919</td></tr>
-<tr><td style="word-wrap: break-word;">message</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Plain text message content. Ignored if block_kit_json is provided.</td><td style="word-wrap: break-word;">Hello from Salt AI!</td></tr>
-<tr><td style="word-wrap: break-word;">block_kit_json</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Block Kit JSON array for rich message content. Must be a JSON list of valid blocks. A text fallback is auto-generated from contained text items.</td><td style="word-wrap: break-word;">[{"type":"section","text":{"type":"mrkdwn","text":"Deployment complete."}}]</td></tr>
+<tr><td style="word-wrap: break-word;">slack_token</td><td>True</td><td style="word-wrap: break-word;">PASSWORD</td><td style="word-wrap: break-word;">Slack Bot authentication token used to authorize API requests.</td><td style="word-wrap: break-word;"><slack-bot-token></td></tr>
+<tr><td style="word-wrap: break-word;">channel</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Destination in Slack. Accepts a channel name (e.g., #general), a channel ID (e.g., C05NNPR6A42), or a user ID (e.g., U031AFC238B) to open a DM.</td><td style="word-wrap: break-word;">#general</td></tr>
+<tr><td style="word-wrap: break-word;">icon_emoji</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Emoji to use as the bot icon (requires chat:write.customize).</td><td style="word-wrap: break-word;">:robot_face:</td></tr>
+<tr><td style="word-wrap: break-word;">icon_url</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Direct URL to a bot icon image (512×512 or smaller) (requires chat:write.customize).</td><td style="word-wrap: break-word;">https://example.com/bot-icon.png</td></tr>
+<tr><td style="word-wrap: break-word;">thread_timestamp</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Slack message timestamp to reply in a thread. When provided, the message is posted as a thread reply.</td><td style="word-wrap: break-word;">1734479286.246919</td></tr>
+<tr><td style="word-wrap: break-word;">message</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Plain text content of the message. Ignored if block_kit_json is provided.</td><td style="word-wrap: break-word;">Hello from Salt AI!</td></tr>
+<tr><td style="word-wrap: break-word;">block_kit_json</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON array of Block Kit blocks for rich message content. If provided, it overrides the plain-text message and a fallback text is auto-generated from the blocks.</td><td style="word-wrap: break-word;">[{"type":"section","text":{"type":"mrkdwn","text":"Hello from Salt AI!"}}]</td></tr>
 </tbody>
 </table>
 </div>
@@ -49,27 +49,27 @@ Use this node to post notifications, status updates, or rich interactive message
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">status</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The posted message text returned by Slack. For Block Kit, this is the generated fallback text.</td><td style="word-wrap: break-word;">Hello from Salt AI!</td></tr>
-<tr><td style="word-wrap: break-word;">response</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Raw Slack API response as a JSON string.</td><td style="word-wrap: break-word;">{"ok": true, "channel": "C0123456789", "ts": "1734479286.246919", ...}</td></tr>
-<tr><td style="word-wrap: break-word;">thread_timestamp</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Timestamp of the created or replied-to message. Use this to continue the thread.</td><td style="word-wrap: break-word;">1734479286.246919</td></tr>
+<tr><td style="word-wrap: break-word;">status</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The final text Slack registered for the posted message (plain text or fallback from blocks).</td><td style="word-wrap: break-word;">Hello from Salt AI!</td></tr>
+<tr><td style="word-wrap: break-word;">response</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Raw Slack API response serialized as JSON for debugging or downstream use.</td><td style="word-wrap: break-word;">{"ok": true, "channel": "C05NNPR6A42", "ts": "1734479286.246919", "message": {"text": "Hello from Salt AI!"}}</td></tr>
+<tr><td style="word-wrap: break-word;">thread_timestamp</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The timestamp of the posted message (ts), useful for threading subsequent replies.</td><td style="word-wrap: break-word;">1734479286.246919</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- A valid Slack Bot token is required. Create and install a Slack app to obtain it.
-- If channel is a user ID (starts with U), the node opens a DM channel automatically before posting.
-- If block_kit_json is provided, it must be a JSON array of blocks; the message input is ignored.
-- The node generates a plain-text fallback from Block Kit content to maximize compatibility.
-- Using icon_emoji or icon_url requires the chat:write.customize scope on your bot.
-- To reply in a thread, pass a valid thread_timestamp from a prior message.
-- The node returns the message text, full API response, and the message timestamp for downstream use.
+- **Block Kit precedence**: If block_kit_json is provided, it overrides the message input. A fallback text is generated by extracting text fields from the blocks.
+- **DM handling**: Supplying a user ID (starting with 'U') will automatically open a DM and post the message there.
+- **Thread replies**: Provide a valid thread_timestamp (ts) to post as a reply in a thread.
+- **Icon customization**: Using icon_emoji or icon_url requires the chat:write.customize permission on your bot.
+- **Block Kit format**: The block_kit_json must be a JSON array of valid Block Kit blocks.
+- **Token safety**: Errors will redact your token in logs; always use a bot token with appropriate scopes.
+- **Channel access**: The bot must be in the target channel or have permission to DM the user.
 
 ## Troubleshooting
-- Invalid token error: Ensure slack_token is correct and the app is installed to the workspace.
-- channel_not_found or not_in_channel: Verify the channel exists and the bot has access or has been invited.
-- Invalid Block Kit JSON: Provide a valid JSON array of blocks; validate with Slack's Block Kit builder.
-- DM resolution failed: If passing a user ID, ensure the user ID is correct and the bot has permission to open DMs.
-- Permission errors (e.g., chat:write.customize): Add required scopes to the Slack app and reinstall it.
-- Message not threaded: Ensure thread_timestamp is a valid Slack message ts from the target channel.
-- Timeouts: Increase the hidden timeout input or check network connectivity.
+- **Invalid Block-Kit JSON**: Ensure block_kit_json is valid JSON and a top-level array of blocks. Validate using Slack's Block Kit Builder.
+- **not_in_channel or channel_not_found**: Invite the bot to the channel or verify the channel ID/name.
+- **invalid_auth or not_authed**: Use a valid Slack Bot token and confirm required scopes (e.g., chat:write, chat:write.customize for icon overrides).
+- **thread_ts_invalid**: Verify the thread_timestamp corresponds to an existing message's ts in the target channel.
+- **Cannot DM user**: Confirm the user ID starts with 'U' and that the bot is allowed to initiate DMs; retry if conversations_open fails.
+- **rate_limited**: Slack may rate limit requests. Add retries or backoff and reduce message frequency.
+- **Timeouts**: Increase the hidden timeout value if requests are timing out due to network conditions.

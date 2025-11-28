@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-CarbonConnectorLocalFiles connects to a local filesystem source through the Carbon LOCAL_FILES integration. It leverages the shared Carbon data node behavior to discover, list, or fetch documents that reside on disks or mounted volumes accessible to the running Salt services.
+Connects to your local files via Salt's Carbon data integrations and makes selected documents available to downstream nodes. This node is a Carbon connector specialized for local file access.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/knowledge-bases/carbonconnectorlocalfiles.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,25 +11,11 @@ CarbonConnectorLocalFiles connects to a local filesystem source through the Carb
 
 ## Usage
 
-Use this node when your documents live on the same machine (or mounted storage) as your Salt stack and you want to surface them into your workflows. It is typically placed at the start of a knowledge or retrieval pipeline, feeding downstream nodes that parse, chunk, embed, or otherwise process documents.
+Use this node at the start of a data workflow when you want to bring files stored on your machine (local documents) into Salt for processing. It is typically followed by nodes that ingest, index, parse, or analyze the retrieved documents.
 
 ## Inputs
 
-<div style="overflow-x: auto;">
-<table style="table-layout: fixed; width: 100%;">
-<colgroup>
-<col style="width: 15%;">
-<col style="width: 10%;">
-<col style="width: 15%;">
-<col style="width: 30%;">
-<col style="width: 30%;">
-</colgroup>
-<thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
-<tbody>
-<tr><td style="word-wrap: break-word;">Not specified</td><td>False</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">This node inherits its inputs from a shared Carbon data node base. Specific input fields (such as path, filters, or limits) are defined by the base behavior and UI. Configure them in the node’s panel to target the desired local files.</td><td style="word-wrap: break-word;">Not specified</td></tr>
-</tbody>
-</table>
-</div>
+No inputs
 
 ## Outputs
 
@@ -43,19 +29,18 @@ Use this node when your documents live on the same machine (or mounted storage) 
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">documents</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">A dataset or reference representing the documents discovered/fetched from the local filesystem, suitable for downstream processing (e.g., parsing, splitting, embedding).</td><td style="word-wrap: break-word;">Not specified</td></tr>
+<tr><td style="word-wrap: break-word;">documents</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">The collection of documents or document references selected from local files, suitable for downstream ingestion or analysis.</td><td style="word-wrap: break-word;">Not specified</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **LOCAL_FILES integration**: This node is bound to the Carbon LOCAL_FILES integration and automatically selects that source; you do not need to choose the integration manually.
-- **Server-side paths**: Paths and files must be accessible to the server environment where Salt services run (e.g., inside a container or VM). Local paths on your personal machine will not work unless mounted and exposed to the service.
-- **Permissions**: Ensure the service account running Salt has read permissions for the targeted directories and files.
-- **Behavior is inherited**: Inputs, output structure, and filtering logic come from the base Carbon data node. The exact fields and behavior may vary depending on platform configuration.
+- This node corresponds to the Carbon integration for local files and appears in the workflow editor as "Documents".
+- Access may require that your Carbon connection is configured and authorized for your account or organization.
+- The exact document structure and how files are referenced can depend on your environment and Carbon configuration.
+- If your environment or organization restricts integrations, ensure the local files integration is enabled.
 
 ## Troubleshooting
-- **No files returned**: Verify the specified path exists in the server environment and is mounted into the service. Confirm read permissions and adjust any filters (extensions, recursion, or limits) to broaden the search.
-- **Permission errors**: Ensure the service user has read access to the directories and files. Update filesystem permissions or mount options accordingly.
-- **Unexpected file set**: Check filters (such as file patterns, size limits, or modified date) in the node’s configuration and confirm they match your expectations.
-- **Path works locally but not in Salt**: Remember that paths must be valid inside the service/container runtime. Mount or map local directories into the environment where the node executes.
+- No documents are returned: Verify you have an active Carbon session and the local files integration is enabled for your account.
+- Cannot see expected files: Check local file permissions and that the files are accessible to the running environment.
+- Downstream nodes fail to read the output: Confirm the downstream node supports the document format produced by this connector and any required ingestion steps are included.

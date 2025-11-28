@@ -1,10 +1,17 @@
 # Oracle List Tables
 
-Lists all tables available in an Oracle schema using the provided database credentials. If no schema is specified, it lists tables from the current user's default schema. Returns a human-readable summary along with structured JSON data.
+<div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
+<div style="flex: 1; min-width: 0;">
+
+Lists all tables available in a specified Oracle schema. If no schema is provided, it lists tables in the current user’s default schema. Returns a human-readable summary and structured JSON of the discovered tables.
+
+</div>
+<div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/oracle/saltoraclelisttables.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
+</div>
 
 ## Usage
 
-Use this node to explore the available tables before building queries or performing data operations. Typical workflow: test connection -> list schemas (optional) -> list tables (this node) -> get table info or run queries.
+Use this node to quickly inventory tables in an Oracle database when exploring data sources, validating access, or building subsequent queries. Typically placed early in a workflow to discover available tables before fetching columns or running queries against specific tables.
 
 ## Inputs
 
@@ -19,9 +26,9 @@ Use this node to explore the available tables before building queries or perform
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Path to the stored Oracle credential configuration that includes connection details.</td><td style="word-wrap: break-word;">/configs/credentials/oracle.json</td></tr>
-<tr><td style="word-wrap: break-word;">timeout</td><td>False</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time in seconds to wait for the operation before it is aborted.</td><td style="word-wrap: break-word;">30</td></tr>
-<tr><td style="word-wrap: break-word;">schema_name</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Target Oracle schema to list tables from. Leave empty to list tables in the current user's default schema.</td><td style="word-wrap: break-word;">HR</td></tr>
+<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Path or reference to the stored Oracle database credentials to authenticate requests.</td><td style="word-wrap: break-word;"><path-to-oracle-credentials></td></tr>
+<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time in seconds to wait for the operation before timing out.</td><td style="word-wrap: break-word;">30</td></tr>
+<tr><td style="word-wrap: break-word;">schema_name</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Target Oracle schema to list tables from. Leave empty to use the current user’s schema.</td><td style="word-wrap: break-word;">HR</td></tr>
 </tbody>
 </table>
 </div>
@@ -38,20 +45,23 @@ Use this node to explore the available tables before building queries or perform
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A formatted, human-readable summary of the listed tables, including the schema context.</td><td style="word-wrap: break-word;">Oracle Tables in Schema: HR Total: 7</td></tr>
-<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Structured result containing the list of tables and related metadata.</td><td style="word-wrap: break-word;">{"tables": ["EMPLOYEES", "DEPARTMENTS", "JOBS"], "schema": "HR"}</td></tr>
+<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Readable summary of tables found in the schema.</td><td style="word-wrap: break-word;">Oracle Tables in Schema: HR Total: 12 - EMPLOYEES - DEPARTMENTS - LOCATIONS ...</td></tr>
+<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON-encoded result payload containing the list of tables and associated metadata (if provided by the service).</td><td style="word-wrap: break-word;">{"tables": ["EMPLOYEES", "DEPARTMENTS", "LOCATIONS"], "schema": "HR"}</td></tr>
+<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">HTML representation (if available). For this operation using default formatting, this is typically empty.</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">xlsx</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Serialized XLSX content or reference (if available). For this operation using default formatting, this is typically empty.</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">pdf</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Serialized PDF content or reference (if available). For this operation using default formatting, this is typically empty.</td><td style="word-wrap: break-word;"></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Schema handling**: Leaving schema_name empty will list tables from the current user's default schema.
-- **Permissions**: The connected user must have privileges to read metadata for the specified schema; otherwise, the list may be empty or error.
-- **Case sensitivity**: Oracle stores unquoted identifiers in uppercase; table names in results may be uppercase.
-- **Large schemas**: Listing a very large number of tables may take longer; consider increasing the timeout if needed.
+- If schema_name is left empty, the node queries the current user’s default schema.
+- Requires valid Oracle credentials; ensure the credentials file or reference is accessible and correctly formatted.
+- The timeout applies to the remote request; large schemas or slow connections may require higher values.
+- Output includes a text summary and a JSON string; other formats are generally empty for this operation.
 
 ## Troubleshooting
-- **Empty results**: Verify schema_name is correct and the user has permissions to access that schema.
-- **Timeouts**: Increase the timeout input value if the database is slow or the schema is large.
-- **Authentication errors**: Ensure credentials_path points to a valid Oracle credential configuration and the credentials are correct.
-- **Network connectivity**: If requests fail, confirm network access to the Oracle database and any required gateways or services.
+- No tables returned: Verify schema_name is correct or try leaving it empty to use the current user’s schema. Confirm the user has privileges to view tables.
+- Authentication error: Check credentials_path and ensure the credentials are valid and permitted to list tables.
+- Timeouts or network errors: Increase the timeout value and verify network connectivity to the Oracle service.
+- Invalid schema name: Use the exact schema identifier as defined in the database, respecting case-sensitivity and permissions.

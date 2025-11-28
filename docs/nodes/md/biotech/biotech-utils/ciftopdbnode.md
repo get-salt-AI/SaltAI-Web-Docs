@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Converts molecular structures from CIF (mmCIF) format to PDB format using BioPython. Accepts a dictionary of one or more CIF entries and returns a dictionary of PDB strings with the same keys. Skips empty inputs with warnings and raises clear errors for invalid data.
+Converts one or more macromolecular CIF (mmCIF) structures into PDB format. Accepts a dictionary of CIF name-to-content mappings and returns a dictionary of PDB name-to-content mappings, preserving the original keys.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/biotech-utils/ciftopdbnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Converts molecular structures from CIF (mmCIF) format to PDB format using BioPyt
 
 ## Usage
 
-Use this node when you have structures in CIF/mmCIF format and need PDB output for downstream tools that require PDB input (e.g., visualization, chain extraction, sequence fixing). Typically, connect a CIF-producing node or a preloaded CIF dictionary to this node, then pass the resulting PDB to subsequent processing nodes.
+Use this node when you have structures in mmCIF format and need PDB format for downstream tools or visualization. Typically placed after a loader or generator that outputs CIF and before nodes that expect PDB input.
 
 ## Inputs
 
@@ -26,7 +26,7 @@ Use this node when you have structures in CIF/mmCIF format and need PDB output f
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">cif</td><td>True</td><td style="word-wrap: break-word;">CIF</td><td style="word-wrap: break-word;">Dictionary of CIF structures to convert. Keys are structure IDs; values are CIF text content.</td><td style="word-wrap: break-word;">{'example_dict': {'my_structure': '<cif text content>'}}</td></tr>
+<tr><td style="word-wrap: break-word;">cif</td><td>True</td><td style="word-wrap: break-word;">CIF</td><td style="word-wrap: break-word;">Dictionary of CIF structures to convert. Keys are structure identifiers (e.g., filenames without extension), and values are the full mmCIF text content.</td><td style="word-wrap: break-word;">{'1abc': '<full mmCIF text content>', 'complex_A': '<full mmCIF text content>'}</td></tr>
 </tbody>
 </table>
 </div>
@@ -43,22 +43,19 @@ Use this node when you have structures in CIF/mmCIF format and need PDB output f
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">structure.pdb</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Dictionary of PDB structures converted from the input CIF entries. Keys mirror the input names.</td><td style="word-wrap: break-word;">{'example_dict': {'my_structure': '<pdb text content>'}}</td></tr>
+<tr><td style="word-wrap: break-word;">structure.pdb</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Dictionary of converted PDB structures. Keys mirror the input CIF keys; values are the full PDB text content.</td><td style="word-wrap: break-word;">{'1abc': '<full PDB text content>', 'complex_A': '<full PDB text content>'}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Input format**: The input must be a non-empty dictionary mapping names to CIF strings; otherwise the node raises an error.
-- **Batch handling**: Processes multiple CIF entries in one call; empty strings are skipped with a warning.
-- **Conversion fidelity**: Conversion is performed via BioPython; some mmCIF-specific annotations may not appear in the PDB output.
-- **Output keys**: Output dictionary keys match the input keys, enabling easy mapping in workflows.
-- **Error behavior**: If none of the CIF entries can be converted, the node raises an error.
-- **Performance**: Very large structures may take longer to parse and convert.
+- **Input format**: The input must be a non-empty dictionary mapping names to valid mmCIF text content.
+- **Key preservation**: Output keys match the input keys for easy alignment with upstream and downstream nodes.
+- **Conversion constraints**: Invalid or malformed CIF content will cause the node to raise an error for that entry.
+- **Batch behavior**: Processes all provided entries and returns all successful conversions; the node fails if none can be converted.
 
 ## Troubleshooting
-- **Error: 'CIF input must be a non-empty dictionary'**: Ensure you pass a dict like {"id": "<cif content>"} rather than a raw string or empty object.
-- **Warning: 'Empty CIF content for <name>, skipping.'**: Provide non-empty CIF text for that entry.
-- **Error: 'Failed to convert CIF <name> to PDB: ...'**: The CIF content may be malformed or unsupported. Validate the mmCIF file or re-export it from the source.
-- **Error: 'No CIF structures could be converted to PDB'**: All entries were empty or invalid. Verify each input string contains valid CIF content.
-- **Downstream issues with PDB consumers**: If a downstream tool complains about formatting, check that the original CIF parses correctly and consider simplifying or re-generating the structure.
+- **Error: 'CIF input must be a non-empty dictionary'**: Ensure you pass a dictionary with at least one entry. The keys should be strings and values should be the full mmCIF text.
+- **Error converting a specific entry**: Verify the mmCIF content is complete and well-formed. Try validating the CIF or removing non-standard or corrupted lines.
+- **Empty output for some keys**: The node skips entries with empty or whitespace-only CIF content. Confirm your source provides actual structure text.
+- **Memory or performance issues on large files**: Convert in smaller batches or reduce input size if encountering resource constraints.

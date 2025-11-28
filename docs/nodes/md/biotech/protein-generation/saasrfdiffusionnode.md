@@ -1,10 +1,17 @@
 # RF Diffusion
 
-Generates protein backbone structures using RF Diffusion. Supports unconditional sampling from length ranges and conditional motif scaffolding using input PDBs and contigs. Optional symmetry, denoiser, contigmap, and guiding potentials configurations provide fine-grained control over sampling behavior.
+<div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
+<div style="flex: 1; min-width: 0;">
+
+Generates protein backbones using RFdiffusion with support for both unconditional generation and conditional motif scaffolding. Allows fine-grained control via symmetry, contig mapping, denoiser, and guiding potentials configurations. Supports full diffusion or partial diffusion (starting from a specified timestep) and can optionally output diffusion trajectories.
+
+</div>
+<div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/protein-generation/saasrfdiffusionnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
+</div>
 
 ## Usage
 
-Use this node to design new protein backbones or scaffold motifs. For unconditional generation, provide only a length range in contigs (e.g., 100-100) and leave input_pdb empty. For motif scaffolding or partial diffusion, supply an input PDB and contigs describing fixed motifs and flexible regions. Optionally connect configuration nodes for symmetry, contigmap, denoising, and potentials to guide the design.
+Use this node to design protein structures. For unconditional generation, provide only a length range in contigs (e.g., 100-100) and leave input_pdb empty. For conditional motif scaffolding or partial diffusion, provide an input PDB and a contigs string that specifies fixed and flexible regions. Optionally connect configuration nodes for symmetry, contig map, denoiser, and potentials to refine behavior. Enable write_trajectory if you need intermediate trajectory outputs.
 
 ## Inputs
 
@@ -19,22 +26,22 @@ Use this node to design new protein backbones or scaffold motifs. For unconditio
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">checkpoint</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Model checkpoint selection. Auto chooses a suitable checkpoint based on inputs; manual options require compatibility with the task.</td><td style="word-wrap: break-word;">Auto</td></tr>
-<tr><td style="word-wrap: break-word;">write_trajectory</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, outputs diffusion trajectories alongside the final design.</td><td style="word-wrap: break-word;">True</td></tr>
-<tr><td style="word-wrap: break-word;">model_runner</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Sampler to use during inference.</td><td style="word-wrap: break-word;">SelfConditioning</td></tr>
-<tr><td style="word-wrap: break-word;">align_motif</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Aligns predicted motif to the input motif for conditional tasks.</td><td style="word-wrap: break-word;">True</td></tr>
-<tr><td style="word-wrap: break-word;">final_step</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Reverse diffusion stopping step (1–50). Higher values accelerate inference.</td><td style="word-wrap: break-word;">1</td></tr>
-<tr><td style="word-wrap: break-word;">contigs</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Sequence layout. Unconditional: only a length/range (e.g., 100-100). Conditional: combine fixed motifs (A10-25), flexible ranges (5-15), and chain breaks (/0). For partial diffusion, it must match the exact residue layout of the input.</td><td style="word-wrap: break-word;">5-15/A10-25/30-40/0 B1-100</td></tr>
-<tr><td style="word-wrap: break-word;">hotspot_res</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Comma-separated residues on the target protein used for binding/interface design. Chain letter + residue index.</td><td style="word-wrap: break-word;">A30,A33,A34</td></tr>
-<tr><td style="word-wrap: break-word;">partial_T</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Start timestep for denoising (0–50). Use 50 to disable partial diffusion. Requires an input PDB if set below 50.</td><td style="word-wrap: break-word;">50</td></tr>
-<tr><td style="word-wrap: break-word;">seed</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Base random seed used for deterministic sampling.</td><td style="word-wrap: break-word;">42</td></tr>
-<tr><td style="word-wrap: break-word;">mode</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Execution mode. MOCK returns precomputed results, PROD runs full service, TEST reduces steps for faster checks.</td><td style="word-wrap: break-word;">PROD</td></tr>
-<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Timeout in seconds for the RF Diffusion run (30–12000).</td><td style="word-wrap: break-word;">600</td></tr>
-<tr><td style="word-wrap: break-word;">input_pdb</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Optional starting structure for conditional generation or partial diffusion.</td><td style="word-wrap: break-word;">{'file_0': '<pdb-file-reference>'}</td></tr>
-<tr><td style="word-wrap: break-word;">symmetry_config</td><td>False</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Symmetry sampling configuration. Connect output from RF Diffusion Symmetry Config node.</td><td style="word-wrap: break-word;">{'symmetry': 'c3', 'recenter': True, 'radius': 10}</td></tr>
-<tr><td style="word-wrap: break-word;">contigmap_config</td><td>False</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Contig mapping configuration (masking/unmasking sequence/structure, length). Connect output from RF Diffusion Contigmap Config node.</td><td style="word-wrap: break-word;">{'inpaint_seq': 'A50-60', 'length': '100-120'}</td></tr>
-<tr><td style="word-wrap: break-word;">denoiser_config</td><td>False</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Noise schedule and scale parameters. Connect output from RF Diffusion Denoiser Config node.</td><td style="word-wrap: break-word;">{'noise_scale_ca': 1.0, 'final_noise_scale_ca': 1.0, 'ca_noise_schedule_type': 'constant'}</td></tr>
-<tr><td style="word-wrap: break-word;">potentials_config</td><td>False</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Guiding potentials configuration to bias designs. Connect output from RF Diffusion Potentials Config node.</td><td style="word-wrap: break-word;">{'guiding_potentials': ['type:monomer_ROG,weight:1,min_dist:15'], 'guide_scale': 10}</td></tr>
+<tr><td style="word-wrap: break-word;">checkpoint</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Model checkpoint to use. 'Auto' chooses an appropriate checkpoint automatically; other options are advanced and should match your task.</td><td style="word-wrap: break-word;">Auto</td></tr>
+<tr><td style="word-wrap: break-word;">write_trajectory</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Whether to include trajectory outputs. Disable for faster runs.</td><td style="word-wrap: break-word;">True</td></tr>
+<tr><td style="word-wrap: break-word;">model_runner</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Sampler to run the model with.</td><td style="word-wrap: break-word;">SelfConditioning</td></tr>
+<tr><td style="word-wrap: break-word;">align_motif</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Align the model’s predicted motif to the input motif during conditional runs.</td><td style="word-wrap: break-word;">True</td></tr>
+<tr><td style="word-wrap: break-word;">final_step</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Reverse diffusion will stop at this step (1–50). Higher values speed up inference.</td><td style="word-wrap: break-word;">1</td></tr>
+<tr><td style="word-wrap: break-word;">contigs</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Defines sequence layout. Unconditional: length range only (e.g., 100-100). Conditional: fixed motifs (A10-25), flexible gaps (5-15), and optional chain breaks (/0). For partial diffusion, must match the full layout of the input PDB.</td><td style="word-wrap: break-word;">5-15/A10-25/30-40/0 B1-100</td></tr>
+<tr><td style="word-wrap: break-word;">hotspot_res</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Comma-separated target residues that should contact the designed chain(s). Only for conditional runs.</td><td style="word-wrap: break-word;">A30,A33,A34</td></tr>
+<tr><td style="word-wrap: break-word;">partial_T</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Start denoising from this timestep (0–50). 50 disables partial diffusion (standard full diffusion). Requires input_pdb when < 50.</td><td style="word-wrap: break-word;">50</td></tr>
+<tr><td style="word-wrap: break-word;">seed</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Base seed for reproducibility.</td><td style="word-wrap: break-word;">42</td></tr>
+<tr><td style="word-wrap: break-word;">mode</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Execution mode. PROD runs the service, MOCK returns predefined data, TEST uses faster minimal parameters.</td><td style="word-wrap: break-word;">PROD</td></tr>
+<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Timeout in seconds for the diffusion process (30–12000).</td><td style="word-wrap: break-word;">600</td></tr>
+<tr><td style="word-wrap: break-word;">input_pdb</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Input PDB for conditional tasks (motif scaffolding or partial diffusion). Not used for unconditional generation.</td><td style="word-wrap: break-word;"><pdb-file-reference></td></tr>
+<tr><td style="word-wrap: break-word;">symmetry_config</td><td>False</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Symmetry settings. Generate via the RF Diffusion Symmetry Config node and connect here.</td><td style="word-wrap: break-word;">{'symmetry': 'c2', 'recenter': True, 'radius': 10, 'model_only_neighbors': False, 'symmetric_self_cond': True}</td></tr>
+<tr><td style="word-wrap: break-word;">contigmap_config</td><td>False</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Contigmap settings for masking/unmasking sequence or structure. Generate via the RF Diffusion Contigmap Config node.</td><td style="word-wrap: break-word;">{'inpaint_seq': 'A50-80', 'inpaint_str': 'B165-178', 'provide_seq': '172-177,200-205', 'length': '100-120'}</td></tr>
+<tr><td style="word-wrap: break-word;">denoiser_config</td><td>False</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Denoiser noise schedules. Generate via the RF Diffusion Denoiser Config node.</td><td style="word-wrap: break-word;">{'noise_scale_ca': 1.0, 'final_noise_scale_ca': 1.0, 'ca_noise_schedule_type': 'constant', 'noise_scale_frame': 1.0, 'final_noise_scale_frame': 1.0, 'frame_noise_schedule_type': 'constant'}</td></tr>
+<tr><td style="word-wrap: break-word;">potentials_config</td><td>False</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Guiding potentials to steer design (e.g., contacts, ROG, substrate contacts). Generate via the RF Diffusion Potentials Config node.</td><td style="word-wrap: break-word;">{'guiding_potentials': ['type:monomer_ROG,weight:1,min_dist:15'], 'guide_scale': 10, 'guide_decay': 'constant', 'olig_inter_all': False, 'olig_intra_all': False}</td></tr>
 </tbody>
 </table>
 </div>
@@ -51,27 +58,30 @@ Use this node to design new protein backbones or scaffold motifs. For unconditio
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">generation.pdb</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">The generated protein backbone design(s).</td><td style="word-wrap: break-word;">{'file_0': '<pdb-file-reference>'}</td></tr>
-<tr><td style="word-wrap: break-word;">trajectory_Xt-1.pdb</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Trajectory snapshots at Xt−1 (returned only if write_trajectory is true).</td><td style="word-wrap: break-word;">{'file_0': '<pdb-file-reference>'}</td></tr>
-<tr><td style="word-wrap: break-word;">trajectory_pX0.pdb</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Trajectory snapshots at pX0 (returned only if write_trajectory is true).</td><td style="word-wrap: break-word;">{'file_0': '<pdb-file-reference>'}</td></tr>
+<tr><td style="word-wrap: break-word;">generation.pdb</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Final designed protein structure(s).</td><td style="word-wrap: break-word;"><pdb-file-reference></td></tr>
+<tr><td style="word-wrap: break-word;">trajectory_Xt-1.pdb</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Denoising trajectory at Xt-1 steps. Returned only if write_trajectory is true.</td><td style="word-wrap: break-word;"><pdb-file-reference></td></tr>
+<tr><td style="word-wrap: break-word;">trajectory_pX0.pdb</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Predicted X0 trajectory. Returned only if write_trajectory is true.</td><td style="word-wrap: break-word;"><pdb-file-reference></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Unconditional sampling**: Leave input_pdb empty. contigs must specify only length ranges (e.g., 100-100). hotspot_res must be empty. contigmap_config keys other than length must be empty.
-- **Conditional sampling (motif scaffolding)**: Provide input_pdb and contigs that include at least one fixed region with chain letters (e.g., A10-25). For partial diffusion (partial_T < 50), contigs must fully match the residue layout (counts and chain breaks) of the input structure.
-- **Partial diffusion**: Setting partial_T to 50 disables partial diffusion; values 0–49 enable it and require input_pdb.
-- **Trajectories**: If write_trajectory is false, trajectory outputs will be empty/not produced.
-- **TEST mode**: Runs a faster configuration by reducing steps and disabling some overhead for quick validation. Use PROD for full-quality results.
-- **Timeouts**: Long or complex designs may require increasing timeout, especially with trajectories enabled or larger complexes.
+- Checkpoint 'Auto' is recommended; manual checkpoints must be compatible with your task.
+- Unconditional mode: contigs must specify only a length range (e.g., 100-100), input_pdb must be empty, and hotspot_res must be empty.
+- Conditional mode (motif scaffolding): provide input_pdb and contigs must include at least one fixed region (e.g., A10-25).
+- Partial diffusion requires input_pdb and partial_T < 50; partial_T = 50 disables partial diffusion (full diffusion).
+- For unconditional runs, contigmap_config must not include fields other than length; any other populated field will raise an error.
+- write_trajectory increases runtime and output size; disable for faster testing.
+- TEST mode adjusts parameters for speed (e.g., increases final_step, disables trajectories/cautious behavior).
+- Seeds are applied per output; downstream files may carry seed metadata.
+- Symmetry, contig map, denoiser, and potentials are optional but powerful for advanced control.
 
 ## Troubleshooting
-- **Error: Non empty contigs must be passed**: Provide a valid contigs string. For unconditional, use only a length or length range (e.g., 120-150). For conditional, include fixed motif segments like A10-25 and flexible gaps like 5-15.
-- **Unconditional run rejects partial_T < 50**: Partial diffusion requires an input PDB. Either set partial_T to 50 or provide input_pdb.
-- **Unconditional run rejects hotspot_res or contigmap settings**: Clear hotspot_res and ensure contigmap_config contains only length. Other contigmap fields (inpaint_seq, inpaint_str, etc.) must be empty.
-- **Conditional run complains about missing fixed regions**: Ensure contigs includes at least one fixed region with chain letters (e.g., A10-25) unless performing partial diffusion with a fully matching layout.
-- **Partial diffusion with conditional run fails**: Verify contigs exactly match the residue counts, chain order, and breaks of the input PDB (e.g., use 79-79 for a 79-residue monomer; use X- X /0 Y- Y for multi-chain).
-- **No trajectory outputs**: Enable write_trajectory to receive trajectory_Xt-1.pdb and trajectory_pX0.pdb.
-- **Timeout exceeded**: Increase the timeout input. Consider disabling trajectories, or using TEST mode for quick checks.
-- **Incompatible checkpoint selection**: If results seem invalid, try Auto checkpoint or pick a checkpoint known to support your task type (unconditional, inpainting, complex).
+- Error: 'Non empty contigs must be passed' – Ensure contigs is provided. For unconditional, use a simple range; for conditional, include fixed regions.
+- Error: 'For partial diffusion sampling, expected input_pdb to be provided' – Provide an input PDB when partial_T < 50.
+- Error: 'For unconditional sampling, expected contigs to specify only length range' – Remove chain IDs and fixed regions; use a numeric range only.
+- Error: 'For unconditional sampling, expected hotspot_res to be empty' – Clear hotspot_res when no input_pdb is used.
+- Error: 'For unconditional sampling, expected <key> to be empty' – In contigmap_config leave all fields empty except length.
+- Error: 'For conditional sampling, expected contigs to specify least one fixed region' – Include at least one region like A10-25 when using input_pdb.
+- Timeouts: Increase timeout if designs are large or trajectories are enabled.
+- Empty or malformed contigs/hotspot formatting: Use correct formats (e.g., A10-25; hotspots like A30,A33).

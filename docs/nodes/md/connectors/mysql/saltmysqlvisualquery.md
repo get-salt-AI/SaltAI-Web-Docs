@@ -1,10 +1,17 @@
 # MySQL Visual Query Builder
 
-Builds and runs MySQL SELECT queries from a visual-style configuration, including multi-table JOINs, filters, grouping, ordering, and pagination. It can return results as plain text with JSON, or export them as HTML, XLSX, and PDF tables.
+<div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
+<div style="flex: 1; min-width: 0;">
+
+Builds and executes MySQL SELECT queries using a visual-style configuration instead of raw SQL. Supports JOINs (INNER, LEFT, RIGHT, FULL, CROSS), WHERE, GROUP BY, HAVING, ORDER BY, LIMIT, and OFFSET. Can output results in multiple formats including plain text/JSON, HTML, XLSX, and PDF.
+
+</div>
+<div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/mysql/saltmysqlvisualquery.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
+</div>
 
 ## Usage
 
-Use this node when you want to query a MySQL database without writing SQL directly. Provide a credentials URI and configure the main table, selected columns, JOINs, filters, grouping, and sorting. Choose an output format to get human-readable text, HTML for viewing, or XLSX/PDF for sharing. Typically used after establishing access to a MySQL database and before downstream processing or reporting.
+Use this node when you want to query MySQL data without hand-writing SQL, or when you need to construct complex multi-table queries with joins in a structured way. Typical workflow: provide credentials, choose the main table and database, specify selected columns and optional joins/filters/ordering, then pick the desired output format for downstream reporting or export.
 
 ## Inputs
 
@@ -19,19 +26,19 @@ Use this node when you want to query a MySQL database without writing SQL direct
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Database connection URI used to authenticate and route the request.</td><td style="word-wrap: break-word;">mysql://username:<password>@db.example.com:3306/my_database</td></tr>
-<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Request timeout in seconds for the query execution.</td><td style="word-wrap: break-word;">60</td></tr>
-<tr><td style="word-wrap: break-word;">main_table</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Primary table to select from.</td><td style="word-wrap: break-word;">users</td></tr>
-<tr><td style="word-wrap: break-word;">database</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Database name containing the main table.</td><td style="word-wrap: break-word;">sales_db</td></tr>
-<tr><td style="word-wrap: break-word;">selected_columns</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Comma-separated column list to select, or * for all columns.</td><td style="word-wrap: break-word;">users.id, users.name, orders.total</td></tr>
-<tr><td style="word-wrap: break-word;">join_config</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON array describing JOINs. Each item requires 'type', 'table', and 'on'. Optional 'database' defaults to 'mysql'.</td><td style="word-wrap: break-word;">[{"type": "INNER", "table": "orders", "database": "sales_db", "on": "users.id = orders.user_id"}]</td></tr>
-<tr><td style="word-wrap: break-word;">where_conditions</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">SQL WHERE conditions (omit the WHERE keyword).</td><td style="word-wrap: break-word;">users.active = 1 AND users.signup_date >= '2024-01-01'</td></tr>
-<tr><td style="word-wrap: break-word;">group_by_columns</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Comma-separated column list for GROUP BY.</td><td style="word-wrap: break-word;">users.country</td></tr>
-<tr><td style="word-wrap: break-word;">having_conditions</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">SQL HAVING conditions (omit the HAVING keyword).</td><td style="word-wrap: break-word;">COUNT(orders.id) > 5</td></tr>
-<tr><td style="word-wrap: break-word;">order_by_columns</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Comma-separated ORDER BY clauses. Add DESC for descending.</td><td style="word-wrap: break-word;">users.signup_date DESC, users.id ASC</td></tr>
-<tr><td style="word-wrap: break-word;">limit_count</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum number of rows to return.</td><td style="word-wrap: break-word;">100</td></tr>
-<tr><td style="word-wrap: break-word;">offset_count</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Number of rows to skip (for pagination).</td><td style="word-wrap: break-word;">0</td></tr>
-<tr><td style="word-wrap: break-word;">output_format</td><td>True</td><td style="word-wrap: break-word;">text \| html \| xlsx \| pdf \| all</td><td style="word-wrap: break-word;">Choose text (plain text + JSON), html (HTML table), xlsx (Excel as base64), pdf (PDF as base64), or all (returns all available formats).</td><td style="word-wrap: break-word;">text</td></tr>
+<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Reference/path to stored MySQL credentials to authenticate requests.</td><td style="word-wrap: break-word;">secrets/mysql-prod.json</td></tr>
+<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time in seconds to wait for the query to execute before failing.</td><td style="word-wrap: break-word;">120</td></tr>
+<tr><td style="word-wrap: break-word;">main_table</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Primary table to query from.</td><td style="word-wrap: break-word;">users</td></tr>
+<tr><td style="word-wrap: break-word;">database</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Database name that contains the main table.</td><td style="word-wrap: break-word;">salesdb</td></tr>
+<tr><td style="word-wrap: break-word;">selected_columns</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Columns to include in the SELECT clause. Use comma-separated columns or '*' for all columns. Supports qualified names (e.g., users.id, orders.total).</td><td style="word-wrap: break-word;">users.id, users.name, orders.total</td></tr>
+<tr><td style="word-wrap: break-word;">join_config</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON array (as a string) describing JOINs. Each item must include 'type', 'table', and 'on'. Optional 'database' defaults to 'mysql' if omitted.</td><td style="word-wrap: break-word;">[{"type":"INNER","table":"orders","database":"salesdb","on":"users.id = orders.user_id"}]</td></tr>
+<tr><td style="word-wrap: break-word;">where_conditions</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Text for the WHERE clause without the 'WHERE' keyword.</td><td style="word-wrap: break-word;">users.status = 'active' AND orders.total > 100</td></tr>
+<tr><td style="word-wrap: break-word;">group_by_columns</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Comma-separated columns for GROUP BY.</td><td style="word-wrap: break-word;">users.country</td></tr>
+<tr><td style="word-wrap: break-word;">having_conditions</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Text for the HAVING clause without the 'HAVING' keyword (used with GROUP BY).</td><td style="word-wrap: break-word;">COUNT(orders.id) > 2</td></tr>
+<tr><td style="word-wrap: break-word;">order_by_columns</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Comma-separated ORDER BY columns. Append DESC for descending order if needed.</td><td style="word-wrap: break-word;">users.created_at DESC, users.id ASC</td></tr>
+<tr><td style="word-wrap: break-word;">limit_count</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum number of rows to return. Must be >= 1.</td><td style="word-wrap: break-word;">100</td></tr>
+<tr><td style="word-wrap: break-word;">offset_count</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Number of rows to skip before returning results. Must be >= 0.</td><td style="word-wrap: break-word;">0</td></tr>
+<tr><td style="word-wrap: break-word;">output_format</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Result output format. One of: text, html, xlsx, pdf, all.</td><td style="word-wrap: break-word;">all</td></tr>
 </tbody>
 </table>
 </div>
@@ -48,27 +55,29 @@ Use this node when you want to query a MySQL database without writing SQL direct
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary of the query results (plain text).</td><td style="word-wrap: break-word;">Visual Query Results (100 rows): Row 1: id: 1 \| name: Alice \| total: 125.00 ...</td></tr>
-<tr><td style="word-wrap: break-word;">json_result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Raw result payload serialized as a JSON string, typically including rows and row count.</td><td style="word-wrap: break-word;">{"data": [{"id": 1, "name": "Alice", "total": 125.0}], "row_count": 1}</td></tr>
-<tr><td style="word-wrap: break-word;">html_table</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">HTML table representation of the results when output_format is html or all. Empty for text-only output.</td><td style="word-wrap: break-word;"><!DOCTYPE html><html>...<table><thead>...</thead><tbody>...</tbody></table>...</html></td></tr>
-<tr><td style="word-wrap: break-word;">xlsx_data</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Base64-encoded XLSX data when output_format is xlsx or all. Empty for other formats.</td><td style="word-wrap: break-word;"><base64-xlsx-string></td></tr>
-<tr><td style="word-wrap: break-word;">pdf_data</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Base64-encoded PDF data when output_format is pdf or all. Empty for other formats.</td><td style="word-wrap: break-word;"><base64-pdf-string></td></tr>
+<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary of the query results. Populated when output_format is 'text' or 'all'.</td><td style="word-wrap: break-word;">Visual Query: salesdb.users — 100 rows returned</td></tr>
+<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Raw results as JSON (typically includes a 'data' array and optional metadata). Always populated on success.</td><td style="word-wrap: break-word;">{"data":[{"id":1,"name":"Alice","total":250.0}]}</td></tr>
+<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">HTML</td><td style="word-wrap: break-word;">HTML table representation of the results. Populated when output_format is 'html' or 'all'.</td><td style="word-wrap: break-word;"><table><thead><tr><th>id</th><th>name</th><th>total</th></tr></thead><tbody><tr><td>1</td><td>Alice</td><td>250.0</td></tr></tbody></table></td></tr>
+<tr><td style="word-wrap: break-word;">xlsx</td><td style="word-wrap: break-word;">XLSX</td><td style="word-wrap: break-word;">Excel workbook bytes of the results. Populated when output_format is 'xlsx' or 'all'.</td><td style="word-wrap: break-word;"><binary-xlsx-bytes></td></tr>
+<tr><td style="word-wrap: break-word;">pdf</td><td style="word-wrap: break-word;">PDF</td><td style="word-wrap: break-word;">PDF document bytes containing a tabular rendering of the results. Populated when output_format is 'pdf' or 'all'.</td><td style="word-wrap: break-word;"><binary-pdf-bytes></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Credentials URI required**: Provide a valid MySQL-style URI in credentials_path (e.g., mysql://username:<password>@host:port/db).
-- **JOIN config format**: join_config must be valid JSON array. Each item must include 'type', 'table', and 'on'. Optional 'database' defaults to 'mysql'.
-- **Allowed JOIN types**: INNER, LEFT, RIGHT, FULL, CROSS. CROSS JOIN ignores 'on'.
-- **SQL fragments only**: where_conditions, having_conditions, order_by_columns should be SQL fragments without leading keywords (WHERE, HAVING, ORDER BY).
-- **Pagination**: limit_count and offset_count translate to LIMIT and OFFSET in the final query.
-- **Output formats**: 'text' returns text and JSON; 'html' returns HTML + JSON; 'xlsx' returns XLSX(base64) + JSON; 'pdf' returns PDF(base64) + JSON; 'all' returns all formats.
+- **JOIN types**: Supported join types are INNER, LEFT, RIGHT, FULL, and CROSS. Any other value will be rejected.
+- **Join configuration format**: join_config must be a JSON array string. Each join requires 'type', 'table', and 'on'. 'database' is optional and defaults to 'mysql'.
+- **SQL assembly**: The node constructs a SQL query from your inputs. Ensure where_conditions, having_conditions, and order_by_columns are valid SQL fragments.
+- **Limits and offsets**: LIMIT is included only if limit_count > 0; OFFSET only if offset_count > 0.
+- **Output selection**: Choose 'all' to get text, JSON, HTML, XLSX, and PDF simultaneously. Other formats return only the requested artifact plus JSON.
+- **Empty results**: If no rows are returned, the text output will indicate no data; JSON output will return an empty data array.
+- **Security**: Avoid injecting sensitive values directly in conditions. Store secrets in credentials and do not include passwords in inputs.
 
 ## Troubleshooting
-- **Invalid credentials URI**: Ensure credentials_path starts with mysql:// and includes host, database, and valid placeholders for auth.
-- **Malformed join_config**: If parsing fails, validate that join_config is valid JSON and an array of objects with 'type', 'table', and 'on'.
-- **Unsupported JOIN type**: Use only INNER, LEFT, RIGHT, FULL, or CROSS.
-- **Empty results**: If no rows are returned, check filters, LIMIT/OFFSET, and selected_columns.
-- **Export fields are empty**: Ensure output_format matches the expected export; e.g., choose html for HTML table or xlsx/pdf for file exports.
-- **SQL errors**: Validate column names, table names, and SQL fragments in where_conditions/having_conditions/order_by_columns.
+- **Invalid join_config JSON**: If parsing fails, ensure join_config is valid JSON (as a string) and is an array of objects. Example: "[{\"type\":\"INNER\",\"table\":\"orders\",\"on\":\"users.id = orders.user_id\"}]"
+- **Unsupported join type**: Error indicating invalid join type means 'type' must be one of INNER, LEFT, RIGHT, FULL, CROSS.
+- **SQL syntax errors**: If the database reports a syntax error, review where_conditions, having_conditions, order_by_columns, and selected_columns for mistakes or missing qualifiers.
+- **Unknown columns/tables**: Ensure selected_columns, join 'table', and column references exist and are correctly qualified with table names when necessary.
+- **No data returned**: Verify filters in where_conditions and having_conditions aren't over-restrictive; try removing filters or increasing limit_count.
+- **Permission/connection errors**: Confirm credentials_path points to valid MySQL credentials with required permissions and that the timeout is sufficient.
+- **Empty HTML/XLSX/PDF outputs**: These are only populated when output_format matches the format or is 'all'. Set output_format accordingly.

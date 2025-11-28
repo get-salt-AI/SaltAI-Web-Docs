@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Searches the input text using a regular expression and returns all matches. It uses Python’s regex engine to find non-overlapping matches in order, producing a list of results.
+Searches an input string using a regular expression and returns all matches. It performs a global search across the entire text and outputs the results as a list. If the pattern contains capture groups, the output reflects those groups.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/utilities/saistringregexsearchmatch.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Searches the input text using a regular expression and returns all matches. It u
 
 ## Usage
 
-Use this node when you need to extract all substrings that match a pattern, such as extracting emails, hashtags, words of a certain length, or other structured tokens from text. Typically placed after a text generation or text input node to parse and collect specific elements.
+Use this node when you need to extract all occurrences that match a specific pattern from a block of text (e.g., emails, IDs, keywords of a certain length). Typically used before downstream parsing, validation, filtering, or branching logic that depends on detected tokens.
 
 ## Inputs
 
@@ -26,8 +26,8 @@ Use this node when you need to extract all substrings that match a pattern, such
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">text_input</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The text to search for matches using the provided regular expression.</td><td style="word-wrap: break-word;">The quick brown fox jumps over 2 lazy dogs.</td></tr>
-<tr><td style="word-wrap: break-word;">regex_pattern</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Regular expression pattern used to find matches. Supports Python regex syntax, including inline flags like (?i) for case-insensitive matching.</td><td style="word-wrap: break-word;">\b\w{5}\b</td></tr>
+<tr><td style="word-wrap: break-word;">text_input</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The text to search. Can be multi-line.</td><td style="word-wrap: break-word;">Please contact alice@example.com or bob@example.org for details.</td></tr>
+<tr><td style="word-wrap: break-word;">regex_pattern</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Regular expression to match against the input text. Use standard regex syntax. Backslashes must be escaped in string literals.</td><td style="word-wrap: break-word;">\b[a-zA-Z]{6}\b</td></tr>
 </tbody>
 </table>
 </div>
@@ -44,23 +44,25 @@ Use this node when you need to extract all substrings that match a pattern, such
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">matches</td><td style="word-wrap: break-word;">LIST</td><td style="word-wrap: break-word;">List of all non-overlapping matches found in the input text. If the pattern contains capture groups, each match may be a tuple of group values; otherwise, each match is a string.</td><td style="word-wrap: break-word;">['quick', 'brown']</td></tr>
+<tr><td style="word-wrap: break-word;">matches</td><td style="word-wrap: break-word;">LIST</td><td style="word-wrap: break-word;">A list of all matches found. If the pattern has capture groups, each match may be a string (no groups) or a tuple/list (with groups). Returns an empty list if no matches are found.</td><td style="word-wrap: break-word;">['alice', 'bobcat']</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- The matching behavior follows Python's re.findall: results are strings if there are no capture groups, or tuples if the pattern includes groups.
-- If no matches are found, the output is an empty list.
-- Regex flags are not separate inputs; use inline flags such as (?i) for case-insensitive or (?s) for dotall within the pattern.
-- Be mindful of escaping backslashes in patterns (e.g., use \\b for word boundary in string literals).
-- Very large texts or complex patterns can impact performance; simplify patterns or pre-filter text when possible.
+- If the regex pattern contains capture groups, each item in the output may be a tuple of captured group values rather than a single string.
+- Invalid regex patterns will cause an error; verify your pattern syntax.
+- The search is global across the entire input and is not case-insensitive unless specified in the pattern (e.g., (?i)).
+- Remember to double-escape backslashes in patterns entered as strings (e.g., "\\d+" for digits).
+- Performance can degrade with very large texts or complex patterns; optimize your regex when processing long documents.
+- By default, dot (.) does not match newlines unless you use modifiers like (?s).
 
 ## Troubleshooting
-- Pattern error (e.g., 'bad character range'): Ensure the regex is valid Python syntax and properly escaped.
-- Unexpected tuples in output: Remove capture groups or convert them to non-capturing groups using (?:...) to get full-match strings.
-- Case sensitivity issues: Add (?i) at the start of the pattern for case-insensitive matching.
-- No matches returned: Verify the pattern, test with simpler patterns, or check that the input text actually contains the target substrings.
+- Pattern returns an empty list: Confirm the text truly contains matches and that anchors/boundaries (e.g., \b, ^, $) are appropriate for your data.
+- Unexpected tuple outputs: Remove capture groups or convert them to non-capturing groups (?:...) if you want full-match strings.
+- Regex syntax error: Validate the pattern with a regex tester or simplify the expression to locate the error.
+- Missing matches due to case: Add (?i) to the pattern or explicitly include case ranges.
+- Multiline behavior issues: Use (?m) for ^/$ across lines or (?s) for dotall behavior if needed.
 
 ## Example Pipelines
 

@@ -1,10 +1,17 @@
 # PostgreSQL Table Info
 
-Retrieves structural information about a PostgreSQL table. Returns a human-readable summary and a JSON payload describing columns, data types, nullability, and related metadata for the specified table and schema.
+<div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
+<div style="flex: 1; min-width: 0;">
+
+Retrieves structural information about a PostgreSQL table (e.g., columns, data types, constraints) using the configured database credentials. Returns a human-readable summary along with the raw JSON metadata. Useful for exploring schema details before writing queries or building data pipelines.
+
+</div>
+<div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/postgresql/saltpostgrestableinfo.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
+</div>
 
 ## Usage
 
-Use this node when you need to inspect a table’s structure before writing queries, building joins, or configuring downstream data processing. Typical workflows include schema exploration, validation of expected columns, and preparing inputs for visual or manual query builders.
+Use this node when you need to inspect a table’s schema in a PostgreSQL database. Provide the credentials file path, select the target schema and table, and run the node to get both a formatted summary and the underlying JSON metadata. This is typically used ahead of crafting queries, validating integrations, or documenting data models.
 
 ## Inputs
 
@@ -19,10 +26,10 @@ Use this node when you need to inspect a table’s structure before writing quer
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Database connection URI used to authenticate and connect to PostgreSQL.</td><td style="word-wrap: break-word;">postgresql://<username>:<password>@<host>:5432/<database>?sslmode=disable</td></tr>
-<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time (in seconds) to wait for the table info request to complete.</td><td style="word-wrap: break-word;">60</td></tr>
-<tr><td style="word-wrap: break-word;">table_name</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Name of the table to describe. Must exist in the provided schema.</td><td style="word-wrap: break-word;">users</td></tr>
-<tr><td style="word-wrap: break-word;">schema</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Database schema where the table resides.</td><td style="word-wrap: break-word;">public</td></tr>
+<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Path to the stored credentials configuration for the PostgreSQL service. The credentials must match the 'postgres' credential template.</td><td style="word-wrap: break-word;">/workspace/credentials/postgres.json</td></tr>
+<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time in seconds to wait for the operation before timing out.</td><td style="word-wrap: break-word;">60</td></tr>
+<tr><td style="word-wrap: break-word;">table_name</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Name of the table to retrieve information about.</td><td style="word-wrap: break-word;">users</td></tr>
+<tr><td style="word-wrap: break-word;">schema</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Name of the database schema where the table resides.</td><td style="word-wrap: break-word;">public</td></tr>
 </tbody>
 </table>
 </div>
@@ -39,25 +46,25 @@ Use this node when you need to inspect a table’s structure before writing quer
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary of the table’s structure suitable for quick inspection.</td><td style="word-wrap: break-word;">Table Info: public.users Column: id \| Type: integer \| Nullable: NO \| Default: nextval('users_id_seq'::regclass) Column: email \| Type: text \| Nullable: NO ...</td></tr>
-<tr><td style="word-wrap: break-word;">json_result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON string containing the raw table metadata returned by the service.</td><td style="word-wrap: break-word;">{"columns":[{"column_name":"id","data_type":"integer","is_nullable":"NO","column_default":"nextval('users_id_seq'::regclass)"},{"column_name":"email","data_type":"text","is_nullable":"NO"}]}</td></tr>
-<tr><td style="word-wrap: break-word;">html_table</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">HTML representation of the results. For this node’s default output mode, this is empty.</td><td style="word-wrap: break-word;"></td></tr>
-<tr><td style="word-wrap: break-word;">xlsx_data</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Base64-encoded XLSX data of the results. For this node’s default output mode, this is empty.</td><td style="word-wrap: break-word;"></td></tr>
-<tr><td style="word-wrap: break-word;">pdf_data</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Base64-encoded PDF data of the results. For this node’s default output mode, this is empty.</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Formatted, human-readable summary of the table structure.</td><td style="word-wrap: break-word;">Table Info: public.users - Columns:   id (integer, not null)   email (text, not null)   created_at (timestamp, null) - Primary Key: users_pkey (id) - Indexes: users_email_idx (email) - Foreign Keys: ...</td></tr>
+<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Raw JSON metadata returned by the service detailing columns, data types, constraints, and other table properties.</td><td style="word-wrap: break-word;">{"data": {"columns": [{"name": "id", "type": "integer", "nullable": false}], "primary_key": ["id"], "indexes": [], "foreign_keys": []}}</td></tr>
+<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">HTML</td><td style="word-wrap: break-word;">HTML rendition of the results if available; otherwise an empty string.</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">xlsx</td><td style="word-wrap: break-word;">BYTES</td><td style="word-wrap: break-word;">Binary Excel content if exported; otherwise empty.</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">pdf</td><td style="word-wrap: break-word;">BYTES</td><td style="word-wrap: break-word;">Binary PDF content if exported; otherwise empty.</td><td style="word-wrap: break-word;"></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Credentials URI required**: Provide a valid PostgreSQL URI (e.g., postgresql://<username>:<password>@<host>:<port>/<database>) or the node will fail.
-- **Schema and table must exist**: Ensure the specified schema and table are present and that the user has permission to read metadata.
-- **Timeouts**: Long-running operations or network issues may require increasing the timeout value.
-- **Secure secrets**: Never embed real credentials in shared workflows. Use placeholders or secure secret management.
-- **Backend configuration**: This node relies on a configured backend database connector. If that service is not available, requests will fail.
+- **Credentials**: Requires a valid PostgreSQL credential configuration (credential template: "postgres").
+- **Schema and table names**: The default schema is "public". Ensure the specified table exists in the given schema.
+- **Permissions**: The database user in the provided credentials must have sufficient privileges to read metadata.
+- **Timeouts**: Operations respect the specified timeout; large or slow systems may require higher values.
+- **Outputs**: The node returns a formatted text summary and the raw JSON. Other output formats may be empty if not generated.
 
 ## Troubleshooting
-- **Invalid credentials URI**: If you see an error about an invalid or unsupported URI, verify the format and scheme (e.g., postgresql://) and ensure host, port, and database are correct.
-- **Authentication or permission errors**: Confirm the username/password and that the role can access information_schema and the specified table.
-- **Table not found**: Double-check the table_name and schema values. Use the PostgreSQL List Tables node to discover available tables.
-- **Network/timeout issues**: Increase the timeout input or verify network connectivity to the database service.
-- **Empty or partial metadata**: Some environments restrict metadata visibility. Ensure your role has required privileges to view column information.
+- **Authentication failed**: Verify credentials_path points to a valid file and that the credentials match the target database.
+- **Table not found**: Check spelling, schema selection, and case sensitivity for the table_name and schema.
+- **Insufficient privileges**: Ensure the user has metadata access (e.g., to information_schema or catalog views).
+- **Network/connection issues**: Confirm the database is reachable from your environment and firewall rules allow access.
+- **Timeouts**: Increase the timeout input if the database is slow or under heavy load.

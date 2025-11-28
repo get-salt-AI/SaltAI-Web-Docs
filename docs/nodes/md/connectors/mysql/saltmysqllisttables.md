@@ -1,10 +1,17 @@
 # MySQL List Tables
 
-Lists all tables available in a specified MySQL database using configured credentials. Returns a human-readable summary and a JSON payload, with optional HTML, XLSX, and PDF formatted outputs for downstream reporting or visualization.
+<div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
+<div style="flex: 1; min-width: 0;">
+
+Lists all tables available in a specified MySQL database. It authenticates using provided MySQL credentials and returns a human-readable list along with a machine-readable JSON payload. Non-text exports (HTML/XLSX/PDF) are available but are empty by default for this operation.
+
+</div>
+<div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/mysql/saltmysqllisttables.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
+</div>
 
 ## Usage
 
-Use this node when you need to explore schema structure or drive UI pickers by enumerating tables in a MySQL database. Typical workflows include running it before table info or query nodes to help users select a table, or exporting the table list for documentation and audits.
+Use this node when you need to discover or audit the tables present in a particular MySQL database before writing queries or building data workflows. Typical usage is to connect with valid MySQL credentials, provide the target database name, and feed the results into downstream nodes that select tables, inspect schemas, or construct queries.
 
 ## Inputs
 
@@ -19,9 +26,9 @@ Use this node when you need to explore schema structure or drive UI pickers by e
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Path or reference to stored MySQL credentials that include connection details and authentication.</td><td style="word-wrap: break-word;">/connections/mysql/prod.json</td></tr>
-<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time in seconds to wait for the operation before timing out.</td><td style="word-wrap: break-word;">30</td></tr>
-<tr><td style="word-wrap: break-word;">database</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The MySQL database name to list tables from.</td><td style="word-wrap: break-word;">analytics_db</td></tr>
+<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Path to the saved MySQL credentials file configured for this service. The credentials should follow the MySQL credential template.</td><td style="word-wrap: break-word;">/workspace/credentials/mysql.json</td></tr>
+<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time in seconds to wait for the list operation before failing.</td><td style="word-wrap: break-word;">30</td></tr>
+<tr><td style="word-wrap: break-word;">database</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Name of the MySQL database from which to list tables.</td><td style="word-wrap: break-word;">analytics</td></tr>
 </tbody>
 </table>
 </div>
@@ -38,25 +45,24 @@ Use this node when you need to explore schema structure or drive UI pickers by e
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Plain-text summary of the tables found in the specified database.</td><td style="word-wrap: break-word;">Tables in Database: analytics_db - users - events - sessions</td></tr>
-<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON string containing the raw result of the list tables operation.</td><td style="word-wrap: break-word;">{"data": [{"table_name": "users"}, {"table_name": "events"}]}</td></tr>
-<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">HTML representation (e.g., a table) of the listed tables for embedding in dashboards or reports. May be empty if not generated.</td><td style="word-wrap: break-word;"><h3>Tables in Database: analytics_db</h3><table>...</table></td></tr>
-<tr><td style="word-wrap: break-word;">xlsx</td><td style="word-wrap: break-word;">BYTES</td><td style="word-wrap: break-word;">Binary XLSX data containing the table list for download or archival. May be empty if not generated.</td><td style="word-wrap: break-word;"><binary-xlsx-data></td></tr>
-<tr><td style="word-wrap: break-word;">pdf</td><td style="word-wrap: break-word;">BYTES</td><td style="word-wrap: break-word;">Binary PDF data with the table list formatted for printing/sharing. May be empty if not generated.</td><td style="word-wrap: break-word;"><binary-pdf-data></td></tr>
+<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">TEXT</td><td style="word-wrap: break-word;">Formatted textual summary of tables found in the specified database.</td><td style="word-wrap: break-word;">Tables in Database: analytics - users - orders - products</td></tr>
+<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">JSON representation of the result, suitable for programmatic use.</td><td style="word-wrap: break-word;">{"data": ["users", "orders", "products"], "database": "analytics"}</td></tr>
+<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">HTML</td><td style="word-wrap: break-word;">HTML output (empty by default for this node).</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">xlsx</td><td style="word-wrap: break-word;">XLSX</td><td style="word-wrap: break-word;">Binary Excel data for export (empty by default for this node).</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">pdf</td><td style="word-wrap: break-word;">PDF</td><td style="word-wrap: break-word;">Binary PDF data for export (empty by default for this node).</td><td style="word-wrap: break-word;"></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Credentials required**: The node uses the MySQL credential template and must have valid host, port, database, and auth to access metadata.
-- **Permissions matter**: The connected user must have privileges to read schema metadata; otherwise results may be empty or partial.
-- **Database parameter**: Defaults may point to 'mysql', but set the target application database explicitly to get relevant tables.
-- **Timeouts**: Large schemas or slow networks may require increasing the timeout to avoid premature failures.
-- **Output formats**: The node always returns text and JSON; HTML/XLSX/PDF outputs may be empty unless specifically produced by the underlying formatter.
+- **Credentials required**: Ensure the credentials file at credentials_path is valid and configured for MySQL.
+- **Database name accuracy**: The database input must exist and be accessible to the provided user, otherwise the result may be empty or error.
+- **Timeouts**: Large catalogs or slow connections may require increasing the timeout.
+- **Outputs**: The operation primarily returns populated TEXT and JSON outputs; HTML/XLSX/PDF outputs are provided for interface consistency and are typically empty for this node.
 
 ## Troubleshooting
-- **Authentication error**: Verify the credentials_path points to valid MySQL credentials and that the username/password are correct.
-- **Unknown database**: Ensure the 'database' value exists on the target server and matches case/quoting rules.
-- **Empty results**: Confirm the user has metadata access (e.g., to information_schema) and that the database actually contains tables.
-- **Network timeout**: Increase the 'timeout' value or check network/firewall restrictions between the node runtime and the MySQL server.
-- **Intermittent failures**: Check server load and connection limits; reduce concurrent requests or retry with backoff.
+- **Authentication error**: Verify credentials_path points to a valid MySQL credential set and that network access to the MySQL host is allowed.
+- **Permission denied**: Ensure the MySQL user has privileges to read metadata (e.g., information_schema) for the specified database.
+- **Empty results**: Confirm the database name is correct and that it actually contains tables.
+- **Request timed out**: Increase the timeout input and check database/network latency.
+- **Unknown database**: Double-check the database field for typos or missing databases on the server.

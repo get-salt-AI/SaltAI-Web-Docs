@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Runs a coordinated multi-agent conversation to solve a given task. You can add 1–31 agents and choose how the discussion proceeds (round-robin, LLM-selected next speaker, or orchestrator-managed). Returns the full conversation transcript and an optional concise summary.
+Runs a multi-agent conversation to solve a given task using 1–31 agents. You choose the team organization mode (Cycle, Smart, or Manage), optionally enable summarization, and control limits like maximum messages and execution time. The node returns the chat transcript (as a markdown-formatted string) and an optional concise summary.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/agents/runagentsteam.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Runs a coordinated multi-agent conversation to solve a given task. You can add 1
 
 ## Usage
 
-Use this node to orchestrate collaboration among multiple specialized agents created with Create Agent. Connect one or more agent configs, define the task, choose the team type, and optionally cap length and duration. Ideal for complex problems that benefit from debate, tool-usage, or role specialization, with a final summarized answer if desired.
+Use this node when you want multiple agents (created via Create Agent) to collaborate on a task. Connect agent_1 (required) and optionally chain agent_2 through agent_31 in order. Select a team type: Cycle (round-robin), Smart (LLM chooses next speaker), or Manage (conversation managed by an orchestrator). Provide the task, optionally enable summarization, and set limits for message count and timeout. The output includes a formatted transcript and a summary to feed into downstream steps.
 
 ## Inputs
 
@@ -26,12 +26,12 @@ Use this node to orchestrate collaboration among multiple specialized agents cre
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">agent_1</td><td>True</td><td style="word-wrap: break-word;">AGENT</td><td style="word-wrap: break-word;">First team member configuration. Produced by Create Agent.</td><td style="word-wrap: break-word;">AGENT object from Create Agent (e.g., GPT-4o with WebSearcher tool and a Researcher role)</td></tr>
-<tr><td style="word-wrap: break-word;">team_type</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Defines the discussion flow: Cycle (round-robin turns), Smart (LLM selects next speaker based on context), Manage (an orchestrator manages who speaks when).</td><td style="word-wrap: break-word;">Cycle</td></tr>
-<tr><td style="word-wrap: break-word;">task</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The problem or objective for the agents to solve. Provide clear instructions and constraints.</td><td style="word-wrap: break-word;">Research the top three note-taking strategies for software engineers and propose a concise, actionable plan.</td></tr>
-<tr><td style="word-wrap: break-word;">summarize</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, the node will also produce a concise summary/answer to the task based on the conversation.</td><td style="word-wrap: break-word;">true</td></tr>
-<tr><td style="word-wrap: break-word;">max_messages</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum number of messages produced by the team. Use 0 for no limit.</td><td style="word-wrap: break-word;">12</td></tr>
-<tr><td style="word-wrap: break-word;">max_timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum execution time in seconds for the team run.</td><td style="word-wrap: break-word;">300</td></tr>
+<tr><td style="word-wrap: break-word;">agent_1</td><td>True</td><td style="word-wrap: break-word;">AGENT</td><td style="word-wrap: break-word;">Primary agent configuration and capabilities. This is the first team member.</td><td style="word-wrap: break-word;">{'model': 'gpt-4o', 'tools': {'WebSearcher': True, 'Calculator': False}, 'role': 'Research assistant', 'system_prompt': 'You help with web research and synthesis.'}</td></tr>
+<tr><td style="word-wrap: break-word;">team_type</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">How the team coordinates: Cycle (round-robin), Smart (LLM picks next speaker), or Manage (orchestrator manages flow).</td><td style="word-wrap: break-word;">Smart</td></tr>
+<tr><td style="word-wrap: break-word;">task</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The task or problem statement the agents should collaboratively solve.</td><td style="word-wrap: break-word;">Compare the latest AI model benchmarks and recommend the best for document summarization.</td></tr>
+<tr><td style="word-wrap: break-word;">summarize</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, returns a concise summary of the multi-agent discussion focused on solving the task.</td><td style="word-wrap: break-word;">True</td></tr>
+<tr><td style="word-wrap: break-word;">max_messages</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum number of messages the team can produce. 0 means no limit.</td><td style="word-wrap: break-word;">20</td></tr>
+<tr><td style="word-wrap: break-word;">max_timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum execution duration in seconds for the agents team run.</td><td style="word-wrap: break-word;">300</td></tr>
 </tbody>
 </table>
 </div>
@@ -48,24 +48,27 @@ Use this node to orchestrate collaboration among multiple specialized agents cre
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">messages</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The complete transcript of the agents' conversation, formatted as markdown.</td><td style="word-wrap: break-word;">A multi-turn, markdown-formatted dialogue between the agents discussing and solving the task.</td></tr>
-<tr><td style="word-wrap: break-word;">summary</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A concise summary or final answer distilled from the conversation (may be empty or brief if summarization is disabled or not applicable).</td><td style="word-wrap: break-word;">Top three strategies summarized with a short action plan.</td></tr>
+<tr><td style="word-wrap: break-word;">messages</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The multi-agent conversation transcript as a markdown-formatted string containing all messages.</td><td style="word-wrap: break-word;">```markdown Agent_1: Proposal A looks promising.  Agent_2: I’ll verify with recent data. ```</td></tr>
+<tr><td style="word-wrap: break-word;">summary</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A concise summary of the conversation outcome. May be empty if summarization is disabled.</td><td style="word-wrap: break-word;">Recommendation: Use Model X for document summarization due to superior accuracy and latency.</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- Agents must be created with Create Agent first and connected here as agent_1, agent_2, etc.
-- You can run with a single agent if desired; additional agents are optional and appear incrementally as you connect them.
-- team_type determines how turns are selected: Cycle (fixed order), Smart (context-aware selection), Manage (orchestrator-controlled).
-- Set max_messages to 0 to allow unlimited conversation length within max_timeout.
-- If summarize is disabled, the summary output may be empty or minimal.
+- Agents must be connected sequentially: each agent_n becomes available only after agent_(n-1) is set.
+- You can run with a single agent by only providing agent_1.
+- Team types: Cycle (round-robin), Smart (next speaker selected via an LLM), Manage (conversation orchestrated).
+- max_messages = 0 removes the cap on the number of produced messages.
+- The transcript output is wrapped as a markdown-formatted string.
+- Set max_timeout high enough for complex tasks to avoid premature termination.
+- If summarization is disabled, the summary output may be empty or minimal depending on the task.
 
 ## Troubleshooting
-- Conversation stops too early: increase max_messages or provide a clearer task to guide the discussion.
-- Run times out: increase max_timeout or reduce the number of agents/complexity of the task.
-- Summary is missing or too brief: ensure summarize is enabled and that the task clearly asks for actionable conclusions.
-- Agents seem off-topic: refine each agent's role and system prompt in Create Agent, and provide a more specific task.
+- Request failed or timed out: Increase max_timeout and try again; ensure the task is appropriately scoped.
+- Non-200 response from the service: Review the error message and adjust inputs (e.g., reduce complexity, change team_type).
+- JSON decoding error: Retry the run; if persistent, simplify the task or reduce max_messages.
+- Empty or unhelpful summary: Enable summarize or refine agent roles/prompts to produce clearer outcomes.
+- Conversation stops early: Increase max_messages or verify that added agents are properly configured and connected in order.
 
 ## Example Pipelines
 

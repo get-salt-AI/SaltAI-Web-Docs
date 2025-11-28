@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Computes a single statistical measure from a comma-separated list of numeric values. Supports mean, median, mode, standard deviation, variance, sum, product, and count. The node parses the input string into numbers and returns the requested statistic as a float, applying population formulas for variance and standard deviation.
+Computes a statistical measure from a comma-separated list of numbers. Supports mean, median, mode, standard deviation, variance, sum, product, and count. If inputs are invalid or empty, the node returns 0.0.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/utilities/math/saltstatisticaloperation.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Computes a single statistical measure from a comma-separated list of numeric val
 
 ## Usage
 
-Use this node when you need to derive a summary statistic from a list of values for downstream logic or parameterization. Typical workflows include aggregating scores, normalizing decisions based on data distribution, or counting items from a numeric list provided by earlier nodes.
+Use this node to quickly summarize numeric data provided as a single comma-separated string. Commonly placed after text or configuration inputs to compute aggregates for downstream logic, thresholds, or reporting.
 
 ## Inputs
 
@@ -26,8 +26,8 @@ Use this node when you need to derive a summary statistic from a list of values 
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">values</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Comma-separated list of numbers to analyze. Spaces are allowed and ignored around numbers. Non-numeric entries will cause the node to return 0.0.</td><td style="word-wrap: break-word;">1, 2, 3, 4, 5</td></tr>
-<tr><td style="word-wrap: break-word;">operation</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">The statistical operation to compute. One of: mean, median, mode, std, variance, sum, product, count.</td><td style="word-wrap: break-word;">mean</td></tr>
+<tr><td style="word-wrap: break-word;">values</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Comma-separated list of numbers to analyze. Whitespace is allowed and ignored around numbers.</td><td style="word-wrap: break-word;">1, 2, 2, 3, 4.5</td></tr>
+<tr><td style="word-wrap: break-word;">operation</td><td>True</td><td style="word-wrap: break-word;">["mean", "median", "mode", "std", "variance", "sum", "product", "count"]</td><td style="word-wrap: break-word;">Statistical operation to apply to the parsed list of numbers.</td><td style="word-wrap: break-word;">median</td></tr>
 </tbody>
 </table>
 </div>
@@ -44,21 +44,22 @@ Use this node when you need to derive a summary statistic from a list of values 
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">The computed statistic from the input list. Uses population formulas for variance and standard deviation; mode returns the most frequent value.</td><td style="word-wrap: break-word;">3.0</td></tr>
+<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">The computed statistic. For count, the value represents the number of parsed entries; for other operations, the corresponding statistic.</td><td style="word-wrap: break-word;">2.0</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Input format**: Provide values as a comma-separated STRING (e.g., "1,2,3"). Any non-numeric token results in a 0.0 output.
-- **Empty or invalid input**: If parsing yields no valid numbers, the node returns 0.0.
-- **Population metrics**: std and variance are computed using population formulas (divide by N), not sample (N-1).
-- **Mode ties**: If multiple values are equally frequent, the first most-common value encountered is returned.
-- **Output type**: The result is returned as a FLOAT, even for operations like count.
-- **Product initialization**: Product starts at 1 and multiplies across all numbers.
+- **Input parsing**: The node expects a comma-separated string of numeric values; non-numeric tokens cause the node to return 0.0.
+- **Empty input handling**: If the list contains no valid numbers after parsing, the result is 0.0.
+- **Standard deviation and variance**: These are population metrics (dividing by n, not n-1).
+- **Mode behavior**: If multiple modes exist, the first most-frequent value encountered is returned; ties are not resolved deterministically for equal frequencies.
+- **Types**: All values are parsed as floats. The output type is FLOAT even for operations like count.
+- **Product growth**: Large products can overflow to very large magnitudes; ensure inputs are within reasonable ranges.
 
 ## Troubleshooting
-- **Got 0.0 unexpectedly**: Ensure all entries in 'values' are valid numbers separated by commas; remove stray characters or empty entries.
-- **Incorrect std/variance expectation**: This node uses population formulas. If you expected sample statistics, adjust accordingly (e.g., compute variance * N/(N-1)).
-- **Mode seems ambiguous**: With multiple modes, the node returns the first most frequent value; pre-filter or deduplicate if a specific tie-breaking is required.
-- **Precision issues**: Floating-point rounding can affect mean, std, and variance; limit value magnitudes or round downstream if necessary.
+- **Result is 0.0 unexpectedly**: Verify the values string contains only numbers separated by commas (e.g., "1,2,3"). Remove extra text or symbols.
+- **Unknown operation warning**: Ensure the operation is one of: mean, median, mode, std, variance, sum, product, count.
+- **Mode seems incorrect**: With multiple equally frequent values or floating-point values that are nearly equal, the selected mode may differ from expectations. Consider rounding inputs before passing them.
+- **Standard deviation differs from expected**: This node uses the population standard deviation. If you need sample standard deviation, adjust your workflow accordingly.
+- **Count not an integer**: The output type is FLOAT; if you need an integer, cast downstream or use a node that converts types.

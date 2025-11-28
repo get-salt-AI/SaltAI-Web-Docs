@@ -1,9 +1,9 @@
-# Pdb To Fasta Node
+# PDB To Fasta
 
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Converts a protein structure provided as PDB text into FASTA sequence(s). It parses ATOM records, maps 3-letter amino acid codes to 1-letter codes, supports selecting a specific chain or extracting all chains, and optionally adds configurable FASTA headers.
+Converts one or more PDB structures into FASTA sequences. It parses ATOM records, maps 3-letter residue codes to 1-letter amino acids, and outputs one FASTA record per chain. You can restrict extraction to specific chain IDs or process all chains.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/biotech-utils/pdbtofastanode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Converts a protein structure provided as PDB text into FASTA sequence(s). It par
 
 ## Usage
 
-Use this node when you have PDB content and need the corresponding amino acid sequence(s) in FASTA format for downstream tasks like alignment, design, or structure prediction. Provide the PDB string, optionally target a specific chain, and configure header preferences; the node returns a FASTA-formatted string with line wrapping.
+Use this node when you have protein structures (PDB) and need corresponding amino-acid sequences for downstream bioinformatics tasks (e.g., MSA generation, sequence design, or annotation). Typical workflow: load or generate PDB(s) -> PDB To Fasta -> combine or feed the resulting FASTA into alignment or modeling tools.
 
 ## Inputs
 
@@ -26,11 +26,8 @@ Use this node when you have PDB content and need the corresponding amino acid se
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">pdb_string</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Full PDB file content as a string. The node extracts sequences from ATOM records.</td><td style="word-wrap: break-word;">ATOM      1  N   MET A   1 ... (full PDB text)</td></tr>
-<tr><td style="word-wrap: break-word;">chain_id</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Chain identifier to extract (e.g., A). Leave empty to extract sequences for all chains found.</td><td style="word-wrap: break-word;">A</td></tr>
-<tr><td style="word-wrap: break-word;">include_header</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Whether to include a FASTA header line for each chain.</td><td style="word-wrap: break-word;">true</td></tr>
-<tr><td style="word-wrap: break-word;">header_prefix</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Prefix used to build the header when include_header is true and no custom header is provided. Format becomes >{prefix}{chain}_Protein.</td><td style="word-wrap: break-word;">Chain_</td></tr>
-<tr><td style="word-wrap: break-word;">custom_header</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional custom header text. If provided and include_header is true, the header will be >{custom_header} instead of using the chain-based default.</td><td style="word-wrap: break-word;">MyProtein</td></tr>
+<tr><td style="word-wrap: break-word;">pdb</td><td>True</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">One or more PDB files provided as a structured input. Each entry is treated as a separate structure and parsed for chain sequences.</td><td style="word-wrap: break-word;">{'example.pdb': 'ATOM      1  N   MET A   1      11.104  13.207  10.118  1.00 20.00           N  \nATOM      2  CA  MET A   1      12.560  13.332  10.420  1.00 20.00           C  \n...'}</td></tr>
+<tr><td style="word-wrap: break-word;">chains</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Comma-separated list of chain IDs to extract (e.g., "A,B"). Leave empty to extract all chains present in the PDB(s).</td><td style="word-wrap: break-word;">A,B</td></tr>
 </tbody>
 </table>
 </div>
@@ -47,25 +44,23 @@ Use this node when you have PDB content and need the corresponding amino acid se
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">fasta</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">FASTA-formatted sequence(s) extracted from the PDB. For multiple chains, sequences are concatenated one after another, each optionally with its own header. Lines are wrapped at 60 characters.</td><td style="word-wrap: break-word;">>Chain_A_Protein MSEQNNTEMTFQIQRIYTKDIS... (wrapped at 60 chars)</td></tr>
+<tr><td style="word-wrap: break-word;">seqs.fasta</td><td style="word-wrap: break-word;">FASTA</td><td style="word-wrap: break-word;">FASTA-formatted sequences, one record per chain from each provided PDB. Headers include the PDB entry name and chain ID.</td><td style="word-wrap: break-word;">>example.pdb_chain_A MSTNPKPQRIT...</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Chain selection**: If chain_id is empty, the node extracts sequences for all chains present; otherwise only the specified chain is returned.
-- **Residue mapping**: Standard 3-letter amino acids are mapped to 1-letter codes. Special cases include SEC -> U, PYL -> O, and unknown UNK -> X.
-- **Parsing behavior**: Only ATOM records are considered. Each residue is added once per residue number to avoid duplication across atoms.
-- **Headers**: If include_header is true and custom_header is provided, the header is exactly that value. Otherwise, the header is composed as >{header_prefix}{chain}_Protein.
-- **Line wrapping**: Output sequences are wrapped at 60 characters per line.
-- **Empty results**: If no valid residues are found for the specified chain(s), the output will indicate that no valid protein sequences were found.
+- Only residues found in ATOM records are parsed; hetero atoms and non-standard residues are not included unless mapped. UNK is mapped to X.
+- Chain filtering is applied before extraction; leave the 'chains' input empty to process all chains.
+- If no valid sequence is found for the specified chains, the node raises an error.
+- Output headers follow the format ">{pdb_name}_chain_{chain}", and sequences are wrapped at 60 characters per line.
+- Residues are added once per residue number per chain to avoid duplicates from multiple atoms in a single residue.
 
 ## Troubleshooting
-- **No valid protein sequences found**: Confirm the PDB content includes ATOM lines for amino acid residues and that the chain_id exists. If targeting a chain, try leaving chain_id empty to include all chains.
-- **Unexpected 'X' characters**: These correspond to residues labeled UNK or unmapped 3-letter codes. Ensure your PDB uses standard residue names or adjust upstream processing.
-- **Wrong chain extracted**: Verify the exact chain identifier from the PDB (column 22). Chain IDs are case-sensitive.
-- **Missing headers in output**: Ensure include_header is true. If you expected a custom header, confirm custom_header is set and non-empty.
-- **Formatting looks off**: Line breaks are inserted every 60 characters by design. If you need a single line, post-process the output to remove line wraps.
+- No output or error: Ensure the specified chain IDs exist in the PDB (check the chain column). If unsure, leave 'chains' empty to include all chains.
+- Unexpected amino acids as X: The PDB may contain unknown or unrecognized residue names (UNK) or modified residues that are not mapped.
+- Very short or empty sequences: Confirm the input is a valid PDB with ATOM records for protein residues; missing ATOM lines or non-protein entries will not yield sequences.
+- Multiple PDBs input but fewer outputs than expected: Some files may not contain the requested chains; verify chain availability per file.
 
 ## Example Pipelines
 

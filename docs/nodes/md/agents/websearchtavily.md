@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Performs a live web search using the Tavily service and returns a concise answer (optional) along with structured search results. Supports general and news topics, configurable search depth, result limits, and domain inclusion/exclusion. Can optionally include raw page content or AI-extracted relevant snippets.
+Performs a live web search using the Tavily search provider and returns a concise answer (optional) along with structured search results. The node calls the Agents service and outputs a JSON-formatted string of documents and, when requested, a short synthesized answer.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/agents/websearchtavily.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Performs a live web search using the Tavily service and returns a concise answer
 
 ## Usage
 
-Use this node to research a topic, gather citations, and optionally get a short synthesized answer. Typical workflows include: triggering a search from a user query, feeding the returned documents into downstream summarizers or RAG pipelines, and using the optional answer as a quick response while detailed processing uses the documents list.
+Use this node when you need up-to-date information or sources from the web to ground an answer or collect references. Typical workflows: answer a user question and cite sources, gather recent news on a topic, or filter results to/from specific domains. Configure depth, topic, and domain filters to control the scope and recency of results.
 
 ## Inputs
 
@@ -26,15 +26,15 @@ Use this node to research a topic, gather citations, and optionally get a short 
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">query</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The search query text to send to the Tavily engine.</td><td style="word-wrap: break-word;">What are the latest developments in quantum error correction?</td></tr>
-<tr><td style="word-wrap: break-word;">search_depth</td><td>True</td><td style="word-wrap: break-word;">['basic', 'advanced']</td><td style="word-wrap: break-word;">Controls how deep the search goes. Basic is faster and cheaper; Advanced performs broader/deeper retrieval.</td><td style="word-wrap: break-word;">advanced</td></tr>
-<tr><td style="word-wrap: break-word;">max_results</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum number of results to return. Minimum is 1.</td><td style="word-wrap: break-word;">5</td></tr>
-<tr><td style="word-wrap: break-word;">topic</td><td>True</td><td style="word-wrap: break-word;">['general', 'news']</td><td style="word-wrap: break-word;">Select the search category. Use 'news' for time-sensitive results.</td><td style="word-wrap: break-word;">news</td></tr>
-<tr><td style="word-wrap: break-word;">days</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Only applies when topic is 'news'. Number of days back from today to include in results.</td><td style="word-wrap: break-word;">3</td></tr>
-<tr><td style="word-wrap: break-word;">include_answer</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, returns a short synthesized answer to the query along with documents.</td><td style="word-wrap: break-word;">True</td></tr>
-<tr><td style="word-wrap: break-word;">include_raw_content</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, includes raw text content from the pages. If false, returns AI-extracted, query-relevant snippets only.</td><td style="word-wrap: break-word;">False</td></tr>
-<tr><td style="word-wrap: break-word;">include_domains</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">List of domains to prioritize/include, separated by line breaks.</td><td style="word-wrap: break-word;">nature.com arxiv.org aeon.co</td></tr>
-<tr><td style="word-wrap: break-word;">exclude_domains</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">List of domains to exclude, separated by line breaks.</td><td style="word-wrap: break-word;">reddit.com pinterest.com quora.com</td></tr>
+<tr><td style="word-wrap: break-word;">query</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The search query text to send to Tavily.</td><td style="word-wrap: break-word;">What are the latest breakthroughs in quantum error correction?</td></tr>
+<tr><td style="word-wrap: break-word;">search_depth</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">Depth of the search. Use 'basic' for a quicker, lighter search or 'advanced' for a deeper search.</td><td style="word-wrap: break-word;">advanced</td></tr>
+<tr><td style="word-wrap: break-word;">max_results</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum number of search results to return.</td><td style="word-wrap: break-word;">5</td></tr>
+<tr><td style="word-wrap: break-word;">topic</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">Category of the search. Choose 'general' for broad results or 'news' to prioritize recent news.</td><td style="word-wrap: break-word;">news</td></tr>
+<tr><td style="word-wrap: break-word;">days</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Only used when topic is 'news'. Number of days back from today to include in results.</td><td style="word-wrap: break-word;">3</td></tr>
+<tr><td style="word-wrap: break-word;">include_answer</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Whether to include a short synthesized answer to the query.</td><td style="word-wrap: break-word;">true</td></tr>
+<tr><td style="word-wrap: break-word;">include_raw_content</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, include raw text content from results; otherwise return only the most relevant extracted content.</td><td style="word-wrap: break-word;">false</td></tr>
+<tr><td style="word-wrap: break-word;">include_domains</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Limit results to these domains. Provide one domain per line.</td><td style="word-wrap: break-word;">arxiv.org nature.com</td></tr>
+<tr><td style="word-wrap: break-word;">exclude_domains</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Exclude results from these domains. Provide one domain per line.</td><td style="word-wrap: break-word;">wikipedia.org reddit.com</td></tr>
 </tbody>
 </table>
 </div>
@@ -51,29 +51,27 @@ Use this node to research a topic, gather citations, and optionally get a short 
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">answer</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A short, synthesized answer to the original query. Present only if include_answer is true.</td><td style="word-wrap: break-word;">Quantum error correction is progressing with bosonic codes and LDPC-based surface code variants showing improved thresholds and resource efficiency.</td></tr>
-<tr><td style="word-wrap: break-word;">documents</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON-formatted string representing an array of search results with titles, URLs, snippets, and optionally raw content.</td><td style="word-wrap: break-word;">[{"title": "Recent Advances in QEC", "url": "https://example.com/qec", "snippet": "...", "content": "..."}]</td></tr>
+<tr><td style="word-wrap: break-word;">answer</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A short, synthesized answer to the query if requested.</td><td style="word-wrap: break-word;">Quantum error correction progressed with bosonic codes enabling lower overhead fault tolerance; see sources for details.</td></tr>
+<tr><td style="word-wrap: break-word;">documents</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON-formatted string containing the list of retrieved documents, including titles, URLs, snippets, and optionally raw content.</td><td style="word-wrap: break-word;">[{"title": "Paper on bosonic codes", "url": "https://arxiv.org/abs/xxxx.xxxxx", "snippet": "Recent advances in..."}]</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **All inputs are required**: Provide values for each field, even if left as defaults.
-- **Query must be non-empty**: An empty query will cause the node to fail with a validation error.
-- **Answer output depends on include_answer**: If set to false, the 'answer' output may be empty or omitted by the service; rely on documents for downstream processing.
-- **Days applies only to news topic**: The 'days' parameter is used only when topic is 'news'; it is ignored for 'general'.
-- **Domain lists are line-separated**: Provide one domain per line for include_domains and exclude_domains.
-- **Raw content can be large**: Enabling include_raw_content may significantly increase payload size and processing time.
-- **Search depth affects cost and coverage**: Advanced depth provides broader retrieval but at higher credit usage.
+- Query must be a non-empty string; empty queries will cause an error.
+- If 'include_answer' is disabled, the 'answer' output may be empty or omitted by the service; rely on 'documents' for sources.
+- The 'days' parameter is applicable only when 'topic' is set to 'news'; otherwise it is ignored.
+- Setting 'include_raw_content' to true can increase response size and processing time.
+- Search depth affects the breadth/comprehensiveness of results; advanced depth may be slower or more resource-intensive.
+- Domain filters expect one domain per line; avoid protocols (http/https) and paths.
 
 ## Troubleshooting
-- **Empty query error**: Ensure 'query' is a non-blank string; trim whitespace before passing.
-- **No answer returned**: Set include_answer to true; if already true, the service may still omit an answer depending on query and content.
-- **Cannot parse documents**: The documents output is a JSON string; parse it before iterating over results in downstream nodes or scripts.
-- **Unexpected results for 'general' with 'days'**: 'days' is ignored unless topic is 'news'; switch topic to 'news' to filter by recency.
-- **Too few or too many results**: Adjust max_results to your desired count; minimum is 1.
-- **Irrelevant domains appearing**: Verify exclude_domains formatting (one domain per line, no protocols). For stricter control, also use include_domains.
-- **Timeouts or service errors**: Retry the operation later and confirm network connectivity; reduce include_raw_content and max_results to decrease response size.
+- Empty or whitespace-only 'query' causes an immediate validation error. Provide a meaningful query.
+- If the node raises a request failure error, verify the Agents service is reachable and try again later.
+- If the response parsing fails, reduce 'include_raw_content' or 'max_results' to lower payload size and retry.
+- No answer returned: ensure 'include_answer' is set to true; otherwise use the 'documents' output to compose an answer.
+- Unexpected or irrelevant results: refine 'query', switch 'search_depth' to 'advanced', or adjust domain include/exclude lists.
+- Old news in results: set 'topic' to 'news' and tune 'days' to the desired recency window.
 
 ## Example Pipelines
 
