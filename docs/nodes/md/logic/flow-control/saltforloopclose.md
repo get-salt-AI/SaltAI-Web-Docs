@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Completes a counted for-loop started by For Loop Open and returns the final loop-carried values. Internally, it drives the loop to run a fixed number of iterations by decrementing an internal counter until zero, then exposes the final values from the loop.
+Closes a deprecated for-loop construct. It decrements the loop counter and re-invokes the enclosed subgraph while the remaining count is greater than zero, passing through any auxiliary values each iteration. Use this only for legacy graphs; prefer the newer Loop Open/Close nodes.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/logic/flow-control/saltforloopclose.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Completes a counted for-loop started by For Loop Open and returns the final loop
 
 ## Usage
 
-Use this node as the closing counterpart to For Loop Open when you need a fixed-iteration loop with one or more loop-carried variables (accumulators). Connect the flow_control output from For Loop Open to this node’s flow_control input, optionally supply initial_value inputs for your loop-carried data, and consume the value outputs as the final results after all iterations.
+Pair this node with For Loop Open (Deprecated). Connect For Loop Open’s flow_control output to this node’s flow_control input. Provide any values you want to persist across iterations via the optional initial_value inputs. The node internally decrements the counter and continues looping until the remaining value is no longer greater than zero, then returns the final carried values.
 
 ## Inputs
 
@@ -26,8 +26,11 @@ Use this node as the closing counterpart to For Loop Open when you need a fixed-
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">flow_control</td><td>True</td><td style="word-wrap: break-word;">FLOW_CONTROL</td><td style="word-wrap: break-word;">The loop context produced by For Loop Open. It contains the loop counter and state required to execute and finalize the for-loop.</td><td style="word-wrap: break-word;">Output from For Loop Open's flow_control</td></tr>
-<tr><td style="word-wrap: break-word;">initial_value1..initial_valueN</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Optional loop-carried initial values. Each initial_valueX seeds a corresponding valueX output. Provide as many as needed to track data across iterations (e.g., accumulators, lists, objects). Note: initial_value0 is reserved internally for the loop counter and is not exposed here.</td><td style="word-wrap: break-word;">initial_value1: 0 (INT accumulator), initial_value2: [] (LIST), initial_value3: {"sum": 0} (DICT)</td></tr>
+<tr><td style="word-wrap: break-word;">flow_control</td><td>True</td><td style="word-wrap: break-word;">FLOW_CONTROL</td><td style="word-wrap: break-word;">Loop control link from For Loop Open (Deprecated). Drives the loop’s lifecycle.</td><td style="word-wrap: break-word;">Link from For Loop Open (Deprecated) -> flow_control</td></tr>
+<tr><td style="word-wrap: break-word;">initial_value1</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">First value to carry through and update each iteration.</td><td style="word-wrap: break-word;">Text, Image, Dict, or any data</td></tr>
+<tr><td style="word-wrap: break-word;">initial_value2</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Second value to carry through and update each iteration.</td><td style="word-wrap: break-word;">Counter, List, or any data</td></tr>
+<tr><td style="word-wrap: break-word;">initial_value3</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Third value to carry through and update each iteration.</td><td style="word-wrap: break-word;">Accumulated result object</td></tr>
+<tr><td style="word-wrap: break-word;">initial_value4</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Fourth value to carry through and update each iteration.</td><td style="word-wrap: break-word;">Auxiliary state</td></tr>
 </tbody>
 </table>
 </div>
@@ -44,21 +47,24 @@ Use this node as the closing counterpart to For Loop Open when you need a fixed-
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">value1..valueN</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Final loop-carried results after the for-loop completes. Each valueX corresponds to the progression of initial_valueX through all iterations.</td><td style="word-wrap: break-word;">value1: 45 (final INT sum), value2: [items...] (final LIST), value3: {"sum": 45} (final DICT)</td></tr>
+<tr><td style="word-wrap: break-word;">value1</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Final value of the first carried data after the loop completes.</td><td style="word-wrap: break-word;">Final text/image/result object</td></tr>
+<tr><td style="word-wrap: break-word;">value2</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Final value of the second carried data after the loop completes.</td><td style="word-wrap: break-word;">Final counter/list/state</td></tr>
+<tr><td style="word-wrap: break-word;">value3</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Final value of the third carried data after the loop completes.</td><td style="word-wrap: break-word;">Final accumulated result</td></tr>
+<tr><td style="word-wrap: break-word;">value4</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Final value of the fourth carried data after the loop completes.</td><td style="word-wrap: break-word;">Final auxiliary state</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Deprecated**: Use Loop Open and Loop Close for new graphs; they offer a more flexible, unified looping interface.
-- **Pairing Required**: Must be paired with For Loop Open. Do not connect flow_control from unrelated sources.
-- **Loop-Carried State**: Provide only initial_value1 and above; initial_value0 is reserved for the internal counter and handled automatically.
-- **Type-Agnostic Values**: initial_value and value outputs are wildcard-typed and can carry any data type.
-- **Fixed Iteration Behavior**: The loop runs a preset number of times determined by the opening node’s configuration; the close node finalizes and emits the last values.
+- This node is deprecated. Prefer using Loop Open and Loop Close for new workflows.
+- Works only when connected to For Loop Open (Deprecated) via the flow_control input.
+- The loop counter is decremented each iteration and the loop continues while remaining > 0.
+- Optional inputs initial_value1–initial_value4 are carried across iterations and returned as outputs.
+- On internal errors, outputs may return as None.
+- Requires supporting arithmetic and comparison nodes (integer subtraction and condition). If those nodes are missing, the loop will fail to expand.
 
 ## Troubleshooting
-- **No outputs or None values**: Ensure flow_control is connected from a matching For Loop Open. Mismatched or missing flow_control prevents execution.
-- **Unexpected iteration count**: Verify the start/step/end settings in For Loop Open; the close node uses the loop counter from the open node.
-- **Missing value outputs**: If you need more value outputs, supply additional initial_value inputs (initial_value2, initial_value3, etc.) so the loop can carry those states.
-- **Type errors downstream**: Since outputs are wildcard-typed, ensure downstream nodes accept the resulting types (e.g., INT, LIST, DICT).
-- **Deprecated warning**: If you see deprecation notices, migrate to Loop Open/Loop Close by mapping your flow_control and initial_value/value pairs accordingly.
+- Loop never runs or exits immediately: Ensure the remaining value provided by For Loop Open is greater than 0.
+- Graph doesn’t expand or errors about missing operations: Make sure integer math and condition nodes are available and correctly installed.
+- Outputs are None: This typically indicates an internal error during expansion; check the node connections and types of initial_value inputs.
+- No updates to carried values: Verify you’ve wired the outputs of the loop body back into the corresponding initial_value inputs on For Loop Close.

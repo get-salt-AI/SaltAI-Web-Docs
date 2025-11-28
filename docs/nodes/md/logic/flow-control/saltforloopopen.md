@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Opens a legacy for-style loop. It initializes a loop counter and passes through up to four auxiliary values to be carried across iterations. Internally it sets up a while-loop gate using the counter as the condition and must be paired with For Loop Close.
+Opens a counter-based loop and exposes a flow-control handle plus counters and initial state values for iteration. This node does not iterate by itself; it prepares the loop and must be paired with a corresponding For Loop Close node to perform repeated execution.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/logic/flow-control/saltforloopopen.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Opens a legacy for-style loop. It initializes a loop counter and passes through 
 
 ## Usage
 
-Use this node at the start of a deprecated for-loop sequence together with For Loop Close. Set 'remaining' to the number of iterations you want. Connect the 'flow_control' output to For Loop Close, and wire any state you want to preserve between iterations via value outputs to the corresponding 'initial_value' inputs on the close node. Prefer the newer Loop Open/Loop Close nodes for new workflows.
+Use this node to start a fixed-count loop. Connect its flow_control output to a For Loop Close node. Set the remaining input to the number of iterations you want. Optionally pass initial values (value1..value4) that will be threaded through each iteration by connecting them consistently between the Open and Close nodes. This node is deprecated; prefer the newer Loop Open/Loop Close nodes for enhanced functionality.
 
 ## Inputs
 
@@ -26,11 +26,11 @@ Use this node at the start of a deprecated for-loop sequence together with For L
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">remaining</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Number of iterations to perform. Used as the loop condition; iterations proceed while this value remains non-zero. The close node decrements this each cycle.</td><td style="word-wrap: break-word;">5</td></tr>
-<tr><td style="word-wrap: break-word;">initial_value1</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">First carried value passed into the loop body and back to the close node each iteration.</td><td style="word-wrap: break-word;">image tensor or integer accumulator</td></tr>
-<tr><td style="word-wrap: break-word;">initial_value2</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Second carried value passed through the loop.</td><td style="word-wrap: break-word;">list, dict, or any data</td></tr>
-<tr><td style="word-wrap: break-word;">initial_value3</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Third carried value passed through the loop.</td><td style="word-wrap: break-word;">string or model handle</td></tr>
-<tr><td style="word-wrap: break-word;">initial_value4</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Fourth carried value passed through the loop.</td><td style="word-wrap: break-word;">boolean flag</td></tr>
+<tr><td style="word-wrap: break-word;">remaining</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Number of iterations to perform. Acts as the loop counter seed.</td><td style="word-wrap: break-word;">5</td></tr>
+<tr><td style="word-wrap: break-word;">initial_value1</td><td>False</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Optional initial data value to carry through the loop. Available to downstream nodes and preserved via the Close node.</td><td style="word-wrap: break-word;">any value</td></tr>
+<tr><td style="word-wrap: break-word;">initial_value2</td><td>False</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Optional secondary initial data value to carry through the loop.</td><td style="word-wrap: break-word;">any value</td></tr>
+<tr><td style="word-wrap: break-word;">initial_value3</td><td>False</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Optional third initial data value to carry through the loop.</td><td style="word-wrap: break-word;">any value</td></tr>
+<tr><td style="word-wrap: break-word;">initial_value4</td><td>False</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Optional fourth initial data value to carry through the loop.</td><td style="word-wrap: break-word;">any value</td></tr>
 </tbody>
 </table>
 </div>
@@ -47,28 +47,25 @@ Use this node at the start of a deprecated for-loop sequence together with For L
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">flow_control</td><td style="word-wrap: break-word;">FLOW_CONTROL</td><td style="word-wrap: break-word;">Handle that identifies and links this loop instance to the matching For Loop Close.</td><td style="word-wrap: break-word;">FLOW_CONTROL token</td></tr>
-<tr><td style="word-wrap: break-word;">remaining</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">The current remaining-iterations counter exposed to downstream nodes.</td><td style="word-wrap: break-word;">5</td></tr>
-<tr><td style="word-wrap: break-word;">value1</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Pass-through of initial_value1 for use inside the loop body.</td><td style="word-wrap: break-word;">integer accumulator</td></tr>
-<tr><td style="word-wrap: break-word;">value2</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Pass-through of initial_value2 for use inside the loop body.</td><td style="word-wrap: break-word;">image tensor</td></tr>
-<tr><td style="word-wrap: break-word;">value3</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Pass-through of initial_value3 for use inside the loop body.</td><td style="word-wrap: break-word;">dict</td></tr>
-<tr><td style="word-wrap: break-word;">value4</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Pass-through of initial_value4 for use inside the loop body.</td><td style="word-wrap: break-word;">boolean</td></tr>
+<tr><td style="word-wrap: break-word;">flow_control</td><td style="word-wrap: break-word;">FLOW_CONTROL</td><td style="word-wrap: break-word;">Flow-control handle that must be connected to a For Loop Close node to drive iteration.</td><td style="word-wrap: break-word;">Flow control token</td></tr>
+<tr><td style="word-wrap: break-word;">remaining</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">The initialized remaining-iterations counter value.</td><td style="word-wrap: break-word;">5</td></tr>
+<tr><td style="word-wrap: break-word;">value1</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Pass-through of initial_value1 to seed the loop state.</td><td style="word-wrap: break-word;">any value</td></tr>
+<tr><td style="word-wrap: break-word;">value2</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Pass-through of initial_value2 to seed the loop state.</td><td style="word-wrap: break-word;">any value</td></tr>
+<tr><td style="word-wrap: break-word;">value3</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Pass-through of initial_value3 to seed the loop state.</td><td style="word-wrap: break-word;">any value</td></tr>
+<tr><td style="word-wrap: break-word;">value4</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Pass-through of initial_value4 to seed the loop state.</td><td style="word-wrap: break-word;">any value</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Deprecated**: Use Loop Open and Loop Close for new workflows.
-- **Pairing required**: Must be connected to For Loop Close via the flow_control output; otherwise the loop will not iterate.
-- **Counter handling**: The hidden initial_value0 overrides 'remaining' on entry and is typically fed from the close node to update the counter.
-- **Iteration logic**: The actual decrement and continuation check are performed in the For Loop Close node; this open node just initializes and forwards values.
-- **Type flexibility**: value1–value4 accept any data type and are preserved across iterations when properly connected.
-- **Range limits**: 'remaining' accepts 0–100000. A value of 0 means the loop will not execute.
-- **Error behavior**: On internal errors, the node returns default outputs and no expansion of the loop graph.
+- This node is deprecated. Prefer using Loop Open and Loop Close for new designs.
+- Must be paired with For Loop Close; on its own this node does not execute iterations.
+- The hidden initial_value0 input, if supplied, overrides the remaining counter initialization.
+- Up to four auxiliary data values (value1..value4) can be threaded through the loop across iterations.
+- remaining must be a non-negative integer; extremely large values may impact performance.
 
 ## Troubleshooting
-- **Loop doesn't start**: Ensure 'remaining' > 0. A zero value prevents any iteration.
-- **No iteration occurs**: Verify the flow_control output from For Loop Open is connected to For Loop Close and that the close node is configured to decrement and feed back the counter.
-- **State not preserved**: Connect value outputs from this node to the corresponding 'initial_value' inputs on For Loop Close; mismatched or missing connections break state carry-over.
-- **Close node errors or missing nodes**: For Loop Close relies on integer math and condition nodes; ensure the required nodes are available in your environment.
-- **Unexpected remaining value**: The hidden initial_value0 overrides the visible 'remaining'. Check the connection from the close node feeding this hidden input.
+- If the loop does not run, ensure the flow_control output is connected to a For Loop Close node.
+- If iterations do not decrement as expected, confirm that For Loop Close is properly connected and that remaining was initialized correctly.
+- If auxiliary values are not preserved, ensure the same value1..value4 outputs from Open feed the corresponding initial_value inputs on Close.
+- If the loop stops immediately, check whether hidden initial_value0 is set to 0 or a falsy value by upstream logic.

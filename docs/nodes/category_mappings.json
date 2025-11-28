@@ -14,10 +14,6 @@
     "Healthcare",
     "ClinicalTrials"
   ],
-  "biotech/protein-structure-prediction": [
-    "Biotech",
-    "Protein Structure Prediction"
-  ],
   "agents": [
     "Agents"
   ],
@@ -45,6 +41,10 @@
   ],
   "utilities": [
     "Utilities"
+  ],
+  "biotech/protein-structure-prediction": [
+    "Biotech",
+    "Protein Structure Prediction"
   ],
   "biotech/sequence-prediction": [
     "Biotech",

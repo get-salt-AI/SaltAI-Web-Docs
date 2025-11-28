@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Connects Salt AI to Microsoft OneDrive via the Carbon integration layer. This node selects the OneDrive integration and delegates all connection/authentication to Carbon, enabling access to OneDrive files and folders for downstream data and retrieval workflows.
+Creates a Carbon data connector configured for Microsoft OneDrive. It delegates all behavior to the shared Carbon data-connector base, setting the integration to OneDrive so documents and files from a connected OneDrive account can be ingested and used downstream.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/knowledge-bases/carbonconnectoronedrive.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Connects Salt AI to Microsoft OneDrive via the Carbon integration layer. This no
 
 ## Usage
 
-Use this node when you need to ingest or reference content from a Microsoft OneDrive account within a workflow (for example, to search, index, or use documents in retrieval-augmented tasks). Typically placed early in a pipeline to establish the OneDrive data source that subsequent Carbon/knowledge or retrieval nodes will operate on.
+Use this node when you need to connect a OneDrive account as a data source for document ingestion and retrieval within a Salt workflow. Place it early in your pipeline to establish the data connection; subsequent nodes can consume the resulting data handle or dataset to search, retrieve, or process files.
 
 ## Inputs
 
@@ -26,7 +26,7 @@ Use this node when you need to ingest or reference content from a Microsoft OneD
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">Not specified</td><td>False</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Inputs are defined by the shared Carbon data node base. This node specifically targets the OneDrive integration.</td><td style="word-wrap: break-word;">Not specified</td></tr>
+<tr><td style="word-wrap: break-word;">Not specified</td><td>False</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Inputs are defined by the shared Carbon data connector base. This node only specifies that the target integration is OneDrive.</td><td style="word-wrap: break-word;">Not specified</td></tr>
 </tbody>
 </table>
 </div>
@@ -43,19 +43,21 @@ Use this node when you need to ingest or reference content from a Microsoft OneD
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Outputs are defined by the shared Carbon data node base. The output typically represents a reference/handle to connected OneDrive content for downstream nodes.</td><td style="word-wrap: break-word;">Not specified</td></tr>
+<tr><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Outputs are defined by the shared Carbon data connector base. Typically this is a data handle or dataset reference representing the connected OneDrive source.</td><td style="word-wrap: break-word;">Not specified</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- This node is a thin selector around the Carbon OneDrive integration; authentication and permissions are handled by Carbon.
-- Your organization must have the OneDrive integration enabled in Carbon, and the user must grant appropriate permissions to access files and folders.
-- The visible content and indexing scope depend on the permissions granted during the connection flow.
-- If your workflow includes search or retrieval over OneDrive files, ensure appropriate downstream nodes are configured to query Carbon-managed content.
+- **Integration Target**: This node strictly targets the OneDrive integration; it cannot be repurposed for other sources.
+- **Authentication Required**: A valid OneDrive authorization (and any required organizational consent) must be completed for access.
+- **Permissions Matter**: The connector will only access files the authenticated user or service principal is permitted to read.
+- **Ingestion Timing**: Initial syncs and indexing may take time depending on data volume and organizational policies.
+- **Service Dependency**: Functionality depends on the Carbon data service and its configuration in your environment.
 
 ## Troubleshooting
-- Authentication prompts do not appear: Ensure Carbon is reachable and the OneDrive integration is enabled for your organization.
-- No files found after connecting: Verify the connected OneDrive account has accessible files and that permissions were granted for the correct folders.
-- Access denied or partial content: Confirm the user granted the required scopes and has permission to the target files/folders in OneDrive.
-- Downstream nodes fail to use the connection: Ensure the downstream nodes are compatible with Carbon data references and are configured to query the connected source.
+- **Authentication fails**: Re-run the OneDrive authorization flow and ensure the correct tenant and account are used. Verify any required admin consent has been granted.
+- **No files returned**: Confirm the authenticated account has read access to the intended folders/files and that the data has finished syncing/indexing.
+- **Rate limits or throttling**: OneDrive API limits can apply. Retry later or reduce the frequency/volume of requests.
+- **Permissions errors**: Check OneDrive/Entra ID (Azure AD) app permissions and scopes granted to the integration, and ensure the user/service principal has appropriate access.
+- **Service unavailable**: Verify the Carbon service is reachable and healthy in your environment; check network and service status.

@@ -83,16 +83,14 @@ nav:
       - PDB Combiner: nodes/md/biotech/biotech-utils/pdbcombinernode.md
       - PDB Fixer: nodes/md/biotech/biotech-utils/pdbfixernode.md
       - PDB To CIF: nodes/md/biotech/biotech-utils/pdbtocifnode.md
+      - PDB To Fasta: nodes/md/biotech/biotech-utils/pdbtofastanode.md
       - PDB Visualization: nodes/md/biotech/biotech-utils/pdbvisualizationnode.md
-      - Pdb To Fasta Node: nodes/md/biotech/biotech-utils/pdbtofastanode.md
       - Save To Bucket: nodes/md/biotech/biotech-utils/savetobucketnode.md
       - Save To Zip: nodes/md/biotech/biotech-utils/savetozipnode.md
     - Boltz:
-      - Boltz (Deprecated): nodes/md/biotech/boltz/boltznode.md
       - Boltz Constraint Builder: nodes/md/biotech/boltz/boltzconstraintnode.md
       - Boltz Ligand Sequence: nodes/md/biotech/boltz/boltzligandsequencenode.md
       - Boltz List Combiner: nodes/md/biotech/boltz/boltzlistcombinernode.md
-      - Boltz Multimer: nodes/md/biotech/boltz/boltzmultimernode.md
       - Boltz Partial Diffusion: nodes/md/biotech/boltz/boltzpartialdiffusionnode.md
       - Boltz Predict: nodes/md/biotech/boltz/boltzpredictnode.md
       - Boltz Property Builder: nodes/md/biotech/boltz/boltzpropertynode.md
@@ -107,8 +105,8 @@ nav:
       - RF Diffusion Potentials Config: nodes/md/biotech/protein-generation/saasrfdiffusionpotentialsconfignode.md
       - RF Diffusion Symmetry Config: nodes/md/biotech/protein-generation/saasrfdiffusionsymmetryconfignode.md
     - Protein Structure Prediction:
-      - Colabfold Batch: nodes/md/biotech/protein-structure-prediction/colabfoldbatchnode.md
-      - Colabfold Search: nodes/md/biotech/protein-structure-prediction/colabfoldsearchnode.md
+      - Alphafold: nodes/md/biotech/protein-structure-prediction/saasalphafoldnode.md
+      - MSA Search: nodes/md/biotech/protein-structure-prediction/saasmsasearchnode.md
     - Sequence Prediction:
       - ProteinMPNN: nodes/md/biotech/sequence-prediction/saasproteinmpnnnode.md
   - Connectors:
@@ -120,14 +118,14 @@ nav:
       - SQL Server Table Info: nodes/md/connectors/mssql/saltmssqltableinfo.md
     - MySQL:
       - MySQL Connection String: nodes/md/connectors/mysql/saltmysqlconnectionstring.md
+      - MySQL Execute: nodes/md/connectors/mysql/saltmysqlexecute.md
+      - MySQL List Databases: nodes/md/connectors/mysql/saltmysqllistdatabases.md
       - MySQL List Tables: nodes/md/connectors/mysql/saltmysqllisttables.md
       - MySQL Query: nodes/md/connectors/mysql/saltmysqlquery.md
       - MySQL Query Builder Helper: nodes/md/connectors/mysql/saltmysqlquerybuilder.md
+      - MySQL Table Info: nodes/md/connectors/mysql/saltmysqltableinfo.md
       - MySQL Test Connection: nodes/md/connectors/mysql/saltmysqltestconnection.md
       - MySQL Visual Query Builder: nodes/md/connectors/mysql/saltmysqlvisualquery.md
-      - SaltMySQLExecute: nodes/md/connectors/mysql/saltmysqlexecute.md
-      - SaltMySQLListDatabases: nodes/md/connectors/mysql/saltmysqllistdatabases.md
-      - SaltMySQLTableInfo: nodes/md/connectors/mysql/saltmysqltableinfo.md
     - Oracle:
       - Oracle Complex Query: nodes/md/connectors/oracle/saltoraclecomplexquery.md
       - Oracle Connection String: nodes/md/connectors/oracle/saltoracleconnectionstring.md
@@ -142,12 +140,12 @@ nav:
       - Oracle Visual Query Builder: nodes/md/connectors/oracle/saltoraclevisualquery.md
     - PostgreSQL:
       - PostgreSQL Connection String: nodes/md/connectors/postgresql/saltpostgresconnectionstring.md
+      - PostgreSQL Execute: nodes/md/connectors/postgresql/saltpostgresexecute.md
       - PostgreSQL List Tables: nodes/md/connectors/postgresql/saltpostgreslisttables.md
       - PostgreSQL Query: nodes/md/connectors/postgresql/saltpostgresquery.md
       - PostgreSQL Query Builder Helper: nodes/md/connectors/postgresql/saltpostgresquerybuilder.md
       - PostgreSQL Table Info: nodes/md/connectors/postgresql/saltpostgrestableinfo.md
       - PostgreSQL Visual Query Builder: nodes/md/connectors/postgresql/saltpostgresvisualquery.md
-      - SaltPostgresExecute: nodes/md/connectors/postgresql/saltpostgresexecute.md
   - Healthcare:
     - ClinicalTrials:
       - ClinicalTrials Study Count: nodes/md/healthcare/clinicaltrials/clinicaltrialsstudycountnode.md
@@ -180,7 +178,7 @@ nav:
     - Draw Mask: nodes/md/inputs/drawmask.md
     - Dynamic Text: nodes/md/inputs/saltdynamicinput.md
     - File: nodes/md/inputs/saltfileinput.md
-    - Load Image: nodes/md/inputs/loadimage.md
+    - Image: nodes/md/inputs/loadimage.md
     - Text: nodes/md/inputs/salttextinput.md
   - Knowledge Bases:
     - Documents: nodes/md/knowledge-bases/carbonconnectorlocalfiles.md
@@ -229,9 +227,9 @@ nav:
         - Accumulation to List: nodes/md/logic/flow-control/accumulation/saltaccumulationtolistnode.md
         - List to Accumulation: nodes/md/logic/flow-control/accumulation/saltlisttoaccumulationnode.md
     - Logic Utility:
+      - Debug Print: nodes/md/logic/logic-utility/saltdebugprint.md
       - Int Math Operation: nodes/md/logic/logic-utility/saltintmathoperation.md
       - Make List: nodes/md/logic/logic-utility/saltmakelistnode.md
-      - SaltDebugPrint: nodes/md/logic/logic-utility/saltdebugprint.md
       - To Bool: nodes/md/logic/logic-utility/salttoboolnode.md
   - Outputs:
     - Output: nodes/md/outputs/saltoutput.md

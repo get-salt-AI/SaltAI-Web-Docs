@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Applies standard and hyperbolic trigonometric functions to a single numeric input. Supports sine, cosine, tangent, their inverse functions, and hyperbolic variants. Can interpret inputs as degrees or radians and returns a single float result.
+Performs trigonometric and inverse trigonometric computations on a single numeric input. Supports sine, cosine, tangent, their inverses, and the hyperbolic counterparts. You can choose whether inputs are interpreted as degrees (for direct trig) and whether inverse results are returned in degrees.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/utilities/math/salttrigonometricoperation.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Applies standard and hyperbolic trigonometric functions to a single numeric inpu
 
 ## Usage
 
-Use this node to compute trigonometric values in math-heavy flows, geometry calculations, signal processing, or angle conversions. Set use_degrees to control whether the input value is interpreted as degrees (True) or radians (False). For inverse functions, if use_degrees is True, the result is returned in degrees; otherwise, the result is in radians.
+Use this node whenever you need to compute trigonometric values within a workflow, such as angle-to-ratio conversions, inverse angle retrieval, or hyperbolic functions for numeric processing. Set use_degrees to True to provide angles in degrees for sin/cos/tan and to receive inverse results in degrees; otherwise work in radians.
 
 ## Inputs
 
@@ -26,9 +26,9 @@ Use this node to compute trigonometric values in math-heavy flows, geometry calc
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">value</td><td>True</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">The numeric input for the selected trigonometric operation. Interpreted as degrees if use_degrees is True, otherwise as radians. For asin/acos, the effective input must be within [-1, 1].</td><td style="word-wrap: break-word;">30.0</td></tr>
-<tr><td style="word-wrap: break-word;">operation</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">The trigonometric function to apply. Options: sin, cos, tan, asin, acos, atan, sinh, cosh, tanh.</td><td style="word-wrap: break-word;">sin</td></tr>
-<tr><td style="word-wrap: break-word;">use_degrees</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If True, value is treated as degrees for sin/cos/tan and inverse results (asin/acos/atan) are returned in degrees. If False, value is treated as radians for sin/cos/tan and inverse results are returned in radians.</td><td style="word-wrap: break-word;">True</td></tr>
+<tr><td style="word-wrap: break-word;">value</td><td>True</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">The numeric input for the trigonometric operation. Interpreted as degrees for sin/cos/tan when use_degrees is True; otherwise radians. For inverse functions (asin/acos), the valid input domain is [-1, 1].</td><td style="word-wrap: break-word;">45.0</td></tr>
+<tr><td style="word-wrap: break-word;">operation</td><td>True</td><td style="word-wrap: break-word;">ENUM</td><td style="word-wrap: break-word;">Which trigonometric operation to apply.</td><td style="word-wrap: break-word;">sin</td></tr>
+<tr><td style="word-wrap: break-word;">use_degrees</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">When True: sin/cos/tan expect degrees and inverse results are returned in degrees. When False: operate in radians.</td><td style="word-wrap: break-word;">true</td></tr>
 </tbody>
 </table>
 </div>
@@ -45,20 +45,21 @@ Use this node to compute trigonometric values in math-heavy flows, geometry calc
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">The computed trigonometric result as a floating-point number.</td><td style="word-wrap: break-word;">0.5</td></tr>
+<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">The computed trigonometric result as a floating-point number. For inverse operations, the unit of the output depends on use_degrees.</td><td style="word-wrap: break-word;">0.70710678</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Input domain for asin/acos**: The effective input to asin/acos must be within [-1, 1]. If out of range, the node returns 0.0.
-- **Units handling**: sin/cos/tan use the input units based on use_degrees. For inverse functions (asin/acos/atan), the output unit follows use_degrees (degrees if True, radians if False).
-- **Hyperbolic functions**: sinh/cosh/tanh ignore degree settings; they always treat value as a unitless real number.
-- **Numerical extremes**: tan near odd multiples of 90° (or π/2 radians) can produce very large magnitudes due to asymptotes.
-- **Precision**: Floating-point rounding can cause slight deviations from expected exact values (e.g., cos(90°) may yield a very small non-zero number).
+- For sin, cos, tan: When use_degrees is True, input value is treated as degrees (e.g., 180 means π radians). When False, input is in radians.
+- For asin and acos: The valid input domain is [-1, 1]. If the input is outside this range, the node returns 0.0 and logs a warning.
+- For inverse functions (asin, acos, atan): When use_degrees is True, the output is returned in degrees; when False, the output is in radians.
+- Tangent can grow very large near its asymptotes (e.g., ±90 degrees or ±π/2 radians). Expect large magnitudes in those regions.
+- Input range is limited to [-360, 360] by the node configuration. Ensure your radian inputs fall within this numeric range if use_degrees is False.
 
 ## Troubleshooting
-- **Result is 0.0 for asin/acos**: Ensure the effective input is within [-1, 1]. Adjust value or check use_degrees so the domain is valid.
-- **Unexpected magnitude from tan**: Inputs near 90° + k·180° (or π/2 + k·π radians) cause tan to approach infinity. Slightly adjust the angle away from the asymptote.
-- **Output unit confusion**: If inverse results appear unexpected, verify use_degrees. True returns inverse results in degrees; False returns them in radians.
-- **Very small residuals instead of exact zeros**: This is normal floating-point behavior. Consider rounding the result if exact zeros are required.
+- Result is 0.0 for asin/acos: Ensure the input is within [-1, 1]. Adjust your upstream normalization.
+- Unexpected magnitude for tan near 90° (or π/2): This is expected due to tangent's asymptotes. Consider clamping the input away from asymptotes or using validation.
+- Angles seem off by a factor of π/180: Verify the use_degrees setting matches your input and desired output units.
+- Output units for inverse operations are not what you expect: Check use_degrees; set it to True to receive inverse results in degrees, or False for radians.
+- Input rejected or clipped: The node enforces a numeric range of [-360, 360]. Scale your input accordingly.

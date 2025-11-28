@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Creates a Carbon data connector targeting Google Cloud Storage (GCS). This node configures the integration type as GCS so downstream Carbon data operations can access and synchronize files from your GCS buckets.
+Selects and configures the Google Cloud Storage integration for Carbon data workflows. This node identifies the data source as GCS and delegates all core behavior (inputs, processing, and outputs) to the shared Carbon data node base. It is typically used to point downstream Carbon data operations at a GCS-backed source.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/knowledge-bases/carbonconnectorgcs.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Creates a Carbon data connector targeting Google Cloud Storage (GCS). This node 
 
 ## Usage
 
-Use this node at the start of a Carbon data pipeline when you want to connect to content stored in Google Cloud Storage. After adding it, complete the connection flow in the Carbon Connect modal to authorize and select the GCS bucket(s)/path(s). Then route its output into nodes that list, query, or index Carbon-managed files to make GCS content available for search, RAG, or processing.
+Use this node at the start of a Carbon data ingestion or synchronization flow when your source is Google Cloud Storage. Place it before nodes that define scope, scheduling, or downstream processing so they know which integration to use. Ensure the associated Carbon integration and permissions are configured for your user or workspace.
 
 ## Inputs
 
@@ -26,7 +26,7 @@ Use this node at the start of a Carbon data pipeline when you want to connect to
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">authentication/connection</td><td>False</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Connection details are typically provided via the Carbon Connect modal to authorize access to your GCS account and select buckets or paths.</td><td style="word-wrap: break-word;">User completes OAuth/Key-based setup in the Carbon Connect modal and selects gs://my-bucket/documents/</td></tr>
+<tr><td style="word-wrap: break-word;">Not specified</td><td>False</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Inputs are defined by the shared Carbon data node base. This connector only selects the GCS integration.</td><td style="word-wrap: break-word;">Not specified</td></tr>
 </tbody>
 </table>
 </div>
@@ -43,19 +43,18 @@ Use this node at the start of a Carbon data pipeline when you want to connect to
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">connector</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">A Carbon connector handle configured for Google Cloud Storage, used by downstream Carbon file/query/index nodes.</td><td style="word-wrap: break-word;">Connector object referencing the user’s authorized GCS integration and selected scope</td></tr>
+<tr><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Outputs are defined by the shared Carbon data node base. This connector only selects the GCS integration.</td><td style="word-wrap: break-word;">Not specified</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Authorization required**: You must authorize the GCS account and select the desired bucket/path via the Carbon Connect modal before this connector can be used.
-- **Permissions matter**: Ensure the connected GCS credentials have the necessary read (and optionally write) permissions for the selected buckets/paths.
-- **Integration scope**: The files and folders available downstream are limited to the bucket(s)/path(s) selected during connection.
-- **Pair with Carbon file/query nodes**: This node establishes the integration; use Carbon file listing, querying, or indexing nodes to actually retrieve or process content.
+- This node only selects the Google Cloud Storage integration; all functional behavior (inputs/outputs/processing) comes from the base Carbon data node.
+- You must have a valid Carbon integration and appropriate permissions to access the target GCS resources (e.g., buckets/paths).
+- Do not paste secrets or keys into node fields; use secure connection mechanisms and environment-managed credentials.
+- Downstream nodes will use the selected integration (GCS) for listing, syncing, or processing content.
 
 ## Troubleshooting
-- **No files found**: Verify the selected bucket/path exists and that your credentials have access. Reopen Carbon Connect and confirm the scope.
-- **Authentication failed**: Re-run the Carbon Connect flow to refresh credentials or check if the token has expired.
-- **Permission denied errors**: Ask a GCP admin to grant the service account or user the appropriate IAM roles (e.g., Storage Object Viewer) for the target bucket.
-- **Unexpected empty results downstream**: Ensure this connector is correctly wired into the downstream Carbon nodes and that those nodes are configured to use this connector’s output.
+- Authentication or authorization error: Verify your Carbon account connection to GCS and that your user/workspace has access to the required buckets and paths.
+- Cannot see expected files or buckets: Check the configured project/bucket access policies and ensure the service principal or linked credentials have the necessary roles.
+- Unexpected behavior in inputs/outputs: Confirm the required parameters for the base Carbon data node are provided, as this connector inherits those requirements unchanged.

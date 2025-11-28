@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Executes user-provided Python code against a single input in a controlled environment. Captures stdout/stderr to an execution log and returns the computed result along with success status. The environment restricts dangerous operations and only exposes a safe subset of built-ins and common utility modules.
+Executes user-provided Python code against a single input value and returns the result. It runs in a constrained environment with a curated set of safe built-ins, captures stdout/stderr to an execution log, and provides a success flag for easy branching.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/utilities/saltcodeexecutor.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Executes user-provided Python code against a single input in a controlled enviro
 
 ## Usage
 
-Use this node when you need lightweight, custom transformation or logic that operates on a single piece of data without writing a full custom node. Typical workflows include quick data munging, conditional branching based on computed values, and in-line calculations on text, numbers, or objects passed from prior nodes.
+Use this node to quickly transform or validate data with simple Python expressions. Typical workflows include lightweight preprocessing, mapping an input to another type, formatting values, or prototyping logic between nodes. Provide the input via the 'input_data' port (any type) and a short Python snippet that reads from 'input_data' and sets a result.
 
 ## Inputs
 
@@ -26,9 +26,9 @@ Use this node when you need lightweight, custom transformation or logic that ope
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">python_code</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The Python code to run. Access the incoming value via the variable 'input_data'. You may return a value explicitly with 'return', or assign to a variable named 'result' or 'output'. If none of these are used, the last evaluated expression is used as the result.</td><td style="word-wrap: break-word;"># Access input data data = input_data # Transform and return result = data * 2 if isinstance(data, (int, float)) else str(data).upper() return result</td></tr>
-<tr><td style="word-wrap: break-word;">timeout_seconds</td><td>True</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">Suggested timeout duration for the execution. Note: current implementation does not enforce this at runtime.</td><td style="word-wrap: break-word;">10.0</td></tr>
-<tr><td style="word-wrap: break-word;">input_data</td><td>False</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">The value to be processed by your Python code. Can be any data type (number, string, object, etc.).</td><td style="word-wrap: break-word;">42</td></tr>
+<tr><td style="word-wrap: break-word;">python_code</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Python code to execute. Read the incoming value from 'input_data' and produce a result by either assigning to 'result' or using a return statement.</td><td style="word-wrap: break-word;">result = input_data if input_data is not None else 'empty'</td></tr>
+<tr><td style="word-wrap: break-word;">timeout_seconds</td><td>True</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">Maximum time allocated for the code execution in seconds. Keep your code short-running.</td><td style="word-wrap: break-word;">10.0</td></tr>
+<tr><td style="word-wrap: break-word;">input_data</td><td>False</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">The value to be processed by your Python code. Can be any type (string, number, boolean, list, dict, etc.).</td><td style="word-wrap: break-word;">42</td></tr>
 </tbody>
 </table>
 </div>
@@ -45,24 +45,23 @@ Use this node when you need lightweight, custom transformation or logic that ope
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">The computed value from your code. Determined by an explicit return, or the variables 'result'/'output', or the last expression's value.</td><td style="word-wrap: break-word;">84</td></tr>
-<tr><td style="word-wrap: break-word;">execution_log</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A human-readable log combining captured stdout and warnings to help debug the code execution.</td><td style="word-wrap: break-word;">Execution completed successfully \| Output: processed </td></tr>
-<tr><td style="word-wrap: break-word;">success</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Indicates whether the code executed without errors.</td><td style="word-wrap: break-word;">true</td></tr>
+<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">The computed value from the executed code. Type depends on your code (can be any type).</td><td style="word-wrap: break-word;">84</td></tr>
+<tr><td style="word-wrap: break-word;">execution_log</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Collected stdout/stderr messages and a short status line indicating whether the execution completed successfully.</td><td style="word-wrap: break-word;">Execution completed successfully \| Output: processed</td></tr>
+<tr><td style="word-wrap: break-word;">success</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">True if code executed without errors; False otherwise.</td><td style="word-wrap: break-word;">true</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Execution model**: If your code contains 'return', it is wrapped and executed to honor the return value. Without 'return', the node returns 'result' or 'output' variables if set, otherwise the last evaluated expression.
-- **Restricted environment**: Dangerous patterns are blocked (e.g., 'import os', 'import sys', 'import subprocess', 'import shutil', 'exec(', 'eval(', '__import__', 'open('). Generic import statements are not supported because '__import__' is not exposed.
-- **Available modules and built-ins**: Safe built-ins and modules are provided: len, str, int, float, bool, list, dict, tuple, set, min, max, sum, abs, round, sorted, reversed, enumerate, zip, map, filter, range, print, type, isinstance, hasattr, getattr, setattr, and modules json, time, math, random, datetime.
-- **Timeout**: The 'timeout_seconds' input is not currently enforced; long-running code can still run until completion or error.
-- **Stdout/stderr capture**: print output and warnings are captured and included in 'execution_log'.
-- **Input flexibility**: 'input_data' accepts any type; ensure your code defensively handles unexpected types.
+- Your code should reference the input via 'input_data' and set an output by assigning to 'result' or by using a return statement.
+- A restricted set of safe built-ins is available (common types, math/random/datetime modules, basic functions). Access to OS/file/network/process execution and dynamic evaluation is blocked.
+- Potentially dangerous patterns are disallowed (e.g., import os/sys/subprocess/shutil, exec, eval, __import__, open, input, compile). Such code will be rejected as invalid.
+- Keep code short-running and deterministic. Avoid infinite loops or heavy computations to prevent timeouts.
+- The node captures print output and warnings; these appear in 'execution_log' for debugging.
 
 ## Troubleshooting
-- **Invalid Python code or blocked operations**: If 'success' is false with a message like 'Invalid Python code' or references a dangerous pattern, remove disallowed imports/functions and ensure your code parses syntactically.
-- **No result returned**: If 'result' is null, ensure you either 'return' a value or assign to 'result' or 'output'. Without these, only the last expression value is used.
-- **Import errors**: Standard 'import x' will fail due to missing '__import__'. Use the pre-exposed modules (json, time, math, random, datetime) or avoid imports.
-- **Type errors**: If your code assumes a specific type, add checks like 'isinstance(input_data, dict)' and handle alternatives to avoid runtime exceptions.
-- **Unexpected long runs**: The 'timeout_seconds' setting is not enforced. Refactor code to avoid blocking calls or heavy loops.
+- Invalid Python code: If 'success' is false and the log mentions 'Invalid Python code', check syntax and remove any disallowed functions/imports.
+- No result returned: Ensure your code assigns to 'result' or uses a 'return' statement. If neither is present, the output may not be what you expect.
+- Type errors at runtime: Verify that 'input_data' is the type your code expects. Add type checks (e.g., isinstance) to handle mixed inputs.
+- Empty or None output: Confirm your logic path sets a value for all conditions. Initialize 'result' to a sensible default.
+- Timeouts or long runs: Simplify the code, avoid large loops, and lower data sizes to keep execution within the specified time.
