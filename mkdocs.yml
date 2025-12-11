@@ -178,7 +178,6 @@ nav:
     - Draw Mask: nodes/md/inputs/drawmask.md
     - Dynamic Text: nodes/md/inputs/saltdynamicinput.md
     - File: nodes/md/inputs/saltfileinput.md
-    - Image: nodes/md/inputs/loadimage.md
     - Text: nodes/md/inputs/salttextinput.md
   - Knowledge Bases:
     - Documents: nodes/md/knowledge-bases/carbonconnectorlocalfiles.md
@@ -225,11 +224,10 @@ nav:
         - Accumulation Set Item: nodes/md/logic/flow-control/accumulation/saltaccumulationsetitemnode.md
         - Accumulation Tail: nodes/md/logic/flow-control/accumulation/saltaccumulationtailnode.md
         - Accumulation to List: nodes/md/logic/flow-control/accumulation/saltaccumulationtolistnode.md
+        - Combine Accumulation: nodes/md/logic/flow-control/accumulation/combineaccumulationnode.md
         - List to Accumulation: nodes/md/logic/flow-control/accumulation/saltlisttoaccumulationnode.md
     - Logic Utility:
       - Debug Print: nodes/md/logic/logic-utility/saltdebugprint.md
-      - Int Math Operation: nodes/md/logic/logic-utility/saltintmathoperation.md
-      - Make List: nodes/md/logic/logic-utility/saltmakelistnode.md
       - To Bool: nodes/md/logic/logic-utility/salttoboolnode.md
   - Outputs:
     - Output: nodes/md/outputs/saltoutput.md
@@ -241,7 +239,6 @@ nav:
     - Code Executor: nodes/md/utilities/saltcodeexecutor.md
     - Data Monitor: nodes/md/utilities/saltdatamonitor.md
     - Inspect: nodes/md/utilities/saltinspect.md
-    - Preview Image: nodes/md/utilities/previewimage.md
     - Primitive Value Converter: nodes/md/utilities/saltprimitiveconverter.md
     - Regex Search and Match: nodes/md/utilities/saistringregexsearchmatch.md
     - Regex Search and Replace: nodes/md/utilities/saistringregexsearchreplace.md
@@ -262,6 +259,7 @@ nav:
       - Advanced Math Operation: nodes/md/utilities/math/saltadvancedmathoperation.md
       - Comparison Operation: nodes/md/utilities/math/saltcomparisonoperation.md
       - Float Math Operation: nodes/md/utilities/math/saltfloatmathoperation.md
+      - Int Math Operation: nodes/md/utilities/math/saltintmathoperation.md
       - Logarithmic Operation: nodes/md/utilities/math/saltlogarithmicoperation.md
       - Rounding Operation: nodes/md/utilities/math/saltroundingoperation.md
       - Statistical Operation: nodes/md/utilities/math/saltstatisticaloperation.md

@@ -14,6 +14,11 @@
     "Healthcare",
     "ClinicalTrials"
   ],
+  "logic/flow-control/accumulation": [
+    "Logic",
+    "Flow Control",
+    "Accumulation"
+  ],
   "agents": [
     "Agents"
   ],
@@ -57,11 +62,6 @@
   "healthcare/rxnorm": [
     "Healthcare",
     "RxNorm"
-  ],
-  "logic/flow-control/accumulation": [
-    "Logic",
-    "Flow Control",
-    "Accumulation"
   ],
   "utilities/math": [
     "Utilities",

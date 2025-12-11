@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Loads a FASTA-formatted sequence string into the workflow. It is a simple pass-through loader that accepts any provided text and outputs it as a FASTA-type value without validation or transformation.
+Loads a protein or nucleotide sequence provided in FASTA format and outputs it as a FASTA-type value. The node does not modify or validate the content; it simply forwards the provided text for use by downstream biotech nodes.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/biotech-utils/loadfastanode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Loads a FASTA-formatted sequence string into the workflow. It is a simple pass-t
 
 ## Usage
 
-Use this node when you want to manually input or paste a protein (or nucleotide) FASTA sequence to start or feed a biotech workflow. Typical use: paste one or more FASTA records here, then connect the output to nodes that consume FASTA (e.g., sequence processing, structure design/fixing, or combiner nodes).
+Use this node at the start of a biotech workflow when you have a FASTA-formatted sequence as text. Paste or provide the complete FASTA string (including header if available) to feed into alignment, structure prediction, or sequence processing nodes.
 
 ## Inputs
 
@@ -26,7 +26,7 @@ Use this node when you want to manually input or paste a protein (or nucleotide)
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">fasta_string</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">FASTA sequence string to upload. Can contain one or more records. The content is not validated or reformatted by this node.</td><td style="word-wrap: break-word;">>seq1 MKTFFVLVLLLALATASA >seq2 GASVVVSDIVKDLGAT</td></tr>
+<tr><td style="word-wrap: break-word;">fasta_string</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The FASTA sequence string to upload. Typically includes an optional header line starting with '>' followed by one or more lines of sequence characters.</td><td style="word-wrap: break-word;">>seq1 MKTAYIAKQRQISFVKSHFSRQDILDLWIYHTQGYFPDWQNY </td></tr>
 </tbody>
 </table>
 </div>
@@ -43,19 +43,17 @@ Use this node when you want to manually input or paste a protein (or nucleotide)
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">sequence.fasta</td><td style="word-wrap: break-word;">FASTA</td><td style="word-wrap: break-word;">The provided FASTA string, passed through unchanged.</td><td style="word-wrap: break-word;">>my_protein MSEQNNTEMTFQIQRIYTKDISFEAPNAPHVFQKDW </td></tr>
+<tr><td style="word-wrap: break-word;">sequence.fasta</td><td style="word-wrap: break-word;">FASTA</td><td style="word-wrap: break-word;">The provided FASTA string, passed through unchanged for use by subsequent nodes.</td><td style="word-wrap: break-word;">>seq1 MKTAYIAKQRQISFVKSHFSRQDILDLWIYHTQGYFPDWQNY </td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Pass-through behavior**: The node returns the input exactly as provided; it does not validate FASTA syntax, parse headers, or standardize line lengths.
-- **Multiple records allowed**: You can include multiple FASTA entries. Downstream nodes must support multi-record FASTA if you provide more than one sequence.
-- **No metadata attached**: Unlike some other loaders, the output is a plain FASTA string without additional metadata or IDs added by this node.
-- **Formatting expectations**: For best compatibility, include standard FASTA headers (lines beginning with '>') and use amino-acid or nucleotide letters as appropriate for downstream tools.
+- This node does not validate FASTA syntax; malformed input may cause downstream nodes to fail.
+- Supports multiline string input, allowing standard FASTA headers and multi-line sequences.
+- If multiple sequences are needed, use a combiner or batching node downstream; this node emits a single FASTA string.
 
 ## Troubleshooting
-- **Downstream node errors**: If a connected node fails to parse the input, ensure the FASTA is valid (each record starts with a header line beginning with '>' followed by sequence lines).
-- **Unexpected output content**: This node does not modify input; verify there are no hidden characters or unsupported symbols in the pasted text.
-- **Multiple sequence handling**: If a downstream node expects a single sequence but you provided multiple records, split your input or use a combiner/splitter node appropriately.
-- **Line wrapping issues**: Some tools expect wrapped lines (e.g., 60–80 chars). If required, manually wrap the sequence before loading.
+- If downstream nodes report parsing errors, verify the FASTA format: header (optional) begins with '>', and sequence lines contain only valid characters.
+- Remove extra whitespace or hidden characters that may have been introduced by copy-paste.
+- Ensure the sequence length and alphabet (amino acids vs nucleotides) match the expectations of downstream nodes.
