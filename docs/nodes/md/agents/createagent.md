@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Creates and returns a single agent configuration that defines the model, available tools, role, and system prompt. This configuration is intended to be passed into downstream nodes that run one or more agents.
+Builds a reusable agent configuration object that defines the model, allowed tools, role, and system prompt for an AI agent. This node does not execute the agent; it prepares the agent profile to be connected to downstream nodes (e.g., multi-agent orchestration).
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/agents/createagent.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Creates and returns a single agent configuration that defines the model, availab
 
 ## Usage
 
-Use this node to define an agent before orchestrating multi-agent interactions. Typically, you will create one or more agents with different roles and prompts, then connect their outputs to a team/execution node (e.g., Run Agents Team) to perform collaborative tasks.
+Use this node at the start of an agents workflow to define one or more agents. Configure the target LLM model, select which external tools the agent may use, and specify the role and system prompt. Connect the resulting AGENT output to nodes that run agents or teams of agents.
 
 ## Inputs
 
@@ -26,10 +26,10 @@ Use this node to define an agent before orchestrating multi-agent interactions. 
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">model</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">Select the LLM model the agent will use for inference. The available options are provided by the platform and may vary over time.</td><td style="word-wrap: break-word;">gpt-4o</td></tr>
-<tr><td style="word-wrap: break-word;">tools</td><td>True</td><td style="word-wrap: break-word;">MULTICOMBO</td><td style="word-wrap: break-word;">Choose external tools the agent can access during execution. Enable one or more tools as needed for the agent's tasks.</td><td style="word-wrap: break-word;">{'Calculator': True, 'WebSearcher': True, 'WebScraper': False, 'DateTime': True}</td></tr>
-<tr><td style="word-wrap: break-word;">role</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A short description of the agent’s role. This is prepended to the system prompt and can help orchestrators select the right agent for a given task.</td><td style="word-wrap: break-word;">A meticulous research analyst specializing in market trends and competitor intelligence.</td></tr>
-<tr><td style="word-wrap: break-word;">system_prompt</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The detailed system prompt guiding the agent’s behavior, tone, knowledge scope, and rules.</td><td style="word-wrap: break-word;">You are a helpful AI assistant. Provide concise, well-cited answers. When uncertain, ask clarifying questions before proceeding.</td></tr>
+<tr><td style="word-wrap: break-word;">model</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">Select the LLM model the agent will use for inference. Options are provided by the platform and may include popular model families.</td><td style="word-wrap: break-word;">gpt-4o</td></tr>
+<tr><td style="word-wrap: break-word;">tools</td><td>True</td><td style="word-wrap: break-word;">MULTICOMBO</td><td style="word-wrap: break-word;">Choose external tools the agent is permitted to use. Each selected tool expands the agent's capabilities (e.g., browsing, scraping, calculators, data extraction).</td><td style="word-wrap: break-word;">{'Calculator': True, 'DateTime': True, 'WebSearcher': False, 'WebScraper': False, 'JSONExtractor': False, 'CSVExtractor': False}</td></tr>
+<tr><td style="word-wrap: break-word;">role</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A short, high-level description of the agent's role and expertise. Used to help select or route the agent in team settings and is prepended to the system prompt.</td><td style="word-wrap: break-word;">A helpful AI assistant specialized in data analysis and reporting.</td></tr>
+<tr><td style="word-wrap: break-word;">system_prompt</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The detailed system prompt defining the agent's persona, domain knowledge, and behavioral guidelines.</td><td style="word-wrap: break-word;">You are a meticulous data analyst. Always explain your methodology and cite assumptions. Prefer concise, structured answers.</td></tr>
 </tbody>
 </table>
 </div>
@@ -46,17 +46,19 @@ Use this node to define an agent before orchestrating multi-agent interactions. 
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">agent</td><td style="word-wrap: break-word;">AGENT</td><td style="word-wrap: break-word;">The constructed agent configuration containing the selected model, tools, role, and system prompt. Connect this to nodes that run agents or assemble agent teams.</td><td style="word-wrap: break-word;">{'model': 'gpt-4o', 'tools': {'Calculator': True, 'DateTime': True}, 'role': 'A helpful AI assistant.', 'system_prompt': 'You are a helpful AI assistant.'}</td></tr>
+<tr><td style="word-wrap: break-word;">agent</td><td style="word-wrap: break-word;">AGENT</td><td style="word-wrap: break-word;">An agent configuration object encapsulating the selected model, enabled tools, role, and system prompt. Intended for connection to nodes that run agents or agent teams.</td><td style="word-wrap: break-word;">{'model': 'gpt-4o', 'tools': {'Calculator': True, 'DateTime': True, 'WebSearcher': False, 'WebScraper': False, 'JSONExtractor': False, 'CSVExtractor': False}, 'role': 'A helpful AI assistant specialized in data analysis and reporting.', 'system_prompt': 'You are a meticulous data analyst. Always explain your methodology and cite assumptions. Prefer concise, structured answers.'}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- Role is prepended to the system prompt and may be used by orchestration logic to select or prioritize agents.
-- Tools are optional per capability—enable only those necessary for the agent’s tasks to keep behavior focused.
-- Model and tool options are provided by the platform and can change; verify selections if a workflow is reused later.
+- **This node creates configuration only**: It does not run any inference. Connect its AGENT output to execution nodes (e.g., a team runner) to produce results.
+- **Role is prepended to the system prompt**: Keep the role concise and use the system prompt for detailed behavior and constraints.
+- **Tools control capabilities**: If no tools are selected, the agent operates as a pure LLM without external actions.
+- **Model availability**: The list of selectable models and tools is provided by the platform and may change over time.
 
 ## Troubleshooting
-- Selected model is missing: Reopen the model dropdown and choose an available model. Options may have changed since the workflow was created.
-- Tools not taking effect: Ensure the specific tools are enabled (set to true) in the MULTICOMBO input and that the downstream node supports tool usage.
-- Downstream node rejects the agent: Confirm the output from Create Agent is connected to an input expecting an AGENT type and that all required fields are set.
+- **No or unexpected model options**: If the model list looks limited or outdated, refresh the interface or check platform settings; select an available model closest to your needs.
+- **Agent lacks expected capabilities**: Verify the required tools are enabled in the tools selection. Some actions require specific tools (e.g., web browsing, data extraction).
+- **Downstream node errors**: Ensure the AGENT output is connected to a compatible node that expects an AGENT input.
+- **Behavior not matching expectations**: Refine the system prompt for more explicit instructions and adjust the role to better signal the agent's specialization.
