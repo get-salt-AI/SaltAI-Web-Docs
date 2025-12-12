@@ -224,11 +224,14 @@ nav:
         - Accumulation Set Item: nodes/md/logic/flow-control/accumulation/saltaccumulationsetitemnode.md
         - Accumulation Tail: nodes/md/logic/flow-control/accumulation/saltaccumulationtailnode.md
         - Accumulation to List: nodes/md/logic/flow-control/accumulation/saltaccumulationtolistnode.md
-        - Combine Accumulation: nodes/md/logic/flow-control/accumulation/combineaccumulationnode.md
         - List to Accumulation: nodes/md/logic/flow-control/accumulation/saltlisttoaccumulationnode.md
     - Logic Utility:
       - Debug Print: nodes/md/logic/logic-utility/saltdebugprint.md
+      - Int Math Operation: nodes/md/logic/logic-utility/saltintmathoperation.md
+      - Make List: nodes/md/logic/logic-utility/saltmakelistnode.md
       - To Bool: nodes/md/logic/logic-utility/salttoboolnode.md
+  - New/Uncategorized:
+    - Combine Accumulation: nodes/md/new-uncategorized/combineaccumulationnode.md
   - Outputs:
     - Output: nodes/md/outputs/saltoutput.md
     - Writers:
@@ -259,7 +262,6 @@ nav:
       - Advanced Math Operation: nodes/md/utilities/math/saltadvancedmathoperation.md
       - Comparison Operation: nodes/md/utilities/math/saltcomparisonoperation.md
       - Float Math Operation: nodes/md/utilities/math/saltfloatmathoperation.md
-      - Int Math Operation: nodes/md/utilities/math/saltintmathoperation.md
       - Logarithmic Operation: nodes/md/utilities/math/saltlogarithmicoperation.md
       - Rounding Operation: nodes/md/utilities/math/saltroundingoperation.md
       - Statistical Operation: nodes/md/utilities/math/saltstatisticaloperation.md

@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Queries the OpenFDA NDC (National Drug Code) Directory API to retrieve product information such as brand name, generic name, dosage form, route, packaging, and active ingredient details. Returns results and metadata as JSON strings. Supports both search and count actions with optional exact matching.
+Queries the OpenFDA National Drug Code (NDC) Directory to retrieve drug product information. Supports searching or counting records by commonly used fields such as brand name, generic name, dosage form, route, and packaging details. Returns results and response metadata as JSON-formatted strings.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/healthcare/openfda/openfdandcnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Queries the OpenFDA NDC (National Drug Code) Directory API to retrieve product i
 
 ## Usage
 
-Use this node when you need to look up drug products in the FDA’s NDC Directory by fields like brand name, generic name, or active ingredients. Commonly placed early in a workflow to fetch regulatory product data that can then be parsed, filtered, or displayed downstream.
+Use this node when you need authoritative drug product data from the FDA NDC Directory, such as looking up products by brand name or counting how many products match a specific dosage form. Typical workflow: provide a field value, choose the field to search, select whether to search or count, optionally enforce exact matching, and set a results limit. Connect the "results" output to downstream parsing or display nodes and the "metadata" output for pagination and request info.
 
 ## Inputs
 
@@ -26,11 +26,11 @@ Use this node when you need to look up drug products in the FDA’s NDC Director
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">field_value</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The value to query for in the selected field.</td><td style="word-wrap: break-word;">aspirin</td></tr>
-<tr><td style="word-wrap: break-word;">field</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">Which NDC Directory field to search. Options map to specific OpenFDA fields.</td><td style="word-wrap: break-word;">brand name</td></tr>
-<tr><td style="word-wrap: break-word;">action</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">Select 'search' to return matching records or 'count' to return aggregation counts for the selected field.</td><td style="word-wrap: break-word;">search</td></tr>
-<tr><td style="word-wrap: break-word;">exact_match</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, performs an exact match query on the selected field.</td><td style="word-wrap: break-word;">false</td></tr>
-<tr><td style="word-wrap: break-word;">limit</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum number of results to return. Minimum value is 1.</td><td style="word-wrap: break-word;">3</td></tr>
+<tr><td style="word-wrap: break-word;">field_value</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The value to search for within the selected field.</td><td style="word-wrap: break-word;">aspirin</td></tr>
+<tr><td style="word-wrap: break-word;">field</td><td>True</td><td style="word-wrap: break-word;">one of ["active ingredient name", "active ingredient strength", "brand name", "generic name", "dosage form", "route", "packaging description"]</td><td style="word-wrap: break-word;">The NDC Directory field to query against.</td><td style="word-wrap: break-word;">brand name</td></tr>
+<tr><td style="word-wrap: break-word;">action</td><td>True</td><td style="word-wrap: break-word;">one of ["search", "count"]</td><td style="word-wrap: break-word;">Select 'search' to retrieve matching records or 'count' to get aggregated counts for the selected field.</td><td style="word-wrap: break-word;">search</td></tr>
+<tr><td style="word-wrap: break-word;">exact_match</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, performs an exact match on the selected field; otherwise, performs a general search.</td><td style="word-wrap: break-word;">false</td></tr>
+<tr><td style="word-wrap: break-word;">limit</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum number of results to return. Must be >= 1.</td><td style="word-wrap: break-word;">10</td></tr>
 </tbody>
 </table>
 </div>
@@ -47,22 +47,23 @@ Use this node when you need to look up drug products in the FDA’s NDC Director
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">results</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON string of the OpenFDA API 'results' array matching the query or count output.</td><td style="word-wrap: break-word;">[{"brand_name": "ASPIRIN", "generic_name": "ASPIRIN", "dosage_form": "TABLET"}]</td></tr>
-<tr><td style="word-wrap: break-word;">metadata</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON string of the OpenFDA API 'meta' object, including information like result count and request details.</td><td style="word-wrap: break-word;">{"disclaimer": "...", "results": {"skip": 0, "limit": 3, "total": 120}}</td></tr>
+<tr><td style="word-wrap: break-word;">results</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON-formatted string containing the array of result records (for 'search') or count data (for 'count').</td><td style="word-wrap: break-word;">[{ "brand_name": "ASPIRIN", "generic_name": "ASPIRIN", "dosage_form": "TABLET" }]</td></tr>
+<tr><td style="word-wrap: break-word;">metadata</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON-formatted string with API response metadata, including request details, disclaimers, and pagination info when applicable.</td><td style="word-wrap: break-word;">{ "disclaimer": "openFDA is a beta research project...", "results": { "total": 1234, "limit": 10 } }</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Field options**: "active ingredient name", "active ingredient strength", "brand name", "generic name", "dosage form", "route", "packaging description".
-- **Exact match behavior**: When exact_match is true, the query uses the '.exact' variant of the selected field for stricter matching.
-- **Actions**: 'search' returns matching records; 'count' returns aggregated counts for the chosen field.
-- **Rate limits and availability**: Subject to OpenFDA API rate limits and service availability.
-- **Output format**: Both outputs are JSON strings; downstream nodes may need to parse them before further processing.
+- **Exact matching**: When exact_match is true, the search targets the field's exact value, which can reduce partial matches and improve precision.
+- **Action differences**: 'search' returns matching records; 'count' returns aggregated counts for the chosen field.
+- **Field mapping**: User-friendly field names map to OpenFDA fields (e.g., 'brand name' -> 'brand_name', 'dosage form' -> 'dosage_form').
+- **Result format**: Both outputs are JSON strings; downstream nodes may need to parse them before further processing.
+- **Limits and paging**: The limit input controls returned items. Use metadata to understand totals and plan pagination.
+- **Rate limits and availability**: OpenFDA enforces rate limits and may throttle; network or service interruptions can occur.
 
 ## Troubleshooting
-- **Network error**: If the API is unreachable or times out, the node returns {"error": "Network error"} in both outputs. Check connectivity and retry.
-- **JSON decode error**: If the API response cannot be parsed, the node returns {"error": "JSON decode error"}. Retry later or verify the API status.
-- **Unknown error**: Returns {"error": "Unknown error"} on unexpected failures. Review input values and try a simpler query.
-- **Empty results**: If 'results' is empty, confirm the field and field_value are valid for the NDC dataset or try disabling exact_match.
-- **Too few/many results**: Adjust 'limit' for desired volume; for broad queries consider using 'count' first to explore data distribution.
+- **No results returned**: Verify field_value spelling and select the correct field. Try disabling exact_match or increasing limit.
+- **Unexpected counts**: Ensure 'action' is set to 'count' and that the chosen field is appropriate for aggregation.
+- **Network error**: Temporary connectivity or API issues may occur. Retry later and confirm internet access.
+- **JSON decode error**: Downstream parsing failed. Ensure you are parsing the 'results' and 'metadata' as JSON strings with a proper parser.
+- **Unknown error response**: Check inputs for invalid values and verify the OpenFDA service status. Try simplifying the query (e.g., remove exact_match or use a different field).

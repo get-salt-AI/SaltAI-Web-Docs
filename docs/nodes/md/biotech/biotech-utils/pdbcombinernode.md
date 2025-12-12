@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Combines up to five PDB inputs (each a dictionary of {pdb_id: pdb_content}) into a single merged PDB dictionary. Optionally prefixes keys to avoid naming collisions across inputs and guarantees unique keys in the combined output.
+Merges multiple PDB inputs into a single dictionary of structures. Accepts up to five PDB dictionaries and optionally prefixes keys to avoid collisions. If duplicate keys occur, the node auto-resolves by appending a numeric suffix.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/biotech-utils/pdbcombinernode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Combines up to five PDB inputs (each a dictionary of {pdb_id: pdb_content}) into
 
 ## Usage
 
-Use this node when you have multiple PDB dictionaries from different workflow branches and need a single, consolidated PDB input for downstream processing (e.g., conversion, fixing, or chain extraction). Connect any subset of the available pdb_1..pdb_5 inputs; enable prefixing if you want deterministic, non-conflicting keys.
+Use this node when you need to consolidate several PDB outputs (e.g., from multiple loaders or processing branches) into one combined PDB collection for downstream steps such as conversion, filtering, or visualization. Connect any subset of pdb_1 to pdb_5 and enable prefix_chains to systematically avoid key conflicts.
 
 ## Inputs
 
@@ -26,12 +26,12 @@ Use this node when you have multiple PDB dictionaries from different workflow br
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">pdb_1</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">First PDB dictionary to include in the combination. Keys are PDB IDs and values are PDB file contents as strings.</td><td style="word-wrap: break-word;">{'protein_A': 'ATOM ...\\nEND'}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_2</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Second PDB dictionary to include in the combination.</td><td style="word-wrap: break-word;">{'protein_B': 'ATOM ...\\nEND'}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_3</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Third PDB dictionary to include in the combination.</td><td style="word-wrap: break-word;">{'protein_C': 'ATOM ...\\nEND'}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_4</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Fourth PDB dictionary to include in the combination.</td><td style="word-wrap: break-word;">{'protein_D': 'ATOM ...\\nEND'}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_5</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Fifth PDB dictionary to include in the combination.</td><td style="word-wrap: break-word;">{'protein_E': 'ATOM ...\\nEND'}</td></tr>
-<tr><td style="word-wrap: break-word;">prefix_chains</td><td>False</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, prefixes each input’s keys to avoid collisions (e.g., PDB1_<id>, PDB2_<id>). When false, collisions are auto-resolved by suffixing numeric counters.</td><td style="word-wrap: break-word;">True</td></tr>
+<tr><td style="word-wrap: break-word;">pdb_1</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">First PDB dictionary to include in the merge. Each PDB input must be a dict of {pdb_id: pdb_string}.</td><td style="word-wrap: break-word;">{'modelA': 'ATOM ...\\nEND'}</td></tr>
+<tr><td style="word-wrap: break-word;">pdb_2</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Second PDB dictionary to include.</td><td style="word-wrap: break-word;">{'modelB': 'ATOM ...\\nEND'}</td></tr>
+<tr><td style="word-wrap: break-word;">pdb_3</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Third PDB dictionary to include.</td><td style="word-wrap: break-word;">{'complex1': 'ATOM ...\\nEND'}</td></tr>
+<tr><td style="word-wrap: break-word;">pdb_4</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Fourth PDB dictionary to include.</td><td style="word-wrap: break-word;">{'complex2': 'ATOM ...\\nEND'}</td></tr>
+<tr><td style="word-wrap: break-word;">pdb_5</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Fifth PDB dictionary to include.</td><td style="word-wrap: break-word;">{'template': 'ATOM ...\\nEND'}</td></tr>
+<tr><td style="word-wrap: break-word;">prefix_chains</td><td>False</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, automatically prefixes keys from each input (PDB1_, PDB2_, etc.) to avoid ID collisions.</td><td style="word-wrap: break-word;">True</td></tr>
 </tbody>
 </table>
 </div>
@@ -48,19 +48,20 @@ Use this node when you have multiple PDB dictionaries from different workflow br
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">combined_pdb</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">A single merged PDB dictionary containing all entries from the provided inputs, with guaranteed unique keys.</td><td style="word-wrap: break-word;">{'PDB1_protein_A': 'ATOM ...\\nEND', 'PDB2_protein_B': 'ATOM ...\\nEND'}</td></tr>
+<tr><td style="word-wrap: break-word;">combined_pdb</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">A single merged dictionary of all provided PDBs, keyed by (possibly prefixed) IDs.</td><td style="word-wrap: break-word;">{'PDB1_modelA': 'ATOM ...\\nEND', 'PDB2_modelB': 'ATOM ...\\nEND'}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Key collisions**: If two inputs share the same key and prefix_chains is false, the node will automatically append numeric suffixes to create unique keys and log a warning.
-- **Prefixing behavior**: When prefix_chains is true, the node prepends PDB1_, PDB2_, etc. to the keys based on the input slot to avoid collisions.
-- **No structural edits**: This node does not modify the internal PDB content or biological chain identifiers; it only merges key-value pairs from the input dictionaries.
-- **At least one input required**: The node raises an error if no PDB inputs are provided or all are empty.
+- At least one PDB input (pdb_1–pdb_5) must be connected; otherwise the node raises an error.
+- Each PDB input must be a dictionary mapping IDs to PDB text content (e.g., {"my_id": "ATOM ... END"}).
+- When keys collide and prefix_chains is disabled, duplicates are resolved by appending _1, _2, etc., and a warning is logged.
+- Enable prefix_chains to systematically avoid collisions by adding PDB1_, PDB2_, etc. to incoming keys.
+- This node merges up to five inputs; if you need more, combine upstream or chain multiple combiners.
 
 ## Troubleshooting
-- **Error: 'At least one PDB input is required'**: Connect at least one pdb_i input with a non-empty PDB dictionary.
-- **Unexpected renamed keys**: If you see keys with numeric suffixes (e.g., my_pdb_1), either enable prefix_chains for deterministic names or ensure your input keys are unique.
-- **Wrong input type**: Ensure each pdb_i is a dictionary of {pdb_id: pdb_string}. Passing a raw PDB string or other types will not be recognized.
-- **Missing entries in output**: Verify the connected inputs actually contain entries; empty dictionaries are ignored during merge.
+- Error: "At least one PDB input is required" – Connect at least one pdb_i input with a non-empty PDB dictionary.
+- Unexpected overwritten or duplicate keys – Enable prefix_chains to add unique prefixes, or ensure source IDs are unique.
+- Invalid input type – Ensure each connected pdb_i is a dictionary of {id: pdb_string}, not a raw string.
+- Empty result – Verify that connected inputs are non-empty dictionaries and that upstream nodes produced valid PDB content.

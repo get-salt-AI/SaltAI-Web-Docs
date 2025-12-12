@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Loads a Protein Data Bank (PDB) structure provided as a raw text string and packages it into a structured output for downstream biotech nodes. You assign an identifier to the PDB, and the node emits a mapping from that ID to the provided PDB content. The node does not modify or validate the PDB format.
+Loads a Protein Data Bank (PDB) structure from a text string and assigns it a user-defined identifier. Produces a dictionary mapping the provided ID to the PDB content, making it easy to reference and combine multiple structures in a workflow.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/biotech-utils/loadpdbnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Loads a Protein Data Bank (PDB) structure provided as a raw text string and pack
 
 ## Usage
 
-Use this node at the start of workflows when you already have PDB content (e.g., pasted text or preloaded data) and need to pass it to structure-processing or visualization nodes. It is commonly paired with nodes that consume PDB structures or with sequence nodes where the PDB ID should match a corresponding FASTA record.
+Use this node when you have a PDB file content (as text) that you want to introduce into a workflow. Provide the full PDB string and an ID to identify it. The output connects to nodes that visualize, convert, extract chains, convert to FASTA, or combine multiple PDBs.
 
 ## Inputs
 
@@ -26,8 +26,8 @@ Use this node at the start of workflows when you already have PDB content (e.g.,
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">pdb_string</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The full PDB file content as text. This should be a valid PDB-formatted string.</td><td style="word-wrap: break-word;">HEADER    EXAMPLE PDB ATOM      1  N   MET A   1      20.154  34.198  27.447  1.00 20.00           N ATOM      2  CA  MET A   1      21.560  34.560  27.800  1.00 20.00           C TER END </td></tr>
-<tr><td style="word-wrap: break-word;">pdb_id</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">An identifier to associate with this PDB entry. Must be unique within the workflow. If you also provide a FASTA record for this structure elsewhere in the workflow, its sequence ID should match this value.</td><td style="word-wrap: break-word;">pdb</td></tr>
+<tr><td style="word-wrap: break-word;">pdb_string</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Full PDB content as a text string. Should be valid PDB format.</td><td style="word-wrap: break-word;">HEADER EXAMPLE PDB\nATOM      1  N   MET A   1      11.104  13.207   2.100  1.00 20.00           N\nEND</td></tr>
+<tr><td style="word-wrap: break-word;">pdb_id</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Identifier assigned to this PDB entry. Must be unique within a batch of PDBs. If you provide a corresponding FASTA record, its sequence ID should match this value.</td><td style="word-wrap: break-word;">my_structure</td></tr>
 </tbody>
 </table>
 </div>
@@ -44,22 +44,21 @@ Use this node at the start of workflows when you already have PDB content (e.g.,
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">structure.pdb</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">A dictionary mapping the provided PDB ID to the PDB string content.</td><td style="word-wrap: break-word;">{'my_structure': 'HEADER    EXAMPLE PDB\nATOM      1  N   MET A   1      20.154  34.198  27.447  1.00 20.00           N\nEND\n'}</td></tr>
+<tr><td style="word-wrap: break-word;">structure.pdb</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Dictionary mapping the provided ID to the PDB string content.</td><td style="word-wrap: break-word;">{'my_structure': 'HEADER EXAMPLE PDB\\nATOM ...\\nEND'}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **ID uniqueness**: Use unique pdb_id values to avoid collisions when working with multiple structures.
-- **FASTA alignment**: If you include a corresponding FASTA record, ensure its sequence ID exactly matches the pdb_id.
-- **No validation**: The node does not validate PDB formatting; malformed content may cause downstream nodes to fail.
-- **Pass-through behavior**: The node does not alter the PDB content; it wraps your input into a keyed structure for workflow compatibility.
+- IDs should be unique if multiple PDBs are used in the same workflow.
+- If a corresponding FASTA record is used later, ensure its sequence ID matches the pdb_id.
+- The output is a dictionary {pdb_id: pdb_string}; downstream nodes expect this structure.
+- Provide valid PDB-formatted text; malformed content may cause downstream failures.
 
 ## Troubleshooting
-- **Downstream errors when parsing PDB**: Verify pdb_string is valid PDB format; correct formatting or regenerate the structure.
-- **Unexpected overwriting or missing entries**: Ensure each pdb_id is unique across the workflow to prevent key collisions.
-- **Empty or truncated output**: Check that the entire PDB text was provided (including END/TER records where applicable) and that there are no hidden characters removed during copy/paste.
-- **Mismatch with FASTA-based steps**: Align the pdb_id with the sequence ID used in related FASTA inputs.
+- PDB not recognized downstream: Verify the input is valid PDB format (header/ATOM/HETATM records present).
+- ID conflicts when combining PDBs: Ensure each pdb_id is unique across all inputs before passing to combiner/batch nodes.
+- FASTA mismatch warnings later: Align the FASTA sequence ID to match the pdb_id used here.
 
 ## Example Pipelines
 

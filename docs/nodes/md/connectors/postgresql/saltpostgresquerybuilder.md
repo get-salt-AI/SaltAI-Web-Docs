@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Interactive helper for exploring a PostgreSQL schema and drafting queries. It can list tables, show a table’s columns, suggest JOIN relationships based on foreign keys, and provide starter SQL patterns from a natural-language requirement. Results can be returned as text/JSON, or exported as simple HTML/XLSX/PDF summaries.
+Helps you explore a PostgreSQL database and build queries interactively. It can list tables in a schema, show a table’s columns, suggest JOINs based on detected relationships, and provide SQL-building guidance from a natural language description. Results can be returned as plain text + JSON, or rendered/exported as HTML, XLSX, or PDF.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/postgresql/saltpostgresquerybuilder.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Interactive helper for exploring a PostgreSQL schema and drafting queries. It ca
 
 ## Usage
 
-Use this node early in your database workflow to understand schema structure and plan queries. Typical flow: start with discover_tables to see what’s available, then get_table_columns for details on a specific table, use suggest_joins to identify relationships, and finally build_query to generate starter query ideas from a plain-English description. Pair it with a query execution or visual query node to run or refine the SQL.
+Use this node at the start of a data workflow to discover available tables and their columns, or to get JOIN suggestions before constructing complex queries. It’s also useful when you have a plain-language requirement and want structured guidance on how to translate it into SQL. Connect it to nodes that will execute queries or render data, selecting the appropriate output format for your needs.
 
 ## Inputs
 
@@ -26,13 +26,13 @@ Use this node early in your database workflow to understand schema structure and
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Database connection URI for PostgreSQL.</td><td style="word-wrap: break-word;">postgresql://<username>:<password>@<host>:5432/<database>?schema=public</td></tr>
-<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Request timeout in seconds for service operations.</td><td style="word-wrap: break-word;">60</td></tr>
-<tr><td style="word-wrap: break-word;">action</td><td>True</td><td style="word-wrap: break-word;">SELECT</td><td style="word-wrap: break-word;">What helper action to perform.</td><td style="word-wrap: break-word;">discover_tables</td></tr>
-<tr><td style="word-wrap: break-word;">target_schema</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Schema to explore for tables, columns, and relationships.</td><td style="word-wrap: break-word;">public</td></tr>
-<tr><td style="word-wrap: break-word;">table_name</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Table name used when action is get_table_columns or suggest_joins.</td><td style="word-wrap: break-word;">users</td></tr>
-<tr><td style="word-wrap: break-word;">query_requirements</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Natural-language description of the data you want, used when action is build_query.</td><td style="word-wrap: break-word;">List users and their orders with total amounts this month</td></tr>
-<tr><td style="word-wrap: break-word;">output_format</td><td>True</td><td style="word-wrap: break-word;">SELECT</td><td style="word-wrap: break-word;">Choose how the helper results are returned or exported.</td><td style="word-wrap: break-word;">text</td></tr>
+<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Path or reference to PostgreSQL credentials configured for the postgres service.</td><td style="word-wrap: break-word;">/path/to/credentials/postgres.json</td></tr>
+<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time (in seconds) to wait for the helper operations to complete.</td><td style="word-wrap: break-word;">60</td></tr>
+<tr><td style="word-wrap: break-word;">action</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">Operation to perform. Options: discover_tables, get_table_columns, suggest_joins, build_query.</td><td style="word-wrap: break-word;">discover_tables</td></tr>
+<tr><td style="word-wrap: break-word;">target_schema</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Schema to explore or to use as the default context for actions.</td><td style="word-wrap: break-word;">public</td></tr>
+<tr><td style="word-wrap: break-word;">table_name</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Table name for column discovery or join suggestions. Required if action is get_table_columns or suggest_joins.</td><td style="word-wrap: break-word;">users</td></tr>
+<tr><td style="word-wrap: break-word;">query_requirements</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Natural language description of the data you want. Used when action is build_query to provide SQL guidance.</td><td style="word-wrap: break-word;">List each user and the total count of their orders in the last 30 days</td></tr>
+<tr><td style="word-wrap: break-word;">output_format</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">Output format for results. Options: text, html, xlsx, pdf, all.</td><td style="word-wrap: break-word;">text</td></tr>
 </tbody>
 </table>
 </div>
@@ -49,26 +49,26 @@ Use this node early in your database workflow to understand schema structure and
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary text of the helper result (tables, columns, join suggestions, or query patterns).</td><td style="word-wrap: break-word;">Tables in schema 'public' (12 tables): - users - orders - products ...</td></tr>
-<tr><td style="word-wrap: break-word;">json_result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON string containing the structured result (e.g., lists of tables, column metadata, or join suggestions).</td><td style="word-wrap: break-word;">{"tables": ["users", "orders", "products"]}</td></tr>
-<tr><td style="word-wrap: break-word;">html_table</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">HTML content containing a simple formatted view of the helper result (populated when output_format=html).</td><td style="word-wrap: break-word;"><!DOCTYPE html><html>...<table>...</table></html></td></tr>
-<tr><td style="word-wrap: break-word;">xlsx_data</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Base64-encoded XLSX file with a simple export of the helper result (populated when output_format=xlsx).</td><td style="word-wrap: break-word;"><base64-xlsx-data></td></tr>
-<tr><td style="word-wrap: break-word;">pdf_data</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Base64-encoded PDF with a simple export of the helper result (populated when output_format=pdf).</td><td style="word-wrap: break-word;"><base64-pdf-data></td></tr>
+<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary of the helper result (tables, columns, suggested joins, or query guidance). Empty string if not returned for the selected format.</td><td style="word-wrap: break-word;">Tables in Schema: public users orders ...</td></tr>
+<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Machine-readable JSON representation of the result (e.g., lists, suggestions, or structured guidance).</td><td style="word-wrap: break-word;">{"suggestions": ["JOIN orders ON users.id = orders.user_id"], "requirements": "List each user and total orders"}</td></tr>
+<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">HTML</td><td style="word-wrap: break-word;">HTML rendering of the result. Returned only when output_format is html; otherwise empty.</td><td style="word-wrap: break-word;"><h3>Join Suggestions: public.users</h3><pre>JOIN orders ON users.id = orders.user_id</pre></td></tr>
+<tr><td style="word-wrap: break-word;">xlsx</td><td style="word-wrap: break-word;">XLSX</td><td style="word-wrap: break-word;">Excel data representing the result. Returned only when output_format is xlsx; otherwise empty.</td><td style="word-wrap: break-word;"><binary xlsx bytes></td></tr>
+<tr><td style="word-wrap: break-word;">pdf</td><td style="word-wrap: break-word;">PDF</td><td style="word-wrap: break-word;">PDF document representing the result. Returned only when output_format is pdf; otherwise empty.</td><td style="word-wrap: break-word;"><binary pdf bytes></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- Table name is required when using get_table_columns or suggest_joins; otherwise, an error is returned.
-- build_query provides template suggestions based on your description; it does not generate or execute a final SQL statement.
-- discover_tables and get_table_columns rely on the connected database’s metadata; ensure permissions grant access to information_schema/catalogs.
-- output_format controls which of the export fields are populated. For html/xlsx/pdf, only that format (plus JSON) is filled; selecting all is not supported for this helper and will return primarily text and JSON.
-- The node requires a valid PostgreSQL URI in credentials_path. Invalid or unsupported URI formats will cause validation errors.
-- XLSX and PDF outputs are base64-encoded strings intended for downstream save/export nodes.
+- Table name is required when action is get_table_columns or suggest_joins.
+- Schema defaults to "public" if not provided.
+- JOIN suggestions rely on database metadata; they may be limited or empty if foreign keys are not defined or accessible.
+- The node requires valid PostgreSQL credentials configured for the postgres service via credentials_path.
+- Selecting html, xlsx, or pdf returns that specific format alongside JSON, with other formats left empty. Selecting all returns text and JSON (helper results do not bundle all export types).
+- Timeout applies to the helper operations (e.g., listing tables, fetching columns, suggesting joins).
 
 ## Troubleshooting
-- Invalid credentials URI: Ensure credentials_path uses a valid PostgreSQL URI format like postgresql://<username>:<password>@<host>:5432/<database>?schema=public
-- Table name required: For get_table_columns or suggest_joins, provide table_name; otherwise the node returns an error.
-- No foreign key relationships found: suggest_joins may return a message indicating none were found. Verify constraints exist or check the correct schema.
-- Timeouts or connection errors: Increase timeout, verify network connectivity, and confirm the database service is reachable with your credentials.
-- Empty or minimal output in html/xlsx/pdf: These exports summarize the helper results; they are not full query result sets. For data exports, run the actual query with a query execution node.
+- Action requires a table_name: If you choose get_table_columns or suggest_joins without a table_name, supply a valid table name and retry.
+- No tables or columns returned: Verify target_schema exists and your credentials have permissions to read metadata.
+- No JOIN suggestions shown: Ensure foreign key relationships exist and your credentials can access system metadata. If none are defined, suggestions may be empty.
+- Permission errors: Confirm the credentials_path points to valid credentials with sufficient privileges for the target schema.
+- Empty or unexpected outputs in selected format: Switch output_format to text to inspect the plain-text and JSON details for troubleshooting.

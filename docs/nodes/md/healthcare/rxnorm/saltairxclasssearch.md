@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Searches the RxClass database for drug classes by name and returns a JSON-formatted result and a status message. It validates the input, handles API errors, and formats results to include the original search term with the returned data.
+Searches RxClass by a drug class name and returns a JSON-formatted string of results along with a human-readable status. It wraps the RxNorm RxClass search, validates the input, and consistently structures the response with a search_term and results.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/healthcare/rxnorm/saltairxclasssearch.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Searches the RxClass database for drug classes by name and returns a JSON-format
 
 ## Usage
 
-Use this node when you need to find drug classes by name (e.g., "ACE Inhibitors") to explore their identifiers or related metadata. It typically precedes nodes that require a class ID, such as fetching class information or listing class members.
+Use this node when you need to look up drug classes by name to drive downstream workflows like retrieving class details or members. Provide a class name (e.g., ACE Inhibitors) and route the JSON results to nodes that parse or display RxClass data.
 
 ## Inputs
 
@@ -26,7 +26,7 @@ Use this node when you need to find drug classes by name (e.g., "ACE Inhibitors"
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">class_name</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The drug class name to search for in RxClass.</td><td style="word-wrap: break-word;">ACE Inhibitors</td></tr>
+<tr><td style="word-wrap: break-word;">class_name</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The drug class name to search in RxClass. Must be non-empty.</td><td style="word-wrap: break-word;">ACE Inhibitors</td></tr>
 </tbody>
 </table>
 </div>
@@ -43,22 +43,20 @@ Use this node when you need to find drug classes by name (e.g., "ACE Inhibitors"
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">class_search_results</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON string containing the search term and the RxClass search results.</td><td style="word-wrap: break-word;">{"search_term": "ACE Inhibitors", "results": {"rxclassMinConceptList": {"rxclassMinConcept": [{"classId": "...", "className": "Angiotensin-Converting Enzyme Inhibitors", "classType": "..."}]}}}</td></tr>
-<tr><td style="word-wrap: break-word;">status</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A human-readable status message indicating success or describing an error.</td><td style="word-wrap: break-word;">Successfully searched RxClass for 'ACE Inhibitors'</td></tr>
+<tr><td style="word-wrap: break-word;">class_search_results</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON string containing the structured response with the original search term and the results returned by RxClass.</td><td style="word-wrap: break-word;">{"search_term": "ACE Inhibitors", "results": {"rxclassMinConceptList": {...}}}</td></tr>
+<tr><td style="word-wrap: break-word;">status</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A status message indicating success or describing an error condition.</td><td style="word-wrap: break-word;">Successfully searched RxClass for 'ACE Inhibitors'</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Input required**: An empty class name returns an empty JSON object ("{}") and an error status.
-- **Output format**: The first output is a JSON-formatted string, not a parsed object. Downstream nodes expecting structured data must parse it.
-- **API behavior**: Results are sourced from the RxClass service; availability, rate limits, and content depend on the external API.
-- **Error handling**: If the API reports an error, the error details are returned within the JSON string and reflected in the status message.
-- **Typical workflow**: Use the returned class identifiers from the results to query class details or members in subsequent nodes.
+- **Input must be non-empty**: An empty or whitespace-only class_name returns an empty JSON object and an error status.
+- **JSON is returned as a STRING**: The first output is a JSON string. Downstream nodes may need to parse it before accessing fields.
+- **Consistent structure**: On success, the JSON includes keys: search_term and results. On API errors, results may include an "error" field and the status will start with "API Error:".
+- **External service dependency**: Results depend on the RxNorm/RxClass service availability and the exact spelling of the class name.
 
 ## Troubleshooting
-- **No results or empty list**: Verify the spelling of the class name or try a broader term (e.g., search for "Statin" instead of a brand-specific term).
-- **Status shows 'Class name cannot be empty'**: Provide a non-empty class_name value.
-- **API Error in status**: Indicates a network or service issue. Check connectivity, try again later, or reduce request frequency.
-- **Downstream parsing errors**: Ensure you parse the JSON string from class_search_results before accessing fields.
-- **Unexpected fields or structure**: The API response format may change; inspect the raw JSON output to adapt downstream processing.
+- **Empty results or error status**: Ensure class_name is non-empty and correctly spelled. Try alternative or broader class terms.
+- **Status shows 'API Error'**: The external API may be unavailable or returned an error. Retry later or adjust the query.
+- **Downstream parsing failures**: Remember the first output is a JSON string; parse it before accessing keys like results or rxclassMinConceptList.
+- **Inconsistent fields in results**: The RxClass API may return different structures depending on the query. Inspect the raw JSON output to understand available fields.

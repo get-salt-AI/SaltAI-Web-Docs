@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Retrieves the drug members of a specified RxClass. Given a class ID and a classification system/source, the node calls the RxNorm service to return the full member payload and also extracts parallel lists of member RxCUIs and names.
+Retrieves the member drugs for a specified RxClass. Returns the raw member data as JSON plus two convenience lists: the RxCUI identifiers and the drug names extracted from the response. Provides a status message indicating success or the nature of any error.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/healthcare/rxnorm/saltairxclassmembers.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Retrieves the drug members of a specified RxClass. Given a class ID and a classi
 
 ## Usage
 
-Use this node when you need to enumerate the drugs that belong to a specific RxClass (e.g., all members of an ATC class). It fits into workflows where you first identify or search for a class, then gather its member drugs for downstream analysis, filtering, or display.
+Use this node when you have an RxClass identifier and want to list all drug members belonging to that class (e.g., to drive downstream lookups or filtering). A common workflow is: search or look up a class to obtain its class_id, then pass that class_id and the appropriate class_system into this node to enumerate its members.
 
 ## Inputs
 
@@ -26,8 +26,8 @@ Use this node when you need to enumerate the drugs that belong to a specific RxC
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">class_id</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The RxClass identifier for the class whose members you want to retrieve.</td><td style="word-wrap: break-word;">100</td></tr>
-<tr><td style="word-wrap: break-word;">class_system</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">The classification system/source to query for class membership. Select from the provided options (e.g., ATC, MEDRT, RXNORM, SNOMEDCT, VA, etc.).</td><td style="word-wrap: break-word;">ATC</td></tr>
+<tr><td style="word-wrap: break-word;">class_id</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The RxClass identifier for the drug class whose members you want to retrieve.</td><td style="word-wrap: break-word;">D007398</td></tr>
+<tr><td style="word-wrap: break-word;">class_system</td><td>True</td><td style="word-wrap: break-word;">SELECT</td><td style="word-wrap: break-word;">The classification system or relationship source to use for member retrieval. Typical values include ATC, ATCPROD, CDC, DAILYMED, FDASPL, FMTSME, MEDRT, RXNORM, SNOMEDCT, and VA.</td><td style="word-wrap: break-word;">ATC</td></tr>
 </tbody>
 </table>
 </div>
@@ -44,24 +44,23 @@ Use this node when you need to enumerate the drugs that belong to a specific RxC
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">class_members</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON string containing the full API response for members of the specified class, wrapped with the provided class_id.</td><td style="word-wrap: break-word;">{ "class_id": "100", "data": { "drugMemberGroup": { "drugMember": [ { "minConcept": { "rxcui": "12345", "name": "ExampleDrug" } } ] } } }</td></tr>
-<tr><td style="word-wrap: break-word;">members_rxcui</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON-encoded array (as a string) of member RxCUIs extracted from the response.</td><td style="word-wrap: break-word;">["12345", "67890"]</td></tr>
-<tr><td style="word-wrap: break-word;">members_name</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON-encoded array (as a string) of member drug names extracted from the response.</td><td style="word-wrap: break-word;">["ExampleDrug", "AnotherDrug"]</td></tr>
-<tr><td style="word-wrap: break-word;">status</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Status message indicating success or describing the encountered error.</td><td style="word-wrap: break-word;">Successfully retrieved RxClass members for class ID 100</td></tr>
+<tr><td style="word-wrap: break-word;">class_members</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON string containing the full response of class members for the given class_id and class_system.</td><td style="word-wrap: break-word;">{"class_id":"D007398","data":{"drugMemberGroup":{"drugMember":[...]}}}</td></tr>
+<tr><td style="word-wrap: break-word;">members_rxcui</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON array (as a string) of RxCUI identifiers extracted from the member list.</td><td style="word-wrap: break-word;">["83367","617314","617312"]</td></tr>
+<tr><td style="word-wrap: break-word;">members_name</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON array (as a string) of member drug names extracted from the member list.</td><td style="word-wrap: break-word;">["Lisinopril","Enalapril","Ramipril"]</td></tr>
+<tr><td style="word-wrap: break-word;">status</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A human-readable status message describing the result of the operation.</td><td style="word-wrap: break-word;">Successfully retrieved RxClass members for class ID D007398</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Input validation**: If class_id is empty or only whitespace, the node returns class_members = "{}", members_rxcui = "[]", members_name = "[]", and an error status.
-- **API errors**: If the RxNorm service returns an error, class_members contains the error JSON, members_rxcui and members_name are "[]", and status includes the API error message.
-- **Output formats**: members_rxcui and members_name are JSON-encoded arrays returned as strings. Parse them to arrays before further processing.
-- **Class system options**: The class_system must be selected from the provided list of supported sources (e.g., ATC, ATCPROD, CDC, DAILYMED, FDASPL, FMTSME, MEDRT, RXNORM, SNOMEDCT, VA).
-- **Data shape**: Member extraction relies on the presence of data.drugMemberGroup.drugMember[].minConcept.rxcui/name. If this structure is absent, members lists will be empty.
+- **Class ID required**: The class_id input cannot be empty; an empty value will produce an error status with empty results.
+- **Match system to class**: Ensure class_system matches the source/relationship of the class referenced by class_id (e.g., ATC classes should use class_system=ATC) to avoid empty or inconsistent results.
+- **Output formats**: The members_rxcui and members_name outputs are JSON arrays serialized as strings. Parse them before downstream iteration if needed.
+- **Empty member groups**: If no members are found or the response lacks a member list, the node returns valid JSON with empty arrays for the convenience outputs.
+- **External service behavior**: Results depend on upstream RxClass/RxNorm services and may be subject to data availability and service rate limits.
 
 ## Troubleshooting
-- **Empty members with success status**: The class may have no members in the selected class_system or the structure drugMemberGroup.drugMember is missing. Try a different class_system or verify the class_id.
-- **"Error: Class ID cannot be empty"**: Provide a non-empty class_id.
-- **API Error in status**: The upstream RxNorm service returned an error. Check the class_id and class_system, wait and retry in case of transient issues, or switch to a different source.
-- **Members lists are strings**: If downstream nodes expect arrays, parse members_rxcui and members_name from JSON strings into arrays first.
-- **Unexpected data fields**: If the member fields differ (e.g., missing minConcept), confirm the class_system and the available fields for that source; behavior depends on the RxNorm API response.
+- **Empty members_rxcui or members_name**: Verify the class_id is valid and the class_system matches the class's source (e.g., try ATC if the class is an ATC class).
+- **Status shows 'API Error: ...'**: The upstream service returned an error. Retry later, confirm inputs, or switch to another classification system if applicable.
+- **Status shows 'Error: Class ID cannot be empty'**: Provide a non-empty class_id.
+- **Unexpected output structure in class_members**: The underlying data may differ by class system or current API version. Inspect class_members JSON to adapt downstream parsing.

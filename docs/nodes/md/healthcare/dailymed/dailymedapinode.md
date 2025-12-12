@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Queries the U.S. National Library of Medicine DailyMed API for drug information. Supports searching by NDC code, drug name, SPL set ID, or active ingredient. Returns raw JSON results, a human-readable summary, and the total result count.
+Searches the U.S. DailyMed database for drug information. Supports lookups by drug name, NDC code, SPL set ID, and active ingredient. Returns both raw JSON results and a human-readable summary with key fields like brand name, generic name, manufacturer, active ingredients, dosage form, route, and NDCs.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/healthcare/dailymed/dailymedapinode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Queries the U.S. National Library of Medicine DailyMed API for drug information.
 
 ## Usage
 
-Use this node when you need authoritative drug label information, product details, active ingredients, dosage forms, and manufacturer metadata from DailyMed. Typical workflows include: validating a drug by NDC, exploring products by brand/generic name, retrieving a specific SPL by set ID, or compiling products that contain a given active ingredient.
+Use this node to retrieve authoritative drug labeling and product details for clinical, pharmacy, or safety workflows. Typical usage: select a search type (e.g., drug_name), provide a query (e.g., "aspirin"), and set a result limit. The node calls the DailyMed API and outputs JSON for downstream parsing plus a formatted summary for display or quick review.
 
 ## Inputs
 
@@ -26,11 +26,11 @@ Use this node when you need authoritative drug label information, product detail
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">search_type</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">The search mode. Supported options: ndc (product NDC), drug_name (brand/generic), set_id (SPL set ID), ingredient (active ingredient).</td><td style="word-wrap: break-word;">drug_name</td></tr>
-<tr><td style="word-wrap: break-word;">query</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The query string to search for. Interpretation depends on search_type (e.g., an NDC like 0378-6015-10, a drug name like ibuprofen, an SPL set ID GUID, or an ingredient like acetaminophen).</td><td style="word-wrap: break-word;">ibuprofen</td></tr>
-<tr><td style="word-wrap: break-word;">limit</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum number of results to return. Applies to ndc, drug_name, and ingredient searches.</td><td style="word-wrap: break-word;">10</td></tr>
-<tr><td style="word-wrap: break-word;">exact_match</td><td>False</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, requests exact matching for drug_name and ingredient searches. Not applicable to ndc or set_id searches.</td><td style="word-wrap: break-word;">False</td></tr>
-<tr><td style="word-wrap: break-word;">include_inactive</td><td>False</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Intended to include inactive products. Note: This parameter is currently not used by the search and has no effect.</td><td style="word-wrap: break-word;">False</td></tr>
+<tr><td style="word-wrap: break-word;">search_type</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">Determines which DailyMed search endpoint to use. Supported values: ndc, drug_name, set_id, ingredient.</td><td style="word-wrap: break-word;">drug_name</td></tr>
+<tr><td style="word-wrap: break-word;">query</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The search query string. Interpreted according to search_type. For ndc, hyphens/spaces are ignored; for set_id, use a DailyMed SPL set ID.</td><td style="word-wrap: break-word;">aspirin</td></tr>
+<tr><td style="word-wrap: break-word;">limit</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum number of results to return for list-based searches. Range 1–100. Ignored for set_id (returns one record).</td><td style="word-wrap: break-word;">10</td></tr>
+<tr><td style="word-wrap: break-word;">exact_match</td><td>False</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, requests exact matches for drug_name and ingredient searches. Has no effect for ndc or set_id.</td><td style="word-wrap: break-word;">False</td></tr>
+<tr><td style="word-wrap: break-word;">include_inactive</td><td>False</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Intended to include inactive products. Note: currently not applied to the request.</td><td style="word-wrap: break-word;">False</td></tr>
 </tbody>
 </table>
 </div>
@@ -47,25 +47,26 @@ Use this node when you need authoritative drug label information, product detail
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">results_json</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Raw DailyMed results as a JSON string. For ndc, drug_name, and ingredient searches this is a JSON array; for set_id it is a single item wrapped into an array when present. If an error occurs, returns a JSON object with an "error" key.</td><td style="word-wrap: break-word;">[{"title":"IBUPROFEN","setid":"abcd-1234-...","openfda":{"brand_name":["IBUPROFEN"]}}]</td></tr>
-<tr><td style="word-wrap: break-word;">formatted_results</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A readable, multi-line summary of key fields (title, set ID, brand/generic names, manufacturer, active ingredients, NDCs, dosage form, and route). If no results, returns "No results found". If an error occurs, returns a message starting with "Error:".</td><td style="word-wrap: break-word;">DailyMed Search Results (Drug Name) ================================================== 1. Title: IBUPROFEN    Set ID: abcd-1234-...    Brand Name: IBUPROFEN    Generic Name: ibuprofen    Manufacturer: Example Pharma    Active Ingredients: Ibuprofen    NDC Codes: 12345-6789-01...</td></tr>
-<tr><td style="word-wrap: break-word;">result_count</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">The number of results returned. Zero when no results or when an error is encountered.</td><td style="word-wrap: break-word;">5</td></tr>
+<tr><td style="word-wrap: break-word;">results_json</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON string of the DailyMed API results. On error, returns a JSON string with an 'error' field.</td><td style="word-wrap: break-word;">[{"title": "ASPIRIN", "setid": "<uuid>", "openfda": {"brand_name": ["Aspirin"], "generic_name": ["Aspirin"], "manufacturer_name": ["Example Pharma"]}, "active_ingredient": ["ASPIRIN"], "product_ndc": ["12345-6789"], "dosage_form": "tablet", "route": ["oral"]}]</td></tr>
+<tr><td style="word-wrap: break-word;">formatted_results</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary of the results with key fields per entry, suitable for display.</td><td style="word-wrap: break-word;">DailyMed Search Results (Drug Name)\n==================================================\n1. Title: ASPIRIN\n   Set ID: <uuid>\n   Brand Name: Aspirin\n   Generic Name: Aspirin\n   Manufacturer: Example Pharma\n   Active Ingredients: ASPIRIN\n   NDC Codes: 12345-6789\n   Dosage Form: tablet\n   Route: oral</td></tr>
+<tr><td style="word-wrap: break-word;">result_count</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Number of results returned. 0 if none found or on error.</td><td style="word-wrap: break-word;">10</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Search types**: ndc, drug_name, set_id, ingredient. Exact matching applies only to drug_name and ingredient.
-- **NDC input**: Hyphens and spaces are stripped before querying. Provide a 10- or 11-digit NDC (e.g., 0378-6015-10).
-- **Limits**: The limit parameter is honored for list endpoints and capped at 100.
-- **Set ID retrieval**: The set_id search returns a single record (if found) and is wrapped in an array for output consistency.
-- **Error handling**: On failure, results_json contains an object like {"error": "..."}, formatted_results begins with "Error:", and result_count is 0.
-- **Network behavior**: Uses HTTPS calls to DailyMed services with a 30-second timeout per request.
-- **Inactive products**: The include_inactive input is currently not used by the underlying requests and has no effect.
+- Exact matching only applies when search_type is 'drug_name' or 'ingredient'.
+- For 'ndc' searches, hyphens and spaces in the input are removed before querying.
+- For 'set_id', the node retrieves a single record (if found) and returns it as a single-item list.
+- Network timeouts are set to approximately 30 seconds per request.
+- If no results are found, the node returns an empty JSON array string, a 'No results found' message, and a count of 0.
+- On error, outputs include a JSON string with an 'error' field, a formatted error message, and a count of 0.
+- The 'include_inactive' input is present but not currently used to filter API results.
 
 ## Troubleshooting
-- **No results returned**: Verify spelling and try without exact_match. For NDC, ensure the code is valid (10 or 11 digits after removing hyphens).
-- **Error: Unsupported search type**: Use one of the supported values: ndc, drug_name, set_id, ingredient.
-- **HTTP or timeout errors**: Check network connectivity, try again later, or reduce limit. DailyMed may be experiencing service issues or rate limiting.
-- **Set ID not found**: Confirm the SPL set ID is correct (typically a GUID).
-- **Unexpected output fields**: DailyMed responses can vary; some fields (e.g., strength, dosage_form, route) may be absent depending on the product.
+- No results returned: Verify the query is appropriate for the selected search_type. For drug_name or ingredient, try disabling exact_match or increasing limit.
+- NDC not found: Ensure the NDC is correct. Hyphens and spaces are normalized, but the code must be valid and present in DailyMed.
+- Set ID lookup returns nothing: Confirm the SPL set ID is correct and active in DailyMed.
+- HTTP or timeout errors: Check internet connectivity, firewall settings, and DailyMed service availability. Try again later or reduce request frequency.
+- Unexpected fields missing in formatted output: DailyMed responses vary; some entries may not include all fields (e.g., openfda or strength). Parse results_json for robust handling.
+- Invalid search_type error: Use one of 'ndc', 'drug_name', 'set_id', or 'ingredient'.

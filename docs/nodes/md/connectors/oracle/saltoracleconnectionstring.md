@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Builds a valid Oracle database connection URI from individual parameters. Supports service name or SID style connections and optionally appends character encoding. Returns the constructed URI as the primary output; other outputs are unused placeholders.
+Builds an Oracle database connection URI from individual parameters. It supports both service name and SID styles and optionally appends a non-default character encoding. The node only constructs the string; it does not test connectivity.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/oracle/saltoracleconnectionstring.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Builds a valid Oracle database connection URI from individual parameters. Suppor
 
 ## Usage
 
-Use this node when you need to generate a single Oracle connection string to feed into other Oracle database nodes as the credentials_path. Typical workflow: configure host, port, service/service SID, username and password (and optionally encoding), run this node, then connect its 'result' output to subsequent Oracle query or management nodes.
+Use this node when you need a correctly formatted Oracle URI to feed into other Salt Oracle database nodes as the credentials_path. Typical workflow: provide host, port, service/SID, username, password, choose connection type, and then pass the resulting URI to query, execute, or info nodes.
 
 ## Inputs
 
@@ -26,13 +26,13 @@ Use this node when you need to generate a single Oracle connection string to fee
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">host</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Database hostname or IP address.</td><td style="word-wrap: break-word;">db.company.com</td></tr>
-<tr><td style="word-wrap: break-word;">port</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Database port number.</td><td style="word-wrap: break-word;">1521</td></tr>
-<tr><td style="word-wrap: break-word;">service_name</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Oracle service name or SID (value is used for both; behavior depends on connection_type).</td><td style="word-wrap: break-word;">XE</td></tr>
-<tr><td style="word-wrap: break-word;">username</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Database username.</td><td style="word-wrap: break-word;">system</td></tr>
-<tr><td style="word-wrap: break-word;">password</td><td>True</td><td style="word-wrap: break-word;">PASSWORD</td><td style="word-wrap: break-word;">Database password corresponding to the username.</td><td style="word-wrap: break-word;"><password></td></tr>
-<tr><td style="word-wrap: break-word;">connection_type</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">Select whether to connect using a service name or a SID.</td><td style="word-wrap: break-word;">service_name</td></tr>
-<tr><td style="word-wrap: break-word;">encoding</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Character encoding to append to the URI. If left as UTF-8 (default), no parameter is added.</td><td style="word-wrap: break-word;">UTF-8</td></tr>
+<tr><td style="word-wrap: break-word;">host</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Oracle database hostname or IP address.</td><td style="word-wrap: break-word;">db.mycompany.internal</td></tr>
+<tr><td style="word-wrap: break-word;">port</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Oracle database TCP port.</td><td style="word-wrap: break-word;">1521</td></tr>
+<tr><td style="word-wrap: break-word;">service_name</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Oracle service name or SID value (used in the path segment and, for SID connections, also appended as a sid parameter).</td><td style="word-wrap: break-word;">XE</td></tr>
+<tr><td style="word-wrap: break-word;">username</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Database username used for authentication.</td><td style="word-wrap: break-word;">system</td></tr>
+<tr><td style="word-wrap: break-word;">password</td><td>True</td><td style="word-wrap: break-word;">PASSWORD</td><td style="word-wrap: break-word;">Database password used for authentication.</td><td style="word-wrap: break-word;"><password></td></tr>
+<tr><td style="word-wrap: break-word;">connection_type</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Connection style selector. Allowed values: "service_name" or "sid". For "sid", the URI includes a sid query parameter.</td><td style="word-wrap: break-word;">service_name</td></tr>
+<tr><td style="word-wrap: break-word;">encoding</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Character encoding for the connection. Only added to the URI if not "UTF-8".</td><td style="word-wrap: break-word;">UTF-8</td></tr>
 </tbody>
 </table>
 </div>
@@ -49,25 +49,24 @@ Use this node when you need to generate a single Oracle connection string to fee
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The constructed Oracle connection URI. This is the value you pass as credentials_path to other nodes.</td><td style="word-wrap: break-word;">oracle://system:<password>@db.company.com:1521/XE</td></tr>
-<tr><td style="word-wrap: break-word;">json_result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON output used only when an error occurs; otherwise empty.</td><td style="word-wrap: break-word;"></td></tr>
-<tr><td style="word-wrap: break-word;">html_table</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Not used by this node; returned as an empty string.</td><td style="word-wrap: break-word;"></td></tr>
-<tr><td style="word-wrap: break-word;">xlsx_data</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Not used by this node; returned as an empty string.</td><td style="word-wrap: break-word;"></td></tr>
-<tr><td style="word-wrap: break-word;">pdf_data</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Not used by this node; returned as an empty string.</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The constructed Oracle connection URI, suitable for use as credentials_path in other nodes.</td><td style="word-wrap: break-word;">oracle://system:<password>@db.mycompany.internal:1521/XE</td></tr>
+<tr><td style="word-wrap: break-word;">json_result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON payload with error details if construction fails; empty string on success.</td><td style="word-wrap: break-word;">{"error":"Failed to construct connection string: <details>"}</td></tr>
+<tr><td style="word-wrap: break-word;">html_table</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Not used by this node; empty string.</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">xlsx_data</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Not used by this node; empty string.</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">pdf_data</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Not used by this node; empty string.</td><td style="word-wrap: break-word;"></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- If connection_type is 'sid', the URI includes '?sid=<service_name>'; otherwise it uses the service name path segment without the sid parameter.
-- The encoding parameter is only appended when it is not 'UTF-8'.
-- Special characters in usernames or passwords may require URL-safe encoding before use to avoid malformed URIs.
-- This node does not test connectivity; it only constructs the string. Use an Oracle test/connection node to validate.
-- The password is embedded in the URI. Handle and store this output securely.
+- **Password visibility**: The resulting URI embeds the username and password in plain text. Handle and store it securely.
+- **Encoding behavior**: The encoding parameter is only appended if it differs from "UTF-8".
+- **Service name vs SID**: If connection_type is "sid", the node appends ?sid=<service_name> to the URI path.
+- **Special characters**: The node does not URL-encode credentials. If your username or password contains special characters (e.g., @, :, /, ?), URL-encode them before input to avoid malformed URIs.
+- **No connectivity check**: This node does not test the database connection; it only constructs the string.
 
 ## Troubleshooting
-- Connection failures in downstream nodes: Verify host, port, and whether your database expects a service name vs a SID. Switch the connection_type accordingly.
-- Authentication errors: Confirm username/password are correct and URL-safe (encode characters like @, :, /, or spaces).
-- Invalid service or SID: Ensure the 'service_name' matches your Oracle configuration (e.g., service alias in tnsnames.ora).
-- Character encoding issues: If you see garbled characters, try setting a specific encoding (e.g., 'AL32UTF8') and regenerate the URI.
-- Downstream node shows empty credentials: Make sure you wired this node's 'result' output to the 'credentials_path' input of the target node.
+- **Constructed URI causes downstream connection failures**: Verify host, port, and whether the target uses a service name or SID. Ensure the Oracle listener is up and the service/SID is correct.
+- **Errors about malformed URI**: Avoid special characters in username/password or pre-encode them using URL encoding.
+- **Unexpected encoding issues**: If your database requires a different encoding, set the encoding input to that value so it is appended as a query parameter.
+- **Received 'Failed to construct connection string'**: Check that all required inputs are provided and correctly typed (port is an integer, connection_type is either "service_name" or "sid").
