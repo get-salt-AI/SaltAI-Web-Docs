@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Retrieves structural metadata for a specific Microsoft SQL Server table. Returns a concise summary and machine‑readable details such as column names, data types, nullability, and related table properties. Designed to help you quickly inspect schemas before building queries or pipelines.
+Retrieves metadata for a specific Microsoft SQL Server table, including column names, data types, nullability, and common attributes like length, precision, scale, and default values. Returns a human-readable summary plus the raw JSON payload from the service.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/mssql/saltmssqltableinfo.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Retrieves structural metadata for a specific Microsoft SQL Server table. Returns
 
 ## Usage
 
-Use this node when you need to understand a table’s structure before querying or transforming data. Typical workflow: provide credentials, pick a schema (often 'dbo'), specify the table name, run to get columns and types, then feed the results into downstream nodes (e.g., query builders, validators, or data mapping steps).
+Use this node when you need to inspect the structure of a SQL Server table before building queries or pipelines. Typical workflows include schema discovery, validation of expected columns and types, and documenting table structures for downstream processing or integrations.
 
 ## Inputs
 
@@ -26,10 +26,10 @@ Use this node when you need to understand a table’s structure before querying 
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Path or reference to stored MSSQL credentials that the node will use to authenticate.</td><td style="word-wrap: break-word;"><path-to-mssql-credentials></td></tr>
-<tr><td style="word-wrap: break-word;">timeout</td><td>False</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time in seconds to wait for the operation before timing out.</td><td style="word-wrap: break-word;">60</td></tr>
-<tr><td style="word-wrap: break-word;">table_name</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Name of the SQL Server table to inspect.</td><td style="word-wrap: break-word;">users</td></tr>
-<tr><td style="word-wrap: break-word;">schema</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Database schema containing the table. Defaults to 'dbo' if unsure.</td><td style="word-wrap: break-word;">dbo</td></tr>
+<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Database connection URI for SQL Server. Must be a valid URI format.</td><td style="word-wrap: break-word;">mssql://db_user:<password>@db-host.example.com:1433/YourDatabase</td></tr>
+<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Request timeout in seconds for the operation.</td><td style="word-wrap: break-word;">60</td></tr>
+<tr><td style="word-wrap: break-word;">table_name</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Name of the table to retrieve information about.</td><td style="word-wrap: break-word;">users</td></tr>
+<tr><td style="word-wrap: break-word;">schema</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Schema that contains the target table.</td><td style="word-wrap: break-word;">dbo</td></tr>
 </tbody>
 </table>
 </div>
@@ -46,21 +46,25 @@ Use this node when you need to understand a table’s structure before querying 
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human‑readable summary of the table (e.g., number of columns, key columns, and data types).</td><td style="word-wrap: break-word;">Table 'dbo.users' has 8 columns. Primary key: id. Notable columns: email (VARCHAR(255), NOT NULL), created_at (DATETIME).</td></tr>
-<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Raw metadata for the table, including columns, data types, nullability, default values, and other properties.</td><td style="word-wrap: break-word;">{"table":"users","schema":"dbo","columns":[{"name":"id","type":"INT","nullable":false,"is_primary_key":true},{"name":"email","type":"VARCHAR(255)","nullable":false}]}</td></tr>
-<tr><td style="word-wrap: break-word;">table</td><td style="word-wrap: break-word;">DATAFRAME</td><td style="word-wrap: break-word;">Tabular representation of the table’s columns and properties for easy downstream processing.</td><td style="word-wrap: break-word;">A table-like structure with columns: [name, type, nullable, default, is_primary_key].</td></tr>
+<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary of the table structure (schema-qualified table name and per-column details).</td><td style="word-wrap: break-word;">Table: dbo.users Column: id \| Type: int \| Nullable: NO \| Precision: 10 Column: email \| Type: varchar \| Nullable: NO \| Max Length: 255 \| Default: '' Column: created_at \| Type: datetime2 \| Nullable: YES</td></tr>
+<tr><td style="word-wrap: break-word;">json_result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Raw JSON string containing the table metadata returned by the service.</td><td style="word-wrap: break-word;">{"columns": [{"column_name": "id", "data_type": "int", "is_nullable": "NO", "numeric_precision": 10}, {"column_name": "email", "data_type": "varchar", "is_nullable": "NO", "character_maximum_length": 255}]}</td></tr>
+<tr><td style="word-wrap: break-word;">html_table</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">HTML representation of results when available. For this operation, this will be empty.</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">xlsx_data</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Base64-encoded XLSX export when available. For this operation, this will be empty.</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">pdf_data</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Base64-encoded PDF export when available. For this operation, this will be empty.</td><td style="word-wrap: break-word;"></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- Ensure your credentials grant metadata access to the specified schema and table.
-- If the schema is omitted or incorrect, the node may not find the table. Use 'dbo' when in doubt.
-- Large or complex schemas can increase response time; adjust the timeout accordingly.
-- This node does not read actual row data; it only returns schema/metadata details.
+- **Credentials URI is required**: The credentials_path must be a valid SQL Server URI (e.g., mssql://user:<password>@host:1433/database).
+- **Schema must exist**: Ensure the schema provided (default is dbo) exists and the user has privileges to read metadata.
+- **Read-only operation**: This node reads table metadata only; it does not modify database data.
+- **Timeout applies to the remote call**: Increase the timeout if your database or network is slow.
+- **Output formats**: For this operation, only the text summary and JSON payload are populated; HTML/XLSX/PDF are returned as empty strings.
 
 ## Troubleshooting
-- Table not found: Verify schema and table_name are correct and exist in the target database.
-- Authentication failed: Confirm the credentials file is valid and has permission to access the database metadata.
-- Timeouts: Increase the timeout input and confirm network connectivity to the SQL Server instance.
-- Empty or partial metadata: Ensure the account has sufficient privileges (VIEW DEFINITION or equivalent) on the schema/table.
+- **Invalid credentials URI**: If you see an error about an invalid URI, verify the scheme (mssql://), host, port, database name, and that special characters in the password are properly encoded.
+- **Table not found**: Confirm the table_name and schema are correct and exist in the target database.
+- **Permission denied**: If results are empty or access is denied, ensure the database user has metadata/INFORMATION_SCHEMA read permissions.
+- **Network/service unreachable**: If the operation times out or fails to connect, check network connectivity, firewall rules, and that the database service and required endpoints are accessible.
+- **Empty columns list**: Verify the database user’s permissions and that the table is not a view with restricted metadata visibility.

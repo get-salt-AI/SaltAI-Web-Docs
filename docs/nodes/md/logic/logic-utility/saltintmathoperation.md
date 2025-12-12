@@ -6,7 +6,7 @@
 Performs a mathematical operation on two integers and returns a single integer. Supports addition, subtraction, multiplication, integer division, modulo, and exponentiation. Division and modulo by zero are safely handled by returning 0.
 
 </div>
-<div style="flex: 0 0 300px;"><img src="../../../../images/previews/utilities/math/saltintmathoperation.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
+<div style="flex: 0 0 300px;"><img src="../../../../images/previews/logic/logic-utility/saltintmathoperation.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
 </div>
 
 ## Usage

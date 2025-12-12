@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Retrieves structural information about a specific Oracle table. It loads Oracle credentials, optionally targets a schema, calls the Oracle service to fetch metadata, and returns both a human-readable summary and the raw JSON payload.
+Retrieves structural metadata for a specific Oracle table. It returns column definitions and related details, using your provided Oracle credentials. If a schema is not specified, the current user schema is used.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/oracle/saltoracletableinfo.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Retrieves structural information about a specific Oracle table. It loads Oracle 
 
 ## Usage
 
-Use this node when you need to inspect a table’s structure before writing queries or building data workflows. Typical use: provide your Oracle credentials, the table name (and optionally the schema), then connect the outputs to logging, visualization, or downstream nodes that need table metadata (e.g., column names, data types).
+Use this node when you need to inspect a table’s structure before building queries or doing data operations. Commonly paired with query-building or data validation nodes to ensure column names and types are correct.
 
 ## Inputs
 
@@ -26,10 +26,10 @@ Use this node when you need to inspect a table’s structure before writing quer
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">CREDENTIALS</td><td style="word-wrap: break-word;">Path or reference to stored Oracle credentials that match the 'oracle' credential template.</td><td style="word-wrap: break-word;"><path-to-oracle-credentials></td></tr>
-<tr><td style="word-wrap: break-word;">timeout</td><td>False</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time (in seconds) to wait for the Oracle service request before failing.</td><td style="word-wrap: break-word;">60</td></tr>
-<tr><td style="word-wrap: break-word;">table_name</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Name of the Oracle table to retrieve information for.</td><td style="word-wrap: break-word;">employees</td></tr>
-<tr><td style="word-wrap: break-word;">schema_name</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Oracle schema name that contains the table. Leave empty to use the current user’s default schema.</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Path or reference to stored Oracle credentials to authenticate the request.</td><td style="word-wrap: break-word;">/credentials/oracle/<credential-id>.json</td></tr>
+<tr><td style="word-wrap: break-word;">timeout</td><td>False</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time in seconds to wait for the Oracle service to respond.</td><td style="word-wrap: break-word;">60</td></tr>
+<tr><td style="word-wrap: break-word;">table_name</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The name of the Oracle table to inspect.</td><td style="word-wrap: break-word;">employees</td></tr>
+<tr><td style="word-wrap: break-word;">schema_name</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The schema that contains the table. Leave empty to use the current user’s schema.</td><td style="word-wrap: break-word;">HR</td></tr>
 </tbody>
 </table>
 </div>
@@ -46,20 +46,25 @@ Use this node when you need to inspect a table’s structure before writing quer
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary describing the table info request and result status.</td><td style="word-wrap: break-word;">Oracle Table Info: employees</td></tr>
-<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Raw JSON metadata returned by the Oracle service (e.g., columns, data types, keys, constraints, indexes if available).</td><td style="word-wrap: break-word;">{'table': 'employees', 'schema': 'HR', 'columns': [{'name': 'EMPLOYEE_ID', 'type': 'NUMBER', 'nullable': False}, {'name': 'FIRST_NAME', 'type': 'VARCHAR2', 'nullable': True}], 'primary_key': ['EMPLOYEE_ID']}</td></tr>
+<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary of the table information.</td><td style="word-wrap: break-word;">Oracle Table Info: employees</td></tr>
+<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Structured metadata payload about the table (e.g., columns, data types).</td><td style="word-wrap: break-word;">{"columns":[{"name":"EMPLOYEE_ID","type":"NUMBER","nullable":false},{"name":"FIRST_NAME","type":"VARCHAR2(50)","nullable":true}]}</td></tr>
+<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">HTML</td><td style="word-wrap: break-word;">HTML-formatted table info, suitable for rendering in a UI (may be empty if not requested by downstream).</td><td style="word-wrap: break-word;"><table><tr><th>Name</th><th>Type</th><th>Nullable</th></tr>...</table></td></tr>
+<tr><td style="word-wrap: break-word;">xlsx</td><td style="word-wrap: break-word;">FILE</td><td style="word-wrap: break-word;">Excel file with table information (may be empty if not generated by downstream formatting).</td><td style="word-wrap: break-word;"><file-handle-or-path-to-generated-xlsx></td></tr>
+<tr><td style="word-wrap: break-word;">pdf</td><td style="word-wrap: break-word;">FILE</td><td style="word-wrap: break-word;">PDF file with table information (may be empty if not generated by downstream formatting).</td><td style="word-wrap: break-word;"><file-handle-or-path-to-generated-pdf></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- This node requires Oracle credentials configured under the 'oracle' credential template.
-- If schema_name is left empty, the node queries the current user’s default schema.
-- Timeout controls the maximum wait for the remote Oracle service; adjust for large schemas or slower networks.
-- Returned JSON structure depends on the Oracle service and database metadata; available fields may include columns, data types, nullability, primary keys, and indexes.
+- **Credentials required**: Valid Oracle credentials must be supplied via credentials_path.
+- **Schema handling**: If schema_name is empty, the node uses the current user's schema.
+- **Timeouts**: Long-running metadata requests may need an increased timeout.
+- **Read-only operation**: This node does not modify data; it only requests metadata.
+- **Output formats**: The node always returns text and JSON; HTML/XLSX/PDF outputs may be empty if not produced by the service.
 
 ## Troubleshooting
-- Table not found: Verify table_name and schema_name are correct and exist in the target database.
-- Insufficient privileges: Ensure the provided Oracle user has privileges to read table metadata.
-- Connection or timeout errors: Increase the timeout value and confirm network access and service availability.
-- Empty or partial metadata: Confirm the table exists and that the user can access system metadata views (e.g., ALL_TAB_COLUMNS).
+- **Table not found**: Verify table_name and schema_name are correct and exist for the provided user/schema.
+- **Insufficient privileges**: Ensure the credentials have permission to access the table’s metadata.
+- **Invalid credentials**: Re-check credentials_path format and content; rotate or re-upload credentials if needed.
+- **Network/Timeout issues**: Increase the timeout or check network connectivity to the Oracle service endpoint.
+- **Malformed inputs**: Ensure table_name is a non-empty string and schema_name, if provided, is valid.

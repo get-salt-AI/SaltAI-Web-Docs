@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Converts one or more PDB structures to mmCIF format using BioPython. Accepts a dictionary of PDB IDs to PDB content strings and returns a dictionary of the same IDs mapped to converted mmCIF strings. Includes basic handling to improve chain/entity mappings in the generated mmCIF where possible.
+Converts protein structure data from PDB format to CIF (mmCIF) format. Accepts one or more PDB structures as a dictionary and returns corresponding CIF strings. The node validates inputs, skips empty entries, and attempts to improve chain/entity mapping for protein chains during conversion.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/biotech-utils/pdbtocifnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Converts one or more PDB structures to mmCIF format using BioPython. Accepts a d
 
 ## Usage
 
-Use this node when you need mmCIF structures for downstream tools that require mmCIF instead of PDB. Typical workflow: load or prepare PDB content, optionally clean/fix it, then convert to mmCIF for analysis, visualization, or as input to other biotech nodes.
+Use this node when you need CIF/mmCIF outputs for downstream tools or services that require CIF instead of PDB. Typical workflow: load or batch multiple PDB structures, convert them with PDB To CIF, then pass the CIF output to analysis, visualization, or conversion-back nodes as needed.
 
 ## Inputs
 
@@ -26,7 +26,7 @@ Use this node when you need mmCIF structures for downstream tools that require m
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">pdb</td><td>True</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Dictionary of PDB structures to convert. Keys are structure IDs (names) and values are PDB-formatted strings.</td><td style="word-wrap: break-word;">{'example_pdb': 'ATOM      1  N   MET A   1      11.104  13.207   8.678  1.00 20.00           N  ...'}</td></tr>
+<tr><td style="word-wrap: break-word;">pdb</td><td>True</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Dictionary of PDB structures to convert. Keys are structure names/IDs, values are PDB content strings.</td><td style="word-wrap: break-word;">{'example_structure': 'ATOM ... (PDB content) ...'}</td></tr>
 </tbody>
 </table>
 </div>
@@ -43,21 +43,21 @@ Use this node when you need mmCIF structures for downstream tools that require m
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">structure.cif</td><td style="word-wrap: break-word;">CIF</td><td style="word-wrap: break-word;">Dictionary of converted mmCIF structures. Keys mirror the input IDs; values are mmCIF-formatted strings.</td><td style="word-wrap: break-word;">{'example_pdb': 'data_template\n#\nloop_\n_atom_site.group_PDB ...\n'}</td></tr>
+<tr><td style="word-wrap: break-word;">structure.cif</td><td style="word-wrap: break-word;">CIF</td><td style="word-wrap: break-word;">Dictionary with the same keys as input, where each value is the converted CIF (mmCIF) content string.</td><td style="word-wrap: break-word;">{'example_structure': 'data_example\n#\nloop_\n_atom_site... (CIF content) ...'}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Input format**: The input must be a non-empty dictionary mapping IDs to valid PDB text. Invalid or empty strings are skipped and may cause the node to error if no valid entries remain.
-- **Output mapping**: Output keys match input keys, enabling consistent tracking of structures through the workflow.
-- **Entity/chain mapping**: The node attempts to improve entity/chain mappings in the mmCIF output, but results may vary depending on the input structure; verify the output if downstream tools rely on specific entity IDs.
-- **Error behavior**: If no structures can be converted, the node raises an error rather than returning an empty result.
-- **Content expectation**: Provide complete PDB content strings (not file paths). Large structures are supported, but malformed PDB input may fail conversion.
+- This node requires a non-empty dictionary input; passing a single PDB string directly will fail. Use a loader node that outputs a PDB dictionary.
+- Empty PDB entries are skipped; if all entries are empty or invalid, the node raises an error.
+- The node uses a PDB-to-CIF conversion backend and may raise an error for malformed or non-standard PDB files.
+- For multi-chain protein structures, the node attempts to adjust atom/entity mappings in the resulting CIF to improve consistency. Non-protein chains are still converted without this adjustment.
+- Outputs preserve input keys (structure names/IDs) for consistent downstream mapping.
 
 ## Troubleshooting
-- **Error: 'PDB input must be a non-empty dictionary'**: Ensure you pass a dictionary with at least one key-value pair where the value is a valid PDB string.
-- **Conversion failed for specific entry**: Validate the PDB text for that entry (formatting, missing headers/records). Try fixing the structure with a PDB repair step before conversion.
-- **Empty output or missing entries**: Inputs with empty or whitespace-only content are skipped. Ensure each value contains valid PDB content.
-- **Unexpected or missing entity IDs in mmCIF**: Check the mmCIF for chain/entity labeling. If downstream tools require precise entity IDs, consider pre-processing/fixing the PDB or manually reviewing the generated mmCIF.
-- **Downstream tool rejects mmCIF**: Confirm that the receiving tool supports the generated mmCIF flavor and that required categories/fields are present. If necessary, re-validate or re-export from another tool after conversion.
+- Error: 'PDB input must be a non-empty dictionary' — Ensure you provide a dict like {"id": "PDB string"}. Use nodes that output type PDB.
+- Error: 'Conversion failed for PDB <name>: ...' — The PDB may be malformed or contain unsupported records. Validate or clean the input PDB file.
+- No output or empty CIF for a structure — Check that the input PDB value is not an empty string and contains valid ATOM/HETATM records.
+- Only some entries converted — Review logs for skipped entries and fix or remove problematic PDBs.
+- Downstream tool rejects CIF — While conversion generally follows standard mmCIF, tool-specific requirements may vary. Validate CIF with external validators if necessary.

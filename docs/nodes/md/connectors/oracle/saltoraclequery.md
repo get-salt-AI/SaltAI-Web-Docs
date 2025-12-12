@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Executes a read-only SQL SELECT query against an Oracle database through the Salt data-connector service. It loads connection credentials from a database URI, calls the Oracle service endpoint, and returns both a human-readable summary and raw JSON results.
+Executes a read-only SQL SELECT query against an Oracle database using configured credentials. Loads credentials from a provided path, sends the query to the Oracle service, and returns results formatted as text and JSON (with optional HTML/XLSX/PDF placeholders).
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/oracle/saltoraclequery.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Executes a read-only SQL SELECT query against an Oracle database through the Sal
 
 ## Usage
 
-Use this node when you need to fetch data from an Oracle database with a SELECT statement. Provide a valid Oracle connection URI and your SQL text. Typical workflow: set credentials_path, optionally adjust timeout, enter your SELECT query, then consume either the formatted text result for quick inspection or the JSON output for downstream processing. For write operations (INSERT/UPDATE/DELETE), use SaltOracleExecute instead.
+Use this node to retrieve data from Oracle tables with a SELECT statement. Provide a valid credentials file path and your SQL query; the node will run the query and return results suitable for inspection or passing to downstream nodes for display or export. For INSERT/UPDATE/DELETE, use the Oracle Execute node instead.
 
 ## Inputs
 
@@ -26,9 +26,9 @@ Use this node when you need to fetch data from an Oracle database with a SELECT 
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Oracle database connection URI. Must use the oracle:// scheme. The path component determines SID or service name: if it contains a dot it is treated as a service_name; otherwise it is treated as a SID.</td><td style="word-wrap: break-word;">oracle://scott:<password>@db-host.example.com:1521/ORCL</td></tr>
-<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Request timeout in seconds for the query execution against the data-connector service.</td><td style="word-wrap: break-word;">60</td></tr>
-<tr><td style="word-wrap: break-word;">sql_text</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">SQL SELECT statement to execute against the Oracle database.</td><td style="word-wrap: break-word;">SELECT employee_id, first_name, last_name FROM employees WHERE ROWNUM <= 10</td></tr>
+<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Filesystem path to the saved Oracle credentials configuration used by the service.</td><td style="word-wrap: break-word;"><path-to-oracle-credentials.json></td></tr>
+<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time (in seconds) to wait for the query execution before timing out.</td><td style="word-wrap: break-word;">30</td></tr>
+<tr><td style="word-wrap: break-word;">sql_text</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The Oracle SQL SELECT statement to execute. Supports multiline input.</td><td style="word-wrap: break-word;">SELECT * FROM employees WHERE ROWNUM <= 10</td></tr>
 </tbody>
 </table>
 </div>
@@ -45,27 +45,25 @@ Use this node when you need to fetch data from an Oracle database with a SELECT 
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary of the query results, including row count and row-by-row key-value display.</td><td style="word-wrap: break-word;">Query Results (10 rows): employee_id: 100 \| first_name: Steven \| last_name: King employee_id: 101 \| first_name: Neena \| last_name: Kochhar</td></tr>
-<tr><td style="word-wrap: break-word;">json_result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Raw JSON response string containing the data returned by the service, suitable for downstream parsing.</td><td style="word-wrap: break-word;">{"data":[{"EMPLOYEE_ID":100,"FIRST_NAME":"Steven","LAST_NAME":"King"}],"row_count":1}</td></tr>
-<tr><td style="word-wrap: break-word;">html_table</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">HTML table representation of the results. For this node’s default output mode, this is returned as an empty string.</td><td style="word-wrap: break-word;"></td></tr>
-<tr><td style="word-wrap: break-word;">xlsx_data</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Base64-encoded XLSX content of the results. For this node’s default output mode, this is returned as an empty string.</td><td style="word-wrap: break-word;"></td></tr>
-<tr><td style="word-wrap: break-word;">pdf_data</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Base64-encoded PDF content of the results. For this node’s default output mode, this is returned as an empty string.</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary or table-like text of the query results.</td><td style="word-wrap: break-word;">Oracle Query Results: 10 rows returned</td></tr>
+<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Structured JSON payload of the query results and metadata.</td><td style="word-wrap: break-word;">{"rows": [{"EMPLOYEE_ID": 100, "FIRST_NAME": "Steven"}], "rowCount": 10}</td></tr>
+<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">HTML representation of the result set (may be empty when default formatting is used).</td><td style="word-wrap: break-word;"><table><tr><th>EMPLOYEE_ID</th><th>FIRST_NAME</th></tr><tr><td>100</td><td>Steven</td></tr></table></td></tr>
+<tr><td style="word-wrap: break-word;">xlsx</td><td style="word-wrap: break-word;">BYTES</td><td style="word-wrap: break-word;">Binary XLSX export of the result set (may be empty when default formatting is used).</td><td style="word-wrap: break-word;"><binary-xlsx-bytes></td></tr>
+<tr><td style="word-wrap: break-word;">pdf</td><td style="word-wrap: break-word;">BYTES</td><td style="word-wrap: break-word;">Binary PDF export of the result set (may be empty when default formatting is used).</td><td style="word-wrap: break-word;"><binary-pdf-bytes></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Read-only operation**: This node is intended for SELECT queries. Use SaltOracleExecute for INSERT/UPDATE/DELETE.
-- **Credentials URI required**: The credentials_path must be a valid Oracle URI (oracle://...). If the path after the host contains a dot, it is interpreted as service_name; otherwise as SID.
-- **Service dependency**: The node communicates with the configured Oracle data-connector service endpoint. Ensure the oracle_data_connector endpoint is configured in your environment.
-- **Output formats**: Only the formatted text and JSON outputs are populated by default. HTML, XLSX, and PDF outputs are empty strings in this node.
-- **Timeouts**: Long-running queries may require increasing the timeout value.
-- **Security**: Do not paste real passwords into shared workflows. Use secure secret management where possible.
+- Only SELECT queries are intended for this node. Use Oracle Execute for INSERT/UPDATE/DELETE.
+- Oracle-specific SQL features and syntax apply (e.g., ROWNUM or FETCH FIRST for limiting rows).
+- The node relies on a valid Oracle credentials configuration; ensure the credentials file is present and correctly formatted.
+- Timeout applies to the full request; long-running queries may need a higher timeout.
+- Default formatting typically populates text and JSON; HTML/XLSX/PDF outputs may be empty unless the service provides them.
 
 ## Troubleshooting
-- **Invalid credentials URI**: If you see an error like "Invalid credentials URI" or "Credentials URI is required", verify the URI format: oracle://<user>:<password>@<host>:<port>/<SID_or_service>.
-- **Service URL not configured**: Errors about missing service URL indicate the oracle_data_connector endpoint is not set in environment configuration. Configure it before running.
-- **Request failed or timed out**: If requests fail or timeout, check network access to the data-connector service, increase the timeout, and confirm the Oracle instance is reachable.
-- **Unsupported SQL**: If the query returns errors, ensure you are using a valid SELECT statement supported by Oracle and that referenced schemas/tables are accessible to the provided user.
-- **No data returned**: If result shows "No data returned", verify your WHERE clause, user permissions, and that the target table contains matching rows.
-- **SID vs Service Name**: If connection fails, confirm that the database path in the URI correctly represents SID or service_name; e.g., oracle://user:pass@host:1521/ORCL (SID) vs oracle://user:pass@host:1521/orcl.example.com (service name).
+- Query fails with authentication or connection errors: Verify the credentials_path points to a valid Oracle credentials file and that network access is allowed.
+- Syntax error from database: Check that sql_text is valid Oracle SQL (including correct quoting and Oracle functions).
+- Timeouts on large queries: Increase the timeout input or optimize the query (indexes, filters, smaller result sets).
+- Empty results: Confirm the WHERE clause and schema/table names are correct and that the user has access to the targeted objects.
+- Unexpected empty HTML/XLSX/PDF outputs: This is expected with default formatting; use nodes or flows that export results if you require these formats.

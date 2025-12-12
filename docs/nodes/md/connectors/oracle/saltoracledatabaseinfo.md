@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Retrieves high-level instance information from an Oracle database using the configured credentials. It calls the Oracle service to return details such as version, instance status, and other metadata. Results are returned in a human-readable text summary and structured JSON, with additional export formats supported by the platform.
+Retrieves high-level information about a connected Oracle database instance. It loads credentials from a database URI and calls the Oracle data connector to return details as human-readable text and raw JSON. The node returns only text and JSON outputs (no HTML/XLSX/PDF exports).
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/oracle/saltoracledatabaseinfo.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Retrieves high-level instance information from an Oracle database using the conf
 
 ## Usage
 
-Use this node to quickly verify the Oracle instance details during environment setup, health checks, or pre-flight steps before running queries. Typically placed early in a workflow to confirm connectivity and to capture database metadata for logging or auditing.
+Use this node to quickly inspect the Oracle database instance (e.g., version, current user, instance metadata) as part of a database diagnostics or setup workflow. Provide a valid Oracle connection URI in credentials_path, optionally adjust timeout, and pass its outputs to logging or decision nodes.
 
 ## Inputs
 
@@ -26,8 +26,8 @@ Use this node to quickly verify the Oracle instance details during environment s
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Path to the stored Oracle credentials file that follows the 'oracle' credential template (includes host, port, service/SID, username, and password or secret reference).</td><td style="word-wrap: break-word;">/workspace/credentials/oracle.json</td></tr>
-<tr><td style="word-wrap: break-word;">timeout</td><td>False</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time in seconds to wait for the Oracle service to respond before failing the request.</td><td style="word-wrap: break-word;">30</td></tr>
+<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Oracle database URI used to authenticate and route the request. Supports standard Oracle URI patterns and can include service name or SID.</td><td style="word-wrap: break-word;">oracle://system:<password>@db.example.com:1521/XEPDB1</td></tr>
+<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time (in seconds) to wait for the Oracle data connector operation before failing.</td><td style="word-wrap: break-word;">60</td></tr>
 </tbody>
 </table>
 </div>
@@ -44,25 +44,25 @@ Use this node to quickly verify the Oracle instance details during environment s
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary of the Oracle database information.</td><td style="word-wrap: break-word;">Oracle Database Info: Instance 'ORCL' is OPEN, version 19.18.0.0.0.</td></tr>
-<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Structured JSON containing the database info returned by the Oracle service.</td><td style="word-wrap: break-word;">{"instance_name": "ORCL", "status": "OPEN", "version": "19.18.0.0.0"}</td></tr>
-<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">HTML</td><td style="word-wrap: break-word;">HTML-formatted table or content for display or reporting (when available).</td><td style="word-wrap: break-word;"><table><tr><th>instance_name</th><td>ORCL</td></tr><tr><th>status</th><td>OPEN</td></tr></table></td></tr>
-<tr><td style="word-wrap: break-word;">xlsx</td><td style="word-wrap: break-word;">XLSX</td><td style="word-wrap: break-word;">Excel workbook export of the data (when export is enabled).</td><td style="word-wrap: break-word;"><xlsx-binary-or-file-path></td></tr>
-<tr><td style="word-wrap: break-word;">pdf</td><td style="word-wrap: break-word;">PDF</td><td style="word-wrap: break-word;">PDF export of the data (when export is enabled).</td><td style="word-wrap: break-word;"><pdf-binary-or-file-path></td></tr>
+<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary of the Oracle database information.</td><td style="word-wrap: break-word;">Oracle Database Info: Query Results (1 rows): version: 19c \| instance_name: XE \| current_user: SYSTEM</td></tr>
+<tr><td style="word-wrap: break-word;">json_result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Raw JSON response containing the Oracle database info.</td><td style="word-wrap: break-word;">{"version":"19c","instance_name":"XE","current_user":"SYSTEM","service_name":"XEPDB1"}</td></tr>
+<tr><td style="word-wrap: break-word;">html_table</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">HTML representation of results. Not provided by this node (empty string).</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">xlsx_data</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Base64-encoded XLSX of results. Not provided by this node (empty string).</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">pdf_data</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Base64-encoded PDF of results. Not provided by this node (empty string).</td><td style="word-wrap: break-word;"></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- Credentials must use the 'oracle' credential template and have sufficient privileges to view instance information.
-- Network access to the Oracle host must be allowed; ensure firewall rules and security groups permit connectivity.
-- Timeout controls the service call duration only; very slow database responses may still require an increased timeout.
-- This node relies on the Salt CData service for execution. Ensure the service is deployed and reachable from your environment.
-- Returns a text summary and JSON by default. Additional formats (HTML/XLSX/PDF) may be present depending on platform configuration.
+- **Credentials URI required**: You must supply a valid Oracle URI (for example, with service name or SID).
+- **Output formats**: This node returns only text and JSON outputs; HTML, XLSX, and PDF are intentionally empty.
+- **Service configuration**: The Oracle data connector endpoint must be configured in the environment; otherwise the request will fail.
+- **Timeouts**: Long-running operations may need a higher timeout value.
+- **Optional custom service URL**: If a service_url query parameter is present in the URI, it can override the default endpoint.
 
 ## Troubleshooting
-- Connection failed: Verify host, port, and service/SID in the credentials file and confirm the Salt CData service is reachable.
-- Authentication error: Ensure the username/password or secret reference in the credentials is valid and has required privileges.
-- Timeouts: Increase the timeout input value if the Oracle environment is slow or under heavy load.
-- Empty or partial data: Confirm the connected user has permissions to access instance metadata views.
-- TLS/SSL issues: If using secure connections, verify certificates and connection parameters in the credentials.
+- **Invalid credentials URI**: If you see an error about an invalid URI, ensure it starts with oracle:// and includes host, port, and service name or SID.
+- **Service URL is not configured**: Verify that the Oracle data connector endpoint is set in the environment configuration or pass a service_url in the URI.
+- **Request timed out**: Increase the timeout input to accommodate slow networks or large environments.
+- **Authentication failed**: Check username/password in the URI and ensure the database user has permission to access instance metadata.
+- **Unexpected response format**: Ensure the target service version matches the node expectation; retry or contact an administrator if the response lacks expected fields.

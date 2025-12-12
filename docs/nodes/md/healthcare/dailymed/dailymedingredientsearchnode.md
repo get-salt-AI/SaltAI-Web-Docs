@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Searches the U.S. DailyMed database for products containing a specified active ingredient. It retrieves up to a user-defined limit of results, then optionally filters them by dosage form, strength substring, and manufacturer substring. Returns both raw JSON and a human-readable summary that highlights dosage form distribution, top manufacturers, and strength variety.
+Searches the DailyMed database for products containing a specified active ingredient. Supports optional filtering by dosage form, partial strength text, and partial manufacturer name. Returns raw JSON results, a human-readable summary, and the final product count after filters are applied.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/healthcare/dailymed/dailymedingredientsearchnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Searches the U.S. DailyMed database for products containing a specified active i
 
 ## Usage
 
-Use this node when you need to find drug products by their active ingredient and quickly summarize what forms and manufacturers are most common. Typical workflow: set the ingredient and limit, optionally narrow by dosage form, and apply partial text filters for strength and manufacturer. Chain the products_json output to downstream processing or data extraction, and display the summary for quick insights.
+Use this node when you need to find U.S. drug products by active ingredient and narrow the results to specific dosage forms, strengths, or manufacturers. Typical workflow: provide an ingredient (e.g., acetaminophen), optionally set filters (e.g., tablet, 500 mg, a manufacturer substring), then use the JSON output for downstream processing or the summary for display.
 
 ## Inputs
 
@@ -26,11 +26,11 @@ Use this node when you need to find drug products by their active ingredient and
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">ingredient</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The active ingredient name to search for. Matching is performed by the DailyMed service.</td><td style="word-wrap: break-word;">acetaminophen</td></tr>
-<tr><td style="word-wrap: break-word;">limit</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum number of results to fetch from the DailyMed service before optional local filters are applied. Range: 1–100.</td><td style="word-wrap: break-word;">20</td></tr>
-<tr><td style="word-wrap: break-word;">dosage_form</td><td>False</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">Optional dosage form filter. Filters results locally by checking if the chosen form appears in the product's dosage_form text (case-insensitive).</td><td style="word-wrap: break-word;">tablet</td></tr>
-<tr><td style="word-wrap: break-word;">strength_filter</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional partial-text filter applied to the product strength field (case-insensitive). Products without a strength field are excluded when this is set.</td><td style="word-wrap: break-word;">500 mg</td></tr>
-<tr><td style="word-wrap: break-word;">manufacturer_filter</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional partial-text filter applied to manufacturer names (case-insensitive). Products without manufacturer info are excluded when this is set.</td><td style="word-wrap: break-word;">Johnson</td></tr>
+<tr><td style="word-wrap: break-word;">ingredient</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The active ingredient name to search for. Case-insensitive.</td><td style="word-wrap: break-word;">acetaminophen</td></tr>
+<tr><td style="word-wrap: break-word;">limit</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum number of results to fetch from the API before client-side filtering is applied.</td><td style="word-wrap: break-word;">20</td></tr>
+<tr><td style="word-wrap: break-word;">dosage_form</td><td>False</td><td style="word-wrap: break-word;">ENUM</td><td style="word-wrap: break-word;">Optional dosage form filter. If set to 'any', no dosage-form filtering is applied. Matches are case-insensitive and substring-based.</td><td style="word-wrap: break-word;">tablet</td></tr>
+<tr><td style="word-wrap: break-word;">strength_filter</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional partial-text filter for strength values. Case-insensitive substring match against strength fields.</td><td style="word-wrap: break-word;">500 mg</td></tr>
+<tr><td style="word-wrap: break-word;">manufacturer_filter</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional partial-text filter for manufacturer names. Case-insensitive substring match.</td><td style="word-wrap: break-word;">johnson</td></tr>
 </tbody>
 </table>
 </div>
@@ -47,24 +47,25 @@ Use this node when you need to find drug products by their active ingredient and
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">products_json</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON string array of the matched products returned from DailyMed after applying local filters.</td><td style="word-wrap: break-word;">[{"title":"ACETAMINOPHEN 500 MG","setid":"...","dosage_form":["TABLET"],"openfda":{"manufacturer_name":["Example Pharma"]}}]</td></tr>
-<tr><td style="word-wrap: break-word;">summary</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary including total products found, top dosage forms, top manufacturers, and count of distinct strengths.</td><td style="word-wrap: break-word;">Ingredient Search Summary: Acetaminophen ================================================== Total Products Found: 18  Dosage Forms:   - TABLET: 10 products   - CAPSULE: 5 products  Top Manufacturers:   - Example Pharma: 7 products  Strength Variations: 6 different strengths available</td></tr>
-<tr><td style="word-wrap: break-word;">product_count</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Number of products after applying all local filters.</td><td style="word-wrap: break-word;">18</td></tr>
+<tr><td style="word-wrap: break-word;">products_json</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON string array of matching product objects returned from the API, after applying filters.</td><td style="word-wrap: break-word;">[{"title": "Acetaminophen 500 mg", "openfda": {"manufacturer_name": ["Example Pharma"]}}]</td></tr>
+<tr><td style="word-wrap: break-word;">summary</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary including total products, common dosage forms, top manufacturers, and strength variations.</td><td style="word-wrap: break-word;">Ingredient Search Summary: Acetaminophen ================================================== Total Products Found: 12  Dosage Forms:   - tablet: 8 products   - liquid: 3 products  Top Manufacturers:   - Example Pharma: 5 products  Strength Variations: 4 different strengths available</td></tr>
+<tr><td style="word-wrap: break-word;">product_count</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">The number of products returned after applying optional filters.</td><td style="word-wrap: break-word;">12</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Filtering order**: The node first fetches up to 'limit' results from the service and only then applies local filters. If filters are strict, the final product_count may be much lower than 'limit'.
-- **Partial matching**: strength_filter and manufacturer_filter are case-insensitive substring matches. dosage_form filtering is also case-insensitive and matches if the target form appears in the product's dosage_form text.
-- **Missing fields**: Products missing dosage_form, strength, or manufacturer info will be excluded when the corresponding filter is set.
-- **Dosage form choices**: Valid options are any, tablet, capsule, liquid, injection, cream, ointment. Choosing 'any' disables dosage form filtering.
-- **Network dependency**: Requires network access to the DailyMed API; failures will return an error payload in products_json and a corresponding message in summary.
-- **Result variability**: DailyMed data may vary by product; fields like strength, dosage_form, and manufacturer can be lists or strings.
+- **Filters are applied after retrieval**: The node fetches up to 'limit' results, then applies dosage form, strength, and manufacturer filters client-side.
+- **Case-insensitive, partial matching**: dosage_form, strength_filter, and manufacturer_filter use substring, case-insensitive matching.
+- **Dosage form options**: Supported values include 'any', 'tablet', 'capsule', 'liquid', 'injection', 'cream', and 'ointment'.
+- **Result variability**: Not all products include all fields (e.g., strength or manufacturer), which may affect filter matches.
+- **Limits**: The 'limit' input must be between 1 and 100.
+- **No results behavior**: If no matches are found, products_json will be an empty array, summary will indicate no results, and product_count will be 0.
+- **External API dependency**: Network issues or API downtime can cause empty results or error messages in the outputs.
 
 ## Troubleshooting
-- **No results found**: Loosen or remove filters (especially strength_filter and manufacturer_filter) and/or increase 'limit'. Ensure the ingredient spelling is correct.
-- **Very low product_count**: Remember filters apply after fetching. Increase 'limit' to retrieve more items before filtering, or relax the filters.
-- **Network or API error**: Check connectivity and retry later. The outputs may contain an error JSON with an 'error' key and the summary will begin with 'Error:'.
-- **Unexpected dosage form filtering**: The filter is substring-based and case-insensitive. Ensure the selected dosage_form matches how forms appear in the data (e.g., 'tablet' matches 'TABLET').
-- **Missing manufacturer/strength**: Some products may not include these fields; when a filter is set, such products are excluded. Remove the specific filter to include them.
+- **No products returned**: Increase 'limit' or loosen filters (set dosage_form to 'any', clear strength/manufacturer filters). Verify the ingredient spelling.
+- **Unexpectedly low product_count**: Remember filters are substring, case-insensitive. Ensure your filter text actually appears in the data (e.g., try 'mg' instead of an exact '500mg').
+- **Dosage form filter not working as expected**: The match is substring-based; ensure the selected option appears within the product's dosage form text.
+- **Network/API errors**: Retry later or check connectivity. The products_json may contain an 'error' message if the API request failed.
+- **Inconsistent manufacturer names**: Manufacturer data can be an array and vary in formatting. Try shorter substrings for broader matches.

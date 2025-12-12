@@ -6,7 +6,7 @@
 Extracts and returns the accumulated items from an accumulation object as a plain list. If the input does not match the expected format, it safely returns an empty list.
 
 </div>
-<div style="flex: 0 0 300px;"><img src="../../../../../images/previews/logic/flow-control/accumulation/combineaccumulationnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
+<div style="flex: 0 0 300px;"><img src="../../../images/previews/new-uncategorized/combineaccumulationnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
 </div>
 
 ## Usage

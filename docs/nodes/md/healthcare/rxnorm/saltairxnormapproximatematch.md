@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Finds approximate RxNorm matches for a free-text term (e.g., misspelled or partial drug names). It returns a JSON string containing the search term and the API's match results, along with a status message indicating success or error.
+Finds approximate RxNorm matches for a free-text term. Useful for fuzzy matching when the input may include misspellings, brand/generic variations, or partial names. Returns a JSON string of results and a status message.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/healthcare/rxnorm/saltairxnormapproximatematch.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Finds approximate RxNorm matches for a free-text term (e.g., misspelled or parti
 
 ## Usage
 
-Use this node when you have a non-standard or potentially misspelled drug term and need to identify likely RxNorm concepts. Typical workflow: provide a user-entered term, get approximate matches, then pass the resulting JSON to downstream nodes or logic to select a specific RxCUI for further lookups.
+Use this node when you need to map user-entered or noisy medication terms to likely RxNorm concepts. Typical workflow: pass a user-entered drug name into this node to retrieve candidate matches, optionally feed resulting identifiers to other RxNorm nodes for detailed information.
 
 ## Inputs
 
@@ -26,7 +26,7 @@ Use this node when you have a non-standard or potentially misspelled drug term a
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">term</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The free-text drug term to match (supports partial or misspelled names).</td><td style="word-wrap: break-word;">acetominophen</td></tr>
+<tr><td style="word-wrap: break-word;">term</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The drug term to search for with approximate matching. Accepts a single free-text string.</td><td style="word-wrap: break-word;">acetominophen</td></tr>
 </tbody>
 </table>
 </div>
@@ -43,22 +43,22 @@ Use this node when you have a non-standard or potentially misspelled drug term a
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">approximate_matches</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON string with the search term and the approximate match results from RxNorm.</td><td style="word-wrap: break-word;">{   "search_term": "acetominophen",   "results": {     "approximateGroup": {       "candidate": [         { "rxcui": "161", "score": "100", "rxnormId": "161", "name": "Acetaminophen" }       ]     }   } }</td></tr>
-<tr><td style="word-wrap: break-word;">status</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Status message indicating success or describing the error encountered.</td><td style="word-wrap: break-word;">Successfully retrieved approximate matches for 'acetominophen'</td></tr>
+<tr><td style="word-wrap: break-word;">approximate_matches</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON string containing the search term and the approximate match results returned by the underlying RxNorm service.</td><td style="word-wrap: break-word;">{"search_term": "acetominophen", "results": {"candidate": [{"rxcui": "161", "score": "~", "name": "Acetaminophen"}]}}</td></tr>
+<tr><td style="word-wrap: break-word;">status</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable status message indicating success or describing any error.</td><td style="word-wrap: break-word;">Successfully retrieved approximate matches for 'acetominophen'</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Input validation**: An empty term returns "{}" for approximate_matches and "Error: Term cannot be empty" as status.
-- **Output format**: approximate_matches is a JSON string. Parse it downstream to access fields like candidates, names, or RxCUIs.
-- **API errors**: If the external service returns an error, the node returns the error JSON and a status starting with "API Error:".
-- **Default behavior**: If no input is provided, the default term is "acetaminophen".
-- **Variability**: The structure inside results may vary based on the external API; always check keys like approximateGroup/candidate before accessing.
+- **Input required**: The term cannot be empty; an empty term returns an error status.
+- **Output format**: The first output is a JSON-formatted string. Parse it before downstream processing that expects structured data.
+- **Result variability**: The structure of "results" mirrors the upstream service and may include candidates, scores, and identifiers; exact fields can vary.
+- **Not a direct resolver**: This node surfaces candidates but does not guarantee an exact concept. Use a subsequent node to fetch details for a selected RxCUI.
+- **Error handling**: If the upstream service reports an error, the first output contains the error payload as JSON and the status starts with "API Error:".
 
 ## Troubleshooting
-- **Empty input returns an error**: Provide a non-empty term. The node will not proceed with blank input.
-- **No matches found**: The results array may be empty. Try a more general term or a correct spelling.
-- **Parsing issues downstream**: Ensure you parse the approximate_matches string as JSON before accessing fields.
-- **API Error status**: Network or service issues will produce a status like "API Error: ...". Retry later or verify connectivity.
-- **Unexpected results structure**: The external API may change response shapes. Add defensive checks when extracting candidates and IDs.
+- **Empty or blank term**: Returns "{}" and "Error: Term cannot be empty". Provide a non-empty string.
+- **API Error in status**: The status will read "API Error: ..." and the first output will include error details. Retry later or validate the term.
+- **Unexpected JSON shape**: The "results" structure may change. Inspect and adapt downstream parsing logic accordingly.
+- **No matches found**: You may get an empty candidate list. Try alternative spellings, include more context, or use the RxNorm Search node for exact matches.
+- **Encoding or special characters**: If the term includes special characters and yields errors, simplify the input (e.g., remove trademarks or symbols) and retry.
