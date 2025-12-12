@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Validates that Salt can connect to a MySQL database using the provided credentials. It performs a lightweight connectivity check and returns a human-readable status along with the raw JSON response.
+Tests connectivity to a MySQL database using the provided connection URI. It sends a connection check to the configured MySQL data connector service and returns a human-readable summary and raw JSON response. Export fields (HTML/XLSX/PDF) are included in the outputs but are empty for this operation.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/mysql/saltmysqltestconnection.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Validates that Salt can connect to a MySQL database using the provided credentia
 
 ## Usage
 
-Use this node right after configuring your MySQL credentials to confirm connectivity before running any queries or schema operations. It’s typically placed at the start of a workflow to fail fast if the database is unreachable or credentials are incorrect.
+Use this node to validate that your MySQL credentials, host, port, and database are correct and reachable before running queries or other database operations. Provide a valid MySQL URI and adjust the timeout if needed. Typical workflow: place this node early in a pipeline to ensure the connection is healthy before executing queries or schema operations.
 
 ## Inputs
 
@@ -26,8 +26,8 @@ Use this node right after configuring your MySQL credentials to confirm connecti
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Path or reference to the saved MySQL credentials that follow the MySQL credential template (e.g., host, port, database, username, password, and optional SSL details).</td><td style="word-wrap: break-word;">/workspace/credentials/mysql.json</td></tr>
-<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time in seconds to wait for the connection test before failing.</td><td style="word-wrap: break-word;">30</td></tr>
+<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">MySQL database URI containing host, port, database, and credentials. Must be a valid URI.</td><td style="word-wrap: break-word;">mysql://<user>:<password>@<host>:3306/<database></td></tr>
+<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Request timeout in seconds for the connection test. Must be between 10 and 300.</td><td style="word-wrap: break-word;">60</td></tr>
 </tbody>
 </table>
 </div>
@@ -44,25 +44,25 @@ Use this node right after configuring your MySQL credentials to confirm connecti
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">TEXT</td><td style="word-wrap: break-word;">Human-readable summary of the connection test (e.g., success or error message).</td><td style="word-wrap: break-word;">MySQL Connection Test: Success</td></tr>
-<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Raw JSON payload with detailed result data from the connection test.</td><td style="word-wrap: break-word;">{"status":"ok","message":"Connection successful"}</td></tr>
-<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">HTML</td><td style="word-wrap: break-word;">HTML representation (not used by this node; returned empty).</td><td style="word-wrap: break-word;"></td></tr>
-<tr><td style="word-wrap: break-word;">xlsx</td><td style="word-wrap: break-word;">BYTES</td><td style="word-wrap: break-word;">Binary Excel data (not used by this node; returned empty).</td><td style="word-wrap: break-word;"></td></tr>
-<tr><td style="word-wrap: break-word;">pdf</td><td style="word-wrap: break-word;">BYTES</td><td style="word-wrap: break-word;">Binary PDF data (not used by this node; returned empty).</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary of the connection test result.</td><td style="word-wrap: break-word;">MySQL Connection Test: Success</td></tr>
+<tr><td style="word-wrap: break-word;">json_result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Raw JSON response string from the service, containing connection test details.</td><td style="word-wrap: break-word;">{"status": "success", "message": "Connection established"}</td></tr>
+<tr><td style="word-wrap: break-word;">html_table</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">HTML export placeholder. Not used for this node; returned as an empty string.</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">xlsx_data</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">XLSX export placeholder (base64-encoded). Not used for this node; returned as an empty string.</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">pdf_data</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">PDF export placeholder (base64-encoded). Not used for this node; returned as an empty string.</td><td style="word-wrap: break-word;"></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- This node uses the MySQL credential template. Ensure your stored credentials include the correct host, port, database, username, and password, and any required SSL settings.
-- The operation is read-only and does not modify any data; it only tests connectivity.
-- Network access to the MySQL server must be permitted from the Salt runtime environment (firewalls, security groups, VPN, and allowlists must be correctly configured).
-- If your MySQL server enforces SSL, ensure the SSL mode and related parameters in your credentials match the server configuration.
-- The output includes both a human-readable summary and a JSON object to facilitate both visual checks and programmatic branching in workflows.
+- **Credentials must be a valid MySQL URI**: Use the mysql:// scheme. Invalid or unsupported schemes will raise an error.
+- **Service configuration required**: The MySQL data connector service URL must be configured in the platform endpoints; otherwise the node will fail to locate the service.
+- **Timeout constraints**: The timeout value must be between 10 and 300 seconds.
+- **Outputs for exports are empty**: html_table, xlsx_data, and pdf_data are intentionally empty for connection testing.
+- **No data is modified**: This node only validates connectivity and does not perform any read or write operations.
 
 ## Troubleshooting
-- Authentication failed: Verify username/password, database name, and that the user has permission to connect from the Salt runtime’s IP/host.
-- Network timeout or unreachable host: Check host/port, firewall rules, VPC/VPN connectivity, and increase the timeout if needed.
-- SSL/TLS errors: Align SSL mode and certificates with server settings (e.g., REQUIRED, VERIFY_CA, or VERIFY_IDENTITY).
-- Access denied for user or database does not exist: Confirm the database exists and the user privileges are correctly granted for that database.
-- Intermittent connection issues: Check MySQL server availability, connection limits, and any load balancers or proxies in the path.
+- **Invalid credentials URI**: If you see an error about an invalid URI, ensure it follows mysql://<user>:<password>@<host>:<port>/<database> and contains necessary components.
+- **Service URL not configured**: Errors mentioning missing service URL or endpoint mapping indicate the MySQL data connector endpoint is not set. Configure the MySQL connector in platform endpoints.
+- **Connection timed out**: Increase the timeout input value, verify network access (host/port/firewall/VPC), and ensure the MySQL server is reachable.
+- **Authentication failed**: Check username/password and database name in the URI. Verify SSL parameters if your server requires them (e.g., add query params to the URI).
+- **Unsupported host or DNS issues**: Verify that the host resolves correctly and that the specified port (default 3306) is open.

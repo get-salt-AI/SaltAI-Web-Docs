@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Runs non-SELECT SQL statements (INSERT, UPDATE, DELETE, DDL) against an Oracle database. It uses provided credentials, sends the SQL to the Oracle service, and returns a human-readable summary plus the raw JSON result.
+Executes Oracle Data Manipulation/Definition Language (DML/DDL) statements such as INSERT, UPDATE, DELETE, and other non-SELECT SQL. It connects to an Oracle database using provided credentials, sends the statement to the service, and returns a human-readable summary alongside the raw JSON response.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/oracle/saltoracleexecute.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Runs non-SELECT SQL statements (INSERT, UPDATE, DELETE, DDL) against an Oracle d
 
 ## Usage
 
-Use this node when you need to modify data or schema in an Oracle database as part of a workflow (e.g., inserting records, updating fields, deleting rows, creating/dropping tables). Typically placed after a credentials-loading step, it executes the given SQL text within the configured timeout and returns execution results for logging or branching.
+Use this node when you need to modify data or perform administrative changes in an Oracle database as part of a workflow (e.g., insert new records, update existing rows, or delete data). Typically, place it after a credentials-loading step or in any pipeline where database state changes are required. If you need to retrieve data (SELECT queries), use the corresponding Oracle query node instead.
 
 ## Inputs
 
@@ -26,9 +26,9 @@ Use this node when you need to modify data or schema in an Oracle database as pa
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Path to the stored Oracle credentials configuration to authenticate the request.</td><td style="word-wrap: break-word;">/path/to/credentials/oracle.json</td></tr>
-<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time in seconds to wait for the operation before timing out.</td><td style="word-wrap: break-word;">60</td></tr>
-<tr><td style="word-wrap: break-word;">sql_text</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The SQL statement to execute. Intended for INSERT/UPDATE/DELETE or DDL statements.</td><td style="word-wrap: break-word;">UPDATE employees SET salary = salary * 1.05 WHERE department_id = 10</td></tr>
+<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Path or reference to the Oracle credentials configuration used to authenticate and connect to the database.</td><td style="word-wrap: break-word;">/path/to/oracle_credentials.json</td></tr>
+<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Maximum time to wait for the operation to complete before failing.</td><td style="word-wrap: break-word;">30</td></tr>
+<tr><td style="word-wrap: break-word;">sql_text</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The SQL statement to execute. Intended for non-SELECT operations such as INSERT, UPDATE, DELETE, or DDL.</td><td style="word-wrap: break-word;">UPDATE employees SET status = 'ACTIVE' WHERE employee_id = 1001</td></tr>
 </tbody>
 </table>
 </div>
@@ -45,22 +45,20 @@ Use this node when you need to modify data or schema in an Oracle database as pa
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Readable summary of the execution (e.g., operation type and outcome).</td><td style="word-wrap: break-word;">Oracle Execute Results: 25 rows affected.</td></tr>
-<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Raw JSON payload returned by the Oracle service with details about the execution.</td><td style="word-wrap: break-word;">{"status":"success","rows_affected":25}</td></tr>
+<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Human-readable summary of the execution result, suitable for display.</td><td style="word-wrap: break-word;">Oracle Execute Results: 1 row affected.</td></tr>
+<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Raw JSON result returned by the service, typically including status details and affected row counts.</td><td style="word-wrap: break-word;">{'status': 'success', 'rows_affected': 1}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- This node is designed for executing non-SELECT statements; for SELECT queries, use the Oracle Query node.
-- Credentials must be valid and grant sufficient permissions for the SQL being executed.
-- Bind variables are not supported as separate inputs; provide fully formed SQL with literal values or ensure the service can handle your SQL as provided.
-- Execution behavior (e.g., transaction handling, autocommit) follows the backing Oracle service configuration.
-- Large or long-running statements may require increasing the timeout to avoid premature failure.
+- This node is designed for non-SELECT statements. For data retrieval, use the Oracle query node.
+- Ensure your SQL is valid for Oracle and that the connected user has sufficient privileges to execute it.
+- Placeholders such as :id or :first_name require values to be supplied within the SQL or via mechanisms supported by your environment; do not leave bind variables unresolved.
+- Execution may return affected row counts or status information rather than data rows.
 
 ## Troubleshooting
-- SQL errors (e.g., ORA-00900, ORA-00933): Verify your SQL syntax and ensure it matches Oracle SQL standards.
-- Permission denied (e.g., ORA-01031): Ensure the credentialed user has the necessary privileges for the target tables or DDL.
-- Connection/timeout issues: Check network access to the Oracle service and increase the timeout input if the operation is expected to run long.
-- No rows affected when expected: Confirm WHERE clause conditions and that the target records exist.
-- Service returned unexpected JSON: Inspect the json output for error fields and message details to guide remediation.
+- SQL error: Verify your statement syntax and confirm it is valid for Oracle. Remove unresolved bind variables or supply concrete values.
+- Authentication or connection failure: Check the credentials_path configuration and network/firewall access to the Oracle instance.
+- Permission denied: Ensure the database user has privileges for the targeted tables and operations.
+- Timeouts: Increase the timeout input for long-running operations or optimize the SQL/indices to reduce execution time.
