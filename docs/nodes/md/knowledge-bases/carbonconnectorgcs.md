@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Selects and configures the Google Cloud Storage integration for Carbon data workflows. This node identifies the data source as GCS and delegates all core behavior (inputs, processing, and outputs) to the shared Carbon data node base. It is typically used to point downstream Carbon data operations at a GCS-backed source.
+Fetches content from files connected through the Carbon Google Cloud Storage integration. Given selected Carbon file IDs, it queries the Carbon service and returns a single concatenated text output. Each file’s content is wrapped with a simple <file id="..."> tag for easy downstream parsing.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/knowledge-bases/carbonconnectorgcs.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Selects and configures the Google Cloud Storage integration for Carbon data work
 
 ## Usage
 
-Use this node at the start of a Carbon data ingestion or synchronization flow when your source is Google Cloud Storage. Place it before nodes that define scope, scheduling, or downstream processing so they know which integration to use. Ensure the associated Carbon integration and permissions are configured for your user or workspace.
+Use this node after users have connected their GCS content via the Carbon connection flow and selected files. Provide the Carbon file IDs (produced by the file picker/connector UI) to retrieve the file contents as a single text block for further processing in your workflow (e.g., search, summarization, or LLM prompts).
 
 ## Inputs
 
@@ -26,7 +26,8 @@ Use this node at the start of a Carbon data ingestion or synchronization flow wh
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">Not specified</td><td>False</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Inputs are defined by the shared Carbon data node base. This connector only selects the GCS integration.</td><td style="word-wrap: break-word;">Not specified</td></tr>
+<tr><td style="word-wrap: break-word;">file_ids</td><td>True</td><td style="word-wrap: break-word;">CARBON_FILE_IDS</td><td style="word-wrap: break-word;">A list of Carbon file identifiers associated with the Google Cloud Storage integration. This should be a JSON-encoded array of file IDs provided by the Carbon connection/file selection UI.</td><td style="word-wrap: break-word;">[12345, 67890]</td></tr>
+<tr><td style="word-wrap: break-word;">query</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional query to narrow down the selection of content returned from the provided files (e.g., keyword filter). If empty, full file contents are returned.</td><td style="word-wrap: break-word;">error logs from last week</td></tr>
 </tbody>
 </table>
 </div>
@@ -43,18 +44,19 @@ Use this node at the start of a Carbon data ingestion or synchronization flow wh
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Outputs are defined by the shared Carbon data node base. This connector only selects the GCS integration.</td><td style="word-wrap: break-word;">Not specified</td></tr>
+<tr><td style="word-wrap: break-word;">Output</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A single concatenated text string containing the fetched file contents. Each file is wrapped as: <file id="<id>">\n<content>\n</file>. If files are chunked, the id may include a -chunk:<index> suffix.</td><td style="word-wrap: break-word;"><file id="12345">\n...file content...\n</file>\n<file id="67890">\n...file content...\n</file></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- This node only selects the Google Cloud Storage integration; all functional behavior (inputs/outputs/processing) comes from the base Carbon data node.
-- You must have a valid Carbon integration and appropriate permissions to access the target GCS resources (e.g., buckets/paths).
-- Do not paste secrets or keys into node fields; use secure connection mechanisms and environment-managed credentials.
-- Downstream nodes will use the selected integration (GCS) for listing, syncing, or processing content.
+- The file_ids input must be valid JSON representing an array of Carbon file IDs produced by the Carbon connection/file-selection UI.
+- This node is scoped to the Google Cloud Storage integration; ensure the selected files originate from GCS.
+- The salt_user_id input is automatically injected by the platform; do not override it manually.
+- If you provide a query, the Carbon service may return only matching portions or files; leave it empty to retrieve full content.
 
 ## Troubleshooting
-- Authentication or authorization error: Verify your Carbon account connection to GCS and that your user/workspace has access to the required buckets and paths.
-- Cannot see expected files or buckets: Check the configured project/bucket access policies and ensure the service principal or linked credentials have the necessary roles.
-- Unexpected behavior in inputs/outputs: Confirm the required parameters for the base Carbon data node are provided, as this connector inherits those requirements unchanged.
+- JSON decode error for file_ids: Ensure file_ids is a valid JSON array string (e.g., [12345, 67890]) and not a raw string or malformed JSON.
+- No content returned: Verify the selected file IDs are correct, the files are accessible to the user, and the Carbon connection to GCS is active.
+- Permission or authentication errors: Make sure the user is properly authenticated and has a valid Carbon connection to Google Cloud Storage.
+- Timeouts or request failures: Try again later, reduce the number of files requested, or narrow results with the query to limit response size.

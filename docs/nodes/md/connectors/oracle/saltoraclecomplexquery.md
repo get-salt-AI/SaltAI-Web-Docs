@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Executes complex Oracle SQL statements, including multi-table JOINs and advanced clauses. It sends your SQL and a declared query type to the Oracle data service and returns results formatted for text and JSON, with optional rich outputs depending on the downstream formatting utilities.
+Executes complex Oracle SQL statements, including multi-table JOINs and advanced clauses. It sends the provided SQL and a declared query type to the Oracle service using stored credentials, then returns a formatted textual summary alongside structured result data.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/oracle/saltoraclecomplexquery.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Executes complex Oracle SQL statements, including multi-table JOINs and advanced
 
 ## Usage
 
-Use this node when you need to run non-trivial Oracle queries (e.g., JOINs, GROUP BY, HAVING) against a configured Oracle database. Provide a valid credentials file path, set a suitable timeout, enter your SQL, and specify the query type (typically SELECT). This node fits into workflows where you need to retrieve or process relational data from Oracle and pass the results to subsequent steps.
+Use this node when you need to run sophisticated Oracle SQL beyond simple selects, such as multi-table joins, window functions, or aggregations. Place it in workflows that read from Oracle databases and consume the results as text for viewing and as structured data for downstream processing or export.
 
 ## Inputs
 
@@ -26,10 +26,10 @@ Use this node when you need to run non-trivial Oracle queries (e.g., JOINs, GROU
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Path to the saved Oracle credentials file to authenticate the request.</td><td style="word-wrap: break-word;">/workspace/credentials/oracle.json</td></tr>
-<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time (in seconds) to wait for the Oracle service to execute the query.</td><td style="word-wrap: break-word;">60</td></tr>
-<tr><td style="word-wrap: break-word;">sql_text</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The complex SQL statement to execute. Supports typical Oracle syntax including JOINs and advanced clauses.</td><td style="word-wrap: break-word;">SELECT e.employee_id, e.first_name, e.last_name, d.department_name FROM employees e JOIN departments d ON e.department_id = d.department_id WHERE e.salary > 50000</td></tr>
-<tr><td style="word-wrap: break-word;">query_type</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Type of SQL query you are executing. Typically 'SELECT'; used by the service to route execution.</td><td style="word-wrap: break-word;">SELECT</td></tr>
+<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Path or reference to stored Oracle credentials that follow the Oracle credential template.</td><td style="word-wrap: break-word;">/secrets/connections/oracle.json</td></tr>
+<tr><td style="word-wrap: break-word;">timeout</td><td>False</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time in seconds to wait for the Oracle operation to complete before failing.</td><td style="word-wrap: break-word;">120</td></tr>
+<tr><td style="word-wrap: break-word;">sql_text</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The SQL query to execute. Supports complex SELECTs with JOINs and advanced SQL features.</td><td style="word-wrap: break-word;">SELECT e.employee_id, e.first_name, e.last_name, d.department_name FROM employees e JOIN departments d ON e.department_id = d.department_id WHERE e.salary > 75000</td></tr>
+<tr><td style="word-wrap: break-word;">query_type</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Declares the type of the query being executed (e.g., SELECT). Used to route the request appropriately.</td><td style="word-wrap: break-word;">SELECT</td></tr>
 </tbody>
 </table>
 </div>
@@ -46,25 +46,22 @@ Use this node when you need to run non-trivial Oracle queries (e.g., JOINs, GROU
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary or table-like text of the query results.</td><td style="word-wrap: break-word;">Oracle Complex Query (SELECT) Rows: 10 Columns: employee_id, first_name, last_name, department_name</td></tr>
-<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Full JSON payload with the raw results from the Oracle service.</td><td style="word-wrap: break-word;">{"rows": [{"employee_id": 101, "first_name": "Neena", "last_name": "Kochhar", "department_name": "Executive"}], "row_count": 10}</td></tr>
-<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">HTML</td><td style="word-wrap: break-word;">HTML representation of the result table (if generated by downstream formatting).</td><td style="word-wrap: break-word;"><table><thead><tr><th>employee_id</th><th>first_name</th><th>last_name</th><th>department_name</th></tr></thead><tbody>...</tbody></table></td></tr>
-<tr><td style="word-wrap: break-word;">xlsx</td><td style="word-wrap: break-word;">BYTES</td><td style="word-wrap: break-word;">Binary data for an Excel export of the results (if generated).</td><td style="word-wrap: break-word;"><xlsx-bytes>...</td></tr>
-<tr><td style="word-wrap: break-word;">pdf</td><td style="word-wrap: break-word;">BYTES</td><td style="word-wrap: break-word;">Binary data for a PDF export of the results (if generated).</td><td style="word-wrap: break-word;"><pdf-bytes>...</td></tr>
+<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary or table-like rendering of the query results.</td><td style="word-wrap: break-word;">Oracle Complex Query (SELECT): 25 rows returned</td></tr>
+<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Structured data for the query result, suitable for programmatic consumption.</td><td style="word-wrap: break-word;">{"rows": [{"EMPLOYEE_ID": 101, "FIRST_NAME": "Neena", "LAST_NAME": "Kochhar", "DEPARTMENT_NAME": "Executive"}], "row_count": 25}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- The node requires a valid Oracle credentials file; ensure it matches the 'oracle' credential template configured in your environment.
-- query_type should reflect the SQL being run (commonly 'SELECT'). Mismatched query_type and SQL may lead to service errors.
-- If your SQL uses bind variables (e.g., :min_salary), ensure they are supported or inlined as literals; otherwise the service may return parameter binding errors.
-- Large or long-running queries may require increasing the timeout input.
-- Outputs typically include text and JSON. HTML/XLSX/PDF outputs are produced when formatting/export utilities are triggered downstream.
+- Ensure that the credentials referenced by credentials_path are valid and configured for the Oracle service template.
+- query_type should align with the SQL you provide (e.g., SELECT). Mismatched types may lead to errors.
+- Parameter placeholders (e.g., :min_salary) are not bound by separate inputs in this node. Provide fully resolved SQL or ensure your backend supports inline parameters as used.
+- Large result sets may increase execution time. Use WHERE, GROUP BY, and FETCH FIRST (row limiting) where appropriate.
+- The node returns a readable text summary and structured JSON. Export formats beyond these are not generated by this node.
 
 ## Troubleshooting
-- Connection or authentication errors: Verify credentials_path points to a valid Oracle credential file and that the database is reachable.
-- SQL syntax errors: Validate the sql_text in an Oracle client and correct any syntax issues.
-- Timeouts: Increase the timeout value or optimize the query (indexes, filters).
-- Bind variable errors (e.g., missing value for :param): Replace bind variables with literals or configure supported parameter passing in your SQL.
-- Empty or unexpected results: Confirm table names, schema context, JOIN conditions, and WHERE filters are correct for your data.
+- SQL error returned: Verify sql_text syntax and that all referenced tables/columns exist and are accessible to the provided user.
+- Timeout exceeded: Increase the timeout input or optimize the query with filters and indexes.
+- Permission denied: Confirm the Oracle user in credentials has sufficient privileges to read the referenced objects.
+- Empty results: Check WHERE conditions and join predicates; test the query directly in your database client to validate expectations.
+- Invalid query_type: Use a supported type string (e.g., SELECT) that matches the SQL operation you are running.

@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Validates connectivity to an Oracle database using provided credentials. It sends a lightweight test request to confirm that the host, port, service/SID, and authentication are correct, returning a human-readable status and a structured JSON result.
+Validates connectivity to an Oracle database using the provided credentials. It performs a lightweight test and returns both a human-readable status summary and a structured JSON response with details.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/oracle/saltoracletestconnection.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Validates connectivity to an Oracle database using provided credentials. It send
 
 ## Usage
 
-Use this node early in a workflow to confirm that your Oracle database credentials and network access are correctly configured before running queries or schema operations. Point it to an Oracle credential file or connection configuration and set a suitable timeout to catch network or authentication issues quickly.
+Use this node early in your workflow to verify that your Oracle credentials, host, port, and database settings are correct before running queries or metadata operations. Typical usage is immediately after loading or selecting Oracle credentials to ensure the environment is reachable and authentication works.
 
 ## Inputs
 
@@ -26,8 +26,8 @@ Use this node early in a workflow to confirm that your Oracle database credentia
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">CREDENTIALS</td><td style="word-wrap: break-word;">Path or reference to the stored Oracle credentials. Must include host, port, service/SID, username, and password (and any required options).</td><td style="word-wrap: break-word;"><path-to-oracle-credentials.json></td></tr>
-<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time, in seconds, to wait for the test connection to complete before failing.</td><td style="word-wrap: break-word;">30</td></tr>
+<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Path to the saved Oracle credentials file that follows the Oracle credential template.</td><td style="word-wrap: break-word;">/workspace/credentials/oracle.json</td></tr>
+<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time in seconds to wait for the connection test to complete.</td><td style="word-wrap: break-word;">60</td></tr>
 </tbody>
 </table>
 </div>
@@ -44,24 +44,20 @@ Use this node early in a workflow to confirm that your Oracle database credentia
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A concise, human-readable summary of the connection test outcome.</td><td style="word-wrap: break-word;">Oracle Connection Test: Success</td></tr>
-<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Structured details about the connection test, including status and any diagnostic messages.</td><td style="word-wrap: break-word;">{"status":"success","message":"Connection established","latency_ms":124}</td></tr>
-<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">HTML-formatted output (may be empty for this operation).</td><td style="word-wrap: break-word;"></td></tr>
-<tr><td style="word-wrap: break-word;">xlsx</td><td style="word-wrap: break-word;">BYTES</td><td style="word-wrap: break-word;">Binary Excel content for exports (not typically used for connection tests).</td><td style="word-wrap: break-word;"></td></tr>
-<tr><td style="word-wrap: break-word;">pdf</td><td style="word-wrap: break-word;">BYTES</td><td style="word-wrap: break-word;">Binary PDF content for exports (not typically used for connection tests).</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">string</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A concise, human-readable summary of the connection test result.</td><td style="word-wrap: break-word;">Oracle Connection Test: Success</td></tr>
+<tr><td style="word-wrap: break-word;">json_string</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON-formatted string with structured details of the test outcome, which may include status, messages, and diagnostic information.</td><td style="word-wrap: break-word;">{"status":"success","details":"Connected to Oracle database","latency_ms":128}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- Ensure the credentials reference uses the Oracle template and contains valid host, port, service name or SID, username, and password.
-- The timeout applies to the remote connectivity check; slow networks or database servers may require a higher value.
-- This node does not execute SQL; it only validates that a connection can be established.
-- Network/firewall rules, SSL/wallet requirements, or VPN constraints can cause failures even with correct credentials.
+- **Credential Template**: This node uses the Oracle credential template. Ensure your credentials file matches the required schema for Oracle (e.g., host, port, database/service, username, password, and any SSL settings as applicable).
+- **No extra parameters**: The node does not require additional inputs beyond credentials and timeout for the connection test.
+- **Network access**: The environment running this node must have network access to the Oracle host/port. Firewalls, VPNs, or security groups may block connectivity.
+- **Timeout behavior**: If the database is slow to respond or the network is constrained, increase the timeout value accordingly.
 
 ## Troubleshooting
-- Connection failed: Verify host, port, and service/SID in the credentials, and confirm the database is reachable from your network.
-- Authentication error: Check username/password in the credentials and any account lock or permission issues on the database.
-- Timeouts: Increase the timeout input and re-run; also verify latency, firewall rules, and that the Oracle listener is running.
-- SSL/TLS or wallet issues: If your Oracle environment requires wallets or certificates, confirm those settings are correctly configured in the credentials.
-- Unexpected errors: Recreate the credentials using the Oracle Connection String node or re-upload a clean credentials file, then test again.
+- **Authentication failed**: Verify username/password in the credentials file and ensure the account is not locked or expired.
+- **Host unreachable or timeout**: Check network connectivity, DNS resolution, firewall rules, and that the Oracle listener is running on the specified host/port.
+- **Service name/SID mismatch**: Confirm that the credentials reference the correct Oracle service (SERVICE_NAME) or SID expected by the server.
+- **SSL or wallet issues**: If using SSL/TLS or an Oracle wallet, confirm all required files and settings are correctly referenced in the credentials and accessible to the runtime.

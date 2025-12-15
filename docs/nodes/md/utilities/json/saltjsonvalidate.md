@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Checks whether the provided text is valid JSON. Returns a boolean indicating validity and a companion error message string that is empty when valid and explains the parsing issue when invalid.
+Checks whether a given string is valid JSON. Returns a boolean indicating validity and an error message string describing why validation failed, or empty when valid.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/utilities/json/saltjsonvalidate.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Checks whether the provided text is valid JSON. Returns a boolean indicating val
 
 ## Usage
 
-Use this node to guard workflows that depend on well-formed JSON. Typical patterns include validating API responses before parsing, verifying user-provided configuration, or gating conditional branches that require valid JSON input.
+Use this node when you need to verify that text produced by an upstream step is well-formed JSON before attempting to parse or consume it. Commonly placed after a model or tool that outputs JSON-like text to gate downstream processing.
 
 ## Inputs
 
@@ -26,7 +26,7 @@ Use this node to guard workflows that depend on well-formed JSON. Typical patter
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">json_string</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The text to validate as JSON. Multiline input is supported. Accepts any valid JSON type (object, array, string, number, boolean, null).</td><td style="word-wrap: break-word;">{"name":"Alice","age":30,"skills":["python","sql"]}</td></tr>
+<tr><td style="word-wrap: break-word;">json_string</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The text to validate as JSON. Must be a standard-compliant JSON string (double-quoted keys/strings, no comments or trailing commas).</td><td style="word-wrap: break-word;">{"user": {"id": 123, "name": "Ada"}, "items": [1, 2, 3]}</td></tr>
 </tbody>
 </table>
 </div>
@@ -43,21 +43,21 @@ Use this node to guard workflows that depend on well-formed JSON. Typical patter
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">is_valid</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">True if the input is valid JSON; False otherwise.</td><td style="word-wrap: break-word;">true</td></tr>
-<tr><td style="word-wrap: break-word;">error_message</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Empty string when valid; otherwise contains a descriptive parsing error message.</td><td style="word-wrap: break-word;">Expecting property name enclosed in double quotes: line 1 column 2 (char 1)</td></tr>
+<tr><td style="word-wrap: break-word;">is_valid</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">True if the input is valid JSON, otherwise False.</td><td style="word-wrap: break-word;">true</td></tr>
+<tr><td style="word-wrap: break-word;">error_message</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">An error description if validation fails. Empty string when the JSON is valid.</td><td style="word-wrap: break-word;">Expecting property name enclosed in double quotes: line 1 column 3 (char 2)</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Syntax-only check**: This node validates JSON syntax; it does not enforce schemas or field requirements.
-- **All JSON types allowed**: Objects, arrays, strings, numbers, booleans, and null are valid if properly formatted.
-- **Empty or whitespace-only input is invalid**: Such inputs will return is_valid = False with an error message.
-- **Error message semantics**: When is_valid is True, error_message is an empty string; when False, it contains the parse error.
-- **Input must be a string**: Ensure the value provided is a textual JSON representation, not a pre-parsed structure.
+- **Validation only**: This node does not return parsed data; it only checks validity.
+- **Strict JSON**: Only standard JSON is accepted (no comments, single quotes, or trailing commas).
+- **Input type matters**: Non-string inputs (e.g., None) will produce an 'Unexpected error' message; ensure you pass a string.
+- **Empty output on success**: The error_message output is an empty string when the JSON is valid.
 
 ## Troubleshooting
-- **Always returns False**: Verify the input uses double quotes for keys/strings, has no trailing commas, and is a string. Remove invisible characters (e.g., BOM) or trim whitespace.
-- **Unexpected characters error**: Check for trailing commas, unescaped quotes, or control characters; escape special characters within strings.
-- **Encoding issues**: Ensure the input is UTF-8 encoded text if it contains non-ASCII characters.
-- **Large JSON inputs**: If validation is slow or memory-intensive, reduce the payload size or validate in parts before full processing.
+- **Invalid due to quotes**: Use double quotes for keys and string values (e.g., {"key": "value"}), not single quotes.
+- **Trailing comma error**: Remove any trailing commas in objects or arrays.
+- **Escape characters**: Ensure special characters inside strings are properly escaped (e.g., newline as \n).
+- **Non-string input**: If you see 'Unexpected error', verify the input is a STRING and not null or another type.
+- **Large payloads**: If validation intermittently fails, check for truncated input from upstream nodes and ensure the full JSON string is passed.

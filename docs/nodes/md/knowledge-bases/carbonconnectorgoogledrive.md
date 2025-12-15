@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Connects your Salt workspace to a Google Drive account via Carbon integrations. It authorizes access to Drive, discovers eligible files/folders, and prepares them for downstream processing or ingestion steps. The integration type is fixed to Google Drive and all common connector behaviors (inputs/outputs) are inherited from the Carbon data connector base.
+Fetches and aggregates file contents from your Google Drive via the Carbon data service. You provide selected Google Drive file IDs, and the node retrieves their processed text and returns a single combined string, preserving per-file boundaries.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/knowledge-bases/carbonconnectorgoogledrive.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Connects your Salt workspace to a Google Drive account via Carbon integrations. 
 
 ## Usage
 
-Use this node at the start of a data workflow when your source documents live in Google Drive. Typically, you will authenticate the connection (using a Carbon-scoped token), optionally scope which folders/files to include, and pass the resulting handle/output to nodes that fetch, index, or process file contents.
+Use this node when you want to bring Google Drive documents into your workflow for downstream analysis or prompting. Typically, first select or obtain file IDs from a prior step, then pass them here to fetch the files’ contents. Optionally add a query to narrow which parts/files to include.
 
 ## Inputs
 
@@ -26,9 +26,8 @@ Use this node at the start of a data workflow when your source documents live in
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">authentication</td><td>True</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Credentials or token used to authorize access through the Carbon service to your Google Drive data. Typically obtained via a prior authorization step.</td><td style="word-wrap: break-word;"><carbon-access-token></td></tr>
-<tr><td style="word-wrap: break-word;">selection</td><td>False</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Optional scoping to limit which files or folders from Google Drive are included (e.g., folder IDs, file filters).</td><td style="word-wrap: break-word;">{"folderIds": ["12345abcde"], "includeShared": true}</td></tr>
-<tr><td style="word-wrap: break-word;">sync_options</td><td>False</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Optional synchronization or filtering options (e.g., modified-since time, file types).</td><td style="word-wrap: break-word;">{"modifiedAfter": "2024-01-01T00:00:00Z", "mimeTypes": ["application/pdf", "application/vnd.google-apps.document"]}</td></tr>
+<tr><td style="word-wrap: break-word;">file_ids</td><td>True</td><td style="word-wrap: break-word;">CARBON_FILE_IDS</td><td style="word-wrap: break-word;">A JSON-encoded list of Google Drive file IDs to fetch from the Carbon service for the Google Drive integration.</td><td style="word-wrap: break-word;">["1A2B3C_drive_file_id", "4D5E6F_drive_file_id"]</td></tr>
+<tr><td style="word-wrap: break-word;">query</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional filter/query to narrow the selection or content returned for the specified files.</td><td style="word-wrap: break-word;">title:report AND year:2024</td></tr>
 </tbody>
 </table>
 </div>
@@ -45,19 +44,21 @@ Use this node at the start of a data workflow when your source documents live in
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">data</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">A handle or reference to the selected Google Drive data within Carbon, to be consumed by downstream nodes that fetch or process file content.</td><td style="word-wrap: break-word;">{"provider": "google_drive", "items": [{"id": "1AbCd...", "name": "Report.pdf"}]}</td></tr>
+<tr><td style="word-wrap: break-word;">Output</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A single string containing the aggregated content of the requested files. Each file’s content is delineated so downstream nodes can parse per-file sections if needed.</td><td style="word-wrap: break-word;"><file id="123">\n...file content...\n</file>\n<file id="456-chunk:0">\n...file chunk content...\n</file></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- This node’s integration is fixed to Google Drive through the Carbon connector system.
-- Authentication must be scoped correctly to allow access to the target Drive files and any shared drives you intend to include.
-- Large folders or many shared drives can increase discovery time; consider filtering by folders or mime types.
-- Actual file content retrieval or indexing is typically performed by downstream nodes; this node prepares the source reference.
+- **Input format**: file_ids must be valid JSON (e.g., a JSON array of strings).
+- **Authorization**: salt_user_id is injected automatically and is required for Carbon service access.
+- **Filtering**: The optional query can restrict which content is returned; leave blank to fetch all selected files.
+- **Output**: Returns a single combined STRING; if files are chunked, chunk indices may be included in the file identifiers.
+- **Network dependency**: This node relies on the Carbon service; network or service issues can cause request failures.
+- **Timeout**: The request uses a default timeout of approximately 30 seconds.
 
 ## Troubleshooting
-- Authorization failed or expired: Regenerate the Carbon-scoped token and re-run.
-- No files returned: Verify folder IDs, filters, and that the authorized account has access (including shared drives).
-- Partial results: Check rate limits or reduce scope with filters; then re-run to iterate.
-- Unexpected file types: Add or adjust mime type filters in the selection or sync options to include the formats you need.
+- **Invalid JSON in file_ids**: Ensure file_ids is a JSON-encoded array (e.g., ["id1", "id2"]).
+- **Request failed/timeout**: Check network connectivity and Carbon service availability; retry or reduce the number of files.
+- **Empty or missing output**: Verify the provided file IDs exist and are accessible to your account; adjust the query if it filters out all content.
+- **Wrong data source**: This node is specific to Google Drive; use the corresponding connector for other sources (e.g., Dropbox, Gitbook, GitHub).

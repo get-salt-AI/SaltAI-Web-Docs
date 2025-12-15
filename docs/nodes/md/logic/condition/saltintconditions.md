@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Evaluates a comparison between two integers and returns a boolean result. Supports equality, inequality, and standard relational operators. If an unknown operation is provided or an error occurs, the node safely returns False.
+Evaluates a boolean condition between two integers. Supports equality and relational comparisons and outputs a single boolean result. If the operation is invalid or an error occurs, the result defaults to false.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/logic/condition/saltintconditions.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Evaluates a comparison between two integers and returns a boolean result. Suppor
 
 ## Usage
 
-Use this node when you need to compare two integer values to drive logic in your workflow, such as branching, gating, or loop control. Typical scenarios include checking counters, thresholds, or iteration indices to determine the next step.
+Use this node to compare integer values and drive conditional logic in your workflow (e.g., branching, loop control, or enabling/disabling downstream processing). Connect integer-producing nodes to inputs A and B, choose the comparison operator, and use the boolean output to control other nodes.
 
 ## Inputs
 
@@ -26,9 +26,9 @@ Use this node when you need to compare two integer values to drive logic in your
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">a</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Left-hand integer operand for the comparison. Supports very large positive and negative values.</td><td style="word-wrap: break-word;">5</td></tr>
-<tr><td style="word-wrap: break-word;">b</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Right-hand integer operand for the comparison. Supports very large positive and negative values.</td><td style="word-wrap: break-word;">3</td></tr>
-<tr><td style="word-wrap: break-word;">operation</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">Comparison to perform between a and b. One of: ==, !=, <, >, <=, >=.</td><td style="word-wrap: break-word;">></td></tr>
+<tr><td style="word-wrap: break-word;">a</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Left-hand integer operand for the comparison.</td><td style="word-wrap: break-word;">5</td></tr>
+<tr><td style="word-wrap: break-word;">b</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Right-hand integer operand for the comparison.</td><td style="word-wrap: break-word;">10</td></tr>
+<tr><td style="word-wrap: break-word;">operation</td><td>True</td><td style="word-wrap: break-word;">["==", "!=", "<", ">", "<=", ">="]</td><td style="word-wrap: break-word;">Comparison operator to apply between A and B.</td><td style="word-wrap: break-word;"><</td></tr>
 </tbody>
 </table>
 </div>
@@ -45,18 +45,20 @@ Use this node when you need to compare two integer values to drive logic in your
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Boolean outcome of the selected comparison between a and b.</td><td style="word-wrap: break-word;">True</td></tr>
+<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Boolean outcome of the selected integer comparison.</td><td style="word-wrap: break-word;">True</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- Input range for a and b supports very large integers (including negative values).
-- Only the listed operations are supported; selecting an unknown operation yields False.
-- On any internal error during evaluation, the node returns False to fail safely.
-- The node belongs to the SALT/Logic/Conditions category and is suitable for driving conditional flows.
+- **Supported operations**: ==, !=, <, >, <=, >= only.
+- **Input range**: A and B are constrained to large 64-bit integer-like bounds; values outside UI limits are not permitted.
+- **Type strictness**: Inputs must be integers; no implicit casting is performed.
+- **Error behavior**: Unknown operations or runtime errors return false.
+- **Deterministic**: Given the same inputs, the output is deterministic.
 
 ## Troubleshooting
-- If you always get False, verify the 'operation' is one of the supported options (==, !=, <, >, <=, >=).
-- Ensure 'a' and 'b' are valid integers within the allowed range if values are coming from upstream nodes.
-- If behavior is unexpected around boundaries, double-check the operator choice (e.g., <= vs <).
+- **Output is always false**: Ensure the operation string exactly matches one of the supported options and that both inputs are valid integers.
+- **Cannot select value**: Check that A and B are within the allowed numeric range and step (integer increments).
+- **Unexpected result with negatives**: Verify the sign and values of both inputs; comparisons are strictly numeric.
+- **Downstream nodes not reacting**: Confirm the boolean output is correctly connected and that any consuming node expects a BOOLEAN type.

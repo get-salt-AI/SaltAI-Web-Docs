@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Extracts and returns the accumulated items from an accumulation object as a plain list. If the input does not match the expected format, it safely returns an empty list.
+Converts an accumulation object into a single combined list. It expects an accumulation structure containing a key named "accum" and outputs that list; if the structure is missing or invalid, it returns an empty list.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../../images/previews/logic/flow-control/accumulation/combineaccumulationnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Extracts and returns the accumulated items from an accumulation object as a plai
 
 ## Usage
 
-Use this node after any node that builds up an accumulation (e.g., iterative/batch collectors) to convert the accumulated results into a simple list that downstream nodes can consume. Connect the output wherever a standard list of items is needed.
+Use this node after one or more nodes that build up an accumulation across steps or branches. It finalizes the accumulation by producing a single list you can pass to downstream nodes for batched processing, saving, or further aggregation.
 
 ## Inputs
 
@@ -26,7 +26,7 @@ Use this node after any node that builds up an accumulation (e.g., iterative/bat
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">accumulation</td><td>True</td><td style="word-wrap: break-word;">ACCUMULATION</td><td style="word-wrap: break-word;">An accumulation object produced by an upstream collector node. It should be a dictionary containing the key 'accum' mapped to a list of collected items.</td><td style="word-wrap: break-word;">{"accum": ["seq1", "seq2", "seq3"]}</td></tr>
+<tr><td style="word-wrap: break-word;">accumulation</td><td>True</td><td style="word-wrap: break-word;">ACCUMULATION</td><td style="word-wrap: break-word;">An accumulation object produced by upstream nodes. Must be a dictionary-like object containing the key "accum" that maps to a list of collected items.</td><td style="word-wrap: break-word;">{"accum": ["seq1", "seq2", "seq3"]}</td></tr>
 </tbody>
 </table>
 </div>
@@ -43,18 +43,19 @@ Use this node after any node that builds up an accumulation (e.g., iterative/bat
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">combined_list</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">A plain list extracted from the accumulation input. If the input is invalid or missing, this will be an empty list.</td><td style="word-wrap: break-word;">["seq1", "seq2", "seq3"]</td></tr>
+<tr><td style="word-wrap: break-word;">combined_list</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">The combined list extracted from the accumulation (the value of accumulation["accum"]). If the input is invalid or missing, this will be an empty list.</td><td style="word-wrap: break-word;">["seq1", "seq2", "seq3"]</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Input format**: The node expects a dictionary-like object with an 'accum' key containing a list. Any other structure results in an empty list output.
-- **Graceful fallback**: On errors or malformed inputs, the node returns an empty list instead of failing the workflow.
-- **Type-agnostic output**: The output type is a generic list (*). Items are passed through unchanged.
-- **Single responsibility**: This node does not modify items; it only unwraps the accumulation into a list.
+- The input must be a mapping with the key "accum" pointing to a list. Any other structure results in an empty list output.
+- Output type is generic (*) and can contain any item types collected upstream (e.g., strings, dicts, file references).
+- This node does not modify, sort, or deduplicate the accumulated items; it returns the list as provided.
+- If the accumulation is missing or malformed, the node quietly returns an empty list and logs an error internally.
 
 ## Troubleshooting
-- **Empty output list**: Ensure the input is a valid accumulation object like {"accum": [...]} and that the upstream node producing it is correctly connected.
-- **Unexpected item types**: The node passes items through unchanged. Verify the upstream collector produced the expected item types.
-- **Downstream type errors**: Some nodes may expect a specific data type rather than a generic list. Confirm the downstream node accepts a list and the item types inside it.
+- Output is an empty list: Ensure the input is a dict-like object with the key "accum" and that it contains the collected items.
+- Downstream node rejects the output type: Verify downstream compatibility with a generic list and confirm the items inside the list are of the expected type.
+- Unexpected ordering of items: Check upstream accumulation logic; this node preserves the order it receives and does not reorder items.
+- Receiving type errors upstream: Confirm the producer nodes are correctly constructing the accumulation object with the "accum" key as a list.

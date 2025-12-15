@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Retrieves detailed information about a specific RxNorm concept (RxCUI). You provide a JSON array of RxCUIs and choose which index to use, then select the type of information to fetch such as name, NDCs, properties, or all related data. Returns a formatted JSON payload, the selected RxCUI, and a status message.
+Retrieves detailed information for a specific RxNorm concept. You provide a JSON string of RxCUI(s), choose one by index, and select the type of information to fetch (name, NDCs, concept properties, or all related info). Returns a formatted JSON payload with the requested data, the selected RxCUI, and a status message.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/healthcare/rxnorm/saltairxnormconceptinfo.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Retrieves detailed information about a specific RxNorm concept (RxCUI). You prov
 
 ## Usage
 
-Use this node after obtaining one or more RxCUIs (e.g., from a drug search or NDC lookup). Pass the list of RxCUIs as a JSON array string, choose the index of the RxCUI you want to inspect, and select the information type. Integrate it into workflows that require drilling into a drug concept for metadata, identifiers, and related concepts.
+Use this node after obtaining a list of RxCUIs from a prior step (e.g., a drug search). Pass the RxCUIs as a JSON string array, select which RxCUI to examine via its 0-based index, and choose the info type you need for downstream processing or display.
 
 ## Inputs
 
@@ -26,9 +26,9 @@ Use this node after obtaining one or more RxCUIs (e.g., from a drug search or ND
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">rxcuis</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON array string of RxCUIs to select from. The node will pick one RxCUI by index.</td><td style="word-wrap: break-word;">["161", "313", "860975"]</td></tr>
-<tr><td style="word-wrap: break-word;">selected_rxcui</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Zero-based index into the rxcuis array indicating which RxCUI to query.</td><td style="word-wrap: break-word;">0</td></tr>
-<tr><td style="word-wrap: break-word;">info_type</td><td>True</td><td style="word-wrap: break-word;">['name', 'ndcs', 'properties', 'all_related']</td><td style="word-wrap: break-word;">Selects the type of information to retrieve for the chosen RxCUI.</td><td style="word-wrap: break-word;">properties</td></tr>
+<tr><td style="word-wrap: break-word;">rxcuis</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON string representing an array of RxCUIs to choose from. The node will parse this string and use the index to select one RxCUI.</td><td style="word-wrap: break-word;">["161", "198440", "1000004"]</td></tr>
+<tr><td style="word-wrap: break-word;">selected_rxcui</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">0-based index into the parsed RxCUI list indicating which RxCUI to fetch information for.</td><td style="word-wrap: break-word;">0</td></tr>
+<tr><td style="word-wrap: break-word;">info_type</td><td>True</td><td style="word-wrap: break-word;">["name", "ndcs", "properties", "all_related"]</td><td style="word-wrap: break-word;">The category of information to retrieve for the selected RxCUI: 'name' (RxNorm display name), 'ndcs' (associated NDC codes), 'properties' (concept properties), or 'all_related' (all related concept information).</td><td style="word-wrap: break-word;">properties</td></tr>
 </tbody>
 </table>
 </div>
@@ -45,23 +45,24 @@ Use this node after obtaining one or more RxCUIs (e.g., from a drug search or ND
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">concept_info</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Formatted JSON string containing the requested information about the selected RxCUI, including the RxCUI, the info_type, and the returned data.</td><td style="word-wrap: break-word;">{   "rxcui": "161",   "info_type": "properties",   "data": { ... } }</td></tr>
-<tr><td style="word-wrap: break-word;">rxcui</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The selected RxCUI that was queried based on the provided index.</td><td style="word-wrap: break-word;">161</td></tr>
-<tr><td style="word-wrap: break-word;">status</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable status indicating success or describing the encountered error.</td><td style="word-wrap: break-word;">Successfully retrieved properties for RXCUI 161</td></tr>
+<tr><td style="word-wrap: break-word;">concept_info</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A prettified JSON string containing the selected RxCUI, the requested info_type, and the API response under 'data'.</td><td style="word-wrap: break-word;">{ "rxcui": "161", "info_type": "properties", "data": { ... } }</td></tr>
+<tr><td style="word-wrap: break-word;">rxcui</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The selected RxCUI used to generate the result.</td><td style="word-wrap: break-word;">161</td></tr>
+<tr><td style="word-wrap: break-word;">status</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Status message indicating success or describing an error condition.</td><td style="word-wrap: break-word;">Successfully retrieved properties for RXCUI 161</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- Input rxcuis must be a valid JSON array string. If it is not valid JSON or is empty, the node will return an error.
-- selected_rxcui must be within the bounds of the rxcuis array; otherwise, an index out-of-range error is returned.
-- info_type must be one of: name, ndcs, properties, all_related. Any other value will return an error.
-- On API failures, the concept_info output will contain a JSON object including an error field, and status will describe the issue.
-- Whitespace-only or empty RxCUI values are rejected.
+- **Input format**: The rxcuis input must be a valid JSON array string (e.g., "[\"161\"]").
+- **Indexing**: selected_rxcui is 0-based and must be within the bounds of the parsed rxcuis list.
+- **Validation**: An empty or whitespace-only RxCUI will return an error.
+- **Info types**: Only the values 'name', 'ndcs', 'properties', and 'all_related' are accepted.
+- **Output JSON**: The concept_info output is a JSON string that includes keys 'rxcui', 'info_type', and 'data'.
+- **API dependency**: This node depends on an external RxNorm service; network or service errors are surfaced in the status and concept_info fields.
 
 ## Troubleshooting
-- Error: Selected RXCUI index out of range — Ensure selected_rxcui is >= 0 and less than the length of the rxcuis array.
-- Error: RXCUI cannot be empty — Verify the rxcuis array contains non-empty string values and parsing succeeded.
-- Error: Unknown info type — Set info_type to one of: name, ndcs, properties, all_related.
-- API Error in outputs — The external service may be unavailable or the RxCUI is invalid. Inspect the concept_info JSON for the error field and retry with a known-good RxCUI.
-- Invalid JSON for rxcuis — Provide a properly formatted JSON array string such as "[\"161\"]".
+- **Selected RXCUI index out of range**: Ensure selected_rxcui is less than the length of the rxcuis array.
+- **Invalid rxcuis JSON**: Provide a properly formatted JSON array string (e.g., "[\"161\", \"198440\"]").
+- **Empty RxCUI**: Remove empty strings from the rxcuis array; the node rejects empty RxCUI values.
+- **Unknown info type**: Use one of the allowed values: name, ndcs, properties, all_related.
+- **API Error in status**: Retry later or verify the RxCUI is valid; network/service issues or invalid identifiers can cause API errors.

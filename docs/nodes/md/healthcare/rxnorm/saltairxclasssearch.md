@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Searches the RxClass database for drug classes by name and returns a JSON-formatted result and a status message. It validates the input, handles API errors, and formats results to include the original search term with the returned data.
+Searches RxClass by a provided class name and returns the results as a JSON string along with a human-readable status. It validates the input, queries the underlying RxNorm service, and formats the response to include the original search term and results.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/healthcare/rxnorm/saltairxclasssearch.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Searches the RxClass database for drug classes by name and returns a JSON-format
 
 ## Usage
 
-Use this node when you need to find drug classes by name (e.g., "ACE Inhibitors") to explore their identifiers or related metadata. It typically precedes nodes that require a class ID, such as fetching class information or listing class members.
+Use this node when you need to look up RxClass entries by a class name (e.g., therapeutic class or mechanism-related classes). Typically placed early in a workflow to identify class IDs or verify available classes before fetching detailed info or members.
 
 ## Inputs
 
@@ -43,22 +43,21 @@ Use this node when you need to find drug classes by name (e.g., "ACE Inhibitors"
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">class_search_results</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON string containing the search term and the RxClass search results.</td><td style="word-wrap: break-word;">{"search_term": "ACE Inhibitors", "results": {"rxclassMinConceptList": {"rxclassMinConcept": [{"classId": "...", "className": "Angiotensin-Converting Enzyme Inhibitors", "classType": "..."}]}}}</td></tr>
-<tr><td style="word-wrap: break-word;">status</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A human-readable status message indicating success or describing an error.</td><td style="word-wrap: break-word;">Successfully searched RxClass for 'ACE Inhibitors'</td></tr>
+<tr><td style="word-wrap: break-word;">class_search_results</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON string containing the search term and the raw results returned by the RxClass service.</td><td style="word-wrap: break-word;">{   "search_term": "ACE Inhibitors",   "results": { ... } }</td></tr>
+<tr><td style="word-wrap: break-word;">status</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A status message indicating success or describing any error encountered during the search.</td><td style="word-wrap: break-word;">Successfully searched RxClass for 'ACE Inhibitors'</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Input required**: An empty class name returns an empty JSON object ("{}") and an error status.
-- **Output format**: The first output is a JSON-formatted string, not a parsed object. Downstream nodes expecting structured data must parse it.
-- **API behavior**: Results are sourced from the RxClass service; availability, rate limits, and content depend on the external API.
-- **Error handling**: If the API reports an error, the error details are returned within the JSON string and reflected in the status message.
-- **Typical workflow**: Use the returned class identifiers from the results to query class details or members in subsequent nodes.
+- The class_name input must not be empty; an empty value returns an error status and an empty JSON object.
+- The first output is a JSON string; downstream nodes or scripts may need to parse it to access fields such as results.
+- If the underlying service reports an error, the first output contains the error JSON and the status will start with 'API Error:'.
+- Results are formatted to include both the original search_term and the results payload for clarity.
+- Network or service rate limits can affect response time and availability. Retry if transient errors occur.
 
 ## Troubleshooting
-- **No results or empty list**: Verify the spelling of the class name or try a broader term (e.g., search for "Statin" instead of a brand-specific term).
-- **Status shows 'Class name cannot be empty'**: Provide a non-empty class_name value.
-- **API Error in status**: Indicates a network or service issue. Check connectivity, try again later, or reduce request frequency.
-- **Downstream parsing errors**: Ensure you parse the JSON string from class_search_results before accessing fields.
-- **Unexpected fields or structure**: The API response format may change; inspect the raw JSON output to adapt downstream processing.
+- Empty or blank class name: Provide a non-empty class_name to avoid 'Error: Class name cannot be empty'.
+- API Error in status: Inspect the class_search_results JSON for an 'error' field and adjust the query or retry later.
+- Parsing issues downstream: Ensure you parse the JSON string from class_search_results before attempting to access fields.
+- Unexpected or empty results: Verify the class name spelling or try alternative class terms; some classes may not have entries or may be named differently.

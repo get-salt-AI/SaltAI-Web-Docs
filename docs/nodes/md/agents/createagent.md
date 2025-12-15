@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Builds a reusable agent configuration object that defines the model, allowed tools, role, and system prompt for an AI agent. This node does not execute the agent; it prepares the agent profile to be connected to downstream nodes (e.g., multi-agent orchestration).
+Builds an agent configuration object that specifies the model, tool access, role, and system prompt for an AI agent. It does not run any inference by itself; it prepares a reusable AGENT object for downstream nodes.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/agents/createagent.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Builds a reusable agent configuration object that defines the model, allowed too
 
 ## Usage
 
-Use this node at the start of an agents workflow to define one or more agents. Configure the target LLM model, select which external tools the agent may use, and specify the role and system prompt. Connect the resulting AGENT output to nodes that run agents or teams of agents.
+Use this node to define how an agent should behave and what capabilities it has. Typically, you create one or more agents with different roles and tools, then pass them into a team or orchestrator node (e.g., Run Agents Team) to perform a collaborative task.
 
 ## Inputs
 
@@ -26,10 +26,10 @@ Use this node at the start of an agents workflow to define one or more agents. C
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">model</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">Select the LLM model the agent will use for inference. Options are provided by the platform and may include popular model families.</td><td style="word-wrap: break-word;">gpt-4o</td></tr>
-<tr><td style="word-wrap: break-word;">tools</td><td>True</td><td style="word-wrap: break-word;">MULTICOMBO</td><td style="word-wrap: break-word;">Choose external tools the agent is permitted to use. Each selected tool expands the agent's capabilities (e.g., browsing, scraping, calculators, data extraction).</td><td style="word-wrap: break-word;">{'Calculator': True, 'DateTime': True, 'WebSearcher': False, 'WebScraper': False, 'JSONExtractor': False, 'CSVExtractor': False}</td></tr>
-<tr><td style="word-wrap: break-word;">role</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A short, high-level description of the agent's role and expertise. Used to help select or route the agent in team settings and is prepended to the system prompt.</td><td style="word-wrap: break-word;">A helpful AI assistant specialized in data analysis and reporting.</td></tr>
-<tr><td style="word-wrap: break-word;">system_prompt</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The detailed system prompt defining the agent's persona, domain knowledge, and behavioral guidelines.</td><td style="word-wrap: break-word;">You are a meticulous data analyst. Always explain your methodology and cite assumptions. Prefer concise, structured answers.</td></tr>
+<tr><td style="word-wrap: break-word;">model</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">LLM model the agent will use for inference. The available options are populated by the service and may vary over time.</td><td style="word-wrap: break-word;">gpt-4o</td></tr>
+<tr><td style="word-wrap: break-word;">tools</td><td>True</td><td style="word-wrap: break-word;">MULTICOMBO</td><td style="word-wrap: break-word;">Select external tools the agent is allowed to call during reasoning (e.g., web search, scraping, calculation). Enable each tool you want the agent to have.</td><td style="word-wrap: break-word;">{'Calculator': True, 'DateTime': False, 'WebScraper': True}</td></tr>
+<tr><td style="word-wrap: break-word;">role</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A short description of the agent’s role. This is prepended to the system_prompt and also helps agent teams choose the best agent for a given task.</td><td style="word-wrap: break-word;">Expert research analyst focused on summarizing reliable web sources.</td></tr>
+<tr><td style="word-wrap: break-word;">system_prompt</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The agent’s core system prompt that defines personality, domain expertise, constraints, and behavioral rules. Keep it concise and directive.</td><td style="word-wrap: break-word;">You are a careful, source-citing research assistant. Prefer authoritative sources, verify facts, and provide concise, structured answers.</td></tr>
 </tbody>
 </table>
 </div>
@@ -46,19 +46,20 @@ Use this node at the start of an agents workflow to define one or more agents. C
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">agent</td><td style="word-wrap: break-word;">AGENT</td><td style="word-wrap: break-word;">An agent configuration object encapsulating the selected model, enabled tools, role, and system prompt. Intended for connection to nodes that run agents or agent teams.</td><td style="word-wrap: break-word;">{'model': 'gpt-4o', 'tools': {'Calculator': True, 'DateTime': True, 'WebSearcher': False, 'WebScraper': False, 'JSONExtractor': False, 'CSVExtractor': False}, 'role': 'A helpful AI assistant specialized in data analysis and reporting.', 'system_prompt': 'You are a meticulous data analyst. Always explain your methodology and cite assumptions. Prefer concise, structured answers.'}</td></tr>
+<tr><td style="word-wrap: break-word;">agent</td><td style="word-wrap: break-word;">AGENT</td><td style="word-wrap: break-word;">An agent configuration object containing the selected model, tools, role, and system prompt. Feed this into nodes that execute or coordinate agents.</td><td style="word-wrap: break-word;">{'model': 'gpt-4o', 'tools': {'Calculator': True, 'WebScraper': True}, 'role': 'A helpful AI assistant.', 'system_prompt': 'You are a helpful AI assistant.'}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **This node creates configuration only**: It does not run any inference. Connect its AGENT output to execution nodes (e.g., a team runner) to produce results.
-- **Role is prepended to the system prompt**: Keep the role concise and use the system prompt for detailed behavior and constraints.
-- **Tools control capabilities**: If no tools are selected, the agent operates as a pure LLM without external actions.
-- **Model availability**: The list of selectable models and tools is provided by the platform and may change over time.
+- The node only creates an agent configuration; it does not execute any model calls by itself.
+- The list of available models and tools is provided by the platform and can change; select from the shown options.
+- The role text is prepended to the system prompt and is also used by agent teams to route tasks to the most appropriate agent.
+- Tools are disabled by default; explicitly enable only those needed for the agent’s responsibilities.
+- Use multiple Create Agent nodes to define specialized agents, then combine them in a team/orchestration node.
 
 ## Troubleshooting
-- **No or unexpected model options**: If the model list looks limited or outdated, refresh the interface or check platform settings; select an available model closest to your needs.
-- **Agent lacks expected capabilities**: Verify the required tools are enabled in the tools selection. Some actions require specific tools (e.g., web browsing, data extraction).
-- **Downstream node errors**: Ensure the AGENT output is connected to a compatible node that expects an AGENT input.
-- **Behavior not matching expectations**: Refine the system prompt for more explicit instructions and adjust the role to better signal the agent's specialization.
+- No models available in the dropdown: Refresh the workflow or check platform availability; then re-open the node to repopulate options.
+- Selected tool not appearing: Ensure it is enabled (set to true) in the MULTICOMBO selection and that the tool is supported in your environment.
+- Agent not behaving as expected: Refine the role and system_prompt. Keep instructions explicit, and ensure necessary tools are enabled.
+- Downstream node rejects the agent: Confirm the downstream node expects an AGENT type and that all required fields (model, tools, role, system_prompt) are set.

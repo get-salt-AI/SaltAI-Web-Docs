@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Opens a legacy while-style loop region. It emits a flow-control token and up to five pass-through values that act as the initial state for the loop. Actual looping is controlled by the corresponding While Loop Close node.
+Opens a legacy while-loop block and emits a flow-control token plus up to five initial values that will circulate through the loop. It does not evaluate the loop condition itself; it simply initializes the loop and passes values forward to be handled by the corresponding close node.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/logic/flow-control/saltwhileloopopen.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Opens a legacy while-style loop region. It emits a flow-control token and up to 
 
 ## Usage
 
-Use this node at the start of a while-loop section. Provide a boolean condition and any initial values you want to carry through each loop iteration. Connect its outputs to the nodes inside the loop and then to a While Loop Close node that evaluates the condition and triggers the next iteration. Prefer the newer Loop Open/Close nodes for most workflows.
+Use this node at the start of a loop when building a legacy while-style control flow. Connect its FLOW_CONTROL output to SaltWhileLoopClose to create the loop, and wire any initial_value sockets to seed the variables that will iterate. The actual loop continuation condition is enforced at the close node. Prefer the newer Loop Open/Close nodes for new workflows.
 
 ## Inputs
 
@@ -26,12 +26,12 @@ Use this node at the start of a while-loop section. Provide a boolean condition 
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">condition</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Initial condition flag for the loop. The loop proceeds while the paired close node evaluates true.</td><td style="word-wrap: break-word;">True</td></tr>
-<tr><td style="word-wrap: break-word;">initial_value0</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">First value carried into the loop (often used as a counter or primary state).</td><td style="word-wrap: break-word;">5</td></tr>
-<tr><td style="word-wrap: break-word;">initial_value1</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Second value carried into the loop.</td><td style="word-wrap: break-word;">state-a</td></tr>
-<tr><td style="word-wrap: break-word;">initial_value2</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Third value carried into the loop.</td><td style="word-wrap: break-word;">{'items': [1, 2, 3]}</td></tr>
-<tr><td style="word-wrap: break-word;">initial_value3</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Fourth value carried into the loop.</td><td style="word-wrap: break-word;">0.25</td></tr>
-<tr><td style="word-wrap: break-word;">initial_value4</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Fifth value carried into the loop.</td><td style="word-wrap: break-word;">False</td></tr>
+<tr><td style="word-wrap: break-word;">condition</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Initial condition value for the loop. Provided for compatibility; the continuation logic is handled by the close node.</td><td style="word-wrap: break-word;">True</td></tr>
+<tr><td style="word-wrap: break-word;">initial_value0</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">First value to carry into the loop. Can be any type.</td><td style="word-wrap: break-word;">0</td></tr>
+<tr><td style="word-wrap: break-word;">initial_value1</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Second value to carry into the loop. Can be any type.</td><td style="word-wrap: break-word;">start</td></tr>
+<tr><td style="word-wrap: break-word;">initial_value2</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Third value to carry into the loop. Can be any type.</td><td style="word-wrap: break-word;">42</td></tr>
+<tr><td style="word-wrap: break-word;">initial_value3</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Fourth value to carry into the loop. Can be any type.</td><td style="word-wrap: break-word;">3.14</td></tr>
+<tr><td style="word-wrap: break-word;">initial_value4</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Fifth value to carry into the loop. Can be any type.</td><td style="word-wrap: break-word;">{'key': 'value'}</td></tr>
 </tbody>
 </table>
 </div>
@@ -48,27 +48,25 @@ Use this node at the start of a while-loop section. Provide a boolean condition 
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">FLOW_CONTROL</td><td style="word-wrap: break-word;">FLOW_CONTROL</td><td style="word-wrap: break-word;">Flow-control token that must be connected to the matching While Loop Close node to form the loop.</td><td style="word-wrap: break-word;">Flow control handle</td></tr>
-<tr><td style="word-wrap: break-word;">value0</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Pass-through of initial_value0 for use inside the loop.</td><td style="word-wrap: break-word;">5</td></tr>
-<tr><td style="word-wrap: break-word;">value1</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Pass-through of initial_value1 for use inside the loop.</td><td style="word-wrap: break-word;">state-a</td></tr>
-<tr><td style="word-wrap: break-word;">value2</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Pass-through of initial_value2 for use inside the loop.</td><td style="word-wrap: break-word;">{'items': [1, 2, 3]}</td></tr>
-<tr><td style="word-wrap: break-word;">value3</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Pass-through of initial_value3 for use inside the loop.</td><td style="word-wrap: break-word;">0.25</td></tr>
-<tr><td style="word-wrap: break-word;">value4</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Pass-through of initial_value4 for use inside the loop.</td><td style="word-wrap: break-word;">False</td></tr>
+<tr><td style="word-wrap: break-word;">FLOW_CONTROL</td><td style="word-wrap: break-word;">FLOW_CONTROL</td><td style="word-wrap: break-word;">Flow-control token to establish the loop and link to the corresponding close node.</td><td style="word-wrap: break-word;"><flow-control-token></td></tr>
+<tr><td style="word-wrap: break-word;">value0</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Pass-through of initial_value0 for use inside the loop body.</td><td style="word-wrap: break-word;">0</td></tr>
+<tr><td style="word-wrap: break-word;">value1</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Pass-through of initial_value1 for use inside the loop body.</td><td style="word-wrap: break-word;">start</td></tr>
+<tr><td style="word-wrap: break-word;">value2</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Pass-through of initial_value2 for use inside the loop body.</td><td style="word-wrap: break-word;">42</td></tr>
+<tr><td style="word-wrap: break-word;">value3</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Pass-through of initial_value3 for use inside the loop body.</td><td style="word-wrap: break-word;">3.14</td></tr>
+<tr><td style="word-wrap: break-word;">value4</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Pass-through of initial_value4 for use inside the loop body.</td><td style="word-wrap: break-word;">{'key': 'value'}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Deprecated**: This node is marked as deprecated. Prefer using Loop Open and Loop Close for new designs.
-- **Pairing required**: Must be paired with While Loop Close to function. The close node controls iteration and condition evaluation.
-- **State slots**: Provides exactly 5 state/value slots (value0–value4). Unused inputs will pass through as null.
-- **Condition handling**: The condition is provided here but is evaluated by the close node each iteration.
-- **Common pattern**: When used via For Loop wrappers, initial_value0 often holds the iteration counter.
-- **Type agnostic**: All value slots are wildcard-typed and can carry any supported data type.
+- This node is deprecated. Prefer using Loop Open and Loop Close for new designs.
+- The loop condition is not enforced here; it must be connected and evaluated at SaltWhileLoopClose.
+- Supports up to five wildcard payload sockets (initial_value0–4) that circulate through the loop.
+- All initial_value inputs are optional; missing values propagate as empty/None and should be handled in your graph.
+- Must be paired with SaltWhileLoopClose to form a functioning loop.
 
 ## Troubleshooting
-- **Loop never iterates**: Ensure the FLOW_CONTROL output is connected to a While Loop Close node and that the close node's condition input is correctly wired.
-- **Values reset or None inside loop**: Provide the corresponding initial_value inputs on the open node and ensure those outputs are connected through the loop into the close node.
-- **Infinite loop or unexpected repeats**: Inspect the condition fed into the close node; it must eventually evaluate to false or update state each iteration.
-- **Wrong data carried between iterations**: Verify that the loop close node routes updated values back into the open node's inputs for the next iteration.
-- **Socket limit reached**: Only five value slots are available (0–4). Consolidate data into a structure if more are needed, or switch to the newer Loop nodes.
+- No loop occurs: Ensure FLOW_CONTROL from this node is connected to SaltWhileLoopClose and that SaltWhileLoopClose receives a valid condition input.
+- Values are None inside the loop: Provide initial_value inputs or ensure upstream nodes produce outputs before this node executes.
+- Socket mismatch errors: Keep payload counts consistent between the open and close nodes; both sides expect up to five values in the same order.
+- Unexpected infinite looping: Check the condition wired into SaltWhileLoopClose and verify it becomes false when the loop should terminate.

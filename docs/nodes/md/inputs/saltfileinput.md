@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Reads a file that has been uploaded to the workflow and returns its full path along with its UTF-8 text contents. For files commonly considered binary (images, office docs, archives, etc.), only the file path is output and text contents are suppressed. Useful for passing a file path downstream and optionally extracting human-readable text for text-friendly formats.
+Reads a file that was uploaded to the workflow and outputs its full path and, when applicable, its UTF-8 text contents. Non-text and certain binary file types are blocked from content extraction to avoid unreadable output; for these, only the path is provided.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/inputs/saltfileinput.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Reads a file that has been uploaded to the workflow and returns its full path al
 
 ## Usage
 
-Use this node at the start of a workflow when you need to reference an uploaded file by path and, if applicable, read its UTF-8 text contents. Typical flows include routing the file path to processors that accept files and sending the text contents to text-processing nodes when the file is a text-based format.
+Use this node at the beginning of a workflow when you need to reference an uploaded file or extract its text content for downstream processing. Select a file from the workflow's upload directory; pass the file_path output to nodes that operate on files (images, PDFs, etc.) and use text_contents for nodes that consume text.
 
 ## Inputs
 
@@ -26,7 +26,7 @@ Use this node at the start of a workflow when you need to reference an uploaded 
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">file</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Select a file from the workflow's uploaded files directory. The selection list is populated from files you have uploaded to this workflow.</td><td style="word-wrap: break-word;">notes/session_plan.txt</td></tr>
+<tr><td style="word-wrap: break-word;">file</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Select a file from the workflow's input directory. You can also upload a new file via the selector.</td><td style="word-wrap: break-word;">notes.txt</td></tr>
 </tbody>
 </table>
 </div>
@@ -43,24 +43,23 @@ Use this node at the start of a workflow when you need to reference an uploaded 
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">file_path</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Absolute or annotated path to the selected file for use by downstream nodes.</td><td style="word-wrap: break-word;">/input/notes/session_plan.txt</td></tr>
-<tr><td style="word-wrap: break-word;">text_contents</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">UTF-8 decoded contents of the file. For non-text or blocked file types, this may be empty or not human-readable.</td><td style="word-wrap: break-word;">Agenda:\n1) Introductions\n2) Roadmap review\n3) Action items</td></tr>
+<tr><td style="word-wrap: break-word;">file_path</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Absolute path to the selected file for use by other nodes.</td><td style="word-wrap: break-word;">/inputs/notes.txt</td></tr>
+<tr><td style="word-wrap: break-word;">text_contents</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">UTF-8 decoded text contents of the file when readable; empty string for blocked or non-text files.</td><td style="word-wrap: break-word;">Meeting notes for Q2...</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- This node suppresses text extraction for common binary file types such as images, PDFs, Office documents, and archives. For these, text_contents may be empty.
-- Text is decoded as UTF-8. Files in other encodings may fail to decode, resulting in empty or partial contents.
-- You must upload the file to the workflow's input directory before it will appear in the selection list.
-- The file path is still returned even when text extraction is suppressed, allowing downstream file-processing nodes to consume it.
-- Validation ensures the selected file exists; invalid selections will fail validation.
+- **Content extraction blocklist**: Text extraction is skipped for these extensions: .png, .jpg, .jpeg, .gif, .webp, .heic, .heif, .hevc, .avif, .tiff, .bmp, .ico, .svg, .pdf, .doc, .docx, .xls, .xlsx, .ppt, .pptx, .zip, .gzip, .7z.
+- **Encoding**: Files are read as binary and decoded as UTF-8. If decoding fails, text_contents will remain empty and an error is logged.
+- **Path validity**: The node validates that the selected file exists in the annotated input directory before running.
+- **Best practice**: Use file_path for non-text file processing (e.g., images or archives) and text_contents only for plain-text compatible files.
 
 ## Troubleshooting
-- Selected file not listed: Ensure the file has been uploaded to this workflow and resides in the workflow's input directory.
-- Invalid file path error: The file may have been removed or renamed after selection. Re-upload or reselect the file.
-- Empty text_contents: The file may be a binary or blocked type (e.g., .png, .pdf, .docx) or not valid UTF-8. Use a text-based format (e.g., .txt, .json) or process the file differently.
-- Garbled characters in text_contents: The file encoding may not be UTF-8. Convert the file to UTF-8 and try again.
+- **Invalid file path**: If you see 'Invalid file path: <filename>', ensure the file is present in the workflow's input directory or re-upload it via the selector.
+- **Empty text_contents for text file**: The file may not be UTF-8 encoded or may be on the blocklist. Convert the file to UTF-8 or use a different node that supports the file type.
+- **Garbled text**: This indicates a non-UTF-8 encoding. Convert the file to UTF-8 before uploading.
+- **No files listed**: Verify that the input directory contains files and that you have permission to read them.
 
 ## Example Pipelines
 

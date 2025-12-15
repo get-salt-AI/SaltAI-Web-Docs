@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Runs a web search against the Google-backed endpoint and returns a JSON-formatted list of documents (as a string). Supports advanced query operators for precise filtering and can limit results by timeframe and safe search.
+Runs a web search using the Google endpoint of the Agents service and returns the search results as a JSON-formatted string. Supports common Google search notations like exact phrases, exclusions, site/domain limits, file types, and related sites. Designed for fetching a limited set of top results with optional safe search and time range filtering.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/agents/websearchgoogle.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Runs a web search against the Google-backed endpoint and returns a JSON-formatte
 
 ## Usage
 
-Use this node when you need relevant web pages, links, and snippets from the open web to feed into downstream tasks like summarization, RAG, or fact-checking. Provide a clear query (optionally with advanced operators), set max results (up to 10), and optionally constrain by safesearch and time window.
+Use this node to retrieve web documents relevant to a query from Google, then pass the returned JSON string into downstream parsing or RAG pipelines. Typical workflow: provide a precise query (optionally with Google operators), set max_results and safesearch, optionally constrain by recent time windows, then parse the 'documents' JSON for titles, URLs, and snippets.
 
 ## Inputs
 
@@ -26,11 +26,11 @@ Use this node when you need relevant web pages, links, and snippets from the ope
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">query</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The search query text. Supports advanced Google-like operators for precision.</td><td style="word-wrap: break-word;">site:example.com "machine learning" -tutorial filetype:pdf</td></tr>
-<tr><td style="word-wrap: break-word;">max_results</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum number of search results to return. Upper bound of 10.</td><td style="word-wrap: break-word;">5</td></tr>
-<tr><td style="word-wrap: break-word;">safesearch</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Enable or disable safe search filtering.</td><td style="word-wrap: break-word;">true</td></tr>
-<tr><td style="word-wrap: break-word;">timelimit</td><td>True</td><td style="word-wrap: break-word;">['None', 'd', 'w', 'm', 'y']</td><td style="word-wrap: break-word;">Restricts results to a recent timeframe. d=day, w=week, m=month, y=year. Use 'None' for no time restriction.</td><td style="word-wrap: break-word;">w</td></tr>
-<tr><td style="word-wrap: break-word;">timelimit_number</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Number of time units to apply when timelimit is set. For example, w + 2 returns results from the last 2 weeks.</td><td style="word-wrap: break-word;">2</td></tr>
+<tr><td style="word-wrap: break-word;">query</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The search query. Supports Google operators: "exact phrase", -exclude, site:domain.com, filetype:ext, related:domain.com. Must be a non-empty string.</td><td style="word-wrap: break-word;">site:arxiv.org "diffusion models" filetype:pdf</td></tr>
+<tr><td style="word-wrap: break-word;">max_results</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum number of results to return. Must be between 1 and 10.</td><td style="word-wrap: break-word;">5</td></tr>
+<tr><td style="word-wrap: break-word;">safesearch</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Enable or disable safe search filtering of explicit content.</td><td style="word-wrap: break-word;">true</td></tr>
+<tr><td style="word-wrap: break-word;">timelimit</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">Time window for results. Choose one of: None, d (day), w (week), m (month), y (year).</td><td style="word-wrap: break-word;">w</td></tr>
+<tr><td style="word-wrap: break-word;">timelimit_number</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Number of time units when timelimit is set. For example, timelimit=w and timelimit_number=2 restricts results to the last 2 weeks.</td><td style="word-wrap: break-word;">2</td></tr>
 </tbody>
 </table>
 </div>
@@ -47,26 +47,26 @@ Use this node when you need relevant web pages, links, and snippets from the ope
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">documents</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON-formatted string containing the list of found documents (e.g., titles, URLs, and content snippets).</td><td style="word-wrap: break-word;">[{"title": "Intro to ML", "url": "https://example.com/intro", "snippet": "..."}]</td></tr>
+<tr><td style="word-wrap: break-word;">documents</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON-formatted string representing the list of search result documents returned by the Agents service. Typically includes fields like title, url, and content/snippet depending on service response.</td><td style="word-wrap: break-word;">[{"title": "Example Result", "url": "https://example.com", "snippet": "..."}]</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- The query must be a non-empty string; an empty query will raise an error.
-- This node returns only a documents list (no 'answer' field).
-- The result is a JSON string; parse it before downstream structured use.
-- Advanced operators supported include: exact phrase ("term"), exclude (-term), site:domain.com, filetype:pdf, related:domain.com.
-- Maximum results are capped at 10.
-- A 60-second timeout applies to the underlying request.
+- **Non-empty query required**: The node will raise an error if 'query' is empty or only whitespace.
+- **Output is a JSON string**: Downstream nodes may need to parse this string to access individual document fields.
+- **Result count bounds**: 'max_results' must be between 1 and 10.
+- **Time filter usage**: 'timelimit_number' only applies when 'timelimit' is not 'None'.
+- **Safe search behavior**: 'safesearch' controls filtering at the service level; it may still return some borderline content depending on source behavior.
+- **Network call and timeout**: The node performs an HTTP POST to the Agents service and may raise errors on timeouts or non-200 responses.
 
 ## Troubleshooting
-- Query is empty error: Ensure 'query' is not blank or whitespace.
-- No results returned: Broaden the query, remove restrictive operators, or increase 'max_results'.
-- Time filter not applied: Set both 'timelimit' (d/w/m/y) and 'timelimit_number' to specify the window.
-- Non-200 response from service: Check service availability and your configuration; the node will raise an exception with the returned error detail.
-- JSON parse issues downstream: Remember the output is a JSON string; parse it before using as structured data.
-- Unexpected content due to safesearch: Toggle 'safesearch' to adjust filtering behavior.
+- **Empty query error**: Ensure 'query' is a non-empty string without only whitespace.
+- **Service error or non-200 response**: Check the Agents service availability and credentials/configuration; review the error message returned by the node.
+- **JSON parsing downstream**: If a downstream step fails, ensure you parse the 'documents' output from STRING into structured data first.
+- **No results returned**: Loosen the query, remove restrictive operators (like site: or filetype:), or increase 'max_results'.
+- **Time window too narrow**: If using 'timelimit', increase 'timelimit_number' or set 'timelimit' to 'None' to broaden results.
+- **Unexpected content despite safesearch**: Set 'safesearch' to true and refine the query terms; note that filtering depends on upstream sources and may not be absolute.
 
 ## Example Pipelines
 

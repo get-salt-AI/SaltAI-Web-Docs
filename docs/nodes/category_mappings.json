@@ -29,6 +29,10 @@
   "inputs": [
     "Inputs"
   ],
+  "biotech/functional-prediction": [
+    "Biotech",
+    "Functional Prediction"
+  ],
   "logic/condition": [
     "Logic",
     "Condition"
@@ -67,6 +71,9 @@
     "Utilities",
     "Math"
   ],
+  "logic": [
+    "Logic"
+  ],
   "logic/logic-utility": [
     "Logic",
     "Logic Utility"
@@ -90,6 +97,10 @@
   "connectors/mysql": [
     "Connectors",
     "MySQL"
+  ],
+  "connectors/neo4j": [
+    "Connectors",
+    "Neo4J"
   ],
   "connectors/oracle": [
     "Connectors",

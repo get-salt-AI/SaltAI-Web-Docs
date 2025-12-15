@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Creates a Carbon data connector targeting Amazon S3. It delegates to the Carbon integration layer using the S3 integration type and inherits all behavior from the Carbon data connector base class.
+Creates a Carbon data connector configured for Amazon S3. This node acts as a thin integration selector that tells the Carbon pipeline to use the S3 connector; all common behavior (auth, configuration, syncing, and data retrieval) is handled by the shared Carbon data connector base logic.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/knowledge-bases/carbonconnectors3.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Creates a Carbon data connector targeting Amazon S3. It delegates to the Carbon 
 
 ## Usage
 
-Use this node when you need to register or reference an S3 data source within Carbon-powered workflows (e.g., syncing or accessing files stored in an S3 bucket). Typically placed early in a data pipeline to define the S3 source before subsequent processing or synchronization nodes.
+Use this node when you need to connect and sync documents from an Amazon S3 bucket into Salt for downstream search, RAG, or analytics. Place it where your workflow collects or updates external data; pair it with nodes that trigger connection/auth flows and nodes that consume the resulting dataset or files.
 
 ## Inputs
 
@@ -26,7 +26,7 @@ Use this node when you need to register or reference an S3 data source within Ca
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">Not specified</td><td>False</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Inputs are defined by the shared Carbon data connector base node. Specific fields for S3 (e.g., bucket configuration or credentials) are not specified in the exposed implementation.</td><td style="word-wrap: break-word;">Not specified</td></tr>
+<tr><td style="word-wrap: break-word;">Not specified</td><td>False</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Inputs for this node are defined by the shared Carbon data connector base. This node only specifies the S3 integration type; the base layer manages actual parameters (e.g., auth, scopes, sync controls).</td><td style="word-wrap: break-word;">Not specified</td></tr>
 </tbody>
 </table>
 </div>
@@ -43,17 +43,19 @@ Use this node when you need to register or reference an S3 data source within Ca
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Outputs are defined by the shared Carbon data connector base node. Typically this would provide a configured connector handle or reference for downstream nodes.</td><td style="word-wrap: break-word;">Not specified</td></tr>
+<tr><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Outputs are provided by the shared Carbon data connector base and typically represent a configured connector/dataset reference for downstream nodes.</td><td style="word-wrap: break-word;">Not specified</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- This node is a thin specialization that selects the S3 integration; all configuration, input/output schema, and execution behavior come from the Carbon data connector base node.
-- Display name is "S3" in the UI.
-- Ensure your environment or platform has appropriate credentials and access to S3 and to the Carbon service as required.
+- **Integration selector**: This node only selects the S3 integration; the shared Carbon data connector base handles inputs, authentication, syncing, and actual data retrieval.
+- **Authentication required**: You must complete authentication/authorization for S3 in the Carbon connection flow before data can be accessed.
+- **Permissions**: Ensure the S3 credentials used have at least list and read permissions on the bucket/prefix you intend to index.
+- **Large datasets**: Initial syncs on large buckets or wide prefixes can take time; schedule accordingly.
 
 ## Troubleshooting
-- If the node appears but provides no fields, verify the Carbon base connector node is available and correctly loaded in your environment.
-- If connections to S3 fail at runtime, check that S3 credentials, bucket permissions, and network access are correctly configured in the platform or Carbon service configuration.
-- If downstream nodes cannot use this connector, ensure they accept and are wired to the connector output type defined by the Carbon base node.
+- **Authentication fails**: Re-run the Carbon connection flow and confirm credentials are valid and not expired.
+- **No files returned**: Verify the S3 bucket/prefix is correct and that the configured IAM user/role has list and read permissions.
+- **Slow or incomplete sync**: Narrow the S3 prefix, reduce filters, or allow more time for the initial indexing to complete before downstream steps depend on the data.
+- **Access denied errors**: Confirm bucket policies, ACLs, and IAM policies allow the Carbon connector to read the specified resources.

@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Merges two JSON objects. Supports shallow (overwrite) or deep (recursive) merge modes. If inputs are strings, they are parsed as JSON; in deep mode, nested dictionaries are merged while non-dict values are overwritten by the second input.
+Merges two JSON objects into a single object. Supports shallow merge (json2 overwrites json1 at the top level) and deep merge (nested objects are combined recursively while non-object values are overwritten by json2). If inputs are provided as JSON strings, they are parsed automatically.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/utilities/json/saltjsonmerge.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Merges two JSON objects. Supports shallow (overwrite) or deep (recursive) merge 
 
 ## Usage
 
-Use this node to combine configuration objects, parameter sets, or partial payloads into a single JSON object. Choose shallow when you want json2 to overwrite json1 at the top level; choose deep to recursively merge nested dictionaries. Feed the result to downstream nodes that require a unified JSON object.
+Use this node when you need to combine configuration objects, augment default data with overrides, or consolidate two JSON structures. Choose 'shallow' to overwrite only top-level keys, or 'deep' to recursively merge nested dictionaries. Place it after nodes that produce JSON data or JSON strings, and before any node that consumes the merged result.
 
 ## Inputs
 
@@ -26,9 +26,9 @@ Use this node to combine configuration objects, parameter sets, or partial paylo
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">json1</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">First JSON object (or JSON string) to merge. If a string is provided, it will be parsed; invalid or empty strings become an empty object.</td><td style="word-wrap: break-word;">{'a': 1, 'b': {'x': 10}}</td></tr>
-<tr><td style="word-wrap: break-word;">json2</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Second JSON object (or JSON string) to merge. Values from json2 overwrite or merge into json1 depending on the mode. If a string is provided, it will be parsed; invalid or empty strings become an empty object.</td><td style="word-wrap: break-word;">{'b': {'y': 20}, 'c': 3}</td></tr>
-<tr><td style="word-wrap: break-word;">merge_mode</td><td>True</td><td style="word-wrap: break-word;">["shallow", "deep"]</td><td style="word-wrap: break-word;">Select the merge strategy. 'shallow' overwrites top-level keys with json2. 'deep' recursively merges nested dictionaries; non-dict values are overwritten by json2.</td><td style="word-wrap: break-word;">deep</td></tr>
+<tr><td style="word-wrap: break-word;">json1</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">First JSON object (or JSON string) to merge. Typically the base or default data.</td><td style="word-wrap: break-word;">{"api": {"timeout": 10, "retries": 2}, "features": {"beta": false}}</td></tr>
+<tr><td style="word-wrap: break-word;">json2</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Second JSON object (or JSON string) to merge. Values here overwrite or extend json1 depending on the merge mode.</td><td style="word-wrap: break-word;">{"api": {"timeout": 20}, "features": {"beta": true}}</td></tr>
+<tr><td style="word-wrap: break-word;">merge_mode</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">How to merge the two objects. 'shallow' overwrites top-level keys from json2. 'deep' recursively merges nested objects while overwriting non-object values with json2.</td><td style="word-wrap: break-word;">deep</td></tr>
 </tbody>
 </table>
 </div>
@@ -45,20 +45,20 @@ Use this node to combine configuration objects, parameter sets, or partial paylo
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">merged_data</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The merged JSON object after applying the selected merge strategy.</td><td style="word-wrap: break-word;">{'a': 1, 'b': {'x': 10, 'y': 20}, 'c': 3}</td></tr>
+<tr><td style="word-wrap: break-word;">merged_data</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The merged JSON object. When deep merging, nested dictionaries are combined; otherwise json2 overwrites top-level keys from json1.</td><td style="word-wrap: break-word;">{"api": {"timeout": 20, "retries": 2}, "features": {"beta": true}}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Parsing behavior**: If json1 or json2 are strings, the node attempts to parse them as JSON. Invalid or empty strings become {} before merging.
-- **Type requirements for merge**: Only dictionaries are merged. If either input is not a dictionary (e.g., a list or scalar), the node returns json2 as the result.
-- **Shallow vs Deep**: Shallow merge applies {**json1, **json2}; deep merge recursively merges dictionary values, while arrays and scalars are overwritten by json2.
-- **Error handling**: On merge errors, the node logs an error and returns json1 unchanged.
-- **No array merging**: Arrays/lists are not merged element-wise; if encountered at any key, json2's value replaces json1's value.
+- **Input flexibility**: If json1 or json2 are strings, the node attempts to parse them as JSON. Invalid or empty strings parse to an empty object for merging.
+- **Type requirement for merging**: Merging applies to dictionaries (objects). If either input is not a dictionary after parsing, the node returns json2 as-is.
+- **Deep vs shallow behavior**: Deep merge only combines nested objects (dictionaries). Lists and primitive values are not merged element-wise; json2 values overwrite json1 values for those keys.
+- **Default mode**: The default merge_mode is 'deep'. Set to 'shallow' if you only want top-level overwrites.
+- **Key conflicts**: On conflicts, json2 takes precedence.
 
 ## Troubleshooting
-- **Output is just json2**: Ensure both inputs parse to dictionaries. If an input is a list, number, string (unparsed), or None, the node will return json2.
-- **Fields not merging as expected**: Confirm 'merge_mode' is set to 'deep' for recursive merging. In 'shallow' mode, only top-level keys are considered and json2 overwrites json1.
-- **Invalid JSON string inputs**: If providing strings, ensure they are valid JSON. Invalid strings are treated as {} which may lead to unexpected overwrites or missing data.
-- **Nested arrays not combined**: This node does not merge arrays. If you need array concatenation or custom list merging, preprocess those keys before using this node.
+- **Output is unchanged or unexpected**: Ensure both inputs are valid JSON objects (not arrays or primitives). If one input is not an object, the node returns json2.
+- **Lists are not combined**: This node does not perform element-wise list merges. Convert lists to objects with meaningful keys or handle list merging upstream.
+- **Invalid JSON string input**: If a string fails to parse, it is treated as an empty object. Validate your JSON strings or use a validation node beforehand.
+- **Nested data not merging**: Verify merge_mode is set to 'deep'. In 'shallow' mode, only top-level keys are considered.

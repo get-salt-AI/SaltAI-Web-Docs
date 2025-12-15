@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Creates a Carbon data connector configured for Microsoft OneDrive. It delegates all behavior to the shared Carbon data-connector base, setting the integration to OneDrive so documents and files from a connected OneDrive account can be ingested and used downstream.
+Connects to your OneDrive account through Salt AI’s Carbon integration. This node serves as a data connector, enabling authenticated access to browse or sync files and pass them downstream in your workflow. It relies on a shared Carbon integration layer for authentication and data retrieval.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/knowledge-bases/carbonconnectoronedrive.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Creates a Carbon data connector configured for Microsoft OneDrive. It delegates 
 
 ## Usage
 
-Use this node when you need to connect a OneDrive account as a data source for document ingestion and retrieval within a Salt workflow. Place it early in your pipeline to establish the data connection; subsequent nodes can consume the resulting data handle or dataset to search, retrieve, or process files.
+Use this node when you need to ingest or reference content stored in OneDrive within a workflow. Typically, you will first authenticate your OneDrive account via the Carbon connection modal, then use this node to expose files or file references that can be processed by subsequent nodes (e.g., document parsers, embedders, or analysis nodes).
 
 ## Inputs
 
@@ -26,7 +26,9 @@ Use this node when you need to connect a OneDrive account as a data source for d
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">Not specified</td><td>False</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Inputs are defined by the shared Carbon data connector base. This node only specifies that the target integration is OneDrive.</td><td style="word-wrap: break-word;">Not specified</td></tr>
+<tr><td style="word-wrap: break-word;">connection</td><td>False</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">The authenticated OneDrive connection or account context to use. If not provided, you may be prompted to connect via the Carbon modal.</td><td style="word-wrap: break-word;">Not specified</td></tr>
+<tr><td style="word-wrap: break-word;">path_or_scope</td><td>False</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Optional folder path or scope within OneDrive to target for listing or fetching files.</td><td style="word-wrap: break-word;">/Shared Documents/Reports</td></tr>
+<tr><td style="word-wrap: break-word;">filters</td><td>False</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Optional filters to narrow down which files are returned (e.g., file types, updated-after timestamps).</td><td style="word-wrap: break-word;">fileType=pdf; updatedAfter=2024-01-01</td></tr>
 </tbody>
 </table>
 </div>
@@ -43,21 +45,19 @@ Use this node when you need to connect a OneDrive account as a data source for d
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Outputs are defined by the shared Carbon data connector base. Typically this is a data handle or dataset reference representing the connected OneDrive source.</td><td style="word-wrap: break-word;">Not specified</td></tr>
+<tr><td style="word-wrap: break-word;">data</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">The OneDrive-sourced data or file references retrieved via Carbon. This is intended to be consumed by downstream nodes for parsing, indexing, or analysis.</td><td style="word-wrap: break-word;">Not specified</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Integration Target**: This node strictly targets the OneDrive integration; it cannot be repurposed for other sources.
-- **Authentication Required**: A valid OneDrive authorization (and any required organizational consent) must be completed for access.
-- **Permissions Matter**: The connector will only access files the authenticated user or service principal is permitted to read.
-- **Ingestion Timing**: Initial syncs and indexing may take time depending on data volume and organizational policies.
-- **Service Dependency**: Functionality depends on the Carbon data service and its configuration in your environment.
+- Authentication is required: you must connect your OneDrive account using the Carbon connection flow before this node can access content.
+- Access is permission-bound: results depend on the permissions of the connected OneDrive account within your organization/tenant.
+- This node maps to the OneDrive integration type internally; behavior for listing, filtering, and retrieval is standardized across Carbon connectors.
+- If your workflow expects specific data formats, ensure downstream nodes support the structure returned by Carbon for OneDrive content.
 
 ## Troubleshooting
-- **Authentication fails**: Re-run the OneDrive authorization flow and ensure the correct tenant and account are used. Verify any required admin consent has been granted.
-- **No files returned**: Confirm the authenticated account has read access to the intended folders/files and that the data has finished syncing/indexing.
-- **Rate limits or throttling**: OneDrive API limits can apply. Retry later or reduce the frequency/volume of requests.
-- **Permissions errors**: Check OneDrive/Entra ID (Azure AD) app permissions and scopes granted to the integration, and ensure the user/service principal has appropriate access.
-- **Service unavailable**: Verify the Carbon service is reachable and healthy in your environment; check network and service status.
+- No files appear: Confirm your OneDrive connection is established and that the account has access to the specified path or shared folders.
+- Authentication prompts repeatedly: Sign out and reconnect your OneDrive account via the Carbon modal, then rerun the workflow.
+- Unexpected empty results with filters: Remove or relax filters (file type, date range) to verify content is discoverable.
+- Permission errors: Verify you have the necessary OneDrive/SharePoint permissions and that the connection uses the correct account.

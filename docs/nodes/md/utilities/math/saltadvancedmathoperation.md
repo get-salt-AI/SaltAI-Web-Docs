@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Performs a set of advanced mathematical operations on a number. Operations include absolute value, square root, cube root, factorial (of the integer part), and integer greatest common divisor (GCD) and least common multiple (LCM) with a second value. Returns a single floating-point result with sensible safeguards for invalid inputs.
+Performs a set of advanced mathematical operations on a single number, with optional use of a second integer for GCD/LCM. Supported operations include absolute value, square root, cube root, factorial (of the integer part), greatest common divisor, and least common multiple.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/utilities/math/saltadvancedmathoperation.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Performs a set of advanced mathematical operations on a number. Operations inclu
 
 ## Usage
 
-Use this node when you need single-value advanced math operations within a pipeline, such as normalizing values (abs), computing roots, applying factorials for combinatorial logic, or working with integer relationships via GCD/LCM. Feed a numeric value and select the desired operation; provide the second_value only for GCD/LCM.
+Use this node when you need single-input advanced math utilities or integer-based pair operations (GCD/LCM). Typical workflow: feed a numeric value, choose the operation, and provide the secondary integer only when using GCD or LCM. The node returns the result as a float.
 
 ## Inputs
 
@@ -26,9 +26,9 @@ Use this node when you need single-value advanced math operations within a pipel
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">value</td><td>True</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">Primary numeric input. Used by all operations. Interpreted as a real number; for factorial, GCD, and LCM the integer part of its absolute value is used internally.</td><td style="word-wrap: break-word;">9.0</td></tr>
-<tr><td style="word-wrap: break-word;">operation</td><td>True</td><td style="word-wrap: break-word;">ENUM</td><td style="word-wrap: break-word;">Operation to perform. One of: abs, sqrt, cbrt, factorial, gcd, lcm.</td><td style="word-wrap: break-word;">sqrt</td></tr>
-<tr><td style="word-wrap: break-word;">second_value</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Auxiliary integer used only for GCD and LCM. Ignored for other operations. Must be between 1 and 1000 inclusive.</td><td style="word-wrap: break-word;">12</td></tr>
+<tr><td style="word-wrap: break-word;">value</td><td>True</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">Primary numeric input. Used by all operations. For factorial/GCD/LCM, its absolute integer part is used internally.</td><td style="word-wrap: break-word;">16.0</td></tr>
+<tr><td style="word-wrap: break-word;">operation</td><td>True</td><td style="word-wrap: break-word;">["abs", "sqrt", "cbrt", "factorial", "gcd", "lcm"]</td><td style="word-wrap: break-word;">Selects the operation to perform.</td><td style="word-wrap: break-word;">sqrt</td></tr>
+<tr><td style="word-wrap: break-word;">second_value</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Secondary integer used only for GCD and LCM. Ignored for other operations.</td><td style="word-wrap: break-word;">12</td></tr>
 </tbody>
 </table>
 </div>
@@ -45,20 +45,23 @@ Use this node when you need single-value advanced math operations within a pipel
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">The result of the selected advanced operation.</td><td style="word-wrap: break-word;">3.0</td></tr>
+<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">The computed result of the selected operation.</td><td style="word-wrap: break-word;">4.0</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- Factorial uses the integer part of abs(value). Very large factorials are capped for safety; extremely large inputs will return a safe default.
-- Square root on negative inputs is invalid and returns a safe default result.
-- Cube root is computed as a real-valued root; unusual inputs may be clamped to a safe default if unsupported.
-- GCD/LCM treat both inputs as non-negative integers (using the integer part). For LCM, if either integer is 0, the result is 0.
-- second_value is only relevant for gcd and lcm; it is ignored for abs, sqrt, cbrt, and factorial.
+- **Absolute value (abs)**: Returns the absolute value of 'value'.
+- **Square root (sqrt)**: Requires value >= 0. If value is negative, the node returns 0.0.
+- **Cube root (cbrt)**: Only supports non-negative inputs; negative inputs will result in 0.0.
+- **Factorial**: Uses the absolute integer part of 'value' (floor of abs(value)). Values that would produce excessively large factorials (greater than 170!) return 0.0.
+- **GCD/LCM**: Both operate on the absolute integer parts of 'value' and 'second_value'.
+- **LCM with zero**: If the integer part of 'value' is 0, the LCM result is 0.
+- **Output type**: Results are returned as FLOAT, even when the underlying operation is integer-based (factorial, gcd, lcm).
+- **Second value range**: 'second_value' is constrained to integers between 1 and 1000.
 
 ## Troubleshooting
-- Result is 0.0 unexpectedly: Check if the operation has invalid inputs (e.g., sqrt of a negative number) or if the operation name is not one of the supported options.
-- LCM/GCD seem off: Remember both numbers are coerced to non-negative integers using their integer parts; verify 'value' and 'second_value' after rounding/truncation.
-- Factorial returns 0.0 or not as expected: Ensure 'value' is within a reasonable integer magnitude; factorial uses int(abs(value)) and extremely large values are limited for safety.
-- No effect from second_value: second_value only applies to gcd and lcm operations; it is ignored for others.
+- **Got 0.0 unexpectedly**: Check for invalid inputs: negative values for sqrt or cbrt, factorial too large (>170!), or other input constraints.
+- **GCD/LCM results seem off**: Remember the node uses the absolute integer parts of inputs. Verify 'value' and 'second_value' after conversion to integers.
+- **LCM returned 0**: This occurs if the integer part of 'value' is 0.
+- **Need cube root of a negative number**: This node does not support negative cube roots; use a method that handles signed cube roots.

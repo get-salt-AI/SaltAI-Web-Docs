@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Collects and organizes multiple node outputs into a structured folder and creates a ZIP archive for download. Inputs can be connected progressively (results_1, results_2, ...) and are grouped into folders based on metadata or source node, with optional seeds/configs included.
+Aggregates outputs from multiple upstream nodes, organizes them into a structured folder layout, and creates a zip archive. The node intelligently names folders/files (with collision-avoidance) and, when available, uses metadata from inputs to preserve meaningful filenames and group related results.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/biotech-utils/savetozipnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Collects and organizes multiple node outputs into a structured folder and create
 
 ## Usage
 
-Use this node at the end of a workflow to bundle outputs from various nodes into a single downloadable ZIP. Connect any output to results_1, then chain additional outputs to results_2, results_3, etc. The node will automatically structure files into folders, include seeds/configs if provided by upstream nodes, and generate a unique archive per workflow execution.
+Use this node at the end of a workflow when you want to package results into a single downloadable zip. Connect any outputs (e.g., sequences, PDB/A3M dictionaries, text, or other data) to results_1 and subsequent results_N inputs. The node will produce a URL/path to the created zip, which you can connect to the Output node to download.
 
 ## Inputs
 
@@ -26,8 +26,8 @@ Use this node at the end of a workflow to bundle outputs from various nodes into
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">results_1</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">First output to include in the ZIP. Accepts any output from any node. Enables the next input when connected.</td><td style="word-wrap: break-word;">Any data type, e.g., a string, number, dict of files like {'model.pdb': '...'}, or other node-specific outputs.</td></tr>
-<tr><td style="word-wrap: break-word;">results_2</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Second output to include in the ZIP. Appears only after results_1 is connected.</td><td style="word-wrap: break-word;">Any additional output to save.</td></tr>
+<tr><td style="word-wrap: break-word;">results_1</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">First input to include in the zip. Accepts any output from any node. Once connected, results_2 becomes available.</td><td style="word-wrap: break-word;">Any node output, e.g., a dictionary of PDBs, an A3M dict, or a string.</td></tr>
+<tr><td style="word-wrap: break-word;">results_2 ... results_101</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Additional inputs to include in the zip. Each appears after connecting the previous one, allowing up to 100 additional inputs.</td><td style="word-wrap: break-word;">Any node output, e.g., additional PDB/A3M dicts, FASTA strings, or other text values.</td></tr>
 </tbody>
 </table>
 </div>
@@ -44,25 +44,28 @@ Use this node at the end of a workflow to bundle outputs from various nodes into
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">url</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Path or URL to the output location containing the generated ZIP archive for this workflow execution.</td><td style="word-wrap: break-word;">/path/to/output/<workflow_execution_id>_<index>/<workflow_execution_id>_<index>.zip</td></tr>
+<tr><td style="word-wrap: break-word;">url</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">URL or path to the folder containing the created zip archive for this workflow run. Connect to the Output node to click and download.</td><td style="word-wrap: break-word;">https://download/<workflow_execution_id>_<index>/<workflow_execution_id>_<index>.zip</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- Connect outputs in order: results_1 must be connected before results_2 becomes available, and so on up to results_101.
-- Inputs that carry Salt metadata (folder_name, file_name, seed, config) are saved using that structure; seeds and configs (if present) are aggregated into seeds.json and configs.json at the root.
-- If an input contains multiple sub-files (e.g., PDB or A3M collections), the node writes them as separate files under a folder matching the main file name.
-- Inputs without metadata are placed into a folder named after the source node class, with file names like output_<index>.txt.
-- The generated archive is uniquely named using the workflow_execution_id (and the index of this Save node instance) to avoid collisions.
-- The output location is environment-dependent; the runtime may expose a downloadable link in the Output node.
+- **Sequential input reveal**: results_2 only appears after connecting results_1, results_3 after results_2, and so on (up to results_101).
+- **Metadata-aware saving**: Inputs produced by nodes that embed metadata (e.g., file_name, folder_name) are saved using those names, with automatic numbering to avoid clashes.
+- **Structured handling for PDB/A3M**: When inputs are PDB or A3M dictionaries, each entry is saved as a separate file within a subfolder.
+- **Non-metadata inputs**: Values without metadata are saved as text files (e.g., output_<n>.txt) in a folder named after their source node class.
+- **Seeds and configs capture**: If provided via input metadata, consolidated seeds.json and configs.json are added at the top level of the zip content.
+- **Collision handling**: If a file/folder name already exists, a numeric suffix is appended to avoid overwriting.
+- **Execution priority**: Designed to run at the end of a workflow to capture all upstream outputs.
+- **Output location**: The node returns a URL/path where the zip can be downloaded; connect it to the Output node to expose a clickable link.
 
 ## Troubleshooting
-- No files in ZIP or missing expected files: Ensure each results_i is connected and producing a value at execution time.
-- Unexpected folder or file naming: Check if upstream nodes provide Salt metadata (folder_name, file_name). Without metadata, generic names are used.
-- Download link not clickable or missing: Connect the 'url' output to an Output node or the designated display node for links.
-- Permission or write errors: Verify the runtime has write access to the configured output directory.
-- Invalid or complex data structures not saved as JSON: Non-serializable data is saved as plain text; consider converting outputs to strings or simple JSON-serializable objects upstream.
+- **Cannot see results_2 or further**: Connect results_1 first; additional inputs are revealed only after the previous one is connected.
+- **Download link not clickable**: Ensure the url output is connected to an Output node to render a clickable link.
+- **Unexpected file names or folders**: If metadata is missing on an input, the node falls back to generic names (e.g., source node class and output_<n>.txt). To influence naming, use nodes that provide metadata-aware outputs.
+- **Missing files in zip**: Verify that each desired upstream output is connected to a results_N input and that the inputs are not None.
+- **Permission or path issues**: If the generated path cannot be accessed or saved, check environment permissions and the configured output directory.
+- **Large inputs or many files**: Packaging many or large outputs may take longer; allow the node to complete before attempting to download.
 
 ## Example Pipelines
 

@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Builds a Microsoft SQL Server connection URI from individual parameters. Supports both SQL authentication and Windows Integrated Security, and optionally includes a named instance. Returns the constructed connection string as the primary output.
+Builds a valid Microsoft SQL Server (MSSQL) database URI from individual parameters. Supports SQL authentication (username/password), optional instance names, and Windows Integrated Security. Returns the connection string in the primary output and leaves other outputs empty; on error, returns an error message and JSON error details.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/mssql/saltmssqlconnectionstring.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Builds a Microsoft SQL Server connection URI from individual parameters. Support
 
 ## Usage
 
-Use this node when you need to assemble a properly formatted SQL Server connection string from user-provided fields to pass into downstream database nodes or external tools. Typical workflow: provide host, port, database, and either username/password or enable integrated security; the node outputs a single ready-to-use connection URI.
+Use this node when you need to construct a MSSQL connection URI to pass into other SQL Server nodes (Query, Execute, etc.) or any component that expects a credentials_path URI. Typical workflow: configure host, port, database, and either username/password or enable integrated security; then feed the resulting connection string into subsequent database nodes.
 
 ## Inputs
 
@@ -26,13 +26,13 @@ Use this node when you need to assemble a properly formatted SQL Server connecti
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">host</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Database hostname or IP address.</td><td style="word-wrap: break-word;">db.mycompany.internal</td></tr>
-<tr><td style="word-wrap: break-word;">port</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">TCP port for SQL Server. Default is 1433.</td><td style="word-wrap: break-word;">1433</td></tr>
+<tr><td style="word-wrap: break-word;">host</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Database server hostname or IP address.</td><td style="word-wrap: break-word;">db.example.com</td></tr>
+<tr><td style="word-wrap: break-word;">port</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">TCP port for the SQL Server instance. Defaults to 1433.</td><td style="word-wrap: break-word;">1433</td></tr>
 <tr><td style="word-wrap: break-word;">database</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Target database name.</td><td style="word-wrap: break-word;">SalesDB</td></tr>
-<tr><td style="word-wrap: break-word;">username</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">SQL Server login username. Ignored if Integrated Security is enabled.</td><td style="word-wrap: break-word;">sa</td></tr>
-<tr><td style="word-wrap: break-word;">password</td><td>True</td><td style="word-wrap: break-word;">PASSWORD</td><td style="word-wrap: break-word;">SQL Server login password. Ignored if Integrated Security is enabled.</td><td style="word-wrap: break-word;"><mssql-password></td></tr>
-<tr><td style="word-wrap: break-word;">instance</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Named SQL Server instance. If provided, it is added to the connection string.</td><td style="word-wrap: break-word;">MSSQLSERVER</td></tr>
-<tr><td style="word-wrap: break-word;">integrated_security</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Use Windows Integrated Security (true) instead of username/password (false).</td><td style="word-wrap: break-word;">False</td></tr>
+<tr><td style="word-wrap: break-word;">username</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Username for SQL authentication. Ignored if Integrated Security is enabled.</td><td style="word-wrap: break-word;">sa</td></tr>
+<tr><td style="word-wrap: break-word;">password</td><td>True</td><td style="word-wrap: break-word;">PASSWORD</td><td style="word-wrap: break-word;">Password for SQL authentication. Ignored if Integrated Security is enabled.</td><td style="word-wrap: break-word;"><db-password></td></tr>
+<tr><td style="word-wrap: break-word;">instance</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional SQL Server instance name. If provided, it is appended as a query parameter.</td><td style="word-wrap: break-word;">MSSQLSERVER</td></tr>
+<tr><td style="word-wrap: break-word;">integrated_security</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Enable Windows Integrated Security (no username/password in the URI).</td><td style="word-wrap: break-word;">False</td></tr>
 </tbody>
 </table>
 </div>
@@ -49,25 +49,24 @@ Use this node when you need to assemble a properly formatted SQL Server connecti
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">connection_string</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The constructed MSSQL connection URI. Uses Integrated Security or username/password based on inputs.</td><td style="word-wrap: break-word;">mssql://username:<password>@db.mycompany.internal:1433/SalesDB</td></tr>
-<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON-formatted error details when construction fails; empty on success.</td><td style="word-wrap: break-word;">{"error": "Failed to construct connection string: <reason>"}</td></tr>
-<tr><td style="word-wrap: break-word;">out_3</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Unused placeholder output (empty string).</td><td style="word-wrap: break-word;"></td></tr>
-<tr><td style="word-wrap: break-word;">out_4</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Unused placeholder output (empty string).</td><td style="word-wrap: break-word;"></td></tr>
-<tr><td style="word-wrap: break-word;">out_5</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Unused placeholder output (empty string).</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The constructed MSSQL connection string or an error message if construction failed.</td><td style="word-wrap: break-word;">mssql://sa:<db-password>@db.example.com:1433/SalesDB?instance=MSSQLSERVER</td></tr>
+<tr><td style="word-wrap: break-word;">json_result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON error details if construction fails; otherwise empty.</td><td style="word-wrap: break-word;">{"error": "Failed to construct connection string: <reason>"}</td></tr>
+<tr><td style="word-wrap: break-word;">html_table</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Not used by this node. Always empty.</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">xlsx_data</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Not used by this node. Always empty.</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">pdf_data</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Not used by this node. Always empty.</td><td style="word-wrap: break-word;"></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- If integrated_security is true, username and password are ignored and the connection string includes integrated_security=true.
-- When an instance is provided, it is appended as a query parameter (instance=<name>).
-- Special characters in usernames or passwords may need URL encoding to ensure a valid URI.
-- Only the first output (connection_string) is meaningful on success; other outputs are placeholders.
-- On error, the first output contains a human-readable message and the second output contains a JSON-formatted error string.
+- If Integrated Security is enabled, the URI format is mssql://<host>:<port>/<database>?integrated_security=true and username/password are ignored.
+- If an instance name is provided, it is appended as ?instance=<instance> to the URI.
+- Special characters in usernames or passwords are not URL-encoded by this node. If your credentials contain special characters, pre-encode them to avoid malformed URIs.
+- This node does not validate or test the database connection; it only constructs the URI.
+- Default port is 1433 if you are unsure of the SQL Server port.
 
 ## Troubleshooting
-- Connection string is missing parts: Verify host, port, and database are provided and non-empty.
-- Authentication issues downstream: If using Integrated Security, ensure the environment supports it; otherwise set integrated_security to false and provide username/password.
-- Invalid characters in password: URL-encode special characters in the password before input.
-- Incorrect server/instance resolution: If connecting to a named instance, provide the instance value; otherwise leave it blank and ensure the port is correct.
-- Error returned in second output: Inspect the JSON error string for details and correct the offending parameter.
+- Got an authentication error downstream: Ensure you used the correct authentication mode. If using Integrated Security, turn it on and leave username/password unused; otherwise provide valid SQL credentials.
+- Connection fails due to special characters: URL-encode username/password before input (e.g., replace special characters with their percent-encoded form).
+- Server requires an instance name: Provide the correct instance in the 'instance' field so it is included as a query parameter.
+- Downstream node rejects credentials_path: Verify the output begins with mssql:// and includes host, port, and database as expected.

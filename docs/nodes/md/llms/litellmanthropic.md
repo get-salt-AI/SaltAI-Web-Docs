@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Runs prompts against Anthropic models via the LiteLLM integration. You provide a model, system prompt, user prompt, and generation settings; the node returns the generated text. Includes a built-in fallback mapping for common Anthropic model names.
+Sends a text prompt to Anthropic models via the LiteLLM integration and returns the model’s generated text. You select an Anthropic model, provide a system prompt and user prompt, and control generation with temperature and max token settings. Includes fallback model mappings to keep workflows running if a preferred model name isn’t available.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/llms/litellmanthropic.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Runs prompts against Anthropic models via the LiteLLM integration. You provide a
 
 ## Usage
 
-Use this node when you need text generation, reasoning, or assistant-style responses from Anthropic’s Claude family. Typical workflow: choose a Claude model, set a system prompt to define behavior, pass your prompt content (optionally composed from other node outputs via input_1–input_4), tune temperature and max_tokens, then feed the resulting text to downstream nodes for parsing or display.
+Use this node whenever you need text generation from Anthropic’s Claude family within a Salt workflow. Typical usage: set the model (e.g., a Claude Sonnet/Haiku/Opus variant), provide a system prompt to steer behavior, pass the main prompt (optionally augmented by auxiliary inputs), and adjust temperature/max tokens. Chain the output into downstream nodes for further processing or display.
 
 ## Inputs
 
@@ -26,15 +26,15 @@ Use this node when you need text generation, reasoning, or assistant-style respo
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">model</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Anthropic model to use. If the service cannot resolve the exact name, the node uses an internal fallback mapping for well-known Claude models.</td><td style="word-wrap: break-word;">claude-3-7-sonnet-20250219</td></tr>
-<tr><td style="word-wrap: break-word;">system_prompt</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">System instructions that steer the model’s role, tone, and constraints.</td><td style="word-wrap: break-word;">You are a helpful assistant. Be concise and cite sources when possible.</td></tr>
-<tr><td style="word-wrap: break-word;">prompt</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Main user prompt content to send to the model. You can compose this with optional inputs.</td><td style="word-wrap: break-word;">Summarize the following report and list three key risks.</td></tr>
-<tr><td style="word-wrap: break-word;">temperature</td><td>True</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">Controls randomness. Lower is more deterministic; higher is more creative.</td><td style="word-wrap: break-word;">0.5</td></tr>
-<tr><td style="word-wrap: break-word;">max_tokens</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum number of tokens to generate in the response.</td><td style="word-wrap: break-word;">1024</td></tr>
-<tr><td style="word-wrap: break-word;">input_1</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional extra text input for composing prompts (e.g., context, retrieved passages).</td><td style="word-wrap: break-word;">Previous conversation transcript</td></tr>
-<tr><td style="word-wrap: break-word;">input_2</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional extra text input for composing prompts.</td><td style="word-wrap: break-word;">User profile or preferences</td></tr>
-<tr><td style="word-wrap: break-word;">input_3</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional extra text input for composing prompts.</td><td style="word-wrap: break-word;">Knowledge base excerpt</td></tr>
-<tr><td style="word-wrap: break-word;">input_4</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional extra text input for composing prompts.</td><td style="word-wrap: break-word;">Structured context or instructions</td></tr>
+<tr><td style="word-wrap: break-word;">model</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The Anthropic model to use. Choose from available options; the node provides fallback mappings for common Claude variants if direct names are not available.</td><td style="word-wrap: break-word;">claude-3-5-sonnet-20241022</td></tr>
+<tr><td style="word-wrap: break-word;">system_prompt</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">High-level instructions defining the assistant’s role, style, or constraints. Applied before the main prompt to steer the model’s behavior.</td><td style="word-wrap: break-word;">You are a concise assistant that answers with clear bullet points.</td></tr>
+<tr><td style="word-wrap: break-word;">prompt</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The main user input or task to complete. This is the content the model will respond to.</td><td style="word-wrap: break-word;">Summarize the following article in 5 bullets: <article text></td></tr>
+<tr><td style="word-wrap: break-word;">temperature</td><td>True</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">Controls randomness of the output. Lower values make responses more deterministic; higher values make them more creative.</td><td style="word-wrap: break-word;">0.5</td></tr>
+<tr><td style="word-wrap: break-word;">max_tokens</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum number of tokens to generate in the response. Actual limits may depend on the selected model.</td><td style="word-wrap: break-word;">1024</td></tr>
+<tr><td style="word-wrap: break-word;">input_1</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional auxiliary input to provide extra context or variables to your prompt.</td><td style="word-wrap: break-word;">Customer profile data JSON</td></tr>
+<tr><td style="word-wrap: break-word;">input_2</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional auxiliary input to provide extra context or variables to your prompt.</td><td style="word-wrap: break-word;">Conversation history text</td></tr>
+<tr><td style="word-wrap: break-word;">input_3</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional auxiliary input to provide extra context or variables to your prompt.</td><td style="word-wrap: break-word;">Knowledge base excerpt</td></tr>
+<tr><td style="word-wrap: break-word;">input_4</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional auxiliary input to provide extra context or variables to your prompt.</td><td style="word-wrap: break-word;">Task parameters JSON</td></tr>
 </tbody>
 </table>
 </div>
@@ -51,22 +51,21 @@ Use this node when you need text generation, reasoning, or assistant-style respo
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">Output</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The model’s generated text output.</td><td style="word-wrap: break-word;">Here’s a concise summary of the report along with three key risks...</td></tr>
+<tr><td style="word-wrap: break-word;">Output</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The text generated by the selected Anthropic model.</td><td style="word-wrap: break-word;">Here are the five key points from the article...</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- Model options include common Anthropic Claude variants and are backed by an internal fallback map. If a model alias is used, it resolves to a provider-qualified name like anthropic/claude-... depending on availability.
-- Token limits and supported parameters can vary by model. Ensure max_tokens fits within the model’s context window together with your input size.
-- Temperature meaning: lower values yield more focused, repeatable outputs; higher values increase creativity and variability.
-- Optional inputs (input_1–input_4) are not merged automatically; construct your final prompt string accordingly in the prompt field if you need to include them.
-- Access to Anthropic requires proper service configuration and credentials managed by the platform; ensure they are set by your administrator.
-- This node returns a single STRING response; if you need structured output, instruct the model to format JSON and parse it in subsequent nodes.
+- **Model selection**: The node exposes Anthropic models and includes fallback mappings (e.g., various Claude Haiku/Sonnet/Opus versions). If an exact name isn’t available at runtime, a mapped alternative may be used.
+- **Token limits**: Effective max token limits depend on the chosen model. If you set max_tokens above a model’s allowance, the service may cap it or return an error.
+- **Temperature scale**: Temperature is on a 0–1 scale; lower values yield more deterministic outputs.
+- **Auxiliary inputs**: input_1 to input_4 are optional and can be used to pass additional context for your prompts.
+- **Service configuration**: Access to Anthropic models depends on your Salt environment’s configured providers and credentials. Ensure Anthropic access is enabled by your admin.
 
 ## Troubleshooting
-- Invalid model name or unsupported version: Pick a model from the available options or use one of the mapped Claude names (e.g., claude-3-7-sonnet-20250219).
-- Authorization or key errors: Verify that Anthropic access is configured by your administrator. The node itself does not accept keys directly.
-- Context length or token limit exceeded: Reduce prompt size, lower max_tokens, or choose a model with a larger context window.
-- Empty or low-quality outputs: Decrease temperature for more deterministic results, refine the system_prompt, and provide clearer instructions.
-- Rate limits or timeouts: Retry with backoff, reduce request frequency, or simplify prompts to lower latency.
+- **Model not found**: If a selected model isn’t available, choose another from the list or rely on the provided fallback mappings.
+- **Empty or truncated output**: Reduce temperature for stability, lower max_tokens if hitting limits, or simplify/shorten your prompt.
+- **Provider/credential errors**: Verify that Anthropic access is configured in your environment and that your organization has the necessary permissions.
+- **Inconsistent style or behavior**: Strengthen the system_prompt with clearer, explicit instructions, or reduce temperature.
+- **Long-running or timeout**: Decrease max_tokens, simplify prompts, or try a smaller/faster model variant.

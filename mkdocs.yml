@@ -98,11 +98,14 @@ nav:
       - Boltz Sequence Builder: nodes/md/biotech/boltz/boltzsequencenode.md
       - Boltz Template Builder: nodes/md/biotech/boltz/boltztemplatenode.md
       - Boltz YAML Combiner: nodes/md/biotech/boltz/boltzyamlcombinernode.md
+    - Functional Prediction:
+      - Equidock: nodes/md/biotech/functional-prediction/equidocknode.md
     - Protein Generation:
       - RF Diffusion: nodes/md/biotech/protein-generation/saasrfdiffusionnode.md
       - RF Diffusion Contigmap Config: nodes/md/biotech/protein-generation/saasrfdiffusioncontigmapconfignode.md
       - RF Diffusion Denoiser Config: nodes/md/biotech/protein-generation/saasrfdiffusiondenoiserconfignode.md
       - RF Diffusion Potentials Config: nodes/md/biotech/protein-generation/saasrfdiffusionpotentialsconfignode.md
+      - RF Diffusion Scaffold Guided Config: nodes/md/biotech/protein-generation/saasrfdiffusionscaffoldguidedconfignode.md
       - RF Diffusion Symmetry Config: nodes/md/biotech/protein-generation/saasrfdiffusionsymmetryconfignode.md
     - Protein Structure Prediction:
       - Alphafold: nodes/md/biotech/protein-structure-prediction/saasalphafoldnode.md
@@ -126,6 +129,20 @@ nav:
       - MySQL Table Info: nodes/md/connectors/mysql/saltmysqltableinfo.md
       - MySQL Test Connection: nodes/md/connectors/mysql/saltmysqltestconnection.md
       - MySQL Visual Query Builder: nodes/md/connectors/mysql/saltmysqlvisualquery.md
+    - Neo4J:
+      - Neo4J Connection String: nodes/md/connectors/neo4j/saltneo4jconnectionstring.md
+      - Neo4J Database Info: nodes/md/connectors/neo4j/saltneo4jdatabaseinfo.md
+      - Neo4J Graph Explorer: nodes/md/connectors/neo4j/saltneo4jgraphexplorer.md
+      - Neo4J Node Labels: nodes/md/connectors/neo4j/saltneo4jnodelabels.md
+      - Neo4J Nodes by Label: nodes/md/connectors/neo4j/saltneo4jnodesbylabel.md
+      - Neo4J Property Keys: nodes/md/connectors/neo4j/saltneo4jpropertykeys.md
+      - Neo4J Query: nodes/md/connectors/neo4j/saltneo4jquery.md
+      - Neo4J Relationship Types: nodes/md/connectors/neo4j/saltneo4jrelationshiptypes.md
+      - Neo4J Relationships by Type: nodes/md/connectors/neo4j/saltneo4jrelationshipsbytype.md
+      - Neo4J Schema Info: nodes/md/connectors/neo4j/saltneo4jschemainfo.md
+      - Neo4J Test Connection: nodes/md/connectors/neo4j/saltneo4jtestconnection.md
+      - Neo4J Transaction: nodes/md/connectors/neo4j/saltneo4jtransaction.md
+      - Neo4J Write: nodes/md/connectors/neo4j/saltneo4jwrite.md
     - Oracle:
       - Oracle Complex Query: nodes/md/connectors/oracle/saltoraclecomplexquery.md
       - Oracle Connection String: nodes/md/connectors/oracle/saltoracleconnectionstring.md
@@ -198,6 +215,9 @@ nav:
     - Groq LLM: nodes/md/llms/litellmgroq.md
     - OpenAI LLM: nodes/md/llms/litellmopenai.md
   - Logic:
+    - Do While Loop: nodes/md/logic/saltifnodesimpleloop.md
+    - Merge If Branches: nodes/md/logic/saltconditionalmerge.md
+    - Simple If: nodes/md/logic/saltifnode.md
     - Condition:
       - Bool Operation: nodes/md/logic/condition/saltbooloperationnode.md
       - Float Condition: nodes/md/logic/condition/saltfloatconditions.md

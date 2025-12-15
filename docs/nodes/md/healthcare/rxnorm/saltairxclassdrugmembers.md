@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Retrieves the list of RxNorm drug members for a given drug class ID, constrained by a selected relationship source (e.g., ATC, MEDRT). Returns a JSON string with the original API data bundled alongside your inputs and a status message. Useful for enumerating drugs associated with a therapeutic or classification class.
+Retrieves RxNorm drug members for a given drug class identifier from the RxClass system. You specify a class_id and a relationship source (e.g., ATC), and the node returns a formatted JSON string of drug members alongside a status message.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/healthcare/rxnorm/saltairxclassdrugmembers.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Retrieves the list of RxNorm drug members for a given drug class ID, constrained
 
 ## Usage
 
-Use this node when you have a drug class identifier and want to obtain all RxNorm drug members linked to that class from a specific source system. Typical workflow: look up or select a class ID, choose the relationship source that defines the class membership (such as ATC), then pass the output JSON to downstream nodes for filtering, reporting, or further analysis.
+Use this node when you have an RxClass identifier and want to list all RxNorm drugs associated with that class, filtered by a specific relationship source. It fits into workflows where you begin with a drug class (e.g., ATC code) and need to enumerate the RxNorm drug concepts that belong to it for downstream analysis or display.
 
 ## Inputs
 
@@ -26,8 +26,8 @@ Use this node when you have a drug class identifier and want to obtain all RxNor
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">class_id</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The identifier of the drug class to query. Must be a valid class ID known to the chosen relationship source.</td><td style="word-wrap: break-word;">D007398</td></tr>
-<tr><td style="word-wrap: break-word;">relationship_source</td><td>True</td><td style="word-wrap: break-word;">ATC \| ATCPROD \| CDC \| DAILYMED \| FDASPL \| FMTSME \| MEDRT \| RXNORM \| SNOMEDCT \| VA</td><td style="word-wrap: break-word;">Selects the source system that defines the class-to-drug relationships. This determines which set of drug members are returned for the given class ID.</td><td style="word-wrap: break-word;">ATC</td></tr>
+<tr><td style="word-wrap: break-word;">class_id</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The RxClass identifier for the drug class you want to query (e.g., an ATC code). Must be a non-empty string.</td><td style="word-wrap: break-word;">D007398</td></tr>
+<tr><td style="word-wrap: break-word;">relationship_source</td><td>True</td><td style="word-wrap: break-word;">SELECT</td><td style="word-wrap: break-word;">The source relationship that defines how drugs are linked to the class. Choose one of: ATC, ATCPROD, CDC, DAILYMED, FDASPL, FMTSME, MEDRT, RXNORM, SNOMEDCT, VA.</td><td style="word-wrap: break-word;">ATC</td></tr>
 </tbody>
 </table>
 </div>
@@ -44,23 +44,23 @@ Use this node when you have a drug class identifier and want to obtain all RxNor
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">drug_members</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON string containing the query context and results: { "class_id": ..., "relationship_source": ..., "drug_members": <raw API response> }.</td><td style="word-wrap: break-word;">{ "class_id": "D007398", "relationship_source": "ATC", "drug_members": { "drugMemberGroup": { "drugMember": [ { "minConcept": { "rxcui": "...", "name": "..." } } ] } } }</td></tr>
-<tr><td style="word-wrap: break-word;">status</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable status message indicating success or describing an error.</td><td style="word-wrap: break-word;">Successfully retrieved drug members for class ID D007398 with relationship source ATC</td></tr>
+<tr><td style="word-wrap: break-word;">drug_members</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A prettified JSON string containing the requested class_id, selected relationship_source, and the returned drug member data.</td><td style="word-wrap: break-word;">{   "class_id": "D007398",   "relationship_source": "ATC",   "drug_members": { "drugMemberGroup": { "drugMember": [ { "minConcept": { "rxcui": "12345", "name": "ExampleDrug" } } ] } } }</td></tr>
+<tr><td style="word-wrap: break-word;">status</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A human-readable status message indicating success or describing an error.</td><td style="word-wrap: break-word;">Successfully retrieved drug members for class ID D007398 with relationship source ATC</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Input validation**: The node returns an error status if class_id is empty.
-- **Source sensitivity**: Results depend on the chosen relationship_source; a class_id may be valid in one source and not in another.
-- **Output format**: The first output is a JSON string, not a parsed object. Downstream steps should parse it before structured use.
-- **API passthrough**: If the underlying service reports an error, it is returned as a JSON string in the first output with an 'API Error' status.
-- **Result size**: Some classes can return many members, which may produce large JSON outputs.
-- **Defaults**: Default class_id is "D007398" and default relationship_source is "ATC".
+- **Required inputs**: Both class_id and relationship_source are required; an empty class_id will return an error status.
+- **Relationship source options**: Only the following values are accepted: ATC, ATCPROD, CDC, DAILYMED, FDASPL, FMTSME, MEDRT, RXNORM, SNOMEDCT, VA.
+- **Output format**: The drug_members output is a JSON string; parse it if you need to use specific fields programmatically.
+- **Upstream data dependencies**: Results depend on the availability and mapping of the selected relationship source in RxClass/RxNorm.
+- **Large result sets**: Some classes may return many members; be prepared to handle large JSON payloads.
+- **Error propagation**: If the underlying service returns an error, the node will surface it in the JSON and status.
 
 ## Troubleshooting
-- **Empty or invalid class_id**: Ensure class_id is not blank and matches a valid identifier in the selected relationship_source.
-- **No results returned**: Try a different relationship_source or verify that the class exists within that source.
-- **Unexpected JSON structure**: The raw API response is embedded under 'drug_members'; check for keys like 'drugMemberGroup' and 'drugMember'.
-- **Downstream parsing errors**: Confirm that you are parsing the first output as JSON text before extracting fields.
-- **API Error status**: Inspect the first output JSON for an 'error' field; correct the inputs or try again later if the service is temporarily unavailable.
+- **Empty class_id**: If status reports 'Error: Class ID cannot be empty', provide a non-empty class_id and re-run.
+- **Invalid relationship_source**: If the UI or run fails due to an invalid value, select one of the supported sources (ATC, ATCPROD, CDC, DAILYMED, FDASPL, FMTSME, MEDRT, RXNORM, SNOMEDCT, VA).
+- **API Error in output**: If the drug_members JSON contains an "error" field or status begins with 'API Error', verify the class_id is valid for the chosen relationship_source and try again later.
+- **No results returned**: If the data section is empty, the class may have no mapped drug members for the chosen relationship_source. Try another source or confirm the class_id.
+- **Network/latency issues**: Timeouts or slow responses can cause failures; retry, or run during off-peak hours.
