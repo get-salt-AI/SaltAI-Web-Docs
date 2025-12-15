@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Connects to your local files via Salt's Carbon data integrations and makes selected documents available to downstream nodes. This node is a Carbon connector specialized for local file access.
+Creates a Carbon data connector configured for Local Files. It leverages the common Carbon data-connector base to reference the LOCAL_FILES integration, enabling workflows to access and synchronize documents from a local filesystem.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/knowledge-bases/carbonconnectorlocalfiles.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,11 +11,25 @@ Connects to your local files via Salt's Carbon data integrations and makes selec
 
 ## Usage
 
-Use this node at the start of a data workflow when you want to bring files stored on your machine (local documents) into Salt for processing. It is typically followed by nodes that ingest, index, parse, or analyze the retrieved documents.
+Use this node when you want to bring documents from a local folder into a Carbon-powered pipeline (e.g., indexing, syncing, or processing local files). Typically, you place this node at the start of a data ingestion flow and connect it to downstream nodes that perform parsing, enrichment, or indexing.
 
 ## Inputs
 
-No inputs
+<div style="overflow-x: auto;">
+<table style="table-layout: fixed; width: 100%;">
+<colgroup>
+<col style="width: 15%;">
+<col style="width: 10%;">
+<col style="width: 15%;">
+<col style="width: 30%;">
+<col style="width: 30%;">
+</colgroup>
+<thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td style="word-wrap: break-word;">Not specified</td><td>False</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Inputs are defined by the shared Carbon data-connector base. This node selects the Local Files integration; any configuration fields (e.g., path, include/exclude patterns, recursion settings) are provided by the base node.</td><td style="word-wrap: break-word;">Not specified</td></tr>
+</tbody>
+</table>
+</div>
 
 ## Outputs
 
@@ -29,18 +43,21 @@ No inputs
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">documents</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">The collection of documents or document references selected from local files, suitable for downstream ingestion or analysis.</td><td style="word-wrap: break-word;">Not specified</td></tr>
+<tr><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Outputs are defined by the shared Carbon data-connector base. Typically this will be a connector/config object used by downstream Carbon data ingestion or indexing nodes.</td><td style="word-wrap: break-word;">Not specified</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- This node corresponds to the Carbon integration for local files and appears in the workflow editor as "Documents".
-- Access may require that your Carbon connection is configured and authorized for your account or organization.
-- The exact document structure and how files are referenced can depend on your environment and Carbon configuration.
-- If your environment or organization restricts integrations, ensure the local files integration is enabled.
+- **Integration selection**: This node specifically targets the Local Files integration within Carbon.
+- **Shared behavior**: All input fields, validation, and output structure come from the Carbon data-connector base; this node only specifies the integration type.
+- **Access and permissions**: Ensure the runtime environment has read permissions to the specified local paths.
+- **Service dependency**: Requires the Carbon service and user authorization to be properly configured in your environment.
+- **Display name**: Appears as “Documents” in the node picker.
 
 ## Troubleshooting
-- No documents are returned: Verify you have an active Carbon session and the local files integration is enabled for your account.
-- Cannot see expected files: Check local file permissions and that the files are accessible to the running environment.
-- Downstream nodes fail to read the output: Confirm the downstream node supports the document format produced by this connector and any required ingestion steps are included.
+- **No files found**: Verify the configured folder path exists and is accessible by the runtime user.
+- **Permission errors**: Ensure the process has read permissions on the target directories and files.
+- **Authorization failures**: Confirm your Carbon service credentials/token are valid and the service is reachable.
+- **Unexpected output**: Check the downstream nodes’ expected input type; this node provides a Carbon connector reference, not parsed file content.
+- **Long scan times**: Narrow the scope with include/exclude patterns if available in the base configuration to reduce traversal time.

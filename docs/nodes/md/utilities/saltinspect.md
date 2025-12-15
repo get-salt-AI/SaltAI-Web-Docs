@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Inspects any value flowing through a workflow, formats it for readability, and optionally writes a structured log entry. It also generates a best-effort image preview from tensors or embedded/base64 image data and shows the inspected text directly on the node UI.
+Inspects and displays any value flowing through a workflow. It formats text/JSON for readability, summarizes tensors, and attempts to render an image preview (including decoding base64-encoded images). Optionally writes a detailed summary to the system logs.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/utilities/saltinspect.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Inspects any value flowing through a workflow, formats it for readability, and o
 
 ## Usage
 
-Use this node to debug and understand intermediate data as it moves through a workflow. Connect any output to its input to view a readable summary, log it (if enabled), and, when possible, see a preview image. Commonly placed after model calls, data transformations, or image-producing steps to verify structure and content.
+Use this node anywhere you need to debug or understand intermediate data. Connect any upstream node output to Inspect to view a human-readable summary, pretty-printed JSON (when applicable), and an image preview if the value is an image tensor or a base64-encoded image.
 
 ## Inputs
 
@@ -26,8 +26,8 @@ Use this node to debug and understand intermediate data as it moves through a wo
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">value</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The value to inspect. Accepts any type, including strings, JSON-like structures, tensors, objects with an 'image' tensor attribute, or base64-encoded image strings (data URLs or raw base64 for JPEG/PNG).</td><td style="word-wrap: break-word;">{"result": {"label": "cat", "confidence": 0.92}}</td></tr>
-<tr><td style="word-wrap: break-word;">write_logs</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, writes a formatted inspection block to the server logs.</td><td style="word-wrap: break-word;">true</td></tr>
+<tr><td style="word-wrap: break-word;">value</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Any value to inspect (e.g., strings, numbers, dicts, lists, JSON strings, torch tensors, or objects). JSON strings are detected and pretty-printed; tensors are summarized; base64 image strings are decoded for preview when possible.</td><td style="word-wrap: break-word;">{"user": "alice", "score": 42}</td></tr>
+<tr><td style="word-wrap: break-word;">write_logs</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, writes a formatted summary of the value (with separators) to the logs.</td><td style="word-wrap: break-word;">true</td></tr>
 </tbody>
 </table>
 </div>
@@ -44,25 +44,25 @@ Use this node to debug and understand intermediate data as it moves through a wo
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">value</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A formatted string representation of the inspected input. JSON is prettified when detected; non-JSON strings are returned as-is; other structures are serialized to JSON-like text.</td><td style="word-wrap: break-word;">{   "result": {     "label": "cat",     "confidence": 0.92   } }</td></tr>
-<tr><td style="word-wrap: break-word;">image_preview</td><td style="word-wrap: break-word;">IMAGE</td><td style="word-wrap: break-word;">An image tensor preview derived from the input when possible. If the input is an image-like tensor or contains base64 image data, a preview is produced; otherwise a blank image is returned.</td><td style="word-wrap: break-word;">Tensor of shape [1, 64, 64, 3] float32 in [0, 1]</td></tr>
+<tr><td style="word-wrap: break-word;">value</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The inspected value as a string. For JSON inputs, this will be pretty-printed. For other types, a readable string representation is provided.</td><td style="word-wrap: break-word;">{   "user": "alice",   "score": 42 }</td></tr>
+<tr><td style="word-wrap: break-word;">image_preview</td><td style="word-wrap: break-word;">IMAGE</td><td style="word-wrap: break-word;">An image tensor preview derived from the input, when possible. If the input is an image tensor or a base64 image string, a corresponding preview is produced; otherwise, a default blank image is returned.</td><td style="word-wrap: break-word;">Tensor with shape [1, H, W, 3] and float32 values in [0, 1]</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- The node displays the inspected text directly in its UI panel after execution.
-- If the input is a tensor with image-like shape, it is used directly for the preview. Otherwise, the node attempts to decode base64 image data from strings or JSON fields.
-- Unsupported or unrecognized image inputs yield a default blank 64×64 RGB image.
-- The 'value' output is always a string (not the original object). If you need the original data downstream, branch the graph before this node.
-- Write logs toggles server-side logging of a formatted inspection block for easier debugging.
-- The node accepts objects with an 'image' attribute that is a tensor; that tensor will be used for the preview.
+- **Output Node**: This node is designed to display information directly in the UI and can act as a terminal inspection point in a workflow.
+- **JSON handling**: If the input is a valid JSON string, it is parsed and pretty-printed; otherwise the raw string is shown.
+- **Tensor handling**: Tensors are summarized in text and, when they represent images, are shown as an image preview.
+- **Base64 images**: Strings starting with data URL prefixes (e.g., "data:image/..."), JPEG markers ("/9j/"), or PNG markers ("iVBOR") are treated as base64 images and decoded for preview.
+- **Fallback preview**: If an image cannot be derived from the input, a small blank image is returned as a preview.
+- **Logging control**: Set write_logs to false to avoid verbose logs when inspecting large or frequent values.
 
 ## Troubleshooting
-- Preview shows a black/blank square: ensure the input is an image-like tensor (shape [B,H,W,C], [H,W,C], or [C,H,W]) or a valid base64-encoded image (data URL or raw JPEG/PNG base64).
-- Text shows as a raw string or '[object Object]'-like content: provide valid JSON strings or JSON-serializable structures for clearer formatting.
-- No text appears in the node UI: confirm the node executed successfully and that upstream nodes produced data; also check that logging is not required for UI display.
-- Unexpected tensor preview shape: ensure tensors are in image-compatible layouts with channel count 1, 3, or 4.
+- **Image preview shows a blank image**: Ensure the input is either an image-like tensor (with valid dimensions and channels) or a valid base64-encoded image string (e.g., "data:image/png;base64,<base64-data>").
+- **JSON did not pretty-print**: Verify the input is valid JSON. If you pass a Python-like string (single quotes or non-JSON syntax), the node will display it as a raw string. Prefer passing a dict/list object or a valid JSON string.
+- **Large outputs slow down logging**: Disable write_logs to prevent heavy log I/O when inspecting large tensors or long strings.
+- **Unexpected text in the node display**: The UI shows a stringified version of the result. If the input is complex or includes non-serializable objects, provide a simpler representation (e.g., convert to JSON-serializable structures).
 
 ## Example Pipelines
 

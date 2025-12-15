@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-A multipurpose node for visualizing, transforming, and forwarding data. It can either pass through incoming data (optionally converting it to a target type) or process manually entered text into a chosen output type. It also supports variable replacement using auxiliary inputs and renders a preview of the processed value.
+A multipurpose node to visualize, transform, and forward data. It can pass through incoming data, convert it to a specified type, evaluate simple formulas, and substitute auxiliary variables into text. When a passthrough value is connected, it previews the processed value for quick inspection.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/utilities/saltdatamonitor.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ A multipurpose node for visualizing, transforming, and forwarding data. It can e
 
 ## Usage
 
-Use this node to inspect and convert data flowing through your workflow, or to generate structured values from text. Typical patterns include: forwarding upstream values while converting them to STRING/INT/FLOAT/BOOLEAN/LIST/TUPLE/DICT/JSON; composing values with placeholders like %aux% using Aux inputs; or evaluating a simple expression via FORMULA. Place it at the end of a branch to visualize outputs or in-line to normalize data types before passing to other nodes.
+Use this node to inspect intermediate values, convert data types, or compute simple expressions before passing data onward. Typical workflows include: previewing outputs from other nodes; converting strings to numbers/lists/JSON; evaluating a short expression in FORMULA mode; and templating text with %aux%, %aux2%, etc., sourced from auxiliary inputs.
 
 ## Inputs
 
@@ -26,14 +26,14 @@ Use this node to inspect and convert data flowing through your workflow, or to g
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">text</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Manual input text to be processed when no Passthrough is supplied. Also serves as the displayed preview text. Supports placeholder replacement using Aux inputs.</td><td style="word-wrap: break-word;">Total: %aux% items</td></tr>
-<tr><td style="word-wrap: break-word;">output_type</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">Controls how Passthrough/Text is converted before output. Options: ANY, STRING, INT, FLOAT, BOOLEAN, LIST, TUPLE, DICT, JSON, FORMULA.</td><td style="word-wrap: break-word;">JSON</td></tr>
-<tr><td style="word-wrap: break-word;">passthrough</td><td>False</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Optional incoming value to visualize and forward. When provided, this takes precedence over the Text field. Placeholders within string-like values can be replaced using Aux inputs.</td><td style="word-wrap: break-word;">User score: %aux%</td></tr>
-<tr><td style="word-wrap: break-word;">aux</td><td>False</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Auxiliary value used for placeholder replacement in Passthrough/Text. Replaces %aux% (case-insensitive).</td><td style="word-wrap: break-word;">42</td></tr>
-<tr><td style="word-wrap: break-word;">aux2</td><td>False</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Auxiliary value used for placeholder replacement. Replaces %aux2% (case-insensitive).</td><td style="word-wrap: break-word;">beta</td></tr>
-<tr><td style="word-wrap: break-word;">aux3</td><td>False</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Auxiliary value used for placeholder replacement. Replaces %aux3% (case-insensitive).</td><td style="word-wrap: break-word;">3.14</td></tr>
-<tr><td style="word-wrap: break-word;">aux4</td><td>False</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Auxiliary value used for placeholder replacement. Replaces %aux4% (case-insensitive).</td><td style="word-wrap: break-word;">true</td></tr>
-<tr><td style="word-wrap: break-word;">aux5</td><td>False</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Auxiliary value used for placeholder replacement. Replaces %aux5% (case-insensitive).</td><td style="word-wrap: break-word;">{"k":"v"}</td></tr>
+<tr><td style="word-wrap: break-word;">text</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Base text to process when no passthrough is provided. Supports variable replacement using %aux%, %aux2%, %aux3%, %aux4%, and %aux5% (case-insensitive).</td><td style="word-wrap: break-word;">The value is %aux% units</td></tr>
+<tr><td style="word-wrap: break-word;">output_type</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">Controls how the input is processed or converted. Options: ANY, STRING, INT, FLOAT, BOOLEAN, LIST, TUPLE, DICT, JSON, FORMULA.</td><td style="word-wrap: break-word;">JSON</td></tr>
+<tr><td style="word-wrap: break-word;">passthrough</td><td>False</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Optional data to visualize and forward. If provided, it is used as the primary input (with optional variable substitution if it is string-like).</td><td style="word-wrap: break-word;">[1, 2, 3]</td></tr>
+<tr><td style="word-wrap: break-word;">aux</td><td>False</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Auxiliary value used for variable substitution in text or passthrough via %aux%.</td><td style="word-wrap: break-word;">42</td></tr>
+<tr><td style="word-wrap: break-word;">aux2</td><td>False</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Auxiliary value used for variable substitution via %aux2%.</td><td style="word-wrap: break-word;">3.14</td></tr>
+<tr><td style="word-wrap: break-word;">aux3</td><td>False</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Auxiliary value used for variable substitution via %aux3%.</td><td style="word-wrap: break-word;">true</td></tr>
+<tr><td style="word-wrap: break-word;">aux4</td><td>False</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Auxiliary value used for variable substitution via %aux4%.</td><td style="word-wrap: break-word;">{"key": "value"}</td></tr>
+<tr><td style="word-wrap: break-word;">aux5</td><td>False</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Auxiliary value used for variable substitution via %aux5%.</td><td style="word-wrap: break-word;">[10, 20]</td></tr>
 </tbody>
 </table>
 </div>
@@ -50,23 +50,23 @@ Use this node to inspect and convert data flowing through your workflow, or to g
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">output</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">The processed value after applying Output Type conversion to either Passthrough (if provided) or Text. Can be string, number, boolean, list, tuple, dict/JSON, or any original value when Output Type is ANY.</td><td style="word-wrap: break-word;">{"total": 42}</td></tr>
+<tr><td style="word-wrap: break-word;">output</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">The processed value after applying variable substitution and conversion as per output_type. If passthrough is connected, this is the transformed passthrough; otherwise, it is the transformed text.</td><td style="word-wrap: break-word;">{"a": 1}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- The node prioritizes Passthrough over Text: if Passthrough is provided, Text is only used as a visual representation and the output is derived from Passthrough.
-- Placeholder replacement is case-insensitive and supports %aux%, %aux2%, %aux3%, %aux4%, and %aux5% within Passthrough/Text.
-- Output Type behaviors: ANY forwards the value as-is; STRING casts to text; INT/FLOAT/BOOLEAN cast to numeric/boolean; LIST/TUPLE attempt to convert or wrap into sequences; DICT expects an iterable of key/value pairs; JSON parses a valid JSON string; FORMULA evaluates the string as a Python expression.
-- JSON requires valid JSON (for example, keys in double quotes). Invalid JSON will cause a conversion error.
-- FORMULA evaluation executes the expression from Text/Passthrough; only use simple, safe expressions you trust.
-- When Passthrough is a scalar (e.g., number/boolean), the preview may appear encapsulated, but the actual output type matches the chosen Output Type.
+- • Passthrough takes precedence. If provided, it becomes the primary data source; otherwise the node processes the text input.
+- • Variable replacement is case-insensitive and supports %aux%, %aux2%, %aux3%, %aux4%, and %aux5% when the source is string-like.
+- • output_type behavior: ANY (forward as-is), STRING (str conversion), INT/FLT/BOOLEAN (numeric/boolean conversion), LIST/TUPLE/DICT (collection conversion), JSON (parse from JSON string), FORMULA (evaluate expression).
+- • JSON requires valid JSON input; invalid JSON will cause processing errors.
+- • FORMULA evaluates a Python expression derived from the input; use with caution and only on trusted content.
+- • Some scalar results may be internally wrapped for display purposes; the actual output remains the converted value.
+- • When passthrough is a tensor or a non-string object, variable substitution does not apply to the object itself; it is forwarded or converted according to output_type.
 
 ## Troubleshooting
-- Conversion failed: Ensure the input is compatible with the selected Output Type. For example, INT/FLOAT require numeric text, and LIST/TUPLE require iterable-compatible content.
-- Invalid JSON: Provide a properly formatted JSON string (e.g., {"key": "value"}) before selecting JSON as Output Type.
-- DICT conversion not working: DICT expects an iterable of (key, value) pairs or a structure convertible to a dictionary. If starting from text, prefer JSON instead.
-- Placeholders not replaced: Confirm you used %aux%, %aux2%, etc., exactly (case-insensitive). Ensure corresponding Aux inputs are connected or set.
-- Unexpected output preview: Some scalar values may display as encapsulated in the preview; verify the actual output by inspecting downstream inputs.
-- Formula errors: If FORMULA is selected, verify the expression is valid and that any referenced values are provided via placeholders and Aux inputs.
+- • JSON parsing fails: Ensure the input is valid JSON (e.g., use double quotes and proper structure).
+- • Type conversion errors (INT/FLOAT/BOOLEAN/LIST/TUPLE/DICT): Provide inputs compatible with the chosen type. For dictionaries, prefer JSON or an iterable of key-value pairs.
+- • Unexpected TRUE for BOOLEAN: Non-empty strings evaluate to True; use exact "true"/"false" strings with JSON mode if you need strict booleans.
+- • Formula errors or unsafe content: Verify your expression is valid and safe. Avoid untrusted inputs in FORMULA mode.
+- • No visible substitution: Variable placeholders only replace when the source is string-like and matches %aux%, %aux2%, %aux3%, %aux4%, or %aux5% (case-insensitive).

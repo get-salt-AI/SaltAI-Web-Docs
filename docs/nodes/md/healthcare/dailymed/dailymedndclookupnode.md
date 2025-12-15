@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Looks up a drug product by its NDC (National Drug Code) using the DailyMed public API. Optionally validates the NDC format before querying and returns both raw product data (as JSON) and a human-readable summary. If the NDC is invalid or not found, it returns an error message and marks the result as invalid.
+Looks up a U.S. National Drug Code (NDC) on DailyMed and returns structured product data, a human-readable summary, and a validation flag. It optionally validates NDC format before querying and can include packaging details in the summary.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/healthcare/dailymed/dailymedndclookupnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Looks up a drug product by its NDC (National Drug Code) using the DailyMed publi
 
 ## Usage
 
-Use this node when you need to retrieve authoritative U.S. drug product details by NDC, such as brand/generic names, manufacturer, active ingredients, dosage form, strength, and packaging. Typical workflow: provide an NDC (with or without hyphens), optionally enable format validation, and decide whether to include packaging details. Downstream nodes can consume the JSON output for structured processing, while the formatted summary is useful for display.
+Use this node when you have an NDC and need authoritative product details (brand/generic names, manufacturer, active ingredients, dosage form, strength, and optional package info). Typical workflow: provide an NDC (with or without hyphens), enable format validation to catch bad inputs early, and connect the outputs to downstream nodes for display or further processing.
 
 ## Inputs
 
@@ -26,9 +26,9 @@ Use this node when you need to retrieve authoritative U.S. drug product details 
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">ndc_code</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The NDC to look up. Hyphenated (e.g., 0378-6015-10) or digits-only formats are accepted.</td><td style="word-wrap: break-word;">0378-6015-10</td></tr>
-<tr><td style="word-wrap: break-word;">validate_format</td><td>False</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, performs a basic format check (10 or 11 digits after removing hyphens/spaces) before querying DailyMed.</td><td style="word-wrap: break-word;">true</td></tr>
-<tr><td style="word-wrap: break-word;">include_package_info</td><td>False</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, includes a short list of packaging details in the formatted output.</td><td style="word-wrap: break-word;">true</td></tr>
+<tr><td style="word-wrap: break-word;">ndc_code</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The NDC to look up. Hyphens and spaces are allowed; they are normalized before the search.</td><td style="word-wrap: break-word;">0378-6015-10</td></tr>
+<tr><td style="word-wrap: break-word;">validate_format</td><td>False</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, checks that the NDC is 10 or 11 digits (after removing hyphens/spaces) before querying.</td><td style="word-wrap: break-word;">true</td></tr>
+<tr><td style="word-wrap: break-word;">include_package_info</td><td>False</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, includes a brief list of packaging details in the formatted summary.</td><td style="word-wrap: break-word;">true</td></tr>
 </tbody>
 </table>
 </div>
@@ -45,24 +45,22 @@ Use this node when you need to retrieve authoritative U.S. drug product details 
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">product_info</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON string containing the first matching product’s full DailyMed record or an error payload.</td><td style="word-wrap: break-word;">{"title": "Example Drug Label", "openfda": {"brand_name": ["BrandX"]}, "active_ingredient": ["acetaminophen"], ...}</td></tr>
-<tr><td style="word-wrap: break-word;">formatted_info</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary of the product, including brand/generic names, manufacturer, active ingredients, dosage form, strength, and optional packaging.</td><td style="word-wrap: break-word;">NDC Product Information\n==============================\nProduct: Example Drug Label\nBrand: BrandX\nGeneric: acetaminophen\nManufacturer: Example Pharma Inc.\nActive Ingredients: acetaminophen\nStrength: 500 mg\nDosage Form: tablet\n\nPackaging Information:\n  - 100 tablets per bottle (NDC: 12345-6789-01)</td></tr>
-<tr><td style="word-wrap: break-word;">is_valid</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">True when a product is found and (if enabled) the NDC format passes validation; false otherwise.</td><td style="word-wrap: break-word;">true</td></tr>
+<tr><td style="word-wrap: break-word;">product_info</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Raw product information as a JSON string from DailyMed for the first matching result or an error object if not found/invalid.</td><td style="word-wrap: break-word;">{"title": "Clonazepam...", "openfda": {"brand_name": ["Klonopin"]}, "product_ndc": ["0378-6015"], ...}</td></tr>
+<tr><td style="word-wrap: break-word;">formatted_info</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A human-readable summary of the product (product title, brand/generic names, manufacturer, active ingredients, strength, dosage form, and optional packaging lines).</td><td style="word-wrap: break-word;">NDC Product Information ============================== Product: Clonazepam ... Brand: Klonopin Generic: clonazepam Manufacturer: XYZ Pharma Active Ingredients: clonazepam Strength: 0.5 mg Dosage Form: tablet  Packaging Information:   - Bottle of 100 tablets (NDC: 0378-6015-10)</td></tr>
+<tr><td style="word-wrap: break-word;">is_valid</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">True if the NDC format is acceptable and a product was found; false if format is invalid or no product was found.</td><td style="word-wrap: break-word;">true</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Format validation is basic**: it only checks for 10 or 11 digits after removing hyphens/spaces; it does not enforce hyphenation patterns.
-- **First match only**: the node returns the first product found for the provided NDC.
-- **Packaging is truncated**: when included, only the first few packaging entries are summarized.
-- **Network dependency**: requires internet access to reach the DailyMed API; network or API issues will result in error outputs.
-- **Input flexibility**: both hyphenated and digits-only NDC codes are accepted.
-- **Error handling**: if the NDC format is invalid or no product is found, the JSON output contains an error message, the formatted string explains the issue, and is_valid is false.
+- **NDC format**: Validation considers the NDC valid if it has 10 or 11 digits after removing hyphens/spaces. If validation is enabled and fails, the node returns an error and is_valid=false.
+- **Single-result focus**: The node retrieves the first matching product for the provided NDC.
+- **Packaging summary**: When enabled, only a limited number of package entries may be included in the formatted output for brevity.
+- **Internet access required**: Successful lookups depend on external DailyMed availability and network connectivity.
+- **Not found behavior**: If no product is found for a validly formatted NDC, the node returns an error message in product_info and formatted_info with is_valid=false.
 
 ## Troubleshooting
-- **Invalid NDC format message**: Ensure the NDC resolves to 10 or 11 digits after removing hyphens and spaces (e.g., 0378-6015-10 or 0378601510).
-- **No product found**: Verify the NDC is correct and active; try removing hyphens or using the 11-digit version if available.
-- **Network or API error**: Check internet connectivity and retry later; the formatted output will include an error description.
-- **Missing fields in formatted output**: Some records may not include all fields (e.g., strength or manufacturer); this is normal for certain entries.
-- **Unexpected multiple NDC variants**: If the NDC corresponds to multiple packages, only the first matching product is returned; consider searching by drug name if broader coverage is needed.
+- **Invalid NDC format**: Ensure the NDC contains 10 or 11 digits after removing hyphens/spaces (e.g., 0378601510). Disable validate_format if you want to attempt a lookup anyway.
+- **NDC not found**: Verify the code is correct, try removing hyphens, or check if the product is listed on DailyMed.
+- **Empty or minimal fields**: Some products may lack certain fields (e.g., strength or packaging). This is expected based on source data.
+- **Network or service issues**: If you receive a generic error, check your internet connection and try again later in case of DailyMed service interruptions.

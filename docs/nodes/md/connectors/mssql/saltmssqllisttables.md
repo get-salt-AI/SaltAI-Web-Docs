@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Lists all tables available within a specified SQL Server schema. Uses a provided database URI to connect via the configured SQL Server data connector and returns both a readable list and a JSON payload. Designed for discovery and inspection of database structures.
+Lists all table names in a specified SQL Server schema using saved MSSQL credentials. Loads credentials, calls the backend list-tables operation, and returns a human-readable summary along with structured results.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/mssql/saltmssqllisttables.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Lists all tables available within a specified SQL Server schema. Uses a provided
 
 ## Usage
 
-Use this node when you need to enumerate tables in a given schema before querying or building downstream data workflows. Typical flow: provide a valid SQL Server connection URI, specify the schema (defaults to dbo), optionally adjust the timeout, and pass the outputs to selection or documentation steps.
+Use this node when you need to discover or validate the tables available in a given SQL Server schema (e.g., before building queries or selecting a table for downstream operations). Typical workflow: provide your MSSQL credentials, set the schema (dbo by default), optionally adjust timeout, and connect the outputs to nodes that consume JSON or tabular data.
 
 ## Inputs
 
@@ -26,9 +26,9 @@ Use this node when you need to enumerate tables in a given schema before queryin
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A SQL Server connection URI used to connect to the database.</td><td style="word-wrap: break-word;">mssql://sa:<password>@localhost:1433/master</td></tr>
-<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Request timeout in seconds for the database operation.</td><td style="word-wrap: break-word;">60</td></tr>
-<tr><td style="word-wrap: break-word;">schema</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The database schema to list tables from.</td><td style="word-wrap: break-word;">dbo</td></tr>
+<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">CREDENTIALS</td><td style="word-wrap: break-word;">Reference to saved MSSQL credentials matching the 'mssql' template. These credentials are used to authenticate with the database service.</td><td style="word-wrap: break-word;"><path-or-credential-reference></td></tr>
+<tr><td style="word-wrap: break-word;">timeout</td><td>False</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time in seconds to wait for the operation before timing out.</td><td style="word-wrap: break-word;">60</td></tr>
+<tr><td style="word-wrap: break-word;">schema</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Name of the database schema to list tables from.</td><td style="word-wrap: break-word;">dbo</td></tr>
 </tbody>
 </table>
 </div>
@@ -45,26 +45,23 @@ Use this node when you need to enumerate tables in a given schema before queryin
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary of tables found in the schema.</td><td style="word-wrap: break-word;">Tables in schema 'dbo' (3 tables): - users - orders - products</td></tr>
-<tr><td style="word-wrap: break-word;">json_result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON string with the raw service response, typically including an array of table names under 'tables'.</td><td style="word-wrap: break-word;">{"tables": ["users", "orders", "products"]}</td></tr>
-<tr><td style="word-wrap: break-word;">html_table</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">HTML representation. For this operation, this field is typically empty.</td><td style="word-wrap: break-word;"></td></tr>
-<tr><td style="word-wrap: break-word;">xlsx_data</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Base64-encoded XLSX content. For this operation, this field is typically empty.</td><td style="word-wrap: break-word;"></td></tr>
-<tr><td style="word-wrap: break-word;">pdf_data</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Base64-encoded PDF content. For this operation, this field is typically empty.</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Human-readable summary of the operation and the schema’s tables.</td><td style="word-wrap: break-word;">Tables in Schema: dbo</td></tr>
+<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Structured results containing the list of tables.</td><td style="word-wrap: break-word;">{"tables": ["users", "orders", "products"]}</td></tr>
+<tr><td style="word-wrap: break-word;">table</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Tabular representation of the listed tables (typically one row per table).</td><td style="word-wrap: break-word;">Not specified</td></tr>
+<tr><td style="word-wrap: break-word;">extra_1</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Reserved/auxiliary output for additional data, if any.</td><td style="word-wrap: break-word;">Not specified</td></tr>
+<tr><td style="word-wrap: break-word;">extra_2</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Reserved/auxiliary output for additional data, if any.</td><td style="word-wrap: break-word;">Not specified</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- The credentials_path must be a valid database URI and should start with mssql:// or sqlserver://.
-- If the target schema has no tables, the node returns a clear 'No tables found' message and an empty list in JSON.
-- The schema input defaults to 'dbo' if not changed.
-- Timeout is in seconds and applies to the request made to the data connector service.
-- Ensure your user has permissions to read metadata for the specified schema; insufficient privileges may result in errors or empty results.
-- If using username/password in the URI, never include real secrets in shared documents; use placeholders like <password>.
+- The node requires valid MSSQL credentials saved under the 'mssql' credential template.
+- Schema is required; if your environment uses non-default schemas, set the appropriate schema name.
+- Timeout controls the maximum wait for the backend service; long-running metadata operations may require higher values.
+- Outputs include both a readable summary and structured results suitable for downstream parsing.
 
 ## Troubleshooting
-- Invalid credentials URI: Ensure the URI format is correct, e.g., mssql://user:<password>@host:1433/database.
-- Service not configured: If you encounter a 'Service URL is not configured' error, verify that the SQL Server data connector endpoint is set up in your environment.
-- Authentication or permission errors: Confirm the provided credentials have rights to access the database and read schema metadata.
-- Connection/timeout issues: Increase the timeout value or check network connectivity and firewall settings to the SQL Server and connector service.
-- Empty result: Confirm the schema name is correct and that tables exist; also verify the user’s permissions on that schema.
+- If you receive authentication errors, verify the credentials referenced by credentials_path and ensure the user has access to the target database/schema.
+- If the result is empty but no error occurs, confirm the schema name is correct and that it contains tables.
+- On timeout errors, increase the timeout input value or check network connectivity to the database service.
+- If downstream nodes fail to parse results, connect to the JSON output and validate the structure (e.g., ensure it contains a 'tables' array).

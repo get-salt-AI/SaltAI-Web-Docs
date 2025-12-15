@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Returns the number of items stored inside an Accumulation. If the provided input is not a valid Accumulation, the node safely returns 0.
+Returns the number of items currently stored in an Accumulation. If the input is not a valid Accumulation, it safely returns 0.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../../images/previews/logic/flow-control/accumulation/saltaccumulationgetlengthnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Returns the number of items stored inside an Accumulation. If the provided input
 
 ## Usage
 
-Use this node when you need the count of items that have been collected through Accumulation-based workflows (e.g., after iteratively adding items with Accumulate). Commonly used for conditional logic, branching, or validating that an Accumulation contains items before further processing.
+Use this node to measure how many elements are in an Accumulation during list-building or iterative workflows. Commonly placed after nodes that create or modify an Accumulation (e.g., Accumulate, Accumulation Head/Tail, List to Accumulation) to branch logic based on size, validate loop progress, or guard against empty collections.
 
 ## Inputs
 
@@ -26,7 +26,7 @@ Use this node when you need the count of items that have been collected through 
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">accumulation</td><td>True</td><td style="word-wrap: break-word;">ACCUMULATION</td><td style="word-wrap: break-word;">The Accumulation object to measure. This should be created by Accumulate or related Accumulation nodes and internally holds a list of collected items.</td><td style="word-wrap: break-word;">{'accum': ['a', 'b', 'c']}</td></tr>
+<tr><td style="word-wrap: break-word;">accumulation</td><td>True</td><td style="word-wrap: break-word;">ACCUMULATION</td><td style="word-wrap: break-word;">The Accumulation object whose element count should be computed. Must be produced by compatible Accumulation-related nodes.</td><td style="word-wrap: break-word;">{'accum': [1, 2, 3]}</td></tr>
 </tbody>
 </table>
 </div>
@@ -43,17 +43,17 @@ Use this node when you need the count of items that have been collected through 
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">length</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">The number of items contained in the input Accumulation.</td><td style="word-wrap: break-word;">3</td></tr>
+<tr><td style="word-wrap: break-word;">length</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">The number of items in the provided Accumulation. Returns 0 if the input is invalid or empty.</td><td style="word-wrap: break-word;">3</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- If the input is missing or not a valid Accumulation, the node returns 0.
-- This node only reads the Accumulation; it does not modify it.
-- Designed to work with Accumulation objects produced by nodes like Accumulate, Accumulation Head/Tail, and Accumulation Get/Set Item.
+- The input must be a valid Accumulation object produced by Accumulation-compatible nodes.
+- If the input is invalid or does not contain an 'accum' collection, the node returns 0.
+- Ideal for control-flow checks, such as confirming that an Accumulation is non-empty before retrieving items.
 
 ## Troubleshooting
-- Length is always 0: Ensure the input is a valid Accumulation object produced by compatible nodes and that it contains items.
-- Unexpected length value: Verify that items were actually added to the Accumulation before this node executes.
-- Type errors upstream: Confirm that the upstream node outputs an ACCUMULATION type, not a plain list or other data structure.
+- Length is always 0: Ensure the input is connected to a node that outputs ACCUMULATION (not a plain list or other type).
+- Unexpected small/large length: Verify upstream nodes are appending/removing items as intended before this node executes.
+- Downstream errors using length: Confirm the length is greater than 0 before indexing into the Accumulation elsewhere.

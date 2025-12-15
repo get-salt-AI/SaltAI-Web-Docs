@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Performs a mathematical operation on two integers and returns a single integer. Supports addition, subtraction, multiplication, integer division, modulo, and exponentiation. Division and modulo by zero are safely handled by returning 0.
+Performs basic arithmetic on two integers. Supports addition, subtraction, multiplication, integer division, modulo, and exponentiation. Division and modulo by zero are guarded and return 0.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/utilities/math/saltintmathoperation.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Performs a mathematical operation on two integers and returns a single integer. 
 
 ## Usage
 
-Use this node when you need integer arithmetic in a workflow, such as counters, loop indices, pagination, or discrete transformations. Select the operation and provide integer inputs a and b. Note that divide performs integer (floor) division.
+Use this node whenever you need integer arithmetic in a workflow, such as initializing counters, accumulating totals, or computing loop indices. Connect integer-producing nodes to inputs a and b, select the desired operation, and route the single integer result to downstream nodes (e.g., conditions, loops, or outputs).
 
 ## Inputs
 
@@ -26,9 +26,9 @@ Use this node when you need integer arithmetic in a workflow, such as counters, 
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">a</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">First integer operand.</td><td style="word-wrap: break-word;">10</td></tr>
-<tr><td style="word-wrap: break-word;">b</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Second integer operand.</td><td style="word-wrap: break-word;">3</td></tr>
-<tr><td style="word-wrap: break-word;">operation</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">Mathematical operation to apply to a and b.</td><td style="word-wrap: break-word;">divide</td></tr>
+<tr><td style="word-wrap: break-word;">a</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">First integer operand. Accepts any 64-bit range integer.</td><td style="word-wrap: break-word;">5</td></tr>
+<tr><td style="word-wrap: break-word;">b</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Second integer operand. Accepts any 64-bit range integer.</td><td style="word-wrap: break-word;">3</td></tr>
+<tr><td style="word-wrap: break-word;">operation</td><td>True</td><td style="word-wrap: break-word;">STRING (choice: add, subtract, multiply, divide, modulo, power)</td><td style="word-wrap: break-word;">Specifies which arithmetic operation to perform on a and b. divide uses integer division (floor).</td><td style="word-wrap: break-word;">multiply</td></tr>
 </tbody>
 </table>
 </div>
@@ -45,20 +45,19 @@ Use this node when you need integer arithmetic in a workflow, such as counters, 
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">The computed integer after applying the selected operation to a and b.</td><td style="word-wrap: break-word;">3</td></tr>
+<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">The integer result of the selected operation.</td><td style="word-wrap: break-word;">15</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- Division uses integer division (floor), e.g., 10 / 3 returns 3.
-- If b is 0 for divide or modulo, the node returns 0.
-- Power can produce very large integers; be mindful of input sizes.
-- On unknown operations or internal errors, the node returns 0.
-- Inputs support very large negative and positive integers.
+- **Division behavior**: The divide operation performs integer division (a // b). For negative values, this is floor division.
+- **Zero handling**: If b is 0 for divide or modulo, the node returns 0.
+- **Large numbers**: power can produce very large integers; ensure downstream nodes can handle big values.
+- **Type expectations**: Inputs must be integers; provide conversions upstream if starting from strings or floats.
 
 ## Troubleshooting
-- Result is 0 unexpectedly: Ensure b is not 0 for divide/modulo and that a valid operation is selected.
-- Unexpected rounding in divide: Integer division truncates toward negative infinity; use a float math node if fractional results are needed.
-- Extremely large results or slow execution: Limit input sizes for power operations.
-- Output not updating: Verify that a, b, and operation are correctly set or connected.
+- **Result is 0 unexpectedly**: Check if b is 0 for divide or modulo; the node returns 0 in these cases.
+- **Non-integer inputs rejected**: Ensure upstream nodes output INT. Add conversion steps if necessary.
+- **Unexpected division result with negatives**: Remember integer division floors toward negative infinity (e.g., -3 // 2 = -2).
+- **Performance issues on power**: Very large exponents can be slow or produce huge numbers; constrain inputs or switch to float operations if appropriate.

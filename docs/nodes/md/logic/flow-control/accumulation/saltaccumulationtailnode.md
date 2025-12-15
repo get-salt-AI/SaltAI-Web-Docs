@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Returns the tail of an accumulation by removing the first element. If the accumulation has zero or one items, it returns an empty accumulation. It preserves the accumulation structure expected by other list/accumulation nodes.
+Returns the tail of an accumulation by removing its first element. If the accumulation has zero or one element, it returns an empty accumulation. The node is defensive: on invalid inputs or errors, it yields an empty accumulation.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../../images/previews/logic/flow-control/accumulation/saltaccumulationtailnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Returns the tail of an accumulation by removing the first element. If the accumu
 
 ## Usage
 
-Use this node when you need to iterate through or process an accumulation by progressively dropping the head element. Commonly chained after an accumulation-producing node and before further list operations (e.g., length checks, get/set item, or converting back to a plain list).
+Use this node when processing a sequence stored in an accumulation and you need everything except the first element (e.g., iterative processing, recursion, or stepping through a queue-like structure). Typically paired with Accumulation Head/Accumulate/To List nodes for list-style workflows.
 
 ## Inputs
 
@@ -26,7 +26,7 @@ Use this node when you need to iterate through or process an accumulation by pro
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">accumulation</td><td>True</td><td style="word-wrap: break-word;">ACCUMULATION</td><td style="word-wrap: break-word;">An accumulation object containing a list under the 'accum' key. The head (first item) will be removed.</td><td style="word-wrap: break-word;">{"accum": ["a", "b", "c"]}</td></tr>
+<tr><td style="word-wrap: break-word;">accumulation</td><td>True</td><td style="word-wrap: break-word;">ACCUMULATION</td><td style="word-wrap: break-word;">An accumulation object containing a list under the key 'accum'.</td><td style="word-wrap: break-word;">{'accum': [10, 20, 30]}</td></tr>
 </tbody>
 </table>
 </div>
@@ -43,18 +43,17 @@ Use this node when you need to iterate through or process an accumulation by pro
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">tail</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The accumulation with its first element removed. If fewer than two elements exist, returns an empty accumulation.</td><td style="word-wrap: break-word;">{"accum": ["b", "c"]}</td></tr>
+<tr><td style="word-wrap: break-word;">tail</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The tail of the input accumulation (an accumulation object with all elements except the first). If the input has <= 1 elements or is invalid, returns an empty accumulation.</td><td style="word-wrap: break-word;">{'accum': [20, 30]}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- If the input is not a valid accumulation or lacks the 'accum' key, the node returns an empty accumulation: {"accum": []}.
-- If the input accumulation has length 0 or 1, the result is {"accum": []}.
-- The declared output type is WILDCARD, but the actual structure returned is an accumulation-like object with an 'accum' list. Ensure downstream nodes expect an accumulation.
-- This node does not mutate the input; it returns a new accumulation object.
+- If the input accumulation is empty or has a single element, the output is an empty accumulation: {"accum": []}.
+- If the input is not a valid accumulation object, the node returns an empty accumulation.
+- Downstream nodes should expect an accumulation-like object on the output, even though the declared output type is WILDCARD.
 
 ## Troubleshooting
-- Output is empty unexpectedly: Verify the input is a proper accumulation object with an 'accum' list and that it contains at least two items.
-- Downstream type mismatch: Some nodes may expect an ACCUMULATION type explicitly. If needed, confirm compatibility or convert using related nodes.
-- Need a plain list: If you require a native list, pass the output to 'Accumulation to List' to extract the list from the accumulation.
+- Output is empty unexpectedly: Ensure the input is a proper accumulation object shaped like {"accum": [...]}, and that it contains at least two elements.
+- Downstream type mismatch: Some nodes may expect an ACCUMULATION type explicitly; insert a conversion or ensure the receiving node can accept the output as an accumulation.
+- Errors in logs and empty output: Validate that the input is not None and follows the expected structure {"accum": list}.

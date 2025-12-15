@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Parses a JSON string and outputs the corresponding structured data. The output type adapts to the JSON content (object, array, number, string, boolean, or null). If the input is empty or invalid JSON, the node returns None.
+Parses a JSON-formatted string and returns the corresponding data structure. Supports objects, arrays, numbers, booleans, strings, and null. If the input is empty or invalid JSON, the node returns None.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/utilities/json/saltjsonfromstring.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Parses a JSON string and outputs the corresponding structured data. The output t
 
 ## Usage
 
-Use this node when you have JSON as text (for example, from an API response, file content, or a prompt result) and need to convert it into structured data for downstream processing. Commonly paired with JSON: Get Value, JSON: Filter, JSON: Merge, or JSON: To String.
+Use this node when you have JSON text (for example, from a file, API response, or a text field) and need to convert it into a data structure for downstream processing. Commonly paired with nodes like JSON: Get Value, JSON: Set Value, or JSON: Merge to manipulate the parsed data.
 
 ## Inputs
 
@@ -26,7 +26,7 @@ Use this node when you have JSON as text (for example, from an API response, fil
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">json_string</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A valid JSON string to parse. Must follow standard JSON syntax (double-quoted keys/strings, no trailing commas, no comments).</td><td style="word-wrap: break-word;">{"user": {"id": 123, "name": "Ada"}, "tags": ["ml", "ai"]}</td></tr>
+<tr><td style="word-wrap: break-word;">json_string</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A valid JSON string to parse. Supports multi-line input. Must be standard JSON (double-quoted strings, no comments, no trailing commas).</td><td style="word-wrap: break-word;">{"user": {"id": 123, "name": "Ada"}, "active": true, "tags": ["alpha", "beta"]}</td></tr>
 </tbody>
 </table>
 </div>
@@ -43,20 +43,19 @@ Use this node when you have JSON as text (for example, from an API response, fil
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">data</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Parsed data from the JSON string. Can be an object (dict), array (list), number, string, boolean, or None if parsing fails.</td><td style="word-wrap: break-word;">{'user': {'id': 123, 'name': 'Ada'}, 'tags': ['ml', 'ai']}</td></tr>
+<tr><td style="word-wrap: break-word;">data</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The parsed data structure from the JSON string. Can be an object (dict), array (list), string, number, boolean, or None if parsing fails or the input is empty/whitespace.</td><td style="word-wrap: break-word;">{'user': {'id': 123, 'name': 'Ada'}, 'active': True, 'tags': ['alpha', 'beta']}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Valid JSON required**: The input must be valid JSON (double quotes, no comments, no trailing commas).
-- **Empty or invalid input returns None**: Blank strings or malformed JSON yield None, which may break downstream nodes expecting structured data.
-- **Dynamic output type**: The output type depends on the JSON root (object, array, etc.). Ensure downstream nodes can accept WILDCARD.
-- **No reformatting**: This node only parses; it does not pretty-print. Use JSON: To String to serialize back to text if needed.
-- **Strings vs JSON**: A plain string like "hello" is valid JSON and will output a string value, not an object.
+- **Returns None on invalid or empty input**: If the string is not valid JSON or is empty/whitespace, the output will be None.
+- **Standard JSON only**: Requires proper JSON formatting (double quotes for strings, no comments, no trailing commas).
+- **Output type varies**: The WILDCARD output may be a dict, list, string, number, boolean, or None depending on the input.
+- **Non-throwing behavior**: Errors are handled internally; the node logs errors and returns None instead of raising exceptions.
 
 ## Troubleshooting
-- **Got None as output**: The JSON is likely invalid or empty. Validate with JSON: Validate and fix syntax issues (e.g., replace single with double quotes, remove trailing commas).
-- **Downstream node type mismatch**: Ensure downstream nodes accept WILDCARD or insert JSON: To String if text is required.
-- **Unexpected list vs object**: If you expected an object but got a list (or vice versa), check the top-level JSON structure in the input.
-- **Unicode/encoding issues**: Ensure the source text is UTF-8 and not truncated. Re-fetch or re-read the JSON source if corruption is suspected.
+- **Output is None**: Validate the input string with the JSON: Validate node, and check for common JSON issues (trailing commas, single quotes, comments).
+- **Unexpected output type**: Confirm your JSON root type (object vs array vs scalar). Downstream nodes must handle the actual type returned.
+- **Parsing works locally but fails here**: Ensure the input uses UTF-8 encoding and standard JSON (no BOM, no special comment syntax).
+- **Downstream node errors**: If subsequent nodes fail, first check whether this node returned None due to invalid JSON.

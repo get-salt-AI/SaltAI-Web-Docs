@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Updates an item at a specific index within an accumulation. It writes the provided value into the accumulation's internal list at the given index and returns the updated accumulation. If the index is invalid or the accumulation is malformed, it returns the original accumulation unchanged.
+Updates an element at a specific index within an Accumulation. It performs an in-place modification of the internal list and returns the same Accumulation object reference. If the index is invalid or the structure is not an Accumulation, it safely returns the original Accumulation unchanged.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../../images/previews/logic/flow-control/accumulation/saltaccumulationsetitemnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Updates an item at a specific index within an accumulation. It writes the provid
 
 ## Usage
 
-Use this node when you need to modify an element within an existing accumulation, such as updating a computed result, replacing a placeholder, or correcting a value in a workflow that builds or refines lists over time. Typically paired with nodes that create or transform accumulations, and often used inside iterative or conditional logic branches.
+Use this node when you need to overwrite a particular element inside an existing Accumulation, such as correcting a value or replacing a placeholder. Typically placed after building an Accumulation (e.g., via Accumulate or List to Accumulation) and before nodes that consume the updated list.
 
 ## Inputs
 
@@ -26,9 +26,9 @@ Use this node when you need to modify an element within an existing accumulation
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">accumulation</td><td>True</td><td style="word-wrap: break-word;">ACCUMULATION</td><td style="word-wrap: break-word;">The accumulation object containing an ordered list of items to be updated.</td><td style="word-wrap: break-word;">{"accum": ["a", "b", "c"]}</td></tr>
-<tr><td style="word-wrap: break-word;">index</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Zero-based index of the item to update. Negative indices refer to items from the end (e.g., -1 is the last item).</td><td style="word-wrap: break-word;">1</td></tr>
-<tr><td style="word-wrap: break-word;">value</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The new value to store at the specified index. Can be any supported type compatible with the accumulation's item type.</td><td style="word-wrap: break-word;">"z"</td></tr>
+<tr><td style="word-wrap: break-word;">accumulation</td><td>True</td><td style="word-wrap: break-word;">ACCUMULATION</td><td style="word-wrap: break-word;">The Accumulation to modify. Must be a valid Accumulation produced by compatible nodes.</td><td style="word-wrap: break-word;"><accumulation_object></td></tr>
+<tr><td style="word-wrap: break-word;">index</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Zero-based position of the element to set. Negative indices are supported (Python-style) and count from the end.</td><td style="word-wrap: break-word;">2</td></tr>
+<tr><td style="word-wrap: break-word;">value</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The new value to place at the specified index. Should match the expected item type used within the Accumulation.</td><td style="word-wrap: break-word;">example item</td></tr>
 </tbody>
 </table>
 </div>
@@ -45,20 +45,19 @@ Use this node when you need to modify an element within an existing accumulation
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">accumulation</td><td style="word-wrap: break-word;">ACCUMULATION</td><td style="word-wrap: break-word;">The accumulation after attempting to set the item at the specified index. If the operation fails (e.g., invalid index), the original accumulation is returned.</td><td style="word-wrap: break-word;">{"accum": ["a", "z", "c"]}</td></tr>
+<tr><td style="word-wrap: break-word;">accumulation</td><td style="word-wrap: break-word;">ACCUMULATION</td><td style="word-wrap: break-word;">The same Accumulation object after the attempted update. If an error occurs (e.g., index out of range), the original Accumulation is returned unchanged.</td><td style="word-wrap: break-word;"><accumulation_object></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Indexing**: Uses zero-based indexing; negative indices are allowed and reference from the end of the list.
-- **Mutation behavior**: The accumulation is updated in place; downstream nodes will see the modified accumulation.
-- **Failure handling**: If the index is out of range or the accumulation is missing its internal list, the node returns the input accumulation unchanged.
-- **Type flexibility**: The value input is a wildcard; ensure it matches the expected type for consumers of the accumulation.
-- **Structure expectation**: The accumulation must contain an internal list of items (typically accessible as "accum").
+- This node mutates the Accumulation in place; downstream branches sharing the same Accumulation reference will see the change.
+- Negative indices are allowed (e.g., -1 refers to the last element).
+- If the index is out of range or the input is not a valid Accumulation, the node logs an error internally and returns the original Accumulation without changes.
+- For best results, ensure the value type is consistent with other elements in the Accumulation, especially if downstream nodes expect a specific type.
 
 ## Troubleshooting
-- **Index out of range**: Verify the index is within the accumulation's length or use negative indices for items from the end. Consider checking length beforehand with an appropriate length node.
-- **No change after execution**: This can occur if the index was invalid or the accumulation structure was malformed. Confirm the accumulation contains a valid list and the index is correct.
-- **Unexpected item type errors downstream**: Ensure the 'value' you set matches what downstream nodes expect (e.g., do not mix text with image objects unless intended).
-- **Concurrent modifications**: If multiple branches update the same accumulation reference, results may be unpredictable. Sequence updates or duplicate the accumulation before parallel edits.
+- Item did not change: Verify the index is within the valid range of the Accumulation length.
+- Type-related issues downstream: Ensure the 'value' you set matches the expected type used by subsequent nodes.
+- Unexpected no-op: Confirm the input is a valid Accumulation produced by the proper nodes, not a plain list or other structure.
+- Changes appearing in multiple places: Remember this node updates the Accumulation in place; if the same Accumulation is reused in multiple branches, all will reflect the update.

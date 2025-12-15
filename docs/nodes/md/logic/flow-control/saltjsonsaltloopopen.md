@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Iterates over a JSON array and emits the current item alongside up to four auxiliary data streams. It drives a JSON loop by producing a LOOP status object and the item at the current index, while honoring a user-defined condition that determines whether the iteration should proceed.
+Starts a loop over a JSON array and emits the current item for each iteration. It maintains loop state in a LOOP object and passes through up to four auxiliary values so they can be preserved or updated across iterations.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/logic/flow-control/saltjsonsaltloopopen.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Iterates over a JSON array and emits the current item alongside up to four auxil
 
 ## Usage
 
-Use this node to process each element of a JSON array step-by-step. Provide a JSON array string, connect the LOOP output to a JSON Loop Close node, and consume current_item for per-item processing. Use aux outputs to carry state across iterations (e.g., accumulators). Control loop flow with the condition expression, and optionally jump to a specific position with index_override.
+Use this node to iterate over a JSON array and process each item in sequence. Connect its LOOP output to a JSON Loop Close node to drive iteration. Provide a JSON array in json_list, optionally gate iteration with a boolean condition, and use aux channels to carry state between iterations. The loop advances when the Close node triggers the next iteration.
 
 ## Inputs
 
@@ -26,13 +26,13 @@ Use this node to process each element of a JSON array step-by-step. Provide a JS
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">json_list</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The JSON array to iterate over. Must parse to a list when treated as JSON.</td><td style="word-wrap: break-word;">["item1", {"name": "item2", "active": true}, 3]</td></tr>
-<tr><td style="word-wrap: break-word;">condition</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A boolean expression evaluated each iteration to decide whether to run the iteration. You can reference loop variables such as current_item, current_index, index, finished, total_items, and items.</td><td style="word-wrap: break-word;">current_index < total_items and (not finished)</td></tr>
-<tr><td style="word-wrap: break-word;">index_override</td><td>False</td><td style="word-wrap: break-word;">any</td><td style="word-wrap: break-word;">Manually set the current index (0-based) for this iteration. Negative or invalid values are sanitized to 0.</td><td style="word-wrap: break-word;">3</td></tr>
-<tr><td style="word-wrap: break-word;">aux</td><td>False</td><td style="word-wrap: break-word;">any</td><td style="word-wrap: break-word;">Primary auxiliary data that travels with the loop for maintaining state across iterations.</td><td style="word-wrap: break-word;">{'sum': 0, 'count': 0}</td></tr>
-<tr><td style="word-wrap: break-word;">aux2</td><td>False</td><td style="word-wrap: break-word;">any</td><td style="word-wrap: break-word;">Secondary auxiliary data passed through each iteration.</td><td style="word-wrap: break-word;">['seen', 'values']</td></tr>
-<tr><td style="word-wrap: break-word;">aux3</td><td>False</td><td style="word-wrap: break-word;">any</td><td style="word-wrap: break-word;">Tertiary auxiliary data passed through each iteration.</td><td style="word-wrap: break-word;">running_state_token</td></tr>
-<tr><td style="word-wrap: break-word;">aux4</td><td>False</td><td style="word-wrap: break-word;">any</td><td style="word-wrap: break-word;">Quaternary auxiliary data passed through each iteration.</td><td style="word-wrap: break-word;">{'buffer': []}</td></tr>
+<tr><td style="word-wrap: break-word;">json_list</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The JSON array to iterate over. Accepts a JSON string representing an array or a pre-parsed list provided by an upstream node.</td><td style="word-wrap: break-word;">[{"id":1,"active":true},{"id":2,"active":false}]</td></tr>
+<tr><td style="word-wrap: break-word;">condition</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A boolean expression (as text) that controls whether the current iteration should proceed. If it evaluates to false, the loop will finalize on the Close node. Useful variables include: current_item, current_index, total_items.</td><td style="word-wrap: break-word;">current_index < total_items and (current_item.get('active', False) == True)</td></tr>
+<tr><td style="word-wrap: break-word;">index_override</td><td>False</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Manually sets the current index for the loop (0-based). Use to resume or jump within the JSON array.</td><td style="word-wrap: break-word;">0</td></tr>
+<tr><td style="word-wrap: break-word;">aux</td><td>False</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Primary auxiliary value to pass through each iteration (e.g., an accumulator or context object).</td><td style="word-wrap: break-word;">{"sum": 0}</td></tr>
+<tr><td style="word-wrap: break-word;">aux2</td><td>False</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Secondary auxiliary value passed through each iteration.</td><td style="word-wrap: break-word;">["log entry 1"]</td></tr>
+<tr><td style="word-wrap: break-word;">aux3</td><td>False</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Tertiary auxiliary value passed through each iteration.</td><td style="word-wrap: break-word;">true</td></tr>
+<tr><td style="word-wrap: break-word;">aux4</td><td>False</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Quaternary auxiliary value passed through each iteration.</td><td style="word-wrap: break-word;">42</td></tr>
 </tbody>
 </table>
 </div>
@@ -49,27 +49,27 @@ Use this node to process each element of a JSON array step-by-step. Provide a JS
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">LOOP</td><td style="word-wrap: break-word;">any</td><td style="word-wrap: break-word;">A status dictionary describing the loop state. Connect this to the LOOP input of a JSON Loop Close node.</td><td style="word-wrap: break-word;">{'id': 123456, 'items': ['a', 'b', 'c'], 'index': 0, 'finished': False, 'total_items': 3, 'last_id': '<auto-generated-unique-id>'}</td></tr>
-<tr><td style="word-wrap: break-word;">current_item</td><td style="word-wrap: break-word;">any</td><td style="word-wrap: break-word;">The current element from the JSON array at the active index.</td><td style="word-wrap: break-word;">item1</td></tr>
-<tr><td style="word-wrap: break-word;">aux</td><td style="word-wrap: break-word;">any</td><td style="word-wrap: break-word;">Pass-through of the primary auxiliary data for this iteration.</td><td style="word-wrap: break-word;">{'sum': 5, 'count': 2}</td></tr>
-<tr><td style="word-wrap: break-word;">aux2</td><td style="word-wrap: break-word;">any</td><td style="word-wrap: break-word;">Pass-through of the secondary auxiliary data for this iteration.</td><td style="word-wrap: break-word;">['seen', 'values', 'item1']</td></tr>
-<tr><td style="word-wrap: break-word;">aux3</td><td style="word-wrap: break-word;">any</td><td style="word-wrap: break-word;">Pass-through of the tertiary auxiliary data for this iteration.</td><td style="word-wrap: break-word;">running_state_token</td></tr>
-<tr><td style="word-wrap: break-word;">aux4</td><td style="word-wrap: break-word;">any</td><td style="word-wrap: break-word;">Pass-through of the quaternary auxiliary data for this iteration.</td><td style="word-wrap: break-word;">{'buffer': ['item1']}</td></tr>
+<tr><td style="word-wrap: break-word;">LOOP</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Loop state dictionary containing information like id, index, total_items, finished, and internal linkage. Connect this to the LOOP input of a JSON Loop Close node.</td><td style="word-wrap: break-word;">{"id": "<loop-id>", "index": 0, "total_items": 3, "finished": false}</td></tr>
+<tr><td style="word-wrap: break-word;">current_item</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">The current element from the JSON array for this iteration.</td><td style="word-wrap: break-word;">{"id":1,"active":true}</td></tr>
+<tr><td style="word-wrap: break-word;">aux</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Passthrough of the aux value for this iteration.</td><td style="word-wrap: break-word;">{"sum": 10}</td></tr>
+<tr><td style="word-wrap: break-word;">aux2</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Passthrough of the aux2 value for this iteration.</td><td style="word-wrap: break-word;">["log entry 1","log entry 2"]</td></tr>
+<tr><td style="word-wrap: break-word;">aux3</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Passthrough of the aux3 value for this iteration.</td><td style="word-wrap: break-word;">false</td></tr>
+<tr><td style="word-wrap: break-word;">aux4</td><td style="word-wrap: break-word;">ANY</td><td style="word-wrap: break-word;">Passthrough of the aux4 value for this iteration.</td><td style="word-wrap: break-word;">99</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- Condition is a string expression evaluated each iteration. Available variables include current_item, current_index (0-based), index (alias of current_index), finished, total_items, and items.
-- json_list must represent a JSON array. If parsing fails or the value is not a list, the node will not emit data for that pass and the loop will not advance.
-- index_override is coerced to a non-negative integer. If it points beyond the end of the list, the loop is marked finished on the next interaction with the Close node.
-- finished becomes true on the last valid item or when the end of the array is reached; the Close node uses this to determine loop completion.
-- Auxiliary values (aux, aux2, aux3, aux4) are simply passed through each iteration so downstream nodes can carry state forward.
+- **Condition defaults to True**: If left empty or non-boolean, it is treated as True. Provide a valid boolean expression as text.
+- **End-of-list or failed condition**: When the index reaches the end of the list or the condition evaluates to false, only the LOOP state is updated for finalization and the JSON Loop Close node will output FINISHED? = True.
+- **Auxiliary passthrough**: Up to four aux values (aux, aux2, aux3, aux4) are carried across iterations; connect them to the Close node to preserve/update state.
+- **Indexing**: index_override is 0-based. Negative or invalid values are sanitized to 0.
+- **Input format**: json_list should represent an array (e.g., [1,2,3]). Objects or invalid JSON will not iterate.
+- **Pairing required**: This node must be paired with JSON Loop Close to advance iterations and detect completion.
 
 ## Troubleshooting
-- Invalid JSON in json_list: Ensure the input is a valid JSON array string (e.g., [1,2,3]). If invalid, fix the JSON or supply a pre-parsed list via an upstream node.
-- Condition errors or unexpected False: If your condition references keys not present in current_item or variables not defined, it may evaluate to False. Adjust the condition or guard with checks (e.g., isinstance or key presence).
-- No outputs on a pass: This can happen if condition evaluates to False or json_list is invalid. Verify both inputs and the current index.
-- Loop never finishes: Confirm that index_override is not repeatedly resetting to a prior index, and that your condition does not keep preventing progression.
-- current_item is unexpected type: Verify your JSON array contents. Mixed types are supported, but your downstream logic should handle the item type accordingly.
-- Close node does not signal completion: Ensure the LOOP output from this node is connected to the JSON Loop Close node, and that the list and condition allow iteration to reach the end.
+- **Invalid JSON in json_list**: Ensure json_list is a valid JSON array string (e.g., "[1,2,3]") or provide a list from an upstream node.
+- **Condition errors**: If the condition references missing variables or is not a valid boolean expression, iteration will not proceed. Use variables like current_item, current_index, and total_items.
+- **Loop never finishes**: Verify the LOOP output is connected to a JSON Loop Close node and that the condition will eventually become false or the index reaches the end.
+- **No current_item output**: This is expected when the loop is finalizing (end of list or condition false). Check the Close node for FINISHED? status.
+- **Unexpected index**: If iteration restarts at 0, ensure index_override is an integer and is being set correctly from the Close node when continuing.

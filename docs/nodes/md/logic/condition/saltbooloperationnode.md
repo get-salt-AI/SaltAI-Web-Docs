@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Performs basic boolean logic operations on two boolean inputs. Supports AND, OR, XOR, and a unary NOT on the first input. Returns a single boolean result.
+Performs basic boolean logic between two boolean inputs. Supports AND, OR, XOR between a and b, and a unary NOT that inverts a. Returns a single boolean result.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/logic/condition/saltbooloperationnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Performs basic boolean logic operations on two boolean inputs. Supports AND, OR,
 
 ## Usage
 
-Use this node to combine or invert boolean conditions within a logic flow. Typical usage includes gating branches, combining multiple comparisons, or toggling behavior based on multiple flags. Note that when selecting NOT a, the second input b is ignored.
+Use this node when you need to combine or invert boolean flags in a workflow, such as gating execution, selecting branches, or building compound conditions. Choose the desired operation via the op selector; for NOT, only the first input (a) is used.
 
 ## Inputs
 
@@ -26,9 +26,9 @@ Use this node to combine or invert boolean conditions within a logic flow. Typic
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">a</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">First boolean operand. Used for all operations and as the target for NOT.</td><td style="word-wrap: break-word;">True</td></tr>
-<tr><td style="word-wrap: break-word;">b</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Second boolean operand. Ignored when the operation is NOT a.</td><td style="word-wrap: break-word;">False</td></tr>
-<tr><td style="word-wrap: break-word;">op</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">Boolean operation to apply. Choices: a AND b, a OR b, a XOR b, NOT a.</td><td style="word-wrap: break-word;">a XOR b</td></tr>
+<tr><td style="word-wrap: break-word;">a</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">First boolean operand. Used by all operations and the sole input for NOT.</td><td style="word-wrap: break-word;">True</td></tr>
+<tr><td style="word-wrap: break-word;">b</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Second boolean operand. Ignored when op is NOT a.</td><td style="word-wrap: break-word;">False</td></tr>
+<tr><td style="word-wrap: break-word;">op</td><td>True</td><td style="word-wrap: break-word;">enum</td><td style="word-wrap: break-word;">The boolean operation to apply. Options: a AND b, a OR b, a XOR b, NOT a.</td><td style="word-wrap: break-word;">a AND b</td></tr>
 </tbody>
 </table>
 </div>
@@ -45,19 +45,19 @@ Use this node to combine or invert boolean conditions within a logic flow. Typic
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">The outcome of the selected boolean operation.</td><td style="word-wrap: break-word;">True</td></tr>
+<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">The boolean outcome of the selected operation.</td><td style="word-wrap: break-word;">False</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Operation scope**: For NOT a, input b is ignored.
-- **XOR behavior**: a XOR b returns true only when exactly one of a or b is true.
-- **Invalid operation handling**: If an unknown operation is provided, the node returns false.
-- **Error handling**: On internal errors, the node returns false.
+- For NOT a, the b input is ignored.
+- XOR returns true only when exactly one of a or b is true.
+- If an unknown operation is provided or an error occurs, the node returns false.
+- Inputs must be boolean values; passing non-boolean types may lead to unintended results.
 
 ## Troubleshooting
-- **Unexpected false result**: Verify the selected op value matches one of the allowed choices exactly (a AND b, a OR b, a XOR b, NOT a).
-- **Result not changing when using NOT**: Remember that NOT a ignores b; ensure you intended to invert a and not b.
-- **Type errors**: Ensure both a and b are valid booleans (true/false). Non-boolean inputs will lead to a false result.
-- **Confusion with XOR**: If you expect true when both inputs are true, use a AND b instead of a XOR b.
+- Result is always false: Verify the op value matches one of the allowed options and that both inputs are valid booleans.
+- Unexpected use of b with NOT: Ensure you understand that NOT a ignores b.
+- XOR behaving like OR: Remember XOR is exclusive; it returns true only when a and b differ.
+- Type errors or coercion issues: Make sure upstream nodes output BOOLEAN, not strings like "true" or "false".

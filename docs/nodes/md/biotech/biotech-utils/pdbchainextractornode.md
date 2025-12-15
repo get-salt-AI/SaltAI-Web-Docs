@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Extracts one or more specified chains from input PDB structures and returns a new PDB containing only those chains. Chain selection is case-insensitive, whitespace-tolerant, and validated to single alphanumeric IDs. Non-coordinate records such as headers and secondary structure annotations are preserved; only ATOM/HETATM for the selected chains are retained.
+Extracts specified chains from one or more PDB structures. It retains relevant header/metadata lines and all ATOM/HETATM records for the selected chains, producing a new PDB that contains only those chains. Chain selection is case-insensitive and whitespace-tolerant.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/biotech-utils/pdbchainextractornode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Extracts one or more specified chains from input PDB structures and returns a ne
 
 ## Usage
 
-Use this node when you need to isolate specific chains from multi-chain PDB structures before downstream analysis, visualization, conversion, or modeling. Typical workflow: load or batch PDBs → PDB Chain Extractor (specify chain IDs like A,B) → pass filtered PDBs to visualization, conversion (e.g., CIF), or modeling nodes.
+Use this node when you need to isolate specific protein chains from PDB structures for focused analysis or downstream tasks (e.g., per-chain sequence extraction, modeling, or visualization). Connect a PDB dictionary input and specify one or more chain IDs (e.g., A, A,B). The output preserves the original PDB IDs while filtering contents to the requested chains.
 
 ## Inputs
 
@@ -26,8 +26,8 @@ Use this node when you need to isolate specific chains from multi-chain PDB stru
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">pdb</td><td>True</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Input PDB structure(s) as a dictionary mapping {pdb_id: pdb_content}. Each value should be a valid PDB-formatted string.</td><td style="word-wrap: break-word;">{"1ABC": "HEADER ...\nATOM ...\nHETATM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">chains</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Comma-separated list of chain IDs to extract. Accepts formats like "A", "A,B", "A, B", or with extra spaces; spaces are ignored. Chain IDs are treated case-insensitively and must be single alphanumeric characters.</td><td style="word-wrap: break-word;">A,B</td></tr>
+<tr><td style="word-wrap: break-word;">pdb</td><td>True</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Dictionary of PDB structures to filter, mapping {pdb_id: pdb_content}. Each value is a PDB text string.</td><td style="word-wrap: break-word;">{"1abc": "HEADER ...\nATOM ... A ...\nATOM ... B ...\nEND"}</td></tr>
+<tr><td style="word-wrap: break-word;">chains</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Comma-separated list of chain IDs to extract. Single-character, alphanumeric chain IDs only. Spaces are ignored and case-insensitive.</td><td style="word-wrap: break-word;">A, B</td></tr>
 </tbody>
 </table>
 </div>
@@ -44,23 +44,22 @@ Use this node when you need to isolate specific chains from multi-chain PDB stru
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">filtered_pdb</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Dictionary {pdb_id: pdb_content} where each PDB contains only the specified chains. Preserves header/annotation records and includes ATOM/HETATM only for selected chains.</td><td style="word-wrap: break-word;">{"1ABC": "HEADER ...\nATOM ... (only chains A/B)\nEND"}</td></tr>
+<tr><td style="word-wrap: break-word;">filtered_pdb</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Dictionary of PDB structures filtered to contain only the specified chains. Keys are the original PDB IDs; values are PDB strings that include the chosen chains and end with an END record.</td><td style="word-wrap: break-word;">{"1abc": "HEADER ...\nATOM ... A ...\nATOM ... A ...\nEND"}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- Chain IDs must be single alphanumeric characters; invalid IDs cause an error.
-- The chains parameter cannot be empty; at least one valid chain must be provided.
-- Selection is case-insensitive and ignores spaces around commas.
-- If a requested chain is not found, the node raises an error listing available chains discovered in the input.
-- Only ATOM/HETATM records for the specified chains are kept; many header and annotation records (e.g., HEADER, TITLE, HELIX, SHEET) are preserved; END is appended.
-- Input must be a PDB dictionary {pdb_id: pdb_string}. Empty PDB content entries are skipped with a warning.
-- If no valid PDBs remain after processing, the node raises an error.
+- **Chain IDs**: Must be single alphanumeric characters (e.g., A, B, 1). Input is case-insensitive and ignores spaces.
+- **Multiple PDBs**: Input may contain a batch of PDBs; each will be filtered independently while preserving its original ID.
+- **Metadata lines**: Common header and annotation records (e.g., HEADER, TITLE, REMARK, HELIX, SHEET) are preserved. ATOM/HETATM lines are kept only for selected chains.
+- **End of file**: The output PDB string includes a terminal END line.
+- **Validation**: If no atoms are found for the requested chains in a PDB, the node raises an error listing available chains detected in that PDB.
+- **Empty entries**: Empty PDB contents are skipped; if all are empty or invalid, the node raises an error.
 
 ## Troubleshooting
-- No atoms found for chains: Ensure the requested chain IDs exist in the input PDB. The error message lists available chains detected; adjust the 'chains' input accordingly.
-- Invalid chain ID: Chain IDs must be single alphanumeric characters (e.g., A, B, 1). Remove multi-character or special-character IDs.
-- Empty 'chains' input: Provide at least one chain (e.g., A or A,B). Spaces are allowed around commas.
-- Output is empty or node errors with 'No valid PDB structures could be processed': Verify that the input PDB dictionary contains non-empty, valid PDB strings.
-- Unexpected case or whitespace issues: The node ignores spaces and is case-insensitive, but ensure commas separate chain IDs (e.g., A, B, not A;B).
+- **Error: Chains parameter cannot be empty**: Provide at least one chain ID, e.g., "A" or "A,B".
+- **Error: Invalid chain ID 'X'**: Ensure each chain ID is a single alphanumeric character with no extra symbols.
+- **Error: No atoms found for chains [...]**: Verify the requested chains exist in the PDB. The error message includes available chains detected; adjust your selection accordingly.
+- **Output is empty or missing expected chains**: Confirm the chain list formatting (comma-separated), check for typos, and ensure the original PDB actually contains those chains.
+- **Batch input issues**: If some PDBs are empty or malformed, they will be skipped. Ensure at least one valid PDB remains; otherwise, the node will raise an error.

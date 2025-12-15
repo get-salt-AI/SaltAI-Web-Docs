@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Terminates or continues a while-style loop. When the condition is true, it re-runs the nodes between the matching While Loop Open and this node, carrying forward the state values. When the condition becomes false, it stops the loop and outputs the final accumulated values.
+Terminates or continues a while-style loop region that starts at While Loop Open. If the condition is false, it outputs the current/initial values and ends the loop. If the condition is true, it dynamically re-invokes the nodes contained between the matching Open and this Close to perform another iteration, passing along the current values.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/logic/flow-control/saltwhileloopclose.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Terminates or continues a while-style loop. When the condition is true, it re-ru
 
 ## Usage
 
-Use this node together with While Loop Open to build a while loop. Connect the flow_control output from While Loop Open to this node's flow_control input. Feed a boolean condition that determines whether to continue looping (true) or stop (false). Use the initial_value sockets to pass and update state between iterations. Prefer the newer Loop Open/Loop Close nodes for new workflows, as this node is deprecated.
+Use this node together with While Loop Open to create a while-style loop around a section of your workflow. Connect the FLOW_CONTROL output from While Loop Open to the flow_control input on this node. Provide a boolean condition that determines whether the loop should continue. Feed any loop-carried values through the initial_value inputs and connect the returned outputs to the corresponding inputs inside your looped region for state to persist across iterations. Because this node is deprecated, prefer the newer Loop Open/Loop Close nodes for new workflows.
 
 ## Inputs
 
@@ -26,13 +26,13 @@ Use this node together with While Loop Open to build a while loop. Connect the f
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">flow_control</td><td>True</td><td style="word-wrap: break-word;">FLOW_CONTROL</td><td style="word-wrap: break-word;">Loop linkage from the corresponding While Loop Open. Identifies the loop scope to repeat.</td><td style="word-wrap: break-word;">Link from While Loop Open</td></tr>
-<tr><td style="word-wrap: break-word;">condition</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, the loop body executes again; if false, the loop ends and outputs are returned.</td><td style="word-wrap: break-word;">True</td></tr>
-<tr><td style="word-wrap: break-word;">initial_value0</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">State value carried through the loop body and returned when the loop completes.</td><td style="word-wrap: break-word;">0</td></tr>
-<tr><td style="word-wrap: break-word;">initial_value1</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Additional state value carried through the loop.</td><td style="word-wrap: break-word;">any data</td></tr>
-<tr><td style="word-wrap: break-word;">initial_value2</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Additional state value carried through the loop.</td><td style="word-wrap: break-word;">{'counter': 1}</td></tr>
-<tr><td style="word-wrap: break-word;">initial_value3</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Additional state value carried through the loop.</td><td style="word-wrap: break-word;">[1, 2, 3]</td></tr>
-<tr><td style="word-wrap: break-word;">initial_value4</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Additional state value carried through the loop.</td><td style="word-wrap: break-word;">intermediate result</td></tr>
+<tr><td style="word-wrap: break-word;">flow_control</td><td>True</td><td style="word-wrap: break-word;">FLOW_CONTROL</td><td style="word-wrap: break-word;">The loop linkage from the corresponding While Loop Open node. This establishes the loop boundary and internal region to repeat.</td><td style="word-wrap: break-word;"><FLOW_CONTROL_FROM_WHILE_LOOP_OPEN></td></tr>
+<tr><td style="word-wrap: break-word;">condition</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Controls loop continuation. True triggers another iteration; False finalizes the loop and returns the accumulated values.</td><td style="word-wrap: break-word;">True</td></tr>
+<tr><td style="word-wrap: break-word;">initial_value0</td><td>False</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Loop-carried value slot 0. Provide the current value to carry into the next iteration. Returned as value0.</td><td style="word-wrap: break-word;">3</td></tr>
+<tr><td style="word-wrap: break-word;">initial_value1</td><td>False</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Loop-carried value slot 1. Provide the current value to carry into the next iteration. Returned as value1.</td><td style="word-wrap: break-word;">current_state</td></tr>
+<tr><td style="word-wrap: break-word;">initial_value2</td><td>False</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Loop-carried value slot 2. Provide the current value to carry into the next iteration. Returned as value2.</td><td style="word-wrap: break-word;">0.75</td></tr>
+<tr><td style="word-wrap: break-word;">initial_value3</td><td>False</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Loop-carried value slot 3. Provide the current value to carry into the next iteration. Returned as value3.</td><td style="word-wrap: break-word;">{'progress': 5}</td></tr>
+<tr><td style="word-wrap: break-word;">initial_value4</td><td>False</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Loop-carried value slot 4. Provide the current value to carry into the next iteration. Returned as value4.</td><td style="word-wrap: break-word;">[1, 2, 3]</td></tr>
 </tbody>
 </table>
 </div>
@@ -49,25 +49,27 @@ Use this node together with While Loop Open to build a while loop. Connect the f
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">value0</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Final or current state value 0 after loop completion or iteration.</td><td style="word-wrap: break-word;">10</td></tr>
-<tr><td style="word-wrap: break-word;">value1</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Final or current state value 1.</td><td style="word-wrap: break-word;">final data</td></tr>
-<tr><td style="word-wrap: break-word;">value2</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Final or current state value 2.</td><td style="word-wrap: break-word;">{'sum': 55}</td></tr>
-<tr><td style="word-wrap: break-word;">value3</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Final or current state value 3.</td><td style="word-wrap: break-word;">[5, 4, 3]</td></tr>
-<tr><td style="word-wrap: break-word;">value4</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Final or current state value 4.</td><td style="word-wrap: break-word;">done</td></tr>
+<tr><td style="word-wrap: break-word;">value0</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Final or iterated value corresponding to initial_value0.</td><td style="word-wrap: break-word;">2</td></tr>
+<tr><td style="word-wrap: break-word;">value1</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Final or iterated value corresponding to initial_value1.</td><td style="word-wrap: break-word;">updated_state</td></tr>
+<tr><td style="word-wrap: break-word;">value2</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Final or iterated value corresponding to initial_value2.</td><td style="word-wrap: break-word;">0.5</td></tr>
+<tr><td style="word-wrap: break-word;">value3</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Final or iterated value corresponding to initial_value3.</td><td style="word-wrap: break-word;">{'progress': 10}</td></tr>
+<tr><td style="word-wrap: break-word;">value4</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">Final or iterated value corresponding to initial_value4.</td><td style="word-wrap: break-word;">[1, 2, 3, 4]</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- This node is deprecated. For new workflows, use Loop Open and Loop Close.
-- The loop continues while condition is true. When condition becomes false, the node outputs the provided/accumulated values and ends the loop.
-- Ensure the flow_control input is connected from the matching While Loop Open of the same loop.
-- There are 5 state sockets (initial_value0 through initial_value4). Use them to pass data through iterations.
-- If an error occurs during processing, the node falls back to returning the provided initial_value inputs.
+- **Deprecated**: Prefer using Loop Open and Loop Close for new workflows.
+- **Pairing required**: Must be paired with a matching While Loop Open via the flow_control connection; otherwise it cannot determine the loop body.
+- **Condition-driven**: The loop continues only when condition is True; when False, the node outputs the provided initial_value inputs as final results.
+- **Dynamic expansion**: Internally clones and re-executes the nodes between the Open and Close on each iteration. The loop-carried values are forwarded via the initial_value inputs.
+- **Hidden inputs are system-managed**: dynprompt and unique_id are automatically provided; do not connect these manually.
+- **Fixed value slots**: Provides five generic value slots (0-4). Map your loop state consistently across iterations.
+- **Error handling**: On internal errors, it returns the current initial_value inputs (i.e., it finalizes with pass-through values).
 
 ## Troubleshooting
-- Loop never ends: Verify that your condition will eventually become false and that your state updates move toward termination.
-- Loop does not iterate: Ensure condition is true and that flow_control is linked from the correct While Loop Open.
-- Unexpected output values: Confirm you are wiring the intended state signals into initial_value0..4 and updating them inside the loop body.
-- Type or shape mismatches: Keep the data types consistent across iterations for each initial_value socket.
-- Multiple loops interfering: Make sure each While Loop Close is paired with its corresponding While Loop Open via the flow_control link.
+- **Loop never runs**: Ensure the condition evaluates to True at least once. If it is always False, the node immediately returns the initial_value inputs.
+- **No updates across iterations**: Make sure the outputs from nodes inside the loop are routed back into the corresponding initial_value inputs so state is carried forward.
+- **Mismatched Open/Close**: Verify flow_control comes from the intended While Loop Open and that the loop body nodes reside between the linked Open and Close.
+- **Unexpected early termination**: Check the condition wiring and values produced inside the loop. If the condition becomes False, the loop ends and returns the current values.
+- **Graph expansion errors**: Complex or invalid connections inside the looped region can prevent expansion. Simplify the loop body and avoid references to nodes outside the Open/Close region unless intended.

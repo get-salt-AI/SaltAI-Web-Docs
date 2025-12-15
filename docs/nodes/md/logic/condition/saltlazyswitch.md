@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Selects and forwards one of two inputs based on a boolean switch, while lazily requesting only the branch that’s actually needed. This helps avoid computing or loading the non-selected branch.
+Selects between two inputs based on a boolean switch, returning only the chosen value. This node is lazy: it only requires and evaluates the input for the active branch, allowing the inactive branch to remain unconnected without triggering computation.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/logic/condition/saltlazyswitch.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Selects and forwards one of two inputs based on a boolean switch, while lazily r
 
 ## Usage
 
-Use this node to gate between two alternative values (e.g., models, prompts, images, parameters) based on a boolean condition. Connect heavy or expensive nodes to on_true/on_false so only the chosen branch is evaluated when the switch decision is made.
+Use this node to conditionally route one of two values (e.g., images, text, numbers, or other data) through your workflow based on a boolean flag. It is especially useful to avoid computing or loading heavy resources on the branch that will not be used.
 
 ## Inputs
 
@@ -26,9 +26,9 @@ Use this node to gate between two alternative values (e.g., models, prompts, ima
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">switch</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Condition that determines which input to forward. True selects on_true; False selects on_false.</td><td style="word-wrap: break-word;">true</td></tr>
-<tr><td style="word-wrap: break-word;">on_false</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Value to output when switch is False. Marked lazy: it may remain uncomputed/unconnected until selected.</td><td style="word-wrap: break-word;">a text prompt value</td></tr>
-<tr><td style="word-wrap: break-word;">on_true</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Value to output when switch is True. Marked lazy: it may remain uncomputed/unconnected until selected.</td><td style="word-wrap: break-word;">an image tensor</td></tr>
+<tr><td style="word-wrap: break-word;">switch</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Controls which input is forwarded. If true, outputs on_true; if false, outputs on_false.</td><td style="word-wrap: break-word;">true</td></tr>
+<tr><td style="word-wrap: break-word;">on_false</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Value to output when switch is false. Can be any supported data type. Due to lazy behavior, this can be left unconnected if the switch will be true.</td><td style="word-wrap: break-word;">An image value or a text string like "Option A"</td></tr>
+<tr><td style="word-wrap: break-word;">on_true</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Value to output when switch is true. Can be any supported data type. Due to lazy behavior, this can be left unconnected if the switch will be false.</td><td style="word-wrap: break-word;">An image value or a text string like "Option B"</td></tr>
 </tbody>
 </table>
 </div>
@@ -45,19 +45,19 @@ Use this node to gate between two alternative values (e.g., models, prompts, ima
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">value</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Pass-through of the selected input (on_true if switch is True, otherwise on_false). Type matches the selected branch.</td><td style="word-wrap: break-word;">the chosen prompt/image/value</td></tr>
+<tr><td style="word-wrap: break-word;">value</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The selected value based on the switch: on_true when switch is true, otherwise on_false.</td><td style="word-wrap: break-word;">The chosen image or string based on the switch</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- This node is lazy: it requests upstream computation only for the branch required by the current switch value.
-- Both on_true and on_false should resolve to the same kind of data to ensure downstream compatibility.
-- If the selected branch is not connected or cannot be produced, the node will request it; unresolved inputs will cause execution to wait or fail upstream.
-- The node does not alter or coerce types; it simply forwards the chosen input.
+- **Lazy evaluation**: Only the selected branch is required. You may leave the unselected branch unconnected without errors.
+- **Type consistency**: The node does not convert types. Ensure downstream nodes can accept the type produced by the selected branch, and preferably keep both branches of compatible types.
+- **Missing selected input**: If the selected branch is not provided, the node may output null.
+- **Boolean control**: Non-boolean values are not accepted for the switch; provide a proper boolean input.
 
 ## Troubleshooting
-- Selected branch not connected: Ensure the branch corresponding to the current switch value is connected or can be produced when requested.
-- Downstream type errors: Make sure on_true and on_false produce the same type/shape expected by downstream nodes.
-- Unexpected None output: Check upstream nodes for errors on the selected branch and confirm they can produce a value when requested.
-- Performance not improving: Verify heavy computations are placed behind the on_true/on_false connections so they are only triggered when that branch is selected.
+- **Output is null**: Ensure the selected branch (based on switch) is connected and produces a value.
+- **Downstream type mismatch**: Confirm both branches supply the same or compatible types expected by downstream nodes.
+- **Unexpected branch evaluation**: Verify the switch boolean is set as intended and that any upstream logic correctly produces true/false.
+- **Performance concerns**: If heavy computation is triggered unexpectedly, check that only the intended branch is selected; the inactive branch should not execute due to lazy behavior.
