@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Builds a symmetry configuration for RFDiffusion-based protein generation. Validates and normalizes the symmetry type and bundles additional symmetry-related options into a single JSON object for downstream use. Empty symmetry is converted to no symmetry (None).
+Builds a symmetry configuration for RF Diffusion runs. It validates and formats the symmetry selection (e.g., cyclic, dihedral, or polyhedral), and bundles key options like recentring, placement radius, neighbor-only modeling, and symmetric self-conditioning into a single config object.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/protein-generation/saasrfdiffusionsymmetryconfignode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Builds a symmetry configuration for RFDiffusion-based protein generation. Valida
 
 ## Usage
 
-Use this node when you want to enforce symmetry during RF Diffusion protein generation. Connect its output to the symmetry_config input of the main RF Diffusion generation node within your workflow. Typical use: select a symmetry (e.g., c2, d5, tetrahedral), optionally adjust radius and toggles, then pass the resulting configuration to guide symmetric complex design.
+Use this node when you want to enforce symmetry in protein design. Connect its output to the symmetry_config input of the RF Diffusion node. Choose the symmetry type (e.g., c3, d5, tetrahedral) and adjust options like recentring, radius, and whether to only model neighboring subunits.
 
 ## Inputs
 
@@ -26,11 +26,11 @@ Use this node when you want to enforce symmetry during RF Diffusion protein gene
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">symmetry</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Type of symmetry to sample. Accepts cyclic (cn, e.g., c2), dihedral (dn, e.g., d5), or one of tetrahedral, octahedral, icosahedral. Leave empty to disable symmetry.</td><td style="word-wrap: break-word;">c3</td></tr>
-<tr><td style="word-wrap: break-word;">recenter</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, repositions the complex so its center aligns with the origin.</td><td style="word-wrap: break-word;">true</td></tr>
-<tr><td style="word-wrap: break-word;">radius</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Distance from the symmetry center to where symmetric subunits are placed. Minimum is 1.</td><td style="word-wrap: break-word;">12</td></tr>
-<tr><td style="word-wrap: break-word;">model_only_neighbors</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, model only neighboring subunits of the asymmetric unit rather than the full assembly.</td><td style="word-wrap: break-word;">false</td></tr>
-<tr><td style="word-wrap: break-word;">symmetric_self_cond</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, enforces symmetry during intermediate steps of the diffusion process (self-conditioning).</td><td style="word-wrap: break-word;">true</td></tr>
+<tr><td style="word-wrap: break-word;">symmetry</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Type of symmetry to sample. Accepted: cn (e.g., c2, c3), dn (e.g., d5), or tetrahedral, octahedral, icosahedral. Leave empty to disable symmetry.</td><td style="word-wrap: break-word;">c3</td></tr>
+<tr><td style="word-wrap: break-word;">recenter</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, repositions the complex so its center aligns with the origin.</td><td style="word-wrap: break-word;">True</td></tr>
+<tr><td style="word-wrap: break-word;">radius</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Distance from the symmetry center to where symmetric subunits are placed.</td><td style="word-wrap: break-word;">12</td></tr>
+<tr><td style="word-wrap: break-word;">model_only_neighbors</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, model only neighboring subunits of the asymmetric unit rather than the full assembly.</td><td style="word-wrap: break-word;">False</td></tr>
+<tr><td style="word-wrap: break-word;">symmetric_self_cond</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, enforces symmetry during intermediate diffusion steps (self-conditioning).</td><td style="word-wrap: break-word;">True</td></tr>
 </tbody>
 </table>
 </div>
@@ -47,21 +47,20 @@ Use this node when you want to enforce symmetry during RF Diffusion protein gene
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">symmetry_config</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">A JSON configuration object containing the processed symmetry settings to be merged into RF Diffusion inference configuration.</td><td style="word-wrap: break-word;">{"symmetry": "c3", "recenter": true, "radius": 12, "model_only_neighbors": false, "symmetric_self_cond": true}</td></tr>
+<tr><td style="word-wrap: break-word;">symmetry_config</td><td style="word-wrap: break-word;">RFDIFFUSION_SYMMETRY_CONFIG</td><td style="word-wrap: break-word;">Validated symmetry configuration to connect into the RF Diffusion node.</td><td style="word-wrap: break-word;">{'symmetry': 'c3', 'recenter': True, 'radius': 12, 'model_only_neighbors': False, 'symmetric_self_cond': True}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Symmetry formats**: Only '', cn (e.g., c2), dn (e.g., d5), tetrahedral, octahedral, icosahedral are accepted.
-- **Empty symmetry**: An empty string is converted to null, meaning no symmetry is applied.
-- **Validation**: Invalid symmetry strings raise an error; ensure correct format and spelling.
-- **Radius constraint**: Radius must be at least 1.
-- **Defaults**: Defaults are recenter=true, radius=10, model_only_neighbors=false, symmetric_self_cond=true.
+- Symmetry must be either cn/dn format (e.g., c2, d5) or one of tetrahedral, octahedral, icosahedral. Any other value will raise an error.
+- Leaving symmetry empty sets it to None, effectively disabling symmetry constraints.
+- This node prepares configuration only; it does not perform generation. Connect its output to the symmetry_config input of the RF Diffusion node.
+- Radius controls subunit placement relative to the symmetry center; ensure it is compatible with your intended assembly scale.
+- model_only_neighbors reduces modeled scope to neighbors around the asymmetric unit; use when full assemblies are unnecessary.
 
 ## Troubleshooting
-- **Invalid symmetry error**: Ensure the value is '', cn/dn (e.g., c2, d5), or tetrahedral/octahedral/icosahedral. Use lowercase; spaces are not allowed.
-- **No symmetry applied**: If symmetry is left empty, it is intentionally set to null (no symmetry). Provide a valid symmetry string to enable.
-- **Unexpected geometry**: Adjust 'radius' to change placement distance of subunits; larger values spread subunits further from the center.
-- **Performance concerns**: If modeling full assemblies is slow, set 'model_only_neighbors' to true to focus on local interactions.
-- **Symmetry during diffusion**: If results appear asymmetrical mid-process, ensure 'symmetric_self_cond' is true to enforce symmetry throughout sampling.
+- Invalid symmetry value: Ensure the value matches cn (e.g., c3), dn (e.g., d5), or tetrahedral/octahedral/icosahedral. Example fix: change 'c-3' to 'c3'.
+- No symmetry applied unexpectedly: If symmetry is blank or only whitespace, it is treated as None (disabled). Enter a valid value like 'c2' to enable.
+- Unexpected assembly size/placement: Adjust the radius input to better match the intended size and spacing of subunits.
+- Generated config not affecting results: Confirm the symmetry_config output is connected to the RF Diffusion node and no downstream node overrides symmetry settings.
