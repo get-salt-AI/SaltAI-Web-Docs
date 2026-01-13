@@ -74,15 +74,14 @@ nav:
     - Biotech Utils:
       - A3M Combiner: nodes/md/biotech/biotech-utils/a3mcombinernode.md
       - Batch PDB: nodes/md/biotech/biotech-utils/batchpdbnode.md
-      - CIF To PDB: nodes/md/biotech/biotech-utils/ciftopdbnode.md
       - FASTA Combiner: nodes/md/biotech/biotech-utils/fastacombinernode.md
       - Load A3M: nodes/md/biotech/biotech-utils/loada3mnode.md
+      - Load CIF: nodes/md/biotech/biotech-utils/loadcifnode.md
       - Load FASTA: nodes/md/biotech/biotech-utils/loadfastanode.md
       - Load PDB: nodes/md/biotech/biotech-utils/loadpdbnode.md
       - PDB Chain Extractor: nodes/md/biotech/biotech-utils/pdbchainextractornode.md
       - PDB Combiner: nodes/md/biotech/biotech-utils/pdbcombinernode.md
       - PDB Fixer: nodes/md/biotech/biotech-utils/pdbfixernode.md
-      - PDB To CIF: nodes/md/biotech/biotech-utils/pdbtocifnode.md
       - PDB To Fasta: nodes/md/biotech/biotech-utils/pdbtofastanode.md
       - PDB Visualization: nodes/md/biotech/biotech-utils/pdbvisualizationnode.md
       - Save To Bucket: nodes/md/biotech/biotech-utils/savetobucketnode.md
@@ -91,7 +90,6 @@ nav:
       - Boltz Constraint Builder: nodes/md/biotech/boltz/boltzconstraintnode.md
       - Boltz Ligand Sequence: nodes/md/biotech/boltz/boltzligandsequencenode.md
       - Boltz List Combiner: nodes/md/biotech/boltz/boltzlistcombinernode.md
-      - Boltz Partial Diffusion: nodes/md/biotech/boltz/boltzpartialdiffusionnode.md
       - Boltz Predict: nodes/md/biotech/boltz/boltzpredictnode.md
       - Boltz Property Builder: nodes/md/biotech/boltz/boltzpropertynode.md
       - Boltz Protein Sequence: nodes/md/biotech/boltz/boltzproteinsequencenode.md

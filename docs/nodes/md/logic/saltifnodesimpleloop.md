@@ -66,3 +66,11 @@ Use this node to build iterative workflows where a condition determines whether 
 - **Unexpected early exit**: Confirm the condition uses 'true' to continue and 'false' to exit; invert your comparison if needed.
 - **Too many/too few outputs visible**: The number of output pairs depends on how many value slots are connected. Connect additional value inputs to expose more output pairs.
 - **Type mismatch errors downstream**: Each value slot is type-agnostic (*). Ensure downstream nodes accept the types you pass through the loop.
+
+## Example Pipelines
+
+<figure style="margin: 20px 0;">
+  <img src="../../../images/assets/logic/saltifnodesimpleloop/example.png" alt="Example" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" />
+  <figcaption style="margin-top: 8px; text-align: center; font-style: italic; color: #666;">Example</figcaption>
+</figure>
+
