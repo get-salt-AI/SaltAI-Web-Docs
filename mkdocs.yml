@@ -245,8 +245,11 @@ nav:
         - Combine Accumulation: nodes/md/logic/flow-control/accumulation/combineaccumulationnode.md
         - List to Accumulation: nodes/md/logic/flow-control/accumulation/saltlisttoaccumulationnode.md
     - Logic Utility:
-      - Debug Print: nodes/md/logic/logic-utility/saltdebugprint.md
       - To Bool: nodes/md/logic/logic-utility/salttoboolnode.md
+  - New/Uncategorized:
+    - Load GCS File: nodes/md/new-uncategorized/loadgcsfilenode.md
+    - Load GCS Scaffold Folder: nodes/md/new-uncategorized/loadgcsscaffoldfoldernode.md
+    - Make Secstruc Adj: nodes/md/new-uncategorized/makesecstrucadjnode.md
   - Outputs:
     - Output: nodes/md/outputs/saltoutput.md
     - Writers:
@@ -256,6 +259,7 @@ nav:
     - API Fetcher: nodes/md/utilities/saltapifetcher.md
     - Code Executor: nodes/md/utilities/saltcodeexecutor.md
     - Data Monitor: nodes/md/utilities/saltdatamonitor.md
+    - Debug Print: nodes/md/utilities/saltdebugprint.md
     - Inspect: nodes/md/utilities/saltinspect.md
     - Primitive Value Converter: nodes/md/utilities/saltprimitiveconverter.md
     - Regex Search and Match: nodes/md/utilities/saistringregexsearchmatch.md

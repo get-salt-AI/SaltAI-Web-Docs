@@ -6,7 +6,7 @@
 A pass-through debug utility that logs a readable representation of any input value along with a label. It prints container structures and tensor shapes to help inspect workflow data without altering it.
 
 </div>
-<div style="flex: 0 0 300px;"><img src="../../../../images/previews/logic/logic-utility/saltdebugprint.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
+<div style="flex: 0 0 300px;"><img src="../../../images/previews/utilities/saltdebugprint.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
 </div>
 
 ## Usage

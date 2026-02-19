@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Generates an HTML string that renders an interactive 3D protein structure viewer for a provided PDB. If a batch of PDBs is supplied, it automatically selects and visualizes the first one. The output is a full-page HTML viewer suitable for direct display in an app or browser.
+Generates an embeddable HTML viewer for a protein structure. It uploads the provided PDB content to secure storage and returns a full-page HTML string that loads the structure in a Mol* (molstar.org) viewer. If a batch of PDBs is provided, only the first is visualized.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/biotech-utils/pdbvisualizationnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Generates an HTML string that renders an interactive 3D protein structure viewer
 
 ## Usage
 
-Use this node at the end of a workflow when you want to preview a protein structure. Connect a PDB output (e.g., from Load PDB, PDB Combiner, or upstream processing nodes) to this node, then send the resulting HTML to your app's output or a display/output node to render the interactive viewer.
+Use this node to preview a protein structure during or after a workflow that produces or loads PDB data. Connect a PDB dictionary output (e.g., from a loader, combiner, or predictor) to quickly render an interactive 3D view in the app. The node returns an HTML string that can be routed to an Output/Display node.
 
 ## Inputs
 
@@ -26,7 +26,7 @@ Use this node at the end of a workflow when you want to preview a protein struct
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">pdb</td><td>True</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">PDB structure(s) to visualize. Accepts a dictionary mapping IDs to PDB content; if multiple are provided (batch), only the first entry is visualized.</td><td style="word-wrap: break-word;">{'protein_A': 'ATOM      1  N   MET A   1      11.104  13.207   8.678  1.00 44.46           N  \nATOM      2  CA  MET A   1      12.560  13.445   8.459  1.00 43.27           C  \nEND'}</td></tr>
+<tr><td style="word-wrap: break-word;">pdb</td><td>True</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Protein structure to visualize. Accepts a dictionary mapping an ID to PDB content. If multiple entries are provided (batch), only the first one is used.</td><td style="word-wrap: break-word;">{"proteinA": "ATOM      1  N   MET A   1      11.104  13.207  -2.222  1.00 20.00           N \n...\nEND"}</td></tr>
 </tbody>
 </table>
 </div>
@@ -43,22 +43,25 @@ Use this node at the end of a workflow when you want to preview a protein struct
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">An HTML document as a string that embeds an interactive protein viewer for the provided PDB.</td><td style="word-wrap: break-word;"><!DOCTYPE html><html><head><title>Full Screen Protein Viewer</title></head><body><div class="viewer-container"><iframe src="https://molstar.org/viewer/?structure-url=<signed_url>&structure-url-format=pdb&hide-controls=1&collapse-left-panel=1" allowfullscreen></iframe></div></body></html></td></tr>
+<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">HTML string that embeds a full-page Mol* viewer iframe loading the uploaded structure.</td><td style="word-wrap: break-word;"><!DOCTYPE html><html><head><title>Full Screen Protein Viewer</title>...<iframe src="https://molstar.org/viewer/?structure-url=<encoded-signed-url>&structure-url-format=pdb&hide-controls=1&collapse-left-panel=1" allowfullscreen></iframe>...</html></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- Only the first PDB in a batch is visualized. If you need to visualize a different entry, provide it as a single PDB or reorder your inputs.
-- The viewer is loaded from an external visualization service. Network access is required for the embedded viewer to load correctly.
-- If the PDB cannot be extracted or uploaded for preview, the output may be the string "None" instead of HTML.
-- Best used as a terminal/preview step in a workflow to display the structure to end users.
+- Only the first structure in a batch is visualized.
+- The node uploads the structure to secure storage and uses a signed URL in an external Mol* viewer (molstar.org).
+- If extraction of a PDB from the input fails, the node returns the string "None".
+- Viewer controls are minimized (controls hidden, left panel collapsed) for clean embedding.
+- Execution priority is elevated so the preview is generated promptly when connected as an output node.
+- The input PDB should be valid text content; malformed or empty structures will fail to visualize.
 
 ## Troubleshooting
-- Viewer is blank or not loading: Ensure you have network access and that external viewer domains are not blocked by your environment.
-- Output is "None": Verify the input PDB is valid and non-empty; for batches, confirm the first item contains a proper PDB string.
-- Wrong structure visualized: If using a combined/batch PDB input, remember this node visualizes the first available entry. Provide the intended PDB as a single input or adjust the batch order.
-- Security/content policies: If your environment restricts external iframes, allowlist the viewer domain or render the HTML in a permitted context.
+- If output is "None": Ensure the pdb input is a non-empty dictionary {id: pdb_content} with valid PDB text.
+- If the viewer shows a blank page: Verify the structure content is valid PDB and the signed URL remains accessible.
+- If uploads time out or fail: Check network connectivity and that backend services for uploading are available; try again later.
+- If you connected a batch and see a different structure than expected: Remember only the first available entry is used for visualization.
+- Large PDB files may take longer to upload and render; allow additional time or reduce structure size if possible.
 
 ## Example Pipelines
 

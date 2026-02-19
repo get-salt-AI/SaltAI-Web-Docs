@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Sends a text prompt to Groq-hosted large language models and returns the model’s response. Supports a system prompt for behavior control, optional context inputs, temperature, and max token settings. Model options are fetched from the Salt LLM service and fall back to a built-in list if the service is unavailable.
+Executes a text generation request against Groq-hosted large language models via the LiteLLM service layer. It supports dynamic prompt composition, forwards common provider parameters (like temperature and max_tokens), and automatically lists available Groq models (with a safe fallback list if discovery fails).
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/llms/litellmgroq.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Sends a text prompt to Groq-hosted large language models and returns the model�
 
 ## Usage
 
-Use this node when you need to generate or transform text using Groq-backed models (e.g., Llama, Qwen, Kimi). Select a model, provide a clear prompt, optionally include a system prompt to shape the assistant’s behavior, and set temperature/max_tokens to control style and length. You can pass in up to four optional context strings and reference them in your prompt with placeholders (e.g., {{input_1}}). Chain the output into downstream nodes that need the generated text.
+Use this node when you need a Groq-backed LLM to generate or transform text. Typical flow: select a Groq model, provide a system prompt to set behavior, craft a user prompt (optionally referencing {{input_1}}–{{input_4}}), and tune temperature/max_tokens. Connect external context (e.g., knowledge base outputs) into input_1..input_4 to enrich the prompt before sending to the LLM. The node outputs the model’s text response as a single string.
 
 ## Inputs
 
@@ -26,15 +26,15 @@ Use this node when you need to generate or transform text using Groq-backed mode
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">model</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The Groq model to use. The list is loaded from the Salt LLM service and falls back to a curated set if the service is not reachable.</td><td style="word-wrap: break-word;">llama-3.1-8b-instant</td></tr>
-<tr><td style="word-wrap: break-word;">system_prompt</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Instructions that set role, tone, and formatting rules for the assistant. Leave empty to skip. Multiline supported.</td><td style="word-wrap: break-word;">You are a concise technical assistant. Prefer bullet points and short code comments.</td></tr>
-<tr><td style="word-wrap: break-word;">prompt</td><td>True</td><td style="word-wrap: break-word;">DYNAMIC_STRING</td><td style="word-wrap: break-word;">The main user prompt. You can reference optional inputs using placeholders like {{input_1}} ... {{input_4}} to inject external context.</td><td style="word-wrap: break-word;">Summarize the following notes in 5 bullets: {{input_1}}</td></tr>
-<tr><td style="word-wrap: break-word;">temperature</td><td>True</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">Controls creativity and variability. Lower is more deterministic; higher is more diverse.</td><td style="word-wrap: break-word;">0.5</td></tr>
-<tr><td style="word-wrap: break-word;">max_tokens</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum number of tokens to generate. Set 0 for provider default.</td><td style="word-wrap: break-word;">1024</td></tr>
-<tr><td style="word-wrap: break-word;">input_1</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional context string that can be referenced in the prompt as {{input_1}}.</td><td style="word-wrap: break-word;">Meeting notes from 2025-09-15...</td></tr>
-<tr><td style="word-wrap: break-word;">input_2</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional context string that can be referenced in the prompt as {{input_2}}.</td><td style="word-wrap: break-word;">Customer feedback CSV excerpt...</td></tr>
-<tr><td style="word-wrap: break-word;">input_3</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional context string that can be referenced in the prompt as {{input_3}}.</td><td style="word-wrap: break-word;">Style guide: use active voice.</td></tr>
-<tr><td style="word-wrap: break-word;">input_4</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional context string that can be referenced in the prompt as {{input_4}}.</td><td style="word-wrap: break-word;">Audience: non-technical executives.</td></tr>
+<tr><td style="word-wrap: break-word;">model</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">The Groq model to use. The list is fetched from the LLM service and falls back to a curated Groq model list if the service is unavailable.</td><td style="word-wrap: break-word;">llama-3.1-8b-instant</td></tr>
+<tr><td style="word-wrap: break-word;">system_prompt</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Instructions that set behavior, tone, and formatting for the assistant. If non-empty, it is sent as a system message.</td><td style="word-wrap: break-word;">Respond concisely and use bullet points when appropriate.</td></tr>
+<tr><td style="word-wrap: break-word;">prompt</td><td>True</td><td style="word-wrap: break-word;">DYNAMIC_STRING</td><td style="word-wrap: break-word;">The main user message. You can reference optional inputs using double-brace placeholders like {{input_1}}–{{input_4}} to inject external context.</td><td style="word-wrap: break-word;">Summarize the following context: {{input_1}}</td></tr>
+<tr><td style="word-wrap: break-word;">temperature</td><td>True</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">Controls randomness/creativity (0=deterministic, 1=more diverse). Passed to the provider.</td><td style="word-wrap: break-word;">0.5</td></tr>
+<tr><td style="word-wrap: break-word;">max_tokens</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Upper bound on the length of the generated response. 0 lets the provider decide.</td><td style="word-wrap: break-word;">512</td></tr>
+<tr><td style="word-wrap: break-word;">input_1</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional context to merge into the prompt via {{input_1}}.</td><td style="word-wrap: break-word;">Company knowledge base excerpt A</td></tr>
+<tr><td style="word-wrap: break-word;">input_2</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional context to merge into the prompt via {{input_2}}.</td><td style="word-wrap: break-word;">Company knowledge base excerpt B</td></tr>
+<tr><td style="word-wrap: break-word;">input_3</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional context to merge into the prompt via {{input_3}}.</td><td style="word-wrap: break-word;">User profile details</td></tr>
+<tr><td style="word-wrap: break-word;">input_4</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional context to merge into the prompt via {{input_4}}.</td><td style="word-wrap: break-word;">Latest ticket transcript</td></tr>
 </tbody>
 </table>
 </div>
@@ -51,22 +51,21 @@ Use this node when you need to generate or transform text using Groq-backed mode
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">Output</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The text generated by the selected Groq model.</td><td style="word-wrap: break-word;">Here are five concise bullet points summarizing the notes...</td></tr>
+<tr><td style="word-wrap: break-word;">Output</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The LLM’s generated text response.</td><td style="word-wrap: break-word;">Here is a concise summary of your context: ...</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Model list and fallback**: The node fetches available Groq models from the Salt LLM service and caches them for performance. If fetching fails, it uses a built-in fallback mapping (e.g., groq/llama-3.1-8b-instant).
-- **Prompt context placeholders**: You can inject optional inputs into your prompt using {{input_1}} to {{input_4}}. Ensure the placeholders match the input names exactly.
-- **Max tokens and truncation**: If the response hits the max_tokens limit, the output may be truncated by the provider.
-- **Temperature range**: Valid range is 0.0 to 1.0; adjust to balance determinism vs. creativity.
-- **Latency considerations**: Large models or long prompts can take time to respond. The node is designed to handle long-running requests.
-- **Default behavior**: If not specified otherwise, the node applies a concise default system prompt to keep responses direct and focused.
+- Model list discovery is cached per provider for about 1 hour; newly added models may not appear until the cache expires.
+- If the model catalog service is unavailable, the node uses a built-in Groq fallback list (e.g., llama and compatible models).
+- You can inject external context into the prompt using {{input_1}}–{{input_4}} placeholders; ensure the placeholders match the connected inputs.
+- temperature and max_tokens (and any other advanced parameters you add) are forwarded to the LLM service as provider parameters.
+- A default timeout of approximately 180 seconds applies; very long or slow generations may require adjusting the timeout via advanced parameters.
 
 ## Troubleshooting
-- **Model ID not found**: If you see an error about an unknown model, reselect a model from the dropdown to refresh the list, or choose a known fallback option.
-- **Truncated responses**: If outputs seem cut off, increase max_tokens or simplify the prompt.
-- **No placeholder substitution**: Ensure your prompt uses valid placeholders (e.g., {{input_1}}) and that the corresponding inputs are connected/populated.
-- **Timeout or service error**: Check network connectivity and service status. Retry the request or select a smaller model to reduce latency.
-- **Unexpected style or tone**: Set or adjust the system_prompt to explicitly direct behavior (tone, format, and constraints).
+- Model ID not found: Select a model from the offered list or wait for model cache refresh. If using a newly released model, try again after the cache window.
+- Truncated response or incomplete answer: Increase max_tokens; a finish reason of 'length' indicates the limit was hit.
+- Slow or timed-out requests: Reduce prompt size/complexity, pick a smaller model, or increase the timeout via advanced parameters.
+- Placeholders not replaced: Verify you used double braces (e.g., {{input_1}}) and that the corresponding inputs are connected or have values.
+- Request failed errors: Ensure the LLM service is reachable and provider credentials/configuration for Groq are correctly set in your environment.

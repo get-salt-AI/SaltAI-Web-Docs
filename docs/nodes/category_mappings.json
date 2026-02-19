@@ -40,6 +40,9 @@
   "llms": [
     "LLMs"
   ],
+  "new-uncategorized": [
+    "New/Uncategorized"
+  ],
   "outputs/writers": [
     "Outputs",
     "Writers"
@@ -73,10 +76,6 @@
   ],
   "logic": [
     "Logic"
-  ],
-  "logic/logic-utility": [
-    "Logic",
-    "Logic Utility"
   ],
   "utilities/execution": [
     "Utilities",
@@ -112,5 +111,9 @@
   "connectors/postgresql": [
     "Connectors",
     "PostgreSQL"
+  ],
+  "logic/logic-utility": [
+    "Logic",
+    "Logic Utility"
   ]
 }
