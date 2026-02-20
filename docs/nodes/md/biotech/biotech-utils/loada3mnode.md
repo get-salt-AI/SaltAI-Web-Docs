@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Loads an A3M multiple sequence alignment (MSA) string and assigns it an ID. Produces a structured MSA object where the provided ID maps to the raw A3M content. Designed to make A3M MSAs available to downstream biotech nodes.
+Loads a Multiple Sequence Alignment (MSA) in A3M format and packages it as an MSA-type output keyed by a user-specified ID. Useful for supplying curated or precomputed A3M alignments to downstream protein analysis and structure prediction nodes.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/biotech-utils/loada3mnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Loads an A3M multiple sequence alignment (MSA) string and assigns it an ID. Prod
 
 ## Usage
 
-Use this node at the start of a workflow when you have an A3M MSA (as plain text) that you want to feed into alignment- or structure-related processing steps. Provide the full A3M content and a unique ID so it can be referenced and combined with sequences or structures later in the pipeline.
+Use this node when you have an A3M MSA string and need to introduce it into a workflow. Provide the raw A3M text and assign a unique identifier. The output can be connected to nodes that consume MSA inputs (e.g., structure prediction or A3M combiner utilities).
 
 ## Inputs
 
@@ -26,8 +26,8 @@ Use this node at the start of a workflow when you have an A3M MSA (as plain text
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">a3m_string</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The full A3M-formatted MSA content as a text string. Should follow standard A3M conventions (headers beginning with '>', sequences may include lowercase insertions).</td><td style="word-wrap: break-word;">>query ACDEFGHIKLMNPQRSTVWY >homolog1 ACDEfGHIKLMNPQRSTVWY</td></tr>
-<tr><td style="word-wrap: break-word;">a3m_id</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A unique identifier to assign to this A3M MSA. This ID is used as the key in the output object and should match corresponding sequence IDs if you plan to pair with a protein sequence.</td><td style="word-wrap: break-word;">msa1</td></tr>
+<tr><td style="word-wrap: break-word;">a3m_string</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The A3M-formatted MSA content to upload. Should be a valid alignment in A3M format.</td><td style="word-wrap: break-word;">>query/1-100 ACDEFGHIKLM- >seq2/1-100 ACDE-GHIKLM-</td></tr>
+<tr><td style="word-wrap: break-word;">a3m_id</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Identifier assigned to this A3M MSA. Must be unique within the workflow. If a corresponding protein sequence is used elsewhere, its sequence ID should match this value.</td><td style="word-wrap: break-word;">msa</td></tr>
 </tbody>
 </table>
 </div>
@@ -44,19 +44,19 @@ Use this node at the start of a workflow when you have an A3M MSA (as plain text
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">msa.a3m</td><td style="word-wrap: break-word;">A3M</td><td style="word-wrap: break-word;">An A3M object represented as a dictionary-like mapping {a3m_id: a3m_string}. Use this output as the MSA input for downstream biotech nodes.</td><td style="word-wrap: break-word;">{"msa1": ">query\nACDEFGHIKLMNPQRSTVWY\n>homolog1\nACDEfGHIKLMNPQRSTVWY"}</td></tr>
+<tr><td style="word-wrap: break-word;">msa.a3m</td><td style="word-wrap: break-word;">MSA</td><td style="word-wrap: break-word;">An MSA object containing the provided A3M content keyed by the given a3m_id.</td><td style="word-wrap: break-word;">{'msa': '<A3M file content here>'}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **IDs must be unique**: If you load multiple A3M files within the same workflow, assign distinct a3m_id values to avoid overwriting.
-- **ID consistency**: When pairing this MSA with a protein sequence or other resources, use matching IDs so downstream nodes can correctly align inputs.
-- **A3M formatting**: Ensure the input strictly follows A3M format (headers start with '>', sequences in standard format; insertions typically lowercase).
-- **Large inputs**: Very large A3M strings may impact performance; consider trimming or compressing alignments if necessary.
+- IDs should be unique across the workflow to prevent collisions when combining or batching MSAs.
+- Provide a valid A3M alignment; malformed content may cause downstream node failures.
+- If pairing with a separate protein sequence input, align the a3m_id with that sequence’s ID for consistent mapping.
+- This node outputs an MSA-typed object expected by downstream biotech nodes.
 
 ## Troubleshooting
-- **Output is empty or missing expected entries**: Verify that a3m_string is not empty and that a3m_id is set and unique within the workflow.
-- **Downstream node cannot find matching MSA**: Ensure the a3m_id here matches the ID expected by downstream nodes or corresponding sequence IDs.
-- **Format-related errors**: Check that the A3M content uses proper FASTA-like headers ('>') and that sequences are valid; remove unsupported characters.
-- **Performance issues with large MSAs**: Reduce the number of sequences in the A3M or pre-filter the alignment before loading.
+- Duplicate ID error or unexpected merges: Ensure each a3m_id is unique across all A3M inputs.
+- Downstream node rejects input: Verify the A3M text is correctly formatted and non-empty.
+- Mismatch between sequence and MSA: Confirm the a3m_id matches the sequence ID used elsewhere in the workflow.
+- Empty or whitespace-only input: Provide a non-empty A3M string; empty inputs are not valid.

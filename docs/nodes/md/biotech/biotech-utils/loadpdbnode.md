@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Ingests a Protein Data Bank (PDB) structure as a raw text string and packages it into a structured PDB output for downstream nodes. The node labels the structure with a user-provided ID and outputs a dictionary mapping that ID to the PDB content. Designed to initialize workflows from directly pasted or programmatically generated PDB text.
+Loads a Protein Data Bank (PDB) structure provided as plain text and exposes it as a structured PDB output for downstream biotech nodes. It stores the content under a user-defined identifier without modifying or validating the text. Use this node to introduce existing PDB data directly into a workflow.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/biotech-utils/loadpdbnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Ingests a Protein Data Bank (PDB) structure as a raw text string and packages it
 
 ## Usage
 
-Use this node when you have a PDB file's content as text (e.g., pasted from a file or fetched via an API) and want to introduce it into a workflow. Set a unique pdb_id to distinguish it from other structures, and match this ID to related sequence/MSA nodes when required by downstream components.
+Use when you have a PDB structure in text form (e.g., copied from a file or fetched elsewhere) and want to feed it into a biotech workflow. Provide a unique ID for the structure; if you plan to pair it with a FASTA sequence later, ensure the FASTA sequence header ID matches this PDB ID. Connect the output to nodes that consume PDB inputs (e.g., visualization, sequence extraction, chain operations, or batch/combiner nodes).
 
 ## Inputs
 
@@ -26,8 +26,8 @@ Use this node when you have a PDB file's content as text (e.g., pasted from a fi
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">pdb_string</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The full PDB file content as a text string. Supports multiline input. Provide the entire PDB text (ATOM/HETATM records, headers as applicable).</td><td style="word-wrap: break-word;">HEADER    PROTEIN STRUCTURE\nATOM      1  N   MET A   1      11.104  13.207  10.234  1.00 20.00           N\n...</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_id</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Identifier to assign to this PDB entry. Must be unique if multiple PDBs are used in one workflow. If a matching FASTA is used elsewhere in the workflow, its sequence ID should match this value.</td><td style="word-wrap: break-word;">my_protein</td></tr>
+<tr><td style="word-wrap: break-word;">pdb_string</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The full PDB file content as a text string. The content is passed through unchanged to downstream nodes.</td><td style="word-wrap: break-word;">HEADER    TEST STRUCTURE\nATOM      1  N   MET A   1      11.104  13.207   9.101  1.00 20.00           N\nATOM      2  CA  MET A   1      12.560  13.420   9.320  1.00 20.00           C\nEND</td></tr>
+<tr><td style="word-wrap: break-word;">pdb_id</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Identifier assigned to this PDB entry. Must be unique within the workflow if multiple PDBs are used. If pairing with a FASTA record, the FASTA sequence ID should match this value.</td><td style="word-wrap: break-word;">my_protein</td></tr>
 </tbody>
 </table>
 </div>
@@ -44,23 +44,22 @@ Use this node when you have a PDB file's content as text (e.g., pasted from a fi
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">structure.pdb</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">A structured PDB output represented as a dictionary mapping pdb_id to pdb_string. This format is expected by other biotech nodes and batch combiners.</td><td style="word-wrap: break-word;">{'my_protein': 'HEADER    PROTEIN STRUCTURE\\nATOM ...'}</td></tr>
+<tr><td style="word-wrap: break-word;">structure.pdb</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">A dictionary mapping the provided PDB ID to the PDB text content, suitable for use by nodes that accept PDB inputs.</td><td style="word-wrap: break-word;">{'my_protein': 'ATOM      1  N   MET A   1      11.104  13.207   9.101  1.00 20.00           N\\n...\\nEND'}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **IDs must be unique**: When using multiple PDBs in one workflow or batching, ensure each pdb_id is unique to avoid conflicts.
-- **ID matching with sequences**: If you provide a related FASTA or other sequence input, its sequence ID should match the pdb_id for proper alignment in downstream steps.
-- **Input format**: This node accepts raw PDB text, not a file path or URL.
-- **Output structure**: The output is a dictionary of {pdb_id: pdb_string}, which downstream nodes rely on.
-- **Multiline input**: Provide the full, multiline PDB content; partial content may cause downstream parsing failures.
+- IDs should be unique across the workflow to avoid collisions when combining or batching structures.
+- If you intend to pair this PDB with a FASTA sequence, ensure the FASTA header ID matches the provided pdb_id.
+- The node does not validate or correct PDB formatting; downstream nodes may fail if the content is malformed.
+- Content is treated as plain text; ensure it follows standard PDB conventions (e.g., ATOM/HETATM records, END line) for best compatibility.
 
 ## Troubleshooting
-- **Duplicate ID error in batching**: If later nodes report non-unique IDs, change pdb_id here to a unique value.
-- **Downstream parsing failures**: If visualization or processing fails, verify that pdb_string is valid PDB format and not truncated.
-- **Mismatched IDs with FASTA/A3M**: If alignment or pairing steps fail, ensure the pdb_id matches the sequence ID used in related nodes.
-- **Empty or minimal PDB content**: Ensure pdb_string contains complete ATOM/HETATM records; empty or header-only inputs can break downstream tools.
+- Empty or missing output: Ensure pdb_string is not empty and contains valid PDB text.
+- Downstream node errors about parsing: Verify the PDB content is properly formatted (correct columns, ATOM/HETATM lines, and an END record).
+- ID mismatch when pairing with FASTA: Update either pdb_id here or the FASTA header so they match exactly.
+- Conflicts in combined workflows: If merging multiple PDB inputs later, make sure each pdb_id is unique to avoid overwriting entries.
 
 ## Example Pipelines
 

@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Collects one or more node outputs and uploads them to Salt-managed cloud storage under a specified folder path. The node organizes files by their source and metadata, merges results for the same folder across runs using a unique workflow execution identifier, and returns a signed URL to a zip archive of the uploaded content.
+Collects connected results, organizes them into a well-structured folder (including optional seeds/configs), uploads the folder’s content to a specified path in a cloud bucket, and returns a signed URL to a downloadable zip of that content. Each run is uniquely namespaced to avoid collisions and to allow merging results from multiple runs under the same folder path.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/biotech-utils/savetobucketnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Collects one or more node outputs and uploads them to Salt-managed cloud storage
 
 ## Usage
 
-Use this node at the end of a workflow to persist results to a cloud bucket. Connect any node outputs (text, JSON, or file-like data with metadata) to the sequential results inputs. Specify a non-empty folder_path to determine where the files are stored in the bucket. Finally, route the produced URL to an Output node to make it clickable for download.
+Use this node at the end of a workflow to persist and share results externally. Connect one or more outputs (results_1, results_2, …) from upstream nodes. Set the target bucket folder path to organize outputs. The node will package all connected outputs, upload them to the bucket, and provide a signed URL you can pass to an Output node for easy downloading.
 
 ## Inputs
 
@@ -26,9 +26,10 @@ Use this node at the end of a workflow to persist results to a cloud bucket. Con
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">results_1</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">First result to save. Once connected, results_2 becomes available. Accepts any output type; file-like objects with salt metadata will be saved using their provided names and structure.</td><td style="word-wrap: break-word;">Any connected output (e.g., a PDB object with salt metadata, or a string/JSON)</td></tr>
-<tr><td style="word-wrap: break-word;">results_2 ... results_101</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Additional results to save. Each subsequent input is revealed after the previous one is connected, allowing up to 101 total results.</td><td style="word-wrap: break-word;">Additional outputs from other nodes</td></tr>
-<tr><td style="word-wrap: break-word;">folder_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Destination folder path within the cloud bucket. This folder may contain results from other runs; new results are merged with a unique execution identifier to differentiate runs. Supports nested paths using Linux-style separators.</td><td style="word-wrap: break-word;">biotech/projectA/experiments/run-set-1</td></tr>
+<tr><td style="word-wrap: break-word;">results_1</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">First result to save. Accepts any connected output (text, JSON-like, structured text formats). Enables results_2 once connected.</td><td style="word-wrap: break-word;">{'summary': 'job completed', 'metrics': {'loss': 0.12}}</td></tr>
+<tr><td style="word-wrap: break-word;">results_2</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Additional result to save. Appears after results_1 is connected. Up to 100 results are supported (results_2 ... results_101).</td><td style="word-wrap: break-word;">FASTA or PDB text content</td></tr>
+<tr><td style="word-wrap: break-word;">results_3..results_101</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Optional additional results. Each becomes available after the previous result input is connected.</td><td style="word-wrap: break-word;">Additional text outputs, structured text files, or logs</td></tr>
+<tr><td style="word-wrap: break-word;">folder_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Destination folder path inside the cloud bucket. Results from multiple runs can be merged here; each run is uniquely identified to avoid overwriting. Supports nested paths using forward slashes (e.g., 'projectA/experiments/run1').</td><td style="word-wrap: break-word;">biotech/my_experiment_1</td></tr>
 </tbody>
 </table>
 </div>
@@ -45,26 +46,24 @@ Use this node at the end of a workflow to persist results to a cloud bucket. Con
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">url</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Signed URL to a zip archive representing the current content saved to the specified bucket folder for this execution.</td><td style="word-wrap: break-word;">https://storage.example/signed/<path>/<file>.zip</td></tr>
+<tr><td style="word-wrap: break-word;">url</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Signed URL to a zip file containing all uploaded results for this node’s run within the specified bucket folder.</td><td style="word-wrap: break-word;">https://storage.googleapis.com/<bucket>/biotech/my_experiment_1/<unique_run_id>/<unique_run_id>.zip?X-Goog-Signature=<signature></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Folder path required**: folder_path must be non-empty; saving to the root is not allowed.
-- **Sequential inputs**: results_2 becomes available only after results_1 is connected, and so on, up to results_101.
-- **Merging behavior**: Files are organized by metadata and source; results for the same folder_path are merged and separated by workflow_execution_id.
-- **File organization**: Inputs with salt metadata (e.g., PDB, A3M) are saved using their provided file names and sub-structure; plain values are saved as text files named by their source and output index.
-- **Signed URL**: The returned link is a signed URL intended for download; it may be time-limited.
-- **Cleanup**: Temporary local data used during upload is cleaned up after completion.
+- Folder path must not be empty; the node will raise an error if it is blank.
+- Results are grouped and written into a logical folder structure; multiple runs within the same folder_path are uniquely namespaced to avoid conflicts.
+- This node returns a signed URL to a zip representing the uploaded folder’s contents, suitable for direct download via an Output node.
+- The node is intended as a terminal step in workflows to persist and share outputs externally.
+- If user scoping is required, ensure a valid salt_user_id is available in the execution context.
 
 ## Troubleshooting
-- **ValueError: Please specify non empty folder path**: Provide a non-empty folder_path (avoid '/' or empty string).
-- **No output URL produced**: Ensure at least results_1 is connected and the workflow executed successfully.
-- **Unexpected file naming or folders**: Provide proper salt metadata on file-like inputs to control file names and structure; otherwise files are saved using default naming based on source node and output index.
-- **Signed URL expired**: Re-run the node to generate a fresh URL.
-- **Large uploads timing out**: If very large result sets fail due to time limits, split outputs across multiple Save To Bucket nodes or reduce the data per run.
-- **Permissions/user issues**: Make sure salt_user_id is valid for your workspace. Contact your administrator if uploads are blocked.
+- Error: 'Please specify non empty folder path' — Provide a non-empty folder_path (avoid using the root of the bucket).
+- No URL returned or upload appears incomplete — Verify that connected results contain data and that the execution did not timeout. Re-run with fewer/lighter outputs if necessary.
+- Access issues when opening the signed URL — Ensure the URL has not expired and that you copied the full link. Re-run to generate a fresh URL if needed.
+- Unexpected file/folder naming — The node auto-resolves name collisions by appending indexes; review the resulting zip structure to locate files.
+- Missing expected result inputs — Remember that results_2 becomes available only after results_1 is connected, and so on for subsequent inputs.
 
 ## Example Pipelines
 

@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Runs a text generation request against DeepSeek models through Salt’s LiteLLM connector. Supports dynamic prompts with contextual inputs, temperature control, and token limits. Automatically populates available models from the LLM service and falls back to a curated list if discovery is unavailable.
+Executes Large Language Model calls to the DeepSeek provider via the LiteLLM integration. It normalizes model names and provides fallbacks for common DeepSeek models (chat, coder, reasoner) to ensure compatibility even if display names change. Behavior such as request formatting, invocation, and response handling is inherited from the shared LiteLLM base.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/llms/litellmdeepseek.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Runs a text generation request against DeepSeek models through Salt’s LiteLLM 
 
 ## Usage
 
-Use this node when you want to generate or transform text with DeepSeek (e.g., general chat, coding assistance, or reasoning). Connect optional context inputs from upstream nodes or knowledge sources, reference them inside the prompt with {{input_1}}–{{input_4}}, pick a model, and adjust temperature and max_tokens as needed. The node returns a single string containing the model’s reply.
+Use this node when you want to invoke DeepSeek models for general chat, code-focused assistance, or reasoning-style outputs within a workflow. Select an available DeepSeek model and pass your prompt/messages; the node will route the request to the DeepSeek API and return the model’s response for downstream processing or display.
 
 ## Inputs
 
@@ -26,15 +26,9 @@ Use this node when you want to generate or transform text with DeepSeek (e.g., g
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">model</td><td>True</td><td style="word-wrap: break-word;">SELECT</td><td style="word-wrap: break-word;">DeepSeek model to use. The list is fetched from the LLM service; if unavailable, a fallback list is provided.</td><td style="word-wrap: break-word;">deepseek-chat</td></tr>
-<tr><td style="word-wrap: break-word;">system_prompt</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">High-level instruction that sets behavior, tone, and style for the model. Leave empty to omit a system message.</td><td style="word-wrap: break-word;">You are a concise assistant. Prefer bullet points and short sentences.</td></tr>
-<tr><td style="word-wrap: break-word;">prompt</td><td>True</td><td style="word-wrap: break-word;">DYNAMIC_STRING</td><td style="word-wrap: break-word;">The main user prompt. You can reference optional inputs using {{input_1}}–{{input_4}} to inject external context.</td><td style="word-wrap: break-word;">Summarize the following context in 5 bullet points: {{input_1}}</td></tr>
-<tr><td style="word-wrap: break-word;">temperature</td><td>True</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">Controls randomness and creativity (0 = deterministic, 1 = most creative).</td><td style="word-wrap: break-word;">0.5</td></tr>
-<tr><td style="word-wrap: break-word;">max_tokens</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum number of tokens in the response. Set to 0 to use the provider default.</td><td style="word-wrap: break-word;">1024</td></tr>
-<tr><td style="word-wrap: break-word;">input_1</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional context string. Refer to it in the prompt as {{input_1}}.</td><td style="word-wrap: break-word;">Long document text or retrieved notes</td></tr>
-<tr><td style="word-wrap: break-word;">input_2</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional context string. Refer to it in the prompt as {{input_2}}.</td><td style="word-wrap: break-word;">User profile or preferences</td></tr>
-<tr><td style="word-wrap: break-word;">input_3</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional context string. Refer to it in the prompt as {{input_3}}.</td><td style="word-wrap: break-word;">Product specs or API output</td></tr>
-<tr><td style="word-wrap: break-word;">input_4</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional context string. Refer to it in the prompt as {{input_4}}.</td><td style="word-wrap: break-word;">Previous conversation turns or extracted insights</td></tr>
+<tr><td style="word-wrap: break-word;">model</td><td>False</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">The DeepSeek model to use. Legacy display names are remapped to supported identifiers when possible. Supported fallbacks include deepseek-chat, deepseek-coder, and deepseek-reasoner.</td><td style="word-wrap: break-word;">deepseek/deepseek-reasoner</td></tr>
+<tr><td style="word-wrap: break-word;">prompt_or_messages</td><td>False</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Text prompt or structured messages for the model, depending on how your workflow constructs LLM requests.</td><td style="word-wrap: break-word;">Explain the difference between BFS and DFS in simple terms.</td></tr>
+<tr><td style="word-wrap: break-word;">generation_params</td><td>False</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Optional generation parameters inherited from the LiteLLM base (for example, temperature, max tokens, top_p, etc.). Exact fields depend on the shared base configuration.</td><td style="word-wrap: break-word;">{"temperature": 0.7, "max_tokens": 512}</td></tr>
 </tbody>
 </table>
 </div>
@@ -51,22 +45,20 @@ Use this node when you want to generate or transform text with DeepSeek (e.g., g
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">Output</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The DeepSeek model’s response text.</td><td style="word-wrap: break-word;">Here are five concise bullet points summarizing the provided context...</td></tr>
+<tr><td style="word-wrap: break-word;">response</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">The DeepSeek model’s response object or text, as returned by the shared LiteLLM base.</td><td style="word-wrap: break-word;">A concise answer string or a structured response object with message content and optional usage metadata.</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Model options**: The node queries the platform’s LLM service for available DeepSeek models; if that fails, it uses a fallback list (e.g., deepseek-chat, deepseek-coder, deepseek-reasoner).
-- **Dynamic variables**: Use {{input_1}}–{{input_4}} inside the prompt to inject optional context inputs.
-- **Timeouts**: Requests default to a 180s timeout. Long-running requests are kept alive via internal heartbeats.
-- **Token limits**: If the response is truncated due to max_tokens, you may see a length-related finish reason; increase max_tokens to allow longer outputs.
-- **Caching**: The discovered model list is cached per provider for about 1 hour to reduce repeated lookups.
-- **Provider**: This node targets the DeepSeek provider via the LiteLLM integration.
+- Fallback models are provided for common DeepSeek variants: deepseek-chat, deepseek-coder, deepseek-reasoner.
+- Model name normalization may occur (e.g., legacy or display names can be mapped to currently supported identifiers).
+- Credentials and API access are required for DeepSeek; ensure the appropriate API key or connection is configured in your environment.
+- This node is part of the LLM category and may be subject to usage limits enforced by your workspace or environment.
+- All request/response formatting, streaming behavior, and error handling are defined by the shared LiteLLM base for consistency across providers.
 
 ## Troubleshooting
-- **Model ID not found**: Ensure you selected a model from the list or that the list has loaded. If discovery fails, try a known fallback like "deepseek-chat".
-- **Truncated output (finish_reason: length)**: Increase max_tokens to allow a longer response.
-- **Slow or timed-out requests**: Reduce prompt size/context, choose a lighter model, or increase the timeout if supported by your environment.
-- **Unexpected or generic replies**: Refine the system_prompt to set clearer behavior, lower temperature for precision, and provide structured context via inputs.
-- **Variables not replaced in prompt**: Verify you used the correct placeholders (e.g., {{input_1}}) and that the corresponding inputs are connected or non-empty.
+- Model not found or unsupported: Select one of the supported DeepSeek models (e.g., deepseek/deepseek-reasoner, deepseek/deepseek-chat, deepseek/deepseek-coder) or ensure legacy names are mapped correctly.
+- Authentication errors: Verify that your DeepSeek credentials are configured and valid for the environment.
+- Timeouts or rate limits: Reduce request size (e.g., max tokens) or retry after waiting; check provider rate limits.
+- Unexpected response format: Confirm downstream nodes expect the same response shape produced by the shared LiteLLM base, and adjust parsing accordingly.
