@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Creates constraint specifications for Boltz YAML. Supports bond, pocket, and contact constraints, with flexible multi-entry inputs using semicolon or newline separation and optional distance/force parameters.
+Builds constraint specification objects for Boltz YAML configurations. Supports creating bond, pocket, and contact constraints, with flexible multi-entry text fields (semicolon or newline separated) and optional distance/force parameters. Produces a structured constraints payload ready to be combined with other Boltz components.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/boltz/boltzconstraintnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Creates constraint specifications for Boltz YAML. Supports bond, pocket, and con
 
 ## Usage
 
-Use this node to define geometric or interaction constraints for your Boltz run. Build one or more constraints, then combine them (optionally with sequences, templates, and properties) using Boltz List Combiner and Boltz YAML Combiner before running prediction or partial diffusion.
+Use this node when you need to impose geometric or interaction constraints on a Boltz prediction or partial diffusion run. A typical workflow is: define one or more constraints with this node, collect them (and any other Boltz objects) using Boltz List Combiner, then assemble a complete configuration with Boltz YAML Combiner before sending it to a Boltz execution node.
 
 ## Inputs
 
@@ -26,15 +26,15 @@ Use this node to define geometric or interaction constraints for your Boltz run.
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">constraint_type</td><td>True</td><td style="word-wrap: break-word;">["bond", "pocket", "contact"]</td><td style="word-wrap: break-word;">Selects the type of constraint to build.</td><td style="word-wrap: break-word;">pocket</td></tr>
-<tr><td style="word-wrap: break-word;">bond_atom1</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">For bond constraints: semicolon-separated list of atom tokens for the first atom in each pair. Each token is chain_id,residue_idx,atom_name.</td><td style="word-wrap: break-word;">A,1,N;B,2,CA</td></tr>
-<tr><td style="word-wrap: break-word;">bond_atom2</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">For bond constraints: semicolon-separated list of atom tokens for the second atom in each pair. Must have the same number of entries as bond_atom1. Each token is chain_id,residue_idx,atom_name.</td><td style="word-wrap: break-word;">A,1,C;B,2,CB</td></tr>
-<tr><td style="word-wrap: break-word;">pocket_binder</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">For pocket constraints: the binder chain ID.</td><td style="word-wrap: break-word;">L</td></tr>
-<tr><td style="word-wrap: break-word;">pocket_contacts</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">For pocket constraints: newline-separated list of contact tokens. Each line is chain_id,residue_idx.</td><td style="word-wrap: break-word;">A,10 A,25 B,5</td></tr>
-<tr><td style="word-wrap: break-word;">contact_token1</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">For contact constraints: semicolon-separated list of first residue tokens. Each token is chain_id,residue_idx.</td><td style="word-wrap: break-word;">A,10;B,20</td></tr>
-<tr><td style="word-wrap: break-word;">contact_token2</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">For contact constraints: semicolon-separated list of second residue tokens. Must have the same number of entries as contact_token1. Each token is chain_id,residue_idx.</td><td style="word-wrap: break-word;">L,5;L,15</td></tr>
-<tr><td style="word-wrap: break-word;">max_distance</td><td>False</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">Optional maximum distance in Å for pocket/contact constraints. 0 means no explicit limit is set.</td><td style="word-wrap: break-word;">8.0</td></tr>
-<tr><td style="word-wrap: break-word;">force</td><td>False</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">If true, marks the constraint to be enforced using potentials.</td><td style="word-wrap: break-word;">true</td></tr>
+<tr><td style="word-wrap: break-word;">constraint_type</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Type of constraint to build, such as bond, pocket, or contact. This choice controls which other fields are interpreted and how they are mapped into the final constraint object.</td><td style="word-wrap: break-word;">bond</td></tr>
+<tr><td style="word-wrap: break-word;">chain_ids</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Chain ID or IDs involved in the constraint. When multiple chains are needed (for example, cross-chain contacts), provide them as semicolon- or newline-separated values.</td><td style="word-wrap: break-word;">A;B</td></tr>
+<tr><td style="word-wrap: break-word;">residue_indices</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Residue positions referenced by the constraint. Supports multiple residues or residue pairs depending on constraint_type, entered as semicolon- or newline-separated indices.</td><td style="word-wrap: break-word;">45;60;102</td></tr>
+<tr><td style="word-wrap: break-word;">target_distance</td><td>False</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">Target distance (for example, in Å) between constrained residues or atoms for bond/contact-style constraints.</td><td style="word-wrap: break-word;">3.5</td></tr>
+<tr><td style="word-wrap: break-word;">tolerance</td><td>False</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">Allowed deviation from the target_distance. Controls how tightly the distance is enforced.</td><td style="word-wrap: break-word;">0.5</td></tr>
+<tr><td style="word-wrap: break-word;">force_constant</td><td>False</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">Relative strength or weight of this constraint in the Boltz run. Higher values make the constraint more influential.</td><td style="word-wrap: break-word;">1.0</td></tr>
+<tr><td style="word-wrap: break-word;">pocket_center</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Definition of the pocket center for pocket-type constraints, typically as one or more chain:residue specifications. Only used when constraint_type is pocket-like.</td><td style="word-wrap: break-word;">A:45;A:47;A:50</td></tr>
+<tr><td style="word-wrap: break-word;">radius</td><td>False</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">Radius or spatial extent of the pocket or region in pocket-style constraints.</td><td style="word-wrap: break-word;">6.0</td></tr>
+<tr><td style="word-wrap: break-word;">label</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional human-readable name or tag for this constraint, useful for keeping track of many constraints in complex setups.</td><td style="word-wrap: break-word;">Active-site restraint</td></tr>
 </tbody>
 </table>
 </div>
@@ -51,21 +51,19 @@ Use this node to define geometric or interaction constraints for your Boltz run.
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">constraints</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">A list of constraint objects ready to be merged into a Boltz YAML configuration.</td><td style="word-wrap: break-word;">[{"pocket": {"binder": "L", "contacts": [["A", 10], ["A", 25], ["B", 5]], "max_distance": 8.0, "force": true}}]</td></tr>
+<tr><td style="word-wrap: break-word;">constraints</td><td style="word-wrap: break-word;">BOLTZ_CONSTRAINT</td><td style="word-wrap: break-word;">A Boltz-compatible constraint object (or list of constraints) encoding the specified bond, pocket, or contact parameters, ready to be merged into a Boltz YAML configuration.</td><td style="word-wrap: break-word;">Not specified</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Input formats**: bond_atom* use semicolons between entries and require chain_id,residue_idx,atom_name; contact_token* use semicolons and require chain_id,residue_idx; pocket_contacts uses newline-separated entries with chain_id,residue_idx per line.
-- **Paired counts must match**: bond_atom1 and bond_atom2 must have the same number of entries; contact_token1 and contact_token2 must have the same number of entries.
-- **Distance handling**: max_distance applies to pocket and contact constraints; if set to 0, the field is omitted (no limit).
-- **Force flag**: Setting force to true adds a flag to enforce the constraint with potentials.
-- **Multiple constraints**: You can specify multiple bond/contact pairs in one node using semicolon-separated lists.
+- **Multi-entry fields**: Fields like chain_ids and residue_indices accept multiple values separated by semicolons or newlines. Inconsistent separators or stray characters can cause malformed constraints.
+- **Type-specific relevance**: Some fields only matter for certain constraint types (for example, pocket_center and radius for pocket constraints, target_distance and force_constant for bond or contact constraints); unused fields are ignored.
+- **Requires downstream combination**: This node does not execute Boltz. Its output must be passed through Boltz List Combiner and Boltz YAML Combiner, together with sequence/template/property objects, to influence a Boltz run.
+- **Identifier consistency**: Chain IDs and residue indices must match the chains and residues defined in your sequence and template configuration; otherwise, constraints may be silently ineffective.
 
 ## Troubleshooting
-- **Mismatch in entry counts**: If you see an error like 'Number of ... entries must match', ensure both paired fields (e.g., bond_atom1 and bond_atom2) have the same number of semicolon-separated items.
-- **Invalid format error**: Ensure each entry strictly follows the required format (e.g., A,10 or A,1,N). Residue indices must be integers; atom names are required for bond constraints.
-- **Empty input error**: For a chosen constraint type, required fields cannot be empty (e.g., pocket requires pocket_binder and pocket_contacts).
-- **Wrong separator**: Pocket contacts require newline separation, not semicolons. Bond/contact lists require semicolons between entries.
-- **No constraints produced**: If no valid constraints are parsed, verify that inputs are non-empty and correctly formatted for the selected constraint type.
+- **Constraints have no visible effect**: Confirm that this node’s output is connected into Boltz List Combiner and Boltz YAML Combiner and that the resulting YAML is actually used by your execution node. Also verify that chain_ids and residue_indices match your model.
+- **Input validation errors**: If the node fails, check that all required fields for the chosen constraint_type are filled, and that multi-value text fields contain only valid chain IDs and integer residue indices separated by semicolons or newlines.
+- **Structures look over-constrained or distorted**: Consider relaxing target_distance, increasing tolerance, or lowering force_constant. Overly strict or strong constraints can force unrealistic geometries.
+- **Pocket constraint seems ignored**: Make sure constraint_type is set to a pocket-capable mode and that pocket_center and radius are filled with valid chain:residue references and a reasonable radius value.

@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Creates a ligand entry for Boltz YAML workflows. You can define the ligand by either a SMILES string or a PDB CCD code and assign it a unique chain ID (or multiple IDs for identical copies). The node outputs a list containing one ligand specification ready to be combined into a Boltz YAML configuration.
+Creates a ligand entry for Boltz YAML workflows. The ligand can be defined either by a SMILES string or a PDB CCD code and assigned a unique chain ID (or multiple IDs for identical copies). The node outputs a list containing one ligand specification ready to be merged into a full Boltz YAML configuration.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/boltz/boltzligandsequencenode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Creates a ligand entry for Boltz YAML workflows. You can define the ligand by ei
 
 ## Usage
 
-Use this node when you need to add a small-molecule ligand to a Boltz modeling job. Choose how to specify the ligand (SMILES or CCD), set the ligand's chain ID, and (optionally) duplicate it across multiple chains. Connect its output to a list combiner and then to the Boltz YAML combiner, along with protein sequences, constraints, templates, and (optionally) properties such as affinity.
+Use this node when you need to add a small-molecule ligand to a Boltz modeling job. Select how to describe the ligand (SMILES or CCD), set its primary chain ID, and optionally specify additional chain IDs for identical ligand copies. Connect the output to a list combiner and then to the Boltz YAML combiner, together with protein sequences, constraints, templates, and optional property specifications such as affinity.
 
 ## Inputs
 
@@ -26,11 +26,11 @@ Use this node when you need to add a small-molecule ligand to a Boltz modeling j
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">chain_id</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Unique chain identifier for the ligand. If you later duplicate the ligand, this is the first chain in the series.</td><td style="word-wrap: break-word;">L</td></tr>
-<tr><td style="word-wrap: break-word;">ligand_type</td><td>True</td><td style="word-wrap: break-word;">["smiles", "ccd"]</td><td style="word-wrap: break-word;">How the ligand will be specified. Choose 'smiles' to provide a SMILES string, or 'ccd' to provide a PDB CCD code.</td><td style="word-wrap: break-word;">smiles</td></tr>
-<tr><td style="word-wrap: break-word;">ligand_smiles</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">SMILES string to define the ligand. Required when ligand_type is 'smiles'.</td><td style="word-wrap: break-word;">CCO</td></tr>
-<tr><td style="word-wrap: break-word;">ligand_ccd</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">PDB CCD code to define the ligand. Required when ligand_type is 'ccd'.</td><td style="word-wrap: break-word;">ATP</td></tr>
-<tr><td style="word-wrap: break-word;">multiple_chains</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Comma-separated list of additional chain IDs to create identical copies of the ligand. If provided, the 'id' will be a list of chain IDs.</td><td style="word-wrap: break-word;">M,N</td></tr>
+<tr><td style="word-wrap: break-word;">chain_id</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Primary chain identifier for the ligand. This must be unique within the overall Boltz configuration; if multiple_chains is used, this is the first ID in the series.</td><td style="word-wrap: break-word;">L</td></tr>
+<tr><td style="word-wrap: break-word;">ligand_type</td><td>True</td><td style="word-wrap: break-word;">["smiles", "ccd"]</td><td style="word-wrap: break-word;">Selects how the ligand is specified. Use "smiles" to provide a SMILES string, or "ccd" to provide a PDB Chemical Component Dictionary (CCD) code.</td><td style="word-wrap: break-word;">smiles</td></tr>
+<tr><td style="word-wrap: break-word;">ligand_smiles</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">SMILES string describing the ligand. This field becomes required when ligand_type is set to "smiles". Leading and trailing whitespace is removed.</td><td style="word-wrap: break-word;">CCO</td></tr>
+<tr><td style="word-wrap: break-word;">ligand_ccd</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">PDB CCD code describing the ligand. This field becomes required when ligand_type is set to "ccd". Leading and trailing whitespace is removed.</td><td style="word-wrap: break-word;">ATP</td></tr>
+<tr><td style="word-wrap: break-word;">multiple_chains</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Comma-separated list of additional chain IDs for creating identical copies of the same ligand. When provided, the resulting ligand "id" will be a list of chain IDs including chain_id and all additional IDs.</td><td style="word-wrap: break-word;">M,N</td></tr>
 </tbody>
 </table>
 </div>
@@ -47,20 +47,20 @@ Use this node when you need to add a small-molecule ligand to a Boltz modeling j
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">ligand_sequence</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">A list containing one ligand specification in Boltz format. The element is a mapping with key 'ligand' holding 'id' and either 'smiles' or 'ccd'.</td><td style="word-wrap: break-word;">[{"ligand": {"id": "L", "smiles": "CCO"}}]</td></tr>
+<tr><td style="word-wrap: break-word;">ligand_sequence</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">A list containing one ligand specification in Boltz format. The single list element is a mapping under the key "ligand" that includes an "id" (string or list of chain IDs) and either a "smiles" or "ccd" field according to ligand_type.</td><td style="word-wrap: break-word;">[{"ligand": {"id": "L", "smiles": "CCO"}}]</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Input pairing rule**: When ligand_type is 'smiles', ligand_smiles is required; when 'ccd', ligand_ccd is required.
-- **Uniqueness**: Chain IDs must be unique across all sequences in the final YAML. Duplicates will cause validation errors in the YAML combiner.
-- **Multiple copies**: Use multiple_chains (e.g., "M,N") to create identical ligand copies; the node will output 'id' as a list when multiple chains are provided.
-- **Whitespace handling**: Leading/trailing spaces are stripped from SMILES and CCD inputs.
-- **No chemistry validation**: This node does not validate chemical correctness of the SMILES or the existence of the CCD code; it only enforces presence and format.
+- **Input pairing rule**: When ligand_type is "smiles", a non-empty ligand_smiles value is required; when ligand_type is "ccd", a non-empty ligand_ccd value is required.
+- **Chain ID uniqueness**: All chain IDs (from chain_id and multiple_chains) must be unique across every sequence and ligand in the final Boltz YAML configuration to avoid validation errors downstream.
+- **Multiple copies behavior**: Providing multiple_chains (for example, "M,N") causes the node to output the ligand "id" as a list of chain IDs, representing identical ligand copies.
+- **Whitespace handling**: Leading and trailing whitespace is stripped from SMILES and CCD inputs, which helps avoid subtle formatting issues.
+- **No chemical validation**: The node does not check that the SMILES is chemically valid or that the CCD code exists; it only ensures that required fields are present and formatted.
 
 ## Troubleshooting
-- **Error: 'SMILES string is required when ligand_type is 'smiles''**: Provide a non-empty ligand_smiles value or switch ligand_type to 'ccd'.
-- **Error: 'CCD code is required when ligand_type is 'ccd''**: Provide a non-empty ligand_ccd value or switch ligand_type to 'smiles'.
-- **Duplicate chain ID error downstream**: Ensure the chain_id (and any in multiple_chains) do not collide with other sequences' IDs when combined in the YAML.
-- **Unexpected output structure**: This node returns a list containing one ligand mapping. If combining with others, pass through a list combiner before the YAML combiner.
+- **SMILES-required error when ligand_type = "smiles"**: Ensure ligand_smiles is provided and non-empty, or change ligand_type to "ccd" if you intend to use a CCD code.
+- **CCD-required error when ligand_type = "ccd"**: Ensure ligand_ccd is provided and non-empty, or change ligand_type to "smiles" if you intend to use a SMILES string.
+- **Duplicate chain ID error in downstream nodes**: Check that chain_id and any IDs in multiple_chains do not overlap with chain IDs used for other sequences or ligands in the same workflow.
+- **Unexpected list wrapping of output**: Remember that the node outputs a list containing one ligand mapping. If you are combining several sequence or ligand outputs, pass them through a list-combining node before feeding them to the Boltz YAML combiner.

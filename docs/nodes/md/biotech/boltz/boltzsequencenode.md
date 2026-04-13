@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Creates a single molecular sequence entry formatted for Boltz YAML. Supports protein, DNA, RNA, and ligand entities, including chain assignment, optional multiple identical chains, modifications, and polymer-specific options like MSA and cyclic polymers. Returns a list containing one sequence mapping ready to be combined into a full Boltz YAML configuration.
+Builds a single molecular sequence specification for Boltz YAML workflows. It can represent proteins, nucleic acids (DNA/RNA), or ligands, including chain assignment, optional duplicated chains, modifications, and polymer-specific options such as MSA and cyclic polymers. The node outputs a list containing one properly structured sequence entry ready for inclusion in a Boltz YAML configuration.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/boltz/boltzsequencenode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Creates a single molecular sequence entry formatted for Boltz YAML. Supports pro
 
 ## Usage
 
-Use this node to define each chain/entity in a Boltz job. For proteins/DNA/RNA, provide a sequence (plain text or FASTA). For ligands, specify either a SMILES string or a CCD code. If you need identical copies of the same chain, list additional chain IDs. Connect outputs to a list combiner and then to the Boltz YAML combiner for prediction.
+Use this node whenever you need to define one molecular entity (chain) in a Boltz modeling job. For biopolymers (proteins, DNA, RNA), supply the sequence as plain text or FASTA and optionally attach MSA or cyclic flags; for ligands, specify them via SMILES or CCD code. Typically, you will create one Boltz Sequence Builder node per chain or entity, then send all sequence outputs into a list combiner, and finally into the Boltz YAML Combiner before running prediction or other downstream Boltz execution nodes.
 
 ## Inputs
 
@@ -26,16 +26,17 @@ Use this node to define each chain/entity in a Boltz job. For proteins/DNA/RNA, 
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">entity_type</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">Type of molecular entity to define. Determines which other inputs are required and how the sequence is interpreted.</td><td style="word-wrap: break-word;">protein</td></tr>
-<tr><td style="word-wrap: break-word;">chain_id</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Primary chain identifier for this entity. Must be unique across all chains in the final YAML.</td><td style="word-wrap: break-word;">A</td></tr>
-<tr><td style="word-wrap: break-word;">sequence</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Amino acid or nucleotide sequence for protein/DNA/RNA. Can be plain sequence characters or FASTA-formatted text. If FASTA-formatted, the first header is used to name the sequence and the content after headers is extracted.</td><td style="word-wrap: break-word;">MKTAYIAKQRQISFVKSHFSRQ</td></tr>
-<tr><td style="word-wrap: break-word;">sequence_fasta</td><td>False</td><td style="word-wrap: break-word;">FASTA</td><td style="word-wrap: break-word;">Sequence in FASTA format for protein/DNA/RNA as an alternative to 'sequence'. If provided, it takes precedence and the header is used to name the sequence.</td><td style="word-wrap: break-word;">>my_protein MKTAYIAKQRQISFVKSHFSRQ</td></tr>
-<tr><td style="word-wrap: break-word;">msa</td><td>False</td><td style="word-wrap: break-word;">MSA</td><td style="word-wrap: break-word;">Multiple Sequence Alignment for proteins in A3M or CSV format. Leave empty to use an 'empty' MSA.</td><td style="word-wrap: break-word;">>seq1 MKTAYIAK- >seq2 MKTAFIAKQ</td></tr>
-<tr><td style="word-wrap: break-word;">ligand_smiles</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">SMILES string for ligand entities. Provide this OR 'ligand_ccd' (not both).</td><td style="word-wrap: break-word;">CCO</td></tr>
-<tr><td style="word-wrap: break-word;">ligand_ccd</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Three-letter CCD code for ligand entities. Provide this OR 'ligand_smiles' (not both).</td><td style="word-wrap: break-word;">ATP</td></tr>
-<tr><td style="word-wrap: break-word;">modifications</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Residue-level modifications for polymers. One per line in the format 'position:ccd_code'.</td><td style="word-wrap: break-word;">5:MSE 23:SEP</td></tr>
-<tr><td style="word-wrap: break-word;">cyclic</td><td>False</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Marks the polymer as cyclic when true.</td><td style="word-wrap: break-word;">false</td></tr>
-<tr><td style="word-wrap: break-word;">multiple_chains</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Comma-separated list of additional chain IDs to create identical copies of this entity.</td><td style="word-wrap: break-word;">B,C</td></tr>
+<tr><td style="word-wrap: break-word;">entity_type</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Specifies what kind of molecular entity this is, such as protein, DNA, RNA, or ligand. Determines which other fields are relevant and how the node structures the sequence entry.</td><td style="word-wrap: break-word;">protein</td></tr>
+<tr><td style="word-wrap: break-word;">sequence_or_fasta</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">For proteins, DNA, or RNA, the primary sequence in one-letter code or a full FASTA (header plus sequence). If a FASTA header is present, it may be used as a name or identifier in the Boltz configuration.</td><td style="word-wrap: break-word;">>my_protein\nMSTNPKPQRIT...</td></tr>
+<tr><td style="word-wrap: break-word;">ligand_smiles</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">For ligand entities, a SMILES string describing the small molecule. Only used when entity_type is set to ligand and you choose SMILES as the definition method.</td><td style="word-wrap: break-word;">CC(=O)Oc1ccccc1C(=O)O</td></tr>
+<tr><td style="word-wrap: break-word;">ligand_ccd_code</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">For ligand entities, an optional three-letter CCD (PDB Chemical Component Dictionary) code used instead of SMILES to identify the ligand.</td><td style="word-wrap: break-word;">ATP</td></tr>
+<tr><td style="word-wrap: break-word;">chain_id</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Primary chain identifier for this entity in the Boltz job. Must be unique across the final YAML; additional identical chains can be provided via a separate duplicate chains setting.</td><td style="word-wrap: break-word;">A</td></tr>
+<tr><td style="word-wrap: break-word;">duplicate_chain_ids</td><td>False</td><td style="word-wrap: break-word;">STRING_LIST</td><td style="word-wrap: break-word;">Optional list of extra chain IDs for identical copies of the same entity. The node expands this into multiple chains sharing the same sequence or ligand definition.</td><td style="word-wrap: break-word;">['B', 'C']</td></tr>
+<tr><td style="word-wrap: break-word;">modifications</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional description or mapping of residue or chemistry modifications applied to the sequence or ligand. The format should follow Boltz YAML expectations, such as position-specific tags or labels.</td><td style="word-wrap: break-word;">N-terminal_acetylation; K27me3</td></tr>
+<tr><td style="word-wrap: break-word;">msa_content</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">For proteins and possibly nucleic acids, optional multiple sequence alignment content. This is carried through and later converted into a referenced file by the Boltz YAML Combiner node.</td><td style="word-wrap: break-word;">>seq1\nMSTNPKPQRIT...\n>seq2\nMSTTPKPQKIT...</td></tr>
+<tr><td style="word-wrap: break-word;">is_cyclic</td><td>False</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Marks polymer entities (protein, DNA, RNA) as cyclic. Boltz workflows may treat cyclic polymers differently during modeling.</td><td style="word-wrap: break-word;">false</td></tr>
+<tr><td style="word-wrap: break-word;">name</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional human-readable name or label for this entity. If not provided and a FASTA header exists, the header may be used instead.</td><td style="word-wrap: break-word;">designed_enzyme_v1</td></tr>
+<tr><td style="word-wrap: break-word;">metadata</td><td>False</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Optional free-form metadata dictionary to attach to this entity, which can be carried through to downstream tools or for record-keeping.</td><td style="word-wrap: break-word;">{"project":"enzyme_screen_01","batch":"B3"}</td></tr>
 </tbody>
 </table>
 </div>
@@ -52,24 +53,21 @@ Use this node to define each chain/entity in a Boltz job. For proteins/DNA/RNA, 
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">sequences</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">A list containing a single Boltz-ready sequence mapping for the specified entity. Designed to be merged with other sequences using a list combiner before building the final YAML.</td><td style="word-wrap: break-word;">[{"protein": {"id": "A", "sequence": "MKTAYIAK...", "_sequence_name": "my_protein", "msa": "empty"}}]</td></tr>
+<tr><td style="word-wrap: break-word;">sequence</td><td style="word-wrap: break-word;">BOLTZ_OBJECT_LIST</td><td style="word-wrap: break-word;">A list containing one structured Boltz sequence entry with all specified fields, including type, sequence or ligand description, chain IDs, modifications, and optional MSA or cyclic flags. Designed to be directly combined with other Boltz components into a full YAML configuration.</td><td style="word-wrap: break-word;">[{"type":"protein","chain_ids":["A"],"sequence":"MSTNPKPQRIT...","cyclic":false}]</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **For polymers (protein/dna/rna), a sequence is required**: provide either 'sequence' (plain or FASTA text) or 'sequence_fasta'.
-- **For ligands, exactly one identifier is required**: provide 'ligand_smiles' or 'ligand_ccd', but not both.
-- **Multiple chains**: Use 'multiple_chains' to generate identical copies; ensure all chain IDs are unique across the final YAML.
-- **MSA handling (proteins only)**: Accepts A3M or CSV. If omitted, an 'empty' MSA will be used downstream.
-- **Sequence names**: When a FASTA header is present, the first header token (commas removed) is used as the sequence name.
-- **Modifications**: Use integer residue positions with CCD codes in 'position:ccd' format, one per line.
-- **Cyclic polymers**: Enable 'cyclic' to mark the chain as cyclic in the YAML.
+- **Note 1**: The node always returns a list, even for a single entity, so it can be directly concatenated with other node outputs in list-combining steps.
+- **Note 2**: Chain IDs, including duplicates, must be globally unique once combined for the full Boltz YAML; conflicts will typically be caught by downstream validation nodes.
+- **Note 3**: For ligands, you must choose one defining method (SMILES or CCD); providing inconsistent or missing ligand information may lead to validation errors later.
+- **Note 4**: If you input a FASTA with a header, that header may override or populate the entity name, depending on configuration; ensure headers are meaningful for your workflow.
+- **Note 5**: MSA and other large text attachments are typically converted into files later by the Boltz YAML Combiner; do not assume they remain inline in the final YAML.
 
 ## Troubleshooting
-- **Error: 'Sequence is required for protein/dna/rna'**: Provide a valid sequence via 'sequence' or 'sequence_fasta'. If using FASTA, ensure it starts with '>' and contains sequence lines.
-- **Error: 'SMILES or CCD code is required for ligands'**: For ligand entities, set either 'ligand_smiles' or 'ligand_ccd'.
-- **Error: 'Provide either SMILES or CCD code, not both'**: Remove one of the two ligand identifiers.
-- **Invalid modification format warning**: Ensure each line is 'position:ccd_code' with an integer position (e.g., '23:SEP').
-- **Unexpected characters in FASTA name**: Commas are stripped from FASTA headers. Consider simplifying header tokens.
-- **Duplicate chain IDs when combining YAML**: If later nodes report duplicate chain IDs, revise 'chain_id' and 'multiple_chains' to ensure global uniqueness.
+- **Issue 1**: Downstream YAML validation fails due to duplicate chain IDs — Review the chain_id and duplicate_chain_ids fields across all sequence or ligand nodes and ensure all final chain labels are unique.
+- **Issue 2**: Ligand is missing or mis-specified — Confirm entity_type is set to ligand and that exactly one of ligand_smiles or ligand_ccd_code is correctly filled.
+- **Issue 3**: Biopolymer sequence not recognized — Check that the sequence_or_fasta input uses valid one-letter codes and that FASTA formatting, if used, is correct, including line breaks.
+- **Issue 4**: MSA not picked up downstream — Ensure msa_content is non-empty text and that the entity_type supports MSA. Verify that you pass this node's output through the Boltz YAML Combiner, which materializes MSA content into files.
+- **Issue 5**: Unexpected cyclic behavior — If models behave as if the polymer is closed, verify the is_cyclic flag and set it to false if you intend a linear chain.
