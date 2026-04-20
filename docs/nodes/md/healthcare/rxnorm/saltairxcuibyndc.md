@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Looks up RxNorm Concept Unique Identifier(s) (RxCUI) for a given National Drug Code (NDC). It queries the RxNorm service and returns both the raw lookup payload and a parsed list of RxCUIs. Handles empty input validation and surfaces API errors in the status output.
+This node takes a National Drug Code (NDC) string and queries an RxNorm service to find the corresponding RxCUI identifiers. It returns a JSON payload with the original NDC and full RxNorm response, a JSON list of extracted RxCUI IDs, and a human-readable status message. It centralizes NDC-to-RxCUI resolution so downstream nodes can operate on standardized RxNorm identifiers instead of raw NDCs.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/healthcare/rxnorm/saltairxcuibyndc.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,9 @@ Looks up RxNorm Concept Unique Identifier(s) (RxCUI) for a given National Drug C
 
 ## Usage
 
-Use this node when you have an NDC and need to map it to RxNorm concept identifiers for downstream drug concept processing. Typical workflows feed the returned RxCUI list into nodes that fetch concept details, properties, related concepts, or interactions.
+Use this node whenever you have an NDC and need to convert it into RxNorm RxCUI identifiers as part of terminology normalization, clinical analytics, or medication data integration. It typically appears early in a medication processing workflow: raw NDCs are ingested from claims, EHR medication lists, or pharmacy systems, passed into this node, and the resulting RxCUIs are then consumed by RxNorm-based analysis nodes (for example, to fetch concept properties or related drugs). Practical scenarios include building cohorts based on drugs dispensed via their NDCs but defined via RxCUIs, harmonizing multiple NDC tables into a single RxNorm-backed drug catalog, or preparing data for drug class and interaction analysis.
+
+In a typical pipeline, you might: (1) clean and normalize incoming NDC strings, (2) send each NDC into "RxCUI by NDC", (3) collect the rxcui output into a list of IDs, and (4) pass those IDs to nodes such as "SaltAIRxNormConceptInfo" or "SaltAIRxNormRelatedConcepts". Always inspect the status field and the rxcui list to handle missing mappings or API errors gracefully. For batch operations, iterate over a list of NDCs and aggregate the outputs rather than expecting this node to handle arrays directly.
 
 ## Inputs
 
@@ -26,7 +28,7 @@ Use this node when you have an NDC and need to map it to RxNorm concept identifi
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">ndc</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The National Drug Code to look up. Provide a valid NDC as a string.</td><td style="word-wrap: break-word;">00071015527</td></tr>
+<tr><td style="word-wrap: break-word;">ndc</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Single National Drug Code to resolve to RxCUI. Must be a non-empty string. The underlying RxNorm service typically expects a normalized 11-digit NDC with no separators, though it may accept other normalized formats depending on configuration. If this value is empty or contains only whitespace, the node will not call the external service and will return an error status with no RxCUI IDs.</td><td style="word-wrap: break-word;">00071015527</td></tr>
 </tbody>
 </table>
 </div>
@@ -43,22 +45,21 @@ Use this node when you have an NDC and need to map it to RxNorm concept identifi
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">rxcui_info</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON string containing the query NDC and the full response from the RxNorm lookup.</td><td style="word-wrap: break-word;">{"ndc": "00071015527", "rxcui_data": {"idGroup": {"rxnormId": ["12345"]}}}</td></tr>
-<tr><td style="word-wrap: break-word;">rxcui</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON stringified array of RxCUI(s) extracted from the response. Empty array if none found.</td><td style="word-wrap: break-word;">["12345", "67890"]</td></tr>
-<tr><td style="word-wrap: break-word;">status</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Operation status message indicating success or an error description.</td><td style="word-wrap: break-word;">Successfully retrieved RxCUI for NDC 00071015527</td></tr>
+<tr><td style="word-wrap: break-word;">rxcui_info</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON string containing the original NDC and the full RxNorm response from the NDC lookup. The structure is of the form: {"ndc": "<ndc>", "rxcui_data": <raw_rxnorm_response_object>}. Use this output when you need the complete response, including fields such as idGroup, names, and any additional metadata supplied by the RxNorm API.</td><td style="word-wrap: break-word;">{   "ndc": "00071015527",   "rxcui_data": {     "idGroup": {       "ndc": ["00071015527"],       "name": "amoxicillin 500 MG Oral Capsule",       "rxnormId": ["723"]     }   } }</td></tr>
+<tr><td style="word-wrap: break-word;">rxcui</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON-encoded list of RxCUI identifiers extracted from the RxNorm response. When the service returns IDs in idGroup.rxnormId, they are emitted here as a JSON array string. If no RxCUIs are present in the response or if an error occurs, this will be an empty JSON array string or an empty string, depending on the error path. Downstream nodes that require RxCUIs should parse this value and select one or more IDs as appropriate.</td><td style="word-wrap: break-word;">["723"]</td></tr>
+<tr><td style="word-wrap: break-word;">status</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable status message describing the outcome of the lookup. On success, it confirms that an RxCUI was retrieved for the given NDC (for example, "Successfully retrieved RxCUI for NDC 00071015527"). On failure, it reports validation problems (such as an empty NDC) or service errors (prefixed with "API Error:"). Use this field for logging and to implement conditional branching in workflows.</td><td style="word-wrap: break-word;">Successfully retrieved RxCUI for NDC 00071015527</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- Input NDC must not be empty; otherwise the node returns an error status and empty outputs.
-- The 'rxcui' output is a JSON array encoded as a string; parse it if you need a list structure downstream.
-- If the RxNorm response does not include idGroup.rxnormId, the node returns an empty array for 'rxcui'.
-- API errors are surfaced in the 'status' output as 'API Error: ...' and the detailed error payload is included in 'rxcui_info'.
-- The node returns formatted JSON as strings; ensure consumers expecting objects parse these strings first.
+- **Performance**: Each execution issues a request to an external RxNorm API. When resolving many NDCs, iterate with care and consider batching or inserting small delays to avoid network congestion or exceeding service rate limits.
+- **Limitations**: If the supplied NDC is not recognized by RxNorm (for example, due to being obsolete, local-only, or incorrectly formatted), the response may not contain idGroup.rxnormId. In such cases the node produces an empty RxCUI list without raising a hard exception, so downstream logic must verify outputs before relying on them.
+- **Behavior**: When the ndc input is empty or only whitespace, the node returns "{}" for rxcui_info, an empty string for rxcui, and a status message beginning with "Error: NDC cannot be empty". No external API call is made in this scenario, which helps avoid unnecessary requests caused by bad upstream data.
+- **Behavior**: If the RxNorm API returns an error object, the node wraps that error inside rxcui_info (often under an "error" key), sets rxcui to an empty string, and emits a status message starting with "API Error:". Treat this as a non-recoverable lookup for that NDC unless your workflow includes retry logic.
 
 ## Troubleshooting
-- Empty or missing NDC: Provide a non-empty NDC string; the node validates and will return 'Error: NDC cannot be empty'.
-- API Error responses: Check the 'status' output for 'API Error: ...' and review 'rxcui_info' for the full error payload.
-- No RxCUI returned: Verify the NDC is valid and active; some NDCs may not map to RxNorm or may have been retired.
-- Unexpected output format: Remember that 'rxcui_info' and 'rxcui' are JSON strings; parse them before further processing.
+- **Empty RxCUI list with apparently valid input**: When rxcui is "[]" but rxcui_info shows a structured response, open rxcui_info and inspect idGroup.rxnormId. If it is missing or empty, the NDC has no mapping in the underlying RxNorm service. Verify that the NDC is correctly normalized (for example, 11-digit string without dashes) and confirm that it is a real, active code in your source system.
+- **Status shows 'Error: NDC cannot be empty'**: This means the ndc input was blank or contained only whitespace. Fix upstream data preparation by trimming NDC values, filtering out missing codes, or supplying only validated NDC strings before calling this node.
+- **Status shows 'API Error: ...'**: A status beginning with "API Error:" indicates a failure at the external service layer (such as connectivity, timeouts, or unexpected responses). Check your network connectivity, any gateway or proxy configurations, and the health of the RxNorm endpoint. Consider retrying with backoff or implementing fallback behavior for affected records.
+- **Downstream node fails when parsing outputs**: If a downstream node expects a certain structure in rxcui_info or a non-empty rxcui list, first check the status field. On error, rxcui_info may contain only an error payload and rxcui may be empty. Add guards so downstream nodes run only when status indicates successful retrieval and rxcui contains at least one ID.

@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Combines multiple PDB inputs into a single batch dictionary. Each input is itself a dictionary mapping pdb_id to PDB content, and all keys must be unique across the batch. The node validates duplicate IDs and raises an error if a collision is found.
+Batch PDB lets you merge multiple PDB inputs (each a {pdb_id: pdb_string} dictionary) into one consolidated dictionary. It exposes a chain of pdb_1 to pdb_31 inputs that appear progressively as you connect them, then validates that all PDB IDs are unique before returning the merged batch. This is useful when you want to run downstream structure-processing or prediction workflows over multiple structures in one go.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/biotech-utils/batchpdbnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Combines multiple PDB inputs into a single batch dictionary. Each input is itsel
 
 ## Usage
 
-Use this node when you need to merge several PDB structures (from different loaders or generators) into one consolidated input for downstream biotech nodes that process batches. Connect pdb_1 first; additional inputs (pdb_2 to pdb_31) become available progressively after the previous one is connected.
+Use this node whenever you have several PDB inputs that you want to present as a single batched structure dictionary. Typical upstream nodes are LoadPDBNode (for individual PDB strings) or any node that outputs a PDB-typed dictionary like PDBCombinerNode, PDBChainExtractorNode, or PdbFixerNode. Place Batch PDB before downstream nodes that accept a PDB batch, such as PDBVisualizationNode, PDBToFastaNode, PDBChainExtractorNode, PdbFixerNode, or any structure-prediction or analysis step that iterates over PDB entries. A common pattern is: multiple LoadPDBNode feeding separate structures, then BatchPDBNode to combine them, followed by PDBToFastaNode or SaveToZipNode / SaveToBucketNode for exporting results. The node dynamically reveals pdb_2 through pdb_31 as you connect earlier inputs, making it convenient to scale from a few to many PDBs. Ensure each PDB dictionary you connect uses unique IDs (keys); if two inputs reuse the same ID, the node will raise an error instead of silently overwriting data.
 
 ## Inputs
 
@@ -26,37 +26,7 @@ Use this node when you need to merge several PDB structures (from different load
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">pdb_1</td><td>True</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">First PDB dictionary to add to the batch. Must be a dict of {pdb_id: pdb_content}.</td><td style="word-wrap: break-word;">{"protein_A": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_2</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Second PDB dictionary to merge. Appears after pdb_1 is connected.</td><td style="word-wrap: break-word;">{"protein_B": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_3</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Third PDB dictionary to merge. Appears after pdb_2 is connected.</td><td style="word-wrap: break-word;">{"protein_C": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_4</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Fourth PDB dictionary to merge. Appears after pdb_3 is connected.</td><td style="word-wrap: break-word;">{"protein_D": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_5</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Fifth PDB dictionary to merge. Appears after pdb_4 is connected.</td><td style="word-wrap: break-word;">{"protein_E": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_6</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Sixth PDB dictionary to merge. Appears after pdb_5 is connected.</td><td style="word-wrap: break-word;">{"protein_F": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_7</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Seventh PDB dictionary to merge. Appears after pdb_6 is connected.</td><td style="word-wrap: break-word;">{"protein_G": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_8</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Eighth PDB dictionary to merge. Appears after pdb_7 is connected.</td><td style="word-wrap: break-word;">{"protein_H": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_9</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Ninth PDB dictionary to merge. Appears after pdb_8 is connected.</td><td style="word-wrap: break-word;">{"protein_I": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_10</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Tenth PDB dictionary to merge. Appears after pdb_9 is connected.</td><td style="word-wrap: break-word;">{"protein_J": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_11</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Eleventh PDB dictionary to merge. Appears after pdb_10 is connected.</td><td style="word-wrap: break-word;">{"protein_K": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_12</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Twelfth PDB dictionary to merge. Appears after pdb_11 is connected.</td><td style="word-wrap: break-word;">{"protein_L": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_13</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Thirteenth PDB dictionary to merge. Appears after pdb_12 is connected.</td><td style="word-wrap: break-word;">{"protein_M": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_14</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Fourteenth PDB dictionary to merge. Appears after pdb_13 is connected.</td><td style="word-wrap: break-word;">{"protein_N": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_15</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Fifteenth PDB dictionary to merge. Appears after pdb_14 is connected.</td><td style="word-wrap: break-word;">{"protein_O": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_16</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Sixteenth PDB dictionary to merge. Appears after pdb_15 is connected.</td><td style="word-wrap: break-word;">{"protein_P": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_17</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Seventeenth PDB dictionary to merge. Appears after pdb_16 is connected.</td><td style="word-wrap: break-word;">{"protein_Q": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_18</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Eighteenth PDB dictionary to merge. Appears after pdb_17 is connected.</td><td style="word-wrap: break-word;">{"protein_R": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_19</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Nineteenth PDB dictionary to merge. Appears after pdb_18 is connected.</td><td style="word-wrap: break-word;">{"protein_S": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_20</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Twentieth PDB dictionary to merge. Appears after pdb_19 is connected.</td><td style="word-wrap: break-word;">{"protein_T": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_21</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Twenty-first PDB dictionary to merge. Appears after pdb_20 is connected.</td><td style="word-wrap: break-word;">{"protein_U": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_22</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Twenty-second PDB dictionary to merge. Appears after pdb_21 is connected.</td><td style="word-wrap: break-word;">{"protein_V": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_23</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Twenty-third PDB dictionary to merge. Appears after pdb_22 is connected.</td><td style="word-wrap: break-word;">{"protein_W": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_24</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Twenty-fourth PDB dictionary to merge. Appears after pdb_23 is connected.</td><td style="word-wrap: break-word;">{"protein_X": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_25</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Twenty-fifth PDB dictionary to merge. Appears after pdb_24 is connected.</td><td style="word-wrap: break-word;">{"protein_Y": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_26</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Twenty-sixth PDB dictionary to merge. Appears after pdb_25 is connected.</td><td style="word-wrap: break-word;">{"protein_Z": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_27</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Twenty-seventh PDB dictionary to merge. Appears after pdb_26 is connected.</td><td style="word-wrap: break-word;">{"complex_1": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_28</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Twenty-eighth PDB dictionary to merge. Appears after pdb_27 is connected.</td><td style="word-wrap: break-word;">{"complex_2": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_29</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Twenty-ninth PDB dictionary to merge. Appears after pdb_28 is connected.</td><td style="word-wrap: break-word;">{"complex_3": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_30</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Thirtieth PDB dictionary to merge. Appears after pdb_29 is connected.</td><td style="word-wrap: break-word;">{"complex_4": "ATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pdb_31</td><td>False</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Thirty-first PDB dictionary to merge. Appears after pdb_30 is connected.</td><td style="word-wrap: break-word;">{"complex_5": "ATOM ...\nEND"}</td></tr>
+<tr><td style="word-wrap: break-word;">pdb_1</td><td>True</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">First PDB input. Must be a dictionary mapping structure IDs to PDB content: {"pdb_id": "PDB text"}. This is mandatory; additional pdb_i inputs become available after this is connected.</td><td style="word-wrap: break-word;">{ "1abc_model1": "HEADER    EXTRACELLULAR PROTEIN\nATOM      1  N   MET A   1      11.104  13.207  10.342  1.00 18.26           N\nATOM      2  CA  MET A   1      12.560  13.384  10.532  1.00 17.44           C\nEND" }</td></tr>
 </tbody>
 </table>
 </div>
@@ -73,22 +43,21 @@ Use this node when you need to merge several PDB structures (from different load
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">structure.pdb</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">A single merged PDB batch dictionary containing all input entries, formatted as {pdb_id: pdb_content}.</td><td style="word-wrap: break-word;">{"protein_A": "ATOM ...\nEND", "protein_B": "ATOM ...\nEND"}</td></tr>
+<tr><td style="word-wrap: break-word;">structure.pdb</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">A single merged PDB dictionary that combines all connected inputs. The structure is {pdb_id: pdb_content}, where each key is a unique ID from the input dictionaries and each value is the raw PDB text. This output carries Salt metadata so that downstream nodes like SaveToZipNode or SaveToBucketNode can group and name files consistently.</td><td style="word-wrap: break-word;">{ "1abc_model1": "HEADER    EXTRACELLULAR PROTEIN\nATOM      1  N   MET A   1      11.104  13.207  10.342  1.00 18.26           N\nEND", "2xyz_complexA": "HEADER    SIGNALING PROTEIN\nATOM      1  N   GLY B   1      31.245  24.128  15.642  1.00 12.34           N\nEND", "rfdiffusion_design_001": "HEADER    DE NOVO DESIGNED PROTEIN\nATOM      1  N   GLY C   1      10.245  10.128   9.642  1.00 15.00           N\nEND" }</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Unique IDs required**: All pdb_id keys across all inputs must be unique; duplicate IDs cause the node to raise an error.
-- **Progressive inputs**: Additional inputs (pdb_2 to pdb_31) become visible only after the previous one is connected.
-- **Input format**: Each input must be a dictionary mapping IDs to PDB strings; passing a raw string instead of a dict will fail.
-- **Batch-friendly**: Inputs can themselves be batches (dicts with multiple entries); the node merges all provided dictionaries.
+- **Performance**: Combining up to 31 PDB dictionaries is lightweight; the node primarily concatenates dictionaries and validates IDs, so runtime scales almost linearly with the total number of structures.
+- **Limitations**: All PDB IDs across all inputs must be unique. If any ID appears more than once, even across different inputs, the node raises a ValueError and does not produce output.
+- **Behavior**: Optional inputs pdb_2 through pdb_31 are hidden until the previous pdb_i is set; this is a UI behavior and does not affect runtime logic beyond which keyword arguments are present.
+- **Behavior**: The node preserves each PDB string exactly as provided and does not attempt to validate PDB syntax or content; structural validation must be handled by downstream nodes if needed.
 
 ## Troubleshooting
-- **Duplicate ID error**: If you see an error about an ID repeating twice, rename the conflicting pdb_id in one of the inputs before merging.
-- **Nothing happens for later ports**: If pdb_2 (or later) is not visible, connect pdb_1 first; inputs appear sequentially.
-- **Invalid input type**: Ensure each connected input is a PDB dictionary (e.g., output of a PDB loader/combiner) rather than a plain string.
-- **Empty output**: At least pdb_1 is required; verify that each provided dictionary contains at least one entry.
+- **Duplicate ID error**: If you see `Expected unique ids in PDBs but got <id> repeating twice.`, at least two inputs contain the same pdb_id key. Adjust upstream nodes (for example, change LoadPDBNode IDs or PDBCombinerNode settings) so every structure ID is unique.
+- **Empty output or fewer structures than expected**: If the batched dictionary seems to contain fewer structures than you expect, verify that every connected pdb_i input actually carries a non-empty dict. Upstream nodes that encountered errors may output nothing, silently reducing the batch size.
+- **Type mismatch issues**: If the node refuses to connect or run, check that each pdb_i input is typed as PDB (a {id: text} map), not a raw STRING. Use LoadPDBNode or other PDB-producing nodes to wrap raw PDB strings in the correct format before batching.
 
 ## Example Pipelines
 

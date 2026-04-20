@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Validates connectivity to an Oracle database using the provided credentials. It performs a lightweight test and returns both a human-readable status summary and a structured JSON response with details.
+This node validates that your Oracle database credentials and network access are working by calling the CData Oracle service's test-connection operation. It loads an Oracle credential profile, performs a lightweight connectivity check, and returns both a human-readable status and structured JSON. Use it early in a workflow to verify configuration before running queries or write operations.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/oracle/saltoracletestconnection.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Validates connectivity to an Oracle database using the provided credentials. It 
 
 ## Usage
 
-Use this node early in your workflow to verify that your Oracle credentials, host, port, and database settings are correct before running queries or metadata operations. Typical usage is immediately after loading or selecting Oracle credentials to ensure the environment is reachable and authentication works.
+Use the Oracle Test Connection node whenever you need to confirm that your Oracle database connection is correctly configured before executing queries, imports, or updates. It typically appears near the start of a pipeline, directly after a node that provides or selects the credentials_path for the CData Oracle connector. Upstream nodes usually manage or output credential paths (for example, a credentials manager or environment selector), which you feed into this node along with an appropriate timeout value. Downstream, you can branch or gate execution based on the test result: for example, only proceed to nodes like "Oracle Query", "Oracle Execute", "Oracle Complex Query", or "Oracle Visual Query Builder" if the connection test indicates success. The node integrates with the shared database framework (DatabaseBaseNode) to send a standardized test-connection request to the Oracle service and receive a normalized response, which it then formats into text, JSON, and related outputs that other nodes can consume for logging, alerting, or conditional logic. Include this node when deploying flows to new environments, changing database endpoints, or after rotating passwords so you can quickly diagnose connectivity problems before they impact data operations.
 
 ## Inputs
 
@@ -26,8 +26,8 @@ Use this node early in your workflow to verify that your Oracle credentials, hos
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Path to the saved Oracle credentials file that follows the Oracle credential template.</td><td style="word-wrap: break-word;">/workspace/credentials/oracle.json</td></tr>
-<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time in seconds to wait for the connection test to complete.</td><td style="word-wrap: break-word;">60</td></tr>
+<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Path to the Oracle CData credential profile consumed by the database framework. This should reference a configuration that includes Oracle host, port, service or SID, username, password, and connector-specific options. The path must be valid and readable in the Salt runtime environment and must match the "oracle" credential_template expected by this node.</td><td style="word-wrap: break-word;">/workspace/credentials/cdata/oracle/prod_oracle_db.json</td></tr>
+<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time in seconds to wait for the Oracle connection test to complete. If the database is unreachable, slow, or blocked by a firewall, the request will be aborted after this duration. Choose higher values for high-latency networks and lower values for interactive environments where responsiveness is important.</td><td style="word-wrap: break-word;">30</td></tr>
 </tbody>
 </table>
 </div>
@@ -44,20 +44,23 @@ Use this node early in your workflow to verify that your Oracle credentials, hos
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">string</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A concise, human-readable summary of the connection test result.</td><td style="word-wrap: break-word;">Oracle Connection Test: Success</td></tr>
-<tr><td style="word-wrap: break-word;">json_string</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON-formatted string with structured details of the test outcome, which may include status, messages, and diagnostic information.</td><td style="word-wrap: break-word;">{"status":"success","details":"Connected to Oracle database","latency_ms":128}</td></tr>
+<tr><td style="word-wrap: break-word;">output_1</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary of the Oracle connection test result. This is generated by the shared formatter and typically indicates whether the connection succeeded along with basic context such as target service or key error messages. It is suitable for logs, user-facing status panels, or quick inspection.</td><td style="word-wrap: break-word;">Oracle Connection Test: SUCCESS Connected to service ORCL on db-prod.internal:1521 as user ANALYTICS_APP.</td></tr>
+<tr><td style="word-wrap: break-word;">output_2</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON-encoded string containing the structured response from the Oracle test-connection operation. This often includes status, message, and diagnostic information like error codes or server metadata. Downstream nodes can parse this JSON to implement conditional flows, alerting, or detailed error reporting.</td><td style="word-wrap: break-word;">{"status": "success", "message": "Connection established.", "server_version": "19c", "service_name": "ORCL", "latency_ms": 124}</td></tr>
+<tr><td style="word-wrap: break-word;">output_3</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">HTML-formatted representation of the connection test outcome, when provided by the formatter. Useful for rendering in rich UI components, emails, or HTML-based reports that display connection health.</td><td style="word-wrap: break-word;"><h2>Oracle Connection Test</h2><p>Status: <strong>SUCCESS</strong></p><p>Service: ORCL (19c)</p></td></tr>
+<tr><td style="word-wrap: break-word;">output_4</td><td style="word-wrap: break-word;">BYTES</td><td style="word-wrap: break-word;">Binary payload slot provided by the common database node interface. For a simple connectivity test this is normally empty, but it exists for consistency with nodes that may generate downloadable artifacts.</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">output_5</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Additional metadata or auxiliary information reserved by the shared database node interface. For this test connection node, it is usually empty or contains minimal auxiliary diagnostics but is kept to maintain a consistent 5-field output structure.</td><td style="word-wrap: break-word;"></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Credential Template**: This node uses the Oracle credential template. Ensure your credentials file matches the required schema for Oracle (e.g., host, port, database/service, username, password, and any SSL settings as applicable).
-- **No extra parameters**: The node does not require additional inputs beyond credentials and timeout for the connection test.
-- **Network access**: The environment running this node must have network access to the Oracle host/port. Firewalls, VPNs, or security groups may block connectivity.
-- **Timeout behavior**: If the database is slow to respond or the network is constrained, increase the timeout value accordingly.
+- **Performance**: The connection test is lightweight, but total time depends on network latency and Oracle server responsiveness; adjust the timeout to balance reliability and responsiveness in your workflows.
+- **Limitations**: This node only verifies basic connectivity and authentication to the Oracle instance. It does not guarantee that specific schemas, tables, or privileges needed by later steps are available or correctly configured.
+- **Behavior**: All external communication is handled via the underlying CData Oracle service using a standardized test-connection endpoint. Errors may stem from credentials, network routing, SSL/TLS settings, or connector configuration rather than the node itself.
+- **Behavior**: The node relies entirely on a valid credential profile at credentials_path. If the file is missing, malformed, or mismatched to the "oracle" template, the failure will occur before any database call, and the outputs will reflect a local configuration problem instead of a remote connectivity issue.
 
 ## Troubleshooting
-- **Authentication failed**: Verify username/password in the credentials file and ensure the account is not locked or expired.
-- **Host unreachable or timeout**: Check network connectivity, DNS resolution, firewall rules, and that the Oracle listener is running on the specified host/port.
-- **Service name/SID mismatch**: Confirm that the credentials reference the correct Oracle service (SERVICE_NAME) or SID expected by the server.
-- **SSL or wallet issues**: If using SSL/TLS or an Oracle wallet, confirm all required files and settings are correctly referenced in the credentials and accessible to the runtime.
+- **Invalid credentials or wrong instance details**: If json_output shows authentication failures or Oracle error messages related to login, verify that username, password, host, port, and service/SID in the credentials file match the target Oracle instance and that the account is not locked or expired.
+- **Timeouts or unreachable host**: When the node times out or reports that it cannot reach the server, increase the timeout slightly and confirm that the Salt runtime can reach the Oracle host and port (check firewalls, VPN requirements, DNS resolution, and security groups).
+- **Missing or unreadable credentials file**: Errors about failing to load credentials typically indicate an incorrect credentials_path or file permission issue. Confirm the file exists in the specified location and that the Salt process has sufficient read access.
+- **Downstream JSON parsing issues**: If downstream nodes error while parsing json_output, first log or inspect that field. Error responses may not contain the same keys as successful responses, so ensure downstream logic checks a top-level status field or similar indicator before accessing deeper properties.

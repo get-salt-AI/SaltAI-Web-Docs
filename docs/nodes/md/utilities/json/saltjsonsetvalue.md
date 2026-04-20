@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Sets a value inside JSON data using a dot-separated key path. It supports nested objects and arrays, auto-creating intermediate dictionaries and extending arrays as needed. Accepts either JSON objects/lists or JSON strings and returns the updated JSON data.
+This node updates JSON-like data by setting a value at a specified dot-separated path (for example, "user.profile.name" or "items.0.title"). It accepts dicts, lists, or JSON strings and parses strings into JSON automatically. While traversing the path, it creates missing intermediate dicts or list elements so the target location exists when possible.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/utilities/json/saltjsonsetvalue.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Sets a value inside JSON data using a dot-separated key path. It supports nested
 
 ## Usage
 
-Use this node when you need to programmatically add or update fields in a JSON structure before passing it to subsequent steps (e.g., building request bodies, shaping configuration, or enriching data). Provide the JSON input, a dot-separated path (keys for objects and numeric indices for arrays), and the value to set.
+Use this node when you need to build or modify JSON structures dynamically in a Salt workflow, such as constructing API request payloads, assembling configuration objects, or inserting model outputs into nested fields. It often follows nodes that produce or parse structured data (for example, "JSON: From String" or HTTP response/database read nodes) and precedes nodes that serialize or send JSON (for example, "JSON: To String", HTTP request, or storage nodes). Combine it with "JSON: Get Value" for read–modify–write flows (read a field, change it, then write it back) and with "JSON: Merge" when composing objects from multiple sources and then tweaking specific paths. Prefer this node instead of string templating when working with nested structures, because it understands dict/list navigation, automatically creates missing levels, and avoids breaking JSON syntax.
 
 ## Inputs
 
@@ -26,9 +26,9 @@ Use this node when you need to programmatically add or update fields in a JSON s
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">json_data</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The JSON data to modify. Can be a dict/list object or a JSON-formatted string.</td><td style="word-wrap: break-word;">{"user": {"name": "Ann"}}</td></tr>
-<tr><td style="word-wrap: break-word;">key_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Dot-separated path indicating where to set the value. Use object keys for maps and numeric indices for arrays.</td><td style="word-wrap: break-word;">user.profile.age or items.0.title</td></tr>
-<tr><td style="word-wrap: break-word;">value</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The value to set at the specified path. Can be any JSON-serializable type.</td><td style="word-wrap: break-word;">42</td></tr>
+<tr><td style="word-wrap: break-word;">json_data</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The JSON data to modify. Can be a Python dict, list, or a JSON string. When a string is provided, the node attempts to parse it as JSON; invalid or empty strings are treated as an empty object. If key_path is empty, this input is ignored and the node will just return the value.</td><td style="word-wrap: break-word;">{"user": {"name": "Alice", "age": 30}, "items": [{"id": 1, "title": "Book"}]}</td></tr>
+<tr><td style="word-wrap: break-word;">key_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Dot-separated path indicating where to set the value. Each segment is used as a dict key or, if it is an integer string, as a list index. When navigating lists, segments must be numeric (for example, "0", "1"); using a non-numeric segment on a list causes the node to return the original data unchanged. An empty string means "replace the entire structure" and the node will output the value directly.</td><td style="word-wrap: break-word;">user.profile.display_name</td></tr>
+<tr><td style="word-wrap: break-word;">value</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The value to assign at the specified path. Can be any JSON-compatible type (string, number, boolean, null, dict, list) or other pipeline data types; it is stored as-is in the resulting structure at the final key or index.</td><td style="word-wrap: break-word;">Alice Cooper</td></tr>
 </tbody>
 </table>
 </div>
@@ -45,23 +45,20 @@ Use this node when you need to programmatically add or update fields in a JSON s
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">updated_data</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The JSON data after setting the specified value at the given path. If input was a JSON string, the output is a parsed JSON object/list.</td><td style="word-wrap: break-word;">{"user": {"profile": {"age": 42}}}</td></tr>
+<tr><td style="word-wrap: break-word;">updated_data</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The modified JSON data after setting the value at the given path. This is the original structure (or a parsed version if the input was a string) with intermediate dicts/lists created and the final key or index set. If key_path is empty, this output is simply equal to value.</td><td style="word-wrap: break-word;">{"user": {"name": "Alice", "age": 30, "profile": {"display_name": "Alice Cooper"}}, "items": [{"id": 1, "title": "Book"}]}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Key path format**: Use dot notation for nested keys. Use numeric segments to index lists (e.g., "items.2.name").
-- **Auto-creation**: Missing intermediate objects are created as empty dictionaries. When navigating lists, they are extended with empty objects during traversal and with nulls to reach the final index.
-- **String input handling**: If json_data is a string, it is parsed before modification. Invalid JSON will result in returning the original data on error.
-- **Empty key_path behavior**: If key_path is empty, the node returns the provided value directly as output.
-- **Invalid list index segments**: Non-integer segments for list navigation or final index cause the node to return the original json_data unchanged.
-- **Type constraints**: If the path navigates through a value that is neither a dict nor a list, the operation is aborted and the original json_data is returned.
+- **Intermediate structure creation**: Missing dict keys along the path are created as empty dicts, and lists are extended with empty dicts (for intermediate segments) or null values (for final indices) until the requested index exists.
+- **Empty path behavior**: If key_path is an empty string, the node does not navigate json_data and instead returns the value directly, effectively replacing the entire JSON object or array.
+- **Invalid navigation handling**: If a path segment attempts to index a list with a non-integer, or traversal encounters a non-dict/non-list value at an intermediate step, the node stops and returns the original json_data unchanged.
+- **String parsing semantics**: When json_data is a string, it is parsed as JSON; on parse failure or empty/whitespace-only input, the node falls back to an empty object and builds a fresh structure along the specified path.
+- **Pipeline usage**: Only the updated_data output reflects the modified structure; other branches using earlier references to json_data will not see this change unless rewired to use updated_data.
 
 ## Troubleshooting
-- **Value not updated**: Verify key_path uses correct dot-notated keys and integer indices for arrays (e.g., "items.0.title"). Non-integer indices into lists will cause no change.
-- **Output type changed unexpectedly**: If input was a JSON string, the output is a parsed object/list. Convert back to string later if a string is required.
-- **Got original JSON back**: This happens when the path traverses a non-dict/list value or an invalid list index segment is used. Adjust the path or initialize the structure earlier.
-- **Empty key_path returned the value**: This is by design. Provide a non-empty key_path to update within the JSON structure.
-- **Array index out of range**: The node automatically extends arrays as needed. If you still see issues, ensure the parent path segments resolve to a list, not a dict or scalar.
-- **Invalid JSON string input**: Ensure json_data is valid JSON when passed as a string. If invalid, parsing fails and the node returns the original data.
+- **No change in output**: Symptom: updated_data is identical to json_data. Causes: a non-numeric path segment was used while navigating a list (for example, "items.first.title"), or a path segment hit a primitive value instead of a dict/list. Fix: Use numeric indices for lists (for example, "items.0.title") and ensure upstream nodes yield dicts/lists at each level in the path.
+- **Output is just the new value**: Symptom: The node returns only the assigned value, discarding the original structure. Cause: key_path was left empty. Fix: Set a specific path like "user.name" when you intend to update a field within the object.
+- **Unexpected empty objects or nulls in arrays**: Symptom: Extra {} objects or null entries appear in lists. Cause: The node extends lists to reach high indices (for example, setting "items.3.title" when items previously had fewer elements). Fix: Check that your indices are correct and avoid skipping large index ranges unintentionally.
+- **Original JSON content missing after string input**: Symptom: When passing JSON as a string, the output only shows fields created by this node. Cause: The string could not be parsed as valid JSON and was treated as an empty object. Fix: Validate the JSON with "JSON: Validate" or parse it first with "JSON: From String" before using this node.

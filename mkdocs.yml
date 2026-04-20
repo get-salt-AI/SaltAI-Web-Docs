@@ -64,13 +64,13 @@ nav:
 - Getting Started: index.md
 - Nodes:
   - Agents:
-    - Create Agent: nodes/md/agents/createagent.md
     - Google Web Search: nodes/md/agents/websearchgoogle.md
-    - Run Agents Team: nodes/md/agents/runagentsteam.md
     - Tavily Web Search: nodes/md/agents/websearchtavily.md
     - Web Research Agent: nodes/md/agents/webresearchagent.md
     - Web Scraper: nodes/md/agents/webscraper.md
   - Biotech:
+    - PDB Fixer: nodes/md/biotech/pdbfixernode.md
+    - PDB To Fasta: nodes/md/biotech/pdbtofastanode.md
     - Biotech Utils:
       - A3M Combiner: nodes/md/biotech/biotech-utils/a3mcombinernode.md
       - Batch PDB: nodes/md/biotech/biotech-utils/batchpdbnode.md
@@ -81,11 +81,7 @@ nav:
       - Load PDB: nodes/md/biotech/biotech-utils/loadpdbnode.md
       - PDB Chain Extractor: nodes/md/biotech/biotech-utils/pdbchainextractornode.md
       - PDB Combiner: nodes/md/biotech/biotech-utils/pdbcombinernode.md
-      - PDB Fixer: nodes/md/biotech/biotech-utils/pdbfixernode.md
-      - PDB To Fasta: nodes/md/biotech/biotech-utils/pdbtofastanode.md
       - PDB Visualization: nodes/md/biotech/biotech-utils/pdbvisualizationnode.md
-      - Save To Bucket: nodes/md/biotech/biotech-utils/savetobucketnode.md
-      - Save To Zip: nodes/md/biotech/biotech-utils/savetozipnode.md
     - Boltz:
       - Boltz Constraint Builder: nodes/md/biotech/boltz/boltzconstraintnode.md
       - Boltz Ligand Sequence: nodes/md/biotech/boltz/boltzligandsequencenode.md
@@ -190,7 +186,6 @@ nav:
       - RxNorm Related Concepts: nodes/md/healthcare/rxnorm/saltairxnormrelatedconcepts.md
       - RxTerms Information: nodes/md/healthcare/rxnorm/saltairxtermsinfo.md
   - Inputs:
-    - Draw Mask: nodes/md/inputs/drawmask.md
     - Dynamic Text: nodes/md/inputs/saltdynamicinput.md
     - File: nodes/md/inputs/saltfileinput.md
     - Text: nodes/md/inputs/salttextinput.md
@@ -201,71 +196,80 @@ nav:
     - Gmail: nodes/md/knowledge-bases/carbonconnectorgmail.md
     - Google Cloud Storage: nodes/md/knowledge-bases/carbonconnectorgcs.md
     - Google Drive: nodes/md/knowledge-bases/carbonconnectorgoogledrive.md
+    - Intercom: nodes/md/knowledge-bases/carbonconnectorintercom.md
     - Notion: nodes/md/knowledge-bases/carbonconnectornotion.md
     - OneDrive: nodes/md/knowledge-bases/carbonconnectoronedrive.md
     - S3: nodes/md/knowledge-bases/carbonconnectors3.md
+    - Sharepoint: nodes/md/knowledge-bases/carbonconnectorsharepoint.md
     - Slack: nodes/md/knowledge-bases/carbonconnectorslack.md
     - Web URLs: nodes/md/knowledge-bases/carbonconnectorwebscraper.md
   - LLMs:
-    - Anthropic LLM: nodes/md/llms/litellmanthropic.md
-    - DeepSeek LLM: nodes/md/llms/litellmdeepseek.md
-    - Gemini LLM: nodes/md/llms/litellmgemini.md
     - Groq LLM: nodes/md/llms/litellmgroq.md
-    - OpenAI LLM: nodes/md/llms/litellmopenai.md
+    - LLM: nodes/md/llms/saltllm.md
   - Logic:
+    - API Fetcher: nodes/md/logic/saltapifetcher.md
+    - Accumulate: nodes/md/logic/saltaccumulatenode.md
+    - Accumulation Get Item: nodes/md/logic/saltaccumulationgetitemnode.md
+    - Accumulation Get Length: nodes/md/logic/saltaccumulationgetlengthnode.md
+    - Accumulation Head: nodes/md/logic/saltaccumulationheadnode.md
+    - Accumulation Set Item: nodes/md/logic/saltaccumulationsetitemnode.md
+    - Accumulation Tail: nodes/md/logic/saltaccumulationtailnode.md
+    - Accumulation to List: nodes/md/logic/saltaccumulationtolistnode.md
     - Do While Loop: nodes/md/logic/saltifnodesimpleloop.md
+    - Lazy Conditional: nodes/md/logic/saltlazyconditional.md
+    - Lazy Index Switch: nodes/md/logic/saltlazyindexswitch.md
+    - Lazy Switch: nodes/md/logic/saltlazyswitch.md
+    - List to Accumulation: nodes/md/logic/saltlisttoaccumulationnode.md
     - Merge If Branches: nodes/md/logic/saltconditionalmerge.md
     - Simple If: nodes/md/logic/saltifnode.md
     - Condition:
       - Bool Operation: nodes/md/logic/condition/saltbooloperationnode.md
       - Float Condition: nodes/md/logic/condition/saltfloatconditions.md
-      - If: nodes/md/logic/condition/ifconditionselector.md
       - Int Condition: nodes/md/logic/condition/saltintconditions.md
-      - Lazy Conditional: nodes/md/logic/condition/saltlazyconditional.md
-      - Lazy Index Switch: nodes/md/logic/condition/saltlazyindexswitch.md
-      - Lazy Switch: nodes/md/logic/condition/saltlazyswitch.md
       - String Condition: nodes/md/logic/condition/saltstringconditions.md
+      - To Bool: nodes/md/logic/condition/salttoboolnode.md
     - Flow Control:
       - For Loop Close (Deprecated): nodes/md/logic/flow-control/saltforloopclose.md
       - For Loop Open (Deprecated): nodes/md/logic/flow-control/saltforloopopen.md
+      - If: nodes/md/logic/flow-control/ifconditionselector.md
       - JSON Loop Close: nodes/md/logic/flow-control/saltjsonsaltloopclose.md
       - JSON Loop Open: nodes/md/logic/flow-control/saltjsonsaltloopopen.md
       - Loop Close: nodes/md/logic/flow-control/saltloopclose.md
       - Loop Open: nodes/md/logic/flow-control/saltloopopen.md
       - While Loop Close (Deprecated): nodes/md/logic/flow-control/saltwhileloopclose.md
       - While Loop Open (Deprecated): nodes/md/logic/flow-control/saltwhileloopopen.md
-      - Accumulation:
-        - Accumulate: nodes/md/logic/flow-control/accumulation/saltaccumulatenode.md
-        - Accumulation Get Item: nodes/md/logic/flow-control/accumulation/saltaccumulationgetitemnode.md
-        - Accumulation Get Length: nodes/md/logic/flow-control/accumulation/saltaccumulationgetlengthnode.md
-        - Accumulation Head: nodes/md/logic/flow-control/accumulation/saltaccumulationheadnode.md
-        - Accumulation Set Item: nodes/md/logic/flow-control/accumulation/saltaccumulationsetitemnode.md
-        - Accumulation Tail: nodes/md/logic/flow-control/accumulation/saltaccumulationtailnode.md
-        - Accumulation to List: nodes/md/logic/flow-control/accumulation/saltaccumulationtolistnode.md
-        - Combine Accumulation: nodes/md/logic/flow-control/accumulation/combineaccumulationnode.md
-        - List to Accumulation: nodes/md/logic/flow-control/accumulation/saltlisttoaccumulationnode.md
-    - Logic Utility:
-      - To Bool: nodes/md/logic/logic-utility/salttoboolnode.md
   - New/Uncategorized:
-    - Load GCS File: nodes/md/new-uncategorized/loadgcsfilenode.md
-    - Load GCS Scaffold Folder: nodes/md/new-uncategorized/loadgcsscaffoldfoldernode.md
-    - Make Secstruc Adj: nodes/md/new-uncategorized/makesecstrucadjnode.md
+    - Boolean: nodes/md/new-uncategorized/saltboolean.md
+    - Composite Images: nodes/md/new-uncategorized/saltimageblendingmodes.md
+    - Float: nodes/md/new-uncategorized/saltfloat.md
+    - If / Else: nodes/md/new-uncategorized/saltifelse.md
+    - Integer: nodes/md/new-uncategorized/saltinteger.md
+    - List: nodes/md/new-uncategorized/saltlist.md
+    - Object: nodes/md/new-uncategorized/saltobject.md
+    - String: nodes/md/new-uncategorized/saltstring.md
+    - Table Info: nodes/md/new-uncategorized/salttableinfo.md
   - Outputs:
     - Output: nodes/md/outputs/saltoutput.md
     - Writers:
       - Notion Writer: nodes/md/outputs/writers/notion-writer.md
       - Slack Writer: nodes/md/outputs/writers/slackwriter.md
   - Utilities:
-    - API Fetcher: nodes/md/utilities/saltapifetcher.md
-    - Code Executor: nodes/md/utilities/saltcodeexecutor.md
+    - Combine Accumulation: nodes/md/utilities/combineaccumulationnode.md
     - Data Monitor: nodes/md/utilities/saltdatamonitor.md
     - Debug Print: nodes/md/utilities/saltdebugprint.md
+    - Draw Mask: nodes/md/utilities/drawmask.md
     - Inspect: nodes/md/utilities/saltinspect.md
+    - Load Cloud File: nodes/md/utilities/loadgcsfilenode.md
+    - Load Cloud Scaffold Folder: nodes/md/utilities/loadgcsscaffoldfoldernode.md
+    - Make Secstruc Adj: nodes/md/utilities/makesecstrucadjnode.md
     - Primitive Value Converter: nodes/md/utilities/saltprimitiveconverter.md
     - Regex Search and Match: nodes/md/utilities/saistringregexsearchmatch.md
     - Regex Search and Replace: nodes/md/utilities/saistringregexsearchreplace.md
+    - Save To Bucket: nodes/md/utilities/savetobucketnode.md
+    - Save To Zip: nodes/md/utilities/savetozipnode.md
     - String Operation: nodes/md/utilities/saltstringoperation.md
     - Execution:
+      - Code Executor: nodes/md/utilities/execution/saltcodeexecutor.md
       - Delay Execution: nodes/md/utilities/execution/saltdelayexecution.md
       - Halt Execution: nodes/md/utilities/execution/salthaltexecution.md
     - Json:
@@ -286,6 +290,15 @@ nav:
       - Rounding Operation: nodes/md/utilities/math/saltroundingoperation.md
       - Statistical Operation: nodes/md/utilities/math/saltstatisticaloperation.md
       - Trigonometric Operation: nodes/md/utilities/math/salttrigonometricoperation.md
+    - Memory & Storage:
+      - Memory Delete: nodes/md/utilities/memory-storage/saltmemorydelete.md
+      - Memory Keys: nodes/md/utilities/memory-storage/saltmemorykeys.md
+      - Memory Read: nodes/md/utilities/memory-storage/saltmemoryread.md
+      - Memory Write: nodes/md/utilities/memory-storage/saltmemorywrite.md
+      - Storage Delete: nodes/md/utilities/memory-storage/saltstoragedelete.md
+      - Storage List & URL: nodes/md/utilities/memory-storage/saltstoragelisturl.md
+      - Storage Read: nodes/md/utilities/memory-storage/saltstorageread.md
+      - Storage Write: nodes/md/utilities/memory-storage/saltstoragewrite.md
 - Node Builder:
   - Getting Started with Node Builder: node-builder/getting-started.md
 - Deployments:

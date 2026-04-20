@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Generates an embeddable HTML viewer for a protein structure. It uploads the provided PDB content to secure storage and returns a full-page HTML string that loads the structure in a Mol* (molstar.org) viewer. If a batch of PDBs is provided, only the first is visualized.
+This node takes a protein structure in PDB text format, uploads it to a backend service, and constructs a URL-safe link to the stored structure. It then embeds that URL into the Mol* web viewer, producing a full-page HTML document with an interactive 3D protein viewer. The output HTML can be rendered directly in a browser or any HTML-capable component for structural inspection.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/biotech-utils/pdbvisualizationnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Generates an embeddable HTML viewer for a protein structure. It uploads the prov
 
 ## Usage
 
-Use this node to preview a protein structure during or after a workflow that produces or loads PDB data. Connect a PDB dictionary output (e.g., from a loader, combiner, or predictor) to quickly render an interactive 3D view in the app. The node returns an HTML string that can be routed to an Output/Display node.
+Use this node when you want to visually inspect a protein structure represented as a PDB-formatted string, such as from AlphaFold predictions, PDB loaders, or structural processing pipelines. It is typically placed downstream of nodes that generate or load PDB data, such as LoadPDBNode, PDBCombinerNode, BatchPDBNode, or AlphaFold inference nodes, and upstream of nodes or systems that display or deliver HTML content (for example, report generators, dashboards, or web response handlers). Internally, the node sends the PDB string to an msa service endpoint that stores the file and returns a structure URL, which is URL-encoded and passed to the public Mol* viewer instance with controls minimized for a clean full-screen view. This pattern is useful for building interactive structural biology applications, including experiment summaries, protein design review tools, and internal visualization portals. For robust workflows, ensure network access to both the backend endpoint and the Mol* site, and validate your PDB input upstream if it is programmatically generated.
 
 ## Inputs
 
@@ -26,7 +26,7 @@ Use this node to preview a protein structure during or after a workflow that pro
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">pdb</td><td>True</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Protein structure to visualize. Accepts a dictionary mapping an ID to PDB content. If multiple entries are provided (batch), only the first one is used.</td><td style="word-wrap: break-word;">{"proteinA": "ATOM      1  N   MET A   1      11.104  13.207  -2.222  1.00 20.00           N \n...\nEND"}</td></tr>
+<tr><td style="word-wrap: break-word;">pdb_string</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Full protein structure in PDB format as a plain text string. This content is sent in a JSON body to a backend service that stores the structure and returns a URL to it. The string must be text-encoded PDB with standard records (for example, HEADER, TITLE, ATOM/HETATM lines) and should represent a valid structure; extremely large files or corrupted lines can cause upload or visualization failures.</td><td style="word-wrap: break-word;">HEADER    OXIDOREDUCTASE                         12-JAN-21   7XYZ TITLE     HUMAN BRD4 BROMODOMAIN IN COMPLEX WITH INHIBITOR ATOM      1  N   MET A   1      12.345  10.567   8.234  1.00 20.00           N ATOM      2  CA  MET A   1      13.456  11.234   8.901  1.00 19.50           C ATOM      3  C   MET A   1      14.321  10.876   9.765  1.00 18.70           C TER END </td></tr>
 </tbody>
 </table>
 </div>
@@ -43,25 +43,22 @@ Use this node to preview a protein structure during or after a workflow that pro
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">HTML string that embeds a full-page Mol* viewer iframe loading the uploaded structure.</td><td style="word-wrap: break-word;"><!DOCTYPE html><html><head><title>Full Screen Protein Viewer</title>...<iframe src="https://molstar.org/viewer/?structure-url=<encoded-signed-url>&structure-url-format=pdb&hide-controls=1&collapse-left-panel=1" allowfullscreen></iframe>...</html></td></tr>
+<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A complete HTML document as a single string that embeds the Mol* viewer in full-screen mode, preloaded with the uploaded PDB structure. The HTML includes basic CSS that stretches an iframe to occupy the full viewport and sets the iframe source to a Mol* URL with a structure-url query parameter containing a URL-encoded link to the stored PDB file. Downstream components should treat this as full-page HTML and render it in a browser or any HTML-capable UI container.</td><td style="word-wrap: break-word;"><!DOCTYPE html> <html> <head>     <title>Full Screen Protein Viewer</title>     <style>         body, html {             margin: 0;             padding: 0;             width: 100%;             height: 100%;             overflow: hidden;         }         .viewer-container {             width: 100%;             height: 100vh;             border: none;         }         iframe {             width: 100%;             height: 100%;             border: none;         }     </style> </head> <body>     <div class="viewer-container">         <iframe src="https://molstar.org/viewer/?structure-url=https%3A%2F%2Fstorage.example.org%2Fproteins%2F7XYZ.pdb&structure-url-format=pdb&hide-controls=1&collapse-left-panel=1" allowfullscreen></iframe>     </div> </body> </html></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- Only the first structure in a batch is visualized.
-- The node uploads the structure to secure storage and uses a signed URL in an external Mol* viewer (molstar.org).
-- If extraction of a PDB from the input fails, the node returns the string "None".
-- Viewer controls are minimized (controls hidden, left panel collapsed) for clean embedding.
-- Execution priority is elevated so the preview is generated promptly when connected as an output node.
-- The input PDB should be valid text content; malformed or empty structures will fail to visualize.
+- **Performance**: The node makes a blocking HTTP POST request to upload the entire PDB string; large structures or slow networks increase runtime and may approach the configured timeout.
+- **Limitations**: Successful visualization requires both the backend upload endpoint and the public Mol* viewer URL to be reachable; if either is unavailable, the generated HTML may render but show an empty or erroring viewer.
+- **Behavior**: The structure URL returned by the backend is URL-encoded before being placed in the Mol* structure-url query parameter; unexpected or malformed URLs from the backend can still produce syntactically valid but nonfunctional HTML.
+- **Behavior**: On any non-200 HTTP status or request exception, the node raises an error containing the message "Upload protein to gcp failed" along with details, and no HTML is output downstream.
 
 ## Troubleshooting
-- If output is "None": Ensure the pdb input is a non-empty dictionary {id: pdb_content} with valid PDB text.
-- If the viewer shows a blank page: Verify the structure content is valid PDB and the signed URL remains accessible.
-- If uploads time out or fail: Check network connectivity and that backend services for uploading are available; try again later.
-- If you connected a batch and see a different structure than expected: Remember only the first available entry is used for visualization.
-- Large PDB files may take longer to upload and render; allow additional time or reduce structure size if possible.
+- **Error: Upload protein to gcp failed 400 - ...**: A 400-level error usually means the backend rejected the request (for example, invalid JSON body or malformed PDB text). Verify that pdb_string is non-empty, uses plain text encoding, and conforms to basic PDB formatting rules.
+- **Error: Upload protein to gcp failed 500 - ...**: A 500-level error indicates a server-side issue. Check that the msa upload endpoint is configured correctly in your environment, inspect service logs if available, and retry with a smaller or simpler PDB file to rule out size-related problems.
+- **Timeout or network-related exceptions**: If the node fails with a timeout or connection error, confirm that your environment can reach the backend upload service and that there are no firewall or DNS issues. For very large PDBs, consider reducing structure size (for example, stripping water or alternate conformations) before upload.
+- **Viewer appears blank despite successful node run**: When the HTML renders but Mol* shows no structure, inspect the iframe src in the produced HTML and open it directly in a browser. If the structure-url within that query string is unreachable or returns an error, adjust backend configuration so it returns a valid, accessible URL.
 
 ## Example Pipelines
 

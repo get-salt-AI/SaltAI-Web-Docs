@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Retrieves metadata for a specific Microsoft SQL Server table, including column names, data types, nullability, and common constraints. It formats a concise, readable summary and also returns the raw JSON metadata.
+SaltMSSQLTableInfo connects to a Microsoft SQL Server using stored credentials and returns metadata about a single table, including its structure and properties. It relies on a shared database base node to manage credentials and timeouts, providing consistent behavior with other SQL Server nodes. Use it to inspect table schemas before building queries, transformations, or validation logic.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/mssql/saltmssqltableinfo.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Retrieves metadata for a specific Microsoft SQL Server table, including column n
 
 ## Usage
 
-Use this node when you need to inspect the structure of a SQL Server table before building queries or performing data operations. Typical workflow: provide a valid SQL Server connection URI, specify the schema and table name, then connect its outputs to documentation, validation, or query-building steps.
+Use SaltMSSQLTableInfo when you need to understand the structure of a particular SQL Server table—such as column names, data types, and key-related information—before writing or generating queries. It is typically placed shortly after configuration or credential nodes that provide `credentials_path` and connection settings, and before nodes like SaltMSSQLQuery or SaltMSSQLExecute that depend on accurate schema assumptions. A common workflow is: (1) configure database access via a credentials node, (2) optionally use SaltMSSQLListTables to discover relevant tables, (3) call SaltMSSQLTableInfo for a chosen table to get its metadata, and (4) feed that metadata to template or logic nodes that construct SQL or validation rules, ultimately passing those to SaltMSSQLQuery. This node integrates naturally with other MSSQL nodes like SaltMSSQLListTables and SaltMSSQLConnectionString to support both exploration and production pipelines.
 
 ## Inputs
 
@@ -26,10 +26,10 @@ Use this node when you need to inspect the structure of a SQL Server table befor
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">SQL Server connection URI containing host, port, database, and credentials.</td><td style="word-wrap: break-word;">mssql://username:<password>@db.example.com:1433/mydatabase?instance=SQLEXPRESS</td></tr>
-<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Request timeout in seconds for the database service call.</td><td style="word-wrap: break-word;">60</td></tr>
-<tr><td style="word-wrap: break-word;">table_name</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The table name to describe.</td><td style="word-wrap: break-word;">users</td></tr>
-<tr><td style="word-wrap: break-word;">schema</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The database schema where the table resides.</td><td style="word-wrap: break-word;">dbo</td></tr>
+<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Path or identifier for the stored MSSQL credentials that the base database node uses to establish a connection. This should reference a credential entry configured with the 'mssql' template, containing server, database, authentication details, and any required parameters. The value must be valid and accessible in the running environment.</td><td style="word-wrap: break-word;">/configs/credentials/mssql/customer_warehouse.json</td></tr>
+<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum number of seconds to wait for the table information operation to complete. If the metadata query exceeds this duration, the operation is aborted. Choose higher values for slow or distant databases and lower values for fast local environments or interactive use.</td><td style="word-wrap: break-word;">30</td></tr>
+<tr><td style="word-wrap: break-word;">table_name</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Name of the table (without schema prefix) for which to retrieve metadata. The table must exist in the target database under the specified schema. While SQL Server may treat names as case-insensitive depending on collation, it is safest to provide the name as defined in the database.</td><td style="word-wrap: break-word;">users</td></tr>
+<tr><td style="word-wrap: break-word;">schema</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Database schema that contains the target table. In many environments this defaults to 'dbo', but it may be a custom schema such as 'sales', 'hr', or 'analytics'. The combination of schema and table_name must uniquely identify the table.</td><td style="word-wrap: break-word;">dbo</td></tr>
 </tbody>
 </table>
 </div>
@@ -46,23 +46,19 @@ Use this node when you need to inspect the structure of a SQL Server table befor
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable table structure summary, listing columns with data types and attributes.</td><td style="word-wrap: break-word;">Table: dbo.users Column: id \| Type: INT \| Nullable: NO \| Precision: 10 \| Default: IDENTITY(1,1) Column: email \| Type: VARCHAR \| Nullable: NO \| Max Length: 255 ...</td></tr>
-<tr><td style="word-wrap: break-word;">json_result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Raw JSON string with table metadata (columns and their properties).</td><td style="word-wrap: break-word;">{"columns": [{"column_name": "id", "data_type": "int", "is_nullable": "NO", "column_default": "identity(1,1)"}, {"column_name": "email", "data_type": "varchar", "is_nullable": "NO", "character_maximum_length": 255}]}</td></tr>
+<tr><td style="word-wrap: break-word;">table_info</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">A JSON-like structure containing metadata about the specified table as returned by the underlying get_table_info implementation. This typically includes table-level details (name, schema) and a collection of column definitions with names, data types, and nullability flags, and may include additional attributes such as primary keys, identity columns, and indexes. Downstream nodes can use this output to dynamically build SQL, generate forms, or perform schema validation.</td><td style="word-wrap: break-word;">{'table': {'name': 'users', 'schema': 'dbo'}, 'columns': [{'name': 'id', 'data_type': 'int', 'is_nullable': False, 'is_identity': True, 'primary_key': True}, {'name': 'email', 'data_type': 'nvarchar(255)', 'is_nullable': False, 'primary_key': False}, {'name': 'created_at', 'data_type': 'datetime2', 'is_nullable': False, 'primary_key': False}], 'indexes': [{'name': 'PK_users', 'type': 'CLUSTERED', 'columns': ['id']}]}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- Ensure the credentials_path is a valid SQL Server URI (e.g., mssql://user:<password>@host:1433/database).
-- Schema is required; if unsure, use "dbo" which is the common default schema in SQL Server.
-- This node returns table metadata only; it does not return table rows.
-- If using Windows Integrated Security, include the appropriate parameter in the URI (e.g., mssql://host:1433/database?integrated_security=true).
-- Network and service endpoint configuration must be set up beforehand; the node calls a configured database service endpoint.
+- **Performance**: Table metadata lookups are usually fast, but on very large or heavily loaded databases the operation may still be affected by network latency or server load; adjust the timeout accordingly.
+- **Limitations**: The node operates on a single table per call; to document an entire schema you must either iterate over table names (possibly retrieved using SaltMSSQLListTables) or design a loop in your workflow.
+- **Behavior**: The schema parameter strictly scopes the lookup; if you specify an incorrect schema or omit a non-default schema, the node may fail with a 'table not found' style error even if the table exists elsewhere.
+- **Behavior**: The exact shape and richness of the `table_info` JSON depend on the shared DatabaseBaseNode and driver implementation; some advanced metadata (foreign keys, constraints, triggers) may not be present in all environments.
 
 ## Troubleshooting
-- Invalid credentials URI: Verify the URI format and that it begins with mssql:// or sqlserver:// and includes required parts (host, port, database).
-- Authentication failed: Check username/password or integrated_security settings in the URI.
-- Table not found: Confirm the schema and table_name are correct and the user has permissions to access them.
-- Schema not found: Ensure the provided schema exists in the target database.
-- Timeout or connection error: Increase the timeout value and verify network connectivity and service endpoint availability.
-- Empty or unexpected metadata: Confirm the connected service supports metadata retrieval for the target database and that your user has metadata inspection privileges.
+- **Table not found or similar error**: If the node reports that the table does not exist, confirm that `table_name` is spelled correctly and that `schema` matches the actual schema in SQL Server; check with a manual query like `SELECT * FROM [schema].[table]` using another tool.
+- **Authentication or connection failures**: Errors mentioning login issues, unreachable server, or invalid connection parameters typically indicate a bad `credentials_path` or misconfigured credentials; verify the path, credential template type ('mssql'), and that the referenced server and database are reachable from the runtime.
+- **Timeout exceeded**: When seeing timeout-related errors, increase the `timeout` value and test network connectivity to the database; persistent timeouts may mean the database is under heavy load or there are firewall/VPN issues.
+- **Unexpected or missing fields in table_info**: If downstream logic breaks because certain metadata fields are missing or named differently, first inspect the raw `table_info` output to understand its structure, then adjust downstream parsing or mapping logic to that actual structure rather than assuming a fixed schema.

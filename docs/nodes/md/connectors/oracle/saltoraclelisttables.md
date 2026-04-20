@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Lists all tables available in a specified Oracle schema using stored Oracle credentials. If no schema name is provided, it lists tables from the current user’s default schema. Returns a readable summary along with structured data for downstream automation.
+This node calls the Oracle service to retrieve a list of tables from a specific Oracle schema. If no schema name is supplied, it lists tables from the current user’s default schema based on the provided credentials. It returns both a human-readable summary and a structured JSON payload suitable for downstream automation.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/oracle/saltoraclelisttables.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Lists all tables available in a specified Oracle schema using stored Oracle cred
 
 ## Usage
 
-Use this node when you need to discover what tables exist in an Oracle database before exploring columns, building queries, or creating joins. Typical workflows place this node before a table-info node or a visual/assisted query builder to guide selection.
+Use this node when you need to discover or inspect which tables are available in an Oracle database before constructing queries, ETL flows, or other schema-dependent logic. It typically appears early in an Oracle workflow: after you have valid Oracle credentials and before nodes like `SaltOracleTableInfo` (to inspect a specific table) or `SaltOracleQuery` (to select from chosen tables). A common pattern is to first use `SaltOracleListSchemas` to enumerate schemas, then pass a selected schema into `SaltOracleListTables` to list its tables, and finally feed a chosen table into `SaltOracleTableInfo` or `SaltOracleQuery`. Integrate this node with configuration or orchestration nodes that provide `credentials_path` and `timeout`, and parse the `json` output to populate UI dropdowns, validate table names, or generate dynamic SQL. For best results, specify `schema_name` when known to reduce the amount of metadata fetched and improve performance.
 
 ## Inputs
 
@@ -26,9 +26,9 @@ Use this node when you need to discover what tables exist in an Oracle database 
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">CREDENTIALS</td><td style="word-wrap: break-word;">Path or reference to the saved Oracle credential set to authenticate against the database.</td><td style="word-wrap: break-word;"><path-to-oracle-credentials.json></td></tr>
-<tr><td style="word-wrap: break-word;">timeout</td><td>False</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum number of seconds to wait for the request before timing out.</td><td style="word-wrap: break-word;">60</td></tr>
-<tr><td style="word-wrap: break-word;">schema_name</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Oracle schema to list tables from. Leave empty to use the current user’s schema.</td><td style="word-wrap: break-word;">HR</td></tr>
+<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Path or identifier for the Oracle credentials configuration that matches the "oracle" credential template expected by the shared database base logic. It must include server address, port, service/SID, username, password, and any required service options, and be readable at runtime.</td><td style="word-wrap: break-word;">/workspace/credentials/oracle/prod_oracle_credentials.json</td></tr>
+<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time in seconds to wait for the Oracle /list-tables request to complete. If the backend or network is slow, or the target schema is large, the operation may approach this limit and fail if it is too low.</td><td style="word-wrap: break-word;">60</td></tr>
+<tr><td style="word-wrap: break-word;">schema_name</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Name of the Oracle schema whose tables you want to list. If left empty, the node omits this parameter and the backend interprets it as the current user’s default schema. When provided, it should be a valid, accessible schema for the user defined in the credentials.</td><td style="word-wrap: break-word;">HR</td></tr>
 </tbody>
 </table>
 </div>
@@ -45,23 +45,20 @@ Use this node when you need to discover what tables exist in an Oracle database 
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary of the tables found in the target schema.</td><td style="word-wrap: break-word;">Oracle Tables in Schema: HR - EMPLOYEES - DEPARTMENTS - LOCATIONS</td></tr>
-<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Structured JSON string of the result, suitable for downstream parsing.</td><td style="word-wrap: break-word;">{"tables": ["EMPLOYEES", "DEPARTMENTS", "LOCATIONS"]}</td></tr>
-<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional HTML representation of the result (may be empty depending on formatting).</td><td style="word-wrap: break-word;"><table><tr><th>Table</th></tr><tr><td>EMPLOYEES</td></tr></table></td></tr>
-<tr><td style="word-wrap: break-word;">xlsx</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional XLSX content or reference for tabular export (may be empty depending on formatting).</td><td style="word-wrap: break-word;"><xlsx-binary-or-reference></td></tr>
-<tr><td style="word-wrap: break-word;">pdf</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional PDF content or reference for export (may be empty depending on formatting).</td><td style="word-wrap: break-word;"><pdf-binary-or-reference></td></tr>
+<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary indicating which schema was queried (a specific schema name or the current user) and that the table list was retrieved. Intended for logs and UI display rather than structured processing.</td><td style="word-wrap: break-word;">Oracle Tables in Schema: HR Retrieved list of tables for schema HR.</td></tr>
+<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Structured JSON result from the Oracle service for the /list-tables operation, passed through the default formatter. Typically includes an array of tables and related metadata such as schema and table count; this is the primary output for downstream logic.</td><td style="word-wrap: break-word;">{   "tables": [     {"table_name": "EMPLOYEES", "schema_name": "HR"},     {"table_name": "DEPARTMENTS", "schema_name": "HR"}   ],   "schema": "HR",   "count": 2,   "service": "oracle",   "operation": "list-tables",   "success": true }</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- Leaving schema_name empty will list tables from the current authenticated user’s default schema.
-- Valid Oracle credentials must be provided via credentials_path; insufficient privileges may result in empty or partial results.
-- The timeout value controls how long the operation waits for the service to respond.
-- Output formats beyond text and JSON may be empty depending on configuration and availability of export formatting.
+- **Performance**: Listing tables in large schemas can be slow and may require a higher `timeout`. Providing a specific `schema_name` narrows the scope and can significantly improve response times.
+- **Limitations**: Only tables that the connected Oracle user has privileges to view will be included. Tables in other schemas or without appropriate permissions will not appear, even if they exist.
+- **Behavior**: If `schema_name` is an empty string, the node sends no schema filter and the backend interprets the request as targeting the current user’s default schema; the human-readable `text` output will describe this as using the current user schema.
+- **Behavior**: The exact JSON structure is defined by the Oracle service. While you can expect a collection of tables, downstream consumers should be tolerant of additional fields or minor structural variations over time.
 
 ## Troubleshooting
-- No tables returned: Confirm the schema_name is correct and the user has privileges to view tables in that schema.
-- Authentication or authorization error: Verify the credentials file at credentials_path and that it matches the required Oracle environment.
-- Request timed out: Increase the timeout value or check network connectivity and database responsiveness.
-- Unexpected JSON parse issues downstream: Use the json output field rather than parsing the text output.
+- **Empty or missing tables**: If you expect tables but get an empty list, verify that `schema_name` is correct (including case, as Oracle often stores schema names in uppercase) and that the user in `credentials_path` has privileges on that schema.
+- **Connection or authentication errors**: Errors indicating failed connection or invalid credentials usually mean the credentials file is missing, unreadable, or misconfigured. Confirm `credentials_path`, file format, and connection details (host, port, service/SID, username, password).
+- **Timeout exceeded**: If the node fails due to timeout, increase the `timeout` value and check database load and network latency. Also reduce the workload by specifying a precise `schema_name` rather than relying on the default current user scope.
+- **Unexpected JSON format downstream**: If downstream scripts or nodes fail due to missing or unexpected JSON fields, inspect the raw `json` output from this node and update your parsing logic to match actual keys (for example, consuming the `tables` array) instead of assuming a fixed structure from other services.

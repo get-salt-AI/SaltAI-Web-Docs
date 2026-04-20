@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Parses a JSON-formatted string and returns the corresponding data structure. Supports objects, arrays, numbers, booleans, strings, and null. If the input is empty or invalid JSON, the node returns None.
+This node converts a JSON-formatted text string into a structured data object (object, array, number, boolean, etc.) that other Salt nodes can consume. It uses Salt's internal JSON formatter and returns None if the input string is not valid JSON. This makes it a bridge between text-based JSON sources and nodes that expect structured inputs.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/utilities/json/saltjsonfromstring.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,9 @@ Parses a JSON-formatted string and returns the corresponding data structure. Sup
 
 ## Usage
 
-Use this node when you have JSON text (for example, from a file, API response, or a text field) and need to convert it into a data structure for downstream processing. Commonly paired with nodes like JSON: Get Value, JSON: Set Value, or JSON: Merge to manipulate the parsed data.
+Use this node whenever you receive or construct JSON as plain text and need to work with its contents programmatically in your Salt pipeline. Typical scenarios include parsing HTTP response bodies, webhook payloads, configuration blobs stored as strings, or model outputs that emit JSON-like text. It usually sits downstream of nodes that output STRING data (for example, an HTTP Request node, a File: Read Text node, or a prompt/template node that formats JSON text), and upstream of nodes that operate on structured data, such as `SaltJsonGetValue`, `SaltJsonSetValue`, `SaltJsonMerge`, or generic transformer nodes.
+
+In a common pattern, you might 1) call an external API that returns JSON text, 2) feed the response body into `SaltJsonFromString` to parse it, and 3) pass the resulting object to `SaltJsonGetValue` to extract specific fields. For user- or model-generated JSON, it is often wise to place `SaltJsonValidate` in the pipeline as well, either before or after this node, to explicitly check for validity and branch your logic accordingly. Because the output is a generic WILDCARD type, design downstream steps with the expected JSON structure in mind.
 
 ## Inputs
 
@@ -26,7 +28,7 @@ Use this node when you have JSON text (for example, from a file, API response, o
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">json_string</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A valid JSON string to parse. Supports multi-line input. Must be standard JSON (double-quoted strings, no comments, no trailing commas).</td><td style="word-wrap: break-word;">{"user": {"id": 123, "name": "Ada"}, "active": true, "tags": ["alpha", "beta"]}</td></tr>
+<tr><td style="word-wrap: break-word;">json_string</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON-formatted text string to be parsed into structured data. Must be syntactically valid JSON: keys in double quotes, proper use of commas and brackets, no trailing commas, and only standard JSON types (object, array, string, number, boolean, null). Multiline strings are supported, which is useful for readability or large payloads.</td><td style="word-wrap: break-word;">{   "user_id": 48291,   "name": "Alex Kim",   "preferences": {     "theme": "dark",     "notifications": true   },   "tags": ["beta", "internal"] }</td></tr>
 </tbody>
 </table>
 </div>
@@ -43,19 +45,18 @@ Use this node when you have JSON text (for example, from a file, API response, o
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">data</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The parsed data structure from the JSON string. Can be an object (dict), array (list), string, number, boolean, or None if parsing fails or the input is empty/whitespace.</td><td style="word-wrap: break-word;">{'user': {'id': 123, 'name': 'Ada'}, 'active': True, 'tags': ['alpha', 'beta']}</td></tr>
+<tr><td style="word-wrap: break-word;">data</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The structured data parsed from the input JSON string. This can be an object (dict-like structure), array (list), string, number, boolean, null-equivalent, or None if parsing fails. Downstream nodes can use it as regular structured data to extract fields, iterate over arrays, or transform and re-serialize it.</td><td style="word-wrap: break-word;">{   "user_id": 48291,   "name": "Alex Kim",   "preferences": {     "theme": "dark",     "notifications": true   },   "tags": ["beta", "internal"] }  If parsing fails due to invalid JSON, the output will be:  null</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Returns None on invalid or empty input**: If the string is not valid JSON or is empty/whitespace, the output will be None.
-- **Standard JSON only**: Requires proper JSON formatting (double quotes for strings, no comments, no trailing commas).
-- **Output type varies**: The WILDCARD output may be a dict, list, string, number, boolean, or None depending on the input.
-- **Non-throwing behavior**: Errors are handled internally; the node logs errors and returns None instead of raising exceptions.
+- **Performance**: For typical API responses and configuration blobs, performance impact is minimal; however, very large JSON strings (hundreds of kilobytes or more) may increase latency, so consider trimming or paging large payloads upstream.
+- **Limitations**: The node only accepts strictly valid JSON; inputs using single quotes for strings, comments, or trailing commas are not supported and will result in a None output.
+- **Behavior**: On any parsing error, the node logs the issue internally and returns None rather than stopping the pipeline, so downstream logic should explicitly handle the possibility of a None value.
+- **Behavior**: Because the output type is WILDCARD, its exact structure (object, array, scalar) depends entirely on the input JSON; ensure downstream nodes and field paths align with the actual shape of the parsed data.
 
 ## Troubleshooting
-- **Output is None**: Validate the input string with the JSON: Validate node, and check for common JSON issues (trailing commas, single quotes, comments).
-- **Unexpected output type**: Confirm your JSON root type (object vs array vs scalar). Downstream nodes must handle the actual type returned.
-- **Parsing works locally but fails here**: Ensure the input uses UTF-8 encoding and standard JSON (no BOM, no special comment syntax).
-- **Downstream node errors**: If subsequent nodes fail, first check whether this node returned None due to invalid JSON.
+- **Common Error 1**: Output is null/None instead of an object or array. Cause: the input string is invalid JSON (for example, missing quotes around keys or having a trailing comma). Fix: validate the JSON with `SaltJsonValidate` or an external linter and correct the syntax before passing it here.
+- **Common Error 2**: Downstream node errors due to unexpected data shape (e.g., expecting an object but getting a list). Cause: the root of the JSON is an array or scalar instead of an object. Fix: adjust the upstream JSON structure (e.g., wrap it in an object) or reconfigure downstream nodes to handle the actual root type.
+- **Common Error 3**: Cannot access a field with `SaltJsonGetValue` or similar nodes. Cause: the actual JSON nesting differs from what you assumed (for example, data is under `"data"` or `"result"` instead of top-level). Fix: inspect the original `json_string` to confirm the real structure, then update the path or logic of downstream nodes accordingly.

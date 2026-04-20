@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Creates a Boltz-compatible property specification object. Currently supports configuring affinity prediction by specifying the binder (ligand) chain ID. The node validates inputs and produces a properties payload ready to be combined into a Boltz YAML configuration.
+This node constructs property specifications for Boltz YAML workflows, currently dedicated to binding affinity prediction. It wraps the chosen property type and binder chain identifier into a list of property objects that downstream Boltz execution nodes can interpret. The resulting structure is intended to be combined with other Boltz components such as sequences, templates, and constraints to form a complete Boltz specification.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/boltz/boltzpropertynode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Creates a Boltz-compatible property specification object. Currently supports con
 
 ## Usage
 
-Use this node when you need to request property predictions (e.g., affinity) for a modeled complex. Connect it alongside sequence/template/constraint builders, then merge outputs with a Boltz List/YAML Combiner before sending to a Boltz Predict or Partial Diffusion node. Provide the chain ID of the ligand/binder involved in the prediction.
+Use this node when you want a Boltz-based workflow to compute a molecular property (currently binding affinity) in addition to or instead of structure generation. A typical setup defines the molecular system first using nodes such as BoltzSequenceNode, BoltzProteinSequenceNode, and BoltzLigandSequenceNode, which establish chain IDs (for example A, B, L). You then add BoltzPropertyNode to request an affinity calculation for a particular binder chain, usually the ligand chain. The node outputs a list of property objects that you usually merge with lists from BoltzConstraintNode, BoltzTemplateNode, and BoltzListCombinerNode before sending the aggregated specification to a downstream node that submits the Boltz job. Select this node whenever you need binding affinity scoring for a specific binder chain within your Boltz system.
 
 ## Inputs
 
@@ -26,8 +26,8 @@ Use this node when you need to request property predictions (e.g., affinity) for
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">property_type</td><td>True</td><td style="word-wrap: break-word;">CHOICE</td><td style="word-wrap: break-word;">Type of property to predict. Currently only 'affinity' is supported.</td><td style="word-wrap: break-word;">affinity</td></tr>
-<tr><td style="word-wrap: break-word;">binder_chain</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Chain ID of the binder (ligand) in the complex for which the property will be predicted.</td><td style="word-wrap: break-word;">B</td></tr>
+<tr><td style="word-wrap: break-word;">property_type</td><td>True</td><td style="word-wrap: break-word;">STRING (choice: ['affinity'])</td><td style="word-wrap: break-word;">Specifies which property the Boltz workflow should calculate. The only supported option is "affinity", which instructs Boltz to evaluate binding affinity for the designated binder chain. Any other value will cause the node to raise an error.</td><td style="word-wrap: break-word;">affinity</td></tr>
+<tr><td style="word-wrap: break-word;">binder_chain</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Chain identifier of the binder (typically a ligand or peptide chain) whose binding affinity you want to predict. This must match a chain ID that has been defined upstream in your sequence or ligand nodes. Leading and trailing whitespace is ignored; an empty or whitespace-only value is not accepted.</td><td style="word-wrap: break-word;">L</td></tr>
 </tbody>
 </table>
 </div>
@@ -44,19 +44,19 @@ Use this node when you need to request property predictions (e.g., affinity) for
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">properties</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">A list containing a Boltz property object. For affinity, it specifies the binder chain to be used during prediction.</td><td style="word-wrap: break-word;">[{'affinity': {'binder': 'B'}}]</td></tr>
+<tr><td style="word-wrap: break-word;">properties</td><td style="word-wrap: break-word;">*</td><td style="word-wrap: break-word;">A list containing one Boltz property object. For the "affinity" property type, its logical structure is equivalent to an element like {"affinity": {"binder": "<chain_id>"}} inside a list. This list-shaped output is designed to be merged with other Boltz lists such as sequences, templates, and constraints when assembling the final Boltz YAML specification.</td><td style="word-wrap: break-word;">[{'affinity': {'binder': 'L'}}]</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Only 'affinity' is supported**: Other property types are not accepted and will result in an error.
-- **Binder chain is mandatory**: The binder_chain input must be a non-empty string corresponding to a valid chain in your complex.
-- **Output is a list**: The node returns a list of property objects, enabling easy merging with other Boltz objects via a List or YAML Combiner.
-- **Downstream compatibility**: Designed for integration into Boltz YAML configurations consumed by prediction nodes.
+- **Performance**: The node performs only simple validation and dictionary construction, adding negligible overhead compared to the actual affinity calculation carried out by the Boltz execution service.
+- **Limitations**: The property_type input is currently constrained to "affinity". Any attempt to use another value results in an "Unsupported property type" error; additional properties would require explicit support in a future version of the node.
+- **Behavior**: The binder_chain input is not cross-validated against existing sequences or ligands in the workflow. If you provide a chain ID that was never defined, the node will still succeed but downstream Boltz execution may fail or behave in unexpected ways.
+- **Behavior**: The node always returns a list of property objects, even when only a single property is specified. This list-based structure is important for consistent combination with other Boltz object lists using nodes such as BoltzListCombinerNode.
 
 ## Troubleshooting
-- **Error: 'Binder chain ID is required'**: Provide a non-empty binder_chain value that matches your ligand chain ID (e.g., 'B').
-- **Error: 'Unsupported property type'**: Ensure property_type is set to 'affinity'. No other values are supported.
-- **Predictions ignore property settings**: Confirm the properties output is merged into the final YAML via a List/YAML Combiner before sending to the prediction node.
-- **Chain mismatch issues**: Verify that the binder_chain matches the chain IDs defined in your sequence or template inputs.
+- **Common Error 1**: ValueError with message "Binder chain ID is required". This indicates that binder_chain was left empty or contained only whitespace. Resolve it by setting binder_chain to a valid chain ID, such as "L", that matches your binder or ligand chain.
+- **Common Error 2**: ValueError with message "Unsupported property type: <value>". This occurs when property_type is set to a value other than "affinity". Change property_type back to "affinity"; other types are not supported in this node.
+- **Common Issue 3**: A downstream Boltz job reports an unknown or missing binder chain. This usually means the binder_chain set here does not match any chain defined by your sequence or ligand nodes. Verify that the chain ID (including case) is consistent across all Boltz-related nodes.
+- **Common Issue 4**: Affinity results are missing from the final output. Ensure that the properties output from this node is actually connected into the part of the workflow that builds and sends the complete Boltz specification, often by combining it with other lists through BoltzListCombinerNode.

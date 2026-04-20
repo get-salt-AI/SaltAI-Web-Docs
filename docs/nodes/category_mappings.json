@@ -14,34 +14,23 @@
     "Healthcare",
     "ClinicalTrials"
   ],
-  "logic/flow-control/accumulation": [
-    "Logic",
-    "Flow Control",
-    "Accumulation"
-  ],
-  "agents": [
-    "Agents"
+  "utilities": [
+    "Utilities"
   ],
   "healthcare/dailymed": [
     "Healthcare",
     "DailyMed"
   ],
-  "inputs": [
-    "Inputs"
-  ],
   "biotech/functional-prediction": [
     "Biotech",
     "Functional Prediction"
   ],
-  "logic/condition": [
+  "logic/flow-control": [
     "Logic",
-    "Condition"
+    "Flow Control"
   ],
   "llms": [
     "LLMs"
-  ],
-  "new-uncategorized": [
-    "New/Uncategorized"
   ],
   "outputs/writers": [
     "Outputs",
@@ -51,8 +40,8 @@
     "Healthcare",
     "OpenFDA"
   ],
-  "utilities": [
-    "Utilities"
+  "biotech": [
+    "Biotech"
   ],
   "biotech/protein-structure-prediction": [
     "Biotech",
@@ -70,20 +59,26 @@
     "Healthcare",
     "RxNorm"
   ],
+  "logic": [
+    "Logic"
+  ],
   "utilities/math": [
     "Utilities",
     "Math"
   ],
-  "logic": [
-    "Logic"
+  "logic/condition": [
+    "Logic",
+    "Condition"
+  ],
+  "new-uncategorized": [
+    "New/Uncategorized"
   ],
   "utilities/execution": [
     "Utilities",
     "Execution"
   ],
-  "logic/flow-control": [
-    "Logic",
-    "Flow Control"
+  "inputs": [
+    "Inputs"
   ],
   "utilities/json": [
     "Utilities",
@@ -92,6 +87,10 @@
   "connectors/mssql": [
     "Connectors",
     "MSSQL"
+  ],
+  "utilities/memory-storage": [
+    "Utilities",
+    "Memory & Storage"
   ],
   "connectors/mysql": [
     "Connectors",
@@ -112,8 +111,7 @@
     "Connectors",
     "PostgreSQL"
   ],
-  "logic/logic-utility": [
-    "Logic",
-    "Logic Utility"
+  "agents": [
+    "Agents"
   ]
 }
