@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Constructs a PostgreSQL connection URI from discrete parameters (host, port, database, username, password, schema, sslmode). It concatenates these inputs into a standard postgresql:// URL and appends optional query parameters when specified.
+This node constructs a PostgreSQL database connection string from explicit connection parameters such as host, port, database, username, password, schema, and SSL mode. It standardizes how Postgres connection information is represented so downstream database nodes can connect consistently. The node is credential-aware and is designed as the entry point for Postgres-related workflows.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/postgresql/saltpostgresconnectionstring.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Constructs a PostgreSQL connection URI from discrete parameters (host, port, dat
 
 ## Usage
 
-Use this node whenever you need a correctly formatted PostgreSQL connection string for downstream database nodes or external tools. Provide your server details and credentials; the node outputs the URI in the text slot, ready to pass to connection or query nodes.
+Use this node whenever you need to connect to a PostgreSQL database in a Salt workflow and want a clean, reusable connection URI. It typically appears early in a pipeline, where you define or parameterize database access, and its output is then fed into query or ingestion nodes such as `SaltPostgresQuery`, `SaltPostgresExecute`, or other Postgres/CData nodes that accept a connection string. Common scenarios include analytics pipelines (reading from reporting databases), ETL jobs (extracting data from Postgres into other systems), and automation flows that read or write records in response to AI decisions. You can either hard-code values like host/database for a fixed environment or expose them as inputs and drive them from configuration or environment nodes. Prefer this node over hand-typing URIs to avoid formatting mistakes and to keep connection configuration centralized. Pass the generated connection string into downstream nodes’ `connection_string` or equivalent connection input, and keep secrets in Salt credential storage rather than embedding them directly.
 
 ## Inputs
 
@@ -26,13 +26,13 @@ Use this node whenever you need a correctly formatted PostgreSQL connection stri
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">host</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Database hostname or IP address.</td><td style="word-wrap: break-word;">db.example.com</td></tr>
-<tr><td style="word-wrap: break-word;">port</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Database port number (1–65535).</td><td style="word-wrap: break-word;">5432</td></tr>
-<tr><td style="word-wrap: break-word;">database</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Target database name.</td><td style="word-wrap: break-word;">app_db</td></tr>
-<tr><td style="word-wrap: break-word;">username</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Database user name.</td><td style="word-wrap: break-word;">postgres</td></tr>
-<tr><td style="word-wrap: break-word;">password</td><td>True</td><td style="word-wrap: break-word;">PASSWORD</td><td style="word-wrap: break-word;">Database password for the provided user.</td><td style="word-wrap: break-word;"><postgres-password></td></tr>
-<tr><td style="word-wrap: break-word;">schema</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Default schema to target. If set to "public", it will not be added to the URI as a parameter.</td><td style="word-wrap: break-word;">public</td></tr>
-<tr><td style="word-wrap: break-word;">sslmode</td><td>True</td><td style="word-wrap: break-word;">["disable", "require", "verify-ca", "verify-full"]</td><td style="word-wrap: break-word;">SSL mode for the connection. Append as a query parameter if not "disable".</td><td style="word-wrap: break-word;">require</td></tr>
+<tr><td style="word-wrap: break-word;">host</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Hostname or IP address of the PostgreSQL server. Must be reachable from the Salt runtime environment. Use a bare hostname or IP; do not include protocol prefixes.</td><td style="word-wrap: break-word;">analytics-db.internal.company.local</td></tr>
+<tr><td style="word-wrap: break-word;">port</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">TCP port on which PostgreSQL listens. Must be between 1 and 65535. Default installations commonly use 5432.</td><td style="word-wrap: break-word;">5432</td></tr>
+<tr><td style="word-wrap: break-word;">database</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Name of the PostgreSQL database to connect to. It must exist on the target server, and the specified user must have access to it.</td><td style="word-wrap: break-word;">customer_analytics</td></tr>
+<tr><td style="word-wrap: break-word;">username</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">PostgreSQL username for authentication. Ensure this role has sufficient privileges on the target database and schema.</td><td style="word-wrap: break-word;">reporting_user</td></tr>
+<tr><td style="word-wrap: break-word;">password</td><td>True</td><td style="word-wrap: break-word;">PASSWORD</td><td style="word-wrap: break-word;">Password for the PostgreSQL user. Treated as sensitive information; use Salt credential management rather than hard-coding production secrets.</td><td style="word-wrap: break-word;"><postgres-password></td></tr>
+<tr><td style="word-wrap: break-word;">schema</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Default PostgreSQL schema that should be used when table names are not schema-qualified. Often `public`, but may be a dedicated application or analytics schema.</td><td style="word-wrap: break-word;">analytics</td></tr>
+<tr><td style="word-wrap: break-word;">sslmode</td><td>True</td><td style="word-wrap: break-word;">CHOICE["disable", "require", "verify-ca", "verify-full"]</td><td style="word-wrap: break-word;">SSL mode for the connection. `disable` uses plain TCP with no encryption. `require` encrypts traffic but does not strictly verify certificates. `verify-ca` verifies that the server certificate is signed by a trusted CA, and `verify-full` additionally validates the server hostname. This must align with your database server’s SSL configuration.</td><td style="word-wrap: break-word;">require</td></tr>
 </tbody>
 </table>
 </div>
@@ -49,24 +49,19 @@ Use this node whenever you need a correctly formatted PostgreSQL connection stri
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The constructed PostgreSQL connection string in the form postgresql://username:password@host:port/database with optional ?schema= and/or &sslmode= parameters.</td><td style="word-wrap: break-word;">postgresql://postgres:<postgres-password>@db.example.com:5432/app_db?schema=analytics&sslmode=require</td></tr>
-<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Empty output for this node (not used).</td><td style="word-wrap: break-word;"></td></tr>
-<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Empty output for this node (not used).</td><td style="word-wrap: break-word;"></td></tr>
-<tr><td style="word-wrap: break-word;">xlsx</td><td style="word-wrap: break-word;">BYTES</td><td style="word-wrap: break-word;">Empty output for this node (not used).</td><td style="word-wrap: break-word;"></td></tr>
-<tr><td style="word-wrap: break-word;">pdf</td><td style="word-wrap: break-word;">BYTES</td><td style="word-wrap: break-word;">Empty output for this node (not used).</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">connection_string</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A fully formatted PostgreSQL connection URI derived from the provided parameters. This string is intended for consumption by downstream database nodes that open connections to Postgres.</td><td style="word-wrap: break-word;">postgresql://reporting_user:<postgres-password>@analytics-db.internal.company.local:5432/customer_analytics?sslmode=require&search_path=analytics</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Password safety**: Do not expose real passwords in logs, prompts, or shared outputs. Use placeholders like "<postgres-password>" in examples.
-- **Schema handling**: The schema parameter is only appended when it is not "public".
-- **SSL mode**: The sslmode parameter is appended only when not "disable". Choose the correct mode according to your server's TLS configuration.
-- **Special characters**: If the username or password contains special characters (e.g., @, /, :, ?), URL-encode them before use to avoid invalid URIs.
-- **Validation**: This node only constructs the URI; it does not validate connectivity or credentials.
+- **Performance**: The node itself only assembles a string and is effectively instantaneous; performance considerations occur in downstream nodes that execute queries using this connection.
+- **Limitations**: Only a single host and port are supported; multi-host high-availability connection strings (for example, certain cluster or failover formats) are not directly modeled through these inputs.
+- **Behavior**: Incorrect `sslmode` settings relative to server configuration (for example, using `verify-full` without proper certificates or hostname configuration) will cause connection attempts in downstream nodes to fail.
+- **Behavior**: The `schema` value is typically propagated into the connection string or related configuration; whether it becomes the effective default search_path depends on how underlying drivers and downstream nodes interpret it.
 
 ## Troubleshooting
-- **Cannot connect using the URI**: Verify the host, port, and database are reachable and correct. Ensure firewall and network rules allow access.
-- **Authentication failed**: Confirm the username/password are correct for the target database. If special characters are present, URL-encode them.
-- **SSL errors**: If the server requires TLS, set sslmode to "require" or stricter. For certificate validation, use "verify-ca" or "verify-full" and ensure certificates are configured on the client.
-- **Wrong default schema used**: If queries hit the wrong schema, set the schema input to the desired value (not "public") so it is appended to the connection string.
+- **Common Error 1**: Downstream nodes report "could not connect to server" or "connection refused". Verify that `host` and `port` are correct, the database server is running, and network/firewall rules allow access from the Salt environment.
+- **Common Error 2**: Downstream nodes show authentication errors such as "password authentication failed for user". Confirm that `username` and `password` are correct, that the user exists, and that it has privileges on the specified `database`.
+- **Common Error 3**: SSL-related messages such as certificate verification failures or handshake errors when using `require`, `verify-ca`, or `verify-full`. Adjust `sslmode` to match your server configuration or ensure that CA certificates and hostnames are configured correctly on the runtime host.
+- **Common Error 4**: Queries in downstream nodes cannot find tables when names are not schema-qualified. Check that the `schema` matches where your tables actually live, or explicitly reference tables as `schema.table_name` in queries.

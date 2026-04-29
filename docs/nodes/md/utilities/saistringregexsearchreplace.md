@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Performs a regular-expression-based search and replace on the provided text. It replaces all occurrences that match the pattern with the specified replacement text using Python's regex syntax. Useful for cleaning, transforming, or masking parts of text.
+This node performs a global regex-based find-and-replace on an input string. You provide the source text, a regular expression pattern to match, and the replacement text. Every substring that matches the pattern is replaced, and the node outputs the fully updated string.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/utilities/saistringregexsearchreplace.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Performs a regular-expression-based search and replace on the provided text. It 
 
 ## Usage
 
-Use this node when you need to transform text by pattern—e.g., redact emails, normalize formatting, or substitute tokens. Provide the input text, a valid regex pattern, and the replacement string; the node outputs the fully replaced text. Integrate it before downstream nodes that require cleaned or standardized inputs.
+Use this node when you need pattern-driven text clean-up or transformation. Typical use cases include anonymizing sensitive data (masking emails, IDs, or phone numbers), normalizing formats (standardizing dates or codes), cleaning logs, or rewriting recurring phrases in generated content. It is usually placed after nodes that generate or fetch text (such as API response or text builder nodes) and before nodes that further parse or consume structured text (like splitters, JSON interpreters, or prompt dispatchers). A common pattern is to first experiment with your pattern using SAIStringRegexSearchMatch to inspect matches, then pass the same pattern into this node with a suitable replacement. Keep patterns as specific as possible and test on sample data before applying them to large or critical texts.
 
 ## Inputs
 
@@ -26,9 +26,9 @@ Use this node when you need to transform text by pattern—e.g., redact emails, 
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">text_input</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The source text in which to search for matches and perform replacements.</td><td style="word-wrap: break-word;">Contact me at john.doe@example.com or jane@example.org.</td></tr>
-<tr><td style="word-wrap: break-word;">regex_pattern</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The regular expression to match. Uses Python regex syntax; inline flags like (?i) for case-insensitive are supported.</td><td style="word-wrap: break-word;">\b[\w.%+-]+@[\w.-]+\.[A-Za-z]{2,}\b</td></tr>
-<tr><td style="word-wrap: break-word;">replacement_text</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Text to replace each match. Supports backreferences such as \1, \2 corresponding to capturing groups in the pattern.</td><td style="word-wrap: break-word;"><redacted-email></td></tr>
+<tr><td style="word-wrap: break-word;">text_input</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The input text where replacements will be made. Can be any plain text, including multi-line content such as emails, logs, or long-form documents. The entire string is scanned; all substrings that match the regex_pattern are candidates for replacement.</td><td style="word-wrap: break-word;">Customer: Jane Doe Email: jane.doe@example.com Backup Email: j.doe@backup.org</td></tr>
+<tr><td style="word-wrap: break-word;">regex_pattern</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The regular expression pattern used to find matches in the text. Uses standard Python regular expression syntax, supporting character classes, groups, quantifiers, anchors, and word boundaries. The pattern is applied globally. Invalid syntax will cause the node to fail at runtime.</td><td style="word-wrap: break-word;">\b[\w.-]+@[\w.-]+\.[A-Za-z]{2,}\b</td></tr>
+<tr><td style="word-wrap: break-word;">replacement_text</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The text that will replace each match found by regex_pattern. May be a static string or include backreferences to capturing groups in the pattern (for example \\1, \\2). Every match is replaced with this value (after expanding any backreferences).</td><td style="word-wrap: break-word;">[redacted_email]</td></tr>
 </tbody>
 </table>
 </div>
@@ -45,24 +45,21 @@ Use this node when you need to transform text by pattern—e.g., redact emails, 
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">replaced_text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The resulting text after applying the regex replacement to all matches.</td><td style="word-wrap: break-word;">Contact me at <redacted-email> or <redacted-email>.</td></tr>
+<tr><td style="word-wrap: break-word;">replaced_text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The text after applying the regex-based replacements. Structure and length may differ from the input depending on how many matches were replaced. Downstream nodes can use this cleaned or transformed text for further parsing, display, or as input to other processing steps.</td><td style="word-wrap: break-word;">Customer: Jane Doe Email: [redacted_email] Backup Email: [redacted_email]</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Pattern syntax**: Follows Python regular expression rules; ensure proper escaping of backslashes in patterns.
-- **Global replacement**: All matches in the input are replaced (not just the first).
-- **Backreferences**: Use \1, \2, etc., in the replacement to insert captured groups.
-- **Inline flags**: Use inline modifiers (e.g., (?i) case-insensitive, (?m) multiline) within the pattern if needed; there is no separate flags input.
-- **Escaping in UI/JSON**: Remember to double-escape backslashes (e.g., \\d) when entering patterns in JSON-like fields.
+- **Performance**: Very large input strings or highly complex regex patterns (especially with nested or greedy quantifiers) can be slow and increase workflow latency.
+- **Limitations**: The pattern must be valid Python regex; unsupported constructs or malformed expressions will cause an error instead of partial processing.
+- **Behavior**: Replacement is global across the entire text; there is no built-in option to limit the number of replacements or only replace the first match.
+- **Behavior**: Special characters in regex_pattern are interpreted as regex syntax; if you need literal characters like '.', '?', or '(', ensure they are properly escaped.
 
 ## Troubleshooting
-- **Invalid pattern error**: If execution fails, verify the regex is valid and properly escaped (e.g., use \\b instead of \b in JSON strings).
-- **Unexpected replacements**: Add anchors (^, $), word boundaries (\\b), or use non-greedy quantifiers (e.g., .*?) to constrain matches.
-- **Case sensitivity issues**: Add (?i) at the start of your pattern for case-insensitive matching.
-- **Group references not working**: Ensure your pattern includes capturing groups (parentheses) and reference them correctly in the replacement (e.g., \1).
-- **Performance on large text**: Complex patterns on very large strings may be slow; simplify the regex or narrow the scope where possible.
+- **Common Error 1**: Regex compile errors such as "missing ), unterminated subpattern" indicate invalid syntax. Check for unbalanced parentheses, brackets, or incorrect escapes and simplify the pattern until it compiles.
+- **Common Error 2**: Output is identical to input. This usually means the pattern matched nothing. Verify case sensitivity, word boundaries, and escaping; test the same regex in SAIStringRegexSearchMatch to confirm matches before using it here.
+- **Common Error 3**: Larger-than-expected sections of text are replaced. The regex may be too broad or greedy (for example, using `.*` between distant tokens). Add anchors, word boundaries, or switch to non-greedy quantifiers like `.*?` to narrow the match.
 
 ## Example Pipelines
 

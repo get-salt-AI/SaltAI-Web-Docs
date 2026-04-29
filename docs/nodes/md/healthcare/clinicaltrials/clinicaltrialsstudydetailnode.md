@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Retrieves detailed information for a specific clinical study from ClinicalTrials.gov using its NCT ID. Supports JSON or CSV output and optional control over markup fields and returned field selection. Returns both the raw result content and a small metadata summary.
+This node queries ClinicalTrials.gov for a specific study using its NCT identifier and returns the study details in a chosen format. It supports optional field selection and configurable markup formatting of the response. The node is built on a shared ClinicalTrials base, handling API interaction, response parsing, and metadata extraction for you.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/healthcare/clinicaltrials/clinicaltrialsstudydetailnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Retrieves detailed information for a specific clinical study from ClinicalTrials
 
 ## Usage
 
-Use this node when you have a specific NCT ID and need the full detail record of that study. Typical workflows include validating search results, extracting protocol details, or generating reports. Choose JSON for structured data processing; select CSV if you need a flat textual representation.
+Use this node when you need detailed, study-level information from ClinicalTrials.gov for a known NCT ID. Typical use cases include building clinical evidence summaries, surfacing key eligibility criteria, extracting endpoints, or preparing structured data for downstream analytics or LLM reasoning. It usually sits early in a pipeline: you might first identify or select an NCT ID via a search node (for example, a ClinicalTrials search or listing node), then feed that NCT ID into this node to pull full study details. Downstream, its `results` output can be passed to nodes that summarize clinical trials, compare multiple studies, or generate human-readable reports, while the `metadata` output can feed logging, auditing, or routing logic. Integrate it with other ClinicalTrials nodes that search or filter studies for upstream discovery, and with text-processing or report-generation nodes downstream. For best results, specify only the `fields` you truly need when building data pipelines, and use `markupFormat` to tailor the output to either LLM consumption (markdown) or legacy systems.
 
 ## Inputs
 
@@ -26,10 +26,10 @@ Use this node when you have a specific NCT ID and need the full detail record of
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">nct_id</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The NCT identifier of the study to retrieve. Must be a valid ClinicalTrials.gov NCT ID.</td><td style="word-wrap: break-word;">NCT04000165</td></tr>
-<tr><td style="word-wrap: break-word;">format</td><td>True</td><td style="word-wrap: break-word;">SELECT</td><td style="word-wrap: break-word;">Output format of the response content. JSON provides structured data; CSV provides a comma-separated text.</td><td style="word-wrap: break-word;">json</td></tr>
-<tr><td style="word-wrap: break-word;">markupFormat</td><td>True</td><td style="word-wrap: break-word;">SELECT</td><td style="word-wrap: break-word;">Controls how markup-type fields are returned. Use 'markdown' for modern formatting or 'legacy' for older styles.</td><td style="word-wrap: break-word;">markdown</td></tr>
-<tr><td style="word-wrap: break-word;">fields</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional, comma-separated list of specific fields to include in the response. Leave empty to return the default set.</td><td style="word-wrap: break-word;">NCTId,BriefTitle,OverallStatus,StudyType,Condition</td></tr>
+<tr><td style="word-wrap: break-word;">nct_id</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The ClinicalTrials.gov NCT identifier of the study to retrieve. Must be a valid NCT ID in the form 'NCT' followed by 8 digits. If the ID does not exist or is mistyped, the underlying ClinicalTrials API will return an error or empty result.</td><td style="word-wrap: break-word;">NCT04000165</td></tr>
+<tr><td style="word-wrap: break-word;">format</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Output format requested from the ClinicalTrials service. Supported values are 'json' and 'csv'. 'json' is recommended for downstream structured processing and LLMs; 'csv' is better suited if you plan to export and analyze the data in spreadsheets or tabular data tools.</td><td style="word-wrap: break-word;">json</td></tr>
+<tr><td style="word-wrap: break-word;">markupFormat</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Controls how the textual study detail is marked up. 'markdown' returns content formatted for modern text viewers and LLMs (headings, bullet lists, and other markdown constructs), while 'legacy' preserves a simpler, older-style formatting suitable for existing internal tools.</td><td style="word-wrap: break-word;">markdown</td></tr>
+<tr><td style="word-wrap: break-word;">fields</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional list of specific fields to return from the study record. Typically a comma- or space-separated list of ClinicalTrials.gov field names, depending on the base node’s implementation. Leave empty to return the default or full set. Supplying a subset can reduce payload size and focus on key attributes such as status, conditions, interventions, and primary outcomes.</td><td style="word-wrap: break-word;">StudyTitle, OverallStatus, Condition, InterventionName, PrimaryOutcomeMeasure</td></tr>
 </tbody>
 </table>
 </div>
@@ -46,23 +46,20 @@ Use this node when you have a specific NCT ID and need the full detail record of
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">results</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The retrieved study detail. When format=json, this is a JSON string; when format=csv, this is CSV text.</td><td style="word-wrap: break-word;">{   "apiVersion": "2.0",   "studies": [ ... ] }</td></tr>
-<tr><td style="word-wrap: break-word;">metadata</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A JSON string with basic metadata about the request/response, such as nct_id, format, apiVersion (for JSON), or content_length (for CSV).</td><td style="word-wrap: break-word;">{   "nct_id": "NCT04000165",   "format": "json",   "api_version": "2.0" }</td></tr>
+<tr><td style="word-wrap: break-word;">results</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The study detail response body from ClinicalTrials.gov, formatted according to the selected `format` and `markupFormat`. For `format='json'`, this will typically be a JSON string containing the study record or records; for `format='csv'`, a CSV string with header and row or rows. Downstream nodes can parse this string as JSON or CSV, or feed the markdown-formatted text directly into LLMs for summarization and analysis.</td><td style="word-wrap: break-word;">{ "Study": { "NCTId": "NCT04000165", "BriefTitle": "A Study of Drug X in Patients With Condition Y", "OverallStatus": "Recruiting", "Condition": ["Condition Y"], "Intervention": [{"InterventionType": "Drug", "InterventionName": "Drug X"}], "PrimaryOutcomeMeasure": [{"Measure": "Change in Symptom Score at Week 12"}] } }</td></tr>
+<tr><td style="word-wrap: break-word;">metadata</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Supplementary metadata about the API call and response, serialized as a string, commonly JSON. This may include request parameters such as the resolved NCT ID and fields, timestamps, pagination or count information from ClinicalTrials.gov, and status indicators. Use this for logging, debugging, analytics, or making routing decisions in your workflow.</td><td style="word-wrap: break-word;">{ "nct_id": "NCT04000165", "format": "json", "markupFormat": "markdown", "record_count": 1, "source": "ClinicalTrials.gov", "retrieved_at": "2026-04-27T10:15:00Z" }</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **NCT ID required**: You must supply a valid ClinicalTrials.gov NCT identifier (e.g., NCT01234567).
-- **Output depends on format**: With format=json, `results` is a JSON string and metadata includes `api_version`. With format=csv, `results` is CSV text and metadata includes `content_length`.
-- **Field filtering**: Use the `fields` input to limit the response to specific fields; provide them as a comma-separated list.
-- **Markup handling**: `markupFormat` affects only markup-type fields within the JSON response; it has no effect when format=csv.
-- **External API**: This node queries ClinicalTrials.gov API v2 and is subject to network availability and any API-side constraints.
-- **Timeouts and errors**: Network timeouts are set; on error, both outputs may contain a JSON string with an `error` field.
+- **Performance**: Large studies with extensive outcome, eligibility, and protocol sections can result in sizable JSON or CSV payloads; consider restricting `fields` for high-throughput or latency-sensitive pipelines.
+- **Limitations**: The node depends on the availability and data quality of ClinicalTrials.gov; if a study is withdrawn, hidden, or not yet fully indexed, details may be incomplete or unavailable.
+- **Behavior**: If `fields` is left empty, the base ClinicalTrials implementation may request a broad or default field set, which can increase response size; specifying fields generally yields leaner, more focused responses.
+- **Behavior**: The node returns both `results` and `metadata` as strings; downstream nodes are responsible for parsing JSON or CSV as needed before structured operations.
 
 ## Troubleshooting
-- **Invalid NCT ID**: Ensure the NCT ID is correctly formatted (e.g., NCT followed by digits). If the study is not found, the response may be empty or contain an error message.
-- **Network error**: If you see '{"error": "Network error"}', check your internet connectivity or retry later; the API may be temporarily unavailable.
-- **JSON decode error**: If you receive '{"error": "JSON decode error"}', switch to CSV or retry; this can occur if the API returns malformed JSON.
-- **Unexpected empty fields**: If certain fields are missing, confirm your `fields` list is valid. Remove `fields` to get the default set and verify field names.
-- **Large CSV output**: For CSV format, review `metadata.content_length` to gauge size. If too large, narrow the `fields` selection.
+- **Invalid or unknown NCT ID**: If you see an empty `results` string or an indication in `metadata` that no studies were found, verify the NCT ID format (for example, 'NCT04000165') and ensure the study actually exists on ClinicalTrials.gov.
+- **Unsupported format value**: If the node errors due to an invalid `format`, confirm that `format` is set to either 'json' or 'csv'. Any other value will not be accepted by the underlying implementation.
+- **Unexpected empty or missing fields**: If certain expected attributes are missing from `results`, check the `fields` input. Remove overly restrictive field filters or include the exact field names required according to ClinicalTrials.gov documentation.
+- **Downstream parsing failures**: If a downstream node fails to parse `results` as JSON or CSV, ensure that the `format` used here matches what the downstream node expects, and that you are not passing markdown-formatted or legacy-formatted text where raw machine-readable JSON or CSV is required.

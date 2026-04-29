@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Aggregates outputs from multiple upstream nodes, organizes them into a structured folder layout, and creates a zip archive. The node intelligently names folders/files (with collision-avoidance) and, when available, uses metadata from inputs to preserve meaningful filenames and group related results.
+SaveToZipNode is a generic sink node that accepts outputs from many upstream nodes, writes them into a temporary folder structure, and compresses that folder into a ZIP file. It uses metadata from upstream nodes, when available, to decide folder and file names, and falls back to class-based naming for plain values. The node returns a local URL or path to the generated ZIP so you can download the entire workflow’s artifacts in one bundle.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/biotech-utils/savetozipnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Aggregates outputs from multiple upstream nodes, organizes them into a structure
 
 ## Usage
 
-Use this node at the end of a workflow when you want to package results into a single downloadable zip. Connect any outputs (e.g., sequences, PDB/A3M dictionaries, text, or other data) to results_1 and subsequent results_N inputs. The node will produce a URL/path to the created zip, which you can connect to the Output node to download.
+Use SaveToZipNode when you want to persist or download all important results from a workflow run as a single archive. Typical scenarios include exporting protein structures (PDB), alignments (A3M), FASTA files, configuration JSONs, and text outputs from various Biotech or AlphaFold-related nodes. Place SaveToZipNode at the end of your pipeline, connect any outputs you want to capture to results_1, results_2, and so on, then connect its url output to an Output node to expose a clickable download link in the UI. It works especially well downstream of nodes like LoadPDBNode, PDBVisualizationNode, PDBToFastaNode, FastaCombinerNode, A3MCombinerNode, and PDBCombinerNode. The node understands special salt_metadata on its inputs for folder name, file name, seed, and config, so producer nodes that attach this metadata will produce a well-structured archive. For generic values without metadata, SaveToZipNode still groups files by originating node class and output index, saving them as .txt or .json where appropriate. Recommended practice is to connect structured or important outputs first to earlier results_i inputs, rely on upstream nodes that set salt_metadata for clean folder naming, and always connect the node’s url to an Output node so users can actually download the zip.
 
 ## Inputs
 
@@ -26,8 +26,7 @@ Use this node at the end of a workflow when you want to package results into a s
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">results_1</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">First input to include in the zip. Accepts any output from any node. Once connected, results_2 becomes available.</td><td style="word-wrap: break-word;">Any node output, e.g., a dictionary of PDBs, an A3M dict, or a string.</td></tr>
-<tr><td style="word-wrap: break-word;">results_2 ... results_101</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Additional inputs to include in the zip. Each appears after connecting the previous one, allowing up to 100 additional inputs.</td><td style="word-wrap: break-word;">Any node output, e.g., additional PDB/A3M dicts, FASTA strings, or other text values.</td></tr>
+<tr><td style="word-wrap: break-word;">results_1</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">First captured result. You can connect any output from any node here. Once results_1 is connected, results_2 becomes available, and so on. If the value carries salt_metadata with keys such as folder_name, file_name, seed, and config, that metadata drives folder and file naming and per-folder seed/config JSON. Without metadata, the node will still save the value as text or JSON.</td><td style="word-wrap: break-word;">A PDB output object from a protein prediction node that includes salt_metadata = {"folder_name": "protein_1", "file_name": "model_1.pdb", "seed": 42, "config": {"msa_depth": 64}}.</td></tr>
 </tbody>
 </table>
 </div>
@@ -44,28 +43,23 @@ Use this node at the end of a workflow when you want to package results into a s
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">url</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">URL or path to the folder containing the created zip archive for this workflow run. Connect to the Output node to click and download.</td><td style="word-wrap: break-word;">https://download/<workflow_execution_id>_<index>/<workflow_execution_id>_<index>.zip</td></tr>
+<tr><td style="word-wrap: break-word;">url</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Filesystem URL or path to the directory containing the generated ZIP file. Internally, the ZIP is named using the pattern "<workflow_execution_id>_<save_node_index>.zip" and stored in an output directory. Connect this to an Output node so users can click and download the archive locally from the UI.</td><td style="word-wrap: break-word;">/output/12345abcd_0</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Sequential input reveal**: results_2 only appears after connecting results_1, results_3 after results_2, and so on (up to results_101).
-- **Metadata-aware saving**: Inputs produced by nodes that embed metadata (e.g., file_name, folder_name) are saved using those names, with automatic numbering to avoid clashes.
-- **Structured handling for PDB/A3M**: When inputs are PDB or A3M dictionaries, each entry is saved as a separate file within a subfolder.
-- **Non-metadata inputs**: Values without metadata are saved as text files (e.g., output_<n>.txt) in a folder named after their source node class.
-- **Seeds and configs capture**: If provided via input metadata, consolidated seeds.json and configs.json are added at the top level of the zip content.
-- **Collision handling**: If a file/folder name already exists, a numeric suffix is appended to avoid overwriting.
-- **Execution priority**: Designed to run at the end of a workflow to capture all upstream outputs.
-- **Output location**: The node returns a URL/path where the zip can be downloaded; connect it to the Output node to expose a clickable link.
+- **Performance**: The node writes all connected inputs to a temporary directory and then zips it, so very large numbers of inputs or very large values can use significant disk space and I/O; avoid sending huge raw tensors or unbounded text blobs directly.
+- **Limitations**: Inputs without salt_metadata are always saved as text (.txt) or JSON (.json); there is no automatic type-aware binary format saving, so binary objects should be converted upstream into meaningful text or file structures.
+- **Behavior**: For PDB and A3M inputs with metadata where file_name ends in .pdb or .a3m, the node expands nested structures, such as per-model or per-chain values, into subfolders and individual files named "<sub_name>.<ext>" under a folder based on the base file name.
+- **Behavior**: When multiple inputs try to reuse the same folder name, the node automatically disambiguates them by appending numeric suffixes, such as protein_1 and protein_1_2, to avoid collisions; seeds and configs are aggregated per final folder name into seeds.json and configs.json in the ZIP root.
+- **Behavior**: After zipping, the temporary working directory is deleted; the archive itself remains in the output directory so it can be served for download.
 
 ## Troubleshooting
-- **Cannot see results_2 or further**: Connect results_1 first; additional inputs are revealed only after the previous one is connected.
-- **Download link not clickable**: Ensure the url output is connected to an Output node to render a clickable link.
-- **Unexpected file names or folders**: If metadata is missing on an input, the node falls back to generic names (e.g., source node class and output_<n>.txt). To influence naming, use nodes that provide metadata-aware outputs.
-- **Missing files in zip**: Verify that each desired upstream output is connected to a results_N input and that the inputs are not None.
-- **Permission or path issues**: If the generated path cannot be accessed or saved, check environment permissions and the configured output directory.
-- **Large inputs or many files**: Packaging many or large outputs may take longer; allow the node to complete before attempting to download.
+- **Files missing or unexpectedly merged**: If outputs from different inputs appear in the same folder or appear to overwrite each other, check the salt_metadata.folder_name provided by upstream nodes. Use distinct folder_name values for independent result sets, and ensure the combination of node_id and folder_name is unique where needed.
+- **Unexpected .txt files instead of domain formats**: When you see .txt instead of domain-specific extensions, the upstream value likely lacked salt_metadata.file_name or did not use a recognized extension such as .pdb, .a3m, or .json. Ensure producer nodes attach proper metadata or convert values to the desired file format before connecting them.
+- **Seeds or configs not saved**: If seeds.json or configs.json is missing or does not contain expected entries, verify that upstream nodes set salt_metadata.seed and salt_metadata.config for those outputs. Only non-null seeds and configs are collected, and they are aggregated per folder name.
+- **ZIP not downloadable in UI**: If the ZIP is created but you cannot click to download it, confirm that the url output from SaveToZipNode is connected to an Output node and that the workflow was fully executed to completion so the archive and directory path were actually generated.
 
 ## Example Pipelines
 

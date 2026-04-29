@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Pauses workflow execution for a specified number of seconds, then forwards the input unchanged. Accepts any data type and simply delays its passage downstream. Useful for timing control and coordinating steps that require a pause.
+Delay Execution introduces a configurable pause before allowing data to continue through your workflow. It accepts any input type, waits for the specified number of seconds (including fractional seconds), and then emits the same value without modification. This is useful for timing control, rate limiting, and coordinating steps that depend on temporal spacing.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/utilities/execution/saltdelayexecution.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,11 @@ Pauses workflow execution for a specified number of seconds, then forwards the i
 
 ## Usage
 
-Use this node when you need to introduce a timed pause in a workflow—such as rate limiting, synchronization with external processes, or staging multi-step operations. Set the delay in seconds (fractions allowed) and optionally pass any data through; it will be emitted after the delay.
+Use this node when you need to insert a timed pause into a workflow while keeping the data intact. Typical scenarios include rate limiting calls to external APIs, pacing multi-step generation flows, waiting for external systems to settle or update, or giving yourself a short window between stages for monitoring.
+
+Place Delay Execution between a node that produces data and the next node that consumes it, for example: a data fetch or model inference node → Delay Execution → a second external call or post-processing node. It pairs well with utility nodes such as SaltDebugPrint or SaltDisplayAny when you want to both inspect and pace the flow of information.
+
+Keep the delay as short as needed to meet requirements, and use fractional seconds for fine-grained timing instead of overly long waits.
 
 ## Inputs
 
@@ -26,8 +30,8 @@ Use this node when you need to introduce a timed pause in a workflow—such as r
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">delay</td><td>True</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">Number of seconds to wait before forwarding the input. Supports fractional values for sub-second delays.</td><td style="word-wrap: break-word;">2.5</td></tr>
-<tr><td style="word-wrap: break-word;">input</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Any data to pass through after the delay (e.g., image, text, number, or structured data). If not provided, the node outputs a null/empty value after waiting.</td><td style="word-wrap: break-word;">Any value (e.g., "Ready", 42, an image object, or a data payload)</td></tr>
+<tr><td style="word-wrap: break-word;">delay</td><td>True</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">Number of seconds to wait before forwarding the input. Accepts integer and fractional values (for example, 0.5 for half a second, 0.001 for one millisecond). Must be non-negative. Very large values will cause the workflow to block for that entire duration.</td><td style="word-wrap: break-word;">2.5</td></tr>
+<tr><td style="word-wrap: break-word;">input</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Arbitrary data to be held and then passed on after the delay. Can be text, numbers, lists, dictionaries, model responses, images, or any other supported type. The value is not altered, only delayed.</td><td style="word-wrap: break-word;">{"request_id": "job-4829", "status": "queued", "payload": {"prompt": "Generate a product description for a smart thermostat"}}</td></tr>
 </tbody>
 </table>
 </div>
@@ -44,20 +48,18 @@ Use this node when you need to introduce a timed pause in a workflow—such as r
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">output</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The same data received on the input, emitted after the specified delay. If no input was provided, outputs a null/empty value.</td><td style="word-wrap: break-word;">Same as the provided input (e.g., "Ready", 42, image object)</td></tr>
+<tr><td style="word-wrap: break-word;">output</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The same value that was provided as input, emitted only after the delay has completed. The structure and content are unchanged, making it safe to connect directly into any downstream node that expects the original data type.</td><td style="word-wrap: break-word;">{"request_id": "job-4829", "status": "queued", "payload": {"prompt": "Generate a product description for a smart thermostat"}}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Blocking behavior**: This node blocks execution for the specified duration; downstream nodes will wait until the delay finishes.
-- **Fractional seconds supported**: Use values like 0.5 for half a second or 0.001 for one millisecond.
-- **No transformation**: The data is not modified—it's forwarded as-is after the delay.
-- **Empty output if no input**: If the input is not connected, the node still waits and then outputs a null/empty value.
-- **Timing precision**: Very small delays may be limited by system timer resolution and are not guaranteed to be exact.
+- **Performance**: The node uses a blocking wait for the specified duration, so the current execution path pauses entirely during that time. Long delays can significantly increase total workflow runtime.
+- **Limitations**: The node is not a scheduler or background timer; it simply pauses inline execution. Using extremely large delays may make workflows appear unresponsive or effectively hang.
+- **Behavior**: The input value is passed through without transformation. The node only affects timing, not content, shape, or type of the data.
+- **Behavior**: If no input is connected, the node will still wait the specified duration and then output an empty or null-like value, which may not be valid for downstream nodes expecting a specific structure.
 
 ## Troubleshooting
-- **Workflow appears stuck**: Check the delay value; large numbers (e.g., 300) will pause execution for several minutes.
-- **No data after delay**: Ensure the input is connected. When not connected, the node outputs a null/empty value after waiting.
-- **Delay not precise**: Sub-millisecond or very small delays may not be accurate due to OS scheduling. Increase the delay or avoid extremely small values.
-- **Downstream timing issues**: Remember this node is blocking; consider placing it only where a pause is acceptable for the entire branch.
+- **Workflow appears frozen or very slow**: Check the configured delay value. A typo such as 300 instead of 3 can cause several minutes of waiting. Reduce the delay and test again.
+- **Downstream node fails due to missing or invalid data**: Ensure the input field is wired from an upstream node that produces the expected type. If nothing is connected, the output may be null or empty, causing errors in consumers.
+- **Unexpected timeout or authentication errors after delay**: Some external services or nodes may have their own timeouts or short-lived tokens. If the delay is long, tokens or sessions might expire before the next call. Shorten the delay or adjust the external system configuration.

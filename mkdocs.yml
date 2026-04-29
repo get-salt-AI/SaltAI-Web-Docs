@@ -63,22 +63,24 @@ plugins:
 nav:
 - Getting Started: index.md
 - Nodes:
-  - Agents:
-    - Create Agent: nodes/md/agents/createagent.md
-    - Google Web Search: nodes/md/agents/websearchgoogle.md
-    - Run Agents Team: nodes/md/agents/runagentsteam.md
-    - Tavily Web Search: nodes/md/agents/websearchtavily.md
-    - Web Research Agent: nodes/md/agents/webresearchagent.md
-    - Web Scraper: nodes/md/agents/webscraper.md
+  - AI:
+    - Agents:
+      - Google Web Search: nodes/md/ai/agents/websearchgoogle.md
+      - Tavily Web Search: nodes/md/ai/agents/websearchtavily.md
+      - Web Research Agent: nodes/md/ai/agents/webresearchagent.md
+      - Web Scraper: nodes/md/ai/agents/webscraper.md
+    - LLMs:
+      - Groq LLM: nodes/md/ai/llms/litellmgroq.md
+      - LLM: nodes/md/ai/llms/saltllm.md
   - Biotech:
     - Biotech Utils:
       - A3M Combiner: nodes/md/biotech/biotech-utils/a3mcombinernode.md
       - Batch PDB: nodes/md/biotech/biotech-utils/batchpdbnode.md
       - FASTA Combiner: nodes/md/biotech/biotech-utils/fastacombinernode.md
       - Load A3M: nodes/md/biotech/biotech-utils/loada3mnode.md
-      - Load CIF: nodes/md/biotech/biotech-utils/loadcifnode.md
       - Load FASTA: nodes/md/biotech/biotech-utils/loadfastanode.md
       - Load PDB: nodes/md/biotech/biotech-utils/loadpdbnode.md
+      - Make Secstruc Adj: nodes/md/biotech/biotech-utils/makesecstrucadjnode.md
       - PDB Chain Extractor: nodes/md/biotech/biotech-utils/pdbchainextractornode.md
       - PDB Combiner: nodes/md/biotech/biotech-utils/pdbcombinernode.md
       - PDB Fixer: nodes/md/biotech/biotech-utils/pdbfixernode.md
@@ -103,7 +105,6 @@ nav:
       - RF Diffusion Contigmap Config: nodes/md/biotech/protein-generation/saasrfdiffusioncontigmapconfignode.md
       - RF Diffusion Denoiser Config: nodes/md/biotech/protein-generation/saasrfdiffusiondenoiserconfignode.md
       - RF Diffusion Potentials Config: nodes/md/biotech/protein-generation/saasrfdiffusionpotentialsconfignode.md
-      - RF Diffusion Scaffold Guided Config: nodes/md/biotech/protein-generation/saasrfdiffusionscaffoldguidedconfignode.md
       - RF Diffusion Symmetry Config: nodes/md/biotech/protein-generation/saasrfdiffusionsymmetryconfignode.md
     - Protein Structure Prediction:
       - Alphafold: nodes/md/biotech/protein-structure-prediction/saasalphafoldnode.md
@@ -127,20 +128,6 @@ nav:
       - MySQL Table Info: nodes/md/connectors/mysql/saltmysqltableinfo.md
       - MySQL Test Connection: nodes/md/connectors/mysql/saltmysqltestconnection.md
       - MySQL Visual Query Builder: nodes/md/connectors/mysql/saltmysqlvisualquery.md
-    - Neo4J:
-      - Neo4J Connection String: nodes/md/connectors/neo4j/saltneo4jconnectionstring.md
-      - Neo4J Database Info: nodes/md/connectors/neo4j/saltneo4jdatabaseinfo.md
-      - Neo4J Graph Explorer: nodes/md/connectors/neo4j/saltneo4jgraphexplorer.md
-      - Neo4J Node Labels: nodes/md/connectors/neo4j/saltneo4jnodelabels.md
-      - Neo4J Nodes by Label: nodes/md/connectors/neo4j/saltneo4jnodesbylabel.md
-      - Neo4J Property Keys: nodes/md/connectors/neo4j/saltneo4jpropertykeys.md
-      - Neo4J Query: nodes/md/connectors/neo4j/saltneo4jquery.md
-      - Neo4J Relationship Types: nodes/md/connectors/neo4j/saltneo4jrelationshiptypes.md
-      - Neo4J Relationships by Type: nodes/md/connectors/neo4j/saltneo4jrelationshipsbytype.md
-      - Neo4J Schema Info: nodes/md/connectors/neo4j/saltneo4jschemainfo.md
-      - Neo4J Test Connection: nodes/md/connectors/neo4j/saltneo4jtestconnection.md
-      - Neo4J Transaction: nodes/md/connectors/neo4j/saltneo4jtransaction.md
-      - Neo4J Write: nodes/md/connectors/neo4j/saltneo4jwrite.md
     - Oracle:
       - Oracle Complex Query: nodes/md/connectors/oracle/saltoraclecomplexquery.md
       - Oracle Connection String: nodes/md/connectors/oracle/saltoracleconnectionstring.md
@@ -194,28 +181,7 @@ nav:
     - Dynamic Text: nodes/md/inputs/saltdynamicinput.md
     - File: nodes/md/inputs/saltfileinput.md
     - Text: nodes/md/inputs/salttextinput.md
-  - Knowledge Bases:
-    - Documents: nodes/md/knowledge-bases/carbonconnectorlocalfiles.md
-    - Dropbox: nodes/md/knowledge-bases/carbonconnectordropbox.md
-    - GitHub: nodes/md/knowledge-bases/carbonconnectorgithub.md
-    - Gmail: nodes/md/knowledge-bases/carbonconnectorgmail.md
-    - Google Cloud Storage: nodes/md/knowledge-bases/carbonconnectorgcs.md
-    - Google Drive: nodes/md/knowledge-bases/carbonconnectorgoogledrive.md
-    - Notion: nodes/md/knowledge-bases/carbonconnectornotion.md
-    - OneDrive: nodes/md/knowledge-bases/carbonconnectoronedrive.md
-    - S3: nodes/md/knowledge-bases/carbonconnectors3.md
-    - Slack: nodes/md/knowledge-bases/carbonconnectorslack.md
-    - Web URLs: nodes/md/knowledge-bases/carbonconnectorwebscraper.md
-  - LLMs:
-    - Anthropic LLM: nodes/md/llms/litellmanthropic.md
-    - DeepSeek LLM: nodes/md/llms/litellmdeepseek.md
-    - Gemini LLM: nodes/md/llms/litellmgemini.md
-    - Groq LLM: nodes/md/llms/litellmgroq.md
-    - OpenAI LLM: nodes/md/llms/litellmopenai.md
   - Logic:
-    - Do While Loop: nodes/md/logic/saltifnodesimpleloop.md
-    - Merge If Branches: nodes/md/logic/saltconditionalmerge.md
-    - Simple If: nodes/md/logic/saltifnode.md
     - Condition:
       - Bool Operation: nodes/md/logic/condition/saltbooloperationnode.md
       - Float Condition: nodes/md/logic/condition/saltfloatconditions.md
@@ -226,6 +192,7 @@ nav:
       - Lazy Switch: nodes/md/logic/condition/saltlazyswitch.md
       - String Condition: nodes/md/logic/condition/saltstringconditions.md
     - Flow Control:
+      - Do While Loop: nodes/md/logic/flow-control/saltifnodesimpleloop.md
       - For Loop Close (Deprecated): nodes/md/logic/flow-control/saltforloopclose.md
       - For Loop Open (Deprecated): nodes/md/logic/flow-control/saltforloopopen.md
       - JSON Loop Close: nodes/md/logic/flow-control/saltjsonsaltloopclose.md
@@ -245,11 +212,67 @@ nav:
         - Combine Accumulation: nodes/md/logic/flow-control/accumulation/combineaccumulationnode.md
         - List to Accumulation: nodes/md/logic/flow-control/accumulation/saltlisttoaccumulationnode.md
     - Logic Utility:
+      - Debug Print: nodes/md/logic/logic-utility/saltdebugprint.md
+      - Make List: nodes/md/logic/logic-utility/saltmakelistnode.md
       - To Bool: nodes/md/logic/logic-utility/salttoboolnode.md
   - New/Uncategorized:
-    - Load GCS File: nodes/md/new-uncategorized/loadgcsfilenode.md
-    - Load GCS Scaffold Folder: nodes/md/new-uncategorized/loadgcsscaffoldfoldernode.md
-    - Make Secstruc Adj: nodes/md/new-uncategorized/makesecstrucadjnode.md
+    - Boolean: nodes/md/new-uncategorized/saltboolean.md
+    - CSV to DataFrame: nodes/md/new-uncategorized/csvtodataframenode.md
+    - Chart: nodes/md/new-uncategorized/saltchart.md
+    - Compare DataFrames: nodes/md/new-uncategorized/comparedataframesnode.md
+    - Composite Images: nodes/md/new-uncategorized/saltimageblendingmodes.md
+    - Concatenate DataFrames: nodes/md/new-uncategorized/concatenatedataframesnode.md
+    - DataFrame to CSV: nodes/md/new-uncategorized/dataframetocsvnode.md
+    - DataFrame to HTML: nodes/md/new-uncategorized/dataframetohtmlnode.md
+    - Excel to DataFrame: nodes/md/new-uncategorized/exceltodataframenode.md
+    - Float: nodes/md/new-uncategorized/saltfloat.md
+    - If / Else: nodes/md/new-uncategorized/saltifelse.md
+    - Integer: nodes/md/new-uncategorized/saltinteger.md
+    - JSON to DataFrame: nodes/md/new-uncategorized/jsontodataframenode.md
+    - List: nodes/md/new-uncategorized/saltlist.md
+    - Load CIF: nodes/md/new-uncategorized/loadcifnode.md
+    - Load Cloud File: nodes/md/new-uncategorized/loadcloudfilenode.md
+    - Load Cloud File: nodes/md/new-uncategorized/loadgcsfilenode.md
+    - Load Cloud Scaffold Folder: nodes/md/new-uncategorized/loadcloudscaffoldfoldernode.md
+    - Load Cloud Scaffold Folder: nodes/md/new-uncategorized/loadgcsscaffoldfoldernode.md
+    - Merge If Branches: nodes/md/new-uncategorized/saltconditionalmerge.md
+    - Neo4J Connection String: nodes/md/new-uncategorized/saltneo4jconnectionstring.md
+    - Neo4J Database Info: nodes/md/new-uncategorized/saltneo4jdatabaseinfo.md
+    - Neo4J Graph Explorer: nodes/md/new-uncategorized/saltneo4jgraphexplorer.md
+    - Neo4J Node Labels: nodes/md/new-uncategorized/saltneo4jnodelabels.md
+    - Neo4J Nodes by Label: nodes/md/new-uncategorized/saltneo4jnodesbylabel.md
+    - Neo4J Property Keys: nodes/md/new-uncategorized/saltneo4jpropertykeys.md
+    - Neo4J Query: nodes/md/new-uncategorized/saltneo4jquery.md
+    - Neo4J Relationship Types: nodes/md/new-uncategorized/saltneo4jrelationshiptypes.md
+    - Neo4J Relationships by Type: nodes/md/new-uncategorized/saltneo4jrelationshipsbytype.md
+    - Neo4J Schema Info: nodes/md/new-uncategorized/saltneo4jschemainfo.md
+    - Neo4J Test Connection: nodes/md/new-uncategorized/saltneo4jtestconnection.md
+    - Neo4J Transaction: nodes/md/new-uncategorized/saltneo4jtransaction.md
+    - Neo4J Write: nodes/md/new-uncategorized/saltneo4jwrite.md
+    - Object: nodes/md/new-uncategorized/saltobject.md
+    - OpenMM Energy Minimize: nodes/md/new-uncategorized/saltaiopenmmenergyminimize.md
+    - OpenMM ForceField Config: nodes/md/new-uncategorized/saltaiopenmmforcefieldconfig.md
+    - OpenMM Simulate: nodes/md/new-uncategorized/saltaiopenmmsimulate.md
+    - OpenMM Solvate: nodes/md/new-uncategorized/saltaiopenmmsolvate.md
+    - Parquet to DataFrame: nodes/md/new-uncategorized/parquettodataframenode.md
+    - RF Diffusion Scaffold Guided Config: nodes/md/new-uncategorized/saasrfdiffusionscaffoldguidedconfignode.md
+    - Simple If: nodes/md/new-uncategorized/saltifnode.md
+    - String: nodes/md/new-uncategorized/saltstring.md
+    - Table Cast Type: nodes/md/new-uncategorized/salttablecasttype.md
+    - Table Display: nodes/md/new-uncategorized/saltdisplaytable.md
+    - Table Fill Nulls: nodes/md/new-uncategorized/salttablefillnull.md
+    - Table Filter: nodes/md/new-uncategorized/salttablefilter.md
+    - Table Group: nodes/md/new-uncategorized/salttablegroupby.md
+    - Table Info: nodes/md/new-uncategorized/salttableinfo.md
+    - Table Join: nodes/md/new-uncategorized/salttablejoin.md
+    - Table Output: nodes/md/new-uncategorized/salttableoutput.md
+    - Table Read CSV: nodes/md/new-uncategorized/salttablefromcsv.md
+    - Table Read JSON: nodes/md/new-uncategorized/salttablefromjson.md
+    - Table Sample: nodes/md/new-uncategorized/salttablesample.md
+    - Table Select Columns: nodes/md/new-uncategorized/salttableselectcolumns.md
+    - Table Sort: nodes/md/new-uncategorized/salttablesort.md
+    - Table Write CSV: nodes/md/new-uncategorized/salttabletocsv.md
+    - Table Write JSON: nodes/md/new-uncategorized/salttabletojson.md
   - Outputs:
     - Output: nodes/md/outputs/saltoutput.md
     - Writers:
@@ -259,7 +282,6 @@ nav:
     - API Fetcher: nodes/md/utilities/saltapifetcher.md
     - Code Executor: nodes/md/utilities/saltcodeexecutor.md
     - Data Monitor: nodes/md/utilities/saltdatamonitor.md
-    - Debug Print: nodes/md/utilities/saltdebugprint.md
     - Inspect: nodes/md/utilities/saltinspect.md
     - Primitive Value Converter: nodes/md/utilities/saltprimitiveconverter.md
     - Regex Search and Match: nodes/md/utilities/saistringregexsearchmatch.md
@@ -286,6 +308,15 @@ nav:
       - Rounding Operation: nodes/md/utilities/math/saltroundingoperation.md
       - Statistical Operation: nodes/md/utilities/math/saltstatisticaloperation.md
       - Trigonometric Operation: nodes/md/utilities/math/salttrigonometricoperation.md
+    - Memory & Storage:
+      - Memory Delete: nodes/md/utilities/memory-storage/saltmemorydelete.md
+      - Memory Keys: nodes/md/utilities/memory-storage/saltmemorykeys.md
+      - Memory Read: nodes/md/utilities/memory-storage/saltmemoryread.md
+      - Memory Write: nodes/md/utilities/memory-storage/saltmemorywrite.md
+      - Storage Delete: nodes/md/utilities/memory-storage/saltstoragedelete.md
+      - Storage List & URL: nodes/md/utilities/memory-storage/saltstoragelisturl.md
+      - Storage Read: nodes/md/utilities/memory-storage/saltstorageread.md
+      - Storage Write: nodes/md/utilities/memory-storage/saltstoragewrite.md
 - Node Builder:
   - Getting Started with Node Builder: node-builder/getting-started.md
 - Deployments:

@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Collects connected results, organizes them into a well-structured folder (including optional seeds/configs), uploads the folder’s content to a specified path in a cloud bucket, and returns a signed URL to a downloadable zip of that content. Each run is uniquely namespaced to avoid collisions and to allow merging results from multiple runs under the same folder path.
+Save To Bucket extends the generic SaveToZip behavior to upload the resulting zip archive into a Google Cloud Storage bucket. It gathers connected upstream outputs, packages them into a structured folder, compresses that folder to a zip file, and stores it under a specified folder path in the bucket. Results from multiple workflow runs can share the same bucket folder while remaining distinguishable through an internal workflow execution identifier.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/biotech-utils/savetobucketnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Collects connected results, organizes them into a well-structured folder (includ
 
 ## Usage
 
-Use this node at the end of a workflow to persist and share results externally. Connect one or more outputs (results_1, results_2, …) from upstream nodes. Set the target bucket folder path to organize outputs. The node will package all connected outputs, upload them to the bucket, and provide a signed URL you can pass to an Output node for easy downloading.
+Use this node when you need to persist workflow outputs as a zip archive in Google Cloud Storage for later retrieval, sharing, or external processing. Typical usage is near the end of a workflow: upstream biotech nodes (such as PDB loaders, combiners, and visualization nodes) produce PDB, FASTA, A3M, and metadata, which you connect to the dynamic result inputs provided by the SaveToZip base class. Save To Bucket then zips these results and uploads the archive to the configured folder_path inside the bucket. Commonly, you connect the node’s URL output to an Output node so users can click and download the archive from the Salt UI. For organized storage, choose a stable, descriptive folder_path (for example grouped by project or target) and rely on the automatically injected workflow_execution_id_context to distinguish between separate runs stored under the same folder.
 
 ## Inputs
 
@@ -26,10 +26,7 @@ Use this node at the end of a workflow to persist and share results externally. 
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">results_1</td><td>True</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">First result to save. Accepts any connected output (text, JSON-like, structured text formats). Enables results_2 once connected.</td><td style="word-wrap: break-word;">{'summary': 'job completed', 'metrics': {'loss': 0.12}}</td></tr>
-<tr><td style="word-wrap: break-word;">results_2</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Additional result to save. Appears after results_1 is connected. Up to 100 results are supported (results_2 ... results_101).</td><td style="word-wrap: break-word;">FASTA or PDB text content</td></tr>
-<tr><td style="word-wrap: break-word;">results_3..results_101</td><td>False</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">Optional additional results. Each becomes available after the previous result input is connected.</td><td style="word-wrap: break-word;">Additional text outputs, structured text files, or logs</td></tr>
-<tr><td style="word-wrap: break-word;">folder_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Destination folder path inside the cloud bucket. Results from multiple runs can be merged here; each run is uniquely identified to avoid overwriting. Supports nested paths using forward slashes (e.g., 'projectA/experiments/run1').</td><td style="word-wrap: break-word;">biotech/my_experiment_1</td></tr>
+<tr><td style="word-wrap: break-word;">folder_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Path to the destination folder within the configured GCP bucket, using Linux-style notation with forward slashes. The folder may already contain archives or other results; new artifacts from this node are merged into that location while remaining uniquely distinguishable per workflow execution via an internal execution id. Avoid trailing slashes and prefer consistent, human-readable segments for easier navigation and organization.</td><td style="word-wrap: break-word;">alphafold/runs/BRCA1_2024-04-15</td></tr>
 </tbody>
 </table>
 </div>
@@ -46,24 +43,22 @@ Use this node at the end of a workflow to persist and share results externally. 
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">url</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Signed URL to a zip file containing all uploaded results for this node’s run within the specified bucket folder.</td><td style="word-wrap: break-word;">https://storage.googleapis.com/<bucket>/biotech/my_experiment_1/<unique_run_id>/<unique_run_id>.zip?X-Goog-Signature=<signature></td></tr>
+<tr><td style="word-wrap: break-word;">zip_url</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">URL of the created zip file that represents the current run’s content saved in the specified bucket folder. This URL can be exposed through an Output node so users can click to download the archive. The exact format (for example, signed URL vs. public object URL) depends on the platform’s GCP bucket configuration and access policies.</td><td style="word-wrap: break-word;">https://storage.googleapis.com/salt-results-bucket/alphafold/runs/BRCA1_2024-04-15/exec_3f7a2b7c-8da1-4a6c-9b42-2b7d1d90a4f1/results.zip</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- Folder path must not be empty; the node will raise an error if it is blank.
-- Results are grouped and written into a logical folder structure; multiple runs within the same folder_path are uniquely namespaced to avoid conflicts.
-- This node returns a signed URL to a zip representing the uploaded folder’s contents, suitable for direct download via an Output node.
-- The node is intended as a terminal step in workflows to persist and share outputs externally.
-- If user scoping is required, ensure a valid salt_user_id is available in the execution context.
+- **Performance**: Uploading large or numerous result files to the bucket can be slow and bandwidth-intensive; limit saved artifacts to essential outputs when possible and avoid repeatedly saving very large intermediates.
+- **Limitations**: Bucket selection, region, and authentication are managed at the Salt environment level; this node does not allow you to specify custom GCP credentials or change the target bucket directly from its configuration.
+- **Behavior**: Multiple workflow runs may write under the same folder_path. The node uses the workflow_execution_id_context to internally distinguish between runs so that overlapping folder paths do not overwrite each other’s logical result sets.
+- **Behavior**: The internal folder structure and file naming inside the zip archive are inherited from the SaveToZipNode implementation and from how upstream outputs are wired into its result inputs; adjusting those connections will change what appears in the saved archive.
 
 ## Troubleshooting
-- Error: 'Please specify non empty folder path' — Provide a non-empty folder_path (avoid using the root of the bucket).
-- No URL returned or upload appears incomplete — Verify that connected results contain data and that the execution did not timeout. Re-run with fewer/lighter outputs if necessary.
-- Access issues when opening the signed URL — Ensure the URL has not expired and that you copied the full link. Re-run to generate a fresh URL if needed.
-- Unexpected file/folder naming — The node auto-resolves name collisions by appending indexes; review the resulting zip structure to locate files.
-- Missing expected result inputs — Remember that results_2 becomes available only after results_1 is connected, and so on for subsequent inputs.
+- **Common Error 1**: An error mentioning insufficient permissions or access denied when attempting to save indicates that the Salt service account lacks write permissions to the bucket. Verify IAM roles and ensure the configured bucket allows object creation for the service account used by Salt.
+- **Common Error 2**: The node returns a URL but opening it yields HTTP 403 or 404. This typically arises from restrictive bucket access settings or expired signed URLs. Check bucket/object ACLs or IAM policies and, if using time-limited URLs, rerun the workflow to regenerate a fresh link.
+- **Common Error 3**: Expected files are missing in the downloaded zip. Confirm that the desired upstream outputs are actually connected to the SaveToBucket/SaveToZip result inputs and that the corresponding nodes executed successfully in the current workflow run.
+- **Common Error 4**: Stored archives appear disorganized in the bucket. Review your folder_path values for consistency across related workflows and avoid ad-hoc naming; a stable structure such as "project/target/date" simplifies later retrieval and analysis.
 
 ## Example Pipelines
 

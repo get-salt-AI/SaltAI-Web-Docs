@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Executes non-SELECT SQL statements (INSERT, UPDATE, DELETE, DDL) on a PostgreSQL database. It connects using a credentials URI and returns a human-readable result summary along with machine-friendly JSON and tabular renderings where applicable.
+This node sends a non-SELECT SQL statement (INSERT, UPDATE, DELETE, or other DML) to a PostgreSQL database through a configured PostgreSQL service. It loads credentials from a secure credentials path, calls the underlying PostgreSQL execute endpoint, and returns a formatted summary of the execution result as text and JSON. Use it to modify data rather than retrieve result sets.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/postgresql/saltpostgresexecute.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Executes non-SELECT SQL statements (INSERT, UPDATE, DELETE, DDL) on a PostgreSQL
 
 ## Usage
 
-Use this node when you need to perform write or administrative operations against a PostgreSQL database, such as inserting records, updating rows, deleting data, or running DDL (e.g., CREATE TABLE). Provide a valid PostgreSQL credentials URI, set an appropriate timeout, and supply the SQL statement to execute. Typically placed after configuration/credential nodes and before any nodes that depend on the execution outcome.
+Use SaltPostgresExecute whenever you need to change data in a PostgreSQL database from a Salt workflow—for example inserting new records, updating fields, or deleting rows based on logic computed earlier in the pipeline. Typically, this node appears after business-logic or data-preparation nodes (such as LLM decision nodes, data transformation nodes, or SaltPostgresQuery results that inform what should be changed), and before reporting or notification nodes that confirm the operation. Upstream, you must supply a valid credentials path (usually from a credentials or environment configuration node) and set an appropriate timeout based on expected query cost. You can construct the SQL statement dynamically using outputs from previous nodes, then pass the final SQL string into this node. Downstream, nodes commonly parse or display the execution summary (rows affected, success/failure) for logging, user feedback, or conditional branching in the workflow. It pairs naturally with "SaltPostgresQuery" (for reading data), generic orchestration nodes that build SQL strings, and monitoring/logging nodes that record database changes. Prefer this node for write operations, and keep read operations separated in "SaltPostgresQuery" to maintain clear workflows and access patterns.
 
 ## Inputs
 
@@ -26,9 +26,9 @@ Use this node when you need to perform write or administrative operations agains
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">PostgreSQL connection URI specifying how to connect to the database.</td><td style="word-wrap: break-word;">postgres://<username>:<password>@db.example.com:5432/my_database</td></tr>
-<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time in seconds to wait for the database operation before failing.</td><td style="word-wrap: break-word;">60</td></tr>
-<tr><td style="word-wrap: break-word;">sql_text</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The SQL statement to execute. Intended for INSERT/UPDATE/DELETE or other non-SELECT operations.</td><td style="word-wrap: break-word;">INSERT INTO users (name, email) VALUES ('John Doe', 'john@example.com')</td></tr>
+<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Filesystem or configuration path pointing to stored PostgreSQL credentials that match the "postgres" credential template. This must resolve to connection details (host, port, database, user, and password or equivalent secure token) that the node can load before executing the statement.</td><td style="word-wrap: break-word;">/app/config/credentials/postgres/prod.json</td></tr>
+<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time in seconds to wait for the PostgreSQL execute request to complete before failing. Use a slightly higher timeout for heavier bulk operations and a lower value for quick, latency-sensitive requests.</td><td style="word-wrap: break-word;">30</td></tr>
+<tr><td style="word-wrap: break-word;">sql_text</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">SQL INSERT, UPDATE, DELETE, or other non-SELECT statement to execute against the PostgreSQL database. Must be valid PostgreSQL syntax and must not require interactive parameters; build the final statement before passing it in. Multi-line statements are supported.</td><td style="word-wrap: break-word;">UPDATE customers SET status = 'inactive' WHERE last_login < NOW() - INTERVAL '365 days';</td></tr>
 </tbody>
 </table>
 </div>
@@ -45,26 +45,21 @@ Use this node when you need to perform write or administrative operations agains
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary of the execution outcome (e.g., rows affected).</td><td style="word-wrap: break-word;">PostgreSQL Execute Results: 1 row affected</td></tr>
-<tr><td style="word-wrap: break-word;">json_result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON-formatted response containing structured details about the operation result.</td><td style="word-wrap: break-word;">{"status":"success","rows_affected":1}</td></tr>
-<tr><td style="word-wrap: break-word;">html_table</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">HTML table representation of the result when available. For non-SELECT statements, this may be an empty or minimal table.</td><td style="word-wrap: break-word;"><table><thead><tr><th>rows_affected</th></tr></thead><tbody><tr><td>1</td></tr></tbody></table></td></tr>
-<tr><td style="word-wrap: break-word;">xlsx_data</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Base64-encoded XLSX data of the result when applicable. Often minimal or empty for non-SELECT statements.</td><td style="word-wrap: break-word;"><base64-xlsx-bytes></td></tr>
-<tr><td style="word-wrap: break-word;">pdf_data</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Base64-encoded PDF data of the result when applicable. Often minimal or empty for non-SELECT statements.</td><td style="word-wrap: break-word;"><base64-pdf-bytes></td></tr>
+<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary of the PostgreSQL execute operation, suitable for logs or UI display. Typically includes whether the statement succeeded and high-level info like number of affected rows or a generic success message.</td><td style="word-wrap: break-word;">PostgreSQL Execute Results: SUCCESS. 128 rows affected.</td></tr>
+<tr><td style="word-wrap: break-word;">dataframe</td><td style="word-wrap: break-word;">DATAFRAME</td><td style="word-wrap: break-word;">Structured tabular representation of the execution response, usually containing metadata fields such as status and rows_affected. This is primarily useful for downstream nodes that expect table-like data even for non-SELECT operations.</td><td style="word-wrap: break-word;">{"columns": ["status", "rows_affected"], "data": [["success", 128]]}</td></tr>
+<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Raw JSON payload returned from the PostgreSQL execute service endpoint, preserving all response fields. Use this when you need detailed metadata or to drive conditional branching based on low-level execution results.</td><td style="word-wrap: break-word;">{"status": "success", "rows_affected": 128, "query": "UPDATE customers SET status = 'inactive' WHERE last_login < NOW() - INTERVAL '365 days';"}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Non-SELECT focus**: This node is intended for INSERT/UPDATE/DELETE/DDL statements; use query-oriented nodes for SELECT operations.
-- **Credentials required**: A valid PostgreSQL credentials URI must be provided or the node will fail.
-- **Timeouts**: Long-running statements should have an appropriately increased timeout to avoid premature failure.
-- **Safety**: Avoid concatenating untrusted input into SQL to prevent SQL injection vulnerabilities.
-- **Result formats**: Tabular/Excel/PDF outputs may be minimal for non-SELECT operations since they typically produce metadata rather than row sets.
-- **Permissions**: Ensure the provided database user has sufficient privileges for the intended operation.
+- **Performance**: Execution time depends on the complexity of the SQL statement and the volume of affected rows; large bulk updates or deletes may require higher timeouts and can impact database performance.
+- **Limitations**: Designed for non-SELECT operations; for SELECT queries and retrieving result sets, use "SaltPostgresQuery" instead to avoid unexpected or empty tabular outputs.
+- **Behavior**: The node delegates to a remote PostgreSQL service using the "postgres" credential template; incorrect or missing credentials_path values will cause authentication or connection failures before any SQL is executed.
+- **Behavior**: SQL is sent as-is to the database; the node does not sanitize or parameterize statements, so you must handle SQL injection protection and input validation upstream.
 
 ## Troubleshooting
-- **Invalid credentials or URI**: Verify the credentials_path format and values (host, port, database, username, password).
-- **SQL syntax error**: Validate the sql_text against PostgreSQL syntax; test the statement directly in a SQL client.
-- **Timeouts**: Increase the timeout input for heavy operations or ensure the database is responsive.
-- **Insufficient privileges**: Confirm the database user has the necessary permissions to execute the statement.
-- **Connectivity issues**: Check network access, firewall rules, and that the PostgreSQL instance is reachable on the specified host/port.
+- **Error: Authentication failed or could not connect to database**: Verify that "credentials_path" points to a valid credentials file, the file matches the "postgres" template, and the network/security groups allow connections to the target PostgreSQL instance.
+- **Error: Syntax error at or near ...**: The PostgreSQL server rejected the SQL statement; inspect "sql_text" for PostgreSQL-specific syntax issues, stray quotes, missing semicolons, or using a SELECT statement where this execute endpoint expects non-SELECT statements.
+- **Timeout exceeded while executing request**: Your operation took longer than the configured "timeout"; increase the timeout value, simplify the query (for example, batch updates in smaller chunks), or ensure database indexes and performance are adequate.
+- **No rows affected when expected**: The node executed successfully but did not change data; confirm that the WHERE clause conditions are correct and that the query is pointed at the intended database/schema via the credentials configuration.
