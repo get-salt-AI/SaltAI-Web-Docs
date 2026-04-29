@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Builds a valid Microsoft SQL Server (MSSQL) database URI from individual parameters. Supports SQL authentication (username/password), optional instance names, and Windows Integrated Security. Returns the connection string in the primary output and leaves other outputs empty; on error, returns an error message and JSON error details.
+This node constructs a properly formatted MSSQL database connection string from individual fields like host, port, database, username/password, optional instance, and Windows Integrated Security. It standardizes how connection details are passed to downstream MSSQL nodes so you do not need to handcraft URIs. The output is a single connection string or credentials-style reference suitable for executing queries or other SQL Server operations.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/mssql/saltmssqlconnectionstring.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Builds a valid Microsoft SQL Server (MSSQL) database URI from individual paramet
 
 ## Usage
 
-Use this node when you need to construct a MSSQL connection URI to pass into other SQL Server nodes (Query, Execute, etc.) or any component that expects a credentials_path URI. Typical workflow: configure host, port, database, and either username/password or enable integrated security; then feed the resulting connection string into subsequent database nodes.
+Use this node whenever you need to connect to a Microsoft SQL Server from a Salt workflow and other nodes expect a single connection string or credentials_path-like URI. A typical pattern is: place this node near the start of your data pipeline, configure host, port, database, and either SQL authentication (username/password) or enable integrated_security for Windows authentication, then wire its output into nodes such as "SaltMSSQLExecute", "SaltMSSQLQuery", or other MSSQL-aware nodes. In analytics workflows, you might first construct the connection here, then run a query node, pass results into transformation or LLM nodes, and finally store or visualize the processed data. For reliability, keep this node’s configuration centralized and reuse it across multiple query/execute branches instead of duplicating credentials, and when using integrated security, ensure your runtime environment is correctly configured with appropriate OS-level credentials.
 
 ## Inputs
 
@@ -26,13 +26,13 @@ Use this node when you need to construct a MSSQL connection URI to pass into oth
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">host</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Database server hostname or IP address.</td><td style="word-wrap: break-word;">db.example.com</td></tr>
-<tr><td style="word-wrap: break-word;">port</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">TCP port for the SQL Server instance. Defaults to 1433.</td><td style="word-wrap: break-word;">1433</td></tr>
-<tr><td style="word-wrap: break-word;">database</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Target database name.</td><td style="word-wrap: break-word;">SalesDB</td></tr>
-<tr><td style="word-wrap: break-word;">username</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Username for SQL authentication. Ignored if Integrated Security is enabled.</td><td style="word-wrap: break-word;">sa</td></tr>
-<tr><td style="word-wrap: break-word;">password</td><td>True</td><td style="word-wrap: break-word;">PASSWORD</td><td style="word-wrap: break-word;">Password for SQL authentication. Ignored if Integrated Security is enabled.</td><td style="word-wrap: break-word;"><db-password></td></tr>
-<tr><td style="word-wrap: break-word;">instance</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional SQL Server instance name. If provided, it is appended as a query parameter.</td><td style="word-wrap: break-word;">MSSQLSERVER</td></tr>
-<tr><td style="word-wrap: break-word;">integrated_security</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Enable Windows Integrated Security (no username/password in the URI).</td><td style="word-wrap: break-word;">False</td></tr>
+<tr><td style="word-wrap: break-word;">host</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">DNS name or IP address of the SQL Server instance. This can be a local server (e.g. localhost) or a remote host name/FQDN. Must be reachable from the Salt runtime network.</td><td style="word-wrap: break-word;">sql-prod-01.internal.corp</td></tr>
+<tr><td style="word-wrap: break-word;">port</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">TCP port the SQL Server listens on. Default MSSQL port is 1433; use a custom port if your server is configured differently. Valid range is 1-65535.</td><td style="word-wrap: break-word;">1433</td></tr>
+<tr><td style="word-wrap: break-word;">database</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Name of the target database to connect to on the server. This is the default schema context for queries and commands.</td><td style="word-wrap: break-word;">SalesAnalytics</td></tr>
+<tr><td style="word-wrap: break-word;">username</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">SQL Server login username when using SQL authentication. Commonly a dedicated application or service account. Typically unused if integrated_security is enabled.</td><td style="word-wrap: break-word;">etl_service_user</td></tr>
+<tr><td style="word-wrap: break-word;">password</td><td>True</td><td style="word-wrap: break-word;">PASSWORD</td><td style="word-wrap: break-word;">Password corresponding to the SQL Server login. Only used for SQL authentication; for Windows Integrated Security, this is usually left empty. Never reuse personal passwords and avoid exposing this value in shared screenshots or exports.</td><td style="word-wrap: break-word;"><strong-db-password></td></tr>
+<tr><td style="word-wrap: break-word;">instance</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional SQL Server named instance. Use when connecting to a non-default instance on the host. Leave empty for the default instance.</td><td style="word-wrap: break-word;">MSSQLSERVER_DEV</td></tr>
+<tr><td style="word-wrap: break-word;">integrated_security</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Whether to use Windows Integrated Security (trusted connection) instead of SQL username/password authentication. When true, the environment's Windows identity must have access to the database; username and password may be ignored depending on driver and configuration.</td><td style="word-wrap: break-word;">True</td></tr>
 </tbody>
 </table>
 </div>
@@ -49,24 +49,18 @@ Use this node when you need to construct a MSSQL connection URI to pass into oth
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The constructed MSSQL connection string or an error message if construction failed.</td><td style="word-wrap: break-word;">mssql://sa:<db-password>@db.example.com:1433/SalesDB?instance=MSSQLSERVER</td></tr>
-<tr><td style="word-wrap: break-word;">json_result</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON error details if construction fails; otherwise empty.</td><td style="word-wrap: break-word;">{"error": "Failed to construct connection string: <reason>"}</td></tr>
-<tr><td style="word-wrap: break-word;">html_table</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Not used by this node. Always empty.</td><td style="word-wrap: break-word;"></td></tr>
-<tr><td style="word-wrap: break-word;">xlsx_data</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Not used by this node. Always empty.</td><td style="word-wrap: break-word;"></td></tr>
-<tr><td style="word-wrap: break-word;">pdf_data</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Not used by this node. Always empty.</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">connection_string</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A fully composed MSSQL connection URI or connection string that encodes host, port, database, and authentication settings. This is fed into downstream MSSQL nodes to establish a database session.</td><td style="word-wrap: break-word;">mssql://etl_service_user:<strong-db-password>@sql-prod-01.internal.corp:1433/SalesAnalytics?instance=MSSQLSERVER_DEV&integratedSecurity=true</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- If Integrated Security is enabled, the URI format is mssql://<host>:<port>/<database>?integrated_security=true and username/password are ignored.
-- If an instance name is provided, it is appended as ?instance=<instance> to the URI.
-- Special characters in usernames or passwords are not URL-encoded by this node. If your credentials contain special characters, pre-encode them to avoid malformed URIs.
-- This node does not validate or test the database connection; it only constructs the URI.
-- Default port is 1433 if you are unsure of the SQL Server port.
+- **Performance**: The node itself only assembles a string, so it is fast; however, incorrect connection details can lead to long connection timeouts in downstream database nodes.
+- **Limitations**: It assumes a standard MSSQL URI format; highly customized or driver-specific connection strings may require a custom node or manual construction elsewhere.
+- **Behavior**: When integrated_security is enabled, many drivers will ignore username and password, relying entirely on the Windows context of the Salt runtime process.
+- **Security**: Treat the resulting connection string as sensitive. Avoid hardcoding real passwords, and prefer secure secret management to provide credentials to this node.
 
 ## Troubleshooting
-- Got an authentication error downstream: Ensure you used the correct authentication mode. If using Integrated Security, turn it on and leave username/password unused; otherwise provide valid SQL credentials.
-- Connection fails due to special characters: URL-encode username/password before input (e.g., replace special characters with their percent-encoded form).
-- Server requires an instance name: Provide the correct instance in the 'instance' field so it is included as a query parameter.
-- Downstream node rejects credentials_path: Verify the output begins with mssql:// and includes host, port, and database as expected.
+- **Common Error 1**: "Login failed for user" - Check that username/password are correct, the login is enabled on the SQL Server, and integrated_security is set appropriately (false if you intend to use SQL authentication).
+- **Common Error 2**: "Cannot open database requested by the login" - Verify that the database name exists on the server and that the login has permission to access it; also ensure you are connecting to the correct server/instance.
+- **Common Error 3**: Network-related or instance-specific errors (e.g. connection timeouts) - Confirm that host and port are reachable (firewalls, VPN, DNS), that SQL Server is listening on the specified port, and that the instance name (if provided) is correct.

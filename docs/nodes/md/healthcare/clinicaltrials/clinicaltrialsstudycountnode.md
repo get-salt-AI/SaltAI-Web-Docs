@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Retrieves a count of clinical studies from ClinicalTrials.gov that match a given condition or disease. Returns the result content and a metadata summary, supporting JSON or CSV output formats with basic error handling for network and parsing issues.
+This node calls the ClinicalTrials.gov /studies endpoint to retrieve how many studies match a given condition, disease, or query string and returns both the result payload and compact metadata. It supports JSON, CSV, and XML response formats, enriching JSON responses with summary fields such as total study count and API version. The node leverages a shared ClinicalTrials base node that standardizes base URL and query parameter construction.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/healthcare/clinicaltrials/clinicaltrialsstudycountnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Retrieves a count of clinical studies from ClinicalTrials.gov that match a given
 
 ## Usage
 
-Use this node when you need the number of studies that match a search term on ClinicalTrials.gov, optionally limiting returned fields. Typical workflow: provide a condition or disease query, choose output format (JSON recommended), optionally specify fields, then feed the count/metadata to subsequent filtering, reporting, or visualization steps.
+Use this node when you need a quick count or high-level summary of clinical studies for a specified condition or disease instead of full study records. It fits early in a workflow to assess whether there are enough relevant studies before running heavier detail queries, downstream text analysis, or report generation. Upstream, provide a query string from user input or a prior NLP normalization step that standardizes disease or condition names. Downstream, send the "results" output to JSON-parsing or text-processing nodes to extract "total_studies" and other values, and route the "metadata" output to logging, monitoring, or summarization nodes for audit trails. This node pairs well with other ClinicalTrials nodes built on the same base (such as nodes that retrieve full study data) and with conditional or branching nodes that decide next steps based on the returned study count. Prefer "json" format if you intend to parse counts or metadata programmatically; use "csv" or "xml" for export, interoperability, or direct integration with external tools that consume those formats.
 
 ## Inputs
 
@@ -26,9 +26,9 @@ Use this node when you need the number of studies that match a search term on Cl
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">condition_or_disease</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Primary search query for the condition, disease, or term to match studies on ClinicalTrials.gov.</td><td style="word-wrap: break-word;">diabetes</td></tr>
-<tr><td style="word-wrap: break-word;">format</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Response format for the results content. Supported values: json, csv. JSON provides structured data including totalStudies; CSV returns raw text content.</td><td style="word-wrap: break-word;">json</td></tr>
-<tr><td style="word-wrap: break-word;">fields</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Comma-separated list of fields to include in the response. Leave empty to use API defaults.</td><td style="word-wrap: break-word;">NCTId,BriefTitle,OverallStatus</td></tr>
+<tr><td style="word-wrap: break-word;">condition_or_disease</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Search query string sent to the ClinicalTrials.gov API, typically a condition, disease name, or supported search expression. Use medically meaningful terms or keyword combinations that ClinicalTrials.gov can interpret. The node passes this value into the base node's query parameter builder for the /studies endpoint.</td><td style="word-wrap: break-word;">type 2 diabetes mellitus</td></tr>
+<tr><td style="word-wrap: break-word;">format</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Response format requested from the ClinicalTrials.gov API. When set to "json", the node parses the response, extracts summary fields, and returns a JSON-formatted string with additional metadata. For other valid formats such as "csv" or "xml", it returns the raw text body without parsing but still provides separate metadata. Choose "json" for programmatic inspection of counts and metadata; use "csv" or "xml" when integrating with tools that expect those formats.</td><td style="word-wrap: break-word;">json</td></tr>
+<tr><td style="word-wrap: break-word;">fields</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Optional comma-separated list of specific fields to request from ClinicalTrials.gov. These field names must follow the ClinicalTrials.gov API documentation and are passed directly through the base node's build_query_params method. Leaving this empty lets the API return its default field set for the endpoint and chosen format.</td><td style="word-wrap: break-word;">NCTId,Condition,OverallStatus</td></tr>
 </tbody>
 </table>
 </div>
@@ -45,21 +45,20 @@ Use this node when you need the number of studies that match a search term on Cl
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">results</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The response content. For format=json, a JSON string including the API response and a totalStudies summary; for format=csv, the raw CSV text.</td><td style="word-wrap: break-word;">{   "data": { ... },   "query": "diabetes",   "total_studies": 1234,   "min_rank": 1,   "max_rank": 10,   "api_version": "2.0" }</td></tr>
-<tr><td style="word-wrap: break-word;">metadata</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Metadata about the request/response. For JSON: includes query, format, and api_version. For CSV: includes query, format, and content_length.</td><td style="word-wrap: break-word;">{   "query": "diabetes",   "format": "json",   "api_version": "2.0" }</td></tr>
+<tr><td style="word-wrap: break-word;">results</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Primary response content from ClinicalTrials.gov. For format = "json", this is a JSON-formatted string containing both the original API response (under "data") and convenience keys: "query", "total_studies" (from "totalStudies"), "min_rank", "max_rank", and "api_version". For "csv" or "xml", this is the raw text returned by the API (such as a CSV table or XML document). On failures, this field contains a small JSON string with an "error" key describing the category of failure (such as "Network error" or "JSON decode error").</td><td style="word-wrap: break-word;">{   "data": {     "totalStudies": 1245,     "minRank": 1,     "maxRank": 10,     "apiVersion": "2.0"   },   "query": "type 2 diabetes mellitus",   "total_studies": 1245,   "min_rank": 1,   "max_rank": 10,   "api_version": "2.0" }</td></tr>
+<tr><td style="word-wrap: break-word;">metadata</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Compact metadata describing the query and response, always returned as a JSON-formatted string. For JSON responses, it includes at least "query", "format", and "api_version" from the API payload. For CSV or XML responses, it includes "format", "content_length" (the number of characters in the raw content), and "query". In error cases, it mirrors the error style of "results", returning a JSON string with an "error" key (for example, "{\"error\": \"Network error\"}").</td><td style="word-wrap: break-word;">{   "query": "type 2 diabetes mellitus",   "format": "json",   "api_version": "2.0" }</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- The node queries the ClinicalTrials.gov API v2 using a condition/disease search and summarizes counts based on the API response.
-- Supported formats are json and csv; xml is not supported by this node.
-- When format=json, the node returns a JSON string with totalStudies and other summary fields; when format=csv, it returns raw CSV text.
-- If no studies match the query, totalStudies may be 0 and the results content may be minimal.
-- Network timeouts and errors are handled by returning an error JSON string in both outputs.
+- **Performance**: Each invocation performs a live HTTP GET to the ClinicalTrials.gov API and can be slowed by network latency or API responsiveness; avoid unnecessarily high call frequencies in tight loops.
+- **Limitations**: The quality and semantics of search results depend entirely on ClinicalTrials.gov; unusual or malformed "condition_or_disease" values and unsupported "fields" may yield empty or unexpected responses without explicit errors from this node.
+- **Behavior**: When "format" is "json", the node parses the response, enriches it with summary keys (like "total_studies"), and pretty-prints it as JSON text; when "format" is another supported type, it returns the unmodified text body and a simpler metadata object.
+- **Behavior**: On errors (network issues, JSON parsing problems, or unexpected exceptions), the node does not raise workflow-breaking exceptions; instead, it returns predictable JSON error strings in both "results" and "metadata", which you can branch on downstream.
 
 ## Troubleshooting
-- Network error: Ensure internet connectivity and that ClinicalTrials.gov API is reachable. The node returns an error string like {"error": "Network error"}. Retry later or adjust timeout upstream if applicable.
-- JSON decode error: If format=json and the API returns non-JSON content, you will receive {"error": "JSON decode error"}. Switch to CSV or try again later.
-- Empty or unexpected results: Verify the condition_or_disease query string and try simplifying it. Check that fields are valid API fields when provided.
-- CSV output looks truncated: Check the metadata output's content_length to confirm size. Long outputs may need downstream handling for display or storage.
+- **Network error in ClinicalTrials.gov count query**: If both outputs show "{\"error\": \"Network error\"}", verify internet connectivity, proxy or firewall settings, and that ClinicalTrials.gov is reachable from your environment; consider retrying after a short delay.
+- **JSON decode error in ClinicalTrials.gov count query**: If outputs contain "{\"error\": \"JSON decode error\"}", ensure "format" is set to "json" only when the endpoint returns valid JSON; if the service responded with non-JSON content, switch to "csv" or "xml" or inspect the raw response using external tools.
+- **Unexpected zero or very low total_studies**: When counts are much lower than expected, confirm that "condition_or_disease" is spelled correctly, uses appropriate terminology, and matches how ClinicalTrials.gov indexes conditions; experiment with broader or alternative keywords and verify that any "fields" arguments are valid.
+- **Generic Unknown error response**: If both outputs contain "{\"error\": \"Unknown error\"}", this indicates an unhandled edge case or unexpected API response; try simplifying the query, changing "format", or checking external logs (if available) for the underlying exception details.

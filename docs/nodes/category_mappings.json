@@ -7,8 +7,8 @@
     "Biotech",
     "Boltz"
   ],
-  "knowledge-bases": [
-    "Knowledge Bases"
+  "new-uncategorized": [
+    "New/Uncategorized"
   ],
   "healthcare/clinicaltrials": [
     "Healthcare",
@@ -18,9 +18,6 @@
     "Logic",
     "Flow Control",
     "Accumulation"
-  ],
-  "agents": [
-    "Agents"
   ],
   "healthcare/dailymed": [
     "Healthcare",
@@ -37,11 +34,9 @@
     "Logic",
     "Condition"
   ],
-  "llms": [
+  "ai/llms": [
+    "AI",
     "LLMs"
-  ],
-  "new-uncategorized": [
-    "New/Uncategorized"
   ],
   "outputs/writers": [
     "Outputs",
@@ -74,8 +69,9 @@
     "Utilities",
     "Math"
   ],
-  "logic": [
-    "Logic"
+  "logic/logic-utility": [
+    "Logic",
+    "Logic Utility"
   ],
   "utilities/execution": [
     "Utilities",
@@ -93,13 +89,13 @@
     "Connectors",
     "MSSQL"
   ],
+  "utilities/memory-storage": [
+    "Utilities",
+    "Memory & Storage"
+  ],
   "connectors/mysql": [
     "Connectors",
     "MySQL"
-  ],
-  "connectors/neo4j": [
-    "Connectors",
-    "Neo4J"
   ],
   "connectors/oracle": [
     "Connectors",
@@ -112,8 +108,8 @@
     "Connectors",
     "PostgreSQL"
   ],
-  "logic/logic-utility": [
-    "Logic",
-    "Logic Utility"
+  "ai/agents": [
+    "AI",
+    "Agents"
   ]
 }

@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Generates an embeddable HTML viewer for a protein structure. It uploads the provided PDB content to secure storage and returns a full-page HTML string that loads the structure in a Mol* (molstar.org) viewer. If a batch of PDBs is provided, only the first is visualized.
+This node accepts a protein structure as a PDB-format string, uploads it to a backend service, and builds a full HTML page that embeds the Mol* (molstar.org) viewer pointing at the uploaded structure. The output is a single HTML string ready to render for interactive 3D inspection of the protein. Upload handling, URL encoding, and viewer configuration are encapsulated inside the node.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/biotech/biotech-utils/pdbvisualizationnode.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Generates an embeddable HTML viewer for a protein structure. It uploads the prov
 
 ## Usage
 
-Use this node to preview a protein structure during or after a workflow that produces or loads PDB data. Connect a PDB dictionary output (e.g., from a loader, combiner, or predictor) to quickly render an interactive 3D view in the app. The node returns an HTML string that can be routed to an Output/Display node.
+Use this node whenever you want an immediate, interactive 3D visualization of a protein structure that you already have as a PDB string. It is best placed toward the end of a structural workflow, after nodes that load or transform PDB data such as LoadPDBNode, PDBCombinerNode, PdbFixerNode, PDBChainExtractorNode, or Alphafold-related nodes that output PDB files. The node posts the PDB text to a backend endpoint, which stores the structure and returns a structure URL. That URL is URL-encoded and injected into a Mol* viewer URL, all wrapped in a full-screen HTML template. Feed the resulting HTML into any component that can render full HTML documents (web dashboards, notebook outputs, custom viewers). For clean visualizations, do any fixing, filtering, or chain selection upstream and reserve this node purely for visualization.
 
 ## Inputs
 
@@ -26,7 +26,7 @@ Use this node to preview a protein structure during or after a workflow that pro
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">pdb</td><td>True</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Protein structure to visualize. Accepts a dictionary mapping an ID to PDB content. If multiple entries are provided (batch), only the first one is used.</td><td style="word-wrap: break-word;">{"proteinA": "ATOM      1  N   MET A   1      11.104  13.207  -2.222  1.00 20.00           N \n...\nEND"}</td></tr>
+<tr><td style="word-wrap: break-word;">pdb_string</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Complete protein structure content in standard PDB text format as a single string. It must contain valid PDB records (HEADER, TITLE, ATOM/HETATM lines, END, etc.) with line breaks preserved. Oversized or malformed PDB data can cause backend upload errors or timeouts.</td><td style="word-wrap: break-word;">HEADER    OXYGEN TRANSPORT                        07-JUL-21   1XYZ TITLE     HUMAN HEMOGLOBIN BETA CHAIN ATOM      1  N   VAL A   1      26.017  24.657  27.492  1.00 35.67           N ATOM      2  CA  VAL A   1      25.893  25.955  26.791  1.00 34.21           C ATOM      3  C   VAL A   1      24.458  26.413  26.451  1.00 33.10           C ... END </td></tr>
 </tbody>
 </table>
 </div>
@@ -43,25 +43,23 @@ Use this node to preview a protein structure during or after a workflow that pro
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">HTML string that embeds a full-page Mol* viewer iframe loading the uploaded structure.</td><td style="word-wrap: break-word;"><!DOCTYPE html><html><head><title>Full Screen Protein Viewer</title>...<iframe src="https://molstar.org/viewer/?structure-url=<encoded-signed-url>&structure-url-format=pdb&hide-controls=1&collapse-left-panel=1" allowfullscreen></iframe>...</html></td></tr>
+<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">A complete HTML document as a string embedding the Mol* viewer in a full-screen iframe, preconfigured to load the uploaded PDB structure via a structure URL from the backend. This is suitable for direct rendering in a browser, iframe, notebook output, or any UI that accepts full HTML pages.</td><td style="word-wrap: break-word;"><!DOCTYPE html> <html> <head>   <title>Full Screen Protein Viewer</title>   <style>     body, html {       margin: 0;       padding: 0;       width: 100%;       height: 100%;       overflow: hidden;     }     .viewer-container {       width: 100%;       height: 100vh;       border: none;     }     iframe {       width: 100%;       height: 100%;       border: none;     }   </style> </head> <body>   <div class="viewer-container">     <iframe src="https://molstar.org/viewer/?structure-url=https%3A%2F%2Fexample.org%2Fstructures%2Falpha_helix_model.pdb&structure-url-format=pdb&hide-controls=1&collapse-left-panel=1" allowfullscreen></iframe>   </div> </body> </html></td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- Only the first structure in a batch is visualized.
-- The node uploads the structure to secure storage and uses a signed URL in an external Mol* viewer (molstar.org).
-- If extraction of a PDB from the input fails, the node returns the string "None".
-- Viewer controls are minimized (controls hidden, left panel collapsed) for clean embedding.
-- Execution priority is elevated so the preview is generated promptly when connected as an output node.
-- The input PDB should be valid text content; malformed or empty structures will fail to visualize.
+- **Performance**: The node sends the full PDB string via HTTP POST to a backend service and waits for a JSON response; large structures or slow networks can significantly increase latency and may reach the request timeout.
+- **Limitations**: If the backend upload endpoint is unreachable or returns a non-200 HTTP status, the node raises an exception and no HTML is produced. There is no local-only visualization path.
+- **Behavior**: The structure URL returned by the backend is URL-encoded and injected into a Mol* viewer URL with controls hidden and the left panel collapsed to maximize the 3D viewport.
+- **Behavior**: The node does not validate, normalize, or repair PDB content. Invalid or corrupted PDB strings may upload successfully but fail to render or render incorrectly in the Mol* viewer.
+- **Workflow**: Use upstream nodes like PdbFixerNode for structure repair or PDBChainExtractorNode for chain selection before visualization to improve reliability and reduce file size.
 
 ## Troubleshooting
-- If output is "None": Ensure the pdb input is a non-empty dictionary {id: pdb_content} with valid PDB text.
-- If the viewer shows a blank page: Verify the structure content is valid PDB and the signed URL remains accessible.
-- If uploads time out or fail: Check network connectivity and that backend services for uploading are available; try again later.
-- If you connected a batch and see a different structure than expected: Remember only the first available entry is used for visualization.
-- Large PDB files may take longer to upload and render; allow additional time or reduce structure size if possible.
+- **Error message: `Upload protein to gcp failed`**: Indicates that the backend upload request failed or returned a non-200 status. Check backend availability, network connectivity, and whether the PDB string is reasonable in size and format. Test with a small, known-good PDB to distinguish content vs. connectivity issues.
+- **Timeout or very slow response**: If the node appears to hang or times out, your PDB may be too large or the backend is under heavy load. Reduce the structure (for example, visualize one chain or domain) or retry when the service is less busy.
+- **HTML renders but viewer is blank**: When the HTML page loads but Mol* shows nothing, inspect and URL-decode the `structure-url` parameter in the iframe `src` and verify it points to an accessible PDB resource. Ensure that storage endpoints and molstar.org are reachable and not blocked by firewalls or proxies.
+- **Embedding issues in other UIs**: The output is a full HTML document, not a fragment. Some hosts that expect snippets may render it incorrectly. In those cases, strip the outer `<html>` and `<body>` tags and embed only the inner container and iframe, or load the document as a standalone page inside an iframe.
 
 ## Example Pipelines
 

@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Executes non-SELECT SQL statements (INSERT, UPDATE, DELETE, DDL) against a MySQL database using provided credentials. Returns a human-readable summary and a JSON payload of the execution result. Useful for data modification and administrative operations rather than data retrieval.
+MySQL Execute runs data-changing SQL statements such as INSERT, UPDATE, DELETE, and DDL (CREATE, ALTER, DROP) against a MySQL database using stored credentials. It sends your SQL to the MySQL service execute endpoint, waits for completion, and then formats the outcome into a human-readable text summary and a JSON payload. This lets you inspect what happened and drive downstream logic from the structured result.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/mysql/saltmysqlexecute.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,11 @@ Executes non-SELECT SQL statements (INSERT, UPDATE, DELETE, DDL) against a MySQL
 
 ## Usage
 
-Use this node when you need to modify data or schema in a MySQL database as part of a workflow (e.g., insert new records, update fields, delete rows, or run DDL statements). Provide a valid credentials path and your SQL statement. The node performs the request and returns a formatted text summary along with a JSON result that can be consumed by downstream nodes.
+Use this node whenever your workflow needs to modify MySQL data or schema instead of reading it. Typical scenarios include inserting new records after processing inputs, updating order or ticket statuses, deleting obsolete data, or applying schema changes within a controlled automation pipeline.
+
+In a typical pipeline, you would use MySQL Test Connection early to validate connectivity, then possibly MySQL List Databases and MySQL List Tables to explore what you can modify. Nodes like MySQL Table Info, MySQL Query Builder Helper, or MySQL Visual Query Builder can help you design the correct table structure and statements. Once you have the final non-SELECT SQL, pass it into MySQL Execute along with the proper credentials. Downstream, you can parse the JSON output to check fields such as success, affected_rows, or insert_id and branch your workflow accordingly or trigger follow-up reads via MySQL Query.
+
+This node works well together with MySQL Connection String (for building connection URIs used in your credential configuration) and with logic or control-flow nodes that implement retries or conditional execution based on the JSON result. Use it in production only after testing statements against a staging environment, and keep SQL generation controlled to avoid unsafe dynamic queries.
 
 ## Inputs
 
@@ -26,9 +30,7 @@ Use this node when you need to modify data or schema in a MySQL database as part
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Path or reference to the stored MySQL credentials that the node will use to authenticate.</td><td style="word-wrap: break-word;"><path-to-mysql-credentials></td></tr>
-<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">Not specified</td><td style="word-wrap: break-word;">Maximum time (in seconds) to wait for the execution request to complete before failing.</td><td style="word-wrap: break-word;">60</td></tr>
-<tr><td style="word-wrap: break-word;">sql_text</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The SQL statement to execute. Intended for INSERT/UPDATE/DELETE statements and DDL (e.g., CREATE TABLE, ALTER TABLE).</td><td style="word-wrap: break-word;">INSERT INTO users (name, email) VALUES ('John Doe', 'john@example.com')</td></tr>
+<tr><td style="word-wrap: break-word;">sql_text</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The SQL statement to execute against MySQL. Designed for INSERT, UPDATE, DELETE, and DDL operations, not for SELECT queries. Multiline is supported. The SQL must be valid for the target MySQL version and safe to run under the configured user privileges. If you interpolate user input, ensure it is sanitized or parameterized upstream.</td><td style="word-wrap: break-word;">INSERT INTO customers (email, first_name, last_name, created_at) VALUES ('alice@example.com', 'Alice', 'Nguyen', NOW());</td></tr>
 </tbody>
 </table>
 </div>
@@ -45,25 +47,19 @@ Use this node when you need to modify data or schema in a MySQL database as part
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Formatted summary of the execution (e.g., title and affected rows or status message).</td><td style="word-wrap: break-word;">MySQL Execute Results: 1 row affected</td></tr>
-<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON string with the raw execution result returned by the service (e.g., affected row count, status, or error).</td><td style="word-wrap: break-word;">{"rows_affected": 1, "status": "success"}</td></tr>
-<tr><td style="word-wrap: break-word;">html</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">HTML output placeholder. For execute operations, this will typically be empty.</td><td style="word-wrap: break-word;"></td></tr>
-<tr><td style="word-wrap: break-word;">xlsx</td><td style="word-wrap: break-word;">BYTES</td><td style="word-wrap: break-word;">Binary XLSX data placeholder. For execute operations, this will typically be empty.</td><td style="word-wrap: break-word;"></td></tr>
-<tr><td style="word-wrap: break-word;">pdf</td><td style="word-wrap: break-word;">BYTES</td><td style="word-wrap: break-word;">Binary PDF data placeholder. For execute operations, this will typically be empty.</td><td style="word-wrap: break-word;"></td></tr>
+<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary string describing the outcome of the execute operation. Commonly includes whether the statement was successful, how many rows were affected, and may mention insert IDs or error information. Intended for logs, operator review, or display in user interfaces.</td><td style="word-wrap: break-word;">MySQL Execute Results: Statement executed successfully. Rows affected: 1 Last insert ID: 10427.</td></tr>
+<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">JSON-encoded string with the raw result returned by the MySQL backend service. Typically contains fields such as success (boolean), affected_rows (integer), insert_id (integer or null), warnings (list), and error (object or string) when something goes wrong. Downstream nodes should parse this JSON to implement conditional behavior, error handling, or to capture generated keys.</td><td style="word-wrap: break-word;">{"success": true, "affected_rows": 1, "insert_id": 10427, "warnings": []}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Write operations only**: This node is intended for non-SELECT statements. Use the MySQL Query node for data retrieval.
-- **Credentials required**: The node will fail if the credentials path is missing or invalid.
-- **Execution timeout**: Long-running statements may time out; adjust the timeout input as needed.
-- **Result content**: The text output provides a human-readable summary, while the JSON output contains the structured result. The HTML/XLSX/PDF outputs are typically empty for execute operations.
-- **SQL safety**: Ensure your SQL is parameterized or sanitized in upstream logic to avoid injection risks.
+- **Performance**: Large batch updates, deletes without selective WHERE clauses, or heavy DDL (for example ALTER TABLE on big tables) can be slow and lock significant portions of the database; keep statements targeted and schedule heavy operations during low-traffic windows.
+- **Limitations**: This node does not return row sets from SELECT queries; using SELECT here may result in backend errors or empty data. Use the MySQL Query or MySQL Visual Query Builder nodes when you need to retrieve and inspect table data.
+- **Behavior**: Execution is delegated to a remote MySQL service via an execute endpoint; the exact shape of the JSON result may vary slightly by environment or connector version, so always inspect a sample output before building strict parsers around it.
+- **Behavior**: The node does not wrap multiple statements in explicit transactions on its own. If you need atomic multi-step updates, manage transactions directly in your SQL (using BEGIN, COMMIT, and ROLLBACK) or through database-side configuration.
 
 ## Troubleshooting
-- **SQL syntax error**: Verify the SQL statement in sql_text is valid for MySQL and that table/column names are correct.
-- **Authentication/permission denied**: Confirm the credentials_path points to valid MySQL credentials and that the user has permissions to perform the operation.
-- **Timeouts**: Increase the timeout if the database is under heavy load or the statement is expected to take longer.
-- **Connectivity issues**: Check network access, firewall rules, and that the MySQL server is reachable from the execution environment.
-- **No rows affected**: This may indicate that the WHERE clause matched no records. Double-check your conditions.
+- **Common Error 1**: The text output includes an error message such as "syntax error near" and the JSON output has success set to false. Verify that sql_text is valid MySQL syntax, ensure table and column names are correct, and test the statement directly on the target database.
+- **Common Error 2**: Execution times out, especially on large tables or complex DDL. Increase the timeout input, optimize the query with indexes and selective WHERE clauses, or break the operation into smaller batches. Confirm there are no blocking locks on the affected tables.
+- **Common Error 3**: JSON output indicates access denied or insufficient privileges. Update the credentials referenced by credentials_path to grant necessary INSERT, UPDATE, DELETE, or DDL privileges, or change the target database or schema to one where the user has appropriate rights.

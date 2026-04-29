@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-Lists all table names within a specified PostgreSQL schema. It authenticates using your configured PostgreSQL credentials and queries the Salt data service to return a formatted list and a JSON payload.
+This node connects to a PostgreSQL database using your configured credentials and lists all tables in a specified schema. It calls the Salt data service endpoint for listing tables and formats the response as both human-readable text and structured JSON. Use it to quickly discover available tables before building queries or other database logic.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../../images/previews/connectors/postgresql/saltpostgreslisttables.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,7 +11,7 @@ Lists all table names within a specified PostgreSQL schema. It authenticates usi
 
 ## Usage
 
-Use this node when you need to discover or verify the tables available in a particular PostgreSQL schema before building queries or downstream logic. Typical workflows place this node ahead of query-building or schema-inspection steps to programmatically enumerate available tables.
+Use SaltPostgresListTables when you need to explore or validate the structure of a PostgreSQL database, especially before writing queries or configuring downstream processing. It typically appears early in a workflow: upstream you provide database credentials via a credentials/connection node, and downstream you might use nodes like SaltPostgresTableInfo to inspect specific tables, SaltPostgresQueryBuilder to design queries, or SaltPostgresQuery/SaltPostgresVisualQuery to run data retrieval. A common pattern is: (1) configure credentials in your Salt workspace, (2) run SaltPostgresListTables with the target schema (e.g., "analytics"), (3) choose a table from the output, then (4) pass that table name to nodes that fetch columns, build queries, or visualize results. Best practice is to explicitly set the schema instead of relying on defaults, and to keep timeouts reasonable when working with very large databases or slower connections. This node is read-only and safe for exploration; it performs no data modifications.
 
 ## Inputs
 
@@ -26,9 +26,9 @@ Use this node when you need to discover or verify the tables available in a part
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Path to the stored PostgreSQL credentials that follow the 'postgres' credential template. The credentials are used to authenticate with the data service.</td><td style="word-wrap: break-word;"><path-to-postgres-credentials.json></td></tr>
-<tr><td style="word-wrap: break-word;">timeout</td><td>True</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time (in seconds) to wait for the service to respond before failing the request.</td><td style="word-wrap: break-word;">30</td></tr>
-<tr><td style="word-wrap: break-word;">schema</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Database schema name to list tables from.</td><td style="word-wrap: break-word;">public</td></tr>
+<tr><td style="word-wrap: break-word;">credentials_path</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Path or identifier for the stored PostgreSQL credentials template. The credentials must include host, port, database, user, and password compatible with the configured "postgres" credential template. This is used by the node to authenticate against the data service and the underlying PostgreSQL instance.</td><td style="word-wrap: break-word;">connections/prod/postgres_warehouse</td></tr>
+<tr><td style="word-wrap: break-word;">timeout</td><td>False</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum time in seconds to wait for the list-tables request to complete before failing. Must be a positive integer; very low values may cause timeouts on slower networks or very large catalogs.</td><td style="word-wrap: break-word;">30</td></tr>
+<tr><td style="word-wrap: break-word;">schema</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Name of the PostgreSQL schema to list tables from. Must be a valid existing schema in the connected database. Case sensitivity follows the database rules (commonly lowercase if not quoted).</td><td style="word-wrap: break-word;">public</td></tr>
 </tbody>
 </table>
 </div>
@@ -45,20 +45,19 @@ Use this node when you need to discover or verify the tables available in a part
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary of the tables found in the specified schema.</td><td style="word-wrap: break-word;">Tables in Schema: public - users - orders - products</td></tr>
-<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Raw JSON response with the table list and related metadata.</td><td style="word-wrap: break-word;">{"data": [{"table_name": "users"}, {"table_name": "orders"}, {"table_name": "products"}]}</td></tr>
+<tr><td style="word-wrap: break-word;">text</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human-readable summary of the tables in the specified schema, suitable for inspection or routing to LLM/assistant nodes. Typically includes the schema name and a bullet or comma-separated list of table names.</td><td style="word-wrap: break-word;">Tables in Schema: public - users - orders - order_items - products - inventory_snapshots</td></tr>
+<tr><td style="word-wrap: break-word;">json</td><td style="word-wrap: break-word;">JSON</td><td style="word-wrap: break-word;">Structured JSON payload returned from the PostgreSQL list-tables endpoint. Commonly includes a list/array of table records along with any metadata provided by the Salt data service (e.g., table name, schema, possibly type). Ideal for programmatic downstream use such as dynamic UI building, automated query generation, or filtering.</td><td style="word-wrap: break-word;">{'schema': 'public', 'tables': [{'table_name': 'users'}, {'table_name': 'orders'}, {'table_name': 'order_items'}, {'table_name': 'products'}]}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Credentials**: Requires a valid PostgreSQL credential set that matches the 'postgres' template.
-- **Default schema**: If unsure, use 'public' as the schema; many deployments default to it.
-- **Timeouts**: Large catalogs or slow networks may require increasing the timeout to avoid failures.
-- **Output structure**: The text is a readable summary; the JSON contains the underlying data for programmatic use.
+- **Performance**: Listing tables is generally fast, but on databases with many schemas and thousands of tables, responses may be slower; increase the timeout accordingly in those environments.
+- **Limitations**: This node only lists tables within a single specified schema; it does not cross schemas, list views, or provide column-level details—use dedicated nodes such as SaltPostgresTableInfo or query-building nodes for deeper inspection.
+- **Behavior**: The node relies on a configured PostgreSQL credential template named "postgres" via the shared DatabaseBaseNode logic; if credentials are missing or invalid, the node will fail before any database call is made.
+- **Behavior**: The output format (both text and JSON) is standardized by the shared database base node, so it will be consistent with other Salt PostgreSQL nodes, making it easier to chain in workflows and to parse programmatically.
 
 ## Troubleshooting
-- **Authentication error**: Verify the credentials_path points to a valid file and that it uses the 'postgres' credential template.
-- **Connection/timeout issues**: Increase the timeout value or ensure network access to the data service is available.
-- **Empty results**: Confirm the schema name is correct and that the database user has permissions to list tables.
-- **Unexpected JSON format**: Inspect the JSON output for 'error' fields; correct the schema or credentials and retry.
+- **Common Error 1**: "Authentication failed" or similar errors usually mean the credentials_path points to missing or invalid PostgreSQL credentials; verify the connection details (host, port, database, user, password) in your Salt workspace and ensure the credential template is set to "postgres".
+- **Common Error 2**: "Schema not found" or an empty result when you expect tables often indicates a typo in the schema name or a mismatch in case; double-check the schema string (e.g., "public" vs "Public") and confirm the schema exists in the target database.
+- **Common Error 3**: Request timeout or "operation exceeded timeout" suggests the timeout value is too low for your network or server performance; increase the timeout input and confirm that the database host is reachable from the Salt environment.
