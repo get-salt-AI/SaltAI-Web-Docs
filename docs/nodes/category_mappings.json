@@ -69,6 +69,10 @@
     "Utilities",
     "Math"
   ],
+  "ai/agents": [
+    "AI",
+    "Agents"
+  ],
   "logic/logic-utility": [
     "Logic",
     "Logic Utility"
@@ -107,9 +111,5 @@
   "connectors/postgresql": [
     "Connectors",
     "PostgreSQL"
-  ],
-  "ai/agents": [
-    "AI",
-    "Agents"
   ]
 }

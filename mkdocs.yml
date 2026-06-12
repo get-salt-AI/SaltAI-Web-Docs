@@ -65,6 +65,7 @@ nav:
 - Nodes:
   - AI:
     - Agents:
+      - Agent: nodes/md/ai/agents/saltagent.md
       - Google Web Search: nodes/md/ai/agents/websearchgoogle.md
       - Tavily Web Search: nodes/md/ai/agents/websearchtavily.md
       - Web Research Agent: nodes/md/ai/agents/webresearchagent.md
@@ -224,9 +225,11 @@ nav:
     - Concatenate DataFrames: nodes/md/new-uncategorized/concatenatedataframesnode.md
     - DataFrame to CSV: nodes/md/new-uncategorized/dataframetocsvnode.md
     - DataFrame to HTML: nodes/md/new-uncategorized/dataframetohtmlnode.md
+    - ESM-2 Inference: nodes/md/new-uncategorized/saltaiesm2inference.md
     - Excel to DataFrame: nodes/md/new-uncategorized/exceltodataframenode.md
     - Float: nodes/md/new-uncategorized/saltfloat.md
     - If / Else: nodes/md/new-uncategorized/saltifelse.md
+    - Input: nodes/md/new-uncategorized/saltinputvalue.md
     - Integer: nodes/md/new-uncategorized/saltinteger.md
     - JSON to DataFrame: nodes/md/new-uncategorized/jsontodataframenode.md
     - List: nodes/md/new-uncategorized/saltlist.md
@@ -252,11 +255,14 @@ nav:
     - Object: nodes/md/new-uncategorized/saltobject.md
     - OpenMM Energy Minimize: nodes/md/new-uncategorized/saltaiopenmmenergyminimize.md
     - OpenMM ForceField Config: nodes/md/new-uncategorized/saltaiopenmmforcefieldconfig.md
+    - OpenMM Ligand Parameters: nodes/md/new-uncategorized/saltaiopenmmligandparameters.md
+    - OpenMM PDB Fixer: nodes/md/new-uncategorized/saltaiopenmmpdbfixer.md
     - OpenMM Simulate: nodes/md/new-uncategorized/saltaiopenmmsimulate.md
     - OpenMM Solvate: nodes/md/new-uncategorized/saltaiopenmmsolvate.md
     - Parquet to DataFrame: nodes/md/new-uncategorized/parquettodataframenode.md
     - RF Diffusion Scaffold Guided Config: nodes/md/new-uncategorized/saasrfdiffusionscaffoldguidedconfignode.md
     - Simple If: nodes/md/new-uncategorized/saltifnode.md
+    - Storage Upload File: nodes/md/new-uncategorized/saltstorageuploadfile.md
     - String: nodes/md/new-uncategorized/saltstring.md
     - Table Cast Type: nodes/md/new-uncategorized/salttablecasttype.md
     - Table Display: nodes/md/new-uncategorized/saltdisplaytable.md
