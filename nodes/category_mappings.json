@@ -1,0 +1,115 @@
+{
+  "biotech/biotech-utils": [
+    "Biotech",
+    "Biotech Utils"
+  ],
+  "biotech/boltz": [
+    "Biotech",
+    "Boltz"
+  ],
+  "new-uncategorized": [
+    "New/Uncategorized"
+  ],
+  "healthcare/clinicaltrials": [
+    "Healthcare",
+    "ClinicalTrials"
+  ],
+  "logic/flow-control/accumulation": [
+    "Logic",
+    "Flow Control",
+    "Accumulation"
+  ],
+  "healthcare/dailymed": [
+    "Healthcare",
+    "DailyMed"
+  ],
+  "inputs": [
+    "Inputs"
+  ],
+  "biotech/functional-prediction": [
+    "Biotech",
+    "Functional Prediction"
+  ],
+  "logic/condition": [
+    "Logic",
+    "Condition"
+  ],
+  "ai/llms": [
+    "AI",
+    "LLMs"
+  ],
+  "outputs/writers": [
+    "Outputs",
+    "Writers"
+  ],
+  "healthcare/openfda": [
+    "Healthcare",
+    "OpenFDA"
+  ],
+  "utilities": [
+    "Utilities"
+  ],
+  "biotech/protein-structure-prediction": [
+    "Biotech",
+    "Protein Structure Prediction"
+  ],
+  "biotech/sequence-prediction": [
+    "Biotech",
+    "Sequence Prediction"
+  ],
+  "biotech/protein-generation": [
+    "Biotech",
+    "Protein Generation"
+  ],
+  "healthcare/rxnorm": [
+    "Healthcare",
+    "RxNorm"
+  ],
+  "utilities/math": [
+    "Utilities",
+    "Math"
+  ],
+  "ai/agents": [
+    "AI",
+    "Agents"
+  ],
+  "logic/logic-utility": [
+    "Logic",
+    "Logic Utility"
+  ],
+  "utilities/execution": [
+    "Utilities",
+    "Execution"
+  ],
+  "logic/flow-control": [
+    "Logic",
+    "Flow Control"
+  ],
+  "utilities/json": [
+    "Utilities",
+    "Json"
+  ],
+  "connectors/mssql": [
+    "Connectors",
+    "MSSQL"
+  ],
+  "utilities/memory-storage": [
+    "Utilities",
+    "Memory & Storage"
+  ],
+  "connectors/mysql": [
+    "Connectors",
+    "MySQL"
+  ],
+  "connectors/oracle": [
+    "Connectors",
+    "Oracle"
+  ],
+  "outputs": [
+    "Outputs"
+  ],
+  "connectors/postgresql": [
+    "Connectors",
+    "PostgreSQL"
+  ]
+}
