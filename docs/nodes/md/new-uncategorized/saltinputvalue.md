@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-This node defines a typed input for a workflow and converts its configured value into the selected runtime type before passing it downstream. It supports string, integer, float, boolean, list, and dictionary values, and can optionally allow external callers to override the on-node value at run time while keeping the node value as a fallback.
+Input creates a typed value for a workflow and outputs it as the selected runtime type. It supports primitive and structured data types, parses values accordingly, and can expose the value for external override through API requests, web forms, or agent tools.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/new-uncategorized/saltinputvalue.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,9 +11,7 @@ This node defines a typed input for a workflow and converts its configured value
 
 ## Usage
 
-Use this node when you want to expose a clean, typed parameter in a workflow without using the legacy input node. It is typically placed near the start of a pipeline to provide configurable values such as prompts, numeric thresholds, flags, JSON objects, or lists that feed into processing nodes downstream.
-
-This node works especially well upstream of nodes that expect primitive or structured values, and it commonly pairs with **Output** for end-to-end parameterized workflows. In deployment scenarios, it is often used as the workflow's public input surface: when **Allow external override** is enabled, API requests, forms, or agent tools can supply a value at execution time; when disabled, the node behaves like a fixed internal constant. Best practice is to use **STRING** for free text, **INT/FLOAT** for validated numeric parameters, and **LIST/DICT** only with valid JSON values so downstream nodes receive properly typed data.
+Use **Input** when a workflow needs a configurable parameter such as a prompt, threshold, count, toggle, list of options, or JSON object. It is typically placed near the start of a workflow and connected into downstream nodes that consume strings, numbers, booleans, lists, or dictionaries. Pair it with **Dynamic Text** to compose prompts from multiple inputs, and use **Output** at the end of the workflow to return generated text, JSON, images, files, or archives. For published workflows, enable **Allow external override** when callers should supply the value at run time; leave it off when the value should remain fixed inside the workflow. Prefer this node over **Salt Input (Legacy)** for new typed workflow parameters.
 
 ## Inputs
 
@@ -28,9 +26,10 @@ This node works especially well upstream of nodes that expect primitive or struc
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">input_type</td><td>True</td><td style="word-wrap: break-word;">["STRING", "FLOAT", "INT", "BOOLEAN", "LIST", "DICT"]</td><td style="word-wrap: break-word;">Selects the runtime type this node will output. The configured value is parsed and coerced to this type before execution continues. LIST expects a JSON array string and DICT expects a JSON object string.</td><td style="word-wrap: break-word;">DICT</td></tr>
-<tr><td style="word-wrap: break-word;">default_value</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The value used by the workflow. For STRING it is passed through as text; for INT and FLOAT it must be numeric; for BOOLEAN it accepts common truthy or falsy text; for LIST and DICT it must be valid JSON of the correct root type. If external override is enabled, this acts as the fallback value.</td><td style="word-wrap: break-word;">{"region": "west", "team": "sales"}</td></tr>
-<tr><td style="word-wrap: break-word;">exposed</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Controls whether the value can be supplied from outside the workflow at run time. When enabled, external callers can override the node's value; when disabled, the input is fixed and the configured value is always used.</td><td style="word-wrap: break-word;">true</td></tr>
+<tr><td style="word-wrap: break-word;">input_type</td><td>True</td><td style="word-wrap: break-word;">STRING, FLOAT, INT, BOOLEAN, LIST, or DICT</td><td style="word-wrap: break-word;">Selects the runtime type produced by the node. The `default_value` is converted to this type during execution. `LIST` must be a JSON array and `DICT` must be a JSON object.</td><td style="word-wrap: break-word;">DICT</td></tr>
+<tr><td style="word-wrap: break-word;">default_value</td><td>True</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">The editor value used when the workflow runs. If external override is enabled, this value acts as the fallback. Numeric types must contain valid numeric text, booleans are parsed from boolean-like values, and LIST/DICT values must be valid JSON.</td><td style="word-wrap: break-word;">{"species":"human","max_results":25,"include_synonyms":true}</td></tr>
+<tr><td style="word-wrap: break-word;">exposed</td><td>True</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Controls whether the value can be supplied from outside the workflow. When enabled, API requests, web forms, or agent tools may override the fallback value. When disabled, the node behaves as a fixed internal value.</td><td style="word-wrap: break-word;">True</td></tr>
+<tr><td style="word-wrap: break-word;">description</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Human- or agent-facing description of what this input represents. This helps published workflow callers understand what value to provide.</td><td style="word-wrap: break-word;">A JSON object containing the organism name, maximum number of genes to return, and whether synonyms should be included.</td></tr>
 </tbody>
 </table>
 </div>
@@ -47,19 +46,19 @@ This node works especially well upstream of nodes that expect primitive or struc
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">value</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The parsed, typed value produced by the node. Downstream nodes receive the coerced runtime value rather than the raw text entry.</td><td style="word-wrap: break-word;">{"region": "west", "team": "sales"}</td></tr>
-<tr><td style="word-wrap: break-word;">ui</td><td style="word-wrap: break-word;">UI metadata</td><td style="word-wrap: break-word;">Execution metadata describing the workflow input, including its generated input id, runtime type, current value, and whether it is externally overrideable.</td><td style="word-wrap: break-word;">{"ui": {"salt_input": [{"id": 27, "name": "input_27", "asset": false, "type": "DICT", "value": "{\"region\": \"west\", \"team\": \"sales\"}", "exposed": true}]}}</td></tr>
+<tr><td style="word-wrap: break-word;">value</td><td style="word-wrap: break-word;">WILDCARD</td><td style="word-wrap: break-word;">The parsed value produced using the selected input type. Downstream nodes receive a string, integer, float, boolean, list, or dictionary depending on `input_type`.</td><td style="word-wrap: break-word;">{'species': 'human', 'max_results': 25, 'include_synonyms': True}</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Behavior**: The node's display name is **Input**, but its class name is `SaltInputValue`; this is the current recommended typed input node, while `SaltInput` is the legacy alternative.
-- **Validation**: **LIST** and **DICT** values must be valid JSON with the correct root type. A JSON object entered for LIST, or a JSON array entered for DICT, will fail validation.
-- **Validation**: **INT** and **FLOAT** require actual numeric content. Blank strings, whitespace-only values, and non-numeric text raise a clear error instead of silently converting.
-- **Integration**: When **Allow external override** is turned off, deployment tooling treats the input as fixed/locked, so agent or API callers cannot supply that value externally.
+- **Type conversion**: The output type is determined by `input_type`, not by how the value looks in the editor. For example, `INT` converts the text to an integer, while `DICT` parses it as a JSON object.
+- **External overrides**: When **Allow external override** is disabled, the input is treated as locked for published/API/agent usage and is not advertised as a fillable parameter.
+- **Structured values**: `LIST` and `DICT` require valid JSON when entered as text. Use double quotes for JSON strings and ensure the root value is an array for `LIST` or an object for `DICT`.
+- **No asset inputs**: This node is for typed values only. It does not handle images, masks, or files; use the legacy input node only when an older workflow requires those asset-style inputs.
 
 ## Troubleshooting
-- **ValueError: LIST SaltInput value must be valid JSON / must be a JSON array**: Enter a valid JSON array such as `["sales", "support"]`, not plain comma-separated text or an object.
-- **ValueError: DICT SaltInput value must be a JSON object**: Make sure the value is an object like `{"region": "west"}` and not an array such as `["west"]`.
-- **INT/FLOAT SaltInput requires a value / must be a valid integer or number**: Remove blank or non-numeric text and provide a valid numeric value such as `42` or `3.14`. Also avoid boolean values like `true` for numeric types.
+- **`INT SaltInput requires a value` or `FLOAT SaltInput requires a value`**: The value is blank or whitespace. Enter a valid number such as `25` for `INT` or `0.85` for `FLOAT`.
+- **`LIST SaltInput value must be valid JSON`**: The list value is not valid JSON. Use a proper JSON array such as `["BRCA1", "TP53", "EGFR"]`.
+- **`DICT SaltInput value must be a JSON object`**: The parsed JSON is not an object. For `DICT`, use an object such as `{"organism":"human","limit":10}` rather than a list or plain string.
+- **External caller value is ignored**: Check that **Allow external override** is enabled. If it is disabled, the workflow uses the on-node value as a fixed constant.

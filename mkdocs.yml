@@ -223,6 +223,7 @@ nav:
     - Compare DataFrames: nodes/md/new-uncategorized/comparedataframesnode.md
     - Composite Images: nodes/md/new-uncategorized/saltimageblendingmodes.md
     - Concatenate DataFrames: nodes/md/new-uncategorized/concatenatedataframesnode.md
+    - DataFrame Columns to List: nodes/md/new-uncategorized/dataframecolumnstolistnode.md
     - DataFrame to CSV: nodes/md/new-uncategorized/dataframetocsvnode.md
     - DataFrame to HTML: nodes/md/new-uncategorized/dataframetohtmlnode.md
     - ESM-2 Inference: nodes/md/new-uncategorized/saltaiesm2inference.md
@@ -232,6 +233,7 @@ nav:
     - Input: nodes/md/new-uncategorized/saltinputvalue.md
     - Integer: nodes/md/new-uncategorized/saltinteger.md
     - JSON to DataFrame: nodes/md/new-uncategorized/jsontodataframenode.md
+    - Join DataFrames: nodes/md/new-uncategorized/joindataframesnode.md
     - List: nodes/md/new-uncategorized/saltlist.md
     - Load CIF: nodes/md/new-uncategorized/loadcifnode.md
     - Load Cloud File: nodes/md/new-uncategorized/loadcloudfilenode.md

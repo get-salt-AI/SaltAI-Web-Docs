@@ -3,7 +3,7 @@
 <div style="display: flex; gap: 20px; align-items: flex-start; margin-bottom: 20px;">
 <div style="flex: 1; min-width: 0;">
 
-This node cleans and repairs input PDB structure data so it can be used reliably in downstream OpenMM solvation, minimization, and simulation steps. It adds a controlled preprocessing step for real-world structures with missing atoms, non-standard residues, alternate locations, and protonation-state issues, while giving explicit control over how ligands, cofactors, metals, and waters are handled.
+This node prepares real-world PDB structures for OpenMM simulation by repairing common structural issues before solvation, minimization, or molecular dynamics. It standardizes residues, adds missing atoms and hydrogens at a chosen pH, and gives explicit control over ligands, cofactors, metals, and water molecules so they are not silently removed.
 
 </div>
 <div style="flex: 0 0 300px;"><img src="../../../images/previews/new-uncategorized/saltaiopenmmpdbfixer.png" alt="Preview" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);" /></div>
@@ -11,11 +11,11 @@ This node cleans and repairs input PDB structure data so it can be used reliably
 
 ## Usage
 
-Use this node early in a molecular simulation workflow whenever your starting structure comes from an experimental PDB file or any source that may contain incomplete or non-standard topology. It is especially useful for multi-chain proteins, antibodies, structures with chain breaks, missing terminal atoms, alternate conformations, or modified residues such as MSE that often cause downstream force-field setup to fail.
+Use **OpenMM PDB Fixer** immediately after loading or generating a PDB structure and before **OpenMM Solvate**, **OpenMM Energy Minimize**, or **OpenMM Simulate**. It is especially useful for downloaded PDB entries, antibody complexes, multi-chain proteins, structures with missing terminal atoms, alternate-location conflicts, non-standard residues such as MSE, and inputs that fail force-field matching downstream.
 
-Typical workflow position: connect a structure-producing node such as a PDB loader into **OpenMM PDB Fixer**, then send its `fixed.pdb` output into **OpenMM Solvate**. From there, the usual sequence is **OpenMM ForceField Config** → **OpenMM Solvate** → **OpenMM Energy Minimize** → **OpenMM Simulate**. If your structure contains ligands or other non-water heterogens that must be preserved, pair this node with **OpenMM Ligand Parameters** and use `heterogen_mode` set to `preserve` so downstream OpenMM nodes can parameterize those residues correctly.
+Typical workflow: **Load PDB** → **OpenMM PDB Fixer** → **OpenMM ForceField Config** + **OpenMM Solvate** → **OpenMM Energy Minimize** → **OpenMM Simulate**. For ligand-containing systems, set `heterogen_mode` to `preserve`, add an **OpenMM Ligand Parameters** node for each ligand residue, and pass those ligand parameters into **OpenMM Solvate**, **OpenMM Energy Minimize**, and **OpenMM Simulate**. For protein-only simulations, use `remove_nonwater` to strip ligands/cofactors/metals, and usually keep `keep_water` disabled so **OpenMM Solvate** can add a fresh, consistent solvent box.
 
-Best practices: keep the default `error_if_present` mode unless you are certain you want to discard heterogens or you already have ligand parameterization prepared. Use `replace_nonstandard_residues=true` for most crystal structures to improve compatibility with standard protein force fields. Leave `keep_water=false` in most cases, because explicit solvent is usually added later by **OpenMM Solvate** and input crystallographic waters are not typically needed for general-purpose simulation pipelines.
+Best practice is to leave `replace_nonstandard_residues` enabled for crystal structures and use the default physiological `pH` of 7.4 unless your experiment requires a different protonation environment. Keep the default `heterogen_mode=error_if_present` when inspecting new structures, because it prevents accidental removal of a ligand or cofactor that may be scientifically important.
 
 ## Inputs
 
@@ -30,12 +30,12 @@ Best practices: keep the default `error_if_present` mode unless you are certain 
 </colgroup>
 <thead><tr><th>Field</th><th>Required</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">pdb</td><td>True</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">One or more PDB structures to repair. The node expects a PDB collection keyed by structure ID, and processes each entry individually.</td><td style="word-wrap: break-word;">{"7KVE":"HEADER ANTIBODY COMPLEX ...\nATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">pH</td><td>False</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">pH value used when assigning protonation states during hydrogen addition. Valid range is 0.0 to 14.0; physiological workflows typically use 7.4.</td><td style="word-wrap: break-word;">7.4</td></tr>
-<tr><td style="word-wrap: break-word;">heterogen_mode</td><td>False</td><td style="word-wrap: break-word;">STRING</td><td style="word-wrap: break-word;">Controls treatment of non-water HETATM residues. `error_if_present` stops execution if ligands, cofactors, or metals are present; `remove_nonwater` strips non-water heterogens; `preserve` keeps them for downstream ligand-aware workflows.</td><td style="word-wrap: break-word;">preserve</td></tr>
-<tr><td style="word-wrap: break-word;">keep_water</td><td>False</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Whether to retain water molecules from the input structure. This setting only matters when `heterogen_mode` is `remove_nonwater`. In most explicit-solvent workflows, input waters are not needed because solvent is added later.</td><td style="word-wrap: break-word;">false</td></tr>
-<tr><td style="word-wrap: break-word;">replace_nonstandard_residues</td><td>False</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Whether to convert non-standard residues to their canonical equivalents where possible, such as MSE to MET. This improves compatibility with standard force fields.</td><td style="word-wrap: break-word;">true</td></tr>
-<tr><td style="word-wrap: break-word;">timeout</td><td>False</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum wait time in seconds for repairing each input PDB. Valid range is 60 to 3600 seconds; applied per structure in a batch.</td><td style="word-wrap: break-word;">600</td></tr>
+<tr><td style="word-wrap: break-word;">pdb</td><td>True</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Input PDB structure(s) to repair. Expects a dictionary-like PDB object where each entry maps a structure ID to PDB-format text containing parseable ATOM and/or HETATM records.</td><td style="word-wrap: break-word;">{'7KOO_antibody': 'HEADER    IMMUNE SYSTEM\nATOM      1  N   GLN H   1      12.414  23.810   8.921  1.00 42.18           N\n...'}</td></tr>
+<tr><td style="word-wrap: break-word;">pH</td><td>False</td><td style="word-wrap: break-word;">FLOAT</td><td style="word-wrap: break-word;">pH used when adding hydrogens and assigning protonation states. Valid range is 0.0 to 14.0, with a default of 7.4 for physiological conditions.</td><td style="word-wrap: break-word;">7.4</td></tr>
+<tr><td style="word-wrap: break-word;">heterogen_mode</td><td>False</td><td style="word-wrap: break-word;">COMBO</td><td style="word-wrap: break-word;">Controls handling of non-water HETATM residues such as ligands, cofactors, and metals. `error_if_present` stops when such residues are detected; `remove_nonwater` strips them; `preserve` keeps them for ligand-parameterized downstream workflows.</td><td style="word-wrap: break-word;">error_if_present</td></tr>
+<tr><td style="word-wrap: break-word;">keep_water</td><td>False</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Keeps water molecules from the input PDB when `heterogen_mode` is `remove_nonwater`. Usually leave this disabled because **OpenMM Solvate** adds a fresh explicit water box.</td><td style="word-wrap: break-word;">False</td></tr>
+<tr><td style="word-wrap: break-word;">replace_nonstandard_residues</td><td>False</td><td style="word-wrap: break-word;">BOOLEAN</td><td style="word-wrap: break-word;">Replaces non-standard residues with canonical equivalents where possible, such as MSE to MET or phosphorylated residues to their base amino acids. Enabled by default and recommended for most simulation preparation.</td><td style="word-wrap: break-word;">True</td></tr>
+<tr><td style="word-wrap: break-word;">timeout</td><td>False</td><td style="word-wrap: break-word;">INT</td><td style="word-wrap: break-word;">Maximum wait time per PDB structure in seconds. Default is 600 seconds; valid range is 60 to 3600 seconds. Increase for very large complexes or unusual structures.</td><td style="word-wrap: break-word;">600</td></tr>
 </tbody>
 </table>
 </div>
@@ -52,20 +52,20 @@ Best practices: keep the default `error_if_present` mode unless you are certain 
 </colgroup>
 <thead><tr><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td style="word-wrap: break-word;">fixed.pdb</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Repaired PDB structure collection ready for downstream solvation, minimization, or simulation. Each output entry contains cleaned coordinates and topology text for the corresponding input structure.</td><td style="word-wrap: break-word;">{"7KVE":"HEADER REPAIRED STRUCTURE ...\nATOM ...\nEND"}</td></tr>
-<tr><td style="word-wrap: break-word;">statistics</td><td style="word-wrap: break-word;">DATAFRAME</td><td style="word-wrap: break-word;">Tabular summary of repaired structures with one row per input PDB. Includes at least `pdb_id` and `num_atoms` so downstream steps can verify successful repair and structure size.</td><td style="word-wrap: break-word;">[{"pdb_id":"7KVE","num_atoms":18432}]</td></tr>
+<tr><td style="word-wrap: break-word;">fixed.pdb</td><td style="word-wrap: break-word;">PDB</td><td style="word-wrap: break-word;">Repaired PDB structure(s), keyed by the same PDB IDs as the input. The output is ready for **OpenMM Solvate**, **OpenMM Energy Minimize**, or **OpenMM Simulate**, depending on whether the structure already has the required simulation setup.</td><td style="word-wrap: break-word;">{'7KOO_antibody': 'HEADER    IMMUNE SYSTEM\nATOM      1  N   GLN H   1      12.414  23.810   8.921  1.00 42.18           N\nATOM      2  H   GLN H   1      12.027  24.632   8.476  1.00 42.18           H\n...\nEND'}</td></tr>
+<tr><td style="word-wrap: break-word;">statistics</td><td style="word-wrap: break-word;">DATAFRAME</td><td style="word-wrap: break-word;">A table summarizing the fixed structures. Contains one row per input PDB with `pdb_id` and `num_atoms` columns.</td><td style="word-wrap: break-word;">[{'pdb_id': '7KOO_antibody', 'num_atoms': 6842}, {'pdb_id': '1HZH_fab', 'num_atoms': 6127}]</td></tr>
 </tbody>
 </table>
 </div>
 
 ## Important Notes
-- **Behavior**: The default `heterogen_mode` is `error_if_present`, which intentionally prevents silent removal of ligands, cofactors, or metals. This protects simulation workflows from accidentally discarding chemically important molecules.
-- **Integration**: If you choose `preserve`, you should typically use **OpenMM Ligand Parameters** before **OpenMM Solvate**, **OpenMM Energy Minimize**, or **OpenMM Simulate** so preserved ligand residues can be parameterized downstream.
-- **Workflow**: `keep_water` only affects the `remove_nonwater` path. It does not change behavior when heterogens are preserved or when execution stops on heterogen detection.
-- **Performance**: Repair is generally fast for protein-only structures, but batch inputs are processed per PDB and the timeout applies to each one individually, so large batches can take proportionally longer.
+- **Heterogen safety**: The default `error_if_present` mode intentionally stops when non-water HETATM residues are present, preventing accidental removal of ligands, cofactors, or metals.
+- **Ligand workflows**: If you set `heterogen_mode` to `preserve`, downstream OpenMM nodes usually need matching **OpenMM Ligand Parameters** entries for each preserved ligand residue.
+- **Water handling**: `keep_water` only matters when `heterogen_mode` is `remove_nonwater`. For most workflows, leave input waters removed and let **OpenMM Solvate** create a consistent solvent box.
+- **Performance**: PDB fixing is usually fast for protein-only structures, but the timeout is applied per input PDB. Batch inputs can take up to `number of structures × timeout`.
 
 ## Troubleshooting
-- **Force-field setup fails later with template or atom-mismatch errors**: Run the structure through this node before solvation or minimization, and keep `replace_nonstandard_residues` enabled so modified residues are normalized where possible.
-- **Node stops because heterogens are present**: This is expected when `heterogen_mode` is `error_if_present`. Switch to `preserve` if the ligand or cofactor must remain, then provide matching residue definitions using **OpenMM Ligand Parameters**; or use `remove_nonwater` for protein-only simulations.
-- **Unexpected waters remain or disappear**: Check the combination of `heterogen_mode` and `keep_water`. `keep_water` only applies when using `remove_nonwater`, and most workflows should still add a fresh solvent box later with **OpenMM Solvate**.
-- **Repair times out on a large or unusual structure**: Increase the `timeout` value, especially for very large complexes or problematic input files processed in batches.
+- **Input pdb dictionary is empty. At least one PDB structure is required.**: Connect a valid PDB-producing upstream node, such as **Load PDB**, and confirm the input contains PDB text rather than an empty object.
+- **Structure contains non-standard residues that PDBFixer would strip**: Your structure contains ligands, cofactors, metals, or other non-water HETATM residues. Use `heterogen_mode=preserve` with **OpenMM Ligand Parameters**, or use `heterogen_mode=remove_nonwater` for a protein-only simulation.
+- **PDBFixer received empty PDB content**: The upstream file input may have lost access to the uploaded file or produced no data. Re-upload the PDB file and rerun the workflow.
+- **PDBFixer produced an empty topology**: The PDB content has no parseable ATOM/HETATM records or is not valid PDB text. Verify the file format and reload a valid structure.
